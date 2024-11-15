@@ -1,3 +1,5 @@
+package breezy.buildlogic
+
 import org.gradle.api.Project
 import java.io.ByteArrayOutputStream
 
@@ -15,7 +17,7 @@ fun Project.getGitSha(): String {
 
 fun Project.runCommand(command: String): String {
     val byteOut = ByteArrayOutputStream()
-    project.exec {
+    exec {
         commandLine = command.split(" ")
         standardOutput = byteOut
     }

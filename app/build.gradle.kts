@@ -1,15 +1,18 @@
 @file:Suppress("ChromeOsAbiSupport")
 
+import breezy.buildlogic.getCommitCount
+import breezy.buildlogic.getGitSha
+import breezy.buildlogic.registerLocalesConfigTask
 import java.util.Properties
 
 plugins {
+    id("breezy.android.application")
+    id("breezy.android.application.compose")
     id("com.android.application")
-    id("com.mikepenz.aboutlibraries.plugin")
-    kotlin("android")
-    alias(libs.plugins.kotlinCompose)
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
     kotlin("plugin.serialization")
+    id("com.mikepenz.aboutlibraries.plugin")
 }
 
 val supportedAbi = setOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
@@ -186,7 +189,6 @@ android {
 
     buildFeatures {
         viewBinding = true
-        compose = true
         buildConfig = true
 
         // Disable some unused things
@@ -206,11 +208,6 @@ android {
             isIncludeAndroidResources = true
             unitTests.isReturnDefaultValues = true
         }
-    }
-
-    lint {
-        abortOnError = false
-        checkReleaseBuilds = false
     }
 }
 

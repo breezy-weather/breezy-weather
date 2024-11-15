@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.library")
+    id("breezy.library")
     kotlin("android")
     kotlin("plugin.serialization")
 }

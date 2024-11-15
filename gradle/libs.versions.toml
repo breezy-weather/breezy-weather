@@ -1,5 +1,5 @@
 [versions]
-aboutlib_version = "11.2.3"
+aboutlib = "11.2.3"
 accompanist = "0.36.0"
 activity = "1.9.3"
 adaptiveiconview = "v0.0.3"
@@ -47,8 +47,8 @@ vico = "2.0.0-beta.2"
 work-runtime = "2.10.0"
 
 [libraries]
-aboutLibraries = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutlib_version" }
-aboutLibraries-gradle = { group = "com.mikepenz.aboutlibraries.plugin", name = "aboutlibraries-plugin", version.ref = "aboutlib_version" }
+aboutLibraries = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutlib" }
+aboutLibraries-gradle = { group = "com.mikepenz.aboutlibraries.plugin", name = "aboutlibraries-plugin", version.ref = "aboutlib" }
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
@@ -57,6 +57,7 @@ android-gradle = { group = "com.android.tools.build", name = "gradle", version.r
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 compose-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "compose" }
+compose-compiler-gradle = { group = "org.jetbrains.kotlin", name = "compose-compiler-gradle-plugin", version.ref = "kotlin" }
 compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose" }
 compose-lint-checks = { group = "com.slack.lint.compose", name = "compose-lint-checks", version.ref = "compose-lint-checks" }
 compose-material-ripple = { group = "androidx.compose.material", name = "material-ripple", version.ref = "compose" }
@@ -123,10 +124,12 @@ vico-compose-m3 = { group = "com.patrykandpatrick.vico", name = "compose-m3", ve
 work-runtime = { group = "androidx.work", name = "work-runtime", version.ref = "work-runtime" }
 
 [plugins]
+aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutlib" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlinCompose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 
 [bundles]
 lifecycle = ["lifecycle-common-java8", "lifecycle-extensions", "lifecycle-livedata-ktx", "lifecycle-reactivestreams-ktx", "lifecycle-runtime-ktx", "lifecycle-viewmodel-compose", "lifecycle-viewmodel-ktx"]
