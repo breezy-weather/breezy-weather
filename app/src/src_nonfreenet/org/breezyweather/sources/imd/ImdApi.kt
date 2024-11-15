@@ -26,6 +26,6 @@ interface ImdApi {
     fun getForecast(
         @Query("lat_gfs") lat: Double,
         @Query("lon_gfs") lon: Double,
-        @Query("date") date: String
+        @Query("date") date: String,
     ): Observable<ImdWeatherResult>
 }

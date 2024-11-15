@@ -19,6 +19,7 @@
 - Fix hourly tabs disappearing sometimes (@ccyybn)
 
 **Weather sources**
+- [IMD] Added as a main source option for India (@chunshek)
 - [BMKG] Added as a main and secondary current/alert/air quality source option for Indonesia (@chunshek)
 - [MGM] Added as a main and secondary current/alert/normals source option for Türkiye (@chunshek)
 - [Hong Kong Observatory] Added as a main and secondary current/alert/normals source option for Hong Kong (@chunshek)

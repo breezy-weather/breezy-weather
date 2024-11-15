@@ -20,7 +20,6 @@ import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.WeatherWrapper
-import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -37,8 +36,7 @@ import javax.inject.Named
 import kotlin.math.roundToInt
 
 class ImdService @Inject constructor(
-    @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder
+    @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource {
 
     override val id = "imd"
@@ -61,7 +59,7 @@ class ImdService @Inject constructor(
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?
+        feature: SecondaryWeatherSourceFeature?,
     ): Boolean {
         return location.countryCode.equals("IN", ignoreCase = true)
     }
@@ -69,9 +67,8 @@ class ImdService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>
+        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
     ): Observable<WeatherWrapper> {
-
         // Forecast data is obtained from https://mausamgram.imd.gov.in/
         // It computes forecasts on a 0.125° × 0.125° grid.
         // We must feed the coordinates at exactly this resolution, or the data retrieval will fail.
@@ -90,11 +87,11 @@ class ImdService @Inject constructor(
         // Then we grab the forecast with the corresponding "date" parameter.
         // If one particular forecast grab does not return valid output, don't fail the whole process,
         // because the other two forecasts may still yield valid output that can be used.
-        val requests = List<Request>(IMD_TIMEFRAMES.size) {
+        val requests = List(IMD_TIMEFRAMES.size) {
             Request.Builder().url(IMD_BASE_URL + "mmem_" + IMD_TIMEFRAMES[it] + ".txt").build()
         }
-        val timestamps = MutableList<String>(IMD_TIMEFRAMES.size) { "" }
-        val forecasts = MutableList<Observable<ImdWeatherResult>>(IMD_TIMEFRAMES.size) {
+        val timestamps = MutableList(IMD_TIMEFRAMES.size) { "" }
+        val forecasts = MutableList(IMD_TIMEFRAMES.size) {
             okHttpClient.newCall(requests[it]).execute().use { call ->
                 if (call.isSuccessful) {
                     timestamps[it] = call.body!!.string().substringBefore(',')
@@ -124,7 +121,7 @@ class ImdService @Inject constructor(
         return Observable.zip(forecasts[0], forecasts[1], forecasts[2]) {
                 forecast1hrResult: ImdWeatherResult,
                 forecast3hrResult: ImdWeatherResult,
-                forecast6hrResult: ImdWeatherResult
+                forecast6hrResult: ImdWeatherResult,
             ->
             convert(
                 location = location,
@@ -133,19 +130,25 @@ class ImdService @Inject constructor(
                 forecast6hr = forecast6hrResult,
                 forecast1hrTimestamp = if (timestampRegex.matches(timestamps[0])) {
                     formatter.parse(timestamps[0])!!.time
-                } else null,
+                } else {
+                    null
+                },
                 forecast3hrTimestamp = if (timestampRegex.matches(timestamps[1])) {
                     formatter.parse(timestamps[1])!!.time
-                } else null,
+                } else {
+                    null
+                },
                 forecast6hrTimestamp = if (timestampRegex.matches(timestamps[2])) {
                     formatter.parse(timestamps[2])!!.time
-                } else null
+                } else {
+                    null
+                }
             )
         }
     }
 
     companion object {
         private const val IMD_BASE_URL = "https://mausamgram.imd.gov.in/"
-        private val IMD_TIMEFRAMES = listOf("1hr", "3hr", "6hr")
+        private val IMD_TIMEFRAMES = arrayOf("1hr", "3hr", "6hr")
     }
 }

@@ -30,6 +30,7 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+import kotlin.time.Duration.Companion.hours
 
 fun convert(
     location: Location,
@@ -38,10 +39,16 @@ fun convert(
     forecast6hr: ImdWeatherResult,
     forecast1hrTimestamp: Long?,
     forecast3hrTimestamp: Long?,
-    forecast6hrTimestamp: Long?
+    forecast6hrTimestamp: Long?,
 ): WeatherWrapper {
-    val hourlyForecast = getHourlyForecast(forecast1hr, forecast3hr, forecast6hr,
-        forecast1hrTimestamp, forecast3hrTimestamp, forecast6hrTimestamp)
+    val hourlyForecast = getHourlyForecast(
+        forecast1hr,
+        forecast3hr,
+        forecast6hr,
+        forecast1hrTimestamp,
+        forecast3hrTimestamp,
+        forecast6hrTimestamp
+    )
 
     return WeatherWrapper(
         dailyForecast = getDailyForecast(location, hourlyForecast),
@@ -51,7 +58,7 @@ fun convert(
 
 private fun getDailyForecast(
     location: Location,
-    hourlyForecast: List<HourlyWrapper>
+    hourlyForecast: List<HourlyWrapper>,
 ): List<Daily> {
     // Need to provide an empty daily list so that
     // CommonConverter.kt will compute the daily forecast items.
@@ -82,7 +89,7 @@ private fun getHourlyForecast(
     forecast6hr: ImdWeatherResult,
     forecast1hrTimestamp: Long?,
     forecast3hrTimestamp: Long?,
-    forecast6hrTimestamp: Long?
+    forecast6hrTimestamp: Long?,
 ): List<HourlyWrapper> {
     val hourlyList = mutableListOf<HourlyWrapper>()
     val apcpMap = mutableMapOf<Long, Double?>()
@@ -95,26 +102,26 @@ private fun getHourlyForecast(
     var key: Long
 
     val forecastSets = listOf(forecast6hr, forecast3hr, forecast1hr)
-    val forecastParameters = listOf<Map<String, Long?>>(
+    val forecastParameters = listOf(
         mapOf(
             "timestamp" to forecast6hrTimestamp,
-            "interval" to 21600000, // 6 hours in milliseconds
+            "interval" to 6.hours.inWholeMilliseconds,
             "size" to 40 // 10 days
         ),
         mapOf(
             "timestamp" to forecast3hrTimestamp,
-            "interval" to 10800000, // 3 hours in milliseconds
+            "interval" to 3.hours.inWholeMilliseconds,
             "size" to 40 // 5 days
         ),
         mapOf(
             "timestamp" to forecast1hrTimestamp,
-            "interval" to 3600000, // 1 hour in milliseconds
+            "interval" to 1.hours.inWholeMilliseconds,
             "size" to 36 // 1.5 days
-        ),
+        )
     )
 
     // Put data from all three forecasts into respective maps
-    // first 6hr, then 3hr, then 1hr
+    // first 6 hr, then 3 hr, then 1 hr
     forecastSets.forEachIndexed { set, forecast ->
         forecastParameters.getOrNull(set)?.let { parameters ->
             if (parameters["timestamp"] != null) {
@@ -152,7 +159,7 @@ private fun getHourlyForecast(
                     gusts = gustMap[it]
                 ),
                 relativeHumidity = rhMap[it],
-                cloudCover = tcdcMap[it]?.toInt(),
+                cloudCover = tcdcMap[it]?.toInt()
             )
         )
     }

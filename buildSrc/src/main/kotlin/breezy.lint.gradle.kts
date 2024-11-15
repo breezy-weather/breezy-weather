@@ -34,6 +34,7 @@ spotless {
             "src/main/java/org/breezyweather/sources/CommonConverter.kt",
             "src/src_nonfreenet/org/breezyweather/sources/eccc/json/EcccResult.kt",
             "src/src_nonfreenet/org/breezyweather/sources/geosphereat/json/GeoSphereAtTimeseriesResult.kt",
+            "src/src_nonfreenet/org/breezyweather/sources/imd/json/ImdWeatherResult.kt",
             "src/src_nonfreenet/org/breezyweather/sources/meteoam/json/MeteoAmForecastDatasets.kt",
             "src/src_nonfreenet/org/breezyweather/sources/meteoam/json/MeteoAmForecastResult.kt",
             "src/src_nonfreenet/org/breezyweather/sources/meteoam/json/MeteoAmObservationResult.kt",

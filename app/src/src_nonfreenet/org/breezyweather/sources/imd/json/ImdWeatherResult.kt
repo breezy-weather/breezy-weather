@@ -27,5 +27,5 @@ data class ImdWeatherResult(
     val wdir: List<@Serializable(with = ImdAnySerializer::class) Any?>? = null,
     val rh: List<@Serializable(with = ImdAnySerializer::class) Any?>? = null,
     val tcdc: List<@Serializable(with = ImdAnySerializer::class) Any?>? = null,
-    val gust: List<@Serializable(with = ImdAnySerializer::class) Any?>? = null
+    val gust: List<@Serializable(with = ImdAnySerializer::class) Any?>? = null,
 )
