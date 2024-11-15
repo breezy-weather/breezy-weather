@@ -147,7 +147,7 @@
     <string name="location_message_list_cannot_be_empty">A helyszínlista nem lehet üres</string>
     <string name="location_search_placeholder">Helyszín keresése…</string>
     <string name="location_current_not_found_yet">A jelenlegi helyszín még nincs meghatározva…</string>
-    <string name="settings_changes_apply_after_restart">A módosítások újraindítás után lépnek életbe</string>
+    <string name="settings_changes_apply_after_restart">A módosítások az alkalmazás újraindítása után lépnek életbe</string>
     <string name="notification_running_in_background">Az alkalmazás a háttérben fut a folyamatos frissítés érdekében</string>
     <string name="notification_updating_weather_data">Időjárásadatok frissítése (%1$d/%2$d)</string>
     <string name="pollen_tap_to_see_more">Koppintson a további részletekért…</string>
