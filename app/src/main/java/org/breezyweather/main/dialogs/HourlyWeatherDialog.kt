@@ -19,89 +19,146 @@ package org.breezyweather.main.dialogs
 import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.TextView
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Text
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.viewinterop.AndroidView
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Hourly
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
 import org.breezyweather.common.extensions.getHour
 import org.breezyweather.common.ui.widgets.AnimatableIconView
+import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.theme.compose.BreezyWeatherTheme
+import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.resource.ResourceHelper
 import org.breezyweather.theme.resource.ResourcesProviderFactory
 import java.text.NumberFormat
 
 object HourlyWeatherDialog {
-    fun show(activity: Activity, location: Location, hourly: Hourly) {
+    fun show(
+        activity: Activity,
+        location: Location,
+        hourly: Hourly,
+    ) {
         val view = LayoutInflater
             .from(activity)
-            .inflate(R.layout.dialog_weather_hourly, null, false)
-        initWidget(view, hourly)
-        MaterialAlertDialogBuilder(activity)
-            .setTitle(
-                hourly.date.getHour(location, activity) +
-                    " - " +
-                    hourly.date.getFormattedMediumDayAndMonth(location, activity)
-            )
-            .setView(view)
-            .show()
+            .inflate(R.layout.dialog_weather_hourly, activity.findViewById(android.R.id.content), true)
+
+        val composeView = view.findViewById<ComposeView>(R.id.dialog_weather_hourly)
+        val dialogOpenState = mutableStateOf(true)
+        val weatherIconView = AnimatableIconView(view.context)
+        val weatherText = buildWeatherText(view, hourly)
+
+        composeView.setContent {
+            BreezyWeatherTheme(
+                MainThemeColorProvider.isLightTheme(activity, daylight = location.isDaylight)
+            ) {
+                if (dialogOpenState.value) {
+                    AlertDialog(
+                        onDismissRequest = {
+                            dialogOpenState.value = false
+                        },
+                        confirmButton = { /* do not show a button */ },
+                        title = {
+                            Text(
+                                hourly.date.getHour(location, activity) +
+                                    " - " +
+                                    hourly.date.getFormattedMediumDayAndMonth(location, activity)
+                            )
+                        },
+                        text = {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable {
+                                        weatherIconView.startAnimators()
+                                    }
+                            ) {
+                                AndroidView(
+                                    modifier = Modifier.size(dimensionResource(R.dimen.standard_weather_icon_size)),
+                                    factory = {
+                                        weatherIconView.apply {
+                                            val provider = ResourcesProviderFactory.newInstance
+                                            val weatherCode = hourly.weatherCode
+                                            val daytime = hourly.isDaylight
+                                            if (weatherCode != null) {
+                                                setAnimatableIcon(
+                                                    ResourceHelper.getWeatherIcons(
+                                                        provider,
+                                                        weatherCode,
+                                                        daytime
+                                                    ),
+                                                    ResourceHelper.getWeatherAnimators(
+                                                        provider,
+                                                        weatherCode,
+                                                        daytime
+                                                    )
+                                                )
+                                            }
+                                        }
+                                    }
+                                )
+                                Text(
+                                    text = weatherText,
+                                    modifier = Modifier.padding(
+                                        start = dimensionResource(R.dimen.normal_margin)
+                                    )
+                                )
+                            }
+                        },
+                        textContentColor = DayNightTheme.colors.bodyColor
+                    )
+                }
+            }
+        }
     }
 
-    private fun initWidget(view: View, hourly: Hourly) {
-        val provider = ResourcesProviderFactory.newInstance
-        val weatherIcon = view.findViewById<AnimatableIconView>(R.id.dialog_weather_hourly_icon)
-        view.findViewById<View>(R.id.dialog_weather_hourly_weatherContainer)
-            .setOnClickListener { weatherIcon.startAnimators() }
-        val weatherCode = hourly.weatherCode
-        val daytime = hourly.isDaylight
-        if (weatherCode != null) {
-            weatherIcon.setAnimatableIcon(
-                ResourceHelper.getWeatherIcons(provider, weatherCode, daytime),
-                ResourceHelper.getWeatherAnimators(provider, weatherCode, daytime)
-            )
-        }
-        val weatherText = view.findViewById<TextView>(R.id.dialog_weather_hourly_text)
+    private fun buildWeatherText(view: View, hourly: Hourly): String {
         val settings = SettingsManager.getInstance(view.context)
         val temperatureUnit = settings.temperatureUnit
         val precipitationUnit = settings.precipitationUnit
-        val builder = StringBuilder()
-        hourly.weatherText?.let {
-            builder.append(it)
-        }
-        hourly.temperature?.temperature?.let {
-            if (builder.toString().isNotEmpty()) {
-                builder.append(view.context.getString(R.string.comma_separator))
+
+        return buildString {
+            append(hourly.weatherText)
+            hourly.temperature?.temperature?.let {
+                if (isNotEmpty()) append(view.context.getString(R.string.comma_separator))
+                append(temperatureUnit.getValueText(view.context, it))
             }
-            builder.append(
-                temperatureUnit.getValueText(view.context, it)
-            )
-        }
-        hourly.temperature?.feelsLikeTemperature?.let {
-            if (builder.toString().isNotEmpty()) builder.append("\n")
-            builder.append(view.context.getString(R.string.temperature_feels_like))
-                .append(" ")
-                .append(
-                    temperatureUnit.getValueText(view.context, it)
-                )
-        }
-        hourly.precipitation?.total?.let {
-            if (builder.toString().isNotEmpty()) builder.append("\n")
-            builder.append(view.context.getString(R.string.precipitation))
-                .append(view.context.getString(R.string.colon_separator))
-                .append(precipitationUnit.getValueText(view.context, it))
-        }
-        if ((hourly.precipitationProbability?.total ?: 0.0) > 0) {
-            if (builder.toString().isNotEmpty()) builder.append("\n")
-            builder.append(view.context.getString(R.string.precipitation_probability))
-                .append(view.context.getString(R.string.colon_separator))
-                .append(
+            hourly.temperature?.feelsLikeTemperature?.let {
+                if (isNotEmpty()) append("\n")
+                append(view.context.getString(R.string.temperature_feels_like))
+                append(" ")
+                append(temperatureUnit.getValueText(view.context, it))
+            }
+            hourly.precipitation?.total?.let {
+                if (isNotEmpty()) append("\n")
+                append(view.context.getString(R.string.precipitation))
+                append(view.context.getString(R.string.colon_separator))
+                append(precipitationUnit.getValueText(view.context, it))
+            }
+            if ((hourly.precipitationProbability?.total ?: 0.0) > 0) {
+                if (isNotEmpty()) append("\n")
+                append(view.context.getString(R.string.precipitation_probability))
+                append(view.context.getString(R.string.colon_separator))
+                append(
                     NumberFormat.getPercentInstance(view.context.currentLocale).apply {
                         maximumFractionDigits = 0
                     }.format(hourly.precipitationProbability!!.total!!.div(100.0))
                 )
+            }
         }
-        weatherText.text = builder.toString()
     }
 }

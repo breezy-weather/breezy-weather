@@ -16,52 +16,156 @@
 
 package org.breezyweather.main.dialogs
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.view.LayoutInflater
-import android.view.View
-import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.AlertDialogDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.main.MainActivity
+import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.theme.compose.BreezyWeatherTheme
+import org.breezyweather.theme.compose.DayNightTheme
 
 object LocationHelpDialog {
-    fun show(activity: Activity) {
+    fun show(
+        activity: Activity,
+    ) {
         val view = LayoutInflater
             .from(activity)
-            .inflate(R.layout.dialog_location_help, null, false)
-        initWidget(
-            activity,
-            view,
-            MaterialAlertDialogBuilder(activity)
-                .setTitle(R.string.location_dialog_failed_to_locate_title)
-                .setView(view)
-                .show()
-        )
+            .inflate(R.layout.dialog_location_help, activity.findViewById(android.R.id.content), true)
+
+        val composeView = view.findViewById<ComposeView>(R.id.location_help_dialog)
+        val dialogOpenState = mutableStateOf(true)
+        val isDaylight = if (activity is MainActivity &&
+            (!activity.isManagementFragmentVisible || activity.isDrawerLayoutVisible)
+        ) { // only use the location-based daylight setting when the home fragment is visible
+            activity.isDaylight
+        } else {
+            null
+        }
+
+        composeView.setContent {
+            BreezyWeatherTheme(
+                MainThemeColorProvider.isLightTheme(activity, daylight = isDaylight)
+            ) {
+                if (dialogOpenState.value) {
+                    AlertDialog(
+                        onDismissRequest = {
+                            dialogOpenState.value = false
+                        },
+                        confirmButton = {
+                            TextButton(
+                                onClick = {
+                                    dialogOpenState.value = false
+                                }
+                            ) {
+                                Text(stringResource(R.string.action_close))
+                            }
+                        },
+                        title = {
+                            Text(
+                                stringResource(R.string.location_dialog_failed_to_locate_title)
+                            )
+                        },
+                        text = {
+                            Column(
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                // TODO: Check location permission and if location is enabled. Only show items when relevant (permission is not granted / location is disabled).
+                                DialogListItem(
+                                    content = stringResource(
+                                        R.string.location_dialog_failed_to_locate_action_check_permission
+                                    ),
+                                    iconId = R.drawable.ic_android,
+                                    onClick = {
+                                        IntentHelper.startApplicationDetailsActivity(activity)
+                                        dialogOpenState.value = false
+                                    }
+                                )
+                                DialogListItem(
+                                    content = stringResource(
+                                        R.string.location_dialog_failed_to_locate_action_enable_information
+                                    ),
+                                    iconId = R.drawable.ic_location,
+                                    onClick = {
+                                        IntentHelper.startLocationSettingsActivity(activity)
+                                        dialogOpenState.value = false
+                                    }
+                                )
+                                DialogListItem(
+                                    content = stringResource(
+                                        R.string.location_dialog_failed_to_locate_action_select_source
+                                    ),
+                                    iconId = R.drawable.ic_factory,
+                                    onClick = {
+                                        IntentHelper.startLocationProviderSettingsActivity(activity)
+                                        dialogOpenState.value = false
+                                    }
+                                )
+                                DialogListItem(
+                                    content = stringResource(
+                                        R.string.location_dialog_failed_to_locate_action_add_manually,
+                                        stringResource(R.string.location_current)
+                                    ),
+                                    iconId = R.drawable.ic_location_list3,
+                                    onClick = {
+                                        if (activity is MainActivity) {
+                                            activity.setManagementFragmentVisibility(true)
+                                        } else {
+                                            IntentHelper.startMainActivityForManagement(activity)
+                                        }
+                                        dialogOpenState.value = false
+                                    }
+                                )
+                            }
+                        }
+                    )
+                }
+            }
+        }
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun initWidget(activity: Activity, view: View, dialog: AlertDialog) {
-        view.findViewById<View>(R.id.dialog_location_help_permissionContainer)
-            .setOnClickListener { IntentHelper.startApplicationDetailsActivity(activity) }
-        view.findViewById<View>(R.id.dialog_location_help_locationContainer)
-            .setOnClickListener { IntentHelper.startLocationSettingsActivity(activity) }
-        view.findViewById<View>(R.id.dialog_location_help_providerContainer)
-            .setOnClickListener { IntentHelper.startLocationProviderSettingsActivity(activity) }
-        view.findViewById<View>(R.id.dialog_location_help_manageContainer).setOnClickListener {
-            if (activity is MainActivity) {
-                activity.setManagementFragmentVisibility(true)
-            } else {
-                IntentHelper.startMainActivityForManagement(activity)
+    @Composable
+    private fun DialogListItem(
+        content: String,
+        @DrawableRes iconId: Int? = null,
+        onClick: () -> Unit,
+    ) {
+        ListItem(
+            colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor),
+            modifier = Modifier.clickable { onClick() },
+            headlineContent = {
+                Text(
+                    content,
+                    color = DayNightTheme.colors.bodyColor,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            },
+            leadingContent = iconId?.let {
+                {
+                    Icon(
+                        painterResource(it),
+                        contentDescription = null
+                    )
+                }
             }
-            dialog.dismiss()
-        }
-        view.findViewById<TextView>(R.id.dialog_location_help_manageTitle).text =
-            activity.getString(
-                R.string.location_dialog_failed_to_locate_action_add_manually,
-                activity.getString(R.string.location_current)
-            )
+        )
     }
 }
