@@ -183,7 +183,7 @@ class CwaService @Inject constructor(
                 }",
                 "variables": null
             }
-        """.trimIndent()
+        """.trimIndent().replace("\n", " ")
         val weather = mApi.getWeather(
             apiKey,
             body.toRequestBody("application/json".toMediaTypeOrNull())
@@ -362,7 +362,7 @@ class CwaService @Inject constructor(
                 }",
                 "variables": null
             }
-        """.trimIndent()
+        """.trimIndent().replace("\n", " ")
 
         val weather = if (
             requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
@@ -462,7 +462,7 @@ class CwaService @Inject constructor(
                 }",
                 "variables": null
             }
-        """.trimIndent()
+        """.trimIndent().replace("\n", " ")
         return mApi.getLocation(
             apiKey,
             body.toRequestBody("application/json".toMediaTypeOrNull())
@@ -511,7 +511,7 @@ class CwaService @Inject constructor(
                 }",
                 "variables": null
             }
-        """.trimIndent()
+        """.trimIndent().replace("\n", " ")
         return mApi.getLocation(
             apiKey,
             body.toRequestBody("application/json".toMediaTypeOrNull())
