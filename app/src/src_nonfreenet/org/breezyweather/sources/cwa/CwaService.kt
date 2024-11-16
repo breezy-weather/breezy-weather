@@ -133,57 +133,7 @@ class CwaService @Inject constructor(
 
         // The main weather API call requires plugging in the location's coordinates
         // (latitude: $latitude, longitude: $longitude) into the body of a PUSH request.
-        val body = """
-            {
-                "query": "query aqi {
-                    aqi(latitude: ${location.latitude}, longitude: ${location.longitude}) {
-                        station {
-                            stationId,
-                            locationName,
-                            latitude,
-                            longitude,
-                            time { obsTime },
-                            weatherElement { elementName, elementValue }
-                        },
-                        sitename,
-                        county,
-                        latitude,
-                        longitude,
-                        so2,
-                        co,
-                        o3,
-                        pm10,
-                        pm2_5,
-                        no2,
-                        publishtime,
-                        town {
-                            forecast72hr {
-                                Wx { timePeriods { startTime, weather, weatherIcon } },
-                                T { timePeriods { dataTime, temperature } },
-                                AT { timePeriods { dataTime, apparentTemperature } },
-                                Td { timePeriods { dataTime, dewPointTemperature } },
-                                RH { timePeriods { dataTime, relativeHumidity } },
-                                WD { timePeriods { dataTime, windDirectionDescription } },
-                                WS { timePeriods { dataTime, windSpeed } },
-                                PoP6h { timePeriods { startTime, probabilityOfPrecipitation } }
-                            },
-                            forecastWeekday {
-                                Wx { timePeriods { startTime, weather, weatherIcon } },
-                                MinT { timePeriods { startTime, temperature } },
-                                MaxT { timePeriods { startTime, temperature } },
-                                MinAT { timePeriods { startTime, apparentTemperature } },
-                                MaxAT { timePeriods { startTime, apparentTemperature } },
-                                WD { timePeriods { startTime, windDirectionDescription } },
-                                WS { timePeriods { startTime, windSpeed } },
-                                PoP12h { timePeriods { startTime, probabilityOfPrecipitation } },
-                                UVI { timePeriods { startTime, UVIndex } }
-                            }
-                        }
-                    }
-                }",
-                "variables": null
-            }
-        """.trimIndent()
+        val body = """{ "query": "query aqi {aqi(latitude: ${location.latitude}, longitude: ${location.longitude}) {station { stationId, locationName, latitude, longitude, time { obsTime }, weatherElement { elementName, elementValue } }, sitename, county, latitude, longitude, so2, co, o3, pm10, pm2_5, no2, publishtime, town { forecast72hr { Wx { timePeriods { startTime, weather, weatherIcon } }, T { timePeriods { dataTime, temperature } }, AT { timePeriods { dataTime, apparentTemperature } }, Td { timePeriods { dataTime, dewPointTemperature } }, RH { timePeriods { dataTime, relativeHumidity } }, WD { timePeriods { dataTime, windDirectionDescription } }, WS { timePeriods { dataTime, windSpeed } }, PoP6h { timePeriods { startTime, probabilityOfPrecipitation } }}, forecastWeekday { Wx { timePeriods { startTime, weather, weatherIcon } }, MinT { timePeriods { startTime, temperature } }, MaxT { timePeriods { startTime, temperature } }, MinAT { timePeriods { startTime, apparentTemperature } }, MaxAT { timePeriods { startTime, apparentTemperature } }, WD { timePeriods { startTime, windDirectionDescription } }, WS { timePeriods { startTime, windSpeed } }, PoP12h { timePeriods { startTime, probabilityOfPrecipitation } }, UVI { timePeriods { startTime, UVIndex } }}}}}", "variables": null}"""
         val weather = mApi.getWeather(
             apiKey,
             body.toRequestBody("application/json".toMediaTypeOrNull())
@@ -353,16 +303,7 @@ class CwaService @Inject constructor(
 
         // The air quality API call requires plugging in the location's coordinates
         // (latitude: $latitude, longitude: $longitude) into the body of a PUSH request.
-        val body = """
-            {
-                "query": "query aqi {
-                    aqi(latitude: ${location.latitude}, longitude: ${location.longitude}) {
-                        sitename, county, latitude, longitude, so2, co, o3, pm10, pm2_5, no2, publishtime
-                    }
-                }",
-                "variables": null
-            }
-        """.trimIndent()
+        val body = """{"query": "query aqi {aqi(latitude: ${location.latitude}, longitude: ${location.longitude}) {sitename, county, latitude, longitude, so2, co, o3, pm10, pm2_5, no2, publishtime}}","variables": null}"""
 
         val weather = if (
             requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
@@ -453,16 +394,7 @@ class CwaService @Inject constructor(
 
         // The reverse geocoding API call requires plugging in the location's coordinates
         // (latitude: $latitude, longitude: $longitude) into the body of a PUSH request.
-        val body = """
-            {
-                "query": "query town {
-                    town (latitude: ${location.latitude}, longitude: ${location.longitude}) {
-                        townCode, ctyName, townName, villageName
-                    }
-                }",
-                "variables": null
-            }
-        """.trimIndent()
+        val body = """{"query": "query town {town (latitude: ${location.latitude}, longitude: ${location.longitude}) {townCode, ctyName, townName, villageName}}", "variables": null}"""
         return mApi.getLocation(
             apiKey,
             body.toRequestBody("application/json".toMediaTypeOrNull())
@@ -502,16 +434,7 @@ class CwaService @Inject constructor(
 
         // The reverse geocoding API call requires plugging in the location's coordinates
         // (latitude: $latitude, longitude: $longitude) into the body of a PUSH request.
-        val body = """
-            {
-                "query": "query town {
-                    town (latitude: ${location.latitude}, longitude: ${location.longitude}) {
-                        townCode, ctyName, townName, villageName
-                    }
-                }",
-                "variables": null
-            }
-        """.trimIndent()
+        val body = """{"query": "query town {town (latitude: ${location.latitude}, longitude: ${location.longitude}) {townCode, ctyName, townName, villageName}}", "variables": null}"""
         return mApi.getLocation(
             apiKey,
             body.toRequestBody("application/json".toMediaTypeOrNull())
