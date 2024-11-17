@@ -708,4 +708,25 @@
     <string name="settings_unavailable_no_animations">Indisponível. Ative primeiro as animações nas configurações do Android</string>
     <string name="current_weather">Clima atual</string>
     <string name="weather_current_data_by">Dados meteorológicos atuais por %s</string>
+    <string name="common_weather_text_dust">Poeira</string>
+    <string name="common_weather_text_dust_storm">Tempestade de poeira</string>
+    <string name="smg_warning_text_tropical_cyclone_1">Sinal nº1</string>
+    <string name="smg_warning_text_tropical_cyclone_3">Sinal nº3</string>
+    <string name="smg_warning_text_tropical_cyclone_8_northeast">Sinal nº8NE</string>
+    <string name="smg_warning_text_tropical_cyclone_8_northwest">Sinal nº8NW</string>
+    <string name="smg_warning_text_tropical_cyclone_8_southeast">Sinal nº8SE</string>
+    <string name="smg_warning_text_tropical_cyclone_8_southwest">Sinal nº8SW</string>
+    <string name="smg_warning_text_tropical_cyclone_9">Sinal nº9</string>
+    <string name="smg_warning_text_tropical_cyclone_10">Sinal nº10</string>
+    <string name="smg_warning_text_rainstorm_yellow">Sinal de Chuva Intensa Amarelo</string>
+    <string name="smg_warning_text_rainstorm_red">Sinal de Chuva Intensa Vermelho</string>
+    <string name="smg_warning_text_rainstorm_black">Sinal de Chuva Intensa Preto</string>
+    <string name="smg_warning_text_strong_monsoon">Sinal de Ventos Fortes de Monção</string>
+    <string name="smg_warning_text_thunderstorm">Sinal de Trovoada</string>
+    <string name="smg_warning_text_storm_surge_blue">Aviso de “Storm Surge” Azul</string>
+    <string name="smg_warning_text_storm_surge_yellow">Aviso de “Storm Surge” Amarelo</string>
+    <string name="smg_warning_text_storm_surge_orange">Aviso de “Storm Surge” Laranja</string>
+    <string name="smg_warning_text_storm_surge_red">Aviso de “Storm Surge” Vermelho</string>
+    <string name="smg_warning_text_storm_surge_black">Aviso de “Storm Surge” Preto</string>
+    <string name="smg_warning_text_tsunami">Alarme de “Tsunami”</string>
 </resources>

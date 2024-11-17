@@ -64,6 +64,7 @@ import org.breezyweather.sources.openmeteo.OpenMeteoService
 import org.breezyweather.sources.openweather.OpenWeatherService
 import org.breezyweather.sources.pirateweather.PirateWeatherService
 import org.breezyweather.sources.recosante.RecosanteService
+import org.breezyweather.sources.smg.SmgService
 import org.breezyweather.sources.smhi.SmhiService
 import org.breezyweather.sources.wmosevereweather.WmoSevereWeatherService
 import java.text.Collator
@@ -101,6 +102,7 @@ class SourceManager @Inject constructor(
     openWeatherService: OpenWeatherService,
     pirateWeatherService: PirateWeatherService,
     recosanteService: RecosanteService,
+    smgService: SmgService,
     smhiService: SmhiService,
     wmoSevereWeatherService: WmoSevereWeatherService,
 ) {
@@ -152,6 +154,7 @@ class SourceManager @Inject constructor(
         mfService,
         mgmService,
         nwsService,
+        smgService,
         smhiService
     )
 

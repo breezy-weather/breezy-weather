@@ -725,4 +725,25 @@
     <string name="hko_warning_text_fire_yellow_description">現時之火災危險警告為黃色，表示火災危險性頗高。</string>
     <string name="hko_warning_text_fire_red_description">現時之火災危險警告為紅色，表示火災危險性極高。</string>
     <string name="comma_separator">、</string>
+    <string name="common_weather_text_dust">浮塵</string>
+    <string name="common_weather_text_dust_storm">塵暴</string>
+    <string name="smg_warning_text_tropical_cyclone_1">一號風球</string>
+    <string name="smg_warning_text_tropical_cyclone_3">三號風球</string>
+    <string name="smg_warning_text_tropical_cyclone_8_northeast">八號東北風球</string>
+    <string name="smg_warning_text_tropical_cyclone_8_northwest">八號西北風球</string>
+    <string name="smg_warning_text_tropical_cyclone_8_southeast">八號東南風球</string>
+    <string name="smg_warning_text_tropical_cyclone_8_southwest">八號西南風球</string>
+    <string name="smg_warning_text_tropical_cyclone_9">九號風球</string>
+    <string name="smg_warning_text_tropical_cyclone_10">十號風球</string>
+    <string name="smg_warning_text_rainstorm_yellow">黃色暴雨警告信號</string>
+    <string name="smg_warning_text_rainstorm_red">紅色暴雨警告信號</string>
+    <string name="smg_warning_text_rainstorm_black">黑色暴雨警告信號</string>
+    <string name="smg_warning_text_strong_monsoon">強烈季候風信號</string>
+    <string name="smg_warning_text_thunderstorm">雷暴警告</string>
+    <string name="smg_warning_text_storm_surge_blue">藍色風暴潮警告</string>
+    <string name="smg_warning_text_storm_surge_yellow">黃色風暴潮警告</string>
+    <string name="smg_warning_text_storm_surge_orange">橙色風暴潮警告</string>
+    <string name="smg_warning_text_storm_surge_red">紅色風暴潮警告</string>
+    <string name="smg_warning_text_storm_surge_black">黑色風暴潮警告</string>
+    <string name="smg_warning_text_tsunami">海嘯警告信號</string>
 </resources>
