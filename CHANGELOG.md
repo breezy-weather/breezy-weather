@@ -8,6 +8,7 @@
 **Improvements and fixes**
 - Nowcasting chart: honor disabled “Threshold lines on charts” preference
 - Show minutes on the hourly chart on 24-hour system, so that users from a "not rounded hour" timezone such as India can see the correct minute
+- Fix dialogs theme on main screen (@min7-i)
 - Fix snackbar no longer appearing after changing some preferences in some cases (@min7-i)
 - Fix snackbar appearing above some items (@min7-i)
 - Fix freeze after applying some settings in some cases (@min7-i)

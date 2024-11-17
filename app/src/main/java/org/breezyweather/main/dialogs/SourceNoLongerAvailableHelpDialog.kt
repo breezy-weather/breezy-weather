@@ -21,13 +21,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import androidx.annotation.StringRes
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.core.content.ContextCompat.getString
 import org.breezyweather.BuildConfig
@@ -74,12 +72,6 @@ object SourceNoLongerAvailableHelpDialog {
                             ) {
                                 Text(stringResource(R.string.action_close))
                             }
-                        },
-                        icon = {
-                            Icon(
-                                painter = painterResource(R.drawable.ic_factory),
-                                contentDescription = null
-                            )
                         },
                         title = {
                             Text(
