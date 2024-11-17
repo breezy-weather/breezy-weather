@@ -815,6 +815,8 @@
     <string name="common_weather_text_cool">Cool</string>
     <string name="common_weather_text_cold">Cold</string>
     <string name="common_weather_text_smoke">Smoke</string>
+    <string name="common_weather_text_dust">Dust</string>
+    <string name="common_weather_text_dust_storm">Dust storm</string>
     <!-- Weather kind -->
     <string name="weather_kind_clear" translatable="false">@string/common_weather_text_clear_sky</string>
     <string name="weather_kind_partly_cloudy" translatable="false">@string/common_weather_text_partly_cloudy</string>
@@ -952,6 +954,26 @@
     <string name="hko_warning_text_tsunami" translatable="false">Tsunami Warning</string>
     <string name="hko_warning_text_fire_yellow_description" translatable="false">The Fire Danger Warning is Yellow and the fire risk is High.</string>
     <string name="hko_warning_text_fire_red_description" translatable="false">The Fire Danger Warning is Red and the fire risk is Extreme.</string>
+    <!-- Warning texts for SMG -->
+    <string name="smg_warning_text_tropical_cyclone_1" translatable="false">Signal No.1</string>
+    <string name="smg_warning_text_tropical_cyclone_3" translatable="false">Signal No.3</string>
+    <string name="smg_warning_text_tropical_cyclone_8_northeast" translatable="false">Signal No.8NE</string>
+    <string name="smg_warning_text_tropical_cyclone_8_northwest" translatable="false">Signal No.8NW</string>
+    <string name="smg_warning_text_tropical_cyclone_8_southeast" translatable="false">Signal No.8SE</string>
+    <string name="smg_warning_text_tropical_cyclone_8_southwest" translatable="false">Signal No.8SW</string>
+    <string name="smg_warning_text_tropical_cyclone_9" translatable="false">Signal No.9</string>
+    <string name="smg_warning_text_tropical_cyclone_10" translatable="false">Signal No.10</string>
+    <string name="smg_warning_text_rainstorm_yellow" translatable="false">Yellow Rainstorm Warning Signal</string>
+    <string name="smg_warning_text_rainstorm_red" translatable="false">Red Rainstorm Warning Signal</string>
+    <string name="smg_warning_text_rainstorm_black" translatable="false">Black Rainstorm Warning Signal</string>
+    <string name="smg_warning_text_strong_monsoon" translatable="false">Strong Monsoon Signal</string>
+    <string name="smg_warning_text_thunderstorm" translatable="false">Thunderstorm Warning</string>
+    <string name="smg_warning_text_storm_surge_blue" translatable="false">Blue Storm Surge Warning</string>
+    <string name="smg_warning_text_storm_surge_yellow" translatable="false">Yellow Storm Surge Warning</string>
+    <string name="smg_warning_text_storm_surge_orange" translatable="false">Orange Storm Surge Warning</string>
+    <string name="smg_warning_text_storm_surge_red" translatable="false">Red Storm Surge Warning</string>
+    <string name="smg_warning_text_storm_surge_black" translatable="false">Black Storm Surge Warning</string>
+    <string name="smg_warning_text_tsunami" translatable="false">Tsunami Warning Signal</string>
     <!-- Do NOT translate everything below -->
     <!-- Widgets -->
     <string name="widget_custom_subtitle_keyword_cw" translatable="false">$cw$</string>

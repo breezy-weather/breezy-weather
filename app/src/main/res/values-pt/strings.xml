@@ -683,4 +683,26 @@
     <string name="action_edit_location">Alterar esta localização</string>
     <string name="settings_background_updates_refresh_never_warning2">O processo de atualização de fundo é leve: ele só atualiza sua primeira localização em sua taxa de seleção e locais secundários apenas se você precisar deles, uma vez por dia. É eficiente em bateria e não deve exceder %d MB de consumo de dados por mês.</string>
     <string name="settings_appearance_calendar_title">Calendário alternativo</string>
+    <string name="common_weather_text_dust">Poeira</string>
+    <string name="common_weather_text_dust_storm">Tempestade de poeira</string>
+    <string name="common_weather_text_sand_storm">Tempestade de areia</string>
+    <string name="smg_warning_text_tropical_cyclone_1">Sinal n.º1</string>
+    <string name="smg_warning_text_tropical_cyclone_3">Sinal n.º3</string>
+    <string name="smg_warning_text_tropical_cyclone_8_northeast">Sinal n.º8NE</string>
+    <string name="smg_warning_text_tropical_cyclone_8_northwest">Sinal n.º8NW</string>
+    <string name="smg_warning_text_tropical_cyclone_8_southeast">Sinal n.º8SE</string>
+    <string name="smg_warning_text_tropical_cyclone_8_southwest">Sinal n.º8SW</string>
+    <string name="smg_warning_text_tropical_cyclone_9">Sinal n.º9</string>
+    <string name="smg_warning_text_tropical_cyclone_10">Sinal n.º10</string>
+    <string name="smg_warning_text_rainstorm_yellow">Sinal de Chuva Intensa Amarelo</string>
+    <string name="smg_warning_text_rainstorm_red">Sinal de Chuva Intensa Vermelho</string>
+    <string name="smg_warning_text_rainstorm_black">Sinal de Chuva Intensa Preto</string>
+    <string name="smg_warning_text_strong_monsoon">Sinal de Ventos Fortes de Monção</string>
+    <string name="smg_warning_text_thunderstorm">Sinal de Trovoada</string>
+    <string name="smg_warning_text_storm_surge_blue">Aviso de «Storm Surge» Azul</string>
+    <string name="smg_warning_text_storm_surge_yellow">Aviso de «Storm Surge» Amarelo</string>
+    <string name="smg_warning_text_storm_surge_orange">Aviso de «Storm Surge» Laranja</string>
+    <string name="smg_warning_text_storm_surge_red">Aviso de «Storm Surge» Vermelho</string>
+    <string name="smg_warning_text_storm_surge_black">Aviso de «Storm Surge» Preto</string>
+    <string name="smg_warning_text_tsunami">Alarme de «Tsunami»</string>
 </resources>
