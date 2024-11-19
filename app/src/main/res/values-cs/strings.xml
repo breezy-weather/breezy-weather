@@ -714,4 +714,6 @@
     <string name="common_weather_text_dry">Sucho</string>
     <string name="common_weather_text_mist">Opar</string>
     <string name="common_weather_text_cold">Zima</string>
+    <string name="common_weather_text_dust">Prach</string>
+    <string name="common_weather_text_dust_storm">Prachová bouře</string>
 </resources>
