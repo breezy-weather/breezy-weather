@@ -815,8 +815,8 @@
     <string name="common_weather_text_cool">Cool</string>
     <string name="common_weather_text_cold">Cold</string>
     <string name="common_weather_text_smoke">Smoke</string>
-    <string name="common_weather_text_dust">Dust</string>
-    <string name="common_weather_text_dust_storm">Dust storm</string>
+    <string name="common_weather_text_dust" translatable="false">Dust</string><!-- TODO: What's the difference with below? -->
+    <string name="common_weather_text_dust_storm" translatable="false">Dust storm</string><!-- TODO: Duplicate of sandstorm -->
     <!-- Weather kind -->
     <string name="weather_kind_clear" translatable="false">@string/common_weather_text_clear_sky</string>
     <string name="weather_kind_partly_cloudy" translatable="false">@string/common_weather_text_partly_cloudy</string>
