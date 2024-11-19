@@ -704,4 +704,6 @@
     <string name="common_weather_text_dry">Száraz</string>
     <string name="common_weather_text_cool">Hűvös</string>
     <string name="common_weather_text_cold">Hideg</string>
+    <string name="common_weather_text_dust">Por</string>
+    <string name="common_weather_text_dust_storm">Porvihar</string>
 </resources>
