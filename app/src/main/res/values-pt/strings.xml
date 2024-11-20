@@ -705,4 +705,5 @@
     <string name="smg_warning_text_storm_surge_red">Aviso de «Storm Surge» Vermelho</string>
     <string name="smg_warning_text_storm_surge_black">Aviso de «Storm Surge» Preto</string>
     <string name="smg_warning_text_tsunami">Alarme de «Tsunami»</string>
+    <string name="common_weather_text_frost">Geada</string>
 </resources>
