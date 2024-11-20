@@ -975,6 +975,20 @@
     <string name="smg_warning_text_storm_surge_red" translatable="false">Red Storm Surge Warning</string>
     <string name="smg_warning_text_storm_surge_black" translatable="false">Black Storm Surge Warning</string>
     <string name="smg_warning_text_tsunami" translatable="false">Tsunami Warning Signal</string>
+    <!-- Warning texts for MeteoLux -->
+    <string name="meteolux_warning_text_wind" translatable="false">Wind warning</string>
+    <string name="meteolux_warning_text_rain" translatable="false">Rain warning</string>
+    <string name="meteolux_warning_text_snow" translatable="false">Snow warning</string>
+    <string name="meteolux_warning_text_black_ice" translatable="false">Black ice warning</string>
+    <string name="meteolux_warning_text_thunderstorm" translatable="false">Thunderstorm warning</string>
+    <string name="meteolux_warning_text_heat" translatable="false">Heat warning</string>
+    <string name="meteolux_warning_text_cold" translatable="false">Cold warning</string>
+    <string name="meteolux_warning_text_flood" translatable="false">Flood warning*</string>
+    <string name="meteolux_warning_text_ozone" translatable="false">Ozone in the air*</string>
+    <string name="meteolux_warning_text_pm" translatable="false">Particle pollution (PM) in the air*</string>
+    <string name="meteolux_warning_text_level_2" translatable="false">Potential danger</string>
+    <string name="meteolux_warning_text_level_3" translatable="false">Danger</string>
+    <string name="meteolux_warning_text_level_4" translatable="false">Significant danger</string>
     <!-- Do NOT translate everything below -->
     <!-- Widgets -->
     <string name="widget_custom_subtitle_keyword_cw" translatable="false">$cw$</string>
