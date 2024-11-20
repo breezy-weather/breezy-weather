@@ -720,7 +720,7 @@
     <string name="about_matrix">Salon Matrix</string>
 
     <string name="null_data_text">N/A</string>
-    <string name="colon_separator" translatable="false">\u0020:\u0020</string>
+    <string name="colon_separator">\u0020:\u0020</string>
     <string name="notification_update_error">%d mise(s) à jour en échec</string>
     <string name="common_weather_text_snow_light">Neige légère</string>
     <string name="common_weather_text_snow_moderate">Neige modérée</string>
@@ -759,4 +759,17 @@
     <string name="meteoam_weather_text_tornado_watersprout">Trombe terrestre ou marine</string>
     <string name="common_weather_text_smoke">Fumée</string>
     <string name="metno_weather_text_andthunder">%s et tonnerre</string>
+    <string name="meteolux_warning_text_wind">Avis de vent</string>
+    <string name="meteolux_warning_text_rain">Avis de pluie</string>
+    <string name="meteolux_warning_text_snow">Avis de neige</string>
+    <string name="meteolux_warning_text_black_ice">Avis de verglas</string>
+    <string name="meteolux_warning_text_thunderstorm">Avis d’orages</string>
+    <string name="meteolux_warning_text_heat">Avis de chaleur</string>
+    <string name="meteolux_warning_text_cold">Avis de froid</string>
+    <string name="meteolux_warning_text_flood">Avis de crue*</string>
+    <string name="meteolux_warning_text_ozone">Ozone dans l’air*</string>
+    <string name="meteolux_warning_text_pm">Particules fines (PM) dans l’air*</string>
+    <string name="meteolux_warning_text_level_2">Danger potentiel</string>
+    <string name="meteolux_warning_text_level_3">Danger</string>
+    <string name="meteolux_warning_text_level_4">Danger important</string>
 </resources>

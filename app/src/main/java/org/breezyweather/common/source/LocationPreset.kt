@@ -60,6 +60,7 @@ enum class LocationPreset(
     FRANCE_FREENET("openmeteo", pollen = "recosante"),
     IRELAND("metie", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     ITALY("meteoam", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
+    LUXEMBOURG("meteolux", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     NORWAY("metno", pollen = "openmeteo", alert = "accu", normals = "accu"),
     SWEDEN(
         "smhi",
@@ -98,6 +99,7 @@ enum class LocationPreset(
                     "FR" -> FRANCE
                     "IE" -> IRELAND
                     "IT", "SM", "VA" -> ITALY
+                    "LU" -> LUXEMBOURG
                     "NO" -> NORWAY
                     "SE" -> SWEDEN
 

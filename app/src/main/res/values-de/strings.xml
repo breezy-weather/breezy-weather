@@ -700,4 +700,17 @@
     <string name="common_weather_text_mist">Feiner Nebel</string>
     <string name="common_weather_text_dry">Trocken</string>
     <string name="common_weather_text_hot">Heiß</string>
+    <string name="meteolux_warning_text_wind">Windwarnung</string>
+    <string name="meteolux_warning_text_rain">Regenwarnung</string>
+    <string name="meteolux_warning_text_snow">Schneewarnung</string>
+    <string name="meteolux_warning_text_black_ice">Glatteiswarnung</string>
+    <string name="meteolux_warning_text_thunderstorm">Gewitterwarnung</string>
+    <string name="meteolux_warning_text_heat">Hitzewarnung</string>
+    <string name="meteolux_warning_text_cold">Kältewarnung</string>
+    <string name="meteolux_warning_text_flood">Hochwasserwarnung*</string>
+    <string name="meteolux_warning_text_ozone">Ozongehalt in der Außenluft*</string>
+    <string name="meteolux_warning_text_pm">Feinstaub (PM) in der Außenluft*</string>
+    <string name="meteolux_warning_text_level_2">Potenzielle Gefahr</string>
+    <string name="meteolux_warning_text_level_3">Gefahr</string>
+    <string name="meteolux_warning_text_level_4">Große Gefahr</string>
 </resources>
