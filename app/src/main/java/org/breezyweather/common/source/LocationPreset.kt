@@ -61,6 +61,7 @@ enum class LocationPreset(
     IRELAND("metie", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     ITALY("meteoam", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     NORWAY("metno", pollen = "openmeteo", alert = "accu", normals = "accu"),
+    PORTUGAL("ipma", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     SWEDEN(
         "smhi",
         airQuality = "openmeteo",
@@ -99,6 +100,7 @@ enum class LocationPreset(
                     "IE" -> IRELAND
                     "IT", "SM", "VA" -> ITALY
                     "NO" -> NORWAY
+                    "PT" -> PORTUGAL
                     "SE" -> SWEDEN
 
                     // Asia
