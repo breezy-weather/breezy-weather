@@ -50,6 +50,7 @@ import com.patrykandpatrick.vico.compose.common.component.rememberLineComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberShapeComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberTextComponent
 import com.patrykandpatrick.vico.compose.common.dimensions
+import com.patrykandpatrick.vico.compose.common.fill
 import com.patrykandpatrick.vico.core.cartesian.CartesianDrawingContext
 import com.patrykandpatrick.vico.core.cartesian.axis.HorizontalAxis
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
@@ -59,6 +60,7 @@ import com.patrykandpatrick.vico.core.cartesian.decoration.HorizontalLine
 import com.patrykandpatrick.vico.core.cartesian.layer.ColumnCartesianLayer
 import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarker
 import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarkerValueFormatter
+import com.patrykandpatrick.vico.core.common.Fill
 import com.patrykandpatrick.vico.core.common.VerticalPosition
 import com.patrykandpatrick.vico.core.common.component.Shadow
 import com.patrykandpatrick.vico.core.common.component.TextComponent
@@ -190,7 +192,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                     MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnPrimary)
                 ),
                 background = rememberShapeComponent(
-                    Color(MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary)),
+                    fill = Fill(MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary)),
                     CorneredShape.Pill,
                     shadow = Shadow(
                         radiusDp = LABEL_BACKGROUND_SHADOW_RADIUS_DP,
@@ -225,7 +227,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                 rememberColumnCartesianLayer(
                     ColumnCartesianLayer.ColumnProvider.series(
                         rememberLineComponent(
-                            color = Color(
+                            fill = Fill(
                                 ThemeManager
                                     .getInstance(context)
                                     .weatherThemeDelegate
@@ -259,7 +261,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                                 y = { Precipitation.PRECIPITATION_HOURLY_LIGHT },
                                 verticalLabelPosition = VerticalPosition.Bottom,
                                 line = rememberLineComponent(
-                                    color = colorResource(thresholdLineColor)
+                                    fill = fill(colorResource(thresholdLineColor))
                                 ),
                                 labelComponent = rememberTextComponent(
                                     color = colorResource(thresholdLineColor)
@@ -276,7 +278,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                                 y = { Precipitation.PRECIPITATION_HOURLY_MEDIUM },
                                 verticalLabelPosition = VerticalPosition.Bottom,
                                 line = rememberLineComponent(
-                                    color = colorResource(thresholdLineColor)
+                                    fill = fill(colorResource(thresholdLineColor))
                                 ),
                                 labelComponent = rememberTextComponent(
                                     color = colorResource(thresholdLineColor)
@@ -292,7 +294,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                             y = { Precipitation.PRECIPITATION_HOURLY_HEAVY },
                             verticalLabelPosition = VerticalPosition.Bottom,
                             line = rememberLineComponent(
-                                color = colorResource(thresholdLineColor)
+                                fill = fill(colorResource(thresholdLineColor))
                             ),
                             labelComponent = rememberTextComponent(
                                 color = colorResource(thresholdLineColor)
