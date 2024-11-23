@@ -758,6 +758,9 @@
     <string name="common_weather_text_cold">Froid</string>
     <string name="meteoam_weather_text_tornado_watersprout">Trombe terrestre ou marine</string>
     <string name="common_weather_text_smoke">Fumée</string>
+    <string name="common_weather_text_dust">Poussières</string>
+    <string name="common_weather_text_dust_storm">Tempête de poussières</string>
+    <string name="common_weather_text_frost">Frost</string>
     <string name="metno_weather_text_andthunder">%s et tonnerre</string>
     <string name="meteolux_warning_text_wind">Avis de vent</string>
     <string name="meteolux_warning_text_rain">Avis de pluie</string>
