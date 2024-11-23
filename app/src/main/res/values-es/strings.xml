@@ -707,4 +707,7 @@
     <string name="common_weather_text_mist">Neblina</string>
     <string name="common_weather_text_cool">Fresco</string>
     <string name="common_weather_text_cold">Frío</string>
+    <string name="common_weather_text_frost">Helada</string>
+    <string name="common_weather_text_dust">Polvo</string>
+    <string name="common_weather_text_dust_storm">Tormenta de polvo</string>
 </resources>
