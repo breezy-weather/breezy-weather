@@ -325,7 +325,7 @@
     <string name="cloud_cover">Mākoņainums</string>
     <string name="pollen_level_5">Ļoti augstu</string>
     <string name="ceiling">Griesti</string>
-    <string name="pollen_tap_to_see_more">Jāpiesit, lai redzētu vairāk…</string>
+    <string name="pollen_tap_to_see_more">Piesist, lai redzētu vairāk…</string>
     <string name="ephemeris_moon_phase_new_moon">Jauns mēness</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Augošs pusmēness</string>
     <string name="ephemeris_moon_phase_first_quarter">Pirmais ceturksnis</string>
@@ -359,7 +359,7 @@
     <string name="action_help">Palīdzība</string>
     <string name="action_learn_more">Uzzināt vairāk</string>
     <string name="action_share">Dalīties</string>
-    <string name="action_show_errors">Jāpiesit, lai redzētu izvērstu informāciju</string>
+    <string name="action_show_errors">Piesist, lai redzētu izvērstu informāciju</string>
     <string name="location_service_native">Vietējais API</string>
     <string name="action_help_me_choose">Palīdziet man izvēlēties</string>
     <string name="action_location_list">Atrašanās vietu saraksts</string>
@@ -512,7 +512,7 @@
     <string name="common_weather_text_drizzle_light">Neliela smidzināšana</string>
     <string name="common_weather_text_drizzle_heavy">Spēcīga smidzināšana</string>
     <string name="metno_weather_text_andthunder">%s un pērkons</string>
-    <string name="settings_items_drag_to_sort">Jāpiesit, lai vilktu saraksta vienumus kārtošanai</string>
+    <string name="settings_items_drag_to_sort">Piesist, lai vilktu saraksta vienumus kārtošanai</string>
     <string name="settings_item_delete">Dzēst šo vienumu</string>
     <string name="settings_enabled">Iespējots</string>
     <string name="settings_automatic">Automātiski</string>
@@ -591,7 +591,7 @@
     <string name="settings_widgets_broadcast_send_data_title">Nosūtīt datus uz %s</string>
     <string name="settings_color_app">Izmantot lietotnes</string>
     <string name="settings_debug_dump_crash_logs_saved">Avāriju žurnāli saglabāti</string>
-    <string name="settings_debug_dump_crash_logs_tap_to_open">Jāpiesit, lai atvērtu</string>
+    <string name="settings_debug_dump_crash_logs_tap_to_open">Piesist, lai atvērtu</string>
     <string name="notification_channel_crash_logs">Avāriju žurnāli</string>
     <string name="temperature_feels_like_short">Pēc sajūtām</string>
     <string name="ceiling_short">Griesti</string>
@@ -698,4 +698,7 @@
     <string name="common_weather_text_warm">Silts</string>
     <string name="common_weather_text_cool">Vēss</string>
     <string name="common_weather_text_cold">Auksts</string>
+    <string name="common_weather_text_dust">Putekļi</string>
+    <string name="common_weather_text_dust_storm">Putekļu vētra</string>
+    <string name="common_weather_text_frost">Sals</string>
 </resources>
