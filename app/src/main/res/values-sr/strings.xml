@@ -704,4 +704,7 @@
     <string name="common_weather_text_cool">Прохладно</string>
     <string name="common_weather_text_cold">Хладно</string>
     <string name="common_weather_text_warm">Топло</string>
+    <string name="common_weather_text_dust">Прашина</string>
+    <string name="common_weather_text_frost">Мраз</string>
+    <string name="common_weather_text_dust_storm">Олуја с прашином</string>
 </resources>
