@@ -713,4 +713,7 @@
     <string name="meteolux_warning_text_level_2">Potenzielle Gefahr</string>
     <string name="meteolux_warning_text_level_3">Gefahr</string>
     <string name="meteolux_warning_text_level_4">Große Gefahr</string>
+    <string name="common_weather_text_frost">Frost</string>
+    <string name="common_weather_text_dust_storm">Staubsturm</string>
+    <string name="common_weather_text_dust">Staub</string>
 </resources>
