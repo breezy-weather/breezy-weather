@@ -698,4 +698,7 @@
     <string name="common_weather_text_dry">Сухий</string>
     <string name="common_weather_text_warm">Тепло</string>
     <string name="common_weather_text_cold">Холодно</string>
+    <string name="common_weather_text_frost">Мороз</string>
+    <string name="common_weather_text_dust_storm">Пильна буря</string>
+    <string name="common_weather_text_dust">Пил</string>
 </resources>
