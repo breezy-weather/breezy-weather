@@ -705,4 +705,7 @@
     <string name="common_weather_text_cool">Прохладно</string>
     <string name="common_weather_text_hot">Жарко</string>
     <string name="common_weather_text_cold">Холодно</string>
+    <string name="common_weather_text_frost">Мороз</string>
+    <string name="common_weather_text_dust">Пыль</string>
+    <string name="common_weather_text_dust_storm">Пыльная буря</string>
 </resources>
