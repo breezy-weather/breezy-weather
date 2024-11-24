@@ -132,7 +132,7 @@ class PollenActivity : GeoActivity() {
                     window = this.window,
                     statusShader = false,
                     lightStatus = isLightTheme,
-                    navigationShader = false,
+                    navigationShader = true,
                     lightNavigation = isLightTheme
                 )
 

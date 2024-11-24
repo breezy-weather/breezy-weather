@@ -41,7 +41,7 @@ abstract class GeoActivity : AppCompatActivity() {
                 statusShaderP = false,
                 lightStatusP = !this.isDarkMode,
                 navigationShaderP = true,
-                lightNavigationP = false
+                lightNavigationP = !this.isDarkMode
             )
         }
 

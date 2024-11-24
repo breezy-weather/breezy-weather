@@ -37,7 +37,6 @@ import android.view.animation.OvershootInterpolator
 import androidx.annotation.Px
 import androidx.annotation.Size
 import androidx.annotation.StyleRes
-import androidx.core.graphics.ColorUtils
 import androidx.core.view.WindowInsetsControllerCompat
 import com.google.android.material.resources.TextAppearance
 import kotlin.math.min
@@ -122,38 +121,41 @@ fun Window.setSystemBarStyle(
     var lightNavigation = lightNavigationP
     var navigationShader = navigationShaderP
 
-    // status bar
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-        lightStatus = false
-        statusShader = true
-    }
-    WindowInsetsControllerCompat(this, this.decorView)
-        .isAppearanceLightStatusBars = lightStatus
-
-    if (statusShader) {
-        this.statusBarColor = ColorUtils.setAlphaComponent(
-            if (lightStatus) Color.WHITE else Color.BLACK,
-            ((if (lightStatus) 0.5 else 0.2) * 255).toInt()
-        )
-    } else {
-        this.statusBarColor = Color.TRANSPARENT
-    }
-
-    // navigation bar
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-        lightNavigation = false
-        navigationShader = true
-    }
-    WindowInsetsControllerCompat(this, this.decorView)
-        .isAppearanceLightNavigationBars = lightNavigation
+        // Use default dark and light platform colors from EdgeToEdge
+        val colorSystemBarDark = Color.argb(0x80, 0x1b, 0x1b, 0x1b)
+        val colorSystemBarLight = Color.argb(0xe6, 0xFF, 0xFF, 0xFF)
 
-    if (navigationShader) {
-        this.navigationBarColor = ColorUtils.setAlphaComponent(
-            if (lightNavigation) Color.WHITE else Color.BLACK,
-            ((if (lightNavigation) 0.5 else 0.2) * 255).toInt()
-        )
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            // Always apply a dark shader as a light or transparent status bar is not supported
+            lightStatus = false
+            statusShader = true
+        }
+        this.statusBarColor = if (statusShader) {
+            if (lightStatus) colorSystemBarLight else colorSystemBarDark
+        } else {
+            Color.TRANSPARENT
+        }
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            // Always apply a dark shader as a light or transparent navigation bar is not supported
+            lightNavigation = false
+            navigationShader = true
+        }
+        this.navigationBarColor = if (navigationShader) {
+            if (lightNavigation) colorSystemBarLight else colorSystemBarDark
+        } else {
+            Color.TRANSPARENT
+        }
     } else {
-        this.navigationBarColor = Color.TRANSPARENT
+        this.isStatusBarContrastEnforced = statusShader
+        this.isNavigationBarContrastEnforced = navigationShaderP
+    }
+
+    // Contrary to the documentation FALSE applies a light foreground color and TRUE a dark foreground color
+    WindowInsetsControllerCompat(this, this.decorView).run {
+        isAppearanceLightStatusBars = lightStatus
+        isAppearanceLightNavigationBars = lightNavigation
     }
 }
 
