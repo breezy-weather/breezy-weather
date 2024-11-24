@@ -756,4 +756,7 @@
     <string name="smg_warning_text_storm_surge_red">红色风暴潮警告</string>
     <string name="smg_warning_text_storm_surge_black">黑色风暴潮警告</string>
     <string name="smg_warning_text_tsunami">海啸警告信号</string>
+    <string name="common_weather_text_frost">雾</string>
+    <string name="common_weather_text_dust_storm">沙尘暴</string>
+    <string name="common_weather_text_dust">沙尘</string>
 </resources>
