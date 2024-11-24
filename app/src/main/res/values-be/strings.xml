@@ -698,4 +698,7 @@
     <string name="common_weather_text_humid">Вільготны</string>
     <string name="common_weather_text_mist">Імгла</string>
     <string name="common_weather_text_hot">Горача</string>
+    <string name="common_weather_text_frost">Мароз</string>
+    <string name="common_weather_text_dust">Пыл</string>
+    <string name="common_weather_text_dust_storm">Пыльная бура</string>
 </resources>
