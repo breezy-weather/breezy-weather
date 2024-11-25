@@ -60,6 +60,7 @@ import org.breezyweather.sources.metno.MetNoService
 import org.breezyweather.sources.metoffice.MetOfficeService
 import org.breezyweather.sources.mf.MfService
 import org.breezyweather.sources.mgm.MgmService
+import org.breezyweather.sources.namem.NamemService
 import org.breezyweather.sources.naturalearth.NaturalEarthService
 import org.breezyweather.sources.nws.NwsService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
@@ -101,6 +102,7 @@ class SourceManager @Inject constructor(
     metOfficeService: MetOfficeService,
     mfService: MfService,
     mgmService: MgmService,
+    namemService: NamemService,
     naturalEarthService: NaturalEarthService,
     nwsService: NwsService,
     openMeteoService: OpenMeteoService,
@@ -161,6 +163,7 @@ class SourceManager @Inject constructor(
         metOfficeService,
         mfService,
         mgmService,
+        namemService,
         nwsService,
         pagasaService,
         smgService,
