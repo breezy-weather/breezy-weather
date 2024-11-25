@@ -744,4 +744,7 @@
     <string name="hko_warning_text_tsunami">Peringatan Tsunami</string>
     <string name="hko_warning_text_fire_yellow_description">Peringatan Bahaya Kebakaran Kuning diterbitkan dan risiko kebakarannya adalah tinggi.</string>
     <string name="hko_warning_text_fire_red_description">Peringatan Bahaya Kebakaran Merah diterbitkan dan risiko kebakarannya adalah ekstrem.</string>
+    <string name="common_weather_text_frost">Embun beku</string>
+    <string name="common_weather_text_dust">Debu</string>
+    <string name="common_weather_text_dust_storm">Badai debu</string>
 </resources>
