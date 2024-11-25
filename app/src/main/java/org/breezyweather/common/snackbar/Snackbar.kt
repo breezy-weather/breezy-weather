@@ -118,7 +118,7 @@ class Snackbar private constructor(
         return setAction(text, true, listener)
     }
 
-    fun setAction(
+    private fun setAction(
         text: CharSequence?,
         shouldDismissOnClick: Boolean,
         listener: View.OnClickListener?,
@@ -225,7 +225,7 @@ class Snackbar private constructor(
                 }
             }
         })
-        if (ViewCompat.isLaidOut(mView)) {
+        if (mView.isLaidOut) {
             animateViewIn()
         } else {
             mView.setOnLayoutChangeListener { _: View?, _: Int, _: Int, _: Int, _: Int ->
@@ -315,7 +315,6 @@ class Snackbar private constructor(
             private set
         var actionView: Button? = null
             private set
-        private val mMaxWidth: Int
 
         interface OnAttachStateChangeListener {
             fun onViewAttachedToWindow(v: View?)
@@ -332,19 +331,12 @@ class Snackbar private constructor(
                 attrs,
                 com.google.android.material.R.styleable.SnackbarLayout
             )
-            mMaxWidth = a.getDimensionPixelSize(
-                com.google.android.material.R.styleable.SnackbarLayout_android_maxWidth,
-                -1
-            )
 
             a.recycle()
             isClickable = true
             fitsSystemWindows = false
             LayoutInflater.from(context).inflate(layoutId, this)
-            ViewCompat.setAccessibilityLiveRegion(
-                this,
-                ViewCompat.ACCESSIBILITY_LIVE_REGION_POLITE
-            )
+            accessibilityLiveRegion = ACCESSIBILITY_LIVE_REGION_POLITE
         }
 
         @Deprecated("Deprecated in Java")
@@ -386,10 +378,9 @@ class Snackbar private constructor(
             return MarginLayoutParams(context, attrs)
         }
 
-        override fun onMeasure(widthMeasureSpecP: Int, heightMeasureSpec: Int) {
-            var widthMeasureSpec = widthMeasureSpecP
-            var width: Int
-            var height: Int
+        override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+            val width: Int
+            val height: Int
             val child = getChildAt(0)
             val widthUsed = mWindowInsets.left + mWindowInsets.right
             val heightUsed = mWindowInsets.bottom
@@ -400,22 +391,15 @@ class Snackbar private constructor(
                 heightMeasureSpec,
                 heightUsed
             )
-            var lp = child.layoutParams as MarginLayoutParams
-            width = child.measuredWidth + widthUsed + lp.leftMargin + lp.rightMargin + paddingLeft + paddingRight
-            height = child.measuredHeight + heightUsed + lp.topMargin + lp.bottomMargin + paddingTop + paddingBottom
-            if (mMaxWidth > 0 && width > mMaxWidth) {
-                widthMeasureSpec = MeasureSpec.makeMeasureSpec(mMaxWidth, MeasureSpec.EXACTLY)
-                measureChildWithMargins(
-                    child,
-                    widthMeasureSpec,
-                    widthUsed,
-                    heightMeasureSpec,
-                    heightUsed
+            val lp = child.layoutParams as MarginLayoutParams
+            width = (
+                child.measuredWidth + widthUsed + lp.leftMargin + lp.rightMargin +
+                    paddingLeft + paddingRight
                 )
-                lp = child.layoutParams as MarginLayoutParams
-                width = child.measuredWidth + widthUsed + lp.leftMargin + lp.rightMargin + paddingLeft + paddingRight
-                height = child.measuredHeight + heightUsed + lp.topMargin + lp.bottomMargin + paddingTop + paddingBottom
-            }
+            height = (
+                child.measuredHeight + heightUsed + lp.topMargin + lp.bottomMargin +
+                    paddingTop + paddingBottom
+                )
             setMeasuredDimension(width, height)
         }
 
@@ -444,7 +428,7 @@ class Snackbar private constructor(
         fun animateChildrenIn(delay: Int, duration: Int) {
             messageView?.let { mView ->
                 mView.alpha = 0f
-                ViewCompat.animate(mView)
+                mView.animate()
                     .alpha(1f)
                     .setDuration(duration.toLong())
                     .setStartDelay(delay.toLong())
@@ -453,7 +437,7 @@ class Snackbar private constructor(
                 actionView?.let { aView ->
                     if (aView.visibility == VISIBLE) {
                         aView.alpha = 0f
-                        ViewCompat.animate(aView)
+                        aView.animate()
                             .alpha(1f)
                             .setDuration(duration.toLong())
                             .setStartDelay(delay.toLong())
@@ -466,7 +450,7 @@ class Snackbar private constructor(
         fun animateChildrenOut(delay: Int, duration: Int) {
             messageView?.let { mView ->
                 mView.alpha = 1f
-                ViewCompat.animate(mView)
+                mView.animate()
                     .alpha(0f)
                     .setDuration(duration.toLong())
                     .setStartDelay(delay.toLong())
@@ -475,7 +459,7 @@ class Snackbar private constructor(
                 actionView?.let { aView ->
                     if (aView.visibility == VISIBLE) {
                         aView.alpha = 1f
-                        ViewCompat.animate(aView)
+                        mView.animate()
                             .alpha(0f)
                             .setDuration(duration.toLong())
                             .setStartDelay(delay.toLong())

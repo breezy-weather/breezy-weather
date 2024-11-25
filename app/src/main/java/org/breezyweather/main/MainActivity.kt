@@ -18,6 +18,7 @@ package org.breezyweather.main
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
@@ -25,6 +26,7 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
@@ -50,6 +52,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.Migrations
 import org.breezyweather.R
@@ -118,6 +121,18 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
             }*/
         }
     }
+
+    private val openSearchActivity =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK && it.data != null) {
+                BreezyWeather.instance.setTopActivity(this)
+                val location: Location? = it.data!!.getParcelableExtra(SearchActivity.KEY_LOCATION)
+                if (location != null) {
+                    viewModel.addLocation(location, null)
+                    SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
+                }
+            }
+        }
 
     fun updateLocation(location: Location) {
         if (!viewModel.initCompleted.value) {
@@ -226,20 +241,6 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
         if (resultCode == SEARCH_ACTIVITY) {
             val f = findManagementFragment()
             f?.prepareReenterTransition()
-        }
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
-            SEARCH_ACTIVITY -> if (resultCode == RESULT_OK && data != null) {
-                val location: Location? = data.getParcelableExtra(SearchActivity.KEY_LOCATION)
-                if (location != null) {
-                    viewModel.addLocation(location, null)
-                    SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
-                }
-            }
         }
     }
 
@@ -774,6 +775,8 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
     // management fragment callback.
 
     override fun onSearchBarClicked() {
-        IntentHelper.startSearchActivityForResult(this, SEARCH_ACTIVITY)
+        openSearchActivity.launch(
+            IntentHelper.buildSearchActivityIntent(this)
+        )
     }
 }
