@@ -142,9 +142,6 @@ private fun buildRemoteViews(
         R.id.widget_material_you_forecast_city,
         location.getPlace(context)
     )
-    if (weather == null) {
-        return views
-    }
 
     // current.
     weather.current?.weatherCode?.let {

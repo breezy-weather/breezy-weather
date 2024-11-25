@@ -16,14 +16,12 @@
 
 package org.breezyweather.common.utils.helpers
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
-import androidx.core.app.ActivityCompat
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.ui.activities.AlertActivity
 import org.breezyweather.common.ui.activities.PollenActivity
@@ -132,13 +130,8 @@ object IntentHelper {
         )
     }
 
-    fun startSearchActivityForResult(activity: Activity, requestCode: Int) {
-        ActivityCompat.startActivityForResult(
-            activity,
-            Intent(activity, SearchActivity::class.java),
-            requestCode,
-            null
-        )
+    fun buildSearchActivityIntent(activity: Activity): Intent {
+        return Intent(activity, SearchActivity::class.java)
     }
 
     fun startSettingsActivity(activity: Activity) {
@@ -229,7 +222,6 @@ object IntentHelper {
         context.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
     }
 
-    @SuppressLint("WrongConstant")
     private fun isIntentAvailable(context: Context, intent: Intent): Boolean {
         return context.packageManager
             .queryIntentActivities(intent, PackageManager.GET_ACTIVITIES)

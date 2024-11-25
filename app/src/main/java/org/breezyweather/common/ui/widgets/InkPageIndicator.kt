@@ -32,7 +32,6 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.animation.Interpolator
 import androidx.annotation.ColorInt
-import androidx.core.view.ViewCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
@@ -107,14 +106,14 @@ class InkPageIndicator @JvmOverloads constructor(
     private val mDismissAnimator: ObjectAnimator
 
     // working values for beziers
-    var endX1 = 0f
-    var endY1 = 0f
-    var endX2 = 0f
-    var endY2 = 0f
-    var controlX1 = 0f
-    var controlY1 = 0f
-    var controlX2 = 0f
-    var controlY2 = 0f
+    private var endX1 = 0f
+    private var endY1 = 0f
+    private var endX2 = 0f
+    private var endY2 = 0f
+    private var controlX1 = 0f
+    private var controlY1 = 0f
+    private var controlX2 = 0f
+    private var controlY2 = 0f
 
     init {
         val density = context.resources.displayMetrics.density.toInt()
@@ -653,7 +652,7 @@ class InkPageIndicator @JvmOverloads constructor(
                 // todo avoid autoboxing
                 mSelectedDotX = valueAnimator.animatedValue as Float
                 mRetreatAnimation!!.startIfNecessary(mSelectedDotX)
-                ViewCompat.postInvalidateOnAnimation(this@InkPageIndicator)
+                postInvalidateOnAnimation()
             }
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationStart(animation: Animator) {
@@ -683,20 +682,20 @@ class InkPageIndicator @JvmOverloads constructor(
                 LogHelper.log("PageIndicator", "dot 1 fraction:\t$fraction")
             }*/
             mJoiningFractions[leftDot] = fraction
-            ViewCompat.postInvalidateOnAnimation(this)
+            postInvalidateOnAnimation()
         }
     }
 
     private fun clearJoiningFractions() {
         mJoiningFractions.map { 0f }
-        ViewCompat.postInvalidateOnAnimation(this)
+        postInvalidateOnAnimation()
     }
 
     private fun setDotRevealFraction(dot: Int, fraction: Float) {
         if (dot < mDotRevealFractions.size) {
             mDotRevealFractions[dot] = fraction
         }
-        ViewCompat.postInvalidateOnAnimation(this)
+        postInvalidateOnAnimation()
     }
 
     private fun cancelJoiningAnimations() {
@@ -709,9 +708,9 @@ class InkPageIndicator @JvmOverloads constructor(
      * A [ValueAnimator] that starts once a given predicate returns true.
      */
     abstract inner class PendingStartAnimator(
-        protected var predicate: StartPredicate,
+        private var predicate: StartPredicate,
     ) : ValueAnimator() {
-        protected var hasStarted = false
+        private var hasStarted = false
         fun startIfNecessary(currentValue: Float) {
             if (!hasStarted && predicate.shouldStart(currentValue)) {
                 start()
@@ -776,7 +775,7 @@ class InkPageIndicator @JvmOverloads constructor(
                 addUpdateListener { valueAnimator: ValueAnimator ->
                     // todo avoid autoboxing
                     mRetreatingJoinX1 = valueAnimator.animatedValue as Float
-                    ViewCompat.postInvalidateOnAnimation(this@InkPageIndicator)
+                    postInvalidateOnAnimation()
                     // start any reveal animations if we've passed them
                     for (pendingReveal in mRevealAnimations) {
                         pendingReveal.startIfNecessary(mRetreatingJoinX1)
@@ -795,7 +794,7 @@ class InkPageIndicator @JvmOverloads constructor(
                 addUpdateListener { valueAnimator: ValueAnimator ->
                     // todo avoid autoboxing
                     mRetreatingJoinX2 = valueAnimator.animatedValue as Float
-                    ViewCompat.postInvalidateOnAnimation(this@InkPageIndicator)
+                    postInvalidateOnAnimation()
                     // start any reveal animations if we've passed them
                     for (pendingReveal in mRevealAnimations) {
                         pendingReveal.startIfNecessary(mRetreatingJoinX2)
@@ -812,13 +811,13 @@ class InkPageIndicator @JvmOverloads constructor(
                     }
                     mRetreatingJoinX1 = initialX1
                     mRetreatingJoinX2 = initialX2
-                    ViewCompat.postInvalidateOnAnimation(this@InkPageIndicator)
+                    postInvalidateOnAnimation()
                 }
 
                 override fun onAnimationEnd(animation: Animator) {
                     mRetreatingJoinX1 = INVALID_FRACTION
                     mRetreatingJoinX2 = INVALID_FRACTION
-                    ViewCompat.postInvalidateOnAnimation(this@InkPageIndicator)
+                    postInvalidateOnAnimation()
                 }
             })
         }
@@ -848,7 +847,7 @@ class InkPageIndicator @JvmOverloads constructor(
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
                     setDotRevealFraction(mDot, 0f)
-                    ViewCompat.postInvalidateOnAnimation(this@InkPageIndicator)
+                    postInvalidateOnAnimation()
                 }
             })
         }

@@ -34,7 +34,6 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Size
 import androidx.core.graphics.ColorUtils
-import androidx.core.view.ViewCompat
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.ui.widgets.DayNightShaderWrapper
 import kotlin.math.abs
@@ -100,7 +99,7 @@ class SunMoonView @JvmOverloads constructor(
     private var mLineSize = 0f
     private var mDottedLineSize = 0f
     private var mMargin = 0f
-    var iconSize = 0
+    private var iconSize = 0
 
     init {
         mLineSize = context.dpToPx(LINE_SIZE_DIP)
@@ -128,7 +127,7 @@ class SunMoonView @JvmOverloads constructor(
         mCurrentTimes = currentTimes
         setIndicatorPosition(0)
         setIndicatorPosition(1)
-        ViewCompat.postInvalidateOnAnimation(this)
+        postInvalidateOnAnimation()
     }
 
     fun setColors(
@@ -140,17 +139,17 @@ class SunMoonView @JvmOverloads constructor(
     ) {
         mLineColors = intArrayOf(sunLineColor, moonLineColor, backgroundLineColor)
         ensureShader(rootColor, sunLineColor, moonLineColor, lightTheme)
-        ViewCompat.postInvalidateOnAnimation(this)
+        postInvalidateOnAnimation()
     }
 
     fun setDayIndicatorRotation(rotation: Float) {
         mIconRotations[0] = rotation
-        ViewCompat.postInvalidateOnAnimation(this)
+        postInvalidateOnAnimation()
     }
 
     fun setNightIndicatorRotation(rotation: Float) {
         mIconRotations[1] = rotation
-        ViewCompat.postInvalidateOnAnimation(this)
+        postInvalidateOnAnimation()
     }
 
     private fun ensureShader(
@@ -323,8 +322,7 @@ class SunMoonView @JvmOverloads constructor(
                 mRectF.top,
                 mRectF.right,
                 mRectF.top + mRectF.height() / 2,
-                null,
-                Canvas.ALL_SAVE_FLAG
+                null
             )
             mPaint.style = Paint.Style.FILL
             mPaint.setShader(shader)

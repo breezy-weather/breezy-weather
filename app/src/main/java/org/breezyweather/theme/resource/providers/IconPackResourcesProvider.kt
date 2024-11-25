@@ -445,7 +445,7 @@ open class IconPackResourcesProvider(
     private fun getReflectDrawable(className: String?): Drawable? {
         return try {
             val clazz = mContext.classLoader.loadClass(className)
-            clazz.newInstance() as Drawable
+            clazz.getDeclaredConstructor().newInstance() as Drawable
         } catch (e: Exception) {
             null
         }

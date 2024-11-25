@@ -34,7 +34,7 @@ class MoonDrawable : Drawable() {
     private val mPaint = Paint().apply {
         isAntiAlias = true
     }
-    private val mClearXfermode: Xfermode
+    private val mClearXfermode: Xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
 
     @ColorInt
     private val mCoreColor: Int = Color.rgb(171, 202, 247)
@@ -48,7 +48,6 @@ class MoonDrawable : Drawable() {
     private var mShaderCenterY = 0f
 
     init {
-        mClearXfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
         mBounds = bounds
         ensurePosition(mBounds)
     }
@@ -75,8 +74,7 @@ class MoonDrawable : Drawable() {
             mBounds.top.toFloat(),
             mBounds.right.toFloat(),
             mBounds.bottom.toFloat(),
-            null,
-            Canvas.ALL_SAVE_FLAG
+            null
         )
         mPaint.color = mCoreColor
         canvas.drawCircle(mCoreCenterX, mCoreCenterY, mCoreRadius, mPaint)
@@ -94,7 +92,10 @@ class MoonDrawable : Drawable() {
         mPaint.setColorFilter(colorFilter)
     }
 
-    @Deprecated("Deprecated in Java")
+    @Deprecated(
+        "Deprecated in Java",
+        ReplaceWith("PixelFormat.OPAQUE", "android.graphics.PixelFormat")
+    )
     override fun getOpacity(): Int {
         return PixelFormat.OPAQUE
     }
