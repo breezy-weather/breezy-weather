@@ -705,4 +705,7 @@
     <string name="common_weather_text_cool">Κρύος</string>
     <string name="current_weather">Τρέχων καιρός</string>
     <string name="weather_current_data_by">Τρέχοντα δεδομένα καιρού από %s</string>
+    <string name="common_weather_text_frost">Παγωνιά</string>
+    <string name="common_weather_text_dust_storm">Θύελλα Σκόνης</string>
+    <string name="common_weather_text_dust">Σκόνη</string>
 </resources>
