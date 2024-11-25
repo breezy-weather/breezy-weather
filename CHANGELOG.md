@@ -23,6 +23,7 @@
 **Weather sources**
 - [IMD] Added as a main source option for India (@chunshek)
 - [BMKG] Added as a main and secondary current/alert/air quality source option for Indonesia (@chunshek)
+- [PAGASA] Added as a main source option for Philippines (@chunshek)
 - [IPMA] Added as a main and secondary alert source option for Portugal (@chunshek)
 - [MGM] Added as a main and secondary current/alert/normals source option for Türkiye (@chunshek)
 - [Hong Kong Observatory] Added as a main and secondary current/alert/normals source option for Hong Kong (@chunshek)
