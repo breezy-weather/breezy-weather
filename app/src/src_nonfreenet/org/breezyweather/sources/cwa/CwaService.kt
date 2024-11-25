@@ -43,11 +43,13 @@ import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
+import org.breezyweather.sources.cwa.json.CwaAirQualityResult
 import org.breezyweather.sources.cwa.json.CwaAlertResult
 import org.breezyweather.sources.cwa.json.CwaAssistantResult
 import org.breezyweather.sources.cwa.json.CwaAstroResult
+import org.breezyweather.sources.cwa.json.CwaCurrentResult
+import org.breezyweather.sources.cwa.json.CwaForecastResult
 import org.breezyweather.sources.cwa.json.CwaNormalsResult
-import org.breezyweather.sources.cwa.json.CwaWeatherResult
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -125,78 +127,52 @@ class CwaService @Inject constructor(
         // County Name and Township Code are retrieved upon reverse geocoding,
         // but not for user-selected locations. Since a few API calls require these,
         // we will make sure these parameters are available before proceeding.
-        val county = location.parameters.getOrElse(id) { null }?.getOrElse("county") { null }
-        val township = location.parameters.getOrElse(id) { null }?.getOrElse("township") { null }
-        if (county.isNullOrEmpty() || township.isNullOrEmpty()) {
+        val stationId = location.parameters.getOrElse(id) { null }?.getOrElse("stationId") { null }
+        val countyName = location.parameters.getOrElse(id) { null }?.getOrElse("countyName") { null }
+        val townshipName = location.parameters.getOrElse(id) { null }?.getOrElse("townshipName") { null }
+        val townshipCode = location.parameters.getOrElse(id) { null }?.getOrElse("townshipCode") { null }
+        if (stationId.isNullOrEmpty() ||
+            countyName.isNullOrEmpty() ||
+            townshipName.isNullOrEmpty() ||
+            townshipCode.isNullOrEmpty() ||
+            !CWA_HOURLY_ENDPOINTS.containsKey(countyName) ||
+            !CWA_DAILY_ENDPOINTS.containsKey(countyName) ||
+            !CWA_ASSISTANT_ENDPOINTS.containsKey(countyName)
+        ) {
             return Observable.error(InvalidLocationException())
         }
 
-        // The main weather API call requires plugging in the location's coordinates
-        // (latitude: $latitude, longitude: $longitude) into the body of a PUSH request.
-        val body = """
-            {
-                "query": "query aqi {
-                    aqi(latitude: ${location.latitude}, longitude: ${location.longitude}) {
-                        station {
-                            stationId,
-                            locationName,
-                            latitude,
-                            longitude,
-                            time { obsTime },
-                            weatherElement { elementName, elementValue }
-                        },
-                        sitename,
-                        county,
-                        latitude,
-                        longitude,
-                        so2,
-                        co,
-                        o3,
-                        pm10,
-                        pm2_5,
-                        no2,
-                        publishtime,
-                        town {
-                            forecast72hr {
-                                Wx { timePeriods { startTime, weather, weatherIcon } },
-                                T { timePeriods { dataTime, temperature } },
-                                AT { timePeriods { dataTime, apparentTemperature } },
-                                Td { timePeriods { dataTime, dewPointTemperature } },
-                                RH { timePeriods { dataTime, relativeHumidity } },
-                                WD { timePeriods { dataTime, windDirectionDescription } },
-                                WS { timePeriods { dataTime, windSpeed } },
-                                PoP6h { timePeriods { startTime, probabilityOfPrecipitation } }
-                            },
-                            forecastWeekday {
-                                Wx { timePeriods { startTime, weather, weatherIcon } },
-                                MinT { timePeriods { startTime, temperature } },
-                                MaxT { timePeriods { startTime, temperature } },
-                                MinAT { timePeriods { startTime, apparentTemperature } },
-                                MaxAT { timePeriods { startTime, apparentTemperature } },
-                                WD { timePeriods { startTime, windDirectionDescription } },
-                                WS { timePeriods { startTime, windSpeed } },
-                                PoP12h { timePeriods { startTime, probabilityOfPrecipitation } },
-                                UVI { timePeriods { startTime, UVIndex } }
-                            }
-                        }
-                    }
-                }",
-                "variables": null
-            }
-        """.trimIndent().replace("\n", " ")
-        val weather = mApi.getWeather(
-            apiKey,
-            body.toRequestBody("application/json".toMediaTypeOrNull())
+        val hourly = mApi.getForecast(
+            apiKey = apiKey,
+            endpoint = CWA_HOURLY_ENDPOINTS[countyName]!!,
+            townshipName = townshipName
+        )
+        val daily = mApi.getForecast(
+            apiKey = apiKey,
+            endpoint = CWA_DAILY_ENDPOINTS[countyName]!!,
+            townshipName = townshipName
         )
 
+        val current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            mApi.getCurrent(
+                apiKey = apiKey,
+                stationId = stationId
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(CwaCurrentResult())
+                }
+            }
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(CwaCurrentResult())
+            }
+        }
+
         // "Weather Assistant" provides human-written forecast summary on a county level.
-        val assistantEndpoint = CWA_ASSISTANT_ENDPOINTS.getOrElse(county) { "" }
-        val assistant = if (assistantEndpoint != "") {
+        val assistant = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getAssistant(
-                assistantEndpoint,
-                apiKey,
-                "WEB",
-                "JSON"
+                endpoint = CWA_ASSISTANT_ENDPOINTS[countyName]!!,
+                apiKey = apiKey
             ).onErrorResumeNext {
                 Observable.create { emitter ->
                     emitter.onNext(CwaAssistantResult())
@@ -205,6 +181,43 @@ class CwaService @Inject constructor(
         } else {
             Observable.create { emitter ->
                 emitter.onNext(CwaAssistantResult())
+            }
+        }
+
+        val body = LINE_FEED_SPACES.replace(
+            """
+            {
+                "query":"query aqi{
+                    aqi(
+                        longitude:${location.longitude},
+                        latitude:${location.latitude}
+                    ){
+                        pm2_5,
+                        pm10,
+                        o3,
+                        no2,
+                        so2,
+                        co
+                    }
+                }",
+                "variables":null
+            }
+            """,
+            ""
+        )
+
+        val airQuality = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            mApi.getAirQuality(
+                apiKey = apiKey,
+                body = body.toRequestBody("application/json".toMediaTypeOrNull())
+            ).onErrorResumeNext {
+                Observable.create { emitter ->
+                    emitter.onNext(CwaAirQualityResult())
+                }
+            }
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(CwaAirQualityResult())
             }
         }
 
@@ -219,26 +232,24 @@ class CwaService @Inject constructor(
         now.add(Calendar.DATE, -8)
 
         val sun = mApi.getAstro(
-            SUN_ENDPOINT,
-            apiKey,
-            "json",
-            county,
-            SUN_PARAMETERS,
-            timeFrom,
-            timeTo
+            endpoint = SUN_ENDPOINT,
+            apiKey = apiKey,
+            countyName = countyName,
+            parameter = SUN_PARAMETERS,
+            timeFrom = timeFrom,
+            timeTo = timeTo
         ).onErrorResumeNext {
             Observable.create { emitter ->
                 emitter.onNext(CwaAstroResult())
             }
         }
         val moon = mApi.getAstro(
-            MOON_ENDPOINT,
-            apiKey,
-            "json",
-            county,
-            MOON_PARAMETERS,
-            timeFrom,
-            timeTo
+            endpoint = MOON_ENDPOINT,
+            apiKey = apiKey,
+            countyName = countyName,
+            parameter = MOON_PARAMETERS,
+            timeFrom = timeFrom,
+            timeTo = timeTo
         ).onErrorResumeNext {
             Observable.create { emitter ->
                 emitter.onNext(CwaAstroResult())
@@ -252,11 +263,9 @@ class CwaService @Inject constructor(
         val station = getNearestStation(location, CWA_NORMALS_STATIONS)
         val normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS) && station != null) {
             mApi.getNormals(
-                apiKey,
-                "json",
-                station,
-                "AirTemperature",
-                (now.get(Calendar.MONTH) + 1).toString()
+                apiKey = apiKey,
+                stationId = station,
+                month = (now.get(Calendar.MONTH) + 1).toString()
             ).onErrorResumeNext {
                 Observable.create { emitter ->
                     emitter.onNext(CwaNormalsResult())
@@ -270,8 +279,7 @@ class CwaService @Inject constructor(
 
         val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getAlerts(
-                apiKey,
-                "json"
+                apiKey = apiKey
             )
         } else {
             Observable.create { emitter ->
@@ -279,8 +287,11 @@ class CwaService @Inject constructor(
             }
         }
 
-        return Observable.zip(weather, normals, alerts, sun, moon, assistant) {
-                weatherResult: CwaWeatherResult,
+        return Observable.zip(current, airQuality, daily, hourly, normals, alerts, sun, moon, assistant) {
+                currentResult: CwaCurrentResult,
+                airQualityResult: CwaAirQualityResult,
+                dailyResult: CwaForecastResult,
+                hourlyResult: CwaForecastResult,
                 normalsResult: CwaNormalsResult,
                 alertResult: CwaAlertResult,
                 sunResult: CwaAstroResult,
@@ -288,15 +299,16 @@ class CwaService @Inject constructor(
                 assistantResult: CwaAssistantResult,
             ->
             convert(
-                weatherResult = weatherResult,
+                currentResult = currentResult,
+                airQualityResult = airQualityResult,
+                dailyResult = dailyResult,
+                hourlyResult = hourlyResult,
                 normalsResult = normalsResult,
                 alertResult = alertResult,
                 sunResult = sunResult,
                 moonResult = moonResult,
                 assistantResult = assistantResult,
-                location = location,
-                id = id,
-                ignoreFeatures = ignoreFeatures
+                location = location
             )
         }
     }
@@ -344,44 +356,78 @@ class CwaService @Inject constructor(
         // County Name and Township Code are retrieved upon reverse geocoding,
         // but not for user-selected locations. Since a few API calls require these,
         // we will make sure these parameters are available before proceeding.
-        val county = location.parameters.getOrElse(id) { null }?.getOrElse("county") { null }
-        val township = location.parameters.getOrElse(id) { null }?.getOrElse("township") { null }
-
-        if (county.isNullOrEmpty() || township.isNullOrEmpty()) {
+        val stationId = location.parameters.getOrElse(id) { null }?.getOrElse("stationId") { null }
+        val countyName = location.parameters.getOrElse(id) { null }?.getOrElse("countyName") { null }
+        val townshipName = location.parameters.getOrElse(id) { null }?.getOrElse("townshipName") { null }
+        val townshipCode = location.parameters.getOrElse(id) { null }?.getOrElse("townshipCode") { null }
+        if (stationId.isNullOrEmpty() ||
+            countyName.isNullOrEmpty() ||
+            townshipName.isNullOrEmpty() ||
+            townshipCode.isNullOrEmpty() ||
+            !CWA_ASSISTANT_ENDPOINTS.containsKey(countyName)
+        ) {
             return Observable.error(InvalidLocationException())
         }
 
-        // The air quality API call requires plugging in the location's coordinates
-        // (latitude: $latitude, longitude: $longitude) into the body of a PUSH request.
-        val body = """
-            {
-                "query": "query aqi {
-                    aqi(latitude: ${location.latitude}, longitude: ${location.longitude}) {
-                        sitename, county, latitude, longitude, so2, co, o3, pm10, pm2_5, no2, publishtime
-                    }
-                }",
-                "variables": null
-            }
-        """.trimIndent().replace("\n", " ")
-
-        val weather = if (
-            requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
-            requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)
-        ) {
-            mApi.getWeather(
-                apiKey,
-                body.toRequestBody("application/json".toMediaTypeOrNull())
+        val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            mApi.getCurrent(
+                apiKey = apiKey,
+                stationId = stationId
             )
         } else {
             Observable.create { emitter ->
-                emitter.onNext(CwaWeatherResult())
+                emitter.onNext(CwaCurrentResult())
+            }
+        }
+
+        // "Weather Assistant" provides human-written forecast summary on a county level.
+        val assistant = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            mApi.getAssistant(
+                endpoint = CWA_ASSISTANT_ENDPOINTS[countyName]!!,
+                apiKey = apiKey
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(CwaAssistantResult())
+            }
+        }
+
+        val body = LINE_FEED_SPACES.replace(
+            """
+            {
+                "query":"query aqi{
+                    aqi(
+                        longitude:${location.longitude},
+                        latitude:${location.latitude}
+                    ){
+                        pm2_5,
+                        pm10,
+                        o3,
+                        no2,
+                        so2,
+                        co
+                    }
+                }",
+                "variables":null
+            }
+            """,
+            ""
+        )
+
+        val airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            mApi.getAirQuality(
+                apiKey = apiKey,
+                body = body.toRequestBody("application/json".toMediaTypeOrNull())
+            )
+        } else {
+            Observable.create { emitter ->
+                emitter.onNext(CwaAirQualityResult())
             }
         }
 
         val alerts = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getAlerts(
-                apiKey,
-                "json"
+                apiKey = apiKey
             )
         } else {
             Observable.create { emitter ->
@@ -399,11 +445,9 @@ class CwaService @Inject constructor(
             station != null
         ) {
             mApi.getNormals(
-                apiKey,
-                "json",
-                station,
-                "AirTemperature",
-                (now.get(Calendar.MONTH) + 1).toString()
+                apiKey = apiKey,
+                stationId = station,
+                month = (now.get(Calendar.MONTH) + 1).toString()
             )
         } else {
             Observable.create { emitter ->
@@ -411,31 +455,40 @@ class CwaService @Inject constructor(
             }
         }
 
-        return Observable.zip(weather, alerts, normals) {
-                weatherResult: CwaWeatherResult,
+        return Observable.zip(current, assistant, airQuality, alerts, normals) {
+                currentResult: CwaCurrentResult,
+                assistantResult: CwaAssistantResult,
+                airQualityResult: CwaAirQualityResult,
                 alertResult: CwaAlertResult,
                 normalsResult: CwaNormalsResult,
             ->
             convertSecondary(
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
-                    requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)
-                ) {
-                    weatherResult
+                currentResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                    currentResult
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+                assistantResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                    assistantResult
+                } else {
+                    null
+                },
+                airQualityResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+                    airQualityResult
+                } else {
+                    null
+                },
+                alertResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
                     alertResult
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+                normalsResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
                     normalsResult
                 } else {
                     null
                 },
-                location,
-                id
+                location = location
             )
         }
     }
@@ -453,25 +506,39 @@ class CwaService @Inject constructor(
 
         // The reverse geocoding API call requires plugging in the location's coordinates
         // (latitude: $latitude, longitude: $longitude) into the body of a PUSH request.
-        val body = """
+        val body = LINE_FEED_SPACES.replace(
+            """
             {
-                "query": "query town {
-                    town (latitude: ${location.latitude}, longitude: ${location.longitude}) {
-                        townCode, ctyName, townName, villageName
+                "query":"query aqi{
+                    aqi(
+                        longitude:${location.longitude},
+                        latitude:${location.latitude}
+                    ){
+                        station{
+                            stationId
+                        },
+                        town{
+                            ctyName,
+                            townCode,
+                            townName,
+                            villageName
+                        }
                     }
                 }",
-                "variables": null
+                "variables":null
             }
-        """.trimIndent().replace("\n", " ")
+        """,
+            ""
+        )
         return mApi.getLocation(
             apiKey,
             body.toRequestBody("application/json".toMediaTypeOrNull())
         ).map {
-            if (it.data?.town == null) {
+            if (it.data?.aqi?.getOrNull(0)?.town == null) {
                 throw InvalidLocationException()
             }
             val locationList = mutableListOf<Location>()
-            locationList.add(convert(location, it.data.town))
+            locationList.add(convert(location, it.data.aqi[0].town!!))
             locationList
         }
     }
@@ -484,10 +551,15 @@ class CwaService @Inject constructor(
     ): Boolean {
         if (coordinatesChanged) return true
 
-        val currentCounty = location.parameters.getOrElse(id) { null }?.getOrElse("county") { null }
-        val currentTownship = location.parameters.getOrElse(id) { null }?.getOrElse("township") { null }
+        val stationId = location.parameters.getOrElse(id) { null }?.getOrElse("stationId") { null }
+        val countyName = location.parameters.getOrElse(id) { null }?.getOrElse("countyName") { null }
+        val townshipName = location.parameters.getOrElse(id) { null }?.getOrElse("townshipName") { null }
+        val townshipCode = location.parameters.getOrElse(id) { null }?.getOrElse("townshipCode") { null }
 
-        return currentCounty.isNullOrEmpty() || currentTownship.isNullOrEmpty()
+        return stationId.isNullOrEmpty() ||
+            countyName.isNullOrEmpty() ||
+            townshipName.isNullOrEmpty() ||
+            townshipCode.isNullOrEmpty()
     }
 
     override fun requestLocationParameters(
@@ -502,26 +574,47 @@ class CwaService @Inject constructor(
 
         // The reverse geocoding API call requires plugging in the location's coordinates
         // (latitude: $latitude, longitude: $longitude) into the body of a PUSH request.
-        val body = """
+        val body = LINE_FEED_SPACES.replace(
+            """
             {
-                "query": "query town {
-                    town (latitude: ${location.latitude}, longitude: ${location.longitude}) {
-                        townCode, ctyName, townName, villageName
+                "query":"query aqi{
+                    aqi(
+                        longitude:${location.longitude},
+                        latitude:${location.latitude}
+                    ){
+                        station{
+                            stationId
+                        },
+                        town{
+                            ctyName,
+                            townCode,
+                            townName,
+                            villageName
+                        }
                     }
                 }",
-                "variables": null
+                "variables":null
             }
-        """.trimIndent().replace("\n", " ")
+        """,
+            ""
+        )
         return mApi.getLocation(
             apiKey,
             body.toRequestBody("application/json".toMediaTypeOrNull())
         ).map {
-            if (it.data?.town?.ctyName == null || it.data.town.townCode == null) {
+            if (it.data?.aqi?.getOrNull(0) == null ||
+                it.data.aqi[0].station?.stationId == null ||
+                it.data.aqi[0].town?.ctyName == null ||
+                it.data.aqi[0].town?.townName == null ||
+                it.data.aqi[0].town?.townCode == null
+            ) {
                 throw InvalidLocationException()
             }
             mapOf(
-                "county" to it.data.town.ctyName,
-                "township" to it.data.town.townCode
+                "stationId" to it.data.aqi[0].station?.stationId!!,
+                "countyName" to it.data.aqi[0].town?.ctyName!!,
+                "townshipName" to it.data.aqi[0].town?.townName!!,
+                "townshipCode" to it.data.aqi[0].town?.townCode!!
             )
         }
     }
@@ -567,5 +660,6 @@ class CwaService @Inject constructor(
         private const val SUN_PARAMETERS = "SunRiseTime,SunSetTime"
         private const val MOON_ENDPOINT = "A-B0063-001"
         private const val MOON_PARAMETERS = "MoonRiseTime,MoonSetTime"
+        private val LINE_FEED_SPACES = Regex("""\n\s*""")
     }
 }

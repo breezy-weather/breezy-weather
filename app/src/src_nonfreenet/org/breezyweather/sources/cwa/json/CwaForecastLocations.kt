@@ -20,7 +20,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CwaWeatherTown(
-    @SerialName("forecast72hr") val hourly: CwaWeatherForecast?,
-    @SerialName("forecastWeekday") val daily: CwaWeatherForecast?,
+data class CwaForecastLocations(
+    @SerialName("location") val legacyLocation: List<CwaForecastLocation>?,
+    @SerialName("Location") val location: List<CwaForecastLocation>?,
 )

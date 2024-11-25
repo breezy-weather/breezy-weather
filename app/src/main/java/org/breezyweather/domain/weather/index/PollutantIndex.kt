@@ -25,11 +25,12 @@ import kotlin.math.roundToInt
 enum class PollutantIndex(
     val id: String,
     val thresholds: List<Int>,
+    val molecularMass: Double?,
 ) {
-    O3("o3", listOf(0, 50, 100, 160, 240, 480)), // Plume 2023
-    NO2("no2", listOf(0, 10, 25, 200, 400, 1000)), // Plume 2023
-    PM10("pm10", listOf(0, 15, 45, 80, 160, 400)), // Plume 2023
-    PM25("pm25", listOf(0, 5, 15, 30, 60, 150)), // Plume 2023
+    O3("o3", listOf(0, 50, 100, 160, 240, 480), 48.0), // Plume 2023
+    NO2("no2", listOf(0, 10, 25, 200, 400, 1000), 46.0055), // Plume 2023
+    PM10("pm10", listOf(0, 15, 45, 80, 160, 400), null), // Plume 2023
+    PM25("pm25", listOf(0, 5, 15, 30, 60, 150), null), // Plume 2023
     SO2(
         "so2",
         listOf(
@@ -39,7 +40,8 @@ enum class PollutantIndex(
             270,
             500, // 10 min
             960 // linear prolongation
-        )
+        ),
+        64.066
     ), // WHO 2021
     CO(
         "co",
@@ -50,7 +52,8 @@ enum class PollutantIndex(
             35, // hourly
             100, // 15 min
             230 // linear prolongation
-        )
+        ),
+        28.01
     ),
     ; // WHO 2021
 
