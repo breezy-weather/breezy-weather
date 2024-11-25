@@ -46,6 +46,7 @@ import org.breezyweather.common.extensions.median
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toDateNoHour
+import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.theme.weatherView.WeatherViewController
 import org.shredzone.commons.suncalc.MoonIllumination
 import org.shredzone.commons.suncalc.MoonTimes
@@ -54,8 +55,10 @@ import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
 import kotlin.math.atan
+import kotlin.math.cos
 import kotlin.math.exp
 import kotlin.math.ln
+import kotlin.math.log10
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.sin
@@ -548,6 +551,102 @@ private fun computeWetBulbTemperature(
         - atan(relativeHumidity - 1.676331)
         + 0.00391838 * relativeHumidity.pow(3 / 2) * atan(0.023101 * relativeHumidity)
         - 4.686035)
+}
+
+/**
+ * Compute mean sea level pressure (MSLP) from barometric pressure and altitude.
+ * Optional elements can be provided for minor adjustments.
+ * Source: https://integritext.net/DrKFS/correctiontosealevel.htm
+ *
+ * To compute barometric pressure from MSLP,
+ * simply enter negative altitude.
+ *
+ * @param barometricPressure in hPa
+ * @param altitude in meters
+ * @param temperature in °C (optional)
+ * @param humidity in % (optional)
+ * @param latitude in ° (optional)
+ */
+fun computeMeanSeaLevelPressure(
+    barometricPressure: Double?,
+    altitude: Double?,
+    temperature: Double? = null,
+    humidity: Double? = null,
+    latitude: Double? = null,
+): Double? {
+    // There is nothing to calculate if barometric pressure or altitude is null.
+    if (barometricPressure == null || altitude == null) {
+        return null
+    }
+
+    // Source: http://www.bom.gov.au/info/thermal_stress/#atapproximation
+    val waterVaporPressure = if (humidity != null && temperature != null) {
+        humidity / 100 * 6.105 * exp(17.27 * temperature / (237.7 + temperature))
+    } else 0.0
+
+    // adjustment for temperature
+    val term1 = 1.0 + 0.0037 * (temperature ?: 0.0)
+
+    // adjustment for humidity
+    val term2 = 1.0 / (1.0 - 0.378 * waterVaporPressure / barometricPressure)
+
+    // adjustment for asphericity of the Earth
+    val term3 = 1.0 / (1.0 - 0.0026 * cos(2 * (latitude ?: 45.0) * Math.PI / 180))
+
+    // adjustment for variation of gravitational acceleration with height
+    val term4 = 1.0 + (altitude / 6367324)
+
+    return (10.0).pow(log10(barometricPressure) + altitude / (18400.0 * term1 * term2 * term3 * term4))
+}
+
+/**
+ * Compute pollutant concentration in µg/m³ when given in ppb.
+ * Can also be used for converting to mg/m³ from ppm.
+ * Source: https://en.wikipedia.org/wiki/Useful_conversions_and_formulas_for_air_dispersion_modeling
+ *
+ * Basis for temperature and pressure assumptions:
+ * https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-50/section-50.3
+ *
+ * @param pollutant one of NO2, O3, SO2 or CO
+ * @param concentrationInPpb in ppb
+ * @param temperature in °C (assumed 25 °C if omitted)
+ * @param barometricPressure in hPa (assumed 1 atm = 1013.25 hPa if omitted)
+ */
+fun computePollutantInUgm3FromPpb(
+    pollutant: PollutantIndex,
+    concentrationInPpb: Double?,
+    temperature: Double? = null,
+    barometricPressure: Double? = null,
+): Double? {
+    if (concentrationInPpb == null) return null
+    if (pollutant.molecularMass == null) return null
+    return concentrationInPpb * pollutant.molecularMass /
+        (8.31446261815324 / (barometricPressure ?: 1013.25) * 10) / (273.15 + (temperature ?: 25.0))
+}
+
+/**
+ * Compute pollutant concentration in ppb from µg/m³
+ * Can also be used for converting to ppm from mg/m³
+ * Source: https://en.wikipedia.org/wiki/Useful_conversions_and_formulas_for_air_dispersion_modeling
+ *
+ * Basis for temperature and pressure assumptions:
+ * https://www.ecfr.gov/current/title-40/chapter-I/subchapter-C/part-50/section-50.3
+ *
+ * @param pollutant one of NO2, O3, SO2 or CO
+ * @param concentrationInUgm3 in µg/m³
+ * @param temperature in °C (assumed 25 °C if omitted)
+ * @param barometricPressure in hPa (assumed 1 atm = 1013.25 hPa if omitted)
+ */
+fun computePollutantInPpbFromUgm3(
+    pollutant: PollutantIndex,
+    concentrationInUgm3: Double?,
+    temperature: Double? = null,
+    barometricPressure: Double? = null,
+): Double? {
+    if (concentrationInUgm3 == null) return null
+    if (pollutant.molecularMass == null) return null
+    return concentrationInUgm3 / pollutant.molecularMass *
+        (8.31446261815324 / (barometricPressure ?: 1013.25) * 10) * (273.15 + (temperature ?: 25.0))
 }
 
 /**

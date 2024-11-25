@@ -16,9 +16,13 @@
 
 package org.breezyweather.sources.cwa.json
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CwaWeatherStation(
-    val weatherElement: List<CwaWeatherElement>?,
+data class CwaForecastWeatherElement(
+    @SerialName("elementName") val legacyElementName: String?,
+    @SerialName("ElementName") val elementName: String?,
+    @SerialName("time") val legacyTime: List<CwaForecastTime>?,
+    @SerialName("Time") val time: List<CwaForecastTime>?,
 )

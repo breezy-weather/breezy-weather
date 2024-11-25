@@ -16,22 +16,10 @@
 
 package org.breezyweather.sources.cwa.json
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CwaWeatherForecast(
-    val Wx: CwaWeatherForecastElement?,
-    val T: CwaWeatherForecastElement?,
-    val MinT: CwaWeatherForecastElement?,
-    val MaxT: CwaWeatherForecastElement?,
-    val AT: CwaWeatherForecastElement?,
-    val MinAT: CwaWeatherForecastElement?,
-    val MaxAT: CwaWeatherForecastElement?,
-    val Td: CwaWeatherForecastElement?,
-    val RH: CwaWeatherForecastElement?,
-    val WD: CwaWeatherForecastElement?,
-    val WS: CwaWeatherForecastElement?,
-    val PoP6h: CwaWeatherForecastElement?,
-    val PoP12h: CwaWeatherForecastElement?,
-    val UVI: CwaWeatherForecastElement?,
+data class CwaCurrentRecords(
+    @SerialName("Station") val station: List<CwaCurrentStation>?,
 )

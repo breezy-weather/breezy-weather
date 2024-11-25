@@ -204,3 +204,53 @@ val CWA_ASSISTANT_ENDPOINTS = mapOf<String, String>(
     "雲林縣" to "F-C0032-029", // Yunlin County
     "連江縣" to "F-C0032-030" // Lienchiang County
 )
+
+val CWA_HOURLY_ENDPOINTS = mapOf<String, String>(
+    "宜蘭縣" to "F-D0047-001", // Yilan County
+    "桃園市" to "F-D0047-005", // Taoyuan City
+    "新竹縣" to "F-D0047-009", // Hsinchu County
+    "苗栗縣" to "F-D0047-013", // Miaoli County
+    "彰化縣" to "F-D0047-017", // Changhua County
+    "南投縣" to "F-D0047-021", // Nantou County
+    "雲林縣" to "F-D0047-025", // Yunlin County
+    "嘉義縣" to "F-D0047-029", // Chiayi County
+    "屏東縣" to "F-D0047-033", // Pingtung County
+    "臺東縣" to "F-D0047-037", // Taitung County
+    "花蓮縣" to "F-D0047-041", // Hualien County
+    "澎湖縣" to "F-D0047-045", // Penghu County
+    "基隆市" to "F-D0047-049", // Keelung City
+    "新竹市" to "F-D0047-053", // Hsinchu City
+    "嘉義市" to "F-D0047-057", // Chiayi City
+    "臺北市" to "F-D0047-061", // Taipei City
+    "高雄市" to "F-D0047-065", // Kaohsiung City
+    "新北市" to "F-D0047-069", // New Taipei City
+    "臺中市" to "F-D0047-073", // Taichung City
+    "臺南市" to "F-D0047-077", // Tainan City
+    "連江縣" to "F-D0047-081", // Lienchiang County
+    "金門縣" to "F-D0047-085" // Kinmen County
+)
+
+val CWA_DAILY_ENDPOINTS = mapOf<String, String>(
+    "宜蘭縣" to "F-D0047-003", // Yilan County
+    "桃園市" to "F-D0047-007", // Taoyuan City
+    "新竹縣" to "F-D0047-011", // Hsinchu County
+    "苗栗縣" to "F-D0047-015", // Miaoli County
+    "彰化縣" to "F-D0047-019", // Changhua County
+    "南投縣" to "F-D0047-023", // Nantou County
+    "雲林縣" to "F-D0047-027", // Yunlin County
+    "嘉義縣" to "F-D0047-031", // Chiayi County
+    "屏東縣" to "F-D0047-035", // Pingtung County
+    "臺東縣" to "F-D0047-039", // Taitung County
+    "花蓮縣" to "F-D0047-043", // Hualien County
+    "澎湖縣" to "F-D0047-047", // Penghu County
+    "基隆市" to "F-D0047-051", // Keelung City
+    "新竹市" to "F-D0047-055", // Hsinchu City
+    "嘉義市" to "F-D0047-059", // Chiayi City
+    "臺北市" to "F-D0047-063", // Taipei City
+    "高雄市" to "F-D0047-067", // Kaohsiung City
+    "新北市" to "F-D0047-071", // New Taipei City
+    "臺中市" to "F-D0047-075", // Taichung City
+    "臺南市" to "F-D0047-079", // Tainan City
+    "連江縣" to "F-D0047-083", // Lienchiang County
+    "金門縣" to "F-D0047-087" // Kinmen County
+)

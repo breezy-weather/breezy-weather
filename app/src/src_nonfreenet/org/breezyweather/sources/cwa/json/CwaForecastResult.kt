@@ -19,6 +19,6 @@ package org.breezyweather.sources.cwa.json
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CwaLocationData(
-    val aqi: List<CwaLocationAqi>?,
+data class CwaForecastResult(
+    val records: CwaForecastRecords? = null,
 )

@@ -36,19 +36,22 @@ import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
+import org.breezyweather.domain.weather.index.PollutantIndex
+import org.breezyweather.sources.computeMeanSeaLevelPressure
+import org.breezyweather.sources.computePollutantInUgm3FromPpb
+import org.breezyweather.sources.cwa.json.CwaAirQualityResult
 import org.breezyweather.sources.cwa.json.CwaAlertResult
 import org.breezyweather.sources.cwa.json.CwaAssistantResult
 import org.breezyweather.sources.cwa.json.CwaAstroResult
+import org.breezyweather.sources.cwa.json.CwaCurrentResult
+import org.breezyweather.sources.cwa.json.CwaForecastResult
 import org.breezyweather.sources.cwa.json.CwaLocationTown
 import org.breezyweather.sources.cwa.json.CwaNormalsResult
-import org.breezyweather.sources.cwa.json.CwaWeatherForecast
-import org.breezyweather.sources.cwa.json.CwaWeatherResult
 import java.text.SimpleDateFormat
-import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+import kotlin.time.Duration.Companion.hours
 
 fun convert(
     location: Location,
@@ -57,97 +60,71 @@ fun convert(
     return location.copy(
         timeZone = "Asia/Taipei",
         country = "臺灣",
-        admin2 = town.ctyName, // TODO: Double check if admin1, admin2, admin3 or admin4
+        countryCode = "TW",
+        admin1 = town.ctyName,
         city = town.townName,
         district = town.villageName
     )
 }
 
 fun convert(
-    weatherResult: CwaWeatherResult,
+    currentResult: CwaCurrentResult,
+    airQualityResult: CwaAirQualityResult,
+    dailyResult: CwaForecastResult,
+    hourlyResult: CwaForecastResult,
     normalsResult: CwaNormalsResult,
     alertResult: CwaAlertResult,
     sunResult: CwaAstroResult,
     moonResult: CwaAstroResult,
     assistantResult: CwaAssistantResult,
     location: Location,
-    id: String,
-    ignoreFeatures: List<SecondaryWeatherSourceFeature>,
 ): WeatherWrapper {
-    if (weatherResult.data?.aqi?.getOrNull(0)?.town?.daily == null || weatherResult.data.aqi[0].town!!.hourly == null) {
-        throw InvalidOrIncompleteDataException()
-    }
     return WeatherWrapper(
-        current = getCurrent(weatherResult, assistantResult),
-        normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
-            getNormals(normalsResult)
-        } else {
-            null
-        },
-        dailyForecast = getDailyForecast(weatherResult.data.aqi[0].town!!.daily!!, sunResult, moonResult),
-        hourlyForecast = getHourlyForecast(weatherResult.data.aqi[0].town!!.hourly!!),
-        alertList = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
-            getAlertList(alertResult, location, id)
-        } else {
-            null
-        }
+        current = getCurrent(currentResult, assistantResult, airQualityResult),
+        normals = getNormals(normalsResult),
+        dailyForecast = getDailyForecast(dailyResult, sunResult, moonResult),
+        hourlyForecast = getHourlyForecast(hourlyResult),
+        alertList = getAlertList(alertResult, location)
     )
 }
 
 fun convertSecondary(
-    weatherResult: CwaWeatherResult?,
+    currentResult: CwaCurrentResult?,
+    assistantResult: CwaAssistantResult?,
+    airQualityResult: CwaAirQualityResult?,
     alertResult: CwaAlertResult?,
     normalsResult: CwaNormalsResult?,
     location: Location,
-    id: String,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
-        current = weatherResult?.let {
-            getCurrent(weatherResult)
-        },
-        airQuality = weatherResult?.let {
-            AirQualityWrapper(current = getAirQuality(it, null, null))
-        },
-        alertList = alertResult?.let { getAlertList(it, location, id) },
+        current = currentResult?.let { assistantResult?.let { getCurrent(currentResult, assistantResult) } },
+        airQuality = airQualityResult?.let { AirQualityWrapper(current = getAirQuality(it, null, null)) },
+        alertList = alertResult?.let { getAlertList(it, location) },
         normals = normalsResult?.let { getNormals(it) }
     )
 }
 
 private fun getCurrent(
-    weatherResult: CwaWeatherResult,
-    assistantResult: CwaAssistantResult? = null,
+    currentResult: CwaCurrentResult,
+    assistantResult: CwaAssistantResult,
+    airQualityResult: CwaAirQualityResult? = null,
 ): Current? {
-    if (weatherResult.data?.aqi?.getOrNull(0)?.station?.weatherElement.isNullOrEmpty()) {
-        return null
-    }
-
-    var weatherText: String? = null
-    var weatherCode: WeatherCode? = null
-    var temperature: Temperature? = null
-    var windDegree: Double? = null
-    var windSpeed: Double? = null
-    var windGusts: Double? = null
-    var relativeHumidity: Double? = null
-    var pressure: Double? = null
-    var dailyForecast: String? = null
-
-    weatherResult.data!!.aqi!![0].station!!.weatherElement!!.forEach {
-        if (it.elementValue != "-99" && it.elementValue != "-99.0") {
-            when (it.elementName) {
-                "Weather" -> weatherText = it.elementValue
-                "TEMP" -> temperature = Temperature(temperature = it.elementValue.toDoubleOrNull())
-                "WDIR" -> windDegree = it.elementValue.toDoubleOrNull()
-                "WDSD" -> windSpeed = it.elementValue.toDoubleOrNull()
-                "H_FX" -> windGusts = it.elementValue.toDoubleOrNull()
-                "HUMD" -> relativeHumidity = it.elementValue.toDoubleOrNull()
-                "PRES" -> pressure = it.elementValue.toDoubleOrNull()
-            }
+    var latitude: Double? = null
+    currentResult.records?.station?.getOrNull(0)?.geoInfo?.coordinates?.forEach {
+        if (it.coordinateName == "WGS84") {
+            latitude = it.stationLatitude
         }
     }
-
-    // "Weather Assistant" returns a few paragraphs of human-written forecast summary.
-    // We only want the first paragraph to keep it concise.
-    dailyForecast = assistantResult?.cwaopendata?.dataset?.parameterSet?.parameter?.getOrNull(0)?.parameterValue
+    val altitude = currentResult.records?.station?.getOrNull(0)?.geoInfo?.stationAltitude?.toDoubleOrNull()
+    val current = currentResult.records?.station?.getOrNull(0)?.weatherElement
+    val temperature = getValid(current?.airTemperature) as Double?
+    val relativeHumidity = getValid(current?.relativeHumidity) as Double?
+    val barometricPressure = getValid(current?.airPressure) as Double?
+    val windDirection = getValid(current?.windDirection) as Double?
+    val windSpeed = getValid(current?.windSpeed) as Double?
+    val windGusts = getValid(current?.gustInfo?.peakGustSpeed) as Double?
+    val weatherText = getValid(current?.weather) as String?
+    var weatherCode: WeatherCode? = null
 
     // The current observation result does not come with a "code".
     // We need to decipher the best code to use based on the text.
@@ -189,16 +166,26 @@ private fun getCurrent(
     return Current(
         weatherText = weatherText,
         weatherCode = weatherCode,
-        temperature = temperature,
+        temperature = Temperature(
+            temperature = temperature
+        ),
         wind = Wind(
-            degree = windDegree,
+            degree = windDirection,
             speed = windSpeed,
             gusts = windGusts
         ),
-        airQuality = getAirQuality(weatherResult, temperature?.temperature, pressure),
+        airQuality = getAirQuality(airQualityResult, temperature, barometricPressure),
         relativeHumidity = relativeHumidity,
-        pressure = pressure,
-        dailyForecast = dailyForecast
+        pressure = computeMeanSeaLevelPressure(
+            barometricPressure = barometricPressure,
+            altitude = altitude,
+            temperature = temperature,
+            humidity = relativeHumidity,
+            latitude = latitude
+        ),
+        // "Weather Assistant" returns a few paragraphs of human-written forecast summary.
+        // We only want the first paragraph to keep it concise.
+        dailyForecast = assistantResult.cwaopendata?.dataset?.parameterSet?.parameter?.getOrNull(0)?.parameterValue
     )
 }
 
@@ -218,39 +205,27 @@ private fun getNormals(
 // Concentrations of SO₂, NO₂, O₃ are given in ppb (and in ppm for CO).
 // We need to convert these figures to µg/m³ (and mg/m³ for CO).
 private fun getAirQuality(
-    result: CwaWeatherResult,
+    airQualityResult: CwaAirQualityResult?,
     temperature: Double?,
     pressure: Double?,
 ): AirQuality? {
-    return if (result.data?.aqi?.getOrNull(0) != null) {
+    return airQualityResult?.data?.aqi?.getOrNull(0)?.let {
         AirQuality(
-            pM25 = result.data.aqi[0].pm2_5?.toDoubleOrNull(),
-            pM10 = result.data.aqi[0].pm10?.toDoubleOrNull(),
-            sO2 = ppbToUgm3("SO2", result.data.aqi[0].so2?.toDoubleOrNull(), temperature, pressure),
-            nO2 = ppbToUgm3("NO2", result.data.aqi[0].no2?.toDoubleOrNull(), temperature, pressure),
-            o3 = ppbToUgm3("O3", result.data.aqi[0].o3?.toDoubleOrNull(), temperature, pressure),
-            cO = ppbToUgm3("CO", result.data.aqi[0].co?.toDoubleOrNull(), temperature, pressure)
+            pM25 = it.pm25?.toDoubleOrNull(),
+            pM10 = it.pm10?.toDoubleOrNull(),
+            sO2 = computePollutantInUgm3FromPpb(PollutantIndex.SO2, it.so2?.toDoubleOrNull(), temperature, pressure),
+            nO2 = computePollutantInUgm3FromPpb(PollutantIndex.NO2, it.no2?.toDoubleOrNull(), temperature, pressure),
+            o3 = computePollutantInUgm3FromPpb(PollutantIndex.O3, it.o3?.toDoubleOrNull(), temperature, pressure),
+            cO = computePollutantInUgm3FromPpb(PollutantIndex.CO, it.co?.toDoubleOrNull(), temperature, pressure)
         )
-    } else {
-        null
     }
 }
 
 // Forecast data from the main weather API call are unsorted.
 // We need to first store the numbers into maps, then sort the keys,
 // and retrieve the relevant numbers using the sorted keys.
-//
-// "Half-day" forecasts are generated four times per day:
-// at 05:00 for 06:00-18:00, 18:00-06:00, etc.
-// at 11:00 for 12:00-18:00, 18:00-06:00, 06:00-18:00, etc.
-// at 17:00 for 18:00-06:00, 06:00-18:00, etc.
-// at 23:00 for 00:00-06:00, 06:00-18:00, 18:00-06:00, etc.
-//
-// These ranges are great for fitting into Breezy Weather's schema,
-// but the start time for the first segments from the 11:00 and 23:00
-// forecasts need to be "normalized" to match the rest of the half days.
 private fun getDailyForecast(
-    dailyResult: CwaWeatherForecast,
+    dailyResult: CwaForecastResult,
     sunResult: CwaAstroResult,
     moonResult: CwaAstroResult,
 ): List<Daily> {
@@ -260,167 +235,166 @@ private fun getDailyForecast(
     val dailyList = mutableListOf<Daily>()
     val popMap = mutableMapOf<String, Double?>()
     val wsMap = mutableMapOf<String, Double?>()
-    val atMap = mutableMapOf<String, Double?>()
-    val wxMap = mutableMapOf<String, String?>()
-    val wxIconMap = mutableMapOf<String, String?>()
-    val tMap = mutableMapOf<String, Double?>()
+    val maxAtMap = mutableMapOf<String, Double?>()
+    val wxTextMap = mutableMapOf<String, String?>()
+    val wxCodeMap = mutableMapOf<String, WeatherCode?>()
+    val minTMap = mutableMapOf<String, Double?>()
     val uviMap = mutableMapOf<String, Double?>()
+    val minAtMap = mutableMapOf<String, Double?>()
+    val maxTMap = mutableMapOf<String, Double?>()
     val wdMap = mutableMapOf<String, Double?>()
-    val srMap = mutableMapOf<String, String?>()
-    val ssMap = mutableMapOf<String, String?>()
-    val mrMap = mutableMapOf<String, String?>()
-    val msMap = mutableMapOf<String, String?>()
+    val srMap = mutableMapOf<String, Date?>()
+    val ssMap = mutableMapOf<String, Date?>()
+    val mrMap = mutableMapOf<String, Date?>()
+    val msMap = mutableMapOf<String, Date?>()
 
-    var timeKey: String
-    var day = ""
-    var dayKey: String
-    var nightKey: String
-    var dayPart: HalfDay
-    var nightPart: HalfDay
+    var key: String?
+    var value: String?
+    var timestamp: Long?
+    var extraMilliSeconds: Long?
 
-    dailyResult.Wx?.timePeriods?.forEach {
-        // TODO: Unsafe, wasn't it possible to use date serializer instead?
-        timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
-        wxMap[timeKey] = it.weather!!
-        wxIconMap[timeKey] = it.weatherIcon!!
-    }
-    dailyResult.MinT?.timePeriods?.forEach {
-        timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
-        if (timeKey.substring(11, 13) == "18") {
-            tMap[timeKey] = it.temperature!!.toDoubleOrNull()
+    // Legacy schema
+    dailyResult.records?.legacyLocations?.getOrNull(
+        0
+    )?.legacyLocation?.getOrNull(0)?.legacyWeatherElement?.forEach { element ->
+        element.legacyTime?.forEach { item ->
+            key = item.legacyStartTime
+            if (key != null) {
+                // We calculate delta from the previous 06:00 and 18:00 local time (22:00 and 10:00 UTC).
+                // So that we can normalize quarter-day start times to half-day start times.
+                timestamp = formatter.parse(key!!)!!.time
+                extraMilliSeconds = (timestamp - 10.hours.inWholeMilliseconds).mod(12.hours.inWholeMilliseconds)
+                key = formatter.format(timestamp - extraMilliSeconds)
+                value = getValid(item.legacyElementValue?.getOrNull(0)?.legacyValue) as String?
+                when (element.legacyElementName) {
+                    "PoP12h" -> popMap[key!!] = value?.toDoubleOrNull()
+                    "WS" -> {
+                        item.legacyElementValue?.forEach {
+                            if (it.legacyMeasures == "公尺/秒") {
+                                wsMap[key!!] = if (it.legacyValue == ">= 11") {
+                                    11.0
+                                } else {
+                                    it.legacyValue?.toDoubleOrNull()
+                                }
+                            }
+                        }
+                    }
+                    "MaxAT" -> maxAtMap[key!!] = value?.toDoubleOrNull()
+                    "Wx" -> {
+                        item.legacyElementValue?.forEach {
+                            when (it.legacyMeasures) {
+                                "自定義 Wx 文字" -> wxTextMap[key!!] = it.legacyValue
+                                "自定義 Wx 單位" -> wxCodeMap[key!!] = getWeatherCode(it.legacyValue)
+                            }
+                        }
+                    }
+                    "MinT" -> minTMap[key!!] = value?.toDoubleOrNull()
+                    "UVI" -> uviMap[key!!] = value?.toDoubleOrNull()
+                    "MinAT" -> minAtMap[key!!] = value?.toDoubleOrNull()
+                    "MaxT" -> maxTMap[key!!] = value?.toDoubleOrNull()
+                    "WD" -> wdMap[key!!] = getWindDirection(value)
+                }
+            }
         }
-    }
-    dailyResult.MaxT?.timePeriods?.forEach {
-        timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
-        if (timeKey.substring(11, 13) == "06") {
-            tMap[timeKey] = it.temperature!!.toDoubleOrNull()
-        }
-    }
-    dailyResult.MinAT?.timePeriods?.forEach {
-        timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
-        if (timeKey.substring(11, 13) == "18") {
-            atMap[timeKey] = it.apparentTemperature!!.toDoubleOrNull()
-        }
-    }
-    dailyResult.MaxAT?.timePeriods?.forEach {
-        timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
-        if (timeKey.substring(11, 13) == "06") {
-            atMap[timeKey] = it.apparentTemperature!!.toDoubleOrNull()
-        }
-    }
-    dailyResult.WD?.timePeriods?.forEach {
-        timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
-        wdMap[timeKey] = getWindDirection(it.windDirectionDescription)
-    }
-    dailyResult.WS?.timePeriods?.forEach {
-        timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
-        // CWA API returns ">= 11" as forecast speed for windy periods.
-        // Its official stance is that it can't confidently forecast extremely high winds with
-        // precision. Take 11.0 as output so that the chart does not go blank.
-        if (it.windSpeed != null && it.windSpeed == ">= 11") {
-            wsMap[timeKey] = 11.0
-        } else {
-            wsMap[timeKey] = it.windSpeed?.toDoubleOrNull()
-        }
-    }
-    dailyResult.PoP12h?.timePeriods?.forEach {
-        timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
-        popMap[timeKey] = it.probabilityOfPrecipitation!!.toDoubleOrNull()
-    }
-    dailyResult.UVI?.timePeriods?.forEach {
-        timeKey = normalizeHalfDay(it.startTime!!.replace('T', ' '))
-        uviMap[timeKey] = it.UVIndex!!.toDoubleOrNull()
     }
 
-    sunResult.records?.locations?.location?.getOrNull(0)?.time?.forEach { time ->
-        srMap[time.date] = time.sunRiseTime
-        ssMap[time.date] = time.sunSetTime
-    }
-    moonResult.records?.locations?.location?.getOrNull(0)?.time?.forEach { time ->
-        mrMap[time.date] = time.moonRiseTime
-        msMap[time.date] = time.moonSetTime
+    // New schema from 2024-12-10
+    dailyResult.records?.locations?.getOrNull(0)?.location?.getOrNull(0)?.weatherElement?.forEach { element ->
+        element.time?.forEach { item ->
+            key = item.startTime
+            if (key != null) {
+                // We calculate delta from the previous 06:00 and 18:00 local time (22:00 and 10:00 UTC).
+                // So that we can normalize quarter-day start times to half-day start times.
+                timestamp = formatter.parse(key!!)!!.time
+                extraMilliSeconds = (timestamp - 10.hours.inWholeMilliseconds).mod(12.hours.inWholeMilliseconds)
+                key = formatter.format(timestamp - extraMilliSeconds)
+
+                item.elementValue?.getOrNull(0)?.let {
+                    maxTMap[key!!] = getValid(it.maxTemperature?.toDoubleOrNull()) as Double?
+                    minTMap[key!!] = getValid(it.minTemperature?.toDoubleOrNull()) as Double?
+                    maxAtMap[key!!] = getValid(it.maxApparentTemperature?.toDoubleOrNull()) as Double?
+                    minAtMap[key!!] = getValid(it.minApparentTemperature?.toDoubleOrNull()) as Double?
+                    wdMap[key!!] = getWindDirection(getValid(it.windDirection) as String?)
+                    wsMap[key!!] = if (it.windSpeed == ">= 11") {
+                        11.0
+                    } else {
+                        getValid(it.windSpeed?.toDoubleOrNull()) as Double?
+                    }
+                    popMap[key!!] = getValid(it.probabilityOfPrecipitation?.toDoubleOrNull()) as Double?
+                    wxTextMap[key!!] = getValid(it.weather) as String?
+                    wxCodeMap[key!!] = getWeatherCode(getValid(it.weatherCode) as String?)
+                    uviMap[key!!] = getValid(it.uvIndex?.toDoubleOrNull()) as Double?
+                }
+            }
+        }
     }
 
-    wxMap.keys.sorted().forEach {
-        if (it.substring(0, 10) != day) {
-            day = it.substring(0, 10)
-            dayKey = "$day 06:00:00"
-            nightKey = "$day 18:00:00"
-            if (wxMap.containsKey(dayKey)) {
-                dayPart = HalfDay(
-                    weatherText = wxMap[dayKey],
-                    weatherCode = getWeatherCode(wxIconMap[dayKey]),
+    sunResult.records?.locations?.location?.getOrNull(0)?.time?.forEach { it ->
+        srMap[it.date] = formatter.parse("${it.date} ${it.sunRiseTime}:00")
+        ssMap[it.date] = formatter.parse("${it.date} ${it.sunSetTime}:00")
+    }
+    moonResult.records?.locations?.location?.getOrNull(0)?.time?.forEach { it ->
+        if (it.moonRiseTime != "") {
+            mrMap[it.date] = formatter.parse("${it.date} ${it.moonRiseTime}:00")
+        }
+        if (it.moonSetTime != "") {
+            msMap[it.date] = formatter.parse("${it.date} ${it.moonSetTime}:00")
+        }
+    }
+
+    val dates = wxTextMap.keys.groupBy { it.substring(0, 10) }.keys
+    var dayTime: String
+    var nightTime: String
+    dates.forEachIndexed { i, date ->
+        dayTime = "$date 06:00:00"
+        nightTime = "$date 18:00:00"
+        dailyList.add(
+            Daily(
+                date = formatter.parse("$date 00:00:00")!!,
+                day = HalfDay(
+                    weatherText = wxTextMap.getOrElse(dayTime) { null },
+                    weatherCode = wxCodeMap.getOrElse(dayTime) { null },
                     temperature = Temperature(
-                        temperature = tMap[dayKey],
-                        apparentTemperature = atMap[dayKey]
+                        temperature = maxTMap.getOrElse(dayTime) { null },
+                        apparentTemperature = maxAtMap.getOrElse(dayTime) { null }
                     ),
                     precipitationProbability = PrecipitationProbability(
-                        total = popMap[dayKey]
+                        total = popMap.getOrElse(dayTime) { null }
                     ),
                     wind = Wind(
-                        degree = wdMap[dayKey],
-                        speed = wsMap[dayKey]
+                        degree = wdMap.getOrElse(dayTime) { null },
+                        speed = wsMap.getOrElse(dayTime) { null }
                     )
-                )
-            } else {
-                dayPart = HalfDay()
-            }
-            if (wxMap.containsKey(nightKey)) {
-                nightPart = HalfDay(
-                    weatherText = wxMap[nightKey],
-                    weatherCode = getWeatherCode(wxIconMap[nightKey]),
+                ),
+                night = HalfDay(
+                    weatherText = wxTextMap.getOrElse(nightTime) { null },
+                    weatherCode = wxCodeMap.getOrElse(nightTime) { null },
                     temperature = Temperature(
-                        temperature = tMap[nightKey],
-                        apparentTemperature = atMap[nightKey]
+                        temperature = minTMap.getOrElse(nightTime) { null },
+                        apparentTemperature = minAtMap.getOrElse(nightTime) { null }
                     ),
                     precipitationProbability = PrecipitationProbability(
-                        total = popMap[nightKey]
+                        total = popMap.getOrElse(nightTime) { null }
                     ),
                     wind = Wind(
-                        degree = wdMap[nightKey],
-                        speed = wsMap[nightKey]
+                        degree = wdMap.getOrElse(nightTime) { null },
+                        speed = wsMap.getOrElse(nightTime) { null }
                     )
-                )
-            } else {
-                nightPart = HalfDay()
-            }
-            dailyList.add(
-                Daily(
-                    date = formatter.parse("$day 00:00:00")!!,
-                    day = dayPart,
-                    night = nightPart,
-                    sun = Astro(
-                        riseDate = if (!ssMap[day].isNullOrBlank()) {
-                            formatter.parse(day + " " + srMap[day] + ":00")
-                        } else {
-                            null
-                        },
-                        setDate = if (!ssMap[day].isNullOrBlank()) {
-                            formatter.parse(day + " " + ssMap[day] + ":00")
-                        } else {
-                            null
-                        }
-                    ),
-                    moon = Astro(
-                        riseDate = if (!mrMap[day].isNullOrBlank()) {
-                            formatter.parse(day + " " + mrMap[day] + ":00")
-                        } else {
-                            null
-                        },
-                        setDate = if (!msMap[day].isNullOrBlank()) {
-                            formatter.parse(day + " " + msMap[day] + ":00")
-                        } else {
-                            null
-                        }
-                    ),
-                    uV = UV(
-                        index = uviMap[dayKey]
-                    )
+                ),
+                sun = Astro(
+                    riseDate = srMap.getOrElse(date) { null },
+                    setDate = ssMap.getOrElse(date) { null }
+                ),
+                moon = Astro(
+                    riseDate = mrMap.getOrElse(date) { null },
+                    setDate = msMap.getOrElse(date) { null }
+                ),
+                uV = UV(
+                    index = uviMap.getOrElse(dayTime) { null }
                 )
             )
-        }
+        )
     }
-
     return dailyList
 }
 
@@ -432,14 +406,13 @@ private fun getDailyForecast(
 // Precipitation probability figures are at 6-hour intervals,
 // so they are duplicated for the next "3-hourly" key.
 private fun getHourlyForecast(
-    hourlyResult: CwaWeatherForecast,
+    hourlyResult: CwaForecastResult,
 ): List<HourlyWrapper> {
     val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Taipei")
-
     val hourlyList = mutableListOf<HourlyWrapper>()
-    val wxMap = mutableMapOf<String, String?>()
-    val wxIconMap = mutableMapOf<String, String?>()
+    val wxTextMap = mutableMapOf<String, String?>()
+    val wxCodeMap = mutableMapOf<String, WeatherCode?>()
     val atMap = mutableMapOf<String, Double?>()
     val tMap = mutableMapOf<String, Double?>()
     val rhMap = mutableMapOf<String, Double?>()
@@ -447,80 +420,127 @@ private fun getHourlyForecast(
     val wsMap = mutableMapOf<String, Double?>()
     val wdMap = mutableMapOf<String, Double?>()
     val tdMap = mutableMapOf<String, Double?>()
+    var key: String?
+    var value: String?
 
-    var timeKey: String
-    var nextTimeKey: String
-    var hour: Int
-
-    hourlyResult.Wx?.timePeriods?.forEach {
-        timeKey = it.startTime!!.replace('T', ' ')
-        wxMap[timeKey] = it.weather!!
-        wxIconMap[timeKey] = it.weatherIcon!!
-    }
-    hourlyResult.T?.timePeriods?.forEach {
-        timeKey = it.dataTime!!.replace('T', ' ')
-        tMap[timeKey] = it.temperature!!.toDoubleOrNull()
-    }
-    hourlyResult.AT?.timePeriods?.forEach {
-        timeKey = it.dataTime!!.replace('T', ' ')
-        atMap[timeKey] = it.apparentTemperature!!.toDoubleOrNull()
-    }
-    hourlyResult.Td?.timePeriods?.forEach {
-        timeKey = it.dataTime!!.replace('T', ' ')
-        tdMap[timeKey] = it.dewPointTemperature!!.toDoubleOrNull()
-    }
-    hourlyResult.RH?.timePeriods?.forEach {
-        timeKey = it.dataTime!!.replace('T', ' ')
-        rhMap[timeKey] = it.relativeHumidity!!.toDoubleOrNull()
-    }
-    hourlyResult.WD?.timePeriods?.forEach {
-        timeKey = it.dataTime!!.replace('T', ' ')
-        wdMap[timeKey] = getWindDirection(it.windDirectionDescription)
-    }
-    hourlyResult.WS?.timePeriods?.forEach {
-        timeKey = it.dataTime!!.replace('T', ' ')
-        // CWA API returns ">= 11" as forecast speed for windy periods.
-        // Its official stance is that it can't confidently forecast extremely high winds with
-        // precision. Take 11.0 as output so that the chart does not go blank.
-        if (it.windSpeed!! == ">= 11") {
-            wsMap[timeKey] = 11.0
-        } else {
-            wsMap[timeKey] = it.windSpeed.toDoubleOrNull()
+    // Legacy schema
+    hourlyResult.records?.legacyLocations?.getOrNull(
+        0
+    )?.legacyLocation?.getOrNull(0)?.legacyWeatherElement?.forEach { element ->
+        element.legacyTime?.forEach { item ->
+            key = item.legacyDataTime ?: item.legacyStartTime
+            if (key != null) {
+                value = getValid(item.legacyElementValue?.getOrNull(0)?.legacyValue) as String?
+                when (element.legacyElementName) {
+                    "Wx" -> {
+                        item.legacyElementValue?.forEach {
+                            when (it.legacyMeasures) {
+                                "自定義 Wx 文字" -> wxTextMap[key!!] = it.legacyValue
+                                "自定義 Wx 單位" -> wxCodeMap[key!!] = getWeatherCode(it.legacyValue)
+                            }
+                        }
+                    }
+                    "AT" -> atMap[key!!] = value?.toDoubleOrNull()
+                    "T" -> tMap[key!!] = value?.toDoubleOrNull()
+                    "RH" -> rhMap[key!!] = value?.toDoubleOrNull()
+                    "PoP6h" -> popMap[key!!] = value?.toDoubleOrNull()
+                    "WS" -> {
+                        item.legacyElementValue?.forEach {
+                            if (it.legacyMeasures == "公尺/秒") {
+                                wsMap[key!!] = if (it.legacyValue == ">= 11") {
+                                    11.0
+                                } else {
+                                    it.legacyValue?.toDoubleOrNull()
+                                }
+                            }
+                        }
+                    }
+                    "WD" -> wdMap[key!!] = getWindDirection(value)
+                    "Td" -> tdMap[key!!] = value?.toDoubleOrNull()
+                }
+            }
         }
     }
-    hourlyResult.PoP6h?.timePeriods?.forEach {
-        timeKey = it.startTime!!.replace('T', ' ')
-        popMap[timeKey] = it.probabilityOfPrecipitation!!.toDoubleOrNull()
-        hour = timeKey.substring(11, 13).toInt() + 3 // Unsafe
-        nextTimeKey = timeKey.substring(0, 11) + hour.toString().padStart(2, '0') + ":00:00"
-        popMap[nextTimeKey] = it.probabilityOfPrecipitation.toDoubleOrNull()
+
+    // New schema from 2024-12-10
+    hourlyResult.records?.locations?.getOrNull(0)?.location?.getOrNull(0)?.weatherElement?.forEach { element ->
+        element.time?.forEach { item ->
+            key = item.dataTime ?: item.startTime
+            if (key != null) {
+                item.elementValue?.getOrNull(0)?.let {
+                    tMap[key!!] = getValid(it.temperature?.toDoubleOrNull()) as Double?
+                    tdMap[key!!] = getValid(it.dewPoint?.toDoubleOrNull()) as Double?
+                    atMap[key!!] = getValid(it.apparentTemperature?.toDoubleOrNull()) as Double?
+                    rhMap[key!!] = getValid(it.relativeHumidity?.toDoubleOrNull()) as Double?
+                    wdMap[key!!] = getWindDirection(getValid(it.windDirection) as String?)
+                    wsMap[key!!] = if (it.windSpeed == ">= 11") {
+                        11.0
+                    } else {
+                        getValid(it.windSpeed?.toDoubleOrNull()) as Double?
+                    }
+                    popMap[key!!] = getValid(it.probabilityOfPrecipitation?.toDoubleOrNull()) as Double?
+                    wxTextMap[key!!] = getValid(it.weather) as String?
+                    wxCodeMap[key!!] = getWeatherCode(getValid(it.weatherCode) as String?)
+                }
+            }
+        }
     }
 
-    wxMap.keys.sorted().forEach {
-        hour = it.substring(11, 13).toInt() // Unsafe
+    var lastWd: Double? = null
+    var lastWs: Double? = null
+    var lastPop: Double? = null
+    var lastWxText: String? = null
+    var lastWxCode: WeatherCode? = null
+    tMap.keys.sorted().forEach { key ->
+        // Not all elements are forecast for each hour.
+        // Fill the missing elements with the last known values.
+        if (wdMap.containsKey(key)) {
+            lastWd = wdMap[key]
+        } else {
+            wdMap[key] = lastWd
+        }
+        if (wsMap.containsKey(key)) {
+            lastWs = wsMap[key]
+        } else {
+            wsMap[key] = lastWs
+        }
+        if (popMap.containsKey(key)) {
+            lastPop = popMap[key]
+        } else {
+            popMap[key] = lastPop
+        }
+        if (wxTextMap.containsKey(key)) {
+            lastWxText = wxTextMap[key]
+        } else {
+            wxTextMap[key] = lastWxText
+        }
+        if (wxCodeMap.containsKey(key)) {
+            lastWxCode = wxCodeMap[key]
+        } else {
+            wxCodeMap[key] = lastWxCode
+        }
+
         hourlyList.add(
             HourlyWrapper(
-                date = formatter.parse(it)!!,
-                isDaylight = (hour >= 6) && (hour < 18),
-                weatherText = wxMap[it],
-                weatherCode = getWeatherCode(wxIconMap[it]),
+                date = formatter.parse(key)!!,
+                weatherText = wxTextMap.getOrElse(key) { null },
+                weatherCode = wxCodeMap.getOrElse(key) { null },
                 temperature = Temperature(
-                    temperature = tMap[it],
-                    apparentTemperature = atMap[it]
+                    temperature = tMap.getOrElse(key) { null },
+                    apparentTemperature = atMap.getOrElse(key) { null }
                 ),
                 precipitationProbability = PrecipitationProbability(
-                    total = popMap[it]
+                    total = popMap.getOrElse(key) { null }
                 ),
                 wind = Wind(
-                    degree = wdMap[it],
-                    speed = wsMap[it]
+                    degree = wdMap.getOrElse(key) { null },
+                    speed = wsMap.getOrElse(key) { null }
                 ),
-                relativeHumidity = rhMap[it],
-                dewPoint = tdMap[it]
+                relativeHumidity = rhMap.getOrElse(key) { null },
+                dewPoint = tdMap.getOrElse(key) { null }
             )
         )
     }
-
     return hourlyList
 }
 
@@ -534,7 +554,6 @@ private fun getHourlyForecast(
 private fun getAlertList(
     alertResult: CwaAlertResult,
     location: Location,
-    id: String,
 ): List<Alert> {
     val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Taipei")
@@ -543,25 +562,29 @@ private fun getAlertList(
     var severity: AlertSeverity
     var alert: Alert
     var applicable: Boolean
+    val id = "cwa"
 
-    val county = location.parameters
-        .getOrElse(id) { null }?.getOrElse("county") { null }
-    val township = location.parameters
-        .getOrElse(id) { null }?.getOrElse("township") { null }
-
-    if (county.isNullOrEmpty() || township.isNullOrEmpty()) {
+    val stationId = location.parameters.getOrElse(id) { null }?.getOrElse("stationId") { null }
+    val countyName = location.parameters.getOrElse(id) { null }?.getOrElse("countyName") { null }
+    val townshipName = location.parameters.getOrElse(id) { null }?.getOrElse("townshipName") { null }
+    val townshipCode = location.parameters.getOrElse(id) { null }?.getOrElse("townshipCode") { null }
+    if (stationId.isNullOrEmpty() ||
+        countyName.isNullOrEmpty() ||
+        townshipName.isNullOrEmpty() ||
+        townshipCode.isNullOrEmpty()
+    ) {
         throw InvalidLocationException()
     }
 
-    val warningArea = CWA_TOWNSHIP_WARNING_AREAS.getOrElse(township) { "G" }
+    val warningArea = CWA_TOWNSHIP_WARNING_AREAS.getOrElse(townshipCode) { "G" }
 
     alertResult.records?.record?.forEach { record ->
         applicable = false
         record.hazardConditions?.hazards?.hazard?.forEach { hazard ->
             hazard.info?.affectedAreas?.location?.forEach { location ->
                 if (
-                    location.locationName == county ||
-                    (location.locationName == county + "山區" && warningArea == "M") ||
+                    location.locationName == countyName ||
+                    (location.locationName == countyName + "山區" && warningArea == "M") ||
                     (location.locationName == "基隆北海岸" && warningArea == "K") ||
                     (location.locationName == "恆春半島" && warningArea == "H") ||
                     (location.locationName == "蘭嶼綠島" && warningArea == "L")
@@ -593,23 +616,6 @@ private fun getAlertList(
     return alertList
 }
 
-// When a half-day forecast only covers the last 6 hours of a standard half-day
-// (06:00-18:00, 18:00-06:00), normalize the time so that it starts 6 hours sooner.
-private fun normalizeHalfDay(timestamp: String): String {
-    val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
-    formatter.timeZone = TimeZone.getTimeZone("Asia/Taipei")
-    val year = timestamp.substring(0, 4).toInt()
-    val month = timestamp.substring(5, 7).toInt()
-    val day = timestamp.substring(8, 10).toInt()
-    val hour = timestamp.substring(11, 13).toInt()
-    val calendar = Calendar.getInstance(TimeZone.getTimeZone("Asia/Taipei"), Locale.ENGLISH)
-    calendar.set(year, month - 1, day, hour, 0, 0)
-    if (hour == 0 || hour == 12) {
-        calendar.add(Calendar.HOUR_OF_DAY, -6)
-    }
-    return formatter.format(calendar.time)
-}
-
 private fun getWindDirection(direction: String?): Double? {
     return if (direction == null) {
         null
@@ -638,7 +644,9 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
             "01", "02" -> WeatherCode.CLEAR
             "03", "04" -> WeatherCode.PARTLY_CLOUDY
             "05", "06", "07" -> WeatherCode.CLOUDY
-            "08", "09", "10", "11", "12", "13", "14", "19", "20", "29", "30", "31", "32", "38", "39" -> WeatherCode.RAIN
+            "08", "09", "10", "11", "12", "13", "14",
+            "19", "20", "29", "30", "31", "32", "38", "39",
+            -> WeatherCode.RAIN
             "15", "16", "21", "22", "33", "34", "35", "36" -> WeatherCode.THUNDER
             "17", "18", "41" -> WeatherCode.THUNDERSTORM
             "23", "37", "40" -> WeatherCode.SLEET
@@ -656,7 +664,9 @@ private fun getAlertSeverity(headline: String): AlertSeverity {
         "超大豪雨特報" -> AlertSeverity.EXTREME
         "大豪雨特報", "海上陸上颱風警報", "陸上颱風警報", "海嘯警報" -> AlertSeverity.SEVERE
         "豪雨特報", "海上颱風警報", "海嘯警訊" -> AlertSeverity.MODERATE
-        "熱帶性低氣壓特報", "大雨特報", "海嘯消息", "濃霧特報", "長浪即時訊息", "陸上強風特報", "海上強風特報" -> AlertSeverity.MINOR
+        "熱帶性低氣壓特報", "大雨特報", "海嘯消息", "濃霧特報",
+        "長浪即時訊息", "陸上強風特報", "海上強風特報",
+        -> AlertSeverity.MINOR
         else -> AlertSeverity.UNKNOWN
     }
 }
@@ -676,20 +686,12 @@ private fun getAlertColor(headline: String, severity: AlertSeverity): Int {
     }
 }
 
-// Concentrations of SO₂, NO₂, O₃ are given in ppb (and in ppm for CO).
-// We need to convert these figures to µg/m³ (and mg/m³ for CO).
-private fun ppbToUgm3(pollutant: String, ppb: Double?, temperature: Double?, pressure: Double?): Double? {
-    if (ppb == null) return null
-    val molecularMass: Double = when (pollutant) {
-        "NO2" -> 46.0055
-        "O3" -> 48.0
-        "SO2" -> 64.066
-        "CO" -> 28.01
-        else -> return null
+private fun getValid(
+    value: Any?,
+): Any? {
+    return if (value != -99 && value != -99.0 && value != "-99" && value != "-99.0") {
+        value
+    } else {
+        null
     }
-    // Source: https://en.wikipedia.org/wiki/Useful_conversions_and_formulas_for_air_dispersion_modeling
-    // Molar Gas Constant = 8.31446261815324 m³3⋅Pa⋅K⁻¹⋅mol⁻¹
-    // assume 1013.25 hPa (1 atm) if air pressure is not given
-    // assume 25°C if temperature is not given
-    return ppb / (8.31446261815324 / (pressure ?: 1013.25) * 10) / (273.15 + (temperature ?: 25.0)) * molecularMass
 }
