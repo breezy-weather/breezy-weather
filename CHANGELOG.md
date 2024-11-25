@@ -31,6 +31,7 @@
 - [WMO SWIC] Add support for more alert details (full description, instructions, translations) for most countries. Work remains to be done in some countries such as India or Argentina.
 - [Open-Meteo] Add KNMI, DMI and UK Met Office as options for specific weather model to use
 - [MET Norway] Fix alerts not working when used as a secondary source
+- [CWA] Optimized refresh time (@chunshek)
 - [CWA] Add support for daily bulletin (@chunshek)
 - [CWA] Fix wind speed when >= 11 m/s (@chunshek)
 - Add translation for a few source names and privacy policies
