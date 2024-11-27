@@ -989,6 +989,36 @@
     <string name="meteolux_warning_text_level_2" translatable="false">Potential danger</string>
     <string name="meteolux_warning_text_level_3" translatable="false">Danger</string>
     <string name="meteolux_warning_text_level_4" translatable="false">Significant danger</string>
+    <!-- Warning texts for JMA -->
+    <string name="jma_warning_text_heavy_rain_emergency" translatable="false">Heavy rain emergency warning</string>
+    <string name="jma_warning_text_heavy_rain_warning" translatable="false">Heavy rain warning</string>
+    <string name="jma_warning_text_heavy_rain_advisory" translatable="false">Heavy rain advisory</string>
+    <string name="jma_warning_text_flood_warning" translatable="false">Flood warning</string>
+    <string name="jma_warning_text_flood_advisory" translatable="false">Flood advisory</string>
+    <string name="jma_warning_text_storm_emergency" translatable="false">Storm emergency warning</string>
+    <string name="jma_warning_text_storm_warning" translatable="false">Storm warning</string>
+    <string name="jma_warning_text_gale_advisory" translatable="false">Gale advisory</string>
+    <string name="jma_warning_text_snowstorm_emergency" translatable="false">Snowstorm emergency warning</string>
+    <string name="jma_warning_text_snowstorm_warning" translatable="false">Snowstorm warning</string>
+    <string name="jma_warning_text_gale_and_snow_advisory" translatable="false">Gale and snow advisory</string>
+    <string name="jma_warning_text_heavy_snow_emergency" translatable="false">Heavy snow emergency warning</string>
+    <string name="jma_warning_text_heavy_snow_warning" translatable="false">Heavy snow warning</string>
+    <string name="jma_warning_text_heavy_snow_advisory" translatable="false">Heavy snow advisory</string>
+    <string name="jma_warning_text_high_wave_emergency" translatable="false">High wave emergency warning</string>
+    <string name="jma_warning_text_high_wave_warning" translatable="false">High wave warning</string>
+    <string name="jma_warning_text_high_wave_advisory" translatable="false">High wave advisory</string>
+    <string name="jma_warning_text_storm_surge_emergency" translatable="false">Storm surge emergency warning</string>
+    <string name="jma_warning_text_storm_surge_warning" translatable="false">Storm surge warning</string>
+    <string name="jma_warning_text_storm_surge_advisory" translatable="false">Storm surge advisory</string>
+    <string name="jma_warning_text_thunderstorm_advisory" translatable="false">Thunderstorm advisory</string>
+    <string name="jma_warning_text_snow_melting_advisory" translatable="false">Snow melting advisory</string>
+    <string name="jma_warning_text_dense_fog_advisory" translatable="false">Dense fog advisory</string>
+    <string name="jma_warning_text_dry_air_advisory" translatable="false">Dry air advisory</string>
+    <string name="jma_warning_text_avalanche_advisory" translatable="false">Avalanche advisory</string>
+    <string name="jma_warning_text_low_temperature_advisory" translatable="false">Low temperature advisory</string>
+    <string name="jma_warning_text_frost_advisory" translatable="false">Frost advisory</string>
+    <string name="jma_warning_text_ice_accretion_advisory" translatable="false">Ice accretion advisory</string>
+    <string name="jma_warning_text_snow_accretion_advisory" translatable="false">Snow accretion advisory</string>
     <!-- Do NOT translate everything below -->
     <!-- Widgets -->
     <string name="widget_custom_subtitle_keyword_cw" translatable="false">$cw$</string>

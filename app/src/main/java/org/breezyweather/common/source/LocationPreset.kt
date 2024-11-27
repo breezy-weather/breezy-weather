@@ -80,6 +80,7 @@ enum class LocationPreset(
     INDONESIA("bmkg", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     INDIA("imd", airQuality = "openmeteo", minutely = "openmeteo", alert = "accu", normals = "accu"),
     ISRAEL("ims", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
+    JAPAN("jma", airQuality = "openmeteo", minutely = "openmeteo"),
     MACAO("smg", minutely = "openmeteo"),
     MONGOLIA("namem"),
     PHILIPPINES("pagasa", airQuality = "openmeteo", minutely = "openmeteo", alert = "accu", normals = "accu"),
@@ -113,6 +114,7 @@ enum class LocationPreset(
                     "ID" -> INDONESIA
                     "IL", "PS" -> ISRAEL
                     "IN" -> INDIA
+                    "JP" -> JAPAN
                     "MN" -> MONGOLIA
                     "MO" -> MACAO
                     "PH" -> PHILIPPINES
