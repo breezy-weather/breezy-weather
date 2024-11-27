@@ -23,6 +23,7 @@
 **Weather sources**
 - [IMD] Added as a main source option for India (@chunshek)
 - [BMKG] Added as a main and secondary current/alert/air quality source option for Indonesia (@chunshek)
+- [BMD] Added as a main source option for Bangladesh (@chunshek)
 - [PAGASA] Added as a main source option for Philippines (@chunshek)
 - [MGM] Added as a main and secondary current/alert/normals source option for Türkiye (@chunshek)
 - [Met Office] Added as a main source option for United Kingdom. Requires an API key. (@bunburya)
@@ -38,6 +39,7 @@
 - [CWA] Add support for daily bulletin (@chunshek)
 - [CWA] Fix wind speed when >= 11 m/s (@chunshek)
 - Add translation for a few source names and privacy policies
+- Location presets updated for some countries following the addition of many weather sources
 
 
 # Version 5.2.8 (2024-09-15)
