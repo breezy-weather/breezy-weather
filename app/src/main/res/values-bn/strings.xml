@@ -204,4 +204,19 @@
     <string name="weather_api_unauthorized_content">কিছু আবহাওয়া উৎসগুলিতে, আপনাকে নিজের এপিআই কী সরবরাহ করতে হবে। যদি আপনি ইতিমধ্যে একটি সরবরাহ করে থাকেন, তবে দয়া করে সরবরাহ করা API key পুনরায় পরীক্ষা করুন।</string>
     <string name="weather_source_accu_preference_days_5">৫ দিন</string>
     <string name="weather_source_accu_preference_days_10">১০ দিন</string>
+    <string name="common_weather_text_clear_sky">মেঘমুক্ত আকাশ</string>
+    <string name="common_weather_text_partly_cloudy">আংশিক মেঘলা</string>
+    <string name="common_weather_text_cloudy">মেঘলা</string>
+    <string name="common_weather_text_mainly_clear">প্রধানত মেঘমুক্ত</string>
+    <string name="common_weather_text_overcast">মেঘাচ্ছন্ন</string>
+    <string name="common_weather_text_rain">বৃষ্টি</string>
+    <string name="common_weather_text_rain_light">হালকা বৃষ্টি</string>
+    <string name="common_weather_text_rain_moderate">মাঝারি বৃষ্টি</string>
+    <string name="common_weather_text_rain_heavy">ভারী বৃষ্টি</string>
+    <string name="common_weather_text_fog">কুয়াশা</string>
+    <string name="common_weather_text_drizzle">গুঁড়ি গুঁড়ি বৃষ্টি</string>
+    <string name="common_weather_text_rain_showers">ঝুম বৃষ্টি</string>
+    <string name="common_weather_text_rain_showers_heavy">ভারী ঝুম বৃষ্টি</string>
+    <string name="common_weather_text_snow">তুষার</string>
+    <string name="weather_kind_thunderstorm">বজ্রঝড়</string>
 </resources>

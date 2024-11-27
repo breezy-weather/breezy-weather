@@ -38,6 +38,7 @@ import org.breezyweather.sources.accu.AccuService
 import org.breezyweather.sources.android.AndroidLocationService
 import org.breezyweather.sources.atmoaura.AtmoAuraService
 import org.breezyweather.sources.baiduip.BaiduIPLocationService
+import org.breezyweather.sources.bmd.BmdService
 import org.breezyweather.sources.bmkg.BmkgService
 import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.china.ChinaService
@@ -81,6 +82,7 @@ class SourceManager @Inject constructor(
     androidLocationService: AndroidLocationService,
     atmoAuraService: AtmoAuraService,
     baiduIPService: BaiduIPLocationService,
+    bmdService: BmdService,
     bmkgService: BmkgService,
     brightSkyService: BrightSkyService,
     chinaService: ChinaService,
@@ -148,6 +150,7 @@ class SourceManager @Inject constructor(
 
     // Region-specific or national weather sources
     private val nationalWeatherSourceList = listOf(
+        bmdService,
         bmkgService,
         brightSkyService,
         chinaService,
