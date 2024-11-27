@@ -24,10 +24,11 @@
 - [IMD] Added as a main source option for India (@chunshek)
 - [BMKG] Added as a main and secondary current/alert/air quality source option for Indonesia (@chunshek)
 - [PAGASA] Added as a main source option for Philippines (@chunshek)
-- [IPMA] Added as a main and secondary alert source option for Portugal (@chunshek)
 - [MGM] Added as a main and secondary current/alert/normals source option for Türkiye (@chunshek)
-- [Hong Kong Observatory] Added as a main and secondary current/alert/normals source option for Hong Kong (@chunshek)
 - [Met Office] Added as a main source option for United Kingdom. Requires an API key. (@bunburya)
+- [IPMA] Added as a main and secondary alert source option for Portugal (@chunshek)
+- [Hong Kong Observatory] Added as a main and secondary current/alert/normals source option for Hong Kong (@chunshek)
+- [NAMEM] Added as a main and secondary current/normals/air quality source option for Mongolia. (@chunshek)
 - [MeteoLux] Added as a main and secondary current/alert source option for Luxembourg. (@chunshek)
 - [SMG] Added as a main and secondary current/alert/air quality/normals source option for Macau. (@chunshek)
 - [WMO SWIC] Add support for more alert details (full description, instructions, translations) for most countries. Work remains to be done in some countries such as India or Argentina.
