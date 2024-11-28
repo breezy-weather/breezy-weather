@@ -218,7 +218,7 @@ class RefreshHelper @Inject constructor(
             }
         }
         if (!LocationManagerCompat.isLocationEnabled(context.locationManager)) {
-            errors.add(RefreshError(RefreshErrorType.LOCATION_SERVICE_DISABLED))
+            errors.add(RefreshError(RefreshErrorType.LOCATION_ACCESS_OFF))
         }
         if (errors.isNotEmpty()) {
             return LocationResult(location, errors)
@@ -769,7 +769,7 @@ class RefreshHelper @Inject constructor(
             is ApiUnauthorizedException -> RefreshErrorType.API_UNAUTHORIZED
             is InvalidLocationException -> RefreshErrorType.INVALID_LOCATION
             is LocationException -> RefreshErrorType.LOCATION_FAILED
-            is LocationServiceDisabledException -> RefreshErrorType.LOCATION_SERVICE_DISABLED
+            is LocationServiceDisabledException -> RefreshErrorType.LOCATION_ACCESS_OFF
             is MissingPermissionLocationException -> RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING
             is MissingPermissionLocationBackgroundException ->
                 RefreshErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING

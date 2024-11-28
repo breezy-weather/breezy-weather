@@ -214,6 +214,7 @@
     <string name="location_message_permission_missing">Permission d’accéder à la position manquante</string>
     <string name="location_message_reverse_geocoding_failed">La source météo ne reconnaît pas votre emplacement</string>
     <string name="location_message_permission_background_missing">Permission d’accéder à la position en arrière-plan manquante</string>
+    <string name="location_message_location_access_off">L’accès à la position est désactivé</string>
     <string name="weather_message_data_refresh_failed">Échec d’actualisation des données météo</string>
     <string name="weather_message_secondary_data_refresh_failed">Échec d’actualisation des données météo d’une source secondaire</string>
     <string name="weather_message_unsupported_feature">La source ne supporte pas une des fonctionnalités demandées</string>

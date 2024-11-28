@@ -109,8 +109,8 @@ enum class RefreshErrorType(
         shortMessage = R.string.location_message_permission_background_missing
         // showDialogAction = { } // TODO
     ),
-    LOCATION_SERVICE_DISABLED(
-        shortMessage = R.string.location_message_location_service_disabled,
+    LOCATION_ACCESS_OFF(
+        shortMessage = R.string.location_message_location_access_off,
         showDialogAction = { IntentHelper.startLocationSettingsActivity(it) }
     ),
     REVERSE_GEOCODING_FAILED(
