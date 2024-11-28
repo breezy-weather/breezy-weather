@@ -43,6 +43,7 @@ import org.breezyweather.sources.eccc.json.EcccObservation
 import org.breezyweather.sources.eccc.json.EcccRegionalNormalsMetric
 import org.breezyweather.sources.eccc.json.EcccResult
 import org.breezyweather.sources.eccc.json.EcccUnit
+import org.breezyweather.sources.getWindDegree
 import java.util.Calendar
 import java.util.Date
 import java.util.Objects
@@ -291,21 +292,6 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
         "23", "44", "45" -> WeatherCode.HAZE
         "24" -> WeatherCode.FOG
         "25", "40", "41", "42", "43", "48" -> WeatherCode.WIND
-        else -> null
-    }
-}
-
-private fun getWindDegree(direction: String?): Double? {
-    return when (direction) {
-        "N" -> 0.0
-        "NE" -> 45.0
-        "E" -> 90.0
-        "SE" -> 135.0
-        "S" -> 180.0
-        "SW", "SO" -> 225.0
-        "W", "O" -> 270.0
-        "NW", "NO" -> 315.0
-        "VR" -> -1.0
         else -> null
     }
 }

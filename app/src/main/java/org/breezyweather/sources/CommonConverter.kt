@@ -533,6 +533,38 @@ private fun computeWindChillTemperature(
 }
 
 /**
+ * Convert cardinal points direction to a degree
+ * Supports up to 3 characters cardinal points
+ *
+ * Supported languages:
+ * - N, W, E, S cardinal points (English)
+ * - N, O, E, S cardinal points (French, Spanish)
+ * - VR, VAR for variable direction
+ */
+fun getWindDegree(
+    direction: String?,
+): Double? = when (direction) {
+    "N" -> 0.0
+    "NNE" -> 22.5
+    "NE" -> 45.0
+    "ENE" -> 67.5
+    "E" -> 90.0
+    "ESE" -> 112.5
+    "SE" -> 135.0
+    "SSE" -> 157.5
+    "S" -> 180.0
+    "SSW", "SSO" -> 202.5
+    "SW", "SO" -> 225.0
+    "WSW", "OSO" -> 247.5
+    "W", "O" -> 270.0
+    "WNW", "ONO" -> 292.5
+    "NW", "NO" -> 315.0
+    "NNW", "NNO" -> 337.5
+    "VR", "VAR" -> -1.0
+    else -> null
+}
+
+/**
  * Compute wet bulb from temperature and humidity
  * Based on formula from https://journals.ametsoc.org/view/journals/apme/50/11/jamc-d-11-0143.1.xml
  * TODO: Unit test

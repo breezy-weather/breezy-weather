@@ -37,6 +37,7 @@ import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.source.SecondaryWeatherSourceFeature
+import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.meteolux.json.MeteoLuxWeatherResult
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -121,7 +122,7 @@ private fun getCurrent(
                 apparentTemperature = it.temperature?.felt
             ),
             wind = Wind(
-                degree = getWindDirection(it.wind?.direction),
+                degree = getWindDegree(it.wind?.direction),
                 speed = getRangeMax(it.wind?.speed)?.div(3.6), // convert km/h to m/s
                 gusts = getRangeMax(it.wind?.gusts)?.div(3.6) // convert km/h to m/s
             )
@@ -153,7 +154,7 @@ private fun getDailyForecast(
                         snow = getRangeMax(it.snow)?.times(10.0) // convert cm to mm
                     ),
                     wind = Wind(
-                        degree = getWindDirection(it.wind?.direction),
+                        degree = getWindDegree(it.wind?.direction),
                         speed = getRangeMax(it.wind?.speed)?.div(3.6), // convert km/h to m/s
                         gusts = getRangeMax(it.wind?.gusts)?.div(3.6) // convert km/h to m/s
                     )
@@ -166,7 +167,7 @@ private fun getDailyForecast(
                         apparentTemperature = it.temperatureMin?.felt
                     ),
                     wind = Wind(
-                        degree = getWindDirection(it.wind?.direction),
+                        degree = getWindDegree(it.wind?.direction),
                         speed = getRangeMax(it.wind?.speed)?.div(3.6), // convert km/h to m/s
                         gusts = getRangeMax(it.wind?.gusts)?.div(3.6) // convert km/h to m/s
                     )
@@ -243,7 +244,7 @@ private fun getHourlyForecast(
                     snow = getRangeMax(it.snow)?.times(10) // convert cm to mm
                 ),
                 wind = Wind(
-                    degree = getWindDirection(it.wind?.direction),
+                    degree = getWindDegree(it.wind?.direction),
                     speed = getRangeMax(it.wind?.speed)?.div(3.6), // convert km/h to m/s
                     gusts = getRangeMax(it.wind?.gusts)?.div(3.6) // convert km/h to m/s
                 )
@@ -372,23 +373,6 @@ private fun getWeatherCode(
         // 57 -> sun cloud thunder?
         // 58 -> sun cloud thunder rain?
         // 59 -> sun cloud thunder snow?
-        else -> null
-    }
-}
-
-private fun getWindDirection(
-    direction: String?,
-): Double? {
-    return when (direction) {
-        "N" -> 0.0
-        "NE" -> 45.0
-        "E" -> 90.0
-        "SE" -> 135.0
-        "S" -> 180.0
-        "SO" -> 225.0
-        "O" -> 270.0
-        "NO" -> 315.0
-        "VAR" -> -1.0
         else -> null
     }
 }

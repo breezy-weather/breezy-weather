@@ -18,6 +18,7 @@ import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.ipma.json.IpmaAlertResult
 import org.breezyweather.sources.ipma.json.IpmaDistrictResult
 import org.breezyweather.sources.ipma.json.IpmaForecastResult
@@ -121,7 +122,7 @@ private fun getDailyForecast(
                             total = it.probabilidadePrecipita?.toDoubleOrNull()
                         ),
                         wind = Wind(
-                            degree = getWindDirection(it.ddVento)
+                            degree = getWindDegree(it.ddVento)
                         )
                     ),
                     night = HalfDay(
@@ -134,7 +135,7 @@ private fun getDailyForecast(
                             total = it.probabilidadePrecipita?.toDoubleOrNull()
                         ),
                         wind = Wind(
-                            degree = getWindDirection(it.ddVento)
+                            degree = getWindDegree(it.ddVento)
                         )
                     ),
                     uV = UV(
@@ -175,7 +176,7 @@ private fun getHourlyForecast(
                         }
                     ),
                     wind = Wind(
-                        degree = getWindDirection(it.ddVento),
+                        degree = getWindDegree(it.ddVento),
                         speed = it.ffVento?.toDoubleOrNull()?.div(3.6)
                     ),
                     relativeHumidity = it.hR?.toDoubleOrNull()
@@ -290,22 +291,6 @@ private fun getWeatherCode(
         19, 20, 23 -> WeatherCode.THUNDERSTORM
         21 -> WeatherCode.HAIL
         29, 30 -> WeatherCode.SLEET
-        else -> null
-    }
-}
-
-private fun getWindDirection(
-    direction: String?,
-): Double? {
-    return when (direction) {
-        "N" -> 0.0
-        "NE" -> 45.0
-        "E" -> 90.0
-        "SE" -> 135.0
-        "S" -> 180.0
-        "SW" -> 225.0
-        "W" -> 270.0
-        "NW" -> 315.0
         else -> null
     }
 }

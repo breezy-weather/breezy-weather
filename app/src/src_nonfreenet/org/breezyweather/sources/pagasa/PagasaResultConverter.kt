@@ -31,6 +31,7 @@ import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.pagasa.json.PagasaCurrentResult
 import org.breezyweather.sources.pagasa.json.PagasaHourlyResult
 import org.breezyweather.sources.pagasa.json.PagasaLocationResult
@@ -118,7 +119,7 @@ private fun getCurrent(
                 temperature = it.temperature?.substringBefore(" ")?.toDoubleOrNull()
             ),
             wind = Wind(
-                degree = getWindDirection(it.windDirection),
+                degree = getWindDegree(it.windDirection),
                 speed = it.windSpeed?.substringBefore(" ")?.toDoubleOrNull()?.div(3.6)
             ),
             relativeHumidity = it.humidity?.substringBefore(" ")?.toDoubleOrNull(),
@@ -186,30 +187,6 @@ private fun getHourlyForecast(
         }
     }
     return hourlyList
-}
-
-private fun getWindDirection(
-    direction: String?,
-): Double? {
-    return when (direction) {
-        "N" -> 0.0
-        "NNE" -> 22.5
-        "NE" -> 45.0
-        "ENE" -> 67.5
-        "E" -> 90.0
-        "ESE" -> 112.5
-        "SE" -> 135.0
-        "SSE" -> 157.5
-        "S" -> 180.0
-        "SSW" -> 202.5
-        "SW" -> 225.0
-        "WSW" -> 247.5
-        "W" -> 270.0
-        "WNW" -> 292.5
-        "NW" -> 315.0
-        "NNW" -> 337.5
-        else -> null
-    }
 }
 
 private fun getHourlyWeatherText(
