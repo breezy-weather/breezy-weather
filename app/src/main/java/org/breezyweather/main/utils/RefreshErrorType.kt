@@ -19,6 +19,7 @@ package org.breezyweather.main.utils
 import android.app.Activity
 import androidx.annotation.StringRes
 import org.breezyweather.R
+import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.main.dialogs.ApiHelpDialog
 import org.breezyweather.main.dialogs.LocationHelpDialog
 import org.breezyweather.main.dialogs.SourceNoLongerAvailableHelpDialog
@@ -107,6 +108,10 @@ enum class RefreshErrorType(
     ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING(
         shortMessage = R.string.location_message_permission_background_missing
         // showDialogAction = { } // TODO
+    ),
+    LOCATION_SERVICE_DISABLED(
+        shortMessage = R.string.location_message_location_service_disabled,
+        showDialogAction = { IntentHelper.startLocationSettingsActivity(it) }
     ),
     REVERSE_GEOCODING_FAILED(
         shortMessage = R.string.location_message_reverse_geocoding_failed

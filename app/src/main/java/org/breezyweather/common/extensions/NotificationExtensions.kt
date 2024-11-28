@@ -20,12 +20,13 @@ import android.Manifest
 import android.app.Notification
 import android.app.NotificationManager
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationChannelGroupCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.PermissionChecker
+import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 
 /**
@@ -49,10 +50,10 @@ fun Context.notify(
 fun Context.notify(id: Int, notification: Notification) {
     if (
         Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-        PermissionChecker.checkSelfPermission(
+        ContextCompat.checkSelfPermission(
             this,
             Manifest.permission.POST_NOTIFICATIONS
-        ) != PermissionChecker.PERMISSION_GRANTED
+        ) != PackageManager.PERMISSION_GRANTED
     ) {
         return
     }
@@ -67,7 +68,7 @@ fun Context.cancelNotification(id: Int) {
 /**
  * Helper method to create a notification builder.
  *
- * @param id the channel id.
+ * @param channelId the channel id.
  * @param block the function that will execute inside the builder.
  * @return a notification to be displayed or updated.
  */

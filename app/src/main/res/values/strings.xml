@@ -290,6 +290,7 @@
     <string name="location_message_failed_to_locate">Failed to find current location</string>
     <string name="location_message_permission_missing">Access location permission missing</string>
     <string name="location_message_permission_background_missing">Access location in background permission missing</string>
+    <string name="location_message_location_service_disabled">Location service is disabled</string>
     <string name="location_message_reverse_geocoding_failed">Weather source failed to find a matching location</string>
     <string name="location_dialog_failed_to_locate_title">Cannot get location correctly?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Check location permissions</string>
