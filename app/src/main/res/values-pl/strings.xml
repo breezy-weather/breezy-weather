@@ -703,4 +703,13 @@
     <string name="current_weather">Aktualna pogoda</string>
     <string name="weather_current_data_by">Aktualne dane pogodowe dostarczone przez %s</string>
     <string name="common_weather_text_mist">Mgła</string>
+    <string name="common_weather_text_dry">Suchy</string>
+    <string name="common_weather_text_humid">Wilgotny</string>
+    <string name="common_weather_text_hot">Gorący</string>
+    <string name="common_weather_text_warm">Ciepły</string>
+    <string name="common_weather_text_cool">Chłodny</string>
+    <string name="common_weather_text_cold">Zimno</string>
+    <string name="common_weather_text_frost">Mróz</string>
+    <string name="common_weather_text_dust_storm">Burza piaskowa</string>
+    <string name="common_weather_text_dust">Pył</string>
 </resources>
