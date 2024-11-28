@@ -23,6 +23,7 @@ import android.content.pm.PackageManager
 import android.content.pm.ShortcutInfo
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.core.location.LocationManagerCompat
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
 import breezyweather.domain.location.model.Location
@@ -42,6 +43,7 @@ import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.exceptions.LocationSearchException
+import org.breezyweather.common.exceptions.LocationServiceDisabledException
 import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException
 import org.breezyweather.common.exceptions.MissingPermissionLocationException
 import org.breezyweather.common.exceptions.NoNetworkException
@@ -54,6 +56,7 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getStringByLocale
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isOnline
+import org.breezyweather.common.extensions.locationManager
 import org.breezyweather.common.extensions.shortcutManager
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
@@ -213,6 +216,9 @@ class RefreshHelper @Inject constructor(
                     errors.add(RefreshError(RefreshErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING))
                 }
             }
+        }
+        if (!LocationManagerCompat.isLocationEnabled(context.locationManager)) {
+            errors.add(RefreshError(RefreshErrorType.LOCATION_SERVICE_DISABLED))
         }
         if (errors.isNotEmpty()) {
             return LocationResult(location, errors)
@@ -763,6 +769,7 @@ class RefreshHelper @Inject constructor(
             is ApiUnauthorizedException -> RefreshErrorType.API_UNAUTHORIZED
             is InvalidLocationException -> RefreshErrorType.INVALID_LOCATION
             is LocationException -> RefreshErrorType.LOCATION_FAILED
+            is LocationServiceDisabledException -> RefreshErrorType.LOCATION_SERVICE_DISABLED
             is MissingPermissionLocationException -> RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING
             is MissingPermissionLocationBackgroundException ->
                 RefreshErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING

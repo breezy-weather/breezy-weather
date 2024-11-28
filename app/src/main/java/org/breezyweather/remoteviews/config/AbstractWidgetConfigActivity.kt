@@ -23,7 +23,6 @@ import android.app.WallpaperManager
 import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
@@ -62,6 +61,7 @@ import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
+import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.launchUI
 import org.breezyweather.common.snackbar.Snackbar
 import org.breezyweather.common.snackbar.SnackbarManager
@@ -672,7 +672,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     private fun checkPermissions(requestCode: Int): Boolean {
-        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+        if (!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
             requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), requestCode)
             return false
         }
