@@ -93,6 +93,11 @@ android {
         )
         it.buildConfigField(
             "String",
+            "AEMET_KEY",
+            "\"${properties.getProperty("breezy.aemet.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
             "ATMO_AURA_KEY",
             "\"${properties.getProperty("breezy.atmoaura.key") ?: ""}\""
         )

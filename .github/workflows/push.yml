@@ -39,6 +39,7 @@ jobs:
         run: |
           set -e
           echo "breezy.accu.key=$ACCU_WEATHER_KEY" >> local.properties
+          echo "breezy.aemet.key=$AEMET_KEY" >> local.properties
           echo "breezy.atmoaura.key=$ATMO_AURA_KEY" >> local.properties
           echo "breezy.baiduip.key=$BAIDU_IP_LOCATION_AK" >> local.properties
           echo "breezy.bmkg.key=$BMKG_KEY" >> local.properties
@@ -49,6 +50,7 @@ jobs:
           echo "breezy.openweather.key=$OPEN_WEATHER_KEY" >> local.properties
         env:
           ACCU_WEATHER_KEY: ${{ secrets.ACCU_WEATHER_KEY }}
+          AEMET_KEY: ${{ secrets.AEMET_KEY }}
           ATMO_AURA_KEY: ${{ secrets.ATMO_AURA_KEY }}
           BAIDU_IP_LOCATION_AK: ${{ secrets.BAIDU_IP_LOCATION_AK }}
           BMKG_KEY: ${{ secrets.BMKG_KEY }}
