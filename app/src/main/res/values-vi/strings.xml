@@ -751,4 +751,8 @@
     <string name="jma_warning_text_frost_advisory">Thông tin lưu ý sương giá</string>
     <string name="jma_warning_text_ice_accretion_advisory">Thông tin lưu ý đóng băng</string>
     <string name="jma_warning_text_snow_accretion_advisory">Thông tin lưu ý tuyết bám dính</string>
+    <string name="common_weather_text_dust_storm">Bão bụi</string>
+    <string name="common_weather_text_dust">Bụi</string>
+    <string name="location_message_location_access_off">Quyền truy cập vị trí đã tắt</string>
+    <string name="common_weather_text_frost">Sương giá</string>
 </resources>
