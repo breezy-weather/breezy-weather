@@ -707,4 +707,5 @@
     <string name="common_weather_text_dust">Por</string>
     <string name="common_weather_text_dust_storm">Porvihar</string>
     <string name="common_weather_text_frost">Fagy</string>
+    <string name="location_message_location_access_off">A helyszínadatokhoz való hozzáférés ki van kapcsolva</string>
 </resources>
