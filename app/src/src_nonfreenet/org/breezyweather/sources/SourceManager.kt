@@ -35,6 +35,7 @@ import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.source.Source
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.accu.AccuService
+import org.breezyweather.sources.aemet.AemetService
 import org.breezyweather.sources.android.AndroidLocationService
 import org.breezyweather.sources.atmoaura.AtmoAuraService
 import org.breezyweather.sources.baiduip.BaiduIPLocationService
@@ -79,6 +80,7 @@ import javax.inject.Inject
 class SourceManager @Inject constructor(
     @ApplicationContext context: Context,
     accuService: AccuService,
+    aemetService: AemetService,
     androidLocationService: AndroidLocationService,
     atmoAuraService: AtmoAuraService,
     baiduIPService: BaiduIPLocationService,
@@ -150,6 +152,7 @@ class SourceManager @Inject constructor(
 
     // Region-specific or national weather sources
     private val nationalWeatherSourceList = listOf(
+        aemetService,
         bmdService,
         bmkgService,
         brightSkyService,
