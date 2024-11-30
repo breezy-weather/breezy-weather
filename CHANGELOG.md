@@ -22,32 +22,30 @@
 - Fix hourly tabs disappearing sometimes (@ccyybn)
 
 **Weather sources**
-**Worldwide**
-- [Open-Meteo] Add KNMI, DMI and UK Met Office as options for specific weather model to use
-- [WMO SWIC] Add support for more alert details (full description, instructions, translations) for most countries. Work remains to be done in some countries such as India or Argentina.
-
-**Asia**
-- [BMD] Added as a main source option for Bangladesh (@chunshek)
-- [BMKG] Added as a main and secondary current/alert/air quality source option for Indonesia (@chunshek)
-- [CWA] Optimized refresh time (@chunshek)
-- [CWA] Add support for daily bulletin (@chunshek)
-- [CWA] Fix wind speed when >= 11 m/s (@chunshek)
-- [Hong Kong Observatory] Added as a main and secondary current/alert/normals source option for Hong Kong (@chunshek)
-- [IMD] Added as a main source option for India (@chunshek)
-- [MGM] Added as a main and secondary current/alert/normals source option for Türkiye (@chunshek)
-- [NAMEM] Added as a main and secondary current/normals/air quality source option for Mongolia. (@chunshek)
-- [PAGASA] Added as a main source option for Philippines (@chunshek)
-- [SMG] Added as a main and secondary current/alert/air quality/normals source option for Macau. (@chunshek)
-
-**Europe**
-- [AEMET] Added as a main and secondary current/normals source option for Spain (@chunshek)
-- [IPMA] Added as a main and secondary alert source option for Portugal (@chunshek)
-- [MET Norway] Fix alerts not working when used as a secondary source
-- [Met Office] Added as a main source option for United Kingdom. Requires an API key. (@bunburya)
-- [MeteoLux] Added as a main and secondary current/alert source option for Luxembourg. (@chunshek)
-
-- Add translation for a few source names and privacy policies
-- Location presets updated for some countries following the addition of many weather sources
+- **Worldwide**
+  - [Open-Meteo] Add KNMI, DMI and UK Met Office as options for specific weather model to use
+  - [WMO SWIC] Add support for more alert details (full description, instructions, translations) for most countries. Work remains to be done in some countries such as India or Argentina.
+- **Asia**
+  - [BMD] Added as a main source option for Bangladesh (@chunshek)
+  - [BMKG] Added as a main and secondary current/alert/air quality source option for Indonesia (@chunshek)
+  - [CWA] Optimized refresh time (@chunshek)
+  - [CWA] Add support for daily bulletin (@chunshek)
+  - [CWA] Fix wind speed when >= 11 m/s (@chunshek)
+  - [Hong Kong Observatory] Added as a main and secondary current/alert/normals source option for Hong Kong (@chunshek)
+  - [IMD] Added as a main source option for India (@chunshek)
+  - [MGM] Added as a main and secondary current/alert/normals source option for Türkiye (@chunshek)
+  - [NAMEM] Added as a main and secondary current/normals/air quality source option for Mongolia. (@chunshek)
+  - [PAGASA] Added as a main source option for Philippines (@chunshek)
+  - [SMG] Added as a main and secondary current/alert/air quality/normals source option for Macau. (@chunshek)
+- **Europe**
+  - [AEMET] Added as a main and secondary current/normals source option for Spain (@chunshek)
+  - [IPMA] Added as a main and secondary alert source option for Portugal (@chunshek)
+  - [MET Norway] Fix alerts not working when used as a secondary source
+  - [Met Office] Added as a main source option for United Kingdom. Requires an API key. (@bunburya)
+  - [MeteoLux] Added as a main and secondary current/alert source option for Luxembourg. (@chunshek)
+- Miscellaneous
+  - Add translation for a few source names and privacy policies
+  - Location presets updated for some countries following the addition of many weather sources
 
 
 # Version 5.2.8 (2024-09-15)
