@@ -744,7 +744,7 @@ class RefreshHelper @Inject constructor(
                         location.normalsSource != location.weatherSource
                     ) {
                         if (errors.any {
-                                it.feature == Sod *urceFeature.FEATURE_NORMALS &&
+                                it.feature == SourceFeature.FEATURE_NORMALS &&
                                     it.source == location.normalsSource!!
                             }
                         ) {
