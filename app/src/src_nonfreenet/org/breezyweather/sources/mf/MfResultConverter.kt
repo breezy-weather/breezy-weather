@@ -48,6 +48,7 @@ import org.breezyweather.sources.mf.json.MfForecastHourly
 import org.breezyweather.sources.mf.json.MfForecastProbability
 import org.breezyweather.sources.mf.json.MfForecastResult
 import org.breezyweather.sources.mf.json.MfNormalsResult
+import org.breezyweather.sources.mf.json.MfOverseasWarningsResult
 import org.breezyweather.sources.mf.json.MfRainResult
 import org.breezyweather.sources.mf.json.MfWarningsResult
 import java.util.Calendar
@@ -85,6 +86,7 @@ fun convert(
     ephemerisResult: MfEphemerisResult,
     rainResult: MfRainResult?,
     warningsResult: MfWarningsResult,
+    overseasWarningsResult: MfOverseasWarningsResult,
     normalsResult: MfNormalsResult,
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
@@ -110,7 +112,7 @@ fun convert(
             forecastResult.properties.probabilityForecast
         ),
         minutelyForecast = getMinutelyList(rainResult),
-        alertList = getWarningsList(warningsResult)
+        alertList = getWarningsList(warningsResult, overseasWarningsResult)
     )
 }
 
@@ -333,8 +335,13 @@ private fun getMinutelyList(rainResult: MfRainResult?): List<Minutely> {
     return minutelyList
 }
 
-private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
+private fun getWarningsList(
+    warningsResult: MfWarningsResult,
+    overseasWarningsResult: MfOverseasWarningsResult,
+): List<Alert> {
     val alertList: MutableList<Alert> = arrayListOf()
+
+    // Metropolitan warnings
     warningsResult.text?.let {
         if (warningsResult.updateTime != null) {
             val textBlocs = it.textBlocItems?.filter { textBlocItem ->
@@ -395,6 +402,37 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
                 )
             }
     }
+
+    // Overseas warnings
+    var warningDescription = ""
+    overseasWarningsResult.text?.textBlocItems?.forEach {
+        if (!it.blocTitle.isNullOrEmpty()) {
+            warningDescription += it.blocTitle?.trim()?.uppercase() + "\n"
+        }
+        warningDescription += it.textItem?.trim() + "\n\n"
+    }
+    overseasWarningsResult.timelaps?.forEach { timelaps ->
+        timelaps.timelapsItems?.forEach { timelapsItem ->
+            if (timelapsItem.colorId >= 2) {
+                alertList.add(
+                    Alert(
+                        alertId = Objects.hash(timelaps.phenomenonId, timelapsItem.colorId, timelapsItem.beginTime.time)
+                            .toString(),
+                        startDate = timelapsItem.beginTime,
+                        endDate = timelapsItem.endTime,
+                        headline =
+                        getWarningType(timelaps.phenomenonId.toString()) + " — " +
+                            getWarningText(timelapsItem.colorId),
+                        description = warningDescription.trim(),
+                        source = "Météo-France",
+                        severity = AlertSeverity.getInstance(timelapsItem.colorId),
+                        color = getWarningColor(timelapsItem.colorId)
+                    )
+                )
+            }
+        }
+    }
+
     return alertList
 }
 
@@ -567,6 +605,7 @@ fun convertSecondary(
     currentResult: MfCurrentResult?,
     minuteResult: MfRainResult?,
     alertResultList: MfWarningsResult?,
+    overseasWarningsResult: MfOverseasWarningsResult?,
     normalsResult: MfNormalsResult?,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
@@ -580,10 +619,10 @@ fun convertSecondary(
         } else {
             null
         },
-        alertList = if (alertResultList != null) {
-            getWarningsList(alertResultList)
-        } else {
-            null
+        alertList = alertResultList?.let {
+            overseasWarningsResult?.let {
+                getWarningsList(alertResultList, overseasWarningsResult)
+            }
         },
         normals = if (normalsResult != null) {
             getNormals(location, normalsResult)
