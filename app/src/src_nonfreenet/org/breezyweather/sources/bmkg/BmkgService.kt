@@ -102,12 +102,13 @@ class BmkgService @Inject constructor(
             lon = location.longitude
         )
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 lat = location.latitude,
                 lon = location.longitude
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                 Observable.just(BmkgCurrentResult())
             }
         } else {
@@ -120,7 +121,7 @@ class BmkgService @Inject constructor(
                 lat = location.latitude,
                 lon = location.longitude
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
                 Observable.just(BmkgWarningResult())
             }
         } else {
@@ -138,7 +139,7 @@ class BmkgService @Inject constructor(
                         lon = location.longitude,
                         day = day
                     ).onErrorResumeNext {
-                        // TODO: Log warning
+                        failedFeatures.add(SourceFeature.FEATURE_ALERT)
                         Observable.just(BmkgIbfResult())
                     }
                 } else {
@@ -149,7 +150,7 @@ class BmkgService @Inject constructor(
 
         val pm25 = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
             mAppApi.getPm25().onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
                 Observable.just(emptyList())
             }
         } else {
@@ -174,7 +175,8 @@ class BmkgService @Inject constructor(
                 ibf1Result,
                 ibf2Result,
                 ibf3Result,
-                pm25Result
+                pm25Result,
+                failedFeatures
             )
         }
     }
@@ -219,11 +221,15 @@ class BmkgService @Inject constructor(
         }
         val apiKey = getApiKeyOrDefault()
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 lat = location.latitude,
                 lon = location.longitude
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(BmkgCurrentResult())
+            }
         } else {
             Observable.just(BmkgCurrentResult())
         }
@@ -233,7 +239,10 @@ class BmkgService @Inject constructor(
                 apiKey = apiKey,
                 lat = location.latitude,
                 lon = location.longitude
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(BmkgWarningResult())
+            }
         } else {
             Observable.just(BmkgWarningResult())
         }
@@ -248,7 +257,10 @@ class BmkgService @Inject constructor(
                         lat = location.latitude,
                         lon = location.longitude,
                         day = day
-                    )
+                    ).onErrorResumeNext {
+                        failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                        Observable.just(BmkgIbfResult())
+                    }
                 } else {
                     Observable.just(BmkgIbfResult())
                 }
@@ -256,7 +268,10 @@ class BmkgService @Inject constructor(
         }
 
         val pm25 = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-            mAppApi.getPm25()
+            mAppApi.getPm25().onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                Observable.just(emptyList())
+            }
         } else {
             Observable.just(emptyList())
         }
@@ -301,7 +316,8 @@ class BmkgService @Inject constructor(
                     pm25Result
                 } else {
                     null
-                }
+                },
+                failedFeatures = failedFeatures
             )
         }
     }

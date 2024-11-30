@@ -17,6 +17,7 @@
 package org.breezyweather.sources.accu
 
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
@@ -92,6 +93,7 @@ fun convert(
     airQualityHourlyResult: AccuAirQualityResult,
     climoSummaryResult: AccuClimoSummaryResult,
     currentMonth: Int,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (dailyResult.DailyForecasts.isNullOrEmpty() || hourlyResultList.isEmpty()) {
@@ -115,7 +117,8 @@ fun convert(
         dailyForecast = getDailyList(dailyResult.DailyForecasts, location),
         hourlyForecast = getHourlyList(hourlyResultList, airQualityHourlyResult.data),
         minutelyForecast = getMinutelyList(minuteResult),
-        alertList = getAlertList(alertResultList)
+        alertList = getAlertList(alertResultList),
+        failedFeatures = failedFeatures
     )
 }
 
@@ -545,6 +548,7 @@ fun convertSecondary(
     alertResultList: List<AccuAlertResult>?,
     climoSummaryResult: AccuClimoSummaryResult?,
     currentMonth: Int,
+    failedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = getCurrent(currentResult),
@@ -560,7 +564,8 @@ fun convertSecondary(
             )
         } else {
             null
-        }
+        },
+        failedFeatures = failedFeatures
     )
 }
 

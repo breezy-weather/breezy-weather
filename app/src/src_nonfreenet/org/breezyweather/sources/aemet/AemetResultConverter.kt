@@ -17,6 +17,7 @@
 package org.breezyweather.sources.aemet
 
 import android.content.Context
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Current
@@ -51,9 +52,9 @@ fun convert(
     location: Location,
     stationList: List<AemetStationsResult>,
 ): String {
-    var distance: Double? = null
+    var distance: Double
     var nearestDistance = Double.POSITIVE_INFINITY
-    var nearestStation: String = ""
+    var nearestStation = ""
     var stationLatitude: Double?
     var stationLongitude: Double?
 
@@ -64,7 +65,7 @@ fun convert(
             if (stationLatitude != null && stationLongitude != null) {
                 distance = SphericalUtil.computeDistanceBetween(
                     LatLng(location.latitude, location.longitude),
-                    LatLng(stationLatitude, stationLongitude)
+                    LatLng(stationLatitude!!, stationLongitude!!)
                 )
                 if (distance < nearestDistance && it.indicativo != null) {
                     nearestDistance = distance
@@ -99,13 +100,15 @@ fun convert(
     dailyResult: List<AemetDailyResult>,
     hourlyResult: List<AemetHourlyResult>,
     normalsResult: List<AemetNormalsResult>,
+    failedFeatures: MutableList<SourceFeature>,
 ): WeatherWrapper {
     val sunMap = getSunMap(location, hourlyResult)
     return WeatherWrapper(
         current = getCurrent(currentResult),
         normals = getNormals(location, normalsResult),
         dailyForecast = getDailyForecast(context, location, dailyResult, sunMap),
-        hourlyForecast = getHourlyForecast(context, location, hourlyResult)
+        hourlyForecast = getHourlyForecast(context, location, hourlyResult),
+        failedFeatures = failedFeatures
     )
 }
 
@@ -113,10 +116,12 @@ fun convertSecondary(
     location: Location,
     currentResult: List<AemetCurrentResult>?,
     normalsResult: List<AemetNormalsResult>?,
+    failedFeatures: MutableList<SourceFeature>,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = currentResult?.let { getCurrent(it) },
-        normals = normalsResult?.let { getNormals(location, it) }
+        normals = normalsResult?.let { getNormals(location, it) },
+        failedFeatures = failedFeatures
     )
 }
 

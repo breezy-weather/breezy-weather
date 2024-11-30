@@ -129,13 +129,17 @@ class AccuService @Inject constructor(
             "en"
         }
         val metric = SettingsManager.getInstance(context).precipitationUnit != PrecipitationUnit.IN
+        val failedFeatures = mutableListOf<SourceFeature>()
         val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 locationKey,
                 apiKey,
                 languageCode,
                 details = true
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(emptyList())
+            }
         } else {
             Observable.just(emptyList())
         }
@@ -165,7 +169,7 @@ class AccuService @Inject constructor(
                 languageCode,
                 details = true
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
                 Observable.just(AccuMinutelyResult())
             }
         } else {
@@ -179,7 +183,7 @@ class AccuService @Inject constructor(
                     languageCode,
                     details = true
                 ).onErrorResumeNext {
-                    // TODO: Log warning
+                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
                     Observable.just(emptyList())
                 }
             } else {
@@ -189,7 +193,7 @@ class AccuService @Inject constructor(
                     languageCode,
                     details = true
                 ).onErrorResumeNext {
-                    // TODO: Log warning
+                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
                     Observable.just(emptyList())
                 }
             }
@@ -206,7 +210,7 @@ class AccuService @Inject constructor(
                 pollutants = true,
                 languageCode
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
                 Observable.just(AccuAirQualityResult())
             }
         } else {
@@ -226,7 +230,7 @@ class AccuService @Inject constructor(
                 languageCode,
                 details = false
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
                 Observable.just(AccuClimoSummaryResult())
             }
         } else {
@@ -258,7 +262,8 @@ class AccuService @Inject constructor(
                 accuAlertResults,
                 accuAirQualityResult,
                 accuClimoResult,
-                cal[Calendar.MONTH]
+                cal[Calendar.MONTH],
+                failedFeatures
             )
         }
     }
@@ -312,6 +317,7 @@ class AccuService @Inject constructor(
         }
         val locationKey = location.parameters.getOrElse(id) { null }?.getOrElse("locationKey") { null }
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             if (locationKey.isNullOrEmpty()) {
                 return Observable.error(InvalidLocationException())
@@ -321,7 +327,10 @@ class AccuService @Inject constructor(
                 apiKey,
                 languageCode,
                 details = true
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(emptyList())
+            }
         } else {
             Observable.just(emptyList())
         }
@@ -338,7 +347,10 @@ class AccuService @Inject constructor(
                 apiKey,
                 pollutants = true,
                 languageCode
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                Observable.just(AccuAirQualityResult())
+            }
         } else {
             Observable.just(AccuAirQualityResult())
         }
@@ -354,7 +366,10 @@ class AccuService @Inject constructor(
                 languageCode,
                 details = true,
                 metric = true
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_POLLEN)
+                Observable.just(AccuForecastDailyResult())
+            }
         } else {
             Observable.just(AccuForecastDailyResult())
         }
@@ -369,7 +384,10 @@ class AccuService @Inject constructor(
                 location.latitude.toString() + "," + location.longitude,
                 languageCode,
                 details = true
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
+                Observable.just(AccuMinutelyResult())
+            }
         } else {
             Observable.just(AccuMinutelyResult())
         }
@@ -381,7 +399,10 @@ class AccuService @Inject constructor(
                     location.latitude.toString() + "," + location.longitude,
                     languageCode,
                     details = true
-                )
+                ).onErrorResumeNext {
+                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    Observable.just(emptyList())
+                }
             } else {
                 if (locationKey.isNullOrEmpty()) {
                     return Observable.error(InvalidLocationException())
@@ -391,7 +412,10 @@ class AccuService @Inject constructor(
                     apiKey,
                     languageCode,
                     details = true
-                )
+                ).onErrorResumeNext {
+                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    Observable.just(emptyList())
+                }
             }
         } else {
             Observable.just(emptyList())
@@ -414,7 +438,7 @@ class AccuService @Inject constructor(
                 languageCode,
                 details = false
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
                 Observable.just(AccuClimoSummaryResult())
             }
         } else {
@@ -464,7 +488,8 @@ class AccuService @Inject constructor(
                 } else {
                     null
                 },
-                cal[Calendar.MONTH]
+                cal[Calendar.MONTH],
+                failedFeatures
             )
         }
     }

@@ -97,6 +97,7 @@ class AemetService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrentUrl(
                 apiKey = apiKey,
@@ -108,7 +109,7 @@ class AemetService @Inject constructor(
                         apiKey = apiKey,
                         path = path
                     ).onErrorResumeNext {
-                        // TODO: Log warning
+                        failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                         Observable.just(emptyList())
                     }.blockingFirst()
                 } else {
@@ -130,7 +131,7 @@ class AemetService @Inject constructor(
                         apiKey = apiKey,
                         path = path
                     ).onErrorResumeNext {
-                        // TODO: Log warning
+                        failedFeatures.add(SourceFeature.FEATURE_NORMALS)
                         Observable.just(emptyList())
                     }.blockingFirst()
                 } else {
@@ -179,7 +180,8 @@ class AemetService @Inject constructor(
                 currentResult = currentResult,
                 dailyResult = dailyResult,
                 hourlyResult = hourlyResult,
-                normalsResult = normalsResult
+                normalsResult = normalsResult,
+                failedFeatures = failedFeatures
             )
         }
     }
@@ -218,6 +220,7 @@ class AemetService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrentUrl(
                 apiKey = apiKey,
@@ -228,7 +231,10 @@ class AemetService @Inject constructor(
                     mApi.getCurrent(
                         apiKey = apiKey,
                         path = path
-                    ).blockingFirst()
+                    ).onErrorResumeNext {
+                        failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                        Observable.just(emptyList())
+                    }.blockingFirst()
                 } else {
                     throw InvalidOrIncompleteDataException()
                 }
@@ -247,7 +253,10 @@ class AemetService @Inject constructor(
                     mApi.getNormals(
                         apiKey = apiKey,
                         path = path
-                    ).blockingFirst()
+                    ).onErrorResumeNext {
+                        failedFeatures.add(SourceFeature.FEATURE_NORMALS)
+                        Observable.just(emptyList())
+                    }.blockingFirst()
                 } else {
                     throw InvalidOrIncompleteDataException()
                 }
@@ -271,7 +280,8 @@ class AemetService @Inject constructor(
                     normalsResult
                 } else {
                     null
-                }
+                },
+                failedFeatures = failedFeatures
             )
         }
     }

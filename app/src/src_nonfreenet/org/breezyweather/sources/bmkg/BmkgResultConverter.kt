@@ -17,6 +17,7 @@
 package org.breezyweather.sources.bmkg
 
 import android.content.Context
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
@@ -87,12 +88,14 @@ fun convert(
     ibf2Result: BmkgIbfResult,
     ibf3Result: BmkgIbfResult,
     pm25Result: List<BmkgPm25Result>,
+    failedFeatures: List<SourceFeature>
 ): WeatherWrapper {
     return WeatherWrapper(
         current = getCurrent(context, location, currentResult, pm25Result),
         dailyForecast = getDailyForecast(context, location, forecastResult),
         hourlyForecast = getHourlyForecast(context, forecastResult),
-        alertList = getAlertList(context, warningResult, ibf1Result, ibf2Result, ibf3Result)
+        alertList = getAlertList(context, warningResult, ibf1Result, ibf2Result, ibf3Result),
+        failedFeatures = failedFeatures
     )
 }
 
@@ -105,6 +108,7 @@ fun convertSecondary(
     ibf2Result: BmkgIbfResult?,
     ibf3Result: BmkgIbfResult?,
     pm25Result: List<BmkgPm25Result>?,
+    failedFeatures: MutableList<SourceFeature>,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = if (currentResult !== null) {
@@ -121,7 +125,8 @@ fun convertSecondary(
             getAlertList(context, warningResult, ibf1Result, ibf2Result, ibf3Result)
         } else {
             null
-        }
+        },
+        failedFeatures = failedFeatures
     )
 }
 
