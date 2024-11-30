@@ -52,6 +52,7 @@ enum class LocationPreset(
     // Europe
     // AUSTRIA("openmeteo" /* GeoSphere too lightweight */, airQuality = "geosphereat", minutely = "geosphereat",
     //     alert = "geosphereat", normals = "geosphereat"),
+    ANDORRA("mf", airQuality = "openmeteo", pollen = "openmeteo"),
     DENMARK("dmi", airQuality = "openmeteo", pollen = "openmeteo", minutely = "metno", normals = "accu"),
     GERMANY("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     GERMANY_FREENET("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
@@ -61,6 +62,7 @@ enum class LocationPreset(
     IRELAND("metie", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     ITALY("meteoam", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     LUXEMBOURG("meteolux", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
+    MONACO("mf", airQuality = "openmeteo", pollen = "openmeteo", alert = "accu"),
     NORWAY("metno", pollen = "openmeteo", alert = "accu", normals = "accu"),
     PORTUGAL("ipma", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     SPAIN("aemet", airQuality = "openmeteo", pollen = "openmeteo", alert = "accu", minutely = "openmeteo"),
@@ -87,6 +89,9 @@ enum class LocationPreset(
     MONGOLIA("namem"),
     PHILIPPINES("pagasa", airQuality = "openmeteo", minutely = "openmeteo", alert = "accu", normals = "accu"),
     TURKIYE("mgm", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
+
+    // France Overseas Territories
+    FRANCE_OVERSEAS("mf", airQuality = "openmeteo", minutely = "openmeteo"),
     ;
 
     companion object {
@@ -99,6 +104,7 @@ enum class LocationPreset(
                     "US", "PR", "VI", "MP", "GU", "FM", "PW", "AS" -> USA
 
                     // Europe
+                    "AD" -> ANDORRA
                     "DE" -> GERMANY
                     "DK" -> DENMARK
                     "ES" -> SPAIN
@@ -107,6 +113,7 @@ enum class LocationPreset(
                     "IE" -> IRELAND
                     "IT", "SM", "VA" -> ITALY
                     "LU" -> LUXEMBOURG
+                    "MC" -> MONACO
                     "NO" -> NORWAY
                     "PT" -> PORTUGAL
                     "SE" -> SWEDEN
@@ -123,6 +130,9 @@ enum class LocationPreset(
                     "MO" -> MACAO
                     "PH" -> PHILIPPINES
                     "TR" -> TURKIYE
+
+                    // France Overseas Territories
+                    "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT" -> FRANCE_OVERSEAS
 
                     else -> DEFAULT
                 }

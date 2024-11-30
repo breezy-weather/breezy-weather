@@ -43,6 +43,7 @@ import org.breezyweather.sources.mf.json.MfCurrentResult
 import org.breezyweather.sources.mf.json.MfEphemerisResult
 import org.breezyweather.sources.mf.json.MfForecastResult
 import org.breezyweather.sources.mf.json.MfNormalsResult
+import org.breezyweather.sources.mf.json.MfOverseasWarningsResult
 import org.breezyweather.sources.mf.json.MfRainResult
 import org.breezyweather.sources.mf.json.MfWarningsResult
 import retrofit2.Retrofit
@@ -73,6 +74,13 @@ class MfService @Inject constructor(
             .baseUrl(MF_BASE_URL)
             .build()
             .create(MfApi::class.java)
+    }
+
+    private val mOverseasApi by lazy {
+        client
+            .baseUrl(MF_OVERSEAS_BASE_URL)
+            .build()
+            .create(MfOverseasApi::class.java)
     }
 
     override val supportedFeaturesInMain = listOf(
@@ -141,23 +149,64 @@ class MfService @Inject constructor(
         }
         val warnings = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
             !location.countryCode.isNullOrEmpty() &&
-            location.countryCode.equals("FR", ignoreCase = true) &&
-            !location.admin2Code.isNullOrEmpty()
+            (
+                location.countryCode.equals("FR", ignoreCase = true) &&
+                    !location.admin2Code.isNullOrEmpty() &&
+                    !OVERSEAS_DEPTS_REGEX.matches(location.admin2Code!!)
+                ) ||
+            location.countryCode.equals("AD", ignoreCase = true)
         ) {
             mApi.getWarnings(
                 USER_AGENT,
-                location.admin2Code!!,
+                if (!location.countryCode.equals("AD", ignoreCase = true)) {
+                    location.admin2Code!!
+                } else {
+                    "99"
+                },
                 "iso",
                 token
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(MfWarningsResult())
-                }
+                Observable.just(MfWarningsResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(MfWarningsResult())
+            Observable.just(MfWarningsResult())
+        }
+
+        val overseasWarnings = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
+            !location.countryCode.isNullOrEmpty() &&
+            (
+                location.countryCode.equals("FR", ignoreCase = true) &&
+                    !location.admin2Code.isNullOrEmpty() &&
+                    OVERSEAS_DEPTS_REGEX.matches(location.admin2Code!!)
+                ) ||
+            OVERSEAS_ISOS.any { it.equals(location.countryCode, ignoreCase = true) }
+        ) {
+            val domain = getOverseasWarningDomain(
+                if (location.countryCode.equals("FR", ignoreCase = true)) {
+                    location.admin2Code
+                } else {
+                    location.countryCode
+                }
+            )
+            val warningType = if (domain == "VIGI974") {
+                "vigilance4colors"
+            } else {
+                ""
             }
+            if (!domain.isNullOrEmpty()) {
+                mOverseasApi.getWarnings(
+                    userAgent = USER_AGENT,
+                    domain = domain,
+                    warningType = warningType,
+                    token = token
+                ).onErrorResumeNext {
+                    Observable.just(MfOverseasWarningsResult())
+                }
+            } else { // Wallis & Futuna does not give warnings
+                Observable.just(MfOverseasWarningsResult())
+            }
+        } else {
+            Observable.just(MfOverseasWarningsResult())
         }
 
         // TODO: Only call once a month, unless it’s current position
@@ -178,12 +227,13 @@ class MfService @Inject constructor(
             }
         }
 
-        return Observable.zip(current, forecast, ephemeris, rain, warnings, normals) {
+        return Observable.zip(current, forecast, ephemeris, rain, warnings, overseasWarnings, normals) {
                 mfCurrentResult: MfCurrentResult,
                 mfForecastResult: MfForecastResult,
                 mfEphemerisResult: MfEphemerisResult,
                 mfRainResult: MfRainResult,
                 mfWarningResults: MfWarningsResult,
+                mfOverseasWarningResults: MfOverseasWarningsResult,
                 mfNormalsResult: MfNormalsResult,
             ->
             convert(
@@ -193,6 +243,7 @@ class MfService @Inject constructor(
                 mfEphemerisResult,
                 mfRainResult,
                 mfWarningResults,
+                mfOverseasWarningResults,
                 mfNormalsResult
             )
         }
@@ -223,15 +274,16 @@ class MfService @Inject constructor(
             (
                 feature == SecondaryWeatherSourceFeature.FEATURE_ALERT &&
                     !location.countryCode.isNullOrEmpty() &&
-                    location.countryCode.equals("FR", ignoreCase = true) &&
-                    !location.admin2Code.isNullOrEmpty()
+                    arrayOf("FR", "AD").any { it.equals(location.countryCode, ignoreCase = true) } ||
+                    OVERSEAS_ISOS.any { it.equals(location.countryCode, ignoreCase = true) }
                 ) ||
             (
                 // Technically, works anywhere but as a France-focused source, we don’t want the whole
                 // world to use this source, as currently the only alternative is AccuWeather
                 feature == SecondaryWeatherSourceFeature.FEATURE_NORMALS &&
                     !location.countryCode.isNullOrEmpty() &&
-                    location.countryCode.equals("FR", ignoreCase = true)
+                    arrayOf("FR", "AD", "MC").any { it.equals(location.countryCode, ignoreCase = true) } ||
+                    OVERSEAS_ISOS.any { it.equals(location.countryCode, ignoreCase = true) }
                 )
     }
     override val currentAttribution = weatherAttribution
@@ -281,22 +333,62 @@ class MfService @Inject constructor(
             }
         }
 
-        val warnings = if (
-            requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
+        val warnings = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
             !location.countryCode.isNullOrEmpty() &&
-            location.countryCode.equals("FR", ignoreCase = true) &&
-            !location.admin2Code.isNullOrEmpty()
+            (
+                location.countryCode.equals("FR", ignoreCase = true) &&
+                    !location.admin2Code.isNullOrEmpty() &&
+                    !OVERSEAS_DEPTS_REGEX.matches(location.admin2Code!!)
+                ) ||
+            location.countryCode.equals("AD", ignoreCase = true)
         ) {
             mApi.getWarnings(
                 USER_AGENT,
-                location.admin2Code!!,
+                if (!location.countryCode.equals("AD", ignoreCase = true)) {
+                    location.admin2Code!!
+                } else {
+                    "99"
+                },
                 "iso",
                 token
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(MfWarningsResult())
+            Observable.just(MfWarningsResult())
+        }
+
+        val overseasWarnings = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
+            !location.countryCode.isNullOrEmpty() &&
+            (
+                location.countryCode.equals("FR", ignoreCase = true) &&
+                    !location.admin2Code.isNullOrEmpty() &&
+                    OVERSEAS_DEPTS_REGEX.matches(location.admin2Code!!)
+                ) ||
+            OVERSEAS_ISOS.any { it.equals(location.countryCode, ignoreCase = true) }
+        ) {
+            val domain = getOverseasWarningDomain(
+                if (location.countryCode.equals("FR", ignoreCase = true)) {
+                    location.admin2Code
+                } else {
+                    location.countryCode
+                }
+            )
+            val warningType = if (domain == "VIGI974") {
+                "vigilance4colors"
+            } else {
+                ""
             }
+            if (!domain.isNullOrEmpty()) {
+                mOverseasApi.getWarnings(
+                    userAgent = USER_AGENT,
+                    domain = domain,
+                    warningType = warningType,
+                    token = token
+                )
+            } else { // Wallis & Futuna does not give warnings
+                Observable.just(MfOverseasWarningsResult())
+            }
+        } else {
+            Observable.just(MfOverseasWarningsResult())
         }
 
         val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
@@ -312,10 +404,11 @@ class MfService @Inject constructor(
             }
         }
 
-        return Observable.zip(current, rain, warnings, normals) {
+        return Observable.zip(current, rain, warnings, overseasWarnings, normals) {
                 mfCurrentResult: MfCurrentResult,
                 mfRainResult: MfRainResult,
                 mfWarningResults: MfWarningsResult,
+                mfOverseasWarningResults: MfOverseasWarningsResult,
                 mfNormalsResult: MfNormalsResult,
             ->
             convertSecondary(
@@ -332,6 +425,11 @@ class MfService @Inject constructor(
                 },
                 if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
                     mfWarningResults
+                } else {
+                    null
+                },
+                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+                    mfOverseasWarningResults
                 } else {
                     null
                 },
@@ -423,8 +521,29 @@ class MfService @Inject constructor(
         )
     }
 
+    private fun getOverseasWarningDomain(
+        code: String?,
+    ): String? {
+        return when (code) {
+            "971", "GP" -> "VIGI971" // Guadeloupe
+            "972", "MQ" -> "VIGI972" // Martinique
+            "973", "GF" -> "VIGI973" // French Guiana
+            "974", "RE" -> "VIGI974" // Réunion
+            "975", "PM" -> "VIGI975" // St. Pierre & Miquelon
+            "976", "YT" -> "VIGI976" // Mayotte
+            "977", "BL" -> "VIGI978-977" // St. Barthélemy
+            "978", "MF" -> "VIGI978-977" // St. Martin
+            "987", "PF" -> "VIGI987" // French Polynesia
+            "988", "NC" -> "VIGI988" // New Caledonia
+            else -> null
+        }
+    }
+
     companion object {
         private const val MF_BASE_URL = "https://webservice.meteofrance.com/"
+        private const val MF_OVERSEAS_BASE_URL = "https://rpcache-aa.meteofrance.com/"
         private const val USER_AGENT = "okhttp/4.9.2"
+        private val OVERSEAS_DEPTS_REGEX = Regex("""^9\d{2}$""")
+        private val OVERSEAS_ISOS = arrayOf("BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT")
     }
 }
