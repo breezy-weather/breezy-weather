@@ -23,5 +23,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class MetNoMoonResult(
-    val properties: MetNoMoonProperties?,
+    val properties: MetNoMoonProperties? = null,
 )

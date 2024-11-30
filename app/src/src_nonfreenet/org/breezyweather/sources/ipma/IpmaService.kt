@@ -91,14 +91,11 @@ class IpmaService @Inject constructor(
         val forecast = mApi.getForecast(globalIdLocal)
         val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getAlerts().onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(IpmaAlertResult())
-                }
+                // TODO: Log warning
+                Observable.just(IpmaAlertResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(IpmaAlertResult())
-            }
+            Observable.just(IpmaAlertResult())
         }
 
         return Observable.zip(forecast, alerts) {
@@ -149,9 +146,7 @@ class IpmaService @Inject constructor(
         val alerts = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getAlerts()
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(IpmaAlertResult())
-            }
+            Observable.just(IpmaAlertResult())
         }
         return alerts.map {
             convertSecondary(

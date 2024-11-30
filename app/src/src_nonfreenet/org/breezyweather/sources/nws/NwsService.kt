@@ -106,15 +106,9 @@ class NwsService @Inject constructor(
             mApi.getActiveAlerts(
                 USER_AGENT,
                 "${location.latitude},${location.longitude}"
-            ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(NwsAlertsResult())
-                }
-            }
+            )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(NwsAlertsResult())
-            }
+            Observable.just(NwsAlertsResult())
         }
 
         return Observable.zip(

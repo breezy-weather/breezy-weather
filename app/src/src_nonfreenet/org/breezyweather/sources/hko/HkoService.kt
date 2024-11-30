@@ -163,28 +163,24 @@ class HkoService @Inject constructor(
         var year = now.get(Calendar.YEAR)
         var month = now.get(Calendar.MONTH) + 1
         val sun1 = mDataApi.getAstro("SRS", year, month).onErrorResumeNext {
-            Observable.create { emitter ->
-                emitter.onNext(HkoAstroResult())
-            }
+            // TODO: Log warning
+            Observable.just(HkoAstroResult())
         }
         val moon1 = mDataApi.getAstro("MRS", year, month).onErrorResumeNext {
-            Observable.create { emitter ->
-                emitter.onNext(HkoAstroResult())
-            }
+            // TODO: Log warning
+            Observable.just(HkoAstroResult())
         }
 
         now.add(Calendar.MONTH, 1)
         year = now.get(Calendar.YEAR)
         month = now.get(Calendar.MONTH) + 1
         val sun2 = mDataApi.getAstro("SRS", year, month).onErrorResumeNext {
-            Observable.create { emitter ->
-                emitter.onNext(HkoAstroResult())
-            }
+            // TODO: Log warning
+            Observable.just(HkoAstroResult())
         }
         val moon2 = mDataApi.getAstro("MRS", year, month).onErrorResumeNext {
-            Observable.create { emitter ->
-                emitter.onNext(HkoAstroResult())
-            }
+            // TODO: Log warning
+            Observable.just(HkoAstroResult())
         }
 
         // CURRENT
@@ -193,14 +189,11 @@ class HkoService @Inject constructor(
             mApi.getCurrentWeather(
                 grid = currentGrid
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(HkoCurrentResult())
-                }
+                // TODO: Log warning
+                Observable.just(HkoCurrentResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(HkoCurrentResult())
-            }
+            Observable.just(HkoCurrentResult())
         }
 
         val oneJson = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
@@ -212,14 +205,11 @@ class HkoService @Inject constructor(
                     ""
                 }
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(HkoOneJsonResult())
-                }
+                // TODO: Log warning
+                Observable.just(HkoOneJsonResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(HkoOneJsonResult())
-            }
+            Observable.just(HkoOneJsonResult())
         }
 
         // Keys in Warning Summary endpoint end in different suffixes depending on the language
@@ -243,9 +233,8 @@ class HkoService @Inject constructor(
                                 it.value.Warning_Action != "CANCEL"
                             ) {
                                 warnings[endPoint] = mApi.getWarningText(path, endPoint).onErrorResumeNext {
-                                    Observable.create { emitter ->
-                                        emitter.onNext(HkoWarningResult())
-                                    }
+                                    // TODO: Log warning
+                                    Observable.just(HkoWarningResult())
                                 }.blockingFirst()
                             }
                         }
@@ -253,14 +242,11 @@ class HkoService @Inject constructor(
                 }
                 warnings
             }.onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(mutableMapOf())
-                }
+                // TODO: Log warning
+                Observable.just(mutableMapOf())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(mutableMapOf())
-            }
+            Observable.just(mutableMapOf())
         }
 
         // NORMALS
@@ -268,20 +254,16 @@ class HkoService @Inject constructor(
         val normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
             when (currentStation) {
                 "HKO" -> mApi.getHkoNormals().onErrorResumeNext {
-                    Observable.create { emitter ->
-                        emitter.onNext(HkoNormalsResult())
-                    }
+                    // TODO: Log warning
+                    Observable.just(HkoNormalsResult())
                 }
                 else -> mApi.getNormals(currentStation).onErrorResumeNext {
-                    Observable.create { emitter ->
-                        emitter.onNext(HkoNormalsResult())
-                    }
+                    // TODO: Log warning
+                    Observable.just(HkoNormalsResult())
                 }
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(HkoNormalsResult())
-            }
+            Observable.just(HkoNormalsResult())
         }
 
         return Observable.zip(current, forecast, normals, oneJson, warningDetails, sun1, sun2, moon1, moon2) {
@@ -369,9 +351,7 @@ class HkoService @Inject constructor(
                 grid = currentGrid
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(HkoCurrentResult())
-            }
+            Observable.just(HkoCurrentResult())
         }
 
         val oneJson = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
@@ -380,9 +360,7 @@ class HkoService @Inject constructor(
                 suffix = if (languageCode.startsWith("zh")) "_uc" else ""
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(HkoOneJsonResult())
-            }
+            Observable.just(HkoOneJsonResult())
         }
 
         // NORMALS
@@ -393,9 +371,7 @@ class HkoService @Inject constructor(
                 else -> mApi.getNormals(currentStation)
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(HkoNormalsResult())
-            }
+            Observable.just(HkoNormalsResult())
         }
 
         // ALERTS
@@ -423,9 +399,7 @@ class HkoService @Inject constructor(
                 warnings
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(mutableMapOf())
-            }
+            Observable.just(mutableMapOf())
         }
 
         return Observable.zip(current, normals, oneJson, warningDetails) {
@@ -548,9 +522,8 @@ class HkoService @Inject constructor(
 
         // Obtain the default weather station for temperature normals
         val station = mApi.getCurrentWeather(currentGrid).onErrorResumeNext {
-            Observable.create { emitter ->
-                emitter.onNext(HkoCurrentResult())
-            }
+            // TODO: Log warning
+            Observable.just(HkoCurrentResult())
         }.blockingFirst().RegionalWeather?.Temp?.DefaultStation
         if (station == null) {
             throw InvalidLocationException()

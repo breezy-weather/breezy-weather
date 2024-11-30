@@ -137,9 +137,7 @@ class AccuService @Inject constructor(
                 details = true
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(emptyList())
-            }
+            Observable.just(emptyList())
         }
         val daily = mApi.getDaily(
             days.id,
@@ -167,14 +165,11 @@ class AccuService @Inject constructor(
                 languageCode,
                 details = true
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(AccuMinutelyResult())
-                }
+                // TODO: Log warning
+                Observable.just(AccuMinutelyResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(AccuMinutelyResult())
-            }
+            Observable.just(AccuMinutelyResult())
         }
         val alert = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             if (mApi is AccuEnterpriseApi) {
@@ -184,9 +179,8 @@ class AccuService @Inject constructor(
                     languageCode,
                     details = true
                 ).onErrorResumeNext {
-                    Observable.create { emitter ->
-                        emitter.onNext(ArrayList())
-                    }
+                    // TODO: Log warning
+                    Observable.just(emptyList())
                 }
             } else {
                 mApi.getAlertsByCityKey(
@@ -195,15 +189,12 @@ class AccuService @Inject constructor(
                     languageCode,
                     details = true
                 ).onErrorResumeNext {
-                    Observable.create { emitter ->
-                        emitter.onNext(ArrayList())
-                    }
+                    // TODO: Log warning
+                    Observable.just(emptyList())
                 }
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(ArrayList())
-            }
+            Observable.just(emptyList())
         }
         val airQuality = if (
             !ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
@@ -215,14 +206,11 @@ class AccuService @Inject constructor(
                 pollutants = true,
                 languageCode
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(AccuAirQualityResult())
-                }
+                // TODO: Log warning
+                Observable.just(AccuAirQualityResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(AccuAirQualityResult())
-            }
+            Observable.just(AccuAirQualityResult())
         }
         // TODO: Only call once a month, unless it’s current position
         val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
@@ -238,14 +226,11 @@ class AccuService @Inject constructor(
                 languageCode,
                 details = false
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(AccuClimoSummaryResult())
-                }
+                // TODO: Log warning
+                Observable.just(AccuClimoSummaryResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(AccuClimoSummaryResult())
-            }
+            Observable.just(AccuClimoSummaryResult())
         }
         return Observable.zip(
             current,
@@ -338,9 +323,7 @@ class AccuService @Inject constructor(
                 details = true
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(emptyList())
-            }
+            Observable.just(emptyList())
         }
 
         val airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
@@ -357,9 +340,7 @@ class AccuService @Inject constructor(
                 languageCode
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(AccuAirQualityResult())
-            }
+            Observable.just(AccuAirQualityResult())
         }
 
         val dailyPollen = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
@@ -375,9 +356,7 @@ class AccuService @Inject constructor(
                 metric = true
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(AccuForecastDailyResult())
-            }
+            Observable.just(AccuForecastDailyResult())
         }
 
         val minute = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
@@ -392,9 +371,7 @@ class AccuService @Inject constructor(
                 details = true
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(AccuMinutelyResult())
-            }
+            Observable.just(AccuMinutelyResult())
         }
 
         val alert = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
@@ -417,9 +394,7 @@ class AccuService @Inject constructor(
                 )
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(emptyList())
-            }
+            Observable.just(emptyList())
         }
 
         // TODO: Only call once a month, unless it’s current position
@@ -439,14 +414,11 @@ class AccuService @Inject constructor(
                 languageCode,
                 details = false
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(AccuClimoSummaryResult())
-                }
+                // TODO: Log warning
+                Observable.just(AccuClimoSummaryResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(AccuClimoSummaryResult())
-            }
+            Observable.just(AccuClimoSummaryResult())
         }
 
         return Observable.zip(

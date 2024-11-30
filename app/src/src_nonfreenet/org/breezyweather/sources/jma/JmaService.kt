@@ -160,45 +160,34 @@ class JmaService @Inject constructor(
                         amedas = currentAmedas,
                         timestamp = outgoingFormatter.format(timestamp)
                     ).onErrorResumeNext {
-                        Observable.create { emitter ->
-                            emitter.onNext(mapOf())
-                        }
+                        // TODO: Log warning
+                        Observable.just(emptyMap())
                     }
                 } else {
-                    Observable.create { emitter ->
-                        emitter.onNext(mapOf())
-                    }
+                    Observable.just(emptyMap())
                 }
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(mapOf())
-            }
+            Observable.just(emptyMap())
         }
 
         val bulletin = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getBulletin(forecastPrefArea).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(JmaBulletinResult())
-                }
+                // TODO: Log warning
+                Observable.just(JmaBulletinResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(JmaBulletinResult())
-            }
+            Observable.just(JmaBulletinResult())
         }
 
         // ALERT
         val alert = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getAlert(prefArea).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(JmaAlertResult())
-                }
+                // TODO: Log warning
+                Observable.just(JmaAlertResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(JmaAlertResult())
-            }
+            Observable.just(JmaAlertResult())
         }
 
         return Observable.zip(current, bulletin, daily, hourly, alert) {
@@ -299,17 +288,13 @@ class JmaService @Inject constructor(
                 }
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(mapOf<String, JmaCurrentResult>())
-            }
+            Observable.just(emptyMap())
         }
 
         val bulletin = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getBulletin(forecastPrefArea)
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(JmaBulletinResult())
-            }
+            Observable.just(JmaBulletinResult())
         }
 
         // NORMALS
@@ -317,18 +302,14 @@ class JmaService @Inject constructor(
         val daily = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
             mApi.getDaily(forecastPrefArea)
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(listOf<JmaDailyResult>())
-            }
+            Observable.just(emptyList())
         }
 
         // ALERT
         val alert = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getAlert(prefArea)
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(JmaAlertResult())
-            }
+            Observable.just(JmaAlertResult())
         }
 
         return Observable.zip(current, bulletin, daily, alert) {

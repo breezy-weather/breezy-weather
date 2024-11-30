@@ -74,9 +74,7 @@ class MeteoAmService @Inject constructor(
                 location.longitude
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(MeteoAmObservationResult())
-            }
+            Observable.just(MeteoAmObservationResult())
         }
         return Observable.zip(forecast, observation) {
                 forecastResult: MeteoAmForecastResult,

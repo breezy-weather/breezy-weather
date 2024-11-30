@@ -102,9 +102,7 @@ class MfService @Inject constructor(
                 token
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(MfCurrentResult())
-            }
+            Observable.just(MfCurrentResult())
         }
         val forecast = mApi.getForecast(
             USER_AGENT,
@@ -130,14 +128,11 @@ class MfService @Inject constructor(
                 "iso",
                 token
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(MfRainResult())
-                }
+                // TODO: Log warning
+                Observable.just(MfRainResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(MfRainResult())
-            }
+            Observable.just(MfRainResult())
         }
         val warnings = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
             !location.countryCode.isNullOrEmpty() &&
@@ -149,15 +144,9 @@ class MfService @Inject constructor(
                 location.admin2Code!!,
                 "iso",
                 token
-            ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(MfWarningsResult())
-                }
-            }
+            )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(MfWarningsResult())
-            }
+            Observable.just(MfWarningsResult())
         }
 
         // TODO: Only call once a month, unless it’s current position
@@ -168,14 +157,11 @@ class MfService @Inject constructor(
                 location.longitude,
                 token
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(MfNormalsResult())
-                }
+                // TODO: Log warning
+                Observable.just(MfNormalsResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(MfNormalsResult())
-            }
+            Observable.just(MfNormalsResult())
         }
 
         return Observable.zip(current, forecast, ephemeris, rain, warnings, normals) {
@@ -262,9 +248,7 @@ class MfService @Inject constructor(
                 token
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(MfCurrentResult())
-            }
+            Observable.just(MfCurrentResult())
         }
         val rain = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
             mApi.getRain(
@@ -276,9 +260,7 @@ class MfService @Inject constructor(
                 token
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(MfRainResult())
-            }
+            Observable.just(MfRainResult())
         }
 
         val warnings = if (
@@ -294,9 +276,7 @@ class MfService @Inject constructor(
                 token
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(MfWarningsResult())
-            }
+            Observable.just(MfWarningsResult())
         }
 
         val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
@@ -307,9 +287,7 @@ class MfService @Inject constructor(
                 token
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(MfNormalsResult())
-            }
+            Observable.just(MfNormalsResult())
         }
 
         return Observable.zip(current, rain, warnings, normals) {

@@ -107,13 +107,16 @@ class AemetService @Inject constructor(
                     mApi.getCurrent(
                         apiKey = apiKey,
                         path = path
-                    ).onErrorReturnItem(listOf<AemetCurrentResult>()).blockingFirst()
+                    ).onErrorResumeNext {
+                        // TODO: Log warning
+                        Observable.just(emptyList())
+                    }.blockingFirst()
                 } else {
-                    listOf<AemetCurrentResult>()
+                    emptyList()
                 }
             }
         } else {
-            Observable.just(listOf<AemetCurrentResult>())
+            Observable.just(emptyList())
         }
 
         val normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
@@ -126,13 +129,16 @@ class AemetService @Inject constructor(
                     mApi.getNormals(
                         apiKey = apiKey,
                         path = path
-                    ).onErrorReturnItem(listOf<AemetNormalsResult>()).blockingFirst()
+                    ).onErrorResumeNext {
+                        // TODO: Log warning
+                        Observable.just(emptyList())
+                    }.blockingFirst()
                 } else {
-                    listOf<AemetNormalsResult>()
+                    emptyList()
                 }
             }
         } else {
-            Observable.just(listOf<AemetNormalsResult>())
+            Observable.just(emptyList())
         }
 
         val daily = mApi.getForecastUrl(
@@ -228,7 +234,7 @@ class AemetService @Inject constructor(
                 }
             }
         } else {
-            Observable.just(listOf<AemetCurrentResult>())
+            Observable.just(emptyList())
         }
 
         val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
@@ -247,7 +253,7 @@ class AemetService @Inject constructor(
                 }
             }
         } else {
-            Observable.just(listOf<AemetNormalsResult>())
+            Observable.just(emptyList())
         }
 
         return Observable.zip(current, normals) {

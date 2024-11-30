@@ -123,9 +123,7 @@ class GeoSphereAtService @Inject constructor(
                 airQualityParameters.joinToString(",")
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(GeoSphereAtTimeseriesResult())
-            }
+            Observable.just(GeoSphereAtTimeseriesResult())
         }
 
         val nowcast = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY) &&
@@ -136,9 +134,7 @@ class GeoSphereAtService @Inject constructor(
                 "rr" // precipitation sum
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(GeoSphereAtTimeseriesResult())
-            }
+            Observable.just(GeoSphereAtTimeseriesResult())
         }
 
         val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
@@ -150,9 +146,7 @@ class GeoSphereAtService @Inject constructor(
                 if (context.currentLocale.code == "de") "de" else "en"
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(GeoSphereAtWarningsResult())
-            }
+            Observable.just(GeoSphereAtWarningsResult())
         }
 
         return Observable.zip(
@@ -217,9 +211,7 @@ class GeoSphereAtService @Inject constructor(
                 airQualityParameters.joinToString(",")
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(GeoSphereAtTimeseriesResult())
-            }
+            Observable.just(GeoSphereAtTimeseriesResult())
         }
 
         val nowcast = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
@@ -228,9 +220,7 @@ class GeoSphereAtService @Inject constructor(
                 "rr" // precipitation sum
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(GeoSphereAtTimeseriesResult())
-            }
+            Observable.just(GeoSphereAtTimeseriesResult())
         }
 
         val alerts = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
@@ -240,9 +230,7 @@ class GeoSphereAtService @Inject constructor(
                 if (context.currentLocale.code == "de") "de" else "en"
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(GeoSphereAtWarningsResult())
-            }
+            Observable.just(GeoSphereAtWarningsResult())
         }
 
         return Observable.zip(airQuality, nowcast, alerts) { airQualityResult, nowcastResult, alertsResult ->

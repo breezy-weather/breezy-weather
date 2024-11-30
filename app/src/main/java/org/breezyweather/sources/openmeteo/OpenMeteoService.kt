@@ -223,9 +223,7 @@ class OpenMeteoService @Inject constructor(
                 pastDays = 1
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(OpenMeteoAirQualityResult())
-            }
+            Observable.just(OpenMeteoAirQualityResult())
         }
         return Observable.zip(
             weather.onErrorResumeNext {
@@ -301,9 +299,7 @@ class OpenMeteoService @Inject constructor(
                 windspeedUnit = "ms"
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(OpenMeteoWeatherResult())
-            }
+            Observable.just(OpenMeteoWeatherResult())
         }
 
         val aqi = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
@@ -328,9 +324,7 @@ class OpenMeteoService @Inject constructor(
                 pastDays = 1
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(OpenMeteoAirQualityResult())
-            }
+            Observable.just(OpenMeteoAirQualityResult())
         }
 
         return Observable.zip(

@@ -86,9 +86,7 @@ class MetIeService @Inject constructor(
         val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getWarnings()
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(MetIeWarningResult())
-            }
+            Observable.just(MetIeWarningResult())
         }
 
         return Observable.zip(forecast, alerts) { forecastResult: List<MetIeHourly>, alertsResult: MetIeWarningResult ->

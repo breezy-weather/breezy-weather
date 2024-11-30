@@ -97,14 +97,11 @@ class OpenWeatherService @Inject constructor(
                 "metric",
                 languageCode
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(OpenWeatherForecast())
-                }
+                // TODO: Log warning
+                Observable.just(OpenWeatherForecast())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(OpenWeatherForecast())
-            }
+            Observable.just(OpenWeatherForecast())
         }
         val airPollution = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getAirPollution(
@@ -112,14 +109,11 @@ class OpenWeatherService @Inject constructor(
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(OpenWeatherAirPollutionResult())
-                }
+                // TODO: Log warning
+                Observable.just(OpenWeatherAirPollutionResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(OpenWeatherAirPollutionResult())
-            }
+            Observable.just(OpenWeatherAirPollutionResult())
         }
         return Observable.zip(forecast, current, airPollution) {
                 openWeatherForecastResult: OpenWeatherForecastResult,
@@ -173,9 +167,7 @@ class OpenWeatherService @Inject constructor(
                 languageCode
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(OpenWeatherForecast())
-            }
+            Observable.just(OpenWeatherForecast())
         }
 
         val airPollution = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
@@ -185,9 +177,7 @@ class OpenWeatherService @Inject constructor(
                 location.longitude
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(OpenWeatherAirPollutionResult())
-            }
+            Observable.just(OpenWeatherAirPollutionResult())
         }
 
         return Observable.zip(current, airPollution) {

@@ -131,9 +131,7 @@ class ChinaService @Inject constructor(
                 sign = CHINA_SIGN
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(ChinaMinutelyResult())
-            }
+            Observable.just(ChinaMinutelyResult())
         }
         return Observable.zip(main, minutely) { mainResult: ChinaForecastResult, minutelyResult: ChinaMinutelyResult ->
             convert(
@@ -196,9 +194,7 @@ class ChinaService @Inject constructor(
                 context.currentLocale.toString().lowercase()
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(ChinaForecastResult())
-            }
+            Observable.just(ChinaForecastResult())
         }
 
         val minutely = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
@@ -212,9 +208,7 @@ class ChinaService @Inject constructor(
                 sign = CHINA_SIGN
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(ChinaMinutelyResult())
-            }
+            Observable.just(ChinaMinutelyResult())
         }
 
         return Observable.zip(main, minutely) { mainResult: ChinaForecastResult, minutelyResult: ChinaMinutelyResult ->

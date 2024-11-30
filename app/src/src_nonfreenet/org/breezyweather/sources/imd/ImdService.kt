@@ -101,19 +101,14 @@ class ImdService @Inject constructor(
                             lon = longitude,
                             date = timestamps[it] + "_" + IMD_TIMEFRAMES[it] + "_0p125"
                         ).onErrorResumeNext {
-                            Observable.create { emitter ->
-                                emitter.onNext(ImdWeatherResult())
-                            }
+                            // TODO: Log warning
+                            Observable.just(ImdWeatherResult())
                         }
                     } else {
-                        Observable.create { emitter ->
-                            emitter.onNext(ImdWeatherResult())
-                        }
+                        Observable.just(ImdWeatherResult())
                     }
                 } else {
-                    Observable.create { emitter ->
-                        emitter.onNext(ImdWeatherResult())
-                    }
+                    Observable.just(ImdWeatherResult())
                 }
             }
         }

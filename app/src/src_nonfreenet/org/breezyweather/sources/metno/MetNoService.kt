@@ -98,13 +98,19 @@ class MetNoService @Inject constructor(
             location.latitude,
             location.longitude,
             formattedDate
-        )
+        ).onErrorResumeNext {
+            // TODO: Log warning
+            Observable.just(MetNoSunResult())
+        }
         val moon = mApi.getMoon(
             USER_AGENT,
             location.latitude,
             location.longitude,
             formattedDate
-        )
+        ).onErrorResumeNext {
+            // TODO: Log warning
+            Observable.just(MetNoMoonResult())
+        }
 
         // Nowcast only for Norway, Sweden, Finland and Denmark
         // Covered area is slightly larger as per https://api.met.no/doc/nowcast/datamodel
@@ -123,14 +129,11 @@ class MetNoService @Inject constructor(
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(MetNoNowcastResult())
-                }
+                // TODO: Log warning
+                Observable.just(MetNoNowcastResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(MetNoNowcastResult())
-            }
+            Observable.just(MetNoNowcastResult())
         }
 
         // Air quality only for Norway
@@ -144,14 +147,11 @@ class MetNoService @Inject constructor(
                     location.latitude,
                     location.longitude
                 ).onErrorResumeNext {
-                    Observable.create { emitter ->
-                        emitter.onNext(MetNoAirQualityResult())
-                    }
+                    // TODO: Log warning
+                    Observable.just(MetNoAirQualityResult())
                 }
             } else {
-                Observable.create { emitter ->
-                    emitter.onNext(MetNoAirQualityResult())
-                }
+                Observable.just(MetNoAirQualityResult())
             }
 
         // Alerts only for Norway
@@ -165,15 +165,9 @@ class MetNoService @Inject constructor(
                     if (context.currentLocale.toString().lowercase().startsWith("no")) "no" else "en",
                     location.latitude,
                     location.longitude
-                ).onErrorResumeNext {
-                    Observable.create { emitter ->
-                        emitter.onNext(MetNoAlertResult())
-                    }
-                }
+                )
             } else {
-                Observable.create { emitter ->
-                    emitter.onNext(MetNoAlertResult())
-                }
+                Observable.just(MetNoAlertResult())
             }
 
         return Observable.zip(forecast, sun, moon, nowcast, airQuality, alerts) {
@@ -251,23 +245,18 @@ class MetNoService @Inject constructor(
                     location.longitude
                 )
             } else {
-                Observable.create { emitter ->
-                    emitter.onNext(MetNoNowcastResult())
-                }
+                Observable.just(MetNoNowcastResult())
             }
 
-        val airQuality =
-            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
-                mApi.getAirQuality(
-                    USER_AGENT,
-                    location.latitude,
-                    location.longitude
-                )
-            } else {
-                Observable.create { emitter ->
-                    emitter.onNext(MetNoAirQualityResult())
-                }
-            }
+        val airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            mApi.getAirQuality(
+                USER_AGENT,
+                location.latitude,
+                location.longitude
+            )
+        } else {
+            Observable.just(MetNoAirQualityResult())
+        }
 
         // Alerts only for Norway
         val alerts =
@@ -280,15 +269,9 @@ class MetNoService @Inject constructor(
                     if (context.currentLocale.toString().lowercase().startsWith("no")) "no" else "en",
                     location.latitude,
                     location.longitude
-                ).onErrorResumeNext {
-                    Observable.create { emitter ->
-                        emitter.onNext(MetNoAlertResult())
-                    }
-                }
+                )
             } else {
-                Observable.create { emitter ->
-                    emitter.onNext(MetNoAlertResult())
-                }
+                Observable.just(MetNoAlertResult())
             }
 
         return Observable.zip(

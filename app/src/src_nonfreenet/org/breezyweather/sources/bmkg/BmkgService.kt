@@ -107,14 +107,11 @@ class BmkgService @Inject constructor(
                 lat = location.latitude,
                 lon = location.longitude
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(BmkgCurrentResult())
-                }
+                // TODO: Log warning
+                Observable.just(BmkgCurrentResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(BmkgCurrentResult())
-            }
+            Observable.just(BmkgCurrentResult())
         }
 
         val warning = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
@@ -123,14 +120,11 @@ class BmkgService @Inject constructor(
                 lat = location.latitude,
                 lon = location.longitude
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(BmkgWarningResult())
-                }
+                // TODO: Log warning
+                Observable.just(BmkgWarningResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(BmkgWarningResult())
-            }
+            Observable.just(BmkgWarningResult())
         }
 
         // Impact based forecasts provide early warnings of heavy rain up to 3 days
@@ -144,28 +138,22 @@ class BmkgService @Inject constructor(
                         lon = location.longitude,
                         day = day
                     ).onErrorResumeNext {
-                        Observable.create { emitter ->
-                            emitter.onNext(BmkgIbfResult())
-                        }
+                        // TODO: Log warning
+                        Observable.just(BmkgIbfResult())
                     }
                 } else {
-                    Observable.create { emitter ->
-                        emitter.onNext(BmkgIbfResult())
-                    }
+                    Observable.just(BmkgIbfResult())
                 }
             )
         }
 
         val pm25 = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             mAppApi.getPm25().onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(listOf())
-                }
+                // TODO: Log warning
+                Observable.just(emptyList())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(listOf())
-            }
+            Observable.just(emptyList())
         }
 
         return Observable.zip(current, forecast, warning, ibf[0], ibf[1], ibf[2], pm25) {
@@ -237,9 +225,7 @@ class BmkgService @Inject constructor(
                 lon = location.longitude
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(BmkgCurrentResult())
-            }
+            Observable.just(BmkgCurrentResult())
         }
 
         val warning = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
@@ -249,9 +235,7 @@ class BmkgService @Inject constructor(
                 lon = location.longitude
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(BmkgWarningResult())
-            }
+            Observable.just(BmkgWarningResult())
         }
 
         // Impact based forecasts provide early warnings of heavy rain up to 3 days
@@ -266,9 +250,7 @@ class BmkgService @Inject constructor(
                         day = day
                     )
                 } else {
-                    Observable.create { emitter ->
-                        emitter.onNext(BmkgIbfResult())
-                    }
+                    Observable.just(BmkgIbfResult())
                 }
             )
         }
@@ -276,9 +258,7 @@ class BmkgService @Inject constructor(
         val pm25 = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             mAppApi.getPm25()
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(listOf())
-            }
+            Observable.just(emptyList())
         }
 
         return Observable.zip(current, warning, ibf[0], ibf[1], ibf[2], pm25) {

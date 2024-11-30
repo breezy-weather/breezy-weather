@@ -76,14 +76,11 @@ class DmiService @Inject constructor(
             if (!id.isNullOrEmpty()) {
                 mApi.getAlerts(id)
             } else {
-                Observable.create { emitter ->
-                    emitter.onNext(DmiWarningResult())
-                }
+                // TODO: Log warning
+                Observable.just(DmiWarningResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(DmiWarningResult())
-            }
+            Observable.just(DmiWarningResult())
         }
 
         return Observable.zip(

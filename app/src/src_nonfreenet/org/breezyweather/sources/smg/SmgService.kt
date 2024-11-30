@@ -138,60 +138,47 @@ class SmgService @Inject constructor(
         val astro = mApi.getAstro(
             body.toRequestBody("application/json".toMediaTypeOrNull())
         ).onErrorResumeNext {
-            Observable.create { emitter ->
-                emitter.onNext(SmgAstroResult())
-            }
+            // TODO: Log warning
+            Observable.just(SmgAstroResult())
         }
 
         // CURRENT
         val current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent().onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(SmgCurrentResult())
-                }
+                // TODO: Log warning
+                Observable.just(SmgCurrentResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(SmgCurrentResult())
-            }
+            Observable.just(SmgCurrentResult())
         }
         val bulletin = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getBulletin(
                 lang = lang
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(SmgBulletinResult())
-                }
+                // TODO: Log warning
+                Observable.just(SmgBulletinResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(SmgBulletinResult())
-            }
+            Observable.just(SmgBulletinResult())
         }
         val uv = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getUVIndex().onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(SmgUvResult())
-                }
+                // TODO: Log warning
+                Observable.just(SmgUvResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(SmgUvResult())
-            }
+            Observable.just(SmgUvResult())
         }
 
         // ALERT
         val alerts = MutableList<Observable<SmgWarningResult>>(SMG_ALERT_TYPES.size) {
             if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
                 mApi.getWarning(SMG_ALERT_TYPES[it], lang).onErrorResumeNext {
-                    Observable.create { emitter ->
-                        emitter.onNext(SmgWarningResult())
-                    }
+                    // TODO: Log warning
+                    Observable.just(SmgWarningResult())
                 }
             } else {
-                Observable.create { emitter ->
-                    emitter.onNext(SmgWarningResult())
-                }
+                Observable.just(SmgWarningResult())
             }
         }
 
@@ -216,14 +203,11 @@ class SmgService @Inject constructor(
         // AIR QUALITY
         val airQuality = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             mCmsApi.getAirQuality(Calendar.getInstance().timeInMillis).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(SmgAirQualityResult())
-                }
+                // TODO: Log warning
+                Observable.just(SmgAirQualityResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(SmgAirQualityResult())
-            }
+            Observable.just(SmgAirQualityResult())
         }
 
         return Observable.zip(current, daily, hourly, bulletin, uv, warnings, airQuality, astro) {
@@ -296,25 +280,19 @@ class SmgService @Inject constructor(
         val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent()
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(SmgCurrentResult())
-            }
+            Observable.just(SmgCurrentResult())
         }
         val bulletin = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getBulletin(
                 lang = lang
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(SmgBulletinResult())
-            }
+            Observable.just(SmgBulletinResult())
         }
         val uv = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getUVIndex()
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(SmgUvResult())
-            }
+            Observable.just(SmgUvResult())
         }
 
         // ALERT
@@ -322,9 +300,7 @@ class SmgService @Inject constructor(
             if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
                 mApi.getWarning(SMG_ALERT_TYPES[it], lang)
             } else {
-                Observable.create { emitter ->
-                    emitter.onNext(SmgWarningResult())
-                }
+                Observable.just(SmgWarningResult())
             }
         }
 
@@ -350,9 +326,7 @@ class SmgService @Inject constructor(
         val airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             mCmsApi.getAirQuality(Calendar.getInstance().timeInMillis)
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(SmgAirQualityResult())
-            }
+            Observable.just(SmgAirQualityResult())
         }
 
         return Observable.zip(current, bulletin, uv, warnings, airQuality) {

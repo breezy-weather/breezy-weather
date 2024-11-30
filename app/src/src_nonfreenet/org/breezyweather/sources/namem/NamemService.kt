@@ -104,14 +104,10 @@ class NamemService @Inject constructor(
             mApi.getCurrent(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(NamemCurrentResult())
-                }
+                Observable.just(NamemCurrentResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(NamemCurrentResult())
-            }
+            Observable.just(NamemCurrentResult())
         }
 
         val hourly = mApi.getHourly(
@@ -126,26 +122,20 @@ class NamemService @Inject constructor(
             mApi.getNormals(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(NamemNormalsResult())
-                }
+                // TODO: Log warning
+                Observable.just(NamemNormalsResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(NamemNormalsResult())
-            }
+            Observable.just(NamemNormalsResult())
         }
 
         val airQuality = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getAirQuality().onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(NamemAirQualityResult())
-                }
+                // TODO: Log warning
+                Observable.just(NamemAirQualityResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(NamemAirQualityResult())
-            }
+            Observable.just(NamemAirQualityResult())
         }
 
         return Observable.zip(current, daily, hourly, normals, airQuality) {
@@ -211,9 +201,7 @@ class NamemService @Inject constructor(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(NamemCurrentResult())
-            }
+            Observable.just(NamemCurrentResult())
         }
 
         val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
@@ -221,17 +209,13 @@ class NamemService @Inject constructor(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(NamemNormalsResult())
-            }
+            Observable.just(NamemNormalsResult())
         }
 
         val airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getAirQuality()
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(NamemAirQualityResult())
-            }
+            Observable.just(NamemAirQualityResult())
         }
 
         return Observable.zip(current, normals, airQuality) {

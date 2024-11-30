@@ -158,14 +158,11 @@ class CwaService @Inject constructor(
                 apiKey = apiKey,
                 stationId = stationId
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(CwaCurrentResult())
-                }
+                // TODO: Log warning
+                Observable.just(CwaCurrentResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(CwaCurrentResult())
-            }
+            Observable.just(CwaCurrentResult())
         }
 
         // "Weather Assistant" provides human-written forecast summary on a county level.
@@ -174,14 +171,11 @@ class CwaService @Inject constructor(
                 endpoint = CWA_ASSISTANT_ENDPOINTS[countyName]!!,
                 apiKey = apiKey
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(CwaAssistantResult())
-                }
+                // TODO: Log warning
+                Observable.just(CwaAssistantResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(CwaAssistantResult())
-            }
+            Observable.just(CwaAssistantResult())
         }
 
         val body = LINE_FEED_SPACES.replace(
@@ -211,14 +205,11 @@ class CwaService @Inject constructor(
                 apiKey = apiKey,
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(CwaAirQualityResult())
-                }
+                // TODO: Log warning
+                Observable.just(CwaAirQualityResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(CwaAirQualityResult())
-            }
+            Observable.just(CwaAirQualityResult())
         }
 
         // The sunrise/sunset, moonrise/moonset API calls require start and end dates.
@@ -239,9 +230,8 @@ class CwaService @Inject constructor(
             timeFrom = timeFrom,
             timeTo = timeTo
         ).onErrorResumeNext {
-            Observable.create { emitter ->
-                emitter.onNext(CwaAstroResult())
-            }
+            // TODO: Log warning
+            Observable.just(CwaAstroResult())
         }
         val moon = mApi.getAstro(
             endpoint = MOON_ENDPOINT,
@@ -251,9 +241,8 @@ class CwaService @Inject constructor(
             timeFrom = timeFrom,
             timeTo = timeTo
         ).onErrorResumeNext {
-            Observable.create { emitter ->
-                emitter.onNext(CwaAstroResult())
-            }
+            // TODO: Log warning
+            Observable.just(CwaAstroResult())
         }
 
         // Temperature normals are only available at 26 stations (out of 700+),
@@ -267,14 +256,11 @@ class CwaService @Inject constructor(
                 stationId = station,
                 month = (now.get(Calendar.MONTH) + 1).toString()
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(CwaNormalsResult())
-                }
+                // TODO: Log warning
+                Observable.just(CwaNormalsResult())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(CwaNormalsResult())
-            }
+            Observable.just(CwaNormalsResult())
         }
 
         val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
@@ -282,9 +268,7 @@ class CwaService @Inject constructor(
                 apiKey = apiKey
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(CwaAlertResult())
-            }
+            Observable.just(CwaAlertResult())
         }
 
         return Observable.zip(current, airQuality, daily, hourly, normals, alerts, sun, moon, assistant) {
@@ -375,9 +359,7 @@ class CwaService @Inject constructor(
                 stationId = stationId
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(CwaCurrentResult())
-            }
+            Observable.just(CwaCurrentResult())
         }
 
         // "Weather Assistant" provides human-written forecast summary on a county level.
@@ -387,9 +369,7 @@ class CwaService @Inject constructor(
                 apiKey = apiKey
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(CwaAssistantResult())
-            }
+            Observable.just(CwaAssistantResult())
         }
 
         val body = LINE_FEED_SPACES.replace(
@@ -420,9 +400,7 @@ class CwaService @Inject constructor(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(CwaAirQualityResult())
-            }
+            Observable.just(CwaAirQualityResult())
         }
 
         val alerts = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
@@ -430,9 +408,7 @@ class CwaService @Inject constructor(
                 apiKey = apiKey
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(CwaAlertResult())
-            }
+            Observable.just(CwaAlertResult())
         }
 
         // Temperature normals are only available at 26 stations (out of 700+),
@@ -450,9 +426,7 @@ class CwaService @Inject constructor(
                 month = (now.get(Calendar.MONTH) + 1).toString()
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(CwaNormalsResult())
-            }
+            Observable.just(CwaNormalsResult())
         }
 
         return Observable.zip(current, assistant, airQuality, alerts, normals) {

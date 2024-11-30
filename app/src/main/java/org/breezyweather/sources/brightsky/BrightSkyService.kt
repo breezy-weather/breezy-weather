@@ -106,9 +106,8 @@ class BrightSkyService @Inject constructor(
                 location.longitude
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(BrightSkyCurrentWeatherResult())
-            }
+            // TODO: Log warning
+            Observable.just(BrightSkyCurrentWeatherResult())
         }
 
         val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
@@ -117,9 +116,8 @@ class BrightSkyService @Inject constructor(
                 location.longitude
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(BrightSkyAlertsResult())
-            }
+            // TODO: Log warning
+            Observable.just(BrightSkyAlertsResult())
         }
 
         return Observable.zip(weather, curWeather, alerts) { brightSkyWeather, brightSkyCurWeather, brightSkyAlerts ->
@@ -163,9 +161,7 @@ class BrightSkyService @Inject constructor(
                 location.longitude
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(BrightSkyCurrentWeatherResult())
-            }
+            Observable.just(BrightSkyCurrentWeatherResult())
         }
 
         val alerts = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
@@ -174,9 +170,7 @@ class BrightSkyService @Inject constructor(
                 location.longitude
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(BrightSkyAlertsResult())
-            }
+            Observable.just(BrightSkyAlertsResult())
         }
 
         return Observable.zip(currentWeather, alerts) { brightSkyCurrentWeather, brightSkyAlerts ->

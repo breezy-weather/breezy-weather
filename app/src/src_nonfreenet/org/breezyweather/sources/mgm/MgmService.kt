@@ -92,14 +92,11 @@ class MgmService @Inject constructor(
 
         val current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(currentStation).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(listOf())
-                }
+                // TODO: Log warning
+                Observable.just(emptyList())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(listOf())
-            }
+            Observable.just(emptyList())
         }
 
         val daily = mApi.getDaily(dailyStation)
@@ -107,38 +104,29 @@ class MgmService @Inject constructor(
         // Some rural locations in Türkiye are not assigned to an hourlyStation
         val hourly = if (!hourlyStation.isNullOrEmpty()) {
             mApi.getHourly(hourlyStation).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(listOf())
-                }
+                // TODO: Log warning
+                Observable.just(emptyList())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(listOf())
-            }
+            Observable.just(emptyList())
         }
 
         val today = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getAlert("today").onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(listOf())
-                }
+                // TODO: Log warning
+                Observable.just(emptyList())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(listOf())
-            }
+            Observable.just(emptyList())
         }
 
         val tomorrow = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getAlert("tomorrow").onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(listOf())
-                }
+                // TODO: Log warning
+                Observable.just(emptyList())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(listOf())
-            }
+            Observable.just(emptyList())
         }
 
         // can pull multiple days but seems to be an overkill
@@ -148,14 +136,11 @@ class MgmService @Inject constructor(
                 month = now.get(Calendar.MONTH) + 1,
                 day = now.get(Calendar.DATE)
             ).onErrorResumeNext {
-                Observable.create { emitter ->
-                    emitter.onNext(listOf())
-                }
+                // TODO: Log warning
+                Observable.just(emptyList())
             }
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(listOf())
-            }
+            Observable.just(emptyList())
         }
 
         return Observable.zip(current, daily, hourly, today, tomorrow, normals) {
@@ -224,25 +209,19 @@ class MgmService @Inject constructor(
         val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(currentStation)
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(listOf())
-            }
+            Observable.just(emptyList())
         }
 
         val today = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getAlert("today")
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(listOf())
-            }
+            Observable.just(emptyList())
         }
 
         val tomorrow = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
             mApi.getAlert("tomorrow")
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(listOf())
-            }
+            Observable.just(emptyList())
         }
 
         val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
@@ -252,9 +231,7 @@ class MgmService @Inject constructor(
                 day = now.get(Calendar.DATE)
             )
         } else {
-            Observable.create { emitter ->
-                emitter.onNext(listOf())
-            }
+            Observable.just(emptyList())
         }
 
         return Observable.zip(current, today, tomorrow, normals) {
