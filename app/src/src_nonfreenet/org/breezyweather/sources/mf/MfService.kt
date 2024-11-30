@@ -91,6 +91,82 @@ class MfService @Inject constructor(
         SourceFeature.FEATURE_NORMALS
     )
 
+    private fun isAlertSupportedForLocation(location: Location): Boolean {
+        return !location.countryCode.isNullOrEmpty() &&
+            (
+                location.countryCode.equals("FR", ignoreCase = true) &&
+                    !location.admin2Code.isNullOrEmpty()
+                ) ||
+            location.countryCode.equals("AD", ignoreCase = true) ||
+            OVERSEAS_ISOS.any { location.countryCode.equals(it, ignoreCase = true) }
+    }
+
+    private fun getDomainForAlerts(location: Location): String? {
+        return if (location.countryCode.equals("FR", ignoreCase = true)) {
+            if (!location.admin2Code.isNullOrEmpty() && !OVERSEAS_DEPTS_REGEX.matches(location.admin2Code!!)) {
+                getOverseaDomainFromAdmin2OrCountryCode(location.admin2Code!!)
+            } else {
+                location.admin2Code
+            }
+        } else if (location.countryCode.equals("AD", ignoreCase = true)) {
+            "99"
+        } else if (OVERSEAS_ISOS.any { location.countryCode.equals(it, ignoreCase = true) }) {
+            getOverseaDomainFromAdmin2OrCountryCode(location.countryCode!!)
+        } else {
+            null
+        }
+    }
+
+    private fun getOverseaDomainFromAdmin2OrCountryCode(code: String): String? {
+        return when (code) {
+            "GP", "971" -> "VIGI971" // Guadeloupe
+            "MQ", "972" -> "VIGI972" // Martinique
+            "GF", "973" -> "VIGI973" // French Guiana
+            "RE", "974" -> "VIGI974" // Réunion
+            "PM", "975" -> "VIGI975" // St. Pierre & Miquelon
+            "YT", "976" -> "VIGI976" // Mayotte
+            "BL", "977" -> "VIGI978-977" // St. Barthélemy
+            "MF", "978" -> "VIGI978-977" // St. Martin
+            "WF", "986" -> "VIGI986" // Wallis et Futuna
+            "PF", "987" -> "VIGI987" // French Polynesia
+            "NC", "988" -> "VIGI988" // New Caledonia
+            else -> null
+        }
+    }
+
+    override fun isFeatureSupportedInMainForLocation(
+        location: Location,
+        feature: SourceFeature?,
+    ): Boolean {
+        return isConfigured &&
+            (
+                feature == SourceFeature.FEATURE_CURRENT &&
+                    !location.countryCode.isNullOrEmpty() &&
+                    location.countryCode.equals("FR", ignoreCase = true)
+                ) ||
+            (
+                feature == SourceFeature.FEATURE_MINUTELY &&
+                    !location.countryCode.isNullOrEmpty() &&
+                    location.countryCode.equals("FR", ignoreCase = true)
+                ) ||
+            (
+                feature == SourceFeature.FEATURE_ALERT &&
+                    isAlertSupportedForLocation(location)
+                ) ||
+            (
+                // Technically, works anywhere but as a France-focused source, we don’t want the whole
+                // world to use this source, as currently the only alternative is AccuWeather
+                feature == SourceFeature.FEATURE_NORMALS &&
+                    !location.countryCode.isNullOrEmpty() &&
+                    (
+                        location.countryCode.equals("FR", ignoreCase = true) ||
+                            location.countryCode.equals("AD", ignoreCase = true) ||
+                            location.countryCode.equals("MC", ignoreCase = true)
+                        )
+                ) ||
+            feature == null
+    }
+
     override fun requestWeather(
         context: Context,
         location: Location,
@@ -154,12 +230,11 @@ class MfService @Inject constructor(
         }
         val warnings = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT) &&
             !location.countryCode.isNullOrEmpty() &&
-            location.countryCode.equals("FR", ignoreCase = true) &&
-            !location.admin2Code.isNullOrEmpty()
+            isAlertSupportedForLocation(location)
         ) {
             mApi.getWarnings(
                 USER_AGENT,
-                location.admin2Code!!,
+                getDomainForAlerts(location)!!,
                 "iso",
                 token
             ).onErrorResumeNext {
@@ -217,30 +292,7 @@ class MfService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        return isConfigured &&
-            (
-                feature == SourceFeature.FEATURE_CURRENT &&
-                    !location.countryCode.isNullOrEmpty() &&
-                    location.countryCode.equals("FR", ignoreCase = true)
-                ) ||
-            (
-                feature == SourceFeature.FEATURE_MINUTELY &&
-                    !location.countryCode.isNullOrEmpty() &&
-                    location.countryCode.equals("FR", ignoreCase = true)
-                ) ||
-            (
-                feature == SourceFeature.FEATURE_ALERT &&
-                    !location.countryCode.isNullOrEmpty() &&
-                    location.countryCode.equals("FR", ignoreCase = true) &&
-                    !location.admin2Code.isNullOrEmpty()
-                ) ||
-            (
-                // Technically, works anywhere but as a France-focused source, we don’t want the whole
-                // world to use this source, as currently the only alternative is AccuWeather
-                feature == SourceFeature.FEATURE_NORMALS &&
-                    !location.countryCode.isNullOrEmpty() &&
-                    location.countryCode.equals("FR", ignoreCase = true)
-                )
+        return isFeatureSupportedInMainForLocation(location, feature)
     }
     override val currentAttribution = weatherAttribution
     override val airQualityAttribution = null
@@ -295,12 +347,11 @@ class MfService @Inject constructor(
         val warnings = if (
             requestedFeatures.contains(SourceFeature.FEATURE_ALERT) &&
             !location.countryCode.isNullOrEmpty() &&
-            location.countryCode.equals("FR", ignoreCase = true) &&
-            !location.admin2Code.isNullOrEmpty()
+            isAlertSupportedForLocation(location)
         ) {
             mApi.getWarnings(
                 USER_AGENT,
-                location.admin2Code!!,
+                getDomainForAlerts(location)!!,
                 "iso",
                 token
             ).onErrorResumeNext {
@@ -440,5 +491,7 @@ class MfService @Inject constructor(
     companion object {
         private const val MF_BASE_URL = "https://webservice.meteofrance.com/"
         private const val USER_AGENT = "okhttp/4.9.2"
+        private val OVERSEAS_DEPTS_REGEX = Regex("""^9\d{2}$""")
+        private val OVERSEAS_ISOS = arrayOf("BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT")
     }
 }

@@ -79,7 +79,7 @@ interface MfApi {
         @Query("token") token: String,
     ): Observable<MfNormalsResult>
 
-    @GET("v3/warning/full")
+    @GET("v2/warning/full")
     fun getWarnings(
         @Header("User-Agent") userAgent: String,
         @Query(encoded = true, value = "domain") domain: String,

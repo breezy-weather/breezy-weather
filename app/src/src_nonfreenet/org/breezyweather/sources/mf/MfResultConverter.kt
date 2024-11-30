@@ -422,16 +422,16 @@ private fun getPrecipitationIntensity(rain: Int): Double = when (rain) {
     else -> 0.0
 }
 
-private fun getWarningType(phemononId: String): String = when (phemononId) {
-    "1" -> "Vent"
-    "2" -> "Pluie-Inondation"
-    "3" -> "Orages"
-    "4" -> "Crues"
-    "5" -> "Neige-Verglas"
-    "6" -> "Canicule"
-    "7" -> "Grand Froid"
-    "8" -> "Avalanches"
-    "9" -> "Vagues-Submersion"
+private fun getWarningType(phemononId: Int): String = when (phemononId) {
+    1 -> "Vent"
+    2 -> "Pluie-Inondation"
+    3 -> "Orages"
+    4 -> "Crues"
+    5 -> "Neige-Verglas"
+    6 -> "Canicule"
+    7 -> "Grand Froid"
+    8 -> "Avalanches"
+    9 -> "Vagues-Submersion"
     else -> "Divers"
 }
 
@@ -460,7 +460,7 @@ private fun getWarningColor(colorId: Int): Int = when (colorId) {
     else -> Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
 }
 
-private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsResult): String? {
+private fun getWarningContent(phenomenonId: Int?, warningsResult: MfWarningsResult): String? {
     val textBlocs = warningsResult.text?.textBlocItems?.filter { textBlocItem ->
         textBlocItem.textItems?.any { it.hazardCode == phenomenonId } == true
     }
