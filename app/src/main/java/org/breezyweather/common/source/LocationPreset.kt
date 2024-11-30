@@ -63,7 +63,7 @@ enum class LocationPreset(
     LUXEMBOURG("meteolux", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     NORWAY("metno", pollen = "openmeteo", alert = "accu", normals = "accu"),
     PORTUGAL("ipma", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
-    SPAIN("aemet", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
+    SPAIN("aemet", airQuality = "openmeteo", pollen = "openmeteo", alert = "accu", minutely = "openmeteo"),
     SWEDEN(
         "smhi",
         airQuality = "openmeteo",
