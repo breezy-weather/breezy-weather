@@ -88,7 +88,7 @@ fun convert(
     ibf2Result: BmkgIbfResult,
     ibf3Result: BmkgIbfResult,
     pm25Result: List<BmkgPm25Result>,
-    failedFeatures: List<SourceFeature>
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     return WeatherWrapper(
         current = getCurrent(context, location, currentResult, pm25Result),
