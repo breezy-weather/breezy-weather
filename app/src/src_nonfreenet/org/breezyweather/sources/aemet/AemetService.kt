@@ -310,7 +310,7 @@ class AemetService @Inject constructor(
             }
         }
         val matchResult = Regex("""<a href='/es/eltiempo/prediccion/municipios/[^']+-id(\d+)'>""").find(response)
-        val municipio = matchResult?.groups[1]?.value
+        val municipio = matchResult?.groups?.get(1)?.value
         if (municipio == null) {
             throw InvalidLocationException()
         }
