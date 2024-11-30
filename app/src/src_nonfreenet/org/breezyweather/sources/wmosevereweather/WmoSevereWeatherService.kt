@@ -17,12 +17,12 @@
 package org.breezyweather.sources.wmosevereweather
 
 import android.content.Context
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -55,7 +55,7 @@ class WmoSevereWeatherService @Inject constructor(
             .create(WmoSevereWeatherXmlApi::class.java)
     }
 
-    override val supportedFeaturesInSecondary = listOf(SecondaryWeatherSourceFeature.FEATURE_ALERT)
+    override val supportedFeaturesInSecondary = listOf(SourceFeature.FEATURE_ALERT)
 
     override val currentAttribution = null
     override val airQualityAttribution = null
@@ -68,7 +68,7 @@ class WmoSevereWeatherService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         return mAlertsJsonApi.getAlerts(
             typeName = "local_postgis:postgis_geojsons",

@@ -18,6 +18,7 @@ package org.breezyweather.common.source
 
 import android.content.Context
 import androidx.annotation.ColorInt
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
@@ -44,7 +45,7 @@ interface MainWeatherSource : Source {
      * List the supported secondary features directly from main weather refresh
      * Can be a different list from "supportedFeatures" if you also implement SecondaryWeatherSource
      */
-    val supportedFeaturesInMain: List<SecondaryWeatherSourceFeature>
+    val supportedFeaturesInMain: List<SourceFeature>
 
     /**
      * May be used when you don't have reverse geocoding implemented and you want to filter
@@ -54,7 +55,7 @@ interface MainWeatherSource : Source {
      */
     fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature? = null,
+        feature: SourceFeature? = null,
     ): Boolean = true
 
     /**
@@ -66,6 +67,6 @@ interface MainWeatherSource : Source {
     fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper>
 }

@@ -17,6 +17,7 @@
 package org.breezyweather.common.source
 
 import android.content.Context
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import io.reactivex.rxjava3.core.Observable
 
@@ -37,7 +38,7 @@ interface LocationParametersSource : Source {
     fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature> = emptyList(),
+        features: List<SourceFeature> = emptyList(),
     ): Boolean
 
     /**

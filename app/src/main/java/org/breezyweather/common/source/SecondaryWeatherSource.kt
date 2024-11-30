@@ -17,6 +17,7 @@
 package org.breezyweather.common.source
 
 import android.content.Context
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import io.reactivex.rxjava3.core.Observable
@@ -26,11 +27,11 @@ import io.reactivex.rxjava3.core.Observable
  */
 interface SecondaryWeatherSource : Source {
 
-    val supportedFeaturesInSecondary: List<SecondaryWeatherSourceFeature>
+    val supportedFeaturesInSecondary: List<SourceFeature>
 
     fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean = true
 
     val currentAttribution: String?
@@ -54,6 +55,6 @@ interface SecondaryWeatherSource : Source {
     fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper>
 }

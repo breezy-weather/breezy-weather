@@ -14,9 +14,9 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.source
+package breezyweather.domain.feature
 
-enum class SecondaryWeatherSourceFeature(
+enum class SourceFeature(
     val id: String,
 ) {
     FEATURE_CURRENT("current"),
@@ -31,7 +31,7 @@ enum class SecondaryWeatherSourceFeature(
 
         fun getInstance(
             value: String,
-        ) = SecondaryWeatherSourceFeature.entries.firstOrNull {
+        ) = SourceFeature.entries.firstOrNull {
             it.id == value
         }
     }

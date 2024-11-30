@@ -17,6 +17,7 @@
 package org.breezyweather.sources.meteolux
 
 import android.content.Context
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -36,7 +37,6 @@ import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.meteolux.json.MeteoLuxWeatherResult
 import java.text.SimpleDateFormat
@@ -72,17 +72,17 @@ fun convert(
 fun convert(
     context: Context,
     weatherResult: MeteoLuxWeatherResult,
-    ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+    ignoreFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     return WeatherWrapper(
-        current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             getCurrent(context, weatherResult)
         } else {
             null
         },
         dailyForecast = getDailyForecast(context, weatherResult),
         hourlyForecast = getHourlyForecast(context, weatherResult),
-        alertList = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        alertList = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             getAlertList(context, weatherResult)
         } else {
             null
@@ -93,15 +93,15 @@ fun convert(
 fun convertSecondary(
     context: Context,
     weatherResult: MeteoLuxWeatherResult,
-    requestedFeatures: List<SecondaryWeatherSourceFeature>,
+    requestedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
-        current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             getCurrent(context, weatherResult)
         } else {
             null
         },
-        alertList = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        alertList = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             getAlertList(context, weatherResult)
         } else {
             null

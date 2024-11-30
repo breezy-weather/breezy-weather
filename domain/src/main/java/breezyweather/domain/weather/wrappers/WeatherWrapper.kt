@@ -16,6 +16,7 @@
 
 package breezyweather.domain.weather.wrappers
 
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
@@ -33,4 +34,5 @@ data class WeatherWrapper(
     val hourlyForecast: List<HourlyWrapper>? = null,
     val minutelyForecast: List<Minutely>? = null,
     val alertList: List<Alert>? = null,
+    val failedFeatures: List<SourceFeature>? = null,
 )

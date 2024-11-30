@@ -18,6 +18,7 @@ package org.breezyweather.sources.here
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -35,7 +36,6 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -75,8 +75,8 @@ class HereService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_ALERT
     )
 
     /**
@@ -85,7 +85,7 @@ class HereService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
@@ -93,7 +93,7 @@ class HereService @Inject constructor(
 
         val apiKey = getApiKeyOrDefault()
         val products = listOfNotNull(
-            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
                 "observation"
             } else {
                 null

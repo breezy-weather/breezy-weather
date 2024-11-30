@@ -19,15 +19,14 @@ package org.breezyweather.sources.pagasa
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.WeatherWrapper
-import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.MainWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.pagasa.json.PagasaCurrentResult
 import org.breezyweather.sources.pagasa.json.PagasaHourlyResult
 import retrofit2.Retrofit
@@ -35,7 +34,6 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class PagasaService @Inject constructor(
-    @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource, LocationParametersSource {
 
@@ -52,11 +50,11 @@ class PagasaService @Inject constructor(
             .create(PagasaApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf<SecondaryWeatherSourceFeature>()
+    override val supportedFeaturesInMain = listOf<SourceFeature>()
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?,
+        feature: SourceFeature?,
     ): Boolean {
         return location.countryCode.equals("PH", ignoreCase = true)
     }
@@ -64,7 +62,7 @@ class PagasaService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val station = location.parameters.getOrElse(id) { null }?.getOrElse("station") { null }
         val key = location.parameters.getOrElse(id) { null }?.getOrElse("key") { null }
@@ -101,7 +99,7 @@ class PagasaService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
 

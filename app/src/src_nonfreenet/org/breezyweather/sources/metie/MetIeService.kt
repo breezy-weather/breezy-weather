@@ -18,6 +18,7 @@ package org.breezyweather.sources.metie
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -28,7 +29,6 @@ import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.metie.json.MetIeHourly
 import org.breezyweather.sources.metie.json.MetIeWarningResult
 import retrofit2.Retrofit
@@ -63,12 +63,12 @@ class MetIeService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SourceFeature.FEATURE_ALERT
     )
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?,
+        feature: SourceFeature?,
     ): Boolean {
         return location.countryCode.equals("IE", ignoreCase = true)
     }
@@ -76,14 +76,14 @@ class MetIeService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val forecast = mApi.getForecast(
             location.latitude,
             location.longitude
         )
 
-        val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getWarnings()
         } else {
             Observable.just(MetIeWarningResult())
@@ -96,11 +96,11 @@ class MetIeService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SourceFeature.FEATURE_ALERT
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -114,7 +114,7 @@ class MetIeService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         return mApi.getWarnings().map {
             convertSecondary(it, location)
@@ -141,7 +141,7 @@ class MetIeService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
     ): Boolean {
         if (regionsMapping.containsKey(location.admin2)) return false
 

@@ -218,6 +218,7 @@
     <string name="weather_message_data_refresh_failed">Échec d’actualisation des données météo</string>
     <string name="weather_message_secondary_data_refresh_failed">Échec d’actualisation des données météo d’une source secondaire</string>
     <string name="weather_message_unsupported_feature">La source ne supporte pas une des fonctionnalités demandées</string>
+    <string name="weather_message_failed_feature">La source a échoué à mettre à jour : %s</string>
     <string name="weather_message_invalid_location">Emplacement invalide, veuillez le supprimer et le réajouter</string>
     <string name="weather_message_too_frequent_refreshes">Veuillez patienter quelques secondes avant de réessayer…</string>
     <string name="location_dialog_failed_to_locate_title">Vous ne parvenez pas à être localisé ?</string>

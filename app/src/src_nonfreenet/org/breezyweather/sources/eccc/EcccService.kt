@@ -18,6 +18,7 @@ package org.breezyweather.sources.eccc
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -30,7 +31,6 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -70,14 +70,14 @@ class EcccService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_ALERT,
+        SourceFeature.FEATURE_NORMALS
     )
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?,
+        feature: SourceFeature?,
     ): Boolean {
         return location.countryCode.equals("CA", ignoreCase = true)
     }
@@ -85,7 +85,7 @@ class EcccService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         return mApi.getForecast(
             context.currentLocale.code,
@@ -103,12 +103,12 @@ class EcccService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_ALERT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS
+        SourceFeature.FEATURE_ALERT,
+        SourceFeature.FEATURE_NORMALS
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -122,7 +122,7 @@ class EcccService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         return mApi.getForecast(
             context.currentLocale.code,

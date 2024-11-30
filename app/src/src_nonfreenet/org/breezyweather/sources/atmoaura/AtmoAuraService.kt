@@ -17,6 +17,7 @@
 package org.breezyweather.sources.atmoaura
 
 import android.content.Context
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -32,7 +33,6 @@ import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import java.util.Calendar
@@ -59,12 +59,12 @@ class AtmoAuraService @Inject constructor(
             .create(AtmoAuraAirQualityApi::class.java)
     }
 
-    override val supportedFeaturesInSecondary = listOf(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
+    override val supportedFeaturesInSecondary = listOf(SourceFeature.FEATURE_AIR_QUALITY)
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
-        return feature == SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY &&
+        return feature == SourceFeature.FEATURE_AIR_QUALITY &&
             !location.countryCode.isNullOrEmpty() &&
             location.countryCode.equals("FR", ignoreCase = true) &&
             !location.admin2Code.isNullOrEmpty() &&
@@ -80,12 +80,12 @@ class AtmoAuraService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
-        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_AIR_QUALITY)) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
         }

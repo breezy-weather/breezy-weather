@@ -18,6 +18,7 @@ package org.breezyweather.sources.metno
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -30,7 +31,6 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.metno.json.MetNoAirQualityResult
 import org.breezyweather.sources.metno.json.MetNoAlertResult
 import org.breezyweather.sources.metno.json.MetNoForecastResult
@@ -76,15 +76,15 @@ class MetNoService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SourceFeature.FEATURE_AIR_QUALITY,
+        SourceFeature.FEATURE_MINUTELY,
+        SourceFeature.FEATURE_ALERT
     )
 
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val forecast = mApi.getForecast(
             USER_AGENT,
@@ -120,8 +120,8 @@ class MetNoService @Inject constructor(
                 it.equals(location.countryCode, ignoreCase = true)
             } &&
             !(
-                ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) &&
-                    ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
+                ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT) &&
+                    ignoreFeatures.contains(SourceFeature.FEATURE_MINUTELY)
                 )
         ) {
             mApi.getNowcast(
@@ -138,7 +138,7 @@ class MetNoService @Inject constructor(
 
         // Air quality only for Norway
         val airQuality =
-            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
+            if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY) &&
                 !location.countryCode.isNullOrEmpty() &&
                 location.countryCode.equals("NO", ignoreCase = true)
             ) {
@@ -156,7 +156,7 @@ class MetNoService @Inject constructor(
 
         // Alerts only for Norway
         val alerts =
-            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
+            if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT) &&
                 !location.countryCode.isNullOrEmpty() &&
                 location.countryCode.equals("NO", ignoreCase = true)
             ) {
@@ -193,19 +193,19 @@ class MetNoService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_AIR_QUALITY,
+        SourceFeature.FEATURE_MINUTELY,
+        SourceFeature.FEATURE_ALERT
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
         return (
             (
-                feature == SecondaryWeatherSourceFeature.FEATURE_CURRENT ||
-                    feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY
+                feature == SourceFeature.FEATURE_CURRENT ||
+                    feature == SourceFeature.FEATURE_MINUTELY
                 ) &&
                 !location.countryCode.isNullOrEmpty() &&
                 arrayOf("NO", "SE", "FI", "DK").any {
@@ -213,12 +213,12 @@ class MetNoService @Inject constructor(
                 }
             ) ||
             (
-                feature == SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY &&
+                feature == SourceFeature.FEATURE_AIR_QUALITY &&
                     !location.countryCode.isNullOrEmpty() &&
                     location.countryCode.equals("NO", ignoreCase = true)
                 ) ||
             (
-                feature == SecondaryWeatherSourceFeature.FEATURE_ALERT &&
+                feature == SourceFeature.FEATURE_ALERT &&
                     !location.countryCode.isNullOrEmpty() &&
                     location.countryCode.equals("NO", ignoreCase = true)
                 )
@@ -233,11 +233,11 @@ class MetNoService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         val nowcast =
-            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) ||
-                requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
+            if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT) ||
+                requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)
             ) {
                 mApi.getNowcast(
                     USER_AGENT,
@@ -248,7 +248,7 @@ class MetNoService @Inject constructor(
                 Observable.just(MetNoNowcastResult())
             }
 
-        val airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+        val airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getAirQuality(
                 USER_AGENT,
                 location.latitude,
@@ -260,7 +260,7 @@ class MetNoService @Inject constructor(
 
         // Alerts only for Norway
         val alerts =
-            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
+            if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT) &&
                 !location.countryCode.isNullOrEmpty() &&
                 location.countryCode.equals("NO", ignoreCase = true)
             ) {
@@ -280,19 +280,19 @@ class MetNoService @Inject constructor(
             alerts
         ) { metNoNowcast: MetNoNowcastResult, metNoAirQuality: MetNoAirQualityResult, metNoAlerts: MetNoAlertResult ->
             convertSecondary(
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) ||
-                    requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
+                if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT) ||
+                    requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)
                 ) {
                     metNoNowcast
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+                if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
                     metNoAirQuality
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+                if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
                     metNoAlerts
                 } else {
                     null

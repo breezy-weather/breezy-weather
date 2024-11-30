@@ -68,11 +68,13 @@ import org.breezyweather.common.ui.composables.LocationPreference
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.databinding.ActivityMainBinding
+import org.breezyweather.domain.feature.resourceName
 import org.breezyweather.main.fragments.HomeFragment
 import org.breezyweather.main.fragments.ManagementFragment
 import org.breezyweather.main.fragments.ModifyMainSystemBarMessage
 import org.breezyweather.main.fragments.PushedManagementFragment
 import org.breezyweather.main.utils.MainThemeColorProvider
+import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.search.SearchActivity
 import org.breezyweather.settings.SettingsChangedMessage
 import org.breezyweather.sources.SourceManager
@@ -400,19 +402,30 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
         }
         viewModel.snackbarError.observe(this) { error ->
             if (error != null) {
-                val shortMessage = if (!error.source.isNullOrEmpty()) {
-                    "${error.source}${getString(R.string.colon_separator)}${getString(error.error.shortMessage)}"
+                val shortMessage = if (error.error == RefreshErrorType.FAILED_FEATURE) {
+                    getString(
+                        error.error.shortMessage,
+                        getString(error.feature!!.resourceName!!)
+                    )
                 } else {
                     getString(error.error.shortMessage)
                 }
+                val shortMessageWithSource = if (!error.source.isNullOrEmpty()) {
+                    val sourceName = sourceManager.getSource(error.source)?.name ?: error.source
+                    "$sourceName${getString(
+                        R.string.colon_separator
+                    )}$shortMessage"
+                } else {
+                    shortMessage
+                }
                 error.error.showDialogAction?.let { showDialogAction ->
                     SnackbarHelper.showSnackbar(
-                        content = shortMessage,
+                        content = shortMessageWithSource,
                         action = getString(error.error.actionButtonMessage)
                     ) {
                         showDialogAction(this)
                     }
-                } ?: SnackbarHelper.showSnackbar(shortMessage)
+                } ?: SnackbarHelper.showSnackbar(shortMessageWithSource)
             }
         }
 

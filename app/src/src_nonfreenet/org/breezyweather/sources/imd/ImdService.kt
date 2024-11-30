@@ -18,6 +18,7 @@ package org.breezyweather.sources.imd
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
@@ -25,7 +26,6 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.imd.json.ImdWeatherResult
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -55,11 +55,11 @@ class ImdService @Inject constructor(
 
     private val okHttpClient = OkHttpClient()
 
-    override val supportedFeaturesInMain = listOf<SecondaryWeatherSourceFeature>()
+    override val supportedFeaturesInMain = listOf<SourceFeature>()
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?,
+        feature: SourceFeature?,
     ): Boolean {
         return location.countryCode.equals("IN", ignoreCase = true)
     }
@@ -67,7 +67,7 @@ class ImdService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         // Forecast data is obtained from https://mausamgram.imd.gov.in/
         // It computes forecasts on a 0.125° × 0.125° grid.

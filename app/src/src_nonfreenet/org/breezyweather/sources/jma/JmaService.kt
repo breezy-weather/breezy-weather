@@ -18,6 +18,7 @@ package org.breezyweather.sources.jma
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -34,7 +35,6 @@ import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.jma.json.JmaAlertResult
 import org.breezyweather.sources.jma.json.JmaAmedasResult
 import org.breezyweather.sources.jma.json.JmaAreasResult
@@ -91,14 +91,14 @@ class JmaService @Inject constructor(
     private val okHttpClient = OkHttpClient()
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_NORMALS,
+        SourceFeature.FEATURE_ALERT
     )
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?,
+        feature: SourceFeature?,
     ): Boolean {
         return location.countryCode.equals("JP", ignoreCase = true)
     }
@@ -106,7 +106,7 @@ class JmaService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val parameters = location.parameters.getOrElse(id) { null }
         val class20s = parameters?.getOrElse("class20s") { null }
@@ -140,7 +140,7 @@ class JmaService @Inject constructor(
 
         // CURRENT
         // Need to first get the correct timestamp for latest observation data.
-        val current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             val request = Request.Builder().url(JMA_BASE_URL + "bosai/amedas/data/latest_time.txt").build()
             val incomingFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.ENGLISH)
             val outgoingFormatter = SimpleDateFormat("yyyyMMdd_HH", Locale.ENGLISH)
@@ -171,7 +171,7 @@ class JmaService @Inject constructor(
             Observable.just(emptyMap())
         }
 
-        val bulletin = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val bulletin = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getBulletin(forecastPrefArea).onErrorResumeNext {
                 // TODO: Log warning
                 Observable.just(JmaBulletinResult())
@@ -181,7 +181,7 @@ class JmaService @Inject constructor(
         }
 
         // ALERT
-        val alert = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val alert = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlert(prefArea).onErrorResumeNext {
                 // TODO: Log warning
                 Observable.just(JmaAlertResult())
@@ -212,13 +212,13 @@ class JmaService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_ALERT,
+        SourceFeature.FEATURE_NORMALS
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -232,7 +232,7 @@ class JmaService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         val parameters = location.parameters.getOrElse(id) { null }
         val class20s = parameters?.getOrElse("class20s") { null }
@@ -263,7 +263,7 @@ class JmaService @Inject constructor(
 
         // CURRENT
         // Need to first get the correct timestamp for latest observation data.
-        val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             val request = Request.Builder().url(JMA_BASE_URL + "bosai/amedas/data/latest_time.txt").build()
             val incomingFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.ENGLISH)
             val outgoingFormatter = SimpleDateFormat("yyyyMMdd_HH", Locale.ENGLISH)
@@ -291,7 +291,7 @@ class JmaService @Inject constructor(
             Observable.just(emptyMap())
         }
 
-        val bulletin = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val bulletin = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getBulletin(forecastPrefArea)
         } else {
             Observable.just(JmaBulletinResult())
@@ -299,14 +299,14 @@ class JmaService @Inject constructor(
 
         // NORMALS
         // Normals are recorded in the daily forecast.
-        val daily = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+        val daily = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
             mApi.getDaily(forecastPrefArea)
         } else {
             Observable.just(emptyList())
         }
 
         // ALERT
-        val alert = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val alert = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlert(prefArea)
         } else {
             Observable.just(JmaAlertResult())
@@ -321,22 +321,22 @@ class JmaService @Inject constructor(
             convertSecondary(
                 context = context,
                 location = location,
-                currentResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
                     currentResult
                 } else {
                     null
                 },
-                bulletinResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                bulletinResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
                     bulletinResult
                 } else {
                     null
                 },
-                dailyResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+                dailyResult = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
                     dailyResult
                 } else {
                     null
                 },
-                alertResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+                alertResult = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
                     alertResult
                 } else {
                     null
@@ -378,7 +378,7 @@ class JmaService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
 

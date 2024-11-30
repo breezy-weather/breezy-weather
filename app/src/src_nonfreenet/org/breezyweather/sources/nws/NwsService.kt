@@ -18,6 +18,7 @@ package org.breezyweather.sources.nws
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -30,7 +31,6 @@ import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.nws.json.NwsAlertsResult
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -55,7 +55,7 @@ class NwsService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SourceFeature.FEATURE_ALERT
     )
 
     private val supportedCountries = setOf(
@@ -72,7 +72,7 @@ class NwsService @Inject constructor(
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?,
+        feature: SourceFeature?,
     ): Boolean {
         return supportedCountries.any {
             location.countryCode.equals(it, ignoreCase = true)
@@ -82,7 +82,7 @@ class NwsService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val gridId = location.parameters
             .getOrElse(id) { null }?.getOrElse("gridId") { null }
@@ -102,7 +102,7 @@ class NwsService @Inject constructor(
             gridY.toInt()
         )
 
-        val nwsAlertsResult = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val nwsAlertsResult = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getActiveAlerts(
                 USER_AGENT,
                 "${location.latitude},${location.longitude}"
@@ -121,11 +121,11 @@ class NwsService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SourceFeature.FEATURE_ALERT
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -139,9 +139,9 @@ class NwsService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT)) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
         }
@@ -177,10 +177,10 @@ class NwsService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
     ): Boolean {
         // Not needed for alert endpoint
-        if (features.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) return false
+        if (features.contains(SourceFeature.FEATURE_ALERT)) return false
         if (coordinatesChanged) return true
 
         val currentGridId = location.parameters

@@ -18,6 +18,7 @@ package org.breezyweather.sources.openweather
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -35,7 +36,6 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
 import org.breezyweather.sources.openweather.json.OpenWeatherForecast
@@ -68,14 +68,14 @@ class OpenWeatherService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_AIR_QUALITY
     )
 
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val apiKey = getApiKeyOrDefault()
         if (apiKey.isEmpty()) {
@@ -89,7 +89,7 @@ class OpenWeatherService @Inject constructor(
             "metric",
             languageCode
         )
-        val current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 apiKey,
                 location.latitude,
@@ -103,7 +103,7 @@ class OpenWeatherService @Inject constructor(
         } else {
             Observable.just(OpenWeatherForecast())
         }
-        val airPollution = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+        val airPollution = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getAirPollution(
                 apiKey,
                 location.latitude,
@@ -131,8 +131,8 @@ class OpenWeatherService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_AIR_QUALITY
     )
     override val currentAttribution = weatherAttribution
     override val airQualityAttribution = weatherAttribution
@@ -144,10 +144,10 @@ class OpenWeatherService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        if (!requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
-            !requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)
+        if (!requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY) ||
+            !requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)
         ) {
             return Observable.error(SourceNotInstalledException())
         }
@@ -158,7 +158,7 @@ class OpenWeatherService @Inject constructor(
         }
         val languageCode = context.currentLocale.code
 
-        val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 apiKey,
                 location.latitude,
@@ -170,7 +170,7 @@ class OpenWeatherService @Inject constructor(
             Observable.just(OpenWeatherForecast())
         }
 
-        val airPollution = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+        val airPollution = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getAirPollution(
                 apiKey,
                 location.latitude,

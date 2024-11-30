@@ -18,6 +18,7 @@ package org.breezyweather.sources.namem
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -34,7 +35,6 @@ import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.namem.json.NamemAirQualityResult
 import org.breezyweather.sources.namem.json.NamemCurrentResult
 import org.breezyweather.sources.namem.json.NamemDailyResult
@@ -77,14 +77,14 @@ class NamemService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS,
-        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_NORMALS,
+        SourceFeature.FEATURE_AIR_QUALITY
     )
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?,
+        feature: SourceFeature?,
     ): Boolean {
         return location.countryCode.equals("MN", ignoreCase = true)
     }
@@ -92,7 +92,7 @@ class NamemService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val stationId = location.parameters.getOrElse(id) { null }?.getOrElse("stationId") { null }?.toLongOrNull()
         if (stationId == null) {
@@ -100,7 +100,7 @@ class NamemService @Inject constructor(
         }
         var body = """{"sid":$stationId}"""
 
-        val current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
@@ -118,7 +118,7 @@ class NamemService @Inject constructor(
             body = body.toRequestBody("application/json".toMediaTypeOrNull())
         )
 
-        val normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+        val normals = if (!ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
             mApi.getNormals(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
@@ -129,7 +129,7 @@ class NamemService @Inject constructor(
             Observable.just(NamemNormalsResult())
         }
 
-        val airQuality = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+        val airQuality = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getAirQuality().onErrorResumeNext {
                 // TODO: Log warning
                 Observable.just(NamemAirQualityResult())
@@ -159,13 +159,13 @@ class NamemService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS,
-        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_NORMALS,
+        SourceFeature.FEATURE_AIR_QUALITY
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -179,11 +179,11 @@ class NamemService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_NORMALS) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_CURRENT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
+        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_NORMALS) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_CURRENT) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_AIR_QUALITY)
         ) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
@@ -196,7 +196,7 @@ class NamemService @Inject constructor(
 
         var body = """{"sid":$stationId}"""
 
-        val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             )
@@ -204,7 +204,7 @@ class NamemService @Inject constructor(
             Observable.just(NamemCurrentResult())
         }
 
-        val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+        val normals = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
             mApi.getNormals(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             )
@@ -212,7 +212,7 @@ class NamemService @Inject constructor(
             Observable.just(NamemNormalsResult())
         }
 
-        val airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+        val airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getAirQuality()
         } else {
             Observable.just(NamemAirQualityResult())
@@ -226,17 +226,17 @@ class NamemService @Inject constructor(
             convertSecondary(
                 context = context,
                 location = location,
-                currentResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
                     currentResult
                 } else {
                     null
                 },
-                normalsResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+                normalsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
                     normalsResult
                 } else {
                     null
                 },
-                airQualityResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+                airQualityResult = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
                     airQualityResult
                 } else {
                     null
@@ -259,7 +259,7 @@ class NamemService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
 

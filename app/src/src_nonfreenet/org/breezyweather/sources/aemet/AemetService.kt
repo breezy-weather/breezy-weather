@@ -18,6 +18,7 @@ package org.breezyweather.sources.aemet
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -37,7 +38,6 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.aemet.json.AemetCurrentResult
 import org.breezyweather.sources.aemet.json.AemetDailyResult
@@ -70,13 +70,13 @@ class AemetService @Inject constructor(
     private val okHttpClient = OkHttpClient()
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_NORMALS
     )
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?,
+        feature: SourceFeature?,
     ): Boolean {
         return location.countryCode.equals("ES", ignoreCase = true)
     }
@@ -84,7 +84,7 @@ class AemetService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
@@ -97,7 +97,7 @@ class AemetService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        val current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrentUrl(
                 apiKey = apiKey,
                 estacion = estacion
@@ -119,7 +119,7 @@ class AemetService @Inject constructor(
             Observable.just(emptyList())
         }
 
-        val normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+        val normals = if (!ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
             mApi.getNormalsUrl(
                 apiKey = apiKey,
                 estacion = estacion
@@ -186,12 +186,12 @@ class AemetService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_NORMALS
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -205,7 +205,7 @@ class AemetService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
@@ -218,7 +218,7 @@ class AemetService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrentUrl(
                 apiKey = apiKey,
                 estacion = estacion
@@ -237,7 +237,7 @@ class AemetService @Inject constructor(
             Observable.just(emptyList())
         }
 
-        val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+        val normals = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
             mApi.getNormalsUrl(
                 apiKey = apiKey,
                 estacion = estacion
@@ -262,12 +262,12 @@ class AemetService @Inject constructor(
             ->
             convertSecondary(
                 location = location,
-                currentResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
                     currentResult
                 } else {
                     null
                 },
-                normalsResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+                normalsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
                     normalsResult
                 } else {
                     null
@@ -280,7 +280,7 @@ class AemetService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
 

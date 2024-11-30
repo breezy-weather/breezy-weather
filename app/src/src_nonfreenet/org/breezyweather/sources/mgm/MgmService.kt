@@ -18,10 +18,10 @@ package org.breezyweather.sources.mgm
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
-import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.SecondaryWeatherException
@@ -30,7 +30,6 @@ import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.mgm.json.MgmAlertResult
 import org.breezyweather.sources.mgm.json.MgmCurrentResult
 import org.breezyweather.sources.mgm.json.MgmDailyForecastResult
@@ -44,7 +43,6 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class MgmService @Inject constructor(
-    @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
@@ -63,14 +61,14 @@ class MgmService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_ALERT,
+        SourceFeature.FEATURE_NORMALS
     )
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?,
+        feature: SourceFeature?,
     ): Boolean {
         return location.countryCode.equals("TR", ignoreCase = true)
     }
@@ -78,7 +76,7 @@ class MgmService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val currentStation = location.parameters.getOrElse(id) { null }?.getOrElse("currentStation") { null }
         val hourlyStation = location.parameters.getOrElse(id) { null }?.getOrElse("hourlyStation") { null }
@@ -90,7 +88,7 @@ class MgmService @Inject constructor(
 
         val now = Calendar.getInstance(TimeZone.getTimeZone("Europe/Istanbul"), Locale.ENGLISH)
 
-        val current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(currentStation).onErrorResumeNext {
                 // TODO: Log warning
                 Observable.just(emptyList())
@@ -111,7 +109,7 @@ class MgmService @Inject constructor(
             Observable.just(emptyList())
         }
 
-        val today = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val today = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlert("today").onErrorResumeNext {
                 // TODO: Log warning
                 Observable.just(emptyList())
@@ -120,7 +118,7 @@ class MgmService @Inject constructor(
             Observable.just(emptyList())
         }
 
-        val tomorrow = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val tomorrow = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlert("tomorrow").onErrorResumeNext {
                 // TODO: Log warning
                 Observable.just(emptyList())
@@ -130,7 +128,7 @@ class MgmService @Inject constructor(
         }
 
         // can pull multiple days but seems to be an overkill
-        val normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+        val normals = if (!ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
             mApi.getNormals(
                 station = dailyStation,
                 month = now.get(Calendar.MONTH) + 1,
@@ -166,13 +164,13 @@ class MgmService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_ALERT,
+        SourceFeature.FEATURE_NORMALS
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -186,11 +184,11 @@ class MgmService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_CURRENT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_NORMALS)
+        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_CURRENT) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_NORMALS)
         ) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
@@ -206,25 +204,25 @@ class MgmService @Inject constructor(
 
         val now = Calendar.getInstance(TimeZone.getTimeZone("Europe/Istanbul"), Locale.ENGLISH)
 
-        val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(currentStation)
         } else {
             Observable.just(emptyList())
         }
 
-        val today = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val today = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlert("today")
         } else {
             Observable.just(emptyList())
         }
 
-        val tomorrow = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val tomorrow = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlert("tomorrow")
         } else {
             Observable.just(emptyList())
         }
 
-        val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+        val normals = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
             mApi.getNormals(
                 station = dailyStation,
                 month = now.get(Calendar.MONTH) + 1,
@@ -243,22 +241,22 @@ class MgmService @Inject constructor(
             convertSecondary(
                 context = context,
                 townCode = currentStation.toInt(),
-                currentResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
                     currentResult.getOrNull(0)
                 } else {
                     null
                 },
-                todayAlertResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+                todayAlertResult = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
                     todayResult
                 } else {
                     null
                 },
-                tomorrowAlertResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+                tomorrowAlertResult = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
                     tomorrowResult
                 } else {
                     null
                 },
-                normalsResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+                normalsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
                     normalsResult.getOrNull(0)
                 } else {
                     null
@@ -286,7 +284,7 @@ class MgmService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
 

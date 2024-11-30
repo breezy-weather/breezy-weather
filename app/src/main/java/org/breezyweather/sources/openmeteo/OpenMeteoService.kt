@@ -33,6 +33,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -51,7 +52,6 @@ import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.PreferencesParametersSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.settings.preference.composables.PreferenceView
@@ -140,15 +140,15 @@ class OpenMeteoService @Inject constructor(
     )
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_POLLEN,
-        SecondaryWeatherSourceFeature.FEATURE_MINUTELY
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_AIR_QUALITY,
+        SourceFeature.FEATURE_POLLEN,
+        SourceFeature.FEATURE_MINUTELY
     )
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val daily = arrayOf(
             "temperature_2m_max",
@@ -186,12 +186,12 @@ class OpenMeteoService @Inject constructor(
             getWeatherModels(location).joinToString(",") { it.id },
             daily.joinToString(","),
             hourly.joinToString(","),
-            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+            if (!ignoreFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
                 minutely.joinToString(",")
             } else {
                 ""
             },
-            if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+            if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
                 current.joinToString(",")
             } else {
                 ""
@@ -201,15 +201,15 @@ class OpenMeteoService @Inject constructor(
             windspeedUnit = "ms"
         )
 
-        val aqi = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
-            !ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
+        val aqi = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY) ||
+            !ignoreFeatures.contains(SourceFeature.FEATURE_POLLEN)
         ) {
-            val airQualityHourly = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            val airQualityHourly = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
                 airQualityHourly
             } else {
                 arrayOf()
             }
-            val pollenHourly = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
+            val pollenHourly = if (!ignoreFeatures.contains(SourceFeature.FEATURE_POLLEN)) {
                 pollenHourly
             } else {
                 arrayOf()
@@ -250,10 +250,10 @@ class OpenMeteoService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_POLLEN,
-        SecondaryWeatherSourceFeature.FEATURE_MINUTELY
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_AIR_QUALITY,
+        SourceFeature.FEATURE_POLLEN,
+        SourceFeature.FEATURE_MINUTELY
     )
     override val currentAttribution = weatherAttribution
     override val airQualityAttribution = "Open-Meteo (CC BY 4.0) / METEO FRANCE, Institut national de " +
@@ -273,10 +273,10 @@ class OpenMeteoService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        val weather = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) ||
-            requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
+        val weather = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT) ||
+            requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)
         ) {
             mForecastApi.getWeather(
                 location.latitude,
@@ -284,12 +284,12 @@ class OpenMeteoService @Inject constructor(
                 getWeatherModels(location).joinToString(",") { it.id },
                 "",
                 "",
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+                if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
                     minutely.joinToString(",")
                 } else {
                     ""
                 },
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
                     current.joinToString(",")
                 } else {
                     ""
@@ -302,15 +302,15 @@ class OpenMeteoService @Inject constructor(
             Observable.just(OpenMeteoWeatherResult())
         }
 
-        val aqi = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
-            requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
+        val aqi = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY) ||
+            requestedFeatures.contains(SourceFeature.FEATURE_POLLEN)
         ) {
-            val airQualityHourly = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            val airQualityHourly = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
                 airQualityHourly
             } else {
                 arrayOf()
             }
-            val pollenHourly = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
+            val pollenHourly = if (requestedFeatures.contains(SourceFeature.FEATURE_POLLEN)) {
                 pollenHourly
             } else {
                 arrayOf()
@@ -444,9 +444,9 @@ class OpenMeteoService @Inject constructor(
     // Per-location preferences
     override fun hasPreferencesScreen(
         location: Location,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
     ): Boolean {
-        return features.isEmpty() || features.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
+        return features.isEmpty() || features.contains(SourceFeature.FEATURE_MINUTELY)
     }
 
     private fun getWeatherModels(
@@ -469,7 +469,7 @@ class OpenMeteoService @Inject constructor(
     override fun PerLocationPreferences(
         context: Context,
         location: Location,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
         onSave: (Map<String, String>) -> Unit,
     ) {
         val dialogModelsOpenState = remember { mutableStateOf(false) }

@@ -18,6 +18,7 @@ package org.breezyweather.sources.bmd
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -31,7 +32,6 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.bmd.json.BmdForecastResult
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -69,11 +69,11 @@ class BmdService @Inject constructor(
 
     private val okHttpClient = OkHttpClient()
 
-    override val supportedFeaturesInMain = listOf<SecondaryWeatherSourceFeature>()
+    override val supportedFeaturesInMain = listOf<SourceFeature>()
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?,
+        feature: SourceFeature?,
     ): Boolean {
         return location.countryCode.equals("BD", ignoreCase = true)
     }
@@ -81,7 +81,7 @@ class BmdService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val upazila = location.parameters.getOrElse(id) { null }?.getOrElse("upazila") { null }
         if (upazila.isNullOrEmpty()) {
@@ -129,7 +129,7 @@ class BmdService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
         val upazila = location.parameters.getOrElse(id) { null }?.getOrElse("upazila") { null }

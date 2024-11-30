@@ -18,6 +18,7 @@ package org.breezyweather.sources.hko
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -36,7 +37,6 @@ import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.hko.json.HkoAstroResult
 import org.breezyweather.sources.hko.json.HkoCurrentResult
 import org.breezyweather.sources.hko.json.HkoForecastResult
@@ -107,14 +107,14 @@ class HkoService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_ALERT,
+        SourceFeature.FEATURE_NORMALS
     )
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?,
+        feature: SourceFeature?,
     ): Boolean {
         return location.countryCode.equals("HK", ignoreCase = true)
     }
@@ -122,7 +122,7 @@ class HkoService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val languageCode = context.currentLocale.code
 
@@ -185,7 +185,7 @@ class HkoService @Inject constructor(
 
         // CURRENT
         // Full current observation takes two API calls: getCurrentWeather and getOneJson
-        val current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrentWeather(
                 grid = currentGrid
             ).onErrorResumeNext {
@@ -196,7 +196,7 @@ class HkoService @Inject constructor(
             Observable.just(HkoCurrentResult())
         }
 
-        val oneJson = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val oneJson = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getOneJson(
                 path = path,
                 suffix = if (languageCode.startsWith("zh")) {
@@ -219,7 +219,7 @@ class HkoService @Inject constructor(
         // First read the warning summary file.
         // Loop through each warning type in the summary; check which ones are current.
         // Then only load the detailed files of the current warning types.
-        val warningDetails = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val warningDetails = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getWarningSummary(
                 path = path
             ).map { warningSummary ->
@@ -251,7 +251,7 @@ class HkoService @Inject constructor(
 
         // NORMALS
         // HKO has its own normals endpoint from all the other stations.
-        val normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+        val normals = if (!ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
             when (currentStation) {
                 "HKO" -> mApi.getHkoNormals().onErrorResumeNext {
                     // TODO: Log warning
@@ -294,13 +294,13 @@ class HkoService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_ALERT,
+        SourceFeature.FEATURE_NORMALS
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -314,11 +314,11 @@ class HkoService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_NORMALS) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_CURRENT)
+        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_NORMALS) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_CURRENT)
         ) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
@@ -346,7 +346,7 @@ class HkoService @Inject constructor(
 
         // CURRENT
         // Full current observation takes two API calls: getCurrentWeather and getOneJson
-        val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrentWeather(
                 grid = currentGrid
             )
@@ -354,7 +354,7 @@ class HkoService @Inject constructor(
             Observable.just(HkoCurrentResult())
         }
 
-        val oneJson = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val oneJson = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getOneJson(
                 path = path,
                 suffix = if (languageCode.startsWith("zh")) "_uc" else ""
@@ -365,7 +365,7 @@ class HkoService @Inject constructor(
 
         // NORMALS
         // HKO has its own normals endpoint from all the other stations.
-        val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+        val normals = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
             when (currentStation) {
                 "HKO" -> mApi.getHkoNormals()
                 else -> mApi.getNormals(currentStation)
@@ -378,7 +378,7 @@ class HkoService @Inject constructor(
         // First read the warning summary file.
         // Loop through each warning type in the summary; check which ones are current.
         // Then only load the detailed files of the current warning types.
-        val warningDetails = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val warningDetails = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getWarningSummary(
                 path = path
             ).map { result ->
@@ -410,22 +410,22 @@ class HkoService @Inject constructor(
             ->
             convertSecondary(
                 context = context,
-                currentResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
                     currentResult
                 } else {
                     null
                 },
-                normalsResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+                normalsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
                     normalsResult
                 } else {
                     null
                 },
-                oneJsonResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                oneJsonResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
                     oneJsonResult
                 } else {
                     null
                 },
-                warningDetailsResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+                warningDetailsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
                     warningDetailsResult
                 } else {
                     null
@@ -490,7 +490,7 @@ class HkoService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
 

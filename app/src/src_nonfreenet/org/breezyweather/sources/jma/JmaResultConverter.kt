@@ -18,6 +18,7 @@ package org.breezyweather.sources.jma
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -43,7 +44,6 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.jma.json.JmaAlertResult
 import org.breezyweather.sources.jma.json.JmaAmedasResult
 import org.breezyweather.sources.jma.json.JmaAreasResult
@@ -236,7 +236,7 @@ fun convert(
     dailyResult: List<JmaDailyResult>,
     hourlyResult: JmaHourlyResult,
     alertResult: JmaAlertResult,
-    ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+    ignoreFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     val parameters = location.parameters.getOrElse("jma") { null }
     val class20s = parameters?.getOrElse("class20s") { null }
@@ -255,7 +255,7 @@ fun convert(
 
     return WeatherWrapper(
         current = getCurrent(context, currentResult, bulletinResult),
-        normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+        normals = if (!ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
             getNormals(dailyResult, weekAreaAmedas)
         } else {
             null

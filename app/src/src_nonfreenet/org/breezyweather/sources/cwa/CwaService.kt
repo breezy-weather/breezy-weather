@@ -19,6 +19,7 @@ package org.breezyweather.sources.cwa
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -41,7 +42,6 @@ import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.cwa.json.CwaAirQualityResult
 import org.breezyweather.sources.cwa.json.CwaAlertResult
@@ -99,15 +99,15 @@ class CwaService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_AIR_QUALITY,
+        SourceFeature.FEATURE_ALERT,
+        SourceFeature.FEATURE_NORMALS
     )
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?,
+        feature: SourceFeature?,
     ): Boolean {
         return location.countryCode.equals("TW", ignoreCase = true)
     }
@@ -116,7 +116,7 @@ class CwaService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         // Use of API key is mandatory for CWA's API calls.
         if (!isConfigured) {
@@ -153,7 +153,7 @@ class CwaService @Inject constructor(
             townshipName = townshipName
         )
 
-        val current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 apiKey = apiKey,
                 stationId = stationId
@@ -166,7 +166,7 @@ class CwaService @Inject constructor(
         }
 
         // "Weather Assistant" provides human-written forecast summary on a county level.
-        val assistant = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val assistant = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getAssistant(
                 endpoint = CWA_ASSISTANT_ENDPOINTS[countyName]!!,
                 apiKey = apiKey
@@ -200,7 +200,7 @@ class CwaService @Inject constructor(
             ""
         )
 
-        val airQuality = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+        val airQuality = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getAirQuality(
                 apiKey = apiKey,
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
@@ -250,7 +250,7 @@ class CwaService @Inject constructor(
         // Therefore we will call a different endpoint,
         // but we must specify the station ID rather than using lat/lon.
         val station = getNearestStation(location, CWA_NORMALS_STATIONS)
-        val normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS) && station != null) {
+        val normals = if (!ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS) && station != null) {
             mApi.getNormals(
                 apiKey = apiKey,
                 stationId = station,
@@ -263,7 +263,7 @@ class CwaService @Inject constructor(
             Observable.just(CwaNormalsResult())
         }
 
-        val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlerts(
                 apiKey = apiKey
             )
@@ -299,14 +299,14 @@ class CwaService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_AIR_QUALITY,
+        SourceFeature.FEATURE_ALERT,
+        SourceFeature.FEATURE_NORMALS
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -320,12 +320,12 @@ class CwaService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_NORMALS) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_CURRENT)
+        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_AIR_QUALITY) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_NORMALS) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_CURRENT)
         ) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
@@ -353,7 +353,7 @@ class CwaService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 apiKey = apiKey,
                 stationId = stationId
@@ -363,7 +363,7 @@ class CwaService @Inject constructor(
         }
 
         // "Weather Assistant" provides human-written forecast summary on a county level.
-        val assistant = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val assistant = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getAssistant(
                 endpoint = CWA_ASSISTANT_ENDPOINTS[countyName]!!,
                 apiKey = apiKey
@@ -394,7 +394,7 @@ class CwaService @Inject constructor(
             ""
         )
 
-        val airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+        val airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getAirQuality(
                 apiKey = apiKey,
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
@@ -403,7 +403,7 @@ class CwaService @Inject constructor(
             Observable.just(CwaAirQualityResult())
         }
 
-        val alerts = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val alerts = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlerts(
                 apiKey = apiKey
             )
@@ -417,7 +417,7 @@ class CwaService @Inject constructor(
         // but we must specify the station ID rather than using lat/lon.
         val station = getNearestStation(location, CWA_NORMALS_STATIONS)
         val now = Calendar.getInstance(TimeZone.getTimeZone("Asia/Taipei"), Locale.ENGLISH)
-        val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS) &&
+        val normals = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS) &&
             station != null
         ) {
             mApi.getNormals(
@@ -437,27 +437,27 @@ class CwaService @Inject constructor(
                 normalsResult: CwaNormalsResult,
             ->
             convertSecondary(
-                currentResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
                     currentResult
                 } else {
                     null
                 },
-                assistantResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                assistantResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
                     assistantResult
                 } else {
                     null
                 },
-                airQualityResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+                airQualityResult = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
                     airQualityResult
                 } else {
                     null
                 },
-                alertResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+                alertResult = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
                     alertResult
                 } else {
                     null
                 },
-                normalsResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+                normalsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
                     normalsResult
                 } else {
                     null
@@ -521,7 +521,7 @@ class CwaService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
 

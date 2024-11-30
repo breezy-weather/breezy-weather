@@ -18,6 +18,7 @@ package org.breezyweather.sources.dmi
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -29,7 +30,6 @@ import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.dmi.json.DmiResult
 import org.breezyweather.sources.dmi.json.DmiWarningResult
 import retrofit2.Retrofit
@@ -55,13 +55,13 @@ class DmiService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SourceFeature.FEATURE_ALERT
     )
 
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val weather = mApi.getWeather(
             location.latitude,
@@ -69,7 +69,7 @@ class DmiService @Inject constructor(
             DMI_WEATHER_CMD
         )
 
-        val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
+        val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT) &&
             location.countryCode.equals("DK", ignoreCase = true)
         ) {
             val id = location.parameters.getOrElse(id) { null }?.getOrElse("id") { null }
@@ -93,11 +93,11 @@ class DmiService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SourceFeature.FEATURE_ALERT
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("DK", ignoreCase = true)
     }
@@ -111,9 +111,9 @@ class DmiService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT)) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
         }
@@ -147,7 +147,7 @@ class DmiService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
     ): Boolean {
         // If we are in Denmark, we need location parameters (update it if coordinates changes,
         // OR if we didn't have it yet)

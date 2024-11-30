@@ -18,6 +18,7 @@ package org.breezyweather.sources.ipma
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -32,7 +33,6 @@ import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.ipma.json.IpmaAlertResult
 import org.breezyweather.sources.ipma.json.IpmaDistrictResult
 import org.breezyweather.sources.ipma.json.IpmaForecastResult
@@ -67,12 +67,12 @@ class IpmaService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SourceFeature.FEATURE_ALERT
     )
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?,
+        feature: SourceFeature?,
     ): Boolean {
         return location.countryCode.equals("PT", ignoreCase = true)
     }
@@ -80,7 +80,7 @@ class IpmaService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val globalIdLocal = location.parameters.getOrElse(id) { null }?.getOrElse("globalIdLocal") { null }
         val idAreaAviso = location.parameters.getOrElse(id) { null }?.getOrElse("idAreaAviso") { null }
@@ -89,7 +89,7 @@ class IpmaService @Inject constructor(
         }
 
         val forecast = mApi.getForecast(globalIdLocal)
-        val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlerts().onErrorResumeNext {
                 // TODO: Log warning
                 Observable.just(IpmaAlertResult())
@@ -113,11 +113,11 @@ class IpmaService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SourceFeature.FEATURE_ALERT
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -131,9 +131,9 @@ class IpmaService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT)) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
         }
@@ -143,7 +143,7 @@ class IpmaService @Inject constructor(
         if (globalIdLocal.isNullOrEmpty() || idAreaAviso.isNullOrEmpty()) {
             return Observable.error(InvalidLocationException())
         }
-        val alerts = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val alerts = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlerts()
         } else {
             Observable.just(IpmaAlertResult())
@@ -151,7 +151,7 @@ class IpmaService @Inject constructor(
         return alerts.map {
             convertSecondary(
                 location = location,
-                alertResult = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+                alertResult = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
                     it
                 } else {
                     null
@@ -179,7 +179,7 @@ class IpmaService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
         val globalIdLocal = location.parameters.getOrElse(id) { null }?.getOrElse("globalIdLocal") { null }

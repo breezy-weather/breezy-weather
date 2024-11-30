@@ -16,9 +16,11 @@
 
 package org.breezyweather.common.source
 
+import breezyweather.domain.feature.SourceFeature
 import org.breezyweather.main.utils.RefreshErrorType
 
 class RefreshError(
     val error: RefreshErrorType,
     val source: String? = null,
+    val feature: SourceFeature? = null,
 )

@@ -18,6 +18,7 @@ package org.breezyweather.sources.mf
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -37,7 +38,6 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.mf.json.MfCurrentResult
 import org.breezyweather.sources.mf.json.MfEphemerisResult
@@ -76,23 +76,24 @@ class MfService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_MINUTELY,
+        SourceFeature.FEATURE_ALERT,
+        SourceFeature.FEATURE_NORMALS
     )
 
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
         }
         val languageCode = context.currentLocale.code
         val token = getToken()
-        val current = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val failedFeatures = mutableListOf<SourceFeature>()
+        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 USER_AGENT,
                 location.latitude,
@@ -100,7 +101,10 @@ class MfService @Inject constructor(
                 languageCode,
                 "iso",
                 token
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(MfCurrentResult())
+            }
         } else {
             Observable.just(MfCurrentResult())
         }
@@ -118,8 +122,13 @@ class MfService @Inject constructor(
             "en", // English required to convert moon phase
             "iso",
             token
-        )
-        val rain = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+        ).onErrorResumeNext {
+            /*if (BreezyWeather.instance.debugMode) {
+                errors.add(SourceFeature.FEATURE_OTHER)
+            }*/
+            Observable.just(MfEphemerisResult())
+        }
+        val rain = if (!ignoreFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
             mApi.getRain(
                 USER_AGENT,
                 location.latitude,
@@ -128,13 +137,13 @@ class MfService @Inject constructor(
                 "iso",
                 token
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
                 Observable.just(MfRainResult())
             }
         } else {
             Observable.just(MfRainResult())
         }
-        val warnings = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
+        val warnings = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT) &&
             !location.countryCode.isNullOrEmpty() &&
             location.countryCode.equals("FR", ignoreCase = true) &&
             !location.admin2Code.isNullOrEmpty()
@@ -144,20 +153,23 @@ class MfService @Inject constructor(
                 location.admin2Code!!,
                 "iso",
                 token
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(MfWarningsResult())
+            }
         } else {
             Observable.just(MfWarningsResult())
         }
 
         // TODO: Only call once a month, unless it’s current position
-        val normals = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+        val normals = if (!ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
             mApi.getNormals(
                 USER_AGENT,
                 location.latitude,
                 location.longitude,
                 token
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
                 Observable.just(MfNormalsResult())
             }
         } else {
@@ -179,35 +191,36 @@ class MfService @Inject constructor(
                 mfEphemerisResult,
                 mfRainResult,
                 mfWarningResults,
-                mfNormalsResult
+                mfNormalsResult,
+                failedFeatures
             )
         }
     }
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_MINUTELY,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT,
-        SecondaryWeatherSourceFeature.FEATURE_NORMALS
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_MINUTELY,
+        SourceFeature.FEATURE_ALERT,
+        SourceFeature.FEATURE_NORMALS
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
         return isConfigured &&
             (
-                feature == SecondaryWeatherSourceFeature.FEATURE_CURRENT &&
+                feature == SourceFeature.FEATURE_CURRENT &&
                     !location.countryCode.isNullOrEmpty() &&
                     location.countryCode.equals("FR", ignoreCase = true)
                 ) ||
             (
-                feature == SecondaryWeatherSourceFeature.FEATURE_MINUTELY &&
+                feature == SourceFeature.FEATURE_MINUTELY &&
                     !location.countryCode.isNullOrEmpty() &&
                     location.countryCode.equals("FR", ignoreCase = true)
                 ) ||
             (
-                feature == SecondaryWeatherSourceFeature.FEATURE_ALERT &&
+                feature == SourceFeature.FEATURE_ALERT &&
                     !location.countryCode.isNullOrEmpty() &&
                     location.countryCode.equals("FR", ignoreCase = true) &&
                     !location.admin2Code.isNullOrEmpty()
@@ -215,7 +228,7 @@ class MfService @Inject constructor(
             (
                 // Technically, works anywhere but as a France-focused source, we don’t want the whole
                 // world to use this source, as currently the only alternative is AccuWeather
-                feature == SecondaryWeatherSourceFeature.FEATURE_NORMALS &&
+                feature == SourceFeature.FEATURE_NORMALS &&
                     !location.countryCode.isNullOrEmpty() &&
                     location.countryCode.equals("FR", ignoreCase = true)
                 )
@@ -230,7 +243,7 @@ class MfService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         if (!isConfigured) {
             return Observable.error(ApiKeyMissingException())
@@ -238,7 +251,8 @@ class MfService @Inject constructor(
         val languageCode = context.currentLocale.code
         val token = getToken()
 
-        val current = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val failedFeatures = mutableListOf<SourceFeature>()
+        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 USER_AGENT,
                 location.latitude,
@@ -246,11 +260,14 @@ class MfService @Inject constructor(
                 languageCode,
                 "iso",
                 token
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(MfCurrentResult())
+            }
         } else {
             Observable.just(MfCurrentResult())
         }
-        val rain = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+        val rain = if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
             mApi.getRain(
                 USER_AGENT,
                 location.latitude,
@@ -258,13 +275,16 @@ class MfService @Inject constructor(
                 languageCode,
                 "iso",
                 token
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
+                Observable.just(MfRainResult())
+            }
         } else {
             Observable.just(MfRainResult())
         }
 
         val warnings = if (
-            requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
+            requestedFeatures.contains(SourceFeature.FEATURE_ALERT) &&
             !location.countryCode.isNullOrEmpty() &&
             location.countryCode.equals("FR", ignoreCase = true) &&
             !location.admin2Code.isNullOrEmpty()
@@ -274,18 +294,24 @@ class MfService @Inject constructor(
                 location.admin2Code!!,
                 "iso",
                 token
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(MfWarningsResult())
+            }
         } else {
             Observable.just(MfWarningsResult())
         }
 
-        val normals = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+        val normals = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
             mApi.getNormals(
                 USER_AGENT,
                 location.latitude,
                 location.longitude,
                 token
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
+                Observable.just(MfNormalsResult())
+            }
         } else {
             Observable.just(MfNormalsResult())
         }
@@ -298,26 +324,27 @@ class MfService @Inject constructor(
             ->
             convertSecondary(
                 location,
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+                if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
                     mfCurrentResult
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)) {
+                if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
                     mfRainResult
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+                if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
                     mfWarningResults
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)) {
+                if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
                     mfNormalsResult
                 } else {
                     null
-                }
+                },
+                failedFeatures
             )
         }
     }

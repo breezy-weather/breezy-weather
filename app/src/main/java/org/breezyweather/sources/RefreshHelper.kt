@@ -26,6 +26,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.location.LocationManagerCompat
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Base
 import breezyweather.domain.weather.model.Weather
@@ -65,7 +66,6 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.RefreshError
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.source.WeatherResult
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.LogHelper
@@ -329,16 +329,16 @@ class RefreshHelper @Inject constructor(
             }
 
             // Group data requested to secondary sources by source
-            val mainFeaturesIgnored: MutableList<SecondaryWeatherSourceFeature> = mutableListOf()
-            val secondarySources: MutableMap<String, MutableList<SecondaryWeatherSourceFeature>> = mutableMapOf()
+            val mainFeaturesIgnored: MutableList<SourceFeature> = mutableListOf()
+            val secondarySources: MutableMap<String, MutableList<SourceFeature>> = mutableMapOf()
             with(location) {
                 listOf(
-                    Pair(currentSource, SecondaryWeatherSourceFeature.FEATURE_CURRENT),
-                    Pair(airQualitySource, SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY),
-                    Pair(pollenSource, SecondaryWeatherSourceFeature.FEATURE_POLLEN),
-                    Pair(minutelySource, SecondaryWeatherSourceFeature.FEATURE_MINUTELY),
-                    Pair(alertSource, SecondaryWeatherSourceFeature.FEATURE_ALERT),
-                    Pair(normalsSource, SecondaryWeatherSourceFeature.FEATURE_NORMALS)
+                    Pair(currentSource, SourceFeature.FEATURE_CURRENT),
+                    Pair(airQualitySource, SourceFeature.FEATURE_AIR_QUALITY),
+                    Pair(pollenSource, SourceFeature.FEATURE_POLLEN),
+                    Pair(minutelySource, SourceFeature.FEATURE_MINUTELY),
+                    Pair(alertSource, SourceFeature.FEATURE_ALERT),
+                    Pair(normalsSource, SourceFeature.FEATURE_NORMALS)
                 ).forEach {
                     if (!it.first.isNullOrEmpty() && it.first != weatherSource) {
                         if (secondarySources.containsKey(it.first)) {
@@ -449,49 +449,59 @@ class RefreshHelper @Inject constructor(
                     )
                 }
             }
+            val errors = mutableListOf<RefreshError>()
+            mainWeather.failedFeatures?.forEach {
+                errors.add(
+                    RefreshError(
+                        RefreshErrorType.FAILED_FEATURE,
+                        service.name,
+                        it
+                    )
+                )
+            }
             var currentUpdateTime = if (
-                service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT) &&
-                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)
+                service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_CURRENT) &&
+                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_CURRENT)
             ) {
                 Date()
             } else {
                 base.currentUpdateTime
             }
             var airQualityUpdateTime = if (
-                service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY) &&
-                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)
+                service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_AIR_QUALITY) &&
+                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_AIR_QUALITY)
             ) {
                 Date()
             } else {
                 base.airQualityUpdateTime
             }
             var pollenUpdateTime = if (
-                service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN) &&
-                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
+                service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_POLLEN) &&
+                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_POLLEN)
             ) {
                 Date()
             } else {
                 base.pollenUpdateTime
             }
             var minutelyUpdateTime = if (
-                service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY) &&
-                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_MINUTELY)
+                service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_MINUTELY) &&
+                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_MINUTELY)
             ) {
                 Date()
             } else {
                 base.minutelyUpdateTime
             }
             var alertsUpdateTime = if (
-                service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT) &&
-                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)
+                service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_ALERT) &&
+                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_ALERT)
             ) {
                 Date()
             } else {
                 base.alertsUpdateTime
             }
             var normalsUpdateTime = if (
-                service.supportedFeaturesInMain.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS) &&
-                !mainFeaturesIgnored.contains(SecondaryWeatherSourceFeature.FEATURE_NORMALS)
+                service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_NORMALS) &&
+                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_NORMALS)
             ) {
                 Date()
             } else {
@@ -510,7 +520,6 @@ class RefreshHelper @Inject constructor(
             )
 
             // SECONDARY SOURCES
-            val errors = mutableListOf<RefreshError>()
             val secondaryWeatherWrapper = if (secondarySources.isNotEmpty()) {
                 val secondarySourceCalls = mutableMapOf<String, SecondaryWeatherWrapper?>()
                 secondarySources
@@ -590,6 +599,18 @@ class RefreshHelper @Inject constructor(
                             }
                         }
                     }
+
+                for ((k, v) in secondarySourceCalls) {
+                    v?.failedFeatures?.forEach {
+                        errors.add(
+                            RefreshError(
+                                RefreshErrorType.FAILED_FEATURE,
+                                k,
+                                it
+                            )
+                        )
+                    }
+                }
 
                 /**
                  * Make sure we return data from the correct secondary source
@@ -1048,35 +1069,35 @@ class RefreshHelper @Inject constructor(
      */
     private fun isWeatherDataStillValid(
         location: Location,
-        feature: SecondaryWeatherSourceFeature? = null,
+        feature: SourceFeature? = null,
         isRestricted: Boolean = false,
         minimumTime: Long = 0,
     ): Boolean {
         if (location.weather?.base == null) return false
 
         when (feature) {
-            SecondaryWeatherSourceFeature.FEATURE_CURRENT -> {
+            SourceFeature.FEATURE_CURRENT -> {
                 return isUpdateStillValid(
                     location.weather!!.base.currentUpdateTime,
                     if (isRestricted) WAIT_CURRENT_RESTRICTED else WAIT_CURRENT,
                     minimumTime
                 )
             }
-            SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY -> {
+            SourceFeature.FEATURE_AIR_QUALITY -> {
                 return isUpdateStillValid(
                     location.weather!!.base.airQualityUpdateTime,
                     if (isRestricted) WAIT_AIR_QUALITY_RESTRICTED else WAIT_AIR_QUALITY,
                     minimumTime
                 )
             }
-            SecondaryWeatherSourceFeature.FEATURE_POLLEN -> {
+            SourceFeature.FEATURE_POLLEN -> {
                 return isUpdateStillValid(
                     location.weather!!.base.pollenUpdateTime,
                     if (isRestricted) WAIT_POLLEN_RESTRICTED else WAIT_POLLEN,
                     minimumTime
                 )
             }
-            SecondaryWeatherSourceFeature.FEATURE_MINUTELY -> {
+            SourceFeature.FEATURE_MINUTELY -> {
                 return isUpdateStillValid(
                     location.weather!!.base.minutelyUpdateTime,
                     if (location.weather!!.minutelyForecast.none { (it.precipitationIntensity ?: 0.0) > 0 }) {
@@ -1087,7 +1108,7 @@ class RefreshHelper @Inject constructor(
                     minimumTime
                 )
             }
-            SecondaryWeatherSourceFeature.FEATURE_ALERT -> {
+            SourceFeature.FEATURE_ALERT -> {
                 return isUpdateStillValid(
                     location.weather!!.base.alertsUpdateTime,
                     if (location.weather!!.currentAlertList.isEmpty()) {
@@ -1098,7 +1119,7 @@ class RefreshHelper @Inject constructor(
                     minimumTime
                 )
             }
-            SecondaryWeatherSourceFeature.FEATURE_NORMALS -> {
+            SourceFeature.FEATURE_NORMALS -> {
                 if (location.weather!!.base.normalsUpdateTime == null) return true
 
                 if (location.isCurrentPosition) {

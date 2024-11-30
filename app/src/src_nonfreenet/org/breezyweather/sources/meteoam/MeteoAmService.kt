@@ -19,13 +19,13 @@ package org.breezyweather.sources.meteoam
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.meteoam.json.MeteoAmForecastResult
 import org.breezyweather.sources.meteoam.json.MeteoAmObservationResult
 import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocationResult
@@ -55,20 +55,20 @@ class MeteoAmService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT
+        SourceFeature.FEATURE_CURRENT
     )
 
     @SuppressLint("CheckResult")
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val forecast = mApi.getForecast(
             location.latitude,
             location.longitude
         )
-        val observation = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val observation = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 location.latitude,
                 location.longitude

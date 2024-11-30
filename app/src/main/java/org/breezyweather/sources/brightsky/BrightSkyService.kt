@@ -18,6 +18,7 @@ package org.breezyweather.sources.brightsky
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -35,7 +36,6 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.brightsky.json.BrightSkyAlertsResult
 import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeatherResult
@@ -67,13 +67,13 @@ class BrightSkyService @Inject constructor(
         }
 
     override val supportedFeaturesInMain = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_ALERT
     )
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?,
+        feature: SourceFeature?,
     ): Boolean {
         return location.countryCode.equals("DE", ignoreCase = true)
     }
@@ -81,7 +81,7 @@ class BrightSkyService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val initialDate = Date().toTimezoneNoHour(location.javaTimeZone)
         val date = initialDate!!.toCalendarWithTimeZone(location.javaTimeZone).apply {
@@ -100,7 +100,7 @@ class BrightSkyService @Inject constructor(
             lastDate.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss", location)
         )
 
-        val curWeather = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_CURRENT)) {
+        val curWeather = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrentWeather(
                 location.latitude,
                 location.longitude
@@ -110,7 +110,7 @@ class BrightSkyService @Inject constructor(
             Observable.just(BrightSkyCurrentWeatherResult())
         }
 
-        val alerts = if (!ignoreFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlerts(
                 location.latitude,
                 location.longitude
@@ -134,12 +134,12 @@ class BrightSkyService @Inject constructor(
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
-        SecondaryWeatherSourceFeature.FEATURE_CURRENT,
-        SecondaryWeatherSourceFeature.FEATURE_ALERT
+        SourceFeature.FEATURE_CURRENT,
+        SourceFeature.FEATURE_ALERT
     )
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
         return isFeatureSupportedInMainForLocation(location, feature)
     }
@@ -153,9 +153,9 @@ class BrightSkyService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        val currentWeather = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val currentWeather = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getCurrentWeather(
                 location.latitude,
                 location.longitude
@@ -164,7 +164,7 @@ class BrightSkyService @Inject constructor(
             Observable.just(BrightSkyCurrentWeatherResult())
         }
 
-        val alerts = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_ALERT)) {
+        val alerts = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlerts(
                 location.latitude,
                 location.longitude

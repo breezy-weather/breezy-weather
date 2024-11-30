@@ -18,6 +18,7 @@ package org.breezyweather.common.source
 
 import android.content.Context
 import androidx.compose.runtime.Composable
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 
 /**
@@ -35,14 +36,14 @@ interface PreferencesParametersSource : Source {
      */
     fun hasPreferencesScreen(
         location: Location,
-        features: List<SecondaryWeatherSourceFeature> = emptyList(),
+        features: List<SourceFeature> = emptyList(),
     ): Boolean
 
     @Composable
     fun PerLocationPreferences(
         context: Context,
         location: Location,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
         onSave: (Map<String, String>) -> Unit,
     )
 }

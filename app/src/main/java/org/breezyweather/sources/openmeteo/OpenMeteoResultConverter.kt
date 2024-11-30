@@ -17,6 +17,7 @@
 package org.breezyweather.sources.openmeteo
 
 import android.content.Context
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Astro
@@ -41,7 +42,6 @@ import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.sources.mf.getFrenchDepartmentCode
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityHourly
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult
@@ -337,7 +337,7 @@ private fun getWeatherCode(
 fun convertSecondary(
     weatherResult: OpenMeteoWeatherResult,
     hourlyAirQualityResult: OpenMeteoAirQualityHourly?,
-    requestedFeatures: List<SecondaryWeatherSourceFeature>,
+    requestedFeatures: List<SourceFeature>,
     context: Context,
 ): SecondaryWeatherWrapper {
     val airQualityHourly = mutableMapOf<Date, AirQuality>()
@@ -345,7 +345,7 @@ fun convertSecondary(
 
     if (hourlyAirQualityResult != null) {
         for (i in hourlyAirQualityResult.time.indices) {
-            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+            if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
                 airQualityHourly[hourlyAirQualityResult.time[i].seconds.inWholeMilliseconds.toDate()] = AirQuality(
                     pM25 = hourlyAirQualityResult.pm25?.getOrNull(i),
                     pM10 = hourlyAirQualityResult.pm10?.getOrNull(i),
@@ -355,7 +355,7 @@ fun convertSecondary(
                     cO = hourlyAirQualityResult.carbonMonoxide?.getOrNull(i)?.div(1000.0)
                 )
             }
-            if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
+            if (requestedFeatures.contains(SourceFeature.FEATURE_POLLEN)) {
                 pollenHourly[hourlyAirQualityResult.time[i].seconds.inWholeMilliseconds.toDate()] = Pollen(
                     alder = hourlyAirQualityResult.alderPollen?.getOrNull(i)?.roundToInt(),
                     birch = hourlyAirQualityResult.birchPollen?.getOrNull(i)?.roundToInt(),
@@ -370,12 +370,12 @@ fun convertSecondary(
 
     return SecondaryWeatherWrapper(
         current = getCurrent(weatherResult.current, context),
-        airQuality = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY)) {
+        airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
             AirQualityWrapper(hourlyForecast = airQualityHourly)
         } else {
             null
         },
-        pollen = if (requestedFeatures.contains(SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
+        pollen = if (requestedFeatures.contains(SourceFeature.FEATURE_POLLEN)) {
             PollenWrapper(hourlyForecast = pollenHourly)
         } else {
             null

@@ -18,6 +18,7 @@ package org.breezyweather.sources.mf
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -86,6 +87,7 @@ fun convert(
     rainResult: MfRainResult?,
     warningsResult: MfWarningsResult,
     normalsResult: MfNormalsResult,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (forecastResult.properties == null ||
@@ -110,7 +112,8 @@ fun convert(
             forecastResult.properties.probabilityForecast
         ),
         minutelyForecast = getMinutelyList(rainResult),
-        alertList = getWarningsList(warningsResult)
+        alertList = getWarningsList(warningsResult),
+        failedFeatures = failedFeatures
     )
 }
 
@@ -568,6 +571,7 @@ fun convertSecondary(
     minuteResult: MfRainResult?,
     alertResultList: MfWarningsResult?,
     normalsResult: MfNormalsResult?,
+    failedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = if (currentResult != null) {
@@ -589,7 +593,8 @@ fun convertSecondary(
             getNormals(location, normalsResult)
         } else {
             null
-        }
+        },
+        failedFeatures = failedFeatures
     )
 }
 

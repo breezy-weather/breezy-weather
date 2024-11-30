@@ -17,6 +17,7 @@
 package org.breezyweather.sources
 
 import android.content.Context
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.BuildConfig
@@ -31,7 +32,6 @@ import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.source.PreferencesParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.common.source.Source
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.accu.AccuService
@@ -274,12 +274,12 @@ class SourceManager @Inject constructor(
 
         with(location) {
             listOf(
-                Pair(currentSource, SecondaryWeatherSourceFeature.FEATURE_CURRENT),
-                Pair(airQualitySource, SecondaryWeatherSourceFeature.FEATURE_AIR_QUALITY),
-                Pair(pollenSource, SecondaryWeatherSourceFeature.FEATURE_POLLEN),
-                Pair(minutelySource, SecondaryWeatherSourceFeature.FEATURE_MINUTELY),
-                Pair(alertSource, SecondaryWeatherSourceFeature.FEATURE_ALERT),
-                Pair(normalsSource, SecondaryWeatherSourceFeature.FEATURE_NORMALS)
+                Pair(currentSource, SourceFeature.FEATURE_CURRENT),
+                Pair(airQualitySource, SourceFeature.FEATURE_AIR_QUALITY),
+                Pair(pollenSource, SourceFeature.FEATURE_POLLEN),
+                Pair(minutelySource, SourceFeature.FEATURE_MINUTELY),
+                Pair(alertSource, SourceFeature.FEATURE_ALERT),
+                Pair(normalsSource, SourceFeature.FEATURE_NORMALS)
             ).forEach {
                 val secondarySource = getSecondaryWeatherSource(it.first ?: location.weatherSource)
                 if (secondarySource is PreferencesParametersSource &&

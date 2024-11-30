@@ -18,12 +18,12 @@ package org.breezyweather.sources.smhi
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -47,11 +47,11 @@ class SmhiService @Inject constructor(
             .create(SmhiApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf<SecondaryWeatherSourceFeature>()
+    override val supportedFeaturesInMain = listOf<SourceFeature>()
 
     override fun isFeatureSupportedInMainForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature?,
+        feature: SourceFeature?,
     ): Boolean {
         return location.countryCode.equals("SE", ignoreCase = true)
     }
@@ -59,7 +59,7 @@ class SmhiService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SecondaryWeatherSourceFeature>,
+        ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         return mApi.getForecast(
             location.longitude,

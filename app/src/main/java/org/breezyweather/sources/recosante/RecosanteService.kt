@@ -17,6 +17,7 @@
 package org.breezyweather.sources.recosante
 
 import android.content.Context
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -31,7 +32,6 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSourceFeature
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -64,10 +64,10 @@ class RecosanteService @Inject constructor(
                 .create(RecosanteApi::class.java)
         }
 
-    override val supportedFeaturesInSecondary = listOf(SecondaryWeatherSourceFeature.FEATURE_POLLEN)
+    override val supportedFeaturesInSecondary = listOf(SourceFeature.FEATURE_POLLEN)
     override fun isFeatureSupportedInSecondaryForLocation(
         location: Location,
-        feature: SecondaryWeatherSourceFeature,
+        feature: SourceFeature,
     ): Boolean {
         return !location.countryCode.isNullOrEmpty() && location.countryCode.equals("FR", ignoreCase = true)
     }
@@ -82,9 +82,9 @@ class RecosanteService @Inject constructor(
     override fun requestSecondaryWeather(
         context: Context,
         location: Location,
-        requestedFeatures: List<SecondaryWeatherSourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SecondaryWeatherSourceFeature.FEATURE_POLLEN)) {
+        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_POLLEN)) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
         }
@@ -106,7 +106,7 @@ class RecosanteService @Inject constructor(
     override fun needsLocationParametersRefresh(
         location: Location,
         coordinatesChanged: Boolean,
-        features: List<SecondaryWeatherSourceFeature>,
+        features: List<SourceFeature>,
     ): Boolean {
         if (coordinatesChanged) return true
 

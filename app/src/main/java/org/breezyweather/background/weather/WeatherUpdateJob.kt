@@ -60,12 +60,14 @@ import org.breezyweather.common.extensions.withIOContext
 import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.WeatherResult
+import org.breezyweather.domain.feature.resourceName
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.RefreshHelper
+import org.breezyweather.sources.SourceManager
 import java.io.File
 import java.util.Date
 import java.util.concurrent.CopyOnWriteArrayList
@@ -82,6 +84,7 @@ class WeatherUpdateJob @AssistedInject constructor(
     @Assisted private val context: Context,
     @Assisted workerParams: WorkerParameters,
     private val refreshHelper: RefreshHelper,
+    private val sourceManager: SourceManager,
     private val locationRepository: LocationRepository,
     private val weatherRepository: WeatherRepository,
     private val updateChecker: AppUpdateChecker,
@@ -269,14 +272,24 @@ class WeatherUpdateJob @AssistedInject constructor(
                                                     locationResult.location.copy(weather = weatherResult.weather)
                                             )
                                             weatherResult.errors.forEach {
-                                                val shortMessage = if (!it.source.isNullOrEmpty()) {
-                                                    "${it.source}${context.getString(
-                                                        R.string.colon_separator
-                                                    )}${context.getString(it.error.shortMessage)}"
+                                                val shortMessage = if (it.error == RefreshErrorType.FAILED_FEATURE) {
+                                                    context.getString(
+                                                        it.error.shortMessage,
+                                                        context.getString(it.feature!!.resourceName!!)
+                                                    )
                                                 } else {
                                                     context.getString(it.error.shortMessage)
                                                 }
-                                                failedUpdates.add(location to shortMessage)
+                                                val shortMessageWithSource = if (!it.source.isNullOrEmpty()) {
+                                                    val sourceName = sourceManager.getSource(it.source)?.name
+                                                        ?: it.source
+                                                    "$sourceName${context.getString(
+                                                        R.string.colon_separator
+                                                    )}$shortMessage"
+                                                } else {
+                                                    shortMessage
+                                                }
+                                                failedUpdates.add(location to shortMessageWithSource)
                                             }
                                         }
                                     } catch (e: Throwable) {
