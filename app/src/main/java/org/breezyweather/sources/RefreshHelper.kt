@@ -404,7 +404,7 @@ class RefreshHelper @Inject constructor(
 
             val locationParameters = location.parameters.toMutableMap()
 
-            val mainWeather = if (isMainDataValid) {
+            var mainWeather = if (isMainDataValid) {
                 LogHelper.log(msg = "Main weather data is still valid")
                 location.weather!!.toWeatherWrapper()
             } else {
@@ -450,6 +450,8 @@ class RefreshHelper @Inject constructor(
                 }
             }
             val errors = mutableListOf<RefreshError>()
+            var airQualityFailedInMain = false
+            var pollenFailedInMain = false
             mainWeather.failedFeatures?.forEach {
                 errors.add(
                     RefreshError(
@@ -458,10 +460,29 @@ class RefreshHelper @Inject constructor(
                         it
                     )
                 )
+                when (it) {
+                    SourceFeature.FEATURE_AIR_QUALITY -> {
+                        airQualityFailedInMain = true
+                    }
+                    SourceFeature.FEATURE_POLLEN -> {
+                        pollenFailedInMain = true
+                    }
+                    SourceFeature.FEATURE_MINUTELY -> {
+                        mainWeather = mainWeather.copy(minutelyForecast = getMinutelyFromWeather(location.weather))
+                    }
+                    SourceFeature.FEATURE_ALERT -> {
+                        mainWeather = mainWeather.copy(alertList = getAlertsFromWeather(location.weather))
+                    }
+                    SourceFeature.FEATURE_NORMALS -> {
+                        mainWeather = mainWeather.copy(normals = getNormalsFromWeather(location))
+                    }
+                    else -> {}
+                }
             }
             var currentUpdateTime = if (
                 service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_CURRENT) &&
-                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_CURRENT)
+                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_CURRENT) &&
+                !errors.any { it.feature == SourceFeature.FEATURE_CURRENT }
             ) {
                 Date()
             } else {
@@ -469,7 +490,8 @@ class RefreshHelper @Inject constructor(
             }
             var airQualityUpdateTime = if (
                 service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_AIR_QUALITY) &&
-                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_AIR_QUALITY)
+                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_AIR_QUALITY) &&
+                !errors.any { it.feature == SourceFeature.FEATURE_AIR_QUALITY }
             ) {
                 Date()
             } else {
@@ -477,7 +499,8 @@ class RefreshHelper @Inject constructor(
             }
             var pollenUpdateTime = if (
                 service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_POLLEN) &&
-                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_POLLEN)
+                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_POLLEN) &&
+                !errors.any { it.feature == SourceFeature.FEATURE_POLLEN }
             ) {
                 Date()
             } else {
@@ -485,7 +508,8 @@ class RefreshHelper @Inject constructor(
             }
             var minutelyUpdateTime = if (
                 service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_MINUTELY) &&
-                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_MINUTELY)
+                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_MINUTELY) &&
+                !errors.any { it.feature == SourceFeature.FEATURE_MINUTELY }
             ) {
                 Date()
             } else {
@@ -493,7 +517,8 @@ class RefreshHelper @Inject constructor(
             }
             var alertsUpdateTime = if (
                 service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_ALERT) &&
-                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_ALERT)
+                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_ALERT) &&
+                !errors.any { it.feature == SourceFeature.FEATURE_ALERT }
             ) {
                 Date()
             } else {
@@ -501,7 +526,8 @@ class RefreshHelper @Inject constructor(
             }
             var normalsUpdateTime = if (
                 service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_NORMALS) &&
-                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_NORMALS)
+                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_NORMALS) &&
+                !errors.any { it.feature == SourceFeature.FEATURE_NORMALS }
             ) {
                 Date()
             } else {
@@ -619,60 +645,116 @@ class RefreshHelper @Inject constructor(
                     current = if (!location.currentSource.isNullOrEmpty() &&
                         location.currentSource != location.weatherSource
                     ) {
-                        secondarySourceCalls.getOrElse(location.currentSource!!) { null }?.current?.let {
-                            currentUpdateTime = Date()
-                            it
-                        } // Don't fallback to old current, we will use forecast instead later
+                        if (errors.any {
+                                it.feature == SourceFeature.FEATURE_CURRENT &&
+                                    it.source == location.currentSource!!
+                            }
+                        ) {
+                            null // Don't fallback to old current, we will use forecast instead later
+                        } else {
+                            secondarySourceCalls.getOrElse(location.currentSource!!) { null }?.current?.let {
+                                currentUpdateTime = Date()
+                                it
+                            } // Don't fallback to old current, we will use forecast instead later
+                        }
                     } else {
                         null
                     },
                     airQuality = if (!location.airQualitySource.isNullOrEmpty() &&
                         location.airQualitySource != location.weatherSource
                     ) {
-                        secondarySourceCalls.getOrElse(location.airQualitySource!!) { null }?.airQuality?.let {
-                            airQualityUpdateTime = Date()
-                            it
-                        } ?: getAirQualityWrapperFromWeather(location.weather, yesterdayMidnight)
+                        if (errors.any {
+                                it.feature == SourceFeature.FEATURE_AIR_QUALITY &&
+                                    it.source == location.airQualitySource!!
+                            }
+                        ) {
+                            getAirQualityWrapperFromWeather(location.weather, yesterdayMidnight)
+                        } else {
+                            secondarySourceCalls.getOrElse(location.airQualitySource!!) { null }?.airQuality?.let {
+                                airQualityUpdateTime = Date()
+                                it
+                            } ?: getAirQualityWrapperFromWeather(location.weather, yesterdayMidnight)
+                        }
                     } else {
-                        null
+                        if (airQualityFailedInMain) {
+                            getAirQualityWrapperFromWeather(location.weather, yesterdayMidnight)
+                        } else {
+                            null
+                        }
                     },
                     pollen = if (!location.pollenSource.isNullOrEmpty() &&
                         location.pollenSource != location.weatherSource
                     ) {
-                        secondarySourceCalls.getOrElse(location.pollenSource!!) { null }?.pollen?.let {
-                            pollenUpdateTime = Date()
-                            it
-                        } ?: getPollenWrapperFromWeather(location.weather, yesterdayMidnight)
+                        if (errors.any {
+                                it.feature == SourceFeature.FEATURE_POLLEN &&
+                                    it.source == location.pollenSource!!
+                            }
+                        ) {
+                            getPollenWrapperFromWeather(location.weather, yesterdayMidnight)
+                        } else {
+                            secondarySourceCalls.getOrElse(location.pollenSource!!) { null }?.pollen?.let {
+                                pollenUpdateTime = Date()
+                                it
+                            } ?: getPollenWrapperFromWeather(location.weather, yesterdayMidnight)
+                        }
                     } else {
-                        null
+                        if (pollenFailedInMain) {
+                            getPollenWrapperFromWeather(location.weather, yesterdayMidnight)
+                        } else {
+                            null
+                        }
                     },
                     minutelyForecast = if (!location.minutelySource.isNullOrEmpty() &&
                         location.minutelySource != location.weatherSource
                     ) {
-                        secondarySourceCalls.getOrElse(location.minutelySource!!) { null }?.minutelyForecast?.let {
-                            minutelyUpdateTime = Date()
-                            it
-                        } ?: getMinutelyFromWeather(location.weather)
+                        if (errors.any {
+                                it.feature == SourceFeature.FEATURE_MINUTELY &&
+                                    it.source == location.minutelySource!!
+                            }
+                        ) {
+                            getMinutelyFromWeather(location.weather)
+                        } else {
+                            secondarySourceCalls.getOrElse(location.minutelySource!!) { null }?.minutelyForecast?.let {
+                                minutelyUpdateTime = Date()
+                                it
+                            } ?: getMinutelyFromWeather(location.weather)
+                        }
                     } else {
                         null
                     },
                     alertList = if (!location.alertSource.isNullOrEmpty() &&
                         location.alertSource != location.weatherSource
                     ) {
-                        secondarySourceCalls.getOrElse(location.alertSource!!) { null }?.alertList?.let {
-                            alertsUpdateTime = Date()
-                            it
-                        } ?: getAlertsFromWeather(location.weather)
+                        if (errors.any {
+                                it.feature == SourceFeature.FEATURE_ALERT &&
+                                    it.source == location.alertSource!!
+                            }
+                        ) {
+                            getAlertsFromWeather(location.weather)
+                        } else {
+                            secondarySourceCalls.getOrElse(location.alertSource!!) { null }?.alertList?.let {
+                                alertsUpdateTime = Date()
+                                it
+                            } ?: getAlertsFromWeather(location.weather)
+                        }
                     } else {
                         null
                     },
                     normals = if (!location.normalsSource.isNullOrEmpty() &&
                         location.normalsSource != location.weatherSource
                     ) {
-                        secondarySourceCalls.getOrElse(location.normalsSource!!) { null }?.normals?.let {
-                            normalsUpdateTime = Date()
-                            it
-                        } ?: getNormalsFromWeather(location)
+                        if (errors.any {
+                                it.feature == Sod *urceFeature.FEATURE_NORMALS &&
+                                    it.source == location.normalsSource!!
+                            }
+                        ) {
+                            getNormalsFromWeather(location)
+                        } else {
+                            secondarySourceCalls.getOrElse(location.normalsSource!!) { null }?.normals?.let {
+                                normalsUpdateTime = Date()
+                                it
+                            } ?: getNormalsFromWeather(location)
+                        }
                     } else {
                         null
                     }
