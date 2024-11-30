@@ -33,6 +33,7 @@
   - [CWA] Fix wind speed when >= 11 m/s (@chunshek)
   - [Hong Kong Observatory] Added as a main and secondary current/alert/normals source option for Hong Kong (@chunshek)
   - [IMD] Added as a main source option for India (@chunshek)
+  - [JMA] Added as a main and secondary current/alert/normals source option for Japan (@chunshek)
   - [MGM] Added as a main and secondary current/alert/normals source option for Türkiye (@chunshek)
   - [NAMEM] Added as a main and secondary current/normals/air quality source option for Mongolia. (@chunshek)
   - [PAGASA] Added as a main source option for Philippines (@chunshek)
