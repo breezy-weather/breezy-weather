@@ -740,4 +740,5 @@
     <string name="jma_warning_text_ice_accretion_advisory">Advertencia de acumulación de hielo (congelación)</string>
     <string name="jma_warning_text_snow_accretion_advisory">Advertencia de acumulación de nieve</string>
     <string name="location_message_location_access_off">El acceso a la ubicación está desactivado</string>
+    <string name="weather_message_failed_feature">Error en la actualización de la fuente: %s</string>
 </resources>
