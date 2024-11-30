@@ -17,6 +17,7 @@
 package org.breezyweather.sources.brightsky
 
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -49,6 +50,7 @@ fun convert(
     alertsResult: BrightSkyAlertsResult,
     location: Location,
     languageCode: String,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     // If the API doesn’t return weather, consider data as garbage and keep cached data
     if (weatherResult.weather.isNullOrEmpty()) {
@@ -59,7 +61,8 @@ fun convert(
         current = getCurrent(currentWeatherResult.weather),
         dailyForecast = getDailyForecast(location, weatherResult.weather),
         hourlyForecast = getHourlyForecast(weatherResult.weather),
-        alertList = getAlertList(alertsResult.alerts, languageCode)
+        alertList = getAlertList(alertsResult.alerts, languageCode),
+        failedFeatures = failedFeatures
     )
 }
 
@@ -196,9 +199,11 @@ fun convertSecondary(
     currentWeather: BrightSkyCurrentWeatherResult,
     alertsResult: BrightSkyAlertsResult,
     languageCode: String,
+    failedFeatures: MutableList<SourceFeature>,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = getCurrent(currentWeather.weather),
-        alertList = getAlertList(alertsResult.alerts, languageCode)
+        alertList = getAlertList(alertsResult.alerts, languageCode),
+        failedFeatures = failedFeatures
     )
 }

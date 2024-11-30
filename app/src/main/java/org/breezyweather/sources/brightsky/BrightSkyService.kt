@@ -100,13 +100,16 @@ class BrightSkyService @Inject constructor(
             lastDate.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss", location)
         )
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val curWeather = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrentWeather(
                 location.latitude,
                 location.longitude
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(BrightSkyCurrentWeatherResult())
+            }
         } else {
-            // TODO: Log warning
             Observable.just(BrightSkyCurrentWeatherResult())
         }
 
@@ -114,9 +117,11 @@ class BrightSkyService @Inject constructor(
             mApi.getAlerts(
                 location.latitude,
                 location.longitude
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(BrightSkyAlertsResult())
+            }
         } else {
-            // TODO: Log warning
             Observable.just(BrightSkyAlertsResult())
         }
 
@@ -127,7 +132,8 @@ class BrightSkyService @Inject constructor(
                 brightSkyCurWeather,
                 brightSkyAlerts,
                 location,
-                languageCode
+                languageCode,
+                failedFeatures
             )
         }
     }
@@ -155,11 +161,15 @@ class BrightSkyService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
+        val failedFeatures = mutableListOf<SourceFeature>()
         val currentWeather = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getCurrentWeather(
                 location.latitude,
                 location.longitude
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(BrightSkyCurrentWeatherResult())
+            }
         } else {
             Observable.just(BrightSkyCurrentWeatherResult())
         }
@@ -168,14 +178,17 @@ class BrightSkyService @Inject constructor(
             mApi.getAlerts(
                 location.latitude,
                 location.longitude
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(BrightSkyAlertsResult())
+            }
         } else {
             Observable.just(BrightSkyAlertsResult())
         }
 
         return Observable.zip(currentWeather, alerts) { brightSkyCurrentWeather, brightSkyAlerts ->
             val languageCode = context.currentLocale.code
-            convertSecondary(brightSkyCurrentWeather, brightSkyAlerts, languageCode)
+            convertSecondary(brightSkyCurrentWeather, brightSkyAlerts, languageCode, failedFeatures)
         }
     }
 

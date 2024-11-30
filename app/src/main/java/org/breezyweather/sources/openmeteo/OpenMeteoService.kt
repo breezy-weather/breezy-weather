@@ -201,6 +201,7 @@ class OpenMeteoService @Inject constructor(
             windspeedUnit = "ms"
         )
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val aqi = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY) ||
             !ignoreFeatures.contains(SourceFeature.FEATURE_POLLEN)
         ) {
@@ -221,7 +222,15 @@ class OpenMeteoService @Inject constructor(
                 airQualityPollenHourly.joinToString(","),
                 forecastDays = 7,
                 pastDays = 1
-            )
+            ).onErrorResumeNext {
+                if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
+                    failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                }
+                if (!ignoreFeatures.contains(SourceFeature.FEATURE_POLLEN)) {
+                    failedFeatures.add(SourceFeature.FEATURE_POLLEN)
+                }
+                Observable.just(OpenMeteoAirQualityResult())
+            }
         } else {
             Observable.just(OpenMeteoAirQualityResult())
         }
@@ -243,7 +252,8 @@ class OpenMeteoService @Inject constructor(
                 context,
                 location,
                 weatherResult,
-                airQualityResult
+                airQualityResult,
+                failedFeatures
             )
         }
     }
@@ -275,6 +285,7 @@ class OpenMeteoService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
+        val failedFeatures = mutableListOf<SourceFeature>()
         val weather = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT) ||
             requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)
         ) {
@@ -297,7 +308,15 @@ class OpenMeteoService @Inject constructor(
                 forecastDays = 2, // In case current + 2 hours overlap two days
                 pastDays = 0,
                 windspeedUnit = "ms"
-            )
+            ).onErrorResumeNext {
+                if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+                    failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                }
+                if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
+                    failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
+                }
+                Observable.just(OpenMeteoWeatherResult())
+            }
         } else {
             Observable.just(OpenMeteoWeatherResult())
         }
@@ -322,7 +341,15 @@ class OpenMeteoService @Inject constructor(
                 airQualityPollenHourly.joinToString(","),
                 forecastDays = 7,
                 pastDays = 1
-            )
+            ).onErrorResumeNext {
+                if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
+                    failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                }
+                if (requestedFeatures.contains(SourceFeature.FEATURE_POLLEN)) {
+                    failedFeatures.add(SourceFeature.FEATURE_POLLEN)
+                }
+                Observable.just(OpenMeteoAirQualityResult())
+            }
         } else {
             Observable.just(OpenMeteoAirQualityResult())
         }
@@ -345,7 +372,8 @@ class OpenMeteoService @Inject constructor(
                 weatherResult,
                 airQualityResult.hourly,
                 requestedFeatures,
-                context
+                context,
+                failedFeatures
             )
         }
     }

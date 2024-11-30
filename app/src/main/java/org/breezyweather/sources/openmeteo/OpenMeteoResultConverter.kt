@@ -90,6 +90,7 @@ fun convert(
     location: Location,
     weatherResult: OpenMeteoWeatherResult,
     airQualityResult: OpenMeteoAirQualityResult,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
     if (weatherResult.hourly == null || weatherResult.daily == null) {
@@ -100,7 +101,8 @@ fun convert(
         current = getCurrent(weatherResult.current, context),
         dailyForecast = getDailyList(weatherResult.daily, location),
         hourlyForecast = getHourlyList(context, weatherResult.hourly, airQualityResult),
-        minutelyForecast = getMinutelyList(weatherResult.minutelyFifteen)
+        minutelyForecast = getMinutelyList(weatherResult.minutelyFifteen),
+        failedFeatures = failedFeatures
     )
 }
 
@@ -339,6 +341,7 @@ fun convertSecondary(
     hourlyAirQualityResult: OpenMeteoAirQualityHourly?,
     requestedFeatures: List<SourceFeature>,
     context: Context,
+    failedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     val airQualityHourly = mutableMapOf<Date, AirQuality>()
     val pollenHourly = mutableMapOf<Date, Pollen>()
@@ -380,7 +383,8 @@ fun convertSecondary(
         } else {
             null
         },
-        minutelyForecast = getMinutelyList(weatherResult.minutelyFifteen)
+        minutelyForecast = getMinutelyList(weatherResult.minutelyFifteen),
+        failedFeatures = failedFeatures
     )
 }
 
