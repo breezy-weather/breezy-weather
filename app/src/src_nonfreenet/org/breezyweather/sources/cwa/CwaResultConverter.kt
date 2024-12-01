@@ -17,6 +17,7 @@
 package org.breezyweather.sources.cwa
 
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
@@ -78,13 +79,15 @@ fun convert(
     moonResult: CwaAstroResult,
     assistantResult: CwaAssistantResult,
     location: Location,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     return WeatherWrapper(
         current = getCurrent(currentResult, assistantResult, airQualityResult),
         normals = getNormals(normalsResult),
         dailyForecast = getDailyForecast(dailyResult, sunResult, moonResult),
         hourlyForecast = getHourlyForecast(hourlyResult),
-        alertList = getAlertList(alertResult, location)
+        alertList = getAlertList(alertResult, location),
+        failedFeatures = failedFeatures
     )
 }
 
@@ -95,12 +98,14 @@ fun convertSecondary(
     alertResult: CwaAlertResult?,
     normalsResult: CwaNormalsResult?,
     location: Location,
+    failedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = currentResult?.let { assistantResult?.let { getCurrent(currentResult, assistantResult) } },
         airQuality = airQualityResult?.let { AirQualityWrapper(current = getAirQuality(it, null, null)) },
         alertList = alertResult?.let { getAlertList(it, location) },
-        normals = normalsResult?.let { getNormals(it) }
+        normals = normalsResult?.let { getNormals(it) },
+        failedFeatures = failedFeatures
     )
 }
 
@@ -263,8 +268,8 @@ private fun getDailyForecast(
                 // We calculate delta from the previous 06:00 and 18:00 local time (22:00 and 10:00 UTC).
                 // So that we can normalize quarter-day start times to half-day start times.
                 timestamp = formatter.parse(key!!)!!.time
-                extraMilliSeconds = (timestamp - 10.hours.inWholeMilliseconds).mod(12.hours.inWholeMilliseconds)
-                key = formatter.format(timestamp - extraMilliSeconds)
+                extraMilliSeconds = (timestamp!! - 10.hours.inWholeMilliseconds).mod(12.hours.inWholeMilliseconds)
+                key = formatter.format(timestamp!! - extraMilliSeconds!!)
                 value = getValid(item.legacyElementValue?.getOrNull(0)?.legacyValue) as String?
                 when (element.legacyElementName) {
                     "PoP12h" -> popMap[key!!] = value?.toDoubleOrNull()
@@ -306,8 +311,8 @@ private fun getDailyForecast(
                 // We calculate delta from the previous 06:00 and 18:00 local time (22:00 and 10:00 UTC).
                 // So that we can normalize quarter-day start times to half-day start times.
                 timestamp = formatter.parse(key!!)!!.time
-                extraMilliSeconds = (timestamp - 10.hours.inWholeMilliseconds).mod(12.hours.inWholeMilliseconds)
-                key = formatter.format(timestamp - extraMilliSeconds)
+                extraMilliSeconds = (timestamp!! - 10.hours.inWholeMilliseconds).mod(12.hours.inWholeMilliseconds)
+                key = formatter.format(timestamp!! - extraMilliSeconds!!)
 
                 item.elementValue?.getOrNull(0)?.let {
                     maxTMap[key!!] = getValid(it.maxTemperature?.toDoubleOrNull()) as Double?

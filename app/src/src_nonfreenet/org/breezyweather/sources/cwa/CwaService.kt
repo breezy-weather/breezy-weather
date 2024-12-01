@@ -19,6 +19,7 @@ package org.breezyweather.sources.cwa
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import androidx.compose.animation.fadeIn
 import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
@@ -153,12 +154,13 @@ class CwaService @Inject constructor(
             townshipName = townshipName
         )
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 apiKey = apiKey,
                 stationId = stationId
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                 Observable.just(CwaCurrentResult())
             }
         } else {
@@ -171,7 +173,7 @@ class CwaService @Inject constructor(
                 endpoint = CWA_ASSISTANT_ENDPOINTS[countyName]!!,
                 apiKey = apiKey
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                 Observable.just(CwaAssistantResult())
             }
         } else {
@@ -205,7 +207,7 @@ class CwaService @Inject constructor(
                 apiKey = apiKey,
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
                 Observable.just(CwaAirQualityResult())
             }
         } else {
@@ -230,7 +232,9 @@ class CwaService @Inject constructor(
             timeFrom = timeFrom,
             timeTo = timeTo
         ).onErrorResumeNext {
-            // TODO: Log warning
+            /*if (BreezyWeather.instance.debugMode) {
+                failedFeatures.add(SourceFeature.FEATURE_OTHER)
+            }*/
             Observable.just(CwaAstroResult())
         }
         val moon = mApi.getAstro(
@@ -241,7 +245,9 @@ class CwaService @Inject constructor(
             timeFrom = timeFrom,
             timeTo = timeTo
         ).onErrorResumeNext {
-            // TODO: Log warning
+            /*if (BreezyWeather.instance.debugMode) {
+                failedFeatures.add(SourceFeature.FEATURE_OTHER)
+            }*/
             Observable.just(CwaAstroResult())
         }
 
@@ -256,7 +262,7 @@ class CwaService @Inject constructor(
                 stationId = station,
                 month = (now.get(Calendar.MONTH) + 1).toString()
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
                 Observable.just(CwaNormalsResult())
             }
         } else {
@@ -266,7 +272,10 @@ class CwaService @Inject constructor(
         val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlerts(
                 apiKey = apiKey
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(CwaAlertResult())
+            }
         } else {
             Observable.just(CwaAlertResult())
         }
@@ -292,7 +301,8 @@ class CwaService @Inject constructor(
                 sunResult = sunResult,
                 moonResult = moonResult,
                 assistantResult = assistantResult,
-                location = location
+                location = location,
+                failedFeatures = failedFeatures
             )
         }
     }
@@ -353,11 +363,15 @@ class CwaService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 apiKey = apiKey,
                 stationId = stationId
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(CwaCurrentResult())
+            }
         } else {
             Observable.just(CwaCurrentResult())
         }
@@ -367,7 +381,10 @@ class CwaService @Inject constructor(
             mApi.getAssistant(
                 endpoint = CWA_ASSISTANT_ENDPOINTS[countyName]!!,
                 apiKey = apiKey
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(CwaAssistantResult())
+            }
         } else {
             Observable.just(CwaAssistantResult())
         }
@@ -398,7 +415,10 @@ class CwaService @Inject constructor(
             mApi.getAirQuality(
                 apiKey = apiKey,
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                Observable.just(CwaAirQualityResult())
+            }
         } else {
             Observable.just(CwaAirQualityResult())
         }
@@ -406,7 +426,10 @@ class CwaService @Inject constructor(
         val alerts = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlerts(
                 apiKey = apiKey
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(CwaAlertResult())
+            }
         } else {
             Observable.just(CwaAlertResult())
         }
@@ -424,7 +447,10 @@ class CwaService @Inject constructor(
                 apiKey = apiKey,
                 stationId = station,
                 month = (now.get(Calendar.MONTH) + 1).toString()
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
+                Observable.just(CwaNormalsResult())
+            }
         } else {
             Observable.just(CwaNormalsResult())
         }
@@ -462,7 +488,8 @@ class CwaService @Inject constructor(
                 } else {
                     null
                 },
-                location = location
+                location = location,
+                failedFeatures = failedFeatures
             )
         }
     }

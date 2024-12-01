@@ -109,6 +109,7 @@ class ChinaService @Inject constructor(
             }
         }
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val main = mApi.getForecastWeather(
             location.latitude,
             location.longitude,
@@ -129,7 +130,10 @@ class ChinaService @Inject constructor(
                 appKey = CHINA_APP_KEY,
                 locationKey = "weathercn%3A$locationKey",
                 sign = CHINA_SIGN
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
+                Observable.just(ChinaMinutelyResult())
+            }
         } else {
             Observable.just(ChinaMinutelyResult())
         }
@@ -137,7 +141,8 @@ class ChinaService @Inject constructor(
             convert(
                 location,
                 mainResult,
-                minutelyResult
+                minutelyResult,
+                failedFeatures
             )
         }
     }
@@ -178,6 +183,7 @@ class ChinaService @Inject constructor(
             }
         }
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val main = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT) ||
             requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY) ||
             requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)
@@ -192,7 +198,18 @@ class ChinaService @Inject constructor(
                 sign = CHINA_SIGN,
                 isGlobal = false,
                 context.currentLocale.toString().lowercase()
-            )
+            ).onErrorResumeNext {
+                if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                }
+                if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
+                    failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                }
+                if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+                    failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                }
+                Observable.just(ChinaForecastResult())
+            }
         } else {
             Observable.just(ChinaForecastResult())
         }
@@ -206,7 +223,10 @@ class ChinaService @Inject constructor(
                 appKey = CHINA_APP_KEY,
                 locationKey = "weathercn%3A$locationKey",
                 sign = CHINA_SIGN
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
+                Observable.just(ChinaMinutelyResult())
+            }
         } else {
             Observable.just(ChinaMinutelyResult())
         }
@@ -215,7 +235,8 @@ class ChinaService @Inject constructor(
             convertSecondary(
                 location,
                 mainResult,
-                minutelyResult
+                minutelyResult,
+                failedFeatures
             )
         }
     }

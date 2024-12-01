@@ -18,6 +18,7 @@ package org.breezyweather.sources.china
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
@@ -70,6 +71,7 @@ fun convert(
     location: Location,
     forecastResult: ChinaForecastResult,
     minutelyResult: ChinaMinutelyResult,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     // If the API doesn’t return current, hourly or daily, consider data as garbage and keep cached data
     if (forecastResult.current == null ||
@@ -95,7 +97,8 @@ fun convert(
             location,
             minutelyResult
         ),
-        alertList = getAlertList(forecastResult)
+        alertList = getAlertList(forecastResult),
+        failedFeatures = failedFeatures
     )
 }
 
@@ -323,6 +326,7 @@ fun convertSecondary(
     location: Location,
     forecastResult: ChinaForecastResult,
     minutelyResult: ChinaMinutelyResult,
+    failedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = getCurrent(forecastResult.current, forecastResult.aqi),
@@ -339,7 +343,8 @@ fun convertSecondary(
             )
         },
         minutelyForecast = getMinutelyList(location, minutelyResult),
-        alertList = getAlertList(forecastResult)
+        alertList = getAlertList(forecastResult),
+        failedFeatures = failedFeatures
     )
 }
 

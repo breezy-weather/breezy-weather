@@ -1,6 +1,7 @@
 package org.breezyweather.sources.ipma
 
 import android.content.Context
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -82,11 +83,13 @@ fun convert(
     location: Location,
     forecastResult: List<IpmaForecastResult>,
     alertResult: IpmaAlertResult,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     return WeatherWrapper(
         dailyForecast = getDailyForecast(context, location, forecastResult),
         hourlyForecast = getHourlyForecast(context, location, forecastResult),
-        alertList = getAlertList(location, alertResult)
+        alertList = getAlertList(location, alertResult),
+        failedFeatures = failedFeatures
     )
 }
 

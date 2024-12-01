@@ -113,6 +113,7 @@ class GeoSphereAtService @Inject constructor(
             hourlyParameters.joinToString(",")
         )
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val airQuality = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY) &&
             isFeatureSupportedInMainForLocation(location, SourceFeature.FEATURE_AIR_QUALITY)
         ) {
@@ -121,7 +122,10 @@ class GeoSphereAtService @Inject constructor(
                 if (airQuality4KmBbox.contains(latLng)) 4 else 12,
                 "${location.latitude},${location.longitude}",
                 airQualityParameters.joinToString(",")
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                Observable.just(GeoSphereAtTimeseriesResult())
+            }
         } else {
             Observable.just(GeoSphereAtTimeseriesResult())
         }
@@ -132,7 +136,10 @@ class GeoSphereAtService @Inject constructor(
             mApi.getNowcast(
                 "${location.latitude},${location.longitude}",
                 "rr" // precipitation sum
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
+                Observable.just(GeoSphereAtTimeseriesResult())
+            }
         } else {
             Observable.just(GeoSphereAtTimeseriesResult())
         }
@@ -144,7 +151,10 @@ class GeoSphereAtService @Inject constructor(
                 location.longitude,
                 location.latitude,
                 if (context.currentLocale.code == "de") "de" else "en"
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(GeoSphereAtWarningsResult())
+            }
         } else {
             Observable.just(GeoSphereAtWarningsResult())
         }
@@ -155,7 +165,7 @@ class GeoSphereAtService @Inject constructor(
             nowcast,
             alerts
         ) { hourlyResult, airQualityResult, nowcastResult, alertsResult ->
-            convert(hourlyResult, airQualityResult, nowcastResult, alertsResult, location)
+            convert(hourlyResult, airQualityResult, nowcastResult, alertsResult, location, failedFeatures)
         }
     }
 
@@ -203,13 +213,17 @@ class GeoSphereAtService @Inject constructor(
             return Observable.error(SecondaryWeatherException())
         }
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
             val latLng = LatLng(location.latitude, location.longitude)
             mApi.getAirQuality(
                 if (airQuality4KmBbox.contains(latLng)) 4 else 12,
                 "${location.latitude},${location.longitude}",
                 airQualityParameters.joinToString(",")
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                Observable.just(GeoSphereAtTimeseriesResult())
+            }
         } else {
             Observable.just(GeoSphereAtTimeseriesResult())
         }
@@ -218,7 +232,10 @@ class GeoSphereAtService @Inject constructor(
             mApi.getNowcast(
                 "${location.latitude},${location.longitude}",
                 "rr" // precipitation sum
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(GeoSphereAtTimeseriesResult())
+            }
         } else {
             Observable.just(GeoSphereAtTimeseriesResult())
         }
@@ -228,13 +245,16 @@ class GeoSphereAtService @Inject constructor(
                 location.longitude,
                 location.latitude,
                 if (context.currentLocale.code == "de") "de" else "en"
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(GeoSphereAtWarningsResult())
+            }
         } else {
             Observable.just(GeoSphereAtWarningsResult())
         }
 
         return Observable.zip(airQuality, nowcast, alerts) { airQualityResult, nowcastResult, alertsResult ->
-            convertSecondary(airQualityResult, nowcastResult, alertsResult)
+            convertSecondary(airQualityResult, nowcastResult, alertsResult, failedFeatures)
         }
     }
 

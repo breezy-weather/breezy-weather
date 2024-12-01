@@ -135,6 +135,7 @@ class JmaService @Inject constructor(
             prefArea
         }
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val daily = mApi.getDaily(forecastPrefArea)
         val hourly = mApi.getHourly(class10s)
 
@@ -160,10 +161,11 @@ class JmaService @Inject constructor(
                         amedas = currentAmedas,
                         timestamp = outgoingFormatter.format(timestamp)
                     ).onErrorResumeNext {
-                        // TODO: Log warning
+                        failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                         Observable.just(emptyMap())
                     }
                 } else {
+                    failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                     Observable.just(emptyMap())
                 }
             }
@@ -173,7 +175,7 @@ class JmaService @Inject constructor(
 
         val bulletin = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getBulletin(forecastPrefArea).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                 Observable.just(JmaBulletinResult())
             }
         } else {
@@ -183,7 +185,7 @@ class JmaService @Inject constructor(
         // ALERT
         val alert = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlert(prefArea).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
                 Observable.just(JmaAlertResult())
             }
         } else {
@@ -205,7 +207,8 @@ class JmaService @Inject constructor(
                 dailyResult = dailyResult,
                 hourlyResult = hourlyResult,
                 alertResult = alertResult,
-                ignoreFeatures = ignoreFeatures
+                ignoreFeatures = ignoreFeatures,
+                failedFeatures = failedFeatures
             )
         }
     }
@@ -261,6 +264,7 @@ class JmaService @Inject constructor(
             prefArea
         }
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         // CURRENT
         // Need to first get the correct timestamp for latest observation data.
         val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
@@ -282,9 +286,13 @@ class JmaService @Inject constructor(
                     mApi.getCurrent(
                         amedas = currentAmedas,
                         timestamp = outgoingFormatter.format(timestamp)
-                    )
+                    ).onErrorResumeNext {
+                        failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                        Observable.just(emptyMap())
+                    }
                 } else {
-                    throw InvalidOrIncompleteDataException()
+                    failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                    Observable.just(emptyMap())
                 }
             }
         } else {
@@ -292,7 +300,10 @@ class JmaService @Inject constructor(
         }
 
         val bulletin = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getBulletin(forecastPrefArea)
+            mApi.getBulletin(forecastPrefArea).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(JmaBulletinResult())
+            }
         } else {
             Observable.just(JmaBulletinResult())
         }
@@ -300,14 +311,20 @@ class JmaService @Inject constructor(
         // NORMALS
         // Normals are recorded in the daily forecast.
         val daily = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
-            mApi.getDaily(forecastPrefArea)
+            mApi.getDaily(forecastPrefArea).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
+                Observable.just(emptyList())
+            }
         } else {
             Observable.just(emptyList())
         }
 
         // ALERT
         val alert = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            mApi.getAlert(prefArea)
+            mApi.getAlert(prefArea).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(JmaAlertResult())
+            }
         } else {
             Observable.just(JmaAlertResult())
         }
@@ -340,7 +357,8 @@ class JmaService @Inject constructor(
                     alertResult
                 } else {
                     null
-                }
+                },
+                failedFeatures = failedFeatures
             )
             SecondaryWeatherWrapper()
         }
@@ -353,14 +371,14 @@ class JmaService @Inject constructor(
     ): Observable<List<Location>> {
         val areas = mApi.getAreas()
         val class20s = mApi.getRelm().map { relm ->
-            var features = listOf<Any?>()
+            val features = mutableListOf<Any?>()
             relm.forEachIndexed { i, it ->
                 if (location.latitude <= it.ne[0] &&
                     location.longitude <= it.ne[1] &&
                     location.latitude >= it.sw[0] &&
                     location.longitude >= it.sw[1]
                 ) {
-                    features += mApi.getClass20s(i).blockingFirst().features
+                    features.addAll(mApi.getClass20s(i).blockingFirst().features)
                 }
             }
             features
@@ -407,14 +425,14 @@ class JmaService @Inject constructor(
     ): Observable<Map<String, String>> {
         val areas = mApi.getAreas()
         val class20s = mApi.getRelm().map { relm ->
-            var features = listOf<Any?>()
+            val features = mutableListOf<Any?>()
             relm.forEachIndexed { i, it ->
                 if (location.latitude <= it.ne[0] &&
                     location.longitude <= it.ne[1] &&
                     location.latitude >= it.sw[0] &&
                     location.longitude >= it.sw[1]
                 ) {
-                    features += mApi.getClass20s(i).blockingFirst().features
+                    features.addAll(mApi.getClass20s(i).blockingFirst().features)
                 }
             }
             features

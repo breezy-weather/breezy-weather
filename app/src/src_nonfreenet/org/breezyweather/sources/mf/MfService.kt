@@ -124,7 +124,7 @@ class MfService @Inject constructor(
             token
         ).onErrorResumeNext {
             /*if (BreezyWeather.instance.debugMode) {
-                errors.add(SourceFeature.FEATURE_OTHER)
+                failedFeatures.add(SourceFeature.FEATURE_OTHER)
             }*/
             Observable.just(MfEphemerisResult())
         }

@@ -88,10 +88,11 @@ class IpmaService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val forecast = mApi.getForecast(globalIdLocal)
         val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlerts().onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
                 Observable.just(IpmaAlertResult())
             }
         } else {
@@ -106,7 +107,8 @@ class IpmaService @Inject constructor(
                 context = context,
                 location = location,
                 forecastResult = forecastResult,
-                alertResult = alertResult
+                alertResult = alertResult,
+                failedFeatures = failedFeatures
             )
         }
     }
@@ -133,7 +135,8 @@ class IpmaService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT)) {
+        if (!requestedFeatures.contains(SourceFeature.FEATURE_ALERT) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT)) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
         }
@@ -143,12 +146,7 @@ class IpmaService @Inject constructor(
         if (globalIdLocal.isNullOrEmpty() || idAreaAviso.isNullOrEmpty()) {
             return Observable.error(InvalidLocationException())
         }
-        val alerts = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            mApi.getAlerts()
-        } else {
-            Observable.just(IpmaAlertResult())
-        }
-        return alerts.map {
+        return mApi.getAlerts().map {
             convertSecondary(
                 location = location,
                 alertResult = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {

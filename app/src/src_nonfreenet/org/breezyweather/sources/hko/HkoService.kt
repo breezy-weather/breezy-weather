@@ -151,6 +151,7 @@ class HkoService @Inject constructor(
         var warningKey: String
         var endPoint: String
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val forecast = mMapsApi.getForecast(
             grid = forecastGrid,
             v = System.currentTimeMillis()
@@ -163,11 +164,15 @@ class HkoService @Inject constructor(
         var year = now.get(Calendar.YEAR)
         var month = now.get(Calendar.MONTH) + 1
         val sun1 = mDataApi.getAstro("SRS", year, month).onErrorResumeNext {
-            // TODO: Log warning
+            /*if (BreezyWeather.instance.debugMode) {
+                failedFeatures.add(SourceFeature.FEATURE_OTHER)
+            }*/
             Observable.just(HkoAstroResult())
         }
         val moon1 = mDataApi.getAstro("MRS", year, month).onErrorResumeNext {
-            // TODO: Log warning
+            /*if (BreezyWeather.instance.debugMode) {
+                failedFeatures.add(SourceFeature.FEATURE_OTHER)
+            }*/
             Observable.just(HkoAstroResult())
         }
 
@@ -175,11 +180,15 @@ class HkoService @Inject constructor(
         year = now.get(Calendar.YEAR)
         month = now.get(Calendar.MONTH) + 1
         val sun2 = mDataApi.getAstro("SRS", year, month).onErrorResumeNext {
-            // TODO: Log warning
+            /*if (BreezyWeather.instance.debugMode) {
+                failedFeatures.add(SourceFeature.FEATURE_OTHER)
+            }*/
             Observable.just(HkoAstroResult())
         }
         val moon2 = mDataApi.getAstro("MRS", year, month).onErrorResumeNext {
-            // TODO: Log warning
+            /*if (BreezyWeather.instance.debugMode) {
+                failedFeatures.add(SourceFeature.FEATURE_OTHER)
+            }*/
             Observable.just(HkoAstroResult())
         }
 
@@ -189,7 +198,7 @@ class HkoService @Inject constructor(
             mApi.getCurrentWeather(
                 grid = currentGrid
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                 Observable.just(HkoCurrentResult())
             }
         } else {
@@ -205,7 +214,7 @@ class HkoService @Inject constructor(
                     ""
                 }
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                 Observable.just(HkoOneJsonResult())
             }
         } else {
@@ -233,7 +242,7 @@ class HkoService @Inject constructor(
                                 it.value.Warning_Action != "CANCEL"
                             ) {
                                 warnings[endPoint] = mApi.getWarningText(path, endPoint).onErrorResumeNext {
-                                    // TODO: Log warning
+                                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
                                     Observable.just(HkoWarningResult())
                                 }.blockingFirst()
                             }
@@ -242,7 +251,7 @@ class HkoService @Inject constructor(
                 }
                 warnings
             }.onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
                 Observable.just(mutableMapOf())
             }
         } else {
@@ -254,11 +263,11 @@ class HkoService @Inject constructor(
         val normals = if (!ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
             when (currentStation) {
                 "HKO" -> mApi.getHkoNormals().onErrorResumeNext {
-                    // TODO: Log warning
+                    failedFeatures.add(SourceFeature.FEATURE_NORMALS)
                     Observable.just(HkoNormalsResult())
                 }
                 else -> mApi.getNormals(currentStation).onErrorResumeNext {
-                    // TODO: Log warning
+                    failedFeatures.add(SourceFeature.FEATURE_NORMALS)
                     Observable.just(HkoNormalsResult())
                 }
             }
@@ -287,7 +296,8 @@ class HkoService @Inject constructor(
                 sun1Result = sun1Result,
                 sun2Result = sun2Result,
                 moon1Result = moon1Result,
-                moon2Result = moon2Result
+                moon2Result = moon2Result,
+                failedFeatures = failedFeatures
             )
         }
     }
@@ -344,12 +354,16 @@ class HkoService @Inject constructor(
         var warningKey: String
         var endPoint: String
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         // CURRENT
         // Full current observation takes two API calls: getCurrentWeather and getOneJson
         val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrentWeather(
                 grid = currentGrid
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(HkoCurrentResult())
+            }
         } else {
             Observable.just(HkoCurrentResult())
         }
@@ -358,7 +372,10 @@ class HkoService @Inject constructor(
             mApi.getOneJson(
                 path = path,
                 suffix = if (languageCode.startsWith("zh")) "_uc" else ""
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(HkoOneJsonResult())
+            }
         } else {
             Observable.just(HkoOneJsonResult())
         }
@@ -369,6 +386,9 @@ class HkoService @Inject constructor(
             when (currentStation) {
                 "HKO" -> mApi.getHkoNormals()
                 else -> mApi.getNormals(currentStation)
+            }.onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
+                Observable.just(HkoNormalsResult())
             }
         } else {
             Observable.just(HkoNormalsResult())
@@ -391,12 +411,18 @@ class HkoService @Inject constructor(
                                 it.value.Warning_Action != "" &&
                                 it.value.Warning_Action != "CANCEL"
                             ) {
-                                warnings[endPoint] = mApi.getWarningText(path, endPoint).blockingFirst()
+                                warnings[endPoint] = mApi.getWarningText(path, endPoint).onErrorResumeNext {
+                                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                                    Observable.just(HkoWarningResult())
+                                }.blockingFirst()
                             }
                         }
                     }
                 }
                 warnings
+            }.onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(mutableMapOf())
             }
         } else {
             Observable.just(mutableMapOf())
@@ -429,7 +455,8 @@ class HkoService @Inject constructor(
                     warningDetailsResult
                 } else {
                     null
-                }
+                },
+                failedFeatures = failedFeatures
             )
         }
     }

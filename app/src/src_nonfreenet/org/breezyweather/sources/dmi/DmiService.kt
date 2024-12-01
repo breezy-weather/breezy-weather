@@ -69,14 +69,18 @@ class DmiService @Inject constructor(
             DMI_WEATHER_CMD
         )
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT) &&
             location.countryCode.equals("DK", ignoreCase = true)
         ) {
             val id = location.parameters.getOrElse(id) { null }?.getOrElse("id") { null }
             if (!id.isNullOrEmpty()) {
-                mApi.getAlerts(id)
+                mApi.getAlerts(id).onErrorResumeNext {
+                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    Observable.just(DmiWarningResult())
+                }
             } else {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
                 Observable.just(DmiWarningResult())
             }
         } else {
@@ -87,7 +91,7 @@ class DmiService @Inject constructor(
             weather,
             alerts
         ) { weatherResult: DmiResult, alertsResult: DmiWarningResult ->
-            convert(weatherResult, alertsResult, location)
+            convert(weatherResult, alertsResult, location, failedFeatures)
         }
     }
 

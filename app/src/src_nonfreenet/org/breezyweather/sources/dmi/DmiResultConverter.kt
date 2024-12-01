@@ -17,6 +17,7 @@
 package org.breezyweather.sources.dmi
 
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -65,6 +66,7 @@ fun convert(
     dmiResult: DmiResult,
     dmiWarningResult: DmiWarningResult,
     location: Location,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     // If the API doesn’t return timeseries, consider data as garbage and keep cached data
     if (dmiResult.timeserie.isNullOrEmpty()) {
@@ -74,7 +76,8 @@ fun convert(
     return WeatherWrapper(
         dailyForecast = getDailyForecast(location, dmiResult.timeserie),
         hourlyForecast = getHourlyForecast(dmiResult.timeserie),
-        alertList = getAlertList(dmiWarningResult.locationWarnings)
+        alertList = getAlertList(dmiWarningResult.locationWarnings),
+        failedFeatures = failedFeatures
     )
 }
 

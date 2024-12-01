@@ -237,6 +237,7 @@ fun convert(
     hourlyResult: JmaHourlyResult,
     alertResult: JmaAlertResult,
     ignoreFeatures: List<SourceFeature>,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     val parameters = location.parameters.getOrElse("jma") { null }
     val class20s = parameters?.getOrElse("class20s") { null }
@@ -262,7 +263,8 @@ fun convert(
         },
         dailyForecast = getDailyForecast(context, dailyResult, class10s, weekArea05, weekAreaAmedas, forecastAmedas),
         hourlyForecast = getHourlyForecast(context, hourlyResult),
-        alertList = getAlertList(context, alertResult, class20s)
+        alertList = getAlertList(context, alertResult, class20s),
+        failedFeatures = failedFeatures
     )
 }
 
@@ -273,6 +275,7 @@ fun convertSecondary(
     bulletinResult: JmaBulletinResult?,
     dailyResult: List<JmaDailyResult>?,
     alertResult: JmaAlertResult?,
+    failedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     val parameters = location.parameters.getOrElse("jma") { null }
     val class20s = parameters?.getOrElse("class20s") { null }
@@ -285,7 +288,8 @@ fun convertSecondary(
     return SecondaryWeatherWrapper(
         current = currentResult?.let { bulletinResult?.let { getCurrent(context, currentResult, bulletinResult) } },
         alertList = alertResult?.let { getAlertList(context, it, class20s) },
-        normals = dailyResult?.let { getNormals(it, weekAreaAmedas) }
+        normals = dailyResult?.let { getNormals(it, weekAreaAmedas) },
+        failedFeatures = failedFeatures
     )
 }
 

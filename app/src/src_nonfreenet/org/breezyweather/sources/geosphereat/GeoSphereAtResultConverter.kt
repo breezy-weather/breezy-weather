@@ -17,6 +17,7 @@
 package org.breezyweather.sources.geosphereat
 
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
@@ -54,6 +55,7 @@ fun convert(
     nowcastResult: GeoSphereAtTimeseriesResult,
     alertsResult: GeoSphereAtWarningsResult,
     location: Location,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     // If the API doesn’t return timeseries, consider data as garbage and keep cached data
     if (hourlyResult.timestamps.isNullOrEmpty() ||
@@ -66,7 +68,8 @@ fun convert(
         dailyForecast = getDailyForecast(hourlyResult, location),
         hourlyForecast = getHourlyForecast(hourlyResult, airQualityResult),
         minutelyForecast = getMinutelyForecast(nowcastResult),
-        alertList = getAlerts(alertsResult)
+        alertList = getAlerts(alertsResult),
+        failedFeatures = failedFeatures
     )
 }
 
@@ -240,6 +243,7 @@ fun convertSecondary(
     airQualityResult: GeoSphereAtTimeseriesResult,
     nowcastResult: GeoSphereAtTimeseriesResult,
     alertsResult: GeoSphereAtWarningsResult,
+    failedFeatures: List<SourceFeature>
 ): SecondaryWeatherWrapper {
     val airQualityHourly = mutableMapOf<Date, AirQuality>()
 
@@ -263,7 +267,8 @@ fun convertSecondary(
             null
         },
         minutelyForecast = getMinutelyForecast(nowcastResult),
-        alertList = getAlerts(alertsResult)
+        alertList = getAlerts(alertsResult),
+        failedFeatures = failedFeatures
     )
 }
 

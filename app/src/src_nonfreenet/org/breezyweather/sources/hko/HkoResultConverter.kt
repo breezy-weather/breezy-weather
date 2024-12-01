@@ -18,6 +18,7 @@ package org.breezyweather.sources.hko
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
@@ -64,6 +65,7 @@ fun convert(
     sun2Result: HkoAstroResult,
     moon1Result: HkoAstroResult,
     moon2Result: HkoAstroResult,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     return WeatherWrapper(
         current = getCurrent(context, currentResult.RegionalWeather, oneJsonResult),
@@ -78,7 +80,8 @@ fun convert(
             oneJsonResult
         ),
         hourlyForecast = getHourlyForecast(context, forecastResult.HourlyWeatherForecast, oneJsonResult),
-        alertList = getAlertList(context, warningDetailsResult)
+        alertList = getAlertList(context, warningDetailsResult),
+        failedFeatures = failedFeatures
     )
 }
 
@@ -88,6 +91,7 @@ fun convertSecondary(
     normalsResult: HkoNormalsResult?,
     oneJsonResult: HkoOneJsonResult?,
     warningDetailsResult: MutableMap<String, HkoWarningResult>?,
+    failedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = if (currentResult != null && oneJsonResult !== null) {
@@ -104,7 +108,8 @@ fun convertSecondary(
             getAlertList(context, warningDetailsResult)
         } else {
             null
-        }
+        },
+        failedFeatures = failedFeatures
     )
 }
 
