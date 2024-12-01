@@ -243,7 +243,7 @@ fun convertSecondary(
     airQualityResult: GeoSphereAtTimeseriesResult,
     nowcastResult: GeoSphereAtTimeseriesResult,
     alertsResult: GeoSphereAtWarningsResult,
-    failedFeatures: List<SourceFeature>
+    failedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     val airQualityHourly = mutableMapOf<Date, AirQuality>()
 

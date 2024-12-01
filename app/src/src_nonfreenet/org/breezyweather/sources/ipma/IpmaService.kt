@@ -136,7 +136,8 @@ class IpmaService @Inject constructor(
         requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         if (!requestedFeatures.contains(SourceFeature.FEATURE_ALERT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT)) {
+            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT)
+        ) {
             // TODO: return Observable.error(UnsupportedFeatureForLocationException())
             return Observable.error(SecondaryWeatherException())
         }

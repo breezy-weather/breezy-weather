@@ -19,7 +19,6 @@ package org.breezyweather.sources.cwa
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import androidx.compose.animation.fadeIn
 import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper

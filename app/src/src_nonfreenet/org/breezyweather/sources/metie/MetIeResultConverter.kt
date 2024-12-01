@@ -17,6 +17,7 @@
 package org.breezyweather.sources.metie
 
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -54,6 +55,7 @@ fun convert(
     hourlyResult: List<MetIeHourly>?,
     warningsResult: MetIeWarningResult?,
     location: Location,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     // If the API doesn’t return data, consider data as garbage and keep cached data
     if (hourlyResult.isNullOrEmpty()) {
@@ -63,7 +65,8 @@ fun convert(
     return WeatherWrapper(
         dailyForecast = getDailyForecast(location, hourlyResult),
         hourlyForecast = getHourlyForecast(hourlyResult),
-        alertList = getAlertList(location, warningsResult?.warnings?.national)
+        alertList = getAlertList(location, warningsResult?.warnings?.national),
+        failedFeatures = failedFeatures
     )
 }
 

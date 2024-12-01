@@ -83,14 +83,18 @@ class MetIeService @Inject constructor(
             location.longitude
         )
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            mApi.getWarnings()
+            mApi.getWarnings().onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(MetIeWarningResult())
+            }
         } else {
             Observable.just(MetIeWarningResult())
         }
 
         return Observable.zip(forecast, alerts) { forecastResult: List<MetIeHourly>, alertsResult: MetIeWarningResult ->
-            convert(forecastResult, alertsResult, location)
+            convert(forecastResult, alertsResult, location, failedFeatures)
         }
     }
 
