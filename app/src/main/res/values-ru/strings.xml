@@ -708,4 +708,6 @@
     <string name="common_weather_text_frost">Мороз</string>
     <string name="common_weather_text_dust">Пыль</string>
     <string name="common_weather_text_dust_storm">Пыльная буря</string>
+    <string name="location_message_location_access_off">Доступ к местоположению отключен</string>
+    <string name="weather_message_failed_feature">Источнику не удалось обновить: %s</string>
 </resources>
