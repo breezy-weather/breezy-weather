@@ -29,18 +29,20 @@ So, the idea is to make a fair use of preferences, so if it covers too narrow of
 
 ### New weather sources
 
-To be candidate for inclusion in the project, a weather source must:
-- have a free-tier available with hourly forecast at minimum
-- not require private information such as credit card or phone number to have a free key
+To be candidate for inclusion in the project, a weather source must not require private information such as credit card or phone number to have a free key.
+
+To be accepted as a main source, a source must have hourly forecast. A source can be implemented as a secondary-only source if they don’t have hourly data but other secondary features.
+
+Only features behind a free-tier will be accepted inside the project, so that any contributor can keep maintaining it in the long term.
 
 Additionally, we usually don’t accept sources that are just frontends to other sources (for example, if they use AccuWeather data, we will just use AccuWeather directly).
 
 Examples of weather sources that don’t fit:
 - Apple WeatherKit (no free-tier)
 - Microsoft Azure (free-tier requires credit card info)
-- Weatherbit (free-tier doesn’t have hourly)
+- Weatherbit (free-tier only has “current” feature, with only 50 requests per day, so it’s not worth the maintenance cost)
 
-Note that some national sources don’t have endpoints by coordinates, or reverse geocoding (find nearest city/station), we can’t support them.
+Note that some national sources don’t have endpoints by coordinates, or reverse geocoding (find nearest city/station), so we can’t support them.
 
 
 ## Git setup for pull requests
