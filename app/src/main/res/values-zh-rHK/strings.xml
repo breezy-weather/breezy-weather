@@ -777,4 +777,5 @@
     <string name="jma_warning_text_ice_accretion_advisory">結冰注意報</string>
     <string name="jma_warning_text_snow_accretion_advisory">積雪注意報</string>
     <string name="location_message_location_access_off">位置存取尚未啟用</string>
+    <string name="weather_message_failed_feature">無法更新來源：%s</string>
 </resources>
