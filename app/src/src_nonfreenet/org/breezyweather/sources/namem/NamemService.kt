@@ -98,12 +98,14 @@ class NamemService @Inject constructor(
         if (stationId == null) {
             return Observable.error(InvalidLocationException())
         }
-        var body = """{"sid":$stationId}"""
+        val body = """{"sid":$stationId}"""
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                 Observable.just(NamemCurrentResult())
             }
         } else {
@@ -122,7 +124,7 @@ class NamemService @Inject constructor(
             mApi.getNormals(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
                 Observable.just(NamemNormalsResult())
             }
         } else {
@@ -131,7 +133,7 @@ class NamemService @Inject constructor(
 
         val airQuality = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getAirQuality().onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
                 Observable.just(NamemAirQualityResult())
             }
         } else {
@@ -152,7 +154,8 @@ class NamemService @Inject constructor(
                 normalsResult = normalsResult,
                 dailyResult = dailyResult,
                 hourlyResult = hourlyResult,
-                airQualityResult = airQualityResult
+                airQualityResult = airQualityResult,
+                failedFeatures = failedFeatures
             )
         }
     }
@@ -194,12 +197,16 @@ class NamemService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        var body = """{"sid":$stationId}"""
+        val body = """{"sid":$stationId}"""
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(NamemCurrentResult())
+            }
         } else {
             Observable.just(NamemCurrentResult())
         }
@@ -207,13 +214,19 @@ class NamemService @Inject constructor(
         val normals = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
             mApi.getNormals(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
+                Observable.just(NamemNormalsResult())
+            }
         } else {
             Observable.just(NamemNormalsResult())
         }
 
         val airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-            mApi.getAirQuality()
+            mApi.getAirQuality().onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                Observable.just(NamemAirQualityResult())
+            }
         } else {
             Observable.just(NamemAirQualityResult())
         }
@@ -240,7 +253,8 @@ class NamemService @Inject constructor(
                     airQualityResult
                 } else {
                     null
-                }
+                },
+                failedFeatures = failedFeatures
             )
         }
     }

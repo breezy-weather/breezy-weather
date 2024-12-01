@@ -17,6 +17,7 @@
 package org.breezyweather.sources.metno
 
 import android.content.Context
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
@@ -62,6 +63,7 @@ fun convert(
     nowcastResult: MetNoNowcastResult,
     airQualityResult: MetNoAirQualityResult,
     metNoAlerts: MetNoAlertResult,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     // If the API doesn’t return hourly, consider data as garbage and keep cached data
     if (forecastResult.properties == null || forecastResult.properties.timeseries.isNullOrEmpty()) {
@@ -86,7 +88,8 @@ fun convert(
             airQualityResult
         ),
         minutelyForecast = getMinutelyList(nowcastResult.properties?.timeseries),
-        alertList = getAlerts(metNoAlerts)
+        alertList = getAlerts(metNoAlerts),
+        failedFeatures = failedFeatures
     )
 }
 
@@ -341,6 +344,7 @@ fun convertSecondary(
     airQualityResult: MetNoAirQualityResult?,
     metNoAlertResults: MetNoAlertResult?,
     context: Context,
+    failedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     val airQualityHourly: MutableMap<Date, AirQuality> = mutableMapOf()
 
@@ -374,6 +378,7 @@ fun convertSecondary(
             getAlerts(metNoAlertResults)
         } else {
             null
-        }
+        },
+        failedFeatures = failedFeatures
     )
 }

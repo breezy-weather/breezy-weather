@@ -2,6 +2,7 @@ package org.breezyweather.sources.smg
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -45,6 +46,7 @@ fun convert(
     airQualityResult: SmgAirQualityResult,
     includeNormals: Boolean = true,
     astroResult: SmgAstroResult,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     return WeatherWrapper(
         current = getCurrent(currentResult, bulletinResult, uvResult, airQualityResult),
@@ -55,7 +57,8 @@ fun convert(
             getNormals()
         } else {
             null
-        }
+        },
+        failedFeatures = failedFeatures
     )
 }
 
@@ -67,6 +70,7 @@ fun convertSecondary(
     warningsResult: List<SmgWarningResult>?,
     airQualityResult: SmgAirQualityResult?,
     includeNormals: Boolean = true,
+    failedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = if (currentResult != null && bulletinResult != null && uvResult != null) {
@@ -90,7 +94,8 @@ fun convertSecondary(
             getNormals()
         } else {
             null
-        }
+        },
+        failedFeatures = failedFeatures
     )
 }
 

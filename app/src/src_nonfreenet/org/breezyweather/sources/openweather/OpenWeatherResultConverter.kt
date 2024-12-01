@@ -16,6 +16,7 @@
 
 package org.breezyweather.sources.openweather
 
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Current
@@ -47,6 +48,7 @@ fun convert(
     forecastResult: OpenWeatherForecastResult,
     currentResult: OpenWeatherForecast,
     airPollutionResult: OpenWeatherAirPollutionResult?,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     // If the API doesn’t return hourly, consider data as garbage and keep cached data
     if (forecastResult.list.isNullOrEmpty()) {
@@ -58,7 +60,8 @@ fun convert(
     return WeatherWrapper(
         current = getCurrent(currentResult),
         dailyForecast = getDailyList(forecastResult.list, hourlyAirQuality, location),
-        hourlyForecast = getHourlyList(forecastResult.list, hourlyAirQuality)
+        hourlyForecast = getHourlyList(forecastResult.list, hourlyAirQuality),
+        failedFeatures = failedFeatures
     )
 }
 
@@ -197,6 +200,7 @@ private fun getHourlyAirQuality(
 fun convertSecondary(
     currentResult: OpenWeatherForecast,
     airPollutionResult: OpenWeatherAirPollutionResult?,
+    failedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = getCurrent(currentResult),
@@ -204,6 +208,7 @@ fun convertSecondary(
             AirQualityWrapper(hourlyForecast = getHourlyAirQuality(airPollutionResult.list))
         } else {
             null
-        }
+        },
+        failedFeatures = failedFeatures
     )
 }

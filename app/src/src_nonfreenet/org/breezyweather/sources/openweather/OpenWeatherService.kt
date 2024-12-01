@@ -89,6 +89,7 @@ class OpenWeatherService @Inject constructor(
             "metric",
             languageCode
         )
+        val failedFeatures = mutableListOf<SourceFeature>()
         val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 apiKey,
@@ -97,7 +98,7 @@ class OpenWeatherService @Inject constructor(
                 "metric",
                 languageCode
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                 Observable.just(OpenWeatherForecast())
             }
         } else {
@@ -109,7 +110,7 @@ class OpenWeatherService @Inject constructor(
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
                 Observable.just(OpenWeatherAirPollutionResult())
             }
         } else {
@@ -124,7 +125,8 @@ class OpenWeatherService @Inject constructor(
                 location,
                 openWeatherForecastResult,
                 openWeatherCurrentResult,
-                openWeatherAirPollutionResult
+                openWeatherAirPollutionResult,
+                failedFeatures
             )
         }
     }
@@ -158,6 +160,7 @@ class OpenWeatherService @Inject constructor(
         }
         val languageCode = context.currentLocale.code
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(
                 apiKey,
@@ -165,7 +168,10 @@ class OpenWeatherService @Inject constructor(
                 location.longitude,
                 "metric",
                 languageCode
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(OpenWeatherForecast())
+            }
         } else {
             Observable.just(OpenWeatherForecast())
         }
@@ -175,7 +181,10 @@ class OpenWeatherService @Inject constructor(
                 apiKey,
                 location.latitude,
                 location.longitude
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                Observable.just(OpenWeatherAirPollutionResult())
+            }
         } else {
             Observable.just(OpenWeatherAirPollutionResult())
         }
@@ -186,7 +195,8 @@ class OpenWeatherService @Inject constructor(
             ->
             convertSecondary(
                 openWeatherCurrentResult,
-                openWeatherAirPollutionResult
+                openWeatherAirPollutionResult,
+                failedFeatures
             )
         }
     }

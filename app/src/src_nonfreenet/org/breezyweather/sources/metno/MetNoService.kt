@@ -86,6 +86,7 @@ class MetNoService @Inject constructor(
         location: Location,
         ignoreFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
+        val failedFeatures = mutableListOf<SourceFeature>()
         val forecast = mApi.getForecast(
             USER_AGENT,
             location.latitude,
@@ -99,7 +100,9 @@ class MetNoService @Inject constructor(
             location.longitude,
             formattedDate
         ).onErrorResumeNext {
-            // TODO: Log warning
+            /*if (BreezyWeather.instance.debugMode) {
+                failedFeatures.add(SourceFeature.FEATURE_OTHER)
+            }*/
             Observable.just(MetNoSunResult())
         }
         val moon = mApi.getMoon(
@@ -108,7 +111,9 @@ class MetNoService @Inject constructor(
             location.longitude,
             formattedDate
         ).onErrorResumeNext {
-            // TODO: Log warning
+            /*if (BreezyWeather.instance.debugMode) {
+                failedFeatures.add(SourceFeature.FEATURE_OTHER)
+            }*/
             Observable.just(MetNoMoonResult())
         }
 
@@ -129,7 +134,7 @@ class MetNoService @Inject constructor(
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                 Observable.just(MetNoNowcastResult())
             }
         } else {
@@ -147,7 +152,7 @@ class MetNoService @Inject constructor(
                     location.latitude,
                     location.longitude
                 ).onErrorResumeNext {
-                    // TODO: Log warning
+                    failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
                     Observable.just(MetNoAirQualityResult())
                 }
             } else {
@@ -165,7 +170,10 @@ class MetNoService @Inject constructor(
                     if (context.currentLocale.toString().lowercase().startsWith("no")) "no" else "en",
                     location.latitude,
                     location.longitude
-                )
+                ).onErrorResumeNext {
+                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    Observable.just(MetNoAlertResult())
+                }
             } else {
                 Observable.just(MetNoAlertResult())
             }
@@ -186,7 +194,8 @@ class MetNoService @Inject constructor(
                 metNoMoon,
                 metNoNowcast,
                 metNoAirQuality,
-                metNoAlerts
+                metNoAlerts,
+                failedFeatures
             )
         }
     }
@@ -235,25 +244,36 @@ class MetNoService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
-        val nowcast =
-            if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT) ||
-                requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)
-            ) {
-                mApi.getNowcast(
-                    USER_AGENT,
-                    location.latitude,
-                    location.longitude
-                )
-            } else {
+        val failedFeatures = mutableListOf<SourceFeature>()
+        val nowcast = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT) ||
+            requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)
+        ) {
+            mApi.getNowcast(
+                USER_AGENT,
+                location.latitude,
+                location.longitude
+            ).onErrorResumeNext {
+                if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+                    failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                }
+                if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
+                    failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
+                }
                 Observable.just(MetNoNowcastResult())
             }
+        } else {
+            Observable.just(MetNoNowcastResult())
+        }
 
         val airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
             mApi.getAirQuality(
                 USER_AGENT,
                 location.latitude,
                 location.longitude
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                Observable.just(MetNoAirQualityResult())
+            }
         } else {
             Observable.just(MetNoAirQualityResult())
         }
@@ -269,7 +289,10 @@ class MetNoService @Inject constructor(
                     if (context.currentLocale.toString().lowercase().startsWith("no")) "no" else "en",
                     location.latitude,
                     location.longitude
-                )
+                ).onErrorResumeNext {
+                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    Observable.just(MetNoAlertResult())
+                }
             } else {
                 Observable.just(MetNoAlertResult())
             }
@@ -297,7 +320,8 @@ class MetNoService @Inject constructor(
                 } else {
                     null
                 },
-                context
+                context,
+                failedFeatures
             )
         }
     }

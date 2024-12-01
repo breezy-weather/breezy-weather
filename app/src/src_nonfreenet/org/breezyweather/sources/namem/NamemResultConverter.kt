@@ -17,6 +17,7 @@
 package org.breezyweather.sources.namem
 
 import android.content.Context
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Current
@@ -132,12 +133,14 @@ fun convert(
     dailyResult: NamemDailyResult,
     hourlyResult: NamemHourlyResult,
     airQualityResult: NamemAirQualityResult,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     return WeatherWrapper(
         current = getCurrent(context, location, currentResult, airQualityResult),
         normals = getNormals(normalsResult),
         dailyForecast = getDailyForecast(context, dailyResult),
-        hourlyForecast = getHourlyForecast(hourlyResult)
+        hourlyForecast = getHourlyForecast(hourlyResult),
+        failedFeatures = failedFeatures
     )
 }
 
@@ -147,13 +150,15 @@ fun convertSecondary(
     currentResult: NamemCurrentResult?,
     normalsResult: NamemNormalsResult?,
     airQualityResult: NamemAirQualityResult?,
+    failedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = currentResult?.let { getCurrent(context, location, it, null) },
         airQuality = AirQualityWrapper(
             current = airQualityResult?.let { getAirQuality(location, it) }
         ),
-        normals = normalsResult?.let { getNormals(it) }
+        normals = normalsResult?.let { getNormals(it) },
+        failedFeatures = failedFeatures
     )
 }
 

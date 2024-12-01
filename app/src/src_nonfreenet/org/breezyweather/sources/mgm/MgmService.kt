@@ -88,9 +88,10 @@ class MgmService @Inject constructor(
 
         val now = Calendar.getInstance(TimeZone.getTimeZone("Europe/Istanbul"), Locale.ENGLISH)
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent(currentStation).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                 Observable.just(emptyList())
             }
         } else {
@@ -102,25 +103,27 @@ class MgmService @Inject constructor(
         // Some rural locations in Türkiye are not assigned to an hourlyStation
         val hourly = if (!hourlyStation.isNullOrEmpty()) {
             mApi.getHourly(hourlyStation).onErrorResumeNext {
-                // TODO: Log warning
+                /*if (BreezyWeather.instance.debugMode) {
+                    failedFeatures.add(SourceFeature.FEATURE_OTHER)
+                }*/
                 Observable.just(emptyList())
             }
         } else {
             Observable.just(emptyList())
         }
 
-        val today = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val todayAlerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlert("today").onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
                 Observable.just(emptyList())
             }
         } else {
             Observable.just(emptyList())
         }
 
-        val tomorrow = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val tomorrowAlerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlert("tomorrow").onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
                 Observable.just(emptyList())
             }
         } else {
@@ -134,14 +137,14 @@ class MgmService @Inject constructor(
                 month = now.get(Calendar.MONTH) + 1,
                 day = now.get(Calendar.DATE)
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
                 Observable.just(emptyList())
             }
         } else {
             Observable.just(emptyList())
         }
 
-        return Observable.zip(current, daily, hourly, today, tomorrow, normals) {
+        return Observable.zip(current, daily, hourly, todayAlerts, tomorrowAlerts, normals) {
                 currentResult: List<MgmCurrentResult>,
                 dailyForecastResult: List<MgmDailyForecastResult>,
                 hourlyForecastResult: List<MgmHourlyForecastResult>,
@@ -157,7 +160,8 @@ class MgmService @Inject constructor(
                 hourlyForecastResult = hourlyForecastResult.getOrNull(0),
                 todayAlertResult = todayAlertResult,
                 tomorrowAlertResult = tomorrowAlertResult,
-                normalsResult = normalsResult.getOrNull(0)
+                normalsResult = normalsResult.getOrNull(0),
+                failedFeatures = failedFeatures
             )
         }
     }
@@ -194,6 +198,7 @@ class MgmService @Inject constructor(
             return Observable.error(SecondaryWeatherException())
         }
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val currentStation = location.parameters.getOrElse(id) { null }?.getOrElse("currentStation") { null }
         val dailyStation = location.parameters.getOrElse(id) { null }?.getOrElse("dailyStation") { null }
         // Not checking hourlyStation: some rural locations in Türkiye are not assigned to one
@@ -205,19 +210,28 @@ class MgmService @Inject constructor(
         val now = Calendar.getInstance(TimeZone.getTimeZone("Europe/Istanbul"), Locale.ENGLISH)
 
         val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getCurrent(currentStation)
+            mApi.getCurrent(currentStation).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(emptyList())
+            }
         } else {
             Observable.just(emptyList())
         }
 
         val today = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            mApi.getAlert("today")
+            mApi.getAlert("today").onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(emptyList())
+            }
         } else {
             Observable.just(emptyList())
         }
 
         val tomorrow = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            mApi.getAlert("tomorrow")
+            mApi.getAlert("tomorrow").onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(emptyList())
+            }
         } else {
             Observable.just(emptyList())
         }
@@ -227,7 +241,10 @@ class MgmService @Inject constructor(
                 station = dailyStation,
                 month = now.get(Calendar.MONTH) + 1,
                 day = now.get(Calendar.DATE)
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
+                Observable.just(emptyList())
+            }
         } else {
             Observable.just(emptyList())
         }
@@ -260,7 +277,8 @@ class MgmService @Inject constructor(
                     normalsResult.getOrNull(0)
                 } else {
                     null
-                }
+                },
+                failedFeatures = failedFeatures
             )
         }
     }

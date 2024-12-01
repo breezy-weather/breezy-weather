@@ -17,6 +17,7 @@
 package org.breezyweather.sources.nws
 
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -61,6 +62,7 @@ fun convert(
     forecastResult: NwsGridPointResult,
     alertResult: NwsAlertsResult,
     location: Location,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     // If the API doesn’t return data, consider data as garbage and keep cached data
     if (forecastResult.properties == null) {
@@ -152,7 +154,8 @@ fun convert(
                 visibility = visibilityForecastList.getOrElse(it) { null }
             )
         },
-        alertList = getAlerts(alertResult.features)
+        alertList = getAlerts(alertResult.features),
+        failedFeatures = failedFeatures
     )
 }
 

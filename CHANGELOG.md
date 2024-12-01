@@ -6,6 +6,7 @@
 - Added night sky background for splash screen when using the app in dark mode (@min7-i)
 
 **Improvements and fixes**
+- When a source failed to refresh a specific feature, Breezy Weather will now attempt to continue refreshing other features while restoring the old data for failed features, when possible. A non-blocking error message mentioning the failed feature(s) will be visible in that case.
 - New refresh error message: “Location access is off” when permission is granted but system disabled (@min7-i)
 - Nowcasting chart: honor disabled “Threshold lines on charts” preference
 - Show minutes on the hourly chart on 24-hour system, so that users from a "not rounded hour" timezone such as India can see the correct minute

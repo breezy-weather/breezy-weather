@@ -18,6 +18,7 @@ package org.breezyweather.sources.mgm
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -79,13 +80,15 @@ fun convert(
     todayAlertResult: List<MgmAlertResult>?,
     tomorrowAlertResult: List<MgmAlertResult>?,
     normalsResult: MgmNormalsResult?,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     return WeatherWrapper(
         current = getCurrent(context, currentResult),
         dailyForecast = getDailyForecast(context, dailyResult),
         hourlyForecast = getHourlyForecast(context, hourlyForecastResult?.forecast),
         alertList = getAlertList(townCode, todayAlertResult, tomorrowAlertResult),
-        normals = getNormals(normalsResult)
+        normals = getNormals(normalsResult),
+        failedFeatures = failedFeatures
     )
 }
 
@@ -96,6 +99,7 @@ fun convertSecondary(
     todayAlertResult: List<MgmAlertResult>?,
     tomorrowAlertResult: List<MgmAlertResult>?,
     normalsResult: MgmNormalsResult?,
+    failedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
         current = if (currentResult !== null) {
@@ -112,7 +116,8 @@ fun convertSecondary(
             getNormals(normalsResult)
         } else {
             null
-        }
+        },
+        failedFeatures = failedFeatures
     )
 }
 

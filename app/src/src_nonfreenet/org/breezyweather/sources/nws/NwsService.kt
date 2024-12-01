@@ -102,11 +102,15 @@ class NwsService @Inject constructor(
             gridY.toInt()
         )
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val nwsAlertsResult = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getActiveAlerts(
                 USER_AGENT,
                 "${location.latitude},${location.longitude}"
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(NwsAlertsResult())
+            }
         } else {
             Observable.just(NwsAlertsResult())
         }
@@ -115,7 +119,7 @@ class NwsService @Inject constructor(
             nwsForecastResult,
             nwsAlertsResult
         ) { forecastResult, alertResult ->
-            convert(forecastResult, alertResult, location)
+            convert(forecastResult, alertResult, location, failedFeatures)
         }
     }
 

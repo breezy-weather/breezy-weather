@@ -127,6 +127,7 @@ class SmgService @Inject constructor(
             }
         }
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         val daily = mApi.getDaily()
         val hourly = mApi.getHourly()
 
@@ -138,14 +139,16 @@ class SmgService @Inject constructor(
         val astro = mApi.getAstro(
             body.toRequestBody("application/json".toMediaTypeOrNull())
         ).onErrorResumeNext {
-            // TODO: Log warning
+            /*if (BreezyWeather.instance.debugMode) {
+                failedFeatures.add(SourceFeature.FEATURE_OTHER)
+            }*/
             Observable.just(SmgAstroResult())
         }
 
         // CURRENT
         val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrent().onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                 Observable.just(SmgCurrentResult())
             }
         } else {
@@ -155,7 +158,7 @@ class SmgService @Inject constructor(
             mApi.getBulletin(
                 lang = lang
             ).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                 Observable.just(SmgBulletinResult())
             }
         } else {
@@ -163,7 +166,7 @@ class SmgService @Inject constructor(
         }
         val uv = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getUVIndex().onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
                 Observable.just(SmgUvResult())
             }
         } else {
@@ -171,10 +174,10 @@ class SmgService @Inject constructor(
         }
 
         // ALERT
-        val alerts = MutableList<Observable<SmgWarningResult>>(SMG_ALERT_TYPES.size) {
+        val alerts = MutableList(SMG_ALERT_TYPES.size) {
             if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
                 mApi.getWarning(SMG_ALERT_TYPES[it], lang).onErrorResumeNext {
-                    // TODO: Log warning
+                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
                     Observable.just(SmgWarningResult())
                 }
             } else {
@@ -203,7 +206,7 @@ class SmgService @Inject constructor(
         // AIR QUALITY
         val airQuality = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
             mCmsApi.getAirQuality(Calendar.getInstance().timeInMillis).onErrorResumeNext {
-                // TODO: Log warning
+                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
                 Observable.just(SmgAirQualityResult())
             }
         } else {
@@ -230,7 +233,8 @@ class SmgService @Inject constructor(
                 uvResult = uvResult,
                 warningsResult = warningsResult,
                 airQualityResult = airQualityResult,
-                includeNormals = !ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS)
+                includeNormals = !ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS),
+                failedFeatures = failedFeatures
             )
         }
     }
@@ -276,29 +280,42 @@ class SmgService @Inject constructor(
             }
         }
 
+        val failedFeatures = mutableListOf<SourceFeature>()
         // CURRENT
         val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getCurrent()
+            mApi.getCurrent().onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(SmgCurrentResult())
+            }
         } else {
             Observable.just(SmgCurrentResult())
         }
         val bulletin = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getBulletin(
                 lang = lang
-            )
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(SmgBulletinResult())
+            }
         } else {
             Observable.just(SmgBulletinResult())
         }
         val uv = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getUVIndex()
+            mApi.getUVIndex().onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                Observable.just(SmgUvResult())
+            }
         } else {
             Observable.just(SmgUvResult())
         }
 
         // ALERT
-        val alerts = MutableList<Observable<SmgWarningResult>>(SMG_ALERT_TYPES.size) {
+        val alerts = MutableList(SMG_ALERT_TYPES.size) {
             if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                mApi.getWarning(SMG_ALERT_TYPES[it], lang)
+                mApi.getWarning(SMG_ALERT_TYPES[it], lang).onErrorResumeNext {
+                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    Observable.just(SmgWarningResult())
+                }
             } else {
                 Observable.just(SmgWarningResult())
             }
@@ -324,7 +341,10 @@ class SmgService @Inject constructor(
 
         // AIR QUALITY
         val airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-            mCmsApi.getAirQuality(Calendar.getInstance().timeInMillis)
+            mCmsApi.getAirQuality(Calendar.getInstance().timeInMillis).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                Observable.just(SmgAirQualityResult())
+            }
         } else {
             Observable.just(SmgAirQualityResult())
         }
@@ -363,7 +383,8 @@ class SmgService @Inject constructor(
                 } else {
                     null
                 },
-                includeNormals = requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)
+                includeNormals = requestedFeatures.contains(SourceFeature.FEATURE_NORMALS),
+                failedFeatures = failedFeatures
             )
         }
     }
