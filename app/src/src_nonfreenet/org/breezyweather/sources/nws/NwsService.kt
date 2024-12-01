@@ -63,11 +63,13 @@ class NwsService @Inject constructor(
         "PR", // Puerto Rico
         "VI", // St Thomas Islands
         "MP", // Mariana Islands
-        "GU", // Guam
-        "FM", // Palikir
-        "PW", // Melekeok
-        "AS", // Pago Pago
-        "UM", "XB", "XH", "XQ", "XU", "XM", "QM", "XV", "XL", "QW" // Minor Outlying Islands
+        "GU" // Guam
+        // The following codes no longer work as of 2024-11-21
+        // "FM", // Palikir - no longer works as of 2024-11-21
+        // "PW", // Melekeok - no longer works as of 2024-11-21
+        // "AS", // Pago Pago - no longer works as of 2024-11-21
+        // "UM", "XB", "XH", "XQ", "XU", "XM", "QM", "XV", "XL", "QW" // Minor Outlying Islands
+        // Minor Outlying Islands are largely uninhabited, except for temporary U.S. military staff
     )
 
     override fun isFeatureSupportedInMainForLocation(

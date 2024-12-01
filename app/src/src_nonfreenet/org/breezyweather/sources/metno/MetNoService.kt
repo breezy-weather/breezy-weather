@@ -159,11 +159,13 @@ class MetNoService @Inject constructor(
                 Observable.just(MetNoAirQualityResult())
             }
 
-        // Alerts only for Norway
+        // Alerts only for Norway and Svalbard & Jan Mayen
         val alerts =
             if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT) &&
                 !location.countryCode.isNullOrEmpty() &&
-                location.countryCode.equals("NO", ignoreCase = true)
+                arrayOf("NO", "SJ").any {
+                    it.equals(location.countryCode, ignoreCase = true)
+                }
             ) {
                 mApi.getAlerts(
                     USER_AGENT,
@@ -229,7 +231,9 @@ class MetNoService @Inject constructor(
             (
                 feature == SourceFeature.FEATURE_ALERT &&
                     !location.countryCode.isNullOrEmpty() &&
-                    location.countryCode.equals("NO", ignoreCase = true)
+                    arrayOf("NO", "SJ").any {
+                        it.equals(location.countryCode, ignoreCase = true)
+                    }
                 )
     }
     override val currentAttribution = weatherAttribution
@@ -278,11 +282,13 @@ class MetNoService @Inject constructor(
             Observable.just(MetNoAirQualityResult())
         }
 
-        // Alerts only for Norway
+        // Alerts only for Norway and Svalbard & Jan Mayen
         val alerts =
             if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT) &&
                 !location.countryCode.isNullOrEmpty() &&
-                location.countryCode.equals("NO", ignoreCase = true)
+                arrayOf("NO", "SJ").any {
+                    it.equals(location.countryCode, ignoreCase = true)
+                }
             ) {
                 mApi.getAlerts(
                     USER_AGENT,

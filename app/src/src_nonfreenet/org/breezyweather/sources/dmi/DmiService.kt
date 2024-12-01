@@ -71,7 +71,7 @@ class DmiService @Inject constructor(
 
         val failedFeatures = mutableListOf<SourceFeature>()
         val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT) &&
-            location.countryCode.equals("DK", ignoreCase = true)
+            arrayOf("DK", "FO", "GL").any { it.equals(location.countryCode, ignoreCase = true) }
         ) {
             val id = location.parameters.getOrElse(id) { null }?.getOrElse("id") { null }
             if (!id.isNullOrEmpty()) {
@@ -103,7 +103,7 @@ class DmiService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        return location.countryCode.equals("DK", ignoreCase = true)
+        return arrayOf("DK", "FO", "GL").any { it.equals(location.countryCode, ignoreCase = true) }
     }
     override val currentAttribution = null
     override val airQualityAttribution = null
@@ -153,13 +153,10 @@ class DmiService @Inject constructor(
         coordinatesChanged: Boolean,
         features: List<SourceFeature>,
     ): Boolean {
-        // If we are in Denmark, we need location parameters (update it if coordinates changes,
-        // OR if we didn't have it yet)
-        return location.countryCode.equals("DK", ignoreCase = true) &&
-            (
-                coordinatesChanged ||
-                    location.parameters.getOrElse(id) { null }?.getOrElse("id") { null }.isNullOrEmpty()
-                )
+        // If we are in Denmark, Faroe Islands, or Greenland, we need location parameters
+        // (update it if coordinates changes, OR if we didn't have it yet)
+        return arrayOf("DK", "FO", "GL").any { it.equals(location.countryCode, ignoreCase = true) } &&
+            (coordinatesChanged || location.parameters.getOrElse(id) { null }?.getOrElse("id") { null }.isNullOrEmpty())
     }
 
     override fun requestLocationParameters(
