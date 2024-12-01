@@ -92,8 +92,7 @@ class MetOfficeService @Inject constructor(
                 it.features.getOrNull(0)?.let { feature ->
                     add(
                         location.copy(
-                            district = feature.properties.location?.name,
-                            countryCode = "GB"
+                            district = feature.properties.location?.name
                         )
                     )
                 }

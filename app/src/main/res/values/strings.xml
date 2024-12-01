@@ -822,6 +822,7 @@
     <string name="common_weather_text_dust">Dust</string>
     <string name="common_weather_text_dust_storm">Dust storm</string>
     <string name="common_weather_text_frost">Frost</string>
+    <string name="common_weather_text_squall">Squall</string>
     <!-- Weather kind -->
     <string name="weather_kind_clear" translatable="false">@string/common_weather_text_clear_sky</string>
     <string name="weather_kind_partly_cloudy" translatable="false">@string/common_weather_text_partly_cloudy</string>

@@ -485,7 +485,7 @@ private fun getWeatherText(
         "08" -> context.getString(R.string.common_weather_text_mist) // Mist
         "09" -> context.getString(R.string.common_weather_text_smoke) // Smoke
         "10" -> context.getString(R.string.common_weather_text_drizzle) // Drizzle
-        "11" -> context.getString(R.string.weather_kind_thunderstorm) // Squall
+        "11" -> context.getString(R.string.common_weather_text_squall) // Squall
         "12" -> context.getString(R.string.common_weather_text_rain) // Rain
         "13" -> context.getString(R.string.common_weather_text_rain_heavy)
         "14", "15" -> context.getString(R.string.common_weather_text_snow) // Snow
@@ -520,10 +520,10 @@ private fun getWeatherCode(
         "06", "08" -> WeatherCode.FOG
         "05", "07", "09" -> WeatherCode.HAZE
         "10", "12", "13", "16", "17", "28", "c8", "29", "c9" -> WeatherCode.RAIN
-        "11", "18", "24" -> WeatherCode.THUNDERSTORM
+        "18", "24" -> WeatherCode.THUNDERSTORM
         "14", "15" -> WeatherCode.SNOW
         "25" -> WeatherCode.THUNDER
-        "19", "20", "22", "23", "27", "30" -> WeatherCode.WIND
+        "11", "19", "20", "22", "23", "27", "30" -> WeatherCode.WIND
         else -> null
     }
 }

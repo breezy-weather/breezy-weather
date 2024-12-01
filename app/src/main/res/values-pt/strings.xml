@@ -735,4 +735,5 @@
     <string name="jma_warning_text_frost_advisory">Aviso de atenção para geada</string>
     <string name="jma_warning_text_ice_accretion_advisory">Aviso de atenção para aderência de gelo</string>
     <string name="jma_warning_text_snow_accretion_advisory">Aviso de atenção para aderência de neve</string>
+    <string name="common_weather_text_squall">Borrasca</string>
 </resources>

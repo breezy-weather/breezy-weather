@@ -689,4 +689,5 @@
     <string name="settings_unavailable_no_animations">Nepasiekiama, pirmiausia įgalinkite animacijas Android nustatymuose</string>
     <string name="settings_notifications_app_updates_check">Pranešimai apie programėlės atnaujinimus</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornadas arba vandens viesulas</string>
+    <string name="common_weather_text_squall">Škvalas</string>
 </resources>

@@ -52,15 +52,25 @@ enum class LocationPreset(
     // Europe
     // AUSTRIA("openmeteo" /* GeoSphere too lightweight */, airQuality = "geosphereat", minutely = "geosphereat",
     //     alert = "geosphereat", normals = "geosphereat"),
+    ANDORRA("fr", airQuality = "openmeteo", pollen = "openmeteo"),
     DENMARK("dmi", airQuality = "openmeteo", pollen = "openmeteo", minutely = "metno", normals = "accu"),
     GERMANY("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     GERMANY_FREENET("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
     FINLAND("metno", airQuality = "openmeteo", pollen = "openmeteo", alert = "accu", normals = "accu"),
     FRANCE("mf", airQuality = "openmeteo", pollen = "recosante"),
+    FRANCE_OVERSEAS("mf", airQuality = "openmeteo", minutely = "openmeteo"),
     FRANCE_FREENET("openmeteo", pollen = "recosante"),
     IRELAND("metie", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
-    ITALY("meteoam", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
+    ITALY(
+        "meteoam",
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "accu",
+        normals = "accu"
+    ),
     LUXEMBOURG("meteolux", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
+    MONACO("mf", airQuality = "openmeteo", pollen = "openmeteo", alert = "accu"),
     NORWAY("metno", pollen = "openmeteo", alert = "accu", normals = "accu"),
     PORTUGAL("ipma", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     SPAIN("aemet", airQuality = "openmeteo", pollen = "openmeteo", alert = "accu", minutely = "openmeteo"),
@@ -78,13 +88,13 @@ enum class LocationPreset(
     // Don’t add cwa for TAIWAN as it is a rate-limited source
     BANGLADESH("bmd", airQuality = "openmeteo", minutely = "openmeteo", alert = "accu", normals = "accu"),
     CHINA("china"),
-    HONG_KONG("hko"),
-    INDONESIA("bmkg", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
+    HONG_KONG("hko", airQuality = "openmeteo", minutely = "openmeteo"),
+    INDONESIA("bmkg", minutely = "openmeteo", normals = "accu"),
     INDIA("imd", airQuality = "openmeteo", minutely = "openmeteo", alert = "accu", normals = "accu"),
     ISRAEL("ims", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
     JAPAN("jma", airQuality = "openmeteo", minutely = "openmeteo"),
     MACAO("smg", minutely = "openmeteo"),
-    MONGOLIA("namem"),
+    MONGOLIA("namem", minutely = "openmeteo", alert = "accu"),
     PHILIPPINES("pagasa", airQuality = "openmeteo", minutely = "openmeteo", alert = "accu", normals = "accu"),
     TURKIYE("mgm", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
     ;
@@ -96,18 +106,21 @@ enum class LocationPreset(
                 when (countryCode.uppercase(Locale.ENGLISH)) {
                     // North America
                     "CA" -> CANADA
-                    "US", "PR", "VI", "MP", "GU", "FM", "PW", "AS" -> USA
+                    "US", "PR", "VI", "MP", "GU" -> USA
 
                     // Europe
+                    "AD" -> ANDORRA
                     "DE" -> GERMANY
-                    "DK" -> DENMARK
+                    "DK", "FO", "GL" -> DENMARK
                     "ES" -> SPAIN
                     "FI" -> FINLAND
                     "FR" -> FRANCE
+                    "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT" -> FRANCE_OVERSEAS
                     "IE" -> IRELAND
                     "IT", "SM", "VA" -> ITALY
                     "LU" -> LUXEMBOURG
-                    "NO" -> NORWAY
+                    "MC" -> MONACO
+                    "NO", "SJ" -> NORWAY
                     "PT" -> PORTUGAL
                     "SE" -> SWEDEN
 
