@@ -52,7 +52,7 @@ enum class LocationPreset(
     // Europe
     // AUSTRIA("openmeteo" /* GeoSphere too lightweight */, airQuality = "geosphereat", minutely = "geosphereat",
     //     alert = "geosphereat", normals = "geosphereat"),
-    ANDORRA("fr", airQuality = "openmeteo", pollen = "openmeteo"),
+    ANDORRA("mf", airQuality = "openmeteo", pollen = "openmeteo"),
     DENMARK("dmi", airQuality = "openmeteo", pollen = "openmeteo", minutely = "metno", normals = "accu"),
     GERMANY("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     GERMANY_FREENET("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
