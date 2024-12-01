@@ -789,4 +789,5 @@
     <string name="jma_warning_text_ice_accretion_advisory">结冰注意报</string>
     <string name="jma_warning_text_snow_accretion_advisory">积雪注意报</string>
     <string name="location_message_location_access_off">位置访问权限关闭</string>
+    <string name="weather_message_failed_feature">源更新失败：%s</string>
 </resources>
