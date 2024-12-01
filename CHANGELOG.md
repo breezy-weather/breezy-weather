@@ -47,7 +47,7 @@
   - [MeteoLux] Added as a main and secondary current/alert source option for Luxembourg. (@chunshek)
 - Miscellaneous
   - Add translation for a few source names and privacy policies
-  - Location presets updated for some countries following the addition of many weather sources
+  - Location presets updated for some countries following the addition of many weather sources (@chunshek)
 
 
 # Version 5.2.8 (2024-09-15)
