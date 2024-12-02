@@ -255,8 +255,8 @@ private fun getDailyForecast(
 
     var key: String?
     var value: String?
-    var timestamp: Long?
-    var extraMilliSeconds: Long?
+    var timestamp: Long
+    var extraMilliSeconds: Long
 
     // Legacy schema
     dailyResult.records?.legacyLocations?.getOrNull(
@@ -268,8 +268,8 @@ private fun getDailyForecast(
                 // We calculate delta from the previous 06:00 and 18:00 local time (22:00 and 10:00 UTC).
                 // So that we can normalize quarter-day start times to half-day start times.
                 timestamp = formatter.parse(key!!)!!.time
-                extraMilliSeconds = (timestamp!! - 10.hours.inWholeMilliseconds).mod(12.hours.inWholeMilliseconds)
-                key = formatter.format(timestamp!! - extraMilliSeconds!!)
+                extraMilliSeconds = (timestamp - 10.hours.inWholeMilliseconds).mod(12.hours.inWholeMilliseconds)
+                key = formatter.format(timestamp - extraMilliSeconds)
                 value = getValid(item.legacyElementValue?.getOrNull(0)?.legacyValue) as String?
                 when (element.legacyElementName) {
                     "PoP12h" -> popMap[key!!] = value?.toDoubleOrNull()
@@ -311,24 +311,46 @@ private fun getDailyForecast(
                 // We calculate delta from the previous 06:00 and 18:00 local time (22:00 and 10:00 UTC).
                 // So that we can normalize quarter-day start times to half-day start times.
                 timestamp = formatter.parse(key!!)!!.time
-                extraMilliSeconds = (timestamp!! - 10.hours.inWholeMilliseconds).mod(12.hours.inWholeMilliseconds)
-                key = formatter.format(timestamp!! - extraMilliSeconds!!)
+                extraMilliSeconds = (timestamp - 10.hours.inWholeMilliseconds).mod(12.hours.inWholeMilliseconds)
+                key = formatter.format(timestamp - extraMilliSeconds)
 
                 item.elementValue?.getOrNull(0)?.let {
-                    maxTMap[key!!] = getValid(it.maxTemperature?.toDoubleOrNull()) as Double?
-                    minTMap[key!!] = getValid(it.minTemperature?.toDoubleOrNull()) as Double?
-                    maxAtMap[key!!] = getValid(it.maxApparentTemperature?.toDoubleOrNull()) as Double?
-                    minAtMap[key!!] = getValid(it.minApparentTemperature?.toDoubleOrNull()) as Double?
-                    wdMap[key!!] = getWindDirection(getValid(it.windDirection) as String?)
-                    wsMap[key!!] = if (it.windSpeed == ">= 11") {
-                        11.0
-                    } else {
-                        getValid(it.windSpeed?.toDoubleOrNull()) as Double?
+                    // We have to assign the map values within individual if statements,
+                    // otherwise the null values from later elements will overwrite actual values from earlier ones.
+                    if (it.maxTemperature != null) {
+                        maxTMap[key!!] = getValid(it.maxTemperature.toDoubleOrNull()) as Double?
                     }
-                    popMap[key!!] = getValid(it.probabilityOfPrecipitation?.toDoubleOrNull()) as Double?
-                    wxTextMap[key!!] = getValid(it.weather) as String?
-                    wxCodeMap[key!!] = getWeatherCode(getValid(it.weatherCode) as String?)
-                    uviMap[key!!] = getValid(it.uvIndex?.toDoubleOrNull()) as Double?
+                    if (it.minTemperature != null) {
+                        minTMap[key!!] = getValid(it.minTemperature.toDoubleOrNull()) as Double?
+                    }
+                    if (it.maxApparentTemperature != null) {
+                        maxAtMap[key!!] = getValid(it.maxApparentTemperature.toDoubleOrNull()) as Double?
+                    }
+                    if (it.minApparentTemperature != null) {
+                        minAtMap[key!!] = getValid(it.minApparentTemperature.toDoubleOrNull()) as Double?
+                    }
+                    if (it.windDirection != null) {
+                        wdMap[key!!] = getWindDirection(getValid(it.windDirection) as String?)
+                    }
+                    if (it.windSpeed != null) {
+                        wsMap[key!!] = if (it.windSpeed == ">= 11") {
+                            11.0
+                        } else {
+                            getValid(it.windSpeed.toDoubleOrNull()) as Double?
+                        }
+                    }
+                    if (it.probabilityOfPrecipitation != null) {
+                        popMap[key!!] = getValid(it.probabilityOfPrecipitation.toDoubleOrNull()) as Double?
+                    }
+                    if (it.weather != null) {
+                        wxTextMap[key!!] = getValid(it.weather) as String?
+                    }
+                    if (it.weatherCode != null) {
+                        wxCodeMap[key!!] = getWeatherCode(getValid(it.weatherCode) as String?)
+                    }
+                    if (it.uvIndex != null) {
+                        uviMap[key!!] = getValid(it.uvIndex.toDoubleOrNull()) as Double?
+                    }
                 }
             }
         }
@@ -473,19 +495,39 @@ private fun getHourlyForecast(
             key = item.dataTime ?: item.startTime
             if (key != null) {
                 item.elementValue?.getOrNull(0)?.let {
-                    tMap[key!!] = getValid(it.temperature?.toDoubleOrNull()) as Double?
-                    tdMap[key!!] = getValid(it.dewPoint?.toDoubleOrNull()) as Double?
-                    atMap[key!!] = getValid(it.apparentTemperature?.toDoubleOrNull()) as Double?
-                    rhMap[key!!] = getValid(it.relativeHumidity?.toDoubleOrNull()) as Double?
-                    wdMap[key!!] = getWindDirection(getValid(it.windDirection) as String?)
-                    wsMap[key!!] = if (it.windSpeed == ">= 11") {
-                        11.0
-                    } else {
-                        getValid(it.windSpeed?.toDoubleOrNull()) as Double?
+                    // We have to assign the map values within individual if statements,
+                    // otherwise the null values from later elements will overwrite actual values from earlier ones.
+                    if (it.temperature != null) {
+                        tMap[key!!] = getValid(it.temperature.toDoubleOrNull()) as Double?
                     }
-                    popMap[key!!] = getValid(it.probabilityOfPrecipitation?.toDoubleOrNull()) as Double?
-                    wxTextMap[key!!] = getValid(it.weather) as String?
-                    wxCodeMap[key!!] = getWeatherCode(getValid(it.weatherCode) as String?)
+                    if (it.dewPoint != null) {
+                        tdMap[key!!] = getValid(it.dewPoint.toDoubleOrNull()) as Double?
+                    }
+                    if (it.apparentTemperature != null) {
+                        atMap[key!!] = getValid(it.apparentTemperature.toDoubleOrNull()) as Double?
+                    }
+                    if (it.relativeHumidity != null) {
+                        rhMap[key!!] = getValid(it.relativeHumidity.toDoubleOrNull()) as Double?
+                    }
+                    if (it.windDirection != null) {
+                        wdMap[key!!] = getWindDirection(getValid(it.windDirection) as String?)
+                    }
+                    if (it.windSpeed != null) {
+                        wsMap[key!!] = if (it.windSpeed == ">= 11") {
+                            11.0
+                        } else {
+                            getValid(it.windSpeed.toDoubleOrNull()) as Double?
+                        }
+                    }
+                    if (it.probabilityOfPrecipitation != null) {
+                        popMap[key!!] = getValid(it.probabilityOfPrecipitation.toDoubleOrNull()) as Double?
+                    }
+                    if (it.weather != null) {
+                        wxTextMap[key!!] = getValid(it.weather) as String?
+                    }
+                    if (it.weatherCode != null) {
+                        wxCodeMap[key!!] = getWeatherCode(getValid(it.weatherCode) as String?)
+                    }
                 }
             }
         }
