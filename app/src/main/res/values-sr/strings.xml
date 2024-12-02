@@ -709,4 +709,12 @@
     <string name="common_weather_text_dust_storm">Олуја с прашином</string>
     <string name="location_message_location_access_off">Приступ локацији је искључен</string>
     <string name="weather_message_failed_feature">Неуспешно ажурирање извора: %s</string>
+    <string name="weather_source_continent_north_america">Северна Америка</string>
+    <string name="weather_source_continent_oceania">Океанија</string>
+    <string name="weather_source_continent_south_america">Јужна Америка</string>
+    <string name="weather_source_continent_worldwide">Широм света</string>
+    <string name="weather_source_continent_europe">Европа</string>
+    <string name="weather_source_continent_africa">Африка</string>
+    <string name="weather_source_continent_asia">Азија</string>
+    <string name="common_weather_text_squall">Налет ветра</string>
 </resources>
