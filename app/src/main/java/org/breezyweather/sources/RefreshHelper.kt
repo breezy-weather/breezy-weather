@@ -42,9 +42,9 @@ import org.breezyweather.common.exceptions.ApiLimitReachedException
 import org.breezyweather.common.exceptions.ApiUnauthorizedException
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
+import org.breezyweather.common.exceptions.LocationAccessOffException
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.exceptions.LocationSearchException
-import org.breezyweather.common.exceptions.LocationServiceDisabledException
 import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException
 import org.breezyweather.common.exceptions.MissingPermissionLocationException
 import org.breezyweather.common.exceptions.NoNetworkException
@@ -872,7 +872,7 @@ class RefreshHelper @Inject constructor(
             is ApiUnauthorizedException -> RefreshErrorType.API_UNAUTHORIZED
             is InvalidLocationException -> RefreshErrorType.INVALID_LOCATION
             is LocationException -> RefreshErrorType.LOCATION_FAILED
-            is LocationServiceDisabledException -> RefreshErrorType.LOCATION_ACCESS_OFF
+            is LocationAccessOffException -> RefreshErrorType.LOCATION_ACCESS_OFF
             is MissingPermissionLocationException -> RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING
             is MissingPermissionLocationBackgroundException ->
                 RefreshErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING

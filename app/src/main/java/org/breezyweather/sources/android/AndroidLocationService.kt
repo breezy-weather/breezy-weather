@@ -13,6 +13,7 @@ import androidx.core.location.LocationRequestCompat
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.rx3.rxObservable
+import org.breezyweather.common.exceptions.LocationAccessOffException
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.source.LocationPositionWrapper
 import org.breezyweather.common.source.LocationSource
@@ -50,7 +51,7 @@ class AndroidLocationService @Inject constructor() : LocationSource, LocationLis
 
         if (!LocationManagerCompat.isLocationEnabled(locationManager)) {
             LogHelper.log(msg = "Location service not enabled")
-            throw LocationException()
+            throw LocationAccessOffException()
         }
 
         return rxObservable {

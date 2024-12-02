@@ -16,4 +16,4 @@
 
 package org.breezyweather.common.exceptions
 
-class LocationServiceDisabledException : Exception()
+class LocationAccessOffException : Exception()
