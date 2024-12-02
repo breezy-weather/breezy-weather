@@ -710,4 +710,11 @@
     <string name="location_message_location_access_off">A helyszínadatokhoz való hozzáférés ki van kapcsolva</string>
     <string name="weather_message_failed_feature">Nem sikerült frissíteni a forrást: %s</string>
     <string name="common_weather_text_squall">Széllökés</string>
+    <string name="weather_source_continent_worldwide">Az egész világ</string>
+    <string name="weather_source_continent_africa">Afrika</string>
+    <string name="weather_source_continent_asia">Ázsia</string>
+    <string name="weather_source_continent_europe">Európa</string>
+    <string name="weather_source_continent_north_america">Észak-Amerika</string>
+    <string name="weather_source_continent_oceania">Óceánia</string>
+    <string name="weather_source_continent_south_america">Dél-Amerika</string>
 </resources>
