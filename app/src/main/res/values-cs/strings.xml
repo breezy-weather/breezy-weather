@@ -720,4 +720,11 @@
     <string name="location_message_location_access_off">Poloha je vypnuta</string>
     <string name="weather_message_failed_feature">Nepodařilo se aktualizovat zdroj: %s</string>
     <string name="common_weather_text_squall">Húlava</string>
+    <string name="weather_source_continent_africa">Afrika</string>
+    <string name="weather_source_continent_worldwide">Celý svět</string>
+    <string name="weather_source_continent_europe">Evropa</string>
+    <string name="weather_source_continent_asia">Asie</string>
+    <string name="weather_source_continent_oceania">Oceánie</string>
+    <string name="weather_source_continent_south_america">Jižní Amerika</string>
+    <string name="weather_source_continent_north_america">Severní Amerika</string>
 </resources>
