@@ -43,6 +43,7 @@ import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeatherResult
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -52,7 +53,7 @@ class BrightSkyService @Inject constructor(
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ConfigurableSource {
 
     override val id = "brightsky"
-    override val name = "Bright Sky (DWD)"
+    override val name = "Bright Sky (DWD) (${Locale(context.currentLocale.code, "DE").displayCountry})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://brightsky.dev/"
 

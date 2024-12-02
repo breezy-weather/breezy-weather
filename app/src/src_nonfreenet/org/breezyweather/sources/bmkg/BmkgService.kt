@@ -29,6 +29,8 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.SecondaryWeatherException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -43,6 +45,7 @@ import org.breezyweather.sources.bmkg.json.BmkgIbfResult
 import org.breezyweather.sources.bmkg.json.BmkgPm25Result
 import org.breezyweather.sources.bmkg.json.BmkgWarningResult
 import retrofit2.Retrofit
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.text.ifEmpty
@@ -53,7 +56,7 @@ class BmkgService @Inject constructor(
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, ConfigurableSource {
 
     override val id = "bmkg"
-    override val name = "BMKG"
+    override val name = "BMKG (${Locale(context.currentLocale.code, "ID").displayCountry})"
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = ""
 

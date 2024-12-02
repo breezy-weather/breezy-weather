@@ -61,9 +61,9 @@ class SmgService @Inject constructor(
     // for use in the source list. The English name can be used in attributions.
     override val name by lazy {
         if (context.currentLocale.code.startsWith("zh")) {
-            "地球物理氣象局"
+            "地球物理氣象局 (${Locale(context.currentLocale.code, "MO").displayCountry})"
         } else {
-            "Serviços Meteorológicos e Geofísicos (SMG)"
+            "SMG (${Locale(context.currentLocale.code, "MO").displayCountry})"
         }
     }
     override val continent = SourceContinent.ASIA

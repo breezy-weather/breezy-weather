@@ -22,9 +22,12 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.sources.imd.json.ImdWeatherResult
@@ -37,11 +40,12 @@ import javax.inject.Named
 import kotlin.math.roundToInt
 
 class ImdService @Inject constructor(
+    @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource {
 
     override val id = "imd"
-    override val name = "India Meteorological Department"
+    override val name = "IMD (${Locale(context.currentLocale.code, "IN").displayCountry})"
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = ""
 

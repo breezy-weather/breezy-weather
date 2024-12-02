@@ -40,6 +40,7 @@ import org.breezyweather.sources.metno.json.MetNoNowcastResult
 import org.breezyweather.sources.metno.json.MetNoSunResult
 import retrofit2.Retrofit
 import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -49,11 +50,18 @@ class MetNoService @Inject constructor(
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource {
 
     override val id = "metno"
+    val countryName = Locale(context.currentLocale.code, "NO").displayCountry
     override val name by lazy {
         with(context.currentLocale.code) {
             when {
                 startsWith("no") -> "Meteorologisk institutt"
-                else -> "MET Norway"
+                else -> "MET Norway".let {
+                    if (it.contains(countryName)) {
+                        it
+                    } else {
+                        "$it ($countryName)"
+                    }
+                }
             }
         }
     }

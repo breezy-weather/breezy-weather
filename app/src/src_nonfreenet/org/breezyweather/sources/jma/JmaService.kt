@@ -62,7 +62,7 @@ class JmaService @Inject constructor(
         if (context.currentLocale.code.startsWith("ja")) {
             "気象庁"
         } else {
-            "Japan Meteorological Agency"
+            "JMA (${Locale(context.currentLocale.code, "JP").displayCountry})"
         }
     }
     override val continent = SourceContinent.ASIA

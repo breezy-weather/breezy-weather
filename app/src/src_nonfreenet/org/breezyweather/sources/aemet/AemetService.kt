@@ -32,6 +32,8 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -45,6 +47,7 @@ import org.breezyweather.sources.aemet.json.AemetDailyResult
 import org.breezyweather.sources.aemet.json.AemetHourlyResult
 import org.breezyweather.sources.aemet.json.AemetNormalsResult
 import retrofit2.Retrofit
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.text.ifEmpty
@@ -55,7 +58,7 @@ class AemetService @Inject constructor(
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, LocationParametersSource, ConfigurableSource {
 
     override val id = "aemet"
-    override val name = "AEMET"
+    override val name = "AEMET (${Locale(context.currentLocale.code, "ES").displayCountry})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.aemet.es/es/nota_legal"
 
