@@ -710,4 +710,12 @@
     <string name="common_weather_text_dust_storm">Пыльная буря</string>
     <string name="location_message_location_access_off">Доступ к местоположению отключен</string>
     <string name="weather_message_failed_feature">Источнику не удалось обновить: %s</string>
+    <string name="weather_source_continent_africa">Африка</string>
+    <string name="weather_source_continent_europe">Европа</string>
+    <string name="weather_source_continent_oceania">Океания</string>
+    <string name="weather_source_continent_south_america">Южная Америка</string>
+    <string name="common_weather_text_squall">Шквал</string>
+    <string name="weather_source_continent_worldwide">По всему миру</string>
+    <string name="weather_source_continent_north_america">Северная Америка</string>
+    <string name="weather_source_continent_asia">Азия</string>
 </resources>
