@@ -788,4 +788,11 @@
     <string name="location_message_location_access_off">位置存取尚未啟用</string>
     <string name="weather_message_failed_feature">無法更新%s</string>
     <string name="common_weather_text_squall">颮</string>
+    <string name="weather_source_continent_worldwide">全球</string>
+    <string name="weather_source_continent_north_america">北美洲</string>
+    <string name="weather_source_continent_oceania">大洋洲</string>
+    <string name="weather_source_continent_south_america">南美洲</string>
+    <string name="weather_source_continent_europe">歐洲</string>
+    <string name="weather_source_continent_africa">非洲</string>
+    <string name="weather_source_continent_asia">亞洲</string>
 </resources>
