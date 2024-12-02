@@ -50,18 +50,11 @@ class MetNoService @Inject constructor(
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource {
 
     override val id = "metno"
-    val countryName = Locale(context.currentLocale.code, "NO").displayCountry
     override val name by lazy {
         with(context.currentLocale.code) {
             when {
                 startsWith("no") -> "Meteorologisk institutt"
-                else -> "MET Norway".let {
-                    if (it.contains(countryName)) {
-                        it
-                    } else {
-                        "$it ($countryName)"
-                    }
-                }
+                else -> "MET Norway"
             }
         }
     }
