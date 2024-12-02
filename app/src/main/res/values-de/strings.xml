@@ -717,4 +717,11 @@
     <string name="common_weather_text_dust_storm">Staubsturm</string>
     <string name="common_weather_text_dust">Staub</string>
     <string name="location_message_location_access_off">Standortermittlung ist deaktiviert</string>
+    <string name="weather_source_continent_worldwide">Weltweit</string>
+    <string name="weather_source_continent_oceania">Ozeanien</string>
+    <string name="weather_source_continent_south_america">Südamerika</string>
+    <string name="weather_source_continent_europe">Europa</string>
+    <string name="weather_source_continent_north_america">Nordamerika</string>
+    <string name="weather_source_continent_africa">Afrika</string>
+    <string name="weather_source_continent_asia">Asien</string>
 </resources>
