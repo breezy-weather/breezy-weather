@@ -39,6 +39,7 @@ import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.utils.helpers.LogHelper
 import retrofit2.Retrofit
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -55,7 +56,7 @@ class ImsService @Inject constructor(
         with(context.currentLocale.code) {
             when {
                 startsWith("he") || startsWith("iw") -> "השירות המטאורולוגי הישראלי"
-                else -> "Israel Meteorological Service"
+                else -> "IMS (${Locale(context.currentLocale.code, "IL").displayCountry})"
             }
         }
     }
@@ -70,7 +71,14 @@ class ImsService @Inject constructor(
     }
 
     override val color = Color.rgb(52, 79, 110)
-    override val weatherAttribution = "Israel Meteorological Service"
+    override val weatherAttribution by lazy {
+        with(context.currentLocale.code) {
+            when {
+                startsWith("he") || startsWith("iw") -> "השירות המטאורולוגי הישראלי"
+                else -> "Israel Meteorological Service"
+            }
+        }
+    }
 
     private val mApi by lazy {
         client

@@ -35,6 +35,7 @@ import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.sources.bmd.json.BmdForecastResult
 import retrofit2.Retrofit
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -48,7 +49,7 @@ class BmdService @Inject constructor(
         if (context.currentLocale.code.startsWith("bn")) {
             "বাংলাদেশ আবহাওয়া অধিদপ্তর"
         } else {
-            "Bangladesh Meteorological Department"
+            "BMD (${Locale(context.currentLocale.code, "BD").displayCountry})"
         }
     }
     override val continent = SourceContinent.ASIA

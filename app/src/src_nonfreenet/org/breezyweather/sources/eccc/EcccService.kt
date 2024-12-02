@@ -33,6 +33,7 @@ import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import retrofit2.Retrofit
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -42,14 +43,9 @@ class EcccService @Inject constructor(
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource {
 
     override val id = "eccc"
-    override val name by lazy {
-        with(context.currentLocale.code) {
-            when {
-                startsWith("fr") -> "Environnement et Changement Climatique Canada"
-                else -> "Environment and Climate Change Canada"
-            }
-        }
-    }
+    override val name = "ECCC (${Locale(context.currentLocale.code, "CA").displayCountry})"
+
+    // Environnement et Changement Climatique Canada
     override val continent = SourceContinent.NORTH_AMERICA
     override val privacyPolicyUrl by lazy {
         with(context.currentLocale.code) {
@@ -61,8 +57,18 @@ class EcccService @Inject constructor(
     }
 
     override val color = Color.rgb(255, 0, 0)
-    override val weatherAttribution =
-        "Environment and Climate Change Canada (Environment and Climate Change Canada Data Servers End-use Licence)"
+    override val weatherAttribution by lazy {
+        with(context.currentLocale.code) {
+            when {
+                startsWith("fr") ->
+                    "Environnement et Changement Climatique Canada (Licence d’utilisation finale" +
+                        " pour les serveurs de données d’Environnement et Changement climatique Canada)"
+                else ->
+                    "Environment and Climate Change Canada" +
+                        " (Environment and Climate Change Canada Data Servers End-use Licence)"
+            }
+        }
+    }
 
     private val mApi by lazy {
         client

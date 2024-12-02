@@ -49,6 +49,7 @@ import org.breezyweather.sources.mf.json.MfWarningsResult
 import retrofit2.Retrofit
 import java.nio.charset.StandardCharsets
 import java.util.Date
+import java.util.Locale
 import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Named
@@ -62,7 +63,14 @@ class MfService @Inject constructor(
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, ConfigurableSource {
 
     override val id = "mf"
-    override val name = "Météo-France"
+    val countryName = Locale(context.currentLocale.code, "FR").displayCountry
+    override val name = "Météo-France".let {
+        if (it.contains(countryName)) {
+            it
+        } else {
+            "$it ($countryName)"
+        }
+    }
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://meteofrance.com/application-meteo-france-politique-de-confidentialite"
 

@@ -38,6 +38,7 @@ import org.breezyweather.common.source.LocationPositionWrapper
 import org.breezyweather.common.source.LocationSource
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -50,8 +51,8 @@ class BaiduIPLocationService @Inject constructor(
     override val name by lazy {
         with(context.currentLocale.code) {
             when {
-                startsWith("zh") -> "百度IP定位"
-                else -> "Baidu IP location"
+                startsWith("zh") -> "百度IP定位 (${Locale(context.currentLocale.code, "CN").displayCountry})"
+                else -> "Baidu IP location (${Locale(context.currentLocale.code, "CN").displayCountry})"
             }
         }
     }

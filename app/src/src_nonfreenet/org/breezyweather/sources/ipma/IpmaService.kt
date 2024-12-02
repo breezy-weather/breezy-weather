@@ -39,6 +39,7 @@ import org.breezyweather.sources.ipma.json.IpmaDistrictResult
 import org.breezyweather.sources.ipma.json.IpmaForecastResult
 import org.breezyweather.sources.ipma.json.IpmaLocationResult
 import retrofit2.Retrofit
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.text.startsWith
@@ -49,7 +50,7 @@ class IpmaService @Inject constructor(
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "ipma"
-    override val name = "IPMA"
+    override val name = "IPMA (${Locale(context.currentLocale.code, "PT").displayCountry})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl by lazy {
         if (context.currentLocale.code.startsWith("pt")) {

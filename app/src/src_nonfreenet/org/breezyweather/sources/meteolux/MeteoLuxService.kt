@@ -33,6 +33,7 @@ import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
 import retrofit2.Retrofit
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -42,7 +43,7 @@ class MeteoLuxService @Inject constructor(
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource {
 
     override val id = "meteolux"
-    override val name = "MeteoLux"
+    override val name = "MeteoLux (${Locale(context.currentLocale.code, "LU").displayCountry})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl by lazy {
         with(context.currentLocale.code) {

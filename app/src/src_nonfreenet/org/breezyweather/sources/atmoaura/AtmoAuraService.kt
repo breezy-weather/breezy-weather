@@ -27,6 +27,8 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.SecondaryWeatherException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.preference.EditTextPreference
@@ -38,6 +40,7 @@ import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -50,7 +53,7 @@ class AtmoAuraService @Inject constructor(
 ) : HttpSource(), SecondaryWeatherSource, ConfigurableSource {
 
     override val id = "atmoaura"
-    override val name = "ATMO Auvergne-Rhône-Alpes"
+    override val name = "ATMO Auvergne-Rhône-Alpes (${Locale(context.currentLocale.code, "FR").displayCountry})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.atmo-auvergnerhonealpes.fr/article/politique-de-confidentialite"
 

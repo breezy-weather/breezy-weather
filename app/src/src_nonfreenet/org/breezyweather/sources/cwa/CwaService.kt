@@ -73,8 +73,8 @@ class CwaService @Inject constructor(
     override val name by lazy {
         with(context.currentLocale.code) {
             when {
-                startsWith("zh") -> "中央氣象署"
-                else -> "Central Weather Administration (CWA)"
+                startsWith("zh") -> "中央氣象署 (${Locale(context.currentLocale.code, "TW").displayCountry})"
+                else -> "CWA (${Locale(context.currentLocale.code, "TW").displayCountry})"
             }
         }
     }

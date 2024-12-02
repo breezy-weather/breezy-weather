@@ -23,8 +23,11 @@ import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.MainWeatherSource
@@ -33,6 +36,7 @@ import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.sources.metie.json.MetIeHourly
 import org.breezyweather.sources.metie.json.MetIeWarningResult
 import retrofit2.Retrofit
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -40,11 +44,19 @@ import javax.inject.Named
  * MET Éireann service
  */
 class MetIeService @Inject constructor(
+    @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "metie"
-    override val name = "MET Éireann"
+    val countryName = Locale(context.currentLocale.code, "IE").displayCountry
+    override val name = "MET Éireann".let {
+        if (it.contains(countryName)) {
+            it
+        } else {
+            "$it ($countryName)"
+        }
+    }
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.met.ie/about-us/privacy"
 

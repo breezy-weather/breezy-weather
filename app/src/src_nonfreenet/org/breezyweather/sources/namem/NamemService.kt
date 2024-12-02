@@ -42,6 +42,7 @@ import org.breezyweather.sources.namem.json.NamemDailyResult
 import org.breezyweather.sources.namem.json.NamemHourlyResult
 import org.breezyweather.sources.namem.json.NamemNormalsResult
 import retrofit2.Retrofit
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.text.startsWith
@@ -56,7 +57,7 @@ class NamemService @Inject constructor(
         if (context.currentLocale.code.startsWith("mn")) {
             "Цаг уур, орчны шинжилгээний газар"
         } else {
-            "NAMEM"
+            "NAMEM (${Locale(context.currentLocale.code, "MN").displayCountry})"
         }
     }
     override val continent = SourceContinent.ASIA

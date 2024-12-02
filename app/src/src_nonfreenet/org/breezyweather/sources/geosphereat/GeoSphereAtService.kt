@@ -25,6 +25,7 @@ import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.model.LatLng
 import com.google.maps.android.model.LatLngBounds
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
@@ -35,15 +36,24 @@ import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtTimeseriesResult
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtWarningsResult
 import retrofit2.Retrofit
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
 class GeoSphereAtService @Inject constructor(
+    @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), MainWeatherSource, SecondaryWeatherSource {
 
     override val id = "geosphereat"
-    override val name = "GeoSphere Austria"
+    val countryName = Locale(context.currentLocale.code, "AT").displayCountry
+    override val name = "GeoSphere Austria".let {
+        if (it.contains(countryName)) {
+            it
+        } else {
+            "$it ($countryName)"
+        }
+    }
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.geosphere.at/de/legal"
 

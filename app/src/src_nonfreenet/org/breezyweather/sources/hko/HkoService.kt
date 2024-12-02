@@ -63,7 +63,7 @@ class HkoService @Inject constructor(
         if (context.currentLocale.code.startsWith("zh")) {
             "香港天文台"
         } else {
-            "Hong Kong Observatory"
+            "HKO (${Locale(context.currentLocale.code, "HK").displayCountry})"
         }
     }
     override val continent = SourceContinent.ASIA

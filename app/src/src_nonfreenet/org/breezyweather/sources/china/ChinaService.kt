@@ -38,6 +38,7 @@ import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import retrofit2.Retrofit
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -52,14 +53,7 @@ class ChinaService @Inject constructor(
     LocationParametersSource {
 
     override val id = "china"
-    override val name by lazy {
-        with(context.currentLocale.code) {
-            when {
-                startsWith("zh") -> "中国"
-                else -> "China"
-            }
-        }
-    }
+    override val name = "${Locale(context.currentLocale.code, "CN").displayCountry}"
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl by lazy {
         with(context.currentLocale.code) {
