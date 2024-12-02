@@ -59,7 +59,7 @@
     <string name="daily_forecast">每日預報</string>
     <string name="hourly_forecast">每小時預報</string>
     <string name="current_weather">目前天氣</string>
-    <string name="precipitation_nowcasting">每分鐘降水量</string>
+    <string name="precipitation_nowcasting">降水臨近預測</string>
     <string name="air_quality">空氣質素</string>
     <string name="pollen">花粉濃度</string>
     <string name="pollen_and_mold">花粉與霉菌濃度</string>
@@ -224,7 +224,7 @@
     <string name="weather_current_data_by">目前天氣資料由 %s 提供</string>
     <string name="weather_pollen_data_by">花粉資料由 %s 提供</string>
     <string name="weather_air_quality_and_pollen_data_by">空氣質素和花粉資料由 %s 提供</string>
-    <string name="weather_minutely_data_by">臨近降水預報資料由 %s 提供</string>
+    <string name="weather_minutely_data_by">降水臨近預測資料由 %s 提供</string>
     <string name="weather_alert_data_by">警報資料由 %s 提供</string>
     <string name="weather_normals_data_by">正常溫度範圍資料由 %s 提供</string>
     <string name="weather_message_data_refresh_failed">無法更新天氣資料</string>
