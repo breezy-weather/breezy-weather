@@ -18,8 +18,9 @@ package org.breezyweather.sources.geosphereat
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.model.LatLng
@@ -43,6 +44,7 @@ class GeoSphereAtService @Inject constructor(
 
     override val id = "geosphereat"
     override val name = "GeoSphere Austria"
+    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.geosphere.at/de/legal"
 
     override val color = Color.rgb(191, 206, 64)

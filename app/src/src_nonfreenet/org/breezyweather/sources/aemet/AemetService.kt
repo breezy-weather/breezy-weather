@@ -18,8 +18,9 @@ package org.breezyweather.sources.aemet
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -55,6 +56,7 @@ class AemetService @Inject constructor(
 
     override val id = "aemet"
     override val name = "AEMET"
+    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.aemet.es/es/nota_legal"
 
     override val color = Color.rgb(58, 133, 202)

@@ -18,8 +18,9 @@ package org.breezyweather.sources.nws
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
@@ -42,6 +43,7 @@ class NwsService @Inject constructor(
 
     override val id = "nws"
     override val name = "National Weather Service (NWS)"
+    override val continent = SourceContinent.NORTH_AMERICA
     override val privacyPolicyUrl = "https://www.weather.gov/privacy"
 
     override val color = Color.rgb(51, 176, 225)

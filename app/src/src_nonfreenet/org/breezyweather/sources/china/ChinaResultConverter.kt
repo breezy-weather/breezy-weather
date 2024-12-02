@@ -18,8 +18,8 @@ package org.breezyweather.sources.china
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity

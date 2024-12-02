@@ -17,6 +17,7 @@
 package org.breezyweather.sources.ipsb
 
 import android.content.Context
+import breezyweather.domain.source.SourceContinent
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.rxjava.SchedulerTransformer
@@ -33,6 +34,7 @@ class IpSbLocationService @Inject constructor(
 
     override val id = "ipsb"
     override val name = "IP.SB"
+    override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = "https://ip.sb/privacy-policy/"
 
     private val mApi by lazy {

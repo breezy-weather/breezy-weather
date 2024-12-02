@@ -18,8 +18,9 @@ package org.breezyweather.sources.brightsky
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -52,6 +53,7 @@ class BrightSkyService @Inject constructor(
 
     override val id = "brightsky"
     override val name = "Bright Sky (DWD)"
+    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://brightsky.dev/"
 
     override val color = Color.rgb(240, 177, 138)

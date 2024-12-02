@@ -18,8 +18,9 @@ package org.breezyweather.sources.metie
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
@@ -44,6 +45,7 @@ class MetIeService @Inject constructor(
 
     override val id = "metie"
     override val name = "MET Éireann"
+    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.met.ie/about-us/privacy"
 
     override val color = Color.rgb(0, 48, 95)

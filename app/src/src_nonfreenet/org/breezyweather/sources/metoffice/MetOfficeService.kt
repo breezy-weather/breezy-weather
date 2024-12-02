@@ -18,8 +18,9 @@ package org.breezyweather.sources.metoffice
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -44,6 +45,7 @@ class MetOfficeService @Inject constructor(
 
     override val id = "metoffice"
     override val name = "Met Office"
+    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.metoffice.gov.uk/policies/privacy"
 
     override val color = Color.rgb(185, 213, 50)

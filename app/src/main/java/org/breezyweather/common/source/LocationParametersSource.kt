@@ -17,8 +17,8 @@
 package org.breezyweather.common.source
 
 import android.content.Context
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceFeature
 import io.reactivex.rxjava3.core.Observable
 
 /**

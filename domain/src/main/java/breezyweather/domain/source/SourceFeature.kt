@@ -14,13 +14,25 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.source
+package breezyweather.domain.source
 
-import breezyweather.domain.source.SourceFeature
-import org.breezyweather.main.utils.RefreshErrorType
+enum class SourceFeature(
+    val id: String,
+) {
+    FEATURE_CURRENT("current"),
+    FEATURE_AIR_QUALITY("airQuality"),
+    FEATURE_POLLEN("pollen"),
+    FEATURE_MINUTELY("minutely"),
+    FEATURE_ALERT("alert"),
+    FEATURE_NORMALS("normals"),
+    ;
 
-class RefreshError(
-    val error: RefreshErrorType,
-    val source: String? = null,
-    val feature: SourceFeature? = null,
-)
+    companion object {
+
+        fun getInstance(
+            value: String,
+        ) = SourceFeature.entries.firstOrNull {
+            it.id == value
+        }
+    }
+}

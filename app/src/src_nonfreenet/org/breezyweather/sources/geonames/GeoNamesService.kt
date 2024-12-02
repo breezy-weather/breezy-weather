@@ -18,6 +18,7 @@ package org.breezyweather.sources.geonames
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
@@ -44,6 +45,7 @@ class GeoNamesService @Inject constructor(
 
     override val id = "geonames"
     override val name = "GeoNames"
+    override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = ""
 
     override val locationSearchAttribution = "GeoNames (CC BY 4.0)"

@@ -17,6 +17,7 @@
 package org.breezyweather.sources.baiduip
 
 import android.content.Context
+import breezyweather.domain.source.SourceContinent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
@@ -54,6 +55,7 @@ class BaiduIPLocationService @Inject constructor(
             }
         }
     }
+    override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = "https://lbs.baidu.com/index.php?title=openprivacy"
 
     private val mApi by lazy {

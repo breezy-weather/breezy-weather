@@ -17,8 +17,9 @@
 package org.breezyweather.sources.atmoaura
 
 import android.content.Context
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -50,6 +51,7 @@ class AtmoAuraService @Inject constructor(
 
     override val id = "atmoaura"
     override val name = "ATMO Auvergne-Rhône-Alpes"
+    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.atmo-auvergnerhonealpes.fr/article/politique-de-confidentialite"
 
     private val mApi by lazy {

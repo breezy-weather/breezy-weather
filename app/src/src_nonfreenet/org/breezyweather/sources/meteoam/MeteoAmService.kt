@@ -19,8 +19,9 @@ package org.breezyweather.sources.meteoam
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
@@ -42,6 +43,7 @@ class MeteoAmService @Inject constructor(
 
     override val id = "meteoam"
     override val name = "Servizio Meteo AM"
+    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.meteoam.it/it/privacy-policy"
 
     override val color = Color.rgb(20, 122, 179)

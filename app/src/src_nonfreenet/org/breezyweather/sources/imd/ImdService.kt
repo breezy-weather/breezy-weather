@@ -18,8 +18,9 @@ package org.breezyweather.sources.imd
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import okhttp3.OkHttpClient
@@ -41,6 +42,7 @@ class ImdService @Inject constructor(
 
     override val id = "imd"
     override val name = "India Meteorological Department"
+    override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = ""
 
     override val color = Color.rgb(10, 88, 202)

@@ -17,8 +17,9 @@
 package org.breezyweather.sources.recosante
 
 import android.content.Context
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -47,6 +48,7 @@ class RecosanteService @Inject constructor(
 
     override val id = "recosante"
     override val name = "Recosanté"
+    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://recosante.beta.gouv.fr/donnees-personnelles/"
 
     private val mGeoApi: GeoApi

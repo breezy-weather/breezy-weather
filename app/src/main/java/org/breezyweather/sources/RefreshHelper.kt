@@ -26,8 +26,8 @@ import androidx.annotation.RequiresApi
 import androidx.core.location.LocationManagerCompat
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Base
 import breezyweather.domain.weather.model.Weather
 import breezyweather.domain.weather.model.WeatherCode

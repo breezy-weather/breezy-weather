@@ -18,8 +18,9 @@ package org.breezyweather.sources.bmd
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -50,6 +51,7 @@ class BmdService @Inject constructor(
             "Bangladesh Meteorological Department"
         }
     }
+    override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = ""
     override val color = Color.rgb(66, 159, 255)
     override val weatherAttribution by lazy {

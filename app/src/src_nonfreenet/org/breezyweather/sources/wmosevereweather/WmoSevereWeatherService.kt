@@ -17,8 +17,9 @@
 package org.breezyweather.sources.wmosevereweather
 
 import android.content.Context
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.source.HttpSource
@@ -40,6 +41,7 @@ class WmoSevereWeatherService @Inject constructor(
 
     override val id = "wmosevereweather"
     override val name = "WMO Severe Weather Information Centre"
+    override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = "https://wmo.int/privacy-policy"
 
     private val mAlertsJsonApi by lazy {

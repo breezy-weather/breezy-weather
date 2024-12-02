@@ -2,7 +2,7 @@ package org.breezyweather.sources.smg
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.feature.SourceFeature
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity

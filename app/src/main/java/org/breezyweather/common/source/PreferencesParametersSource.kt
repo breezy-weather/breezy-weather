@@ -18,8 +18,8 @@ package org.breezyweather.common.source
 
 import android.content.Context
 import androidx.compose.runtime.Composable
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceFeature
 
 /**
  * Implement this if you need parameters specific to each location

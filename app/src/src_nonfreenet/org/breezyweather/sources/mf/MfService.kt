@@ -18,8 +18,9 @@ package org.breezyweather.sources.mf
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -62,8 +63,8 @@ class MfService @Inject constructor(
 
     override val id = "mf"
     override val name = "Météo-France"
-    override val privacyPolicyUrl =
-        "https://meteofrance.com/application-meteo-france-politique-de-confidentialite"
+    override val continent = SourceContinent.EUROPE
+    override val privacyPolicyUrl = "https://meteofrance.com/application-meteo-france-politique-de-confidentialite"
 
     override val color = Color.rgb(0, 87, 147)
     override val weatherAttribution = "Météo-France (Etalab)"

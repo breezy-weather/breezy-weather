@@ -18,8 +18,9 @@ package org.breezyweather.sources.openweather
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -55,6 +56,7 @@ class OpenWeatherService @Inject constructor(
 
     override val id = "openweather"
     override val name = "OpenWeather"
+    override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = "https://openweather.co.uk/privacy-policy"
 
     override val color = Color.rgb(235, 110, 75)

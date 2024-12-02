@@ -14,24 +14,25 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package breezyweather.domain.feature
+package breezyweather.domain.source
 
-enum class SourceFeature(
+enum class SourceContinent(
     val id: String,
 ) {
-    FEATURE_CURRENT("current"),
-    FEATURE_AIR_QUALITY("airQuality"),
-    FEATURE_POLLEN("pollen"),
-    FEATURE_MINUTELY("minutely"),
-    FEATURE_ALERT("alert"),
-    FEATURE_NORMALS("normals"),
+    WORLDWIDE("worldwide"),
+    AFRICA("africa"),
+    ASIA("asia"),
+    EUROPE("europe"),
+    NORTH_AMERICA("north_america"),
+    OCEANIA("oceania"),
+    SOUTH_AMERICA("south_america"),
     ;
 
     companion object {
 
         fun getInstance(
             value: String,
-        ) = SourceFeature.entries.firstOrNull {
+        ) = SourceContinent.entries.firstOrNull {
             it.id == value
         }
     }

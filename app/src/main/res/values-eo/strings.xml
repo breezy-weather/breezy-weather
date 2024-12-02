@@ -191,6 +191,13 @@
     <string name="weather_minutely_data_by">Ĉiuminutaj precipitaĵoj datumoj de %s</string>
     <string name="weather_alert_data_by">Atentigo datumoj de %s</string>
     <string name="weather_normals_data_by">Normalaj temperaturoj datumoj de %s</string>
+    <string name="weather_source_continent_worldwide">Tutmonda</string>
+    <string name="weather_source_continent_africa">Afriko</string>
+    <string name="weather_source_continent_asia">Azio</string>
+    <string name="weather_source_continent_europe">Eŭropo</string>
+    <string name="weather_source_continent_north_america">Nord-Ameriko</string>
+    <string name="weather_source_continent_oceania">Oceanio</string>
+    <string name="weather_source_continent_south_america">Sud-Ameriko</string>
     <!-- $ = weather data source -->
     <string name="settings_weather_source_portal">Portalo</string>
     <string name="setting_weather_source_accu_days">Tagoj</string>

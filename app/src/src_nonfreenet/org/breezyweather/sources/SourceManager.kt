@@ -17,8 +17,8 @@
 package org.breezyweather.sources
 
 import android.content.Context
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceFeature
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.extensions.currentLocale

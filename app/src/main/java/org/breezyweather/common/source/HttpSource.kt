@@ -16,12 +16,25 @@
 
 package org.breezyweather.common.source
 
-// TODO: We should inject Retrofit.Builder here, however I still haven’t figure out
-// how to do it yet
+import breezyweather.domain.source.SourceContinent
+
+/**
+ * TODO: We should inject Retrofit.Builder here, however I still haven’t figure out how to do it yet
+ */
 abstract class HttpSource : Source {
 
     /**
      * Privacy policy of the website, like: https://mysite.com/privacy
      */
     abstract val privacyPolicyUrl: String
+
+    /**
+     * The continent the source is mainly based of
+     *
+     * Worldwide sources will use `SourceContinent.WORLDWIDE`
+     * National sources even if supporting worldwide will use the continent their mainland is based on
+     * E.g. Météo-France will use `SourceContinent.EUROPE` even if it supports oversea territories on other continents
+     * E.g. Türkiye will use `SourceContinent.ASIA` even if 10% of its territory is technically in Europe
+     */
+    abstract val continent: SourceContinent
 }

@@ -33,8 +33,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -76,6 +77,7 @@ class OpenMeteoService @Inject constructor(
 
     override val id = "openmeteo"
     override val name = "Open-Meteo"
+    override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = "https://open-meteo.com/en/terms#privacy"
 
     override val color = Color.rgb(255, 136, 0)

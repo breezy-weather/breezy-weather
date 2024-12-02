@@ -60,8 +60,8 @@ import org.breezyweather.common.extensions.withIOContext
 import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.WeatherResult
-import org.breezyweather.domain.feature.resourceName
 import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.source.resourceName
 import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP

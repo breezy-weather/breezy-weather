@@ -18,8 +18,8 @@ package org.breezyweather.common.source
 
 import android.content.Context
 import androidx.annotation.ColorInt
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 

@@ -232,6 +232,13 @@
     <string name="weather_api_unauthorized_content">Pour certaines sources météo, vous devez fournir votre propre clé API. Si vous l’avez déjà fait, vérifiez qu’il n’y a pas d’erreur dans la clé fournie.</string>
     <string name="weather_api_key_required_missing_title">Clé API requise manquante</string>
     <string name="weather_api_key_required_missing_content">Pour utiliser cette source, vous devez fournir une clé API.</string>
+    <string name="weather_source_continent_worldwide">Mondial</string>
+    <string name="weather_source_continent_africa">Afrique</string>
+    <string name="weather_source_continent_asia">Asie</string>
+    <string name="weather_source_continent_europe">Europe</string>
+    <string name="weather_source_continent_north_america">Amérique du Nord</string>
+    <string name="weather_source_continent_oceania">Océanie</string>
+    <string name="weather_source_continent_south_america">Amérique du Sud</string>
     <string name="widget_label_view_style">Apparence</string>
     <string name="widget_label_show_widget_card">Couleur d’arrière-plan</string>
     <string name="widget_label_show_widget_card_alpha">Opacité</string>

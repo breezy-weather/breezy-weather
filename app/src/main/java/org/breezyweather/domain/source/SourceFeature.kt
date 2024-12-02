@@ -1,6 +1,6 @@
-package org.breezyweather.domain.feature
+package org.breezyweather.domain.source
 
-import breezyweather.domain.feature.SourceFeature
+import breezyweather.domain.source.SourceFeature
 import org.breezyweather.R
 
 val SourceFeature.resourceName: Int?

@@ -18,8 +18,9 @@ package org.breezyweather.sources.metno
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -56,6 +57,7 @@ class MetNoService @Inject constructor(
             }
         }
     }
+    override val continent = SourceContinent.WORLDWIDE // The only exception here. It's a source commonly used worldwide
     override val privacyPolicyUrl by lazy {
         with(context.currentLocale.code) {
             when {

@@ -16,8 +16,8 @@
 
 package org.breezyweather.sources.openweather
 
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily

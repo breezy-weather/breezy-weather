@@ -18,8 +18,9 @@ package org.breezyweather.sources.smhi
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.source.HttpSource
@@ -34,6 +35,7 @@ class SmhiService @Inject constructor(
 
     override val id = "smhi"
     override val name = "SMHI"
+    override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl =
         "https://www.smhi.se/omsmhi/hantering-av-personuppgifter/hantering-av-personuppgifter-1.135429"
 
