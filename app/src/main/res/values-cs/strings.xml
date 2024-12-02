@@ -719,4 +719,5 @@
     <string name="common_weather_text_frost">Mráz</string>
     <string name="location_message_location_access_off">Poloha je vypnuta</string>
     <string name="weather_message_failed_feature">Nepodařilo se aktualizovat zdroj: %s</string>
+    <string name="common_weather_text_squall">Húlava</string>
 </resources>
