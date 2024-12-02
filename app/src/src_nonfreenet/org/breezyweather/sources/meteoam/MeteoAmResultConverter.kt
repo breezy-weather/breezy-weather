@@ -17,6 +17,7 @@
 package org.breezyweather.sources.meteoam
 
 import android.content.Context
+import breezyweather.domain.feature.SourceFeature
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
@@ -26,6 +27,7 @@ import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
@@ -53,6 +55,7 @@ fun convert(
     context: Context,
     forecastResult: MeteoAmForecastResult,
     observationResult: MeteoAmObservationResult,
+    failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     val timeseries = forecastResult.timeseries
     val params = forecastResult.paramlist
@@ -61,18 +64,28 @@ fun convert(
     val oParams = observationResult.paramlist
     val observation = observationResult.datasets?.getOrElse("0") { null }
 
-    if (timeseries == null || params == null || stats == null || data == null || oParams == null) {
+    if (timeseries == null || params == null || stats == null || data == null) {
         throw InvalidOrIncompleteDataException()
     }
 
     return WeatherWrapper(
-        current = if (observation != null) {
-            getCurrent(context, oParams, observation)
-        } else {
-            null
-        },
+        current = observation?.let { oParams?.let { getCurrent(context, oParams, observation) } },
         dailyForecast = getDailyForecast(context, stats),
-        hourlyForecast = getHourlyForecast(context, timeseries, params, data)
+        hourlyForecast = getHourlyForecast(context, timeseries, params, data),
+        failedFeatures = failedFeatures
+    )
+}
+
+fun convertSecondary(
+    context: Context,
+    observationResult: MeteoAmObservationResult,
+    failedFeatures: List<SourceFeature>,
+): SecondaryWeatherWrapper {
+    val oParams = observationResult.paramlist
+    val observation = observationResult.datasets?.getOrElse("0") { null }
+    return SecondaryWeatherWrapper(
+        current = observation?.let { oParams?.let { getCurrent(context, oParams, observation) } },
+        failedFeatures = failedFeatures
     )
 }
 
