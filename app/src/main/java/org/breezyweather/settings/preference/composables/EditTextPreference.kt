@@ -147,7 +147,7 @@ fun EditTextPreferenceView(
                     // If placeholder, empty values allowed
                     isError = regex != null &&
                         !inputState.value.matches(regex) &&
-                        (!placeholder.isNullOrEmpty() || inputState.value.isEmpty()),
+                        (placeholder.isNullOrEmpty() || inputState.value.isNotEmpty()),
                     supportingText = {
                         if (regex != null &&
                             !inputState.value.matches(regex) &&
