@@ -36,7 +36,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemColors
@@ -266,19 +265,17 @@ fun ListPreferenceView(
                                     )
                             ) {
                                 if (i != 0) {
-                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                                    HorizontalDivider()
+                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.large_margin)))
+                                } else {
                                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                                 }
                                 Text(
-                                    modifier = Modifier
-                                        .fillMaxWidth(),
+                                    modifier = Modifier.fillMaxWidth(),
                                     text = it.first,
                                     color = DayNightTheme.colors.titleColor,
-                                    style = MaterialTheme.typography.titleMedium,
+                                    style = MaterialTheme.typography.titleSmall,
                                     textAlign = TextAlign.Center
                                 )
-                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                             }
                         } else {
                             RadioButton(
