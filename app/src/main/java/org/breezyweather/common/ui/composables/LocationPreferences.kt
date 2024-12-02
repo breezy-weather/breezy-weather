@@ -32,13 +32,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.ConfigurableSource
+import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
@@ -46,11 +50,13 @@ import org.breezyweather.domain.source.resourceName
 import org.breezyweather.main.MainActivity
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.composables.ListPreferenceView
+import org.breezyweather.settings.preference.composables.ListPreferenceWithGroupsView
 import org.breezyweather.settings.preference.composables.PreferenceView
 import org.breezyweather.settings.preference.composables.SectionFooter
 import org.breezyweather.settings.preference.composables.SectionHeader
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.DayNightTheme
+import java.text.Collator
 
 @Composable
 fun LocationPreference(
@@ -265,6 +271,29 @@ fun SecondarySourcesPreference(
     location: Location,
     onClose: ((location: Location?) -> Unit),
 ) {
+    val context = LocalContext.current
+    val continentComparator = Comparator<SourceContinent?> { va1, va2 ->
+        if (va1 == null && va2 == null) {
+            0
+        } else if (va1 == null) {
+            -1
+        } else if (va2 == null) {
+            1
+        } else if (va1 == SourceContinent.WORLDWIDE && va2 == SourceContinent.WORLDWIDE) {
+            0
+        } else if (va1 == SourceContinent.WORLDWIDE) {
+            -1
+        } else if (va2 == SourceContinent.WORLDWIDE) {
+            1
+        } else {
+            Collator.getInstance(context.currentLocale)
+                .compare(
+                    context.getString(va1.resourceName!!),
+                    context.getString(va2.resourceName!!)
+                )
+        }
+    }
+
     val dialogLinkOpenState = remember { mutableStateOf(false) }
     val hasChangedMainSource = remember { mutableStateOf(false) }
     val hasChangedASecondarySource = remember { mutableStateOf(false) }
@@ -275,70 +304,112 @@ fun SecondarySourcesPreference(
     val minutelySource = remember { mutableStateOf(location.minutelySource ?: "") }
     val alertSource = remember { mutableStateOf(location.alertSource ?: "") }
     val normalsSource = remember { mutableStateOf(location.normalsSource ?: "") }
-    val weatherSources = sourceManager.getMainWeatherSources().filter {
-        (it !is ConfigurableSource || it.isConfigured || it.id == weatherSource.value) &&
-            // Allow to choose any source if reverse geocoding has not processed current location yet
-            (
-                (location.isCurrentPosition && location.countryCode.isNullOrEmpty()) ||
-                    it.isFeatureSupportedInMainForLocation(location)
-                )
-    }.associate { it.id to it.name }
+    val weatherSources = sourceManager.getMainWeatherSources()
+        .filter {
+            (it !is ConfigurableSource || it.isConfigured || it.id == weatherSource.value) &&
+                // Allow to choose any source if reverse geocoding has not processed current location yet
+                (
+                    (location.isCurrentPosition && location.countryCode.isNullOrEmpty()) ||
+                        it.isFeatureSupportedInMainForLocation(location)
+                    )
+        }
+        .groupBy { if (it is HttpSource) it.continent else null }
+        .toSortedMap(continentComparator)
+        .mapValues { m ->
+            m.value.associate { it.id to it.name }
+        }
     val secondarySources = sourceManager.getSecondaryWeatherSources()
     val mainSource = sourceManager.getMainWeatherSource(weatherSource.value)
-    val compatibleCurrentSources = secondarySources.filter {
-        (it !is ConfigurableSource || it.isConfigured || it.id == currentSource.value) &&
-            it.id != weatherSource.value &&
-            it.supportedFeaturesInSecondary.contains(SourceFeature.FEATURE_CURRENT) &&
-            it.isFeatureSupportedInSecondaryForLocation(
-                location,
-                SourceFeature.FEATURE_CURRENT
-            )
-    }.associate { it.id to it.name }
-    val compatibleAirQualitySources = secondarySources.filter {
-        (it !is ConfigurableSource || it.isConfigured || it.id == airQualitySource.value) &&
-            it.id != weatherSource.value &&
-            it.supportedFeaturesInSecondary.contains(SourceFeature.FEATURE_AIR_QUALITY) &&
-            it.isFeatureSupportedInSecondaryForLocation(
-                location,
-                SourceFeature.FEATURE_AIR_QUALITY
-            )
-    }.associate { it.id to it.name }
-    val compatiblePollenSources = secondarySources.filter {
-        (it !is ConfigurableSource || it.isConfigured || it.id == pollenSource.value) &&
-            it.id != weatherSource.value &&
-            it.supportedFeaturesInSecondary.contains(SourceFeature.FEATURE_POLLEN) &&
-            it.isFeatureSupportedInSecondaryForLocation(
-                location,
-                SourceFeature.FEATURE_POLLEN
-            )
-    }.associate { it.id to it.name }
-    val compatibleMinutelySources = secondarySources.filter {
-        (it !is ConfigurableSource || it.isConfigured || it.id == minutelySource.value) &&
-            it.id != weatherSource.value &&
-            it.supportedFeaturesInSecondary.contains(SourceFeature.FEATURE_MINUTELY) &&
-            it.isFeatureSupportedInSecondaryForLocation(
-                location,
-                SourceFeature.FEATURE_MINUTELY
-            )
-    }.associate { it.id to it.name }
-    val compatibleAlertSources = secondarySources.filter {
-        (it !is ConfigurableSource || it.isConfigured || it.id == alertSource.value) &&
-            it.id != weatherSource.value &&
-            it.supportedFeaturesInSecondary.contains(SourceFeature.FEATURE_ALERT) &&
-            it.isFeatureSupportedInSecondaryForLocation(
-                location,
-                SourceFeature.FEATURE_ALERT
-            )
-    }.associate { it.id to it.name }
-    val compatibleNormalsSources = secondarySources.filter {
-        (it !is ConfigurableSource || it.isConfigured || it.id == normalsSource.value) &&
-            it.id != weatherSource.value &&
-            it.supportedFeaturesInSecondary.contains(SourceFeature.FEATURE_NORMALS) &&
-            it.isFeatureSupportedInSecondaryForLocation(
-                location,
-                SourceFeature.FEATURE_NORMALS
-            )
-    }.associate { it.id to it.name }
+    val compatibleCurrentSources = secondarySources
+        .filter {
+            (it !is ConfigurableSource || it.isConfigured || it.id == currentSource.value) &&
+                it.id != weatherSource.value &&
+                it.supportedFeaturesInSecondary.contains(SourceFeature.FEATURE_CURRENT) &&
+                it.isFeatureSupportedInSecondaryForLocation(
+                    location,
+                    SourceFeature.FEATURE_CURRENT
+                )
+        }
+        .groupBy { if (it is HttpSource) it.continent else null }
+        .toSortedMap(continentComparator)
+        .mapValues { m ->
+            m.value.associate { it.id to it.name }
+        }
+    val compatibleAirQualitySources = secondarySources
+        .filter {
+            (it !is ConfigurableSource || it.isConfigured || it.id == airQualitySource.value) &&
+                it.id != weatherSource.value &&
+                it.supportedFeaturesInSecondary.contains(SourceFeature.FEATURE_AIR_QUALITY) &&
+                it.isFeatureSupportedInSecondaryForLocation(
+                    location,
+                    SourceFeature.FEATURE_AIR_QUALITY
+                )
+        }
+        .groupBy { if (it is HttpSource) it.continent else null }
+        .toSortedMap(continentComparator)
+        .mapValues { m ->
+            m.value.associate { it.id to it.name }
+        }
+    val compatiblePollenSources = secondarySources
+        .filter {
+            (it !is ConfigurableSource || it.isConfigured || it.id == pollenSource.value) &&
+                it.id != weatherSource.value &&
+                it.supportedFeaturesInSecondary.contains(SourceFeature.FEATURE_POLLEN) &&
+                it.isFeatureSupportedInSecondaryForLocation(
+                    location,
+                    SourceFeature.FEATURE_POLLEN
+                )
+        }
+        .groupBy { if (it is HttpSource) it.continent else null }
+        .toSortedMap(continentComparator)
+        .mapValues { m ->
+            m.value.associate { it.id to it.name }
+        }
+    val compatibleMinutelySources = secondarySources
+        .filter {
+            (it !is ConfigurableSource || it.isConfigured || it.id == minutelySource.value) &&
+                it.id != weatherSource.value &&
+                it.supportedFeaturesInSecondary.contains(SourceFeature.FEATURE_MINUTELY) &&
+                it.isFeatureSupportedInSecondaryForLocation(
+                    location,
+                    SourceFeature.FEATURE_MINUTELY
+                )
+        }
+        .groupBy { if (it is HttpSource) it.continent else null }
+        .toSortedMap(continentComparator)
+        .mapValues { m ->
+            m.value.associate { it.id to it.name }
+        }
+    val compatibleAlertSources = secondarySources
+        .filter {
+            (it !is ConfigurableSource || it.isConfigured || it.id == alertSource.value) &&
+                it.id != weatherSource.value &&
+                it.supportedFeaturesInSecondary.contains(SourceFeature.FEATURE_ALERT) &&
+                it.isFeatureSupportedInSecondaryForLocation(
+                    location,
+                    SourceFeature.FEATURE_ALERT
+                )
+        }
+        .groupBy { if (it is HttpSource) it.continent else null }
+        .toSortedMap(continentComparator)
+        .mapValues { m ->
+            m.value.associate { it.id to it.name }
+        }
+    val compatibleNormalsSources = secondarySources
+        .filter {
+            (it !is ConfigurableSource || it.isConfigured || it.id == normalsSource.value) &&
+                it.id != weatherSource.value &&
+                it.supportedFeaturesInSecondary.contains(SourceFeature.FEATURE_NORMALS) &&
+                it.isFeatureSupportedInSecondaryForLocation(
+                    location,
+                    SourceFeature.FEATURE_NORMALS
+                )
+        }
+        .groupBy { if (it is HttpSource) it.continent else null }
+        .toSortedMap(continentComparator)
+        .mapValues { m ->
+            m.value.associate { it.id to it.name }
+        }
 
     AlertDialogNoPadding(
         onDismissRequest = {
@@ -370,14 +441,22 @@ fun SecondarySourcesPreference(
                         )
                     }
                 }
-                SourceView(
+                SourceViewWithContinents(
                     title = stringResource(R.string.settings_weather_source_main),
                     selectedKey = weatherSource.value,
                     sourceList = buildMap {
                         if (mainSource == null) {
                             put(
-                                weatherSource.value,
-                                stringResource(R.string.settings_weather_source_unavailable, weatherSource.value)
+                                null,
+                                buildMap {
+                                    put(
+                                        weatherSource.value,
+                                        stringResource(
+                                            R.string.settings_weather_source_unavailable,
+                                            weatherSource.value
+                                        )
+                                    )
+                                }
                             )
                         }
                         putAll(weatherSources)
@@ -405,30 +484,38 @@ fun SecondarySourcesPreference(
                     weatherSource.value = sourceId
                     hasChangedMainSource.value = true
                 }
-                SourceView(
+                SourceViewWithContinents(
                     title = stringResource(SourceFeature.FEATURE_CURRENT.resourceName!!),
                     selectedKey = currentSource.value,
                     sourceList = buildMap {
-                        if (currentSource.value.isNotEmpty() &&
-                            !compatibleCurrentSources.contains(currentSource.value)
-                        ) {
-                            put(
-                                currentSource.value,
-                                stringResource(R.string.settings_weather_source_unavailable, currentSource.value)
-                            )
-                        }
                         put(
-                            "",
-                            if (mainSource?.supportedFeaturesInMain
-                                    ?.contains(SourceFeature.FEATURE_CURRENT) == true &&
-                                mainSource.isFeatureSupportedInMainForLocation(
-                                    location,
-                                    SourceFeature.FEATURE_CURRENT
+                            null,
+                            buildMap {
+                                if (currentSource.value.isNotEmpty() &&
+                                    !compatibleCurrentSources.values.any { it.containsKey(currentSource.value) }
+                                ) {
+                                    put(
+                                        currentSource.value,
+                                        stringResource(
+                                            R.string.settings_weather_source_unavailable,
+                                            currentSource.value
+                                        )
+                                    )
+                                }
+                                put(
+                                    "",
+                                    if (mainSource?.supportedFeaturesInMain
+                                            ?.contains(SourceFeature.FEATURE_CURRENT) == true &&
+                                        mainSource.isFeatureSupportedInMainForLocation(
+                                            location,
+                                            SourceFeature.FEATURE_CURRENT
+                                        )
+                                    ) {
+                                        stringResource(R.string.settings_weather_source_main)
+                                    } else {
+                                        stringResource(R.string.settings_weather_source_none)
+                                    }
                                 )
-                            ) {
-                                stringResource(R.string.settings_weather_source_main)
-                            } else {
-                                stringResource(R.string.settings_weather_source_none)
                             }
                         )
                         putAll(compatibleCurrentSources)
@@ -438,30 +525,38 @@ fun SecondarySourcesPreference(
                     currentSource.value = sourceId
                     hasChangedASecondarySource.value = true
                 }
-                SourceView(
+                SourceViewWithContinents(
                     title = stringResource(SourceFeature.FEATURE_AIR_QUALITY.resourceName!!),
                     selectedKey = airQualitySource.value,
                     sourceList = buildMap {
-                        if (airQualitySource.value.isNotEmpty() &&
-                            !compatibleAirQualitySources.contains(airQualitySource.value)
-                        ) {
-                            put(
-                                airQualitySource.value,
-                                stringResource(R.string.settings_weather_source_unavailable, airQualitySource.value)
-                            )
-                        }
                         put(
-                            "",
-                            if (mainSource?.supportedFeaturesInMain
-                                    ?.contains(SourceFeature.FEATURE_AIR_QUALITY) == true &&
-                                mainSource.isFeatureSupportedInMainForLocation(
-                                    location,
-                                    SourceFeature.FEATURE_AIR_QUALITY
+                            null,
+                            buildMap {
+                                if (airQualitySource.value.isNotEmpty() &&
+                                    !compatibleAirQualitySources.values.any { it.containsKey(airQualitySource.value) }
+                                ) {
+                                    put(
+                                        airQualitySource.value,
+                                        stringResource(
+                                            R.string.settings_weather_source_unavailable,
+                                            airQualitySource.value
+                                        )
+                                    )
+                                }
+                                put(
+                                    "",
+                                    if (mainSource?.supportedFeaturesInMain
+                                            ?.contains(SourceFeature.FEATURE_AIR_QUALITY) == true &&
+                                        mainSource.isFeatureSupportedInMainForLocation(
+                                            location,
+                                            SourceFeature.FEATURE_AIR_QUALITY
+                                        )
+                                    ) {
+                                        stringResource(R.string.settings_weather_source_main)
+                                    } else {
+                                        stringResource(R.string.settings_weather_source_none)
+                                    }
                                 )
-                            ) {
-                                stringResource(R.string.settings_weather_source_main)
-                            } else {
-                                stringResource(R.string.settings_weather_source_none)
                             }
                         )
                         putAll(compatibleAirQualitySources)
@@ -471,30 +566,38 @@ fun SecondarySourcesPreference(
                     airQualitySource.value = sourceId
                     hasChangedASecondarySource.value = true
                 }
-                SourceView(
+                SourceViewWithContinents(
                     title = stringResource(SourceFeature.FEATURE_POLLEN.resourceName!!),
                     selectedKey = pollenSource.value,
                     sourceList = buildMap {
-                        if (pollenSource.value.isNotEmpty() &&
-                            !compatiblePollenSources.contains(pollenSource.value)
-                        ) {
-                            put(
-                                pollenSource.value,
-                                stringResource(R.string.settings_weather_source_unavailable, pollenSource.value)
-                            )
-                        }
                         put(
-                            "",
-                            if (mainSource?.supportedFeaturesInMain
-                                    ?.contains(SourceFeature.FEATURE_POLLEN) == true &&
-                                mainSource.isFeatureSupportedInMainForLocation(
-                                    location,
-                                    SourceFeature.FEATURE_POLLEN
+                            null,
+                            buildMap {
+                                if (pollenSource.value.isNotEmpty() &&
+                                    !compatiblePollenSources.values.any { it.containsKey(pollenSource.value) }
+                                ) {
+                                    put(
+                                        pollenSource.value,
+                                        stringResource(
+                                            R.string.settings_weather_source_unavailable,
+                                            pollenSource.value
+                                        )
+                                    )
+                                }
+                                put(
+                                    "",
+                                    if (mainSource?.supportedFeaturesInMain
+                                            ?.contains(SourceFeature.FEATURE_POLLEN) == true &&
+                                        mainSource.isFeatureSupportedInMainForLocation(
+                                            location,
+                                            SourceFeature.FEATURE_POLLEN
+                                        )
+                                    ) {
+                                        stringResource(R.string.settings_weather_source_main)
+                                    } else {
+                                        stringResource(R.string.settings_weather_source_none)
+                                    }
                                 )
-                            ) {
-                                stringResource(R.string.settings_weather_source_main)
-                            } else {
-                                stringResource(R.string.settings_weather_source_none)
                             }
                         )
                         putAll(compatiblePollenSources)
@@ -504,30 +607,38 @@ fun SecondarySourcesPreference(
                     pollenSource.value = sourceId
                     hasChangedASecondarySource.value = true
                 }
-                SourceView(
+                SourceViewWithContinents(
                     title = stringResource(SourceFeature.FEATURE_MINUTELY.resourceName!!),
                     selectedKey = minutelySource.value,
                     sourceList = buildMap {
-                        if (minutelySource.value.isNotEmpty() &&
-                            !compatibleMinutelySources.contains(minutelySource.value)
-                        ) {
-                            put(
-                                minutelySource.value,
-                                stringResource(R.string.settings_weather_source_unavailable, minutelySource.value)
-                            )
-                        }
                         put(
-                            "",
-                            if (mainSource?.supportedFeaturesInMain
-                                    ?.contains(SourceFeature.FEATURE_MINUTELY) == true &&
-                                mainSource.isFeatureSupportedInMainForLocation(
-                                    location,
-                                    SourceFeature.FEATURE_MINUTELY
+                            null,
+                            buildMap {
+                                if (minutelySource.value.isNotEmpty() &&
+                                    !compatibleMinutelySources.values.any { it.containsKey(minutelySource.value) }
+                                ) {
+                                    put(
+                                        minutelySource.value,
+                                        stringResource(
+                                            R.string.settings_weather_source_unavailable,
+                                            minutelySource.value
+                                        )
+                                    )
+                                }
+                                put(
+                                    "",
+                                    if (mainSource?.supportedFeaturesInMain
+                                            ?.contains(SourceFeature.FEATURE_MINUTELY) == true &&
+                                        mainSource.isFeatureSupportedInMainForLocation(
+                                            location,
+                                            SourceFeature.FEATURE_MINUTELY
+                                        )
+                                    ) {
+                                        stringResource(R.string.settings_weather_source_main)
+                                    } else {
+                                        stringResource(R.string.settings_weather_source_none)
+                                    }
                                 )
-                            ) {
-                                stringResource(R.string.settings_weather_source_main)
-                            } else {
-                                stringResource(R.string.settings_weather_source_none)
                             }
                         )
                         putAll(compatibleMinutelySources)
@@ -537,30 +648,38 @@ fun SecondarySourcesPreference(
                     minutelySource.value = sourceId
                     hasChangedASecondarySource.value = true
                 }
-                SourceView(
+                SourceViewWithContinents(
                     title = stringResource(SourceFeature.FEATURE_ALERT.resourceName!!),
                     selectedKey = alertSource.value,
                     sourceList = buildMap {
-                        if (alertSource.value.isNotEmpty() &&
-                            !compatibleAlertSources.contains(alertSource.value)
-                        ) {
-                            put(
-                                normalsSource.value,
-                                stringResource(R.string.settings_weather_source_unavailable, alertSource.value)
-                            )
-                        }
                         put(
-                            "",
-                            if (mainSource?.supportedFeaturesInMain
-                                    ?.contains(SourceFeature.FEATURE_ALERT) == true &&
-                                mainSource.isFeatureSupportedInMainForLocation(
-                                    location,
-                                    SourceFeature.FEATURE_ALERT
+                            null,
+                            buildMap {
+                                if (alertSource.value.isNotEmpty() &&
+                                    !compatibleAlertSources.values.any { it.containsKey(alertSource.value) }
+                                ) {
+                                    put(
+                                        alertSource.value,
+                                        stringResource(
+                                            R.string.settings_weather_source_unavailable,
+                                            alertSource.value
+                                        )
+                                    )
+                                }
+                                put(
+                                    "",
+                                    if (mainSource?.supportedFeaturesInMain
+                                            ?.contains(SourceFeature.FEATURE_ALERT) == true &&
+                                        mainSource.isFeatureSupportedInMainForLocation(
+                                            location,
+                                            SourceFeature.FEATURE_ALERT
+                                        )
+                                    ) {
+                                        stringResource(R.string.settings_weather_source_main)
+                                    } else {
+                                        stringResource(R.string.settings_weather_source_none)
+                                    }
                                 )
-                            ) {
-                                stringResource(R.string.settings_weather_source_main)
-                            } else {
-                                stringResource(R.string.settings_weather_source_none)
                             }
                         )
                         putAll(compatibleAlertSources)
@@ -570,30 +689,38 @@ fun SecondarySourcesPreference(
                     alertSource.value = sourceId
                     hasChangedASecondarySource.value = true
                 }
-                SourceView(
+                SourceViewWithContinents(
                     title = stringResource(SourceFeature.FEATURE_NORMALS.resourceName!!),
                     selectedKey = normalsSource.value,
                     sourceList = buildMap {
-                        if (normalsSource.value.isNotEmpty() &&
-                            !compatibleNormalsSources.contains(normalsSource.value)
-                        ) {
-                            put(
-                                normalsSource.value,
-                                stringResource(R.string.settings_weather_source_unavailable, normalsSource.value)
-                            )
-                        }
                         put(
-                            "",
-                            if (mainSource?.supportedFeaturesInMain
-                                    ?.contains(SourceFeature.FEATURE_NORMALS) == true &&
-                                mainSource.isFeatureSupportedInMainForLocation(
-                                    location,
-                                    SourceFeature.FEATURE_NORMALS
+                            null,
+                            buildMap {
+                                if (normalsSource.value.isNotEmpty() &&
+                                    !compatibleNormalsSources.values.any { it.containsKey(normalsSource.value) }
+                                ) {
+                                    put(
+                                        normalsSource.value,
+                                        stringResource(
+                                            R.string.settings_weather_source_unavailable,
+                                            normalsSource.value
+                                        )
+                                    )
+                                }
+                                put(
+                                    "",
+                                    if (mainSource?.supportedFeaturesInMain
+                                            ?.contains(SourceFeature.FEATURE_NORMALS) == true &&
+                                        mainSource.isFeatureSupportedInMainForLocation(
+                                            location,
+                                            SourceFeature.FEATURE_NORMALS
+                                        )
+                                    ) {
+                                        stringResource(R.string.settings_weather_source_main)
+                                    } else {
+                                        stringResource(R.string.settings_weather_source_none)
+                                    }
                                 )
-                            ) {
-                                stringResource(R.string.settings_weather_source_main)
-                            } else {
-                                stringResource(R.string.settings_weather_source_none)
                             }
                         )
                         putAll(compatibleNormalsSources)
@@ -732,6 +859,63 @@ fun SourceView(
         nameArray = sourceList.map { it.value }.toTypedArray(),
         summary = { _, value ->
             sourceList.getOrElse(value) { null }
+        },
+        onValueChanged = { sourceId ->
+            onValueChanged(sourceId)
+        },
+        dismissButton = {
+            TextButton(
+                onClick = {
+                    dialogLinkOpenState.value = true
+                }
+            ) {
+                Text(
+                    text = stringResource(R.string.action_help_me_choose),
+                    color = MaterialTheme.colorScheme.primary,
+                    style = MaterialTheme.typography.labelLarge
+                )
+            }
+        },
+        enabled = enabled,
+        card = card,
+        colors = colors,
+        withState = withState
+    )
+
+    if (dialogLinkOpenState.value) {
+        AlertDialogLink(
+            onClose = { dialogLinkOpenState.value = false },
+            linkToOpen = "https://github.com/breezy-weather/breezy-weather/blob/main/docs/SOURCES.md"
+        )
+    }
+}
+
+@Composable
+fun SourceViewWithContinents(
+    title: String,
+    @DrawableRes iconId: Int? = null,
+    selectedKey: String,
+    enabled: Boolean = true,
+    sourceList: Map<SourceContinent?, Map<String, String>>,
+    card: Boolean = false,
+    colors: ListItemColors = ListItemDefaults.colors(AlertDialogDefaults.containerColor),
+    withState: Boolean = true,
+    onValueChanged: (String) -> Unit,
+) {
+    val dialogLinkOpenState = remember { mutableStateOf(false) }
+    val context = LocalContext.current
+
+    ListPreferenceWithGroupsView(
+        title = title,
+        iconId = iconId,
+        selectedKey = selectedKey,
+        values = sourceList.mapKeys {
+            it.key?.let { k -> context.getString(k.resourceName!!) }
+        },
+        summary = { _, value ->
+            sourceList.values.firstOrNull { c ->
+                c.containsKey(value)
+            }?.getOrElse(value) { null }
         },
         onValueChanged = { sourceId ->
             onValueChanged(sourceId)

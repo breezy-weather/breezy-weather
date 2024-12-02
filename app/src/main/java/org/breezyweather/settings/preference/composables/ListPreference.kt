@@ -35,7 +35,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemColors
@@ -55,6 +56,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.os.LocaleListCompat
 import org.breezyweather.R
@@ -253,22 +255,48 @@ fun ListPreferenceView(
                 LazyColumn(
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    items(valueArray.zip(nameArray)) {
-                        RadioButton(
-                            selected = if (withState) {
-                                listSelectedState.value == it.first
-                            } else {
-                                selectedKey == it.first
-                            },
-                            onClick = {
-                                if (withState) {
-                                    listSelectedState.value = it.first
+                    itemsIndexed(valueArray.zip(nameArray)) { i, it ->
+                        // Special case with groups
+                        if (it.second.isEmpty()) {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(
+                                        horizontal = dimensionResource(R.dimen.little_margin)
+                                    )
+                            ) {
+                                if (i != 0) {
+                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                    HorizontalDivider()
+                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                                 }
-                                dialogOpenState.value = false
-                                onValueChanged(it.first)
-                            },
-                            text = it.second
-                        )
+                                Text(
+                                    modifier = Modifier
+                                        .fillMaxWidth(),
+                                    text = it.first,
+                                    color = DayNightTheme.colors.titleColor,
+                                    style = MaterialTheme.typography.titleMedium,
+                                    textAlign = TextAlign.Center
+                                )
+                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                            }
+                        } else {
+                            RadioButton(
+                                selected = if (withState) {
+                                    listSelectedState.value == it.first
+                                } else {
+                                    selectedKey == it.first
+                                },
+                                onClick = {
+                                    if (withState) {
+                                        listSelectedState.value = it.first
+                                    }
+                                    dialogOpenState.value = false
+                                    onValueChanged(it.first)
+                                },
+                                text = it.second
+                            )
+                        }
                     }
                 }
             },
@@ -286,6 +314,52 @@ fun ListPreferenceView(
             dismissButton = dismissButton
         )
     }
+}
+
+@Composable
+fun ListPreferenceWithGroupsView(
+    title: String,
+    @DrawableRes iconId: Int? = null,
+    summary: (Context, String) -> String?, // value -> summary.
+    selectedKey: String,
+    values: Map<String?, Map<String, String>>,
+    enabled: Boolean = true,
+    card: Boolean = true,
+    colors: ListItemColors = ListItemDefaults.colors(),
+    withState: Boolean = true,
+    dismissButton: @Composable (() -> Unit)? = null,
+    onValueChanged: (String) -> Unit,
+) {
+    val keyList = mutableListOf<String>()
+    val nameList = mutableListOf<String>()
+    for ((k1, v1) in values) {
+        if (k1 != null) {
+            // Typed array, so no null; we use an empty value
+            // Since it's possible to have empty keys, we must do it the other way around for the
+            // ListPreferenceView to recognize our group
+            keyList.add(k1)
+            nameList.add("")
+        }
+        for ((k2, v2) in v1) {
+            keyList.add(k2)
+            nameList.add(v2)
+        }
+    }
+
+    return ListPreferenceView(
+        title = title,
+        iconId = iconId,
+        summary = summary,
+        selectedKey = selectedKey,
+        valueArray = keyList.toTypedArray(),
+        nameArray = nameList.toTypedArray(),
+        enabled = enabled,
+        card = card,
+        colors = colors,
+        withState = withState,
+        dismissButton = dismissButton,
+        onValueChanged = onValueChanged
+    )
 }
 
 @Composable
