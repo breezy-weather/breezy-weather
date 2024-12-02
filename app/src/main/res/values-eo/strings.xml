@@ -531,6 +531,17 @@
     <string name="common_weather_text_rain_snow_mixed_showers">Diluva pluvneĝo</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Diluva pluvneĝeto</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Diluva pluvneĝego</string>
+    <string name="common_weather_text_squall">Skualo</string>
+    <string name="common_weather_text_mist">Brumo</string>
+    <string name="common_weather_text_dry">Sekeco</string>
+    <string name="common_weather_text_humid">Humido</string>
+    <string name="common_weather_text_hot">Varmego</string>
+    <string name="common_weather_text_warm">Varmo</string>
+    <string name="common_weather_text_cool">Malvarmo</string>
+    <string name="common_weather_text_cold">Malvarmego</string>
+    <string name="common_weather_text_dust">Polvoj</string>
+    <string name="common_weather_text_dust_storm">Polvoŝtormo</string>
+    <string name="common_weather_text_frost">Prujno</string>
     <string name="common_weather_text_snow">Neĝo</string>
     <string name="common_weather_text_snow_light">Neĝeto</string>
     <string name="common_weather_text_snow_moderate">Neĝo</string>
