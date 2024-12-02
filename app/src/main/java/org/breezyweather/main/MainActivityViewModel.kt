@@ -84,7 +84,7 @@ class MainActivityViewModel @Inject constructor(
     val indicator = _indicator.asStateFlow()
 
     val locationPermissionsRequest: MutableStateFlow<PermissionsRequest?> = MutableStateFlow(null)
-    val snackbarError = BusLiveData<RefreshError?>(Handler(Looper.getMainLooper()))
+    val snackbarError = BusLiveData<List<RefreshError>>(Handler(Looper.getMainLooper()))
 
     // inner data.
 
@@ -116,7 +116,7 @@ class MainActivityViewModel @Inject constructor(
             )
 
             locationPermissionsRequest.value = null
-            snackbarError.setValue(null)
+            snackbarError.setValue(emptyList())
 
             _initCompleted.value = true
         }
@@ -224,8 +224,7 @@ class MainActivityViewModel @Inject constructor(
         location: Location,
         errors: List<RefreshError> = emptyList(),
     ) {
-        // Arbitrarily post only the first error, as we can only show one snackbar at a time
-        snackbarError.postValue(errors.getOrNull(0))
+        snackbarError.postValue(errors)
 
         updateInnerData(location)
 

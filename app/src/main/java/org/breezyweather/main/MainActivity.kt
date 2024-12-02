@@ -17,7 +17,6 @@
 package org.breezyweather.main
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -27,8 +26,20 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.HelpOutline
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.AlertDialogDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -36,6 +47,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
@@ -58,10 +71,12 @@ import org.breezyweather.Migrations
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.bus.EventBus
+import org.breezyweather.common.extensions.conditional
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.snackbar.SnackbarContainer
+import org.breezyweather.common.source.RefreshError
 import org.breezyweather.common.ui.composables.AlertDialogConfirmOnly
 import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.common.ui.composables.LocationPreference
@@ -93,7 +108,10 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
 
     private val _dialogPerLocationSettingsOpen = MutableStateFlow(false)
     val dialogPerLocationSettingsOpen = _dialogPerLocationSettingsOpen.asStateFlow()
-    private var dialogPerLocationAlert: AlertDialog? = null
+    private val _dialogRefreshErrorDetails = MutableStateFlow(false)
+    val dialogRefreshErrorDetails = _dialogRefreshErrorDetails.asStateFlow()
+    private val _isLocationBasedLightTheme: MutableStateFlow<Boolean?> = MutableStateFlow(null)
+    val isLocationBasedLightTheme = _isLocationBasedLightTheme.asStateFlow()
 
     companion object {
         const val SEARCH_ACTIVITY = 4
@@ -252,11 +270,6 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
         updateDayNightColors()
     }
 
-    override fun onPause() {
-        super.onPause()
-        dialogPerLocationAlert?.dismiss()
-    }
-
     override fun onStart() {
         super.onStart()
         viewModel.checkToUpdate()
@@ -317,7 +330,6 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
         return intent?.getStringExtra(KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID)
     }
 
-    @SuppressLint("ClickableViewAccessibility", "NonConstantResourceId")
     private fun initView() {
         binding.root.post {
             if (isActivityCreated) {
@@ -400,36 +412,54 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                 }
             }
         }
-        viewModel.snackbarError.observe(this) { error ->
-            if (error != null) {
-                val shortMessage = if (error.error == RefreshErrorType.FAILED_FEATURE) {
-                    getString(
-                        error.error.shortMessage,
-                        getString(error.feature!!.resourceName!!)
-                    )
-                } else {
-                    getString(error.error.shortMessage)
-                }
-                val shortMessageWithSource = if (!error.source.isNullOrEmpty()) {
-                    val sourceName = sourceManager.getSource(error.source)?.name ?: error.source
-                    "$sourceName${getString(
-                        R.string.colon_separator
-                    )}$shortMessage"
-                } else {
-                    shortMessage
-                }
-                error.error.showDialogAction?.let { showDialogAction ->
-                    SnackbarHelper.showSnackbar(
-                        content = shortMessageWithSource,
-                        action = getString(error.error.actionButtonMessage)
-                    ) {
-                        showDialogAction(this)
+        viewModel.snackbarError.observe(this) { errors ->
+            if (errors.size > 1) {
+                SnackbarHelper.showSnackbar(
+                    content = getString(R.string.message_multiple_refresh_errors),
+                    action = getString(R.string.action_show)
+                ) {
+                    // Inefficient workaround to apply the correct theme while taking the location-based theme setting
+                    // into account. TODO: replace with a central solution which can be used in all composables
+                    _isLocationBasedLightTheme.value = if (isDrawerLayoutVisible || !isManagementFragmentVisible) {
+                        viewModel.currentLocation.value?.daylight
+                    } else {
+                        null
                     }
-                } ?: SnackbarHelper.showSnackbar(shortMessageWithSource)
+                    _dialogRefreshErrorDetails.value = true
+                }
+            } else {
+                errors.firstOrNull()?.let { error ->
+                    val shortMessage = getRefreshErrorShortMessage(error)
+                    val shortMessageWithSource = if (!error.source.isNullOrEmpty()) {
+                        "${sourceManager.getSource(
+                            error.source
+                        )?.name ?: error.source}${getString(R.string.colon_separator)}$shortMessage"
+                    } else {
+                        shortMessage
+                    }
+                    error.error.showDialogAction?.let { showDialogAction ->
+                        SnackbarHelper.showSnackbar(
+                            content = shortMessageWithSource,
+                            action = getString(error.error.actionButtonMessage)
+                        ) {
+                            showDialogAction(this)
+                        }
+                    } ?: SnackbarHelper.showSnackbar(shortMessageWithSource)
+                }
             }
         }
 
         initPerLocationSettingsView()
+
+        binding.refreshErrorDialog.setContent {
+            val isLightTheme = isLocationBasedLightTheme.collectAsState()
+
+            BreezyWeatherTheme(
+                lightTheme = MainThemeColorProvider.isLightTheme(this, isLightTheme.value)
+            ) {
+                RefreshErrorDetails()
+            }
+        }
     }
 
     private fun initPerLocationSettingsView() {
@@ -563,6 +593,76 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
         }
     }
 
+    @Composable
+    fun RefreshErrorDetails(
+        modifier: Modifier = Modifier,
+    ) {
+        val dialogRefreshErrorDetailsOpenState = dialogRefreshErrorDetails.collectAsState()
+        if (dialogRefreshErrorDetailsOpenState.value) {
+            AlertDialogNoPadding(
+                modifier = modifier,
+                onDismissRequest = { /* do nothing */ },
+                title = {
+                    Column {
+                        Text(stringResource(R.string.dialog_refresh_error_details_title))
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        Text(
+                            text = stringResource(R.string.dialog_refresh_error_details_content),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = DayNightTheme.colors.bodyColor
+                        )
+                    }
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = { _dialogRefreshErrorDetails.value = false },
+                        content = {
+                            Text(stringResource(R.string.action_close))
+                        }
+                    )
+                },
+                text = {
+                    LazyColumn {
+                        items(viewModel.snackbarError.value!!) {
+                            ListItem(
+                                colors = ListItemDefaults.colors(AlertDialogDefaults.containerColor),
+                                modifier = Modifier
+                                    .conditional(it.error.showDialogAction != null, {
+                                        clickable { it.error.showDialogAction!!(this@MainActivity) }
+                                    })
+                                    .padding(top = dimensionResource(R.dimen.little_margin)),
+                                headlineContent = {
+                                    it.source?.let { sourceText ->
+                                        Text(
+                                            sourceManager.getSource(sourceText)?.name ?: sourceText
+                                        )
+                                    }
+                                },
+                                supportingContent = {
+                                    Column {
+                                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                        Text(
+                                            text = getRefreshErrorShortMessage(it),
+                                            color = DayNightTheme.colors.bodyColor
+                                        )
+                                    }
+                                },
+                                trailingContent = {
+                                    it.error.showDialogAction?.let {
+                                        Icon(
+                                            imageVector = Icons.AutoMirrored.Outlined.HelpOutline,
+                                            contentDescription = "Help"
+                                        )
+                                    }
+                                }
+                            )
+                        }
+                    }
+                }
+            )
+        }
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
@@ -648,6 +748,16 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
 
     val isDaylight: Boolean
         get() = viewModel.currentLocation.value?.daylight ?: true
+
+    private fun getRefreshErrorShortMessage(error: RefreshError): String =
+        if (error.error == RefreshErrorType.FAILED_FEATURE) {
+            getString(
+                error.error.shortMessage,
+                getString(error.feature!!.resourceName!!)
+            )
+        } else {
+            getString(error.error.shortMessage)
+        }
 
     // control.
 

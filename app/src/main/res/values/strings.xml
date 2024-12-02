@@ -346,6 +346,7 @@
     <string name="action_share">Share</string>
     <string name="action_download">Download</string>
     <string name="action_show_errors">Tap to see details</string>
+    <string name="action_show">Show</string>
     <!-- Button shown in the weather selection dialog -->
     <string name="action_help_me_choose">Help me choose</string>
     <!-- Dialogs -->
@@ -357,11 +358,15 @@
     <string name="dialog_permissions_location_content">To use this feature, you need to grant the app permission to access your current location. It will only be shared with the selected weather sources. If you changed your mind, you can cancel the process and add a fixed location manually.</string>
     <string name="dialog_permissions_location_background_title">Access location in background</string>
     <string name="dialog_permissions_location_background_content">To allow weather refresh in the background to be made for the most recent current location known by Android, you need to set location permission to “Allow all the time”. If you don’t, weather will be refreshed based on the latest retrieved coordinates in the foreground, which can be outdated.</string>
+    <string name="dialog_refresh_error_details_title">Refresh errors</string>
+    <string name="dialog_refresh_error_details_content">Tap on error messages with a question mark to get further help.</string>
     <string name="dialog_time_picker_select_time">Select time</string>
     <string name="dialog_time_picker_input_time">Input time</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Switch to Touch Input</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Switch to Text Input</string>
     <!-- Miscellaneous messages -->
+    <!-- Please keep it as short as possible as only a limited number of characters can be displayed. -->
+    <string name="message_multiple_refresh_errors">Refresh completed with errors</string>
     <string name="message_invalid_incomplete_data">Invalid or incomplete data received from server</string>
     <string name="message_network_unavailable">Network unavailable</string>
     <string name="message_server_timeout">Request timed out</string>
