@@ -53,7 +53,7 @@ class ChinaService @Inject constructor(
     LocationParametersSource {
 
     override val id = "china"
-    override val name = "${Locale(context.currentLocale.code, "CN").displayCountry}"
+    override val name = Locale(context.currentLocale.code, "CN").displayCountry
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl by lazy {
         with(context.currentLocale.code) {

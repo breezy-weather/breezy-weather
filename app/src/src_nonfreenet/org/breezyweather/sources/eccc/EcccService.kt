@@ -44,8 +44,6 @@ class EcccService @Inject constructor(
 
     override val id = "eccc"
     override val name = "ECCC (${Locale(context.currentLocale.code, "CA").displayCountry})"
-
-    // Environnement et Changement Climatique Canada
     override val continent = SourceContinent.NORTH_AMERICA
     override val privacyPolicyUrl by lazy {
         with(context.currentLocale.code) {
@@ -62,7 +60,7 @@ class EcccService @Inject constructor(
             when {
                 startsWith("fr") ->
                     "Environnement et Changement Climatique Canada (Licence d’utilisation finale" +
-                        " pour les serveurs de données d’Environnement et Changement climatique Canada)"
+                        " pour les serveurs de données d’Environnement et Changement Climatique Canada)"
                 else ->
                     "Environment and Climate Change Canada" +
                         " (Environment and Climate Change Canada Data Servers End-use Licence)"

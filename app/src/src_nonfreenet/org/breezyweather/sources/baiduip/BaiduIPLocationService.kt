@@ -51,10 +51,10 @@ class BaiduIPLocationService @Inject constructor(
     override val name by lazy {
         with(context.currentLocale.code) {
             when {
-                startsWith("zh") -> "百度IP定位 (${Locale(context.currentLocale.code, "CN").displayCountry})"
-                else -> "Baidu IP location (${Locale(context.currentLocale.code, "CN").displayCountry})"
+                startsWith("zh") -> "百度IP定位"
+                else -> "Baidu IP location"
             }
-        }
+        } + " (${Locale(context.currentLocale.code, "CN").displayCountry})"
     }
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = "https://lbs.baidu.com/index.php?title=openprivacy"
