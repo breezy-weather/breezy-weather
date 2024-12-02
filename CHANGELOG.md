@@ -10,6 +10,7 @@
 - New refresh error message: “Location access is off” when permission is granted but system disabled (@min7-i)
 - Sources are now split by continents in the source dialog to make it easier to find a specific national source
 - Sources now contains the country they are from in their name when relevant (@chunshek)
+- Allow to reset sources instance URL config by clearing it
 - Nowcasting chart: honor disabled “Threshold lines on charts” preference
 - Show minutes on the hourly chart on 24-hour system, so that users from a “not rounded hour” timezone such as India can see the correct minute
 - Fix dialogs theme on main screen (@min7-i)

@@ -22,7 +22,8 @@ import androidx.annotation.StringRes
 class EditTextPreference(
     @StringRes override val titleId: Int,
     val summary: ((Context, String) -> String?)? = null,
-    val content: String,
+    val content: String?,
+    val placeholder: String? = null,
     val regex: Regex? = null,
     val regexError: String? = null,
     val onValueChanged: (String) -> Unit,

@@ -57,14 +57,14 @@ class RecosanteService @Inject constructor(
     private val mGeoApi: GeoApi
         get() {
             return client
-                .baseUrl(geocodingInstance)
+                .baseUrl(geocodingInstance!!)
                 .build()
                 .create(GeoApi::class.java)
         }
     private val mPollenApi: RecosanteApi
         get() {
             return client
-                .baseUrl(instance)
+                .baseUrl(instance!!)
                 .build()
                 .create(RecosanteApi::class.java)
         }
@@ -139,14 +139,18 @@ class RecosanteService @Inject constructor(
     private val config = SourceConfigStore(context, id)
     override val isConfigured = true
     override val isRestricted = false
-    private var instance: String
+    private var instance: String?
         set(value) {
-            config.edit().putString("instance", value).apply()
+            value?.let {
+                config.edit().putString("instance", it).apply()
+            } ?: config.edit().remove("instance").apply()
         }
         get() = config.getString("instance", null) ?: RECOSANTE_BASE_URL
-    private var geocodingInstance: String
+    private var geocodingInstance: String?
         set(value) {
-            config.edit().putString("geocoding_instance", value).apply()
+            value?.let {
+                config.edit().putString("geocoding_instance", it).apply()
+            } ?: config.edit().remove("geocoding_instance").apply()
         }
         get() = config.getString("geocoding_instance", null) ?: GEO_BASE_URL
 
@@ -159,11 +163,12 @@ class RecosanteService @Inject constructor(
                         RECOSANTE_BASE_URL
                     }
                 },
-                content = instance,
+                content = if (instance != RECOSANTE_BASE_URL) instance else null,
+                placeholder = RECOSANTE_BASE_URL,
                 regex = EditTextPreference.URL_REGEX,
                 regexError = context.getString(R.string.settings_source_instance_invalid),
                 onValueChanged = {
-                    instance = it
+                    instance = if (it == RECOSANTE_BASE_URL) null else it.ifEmpty { null }
                 }
             ),
             EditTextPreference(
@@ -173,11 +178,12 @@ class RecosanteService @Inject constructor(
                         GEO_BASE_URL
                     }
                 },
-                content = geocodingInstance,
+                content = if (geocodingInstance != GEO_BASE_URL) geocodingInstance else null,
+                placeholder = GEO_BASE_URL,
                 regex = EditTextPreference.URL_REGEX,
                 regexError = context.getString(R.string.settings_source_instance_invalid),
                 onValueChanged = {
-                    geocodingInstance = it
+                    geocodingInstance = if (it == GEO_BASE_URL) null else it.ifEmpty { null }
                 }
             )
         )

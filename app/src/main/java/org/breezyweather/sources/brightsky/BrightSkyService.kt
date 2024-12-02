@@ -64,7 +64,7 @@ class BrightSkyService @Inject constructor(
     private val mApi: BrightSkyApi
         get() {
             return client
-                .baseUrl(instance)
+                .baseUrl(instance!!)
                 .build()
                 .create(BrightSkyApi::class.java)
         }
@@ -199,9 +199,11 @@ class BrightSkyService @Inject constructor(
     private val config = SourceConfigStore(context, id)
     override val isConfigured = true
     override val isRestricted = false
-    private var instance: String
+    private var instance: String?
         set(value) {
-            config.edit().putString("instance", value).apply()
+            value?.let {
+                config.edit().putString("instance", value).apply()
+            } ?: config.edit().remove("instance").apply()
         }
         get() = config.getString("instance", null) ?: BRIGHT_SKY_BASE_URL
     override fun getPreferences(context: Context): List<Preference> {
@@ -213,11 +215,12 @@ class BrightSkyService @Inject constructor(
                         BRIGHT_SKY_BASE_URL
                     }
                 },
-                content = instance,
+                content = if (instance != BRIGHT_SKY_BASE_URL) instance else null,
+                placeholder = BRIGHT_SKY_BASE_URL,
                 regex = EditTextPreference.URL_REGEX,
                 regexError = context.getString(R.string.settings_source_instance_invalid),
                 onValueChanged = {
-                    instance = it
+                    instance = if (it == BRIGHT_SKY_BASE_URL) null else it.ifEmpty { null }
                 }
             )
         )

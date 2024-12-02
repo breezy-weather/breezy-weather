@@ -87,21 +87,21 @@ class OpenMeteoService @Inject constructor(
     private val mForecastApi: OpenMeteoForecastApi
         get() {
             return client
-                .baseUrl(forecastInstance)
+                .baseUrl(forecastInstance!!)
                 .build()
                 .create(OpenMeteoForecastApi::class.java)
         }
     private val mGeocodingApi: OpenMeteoGeocodingApi
         get() {
             return client
-                .baseUrl(geocodingInstance)
+                .baseUrl(geocodingInstance!!)
                 .build()
                 .create(OpenMeteoGeocodingApi::class.java)
         }
     private val mAirQualityApi: OpenMeteoAirQualityApi
         get() {
             return client
-                .baseUrl(airQualityInstance)
+                .baseUrl(airQualityInstance!!)
                 .build()
                 .create(OpenMeteoAirQualityApi::class.java)
         }
@@ -408,19 +408,25 @@ class OpenMeteoService @Inject constructor(
     private val config = SourceConfigStore(context, id)
     override val isConfigured = true
     override val isRestricted = false
-    private var forecastInstance: String
+    private var forecastInstance: String?
         set(value) {
-            config.edit().putString("forecast_instance", value).apply()
+            value?.let {
+                config.edit().putString("forecast_instance", it).apply()
+            } ?: config.edit().remove("forecast_instance").apply()
         }
         get() = config.getString("forecast_instance", null) ?: OPEN_METEO_FORECAST_BASE_URL
-    private var airQualityInstance: String
+    private var airQualityInstance: String?
         set(value) {
-            config.edit().putString("air_quality_instance", value).apply()
+            value?.let {
+                config.edit().putString("air_quality_instance", it).apply()
+            } ?: config.edit().remove("air_quality_instance").apply()
         }
         get() = config.getString("air_quality_instance", null) ?: OPEN_METEO_AIR_QUALITY_BASE_URL
-    private var geocodingInstance: String
+    private var geocodingInstance: String?
         set(value) {
-            config.edit().putString("geocoding_instance", value).apply()
+            value?.let {
+                config.edit().putString("geocoding_instance", it).apply()
+            } ?: config.edit().remove("geocoding_instance").apply()
         }
         get() = config.getString("geocoding_instance", null) ?: OPEN_METEO_GEOCODING_BASE_URL
 
@@ -433,11 +439,12 @@ class OpenMeteoService @Inject constructor(
                         OPEN_METEO_FORECAST_BASE_URL
                     }
                 },
-                content = forecastInstance,
+                content = if (forecastInstance != OPEN_METEO_FORECAST_BASE_URL) forecastInstance else null,
+                placeholder = OPEN_METEO_FORECAST_BASE_URL,
                 regex = EditTextPreference.URL_REGEX,
                 regexError = context.getString(R.string.settings_source_instance_invalid),
                 onValueChanged = {
-                    forecastInstance = it
+                    forecastInstance = if (it == OPEN_METEO_FORECAST_BASE_URL) null else it.ifEmpty { null }
                 }
             ),
             EditTextPreference(
@@ -447,11 +454,12 @@ class OpenMeteoService @Inject constructor(
                         OPEN_METEO_AIR_QUALITY_BASE_URL
                     }
                 },
-                content = airQualityInstance,
+                content = if (airQualityInstance != OPEN_METEO_AIR_QUALITY_BASE_URL) airQualityInstance else null,
+                placeholder = OPEN_METEO_AIR_QUALITY_BASE_URL,
                 regex = EditTextPreference.URL_REGEX,
                 regexError = context.getString(R.string.settings_source_instance_invalid),
                 onValueChanged = {
-                    airQualityInstance = it
+                    airQualityInstance = if (it == OPEN_METEO_AIR_QUALITY_BASE_URL) null else it.ifEmpty { null }
                 }
             ),
             EditTextPreference(
@@ -461,11 +469,12 @@ class OpenMeteoService @Inject constructor(
                         OPEN_METEO_GEOCODING_BASE_URL
                     }
                 },
-                content = geocodingInstance,
+                content = if (geocodingInstance != OPEN_METEO_GEOCODING_BASE_URL) geocodingInstance else null,
+                placeholder = OPEN_METEO_GEOCODING_BASE_URL,
                 regex = EditTextPreference.URL_REGEX,
                 regexError = context.getString(R.string.settings_source_instance_invalid),
                 onValueChanged = {
-                    geocodingInstance = it
+                    geocodingInstance = if (it == OPEN_METEO_GEOCODING_BASE_URL) null else it.ifEmpty { null }
                 }
             )
         )

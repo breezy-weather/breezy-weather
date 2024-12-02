@@ -51,7 +51,8 @@ import org.breezyweather.theme.compose.themeRipple
 fun EditTextPreferenceView(
     @StringRes titleId: Int,
     summary: ((Context, String) -> String?)? = null,
-    content: String,
+    content: String?,
+    placeholder: String?,
     enabled: Boolean = true,
     regex: Regex? = null,
     regexError: String? = null,
@@ -61,7 +62,8 @@ fun EditTextPreferenceView(
     summary = { context, value ->
         summary?.let { it(context, value) }
     },
-    content = content,
+    content = content ?: "",
+    placeholder = placeholder,
     enabled = enabled,
     regex = regex,
     regexError = regexError,
@@ -73,6 +75,7 @@ fun EditTextPreferenceView(
     title: String,
     summary: (Context, String) -> String?, // content -> summary.
     content: String,
+    placeholder: String? = null,
     enabled: Boolean = true,
     regex: Regex? = null,
     regexError: String? = null,
@@ -136,9 +139,20 @@ fun EditTextPreferenceView(
                     readOnly = false,
                     enabled = true,
                     singleLine = true,
-                    isError = regex != null && !inputState.value.matches(regex),
+                    placeholder = placeholder?.let {
+                        {
+                            Text(placeholder)
+                        }
+                    },
+                    // If placeholder, empty values allowed
+                    isError = regex != null &&
+                        !inputState.value.matches(regex) &&
+                        (!placeholder.isNullOrEmpty() || inputState.value.isEmpty()),
                     supportingText = {
-                        if (regex != null && !inputState.value.matches(regex)) {
+                        if (regex != null &&
+                            !inputState.value.matches(regex) &&
+                            (placeholder.isNullOrEmpty() || inputState.value.isNotEmpty())
+                        ) {
                             Text(
                                 modifier = Modifier.fillMaxWidth(),
                                 text = if (!regexError.isNullOrEmpty()) {
@@ -165,7 +179,7 @@ fun EditTextPreferenceView(
             },
             confirmButton = {
                 TextButton(
-                    enabled = regex == null || inputState.value.matches(regex),
+                    enabled = regex == null || inputState.value.isEmpty() || inputState.value.matches(regex),
                     onClick = {
                         contentState.value = inputState.value
                         dialogOpenState.value = false
