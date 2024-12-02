@@ -89,9 +89,9 @@
     <string name="about_translators">Kääntäjät</string>
     <!-- feedback. -->
     <string name="dialog_permissions_location_title">Pääsy sijaintitietoihin</string>
-    <string name="dialog_permissions_location_content">Breezy Weatherin on kerättävä sijaintitietosi käytössä ollessaan tai taustalla, jotta se voi antaa nykyisen sijaintisi säätiedot. Tätä varten pyydämme joitakin käyttöoikeuksia. Sijaintitietojasi käytetään vain nykyisen sijaintisi säätietojen saamiseksi. Jos et halua, että saamme sijaintitietojasi, voit estää nämä pyynnöt ja määrittää sijaintisi manuaalisesti hallintasivulla.</string>
+    <string name="dialog_permissions_location_content">Jotta voit käyttää tätä ominaisuutta, sinun on myönnettävä sovellukselle lupa käyttää nykyistä sijaintiasi. Se jaetaan vain valittujen säälähteiden kanssa. Jos muutit mielesi, voit peruuttaa prosessin ja lisätä kiinteän sijainnin manuaalisesti.</string>
     <string name="dialog_permissions_location_background_title">Pääsy sijaintitietoihin taustalla</string>
-    <string name="dialog_permissions_location_background_content">Voidaksemme tarjota päteviä säätietoja sijaintisi muuttuessakin, salli pääsy sijaintitietoihin taustalla. Aseta sijainnin käyttöoikeudeksi “Salli aina”.</string>
+    <string name="dialog_permissions_location_background_content">Ottaaksesi käyttöön säätietojen päivityksen taustalla viimeisimmälle Androidin tietämälle sijainnille, sijainnin käyttöoikeuden tulee olla “Salli aina”. Muuten säätiedot päivitetään viimeisimpien haettujen koordinaattien perusteella kun sovellus oli viimeksi käytössä. Kyseiset koordinaatit voivat olla vanhentuneita.</string>
     <string name="location_message_failed_to_locate">Tämänhetkisen sijainnin haku epäonnistui</string>
     <string name="weather_message_data_refresh_failed">Säätietojen haku epäonnistui</string>
     <string name="location_dialog_failed_to_locate_title">Etkö saa oikeaa sijaintia\?</string>
@@ -693,4 +693,7 @@
     <string name="message_server_unavailable_title">Palvelin ei vastaa</string>
     <string name="action_edit_location">Muokkaa tätä sijaintia</string>
     <string name="precipitation_intensity_medium">Keskiraskas</string>
+    <string name="dialog_app_update_check_title">Pysy ajan tasalla</string>
+    <string name="action_download">Lataa</string>
+    <string name="dialog_app_update_check_content">Napauta tästä ottaaksesi käyttöön ilmoitukset sovelluspäivityksistä.</string>
 </resources>
