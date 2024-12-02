@@ -31,6 +31,7 @@
 - **Asia**
   - [BMD] Added as a main source option for Bangladesh (@chunshek)
   - [BMKG] Added as a main and secondary current/alert/air quality source option for Indonesia (@chunshek)
+  - [CWA] Ensure the source will still work after CWA planned changes for after 2024-12-10 (@chunshek)
   - [CWA] Optimized refresh time (@chunshek)
   - [CWA] Add support for daily bulletin (@chunshek)
   - [CWA] Fix wind speed when >= 11 m/s (@chunshek)
