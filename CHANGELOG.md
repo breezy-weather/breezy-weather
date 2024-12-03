@@ -46,6 +46,7 @@
 - **Europe**
   - [AEMET] Added as a main and secondary current/normals source option for Spain (@chunshek)
   - [IPMA] Added as a main and secondary alert source option for Portugal (@chunshek)
+  - [LVĢMC] Added as a main and secondary current/alert source option for Latvia (@chunshek)
   - [MET Norway] Fix alerts not working when used as a secondary source
   - [Met Office] Added as a main source option for United Kingdom. Requires an API key. (@bunburya)
   - [MeteoLux] Added as a main and secondary current/alert source option for Luxembourg. (@chunshek)

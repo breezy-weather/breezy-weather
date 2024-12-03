@@ -303,8 +303,8 @@ private fun getDailyForecast(
             )
         )
     }
-    if (dayParts.keys.sorted().last() != nightParts.keys.sorted().last()) {
-        val lastKey = dayParts.keys.sorted().last()
+    if (dayParts.keys.maxOf { it } != nightParts.keys.maxOf { it }) {
+        val lastKey = dayParts.keys.maxOf { it }
         dailyList.add(
             Daily(
                 date = Date(lastKey),
