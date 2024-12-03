@@ -56,6 +56,7 @@ import org.breezyweather.sources.ims.ImsService
 import org.breezyweather.sources.ipma.IpmaService
 import org.breezyweather.sources.ipsb.IpSbLocationService
 import org.breezyweather.sources.jma.JmaService
+import org.breezyweather.sources.lvgmc.LvgmcService
 import org.breezyweather.sources.meteoam.MeteoAmService
 import org.breezyweather.sources.meteolux.MeteoLuxService
 import org.breezyweather.sources.metie.MetIeService
@@ -101,6 +102,7 @@ class SourceManager @Inject constructor(
     ipmaService: IpmaService,
     ipSbService: IpSbLocationService,
     jmaService: JmaService,
+    lvgmcService: LvgmcService,
     meteoAmService: MeteoAmService,
     meteoLuxService: MeteoLuxService,
     metIeService: MetIeService,
@@ -166,6 +168,7 @@ class SourceManager @Inject constructor(
         imsService,
         ipmaService,
         jmaService,
+        lvgmcService,
         meteoAmService,
         meteoLuxService,
         metIeService,

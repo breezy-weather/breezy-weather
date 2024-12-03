@@ -69,6 +69,7 @@ enum class LocationPreset(
         alert = "accu",
         normals = "accu"
     ),
+    LATVIA("lvgmc", pollen = "openmeteo", minutely = "openmeteo", alert = "accu", normals = "accu"),
     LUXEMBOURG("meteolux", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     MONACO("mf", airQuality = "openmeteo", pollen = "openmeteo", alert = "accu"),
     NORWAY("metno", pollen = "openmeteo", alert = "accu", normals = "accu"),
@@ -119,6 +120,7 @@ enum class LocationPreset(
                     "IE" -> IRELAND
                     "IT", "SM", "VA" -> ITALY
                     "LU" -> LUXEMBOURG
+                    "LV" -> LATVIA
                     "MC" -> MONACO
                     "NO", "SJ" -> NORWAY
                     "PT" -> PORTUGAL
