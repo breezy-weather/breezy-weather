@@ -42,7 +42,6 @@ import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
-import org.breezyweather.sources.mf.getFrenchDepartmentCode
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityHourly
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult
 import org.breezyweather.sources.openmeteo.json.OpenMeteoLocationResult
@@ -72,12 +71,6 @@ fun convert(
         countryCode = result.countryCode,
         admin1 = result.admin1,
         admin2 = result.admin2,
-        // Province code is mandatory for MF source to have alerts/air quality, and MF source uses Open-Meteo search
-        admin2Code = if (result.countryCode.equals("FR", ignoreCase = true)) {
-            getFrenchDepartmentCode(result.admin2 ?: "")
-        } else {
-            null
-        },
         admin3 = result.admin3,
         admin4 = result.admin4,
         city = result.name,

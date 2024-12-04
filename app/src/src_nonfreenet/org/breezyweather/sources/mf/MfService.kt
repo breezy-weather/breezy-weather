@@ -30,12 +30,14 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
+import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.SecondaryWeatherSource
@@ -60,7 +62,12 @@ import javax.inject.Named
 class MfService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, ConfigurableSource {
+) : HttpSource(),
+    MainWeatherSource,
+    SecondaryWeatherSource,
+    ReverseGeocodingSource,
+    LocationParametersSource,
+    ConfigurableSource {
 
     override val id = "mf"
     val countryName = Locale(context.currentLocale.code, "FR").displayCountry
@@ -152,17 +159,19 @@ class MfService @Inject constructor(
         } else {
             Observable.just(MfRainResult())
         }
-        val warnings = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT) &&
-            !location.countryCode.isNullOrEmpty() &&
-            location.countryCode.equals("FR", ignoreCase = true) &&
-            !location.admin2Code.isNullOrEmpty()
-        ) {
-            mApi.getWarnings(
-                USER_AGENT,
-                location.admin2Code!!,
-                "iso",
-                token
-            ).onErrorResumeNext {
+        val warnings = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+            val domain = location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }
+            if (!domain.isNullOrEmpty()) {
+                mApi.getWarnings(
+                    USER_AGENT,
+                    domain,
+                    "iso",
+                    token
+                ).onErrorResumeNext {
+                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    Observable.just(MfWarningsResult())
+                }
+            } else {
                 failedFeatures.add(SourceFeature.FEATURE_ALERT)
                 Observable.just(MfWarningsResult())
             }
@@ -231,7 +240,7 @@ class MfService @Inject constructor(
             (
                 feature == SourceFeature.FEATURE_ALERT &&
                     !location.countryCode.isNullOrEmpty() &&
-                    location.countryCode.equals("FR", ignoreCase = true) &&
+                    arrayOf("FR", "AD").any { location.countryCode.equals(it, ignoreCase = true) } &&
                     !location.admin2Code.isNullOrEmpty()
                 ) ||
             (
@@ -292,18 +301,19 @@ class MfService @Inject constructor(
             Observable.just(MfRainResult())
         }
 
-        val warnings = if (
-            requestedFeatures.contains(SourceFeature.FEATURE_ALERT) &&
-            !location.countryCode.isNullOrEmpty() &&
-            location.countryCode.equals("FR", ignoreCase = true) &&
-            !location.admin2Code.isNullOrEmpty()
-        ) {
-            mApi.getWarnings(
-                USER_AGENT,
-                location.admin2Code!!,
-                "iso",
-                token
-            ).onErrorResumeNext {
+        val warnings = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+            val domain = location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }
+            if (!domain.isNullOrEmpty()) {
+                mApi.getWarnings(
+                    USER_AGENT,
+                    domain,
+                    "iso",
+                    token
+                ).onErrorResumeNext {
+                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    Observable.just(MfWarningsResult())
+                }
+            } else {
                 failedFeatures.add(SourceFeature.FEATURE_ALERT)
                 Observable.just(MfWarningsResult())
             }
@@ -373,6 +383,47 @@ class MfService @Inject constructor(
             getToken()
         ).map {
             listOf(convert(location, it))
+        }
+    }
+
+    // Location parameters
+    override fun needsLocationParametersRefresh(
+        location: Location,
+        coordinatesChanged: Boolean,
+        features: List<SourceFeature>,
+    ): Boolean {
+        /*
+         * FIXME: Empty doesn't always include alerts
+         * Just to be safe we query it when Meteo-France is the main source
+         * See also #1497
+         */
+        if (features.isNotEmpty() && !features.contains(SourceFeature.FEATURE_ALERT)) return false
+        if (coordinatesChanged) return true
+
+        return location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }.isNullOrEmpty()
+    }
+
+    override fun requestLocationParameters(
+        context: Context,
+        location: Location,
+    ): Observable<Map<String, String>> {
+        if (!isConfigured) {
+            return Observable.error(ApiKeyMissingException())
+        }
+        return mApi.getForecast(
+            USER_AGENT,
+            location.latitude,
+            location.longitude,
+            "iso",
+            getToken()
+        ).map {
+            if (it.properties?.zoneVigi1.isNullOrEmpty() && it.properties?.frenchDepartment.isNullOrEmpty()) {
+                throw InvalidLocationException()
+            }
+
+            mapOf(
+                "domain" to (it.properties!!.zoneVigi1 ?: it.properties.frenchDepartment!!)
+            )
         }
     }
 
