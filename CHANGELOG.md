@@ -6,10 +6,11 @@
 - Added night sky background for splash screen when using the app in dark mode (@min7-i)
 
 **Improvements and fixes**
-- When a source failed to refresh a specific feature, Breezy Weather will now attempt to continue refreshing other features while restoring the old data for failed features, when possible. A non-blocking error message mentioning the failed feature(s) will be visible in that case.
-- New refresh error message: “Location access is off” when permission is granted but system disabled (@min7-i)
 - Sources are now split by continents in the source dialog to make it easier to find a specific national source
 - Sources now contains the country they are from in their name when relevant (@chunshek)
+- When a source failed to refresh a specific feature, Breezy Weather will now attempt to continue refreshing other features while restoring the old data for failed features, when possible. A non-blocking error message mentioning the failed feature(s) will be visible in that case.
+- New refresh error message: “Location access is off” when permission is granted but system disabled (@min7-i)
+- Main screen is now able to show more than one error at a time (instead of only displaying the first one) (@min7-i)
 - Allow to reset sources instance URL config by clearing it
 - Nowcasting chart: honor disabled “Threshold lines on charts” preference
 - Show minutes on the hourly chart on 24-hour system, so that users from a “not rounded hour” timezone such as India can see the correct minute

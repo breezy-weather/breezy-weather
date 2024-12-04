@@ -202,7 +202,7 @@ class BrightSkyService @Inject constructor(
     private var instance: String?
         set(value) {
             value?.let {
-                config.edit().putString("instance", value).apply()
+                config.edit().putString("instance", it).apply()
             } ?: config.edit().remove("instance").apply()
         }
         get() = config.getString("instance", null) ?: BRIGHT_SKY_BASE_URL
