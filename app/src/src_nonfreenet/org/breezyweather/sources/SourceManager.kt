@@ -43,6 +43,23 @@ import org.breezyweather.sources.bmd.BmdService
 import org.breezyweather.sources.bmkg.BmkgService
 import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.china.ChinaService
+import org.breezyweather.sources.climweb.AnamBfService
+import org.breezyweather.sources.climweb.AnametService
+import org.breezyweather.sources.climweb.DccmsService
+import org.breezyweather.sources.climweb.DmnNeService
+import org.breezyweather.sources.climweb.DwrGmService
+import org.breezyweather.sources.climweb.EthioMetService
+import org.breezyweather.sources.climweb.GMetService
+import org.breezyweather.sources.climweb.IgebuService
+import org.breezyweather.sources.climweb.InmgbService
+import org.breezyweather.sources.climweb.MaliMeteoService
+import org.breezyweather.sources.climweb.MeteoBeninService
+import org.breezyweather.sources.climweb.MeteoTchadService
+import org.breezyweather.sources.climweb.MettelsatService
+import org.breezyweather.sources.climweb.MsdZwService
+import org.breezyweather.sources.climweb.SmaScService
+import org.breezyweather.sources.climweb.SmaSuService
+import org.breezyweather.sources.climweb.SsmsService
 import org.breezyweather.sources.cwa.CwaService
 import org.breezyweather.sources.dmi.DmiService
 import org.breezyweather.sources.eccc.EcccService
@@ -82,6 +99,8 @@ class SourceManager @Inject constructor(
     @ApplicationContext context: Context,
     accuService: AccuService,
     aemetService: AemetService,
+    anamBfService: AnamBfService,
+    anametService: AnametService,
     androidLocationService: AndroidLocationService,
     atmoAuraService: AtmoAuraService,
     baiduIPService: BaiduIPLocationService,
@@ -90,26 +109,38 @@ class SourceManager @Inject constructor(
     brightSkyService: BrightSkyService,
     chinaService: ChinaService,
     cwaService: CwaService,
+    dccmsService: DccmsService,
+    dmnNeService: DmnNeService,
     dmiService: DmiService,
+    dwrGmService: DwrGmService,
     ecccService: EcccService,
+    ethioMetService: EthioMetService,
     gadgetbridgeService: GadgetbridgeService,
     geoNamesService: GeoNamesService,
     geoSphereAtService: GeoSphereAtService,
+    gMetService: GMetService,
     hereService: HereService,
     hkoService: HkoService,
+    igebuService: IgebuService,
     imdService: ImdService,
     imsService: ImsService,
+    inmgbService: InmgbService,
     ipmaService: IpmaService,
     ipSbService: IpSbLocationService,
     jmaService: JmaService,
     lvgmcService: LvgmcService,
+    maliMeteoService: MaliMeteoService,
     meteoAmService: MeteoAmService,
+    meteoBeninService: MeteoBeninService,
     meteoLuxService: MeteoLuxService,
+    meteoTchadService: MeteoTchadService,
     metIeService: MetIeService,
     metNoService: MetNoService,
     metOfficeService: MetOfficeService,
+    mettelsatService: MettelsatService,
     mfService: MfService,
     mgmService: MgmService,
+    msdZwService: MsdZwService,
     namemService: NamemService,
     naturalEarthService: NaturalEarthService,
     nwsService: NwsService,
@@ -118,8 +149,11 @@ class SourceManager @Inject constructor(
     pagasaService: PagasaService,
     pirateWeatherService: PirateWeatherService,
     recosanteService: RecosanteService,
+    smaScService: SmaScService,
+    smaSuService: SmaSuService,
     smgService: SmgService,
     smhiService: SmhiService,
+    ssmsService: SsmsService,
     wmoSevereWeatherService: WmoSevereWeatherService,
 ) {
     // TODO: Initialize lazily
@@ -185,8 +219,25 @@ class SourceManager @Inject constructor(
     // Secondary weather sources
     private val secondaryWeatherSourceList = listOf(
         wmoSevereWeatherService,
+        anamBfService,
+        anametService,
         atmoAuraService,
-        recosanteService
+        dccmsService,
+        dmnNeService,
+        dwrGmService,
+        ethioMetService,
+        gMetService,
+        igebuService,
+        inmgbService,
+        maliMeteoService,
+        meteoBeninService,
+        meteoTchadService,
+        mettelsatService,
+        msdZwService,
+        recosanteService,
+        smaScService,
+        smaSuService,
+        ssmsService
     )
 
     // Broadcast sources

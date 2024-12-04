@@ -552,9 +552,26 @@
     <string name="settings_source_instance_invalid">Must be an https URL ending with a /</string>
     <!-- Synonym of instance: Server -->
     <string name="settings_source_instance_geocoding">Geocoding instance</string>
+    <string name="settings_weather_source_anam_bf_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_anamet_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_bright_sky_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_dccms_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_dmn_ne_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_dwr_gm_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_ethiomet_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_gmet_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_igebu_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_imngb_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_mali_meteo_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_meteo_benin_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_meteo_tchad_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_mettelsat_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_msd_zw_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_recosante_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_recosante_instance_geocoding" translatable="false">@string/settings_source_instance_geocoding</string>
+    <string name="settings_weather_source_sma_sc_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_sma_su_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_ssms_instance" translatable="false">@string/settings_source_instance</string>
     <!-- Synonym of instance: Server -->
     <string name="settings_weather_source_open_meteo_instance_forecast">Forecast instance</string>
     <!-- Synonym of instance: Server -->
