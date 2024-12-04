@@ -161,7 +161,10 @@ fun LocationPreference(
                     )
                 },
                 text = {
-                    Column {
+                    Column(
+                        modifier = Modifier
+                            .verticalScroll(rememberScrollState())
+                    ) {
                         SectionHeader(title = stringResource(R.string.settings_per_location_theme))
                         ListPreferenceView(
                             titleId = R.string.widget_live_wallpaper_weather_kind,
@@ -840,10 +843,10 @@ fun SecondarySourcesPreference(
 @Composable
 fun SourceView(
     title: String,
-    @DrawableRes iconId: Int? = null,
     selectedKey: String,
-    enabled: Boolean = true,
     sourceList: Map<String, String>,
+    @DrawableRes iconId: Int? = null,
+    enabled: Boolean = true,
     card: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(AlertDialogDefaults.containerColor),
     withState: Boolean = true,
@@ -893,10 +896,10 @@ fun SourceView(
 @Composable
 fun SourceViewWithContinents(
     title: String,
-    @DrawableRes iconId: Int? = null,
     selectedKey: String,
-    enabled: Boolean = true,
     sourceList: Map<SourceContinent?, Map<String, String>>,
+    @DrawableRes iconId: Int? = null,
+    enabled: Boolean = true,
     card: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(AlertDialogDefaults.containerColor),
     withState: Boolean = true,
