@@ -656,4 +656,10 @@
     <string name="openmeteo_weather_text_depositing_rime_fog">ערפל כפור</string>
     <string name="weather_normals_data_by">נתוני נורמלי טמפרטורה על ידי %s</string>
     <string name="about_matrix">חדר מטריצה</string>
+    <string name="common_weather_text_dust">אביך</string>
+    <string name="common_weather_text_sand_storm">סופות חול</string>
+    <string name="common_weather_text_humid">הביל</string>
+    <string name="common_weather_text_hot">חם</string>
+    <string name="common_weather_text_cold">קר</string>
+    <string name="common_weather_text_frost">קרה</string>
 </resources>
