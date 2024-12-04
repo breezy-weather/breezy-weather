@@ -75,6 +75,10 @@
   - Add translation for a few source names and privacy policies
   - Location presets updated for some countries following the addition of many weather sources (@chunshek)
 
+**Technical**
+- Update to targetSdk 35
+- Refactoring + new features in sources
+
 
 # Version 5.2.8 (2024-09-15)
 
