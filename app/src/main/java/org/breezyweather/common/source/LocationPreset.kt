@@ -58,7 +58,7 @@ enum class LocationPreset(
     GERMANY_FREENET("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
     FINLAND("metno", airQuality = "openmeteo", pollen = "openmeteo", alert = "accu", normals = "accu"),
     FRANCE("mf", airQuality = "openmeteo", pollen = "recosante"),
-    FRANCE_OVERSEAS("mf", airQuality = "openmeteo", minutely = "openmeteo"),
+    FRANCE_OVERSEAS("mf", airQuality = "openmeteo", minutely = "openmeteo", alert = "accu", normals = "accu"),
     FRANCE_FREENET("openmeteo", pollen = "recosante"),
     IRELAND("metie", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
     ITALY(

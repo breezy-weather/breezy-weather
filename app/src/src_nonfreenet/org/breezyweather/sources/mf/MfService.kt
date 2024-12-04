@@ -97,6 +97,39 @@ class MfService @Inject constructor(
         SourceFeature.FEATURE_ALERT,
         SourceFeature.FEATURE_NORMALS
     )
+    override fun isFeatureSupportedInMainForLocation(
+        location: Location,
+        feature: SourceFeature?,
+    ): Boolean {
+        return isConfigured &&
+            (
+                feature == SourceFeature.FEATURE_CURRENT &&
+                    !location.countryCode.isNullOrEmpty() &&
+                    location.countryCode.equals("FR", ignoreCase = true)
+                ) ||
+            (
+                feature == SourceFeature.FEATURE_MINUTELY &&
+                    !location.countryCode.isNullOrEmpty() &&
+                    location.countryCode.equals("FR", ignoreCase = true)
+                ) ||
+            (
+                feature == SourceFeature.FEATURE_ALERT &&
+                    !location.countryCode.isNullOrEmpty() &&
+                    arrayOf("FR", "AD").any { location.countryCode.equals(it, ignoreCase = true) }
+                    /*
+                     * TODO: The current v3 endpoint doesn't support oversea territories
+                     *  arrayOf("FR", "AD", "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT")
+                     *    .any { location.countryCode.equals(it, ignoreCase = true) }
+                     */
+                ) ||
+            (
+                // Technically, works anywhere but as a France-focused source, we don’t want the whole
+                // world to use this source, as currently the only alternative is AccuWeather
+                feature == SourceFeature.FEATURE_NORMALS &&
+                    !location.countryCode.isNullOrEmpty() &&
+                    arrayOf("FR", "AD", "MC").any { location.countryCode.equals(it, ignoreCase = true) }
+                )
+    }
 
     override fun requestWeather(
         context: Context,
@@ -226,30 +259,7 @@ class MfService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        return isConfigured &&
-            (
-                feature == SourceFeature.FEATURE_CURRENT &&
-                    !location.countryCode.isNullOrEmpty() &&
-                    location.countryCode.equals("FR", ignoreCase = true)
-                ) ||
-            (
-                feature == SourceFeature.FEATURE_MINUTELY &&
-                    !location.countryCode.isNullOrEmpty() &&
-                    location.countryCode.equals("FR", ignoreCase = true)
-                ) ||
-            (
-                feature == SourceFeature.FEATURE_ALERT &&
-                    !location.countryCode.isNullOrEmpty() &&
-                    arrayOf("FR", "AD").any { location.countryCode.equals(it, ignoreCase = true) } &&
-                    !location.admin2Code.isNullOrEmpty()
-                ) ||
-            (
-                // Technically, works anywhere but as a France-focused source, we don’t want the whole
-                // world to use this source, as currently the only alternative is AccuWeather
-                feature == SourceFeature.FEATURE_NORMALS &&
-                    !location.countryCode.isNullOrEmpty() &&
-                    location.countryCode.equals("FR", ignoreCase = true)
-                )
+        return isFeatureSupportedInMainForLocation(location, feature)
     }
     override val currentAttribution = weatherAttribution
     override val airQualityAttribution = null
