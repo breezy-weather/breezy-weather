@@ -584,7 +584,11 @@ class RefreshHelper @Inject constructor(
                                 }
                                 secondarySourceCalls[entry.key] = try {
                                     if (secondaryService is LocationParametersSource &&
-                                        secondaryService.needsLocationParametersRefresh(location, coordinatesChanged)
+                                        secondaryService.needsLocationParametersRefresh(
+                                            location,
+                                            coordinatesChanged,
+                                            entry.value
+                                        )
                                     ) {
                                         locationParameters[secondaryService.id] = buildMap {
                                             if (locationParameters.getOrElse(secondaryService.id) { null } != null) {

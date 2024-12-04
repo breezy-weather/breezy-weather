@@ -33,7 +33,7 @@ interface LocationParametersSource : Source {
      * Parameters:
      * - the location
      * - if coordinates were changed (only on the current location)
-     * - list of features requested. Empty if not specific to a feature
+     * - list of features requested. Empty if not specific to a feature (main source)
      */
     fun needsLocationParametersRefresh(
         location: Location,
