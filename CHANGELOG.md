@@ -65,6 +65,7 @@
   - [SMG] Added as a main and secondary current/alert/air quality/normals source option for Macau. (@chunshek)
 - **Europe**
   - [AEMET] Added as a main and secondary current/normals source option for Spain (@chunshek)
+  - [IMS] Added as possible current source + add weather texts support + various improvements (@chunshek)
   - [IPMA] Added as a main and secondary alert source option for Portugal (@chunshek)
   - [LVĢMC] Added as a main and secondary current/alert source option for Latvia (@chunshek)
   - [MET Norway] Fix alerts not working when used as a secondary source
