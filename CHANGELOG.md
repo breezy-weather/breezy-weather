@@ -71,6 +71,7 @@
   - [MET Norway] Fix alerts not working when used as a secondary source
   - [Met Office] Added as a main source option for United Kingdom. Requires an API key. (@bunburya)
   - [MeteoLux] Added as a main and secondary current/alert source option for Luxembourg. (@chunshek)
+  - [Météo-France] Add support for next-day alerts
 - Miscellaneous
   - Add translation for a few source names and privacy policies
   - Location presets updated for some countries following the addition of many weather sources (@chunshek)

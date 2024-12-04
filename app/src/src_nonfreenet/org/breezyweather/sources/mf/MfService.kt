@@ -192,12 +192,33 @@ class MfService @Inject constructor(
         } else {
             Observable.just(MfRainResult())
         }
-        val warnings = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val warningsJ0 = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             val domain = location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }
             if (!domain.isNullOrEmpty()) {
                 mApi.getWarnings(
                     USER_AGENT,
                     domain,
+                    "J0",
+                    "iso",
+                    token
+                ).onErrorResumeNext {
+                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    Observable.just(MfWarningsResult())
+                }
+            } else {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(MfWarningsResult())
+            }
+        } else {
+            Observable.just(MfWarningsResult())
+        }
+        val warningsJ1 = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+            val domain = location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }
+            if (!domain.isNullOrEmpty()) {
+                mApi.getWarnings(
+                    USER_AGENT,
+                    domain,
+                    "J1",
                     "iso",
                     token
                 ).onErrorResumeNext {
@@ -227,12 +248,13 @@ class MfService @Inject constructor(
             Observable.just(MfNormalsResult())
         }
 
-        return Observable.zip(current, forecast, ephemeris, rain, warnings, normals) {
+        return Observable.zip(current, forecast, ephemeris, rain, warningsJ0, warningsJ1, normals) {
                 mfCurrentResult: MfCurrentResult,
                 mfForecastResult: MfForecastResult,
                 mfEphemerisResult: MfEphemerisResult,
                 mfRainResult: MfRainResult,
-                mfWarningResults: MfWarningsResult,
+                mfWarningJ0Results: MfWarningsResult,
+                mfWarningJ1Results: MfWarningsResult,
                 mfNormalsResult: MfNormalsResult,
             ->
             convert(
@@ -241,7 +263,8 @@ class MfService @Inject constructor(
                 mfForecastResult,
                 mfEphemerisResult,
                 mfRainResult,
-                mfWarningResults,
+                mfWarningJ0Results,
+                mfWarningJ1Results,
                 mfNormalsResult,
                 failedFeatures
             )
@@ -311,12 +334,34 @@ class MfService @Inject constructor(
             Observable.just(MfRainResult())
         }
 
-        val warnings = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val warningsJ0 = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             val domain = location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }
             if (!domain.isNullOrEmpty()) {
                 mApi.getWarnings(
                     USER_AGENT,
                     domain,
+                    "J0",
+                    "iso",
+                    token
+                ).onErrorResumeNext {
+                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    Observable.just(MfWarningsResult())
+                }
+            } else {
+                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                Observable.just(MfWarningsResult())
+            }
+        } else {
+            Observable.just(MfWarningsResult())
+        }
+
+        val warningsJ1 = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+            val domain = location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }
+            if (!domain.isNullOrEmpty()) {
+                mApi.getWarnings(
+                    USER_AGENT,
+                    domain,
+                    "J1",
                     "iso",
                     token
                 ).onErrorResumeNext {
@@ -345,10 +390,11 @@ class MfService @Inject constructor(
             Observable.just(MfNormalsResult())
         }
 
-        return Observable.zip(current, rain, warnings, normals) {
+        return Observable.zip(current, rain, warningsJ0, warningsJ1, normals) {
                 mfCurrentResult: MfCurrentResult,
                 mfRainResult: MfRainResult,
-                mfWarningResults: MfWarningsResult,
+                mfWarningJ0Results: MfWarningsResult,
+                mfWarningJ1Results: MfWarningsResult,
                 mfNormalsResult: MfNormalsResult,
             ->
             convertSecondary(
@@ -364,7 +410,12 @@ class MfService @Inject constructor(
                     null
                 },
                 if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    mfWarningResults
+                    mfWarningJ0Results
+                } else {
+                    null
+                },
+                if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+                    mfWarningJ1Results
                 } else {
                     null
                 },

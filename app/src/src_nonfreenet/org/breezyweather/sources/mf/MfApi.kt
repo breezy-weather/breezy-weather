@@ -83,6 +83,7 @@ interface MfApi {
     fun getWarnings(
         @Header("User-Agent") userAgent: String,
         @Query(encoded = true, value = "domain") domain: String,
+        @Query("echeance") echeance: String,
         @Query("formatDate") formatDate: String,
         @Query("token") token: String,
     ): Observable<MfWarningsResult>

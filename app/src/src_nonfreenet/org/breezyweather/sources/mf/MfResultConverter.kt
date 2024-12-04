@@ -85,7 +85,8 @@ fun convert(
     forecastResult: MfForecastResult,
     ephemerisResult: MfEphemerisResult,
     rainResult: MfRainResult?,
-    warningsResult: MfWarningsResult,
+    warningsJ0Result: MfWarningsResult,
+    warningsJ1Result: MfWarningsResult,
     normalsResult: MfNormalsResult,
     failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
@@ -112,7 +113,7 @@ fun convert(
             forecastResult.properties.probabilityForecast
         ),
         minutelyForecast = getMinutelyList(rainResult),
-        alertList = getWarningsList(warningsResult),
+        alertList = getWarningsList(warningsJ0Result, warningsJ1Result),
         failedFeatures = failedFeatures
     )
 }
@@ -334,6 +335,18 @@ private fun getMinutelyList(rainResult: MfRainResult?): List<Minutely> {
         )
     }
     return minutelyList
+}
+
+private fun getWarningsList(warningsJ0Result: MfWarningsResult?, warningsJ1Result: MfWarningsResult?): List<Alert>? {
+    return if (warningsJ0Result != null && warningsJ1Result != null) {
+        getWarningsList(warningsJ0Result) + getWarningsList(warningsJ1Result)
+    } else if (warningsJ0Result != null) {
+        getWarningsList(warningsJ0Result)
+    } else if (warningsJ1Result != null) {
+        getWarningsList(warningsJ1Result)
+    } else {
+        null
+    }
 }
 
 private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
@@ -569,7 +582,8 @@ fun convertSecondary(
     location: Location,
     currentResult: MfCurrentResult?,
     minuteResult: MfRainResult?,
-    alertResultList: MfWarningsResult?,
+    alertJ0ResultList: MfWarningsResult?,
+    alertJ1ResultList: MfWarningsResult?,
     normalsResult: MfNormalsResult?,
     failedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
@@ -584,8 +598,8 @@ fun convertSecondary(
         } else {
             null
         },
-        alertList = if (alertResultList != null) {
-            getWarningsList(alertResultList)
+        alertList = if (alertJ0ResultList != null || alertJ1ResultList != null) {
+            getWarningsList(alertJ0ResultList, alertJ1ResultList)
         } else {
             null
         },
