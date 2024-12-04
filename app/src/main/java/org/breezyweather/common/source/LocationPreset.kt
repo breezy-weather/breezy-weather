@@ -98,6 +98,25 @@ enum class LocationPreset(
     MONGOLIA("namem", minutely = "openmeteo", alert = "accu"),
     PHILIPPINES("pagasa", airQuality = "openmeteo", minutely = "openmeteo", alert = "accu", normals = "accu"),
     TURKIYE("mgm", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
+
+    // Africa
+    BENIN("openmeteo", alert = "meteobenin", normals = "meteobenin"),
+    BURKINA_FASO("openmeteo", alert = "anambf"),
+    BURUNDI("openmeteo", alert = "igebu"),
+    CHAD("openmeteo", alert = "meteotchad", normals = "meteotchad"),
+    DR_CONGO("openmeteo", alert = "mettelsat"),
+    ETHIOPIA("openmeteo", alert = "ethiomet", normals = "ethiomet"),
+    GAMBIA("openmeteo", alert = "dwrgm"),
+    GHANA("openmeteo", alert = "gmet"),
+    GUINEA_BISSAU("openmeteo", alert = "inmgb"),
+    MALAWI("openmeteo", alert = "dccms", normals = "dccms"),
+    MALI("openmeteo", alert = "malimeteo"),
+    NIGER("openmeteo", alert = "dmnne", normals = "dmnne"),
+    SEYCHELLES("openmeteo", alert = "smasc", normals = "smasc"),
+    SOUTH_SUDAN("openmeteo", alert = "ssms"),
+    SUDAN("openmeteo", alert = "smasu"),
+    TOGO("openmeteo", alert = "anamet"),
+    ZIMBABWE("openmeteo", alert = "msdzw"),
     ;
 
     companion object {
@@ -139,6 +158,25 @@ enum class LocationPreset(
                     "PH" -> PHILIPPINES
                     "TR" -> TURKIYE
 
+                    // Africa
+                    "BF" -> BURKINA_FASO
+                    "BI" -> BURUNDI
+                    "BJ" -> BENIN
+                    "CD" -> DR_CONGO
+                    "ET" -> ETHIOPIA
+                    "GH" -> GHANA
+                    "GM" -> GAMBIA
+                    "GW" -> GUINEA_BISSAU
+                    "ML" -> MALI
+                    "MW" -> MALAWI
+                    "NE" -> NIGER
+                    "SC" -> SEYCHELLES
+                    "SD" -> SUDAN
+                    "SS" -> SOUTH_SUDAN
+                    "TD" -> CHAD
+                    "TG" -> TOGO
+                    "ZW" -> ZIMBABWE
+
                     else -> DEFAULT
                 }
             } else {
@@ -146,6 +184,25 @@ enum class LocationPreset(
                     // Europe
                     "DE" -> GERMANY_FREENET
                     "FR" -> FRANCE_FREENET
+
+                    // Africa
+                    "BF" -> BURKINA_FASO
+                    "BI" -> BURUNDI
+                    "BJ" -> BENIN
+                    "CD" -> DR_CONGO
+                    "ET" -> ETHIOPIA
+                    "GH" -> GHANA
+                    "GM" -> GAMBIA
+                    "GW" -> GUINEA_BISSAU
+                    "ML" -> MALI
+                    "MW" -> MALAWI
+                    "NE" -> NIGER
+                    "SC" -> SEYCHELLES
+                    "SD" -> SUDAN
+                    "SS" -> SOUTH_SUDAN
+                    "TD" -> CHAD
+                    "TG" -> TOGO
+                    "ZW" -> ZIMBABWE
 
                     else -> DEFAULT_FREENET
                 }
