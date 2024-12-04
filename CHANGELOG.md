@@ -30,6 +30,24 @@
 - **Worldwide**
   - [Open-Meteo] Add KNMI, DMI and UK Met Office as options for specific weather model to use
   - [WMO SWIC] Add support for more alert details (full description, instructions, translations) for most countries. Work remains to be done in some countries such as India or Argentina.
+- **Africa**
+  - [ANAM-BF] Added as a secondary alert source option for Burkina Faso. Also available in freenet flavor (@chunshek)
+  - [ANAMET] Added as a secondary alert source option for Togo. Also available in freenet flavor (@chunshek)
+  - [DCCMS] Added as a secondary alert/normals source option for Malawi. Also available in freenet flavor (@chunshek)
+  - [DMN] Added as a secondary alert/normals source option for Niger. Also available in freenet flavor (@chunshek)
+  - [DWR] Added as a secondary alert source option for Gambia. Also available in freenet flavor (@chunshek)
+  - [EMI] Added as a secondary alert/normals source option for Ethiopia. Also available in freenet flavor (@chunshek)
+  - [GMet] Added as a secondary alert source option for Ghana. Also available in freenet flavor (@chunshek)
+  - [IGEBU] Added as a secondary alert source option for Burundi. Also available in freenet flavor (@chunshek)
+  - [INM-GB] Added as a secondary alert source option for Guinea Bissau. Also available in freenet flavor (@chunshek)
+  - [Mali-Météo] Added as a secondary alert source option for Mali. Also available in freenet flavor (@chunshek)
+  - [Météo Bénin] Added as a secondary alert/normals source option for Bénin. Also available in freenet flavor (@chunshek)
+  - [Météo Tchad] Added as a secondary alert/normals source option for Chad. Also available in freenet flavor (@chunshek)
+  - [Mettelsat RDC] Added as a secondary alert source option for DR Congo. Also available in freenet flavor (@chunshek)
+  - [MSD] Added as a secondary alert source option for Zimbabwe. Also available in freenet flavor (@chunshek)
+  - [SMA Seychelles] Added as a secondary alert/normals source option for Seychelles. Also available in freenet flavor (@chunshek)
+  - [SMA Sudan] Added as a secondary alert source option for Sudan. Also available in freenet flavor (@chunshek)
+  - [SSMS] Added as a secondary alert source option for South-Sudan. Also available in freenet flavor (@chunshek)
 - **Asia**
   - [BMD] Added as a main source option for Bangladesh (@chunshek)
   - [BMKG] Added as a main and secondary current/alert/air quality source option for Indonesia (@chunshek)
