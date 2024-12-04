@@ -204,6 +204,8 @@
     <string name="dialog_permissions_location_content">Pour utiliser cette fonctionnalité, vous devez autoriser l’application à accéder à votre position actuelle. Celle-ci ne sera partagée qu’avec les sources météorologiques sélectionnées. Si vous avez changé d’avis, vous pouvez annuler l’opération et ajouter un emplacement fixe manuellement.</string>
     <string name="dialog_permissions_location_background_title">Accéder à la localisation en arrière-plan</string>
     <string name="dialog_permissions_location_background_content">Pour que l’actualisation des données météo en arrière-plan se fasse pour la position la plus récente connue par Android, vous devez définir la permission de localisation sur « Toujours autoriser ». Si vous ne le faites pas, la météo sera actualisée sur la base des dernières coordonnées récupérées au premier plan, qui sont potentiellement obsolètes.</string>
+    <string name="dialog_refresh_error_details_title">Erreurs de mise à jour</string>
+    <string name="dialog_refresh_error_details_content">Appuyez sur les messages d’erreur avec un point d’interrogation pour obtenir plus d’informations.</string>
     <string name="dialog_time_picker_select_time">Sélectionner l’heure</string>
     <string name="dialog_time_picker_input_time">Saisir l’heure</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Basculer en saisie tactile</string>
@@ -317,6 +319,7 @@
 
     <string name="notification_running_in_background">Fonctionnement en arrière-plan pour permettre l’actualisation</string>
     <string name="notification_updating_weather_data">Actualisation des données météo (%1$d/%2$d)</string>
+    <string name="message_multiple_refresh_errors">Mise à jour terminée avec erreurs</string>
     <string name="message_invalid_incomplete_data">Données invalides ou incomplètes reçues du serveur</string>
     <string name="message_network_unavailable">Réseau non-disponible</string>
     <string name="message_server_timeout">Délai imparti dépassé</string>
@@ -484,6 +487,7 @@
     <string name="settings_background_updates_refresh_12h">12 heures</string>
     <string name="settings_background_updates_refresh_24h">24 heures</string>
     <string name="action_show_errors">Appuyez pour voir les détails</string>
+    <string name="action_show">Voir</string>
     <string name="action_help_me_choose">Aidez-moi à choisir</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorer quand la batterie est faible</string>
     <string name="settings_notifications_app_updates_check">Notifications des mises à jour de l’appli</string>
