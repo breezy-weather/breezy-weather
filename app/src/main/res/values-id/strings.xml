@@ -776,4 +776,14 @@
     <string name="jma_warning_text_frost_advisory">Pemberitahuan beku</string>
     <string name="jma_warning_text_ice_accretion_advisory">Pemberitahuan embun beku</string>
     <string name="jma_warning_text_snow_accretion_advisory">Pemberitahuan pelekatan salju</string>
+    <string name="weather_message_failed_feature">Sumber gagal diperbarui: %s</string>
+    <string name="common_weather_text_squall">Badai</string>
+    <string name="weather_source_continent_africa">Afrika</string>
+    <string name="weather_source_continent_north_america">Amerika Utara</string>
+    <string name="weather_source_continent_south_america">Amerika Selatan</string>
+    <string name="weather_source_continent_europe">Eropa</string>
+    <string name="weather_source_continent_worldwide">Seluruh dunia</string>
+    <string name="location_message_location_access_off">Akses lokasi tidak aktif</string>
+    <string name="weather_source_continent_asia">Asia</string>
+    <string name="weather_source_continent_oceania">Oseania</string>
 </resources>
