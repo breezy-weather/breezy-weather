@@ -30,6 +30,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
+import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
@@ -55,6 +56,7 @@ class ImsService @Inject constructor(
     override val name by lazy {
         with(context.currentLocale.code) {
             when {
+                startsWith("ar") -> "خدمة الأرصاد الجوية الإسرائيلية"
                 startsWith("he") || startsWith("iw") -> "השירות המטאורולוגי הישראלי"
                 else -> "IMS (${Locale(context.currentLocale.code, "IL").displayCountry})"
             }
@@ -74,6 +76,7 @@ class ImsService @Inject constructor(
     override val weatherAttribution by lazy {
         with(context.currentLocale.code) {
             when {
+                startsWith("ar") -> "خدمة الأرصاد الجوية الإسرائيلية"
                 startsWith("he") || startsWith("iw") -> "השירות המטאורולוגי הישראלי"
                 else -> "Israel Meteorological Service"
             }
@@ -88,6 +91,7 @@ class ImsService @Inject constructor(
     }
 
     override val supportedFeaturesInMain = listOf(
+        SourceFeature.FEATURE_CURRENT,
         SourceFeature.FEATURE_ALERT
     )
 
@@ -118,11 +122,12 @@ class ImsService @Inject constructor(
             else -> "en"
         }
 
-        return mApi.getWeather(languageCode, locationId).map { convert(it, location) }
+        return mApi.getWeather(languageCode, locationId).map { convert(context, it, location) }
     }
 
     // SECONDARY WEATHER SOURCE
     override val supportedFeaturesInSecondary = listOf(
+        SourceFeature.FEATURE_CURRENT,
         SourceFeature.FEATURE_ALERT
     )
     override fun isFeatureSupportedInSecondaryForLocation(
@@ -143,6 +148,13 @@ class ImsService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
+        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_CURRENT) ||
+            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT)
+        ) {
+            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
+            return Observable.error(SecondaryWeatherException())
+        }
+
         val locationId = location.parameters
             .getOrElse(id) { null }?.getOrElse("locationId") { null }
 
@@ -156,7 +168,7 @@ class ImsService @Inject constructor(
             else -> "en"
         }
 
-        return mApi.getWeather(languageCode, locationId).map { convertSecondary(it) }
+        return mApi.getWeather(languageCode, locationId).map { convertSecondary(context, it, requestedFeatures) }
     }
 
     override fun requestReverseGeocodingLocation(
