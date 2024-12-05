@@ -8,4 +8,5 @@
     <string name="details">Detalhs</string>
     <string name="alert">Alèrta</string>
     <string name="alerts">Alèrtas</string>
+    <string name="action_show">Mostrar</string>
 </resources>
