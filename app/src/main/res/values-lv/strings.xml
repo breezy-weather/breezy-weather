@@ -711,4 +711,8 @@
     <string name="weather_source_continent_oceania">Okeānija</string>
     <string name="weather_source_continent_south_america">Dienvidamerika</string>
     <string name="common_weather_text_squall">Brāzma</string>
+    <string name="action_show">Rādīt</string>
+    <string name="dialog_refresh_error_details_content">Jāpiesit uz kļūdu ziņojumiem ar jautājuma zīmi, lai iegūtu tālāku palīdzību.</string>
+    <string name="dialog_refresh_error_details_title">Atsvaidzināšanas kļūdas</string>
+    <string name="message_multiple_refresh_errors">Atsvaidzināšana tika pabeigta ar kļūdām</string>
 </resources>
