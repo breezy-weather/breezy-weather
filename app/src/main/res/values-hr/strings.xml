@@ -688,4 +688,5 @@
     <string name="settings_background_updates_refresh_never_warning3">Razmislite o upotrebi rjeđe stope osvježavanja umjesto isključivanja ažuriranja u pozadini, inače dodirnite „Nastavi” ako i dalje želite nastaviti.</string>
     <string name="settings_background_updates_refresh_never_warning1">Isključivanjem ažuriranja u pozadini više nećete primati obavijesti o upozorenjima ili oborinama. Widgeti se neće ažurirati sve dok ne otvorite aplikaciju.</string>
     <string name="message_server_unavailable_content">Ovo je obično privremena pogreška. Ako se pogreška nastavi pojavljivati, prijavite problem na GitHubu.</string>
+    <string name="current_weather">Trenutačno vrijeme</string>
 </resources>
