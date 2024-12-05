@@ -708,4 +708,18 @@
     <string name="common_weather_text_frost">Παγωνιά</string>
     <string name="common_weather_text_dust_storm">Θύελλα Σκόνης</string>
     <string name="common_weather_text_dust">Σκόνη</string>
+    <string name="location_message_location_access_off">Η πρόσβαση στην τοποθεσία είναι ανενεργή</string>
+    <string name="weather_message_failed_feature">Η πηγή απέτυχε να ενημερώσει: %s</string>
+    <string name="weather_source_continent_africa">Αφρική</string>
+    <string name="weather_source_continent_worldwide">Παγκοσμίως</string>
+    <string name="weather_source_continent_asia">Ασία</string>
+    <string name="weather_source_continent_europe">Ευρώπη</string>
+    <string name="weather_source_continent_north_america">Βόρεια Αμερική</string>
+    <string name="weather_source_continent_oceania">Ωκεανία</string>
+    <string name="weather_source_continent_south_america">Νότια Αμερική</string>
+    <string name="common_weather_text_squall">Ριπαίος άνεμος</string>
+    <string name="message_multiple_refresh_errors">Ανανέωση ολοκληρώθηκε με σφάλματα</string>
+    <string name="dialog_refresh_error_details_title">Σφάλματα ανανέωσης</string>
+    <string name="dialog_refresh_error_details_content">Πατήστε τα μηνύματα σφάλματος με ερωτηματικό για να λάβετε περαιτέρω βοήθεια.</string>
+    <string name="action_show">Εμφάνιση</string>
 </resources>
