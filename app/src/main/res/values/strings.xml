@@ -852,6 +852,7 @@
     <string name="common_weather_text_dust_storm">Dust storm</string>
     <string name="common_weather_text_frost">Frost</string>
     <string name="common_weather_text_squall">Squall</string>
+    <string name="common_weather_text_tornado">Tornado</string>
     <!-- Weather kind -->
     <string name="weather_kind_clear" translatable="false">@string/common_weather_text_clear_sky</string>
     <string name="weather_kind_partly_cloudy" translatable="false">@string/common_weather_text_partly_cloudy</string>
@@ -1053,6 +1054,44 @@
     <string name="jma_warning_text_frost_advisory" translatable="false">Frost advisory</string>
     <string name="jma_warning_text_ice_accretion_advisory" translatable="false">Ice accretion advisory</string>
     <string name="jma_warning_text_snow_accretion_advisory" translatable="false">Snow accretion advisory</string>
+    <!-- Weather texts for NWS -->
+    <string name="nws_weather_text_blowing_snow" translatable="false">Blowing snow</string>
+    <string name="nws_weather_text_freezing_spray" translatable="false">Freezing spray</string>
+    <string name="nws_weather_text_ice_crystals" translatable="false">Ice crystals</string>
+    <string name="nws_weather_text_ice_fog" translatable="false">Ice fog</string>
+    <string name="nws_weather_text_volcanic_ash" translatable="false">Volcanic ash</string>
+    <string name="nws_weather_text_waterspout" translatable="false">Waterspout</string>
+    <string name="nws_weather_text_intensity_light" translatable="false">Light %s</string>
+    <string name="nws_weather_text_intensity_heavy" translatable="false">Heavy %s</string>
+    <string name="nws_weather_text_coverage_areas_of" translatable="false">Areas of %s</string>
+    <string name="nws_weather_text_coverage_brief" translatable="false">Brief %s</string>
+    <string name="nws_weather_text_coverage_chance_of" translatable="false">Chance of %s</string>
+    <string name="nws_weather_text_coverage_few" translatable="false">A few %s</string>
+    <string name="nws_weather_text_coverage_frequent" translatable="false">Frequent %s</string>
+    <string name="nws_weather_text_coverage_intermittent" translatable="false">Intermittent %s</string>
+    <string name="nws_weather_text_coverage_isolated" translatable="false">Isolated %s</string>
+    <string name="nws_weather_text_coverage_likely" translatable="false">%s likely</string>
+    <string name="nws_weather_text_coverage_numerous" translatable="false">Numerous %s</string>
+    <string name="nws_weather_text_coverage_occasional" translatable="false">Occasional %s</string>
+    <string name="nws_weather_text_coverage_patchy" translatable="false">Patchy %s</string>
+    <string name="nws_weather_text_coverage_periods_of" translatable="false">Periods of %s</string>
+    <string name="nws_weather_text_coverage_scattered" translatable="false">Scattered %s</string>
+    <string name="nws_weather_text_coverage_slight_chance_of" translatable="false">Slight chance of %s</string>
+    <string name="nws_weather_text_coverage_widespread" translatable="false">Widespread %s</string>
+    <!-- "Mainly clear and breezy" -->
+    <string name="nws_weather_text_condition_and_wind" translatable="false">%s and %s</string>
+    <string name="nws_weather_text_wind_high_wind" translatable="false">High Wind</string>
+    <string name="nws_weather_text_wind_very_windy" translatable="false">Very Windy</string>
+    <string name="nws_weather_text_wind_windy" translatable="false">Windy</string>
+    <string name="nws_weather_text_wind_breezy" translatable="false">Breezy</string>
+    <!-- "Heavy rain with large hail" -->
+    <string name="nws_weather_text_condition_with_attribute" translatable="false">%s with %s</string>
+    <string name="nws_weather_text_attribute_wind_damaging" translatable="false">Damaging Wind</string>
+    <string name="nws_weather_text_attribute_flooding" translatable="false">Flooding</string>
+    <string name="nws_weather_text_attribute_wind_gusty" translatable="false">Gusty Wind</string>
+    <string name="nws_weather_text_attribute_hail_large" translatable="false">Large Hail</string>
+    <string name="nws_weather_text_attribute_hail_small" translatable="false">Small Hail</string>
+    <string name="nws_weather_text_separator_and" translatable="false"> and </string>
     <!-- Do NOT translate everything below -->
     <!-- Widgets -->
     <string name="widget_custom_subtitle_keyword_cw" translatable="false">$cw$</string>
