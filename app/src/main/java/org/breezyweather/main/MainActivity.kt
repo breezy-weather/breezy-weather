@@ -624,34 +624,40 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                 text = {
                     LazyColumn {
                         items(viewModel.snackbarError.value!!) {
+                            val source = it.source?.let { s -> sourceManager.getSource(s)?.name } ?: it.source
+                            val message = getRefreshErrorShortMessage(it)
+
                             ListItem(
                                 colors = ListItemDefaults.colors(AlertDialogDefaults.containerColor),
                                 modifier = Modifier
                                     .conditional(it.error.showDialogAction != null, {
                                         clickable { it.error.showDialogAction!!(this@MainActivity) }
                                     })
-                                    .padding(top = dimensionResource(R.dimen.little_margin)),
+                                    .padding(vertical = dimensionResource(R.dimen.little_margin)),
                                 headlineContent = {
-                                    it.source?.let { sourceText ->
-                                        Text(
-                                            sourceManager.getSource(sourceText)?.name ?: sourceText
-                                        )
-                                    }
+                                    Text(
+                                        text = source ?: message,
+                                        color = DayNightTheme.colors.titleColor,
+                                        style = MaterialTheme.typography.titleMedium
+                                    )
                                 },
                                 supportingContent = {
-                                    Column {
-                                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                                        Text(
-                                            text = getRefreshErrorShortMessage(it),
-                                            color = DayNightTheme.colors.bodyColor
-                                        )
+                                    source?.let {
+                                        Column {
+                                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                            Text(
+                                                text = message,
+                                                color = DayNightTheme.colors.bodyColor,
+                                                style = MaterialTheme.typography.bodyMedium
+                                            )
+                                        }
                                     }
                                 },
                                 trailingContent = {
                                     it.error.showDialogAction?.let {
                                         Icon(
                                             imageVector = Icons.AutoMirrored.Outlined.HelpOutline,
-                                            contentDescription = "Help"
+                                            contentDescription = stringResource(R.string.action_help)
                                         )
                                     }
                                 }
