@@ -10,7 +10,7 @@
     <string name="precipitation_probability">降水機率</string>
     <string name="precipitation_duration">降水時長</string>
     <string name="temperature">氣溫</string>
-    <string name="wind">風況</string>
+    <string name="wind">風勢</string>
     <string name="wind_direction">風向</string>
     <string name="wind_speed">風速</string>
     <string name="humidity">相對溼度</string>
@@ -115,7 +115,7 @@
     <string name="widget_custom_subtitle_keyword_ctd_description">目前溫度 (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">目前體感溫度 (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">目前體感溫度 (°)</string>
-    <string name="widget_custom_subtitle_keyword_cwd_description">目前風況</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">目前風勢</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">目前紫外線</string>
     <string name="widget_custom_subtitle_keyword_ch_description">目前溼度</string>
     <string name="widget_custom_subtitle_keyword_cps_description">目前氣壓</string>
@@ -141,8 +141,8 @@
     <string name="widget_custom_subtitle_keyword_xntd_description">今日、明日、…、4 天後的晚上溫度 (°)</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">今日、明日、…、4 天後的白天降水機率 (%)</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">今日、明日、…、4 天後的晚上降水機率 (%)</string>
-    <string name="widget_custom_subtitle_keyword_xdwd_description">今日、明日、…、4 天後的白天風況</string>
-    <string name="widget_custom_subtitle_keyword_xnwd_description">今日、明日、…、4 天後的晚上風況</string>
+    <string name="widget_custom_subtitle_keyword_xdwd_description">今日、明日、…、4 天後的白天風勢</string>
+    <string name="widget_custom_subtitle_keyword_xnwd_description">今日、明日、…、4 天後的晚上風勢</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">今日、明日、…、4 天後的日出時刻</string>
     <string name="widget_custom_subtitle_keyword_xss_description">今日、明日、…、4 天後的日沒時刻</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">今日、明日、…、4 天後的月出時刻</string>
@@ -251,7 +251,7 @@
     <string name="widget_week_style_3_days">3 天</string>
     <string name="widget_subtitle_data_time">更新時間</string>
     <string name="widget_subtitle_data_aqi">空氣品質</string>
-    <string name="widget_subtitle_data_wind">風況</string>
+    <string name="widget_subtitle_data_wind">風勢</string>
     <string name="widget_subtitle_data_feels_like">體感溫度</string>
     <string name="widget_subtitle_data_custom">自訂</string>
     <!-- Weather kind -->
@@ -615,7 +615,7 @@
     <string name="cloud_cover_short">雲量</string>
     <string name="ceiling_short">雲高</string>
     <string name="humidity_short">相對溼度</string>
-    <string name="wind_short">風況</string>
+    <string name="wind_short">風勢</string>
     <string name="uv_index_short">紫外線指數</string>
     <string name="visibility_short">能見度</string>
     <string name="pressure_short">氣壓</string>
