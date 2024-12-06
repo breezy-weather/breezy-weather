@@ -22,4 +22,5 @@ import kotlinx.serialization.Serializable
 data class NwsPointLocationProperties(
     val city: String?,
     val state: String?,
+    val stationIdentifier: String?,
 )

@@ -20,9 +20,18 @@ package org.breezyweather.sources.nws.json
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class NwsValueWeatherValue(
-    val coverage: String?,
-    val weather: String?,
-    val intensity: String?,
-    val attributes: List<String>?,
+data class NwsCurrentProperties(
+    val elevation: NwsCurrentValue?,
+    val textDescription: String?,
+    val icon: String?,
+    val temperature: NwsCurrentValue?,
+    val dewpoint: NwsCurrentValue?,
+    val windDirection: NwsCurrentValue?,
+    val windSpeed: NwsCurrentValue?,
+    val windGust: NwsCurrentValue?,
+    val barometricPressure: NwsCurrentValue?,
+    val seaLevelPressure: NwsCurrentValue?,
+    val visibility: NwsCurrentValue?,
+    val relativeHumidity: NwsCurrentValue?,
+    val windChill: NwsCurrentValue?,
 )

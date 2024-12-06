@@ -3,8 +3,7 @@
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or (at your
- * option) any later version.
+ * Free Software Foundation, version 3 of the License.
  *
  * Breezy Weather is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
@@ -20,9 +19,6 @@ package org.breezyweather.sources.nws.json
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class NwsValueWeatherValue(
-    val coverage: String?,
-    val weather: String?,
-    val intensity: String?,
-    val attributes: List<String>?,
+data class NwsStationsResult(
+    val features: List<NwsPointLocation>? = null,
 )
