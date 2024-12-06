@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.SizeF
 import android.widget.RemoteViews
+import androidx.core.os.BundleCompat
 import kotlin.math.roundToInt
 
 object WidgetSizeUtils {
@@ -16,7 +17,11 @@ object WidgetSizeUtils {
     ): RemoteViews {
         val appWidgetOptions = appWidgetManager.getAppWidgetOptions(widgetId)
         val parcelableArrayList: ArrayList<*>? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            appWidgetOptions.getParcelableArrayList<SizeF>(AppWidgetManager.OPTION_APPWIDGET_SIZES)
+            BundleCompat.getParcelableArrayList(
+                appWidgetOptions,
+                AppWidgetManager.OPTION_APPWIDGET_SIZES,
+                SizeF::class.java
+            )
         } else {
             null
         }

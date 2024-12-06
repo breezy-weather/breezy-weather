@@ -50,6 +50,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.core.content.IntentCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
@@ -146,7 +147,11 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK && it.data != null) {
                 BreezyWeather.instance.setTopActivity(this)
-                val location: Location? = it.data!!.getParcelableExtra(SearchActivity.KEY_LOCATION)
+                val location = IntentCompat.getParcelableExtra(
+                    it.data!!,
+                    SearchActivity.KEY_LOCATION,
+                    Location::class.java
+                )
                 if (location != null) {
                     viewModel.addLocation(location, null)
                     SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
