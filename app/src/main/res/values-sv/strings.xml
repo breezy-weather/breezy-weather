@@ -702,4 +702,12 @@
     <string name="common_weather_text_dust">Damm</string>
     <string name="common_weather_text_dust_storm">Dammstorm</string>
     <string name="location_message_location_access_off">Platsåtkomst är avstängd</string>
+    <string name="weather_source_continent_africa">Afrika</string>
+    <string name="weather_source_continent_asia">Asien</string>
+    <string name="weather_source_continent_europe">Europa</string>
+    <string name="weather_source_continent_worldwide">Global</string>
+    <string name="weather_source_continent_north_america">Nordamerika</string>
+    <string name="weather_source_continent_oceania">Oceanien</string>
+    <string name="weather_source_continent_south_america">Sydamerika</string>
+    <string name="action_show">Visa</string>
 </resources>
