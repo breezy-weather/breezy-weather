@@ -313,18 +313,19 @@ class NwsService @Inject constructor(
             val stations = mApi.getStations(
                 USER_AGENT,
                 it.properties.gridId,
-                it.properties.gridX.toInt(),
-                it.properties.gridY.toInt()
+                it.properties.gridX,
+                it.properties.gridY
             ).blockingFirst()
-            if (stations.features?.firstOrNull()?.properties?.stationIdentifier.isNullOrEmpty()) {
-                throw InvalidLocationException()
+
+            buildMap {
+                put("gridId", it.properties.gridId)
+                put("gridX", it.properties.gridX.toString())
+                put("gridY", it.properties.gridY.toString())
+                stations.features?.firstOrNull()?.properties?.stationIdentifier?.let { stationId ->
+                    // Only needed if requesting current, so can safely be avoided in some cases
+                    put("station", stationId)
+                }
             }
-            mapOf(
-                "gridId" to it.properties.gridId,
-                "gridX" to it.properties.gridX.toString(),
-                "gridY" to it.properties.gridY.toString(),
-                "station" to stations.features.first().properties?.stationIdentifier!!
-            )
         }
     }
 

@@ -287,29 +287,6 @@ private fun getDailyForecast(
     return dailyList
 }
 
-/*
-private fun getDailyForecast(
-    location: Location,
-    uniqueDates: List<Date>,
-): List<Daily> {
-    val dailyList = mutableListOf<Daily>()
-    val hourlyListByDay = uniqueDates.groupBy {
-        it.getFormattedDate("yyyy-MM-dd", location)
-    }
-    for (i in 0 until hourlyListByDay.entries.size - 1) {
-        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
-        if (dayDate != null) {
-            dailyList.add(
-                Daily(
-                    date = dayDate
-                )
-            )
-        }
-    }
-    return dailyList
-}
-*/
-
 fun getAlerts(alerts: List<NwsAlert>?): List<Alert>? {
     if (alerts.isNullOrEmpty()) return null
     // Look for SINGLE line breaks surrounded by letters, numbers, and punctuation.
@@ -447,7 +424,7 @@ private fun getWeatherForecast(
                 } else {
                     date
                 }
-                weatherForecast[newDate] = it.value[0]
+                weatherForecast[newDate] = it.value!![0]
             }
         }
     }
@@ -673,11 +650,11 @@ private fun getWeatherText(
     // Add wind descriptions if wind speed >= 15 mph
     // (skip if windy attributes are present)
     if (weather?.attributes.isNullOrEmpty() ||
-        (!weather.attributes.contains("gusty_wind") && !weather.attributes.contains("damaging_wind"))
+        (!weather!!.attributes!!.contains("gusty_wind") && !weather.attributes!!.contains("damaging_wind"))
     ) {
         val andWind = context.getString(R.string.nws_weather_text_condition_and_wind)
         val mphInMetersPerSecond = 0.44704
-        var windDescription: String?
+        val windDescription: String?
         if (windSpeed != null) {
             windDescription = when {
                 windSpeed >= 40.0 * mphInMetersPerSecond -> context.getString(R.string.nws_weather_text_wind_high_wind)
@@ -750,7 +727,7 @@ private fun getWeatherCode(
 
     // No extreme conditions:
     // return WeatherCode for precipitation and fog (skip if "slight chance")
-    if (!weather?.coverage.isNullOrEmpty() && weather.coverage != "slight_chance") {
+    if (!weather?.coverage.isNullOrEmpty() && weather!!.coverage != "slight_chance") {
         when (weather.weather) {
             "blowing_dust" -> return WeatherCode.WIND
             "blowing_sand" -> return WeatherCode.WIND

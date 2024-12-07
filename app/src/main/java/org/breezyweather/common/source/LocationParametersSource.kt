@@ -44,6 +44,7 @@ interface LocationParametersSource : Source {
     /**
      * Fetch any parameters you need and then make a map. For example :
      * {"gridId": "20", "gridX": "30", "gridY": "25"}
+     * TODO: Add feature parameter (NWS needs to know if requesting current)
      */
     fun requestLocationParameters(
         context: Context,
