@@ -67,6 +67,7 @@
   - [AEMET] Added as a main and secondary current/normals source option for Spain (@chunshek)
   - [IMS] Added as possible current source + add weather texts support + various improvements (@chunshek)
   - [IPMA] Added as a main and secondary alert source option for Portugal (@chunshek)
+  - [LHMT] Added as a main and secondary current/alert source option for Lithuania (@chunshek)
   - [LVĢMC] Added as a main and secondary current/alert source option for Latvia (@chunshek)
   - [MET Norway] Fix alerts not working when used as a secondary source
   - [Met Office] Added as a main source option for United Kingdom. Requires an API key. (@bunburya)
