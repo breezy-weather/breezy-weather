@@ -1,12 +1,12 @@
 # Weather sources
 
-This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md). Unless otherwise mentioned, **the information below is valid assuming you’re using version 5.2.8 or later of Breezy Weather**. 
+This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md). Unless otherwise mentioned, **the information below is valid assuming you’re using version 5.3.0 or later of Breezy Weather**. 
 
 By default, when you add a location manually, Breezy Weather will auto-suggest your national weather source if we have support for it, and combine it with other secondary weather sources for missing features. When we don’t have support for your national weather source, we suggest **Open-Meteo** which is the only free and open source weather source on this list, and probably also the most privacy-friendly.
 
 Below, you can find details about the support and implementation status for features on each weather source. Note that no forecast above 7 days is reliable, so you should not decide based on the highest number of days available.
 
-> Note: The following features and sources are only available starting from (unreleased) v5.3.0:
+> Note: The following features and sources are only available starting from v5.3.0:
 > - Feature: Secondary current source
 > - Sources: AEMET, BMD, BMKG, ClimWeb, HKO, IMD, IPMA, JMA, LHMT, LVĢMC, MeteoLux, Met Office, MGM, NAMEM, PAGASA, SMG
 
@@ -266,7 +266,7 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 Unless otherwise specified, features in the following sources will only work for the intended countries and territories.
 
 ### AEMET
-> _Coming soon:_ will be available starting from v5.3.0
+> Available starting from v5.3.0
 > 
 > 🔐 **This source requires an API key.** [Register here](https://opendata.aemet.es/centrodedescargas/inicio)
 
@@ -300,7 +300,7 @@ Unless otherwise specified, features in the following sources will only work for
 </details>
 
 ### Bangladesh Meteorological Department
-> _Coming soon:_ will be available starting from v5.3.0
+> Available starting from v5.3.0
 
 **[Bangladesh Meteorological Department](https://live6.bmd.gov.bd/)** (BMD) is the official meteorological service of Bangladesh.
 
@@ -332,7 +332,7 @@ Unless otherwise specified, features in the following sources will only work for
 </details>
 
 ### BMKG
-> _Coming soon:_ will be available starting from v5.3.0
+> Available starting from v5.3.0
 
 **[Badan Meteorologi, Klimatologi, dan Geofisika](https://www.bmkg.go.id/)** (BMKG) is the official meteorological service of Indonesia.
 
@@ -546,7 +546,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 </details>
 
 ### Hong Kong Observatory
-> _Coming soon:_ will be available starting from v5.3.0
+> Available starting from v5.3.0
 
 **[Hong Kong Observatory](https://www.hko.gov.hk/)** (HKO) is the official meteorological service of Hong Kong.
 
@@ -578,7 +578,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 </details>
 
 ### India Meteorological Department
-> _Coming soon:_ will be available starting from v5.3.0
+> Available starting from v5.3.0
 
 **[India Meteorological Department](https://mausam.imd.gov.in/)** (IMD) is the official meteorological service of India.
 
@@ -610,7 +610,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 </details>
 
 ### Instituto Português do Mar e da Atmosfera
-> _Coming soon:_ will be available starting from v5.3.0
+> Available starting from v5.3.0
 
 **[Instituto Português do Mar e da Atmosfera](https://www.ipma.pt/)** (IPMA) is the official meteorological service of Portugal.
 
@@ -672,7 +672,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 </details>
 
 ### Japan Meteorological Agency
-> _Coming soon:_ will be available starting from v5.3.0
+> Available starting from v5.3.0
 
 **[Japan Meteorological Agency](https://www.jma.go.jp/)** (JMA) is the official meteorological service of Japan.
 
@@ -704,7 +704,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 </details>
 
 ### LHMT
-> _Coming soon:_ will be available starting from v5.3.0
+> Available starting from v5.3.0
 
 **[Lietuvos hidrometeorologijos tarnyba](https://www.meteo.lt/)** (LHMT) is the official meteorological service of Lithuania.
 
@@ -736,7 +736,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 </details>
 
 ### LVĢMC
-> _Coming soon:_ will be available starting from v5.3.0
+> Available starting from v5.3.0
 
 **[Latvijas Vides, ģeoloģijas un meteoroloģijas centrs](https://videscentrs.lvgmc.lv/)** (LVĢMC) is the official meteorological service of Latvia.
 
@@ -831,7 +831,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 </details>
 
 ### MeteoLux
-> _Coming soon:_ will be available starting from v5.3.0
+> Available starting from v5.3.0
 
 **[MeteoLux](https://www.meteolux.lu/)** is the official meteorological service of Luxembourg. It provides weather alerts in English, French, and German.
 
@@ -863,7 +863,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 </details>
 
 ### Meteoroloji Genel Müdürlüğü
-> _Coming soon:_ will be available starting from v5.3.0
+> Available starting from v5.3.0
 
 **[Meteoroloji Genel Müdürlüğü](https://www.mgm.gov.tr/)** (MGM) is the official meteorological service of Türkiye.
 
@@ -925,7 +925,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 </details>
 
 ### Met Office
-> _Coming soon:_ will be available starting from v5.3.0
+> Available starting from v5.3.0
 
 > 🔐 **This source requires an API key.** [Register here](https://datahub.metoffice.gov.uk/)
 
@@ -959,7 +959,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 </details>
 
 ### NAMEM
-> _Coming soon:_ will be available starting from v5.3.0
+> Available starting from v5.3.0
 
 **[National Agency for Meteorology and Environmental Monitoring](https://www.weather.gov.mn/)** (NAMEM) is the official meteorological service of Mongolia.
 
@@ -1023,7 +1023,7 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 </details>
 
 ### PAGASA
-> _Coming soon:_ will be available starting from v5.3.0
+> Available starting from v5.3.0
 
 **[Philippine Atmospheric, Geophysical and Astronomical Services Administration](https://www.pagasa.dost.gov.ph/)** (PAGASA) is the official meteorological service of the Philippines.
 
@@ -1055,7 +1055,7 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 </details>
 
 ### Serviços Meteorológicos e Geofísicos
-> _Coming soon:_ will be available starting from v5.3.0
+> Available starting from v5.3.0
 
 **[Direcção dos Serviços Meteorológicos e Geofísicos](https://www.smg.gov.mo/)** (SMG) is the official meteorological service of Macao.
 
