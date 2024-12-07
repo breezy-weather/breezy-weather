@@ -9,6 +9,7 @@
 - Sources are now split by continents in the source dialog to make it easier to find a specific national source
 - Sources now contains the country they are from in their name when relevant (@chunshek)
 - When a source failed to refresh a specific feature, Breezy Weather will now attempt to continue refreshing other features while restoring the old data for failed features, when possible. A non-blocking error message mentioning the failed feature(s) will be visible in that case.
+- Fix no error message when location permission was previously denied (@min7-i)
 - New refresh error message: “Location access is off” when permission is granted but system disabled (@min7-i)
 - Main screen is now able to show more than one error at a time (instead of only displaying the first one) (@min7-i)
 - Allow to reset sources instance URL config by clearing it
