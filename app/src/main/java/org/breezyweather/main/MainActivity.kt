@@ -109,8 +109,6 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
 
     private val _dialogPerLocationSettingsOpen = MutableStateFlow(false)
     val dialogPerLocationSettingsOpen = _dialogPerLocationSettingsOpen.asStateFlow()
-    private val _dialogRefreshErrorDetails = MutableStateFlow(false)
-    val dialogRefreshErrorDetails = _dialogRefreshErrorDetails.asStateFlow()
     private val _isLocationBasedLightTheme: MutableStateFlow<Boolean?> = MutableStateFlow(null)
     val isLocationBasedLightTheme = _isLocationBasedLightTheme.asStateFlow()
 
@@ -129,6 +127,9 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
 
         private const val TAG_FRAGMENT_HOME = "fragment_main"
         private const val TAG_FRAGMENT_MANAGEMENT = "fragment_management"
+
+        private const val PERMISSION_CODE_LOCATION_ACCESS = 1
+        private const val PERMISSION_CODE_ACCESS_BACKGROUND_LOCATION = 2
     }
 
     private val backgroundUpdateObserver: Observer<Location> = Observer { location ->
@@ -400,7 +401,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                                                 ) {
                                                     requestPermissions(
                                                         request.permissionList.toTypedArray(),
-                                                        0
+                                                        PERMISSION_CODE_LOCATION_ACCESS
                                                     )
                                                 }
 
@@ -411,7 +412,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                                 }
                             }
                         } else {
-                            requestPermissions(it.permissionList.toTypedArray(), 0)
+                            requestPermissions(it.permissionList.toTypedArray(), PERMISSION_CODE_LOCATION_ACCESS)
                         }
                     }
                 }
@@ -430,7 +431,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                     } else {
                         null
                     }
-                    _dialogRefreshErrorDetails.value = true
+                    viewModel.setRefreshErrorDetailsDialogVisible(true)
                 }
             } else {
                 errors.firstOrNull()?.let { error ->
@@ -602,7 +603,8 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
     fun RefreshErrorDetails(
         modifier: Modifier = Modifier,
     ) {
-        val dialogRefreshErrorDetailsOpenState = dialogRefreshErrorDetails.collectAsState()
+        val dialogRefreshErrorDetailsOpenState = viewModel.dialogRefreshErrorDetails.collectAsState()
+
         if (dialogRefreshErrorDetailsOpenState.value) {
             AlertDialogNoPadding(
                 modifier = modifier,
@@ -620,7 +622,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                 },
                 confirmButton = {
                     TextButton(
-                        onClick = { _dialogRefreshErrorDetails.value = false },
+                        onClick = { viewModel.setRefreshErrorDetailsDialogVisible(false) },
                         content = {
                             Text(stringResource(R.string.action_close))
                         }
@@ -681,30 +683,10 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        val request = viewModel.locationPermissionsRequest.value
-        if (request == null || request.permissionList.isEmpty() || request.target == null) {
-            return
-        }
-
-        grantResults.zip(permissions).firstOrNull {
-            // result, permission
-            it.first != PackageManager.PERMISSION_GRANTED && isEssentialLocationPermission(permission = it.second)
-        }?.let {
-            // if the user denied an essential location permissions.
-            if (request.target.isUsable || isLocationPermissionsGranted) {
-                viewModel.updateWithUpdatingChecking(
-                    request.triggeredByUser,
-                    false
-                )
-            } else {
-                viewModel.cancelRequest()
-            }
-
-            return
-        }
-
-        // check background location permissions.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
+        if (requestCode == PERMISSION_CODE_LOCATION_ACCESS &&
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
+            grantResults.isNotEmpty() &&
+            grantResults[0] == PackageManager.PERMISSION_GRANTED &&
             !viewModel.statementManager.isBackgroundLocationPermissionDialogAlreadyShown &&
             !this.hasPermission(Manifest.permission.ACCESS_BACKGROUND_LOCATION)
         ) {
@@ -725,7 +707,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                                 // request background location permission.
                                 requestPermissions(
                                     arrayOf(Manifest.permission.ACCESS_BACKGROUND_LOCATION),
-                                    0
+                                    PERMISSION_CODE_ACCESS_BACKGROUND_LOCATION
                                 )
                                 dialogBackgroundLocationPermissionOpenState.value = false
                             }
@@ -733,11 +715,17 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                     }
                 }
             }
+            return
         }
-        viewModel.updateWithUpdatingChecking(
-            request.triggeredByUser,
-            false
-        )
+
+        if (requestCode == PERMISSION_CODE_LOCATION_ACCESS ||
+            requestCode == PERMISSION_CODE_ACCESS_BACKGROUND_LOCATION
+        ) {
+            viewModel.updateWithUpdatingChecking(
+                triggeredByUser = false,
+                checkPermissions = false
+            )
+        }
     }
 
     private fun isLocationPermission(
@@ -752,10 +740,6 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
         return permission == Manifest.permission.ACCESS_COARSE_LOCATION ||
             permission == Manifest.permission.ACCESS_FINE_LOCATION
     }
-
-    private val isLocationPermissionsGranted: Boolean
-        get() = this.hasPermission(Manifest.permission.ACCESS_COARSE_LOCATION) ||
-            this.hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)
 
     val isDaylight: Boolean
         get() = viewModel.currentLocation.value?.daylight ?: true

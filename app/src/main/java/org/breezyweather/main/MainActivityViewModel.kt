@@ -75,6 +75,9 @@ class MainActivityViewModel @Inject constructor(
     private val _dialogChooseWeatherSourcesOpen = MutableStateFlow(false)
     val dialogChooseWeatherSourcesOpen = _dialogChooseWeatherSourcesOpen.asStateFlow()
 
+    private val _dialogRefreshErrorDetails = MutableStateFlow(false)
+    val dialogRefreshErrorDetails = _dialogRefreshErrorDetails.asStateFlow()
+
     private val _selectedLocation: MutableStateFlow<Location?> = MutableStateFlow(null)
     val selectedLocation = _selectedLocation.asStateFlow()
 
@@ -147,6 +150,10 @@ class MainActivityViewModel @Inject constructor(
     fun closeChooseWeatherSourcesDialog() {
         _dialogChooseWeatherSourcesOpen.value = false
         _selectedLocation.value = null
+    }
+
+    fun setRefreshErrorDetailsDialogVisible(visible: Boolean) {
+        _dialogRefreshErrorDetails.value = visible
     }
 
     private fun updateInnerData(newValid: List<Location>) {
@@ -248,6 +255,11 @@ class MainActivityViewModel @Inject constructor(
             // update if init completed.
             // otherwise, mark a loading state and wait the init progress complete.
             if (initCompleted.value) {
+                if (dialogRefreshErrorDetails.value) {
+                    // When refreshing, some of the errors shown in the dialog might be outdated. We should close it,
+                    // so users can directly see new errors if any occur.
+                    setRefreshErrorDetailsDialogVisible(false)
+                }
                 updateWithUpdatingChecking(
                     triggeredByUser = false,
                     checkPermissions = true
