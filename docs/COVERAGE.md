@@ -10,6 +10,16 @@ In general, a main weather source can be considered for inclusion in the officia
 - **Privacy requirement:** If an API key is needed to access the forecast data, it should not ask for personally identifiable information such as credit card or telephone number.
 - **Concentration requirement:**  _(for Air Quality and Pollen sources)_ A source must provide air pollutant concentration data in µg/m³, mg/m³, ppb, or ppm. Pollen concentration must be in pollen count /m³. If the data source only provides a calculated index, it cannot be included in Breezy Weather, since every country has its own AQI standard which is often different from others.
 
+## Summary
+
+- [Africa](#africa)
+- [Asia &amp; the Middle East](#asia--the-middle-east)
+- [Europe](#europe)
+- [North America](#north-america)
+- [South America](#south-america)
+- [Oceania](#oceania)
+- [Other sources](#other-sources)
+
 ## Africa
 > [ClimWeb](https://github.com/wmo-raf/climweb) is an open source web CMS created by WMO Regional Office For Africa for use by National Meteorological and Hydrological Services in Africa. As of v0.9.4, ClimWeb offers alerts and temperature normals in JSON format, but weather forecasts are in HTML only. ClimWeb sources are implemented as Secondary Sources for Alerts and Temperature Normals from Breezy Weather v5.3.0.
 
@@ -189,7 +199,7 @@ In general, a main weather source can be considered for inclusion in the officia
 | 🇬🇧 United Kingdom           | [Met Office](https://www.metoffice.gov.uk/)           | ✅ included from v5.3.0                                                                |              |
 | 🇻🇦 Vatican City             | [Meteo AM](https://www.meteoam.it/)                   | ✅ included from v5.2.6                                                                |              |
 
-## North America &amp; the Caribbean
+## North America
 | Country/Territory                       | Agency                                   | Status                 | Last Checked |
 |-----------------------------------------|------------------------------------------|------------------------|--------------|
 | 🇦🇮 Anguilla                           | [ABMS](http://www.antiguamet.com/)       |                        |              |
@@ -197,22 +207,30 @@ In general, a main weather source can be considered for inclusion in the officia
 | 🇦🇼 Aruba                              | [DMA](http://www.meteo.aw/)              |                        |              |
 | 🇧🇸 Bahamas                            | [BDM](https://met.gov.bs/)               |                        |              |
 | 🇧🇧 Barbados                           | [BMS](https://www.barbadosweather.org/)  |                        |              |
+| 🇧🇿 Belize                             | [NMS](https://www.nms.gov.bz/)           |                        |              |
 | 🇧🇲 Bermuda                            | [Bermuda Weather](https://weather.bm/)   | ❌ no hourly, no JSON   | 2024-11-29   |
 | 🇧🇶 Bonaire, Sint Eustatius &amp; Saba | [KNMIDC](https://www.knmidc.org/)        |                        |              |
 | 🇻🇬 British Virgin Is.                 | [ABMS](http://www.antiguamet.com/)       |                        |              |
 | 🇨🇦 Canada                             | [ECCC](https://weather.gc.ca/)           | ✅ included from v5.0.0 |              |
 | 🇰🇾 Cayman Is.                         | [CINWS](https://www.weather.gov.ky/)     |                        |              |
+| 🇨🇷 Costa Rica                         | [IMN](https://www.imn.ac.cr/)            |                        |              |
 | 🇨🇺 Cuba                               | [Insmet](http://www.insmet.cu/)          |                        |              |
 | 🇨🇼 Curaçao                            | [Curaçao](https://www.meteo.cw/)         |                        |              |
 | 🇩🇲 Dominica                           | [DMS](https://www.weather.gov.dm/)       |                        |              |
 | 🇩🇴 Dominican Republic                 | [Indomet](https://onamet.gob.do/)        |                        |              |
+| 🇸🇻 El Salvador                        | [MARN](https://www.snet.gob.sv/)         |                        |              |
 | 🇬🇱 Greenland                          | [DMI](https://www.dmi.dk/)               | ✅ included from v5.0.0 |              |
 | 🇬🇩 Grenada                            | [GAA](https://www.weather.gd/)           |                        |              |
 | 🇬🇵 Guadeloupe                         | [Météo-France](https://meteofrance.com/) | ✅ included             |              |
+| 🇬🇹 Guatemala                          | [Insivumeh](https://insivumeh.gob.gt/)   |                        |              |
 | 🇭🇹 Haiti                              | [UHM](https://www.meteo-haiti.gouv.ht/)  |                        |              |
+| 🇭🇳 Honduras                           |                                          |                        |              |
 | 🇯🇲 Jamaica                            | [Jamaica](https://metservice.gov.jm/)    |                        |              |
 | 🇲🇶 Martinique                         | [Météo-France](https://meteofrance.com/) | ✅ included             |              |
+| 🇲🇽 Mexico                             | [SMN](https://smn.conagua.gob.mx/)       |                        |              |
 | 🇲🇸 Montserrat                         | [ABMS](http://www.antiguamet.com/)       |                        |              |
+| 🇳🇮 Nicaragua                          | [Ineter](https://www.ineter.gob.ni/)     |                        |              |
+| 🇵🇦 Panama                             | [IMHPA](https://www.imhpa.gob.pa/)       |                        |              |
 | 🇵🇷 Puerto Rico                        | [NWS](https://www.weather.gov/)          | ✅ included from v5.0.0 |              |
 | 🇧🇱 St. Barthélemy                     | [Météo-France](https://meteofrance.com/) | ✅ included             |              |
 | 🇰🇳 St. Kitts &amp; Nevis              | [ABMS](http://www.antiguamet.com/)       |                        |              |
@@ -226,27 +244,19 @@ In general, a main weather source can be considered for inclusion in the officia
 | 🇺🇸 United States                      | [NWS](https://www.weather.gov/)          | ✅ included from v5.0.0 |              |
 | 🇻🇮 U.S. Virgin Is.                    | [NWS](https://www.weather.gov/)          | ✅ included from v5.0.0 |              |
 
-### Central &amp; South America
+## South America
 | Country/Territory                               | Agency                                      | Status                 | Last Checked |
 |-------------------------------------------------|---------------------------------------------|------------------------|--------------|
 | 🇦🇷 Argentina                                  | [SMN](https://www.smn.gob.ar/)              |                        |              |
-| 🇧🇿 Belize                                     | [NMS](https://www.nms.gov.bz/)              |                        |              |
 | 🇧🇴 Bolivia                                    | [Senamhi](https://senamhi.gob.bo/)          |                        |              |
 | 🇧🇻 Bouvet Island                              | –                                           | Uninhabited            |              |
 | 🇧🇷 Brazil                                     | [INMET](https://portal.inmet.gov.br/)       |                        |              |
 | 🇨🇱 Chile                                      | [Chile](https://www.meteochile.gob.cl/)     |                        |              |
 | 🇨🇴 Colombia                                   | [IDEAM](https://www.ideam.gov.co/)          |                        |              |
-| 🇨🇷 Costa Rica                                 | [IMN](https://www.imn.ac.cr/)               |                        |              |
 | 🇪🇨 Ecuador                                    | [INAMHI](https://www.inamhi.gob.ec/)        |                        |              |
-| 🇸🇻 El Salvador                                | [MARN](https://www.snet.gob.sv/)            |                        |              |
 | 🇫🇰 Falkland Islands (Malvinas)                | [Met Office](https://www.metoffice.gov.uk/) | ✅ included from v5.3.0 |              |
 | 🇬🇫 French Guiana                              | [Météo-France](https://meteofrance.com/)    | ✅ included             |              |
-| 🇬🇹 Guatemala                                  | [Insivumeh](https://insivumeh.gob.gt/)      |                        |              |
 | 🇬🇾 Guyana                                     | [Hydromet](https://hydromet.gov.gy/)        |                        |              |
-| 🇭🇳 Honduras                                   |                                             |                        |              |
-| 🇲🇽 Mexico                                     | [SMN](https://smn.conagua.gob.mx/)          |                        |              |
-| 🇳🇮 Nicaragua                                  | [Ineter](https://www.ineter.gob.ni/)        |                        |              |
-| 🇵🇦 Panama                                     | [IMHPA](https://www.imhpa.gob.pa/)          |                        |              |
 | 🇵🇾 Paraguay                                   | [DMH](https://www.meteorologia.gov.py/)     |                        |              |
 | 🇵🇪 Peru                                       | [Senamhi](https://www.gob.pe/senamhi)       |                        |              |
 | 🇬🇸 South Georgia &amp; the South Sandwich Is. | –                                           | Uninhabited            |              |
