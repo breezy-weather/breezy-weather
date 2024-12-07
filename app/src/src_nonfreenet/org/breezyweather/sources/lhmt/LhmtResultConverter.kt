@@ -197,15 +197,12 @@ private fun getDailyForecast(
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Europe/Vilnius")
     val hourlyListDates = hourlyForecast.groupBy { formatter.format(it.date) }.keys
-    val dailyList = mutableListOf<Daily>()
-    hourlyListDates.forEach {
-        dailyList.add(
-            Daily(
-                date = formatter.parse(it)!!
-            )
+
+    return hourlyListDates.map {
+        Daily(
+            date = formatter.parse(it)!!
         )
-    }
-    return dailyList
+    }.dropLast(1) // Remove last (incomplete) daily item
 }
 
 private fun getHourlyForecast(
