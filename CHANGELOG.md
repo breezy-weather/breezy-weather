@@ -72,6 +72,9 @@
   - [Met Office] Added as a main source option for United Kingdom. Requires an API key. (@bunburya)
   - [MeteoLux] Added as a main and secondary current/alert source option for Luxembourg. (@chunshek)
   - [Météo-France] Add support for next-day alerts
+- **North America**
+  - [NWS] Added as possible current source for United States (@chunshek)
+  - [NWS] Various improvements in daily data, weather texts and alerts (@chunshek)
 - Miscellaneous
   - Add translation for a few source names and privacy policies
   - Location presets updated for some countries following the addition of many weather sources (@chunshek)
