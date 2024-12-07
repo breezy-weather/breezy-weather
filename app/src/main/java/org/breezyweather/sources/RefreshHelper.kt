@@ -347,6 +347,10 @@ class RefreshHelper @Inject constructor(
                             secondarySources[it.first!!] = mutableListOf(it.second)
                         }
                         mainFeaturesIgnored.add(it.second)
+                    } else {
+                        if (!service.isFeatureSupportedInMainForLocation(location, it.second)) {
+                            mainFeaturesIgnored.add(it.second)
+                        }
                     }
                 }
             }

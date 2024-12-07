@@ -102,33 +102,21 @@ class MfService @Inject constructor(
         feature: SourceFeature?,
     ): Boolean {
         return isConfigured &&
-            (
-                feature == SourceFeature.FEATURE_CURRENT &&
-                    !location.countryCode.isNullOrEmpty() &&
+            when (feature) {
+                SourceFeature.FEATURE_CURRENT -> !location.countryCode.isNullOrEmpty() &&
                     location.countryCode.equals("FR", ignoreCase = true)
-                ) ||
-            (
-                feature == SourceFeature.FEATURE_MINUTELY &&
-                    !location.countryCode.isNullOrEmpty() &&
+                SourceFeature.FEATURE_MINUTELY -> !location.countryCode.isNullOrEmpty() &&
                     location.countryCode.equals("FR", ignoreCase = true)
-                ) ||
-            (
-                feature == SourceFeature.FEATURE_ALERT &&
-                    !location.countryCode.isNullOrEmpty() &&
+                SourceFeature.FEATURE_ALERT -> !location.countryCode.isNullOrEmpty() &&
                     arrayOf("FR", "AD").any { location.countryCode.equals(it, ignoreCase = true) }
-                    /*
-                     * TODO: The current v3 endpoint doesn't support oversea territories
-                     *  arrayOf("FR", "AD", "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT")
-                     *    .any { location.countryCode.equals(it, ignoreCase = true) }
-                     */
-                ) ||
-            (
-                // Technically, works anywhere but as a France-focused source, we don’t want the whole
-                // world to use this source, as currently the only alternative is AccuWeather
-                feature == SourceFeature.FEATURE_NORMALS &&
-                    !location.countryCode.isNullOrEmpty() &&
-                    arrayOf("FR", "AD", "MC").any { location.countryCode.equals(it, ignoreCase = true) }
-                )
+                /*
+                 * TODO: The current v3 endpoint doesn't support oversea territories
+                 *  arrayOf("FR", "AD", "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT")
+                 *    .any { location.countryCode.equals(it, ignoreCase = true) }
+                 */
+                null -> true // Main source available worldwide
+                else -> false
+            }
     }
 
     override fun requestWeather(
@@ -459,6 +447,11 @@ class MfService @Inject constructor(
          * See also #1497
          */
         if (features.isNotEmpty() && !features.contains(SourceFeature.FEATURE_ALERT)) return false
+
+        // When used as main and doesn't support alerts:
+        if (location.countryCode.isNullOrEmpty()) return false
+        if (!arrayOf("FR", "AD").any { location.countryCode.equals(it, ignoreCase = true) }) return false
+
         if (coordinatesChanged) return true
 
         return location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }.isNullOrEmpty()
