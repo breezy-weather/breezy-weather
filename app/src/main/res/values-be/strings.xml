@@ -689,8 +689,8 @@
     <string name="settings_notifications_app_updates_check">Апавяшчаць мяне аб абнаўленні прыкладання</string>
     <string name="meteoam_weather_text_tornado_watersprout">Тарнада або водны смерч</string>
     <string name="settings_unavailable_no_animations">Недаступна, спачатку уключыце анімацыю ў наладах Android</string>
-    <string name="weather_current_data_by">Дадзеныя аб бягучай надвор\'і предоставлны %s</string>
-    <string name="current_weather">Бягучая надвор\'е</string>
+    <string name="weather_current_data_by">Дадзеныя аб бягучай надвор’і предоставлны %s</string>
+    <string name="current_weather">Бягучая надвор’е</string>
     <string name="common_weather_text_dry">Сухі</string>
     <string name="common_weather_text_warm">Цяпло</string>
     <string name="common_weather_text_cool">Прахалодна</string>

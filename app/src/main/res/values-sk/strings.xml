@@ -649,7 +649,7 @@
     <string name="notification_channel_app_updates">Aktualizácie aplikácie</string>
     <string name="notification_app_update_available">Nová verzia dostupná!</string>
     <string name="common_weather_text_warm">Teplo</string>
-    <string name="settings_location_access_background_summaryOff">Zvoľte \"Povoliť vždy\" aby aplikácia mohla na pozadí obnoviť dáta pre vašu aktuálnu polohu.</string>
+    <string name="settings_location_access_background_summaryOff">Zvoľte “Povoliť vždy” aby aplikácia mohla na pozadí obnoviť dáta pre vašu aktuálnu polohu.</string>
     <string name="notification_update_error">%d aktualizácií zlyhalo</string>
     <string name="settings_icon_packs_weather_icon_dark">Tmavá ikona</string>
     <string name="common_weather_text_sand_storm">Piesočná búrka</string>
