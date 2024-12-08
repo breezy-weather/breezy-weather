@@ -20,7 +20,7 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import io.reactivex.rxjava3.core.Observable
@@ -30,7 +30,7 @@ import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.climweb.json.ClimWebAlertsResult
 import org.breezyweather.sources.climweb.json.ClimWebNormals
@@ -42,7 +42,7 @@ import retrofit2.Retrofit
  *
  * Is an abstract class that must be implemented by each national source
  */
-abstract class ClimWebService : HttpSource(), SecondaryWeatherSource, ConfigurableSource, LocationParametersSource {
+abstract class ClimWebService : HttpSource(), WeatherSource, ConfigurableSource, LocationParametersSource {
 
     protected abstract val context: Context
     protected abstract val jsonClient: Retrofit.Builder
@@ -81,8 +81,9 @@ abstract class ClimWebService : HttpSource(), SecondaryWeatherSource, Configurab
      */
     protected abstract val instancePreference: Int
 
-    // TODO: Change this to override when ClimWeb is ready to be used as MainWeatherSource
     protected abstract val weatherAttribution: String
+    protected abstract val alertAttribution: String
+    protected abstract val normalsAttribution: String
 
     protected val mApi: ClimWebApi
         get() {
@@ -93,37 +94,32 @@ abstract class ClimWebService : HttpSource(), SecondaryWeatherSource, Configurab
         }
 
     // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_NORMALS
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
+    override val supportedFeatures
+        get() = mapOf(
+            SourceFeature.FEATURE_ALERT to alertAttribution,
+            SourceFeature.FEATURE_NORMALS to normalsAttribution
+        )
+    override fun isFeatureSupportedForLocation(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        return (
-            feature == SourceFeature.FEATURE_ALERT &&
+        return when (feature) {
+            SourceFeature.FEATURE_ALERT ->
                 location.countryCode != null &&
-                location.countryCode.equals(countryCode, ignoreCase = true)
-            ) ||
-            (
-                feature == SourceFeature.FEATURE_NORMALS &&
-                    location.countryCode != null &&
+                    location.countryCode.equals(countryCode, ignoreCase = true)
+            SourceFeature.FEATURE_NORMALS ->
+                location.countryCode != null &&
                     location.countryCode.equals(countryCode, ignoreCase = true) &&
                     !cityClimatePageId.isNullOrEmpty()
-                )
+            else -> false
+        }
     }
 
-    override val currentAttribution = null
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-
-    override fun requestSecondaryWeather(
+    override fun requestWeather(
         context: Context,
         location: Location,
         requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
+    ): Observable<WeatherWrapper> {
         val failedFeatures = mutableListOf<SourceFeature>()
         val alerts = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
             mApi.getAlerts().onErrorResumeNext {
@@ -156,18 +152,16 @@ abstract class ClimWebService : HttpSource(), SecondaryWeatherSource, Configurab
                 alertsResult: ClimWebAlertsResult,
                 normalsResult: List<ClimWebNormals>,
             ->
-            convert(
-                location = location,
-                source = alertAttribution,
-                alertsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    alertsResult
+            WeatherWrapper(
+                alertList = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+                    getAlertList(location, alertAttribution, alertsResult)
                 } else {
                     null
                 },
-                normalsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS) &&
+                normals = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS) &&
                     !cityClimatePageId.isNullOrEmpty()
                 ) {
-                    normalsResult
+                    getNormals(location, normalsResult)
                 } else {
                     null
                 },

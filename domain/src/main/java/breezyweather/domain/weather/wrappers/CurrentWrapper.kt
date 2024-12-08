@@ -16,55 +16,49 @@
 
 package breezyweather.domain.weather.wrappers
 
-import breezyweather.domain.weather.model.Hourly
-import breezyweather.domain.weather.model.Precipitation
-import breezyweather.domain.weather.model.PrecipitationProbability
+import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
-import java.util.Date
 
 /**
- * Hourly wrapper that allows isDaylight to be null and completed later
+ * Current wrapper
  */
-data class HourlyWrapper(
-    val date: Date,
-    val isDaylight: Boolean? = null,
+data class CurrentWrapper(
     val weatherText: String? = null,
     val weatherCode: WeatherCode? = null,
     val temperature: Temperature? = null,
-    val precipitation: Precipitation? = null,
-    val precipitationProbability: PrecipitationProbability? = null,
     val wind: Wind? = null,
     val uV: UV? = null,
     val relativeHumidity: Double? = null,
     val dewPoint: Double? = null,
+    /**
+     * Pressure at sea level
+     */
     val pressure: Double? = null,
     val cloudCover: Int? = null,
     val visibility: Double? = null,
-    /**
-     * Sunshine duration in hours (ex: 0.5 means 30 min)
-     */
-    val sunshineDuration: Double? = null,
+    val ceiling: Double? = null,
+    val dailyForecast: String? = null,
+    // Is actually a description of the nowcast
+    val hourlyForecast: String? = null,
 ) {
-    fun toHourly(
-        isDaylight: Boolean? = null,
+    fun toCurrent(
         uV: UV? = null,
-    ) = Hourly(
-        date = this.date,
-        isDaylight = isDaylight ?: this.isDaylight ?: true,
+    ) = Current(
         weatherText = this.weatherText,
         weatherCode = this.weatherCode,
         temperature = this.temperature,
-        precipitation = this.precipitation,
-        precipitationProbability = this.precipitationProbability,
         wind = this.wind,
         uV = uV ?: this.uV,
         relativeHumidity = this.relativeHumidity,
         dewPoint = this.dewPoint,
         pressure = this.pressure,
         cloudCover = this.cloudCover,
-        visibility = this.visibility
+        visibility = this.visibility,
+        ceiling = this.ceiling,
+        dailyForecast = this.dailyForecast,
+        hourlyForecast = this.hourlyForecast
     )
 }

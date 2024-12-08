@@ -18,14 +18,12 @@ package org.breezyweather.sources
 
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
-import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.DegreeDay
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Hourly
-import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.MoonPhase
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Pollen
@@ -36,10 +34,7 @@ import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.Weather
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
-import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.PollenWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.median
@@ -87,7 +82,7 @@ import kotlin.time.Duration.Companion.hours
 /**
  * Complete previous hours/days with weather data from database
  */
-fun completeMainWeatherWithPreviousData(
+fun completeNewWeatherWithPreviousData(
     newWeather: WeatherWrapper,
     oldWeather: Weather?,
     startDate: Date,
@@ -99,7 +94,7 @@ fun completeMainWeatherWithPreviousData(
 
     val missingDailyList = oldWeather.dailyForecast.filter {
         it.date >= startDate && (newWeather.dailyForecast?.getOrNull(0) == null || it.date < newWeather.dailyForecast!![0].date)
-    }
+    }.map { it.toDailyWrapper() }
     val missingHourlyList = oldWeather.hourlyForecast.filter {
         it.date >= startDate && (newWeather.hourlyForecast?.getOrNull(0) == null || it.date < newWeather.hourlyForecast!![0].date)
     }.map { it.toHourlyWrapper() }
@@ -111,71 +106,6 @@ fun completeMainWeatherWithPreviousData(
             dailyForecast = missingDailyList + (newWeather.dailyForecast ?: emptyList()),
             hourlyForecast = missingHourlyList + (newWeather.hourlyForecast ?: emptyList())
         )
-    }
-}
-
-/**
- * Get an air quality wrapper object to use from an old weather object
- * @param weather Old weather data
- * @param startDate a date initialized at yesterday 00:00 in the correct timezone, to ignore everything before that date
- */
-fun getAirQualityWrapperFromWeather(
-    weather: Weather?,
-    startDate: Date,
-): AirQualityWrapper? {
-    if (weather == null) return null
-    val hourlyAirQuality = weather.hourlyForecast.filter { it.date >= startDate && it.airQuality?.isValid == true }
-    val dailyAirQuality = weather.dailyForecast.filter { it.date >= startDate && it.airQuality?.isValid == true }
-    if (hourlyAirQuality.isEmpty() && dailyAirQuality.isEmpty()) return null
-
-    return AirQualityWrapper(
-        dailyForecast = dailyAirQuality.associate { it.date to it.airQuality!! },
-        hourlyForecast = hourlyAirQuality.associate { it.date to it.airQuality!! }
-    )
-}
-
-/**
- * Get a pollen wrapper object to use from an old weather object
- * @param weather Old weather data
- * @param startDate a date initialized at yesterday 00:00 in the correct timezone, to ignore everything before that date
- */
-fun getPollenWrapperFromWeather(
-    weather: Weather?,
-    startDate: Date,
-): PollenWrapper? {
-    if (weather == null) return null
-    val dailyPollen = weather.dailyForecast.filter { it.date >= startDate && it.pollen?.isValid == true }
-    if (dailyPollen.isEmpty()) return null
-
-    return PollenWrapper(
-        dailyForecast = dailyPollen.associate { it.date to it.pollen!! }
-    )
-}
-
-/**
- * Get a minutely list to use from an old weather object.
- * Only forecast data is kept (no minutely from the past)
- * @param weather Old weather data
- */
-fun getMinutelyFromWeather(
-    weather: Weather?,
-): List<Minutely>? {
-    if (weather == null) return null
-    val now = Date()
-    return weather.minutelyForecast.filter { it.date >= now }
-}
-
-/**
- * Get an alert list to use from an old weather object.
- * Only alerts still valid (= not in the past) is kept
- * @param weather Old weather data
- */
-fun getAlertsFromWeather(
-    weather: Weather?,
-): List<Alert>? {
-    if (weather == null) return null
-    return weather.alertList.filter {
-        it.endDate == null || it.endDate!!.time > Date().time
     }
 }
 
@@ -210,54 +140,6 @@ fun getDailyAirQualityFromHourly(
         }
     }
     return dailyAirQualityMap
-}
-
-/**
- * Complete daily data missing on SecondaryWeatherWrapper early
- * to avoid being unable to do it later
- */
-fun completeMissingSecondaryWeatherDailyData(
-    initialSecondaryWeatherWrapper: SecondaryWeatherWrapper?,
-    location: Location,
-): SecondaryWeatherWrapper? {
-    if (initialSecondaryWeatherWrapper == null) return null
-
-    return if ((!initialSecondaryWeatherWrapper.airQuality?.hourlyForecast.isNullOrEmpty() &&
-            initialSecondaryWeatherWrapper.airQuality?.dailyForecast.isNullOrEmpty()) ||
-        (!initialSecondaryWeatherWrapper.pollen?.hourlyForecast.isNullOrEmpty() &&
-            initialSecondaryWeatherWrapper.pollen?.dailyForecast.isNullOrEmpty())) {
-        val dailyAirQuality: Map<Date, AirQuality>? = if (initialSecondaryWeatherWrapper.airQuality != null &&
-            initialSecondaryWeatherWrapper.airQuality!!.dailyForecast.isNullOrEmpty()) {
-            getDailyAirQualityFromHourly(
-                initialSecondaryWeatherWrapper.airQuality!!.hourlyForecast, location
-            )
-        } else initialSecondaryWeatherWrapper.airQuality?.dailyForecast
-
-        val dailyPollen: Map<Date, Pollen>? = if (initialSecondaryWeatherWrapper.pollen != null &&
-            initialSecondaryWeatherWrapper.pollen!!.dailyForecast.isNullOrEmpty()) {
-            val dailyPollenMap: MutableMap<Date, Pollen> = mutableMapOf()
-            initialSecondaryWeatherWrapper.pollen!!.hourlyForecast?.entries?.groupBy {
-                it.key.getFormattedDate("yyyy-MM-dd", location)
-            }?.forEach { entry ->
-                val pollen = getDailyPollenFromSecondaryHourlyList(entry.value)
-                if (pollen != null) {
-                    dailyPollenMap[entry.key.toDateNoHour(location.javaTimeZone)!!] = pollen
-                }
-            }
-            dailyPollenMap
-        } else initialSecondaryWeatherWrapper.pollen?.dailyForecast
-
-        initialSecondaryWeatherWrapper.copy(
-            airQuality = initialSecondaryWeatherWrapper.airQuality?.copy(
-                dailyForecast = dailyAirQuality
-            ),
-            pollen = initialSecondaryWeatherWrapper.pollen?.copy(
-                dailyForecast = dailyPollen
-            )
-        )
-    } else {
-        initialSecondaryWeatherWrapper
-    }
 }
 
 private fun getDailyAirQualityFromSecondaryHourlyList(
@@ -313,27 +195,27 @@ private fun getDailyPollenFromSecondaryHourlyList(
 }
 
 /**
- * Completes a List<HourlyWrapper> with data from a SecondaryWeatherWrapper
- * If a data is present in SecondaryWeatherWrapper, it will be used in priority, so don’t send
+ * Completes a List<HourlyWrapper> with data from a WeatherWrapper
+ * If a data is present in WeatherWrapper, it will be used in priority, so don’t send
  * data you don’t want to use in it!
  * Process:
  * - Hourly air quality
  * - Hourly pollen
  */
-fun mergeSecondaryWeatherDataIntoHourlyWrapperList(
+fun mergeAirQualityAndPollenIntoHourlyList(
     mainHourlyList: List<HourlyWrapper>?,
-    secondaryWeatherWrapper: SecondaryWeatherWrapper?,
+    weatherWrapper: WeatherWrapper?,
 ): List<HourlyWrapper> {
     if (mainHourlyList.isNullOrEmpty() ||
-        secondaryWeatherWrapper == null ||
-        (secondaryWeatherWrapper.airQuality?.hourlyForecast.isNullOrEmpty() &&
-            secondaryWeatherWrapper.pollen?.hourlyForecast.isNullOrEmpty())) {
+        weatherWrapper == null ||
+        (weatherWrapper.airQuality?.hourlyForecast.isNullOrEmpty() &&
+            weatherWrapper.pollen?.hourlyForecast.isNullOrEmpty())) {
         return mainHourlyList ?: emptyList()
     }
 
     return mainHourlyList.map { mainHourly ->
-        val airQuality = secondaryWeatherWrapper.airQuality?.hourlyForecast?.getOrElse(mainHourly.date) { null }
-        val pollen = secondaryWeatherWrapper.pollen?.hourlyForecast?.getOrElse(mainHourly.date) { null }
+        val airQuality = weatherWrapper.airQuality?.hourlyForecast?.getOrElse(mainHourly.date) { null }
+        val pollen = weatherWrapper.pollen?.hourlyForecast?.getOrElse(mainHourly.date) { null }
 
         if (airQuality != null && pollen != null) {
             mainHourly.copy(
@@ -351,16 +233,16 @@ fun mergeSecondaryWeatherDataIntoHourlyWrapperList(
 }
 
 /**
- * Completes a List<HourlyWrapper> with data from a SecondaryWeatherWrapper
- * If a data is present in SecondaryWeatherWrapper, it will be used in priority, so don’t send
+ * Completes a List<HourlyWrapper> with data from a WeatherWrapper
+ * If a data is present in WeatherWrapper, it will be used in priority, so don’t send
  * data you don’t want to use in it!
  * Process:
  * - Hourly air quality
  * - Hourly pollen
  */
-fun mergeSecondaryWeatherDataIntoDailyList(
+fun mergeWeatherDataIntoDailyList(
     mainDailyList: List<Daily>?,
-    secondaryWeatherWrapper: SecondaryWeatherWrapper?,
+    secondaryWeatherWrapper: WeatherWrapper?,
 ): List<Daily> {
     if (mainDailyList.isNullOrEmpty() ||
         secondaryWeatherWrapper == null ||

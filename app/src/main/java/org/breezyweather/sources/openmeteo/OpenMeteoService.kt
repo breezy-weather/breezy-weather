@@ -36,7 +36,6 @@ import androidx.compose.ui.res.stringResource
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -50,9 +49,8 @@ import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.PreferencesParametersSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.settings.preference.composables.PreferenceView
@@ -68,12 +66,7 @@ import javax.inject.Named
 class OpenMeteoService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") val client: Retrofit.Builder,
-) : HttpSource(),
-    MainWeatherSource,
-    SecondaryWeatherSource,
-    LocationSearchSource,
-    ConfigurableSource,
-    PreferencesParametersSource {
+) : HttpSource(), WeatherSource, LocationSearchSource, ConfigurableSource, PreferencesParametersSource {
 
     override val id = "openmeteo"
     override val name = "Open-Meteo"
@@ -81,7 +74,6 @@ class OpenMeteoService @Inject constructor(
     override val privacyPolicyUrl = "https://open-meteo.com/en/terms#privacy"
 
     override val color = Color.rgb(255, 136, 0)
-    override val weatherAttribution = "Open-Meteo (CC BY 4.0)"
     override val locationSearchAttribution = "Open-Meteo (CC BY 4.0) / GeoNames"
 
     private val mForecastApi: OpenMeteoForecastApi
@@ -106,51 +98,27 @@ class OpenMeteoService @Inject constructor(
                 .create(OpenMeteoAirQualityApi::class.java)
         }
 
-    val current = arrayOf(
-        "temperature_2m",
-        "apparent_temperature",
-        "weathercode",
-        "windspeed_10m",
-        "winddirection_10m",
-        "windgusts_10m",
-        "uv_index",
-        "relativehumidity_2m",
-        "dewpoint_2m",
-        "pressure_msl",
-        "cloudcover",
-        "visibility"
-    )
-    val airQualityHourly = arrayOf(
-        "pm10",
-        "pm2_5",
-        "carbon_monoxide",
-        "nitrogen_dioxide",
-        "sulphur_dioxide",
-        "ozone"
-    )
-    val pollenHourly = arrayOf(
-        "alder_pollen",
-        "birch_pollen",
-        "grass_pollen",
-        "mugwort_pollen",
-        "olive_pollen",
-        "ragweed_pollen"
-    )
-    val minutely = arrayOf(
-        // "precipitation_probability",
-        "precipitation"
-    )
-
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_AIR_QUALITY,
-        SourceFeature.FEATURE_POLLEN,
-        SourceFeature.FEATURE_MINUTELY
+    private val weatherAttribution = "Open-Meteo (CC BY 4.0)"
+    private val airQualityAttribution = "Open-Meteo (CC BY 4.0) / METEO FRANCE, Institut national de " +
+        "l'environnement industriel et des risques (Ineris), Aarhus University, Norwegian Meteorological Institute " +
+        "(MET Norway), Jülich Institut für Energie- und Klimaforschung (IEK), Institute of Environmental Protection " +
+        "– National Research Institute (IEP-NRI), Koninklijk Nederlands Meteorologisch Instituut (KNMI), Nederlandse " +
+        "Organisatie voor toegepast-natuurwetenschappelijk onderzoek (TNO), Swedish Meteorological and Hydrological " +
+        "Institute (SMHI), Finnish Meteorological Institute (FMI), Italian National Agency for New Technologies, " +
+        "Energy and Sustainable Economic Development (ENEA) and Barcelona Supercomputing Center (BSC) (2022): CAMS " +
+        "European air quality forecasts, ENSEMBLE data. Copernicus Atmosphere Monitoring Service (CAMS) " +
+        "Atmosphere Data Store (ADS). (Updated twice daily)."
+    override val supportedFeatures = mapOf(
+        SourceFeature.FEATURE_FORECAST to weatherAttribution,
+        SourceFeature.FEATURE_CURRENT to weatherAttribution,
+        SourceFeature.FEATURE_AIR_QUALITY to airQualityAttribution,
+        SourceFeature.FEATURE_POLLEN to airQualityAttribution,
+        SourceFeature.FEATURE_MINUTELY to weatherAttribution
     )
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val daily = arrayOf(
             "temperature_2m_max",
@@ -182,121 +150,44 @@ class OpenMeteoService @Inject constructor(
             "cloudcover",
             "visibility"
         )
-        val weather = mForecastApi.getWeather(
-            location.latitude,
-            location.longitude,
-            getWeatherModels(location).joinToString(",") { it.id },
-            daily.joinToString(","),
-            hourly.joinToString(","),
-            if (!ignoreFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
-                minutely.joinToString(",")
-            } else {
-                ""
-            },
-            if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                current.joinToString(",")
-            } else {
-                ""
-            },
-            forecastDays = 16,
-            pastDays = 1,
-            windspeedUnit = "ms"
+        val current = arrayOf(
+            "temperature_2m",
+            "apparent_temperature",
+            "weathercode",
+            "windspeed_10m",
+            "winddirection_10m",
+            "windgusts_10m",
+            "uv_index",
+            "relativehumidity_2m",
+            "dewpoint_2m",
+            "pressure_msl",
+            "cloudcover",
+            "visibility"
+        )
+        val minutely = arrayOf(
+            // "precipitation_probability",
+            "precipitation"
         )
 
         val failedFeatures = mutableListOf<SourceFeature>()
-        val aqi = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY) ||
-            !ignoreFeatures.contains(SourceFeature.FEATURE_POLLEN)
-        ) {
-            val airQualityHourly = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-                airQualityHourly
-            } else {
-                arrayOf()
-            }
-            val pollenHourly = if (!ignoreFeatures.contains(SourceFeature.FEATURE_POLLEN)) {
-                pollenHourly
-            } else {
-                arrayOf()
-            }
-            val airQualityPollenHourly = airQualityHourly + pollenHourly
-            mAirQualityApi.getAirQuality(
-                location.latitude,
-                location.longitude,
-                airQualityPollenHourly.joinToString(","),
-                forecastDays = 7,
-                pastDays = 1
-            ).onErrorResumeNext {
-                if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-                    failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
-                }
-                if (!ignoreFeatures.contains(SourceFeature.FEATURE_POLLEN)) {
-                    failedFeatures.add(SourceFeature.FEATURE_POLLEN)
-                }
-                Observable.just(OpenMeteoAirQualityResult())
-            }
-        } else {
-            Observable.just(OpenMeteoAirQualityResult())
-        }
-        return Observable.zip(
-            weather.onErrorResumeNext {
-                if (it is HttpException &&
-                    it.response()?.errorBody()?.string()
-                        ?.contains("No data is available for this location") == true
-                ) {
-                    // Happens when user choose a model that doesn’t cover their location
-                    Observable.error(InvalidLocationException())
-                } else {
-                    Observable.error(it)
-                }
-            },
-            aqi
-        ) { weatherResult: OpenMeteoWeatherResult, airQualityResult: OpenMeteoAirQualityResult ->
-            convert(
-                context,
-                location,
-                weatherResult,
-                airQualityResult,
-                failedFeatures
-            )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_AIR_QUALITY,
-        SourceFeature.FEATURE_POLLEN,
-        SourceFeature.FEATURE_MINUTELY
-    )
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = "Open-Meteo (CC BY 4.0) / METEO FRANCE, Institut national de " +
-        "l'environnement industriel et des risques (Ineris), Aarhus University, Norwegian Meteorological Institute " +
-        "(MET Norway), Jülich Institut für Energie- und Klimaforschung (IEK), Institute of Environmental Protection " +
-        "– National Research Institute (IEP-NRI), Koninklijk Nederlands Meteorologisch Instituut (KNMI), Nederlandse " +
-        "Organisatie voor toegepast-natuurwetenschappelijk onderzoek (TNO), Swedish Meteorological and Hydrological " +
-        "Institute (SMHI), Finnish Meteorological Institute (FMI), Italian National Agency for New Technologies, " +
-        "Energy and Sustainable Economic Development (ENEA) and Barcelona Supercomputing Center (BSC) (2022): CAMS " +
-        "European air quality forecasts, ENSEMBLE data. Copernicus Atmosphere Monitoring Service (CAMS) " +
-        "Atmosphere Data Store (ADS). (Updated twice daily)."
-    override val pollenAttribution = airQualityAttribution
-    override val minutelyAttribution = weatherAttribution
-    override val alertAttribution = null
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        val failedFeatures = mutableListOf<SourceFeature>()
-        val weather = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT) ||
-            requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)
+        val weather = if (requestedFeatures.contains(SourceFeature.FEATURE_FORECAST) ||
+            requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY) ||
+            requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)
         ) {
             mForecastApi.getWeather(
                 location.latitude,
                 location.longitude,
                 getWeatherModels(location).joinToString(",") { it.id },
-                "",
-                "",
+                if (requestedFeatures.contains(SourceFeature.FEATURE_FORECAST)) {
+                    daily.joinToString(",")
+                } else {
+                    ""
+                },
+                if (requestedFeatures.contains(SourceFeature.FEATURE_FORECAST)) {
+                    hourly.joinToString(",")
+                } else {
+                    ""
+                },
                 if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
                     minutely.joinToString(",")
                 } else {
@@ -307,17 +198,28 @@ class OpenMeteoService @Inject constructor(
                 } else {
                     ""
                 },
-                forecastDays = 2, // In case current + 2 hours overlap two days
-                pastDays = 0,
+                forecastDays = 16,
+                pastDays = 1,
                 windspeedUnit = "ms"
             ).onErrorResumeNext {
-                if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                if (it is HttpException &&
+                    it.response()?.errorBody()?.string()
+                        ?.contains("No data is available for this location") == true
+                ) {
+                    // Happens when user choose a model that doesn’t cover their location
+                    Observable.error(InvalidLocationException())
+                } else {
+                    if (requestedFeatures.contains(SourceFeature.FEATURE_FORECAST)) {
+                        failedFeatures.add(SourceFeature.FEATURE_FORECAST)
+                    }
+                    if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
+                        failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
+                    }
+                    if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+                        failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                    }
+                    Observable.just(OpenMeteoWeatherResult())
                 }
-                if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
-                    failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
-                }
-                Observable.just(OpenMeteoWeatherResult())
             }
         } else {
             Observable.just(OpenMeteoWeatherResult())
@@ -327,12 +229,26 @@ class OpenMeteoService @Inject constructor(
             requestedFeatures.contains(SourceFeature.FEATURE_POLLEN)
         ) {
             val airQualityHourly = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-                airQualityHourly
+                arrayOf(
+                    "pm10",
+                    "pm2_5",
+                    "carbon_monoxide",
+                    "nitrogen_dioxide",
+                    "sulphur_dioxide",
+                    "ozone"
+                )
             } else {
                 arrayOf()
             }
             val pollenHourly = if (requestedFeatures.contains(SourceFeature.FEATURE_POLLEN)) {
-                pollenHourly
+                arrayOf(
+                    "alder_pollen",
+                    "birch_pollen",
+                    "grass_pollen",
+                    "mugwort_pollen",
+                    "olive_pollen",
+                    "ragweed_pollen"
+                )
             } else {
                 arrayOf()
             }
@@ -355,27 +271,42 @@ class OpenMeteoService @Inject constructor(
         } else {
             Observable.just(OpenMeteoAirQualityResult())
         }
-
         return Observable.zip(
-            weather.onErrorResumeNext {
-                if (it is HttpException &&
-                    it.response()?.errorBody()?.string()
-                        ?.contains("No data is available for this location") == true
-                ) {
-                    // Happens when user choose a model that doesn’t cover their location
-                    Observable.error(InvalidLocationException())
-                } else {
-                    Observable.error(it)
-                }
-            },
+            weather,
             aqi
         ) { weatherResult: OpenMeteoWeatherResult, airQualityResult: OpenMeteoAirQualityResult ->
-            convertSecondary(
-                weatherResult,
-                airQualityResult.hourly,
-                requestedFeatures,
-                context,
-                failedFeatures
+            WeatherWrapper(
+                dailyForecast = if (requestedFeatures.contains(SourceFeature.FEATURE_FORECAST)) {
+                    getDailyList(weatherResult.daily, location)
+                } else {
+                    null
+                },
+                hourlyForecast = if (requestedFeatures.contains(SourceFeature.FEATURE_FORECAST)) {
+                    getHourlyList(context, weatherResult.hourly)
+                } else {
+                    null
+                },
+                current = if (requestedFeatures.contains(SourceFeature.FEATURE_FORECAST)) {
+                    getCurrent(weatherResult.current, context)
+                } else {
+                    null
+                },
+                airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
+                    getAirQuality(airQualityResult.hourly)
+                } else {
+                    null
+                },
+                pollen = if (requestedFeatures.contains(SourceFeature.FEATURE_POLLEN)) {
+                    getPollen(airQualityResult.hourly)
+                } else {
+                    null
+                },
+                minutelyForecast = if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
+                    getMinutelyList(weatherResult.minutelyFifteen)
+                } else {
+                    null
+                },
+                failedFeatures = failedFeatures
             )
         }
     }

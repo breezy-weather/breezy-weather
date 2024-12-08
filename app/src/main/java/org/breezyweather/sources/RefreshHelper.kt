@@ -31,7 +31,7 @@ import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Base
 import breezyweather.domain.weather.model.Weather
 import breezyweather.domain.weather.model.WeatherCode
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.rx3.awaitFirstOrElse
 import kotlinx.serialization.MissingFieldException
@@ -50,7 +50,6 @@ import org.breezyweather.common.exceptions.MissingPermissionLocationException
 import org.breezyweather.common.exceptions.NoNetworkException
 import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.exceptions.SourceNotInstalledException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getFormattedDate
@@ -308,31 +307,11 @@ class RefreshHelper @Inject constructor(
                 )
             }
 
-            val service = sourceManager.getMainWeatherSource(location.weatherSource)
-            if (service == null) {
-                return WeatherResult(
-                    location.weather,
-                    listOf(
-                        RefreshError(RefreshErrorType.SOURCE_NOT_INSTALLED, location.weatherSource)
-                    )
-                )
-            }
-
-            // Debug source is not online
-            if (service is HttpSource && !context.isOnline()) {
-                return WeatherResult(
-                    location.weather,
-                    listOf(
-                        RefreshError(RefreshErrorType.NETWORK_UNAVAILABLE)
-                    )
-                )
-            }
-
-            // Group data requested to secondary sources by source
-            val mainFeaturesIgnored: MutableList<SourceFeature> = mutableListOf()
-            val secondarySources: MutableMap<String, MutableList<SourceFeature>> = mutableMapOf()
+            // Group data requested to sources by source
+            val featuresBySources: MutableMap<String, MutableList<SourceFeature>> = mutableMapOf()
             with(location) {
                 listOf(
+                    Pair(weatherSource, SourceFeature.FEATURE_FORECAST),
                     Pair(currentSource, SourceFeature.FEATURE_CURRENT),
                     Pair(airQualitySource, SourceFeature.FEATURE_AIR_QUALITY),
                     Pair(pollenSource, SourceFeature.FEATURE_POLLEN),
@@ -340,266 +319,104 @@ class RefreshHelper @Inject constructor(
                     Pair(alertSource, SourceFeature.FEATURE_ALERT),
                     Pair(normalsSource, SourceFeature.FEATURE_NORMALS)
                 ).forEach {
-                    if (!it.first.isNullOrEmpty() && it.first != weatherSource) {
-                        if (secondarySources.containsKey(it.first)) {
-                            secondarySources[it.first]!!.add(it.second)
+                    if (!it.first.isNullOrEmpty()) {
+                        if (featuresBySources.containsKey(it.first)) {
+                            featuresBySources[it.first]!!.add(it.second)
                         } else {
-                            secondarySources[it.first!!] = mutableListOf(it.second)
-                        }
-                        mainFeaturesIgnored.add(it.second)
-                    } else {
-                        if (!service.isFeatureSupportedInMainForLocation(location, it.second)) {
-                            mainFeaturesIgnored.add(it.second)
+                            featuresBySources[it.first!!] = mutableListOf(it.second)
                         }
                     }
                 }
             }
 
-            // MAIN SOURCE
+            // Always update refresh time displayed to the user, even if just re-using cached data
             val base = location.weather?.base?.copy(
                 refreshTime = Date()
             ) ?: Base(
                 refreshTime = Date()
             )
-            var isMainDataValid = false
+
             val languageUpdateTime = SettingsManager.getInstance(context).languageUpdateLastTimestamp
-            if (location.weather?.base != null) {
-                isMainDataValid = isWeatherDataStillValid(
-                    location,
-                    isRestricted = !BreezyWeather.instance.debugMode &&
-                        service is ConfigurableSource &&
-                        service.isRestricted,
-                    minimumTime = languageUpdateTime
-                )
-                // If main data is still valid, let’s check if there are features inside main
-                // that requires a refresh
-                if (isMainDataValid) {
-                    service.supportedFeaturesInMain.forEach {
-                        // If the feature is not requested, nothing to process
-                        if (!mainFeaturesIgnored.contains(it)) {
-                            if (
-                                !isWeatherDataStillValid(
-                                    location,
-                                    it,
-                                    isRestricted = !BreezyWeather.instance.debugMode &&
-                                        service is ConfigurableSource &&
-                                        service.isRestricted,
-                                    minimumTime = languageUpdateTime
-                                )
-                            ) {
-                                isMainDataValid = false
-                            } else {
-                                LogHelper.log(msg = "${it.id} feature from main source is still valid")
-                            }
-                        }
-                    }
-                }
-
-                // If there are no secondary sources to process, let’s just return the same weather
-                if (isMainDataValid && mainFeaturesIgnored.isEmpty()) {
-                    LogHelper.log(msg = "Main weather data is still valid")
-                    val newWeather = location.weather!!.copy(
-                        base = base
-                    )
-                    weatherRepository.insert(location, newWeather)
-                    return WeatherResult(newWeather)
-                }
-            }
-
             val locationParameters = location.parameters.toMutableMap()
-
-            var mainWeather = if (isMainDataValid) {
-                LogHelper.log(msg = "Main weather data is still valid")
-                location.weather!!.toWeatherWrapper()
-            } else {
-                try {
-                    if (service is LocationParametersSource &&
-                        service.needsLocationParametersRefresh(location, coordinatesChanged)
-                    ) {
-                        locationParameters[service.id] = buildMap {
-                            if (locationParameters.getOrElse(service.id) { null } != null) {
-                                putAll(locationParameters[service.id]!!)
-                            }
-                            putAll(
-                                service
-                                    .requestLocationParameters(context, location.copy())
-                                    .awaitFirstOrElse {
-                                        throw WeatherException()
-                                    }
-                            )
-                        }
-                    }
-                    service
-                        .requestWeather(
-                            context,
-                            location.copy(parameters = locationParameters),
-                            mainFeaturesIgnored
-                        ).awaitFirstOrElse {
-                            throw WeatherException()
-                        }
-                } catch (e: Throwable) {
-                    return WeatherResult(
-                        location.weather,
-                        listOf(
-                            RefreshError(
-                                getRequestErrorType(
-                                    context,
-                                    e,
-                                    RefreshErrorType.WEATHER_REQ_FAILED
-                                ),
-                                service.name
-                            )
-                        )
-                    )
-                }
-            }
             val errors = mutableListOf<RefreshError>()
-            var airQualityFailedInMain = false
-            var pollenFailedInMain = false
-            mainWeather.failedFeatures?.forEach {
-                errors.add(
-                    RefreshError(
-                        RefreshErrorType.FAILED_FEATURE,
-                        service.name,
-                        it
-                    )
-                )
-                when (it) {
-                    SourceFeature.FEATURE_AIR_QUALITY -> {
-                        airQualityFailedInMain = true
-                    }
-                    SourceFeature.FEATURE_POLLEN -> {
-                        pollenFailedInMain = true
-                    }
-                    SourceFeature.FEATURE_MINUTELY -> {
-                        mainWeather = mainWeather.copy(minutelyForecast = getMinutelyFromWeather(location.weather))
-                    }
-                    SourceFeature.FEATURE_ALERT -> {
-                        mainWeather = mainWeather.copy(alertList = getAlertsFromWeather(location.weather))
-                    }
-                    SourceFeature.FEATURE_NORMALS -> {
-                        mainWeather = mainWeather.copy(normals = getNormalsFromWeather(location))
-                    }
-                    else -> {}
-                }
-            }
-            var currentUpdateTime = if (
-                service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_CURRENT) &&
-                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_CURRENT) &&
-                !errors.any { it.feature == SourceFeature.FEATURE_CURRENT }
-            ) {
-                Date()
-            } else {
-                base.currentUpdateTime
-            }
-            var airQualityUpdateTime = if (
-                service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_AIR_QUALITY) &&
-                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_AIR_QUALITY) &&
-                !errors.any { it.feature == SourceFeature.FEATURE_AIR_QUALITY }
-            ) {
-                Date()
-            } else {
-                base.airQualityUpdateTime
-            }
-            var pollenUpdateTime = if (
-                service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_POLLEN) &&
-                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_POLLEN) &&
-                !errors.any { it.feature == SourceFeature.FEATURE_POLLEN }
-            ) {
-                Date()
-            } else {
-                base.pollenUpdateTime
-            }
-            var minutelyUpdateTime = if (
-                service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_MINUTELY) &&
-                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_MINUTELY) &&
-                !errors.any { it.feature == SourceFeature.FEATURE_MINUTELY }
-            ) {
-                Date()
-            } else {
-                base.minutelyUpdateTime
-            }
-            var alertsUpdateTime = if (
-                service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_ALERT) &&
-                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_ALERT) &&
-                !errors.any { it.feature == SourceFeature.FEATURE_ALERT }
-            ) {
-                Date()
-            } else {
-                base.alertsUpdateTime
-            }
-            var normalsUpdateTime = if (
-                service.supportedFeaturesInMain.contains(SourceFeature.FEATURE_NORMALS) &&
-                !mainFeaturesIgnored.contains(SourceFeature.FEATURE_NORMALS) &&
-                !errors.any { it.feature == SourceFeature.FEATURE_NORMALS }
-            ) {
-                Date()
-            } else {
-                base.normalsUpdateTime
-            }
 
             // COMPLETE BACK TO YESTERDAY 00:00 MAX
             // TODO: Use Calendar to handle DST
             val yesterdayMidnight = Date(Date().time - 1.days.inWholeMilliseconds)
                 .getFormattedDate("yyyy-MM-dd", location)
                 .toDateNoHour(location.javaTimeZone)!!
-            val mainWeatherCompleted = completeMainWeatherWithPreviousData(
-                mainWeather,
-                location.weather,
-                yesterdayMidnight
-            )
-
-            // SECONDARY SOURCES
-            val secondaryWeatherWrapper = if (secondarySources.isNotEmpty()) {
-                val secondarySourceCalls = mutableMapOf<String, SecondaryWeatherWrapper?>()
-                secondarySources
+            var mainUpdateTime = base.mainUpdateTime
+            var currentUpdateTime = base.currentUpdateTime
+            var airQualityUpdateTime = base.airQualityUpdateTime
+            var pollenUpdateTime = base.pollenUpdateTime
+            var minutelyUpdateTime = base.minutelyUpdateTime
+            var alertsUpdateTime = base.alertsUpdateTime
+            var normalsUpdateTime = base.normalsUpdateTime
+            val weatherWrapper = if (featuresBySources.isNotEmpty()) {
+                val sourceCalls = mutableMapOf<String, WeatherWrapper?>()
+                featuresBySources
                     .forEach { entry ->
-                        val secondaryService = sourceManager.getSecondaryWeatherSource(entry.key)
-                        if (secondaryService == null) {
+                        val service = sourceManager.getWeatherSource(entry.key)
+                        if (service == null) {
                             errors.add(RefreshError(RefreshErrorType.SOURCE_NOT_INSTALLED, entry.key))
                         } else {
-                            val featuresToUpdate = entry.value.filter {
-                                !isWeatherDataStillValid(
-                                    location,
-                                    it,
-                                    isRestricted = !BreezyWeather.instance.debugMode &&
-                                        secondaryService is ConfigurableSource &&
-                                        secondaryService.isRestricted,
-                                    minimumTime = languageUpdateTime
+                            // Debug source is not online
+                            if (service is HttpSource && !context.isOnline()) {
+                                return WeatherResult(
+                                    location.weather,
+                                    listOf(
+                                        RefreshError(RefreshErrorType.NETWORK_UNAVAILABLE)
+                                    )
                                 )
                             }
-                            if (featuresToUpdate.isEmpty()) {
-                                // Setting to null will make it use previous data
-                                secondarySourceCalls[entry.key] = null
-                            } else {
-                                //
-                                entry.value.forEach {
-                                    // We could also check for isFeatureSupportedForLocation
-                                    // but it’s probably best to let the source decide if it wants
-                                    // to throw the error itself
-                                    if (!secondaryService.supportedFeaturesInSecondary.contains(it)) {
-                                        errors.add(
-                                            RefreshError(
-                                                RefreshErrorType.UNSUPPORTED_FEATURE,
-                                                secondaryService.name
-                                            )
-                                        )
+
+                            val featuresToUpdate = entry.value
+                                .filter {
+                                    // Remove sources that no longer supports the feature
+                                    if (!service.supportedFeatures.containsKey(it)) {
+                                        errors.add(RefreshError(RefreshErrorType.UNSUPPORTED_FEATURE, entry.key))
+                                        false
+                                    } else {
+                                        true
                                     }
                                 }
-                                secondarySourceCalls[entry.key] = try {
-                                    if (secondaryService is LocationParametersSource &&
-                                        secondaryService.needsLocationParametersRefresh(
+                                .filter {
+                                    // Remove sources that no longer supports the feature for that location
+                                    if (!service.isFeatureSupportedForLocation(location, it)) {
+                                        errors.add(RefreshError(RefreshErrorType.UNSUPPORTED_FEATURE, entry.key))
+                                        false
+                                    } else {
+                                        true
+                                    }
+                                }
+                                .filter {
+                                    !isWeatherDataStillValid(
+                                        location,
+                                        it,
+                                        isRestricted = !BreezyWeather.instance.debugMode &&
+                                            service is ConfigurableSource &&
+                                            service.isRestricted,
+                                        minimumTime = languageUpdateTime
+                                    )
+                                }
+                            if (featuresToUpdate.isEmpty()) {
+                                // Setting to null will make it use previous data
+                                sourceCalls[entry.key] = null
+                            } else {
+                                sourceCalls[entry.key] = try {
+                                    if (service is LocationParametersSource &&
+                                        service.needsLocationParametersRefresh(
                                             location,
                                             coordinatesChanged,
-                                            entry.value
+                                            featuresToUpdate
                                         )
                                     ) {
-                                        locationParameters[secondaryService.id] = buildMap {
-                                            if (locationParameters.getOrElse(secondaryService.id) { null } != null) {
-                                                putAll(locationParameters[secondaryService.id]!!)
+                                        locationParameters[service.id] = buildMap {
+                                            if (locationParameters.getOrElse(service.id) { null } != null) {
+                                                putAll(locationParameters[service.id]!!)
                                             }
                                             putAll(
-                                                secondaryService
+                                                service
                                                     .requestLocationParameters(context, location.copy())
                                                     .awaitFirstOrElse {
                                                         throw WeatherException()
@@ -607,34 +424,41 @@ class RefreshHelper @Inject constructor(
                                             )
                                         }
                                     }
-                                    secondaryService
-                                        .requestSecondaryWeather(
+                                    service
+                                        .requestWeather(
                                             context,
                                             location.copy(parameters = locationParameters),
-                                            entry.value
-                                        )
-                                        .awaitFirstOrElse {
-                                            throw SecondaryWeatherException()
+                                            featuresToUpdate
+                                        ).awaitFirstOrElse {
+                                            featuresToUpdate.forEach {
+                                                errors.add(
+                                                    RefreshError(
+                                                        RefreshErrorType.FAILED_FEATURE,
+                                                        entry.key,
+                                                        it
+                                                    )
+                                                )
+                                            }
+                                            null
                                         }
                                 } catch (e: Throwable) {
                                     e.printStackTrace()
-                                    errors.add(
-                                        RefreshError(
-                                            getRequestErrorType(
-                                                context,
-                                                e,
-                                                RefreshErrorType.SECONDARY_WEATHER_FAILED
-                                            ),
-                                            secondaryService.name
+                                    featuresToUpdate.forEach {
+                                        errors.add(
+                                            RefreshError(
+                                                RefreshErrorType.FAILED_FEATURE,
+                                                entry.key,
+                                                it
+                                            )
                                         )
-                                    )
+                                    }
                                     null
                                 }
                             }
                         }
                     }
 
-                for ((k, v) in secondarySourceCalls) {
+                for ((k, v) in sourceCalls) {
                     v?.failedFeatures?.forEach {
                         errors.add(
                             RefreshError(
@@ -647,153 +471,176 @@ class RefreshHelper @Inject constructor(
                 }
 
                 /**
-                 * Make sure we return data from the correct secondary source
+                 * Make sure we return data from the correct source
                  */
-                SecondaryWeatherWrapper(
-                    current = if (!location.currentSource.isNullOrEmpty() &&
-                        location.currentSource != location.weatherSource
-                    ) {
+                WeatherWrapper(
+                    dailyForecast = if (location.weatherSource.isNotEmpty()) {
+                        if (errors.any {
+                                it.feature == SourceFeature.FEATURE_FORECAST &&
+                                    it.source == location.weatherSource
+                            }
+                        ) {
+                            null
+                        } else {
+                            sourceCalls.getOrElse(location.weatherSource) { null }?.dailyForecast?.let {
+                                if (it.isEmpty()) {
+                                    errors.add(
+                                        RefreshError(
+                                            RefreshErrorType.FAILED_FEATURE,
+                                            location.weatherSource,
+                                            SourceFeature.FEATURE_FORECAST
+                                        )
+                                    )
+                                    null
+                                } else {
+                                    mainUpdateTime = Date()
+                                    it
+                                }
+                            }
+                        }
+                    } else {
+                        null
+                    } ?: location.weather?.toDailyWrapperList(yesterdayMidnight),
+                    hourlyForecast = if (location.weatherSource.isNotEmpty()) {
+                        if (errors.any {
+                                it.feature == SourceFeature.FEATURE_FORECAST &&
+                                    it.source == location.weatherSource
+                            }
+                        ) {
+                            null
+                        } else {
+                            sourceCalls.getOrElse(location.weatherSource) { null }?.hourlyForecast
+                        }
+                    } else {
+                        null
+                    } ?: location.weather?.toHourlyWrapperList(yesterdayMidnight),
+                    current = if (!location.currentSource.isNullOrEmpty()) {
                         if (errors.any {
                                 it.feature == SourceFeature.FEATURE_CURRENT &&
                                     it.source == location.currentSource!!
                             }
                         ) {
-                            null // Don't fallback to old current, we will use forecast instead later
+                            null
                         } else {
-                            secondarySourceCalls.getOrElse(location.currentSource!!) { null }?.current?.let {
+                            sourceCalls.getOrElse(location.currentSource!!) { null }?.current?.let {
                                 currentUpdateTime = Date()
                                 it
-                            } // Don't fallback to old current, we will use forecast instead later
+                            }
                         }
                     } else {
                         null
-                    },
-                    airQuality = if (!location.airQualitySource.isNullOrEmpty() &&
-                        location.airQualitySource != location.weatherSource
-                    ) {
+                    }, // Doesn't fallback to old current, as we will use forecast instead later
+                    airQuality = if (!location.airQualitySource.isNullOrEmpty()) {
                         if (errors.any {
                                 it.feature == SourceFeature.FEATURE_AIR_QUALITY &&
                                     it.source == location.airQualitySource!!
                             }
                         ) {
-                            getAirQualityWrapperFromWeather(location.weather, yesterdayMidnight)
+                            null
                         } else {
-                            secondarySourceCalls.getOrElse(location.airQualitySource!!) { null }?.airQuality?.let {
+                            sourceCalls.getOrElse(location.airQualitySource!!) { null }?.airQuality?.let {
                                 airQualityUpdateTime = Date()
                                 it
-                            } ?: getAirQualityWrapperFromWeather(location.weather, yesterdayMidnight)
+                            }
                         }
                     } else {
-                        if (airQualityFailedInMain) {
-                            getAirQualityWrapperFromWeather(location.weather, yesterdayMidnight)
-                        } else {
-                            null
-                        }
-                    },
-                    pollen = if (!location.pollenSource.isNullOrEmpty() &&
-                        location.pollenSource != location.weatherSource
-                    ) {
+                        null
+                    } ?: location.weather?.toAirQualityWrapperList(yesterdayMidnight),
+                    pollen = if (!location.pollenSource.isNullOrEmpty()) {
                         if (errors.any {
                                 it.feature == SourceFeature.FEATURE_POLLEN &&
                                     it.source == location.pollenSource!!
                             }
                         ) {
-                            getPollenWrapperFromWeather(location.weather, yesterdayMidnight)
+                            null
                         } else {
-                            secondarySourceCalls.getOrElse(location.pollenSource!!) { null }?.pollen?.let {
+                            sourceCalls.getOrElse(location.pollenSource!!) { null }?.pollen?.let {
                                 pollenUpdateTime = Date()
                                 it
-                            } ?: getPollenWrapperFromWeather(location.weather, yesterdayMidnight)
+                            }
                         }
                     } else {
-                        if (pollenFailedInMain) {
-                            getPollenWrapperFromWeather(location.weather, yesterdayMidnight)
-                        } else {
-                            null
-                        }
-                    },
-                    minutelyForecast = if (!location.minutelySource.isNullOrEmpty() &&
-                        location.minutelySource != location.weatherSource
-                    ) {
+                        null
+                    } ?: location.weather?.toPollenWrapperList(yesterdayMidnight),
+                    minutelyForecast = if (!location.minutelySource.isNullOrEmpty()) {
                         if (errors.any {
                                 it.feature == SourceFeature.FEATURE_MINUTELY &&
                                     it.source == location.minutelySource!!
                             }
                         ) {
-                            getMinutelyFromWeather(location.weather)
+                            null
                         } else {
-                            secondarySourceCalls.getOrElse(location.minutelySource!!) { null }?.minutelyForecast?.let {
+                            sourceCalls.getOrElse(location.minutelySource!!) { null }?.minutelyForecast?.let {
                                 minutelyUpdateTime = Date()
                                 it
-                            } ?: getMinutelyFromWeather(location.weather)
+                            }
                         }
                     } else {
                         null
-                    },
-                    alertList = if (!location.alertSource.isNullOrEmpty() &&
-                        location.alertSource != location.weatherSource
-                    ) {
+                    } ?: location.weather?.toMinutelyWrapper(),
+                    alertList = if (!location.alertSource.isNullOrEmpty()) {
                         if (errors.any {
                                 it.feature == SourceFeature.FEATURE_ALERT &&
                                     it.source == location.alertSource!!
                             }
                         ) {
-                            getAlertsFromWeather(location.weather)
+                            null
                         } else {
-                            secondarySourceCalls.getOrElse(location.alertSource!!) { null }?.alertList?.let {
+                            sourceCalls.getOrElse(location.alertSource!!) { null }?.alertList?.let {
                                 alertsUpdateTime = Date()
                                 it
-                            } ?: getAlertsFromWeather(location.weather)
+                            }
                         }
                     } else {
                         null
-                    },
-                    normals = if (!location.normalsSource.isNullOrEmpty() &&
-                        location.normalsSource != location.weatherSource
-                    ) {
+                    } ?: location.weather?.toAlertsWrapper(),
+                    normals = if (!location.normalsSource.isNullOrEmpty()) {
                         if (errors.any {
                                 it.feature == SourceFeature.FEATURE_NORMALS &&
                                     it.source == location.normalsSource!!
                             }
                         ) {
-                            getNormalsFromWeather(location)
+                            null
                         } else {
-                            secondarySourceCalls.getOrElse(location.normalsSource!!) { null }?.normals?.let {
+                            sourceCalls.getOrElse(location.normalsSource!!) { null }?.normals?.let {
                                 normalsUpdateTime = Date()
                                 it
-                            } ?: getNormalsFromWeather(location)
+                            }
                         }
                     } else {
                         null
-                    }
+                    } ?: getNormalsFromWeather(location)
                 )
             } else {
-                null
+                return WeatherResult(
+                    location.weather,
+                    listOf(RefreshError(RefreshErrorType.INVALID_LOCATION))
+                )
             }
 
-            /**
-             * Most sources starts hourly forecast at current time (13:00 for example)
-             * while some complementary sources starts at 00:00.
-             * Some others have a 3-hourly starting from day 3+
-             * Only relying on the main source leads to missing hourly data that is used for daily
-             * computation (for example, daily air quality and pollen)
-             * For this reason, we complete missing data earlier for the secondary data
-             */
-            val secondaryWeatherWrapperCompleted = completeMissingSecondaryWeatherDailyData(
-                secondaryWeatherWrapper,
-                location
+            // Creates hours/days back to yesterday 00:00 if they are missing from the new refresh
+            val weatherWrapperCompleted = completeNewWeatherWithPreviousData(
+                weatherWrapper,
+                location.weather,
+                yesterdayMidnight
             )
 
+            // TODO: Everything below to be rewritten
+            // TODO: Delete weather_message_secondary_data_refresh_failed
+            // TODO: Rename location.weatherSource -> location.forecastSource
+            // TODO: Rename location.mainUpdateTime -> location.forecastUpdateTime
+            // TODO: Rename everything that contains "main" or "secondary" terms
             val hourlyMissingComputed = computeMissingHourlyData(
-                mergeSecondaryWeatherDataIntoHourlyWrapperList(
-                    mainWeatherCompleted.hourlyForecast,
-                    secondaryWeatherWrapperCompleted
+                mergeAirQualityAndPollenIntoHourlyList(
+                    weatherWrapperCompleted.hourlyForecast,
+                    weatherWrapperCompleted
                 )
-            )
+            ) // TODO: Move this into completeHourlyListFromDailyList()
+            // TODO: and make completeDailyListFromHourlyList() bases itself from weatherWrapper.pollen/.airQuality instead
             val dailyForecast = completeDailyListFromHourlyList(
-                mergeSecondaryWeatherDataIntoDailyList(
-                    mainWeatherCompleted.dailyForecast,
-                    secondaryWeatherWrapperCompleted
+                mergeWeatherDataIntoDailyList(
+                    weatherWrapperCompleted.dailyForecast?.map { it.toDaily() },
+                    weatherWrapperCompleted
                 ),
                 hourlyMissingComputed,
                 location
@@ -815,7 +662,7 @@ class RefreshHelper @Inject constructor(
 
             val weather = Weather(
                 base = base.copy(
-                    mainUpdateTime = if (isMainDataValid) base.mainUpdateTime else Date(),
+                    mainUpdateTime = mainUpdateTime,
                     currentUpdateTime = currentUpdateTime,
                     airQualityUpdateTime = airQualityUpdateTime,
                     pollenUpdateTime = pollenUpdateTime,
@@ -824,19 +671,19 @@ class RefreshHelper @Inject constructor(
                     normalsUpdateTime = normalsUpdateTime
                 ),
                 current = completeCurrentFromSecondaryData(
-                    secondaryWeatherWrapper?.current ?: mainWeatherCompleted.current,
+                    weatherWrapper?.current ?: weatherWrapperCompleted.current,
                     currentHour,
                     currentDay,
-                    secondaryWeatherWrapperCompleted?.airQuality?.current,
+                    weatherWrapperCompleted.airQuality?.current,
                     location
                 ),
-                normals = secondaryWeatherWrapper?.normals
-                    ?: completeNormalsFromDaily(mainWeatherCompleted.normals, dailyForecast),
+                normals = weatherWrapper.normals
+                    ?: completeNormalsFromDaily(weatherWrapperCompleted.normals, dailyForecast),
                 dailyForecast = dailyForecast,
                 hourlyForecast = hourlyForecast,
-                minutelyForecast = secondaryWeatherWrapper?.minutelyForecast
-                    ?: mainWeatherCompleted.minutelyForecast ?: emptyList(),
-                alertList = (secondaryWeatherWrapper?.alertList ?: mainWeatherCompleted.alertList)?.filter {
+                minutelyForecast = weatherWrapper.minutelyForecast
+                    ?: weatherWrapperCompleted.minutelyForecast ?: emptyList(),
+                alertList = (weatherWrapper.alertList ?: weatherWrapperCompleted.alertList)?.filter {
                     // Don’t save past alerts in database
                     it.endDate == null || it.endDate!!.time > Date().time
                 } ?: emptyList()
@@ -885,7 +732,6 @@ class RefreshHelper @Inject constructor(
             is MissingPermissionLocationBackgroundException ->
                 RefreshErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING
             is ReverseGeocodingException -> RefreshErrorType.REVERSE_GEOCODING_FAILED
-            is SecondaryWeatherException -> RefreshErrorType.SECONDARY_WEATHER_FAILED
             is MissingFieldException, is SerializationException, is ParsingException, is ParseException -> {
                 e.printStackTrace()
                 RefreshErrorType.PARSING_ERROR

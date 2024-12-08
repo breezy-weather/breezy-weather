@@ -53,7 +53,6 @@ data class Hourly(
         precipitation = this.precipitation,
         precipitationProbability = this.precipitationProbability,
         wind = this.wind,
-        airQuality = this.airQuality,
         uV = this.uV,
         relativeHumidity = this.relativeHumidity,
         dewPoint = this.dewPoint,

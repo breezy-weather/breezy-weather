@@ -148,6 +148,7 @@
     <string name="uv_index_8_10">Très élevé</string>
     <string name="uv_index_11">Extrême</string>
 
+    <string name="forecast">Prévisions</string>
     <string name="daily_forecast">Prévisions quotidiennes</string>
     <string name="hourly_forecast">Prévisions heure par heure</string>
     <string name="current_weather">Météo actuelle</string>

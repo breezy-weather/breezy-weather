@@ -19,6 +19,7 @@ package breezyweather.domain.source
 enum class SourceFeature(
     val id: String,
 ) {
+    FEATURE_FORECAST("forecast"),
     FEATURE_CURRENT("current"),
     FEATURE_AIR_QUALITY("airQuality"),
     FEATURE_POLLEN("pollen"),

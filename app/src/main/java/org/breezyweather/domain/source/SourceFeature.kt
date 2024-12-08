@@ -5,6 +5,7 @@ import org.breezyweather.R
 
 val SourceFeature.resourceName: Int?
     get() = when (this) {
+        SourceFeature.FEATURE_FORECAST -> R.string.forecast
         SourceFeature.FEATURE_CURRENT -> R.string.current_weather
         SourceFeature.FEATURE_AIR_QUALITY -> R.string.air_quality
         SourceFeature.FEATURE_POLLEN -> R.string.pollen

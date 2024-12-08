@@ -307,7 +307,8 @@ data class Location(
         }
     }
 
-    val currentSourceNotNull: String
+    // TODO: Might be useful for migration
+    /*val currentSourceNotNull: String
         get() = if (currentSource.isNullOrEmpty()) weatherSource else currentSource
     val airQualitySourceNotNull: String
         get() = if (airQualitySource.isNullOrEmpty()) weatherSource else airQualitySource
@@ -318,7 +319,7 @@ data class Location(
     val alertSourceNotNull: String
         get() = if (alertSource.isNullOrEmpty()) weatherSource else alertSource
     val normalsSourceNotNull: String
-        get() = if (normalsSource.isNullOrEmpty()) weatherSource else normalsSource
+        get() = if (normalsSource.isNullOrEmpty()) weatherSource else normalsSource*/
 
     companion object {
 
