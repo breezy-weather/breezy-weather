@@ -715,4 +715,5 @@
     <string name="dialog_refresh_error_details_title">Абнавіць памылкі</string>
     <string name="dialog_refresh_error_details_content">Націсніце на паведамленне пра памылку са знакам пытання, каб атрымаць дадатковую дапамогу.</string>
     <string name="message_multiple_refresh_errors">Абнаўленне завершана з памылкамі</string>
+    <string name="common_weather_text_tornado">Тарнада</string>
 </resources>
