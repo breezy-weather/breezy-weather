@@ -3,6 +3,10 @@
 **Improvements and fixes**
 - Fix being notified of an older stable version when running a pre-release version
 
+**Translations**
+- Translation added for Irish (Aindriú Mac Giolla Eoin)
+- Translations updated
+
 
 # Version 5.3.0 (2024-12-07)
 
@@ -86,6 +90,9 @@
 - Miscellaneous
   - Add translation for a few source names and privacy policies
   - Location presets updated for some countries following the addition of many weather sources (@chunshek)
+
+**Translations**
+- Translations updated
 
 **Technical**
 - Update to targetSdk 35
