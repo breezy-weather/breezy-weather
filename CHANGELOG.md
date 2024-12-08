@@ -1,5 +1,7 @@
 # Version 5.3.1 (not yet released)
 
+**Improvements and fixes**
+- Fix being notified of an older stable version when running a pre-release version
 
 
 # Version 5.3.0 (2024-12-07)

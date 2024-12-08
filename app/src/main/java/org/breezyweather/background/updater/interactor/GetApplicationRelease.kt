@@ -59,6 +59,10 @@ class GetApplicationRelease @Inject constructor(
         val oldSemVer = oldVersion.split(".").map { it.toInt() }
 
         oldSemVer.mapIndexed { index, i ->
+            // Useful in case of pre-releases, where the newer stable version is older than the pre-release
+            if (newSemVer[index] < i) {
+                return false
+            }
             if (newSemVer[index] > i) {
                 return true
             }
