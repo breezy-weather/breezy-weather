@@ -3,6 +3,9 @@
 **Improvements and fixes**
 - Fix being notified of an older stable version when running a pre-release version
 
+**Weather sources**
+- [BrightSky] Fix not working when using it as a secondary current source
+
 **Translations**
 - Translation added for Irish (Aindriú Mac Giolla Eoin)
 - Translations updated

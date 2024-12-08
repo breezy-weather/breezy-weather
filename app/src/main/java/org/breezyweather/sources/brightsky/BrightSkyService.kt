@@ -165,7 +165,7 @@ class BrightSkyService @Inject constructor(
         requestedFeatures: List<SourceFeature>,
     ): Observable<SecondaryWeatherWrapper> {
         val failedFeatures = mutableListOf<SourceFeature>()
-        val currentWeather = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val currentWeather = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
             mApi.getCurrentWeather(
                 location.latitude,
                 location.longitude
