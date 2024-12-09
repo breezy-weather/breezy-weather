@@ -236,7 +236,7 @@ fun convert(
     dailyResult: List<JmaDailyResult>,
     hourlyResult: JmaHourlyResult,
     alertResult: JmaAlertResult,
-    ignoreFeatures: List<SourceFeature>,
+    requestedFeatures: List<SourceFeature>,
     failedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     val parameters = location.parameters.getOrElse("jma") { null }
@@ -256,7 +256,7 @@ fun convert(
 
     return WeatherWrapper(
         current = getCurrent(context, currentResult, bulletinResult),
-        normals = if (!ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
+        normals = if (SourceFeature.NORMALS in requestedFeatures) {
             getNormals(dailyResult, weekAreaAmedas)
         } else {
             null

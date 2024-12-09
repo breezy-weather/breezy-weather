@@ -30,7 +30,7 @@ import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.pagasa.json.PagasaCurrentResult
 import org.breezyweather.sources.pagasa.json.PagasaHourlyResult
 import retrofit2.Retrofit
@@ -41,14 +41,13 @@ import javax.inject.Named
 class PagasaService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, LocationParametersSource {
+) : HttpSource(), WeatherSource, LocationParametersSource {
 
     override val id = "pagasa"
     override val name = "PAGASA (${Locale(context.currentLocale.code, "PH").displayCountry})"
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = ""
     override val color = Color.rgb(75, 196, 211)
-    override val weatherAttribution = "Philippine Atmospheric, Geophysical and Astronomical Services Administration"
 
     private val mApi by lazy {
         client
@@ -57,11 +56,13 @@ class PagasaService @Inject constructor(
             .create(PagasaApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf<SourceFeature>()
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to "Philippine Atmospheric, Geophysical and Astronomical Services Administration"
+    )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("PH", ignoreCase = true)
     }
@@ -69,7 +70,7 @@ class PagasaService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val station = location.parameters.getOrElse(id) { null }?.getOrElse("station") { null }
         val key = location.parameters.getOrElse(id) { null }?.getOrElse("key") { null }

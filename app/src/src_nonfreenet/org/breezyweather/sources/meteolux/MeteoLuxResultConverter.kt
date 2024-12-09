@@ -72,17 +72,17 @@ fun convert(
 fun convert(
     context: Context,
     weatherResult: MeteoLuxWeatherResult,
-    ignoreFeatures: List<SourceFeature>,
+    requestedFeatures: List<SourceFeature>,
 ): WeatherWrapper {
     return WeatherWrapper(
-        current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        current = if (SourceFeature.CURRENT in requestedFeatures) {
             getCurrent(context, weatherResult)
         } else {
             null
         },
         dailyForecast = getDailyForecast(context, weatherResult),
         hourlyForecast = getHourlyForecast(context, weatherResult),
-        alertList = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        alertList = if (SourceFeature.ALERT in requestedFeatures) {
             getAlertList(context, weatherResult)
         } else {
             null
@@ -96,12 +96,12 @@ fun convertSecondary(
     requestedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
-        current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        current = if (SourceFeature.CURRENT in requestedFeatures) {
             getCurrent(context, weatherResult)
         } else {
             null
         },
-        alertList = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        alertList = if (SourceFeature.ALERT in requestedFeatures) {
             getAlertList(context, weatherResult)
         } else {
             null

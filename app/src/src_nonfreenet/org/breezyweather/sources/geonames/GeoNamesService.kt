@@ -61,9 +61,6 @@ class GeoNamesService @Inject constructor(
         context: Context,
         query: String,
     ): Observable<List<Location>> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
         val apiKey = getApiKeyOrDefault()
         val languageCode = context.currentLocale.codeForGeonames
         return mApi.getLocation(

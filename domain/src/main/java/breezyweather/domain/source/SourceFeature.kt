@@ -19,12 +19,13 @@ package breezyweather.domain.source
 enum class SourceFeature(
     val id: String,
 ) {
-    FEATURE_CURRENT("current"),
-    FEATURE_AIR_QUALITY("airQuality"),
-    FEATURE_POLLEN("pollen"),
-    FEATURE_MINUTELY("minutely"),
-    FEATURE_ALERT("alert"),
-    FEATURE_NORMALS("normals"),
+    FORECAST("forecast"),
+    CURRENT("current"),
+    AIR_QUALITY("airQuality"),
+    POLLEN("pollen"),
+    MINUTELY("minutely"),
+    ALERT("alert"),
+    NORMALS("normals"),
     ;
 
     companion object {

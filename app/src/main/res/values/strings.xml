@@ -4,6 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="breezy_weather" translatable="false">Breezy Weather</string>
     <!-- Card names -->
+    <string name="forecast">Forecast</string>
     <string name="daily_forecast">Daily forecast</string>
     <string name="hourly_forecast">Hourly forecast</string>
     <string name="current_weather">Current weather</string>
@@ -237,6 +238,7 @@
     <string name="ceiling_short">Ceiling</string>
     <!-- Weather sources -->
     <string name="weather_data_by">Data by %s</string>
+    <string name="weather_forecast_data_by">Forecast data by %s</string>
     <string name="weather_current_data_by">Current weather data by %s</string>
     <string name="weather_air_quality_data_by">Air quality data by %s</string>
     <string name="weather_pollen_data_by">Pollen data by %s</string>

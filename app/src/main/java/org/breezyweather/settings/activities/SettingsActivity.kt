@@ -31,6 +31,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceFeature
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import org.breezyweather.common.basic.GeoActivity
@@ -295,10 +296,8 @@ class SettingsActivity : GeoActivity() {
                 WeatherSourcesSettingsScreen(
                     context = this@SettingsActivity,
                     onNavigateBack = { onBack() },
-                    configuredWorldwideSources = sourceManager.getConfiguredMainWeatherSources()
-                        .filter {
-                            it.isFeatureSupportedInMainForLocation(Location())
-                        },
+                    configuredWorldwideSources = sourceManager
+                        .getConfiguredWeatherSources(SourceFeature.FORECAST, Location()),
                     configurableSources = sourceManager.getConfigurableSources()
                 )
             }

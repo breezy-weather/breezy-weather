@@ -99,6 +99,26 @@ object Migrations {
                         // ignored
                     }
                 }
+
+                if (oldVersion < 50400) {
+                    // V5.4.0 changes the way empty source value work on locations
+                    // TODO:
+                    /*val currentSourceNotNull = if (currentSource.isNullOrEmpty()) weatherSource else currentSource
+                    val airQualitySourceNotNull = if (airQualitySource.isNullOrEmpty()) weatherSource else airQualitySource
+                    val pollenSourceNotNull = if (pollenSource.isNullOrEmpty()) weatherSource else pollenSource
+                    val minutelySourceNotNull = if (minutelySource.isNullOrEmpty()) weatherSource else minutelySource
+                    val alertSourceNotNull = if (alertSource.isNullOrEmpty()) weatherSource else alertSource
+                    val normalsSourceNotNull = if (normalsSource.isNullOrEmpty()) weatherSource else normalsSource*/
+
+                    // getWeatherSource() for each
+                    // Then check if configured + feature supported + location supports the source
+                    // Otherwise, leave empty
+
+                    // Other stuff TODO:
+                    // TODO: Delete weather_message_secondary_data_refresh_failed
+                    // TODO: Rename location.weatherSource -> location.forecastSource
+                    // TODO: Rename location.mainUpdateTime -> location.forecastUpdateTime
+                }
             }
 
             SettingsManager.getInstance(context).lastVersionCode = BuildConfig.VERSION_CODE

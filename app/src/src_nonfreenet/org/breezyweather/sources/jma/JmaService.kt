@@ -21,7 +21,6 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -32,9 +31,8 @@ import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.jma.json.JmaAlertResult
 import org.breezyweather.sources.jma.json.JmaAmedasResult
 import org.breezyweather.sources.jma.json.JmaAreasResult
@@ -56,7 +54,7 @@ import kotlin.time.Duration.Companion.hours
 class JmaService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
     override val id = "jma"
     override val name by lazy {
         if (context.currentLocale.code.startsWith("ja")) {
@@ -74,13 +72,6 @@ class JmaService @Inject constructor(
         }
     }
     override val color = Color.rgb(64, 86, 106)
-    override val weatherAttribution by lazy {
-        if (context.currentLocale.code.startsWith("ja")) {
-            "気象庁"
-        } else {
-            "Japan Meteorological Agency"
-        }
-    }
 
     private val mApi by lazy {
         client
@@ -91,15 +82,23 @@ class JmaService @Inject constructor(
 
     private val okHttpClient = OkHttpClient()
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_NORMALS,
-        SourceFeature.FEATURE_ALERT
+    private val weatherAttribution by lazy {
+        if (context.currentLocale.code.startsWith("ja")) {
+            "気象庁"
+        } else {
+            "Japan Meteorological Agency"
+        }
+    }
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.NORMALS to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("JP", ignoreCase = true)
     }
@@ -107,7 +106,7 @@ class JmaService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val parameters = location.parameters.getOrElse(id) { null }
         val class20s = parameters?.getOrElse("class20s") { null }
@@ -142,7 +141,7 @@ class JmaService @Inject constructor(
 
         // CURRENT
         // Need to first get the correct timestamp for latest observation data.
-        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val current = if (SourceFeature.CURRENT in requestedFeatures) {
             val request = Request.Builder().url(JMA_BASE_URL + "bosai/amedas/data/latest_time.txt").build()
             val incomingFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.ENGLISH)
             val outgoingFormatter = SimpleDateFormat("yyyyMMdd_HH", Locale.ENGLISH)
@@ -162,11 +161,11 @@ class JmaService @Inject constructor(
                         amedas = currentAmedas,
                         timestamp = outgoingFormatter.format(timestamp)
                     ).onErrorResumeNext {
-                        failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                        failedFeatures.add(SourceFeature.CURRENT)
                         Observable.just(emptyMap())
                     }
                 } else {
-                    failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                    failedFeatures.add(SourceFeature.CURRENT)
                     Observable.just(emptyMap())
                 }
             }
@@ -174,9 +173,9 @@ class JmaService @Inject constructor(
             Observable.just(emptyMap())
         }
 
-        val bulletin = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val bulletin = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getBulletin(forecastPrefArea).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(JmaBulletinResult())
             }
         } else {
@@ -184,9 +183,9 @@ class JmaService @Inject constructor(
         }
 
         // ALERT
-        val alert = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val alert = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getAlert(prefArea).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                failedFeatures.add(SourceFeature.ALERT)
                 Observable.just(JmaAlertResult())
             }
         } else {
@@ -211,157 +210,6 @@ class JmaService @Inject constructor(
                 ignoreFeatures = ignoreFeatures,
                 failedFeatures = failedFeatures
             )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_NORMALS
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = weatherAttribution
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        val parameters = location.parameters.getOrElse(id) { null }
-        val class20s = parameters?.getOrElse("class20s") { null }
-        val class10s = parameters?.getOrElse("class10s") { null }
-        val prefArea = parameters?.getOrElse("prefArea") { null }
-        val weekArea05 = parameters?.getOrElse("weekArea05") { null }
-        val weekAreaAmedas = parameters?.getOrElse("weekAreaAmedas") { null }
-        val forecastAmedas = parameters?.getOrElse("forecastAmedas") { null }
-        val currentAmedas = parameters?.getOrElse("currentAmedas") { null }
-
-        if (class20s.isNullOrEmpty() ||
-            class10s.isNullOrEmpty() ||
-            prefArea.isNullOrEmpty() ||
-            weekArea05.isNullOrEmpty() ||
-            weekAreaAmedas.isNullOrEmpty() ||
-            forecastAmedas.isNullOrEmpty() ||
-            currentAmedas.isNullOrEmpty()
-        ) {
-            return Observable.error(InvalidLocationException())
-        }
-
-        // Special case for Amami, Kagoshima Prefecture
-        val forecastPrefArea = if (prefArea == "460040") {
-            "460100"
-        } else {
-            prefArea
-        }
-
-        val failedFeatures = mutableListOf<SourceFeature>()
-        // CURRENT
-        // Need to first get the correct timestamp for latest observation data.
-        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            val request = Request.Builder().url(JMA_BASE_URL + "bosai/amedas/data/latest_time.txt").build()
-            val incomingFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.ENGLISH)
-            val outgoingFormatter = SimpleDateFormat("yyyyMMdd_HH", Locale.ENGLISH)
-            incomingFormatter.timeZone = TimeZone.getTimeZone("Asia/Tokyo")
-            outgoingFormatter.timeZone = TimeZone.getTimeZone("Asia/Tokyo")
-
-            okHttpClient.newCall(request).execute().use { call ->
-                if (call.isSuccessful) {
-                    val latestTime = incomingFormatter.parse(call.body!!.string())!!.time
-
-                    // Observation data is recorded in 3-hourly files.
-                    val timestamp = (
-                        floor(latestTime.toDouble() / 3.hours.inWholeMilliseconds) *
-                            3.hours.inWholeMilliseconds
-                        ).toLong()
-                    mApi.getCurrent(
-                        amedas = currentAmedas,
-                        timestamp = outgoingFormatter.format(timestamp)
-                    ).onErrorResumeNext {
-                        failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                        Observable.just(emptyMap())
-                    }
-                } else {
-                    failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                    Observable.just(emptyMap())
-                }
-            }
-        } else {
-            Observable.just(emptyMap())
-        }
-
-        val bulletin = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getBulletin(forecastPrefArea).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(JmaBulletinResult())
-            }
-        } else {
-            Observable.just(JmaBulletinResult())
-        }
-
-        // NORMALS
-        // Normals are recorded in the daily forecast.
-        val daily = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
-            mApi.getDaily(forecastPrefArea).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
-                Observable.just(emptyList())
-            }
-        } else {
-            Observable.just(emptyList())
-        }
-
-        // ALERT
-        val alert = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            mApi.getAlert(prefArea).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                Observable.just(JmaAlertResult())
-            }
-        } else {
-            Observable.just(JmaAlertResult())
-        }
-
-        return Observable.zip(current, bulletin, daily, alert) {
-                currentResult: Map<String, JmaCurrentResult>,
-                bulletinResult: JmaBulletinResult,
-                dailyResult: List<JmaDailyResult>,
-                alertResult: JmaAlertResult,
-            ->
-            convertSecondary(
-                context = context,
-                location = location,
-                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    currentResult
-                } else {
-                    null
-                },
-                bulletinResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    bulletinResult
-                } else {
-                    null
-                },
-                dailyResult = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
-                    dailyResult
-                } else {
-                    null
-                },
-                alertResult = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    alertResult
-                } else {
-                    null
-                },
-                failedFeatures = failedFeatures
-            )
-            SecondaryWeatherWrapper()
         }
     }
 
