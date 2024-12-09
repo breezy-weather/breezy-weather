@@ -710,4 +710,10 @@
     <string name="weather_source_continent_oceania">Oceanien</string>
     <string name="weather_source_continent_south_america">Sydamerika</string>
     <string name="action_show">Visa</string>
+    <string name="weather_message_failed_feature">Källa misslyckades med att uppdatera: %s</string>
+    <string name="dialog_refresh_error_details_title">Uppdateringsfel</string>
+    <string name="dialog_refresh_error_details_content">Tryck på felmeddelanden med ett frågetecken för att få mer hjälp.</string>
+    <string name="message_multiple_refresh_errors">Uppdatering slutförd med fel</string>
+    <string name="common_weather_text_squall">Vindby</string>
+    <string name="common_weather_text_tornado">Tromb</string>
 </resources>
