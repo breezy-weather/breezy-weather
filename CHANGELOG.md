@@ -2,8 +2,10 @@
 
 **Improvements and fixes**
 - Fix being notified of an older stable version when running a pre-release version
+- Fix daily urticaceae value
 
 **Weather sources**
+- [ATMO AURA] Fix source no longer showing up in the region it is supported
 - [BrightSky] Fix not working when using it as a secondary current source
 
 **Translations**

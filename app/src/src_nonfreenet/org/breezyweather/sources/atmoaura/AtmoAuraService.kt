@@ -69,11 +69,33 @@ class AtmoAuraService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
+        // FIXME: We no longer have admin2Code, use a geometry instead of hardcoding departments
         return feature == SourceFeature.FEATURE_AIR_QUALITY &&
             !location.countryCode.isNullOrEmpty() &&
             location.countryCode.equals("FR", ignoreCase = true) &&
-            !location.admin2Code.isNullOrEmpty() &&
-            location.admin2Code in arrayOf("01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74")
+            location.admin2 in arrayOf(
+                "Ain", // 01
+                "Allier", // 03
+                "Ardèche", // 07
+                "Ardeche", // 07
+                "Cantal", // 15
+                "Drôme", // 26
+                "Drome", // 26
+                "Isère", // 38
+                "Isere", // 38
+                "Loire", // 42
+                "Haute Loire", // 43
+                "Haute-Loire", // 43
+                "Puy-de-Dôme", // 63
+                "Puy-de-Dome", // 63
+                "Puy de Dôme", // 63
+                "Puy de Dome", // 63
+                "Rhône", // 69
+                "Rhone", // 69
+                "Savoie", // 73
+                "Haute-Savoie", // 74
+                "Haute Savoie" // 74
+            )
     }
     override val currentAttribution = null
     override val airQualityAttribution = "ATMO Auvergne-Rhône-Alpes"

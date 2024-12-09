@@ -1377,7 +1377,7 @@ private fun getDailyPollenFromHourlyList(
         ragweed = hourlyListWithPollen.mapNotNull { it.ragweed }.maxOrNull(),
         sorrel = hourlyListWithPollen.mapNotNull { it.sorrel }.maxOrNull(),
         tree = hourlyListWithPollen.mapNotNull { it.tree }.maxOrNull(),
-        urticaceae = hourlyListWithPollen.mapNotNull { it.tree }.maxOrNull(),
+        urticaceae = hourlyListWithPollen.mapNotNull { it.urticaceae }.maxOrNull(),
     )
 }
 
