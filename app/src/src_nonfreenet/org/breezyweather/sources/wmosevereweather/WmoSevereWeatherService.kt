@@ -20,10 +20,10 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -37,7 +37,7 @@ import javax.inject.Named
 class WmoSevereWeatherService @Inject constructor(
     @Named("JsonClient") jsonClient: Retrofit.Builder,
     @Named("XmlClient") xmlClient: Retrofit.Builder,
-) : HttpSource(), SecondaryWeatherSource {
+) : HttpSource(), WeatherSource {
 
     override val id = "wmosevereweather"
     override val name = "WMO Severe Weather Information Centre"
@@ -57,21 +57,16 @@ class WmoSevereWeatherService @Inject constructor(
             .create(WmoSevereWeatherXmlApi::class.java)
     }
 
-    override val supportedFeaturesInSecondary = listOf(SourceFeature.FEATURE_ALERT)
+    override val supportedFeatures = mapOf(
+        SourceFeature.ALERT to "Hong Kong Observatory on behalf of WMO + 136 issuing organizations " +
+            "https://severeweather.wmo.int/sources.html"
+    )
 
-    override val currentAttribution = null
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution =
-        "Hong Kong Observatory on behalf of WMO + 136 issuing organizations https://severeweather.wmo.int/sources.html"
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
+    override fun requestWeather(
         context: Context,
         location: Location,
         requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
+    ): Observable<WeatherWrapper> {
         return mAlertsJsonApi.getAlerts(
             typeName = "local_postgis:postgis_geojsons",
             // cqlFilter = "INTERSECTS(wkb_geometry, POINT (${location.latitude} ${location.longitude})) AND (row_type EQ 'POLYGON' OR row_type EQ 'MULTIPOLYGON' OR row_type EQ 'POINT')"

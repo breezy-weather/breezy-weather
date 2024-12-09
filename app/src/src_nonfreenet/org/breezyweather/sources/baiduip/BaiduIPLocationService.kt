@@ -67,9 +67,6 @@ class BaiduIPLocationService @Inject constructor(
     }
 
     override fun requestLocation(context: Context): Observable<LocationPositionWrapper> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
         return mApi.getLocation(getApiKeyOrDefault(), "gcj02")
             .compose(SchedulerTransformer.create())
             .map { t ->

@@ -201,16 +201,11 @@ class SearchActivity : GeoActivity() {
                                         val defaultSource = SettingsManager.getInstance(context).defaultWeatherSource
 
                                         selectedLocation = when (defaultSource) {
-                                            "auto" -> LocationPreset.getLocationWithPresetApplied(
-                                                location
-                                            )
+                                            "auto" -> LocationPreset.getLocationWithPresetApplied(location)
                                             else -> {
-                                                val source = sourceManager
-                                                    .getMainWeatherSource(defaultSource)
+                                                val source = sourceManager.getWeatherSource(defaultSource)
                                                 if (source == null) {
-                                                    LocationPreset.getLocationWithPresetApplied(
-                                                        location
-                                                    )
+                                                    LocationPreset.getLocationWithPresetApplied(location)
                                                 } else {
                                                     location.copy(weatherSource = source.id)
                                                 }

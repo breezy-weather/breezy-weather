@@ -219,12 +219,12 @@ fun convertSecondary(
     requestedFeatures: List<SourceFeature>,
 ): SecondaryWeatherWrapper {
     return SecondaryWeatherWrapper(
-        current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        current = if (SourceFeature.CURRENT in requestedFeatures) {
             getCurrent(context, weatherResult?.data)
         } else {
             null
         },
-        alertList = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        alertList = if (SourceFeature.ALERT in requestedFeatures) {
             weatherResult?.data?.let { getAlerts(context, it) }
         } else {
             null

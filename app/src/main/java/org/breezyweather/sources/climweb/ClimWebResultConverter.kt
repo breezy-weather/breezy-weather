@@ -17,11 +17,9 @@
 package org.breezyweather.sources.climweb
 
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Normals
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import com.google.maps.android.PolyUtil
 import com.google.maps.android.data.geojson.GeoJsonFeature
 import com.google.maps.android.data.geojson.GeoJsonMultiPolygon
@@ -36,21 +34,7 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-fun convert(
-    location: Location,
-    source: String?,
-    alertsResult: ClimWebAlertsResult?,
-    normalsResult: List<ClimWebNormals>?,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        alertList = alertsResult?.let { getAlertList(location, source, it) },
-        normals = normalsResult?.let { getNormals(location, it) },
-        failedFeatures = failedFeatures
-    )
-}
-
-private fun getAlertList(
+internal fun getAlertList(
     location: Location,
     source: String?,
     alertsResult: ClimWebAlertsResult,
@@ -110,7 +94,7 @@ private fun getMatchingAlerts(
     location: Location,
     alertFeatures: Any?,
 ): List<GeoJsonFeature> {
-    var json = """{"type":"FeatureCollection","features":$alertFeatures}"""
+    val json = """{"type":"FeatureCollection","features":$alertFeatures}"""
     val geoJsonParser = GeoJsonParser(JSONObject(json))
     return geoJsonParser.features.filter { feature ->
         when (feature.geometry) {
@@ -127,14 +111,14 @@ private fun getMatchingAlerts(
     }
 }
 
-private fun getNormals(
+internal fun getNormals(
     location: Location,
     normalsResult: List<ClimWebNormals>,
 ): Normals? {
     if (normalsResult.isEmpty()) return null
 
-    var daytimeTemperature: Double? = null
-    var nighttimeTemperature: Double? = null
+    var daytimeTemperature: Double?
+    var nighttimeTemperature: Double?
 
     val month = Calendar.getInstance(TimeZone.getTimeZone(location.timeZone)).get(Calendar.MONTH) + 1
     val regex = Regex("""^\d{4}-${month.toString().padStart(2, '0')}-\d{2}$""")

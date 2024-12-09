@@ -21,18 +21,15 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.smg.json.SmgAirQualityResult
 import org.breezyweather.sources.smg.json.SmgAstroResult
 import org.breezyweather.sources.smg.json.SmgBulletinResult
@@ -52,7 +49,7 @@ import kotlin.text.startsWith
 class SmgService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource {
+) : HttpSource(), WeatherSource {
 
     override val id = "smg"
 
@@ -78,15 +75,6 @@ class SmgService @Inject constructor(
     }
 
     override val color = Color.rgb(1, 173, 159)
-    override val weatherAttribution by lazy {
-        with(context.currentLocale.code) {
-            when {
-                startsWith("zh") -> "地球物理氣象局"
-                startsWith("pt") -> "Direcção dos Serviços Meteorológicos e Geofísicos"
-                else -> "Macao Meteorological and Geophysical Bureau"
-            }
-        }
-    }
 
     private val mApi by lazy {
         client
@@ -102,16 +90,26 @@ class SmgService @Inject constructor(
             .create(SmgCmsApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_AIR_QUALITY,
-        SourceFeature.FEATURE_NORMALS
+    private val weatherAttribution by lazy {
+        with(context.currentLocale.code) {
+            when {
+                startsWith("zh") -> "地球物理氣象局"
+                startsWith("pt") -> "Direcção dos Serviços Meteorológicos e Geofísicos"
+                else -> "Macao Meteorological and Geophysical Bureau"
+            }
+        }
+    }
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution,
+        SourceFeature.AIR_QUALITY to weatherAttribution,
+        SourceFeature.NORMALS to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("MO", ignoreCase = true)
     }
@@ -119,7 +117,7 @@ class SmgService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val lang = with(context.currentLocale.code) {
             when {
@@ -148,27 +146,27 @@ class SmgService @Inject constructor(
         }
 
         // CURRENT
-        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(SmgCurrentResult())
             }
         } else {
             Observable.just(SmgCurrentResult())
         }
-        val bulletin = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val bulletin = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getBulletin(
                 lang = lang
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(SmgBulletinResult())
             }
         } else {
             Observable.just(SmgBulletinResult())
         }
-        val uv = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val uv = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getUVIndex().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(SmgUvResult())
             }
         } else {
@@ -177,9 +175,9 @@ class SmgService @Inject constructor(
 
         // ALERT
         val alerts = MutableList(SMG_ALERT_TYPES.size) {
-            if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+            if (SourceFeature.ALERT in requestedFeatures) {
                 mApi.getWarning(SMG_ALERT_TYPES[it], lang).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    failedFeatures.add(SourceFeature.ALERT)
                     Observable.just(SmgWarningResult())
                 }
             } else {
@@ -206,9 +204,9 @@ class SmgService @Inject constructor(
         }
 
         // AIR QUALITY
-        val airQuality = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
+        val airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
             mCmsApi.getAirQuality(Calendar.getInstance().timeInMillis).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                failedFeatures.add(SourceFeature.AIR_QUALITY)
                 Observable.just(SmgAirQualityResult())
             }
         } else {
@@ -235,157 +233,7 @@ class SmgService @Inject constructor(
                 uvResult = uvResult,
                 warningsResult = warningsResult,
                 airQualityResult = airQualityResult,
-                includeNormals = !ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS),
-                failedFeatures = failedFeatures
-            )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_AIR_QUALITY,
-        SourceFeature.FEATURE_NORMALS
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = weatherAttribution
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = weatherAttribution
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_CURRENT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_AIR_QUALITY) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_NORMALS)
-        ) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-        val lang = with(context.currentLocale.code) {
-            when {
-                startsWith("zh") -> "c"
-                startsWith("pt") -> "p"
-                else -> "e"
-            }
-        }
-
-        val failedFeatures = mutableListOf<SourceFeature>()
-        // CURRENT
-        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getCurrent().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(SmgCurrentResult())
-            }
-        } else {
-            Observable.just(SmgCurrentResult())
-        }
-        val bulletin = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getBulletin(
-                lang = lang
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(SmgBulletinResult())
-            }
-        } else {
-            Observable.just(SmgBulletinResult())
-        }
-        val uv = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getUVIndex().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(SmgUvResult())
-            }
-        } else {
-            Observable.just(SmgUvResult())
-        }
-
-        // ALERT
-        val alerts = MutableList(SMG_ALERT_TYPES.size) {
-            if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                mApi.getWarning(SMG_ALERT_TYPES[it], lang).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                    Observable.just(SmgWarningResult())
-                }
-            } else {
-                Observable.just(SmgWarningResult())
-            }
-        }
-
-        val warnings = Observable.zip(alerts[0], alerts[1], alerts[2], alerts[3], alerts[4], alerts[5]) {
-                typhoonResult: SmgWarningResult,
-                rainstormResult: SmgWarningResult,
-                monsoonResult: SmgWarningResult,
-                thunderstormResult: SmgWarningResult,
-                stormsurgeResult: SmgWarningResult,
-                tsunamiResult: SmgWarningResult,
-            ->
-            listOf(
-                typhoonResult,
-                rainstormResult,
-                monsoonResult,
-                thunderstormResult,
-                stormsurgeResult,
-                tsunamiResult
-            )
-        }
-
-        // AIR QUALITY
-        val airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-            mCmsApi.getAirQuality(Calendar.getInstance().timeInMillis).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
-                Observable.just(SmgAirQualityResult())
-            }
-        } else {
-            Observable.just(SmgAirQualityResult())
-        }
-
-        return Observable.zip(current, bulletin, uv, warnings, airQuality) {
-                currentResult: SmgCurrentResult,
-                bulletinResult: SmgBulletinResult,
-                uvResult: SmgUvResult,
-                warningsResult: List<SmgWarningResult>,
-                airQualityResult: SmgAirQualityResult,
-            ->
-            convertSecondary(
-                context = context,
-                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    currentResult
-                } else {
-                    null
-                },
-                bulletinResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    bulletinResult
-                } else {
-                    null
-                },
-                uvResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    uvResult
-                } else {
-                    null
-                },
-                warningsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    warningsResult
-                } else {
-                    null
-                },
-                airQualityResult = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-                    airQualityResult
-                } else {
-                    null
-                },
-                includeNormals = requestedFeatures.contains(SourceFeature.FEATURE_NORMALS),
+                includeNormals = SourceFeature.NORMALS in requestedFeatures,
                 failedFeatures = failedFeatures
             )
         }

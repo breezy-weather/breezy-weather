@@ -35,7 +35,7 @@ import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.LocationSource
-import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.ui.composables.AlertDialogLink
 import org.breezyweather.common.ui.composables.SourceView
 import org.breezyweather.common.ui.widgets.Material3CardListItem
@@ -61,7 +61,7 @@ import java.text.Collator
 fun WeatherSourcesSettingsScreen(
     context: Context,
     onNavigateBack: () -> Unit,
-    configuredWorldwideSources: List<MainWeatherSource>,
+    configuredWorldwideSources: List<WeatherSource>,
     configurableSources: List<ConfigurableSource>,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()

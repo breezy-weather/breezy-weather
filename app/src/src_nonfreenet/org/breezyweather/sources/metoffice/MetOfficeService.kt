@@ -26,15 +26,14 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import java.util.Locale
@@ -44,7 +43,7 @@ import javax.inject.Named
 class MetOfficeService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, ConfigurableSource, ReverseGeocodingSource {
+) : HttpSource(), WeatherSource, ConfigurableSource, ReverseGeocodingSource {
 
     override val id = "metoffice"
     override val name = "Met Office (${Locale(context.currentLocale.code, "GB").displayCountry})"
@@ -52,7 +51,6 @@ class MetOfficeService @Inject constructor(
     override val privacyPolicyUrl = "https://www.metoffice.gov.uk/policies/privacy"
 
     override val color = Color.rgb(185, 213, 50)
-    override val weatherAttribution = "Met Office"
 
     private val mApi by lazy {
         client
@@ -61,17 +59,15 @@ class MetOfficeService @Inject constructor(
             .create(MetOfficeApi::class.java)
     }
 
-    override val supportedFeaturesInMain = emptyList<SourceFeature>()
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to "Met Office"
+    )
 
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
-
         val apiKey = getApiKeyOrDefault()
 
         return Observable.zip(
@@ -86,10 +82,6 @@ class MetOfficeService @Inject constructor(
         context: Context,
         location: Location,
     ): Observable<List<Location>> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
-
         val apiKey = getApiKeyOrDefault()
 
         return mApi.getHourlyForecast(apiKey, location.latitude, location.longitude, true).map {
