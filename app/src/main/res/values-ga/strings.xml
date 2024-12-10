@@ -284,7 +284,7 @@
     <string name="widget_material_you_current">Ábhar Tú - Reatha</string>
     <string name="widget_subtitle_data_wind">Gaoth</string>
     <string name="widget_subtitle_data_feels_like">Mothaíonn sé cosúil le teocht</string>
-    <string name="widget_custom_subtitle_explanation">Is féidir leat aon rud a ionchur, ach tabhair aird ar fhad an téacs. Más mian leat sonraí aimsire a lua, bain úsáid as $ chun tagairt a dhéanamh don eochairfhocal comhfhreagrach.\n\nMar shampla, taispeánfar “Is í an aimsir reatha: $cw$.” mar “Tá an aimsir reatha: Spéir ghlan”.</string>
+    <string name="widget_custom_subtitle_explanation">Is féidir leat aon rud a ionchur, ach tabhair aird ar fhad an téacs. Más mian leat sonraí aimsire a lua, bain úsáid as $ chun tagairt a dhéanamh don eochairfhocal comhfhreagrach.\n\nMar shampla, taispeánfar “Is í an aimsir reatha: $cw$.” mar “Is í an aimsir reatha: Spéir ghlan”.</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Teocht reatha (°C / °F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Teocht reatha (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">Mothaíonn an sruth cosúil le teocht (°C / ° F)</string>

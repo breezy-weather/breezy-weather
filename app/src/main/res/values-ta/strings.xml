@@ -250,11 +250,11 @@
     <string name="action_help_me_choose">தேர்வு செய்ய எனக்கு உதவுங்கள்</string>
     <string name="action_show_errors">விவரங்களைக் காண தட்டவும்</string>
     <string name="settings_per_location">இருப்பிட விருப்பத்தேர்வுகள்</string>
-    <string name="widget_custom_subtitle_explanation">நீங்கள் எதையும் உள்ளிடலாம், ஆனால் உரையின் நீளத்திற்கு கவனம் செலுத்துங்கள். நீங்கள் வானிலை தரவை மேற்கோள் காட்ட விரும்பினால், தயவுசெய்து தொடர்புடைய முக்கிய சொல்லைக் குறிப்பிட $ பயன்படுத்தவும்.\n\n எடுத்துக்காட்டாக, “தற்போதைய வானிலை: $ cw $”. \"தற்போதைய வானிலை: தெளிவான வானம்\" என்று காண்பிக்கப்படும்.</string>
+    <string name="widget_custom_subtitle_explanation">நீங்கள் எதையும் உள்ளிடலாம், ஆனால் உரையின் நீளத்திற்கு கவனம் செலுத்துங்கள். நீங்கள் வானிலை தரவை மேற்கோள் காட்ட விரும்பினால், தயவுசெய்து தொடர்புடைய முக்கிய சொல்லைக் குறிப்பிட $ பயன்படுத்தவும்.\n\n எடுத்துக்காட்டாக, “தற்போதைய வானிலை: $ cw $”. “தற்போதைய வானிலை: தெளிவான வானம்” என்று காண்பிக்கப்படும்.</string>
     <string name="widget_custom_subtitle_keyword_lon_description">நெட்டாங்கு</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">இன்றைய பகல்நேர வானிலை, நாளை,…, 4 நாட்களுக்குப் பிறகு</string>
     <string name="settings_background_updates_dont_kill_my_app_title">உற்பத்தியாளர் குறிப்பிட்ட வழிமுறைகள்</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">சில உற்பத்தியாளர்களுக்கு பின்னணி சேவைகளைக் கொல்லும் கூடுதல் பயன்பாட்டு கட்டுப்பாடுகள் உள்ளன. எனது பயன்பாட்டை கொல்ல வேண்டாம்! வலைத்தளமானது அதை எவ்வாறு சரிசெய்வது என்பது பற்றிய செய்தி உள்ளது.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">சில உற்பத்தியாளர்களுக்கு பின்னணி சேவைகளைக் கொல்லும் கூடுதல் பயன்பாட்டு கட்டுப்பாடுகள் உள்ளன. Don’t kill my app! வலைத்தளமானது அதை எவ்வாறு சரிசெய்வது என்பது பற்றிய செய்தி உள்ளது.</string>
     <string name="settings_per_location_summary">இந்த இருப்பிடத்திற்கான கூடுதல் தனிப்பயனாக்கங்கள்</string>
     <string name="settings_per_location_theme">கருப்பொருள்</string>
     <string name="settings_icon_packs_title">படவுரு பொதிகள்</string>
@@ -338,7 +338,7 @@
     <string name="notification_style_cities">நகரங்கள்</string>
     <string name="about_contribution_designer">லோகோ வடிவமைப்பாளர்</string>
     <string name="about_open_link_message">திறந்த %s?</string>
-    <string name="about_contribution_WangDaYeeeeee">அசல் திட்ட வடிவியல் வானிலை உருவாக்குபவர்</string>
+    <string name="about_contribution_WangDaYeeeeee">அசல் திட்ட Geometric Weather உருவாக்குபவர்</string>
     <string name="common_weather_text_snow_grains">பனி தானியங்கள்</string>
     <string name="weather_source_continent_worldwide">உலகளவில்</string>
     <string name="weather_source_continent_africa">ஆப்பிரிக்கா</string>
@@ -367,7 +367,7 @@
     <string name="dialog_time_picker_select_time">நேரம் தேர்ந்தெடுக்கவும்</string>
     <string name="dialog_time_picker_input_time">உள்ளீட்டு நேரம்</string>
     <string name="message_server_unavailable_title">சேவையகம் கிடைக்கவில்லை</string>
-    <string name="message_server_unavailable_content">இது பொதுவாக ஒரு தற்காலிக பிழை. பிழை தொடர்ந்தால், தயவுசெய்து கிதுபில் ஒரு சிக்கலைப் புகாரளிக்கவும்.</string>
+    <string name="message_server_unavailable_content">இது பொதுவாக ஒரு தற்காலிக பிழை. பிழை தொடர்ந்தால், தயவுசெய்து GitHub ஒரு சிக்கலைப் புகாரளிக்கவும்.</string>
     <string name="settings_notifications_precipitations_title">மழைப்பொழிவுகளின் அறிவிப்புகள்</string>
     <string name="settings_notifications_section_forecast">முன்னறிவிப்பு</string>
     <string name="settings_widgets_live_wallpaper_summary">ஒரு வானிலை அனிமேசனை வால்பேப்பராக அமைக்கவும்</string>
@@ -680,7 +680,7 @@
     <string name="action_download">பதிவிறக்கம்</string>
     <string name="dialog_permissions_notification_content">வானிலை விழிப்பூட்டல்கள் பற்றிய அறிவிப்புகளை இயக்க இங்கே தட்டவும், அல்லது பின்னர் அமைப்புகளில் முடிவு செய்யுங்கள்.</string>
     <string name="dialog_permissions_location_background_content">ஆண்ட்ராய்டு ஆல் அறியப்பட்ட மிக அண்மைக் கால தற்போதைய இருப்பிடத்திற்கு பின்னணியில் வானிலை புதுப்பிப்பை அனுமதிக்க, “எல்லா நேரத்தையும் அனுமதிக்க” இருப்பிட அனுமதியை நீங்கள் அமைக்க வேண்டும். நீங்கள் இல்லையென்றால், முன்புறத்தில் அண்மைக் கால மீட்டெடுக்கப்பட்ட ஆயத்தொகுதிகளின் அடிப்படையில் வானிலை புதுப்பிக்கப்படும், இது காலாவதியானது.</string>
-    <string name="message_parsing_error_content">பயன்பாட்டின் அண்மைக் கால பதிப்பிற்கு நீங்கள் புதுப்பித்துள்ளீர்கள் என்பதை உறுதிப்படுத்திக் கொள்ளுங்கள். சேவையகம் தற்காலிகமாக கிடைக்காமல் இருக்கலாம், அந்த விசயத்தில், தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும். சிக்கல் தொடர்ந்தால், தயவுசெய்து பிழைத்திருத்த அமைப்புகளிலிருந்து செயலிழப்பு பதிவைத் தள்ளிவிட்டு, கிட்அப்பில் ஒரு சிக்கலைப் புகாரளிக்கவும்.</string>
+    <string name="message_parsing_error_content">பயன்பாட்டின் அண்மைக் கால பதிப்பிற்கு நீங்கள் புதுப்பித்துள்ளீர்கள் என்பதை உறுதிப்படுத்திக் கொள்ளுங்கள். சேவையகம் தற்காலிகமாக கிடைக்காமல் இருக்கலாம், அந்த விசயத்தில், தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும். சிக்கல் தொடர்ந்தால், தயவுசெய்து பிழைத்திருத்த அமைப்புகளிலிருந்து செயலிழப்பு பதிவைத் தள்ளிவிட்டு, GitHub ஒரு சிக்கலைப் புகாரளிக்கவும்.</string>
     <string name="widget_material_you_current">பொருள் நீங்கள் - நடப்பு</string>
     <string name="widget_refreshing">புத்துணர்ச்சி</string>
     <string name="widget_ellipsis">…</string>
