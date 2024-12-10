@@ -10,6 +10,7 @@
 
 **Translations**
 - Translation added for Irish (Aindriú Mac Giolla Eoin)
+- Translation completed for Tamil (தமிழ் நேரம்)
 - Translations updated
 
 
