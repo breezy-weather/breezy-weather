@@ -18,14 +18,13 @@ package org.breezyweather.sources.bmd
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.R
 import org.breezyweather.sources.bmd.json.BmdData
 import org.breezyweather.sources.bmd.json.BmdForecastResult
@@ -34,7 +33,7 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-fun convert(
+internal fun convert(
     location: Location,
     data: BmdData,
 ): Location {
@@ -50,26 +49,14 @@ fun convert(
     )
 }
 
-fun convert(
+internal fun getDailyForecast(
     context: Context,
     upazila: String,
     dailyResult: BmdForecastResult,
-    hourlyResult: BmdForecastResult,
-): WeatherWrapper {
-    return WeatherWrapper(
-        dailyForecast = getDailyForecast(context, upazila, dailyResult),
-        hourlyForecast = getHourlyForecast(context, upazila, hourlyResult)
-    )
-}
-
-private fun getDailyForecast(
-    context: Context,
-    upazila: String,
-    dailyResult: BmdForecastResult,
-): List<Daily> {
+): List<DailyWrapper> {
     val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Dhaka")
-    val dailyList = mutableListOf<Daily>()
+    val dailyList = mutableListOf<DailyWrapper>()
     val rfMap = mutableMapOf<String, Double?>()
     val maxTMap = mutableMapOf<String, Double?>()
     val minTMap = mutableMapOf<String, Double?>()
@@ -109,7 +96,7 @@ private fun getDailyForecast(
     rfMap.keys.sorted().forEach { key ->
         date = formatter.parse(key)!!
         dailyList.add(
-            Daily(
+            DailyWrapper(
                 date = date,
                 day = HalfDay(
                     weatherText = getWeatherText(
@@ -160,7 +147,7 @@ private fun getDailyForecast(
     return dailyList
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     context: Context,
     upazila: String,
     hourlyResult: BmdForecastResult,

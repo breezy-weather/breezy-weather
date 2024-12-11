@@ -26,7 +26,7 @@ import java.util.Date
  */
 @Serializable
 data class MfForecastResult(
-    val geometry: MfGeometry?,
-    val properties: MfForecastProperties?,
-    @SerialName("update_time") @Serializable(DateSerializer::class) val updateTime: Date?,
+    val geometry: MfGeometry? = null,
+    val properties: MfForecastProperties? = null,
+    @SerialName("update_time") @Serializable(DateSerializer::class) val updateTime: Date? = null,
 )

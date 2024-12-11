@@ -53,7 +53,7 @@ data class Location(
     val district: String? = null,
 
     val weather: Weather? = null,
-    val weatherSource: String = "openmeteo",
+    val forecastSource: String = "openmeteo",
     val currentSource: String? = null,
     val airQualitySource: String? = null,
     val pollenSource: String? = null,
@@ -84,7 +84,7 @@ data class Location(
         } else {
             String.format(Locale.US, "%f", latitude) + "&" +
                 String.format(Locale.US, "%f", longitude) + "&" +
-                weatherSource
+                forecastSource
         }
 
     val isUsable: Boolean
@@ -108,7 +108,7 @@ data class Location(
         parcel.writeString(admin4Code)
         parcel.writeString(city)
         parcel.writeString(district)
-        parcel.writeString(weatherSource)
+        parcel.writeString(forecastSource)
         parcel.writeString(currentSource)
         parcel.writeString(airQualitySource)
         parcel.writeString(pollenSource)
@@ -140,7 +140,7 @@ data class Location(
         admin4Code = parcel.readString(),
         city = parcel.readString()!!,
         district = parcel.readString(),
-        weatherSource = parcel.readString()!!,
+        forecastSource = parcel.readString()!!,
         currentSource = parcel.readString(),
         airQualitySource = parcel.readString(),
         pollenSource = parcel.readString(),
@@ -165,7 +165,7 @@ data class Location(
             return false
         }
 
-        if (weatherSource != other.weatherSource) {
+        if (forecastSource != other.forecastSource) {
             return false
         }
 
@@ -306,19 +306,6 @@ data class Location(
             distance(this, location) < (20 * 1000)
         }
     }
-
-    val currentSourceNotNull: String
-        get() = if (currentSource.isNullOrEmpty()) weatherSource else currentSource
-    val airQualitySourceNotNull: String
-        get() = if (airQualitySource.isNullOrEmpty()) weatherSource else airQualitySource
-    val pollenSourceNotNull: String
-        get() = if (pollenSource.isNullOrEmpty()) weatherSource else pollenSource
-    val minutelySourceNotNull: String
-        get() = if (minutelySource.isNullOrEmpty()) weatherSource else minutelySource
-    val alertSourceNotNull: String
-        get() = if (alertSource.isNullOrEmpty()) weatherSource else alertSource
-    val normalsSourceNotNull: String
-        get() = if (normalsSource.isNullOrEmpty()) weatherSource else normalsSource
 
     companion object {
 

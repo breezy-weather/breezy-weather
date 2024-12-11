@@ -22,7 +22,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ApiLimitReachedException
 import org.breezyweather.common.exceptions.ApiUnauthorizedException
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
@@ -67,9 +66,6 @@ class BaiduIPLocationService @Inject constructor(
     }
 
     override fun requestLocation(context: Context): Observable<LocationPositionWrapper> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
         return mApi.getLocation(getApiKeyOrDefault(), "gcj02")
             .compose(SchedulerTransformer.create())
             .map { t ->

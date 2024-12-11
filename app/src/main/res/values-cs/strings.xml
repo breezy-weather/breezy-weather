@@ -586,7 +586,6 @@
     <string name="common_weather_text_rain_showers">Dešťové přeháňky</string>
     <string name="common_weather_text_drizzle_moderate">Mírné mrholení</string>
     <string name="common_weather_text_drizzle_heavy">Silné mrholení</string>
-    <string name="settings_weather_source_main">Hlavní zdroj</string>
     <string name="settings_weather_sources_per_location_summary">Přizpůsobte zdroj dat o počasí použitý pro toto umístění</string>
     <string name="settings_appearance_dark_mode_locations_title">Denní / noční režim pro umístění</string>
     <string name="settings_main_threshold_lines_on_charts">Prahové linky na grafech</string>
@@ -595,7 +594,6 @@
     <string name="common_weather_text_drizzle_light">Lehké mrholení</string>
     <string name="common_weather_text_drizzle_freezing">Mrznoucí mrholení</string>
     <string name="action_delete">Odstranit</string>
-    <string name="weather_message_secondary_data_refresh_failed">Obnovení dat o počasí pro sekundární zdroj počasí se nezdařilo</string>
     <string name="weather_message_invalid_location">Neplatné umístění, odstraňte jej a znovu přidejte</string>
     <string name="temperature_average_short">Prům</string>
     <string name="common_weather_text_rain_showers_light">Lehké dešťové přeháňky</string>

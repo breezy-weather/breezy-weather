@@ -514,7 +514,6 @@
     <string name="pollen_olea">Olivo</string>
     <string name="settings_location_access_background_summaryOn">Abilitata. L’app potrà aggiornare i dati meteo per la propria posizione corrente in background.</string>
     <string name="settings_location_access_precise_summaryOn">Abilitato. Il provider di rete del dispositivo verrà utilizzato principalmente e per la maggior parte del tempo, ma il GPS può essere utilizzato anche come ripiego.</string>
-    <string name="weather_message_secondary_data_refresh_failed">Aggiornamento dati meteo per una fonte meteo secondaria fallito</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Temporale con grandine leggera</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Temporale con grandine pesante</string>
     <string name="wind_gusts">Raffiche di vento</string>
@@ -534,7 +533,6 @@
     <string name="air_quality_o3_info_title">Ozono (O₃) a livello del suolo</string>
     <string name="air_quality_so2_info_introduction">L’anidride solforosa (SO₂) è un gas tossico incolore, responsabile per l’odore dei fiammiferi spenti.</string>
     <string name="air_quality_so2_info_origin">È rilasciata naturalmente dall’attività vulcanica e deriva principalmente dalla combustione di fonti fossili per il riscaldamento domestico, l’industria e la generazione di energia.</string>
-    <string name="settings_weather_source_main">Fonte principale</string>
     <string name="action_save">Salva</string>
     <string name="settings_weather_sources_per_location_summary">Personalizza fonti dati meteo usate per questa posizione</string>
     <string name="action_delete">Elimina</string>

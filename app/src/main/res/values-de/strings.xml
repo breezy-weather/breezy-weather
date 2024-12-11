@@ -536,7 +536,6 @@
     <string name="pollen_level_5">Sehr hoch</string>
     <string name="action_delete">Löschen</string>
     <string name="pollen_level_0">Keine</string>
-    <string name="weather_message_secondary_data_refresh_failed">Aktualisierung der Wetterdaten für sekundäre Wetterquelle fehlgeschlagen</string>
     <string name="weather_message_invalid_location">Ungültiger Ort, bitte löschen und erneut hinzufügen</string>
     <string name="wind_gusts">Windböen</string>
     <string name="weather_pollen_data_by">Pollendaten von %s</string>
@@ -544,7 +543,6 @@
     <string name="weather_alert_data_by">Warndaten von %s</string>
     <string name="weather_air_quality_data_by">Luftqualitätsdaten von %s</string>
     <string name="action_save">Speichern</string>
-    <string name="settings_weather_source_main">Hauptquelle</string>
     <string name="settings_weather_sources_per_location_summary">Wetterdatenquellen für diesen Ort anpassen</string>
     <string name="precipitation_nowcasting">Minutengenaue Niederschläge</string>
     <string name="about_dependencies">Abhängigkeiten</string>

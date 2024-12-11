@@ -21,7 +21,6 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -30,9 +29,8 @@ import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.lhmt.json.LhmtAlertsResult
 import org.breezyweather.sources.lhmt.json.LhmtLocationsResult
 import org.breezyweather.sources.lhmt.json.LhmtWeatherResult
@@ -44,13 +42,12 @@ import javax.inject.Named
 class LhmtService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
     override val id = "lhmt"
     override val name = "LHMT (${Locale(context.currentLocale.code, "LT").displayCountry})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.meteo.lt/istaiga/asmens-duomenu-apsauga/privatumo-politika/"
     override val color = Color.rgb(79, 136, 228)
-    override val weatherAttribution = "Lietuvos hidrometeorologijos tarnyba"
 
     private val mApi by lazy {
         client.baseUrl(LHMT_BASE_URL)
@@ -64,14 +61,16 @@ class LhmtService @Inject constructor(
             .create(LhmtWwwApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT
+    private val weatherAttribution = "Lietuvos hidrometeorologijos tarnyba"
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("LT", ignoreCase = true)
     }
@@ -79,7 +78,7 @@ class LhmtService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val forecastLocation = location.parameters.getOrElse(id) { null }?.getOrElse("forecastLocation") { null }
         val currentLocation = location.parameters.getOrElse(id) { null }?.getOrElse("currentLocation") { null }
@@ -95,25 +94,32 @@ class LhmtService @Inject constructor(
 
         val failedFeatures = mutableListOf<SourceFeature>()
 
-        val forecast = mApi.getForecast(forecastLocation)
-        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getForecast(forecastLocation).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(LhmtWeatherResult())
+            }
+        } else {
+            Observable.just(LhmtWeatherResult())
+        }
+        val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(currentLocation).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(LhmtWeatherResult())
             }
         } else {
             Observable.just(LhmtWeatherResult())
         }
 
-        val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val alerts = if (SourceFeature.ALERT in requestedFeatures) {
             mWwwApi.getAlertList().map { list ->
                 val path = list.first().substringAfter(LHMT_WWW_BASE_URL)
                 mWwwApi.getAlerts(path).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    failedFeatures.add(SourceFeature.ALERT)
                     Observable.just(LhmtAlertsResult())
                 }.blockingFirst()
             }.onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                failedFeatures.add(SourceFeature.ALERT)
                 Observable.just(LhmtAlertsResult())
             }
         } else {
@@ -125,92 +131,25 @@ class LhmtService @Inject constructor(
                 forecastResult: LhmtWeatherResult,
                 alertsResult: LhmtAlertsResult,
             ->
-            convert(
-                context = context,
-                location = location,
-                currentResult = currentResult,
-                forecastResult = forecastResult,
-                alertsResult = alertsResult,
-                failedFeatures = failedFeatures
-            )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        val forecastLocation = location.parameters.getOrElse(id) { null }?.getOrElse("forecastLocation") { null }
-        val currentLocation = location.parameters.getOrElse(id) { null }?.getOrElse("currentLocation") { null }
-        val municipality = location.parameters.getOrElse(id) { null }?.getOrElse("municipality") { null }
-        val county = location.parameters.getOrElse(id) { null }?.getOrElse("county") { null }
-        if (forecastLocation.isNullOrEmpty() ||
-            currentLocation.isNullOrEmpty() ||
-            municipality.isNullOrEmpty() ||
-            county.isNullOrEmpty()
-        ) {
-            return Observable.error(InvalidLocationException())
-        }
-
-        val failedFeatures = mutableListOf<SourceFeature>()
-
-        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getCurrent(currentLocation).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(LhmtWeatherResult())
+            val hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                getHourlyForecast(context, forecastResult)
+            } else {
+                null
             }
-        } else {
-            Observable.just(LhmtWeatherResult())
-        }
-
-        val alerts = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            mWwwApi.getAlertList().map { list ->
-                val path = list.first().substringAfter(LHMT_WWW_BASE_URL)
-                mWwwApi.getAlerts(path).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                    Observable.just(LhmtAlertsResult())
-                }.blockingFirst()
-            }.onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                Observable.just(LhmtAlertsResult())
-            }
-        } else {
-            Observable.just(LhmtAlertsResult())
-        }
-
-        return Observable.zip(current, alerts) {
-                currentResult: LhmtWeatherResult,
-                alertsResult: LhmtAlertsResult,
-            ->
-            convertSecondary(
-                context = context,
-                location = location,
-                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    currentResult
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(hourlyForecast)
                 } else {
                     null
                 },
-                alertsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    alertsResult
+                hourlyForecast = hourlyForecast,
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(context, currentResult)
+                } else {
+                    null
+                },
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlertList(context, location, alertsResult)
                 } else {
                     null
                 },

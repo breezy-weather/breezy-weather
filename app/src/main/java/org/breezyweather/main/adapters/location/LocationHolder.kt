@@ -24,6 +24,7 @@ import android.view.View
 import androidx.core.graphics.ColorUtils
 import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import breezyweather.domain.source.SourceFeature
 import org.breezyweather.R
 import org.breezyweather.common.extensions.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP
 import org.breezyweather.common.extensions.dpToPx
@@ -127,11 +128,12 @@ class LocationHolder(
 
         // source.
         mBinding.source.text = context.getString(
-            R.string.weather_data_by,
-            model.mainWeatherSource?.weatherAttribution ?: context.getString(R.string.null_data_text)
+            R.string.weather_forecast_data_by,
+            model.forecastWeatherSource?.supportedFeatures?.getOrElse(SourceFeature.FORECAST) { null }
+                ?: context.getString(R.string.null_data_text)
         )
         mBinding.source.setTextColor(
-            model.mainWeatherSource?.color ?: MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
+            model.forecastWeatherSource?.color ?: MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
         )
         mBinding.container.setOnClickListener { mClickListener(model.location.formattedId) }
         // TODO

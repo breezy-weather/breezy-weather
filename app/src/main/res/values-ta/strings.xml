@@ -97,7 +97,6 @@
     <string name="weather_minutely_data_by">மழைப்பொழிவு இப்போது %s மூலம் தரவு</string>
     <string name="weather_alert_data_by">%s மூலம் தரவை எச்சரிக்கை</string>
     <string name="weather_normals_data_by">வெப்பநிலை இயல்பான தரவு %s ஆல்</string>
-    <string name="weather_message_secondary_data_refresh_failed">இரண்டாம் நிலை வானிலை மூலத்திற்கான வானிலை தரவு புதுப்பிப்பு தோல்வியடைந்தது</string>
     <string name="weather_api_unauthorized_title">பநிஇ அணுகல் அங்கீகரிக்கப்படாதது</string>
     <string name="weather_source_accu_preference_days_10">10 நாட்கள்</string>
     <string name="weather_source_accu_preference_days_15">15 நாட்கள்</string>
@@ -595,7 +594,6 @@
     <string name="widget_custom_subtitle_keyword_xntd_description">இன்றைய இரவு நேர வெப்பநிலை, நாளை,…, 4 நாட்களுக்குப் பிறகு (°)</string>
     <string name="settings_background_updates_battery_optimization_summary">நீங்கள் அறிவிப்புகளைப் பெறாதபோது முயற்சி செய்ய வேண்டிய முதல் சேதி அல்லது விட்செட்டுகள் புத்துணர்ச்சியூட்டாது.</string>
     <string name="settings_weather_sources_default_source">புதிய இடங்களுக்கான இயல்புநிலை மூல</string>
-    <string name="settings_weather_source_main">முதன்மை சான்று</string>
     <string name="settings_notifications">அறிவிப்புகள்</string>
     <string name="settings_enabled">இயக்கப்பட்டது</string>
     <string name="settings_disabled">முடக்கப்பட்டது</string>

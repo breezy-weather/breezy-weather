@@ -17,16 +17,17 @@
 package org.breezyweather.sources.atmoaura
 
 import android.content.Context
+import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.model.AirQuality
+import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.exceptions.ApiKeyMissingException
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
@@ -35,8 +36,9 @@ import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SourceConfigStore
+import org.breezyweather.sources.atmoaura.json.AtmoAuraPointResult
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -50,12 +52,14 @@ import javax.inject.Named
 class AtmoAuraService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), SecondaryWeatherSource, ConfigurableSource {
+) : HttpSource(), WeatherSource, ConfigurableSource {
 
     override val id = "atmoaura"
     override val name = "ATMO Auvergne-Rhône-Alpes (${Locale(context.currentLocale.code, "FR").displayCountry})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.atmo-auvergnerhonealpes.fr/article/politique-de-confidentialite"
+
+    override val color = Color.rgb(49, 77, 154)
 
     private val mApi by lazy {
         client
@@ -64,13 +68,15 @@ class AtmoAuraService @Inject constructor(
             .create(AtmoAuraAirQualityApi::class.java)
     }
 
-    override val supportedFeaturesInSecondary = listOf(SourceFeature.FEATURE_AIR_QUALITY)
-    override fun isFeatureSupportedInSecondaryForLocation(
+    override val supportedFeatures = mapOf(
+        SourceFeature.AIR_QUALITY to "ATMO Auvergne-Rhône-Alpes"
+    )
+    override fun isFeatureSupportedForLocation(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
         // FIXME: We no longer have admin2Code, use a geometry instead of hardcoding departments
-        return feature == SourceFeature.FEATURE_AIR_QUALITY &&
+        return feature == SourceFeature.AIR_QUALITY &&
             !location.countryCode.isNullOrEmpty() &&
             location.countryCode.equals("FR", ignoreCase = true) &&
             location.admin2 in arrayOf(
@@ -97,26 +103,12 @@ class AtmoAuraService @Inject constructor(
                 "Haute Savoie" // 74
             )
     }
-    override val currentAttribution = null
-    override val airQualityAttribution = "ATMO Auvergne-Rhône-Alpes"
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = null
-    override val normalsAttribution = null
 
-    override fun requestSecondaryWeather(
+    override fun requestWeather(
         context: Context,
         location: Location,
         requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
-        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_AIR_QUALITY)) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-
+    ): Observable<WeatherWrapper> {
         val calendar = Date().toCalendarWithTimeZone(location.javaTimeZone).apply {
             add(Calendar.DAY_OF_YEAR, 1)
             set(Calendar.HOUR_OF_DAY, 0)
@@ -131,8 +123,55 @@ class AtmoAuraService @Inject constructor(
             location.latitude, // Tomorrow because it gives access to D-1 and D+1
             calendar.time.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", location)
         ).map {
-            convert(it)
+            val airQualityHourly = mutableMapOf<Date, AirQuality>()
+            it.polluants?.getOrNull(0)?.horaires?.forEach { h ->
+                airQualityHourly[h.datetimeEcheance] = getAirQuality(h.datetimeEcheance, it)
+            }
+
+            WeatherWrapper(
+                airQuality = AirQualityWrapper(
+                    hourlyForecast = airQualityHourly
+                )
+            )
         }
+    }
+
+    private fun getAirQuality(requestedDate: Date, aqiAtmoAuraResult: AtmoAuraPointResult): AirQuality {
+        var pm25: Double? = null
+        var pm10: Double? = null
+        var so2: Double? = null
+        var no2: Double? = null
+        var o3: Double? = null
+
+        aqiAtmoAuraResult.polluants
+            ?.filter { p -> p.horaires?.firstOrNull { it.datetimeEcheance == requestedDate } != null }
+            ?.forEach { p ->
+                when (p.polluant) {
+                    "o3" -> o3 = p.horaires?.firstOrNull {
+                        it.datetimeEcheance == requestedDate
+                    }?.concentration?.toDouble()
+                    "no2" -> no2 = p.horaires?.firstOrNull {
+                        it.datetimeEcheance == requestedDate
+                    }?.concentration?.toDouble()
+                    "pm2.5" -> pm25 = p.horaires?.firstOrNull {
+                        it.datetimeEcheance == requestedDate
+                    }?.concentration?.toDouble()
+                    "pm10" -> pm10 = p.horaires?.firstOrNull {
+                        it.datetimeEcheance == requestedDate
+                    }?.concentration?.toDouble()
+                    "so2" -> so2 = p.horaires?.firstOrNull {
+                        it.datetimeEcheance == requestedDate
+                    }?.concentration?.toDouble()
+                }
+            }
+
+        return AirQuality(
+            pM25 = pm25,
+            pM10 = pm10,
+            sO2 = so2,
+            nO2 = no2,
+            o3 = o3
+        )
     }
 
     // CONFIG

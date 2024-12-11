@@ -18,33 +18,28 @@ package org.breezyweather.sources.dmi
 
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.dmi.json.DmiResult
 import org.breezyweather.sources.dmi.json.DmiTimeserie
 import org.breezyweather.sources.dmi.json.DmiWarning
-import org.breezyweather.sources.dmi.json.DmiWarningResult
 import java.util.Objects
 
-fun convert(
+internal fun convert(
     location: Location,
     result: DmiResult,
 ): Location {
     return location.copy(
         cityId = result.id,
-        timeZone = result.timezone,
+        timeZone = result.timezone!!,
         country = result.country ?: location.country,
         countryCode = result.country,
         admin1 = "",
@@ -60,36 +55,16 @@ fun convert(
 }
 
 /**
- * Converts DMI result into a forecast
- */
-fun convert(
-    dmiResult: DmiResult,
-    dmiWarningResult: DmiWarningResult,
-    location: Location,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    // If the API doesn’t return timeseries, consider data as garbage and keep cached data
-    if (dmiResult.timeserie.isNullOrEmpty()) {
-        throw InvalidOrIncompleteDataException()
-    }
-
-    return WeatherWrapper(
-        dailyForecast = getDailyForecast(location, dmiResult.timeserie),
-        hourlyForecast = getHourlyForecast(dmiResult.timeserie),
-        alertList = getAlertList(dmiWarningResult.locationWarnings),
-        failedFeatures = failedFeatures
-    )
-}
-
-/**
  * Returns empty daily forecast
  * Will be completed with hourly forecast data later
  */
-private fun getDailyForecast(
+internal fun getDailyForecast(
     location: Location,
-    dailyResult: List<DmiTimeserie>,
-): List<Daily> {
-    val dailyList = mutableListOf<Daily>()
+    dailyResult: List<DmiTimeserie>?,
+): List<DailyWrapper> {
+    if (dailyResult.isNullOrEmpty()) return emptyList()
+
+    val dailyList = mutableListOf<DailyWrapper>()
     val hourlyListByDay = dailyResult.groupBy {
         it.localTimeIso.getFormattedDate("yyyy-MM-dd", location)
     }
@@ -97,7 +72,7 @@ private fun getDailyForecast(
         val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
         if (dayDate != null) {
             dailyList.add(
-                Daily(
+                DailyWrapper(
                     date = dayDate
                 )
             )
@@ -109,9 +84,11 @@ private fun getDailyForecast(
 /**
  * Returns hourly forecast
  */
-private fun getHourlyForecast(
-    hourlyResult: List<DmiTimeserie>,
+internal fun getHourlyForecast(
+    hourlyResult: List<DmiTimeserie>?,
 ): List<HourlyWrapper> {
+    if (hourlyResult.isNullOrEmpty()) return emptyList()
+
     return hourlyResult.map { result ->
         HourlyWrapper(
             // TODO: Check units
@@ -137,7 +114,7 @@ private fun getHourlyForecast(
     }
 }
 
-private fun getAlertList(
+internal fun getAlertList(
     resultList: List<DmiWarning>?,
 ): List<Alert>? {
     if (resultList.isNullOrEmpty()) return null
@@ -166,14 +143,6 @@ private fun getAlertList(
             }
         )
     }
-}
-
-fun convertSecondary(
-    dmiWarningResult: DmiWarningResult,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        alertList = getAlertList(dmiWarningResult.locationWarnings)
-    )
 }
 
 private fun getWeatherCode(icon: Int?): WeatherCode? {

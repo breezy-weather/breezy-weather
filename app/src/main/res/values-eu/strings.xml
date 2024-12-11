@@ -228,7 +228,6 @@
     <string name="dew_point">Ihintz-tenperatura</string>
     <string name="cloud_cover">Hodeitza</string>
     <string name="ceiling">Sabaia</string>
-    <string name="weather_message_secondary_data_refresh_failed">Huts egin du meteorologia-datuak bigarren mailako iturri meteorologiko batetik eguneratzeak</string>
     <string name="weather_alert_data_by">Alerten datuan %s(r)en bidez</string>
     <string name="weather_normals_data_by">Tenperatura-parametroen datuak %s(r)en bidez</string>
     <string name="location_results_by">Kokapen emaitzak %s(r)en bidez</string>
@@ -274,7 +273,6 @@
     <string name="settings_background_updates_worker_info_summary">Azken exekuzioa: %s</string>
     <string name="settings_location_access_precise_summaryOff">Gaitu “Kokapen zehatza erabili” kokapen bat lortzeko arazoak izanez gero.</string>
     <string name="settings_weather_sources">Eguraldiaren iturriak</string>
-    <string name="settings_weather_source_main">Iturri nagusia</string>
     <string name="settings_weather_sources_per_location_summary">Pertsonalizatu kokapen honetarako datu meteorologikoen iturriak</string>
     <string name="settings_source_api_key">API gakoa</string>
     <string name="settings_main_daily_trends_title">Egunkako joerak</string>

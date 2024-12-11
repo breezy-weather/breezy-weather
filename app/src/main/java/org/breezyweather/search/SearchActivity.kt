@@ -68,6 +68,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceFeature
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
@@ -198,21 +199,84 @@ class SearchActivity : GeoActivity() {
                                     headlineContent = { Text(location.getPlace(context)) },
                                     supportingContent = { Text(location.administrationLevels()) },
                                     modifier = Modifier.clickable {
-                                        val defaultSource = SettingsManager.getInstance(context).defaultWeatherSource
+                                        val defaultSource = SettingsManager.getInstance(context).defaultForecastSource
 
                                         selectedLocation = when (defaultSource) {
-                                            "auto" -> LocationPreset.getLocationWithPresetApplied(
-                                                location
-                                            )
+                                            "auto" -> LocationPreset.getLocationWithPresetApplied(location)
                                             else -> {
-                                                val source = sourceManager
-                                                    .getMainWeatherSource(defaultSource)
+                                                val source = sourceManager.getWeatherSource(defaultSource)
                                                 if (source == null) {
-                                                    LocationPreset.getLocationWithPresetApplied(
-                                                        location
-                                                    )
+                                                    LocationPreset.getLocationWithPresetApplied(location)
                                                 } else {
-                                                    location.copy(weatherSource = source.id)
+                                                    location.copy(
+                                                        forecastSource = source.id,
+                                                        currentSource = if (SourceFeature.CURRENT in
+                                                            source.supportedFeatures &&
+                                                            source.isFeatureSupportedForLocation(
+                                                                location,
+                                                                SourceFeature.CURRENT
+                                                            )
+                                                        ) {
+                                                            source.id
+                                                        } else {
+                                                            null
+                                                        },
+                                                        airQualitySource = if (SourceFeature.AIR_QUALITY in
+                                                            source.supportedFeatures &&
+                                                            source.isFeatureSupportedForLocation(
+                                                                location,
+                                                                SourceFeature.AIR_QUALITY
+                                                            )
+                                                        ) {
+                                                            source.id
+                                                        } else {
+                                                            null
+                                                        },
+                                                        pollenSource = if (SourceFeature.POLLEN in
+                                                            source.supportedFeatures &&
+                                                            source.isFeatureSupportedForLocation(
+                                                                location,
+                                                                SourceFeature.POLLEN
+                                                            )
+                                                        ) {
+                                                            source.id
+                                                        } else {
+                                                            null
+                                                        },
+                                                        minutelySource = if (SourceFeature.MINUTELY in
+                                                            source.supportedFeatures &&
+                                                            source.isFeatureSupportedForLocation(
+                                                                location,
+                                                                SourceFeature.MINUTELY
+                                                            )
+                                                        ) {
+                                                            source.id
+                                                        } else {
+                                                            null
+                                                        },
+                                                        alertSource = if (SourceFeature.ALERT in
+                                                            source.supportedFeatures &&
+                                                            source.isFeatureSupportedForLocation(
+                                                                location,
+                                                                SourceFeature.ALERT
+                                                            )
+                                                        ) {
+                                                            source.id
+                                                        } else {
+                                                            null
+                                                        },
+                                                        normalsSource = if (SourceFeature.NORMALS in
+                                                            source.supportedFeatures &&
+                                                            source.isFeatureSupportedForLocation(
+                                                                location,
+                                                                SourceFeature.NORMALS
+                                                            )
+                                                        ) {
+                                                            source.id
+                                                        } else {
+                                                            null
+                                                        }
+                                                    )
                                                 }
                                             }
                                         }

@@ -18,26 +18,20 @@ package org.breezyweather.sources.meteoam
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.R
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
-import org.breezyweather.sources.meteoam.json.MeteoAmForecastResult
 import org.breezyweather.sources.meteoam.json.MeteoAmForecastStats
-import org.breezyweather.sources.meteoam.json.MeteoAmObservationResult
 import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocation
 import java.util.Date
 
-fun convert(
+internal fun convert(
     location: Location,
     reverseLocation: MeteoAmReverseLocation,
     timezone: String,
@@ -51,49 +45,11 @@ fun convert(
     )
 }
 
-fun convert(
-    context: Context,
-    forecastResult: MeteoAmForecastResult,
-    observationResult: MeteoAmObservationResult,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    val timeseries = forecastResult.timeseries
-    val params = forecastResult.paramlist
-    val stats = forecastResult.extrainfo?.stats
-    val data = forecastResult.datasets?.data
-    val oParams = observationResult.paramlist
-    val observation = observationResult.datasets?.getOrElse("0") { null }
-
-    if (timeseries == null || params == null || stats == null || data == null) {
-        throw InvalidOrIncompleteDataException()
-    }
-
-    return WeatherWrapper(
-        current = observation?.let { oParams?.let { getCurrent(context, oParams, observation) } },
-        dailyForecast = getDailyForecast(context, stats),
-        hourlyForecast = getHourlyForecast(context, timeseries, params, data),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun convertSecondary(
-    context: Context,
-    observationResult: MeteoAmObservationResult,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    val oParams = observationResult.paramlist
-    val observation = observationResult.datasets?.getOrElse("0") { null }
-    return SecondaryWeatherWrapper(
-        current = observation?.let { oParams?.let { getCurrent(context, oParams, observation) } },
-        failedFeatures = failedFeatures
-    )
-}
-
-private fun getCurrent(
+internal fun getCurrent(
     context: Context,
     params: List<String>,
     currentResult: Map<String, Map<String, Any?>>,
-): Current {
+): CurrentWrapper {
     val keys = mutableMapOf<String, String>()
     for (i in params.indices) {
         keys[params[i]] = i.toString()
@@ -121,7 +77,7 @@ private fun getCurrent(
         else -> null // sometimes returned as "-"
     }
 
-    return Current(
+    return CurrentWrapper(
         weatherText = getWeatherText(context, icon),
         weatherCode = getWeatherCode(icon),
         temperature = Temperature(
@@ -136,15 +92,15 @@ private fun getCurrent(
     )
 }
 
-private fun getDailyForecast(
+internal fun getDailyForecast(
     context: Context,
-    dailyResult: List<MeteoAmForecastStats>,
-): List<Daily> {
-    val dailyForecast = mutableListOf<Daily>()
-    dailyResult.forEach {
+    dailyResult: List<MeteoAmForecastStats>?,
+): List<DailyWrapper> {
+    val dailyForecast = mutableListOf<DailyWrapper>()
+    dailyResult?.forEach {
         if (it.icon != "-") {
             dailyForecast.add(
-                Daily(
+                DailyWrapper(
                     date = it.localDate,
                     day = HalfDay(
                         weatherText = getWeatherText(context, it.icon),
@@ -161,12 +117,16 @@ private fun getDailyForecast(
     return dailyForecast
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     context: Context,
-    timeseries: List<Date>,
-    params: List<String>,
-    data: Map<String, Map<String, Any?>>,
+    timeseries: List<Date>?,
+    params: List<String>?,
+    data: Map<String, Map<String, Any?>>?,
 ): List<HourlyWrapper> {
+    if (timeseries.isNullOrEmpty() || params.isNullOrEmpty() || data.isNullOrEmpty()) {
+        return emptyList()
+    }
+
     val hourlyForecast = mutableListOf<HourlyWrapper>()
     val keys = mutableMapOf<String, String>()
     var icon: String

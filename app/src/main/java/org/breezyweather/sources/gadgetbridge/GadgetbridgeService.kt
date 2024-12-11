@@ -76,7 +76,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
         val today = location.weather?.today
 
         return GadgetbridgeData(
-            timestamp = location.weather?.base?.mainUpdateTime?.time?.div(1000)?.toInt(),
+            timestamp = location.weather?.base?.forecastUpdateTime?.time?.div(1000)?.toInt(),
             location = location.getPlace(context),
             currentTemp = current?.temperature?.temperature?.roundCelsiusToKelvin(),
             currentConditionCode = getWeatherCode(current?.weatherCode),

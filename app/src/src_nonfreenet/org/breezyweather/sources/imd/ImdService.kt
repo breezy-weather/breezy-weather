@@ -29,7 +29,7 @@ import okhttp3.Request
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.imd.json.ImdWeatherResult
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -42,7 +42,7 @@ import kotlin.math.roundToInt
 class ImdService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource {
+) : HttpSource(), WeatherSource {
 
     override val id = "imd"
     override val name = "IMD (${Locale(context.currentLocale.code, "IN").displayCountry})"
@@ -50,7 +50,6 @@ class ImdService @Inject constructor(
     override val privacyPolicyUrl = ""
 
     override val color = Color.rgb(10, 88, 202)
-    override val weatherAttribution = "India Meteorological Department"
 
     private val mApi by lazy {
         client
@@ -61,11 +60,13 @@ class ImdService @Inject constructor(
 
     private val okHttpClient = OkHttpClient()
 
-    override val supportedFeaturesInMain = listOf<SourceFeature>()
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to "India Meteorological Department"
+    )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("IN", ignoreCase = true)
     }
@@ -73,7 +74,7 @@ class ImdService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         // Forecast data is obtained from https://mausamgram.imd.gov.in/
         // It computes forecasts on a 0.125° × 0.125° grid.
@@ -119,30 +120,34 @@ class ImdService @Inject constructor(
         }
 
         return Observable.zip(forecasts[0], forecasts[1], forecasts[2]) {
-                forecast1hrResult: ImdWeatherResult,
-                forecast3hrResult: ImdWeatherResult,
-                forecast6hrResult: ImdWeatherResult,
+                forecast1hr: ImdWeatherResult,
+                forecast3hr: ImdWeatherResult,
+                forecast6hr: ImdWeatherResult,
             ->
-            convert(
-                location = location,
-                forecast1hr = forecast1hrResult,
-                forecast3hr = forecast3hrResult,
-                forecast6hr = forecast6hrResult,
-                forecast1hrTimestamp = if (timestampRegex.matches(timestamps[0])) {
+            val hourlyForecast = getHourlyForecast(
+                forecast1hr,
+                forecast3hr,
+                forecast6hr,
+                if (timestampRegex.matches(timestamps[0])) {
                     formatter.parse(timestamps[0])!!.time
                 } else {
                     null
                 },
-                forecast3hrTimestamp = if (timestampRegex.matches(timestamps[1])) {
+                if (timestampRegex.matches(timestamps[1])) {
                     formatter.parse(timestamps[1])!!.time
                 } else {
                     null
                 },
-                forecast6hrTimestamp = if (timestampRegex.matches(timestamps[2])) {
+                if (timestampRegex.matches(timestamps[2])) {
                     formatter.parse(timestamps[2])!!.time
                 } else {
                     null
                 }
+            )
+
+            WeatherWrapper(
+                dailyForecast = getDailyForecast(location, hourlyForecast),
+                hourlyForecast = hourlyForecast
             )
         }
     }

@@ -19,19 +19,16 @@ package org.breezyweather.sources.mgm
 import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
@@ -40,14 +37,13 @@ import org.breezyweather.sources.mgm.json.MgmAlertResult
 import org.breezyweather.sources.mgm.json.MgmCurrentResult
 import org.breezyweather.sources.mgm.json.MgmDailyForecastResult
 import org.breezyweather.sources.mgm.json.MgmHourlyForecast
-import org.breezyweather.sources.mgm.json.MgmHourlyForecastResult
 import org.breezyweather.sources.mgm.json.MgmLocationResult
 import org.breezyweather.sources.mgm.json.MgmNormalsResult
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
-fun convert(
+internal fun convert(
     location: Location,
     result: MgmLocationResult,
 ): Location {
@@ -71,61 +67,11 @@ fun convert(
     )
 }
 
-fun convert(
-    context: Context,
-    townCode: Int,
-    currentResult: MgmCurrentResult?,
-    dailyResult: MgmDailyForecastResult?,
-    hourlyForecastResult: MgmHourlyForecastResult?,
-    todayAlertResult: List<MgmAlertResult>?,
-    tomorrowAlertResult: List<MgmAlertResult>?,
-    normalsResult: MgmNormalsResult?,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    return WeatherWrapper(
-        current = getCurrent(context, currentResult),
-        dailyForecast = getDailyForecast(context, dailyResult),
-        hourlyForecast = getHourlyForecast(context, hourlyForecastResult?.forecast),
-        alertList = getAlertList(townCode, todayAlertResult, tomorrowAlertResult),
-        normals = getNormals(normalsResult),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun convertSecondary(
-    context: Context,
-    townCode: Int,
-    currentResult: MgmCurrentResult?,
-    todayAlertResult: List<MgmAlertResult>?,
-    tomorrowAlertResult: List<MgmAlertResult>?,
-    normalsResult: MgmNormalsResult?,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = if (currentResult !== null) {
-            getCurrent(context, currentResult)
-        } else {
-            null
-        },
-        alertList = if (todayAlertResult !== null && tomorrowAlertResult !== null) {
-            getAlertList(townCode, todayAlertResult, tomorrowAlertResult)
-        } else {
-            null
-        },
-        normals = if (normalsResult !== null) {
-            getNormals(normalsResult)
-        } else {
-            null
-        },
-        failedFeatures = failedFeatures
-    )
-}
-
-private fun getCurrent(
+internal fun getCurrent(
     context: Context,
     currentResult: MgmCurrentResult?,
-): Current {
-    return Current(
+): CurrentWrapper {
+    return CurrentWrapper(
         weatherText = getWeatherText(context, currentResult?.condition),
         weatherCode = getWeatherCode(currentResult?.condition),
         temperature = Temperature(
@@ -140,11 +86,11 @@ private fun getCurrent(
     )
 }
 
-private fun getDailyForecast(
+internal fun getDailyForecast(
     context: Context,
     dailyForecast: MgmDailyForecastResult?,
-): List<Daily> {
-    val dailyList = mutableListOf<Daily>()
+): List<DailyWrapper> {
+    val dailyList = mutableListOf<DailyWrapper>()
     dailyForecast?.let {
         dailyList.add(
             getDaily(
@@ -205,7 +151,7 @@ private fun getDailyForecast(
     return dailyList
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     context: Context,
     hourlyForecast: List<MgmHourlyForecast>?,
 ): List<HourlyWrapper> {
@@ -234,7 +180,7 @@ private fun getHourlyForecast(
     return hourlyList
 }
 
-private fun getAlertList(
+internal fun getAlertList(
     townCode: Int,
     todayAlertResult: List<MgmAlertResult>?,
     tomorrowAlertResult: List<MgmAlertResult>?,
@@ -288,7 +234,7 @@ private fun getAlertList(
     return alertList
 }
 
-private fun getNormals(
+internal fun getNormals(
     normalsResult: MgmNormalsResult?,
 ): Normals {
     return Normals(
@@ -306,11 +252,11 @@ private fun getDaily(
     minTemp: Double?,
     windDirection: Double?,
     windSpeed: Double?,
-): Daily {
+): DailyWrapper {
     // The 'Z' in the timestamp is misused. It is actually in Europe/Istanbul rather than Etc/UTC
     val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Europe/Istanbul")
-    return Daily(
+    return DailyWrapper(
         date = formatter.parse(date)!!,
         day = HalfDay(
             weatherText = getWeatherText(context, condition),
@@ -417,7 +363,7 @@ private fun getWeatherCode(
 // under "harita-alti-hadise"
 private fun getAlertHeadline(
     weather: List<String>?,
-): String? {
+): String {
     val items = mutableListOf<String>()
     weather?.forEach {
         when (it) {

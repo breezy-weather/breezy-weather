@@ -21,7 +21,8 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.model.AirQuality
+import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -30,9 +31,8 @@ import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.lvgmc.json.LvgmcAirQualityLocationResult
 import org.breezyweather.sources.lvgmc.json.LvgmcAirQualityResult
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentLocation
@@ -50,13 +50,12 @@ import kotlin.time.Duration.Companion.hours
 class LvgmcService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
     override val id = "lvgmc"
     override val name = "LVĢMC (${Locale(context.currentLocale.code, "LV").displayCountry})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = ""
     override val color = Color.rgb(11, 71, 135)
-    override val weatherAttribution = "Latvijas Vides, ģeoloģijas un meteoroloģijas centrs"
 
     private val mApi by lazy {
         client.baseUrl(LVGMC_BASE_URL)
@@ -64,14 +63,16 @@ class LvgmcService @Inject constructor(
             .create(LvgmcApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_AIR_QUALITY
+    private val weatherAttribution = "Latvijas Vides, ģeoloģijas un meteoroloģijas centrs"
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.AIR_QUALITY to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("LV", ignoreCase = true)
     }
@@ -79,7 +80,7 @@ class LvgmcService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val currentLocation = location.parameters.getOrElse(id) { null }?.getOrElse("currentLocation") { null }
         val forecastLocation = location.parameters.getOrElse(id) { null }?.getOrElse("forecastLocation") { null }
@@ -91,18 +92,32 @@ class LvgmcService @Inject constructor(
 
         val failedFeatures = mutableListOf<SourceFeature>()
 
-        val daily = mApi.getForecast(
-            scope = "daily",
-            punkts = forecastLocation
-        )
-        val hourly = mApi.getForecast(
-            scope = "hourly",
-            punkts = forecastLocation
-        )
+        val daily = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getForecast(
+                scope = "daily",
+                punkts = forecastLocation
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(emptyList())
+            }
+        } else {
+            Observable.just(emptyList())
+        }
+        val hourly = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getForecast(
+                scope = "hourly",
+                punkts = forecastLocation
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(emptyList())
+            }
+        } else {
+            Observable.just(emptyList())
+        }
 
-        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(emptyList())
             }
         } else {
@@ -112,12 +127,12 @@ class LvgmcService @Inject constructor(
         val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
         formatter.timeZone = TimeZone.getTimeZone("Europe/Riga")
         val fromDate = formatter.format(Date(Date().time - 24.hours.inWholeMilliseconds))
-        val airQuality = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
+        val airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
             mApi.getAirQuality(
                 station = airQualityLocation,
                 fromDate = fromDate
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                failedFeatures.add(SourceFeature.AIR_QUALITY)
                 Observable.just(emptyList())
             }
         } else {
@@ -128,89 +143,37 @@ class LvgmcService @Inject constructor(
                 currentResult: List<LvgmcCurrentResult>,
                 dailyResult: List<LvgmcForecastResult>,
                 hourlyResult: List<LvgmcForecastResult>,
-                airQualityResult: List<LvgmcAirQualityResult>,
+                aq: List<LvgmcAirQualityResult>,
             ->
-            convert(
-                context = context,
-                location = location,
-                currentResult = currentResult,
-                dailyResult = dailyResult,
-                hourlyResult = hourlyResult,
-                airQualityResult = airQualityResult,
-                failedFeatures = failedFeatures
-            )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_AIR_QUALITY
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = weatherAttribution
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = null
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        val currentLocation = location.parameters.getOrElse(id) { null }?.getOrElse("currentLocation") { null }
-        val airQualityLocation = location.parameters.getOrElse(id) { null }?.getOrElse("airQualityLocation") { null }
-
-        if (currentLocation.isNullOrEmpty() || airQualityLocation.isNullOrEmpty()) {
-            return Observable.error(InvalidLocationException())
-        }
-
-        val failedFeatures = mutableListOf<SourceFeature>()
-
-        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getCurrent().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(emptyList())
-            }
-        } else {
-            Observable.just(emptyList())
-        }
-
-        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
-        formatter.timeZone = TimeZone.getTimeZone("Europe/Riga")
-        val fromDate = formatter.format(Date(Date().time - 24.hours.inWholeMilliseconds))
-        val airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-            mApi.getAirQuality(
-                station = airQualityLocation,
-                fromDate = fromDate
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
-                Observable.just(emptyList())
-            }
-        } else {
-            Observable.just(emptyList())
-        }
-
-        return Observable.zip(current, airQuality) {
-                currentResult: List<LvgmcCurrentResult>,
-                airQualityResult: List<LvgmcAirQualityResult>,
-            ->
-            convertSecondary(
-                location = location,
-                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    currentResult
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(context, dailyResult)
                 } else {
                     null
                 },
-                airQualityResult = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-                    airQualityResult
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(context, hourlyResult)
+                } else {
+                    null
+                },
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(location, currentResult)
+                } else {
+                    null
+                },
+                airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
+                    AirQualityWrapper(
+                        current = AirQuality(
+                            pM25 = aq.filter { it.code == "PM2.5_60min" }.sortedByDescending { it.time }
+                                .firstOrNull()?.value,
+                            pM10 = aq.filter { it.code == "PM10_60min" }.sortedByDescending { it.time }
+                                .firstOrNull()?.value,
+                            sO2 = aq.filter { it.code == "SO2" }.sortedByDescending { it.time }.firstOrNull()?.value,
+                            nO2 = aq.filter { it.code == "NO2" }.sortedByDescending { it.time }.firstOrNull()?.value,
+                            o3 = aq.filter { it.code == "O3" }.sortedByDescending { it.time }.firstOrNull()?.value,
+                            cO = aq.filter { it.code == "CO" }.sortedByDescending { it.time }.firstOrNull()?.value
+                        )
+                    )
                 } else {
                     null
                 },

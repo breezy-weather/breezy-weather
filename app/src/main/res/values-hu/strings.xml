@@ -209,7 +209,6 @@
     <string name="settings_background_updates_refresh_never">Soha</string>
     <string name="settings_background_updates_refresh_1h_30min">1,5 óra</string>
     <string name="settings_background_updates_battery_optimization_summary">Ez az első teendő, amikor nem kap értesítéseket, vagy a modulok nem frissülnek.</string>
-    <string name="settings_weather_source_main">Elsődleges forrás</string>
     <string name="location_message_reverse_geocoding_failed">Az időjárásforrás nem talált megegyező helyszínt</string>
     <string name="widget_multi_city">Több város</string>
     <string name="settings_background_updates_battery_optimization_disabled">Az akkumulátoroptimalizáció már le van tiltva.</string>
@@ -320,7 +319,6 @@
     <string name="pollen_olea">Olíva</string>
     <string name="pollen_level_0">Semennyi</string>
     <string name="pollen_level_1">Nagyon alacsony</string>
-    <string name="weather_message_secondary_data_refresh_failed">A másodlagos időjárásforrás adatainak frissítése sikertelen</string>
     <string name="weather_message_invalid_location">Érvénytelen helyszín, törölje és adja hozzá újra</string>
     <string name="weather_source_accu_preference_days_10">10 nap</string>
     <string name="weather_source_accu_preference_hours_1">1 óra</string>

@@ -17,41 +17,23 @@
 package org.breezyweather.sources.smhi
 
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
-import org.breezyweather.sources.smhi.json.SmhiForecastResult
 import org.breezyweather.sources.smhi.json.SmhiTimeSeries
 import kotlin.math.roundToInt
 
-fun convert(
-    forecastResult: SmhiForecastResult,
-    location: Location,
-): WeatherWrapper {
-    // If the API doesn’t return data, consider data as garbage and keep cached data
-    if (forecastResult.timeSeries.isNullOrEmpty()) {
-        throw InvalidOrIncompleteDataException()
-    }
-
-    return WeatherWrapper(
-        dailyForecast = getDailyForecast(location, forecastResult.timeSeries),
-        hourlyForecast = getHourlyForecast(forecastResult.timeSeries)
-    )
-}
-
-private fun getDailyForecast(
+internal fun getDailyForecast(
     location: Location,
     forecastResult: List<SmhiTimeSeries>,
-): List<Daily> {
-    val dailyList = mutableListOf<Daily>()
+): List<DailyWrapper> {
+    val dailyList = mutableListOf<DailyWrapper>()
     val hourlyListByDay = forecastResult.groupBy {
         it.validTime.getFormattedDate("yyyy-MM-dd", location)
     }
@@ -59,7 +41,7 @@ private fun getDailyForecast(
         val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
         if (dayDate != null) {
             dailyList.add(
-                Daily(
+                DailyWrapper(
                     date = dayDate
                 )
             )
@@ -71,7 +53,7 @@ private fun getDailyForecast(
 /**
  * Returns hourly forecast
  */
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     forecastResult: List<SmhiTimeSeries>,
 ): List<HourlyWrapper> {
     return forecastResult.map { result ->

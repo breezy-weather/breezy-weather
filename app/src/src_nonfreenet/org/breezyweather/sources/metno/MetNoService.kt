@@ -21,7 +21,8 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.model.AirQuality
+import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -30,8 +31,7 @@ import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.metno.json.MetNoAirQualityResult
 import org.breezyweather.sources.metno.json.MetNoAlertResult
 import org.breezyweather.sources.metno.json.MetNoForecastResult
@@ -46,7 +46,7 @@ import javax.inject.Named
 class MetNoService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource {
+) : HttpSource(), WeatherSource {
 
     override val id = "metno"
     override val name by lazy {
@@ -68,7 +68,6 @@ class MetNoService @Inject constructor(
     }
 
     override val color = Color.rgb(11, 69, 94)
-    override val weatherAttribution = "MET Norway (NLOD / CC BY 4.0)"
 
     private val mApi by lazy {
         client
@@ -77,193 +76,107 @@ class MetNoService @Inject constructor(
             .create(MetNoApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_AIR_QUALITY,
-        SourceFeature.FEATURE_MINUTELY,
-        SourceFeature.FEATURE_ALERT
+    private val weatherAttribution = "MET Norway (NLOD / CC BY 4.0)"
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.AIR_QUALITY to weatherAttribution,
+        SourceFeature.MINUTELY to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution
     )
+
+    override fun isFeatureSupportedForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Boolean {
+        return when (feature) {
+            // Nowcast only for Norway, Sweden, Finland and Denmark
+            // Covered area is slightly larger as per https://api.met.no/doc/nowcast/datamodel
+            // but safer to limit to guaranteed countries
+            SourceFeature.CURRENT, SourceFeature.MINUTELY -> !location.countryCode.isNullOrEmpty() &&
+                arrayOf("NO", "SE", "FI", "DK").any {
+                    it.equals(location.countryCode, ignoreCase = true)
+                }
+
+            // Air quality only for Norway
+            SourceFeature.AIR_QUALITY -> !location.countryCode.isNullOrEmpty() &&
+                location.countryCode.equals("NO", ignoreCase = true)
+
+            // Alerts only for Norway and Svalbard & Jan Mayen
+            SourceFeature.ALERT -> !location.countryCode.isNullOrEmpty() &&
+                arrayOf("NO", "SJ").any {
+                    it.equals(location.countryCode, ignoreCase = true)
+                }
+
+            SourceFeature.FORECAST -> true
+
+            else -> false
+        }
+    }
 
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val failedFeatures = mutableListOf<SourceFeature>()
-        val forecast = mApi.getForecast(
-            USER_AGENT,
-            location.latitude,
-            location.longitude
-        )
+        val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getForecast(
+                USER_AGENT,
+                location.latitude,
+                location.longitude
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(MetNoForecastResult())
+            }
+        } else {
+            Observable.just(MetNoForecastResult())
+        }
 
         val formattedDate = Date().getFormattedDate("yyyy-MM-dd", location)
-        val sun = mApi.getSun(
-            USER_AGENT,
-            location.latitude,
-            location.longitude,
-            formattedDate
-        ).onErrorResumeNext {
-            /*if (BreezyWeather.instance.debugMode) {
-                failedFeatures.add(SourceFeature.FEATURE_OTHER)
-            }*/
+        val sun = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getSun(
+                USER_AGENT,
+                location.latitude,
+                location.longitude,
+                formattedDate
+            ).onErrorResumeNext {
+                /*if (BreezyWeather.instance.debugMode) {
+                    failedFeatures.add(SourceFeature.OTHER)
+                }*/
+                Observable.just(MetNoSunResult())
+            }
+        } else {
             Observable.just(MetNoSunResult())
         }
-        val moon = mApi.getMoon(
-            USER_AGENT,
-            location.latitude,
-            location.longitude,
-            formattedDate
-        ).onErrorResumeNext {
-            /*if (BreezyWeather.instance.debugMode) {
-                failedFeatures.add(SourceFeature.FEATURE_OTHER)
-            }*/
+        val moon = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getMoon(
+                USER_AGENT,
+                location.latitude,
+                location.longitude,
+                formattedDate
+            ).onErrorResumeNext {
+                /*if (BreezyWeather.instance.debugMode) {
+                    failedFeatures.add(SourceFeature.OTHER)
+                }*/
+                Observable.just(MetNoMoonResult())
+            }
+        } else {
             Observable.just(MetNoMoonResult())
         }
 
-        // Nowcast only for Norway, Sweden, Finland and Denmark
-        // Covered area is slightly larger as per https://api.met.no/doc/nowcast/datamodel
-        // but safer to limit to guaranteed countries
-        val nowcast = if (!location.countryCode.isNullOrEmpty() &&
-            arrayOf("NO", "SE", "FI", "DK").any {
-                it.equals(location.countryCode, ignoreCase = true)
-            } &&
-            !(
-                ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT) &&
-                    ignoreFeatures.contains(SourceFeature.FEATURE_MINUTELY)
-                )
+        val nowcast = if (SourceFeature.CURRENT in requestedFeatures ||
+            SourceFeature.MINUTELY in requestedFeatures
         ) {
             mApi.getNowcast(
                 USER_AGENT,
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(MetNoNowcastResult())
-            }
-        } else {
-            Observable.just(MetNoNowcastResult())
-        }
-
-        // Air quality only for Norway
-        val airQuality =
-            if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY) &&
-                !location.countryCode.isNullOrEmpty() &&
-                location.countryCode.equals("NO", ignoreCase = true)
-            ) {
-                mApi.getAirQuality(
-                    USER_AGENT,
-                    location.latitude,
-                    location.longitude
-                ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
-                    Observable.just(MetNoAirQualityResult())
+                if (SourceFeature.MINUTELY in requestedFeatures) {
+                    failedFeatures.add(SourceFeature.MINUTELY)
                 }
-            } else {
-                Observable.just(MetNoAirQualityResult())
-            }
-
-        // Alerts only for Norway and Svalbard & Jan Mayen
-        val alerts =
-            if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT) &&
-                !location.countryCode.isNullOrEmpty() &&
-                arrayOf("NO", "SJ").any {
-                    it.equals(location.countryCode, ignoreCase = true)
-                }
-            ) {
-                mApi.getAlerts(
-                    USER_AGENT,
-                    if (context.currentLocale.toString().lowercase().startsWith("no")) "no" else "en",
-                    location.latitude,
-                    location.longitude
-                ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                    Observable.just(MetNoAlertResult())
-                }
-            } else {
-                Observable.just(MetNoAlertResult())
-            }
-
-        return Observable.zip(forecast, sun, moon, nowcast, airQuality, alerts) {
-                metNoForecast: MetNoForecastResult,
-                metNoSun: MetNoSunResult,
-                metNoMoon: MetNoMoonResult,
-                metNoNowcast: MetNoNowcastResult,
-                metNoAirQuality: MetNoAirQualityResult,
-                metNoAlerts: MetNoAlertResult,
-            ->
-            convert(
-                context,
-                location,
-                metNoForecast,
-                metNoSun,
-                metNoMoon,
-                metNoNowcast,
-                metNoAirQuality,
-                metNoAlerts,
-                failedFeatures
-            )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_AIR_QUALITY,
-        SourceFeature.FEATURE_MINUTELY,
-        SourceFeature.FEATURE_ALERT
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return (
-            (
-                feature == SourceFeature.FEATURE_CURRENT ||
-                    feature == SourceFeature.FEATURE_MINUTELY
-                ) &&
-                !location.countryCode.isNullOrEmpty() &&
-                arrayOf("NO", "SE", "FI", "DK").any {
-                    it.equals(location.countryCode, ignoreCase = true)
-                }
-            ) ||
-            (
-                feature == SourceFeature.FEATURE_AIR_QUALITY &&
-                    !location.countryCode.isNullOrEmpty() &&
-                    location.countryCode.equals("NO", ignoreCase = true)
-                ) ||
-            (
-                feature == SourceFeature.FEATURE_ALERT &&
-                    !location.countryCode.isNullOrEmpty() &&
-                    arrayOf("NO", "SJ").any {
-                        it.equals(location.countryCode, ignoreCase = true)
-                    }
-                )
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = weatherAttribution
-    override val pollenAttribution = null
-    override val minutelyAttribution = weatherAttribution
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        val failedFeatures = mutableListOf<SourceFeature>()
-        val nowcast = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT) ||
-            requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)
-        ) {
-            mApi.getNowcast(
-                USER_AGENT,
-                location.latitude,
-                location.longitude
-            ).onErrorResumeNext {
-                if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                }
-                if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
-                    failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
+                if (SourceFeature.CURRENT in requestedFeatures) {
+                    failedFeatures.add(SourceFeature.CURRENT)
                 }
                 Observable.just(MetNoNowcastResult())
             }
@@ -271,65 +184,95 @@ class MetNoService @Inject constructor(
             Observable.just(MetNoNowcastResult())
         }
 
-        val airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
+        val airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
             mApi.getAirQuality(
                 USER_AGENT,
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                failedFeatures.add(SourceFeature.AIR_QUALITY)
                 Observable.just(MetNoAirQualityResult())
             }
         } else {
             Observable.just(MetNoAirQualityResult())
         }
 
-        // Alerts only for Norway and Svalbard & Jan Mayen
-        val alerts =
-            if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT) &&
-                !location.countryCode.isNullOrEmpty() &&
-                arrayOf("NO", "SJ").any {
-                    it.equals(location.countryCode, ignoreCase = true)
-                }
-            ) {
-                mApi.getAlerts(
-                    USER_AGENT,
-                    if (context.currentLocale.toString().lowercase().startsWith("no")) "no" else "en",
-                    location.latitude,
-                    location.longitude
-                ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                    Observable.just(MetNoAlertResult())
-                }
-            } else {
+        val alerts = if (SourceFeature.ALERT in requestedFeatures) {
+            mApi.getAlerts(
+                USER_AGENT,
+                if (context.currentLocale.toString().lowercase().startsWith("no")) "no" else "en",
+                location.latitude,
+                location.longitude
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.ALERT)
                 Observable.just(MetNoAlertResult())
             }
+        } else {
+            Observable.just(MetNoAlertResult())
+        }
 
-        return Observable.zip(
-            nowcast,
-            airQuality,
-            alerts
-        ) { metNoNowcast: MetNoNowcastResult, metNoAirQuality: MetNoAirQualityResult, metNoAlerts: MetNoAlertResult ->
-            convertSecondary(
-                if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT) ||
-                    requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)
-                ) {
-                    metNoNowcast
+        return Observable.zip(forecast, sun, moon, nowcast, airQuality, alerts) {
+                forecastResult: MetNoForecastResult,
+                sunResult: MetNoSunResult,
+                moonResult: MetNoMoonResult,
+                nowcastResult: MetNoNowcastResult,
+                airQualityResult: MetNoAirQualityResult,
+                metNoAlerts: MetNoAlertResult,
+            ->
+            WeatherWrapper(
+                /*base = Base(
+                    // TODO: Use nowcast updatedAt if available
+                    publishDate = forecastResult.properties.meta?.updatedAt ?: Date()
+                ),*/
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyList(
+                        location,
+                        sunResult.properties,
+                        moonResult.properties,
+                        forecastResult.properties?.timeseries
+                    )
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-                    metNoAirQuality
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyList(
+                        context,
+                        forecastResult.properties?.timeseries
+                    )
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    metNoAlerts
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(nowcastResult, context)
                 } else {
                     null
                 },
-                context,
-                failedFeatures
+                airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
+                    val airQualityHourly: MutableMap<Date, AirQuality> = mutableMapOf()
+                    airQualityResult.data?.time?.forEach {
+                        airQualityHourly[it.from] = AirQuality(
+                            pM25 = it.variables?.pm25Concentration?.value,
+                            pM10 = it.variables?.pm10Concentration?.value,
+                            sO2 = it.variables?.so2Concentration?.value,
+                            nO2 = it.variables?.no2Concentration?.value,
+                            o3 = it.variables?.o3Concentration?.value
+                        )
+                    }
+                    AirQualityWrapper(hourlyForecast = airQualityHourly)
+                } else {
+                    null
+                },
+                minutelyForecast = if (SourceFeature.MINUTELY in requestedFeatures) {
+                    getMinutelyList(nowcastResult.properties?.timeseries)
+                } else {
+                    null
+                },
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlerts(metNoAlerts)
+                } else {
+                    null
+                },
+                failedFeatures = failedFeatures
             )
         }
     }

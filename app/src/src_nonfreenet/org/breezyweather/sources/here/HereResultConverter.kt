@@ -17,8 +17,6 @@
 package org.breezyweather.sources.here
 
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.MoonPhase
 import breezyweather.domain.weather.model.Precipitation
@@ -27,20 +25,19 @@ import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.sources.here.json.HereGeocodingData
 import org.breezyweather.sources.here.json.HereWeatherAstronomy
 import org.breezyweather.sources.here.json.HereWeatherData
-import org.breezyweather.sources.here.json.HereWeatherForecastResult
 import kotlin.math.roundToInt
 
 /**
  * Converts here.com geocoding result into a list of locations
  */
-fun convert(
+internal fun convert(
     location: Location?,
     results: List<HereGeocodingData>,
 ): List<Location> {
@@ -62,49 +59,11 @@ fun convert(
 }
 
 /**
- * Converts here.com weather result into a forecast
- */
-fun convert(
-    hereWeatherForecastResult: HereWeatherForecastResult,
-): WeatherWrapper {
-    if (hereWeatherForecastResult.places.isNullOrEmpty()) {
-        throw InvalidOrIncompleteDataException()
-    }
-
-    val dailySimpleForecasts = hereWeatherForecastResult.places.firstNotNullOfOrNull {
-        it.dailyForecasts?.getOrNull(0)?.forecasts
-    }
-    val hourlyForecasts = hereWeatherForecastResult.places.firstNotNullOfOrNull {
-        it.hourlyForecasts?.getOrNull(0)?.forecasts
-    }
-
-    if (dailySimpleForecasts.isNullOrEmpty() || hourlyForecasts.isNullOrEmpty()) {
-        throw InvalidOrIncompleteDataException()
-    }
-
-    val currentForecast = hereWeatherForecastResult.places.firstNotNullOfOrNull {
-        it.observations?.getOrNull(0)
-    }
-    val astronomyForecasts = hereWeatherForecastResult.places.firstNotNullOfOrNull {
-        it.astronomyForecasts?.getOrNull(0)?.forecasts
-    }
-
-    return WeatherWrapper(
-        /*base = Base(
-            publishDate = currentForecast?.time ?: Date()
-        ),*/
-        current = getCurrentForecast(currentForecast),
-        dailyForecast = getDailyForecast(dailySimpleForecasts, astronomyForecasts),
-        hourlyForecast = getHourlyForecast(hourlyForecasts)
-    )
-}
-
-/**
  * Returns current forecast
  */
-private fun getCurrentForecast(result: HereWeatherData?): Current? {
+internal fun getCurrentForecast(result: HereWeatherData?): CurrentWrapper? {
     if (result == null) return null
-    return Current(
+    return CurrentWrapper(
         weatherText = result.description,
         weatherCode = getWeatherCode(result.iconId),
         temperature = Temperature(
@@ -126,17 +85,18 @@ private fun getCurrentForecast(result: HereWeatherData?): Current? {
 /**
  * Returns daily forecast
  */
-private fun getDailyForecast(
-    dailySimpleForecasts: List<HereWeatherData>,
+internal fun getDailyForecast(
+    dailySimpleForecasts: List<HereWeatherData>?,
     astroForecasts: List<HereWeatherAstronomy>?,
-): List<Daily> {
-    val dailyList: MutableList<Daily> = ArrayList(dailySimpleForecasts.size)
+): List<DailyWrapper> {
+    if (dailySimpleForecasts.isNullOrEmpty()) return emptyList()
+    val dailyList: MutableList<DailyWrapper> = ArrayList(dailySimpleForecasts.size)
     for (i in 0 until dailySimpleForecasts.size - 1) { // Skip last day
         val dailyForecast = dailySimpleForecasts[i]
         val astro = astroForecasts?.firstOrNull { astro -> astro.time == dailyForecast.time }
 
         dailyList.add(
-            Daily(
+            DailyWrapper(
                 date = dailyForecast.time,
                 day = HalfDay(
                     temperature = Temperature(
@@ -169,9 +129,10 @@ private fun getDailyForecast(
 /**
  * Returns hourly forecast
  */
-private fun getHourlyForecast(
-    hourlyResult: List<HereWeatherData>,
+internal fun getHourlyForecast(
+    hourlyResult: List<HereWeatherData>?,
 ): List<HourlyWrapper> {
+    if (hourlyResult.isNullOrEmpty()) return emptyList()
     return hourlyResult.map { result ->
         HourlyWrapper(
             date = result.time,

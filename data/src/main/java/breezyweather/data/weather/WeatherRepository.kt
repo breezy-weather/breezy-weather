@@ -110,7 +110,7 @@ class WeatherRepository(
                 // base
                 locationFormattedId = location.formattedId,
                 refreshTime = weather.base.refreshTime?.time,
-                mainUpdateTime = weather.base.mainUpdateTime?.time,
+                mainUpdateTime = weather.base.forecastUpdateTime?.time,
                 currentUpdateTime = weather.base.currentUpdateTime?.time,
                 airQualityUpdateTime = weather.base.airQualityUpdateTime?.time,
                 pollenUpdateTime = weather.base.pollenUpdateTime?.time,

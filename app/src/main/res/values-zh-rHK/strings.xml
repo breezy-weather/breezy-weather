@@ -228,7 +228,6 @@
     <string name="weather_alert_data_by">警報資料由 %s 提供</string>
     <string name="weather_normals_data_by">正常溫度範圍資料由 %s 提供</string>
     <string name="weather_message_data_refresh_failed">無法更新天氣資料</string>
-    <string name="weather_message_secondary_data_refresh_failed">無法更新次要天氣來源的天氣資料</string>
     <string name="weather_message_unsupported_feature">該來源並不支援某項要求的功能</string>
     <string name="weather_message_invalid_location">位置無效，請刪除後再新增</string>
     <string name="weather_api_limit_reached_title">API 請求次數已達上限</string>
@@ -456,7 +455,6 @@
     <string name="settings_weather_sources">天氣資料來源</string>
     <string name="settings_weather_sources_summary">新位置的預設天氣來源、自訂 API 金鑰、其他來源設定</string>
     <string name="settings_weather_sources_default_source">新位置的預設資料來源</string>
-    <string name="settings_weather_source_main">主要資料來源</string>
     <string name="settings_weather_source_unavailable">%s（無法使用）</string>
     <string name="settings_weather_source_none">無</string>
     <string name="settings_weather_source_freenet_disclaimer">本應用程式的其他版本提供更多天氣來源。點選這裡以了解更多。</string>

@@ -18,7 +18,6 @@ package breezyweather.domain.weather.wrappers
 
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Hourly
-import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
@@ -39,8 +38,6 @@ data class HourlyWrapper(
     val precipitation: Precipitation? = null,
     val precipitationProbability: PrecipitationProbability? = null,
     val wind: Wind? = null,
-    val airQuality: AirQuality? = null,
-    val pollen: Pollen? = null, // Not used in Hourly but may be needed for daily calculation
     val uV: UV? = null,
     val relativeHumidity: Double? = null,
     val dewPoint: Double? = null,
@@ -53,6 +50,7 @@ data class HourlyWrapper(
     val sunshineDuration: Double? = null,
 ) {
     fun toHourly(
+        airQuality: AirQuality? = null,
         isDaylight: Boolean? = null,
         uV: UV? = null,
     ) = Hourly(
@@ -64,7 +62,7 @@ data class HourlyWrapper(
         precipitation = this.precipitation,
         precipitationProbability = this.precipitationProbability,
         wind = this.wind,
-        airQuality = this.airQuality,
+        airQuality = airQuality,
         uV = uV ?: this.uV,
         relativeHumidity = this.relativeHumidity,
         dewPoint = this.dewPoint,

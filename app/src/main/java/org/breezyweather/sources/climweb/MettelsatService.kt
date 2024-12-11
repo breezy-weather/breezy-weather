@@ -17,6 +17,7 @@
 package org.breezyweather.sources.climweb
 
 import android.content.Context
+import android.graphics.Color
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.R
 import org.breezyweather.common.extensions.code
@@ -38,6 +39,7 @@ class MettelsatService @Inject constructor(
     override val countryCode = "CD"
     val countryName = Locale(injectedContext.currentLocale.code, countryCode).displayCountry
     override val name = "Mettelsat RDC ($countryName)"
+    override val color = Color.rgb(0, 0, 0) // FIXME
     override val privacyPolicyUrl = ""
     override val weatherAttribution = "Agence Nationale de Météorologie et de Télédétection par Satellite"
 

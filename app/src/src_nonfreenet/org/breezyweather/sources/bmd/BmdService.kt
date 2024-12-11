@@ -31,8 +31,8 @@ import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.bmd.json.BmdForecastResult
 import retrofit2.Retrofit
 import java.util.Locale
@@ -42,7 +42,7 @@ import javax.inject.Named
 class BmdService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "bmd"
     override val name by lazy {
@@ -55,13 +55,6 @@ class BmdService @Inject constructor(
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = ""
     override val color = Color.rgb(66, 159, 255)
-    override val weatherAttribution by lazy {
-        if (context.currentLocale.code.startsWith("bn")) {
-            "বাংলাদেশ আবহাওয়া অধিদপ্তর"
-        } else {
-            "Bangladesh Meteorological Department"
-        }
-    }
 
     private val mApi by lazy {
         client
@@ -72,11 +65,17 @@ class BmdService @Inject constructor(
 
     private val okHttpClient = OkHttpClient()
 
-    override val supportedFeaturesInMain = listOf<SourceFeature>()
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to if (context.currentLocale.code.startsWith("bn")) {
+            "বাংলাদেশ আবহাওয়া অধিদপ্তর"
+        } else {
+            "Bangladesh Meteorological Department"
+        }
+    )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("BD", ignoreCase = true)
     }
@@ -84,7 +83,7 @@ class BmdService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val upazila = location.parameters.getOrElse(id) { null }?.getOrElse("upazila") { null }
         if (upazila.isNullOrEmpty()) {
@@ -102,11 +101,9 @@ class BmdService @Inject constructor(
                 dailyResult: BmdForecastResult,
                 hourlyResult: BmdForecastResult,
             ->
-            convert(
-                context = context,
-                upazila = upazila,
-                dailyResult = dailyResult,
-                hourlyResult = hourlyResult
+            WeatherWrapper(
+                dailyForecast = getDailyForecast(context, upazila, dailyResult),
+                hourlyForecast = getHourlyForecast(context, upazila, hourlyResult)
             )
         }
     }

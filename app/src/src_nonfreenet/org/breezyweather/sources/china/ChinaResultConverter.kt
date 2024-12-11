@@ -19,13 +19,9 @@ package org.breezyweather.sources.china
 import android.graphics.Color
 import androidx.annotation.ColorInt
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -33,13 +29,10 @@ import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
-import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.sources.china.json.ChinaAqi
 import org.breezyweather.sources.china.json.ChinaCurrent
 import org.breezyweather.sources.china.json.ChinaForecastDaily
 import org.breezyweather.sources.china.json.ChinaForecastHourly
@@ -50,7 +43,7 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Objects
 
-fun convert(
+internal fun convert(
     location: Location?, // Null if location search, current location if reverse geocoding
     result: ChinaLocationResult,
 ): Location {
@@ -67,49 +60,13 @@ fun convert(
         )
 }
 
-fun convert(
-    location: Location,
-    forecastResult: ChinaForecastResult,
-    minutelyResult: ChinaMinutelyResult,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    // If the API doesn’t return current, hourly or daily, consider data as garbage and keep cached data
-    if (forecastResult.current == null ||
-        forecastResult.forecastDaily == null ||
-        forecastResult.forecastHourly == null
-    ) {
-        throw InvalidOrIncompleteDataException()
-    }
-
-    return WeatherWrapper(
-        current = getCurrent(forecastResult.current, forecastResult.aqi, minutelyResult),
-        dailyForecast = getDailyList(
-            forecastResult.current.pubTime,
-            location,
-            forecastResult.forecastDaily
-        ),
-        hourlyForecast = getHourlyList(
-            forecastResult.current.pubTime,
-            location,
-            forecastResult.forecastHourly
-        ),
-        minutelyForecast = getMinutelyList(
-            location,
-            minutelyResult
-        ),
-        alertList = getAlertList(forecastResult),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun getCurrent(
+internal fun getCurrent(
     current: ChinaCurrent?,
-    aqi: ChinaAqi?,
     minutelyResult: ChinaMinutelyResult? = null,
-): Current? {
+): CurrentWrapper? {
     if (current == null) return null
 
-    return Current(
+    return CurrentWrapper(
         weatherText = getWeatherText(current.weather),
         weatherCode = getWeatherCode(current.weather),
         temperature = Temperature(
@@ -128,16 +85,6 @@ fun getCurrent(
             UV(index = current.uvIndex.toDoubleOrNull())
         } else {
             null
-        },
-        airQuality = aqi?.let {
-            AirQuality(
-                pM25 = it.pm25?.toDoubleOrNull(),
-                pM10 = it.pm10?.toDoubleOrNull(),
-                sO2 = it.so2?.toDoubleOrNull(),
-                nO2 = it.no2?.toDoubleOrNull(),
-                o3 = it.o3?.toDoubleOrNull(),
-                cO = it.co?.toDoubleOrNull()
-            )
         },
         relativeHumidity = if (!current.humidity?.value.isNullOrEmpty()) {
             current.humidity!!.value!!.toDoubleOrNull()
@@ -162,15 +109,15 @@ fun getCurrent(
     )
 }
 
-private fun getDailyList(
-    publishDate: Date,
+internal fun getDailyList(
+    publishDate: Date?,
     location: Location,
-    dailyForecast: ChinaForecastDaily,
-): List<Daily> {
-    if (dailyForecast.weather == null || dailyForecast.weather.value.isNullOrEmpty()) return emptyList()
+    dailyForecast: ChinaForecastDaily?,
+): List<DailyWrapper> {
+    if (publishDate == null || dailyForecast?.weather?.value.isNullOrEmpty()) return emptyList()
 
-    val dailyList: MutableList<Daily> = ArrayList(dailyForecast.weather.value.size)
-    dailyForecast.weather.value.forEachIndexed { index, weather ->
+    val dailyList: MutableList<DailyWrapper> = ArrayList(dailyForecast!!.weather!!.value!!.size)
+    dailyForecast.weather!!.value!!.forEachIndexed { index, weather ->
         val calendar = publishDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
             add(Calendar.DAY_OF_YEAR, index)
             set(Calendar.HOUR_OF_DAY, 0)
@@ -179,7 +126,7 @@ private fun getDailyList(
             set(Calendar.MILLISECOND, 0)
         }
         dailyList.add(
-            Daily(
+            DailyWrapper(
                 date = calendar.time,
                 day = HalfDay(
                     weatherText = getWeatherText(weather.from),
@@ -239,17 +186,17 @@ private fun getPrecipitationProbability(forecast: ChinaForecastDaily, index: Int
     return forecast.precipitationProbability.value.getOrNull(index)?.toDoubleOrNull()
 }
 
-private fun getHourlyList(
-    publishDate: Date,
+internal fun getHourlyList(
+    publishDate: Date?,
     location: Location,
-    hourlyForecast: ChinaForecastHourly,
+    hourlyForecast: ChinaForecastHourly?,
 ): List<HourlyWrapper> {
-    if (hourlyForecast.weather == null || hourlyForecast.weather.value.isNullOrEmpty()) return emptyList()
+    if (publishDate == null || hourlyForecast?.weather?.value.isNullOrEmpty()) return emptyList()
 
-    val hourlyListPubTime = hourlyForecast.temperature?.pubTime ?: publishDate
+    val hourlyListPubTime = hourlyForecast!!.temperature?.pubTime ?: publishDate
 
-    val hourlyList: MutableList<HourlyWrapper> = ArrayList(hourlyForecast.weather.value.size)
-    hourlyForecast.weather.value.forEachIndexed { index, weather ->
+    val hourlyList: MutableList<HourlyWrapper> = ArrayList(hourlyForecast.weather!!.value!!.size)
+    hourlyForecast.weather.value!!.forEachIndexed { index, weather ->
         val calendar = hourlyListPubTime.toCalendarWithTimeZone(location.javaTimeZone).apply {
             add(Calendar.HOUR_OF_DAY, index) // FIXME: Wrong TimeZone for the first item
             set(Calendar.MINUTE, 0)
@@ -279,7 +226,7 @@ private fun getHourlyList(
     return hourlyList
 }
 
-private fun getMinutelyList(
+internal fun getMinutelyList(
     location: Location,
     minutelyResult: ChinaMinutelyResult,
 ): List<Minutely> {
@@ -305,7 +252,7 @@ private fun getMinutelyList(
     return minutelyList
 }
 
-private fun getAlertList(result: ChinaForecastResult): List<Alert> {
+internal fun getAlertList(result: ChinaForecastResult): List<Alert> {
     if (result.alerts.isNullOrEmpty()) return emptyList()
 
     return result.alerts.map { alert ->
@@ -320,32 +267,6 @@ private fun getAlertList(result: ChinaForecastResult): List<Alert> {
             color = getAlertColor(alert.level) ?: Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
         )
     }
-}
-
-fun convertSecondary(
-    location: Location,
-    forecastResult: ChinaForecastResult,
-    minutelyResult: ChinaMinutelyResult,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = getCurrent(forecastResult.current, forecastResult.aqi),
-        airQuality = forecastResult.aqi?.let {
-            AirQualityWrapper(
-                current = AirQuality(
-                    pM25 = it.pm25?.toDoubleOrNull(),
-                    pM10 = it.pm10?.toDoubleOrNull(),
-                    sO2 = it.so2?.toDoubleOrNull(),
-                    nO2 = it.no2?.toDoubleOrNull(),
-                    o3 = it.o3?.toDoubleOrNull(),
-                    cO = it.co?.toDoubleOrNull()
-                )
-            )
-        },
-        minutelyForecast = getMinutelyList(location, minutelyResult),
-        alertList = getAlertList(forecastResult),
-        failedFeatures = failedFeatures
-    )
 }
 
 private fun getWeatherText(icon: String?): String {

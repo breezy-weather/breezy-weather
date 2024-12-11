@@ -17,58 +17,28 @@
 package org.breezyweather.sources.openweather
 
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
-import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.capitalize
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toDateNoHour
-import org.breezyweather.sources.getDailyAirQualityFromHourly
 import org.breezyweather.sources.openweather.json.OpenWeatherAirPollution
-import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
 import org.breezyweather.sources.openweather.json.OpenWeatherForecast
-import org.breezyweather.sources.openweather.json.OpenWeatherForecastResult
 import java.util.Date
 import kotlin.time.Duration.Companion.seconds
 
-fun convert(
-    location: Location,
-    forecastResult: OpenWeatherForecastResult,
-    currentResult: OpenWeatherForecast,
-    airPollutionResult: OpenWeatherAirPollutionResult?,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    // If the API doesn’t return hourly, consider data as garbage and keep cached data
-    if (forecastResult.list.isNullOrEmpty()) {
-        throw InvalidOrIncompleteDataException()
-    }
-
-    val hourlyAirQuality = getHourlyAirQuality(airPollutionResult?.list)
-
-    return WeatherWrapper(
-        current = getCurrent(currentResult),
-        dailyForecast = getDailyList(forecastResult.list, hourlyAirQuality, location),
-        hourlyForecast = getHourlyList(forecastResult.list, hourlyAirQuality),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun getCurrent(currentResult: OpenWeatherForecast): Current? {
+internal fun getCurrent(currentResult: OpenWeatherForecast): CurrentWrapper? {
     if (currentResult.dt == null) return null
 
-    return Current(
+    return CurrentWrapper(
         weatherText = currentResult.weather?.getOrNull(0)?.main?.capitalize(),
         weatherCode = getWeatherCode(currentResult.weather?.getOrNull(0)?.id),
         temperature = Temperature(
@@ -87,13 +57,12 @@ fun getCurrent(currentResult: OpenWeatherForecast): Current? {
     )
 }
 
-private fun getDailyList(
-    hourlyResult: List<OpenWeatherForecast>,
-    hourlyAirQuality: MutableMap<Date, AirQuality>,
+internal fun getDailyList(
+    hourlyResult: List<OpenWeatherForecast>?,
     location: Location,
-): List<Daily> {
-    val dailyAirQuality = getDailyAirQualityFromHourly(hourlyAirQuality, location)
-    val dailyList = mutableListOf<Daily>()
+): List<DailyWrapper> {
+    if (hourlyResult.isNullOrEmpty()) return emptyList()
+    val dailyList = mutableListOf<DailyWrapper>()
     val hourlyListByDay = hourlyResult.groupBy {
         it.dt!!.seconds.inWholeMilliseconds.toDate().getFormattedDate("yyyy-MM-dd", location)
     }
@@ -101,9 +70,8 @@ private fun getDailyList(
         val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
         if (dayDate != null) {
             dailyList.add(
-                Daily(
-                    date = dayDate,
-                    airQuality = dailyAirQuality.getOrElse(dayDate) { null }
+                DailyWrapper(
+                    date = dayDate
                 )
             )
         }
@@ -111,11 +79,10 @@ private fun getDailyList(
     return dailyList
 }
 
-private fun getHourlyList(
-    hourlyResult: List<OpenWeatherForecast>,
-    hourlyAirQuality: MutableMap<Date, AirQuality>,
-): List<HourlyWrapper> {
-    return hourlyResult.map { result ->
+internal fun getHourlyList(
+    hourlyResult: List<OpenWeatherForecast>?,
+): List<HourlyWrapper>? {
+    return hourlyResult?.map { result ->
         val theDate = result.dt!!.seconds.inWholeMilliseconds.toDate()
         HourlyWrapper(
             date = theDate,
@@ -136,7 +103,6 @@ private fun getHourlyList(
                 speed = result.wind?.speed,
                 gusts = result.wind?.gust
             ),
-            airQuality = hourlyAirQuality.getOrElse(theDate) { null },
             relativeHumidity = result.main?.humidity?.toDouble(),
             pressure = result.main?.pressure?.toDouble(),
             cloudCover = result.clouds?.all,
@@ -180,7 +146,7 @@ private fun getWeatherCode(icon: Int?): WeatherCode? {
     }
 }
 
-private fun getHourlyAirQuality(
+internal fun getHourlyAirQuality(
     airPollutionResultList: List<OpenWeatherAirPollution>?,
 ): MutableMap<Date, AirQuality> {
     val airQualityHourly = mutableMapOf<Date, AirQuality>()
@@ -195,20 +161,4 @@ private fun getHourlyAirQuality(
         )
     }
     return airQualityHourly
-}
-
-fun convertSecondary(
-    currentResult: OpenWeatherForecast,
-    airPollutionResult: OpenWeatherAirPollutionResult?,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = getCurrent(currentResult),
-        airQuality = if (airPollutionResult != null) {
-            AirQualityWrapper(hourlyForecast = getHourlyAirQuality(airPollutionResult.list))
-        } else {
-            null
-        },
-        failedFeatures = failedFeatures
-    )
 }

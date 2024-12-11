@@ -23,7 +23,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.ApiLimitReachedException
 import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.extensions.codeForGeonames
@@ -61,9 +60,6 @@ class GeoNamesService @Inject constructor(
         context: Context,
         query: String,
     ): Observable<List<Location>> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
         val apiKey = getApiKeyOrDefault()
         val languageCode = context.currentLocale.codeForGeonames
         return mApi.getLocation(

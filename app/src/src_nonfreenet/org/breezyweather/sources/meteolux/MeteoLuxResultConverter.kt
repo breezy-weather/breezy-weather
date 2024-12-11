@@ -18,21 +18,18 @@ package org.breezyweather.sources.meteolux
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
@@ -43,7 +40,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
-fun convert(
+internal fun convert(
     location: Location,
     weatherResult: MeteoLuxWeatherResult,
 ): Location {
@@ -69,52 +66,12 @@ fun convert(
     )
 }
 
-fun convert(
+internal fun getCurrent(
     context: Context,
     weatherResult: MeteoLuxWeatherResult,
-    ignoreFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    return WeatherWrapper(
-        current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            getCurrent(context, weatherResult)
-        } else {
-            null
-        },
-        dailyForecast = getDailyForecast(context, weatherResult),
-        hourlyForecast = getHourlyForecast(context, weatherResult),
-        alertList = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            getAlertList(context, weatherResult)
-        } else {
-            null
-        }
-    )
-}
-
-fun convertSecondary(
-    context: Context,
-    weatherResult: MeteoLuxWeatherResult,
-    requestedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            getCurrent(context, weatherResult)
-        } else {
-            null
-        },
-        alertList = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            getAlertList(context, weatherResult)
-        } else {
-            null
-        }
-    )
-}
-
-private fun getCurrent(
-    context: Context,
-    weatherResult: MeteoLuxWeatherResult,
-): Current? {
+): CurrentWrapper? {
     return weatherResult.forecast?.current?.let {
-        Current(
+        CurrentWrapper(
             weatherText = getWeatherText(context, it.icon?.id),
             weatherCode = getWeatherCode(it.icon?.id),
             temperature = Temperature(
@@ -130,17 +87,17 @@ private fun getCurrent(
     }
 }
 
-private fun getDailyForecast(
+internal fun getDailyForecast(
     context: Context,
     weatherResult: MeteoLuxWeatherResult,
-): List<Daily> {
-    val dailyList = mutableListOf<Daily>()
+): List<DailyWrapper> {
+    val dailyList = mutableListOf<DailyWrapper>()
     val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Europe/Luxembourg")
     val timeRegex = Regex("""^\d{2}:\d{2}$""")
     weatherResult.forecast?.daily?.forEach {
         dailyList.add(
-            Daily(
+            DailyWrapper(
                 date = formatter.parse(it.date)!!,
                 day = HalfDay(
                     weatherText = getWeatherText(context, it.icon?.id),
@@ -222,7 +179,7 @@ private fun getDailyForecast(
     return dailyList
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     context: Context,
     weatherResult: MeteoLuxWeatherResult,
 ): List<HourlyWrapper> {
@@ -254,7 +211,7 @@ private fun getHourlyForecast(
     return hourlyList
 }
 
-private fun getAlertList(
+internal fun getAlertList(
     context: Context,
     weatherResult: MeteoLuxWeatherResult,
 ): List<Alert> {

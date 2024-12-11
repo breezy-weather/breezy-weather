@@ -2,23 +2,19 @@ package org.breezyweather.sources.smg
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
-import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.R
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
@@ -35,77 +31,12 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-fun convert(
-    context: Context,
-    currentResult: SmgCurrentResult,
-    dailyResult: SmgForecastResult,
-    hourlyResult: SmgForecastResult,
-    bulletinResult: SmgBulletinResult,
-    uvResult: SmgUvResult,
-    warningsResult: List<SmgWarningResult>,
-    airQualityResult: SmgAirQualityResult,
-    includeNormals: Boolean = true,
-    astroResult: SmgAstroResult,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    return WeatherWrapper(
-        current = getCurrent(currentResult, bulletinResult, uvResult, airQualityResult),
-        dailyForecast = getDailyForecast(context, dailyResult, astroResult),
-        hourlyForecast = getHourlyForecast(context, hourlyResult),
-        alertList = getAlertList(context, warningsResult),
-        normals = if (includeNormals) {
-            getNormals()
-        } else {
-            null
-        },
-        failedFeatures = failedFeatures
-    )
-}
-
-fun convertSecondary(
-    context: Context,
-    currentResult: SmgCurrentResult?,
-    bulletinResult: SmgBulletinResult?,
-    uvResult: SmgUvResult?,
-    warningsResult: List<SmgWarningResult>?,
-    airQualityResult: SmgAirQualityResult?,
-    includeNormals: Boolean = true,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = if (currentResult != null && bulletinResult != null && uvResult != null) {
-            getCurrent(currentResult, bulletinResult, uvResult)
-        } else {
-            null
-        },
-        airQuality = if (airQualityResult != null) {
-            AirQualityWrapper(
-                current = getAirQuality(airQualityResult)
-            )
-        } else {
-            null
-        },
-        alertList = if (warningsResult != null) {
-            getAlertList(context, warningsResult)
-        } else {
-            null
-        },
-        normals = if (includeNormals) {
-            getNormals()
-        } else {
-            null
-        },
-        failedFeatures = failedFeatures
-    )
-}
-
-private fun getCurrent(
+internal fun getCurrent(
     currentResult: SmgCurrentResult,
     bulletinResult: SmgBulletinResult,
     uvResult: SmgUvResult,
-    airQualityResult: SmgAirQualityResult? = null,
-): Current? {
-    var current = Current()
+): CurrentWrapper {
+    var current = CurrentWrapper()
     var stationName: String?
     currentResult.Weather?.Custom?.getOrNull(0)?.WeatherReport?.forEach { report ->
         // SMG has not released the coordinates of its various monitoring stations.
@@ -116,7 +47,7 @@ private fun getCurrent(
         stationName = report.station?.getOrNull(0)?.stationname?.getOrNull(0)
         if (report.station?.getOrNull(0) !== null && stationName == "TAIPA GRANDE") {
             report.station[0].let {
-                current = Current(
+                current = CurrentWrapper(
                     temperature = Temperature(
                         temperature = it.Temperature?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()
                     ),
@@ -130,7 +61,6 @@ private fun getCurrent(
                             0
                         )?.ActualUVBReport?.getOrNull(0)?.index?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull()
                     ),
-                    airQuality = getAirQuality(airQualityResult),
                     relativeHumidity = it.Humidity?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull(),
                     dewPoint = it.DewPoint?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull(),
                     pressure = it.MeanSeaLevelPressure?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull(),
@@ -142,12 +72,12 @@ private fun getCurrent(
     return current
 }
 
-private fun getDailyForecast(
+internal fun getDailyForecast(
     context: Context,
     dailyResult: SmgForecastResult,
     astroResult: SmgAstroResult,
-): List<Daily> {
-    val dailyList = mutableListOf<Daily>()
+): List<DailyWrapper> {
+    val dailyList = mutableListOf<DailyWrapper>()
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Macau")
     val dateTimeFormatter = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.ENGLISH)
@@ -156,10 +86,10 @@ private fun getDailyForecast(
     var maxTemp: Double?
     var minTemp: Double?
     var date: Date
-    var sunriseMap = mutableMapOf<String, Date>()
-    var sunsetMap = mutableMapOf<String, Date>()
-    var moonriseMap = mutableMapOf<String, Date>()
-    var moonsetMap = mutableMapOf<String, Date>()
+    val sunriseMap = mutableMapOf<String, Date>()
+    val sunsetMap = mutableMapOf<String, Date>()
+    val moonriseMap = mutableMapOf<String, Date>()
+    val moonsetMap = mutableMapOf<String, Date>()
     astroResult.let {
         if (it.displayDate?.en != null) {
             if (!it.sunrise.isNullOrBlank()) {
@@ -192,7 +122,7 @@ private fun getDailyForecast(
                 }
             }
             dailyList.add(
-                Daily(
+                DailyWrapper(
                     date = formatter.parse(it.ValidFor[0])!!,
                     day = HalfDay(
                         weatherText = getWeatherText(context, it.dailyWeatherStatus?.getOrNull(0)),
@@ -223,7 +153,7 @@ private fun getDailyForecast(
     return dailyList
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     context: Context,
     hourlyResult: SmgForecastResult,
 ): List<HourlyWrapper> {
@@ -252,7 +182,7 @@ private fun getHourlyForecast(
     return hourlyList
 }
 
-private fun getAlertList(
+internal fun getAlertList(
     context: Context,
     warningsResult: List<SmgWarningResult>,
 ): List<Alert> {
@@ -448,7 +378,7 @@ private fun getAlertList(
 // Hard-coded since Macao has a land area of just 32.9km²,
 // and there are only records for SMG's main office in Taipa Grande.
 // Source: https://www.smg.gov.mo/en/subpage/348/page/252
-private fun getNormals(): Normals? {
+internal fun getNormals(): Normals? {
     val now = Calendar.getInstance(TimeZone.getTimeZone("Asia/Macau"))
     val month = now.get(Calendar.MONTH) + 1
     return when (month) {
@@ -528,17 +458,18 @@ private fun getWeatherCode(
     }
 }
 
-private fun getAirQuality(
+internal fun getAirQuality(
     airQualityResult: SmgAirQualityResult?,
 ): AirQuality? {
+    if (airQualityResult == null) return null
     // "tghopolu" refers to Taipa Grande (SMG's office location).
     // TODO: Once we have more intel on the coordinates of the stations, we can locate the nearest one.
     return AirQuality(
-        pM25 = airQualityResult?.tghopolu?.HE_PM2_5?.toDoubleOrNull(),
-        pM10 = airQualityResult?.tghopolu?.HE_PM10?.toDoubleOrNull(),
-        sO2 = airQualityResult?.tghopolu?.HE_SO2?.toDoubleOrNull(),
-        nO2 = airQualityResult?.tghopolu?.HE_NO2?.toDoubleOrNull(),
-        o3 = airQualityResult?.tghopolu?.HE_O3?.toDoubleOrNull(),
-        cO = airQualityResult?.tghopolu?.HE_CO?.toDoubleOrNull()
+        pM25 = airQualityResult.tghopolu?.HE_PM2_5?.toDoubleOrNull(),
+        pM10 = airQualityResult.tghopolu?.HE_PM10?.toDoubleOrNull(),
+        sO2 = airQualityResult.tghopolu?.HE_SO2?.toDoubleOrNull(),
+        nO2 = airQualityResult.tghopolu?.HE_NO2?.toDoubleOrNull(),
+        o3 = airQualityResult.tghopolu?.HE_O3?.toDoubleOrNull(),
+        cO = airQualityResult.tghopolu?.HE_CO?.toDoubleOrNull()
     )
 }

@@ -18,8 +18,6 @@ package breezyweather.domain.weather.wrappers
 
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Normals
 
@@ -28,11 +26,13 @@ import breezyweather.domain.weather.model.Normals
  * Helps the transition process and computing of missing data.
  */
 data class WeatherWrapper(
-    val current: Current? = null,
-    val normals: Normals? = null,
-    val dailyForecast: List<Daily>? = null,
+    val dailyForecast: List<DailyWrapper>? = null,
     val hourlyForecast: List<HourlyWrapper>? = null,
+    val current: CurrentWrapper? = null,
+    val airQuality: AirQualityWrapper? = null,
+    val pollen: PollenWrapper? = null,
     val minutelyForecast: List<Minutely>? = null,
     val alertList: List<Alert>? = null,
+    val normals: Normals? = null,
     val failedFeatures: List<SourceFeature>? = null,
 )

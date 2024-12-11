@@ -464,7 +464,6 @@
     <string name="weather_air_quality_and_pollen_data_by">Dane dotyczące jakości powietrza i alergenów według %s</string>
     <string name="weather_minutely_data_by">Dane dotyczące opadów z minuty na minutę dostarczone przez %s</string>
     <string name="weather_alert_data_by">Dane alertów według %s</string>
-    <string name="weather_message_secondary_data_refresh_failed">Odświeżanie danych pogodowych dla dodatkowego źródła pogody nie powiodło się</string>
     <string name="weather_api_limit_reached_content">Aby obejść ten limit, dodaj własny klucz API.</string>
     <string name="action_add_new_location">Dodaj nową lokalizację</string>
     <string name="weather_api_limit_reached_title">Osiągnięto limit żądań API</string>
@@ -553,7 +552,6 @@
     <string name="unit_mmhg_voice">Milimetrów słupa rtęci</string>
     <string name="unit_ppcm_voice">Na metr sześcienny</string>
     <string name="action_save">Zapisz</string>
-    <string name="settings_weather_source_main">Główne źródło</string>
     <string name="settings_weather_sources_per_location_summary">Dostosuj źródła danych pogodowych używanych dla tej lokalizacji</string>
     <string name="message_parsing_error_content">Upewnij się, że zaktualizowałeś do najnowszej wersji aplikacji. Serwer może być tymczasowo nie dostępny, w tym przypadku spróbuj ponownie później. Jeśli problem się utrwala, proszę o wygenerowanie dziennika crasha z ustawień debugowania i zgłoszenie problemu na GitHubie.</string>
     <string name="about_privacy_policy">Polityka prywatności</string>
