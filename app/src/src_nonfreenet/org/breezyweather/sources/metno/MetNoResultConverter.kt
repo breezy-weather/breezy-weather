@@ -18,13 +18,9 @@ package org.breezyweather.sources.metno
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.MoonPhase
 import breezyweather.domain.weather.model.Precipitation
@@ -33,70 +29,24 @@ import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
-import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.R
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
-import org.breezyweather.sources.metno.json.MetNoAirQualityResult
 import org.breezyweather.sources.metno.json.MetNoAlertResult
-import org.breezyweather.sources.metno.json.MetNoForecastResult
 import org.breezyweather.sources.metno.json.MetNoForecastTimeseries
 import org.breezyweather.sources.metno.json.MetNoMoonProperties
-import org.breezyweather.sources.metno.json.MetNoMoonResult
 import org.breezyweather.sources.metno.json.MetNoNowcastResult
 import org.breezyweather.sources.metno.json.MetNoSunProperties
-import org.breezyweather.sources.metno.json.MetNoSunResult
-import java.util.Date
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.minutes
 
-fun convert(
-    context: Context,
-    location: Location,
-    forecastResult: MetNoForecastResult,
-    sunResult: MetNoSunResult,
-    moonResult: MetNoMoonResult,
-    nowcastResult: MetNoNowcastResult,
-    airQualityResult: MetNoAirQualityResult,
-    metNoAlerts: MetNoAlertResult,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    // If the API doesn’t return hourly, consider data as garbage and keep cached data
-    if (forecastResult.properties == null || forecastResult.properties.timeseries.isNullOrEmpty()) {
-        throw InvalidOrIncompleteDataException()
-    }
-
-    return WeatherWrapper(
-        /*base = Base(
-            // TODO: Use nowcast updatedAt if available
-            publishDate = forecastResult.properties.meta?.updatedAt ?: Date()
-        ),*/
-        current = getCurrent(nowcastResult, context),
-        dailyForecast = getDailyList(
-            location,
-            sunResult.properties,
-            moonResult.properties,
-            forecastResult.properties.timeseries
-        ),
-        hourlyForecast = getHourlyList(
-            context,
-            forecastResult.properties.timeseries,
-            airQualityResult
-        ),
-        minutelyForecast = getMinutelyList(nowcastResult.properties?.timeseries),
-        alertList = getAlerts(metNoAlerts),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun getCurrent(nowcastResult: MetNoNowcastResult, context: Context): Current? {
+internal fun getCurrent(nowcastResult: MetNoNowcastResult, context: Context): CurrentWrapper? {
     val currentTimeseries = nowcastResult.properties?.timeseries?.getOrNull(0)?.data
     return if (currentTimeseries != null) {
-        Current(
+        CurrentWrapper(
             weatherText = getWeatherText(context, currentTimeseries.symbolCode),
             weatherCode = getWeatherCode(currentTimeseries.symbolCode),
             temperature = Temperature(
@@ -120,14 +70,12 @@ fun getCurrent(nowcastResult: MetNoNowcastResult, context: Context): Current? {
     }
 }
 
-private fun getHourlyList(
+internal fun getHourlyList(
     context: Context,
-    forecastTimeseries: List<MetNoForecastTimeseries>,
-    airQualityResult: MetNoAirQualityResult,
+    forecastTimeseries: List<MetNoForecastTimeseries>?,
 ): List<HourlyWrapper> {
+    if (forecastTimeseries.isNullOrEmpty()) return emptyList()
     return forecastTimeseries.map { hourlyForecast ->
-        val airQualityDataResult = airQualityResult.data?.time?.firstOrNull { it.from.time == hourlyForecast.time.time }
-
         HourlyWrapper(
             date = hourlyForecast.time,
             weatherText = getWeatherText(context, hourlyForecast.data?.symbolCode),
@@ -156,17 +104,6 @@ private fun getHourlyList(
             } else {
                 null
             },
-            airQuality = if (airQualityDataResult != null) {
-                AirQuality(
-                    pM25 = airQualityDataResult.variables?.pm25Concentration?.value,
-                    pM10 = airQualityDataResult.variables?.pm10Concentration?.value,
-                    sO2 = airQualityDataResult.variables?.so2Concentration?.value,
-                    nO2 = airQualityDataResult.variables?.no2Concentration?.value,
-                    o3 = airQualityDataResult.variables?.o3Concentration?.value
-                )
-            } else {
-                null
-            },
             uV = UV(index = hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky),
             relativeHumidity = hourlyForecast.data?.instant?.details?.relativeHumidity,
             dewPoint = hourlyForecast.data?.instant?.details?.dewPointTemperature,
@@ -176,13 +113,14 @@ private fun getHourlyList(
     }
 }
 
-private fun getDailyList(
+internal fun getDailyList(
     location: Location,
     sunResult: MetNoSunProperties?,
     moonResult: MetNoMoonProperties?,
-    forecastTimeseries: List<MetNoForecastTimeseries>,
-): List<Daily> {
-    val dailyList = mutableListOf<Daily>()
+    forecastTimeseries: List<MetNoForecastTimeseries>?,
+): List<DailyWrapper> {
+    if (forecastTimeseries.isNullOrEmpty()) return emptyList()
+    val dailyList = mutableListOf<DailyWrapper>()
     val hourlyListByDay = forecastTimeseries.groupBy {
         it.time.getFormattedDate("yyyy-MM-dd", location)
     }
@@ -190,7 +128,7 @@ private fun getDailyList(
         val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
         if (dayDate != null) {
             dailyList.add(
-                Daily(
+                DailyWrapper(
                     date = dayDate,
                     sun = if (i == 0) {
                         Astro(
@@ -222,7 +160,7 @@ private fun getDailyList(
     return dailyList
 }
 
-private fun getMinutelyList(nowcastTimeseries: List<MetNoForecastTimeseries>?): List<Minutely> {
+internal fun getMinutelyList(nowcastTimeseries: List<MetNoForecastTimeseries>?): List<Minutely> {
     val minutelyList: MutableList<Minutely> = arrayListOf()
     if (nowcastTimeseries.isNullOrEmpty() || nowcastTimeseries.size < 2) return minutelyList
 
@@ -247,7 +185,7 @@ private fun getMinutelyList(nowcastTimeseries: List<MetNoForecastTimeseries>?): 
     return minutelyList
 }
 
-private fun getAlerts(metNoAlerts: MetNoAlertResult): List<Alert>? {
+internal fun getAlerts(metNoAlerts: MetNoAlertResult): List<Alert>? {
     return metNoAlerts.features?.mapNotNull { alert ->
         alert.properties?.let {
             val severity = when (it.severity?.lowercase()) {
@@ -337,48 +275,4 @@ private fun getWeatherText(context: Context, icon: String?): String? {
     } else {
         weatherWithoutThunder
     }
-}
-
-fun convertSecondary(
-    nowcastResult: MetNoNowcastResult?,
-    airQualityResult: MetNoAirQualityResult?,
-    metNoAlertResults: MetNoAlertResult?,
-    context: Context,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    val airQualityHourly: MutableMap<Date, AirQuality> = mutableMapOf()
-
-    airQualityResult?.data?.time?.forEach {
-        airQualityHourly[it.from] = AirQuality(
-            pM25 = it.variables?.pm25Concentration?.value,
-            pM10 = it.variables?.pm10Concentration?.value,
-            sO2 = it.variables?.so2Concentration?.value,
-            nO2 = it.variables?.no2Concentration?.value,
-            o3 = it.variables?.o3Concentration?.value
-        )
-    }
-
-    return SecondaryWeatherWrapper(
-        current = if (nowcastResult != null) {
-            getCurrent(nowcastResult, context)
-        } else {
-            null
-        },
-        airQuality = if (airQualityResult != null) {
-            AirQualityWrapper(hourlyForecast = airQualityHourly)
-        } else {
-            null
-        },
-        minutelyForecast = if (nowcastResult != null) {
-            getMinutelyList(nowcastResult.properties?.timeseries)
-        } else {
-            null
-        },
-        alertList = if (metNoAlertResults != null) {
-            getAlerts(metNoAlertResults)
-        } else {
-            null
-        },
-        failedFeatures = failedFeatures
-    )
 }

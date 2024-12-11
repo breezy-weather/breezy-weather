@@ -21,17 +21,14 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import retrofit2.Retrofit
 import java.util.Locale
 import javax.inject.Inject
@@ -40,7 +37,7 @@ import javax.inject.Named
 class MeteoLuxService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource {
 
     override val id = "meteolux"
     override val name = "MeteoLux (${Locale(context.currentLocale.code, "LU").displayCountry})"
@@ -56,7 +53,6 @@ class MeteoLuxService @Inject constructor(
     }
 
     override val color = Color.rgb(7, 84, 91)
-    override val weatherAttribution = "MeteoLux"
 
     private val mApi by lazy {
         client
@@ -65,14 +61,16 @@ class MeteoLuxService @Inject constructor(
             .create(MeteoLuxApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT
+    private val weatherAttribution = "MeteoLux"
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("LU", ignoreCase = true)
     }
@@ -80,7 +78,7 @@ class MeteoLuxService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         return mApi.getWeather(
             language = with(context.currentLocale.code) {
@@ -94,60 +92,27 @@ class MeteoLuxService @Inject constructor(
             lat = location.latitude,
             lon = location.longitude
         ).map {
-            convert(
-                context = context,
-                weatherResult = it,
-                ignoreFeatures = ignoreFeatures
-            )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_CURRENT)
-        ) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-
-        return mApi.getWeather(
-            language = with(context.currentLocale.code) {
-                when {
-                    startsWith("de") -> "de"
-                    startsWith("fr") -> "fr"
-                    startsWith("lb") -> "lb"
-                    else -> "en"
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(context, it)
+                } else {
+                    null
+                },
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(context, it)
+                } else {
+                    null
+                },
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(context, it)
+                } else {
+                    null
+                },
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlertList(context, it)
+                } else {
+                    null
                 }
-            },
-            lat = location.latitude,
-            lon = location.longitude
-        ).map {
-            convertSecondary(
-                context = context,
-                weatherResult = it,
-                requestedFeatures = requestedFeatures
             )
         }
     }

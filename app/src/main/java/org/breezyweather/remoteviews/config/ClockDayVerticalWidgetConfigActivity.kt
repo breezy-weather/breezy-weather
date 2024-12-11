@@ -97,7 +97,9 @@ class ClockDayVerticalWidgetConfigActivity : AbstractWidgetConfigActivity() {
             this,
             locationNow,
             locationNow?.let { location ->
-                sourceManager.getPollenIndexSource((location.pollenSource ?: "").ifEmpty { location.weatherSource })
+                sourceManager.getPollenIndexSource(
+                    (location.pollenSource ?: "").ifEmpty { location.forecastSource }
+                )
             }
         )
     }
@@ -116,7 +118,9 @@ class ClockDayVerticalWidgetConfigActivity : AbstractWidgetConfigActivity() {
                 subtitleDataValueNow,
                 clockFontValueNow,
                 locationNow?.let { location ->
-                    sourceManager.getPollenIndexSource((location.pollenSource ?: "").ifEmpty { location.weatherSource })
+                    sourceManager.getPollenIndexSource(
+                        (location.pollenSource ?: "").ifEmpty { location.forecastSource }
+                    )
                 }
             )
         }

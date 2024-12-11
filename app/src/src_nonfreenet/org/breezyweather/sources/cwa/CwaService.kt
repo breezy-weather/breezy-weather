@@ -22,7 +22,7 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -30,9 +30,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
@@ -40,9 +38,8 @@ import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.cwa.json.CwaAirQualityResult
 import org.breezyweather.sources.cwa.json.CwaAlertResult
@@ -62,12 +59,7 @@ import javax.inject.Named
 class CwaService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(),
-    MainWeatherSource,
-    SecondaryWeatherSource,
-    ReverseGeocodingSource,
-    LocationParametersSource,
-    ConfigurableSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource, ConfigurableSource {
 
     override val id = "cwa"
     override val name by lazy {
@@ -91,7 +83,6 @@ class CwaService @Inject constructor(
     // Color of CWA's logo
     // Source: https://www.cwa.gov.tw/V8/assets/img/logoBlue.svg
     override val color = Color.rgb(55, 74, 135)
-    override val weatherAttribution = "中央氣象署"
 
     private val mApi by lazy {
         client
@@ -100,16 +91,18 @@ class CwaService @Inject constructor(
             .create(CwaApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_AIR_QUALITY,
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_NORMALS
+    private val weatherAttribution = "中央氣象署"
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.AIR_QUALITY to "環境部",
+        SourceFeature.ALERT to weatherAttribution,
+        SourceFeature.NORMALS to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("TW", ignoreCase = true)
     }
@@ -118,12 +111,8 @@ class CwaService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        // Use of API key is mandatory for CWA's API calls.
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
         val apiKey = getApiKeyOrDefault()
 
         // County Name and Township Code are retrieved upon reverse geocoding,
@@ -144,24 +133,38 @@ class CwaService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        val hourly = mApi.getForecast(
-            apiKey = apiKey,
-            endpoint = CWA_HOURLY_ENDPOINTS[countyName]!!,
-            townshipName = townshipName
-        )
-        val daily = mApi.getForecast(
-            apiKey = apiKey,
-            endpoint = CWA_DAILY_ENDPOINTS[countyName]!!,
-            townshipName = townshipName
-        )
-
         val failedFeatures = mutableListOf<SourceFeature>()
-        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val hourly = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getForecast(
+                apiKey = apiKey,
+                endpoint = CWA_HOURLY_ENDPOINTS[countyName]!!,
+                townshipName = townshipName
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(CwaForecastResult())
+            }
+        } else {
+            Observable.just(CwaForecastResult())
+        }
+        val daily = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getForecast(
+                apiKey = apiKey,
+                endpoint = CWA_DAILY_ENDPOINTS[countyName]!!,
+                townshipName = townshipName
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(CwaForecastResult())
+            }
+        } else {
+            Observable.just(CwaForecastResult())
+        }
+
+        val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(
                 apiKey = apiKey,
                 stationId = stationId
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(CwaCurrentResult())
             }
         } else {
@@ -169,20 +172,21 @@ class CwaService @Inject constructor(
         }
 
         // "Weather Assistant" provides human-written forecast summary on a county level.
-        val assistant = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val assistant = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getAssistant(
                 endpoint = CWA_ASSISTANT_ENDPOINTS[countyName]!!,
                 apiKey = apiKey
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(CwaAssistantResult())
             }
         } else {
             Observable.just(CwaAssistantResult())
         }
 
-        val body = LINE_FEED_SPACES.replace(
-            """
+        val airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
+            val body = LINE_FEED_SPACES.replace(
+                """
             {
                 "query":"query aqi{
                     aqi(
@@ -200,15 +204,13 @@ class CwaService @Inject constructor(
                 "variables":null
             }
             """,
-            ""
-        )
-
-        val airQuality = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
+                ""
+            )
             mApi.getAirQuality(
                 apiKey = apiKey,
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                failedFeatures.add(SourceFeature.AIR_QUALITY)
                 Observable.just(CwaAirQualityResult())
             }
         } else {
@@ -225,30 +227,38 @@ class CwaService @Inject constructor(
         val timeTo = formatter.format(now.time)
         now.add(Calendar.DATE, -8)
 
-        val sun = mApi.getAstro(
-            endpoint = SUN_ENDPOINT,
-            apiKey = apiKey,
-            countyName = countyName,
-            parameter = SUN_PARAMETERS,
-            timeFrom = timeFrom,
-            timeTo = timeTo
-        ).onErrorResumeNext {
-            /*if (BreezyWeather.instance.debugMode) {
-                failedFeatures.add(SourceFeature.FEATURE_OTHER)
-            }*/
+        val sun = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getAstro(
+                endpoint = SUN_ENDPOINT,
+                apiKey = apiKey,
+                countyName = countyName,
+                parameter = SUN_PARAMETERS,
+                timeFrom = timeFrom,
+                timeTo = timeTo
+            ).onErrorResumeNext {
+                /*if (BreezyWeather.instance.debugMode) {
+                    failedFeatures.add(SourceFeature.OTHER)
+                }*/
+                Observable.just(CwaAstroResult())
+            }
+        } else {
             Observable.just(CwaAstroResult())
         }
-        val moon = mApi.getAstro(
-            endpoint = MOON_ENDPOINT,
-            apiKey = apiKey,
-            countyName = countyName,
-            parameter = MOON_PARAMETERS,
-            timeFrom = timeFrom,
-            timeTo = timeTo
-        ).onErrorResumeNext {
-            /*if (BreezyWeather.instance.debugMode) {
-                failedFeatures.add(SourceFeature.FEATURE_OTHER)
-            }*/
+        val moon = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getAstro(
+                endpoint = MOON_ENDPOINT,
+                apiKey = apiKey,
+                countyName = countyName,
+                parameter = MOON_PARAMETERS,
+                timeFrom = timeFrom,
+                timeTo = timeTo
+            ).onErrorResumeNext {
+                /*if (BreezyWeather.instance.debugMode) {
+                    failedFeatures.add(SourceFeature.OTHER)
+                }*/
+                Observable.just(CwaAstroResult())
+            }
+        } else {
             Observable.just(CwaAstroResult())
         }
 
@@ -257,24 +267,24 @@ class CwaService @Inject constructor(
         // Therefore we will call a different endpoint,
         // but we must specify the station ID rather than using lat/lon.
         val station = getNearestStation(location, CWA_NORMALS_STATIONS)
-        val normals = if (!ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS) && station != null) {
+        val normals = if (SourceFeature.NORMALS in requestedFeatures && station != null) {
             mApi.getNormals(
                 apiKey = apiKey,
                 stationId = station,
                 month = (now.get(Calendar.MONTH) + 1).toString()
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
+                failedFeatures.add(SourceFeature.NORMALS)
                 Observable.just(CwaNormalsResult())
             }
         } else {
             Observable.just(CwaNormalsResult())
         }
 
-        val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val alerts = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getAlerts(
                 apiKey = apiKey
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                failedFeatures.add(SourceFeature.ALERT)
                 Observable.just(CwaAlertResult())
             }
         } else {
@@ -292,204 +302,46 @@ class CwaService @Inject constructor(
                 moonResult: CwaAstroResult,
                 assistantResult: CwaAssistantResult,
             ->
-            convert(
-                currentResult = currentResult,
-                airQualityResult = airQualityResult,
-                dailyResult = dailyResult,
-                hourlyResult = hourlyResult,
-                normalsResult = normalsResult,
-                alertResult = alertResult,
-                sunResult = sunResult,
-                moonResult = moonResult,
-                assistantResult = assistantResult,
-                location = location,
-                failedFeatures = failedFeatures
-            )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_AIR_QUALITY,
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_NORMALS
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = "環境部"
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = weatherAttribution
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_AIR_QUALITY) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_NORMALS) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_CURRENT)
-        ) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-
-        // Use of API key is mandatory for CWA's API calls.
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
-        val apiKey = getApiKeyOrDefault()
-
-        // County Name and Township Code are retrieved upon reverse geocoding,
-        // but not for user-selected locations. Since a few API calls require these,
-        // we will make sure these parameters are available before proceeding.
-        val stationId = location.parameters.getOrElse(id) { null }?.getOrElse("stationId") { null }
-        val countyName = location.parameters.getOrElse(id) { null }?.getOrElse("countyName") { null }
-        val townshipName = location.parameters.getOrElse(id) { null }?.getOrElse("townshipName") { null }
-        val townshipCode = location.parameters.getOrElse(id) { null }?.getOrElse("townshipCode") { null }
-        if (stationId.isNullOrEmpty() ||
-            countyName.isNullOrEmpty() ||
-            townshipName.isNullOrEmpty() ||
-            townshipCode.isNullOrEmpty() ||
-            !CWA_ASSISTANT_ENDPOINTS.containsKey(countyName)
-        ) {
-            return Observable.error(InvalidLocationException())
-        }
-
-        val failedFeatures = mutableListOf<SourceFeature>()
-        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getCurrent(
-                apiKey = apiKey,
-                stationId = stationId
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(CwaCurrentResult())
+            val currentWrapper = if (SourceFeature.CURRENT in requestedFeatures) {
+                getCurrent(currentResult, assistantResult)
+            } else {
+                null
             }
-        } else {
-            Observable.just(CwaCurrentResult())
-        }
 
-        // "Weather Assistant" provides human-written forecast summary on a county level.
-        val assistant = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getAssistant(
-                endpoint = CWA_ASSISTANT_ENDPOINTS[countyName]!!,
-                apiKey = apiKey
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(CwaAssistantResult())
-            }
-        } else {
-            Observable.just(CwaAssistantResult())
-        }
-
-        val body = LINE_FEED_SPACES.replace(
-            """
-            {
-                "query":"query aqi{
-                    aqi(
-                        longitude:${location.longitude},
-                        latitude:${location.latitude}
-                    ){
-                        pm2_5,
-                        pm10,
-                        o3,
-                        no2,
-                        so2,
-                        co
-                    }
-                }",
-                "variables":null
-            }
-            """,
-            ""
-        )
-
-        val airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-            mApi.getAirQuality(
-                apiKey = apiKey,
-                body = body.toRequestBody("application/json".toMediaTypeOrNull())
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
-                Observable.just(CwaAirQualityResult())
-            }
-        } else {
-            Observable.just(CwaAirQualityResult())
-        }
-
-        val alerts = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            mApi.getAlerts(
-                apiKey = apiKey
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                Observable.just(CwaAlertResult())
-            }
-        } else {
-            Observable.just(CwaAlertResult())
-        }
-
-        // Temperature normals are only available at 26 stations (out of 700+),
-        // and not available in the main weather API call.
-        // Therefore we will call a different endpoint,
-        // but we must specify the station ID rather than using lat/lon.
-        val station = getNearestStation(location, CWA_NORMALS_STATIONS)
-        val now = Calendar.getInstance(TimeZone.getTimeZone("Asia/Taipei"), Locale.ENGLISH)
-        val normals = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS) &&
-            station != null
-        ) {
-            mApi.getNormals(
-                apiKey = apiKey,
-                stationId = station,
-                month = (now.get(Calendar.MONTH) + 1).toString()
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
-                Observable.just(CwaNormalsResult())
-            }
-        } else {
-            Observable.just(CwaNormalsResult())
-        }
-
-        return Observable.zip(current, assistant, airQuality, alerts, normals) {
-                currentResult: CwaCurrentResult,
-                assistantResult: CwaAssistantResult,
-                airQualityResult: CwaAirQualityResult,
-                alertResult: CwaAlertResult,
-                normalsResult: CwaNormalsResult,
-            ->
-            convertSecondary(
-                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    currentResult
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(dailyResult, sunResult, moonResult)
                 } else {
                     null
                 },
-                assistantResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    assistantResult
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(hourlyResult)
                 } else {
                     null
                 },
-                airQualityResult = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-                    airQualityResult
+                current = currentWrapper,
+                airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
+                    AirQualityWrapper(
+                        current = getAirQuality(
+                            airQualityResult,
+                            currentWrapper?.temperature?.temperature,
+                            getValid(currentResult.records?.station?.getOrNull(0)?.weatherElement?.airPressure)
+                                as Double?
+                        )
+                    )
                 } else {
                     null
                 },
-                alertResult = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    alertResult
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlertList(alertResult, location)
                 } else {
                     null
                 },
-                normalsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
-                    normalsResult
+                normals = if (SourceFeature.NORMALS in requestedFeatures) {
+                    getNormals(normalsResult)
                 } else {
                     null
                 },
-                location = location,
                 failedFeatures = failedFeatures
             )
         }
@@ -500,10 +352,6 @@ class CwaService @Inject constructor(
         context: Context,
         location: Location,
     ): Observable<List<Location>> {
-        // Use of API key is mandatory for CWA's API calls.
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
         val apiKey = getApiKeyOrDefault()
 
         // The reverse geocoding API call requires plugging in the location's coordinates
@@ -568,10 +416,6 @@ class CwaService @Inject constructor(
         context: Context,
         location: Location,
     ): Observable<Map<String, String>> {
-        // Use of API key is mandatory for CWA's API calls.
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
         val apiKey = getApiKeyOrDefault()
 
         // The reverse geocoding API call requires plugging in the location's coordinates
@@ -613,10 +457,10 @@ class CwaService @Inject constructor(
                 throw InvalidLocationException()
             }
             mapOf(
-                "stationId" to it.data.aqi[0].station?.stationId!!,
-                "countyName" to it.data.aqi[0].town?.ctyName!!,
-                "townshipName" to it.data.aqi[0].town?.townName!!,
-                "townshipCode" to it.data.aqi[0].town?.townCode!!
+                "stationId" to it.data.aqi[0].station!!.stationId!!,
+                "countyName" to it.data.aqi[0].town!!.ctyName!!,
+                "townshipName" to it.data.aqi[0].town!!.townName!!,
+                "townshipCode" to it.data.aqi[0].town!!.townCode!!
             )
         }
     }

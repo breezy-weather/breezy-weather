@@ -213,7 +213,6 @@
     <string name="settings_location_access_precise_summaryOff">Овозможете „Користете прецизна локација“ ако имате проблем со добивање локација.</string>
     <string name="settings_weather_sources">Извори за времето</string>
     <string name="settings_weather_sources_summary">Поставки за извори на временски податоци</string>
-    <string name="settings_weather_source_main">Главен извор</string>
     <string name="settings_weather_sources_per_location_summary">Приспособете ги изворите на временските податоци за оваа локација</string>
     <string name="settings_source_default_value">Стандардно (непроменето)</string>
     <string name="settings_source_api_key">API клуч</string>
@@ -439,7 +438,6 @@
     <string name="weather_data_by">Податоци за %s</string>
     <string name="weather_pollen_data_by">Податоци за полен од %s</string>
     <string name="weather_normals_data_by">Податоци за нормала на температурата за %s</string>
-    <string name="weather_message_secondary_data_refresh_failed">Не успеа освежувањето на временските податоци за секундарен извор на временска прогноза</string>
     <string name="weather_message_unsupported_feature">Изворот не поддржува една од бараните функции</string>
     <string name="weather_api_limit_reached_title">Достигнато е ограничувањето на барањата за API</string>
     <string name="weather_api_unauthorized_content">На некои извори на податоци за времето, треба да обезбедите сопствен клуч API. Ако веќе сте обезбедиле, ве молиме проверете го клучот API што сте го дале.</string>

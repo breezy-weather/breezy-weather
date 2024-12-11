@@ -162,7 +162,6 @@
     <string name="weather_pollen_data_by">Õietolmu andmete allikas:%s</string>
     <string name="weather_air_quality_and_pollen_data_by">Õhukvaliteedi ja õietolmu andmete allikas:%s</string>
     <string name="weather_message_data_refresh_failed">Ilma andmete värskendamine ebaõnnestus</string>
-    <string name="weather_message_secondary_data_refresh_failed">Ilma andmete värkendamine sekundaarsest allikast ebaõnnestus</string>
     <string name="weather_message_too_frequent_refreshes">Palun oodake mõni sekund enne uuesti proovimist…</string>
     <string name="weather_api_limit_reached_title">API päringute limiit on ületatud</string>
     <string name="weather_api_limit_reached_content">API päringute limiidi kõrvaldamiseks lisage omaenda API võti.</string>
@@ -308,7 +307,6 @@
     <string name="settings_background_updates_refresh_1h">1 tund</string>
     <string name="settings_background_updates_refresh_3h">3 tundi</string>
     <string name="settings_background_updates_worker_info_summary">Viimati jooksutatud: %s</string>
-    <string name="settings_weather_source_main">Põhiallikas</string>
     <string name="settings_units_speed">Kiirusühik</string>
     <string name="settings_units_pressure">Õhurõhuühik</string>
     <string name="settings_main">Peamine vaade</string>

@@ -19,20 +19,17 @@ package org.breezyweather.sources.jma
 import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.PolyUtil
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.data.geojson.GeoJsonFeature
@@ -65,7 +62,7 @@ import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 
 // Reverse geocoding
-fun convert(
+internal fun convert(
     context: Context,
     location: Location,
     areasResult: JmaAreasResult,
@@ -132,7 +129,7 @@ fun convert(
 }
 
 // Location parameters
-fun convert(
+internal fun convert(
     location: Location,
     areasResult: JmaAreasResult,
     class20sFeatures: List<Any?>,
@@ -211,7 +208,7 @@ private fun getMatchingLocations(
     location: Location,
     class20sFeatures: List<Any?>,
 ): List<GeoJsonFeature> {
-    var json = """{"type":"FeatureCollection","features":[${class20sFeatures.joinToString(",")}]}"""
+    val json = """{"type":"FeatureCollection","features":[${class20sFeatures.joinToString(",")}]}"""
     val geoJsonParser = GeoJsonParser(JSONObject(json))
     return geoJsonParser.features.filter { feature ->
         when (feature.geometry) {
@@ -228,76 +225,11 @@ private fun getMatchingLocations(
     }
 }
 
-fun convert(
-    context: Context,
-    location: Location,
-    currentResult: Map<String, JmaCurrentResult>,
-    bulletinResult: JmaBulletinResult,
-    dailyResult: List<JmaDailyResult>,
-    hourlyResult: JmaHourlyResult,
-    alertResult: JmaAlertResult,
-    ignoreFeatures: List<SourceFeature>,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    val parameters = location.parameters.getOrElse("jma") { null }
-    val class20s = parameters?.getOrElse("class20s") { null }
-    val class10s = parameters?.getOrElse("class10s") { null }
-    val weekArea05 = parameters?.getOrElse("weekArea05") { null }
-    val weekAreaAmedas = parameters?.getOrElse("weekAreaAmedas") { null }
-    val forecastAmedas = parameters?.getOrElse("forecastAmedas") { null }
-    if (class20s.isNullOrEmpty() ||
-        class10s.isNullOrEmpty() ||
-        weekArea05.isNullOrEmpty() ||
-        weekAreaAmedas.isNullOrEmpty() ||
-        forecastAmedas.isNullOrEmpty()
-    ) {
-        throw InvalidLocationException()
-    }
-
-    return WeatherWrapper(
-        current = getCurrent(context, currentResult, bulletinResult),
-        normals = if (!ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
-            getNormals(dailyResult, weekAreaAmedas)
-        } else {
-            null
-        },
-        dailyForecast = getDailyForecast(context, dailyResult, class10s, weekArea05, weekAreaAmedas, forecastAmedas),
-        hourlyForecast = getHourlyForecast(context, hourlyResult),
-        alertList = getAlertList(context, alertResult, class20s),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun convertSecondary(
-    context: Context,
-    location: Location,
-    currentResult: Map<String, JmaCurrentResult>?,
-    bulletinResult: JmaBulletinResult?,
-    dailyResult: List<JmaDailyResult>?,
-    alertResult: JmaAlertResult?,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    val parameters = location.parameters.getOrElse("jma") { null }
-    val class20s = parameters?.getOrElse("class20s") { null }
-    val weekAreaAmedas = parameters?.getOrElse("weekAreaAmedas") { null }
-    if (class20s.isNullOrEmpty() ||
-        weekAreaAmedas.isNullOrEmpty()
-    ) {
-        throw InvalidLocationException()
-    }
-    return SecondaryWeatherWrapper(
-        current = currentResult?.let { bulletinResult?.let { getCurrent(context, currentResult, bulletinResult) } },
-        alertList = alertResult?.let { getAlertList(context, it, class20s) },
-        normals = dailyResult?.let { getNormals(it, weekAreaAmedas) },
-        failedFeatures = failedFeatures
-    )
-}
-
-private fun getCurrent(
+internal fun getCurrent(
     context: Context,
     currentResult: Map<String, JmaCurrentResult>,
     bulletinResult: JmaBulletinResult,
-): Current? {
+): CurrentWrapper? {
     val lastKey = currentResult.keys.sortedDescending()[0]
     val lastHourKey = lastKey.substring(0, 10) + "0000"
     var dailyForecast = bulletinResult.text?.trim()
@@ -307,7 +239,7 @@ private fun getCurrent(
     dailyForecast = dailyForecast?.substringBefore("\n")?.trim()
     return currentResult[lastKey]?.let {
         val weather = currentResult.getOrElse(lastHourKey) { null }?.weather?.getOrNull(0)
-        Current(
+        CurrentWrapper(
             weatherText = getCurrentWeatherText(context, weather),
             weatherCode = getCurrentWeatherCode(weather),
             temperature = Temperature(
@@ -325,17 +257,17 @@ private fun getCurrent(
     }
 }
 
-private fun getDailyForecast(
+internal fun getDailyForecast(
     context: Context,
     dailyResult: List<JmaDailyResult>,
     class10s: String,
     weekArea05: String,
     weekAreaAmedas: String,
     forecastAmedas: String,
-): List<Daily> {
+): List<DailyWrapper> {
     val formatter = SimpleDateFormat("HH", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Tokyo")
-    val dailyList = mutableListOf<Daily>()
+    val dailyList = mutableListOf<DailyWrapper>()
     val wxMap = mutableMapOf<Long, String?>()
     val maxTMap = mutableMapOf<Long, Double?>()
     val minTMap = mutableMapOf<Long, Double?>()
@@ -430,7 +362,7 @@ private fun getDailyForecast(
 
     minTMap.keys.sorted().forEach { key ->
         dailyList.add(
-            Daily(
+            DailyWrapper(
                 date = Date(key),
                 day = HalfDay(
                     weatherText = getDailyWeatherText(
@@ -479,7 +411,7 @@ private fun getDailyForecast(
     return dailyList
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     context: Context,
     hourlyResult: JmaHourlyResult,
 ): List<HourlyWrapper> {
@@ -525,7 +457,7 @@ private fun getHourlyForecast(
     return hourlyList
 }
 
-private fun getNormals(
+internal fun getNormals(
     dailyResult: List<JmaDailyResult>,
     weekAreaAmedas: String,
 ): Normals? {
@@ -541,11 +473,11 @@ private fun getNormals(
     return null
 }
 
-private fun getAlertList(
+internal fun getAlertList(
     context: Context,
     alertResult: JmaAlertResult,
     class20s: String,
-): List<Alert>? {
+): List<Alert> {
     val alertList = mutableListOf<Alert>()
     var severity: AlertSeverity
     alertResult.areaTypes?.getOrNull(1)?.areas?.forEach { area ->

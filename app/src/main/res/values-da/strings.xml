@@ -144,7 +144,6 @@
     <string name="weather_minutely_data_by">Nedbørsdata fra %s</string>
     <string name="weather_normals_data_by">Temperaturnormaldata fra %s</string>
     <string name="weather_message_data_refresh_failed">Vejrdata-genopfriskning fejlede</string>
-    <string name="weather_message_secondary_data_refresh_failed">Vejrdata-genopfriskningen for en sekundær vejrkilde fejlede</string>
     <string name="weather_alert_data_by">Varslingsdata fra %s</string>
     <string name="ceiling_short">Loft</string>
     <string name="pollen_carpinus">Avnbøg</string>
@@ -626,7 +625,6 @@
     <string name="settings_location">Placering</string>
     <string name="settings_location_access_switch_title">Placeringsadgang</string>
     <string name="settings_location_access_background_title">Placeringsadgang i baggrunden</string>
-    <string name="settings_weather_source_main">Primær kilde</string>
     <string name="settings_weather_source_unavailable">%s (utilgængelig)</string>
     <string name="settings_weather_source_none">Ingen</string>
     <string name="settings_source_default_value">Standard (uændret)</string>

@@ -14,25 +14,22 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package breezyweather.domain.weather.model
+package breezyweather.domain.weather.wrappers
 
-import breezyweather.domain.weather.wrappers.HourlyWrapper
-import java.io.Serializable
-import java.util.Date
+import breezyweather.domain.weather.model.Current
+import breezyweather.domain.weather.model.Temperature
+import breezyweather.domain.weather.model.UV
+import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.model.Wind
 
 /**
- * Hourly.
+ * Current wrapper
  */
-data class Hourly(
-    val date: Date,
-    val isDaylight: Boolean = true,
+data class CurrentWrapper(
     val weatherText: String? = null,
     val weatherCode: WeatherCode? = null,
     val temperature: Temperature? = null,
-    val precipitation: Precipitation? = null,
-    val precipitationProbability: PrecipitationProbability? = null,
     val wind: Wind? = null,
-    val airQuality: AirQuality? = null,
     val uV: UV? = null,
     val relativeHumidity: Double? = null,
     val dewPoint: Double? = null,
@@ -42,22 +39,26 @@ data class Hourly(
     val pressure: Double? = null,
     val cloudCover: Int? = null,
     val visibility: Double? = null,
-) : Serializable {
-
-    fun toHourlyWrapper() = HourlyWrapper(
-        date = this.date,
-        isDaylight = this.isDaylight,
+    val ceiling: Double? = null,
+    val dailyForecast: String? = null,
+    // Is actually a description of the nowcast
+    val hourlyForecast: String? = null,
+) {
+    fun toCurrent(
+        uV: UV? = null,
+    ) = Current(
         weatherText = this.weatherText,
         weatherCode = this.weatherCode,
         temperature = this.temperature,
-        precipitation = this.precipitation,
-        precipitationProbability = this.precipitationProbability,
         wind = this.wind,
-        uV = this.uV,
+        uV = uV ?: this.uV,
         relativeHumidity = this.relativeHumidity,
         dewPoint = this.dewPoint,
         pressure = this.pressure,
         cloudCover = this.cloudCover,
-        visibility = this.visibility
+        visibility = this.visibility,
+        ceiling = this.ceiling,
+        dailyForecast = this.dailyForecast,
+        hourlyForecast = this.hourlyForecast
     )
 }

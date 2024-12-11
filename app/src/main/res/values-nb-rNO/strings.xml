@@ -397,7 +397,6 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Ny linje</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Vær på nattestid i dag, i morgen, …, 4 dager senere</string>
     <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorer ved lavt batterinivå</string>
-    <string name="settings_weather_source_main">Hovedkilde</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Nedbør på dagtid i dag, i morgen, …, 4 dager senere (%)</string>
     <string name="widget_week_style_3_days">3 dager</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Pollenvarsel i dag, i morgen, …, 4 dager senere</string>
@@ -637,7 +636,6 @@
     <string name="cloud_cover_short">Dekke</string>
     <string name="pollen_populus">Poppel</string>
     <string name="weather_message_unsupported_feature">Kilden støtter ikke en av de forespurte funksjonene</string>
-    <string name="weather_message_secondary_data_refresh_failed">Oppdatering av værdata for en sekundær værkilde mislyktes</string>
     <string name="weather_api_limit_reached_title">Grensen for API-forespørsler er nådd</string>
     <string name="location_search_no_results_advice">Sørg for at søket er stavet riktig og ikke for spesifikt. Alternativt kan du prøve en annen stedssøkekilde som kan gi andre resultater.</string>
     <string name="air_quality_o3_info_consequences">Eksponering for overdreven ozon kan forårsake pusteproblemer, utløse astma, redusere lungefunksjonen og føre til lungesykdom.</string>

@@ -18,12 +18,9 @@ package org.breezyweather.sources.hko
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -31,18 +28,16 @@ import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.R
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.hko.json.HkoAstroResult
 import org.breezyweather.sources.hko.json.HkoCurrentRegionalWeather
-import org.breezyweather.sources.hko.json.HkoCurrentResult
 import org.breezyweather.sources.hko.json.HkoDailyForecast
-import org.breezyweather.sources.hko.json.HkoForecastResult
 import org.breezyweather.sources.hko.json.HkoHourlyWeatherForecast
 import org.breezyweather.sources.hko.json.HkoNormalsResult
 import org.breezyweather.sources.hko.json.HkoOneJsonResult
@@ -54,71 +49,12 @@ import java.util.Locale
 import java.util.TimeZone
 import kotlin.collections.set
 
-fun convert(
-    context: Context,
-    currentResult: HkoCurrentResult,
-    forecastResult: HkoForecastResult,
-    normalsResult: HkoNormalsResult,
-    oneJsonResult: HkoOneJsonResult,
-    warningDetailsResult: MutableMap<String, HkoWarningResult>,
-    sun1Result: HkoAstroResult,
-    sun2Result: HkoAstroResult,
-    moon1Result: HkoAstroResult,
-    moon2Result: HkoAstroResult,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    return WeatherWrapper(
-        current = getCurrent(context, currentResult.RegionalWeather, oneJsonResult),
-        normals = getNormals(normalsResult),
-        dailyForecast = getDailyForecast(
-            context,
-            forecastResult.DailyForecast,
-            sun1Result,
-            sun2Result,
-            moon1Result,
-            moon2Result,
-            oneJsonResult
-        ),
-        hourlyForecast = getHourlyForecast(context, forecastResult.HourlyWeatherForecast, oneJsonResult),
-        alertList = getAlertList(context, warningDetailsResult),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun convertSecondary(
-    context: Context,
-    currentResult: HkoCurrentResult?,
-    normalsResult: HkoNormalsResult?,
-    oneJsonResult: HkoOneJsonResult?,
-    warningDetailsResult: MutableMap<String, HkoWarningResult>?,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = if (currentResult != null && oneJsonResult !== null) {
-            getCurrent(context, currentResult.RegionalWeather, oneJsonResult)
-        } else {
-            null
-        },
-        normals = if (normalsResult !== null) {
-            getNormals(normalsResult)
-        } else {
-            null
-        },
-        alertList = if (warningDetailsResult !== null) {
-            getAlertList(context, warningDetailsResult)
-        } else {
-            null
-        },
-        failedFeatures = failedFeatures
-    )
-}
-
-private fun getCurrent(
+internal fun getCurrent(
     context: Context,
     regionalWeather: HkoCurrentRegionalWeather?,
     oneJson: HkoOneJsonResult,
-): Current {
-    return Current(
+): CurrentWrapper {
+    return CurrentWrapper(
         weatherText = getWeatherText(context, oneJson.FLW?.Icon1?.toIntOrNull()),
         weatherCode = getWeatherCode(oneJson.FLW?.Icon1?.toIntOrNull()),
         temperature = Temperature(
@@ -138,7 +74,7 @@ private fun getCurrent(
     )
 }
 
-private fun getNormals(
+internal fun getNormals(
     normalsResult: HkoNormalsResult,
 ): Normals {
     val now = Calendar.getInstance(TimeZone.getTimeZone("Asia/Hong_Kong"), Locale.ENGLISH)
@@ -182,7 +118,7 @@ private fun getNormals(
     )
 }
 
-private fun getDailyForecast(
+internal fun getDailyForecast(
     context: Context,
     dailyForecast: List<HkoDailyForecast>?,
     sun1: HkoAstroResult,
@@ -190,7 +126,7 @@ private fun getDailyForecast(
     moon1: HkoAstroResult,
     moon2: HkoAstroResult,
     oneJson: HkoOneJsonResult,
-): List<Daily> {
+): List<DailyWrapper> {
     val formatter = SimpleDateFormat("yyyyMMdd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Hong_Kong")
 
@@ -206,7 +142,7 @@ private fun getDailyForecast(
         }
     }
 
-    val dailyList = mutableListOf<Daily>()
+    val dailyList = mutableListOf<DailyWrapper>()
     var daytimeWeather: Int?
     var nightTimeWeather: Int?
 
@@ -228,7 +164,7 @@ private fun getDailyForecast(
             else -> daytimeWeather
         }
         dailyList.add(
-            Daily(
+            DailyWrapper(
                 date = formatter.parse(it.ForecastDate)!!,
                 day = HalfDay(
                     weatherText = getWeatherText(context, daytimeWeather),
@@ -252,7 +188,7 @@ private fun getDailyForecast(
     return dailyList
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     context: Context,
     hourlyWeatherForecast: List<HkoHourlyWeatherForecast>?,
     oneJson: HkoOneJsonResult,
@@ -317,7 +253,7 @@ private fun getHourlyForecast(
     return hourlyList
 }
 
-private fun getAlertList(
+internal fun getAlertList(
     context: Context,
     warningMap: MutableMap<String, HkoWarningResult>,
 ): List<Alert> {

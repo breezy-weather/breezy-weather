@@ -21,19 +21,16 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.dmi.json.DmiResult
 import org.breezyweather.sources.dmi.json.DmiWarningResult
 import retrofit2.Retrofit
@@ -44,7 +41,7 @@ import javax.inject.Named
 class DmiService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "dmi"
     override val name = "DMI (${Locale(context.currentLocale.code, "DK").displayCountry})"
@@ -52,7 +49,6 @@ class DmiService @Inject constructor(
     override val privacyPolicyUrl = "https://www.dmi.dk/om-hjemmesiden/privatliv/"
 
     override val color = Color.rgb(12, 45, 131)
-    override val weatherAttribution = "DMI (Creative Commons CC BY)"
 
     private val mApi by lazy {
         client
@@ -61,33 +57,46 @@ class DmiService @Inject constructor(
             .create(DmiApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_ALERT
+    private val weatherAttribution = "DMI (Creative Commons CC BY)"
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution
     )
+    override fun isFeatureSupportedForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Boolean {
+        return feature != SourceFeature.ALERT ||
+            arrayOf("DK", "FO", "GL").any { it.equals(location.countryCode, ignoreCase = true) }
+    }
 
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val weather = mApi.getWeather(
-            location.latitude,
-            location.longitude,
-            DMI_WEATHER_CMD
-        )
-
         val failedFeatures = mutableListOf<SourceFeature>()
-        val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT) &&
-            arrayOf("DK", "FO", "GL").any { it.equals(location.countryCode, ignoreCase = true) }
-        ) {
+        val weather = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getWeather(
+                location.latitude,
+                location.longitude,
+                DMI_WEATHER_CMD
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(DmiResult())
+            }
+        } else {
+            Observable.just(DmiResult())
+        }
+        val alerts = if (SourceFeature.ALERT in requestedFeatures) {
             val id = location.parameters.getOrElse(id) { null }?.getOrElse("id") { null }
             if (!id.isNullOrEmpty()) {
                 mApi.getAlerts(id).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    failedFeatures.add(SourceFeature.ALERT)
                     Observable.just(DmiWarningResult())
                 }
             } else {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                failedFeatures.add(SourceFeature.ALERT)
                 Observable.just(DmiWarningResult())
             }
         } else {
@@ -98,43 +107,24 @@ class DmiService @Inject constructor(
             weather,
             alerts
         ) { weatherResult: DmiResult, alertsResult: DmiWarningResult ->
-            convert(weatherResult, alertsResult, location, failedFeatures)
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_ALERT
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return arrayOf("DK", "FO", "GL").any { it.equals(location.countryCode, ignoreCase = true) }
-    }
-    override val currentAttribution = null
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT)) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-
-        val id = location.parameters.getOrElse(id) { null }?.getOrElse("id") { null }
-        if (id.isNullOrEmpty()) {
-            return Observable.error(SecondaryWeatherException())
-        }
-        return mApi.getAlerts(id).map {
-            convertSecondary(it)
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(location, weatherResult.timeserie)
+                } else {
+                    null
+                },
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(weatherResult.timeserie)
+                } else {
+                    null
+                },
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlertList(alertsResult.locationWarnings)
+                } else {
+                    null
+                },
+                failedFeatures = failedFeatures
+            )
         }
     }
 
@@ -162,7 +152,7 @@ class DmiService @Inject constructor(
     ): Boolean {
         // If we are in Denmark, Faroe Islands, or Greenland, we need location parameters
         // (update it if coordinates changes, OR if we didn't have it yet)
-        return arrayOf("DK", "FO", "GL").any { it.equals(location.countryCode, ignoreCase = true) } &&
+        return SourceFeature.ALERT in features &&
             (coordinatesChanged || location.parameters.getOrElse(id) { null }?.getOrElse("id") { null }.isNullOrEmpty())
     }
 

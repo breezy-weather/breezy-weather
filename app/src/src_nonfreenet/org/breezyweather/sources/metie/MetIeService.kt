@@ -21,7 +21,6 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -30,9 +29,8 @@ import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.metie.json.MetIeHourly
 import org.breezyweather.sources.metie.json.MetIeWarningResult
 import retrofit2.Retrofit
@@ -46,7 +44,7 @@ import javax.inject.Named
 class MetIeService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "metie"
     val countryName = Locale(context.currentLocale.code, "IE").displayCountry
@@ -62,13 +60,6 @@ class MetIeService @Inject constructor(
 
     override val color = Color.rgb(0, 48, 95)
 
-    // Terms require: copyright + source + license (with link) + disclaimer + mention of modified data
-    override val weatherAttribution = "Copyright Met Éireann. Source met.ie. This data is published under a Creative " +
-        "Commons Attribution 4.0 International (CC BY 4.0) https://creativecommons.org/licenses/by/4.0/. Met Éireann " +
-        "does not accept any liability whatsoever for any error or omission in the data, their availability, or for " +
-        "any loss or damage arising from their use. This material has been modified from the original by " +
-        "Breezy Weather, mainly to compute or extrapolate missing data."
-
     private val mApi by lazy {
         client
             .baseUrl(MET_IE_BASE_URL)
@@ -76,13 +67,20 @@ class MetIeService @Inject constructor(
             .create(MetIeApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_ALERT
+    // Terms require: copyright + source + license (with link) + disclaimer + mention of modified data
+    private val weatherAttribution = "Copyright Met Éireann. Source met.ie. This data is published under a Creative " +
+        "Commons Attribution 4.0 International (CC BY 4.0) https://creativecommons.org/licenses/by/4.0/. Met Éireann " +
+        "does not accept any liability whatsoever for any error or omission in the data, their availability, or for " +
+        "any loss or damage arising from their use. This material has been modified from the original by " +
+        "Breezy Weather, mainly to compute or extrapolate missing data."
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("IE", ignoreCase = true)
     }
@@ -90,17 +88,23 @@ class MetIeService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val forecast = mApi.getForecast(
-            location.latitude,
-            location.longitude
-        )
-
         val failedFeatures = mutableListOf<SourceFeature>()
-        val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getForecast(
+                location.latitude,
+                location.longitude
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(emptyList())
+            }
+        } else {
+            Observable.just(emptyList())
+        }
+        val alerts = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getWarnings().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                failedFeatures.add(SourceFeature.ALERT)
                 Observable.just(MetIeWarningResult())
             }
         } else {
@@ -108,34 +112,24 @@ class MetIeService @Inject constructor(
         }
 
         return Observable.zip(forecast, alerts) { forecastResult: List<MetIeHourly>, alertsResult: MetIeWarningResult ->
-            convert(forecastResult, alertsResult, location, failedFeatures)
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_ALERT
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = null
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        return mApi.getWarnings().map {
-            convertSecondary(it, location)
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(location, forecastResult)
+                } else {
+                    null
+                },
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(forecastResult)
+                } else {
+                    null
+                },
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlertList(location, alertsResult.warnings?.national)
+                } else {
+                    null
+                },
+                failedFeatures = failedFeatures
+            )
         }
     }
 

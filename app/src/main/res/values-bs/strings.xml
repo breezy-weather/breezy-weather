@@ -406,7 +406,6 @@
     <string name="weather_minutely_data_by">Podaci o trenutnim padavinama: %s</string>
     <string name="weather_normals_data_by">Podaci o uobičajenim temperaturama: %s</string>
     <string name="weather_message_data_refresh_failed">Osvježavanje vremenskih podataka neuspješno</string>
-    <string name="weather_message_secondary_data_refresh_failed">Osvježavanje vremenskih podataka iz sekundarnog izvora vremena neuspjelo</string>
     <string name="weather_api_limit_reached_content">Kako biste zaobišli ograničenje, dodajte svoj API ključ.</string>
     <string name="weather_source_accu_preference_days_10">10 dana</string>
     <string name="weather_source_accu_preference_hours_12">12 sati</string>
@@ -511,7 +510,6 @@
     <string name="settings_location_access_background_title">Pristup lokaciji u pozadini</string>
     <string name="settings_location_access_background_summaryOn">Omogućeno. Aplikacija će moći osvježavati vremenske podatke za vašu trenutnu lokaciju u pozadini.</string>
     <string name="settings_location_access_precise_summaryOn">Omogućeno. Prvenstveno se i u najviše slučajeva koristi mreža uređaja, ali GPS usluge se mogu koristiti kao rezerva.</string>
-    <string name="settings_weather_source_main">Glavni izvor</string>
     <string name="settings_weather_sources_per_location_summary">Uredite izvore prognoze za ovu lokaciju</string>
     <string name="settings_source_default_value">Podrazumijevano (nepromijenjeno)</string>
     <string name="settings_source_api_key">API ključ</string>

@@ -19,7 +19,7 @@ package org.breezyweather.sources.geonames
 import breezyweather.domain.location.model.Location
 import org.breezyweather.sources.geonames.json.GeoNamesLocation
 
-fun convert(
+internal fun convert(
     result: GeoNamesLocation,
     languageCode: String,
 ): Location? {

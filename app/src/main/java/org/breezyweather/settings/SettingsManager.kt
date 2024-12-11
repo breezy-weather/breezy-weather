@@ -201,12 +201,12 @@ class SettingsManager private constructor(
             "native"
         }
 
-    var defaultWeatherSource: String
+    var defaultForecastSource: String
         set(value) {
             config.edit().putString("default_weather_source", value).apply()
             notifySettingsChanged()
         }
-        get() = config.getString("default_weather_source", null) ?: BuildConfig.DEFAULT_WEATHER_SOURCE
+        get() = config.getString("default_weather_source", null) ?: BuildConfig.DEFAULT_FORECAST_SOURCE
 
     // unit.
     var temperatureUnit: TemperatureUnit

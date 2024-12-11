@@ -158,7 +158,7 @@ class DailyWeatherActivity : GeoActivity() {
                     if (!location.pollenSource.isNullOrEmpty()) {
                         location.pollenSource!!
                     } else {
-                        location.weatherSource
+                        location.forecastSource
                     }
                 )
                 val dailyWeatherAdapter = DailyWeatherAdapter(

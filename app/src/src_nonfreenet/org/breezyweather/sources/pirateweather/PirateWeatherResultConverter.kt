@@ -19,8 +19,6 @@ package org.breezyweather.sources.pirateweather
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.MoonPhase
@@ -30,15 +28,13 @@ import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.sources.pirateweather.json.PirateWeatherAlert
 import org.breezyweather.sources.pirateweather.json.PirateWeatherCurrently
 import org.breezyweather.sources.pirateweather.json.PirateWeatherDaily
-import org.breezyweather.sources.pirateweather.json.PirateWeatherForecastResult
 import org.breezyweather.sources.pirateweather.json.PirateWeatherHourly
 import org.breezyweather.sources.pirateweather.json.PirateWeatherMinutely
 import java.util.Objects
@@ -46,34 +42,11 @@ import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.seconds
 
 /**
- * Converts PirateWeather result into a forecast
- */
-fun convert(
-    forecastResult: PirateWeatherForecastResult,
-): WeatherWrapper {
-    // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
-    if (forecastResult.daily?.data.isNullOrEmpty() || forecastResult.hourly?.data.isNullOrEmpty()) {
-        throw InvalidOrIncompleteDataException()
-    }
-
-    return WeatherWrapper(
-        /*base = Base(
-            publishDate = forecastResult.currently?.time?.seconds?.inWholeMilliseconds?.toDate() ?: Date()
-        ),*/
-        current = getCurrent(forecastResult.currently),
-        dailyForecast = getDailyForecast(forecastResult.daily!!.data!!),
-        hourlyForecast = getHourlyForecast(forecastResult.hourly!!.data!!),
-        minutelyForecast = getMinutelyForecast(forecastResult.minutely?.data),
-        alertList = getAlertList(forecastResult.alerts)
-    )
-}
-
-/**
  * Returns current weather
  */
-private fun getCurrent(result: PirateWeatherCurrently?): Current? {
+internal fun getCurrent(result: PirateWeatherCurrently?): CurrentWrapper? {
     if (result == null) return null
-    return Current(
+    return CurrentWrapper(
         weatherText = result.summary,
         weatherCode = getWeatherCode(result.icon),
         temperature = Temperature(
@@ -94,11 +67,11 @@ private fun getCurrent(result: PirateWeatherCurrently?): Current? {
     )
 }
 
-private fun getDailyForecast(
-    dailyResult: List<PirateWeatherDaily>,
-): List<Daily> {
-    return dailyResult.map { result ->
-        Daily(
+internal fun getDailyForecast(
+    dailyResult: List<PirateWeatherDaily>?,
+): List<DailyWrapper>? {
+    return dailyResult?.map { result ->
+        DailyWrapper(
             date = result.time.seconds.inWholeMilliseconds.toDate(),
             day = HalfDay(
                 weatherText = result.summary,
@@ -134,10 +107,10 @@ private fun getDailyForecast(
 /**
  * Returns hourly forecast
  */
-private fun getHourlyForecast(
-    hourlyResult: List<PirateWeatherHourly>,
-): List<HourlyWrapper> {
-    return hourlyResult.map { result ->
+internal fun getHourlyForecast(
+    hourlyResult: List<PirateWeatherHourly>?,
+): List<HourlyWrapper>? {
+    return hourlyResult?.map { result ->
         HourlyWrapper(
             date = result.time.seconds.inWholeMilliseconds.toDate(),
             weatherText = result.summary,
@@ -176,7 +149,7 @@ private fun getHourlyForecast(
  * Returns minutely forecast
  * Copied from openweather implementation
  */
-private fun getMinutelyForecast(minutelyResult: List<PirateWeatherMinutely>?): List<Minutely>? {
+internal fun getMinutelyForecast(minutelyResult: List<PirateWeatherMinutely>?): List<Minutely>? {
     if (minutelyResult.isNullOrEmpty()) return null
     val minutelyList = mutableListOf<Minutely>()
     minutelyResult.forEachIndexed { i, minutelyForecast ->
@@ -198,7 +171,7 @@ private fun getMinutelyForecast(minutelyResult: List<PirateWeatherMinutely>?): L
 /**
  * Returns alerts
  */
-private fun getAlertList(alertList: List<PirateWeatherAlert>?): List<Alert>? {
+internal fun getAlertList(alertList: List<PirateWeatherAlert>?): List<Alert>? {
     if (alertList.isNullOrEmpty()) return null
     return alertList.map { alert ->
         val severity = when (alert.severity?.lowercase()) {
@@ -234,14 +207,4 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
         "cloudy" -> WeatherCode.CLOUDY
         else -> null
     }
-}
-
-fun convertSecondary(
-    forecastResult: PirateWeatherForecastResult,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = getCurrent(forecastResult.currently),
-        minutelyForecast = getMinutelyForecast(forecastResult.minutely?.data),
-        alertList = getAlertList(forecastResult.alerts)
-    )
 }

@@ -177,7 +177,6 @@
     <string name="weather_minutely_data_by">Дадзеныя прагнозу ападкаў прадастаўлены %s</string>
     <string name="weather_alert_data_by">Абвесткі аб надвор’і прадастаўлены %s</string>
     <string name="weather_normals_data_by">Дадзеныя аб тэмпературных нормах прадастаўлены %s</string>
-    <string name="weather_message_secondary_data_refresh_failed">Не атрымалася абнавіць дадзеныя аб надвор’і для дадатковай крыніцы надвор’я</string>
     <string name="weather_message_invalid_location">Няправільнае месцазнаходжанне, выдаліце яго і дадайце нанова</string>
     <string name="weather_message_unsupported_feature">Крыніца не падтрымлівае адну з запытаных функцый</string>
     <string name="weather_api_limit_reached_content">Каб абыйсці абмежаванне, выкарыстоўвайце свой API-ключ.</string>
@@ -379,7 +378,6 @@
     <string name="settings_location_access_precise_summaryOff">Уключыце «Выкарыстоўваць дакладнае месцазнаходжанне», калі ў вас узніклі праблемы з вызначэннем месцазнаходжання.</string>
     <string name="settings_weather_sources">Крыніцы надвор’я</string>
     <string name="settings_weather_sources_summary">Пастаўшчыкі надвор’я па змаўчанні для новых месцазнаходжанне, прыстасаваныя ключы API і іншыя налады пастаўшчыкоў</string>
-    <string name="settings_weather_source_main">Асноўная крыніца</string>
     <string name="settings_weather_sources_per_location_summary">Наладзьце крыніцы інфармацыі аб надвор’і выкарыстоўваюцца для гэтага месцазнаходжання</string>
     <string name="settings_source_default_value">Па змаўчанні</string>
     <string name="settings_source_api_key">Ключ API</string>

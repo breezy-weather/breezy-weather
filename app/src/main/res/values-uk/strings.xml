@@ -197,7 +197,6 @@
     <string name="weather_pollen_data_by">Дані про алергени надані %s</string>
     <string name="weather_air_quality_and_pollen_data_by">Дані про якість повітря та алергени надані %s</string>
     <string name="weather_alert_data_by">Дані про попередження надані %s</string>
-    <string name="weather_message_secondary_data_refresh_failed">Не вдалося оновити погоду з додаткового джерела погоди</string>
     <string name="weather_api_limit_reached_content">Щоб обійти це обмеження, додайте власний ключ API.</string>
     <string name="weather_api_unauthorized_content">Для деяких джерел погодних даних вам потрібно надати власний ключ API. Якщо ви вже надали його, будь ласка, перевірте наданий вами ключ API.</string>
     <string name="weather_message_data_refresh_failed">Не вдалося оновити погодні дані</string>
@@ -396,7 +395,6 @@
     <string name="settings_location_access_switch_summaryOn">Дозволено. Ви можете додати ваше поточне місцезнаходження як розташування.</string>
     <string name="settings_location_access_precise_title">Використання GPS пристрою</string>
     <string name="settings_location_access_precise_summaryOn">Увімкнено. Мережевий провайдер пристрою буде використовуватися в пріоритеті та більшу частину часу, GPS буде використовуватися як запасний варіант.</string>
-    <string name="settings_weather_source_main">Основне джерело</string>
     <string name="settings_weather_sources_per_location_summary">Налаштування джерел інформації про погоду, які використовуються для цього розташування</string>
     <string name="settings_source_api_key">Ключ API</string>
     <string name="settings_appearance">Вигляд</string>

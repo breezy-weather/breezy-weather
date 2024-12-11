@@ -435,7 +435,6 @@
     <string name="weather_air_quality_and_pollen_data_by">Dados de qualidade do ar e de pólen por %s</string>
     <string name="weather_minutely_data_by">Dados de previsão imediata por %s</string>
     <string name="weather_alert_data_by">Dados de alerta por %s</string>
-    <string name="weather_message_secondary_data_refresh_failed">Falha na atualização de dados meteorológicos para uma fonte meteorológica secundária</string>
     <string name="weather_message_invalid_location">Localização inválida, exclua-a e adicione-a novamente</string>
     <string name="weather_source_accu_preference_hours_72">72 horas</string>
     <string name="weather_source_accu_preference_hours_120">120 horas</string>
@@ -557,7 +556,6 @@
     <string name="common_weather_text_drizzle">Garoa</string>
     <string name="about_contribution_designer">Designer da logo</string>
     <string name="common_weather_text_snow_heavy">Neve forte</string>
-    <string name="settings_weather_source_main">Fonte principal</string>
     <string name="common_weather_text_rain_freezing_heavy">Chuva forte congelante</string>
     <string name="common_weather_text_snow_light">Neve fraca</string>
     <string name="common_weather_text_rain_showers_heavy">Pancadas de chuva forte</string>

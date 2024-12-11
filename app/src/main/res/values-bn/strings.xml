@@ -198,7 +198,6 @@
     <string name="dew_point_short">শিশিরাঙ্ক</string>
     <string name="weather_air_quality_and_pollen_data_by">বায়ু গুণমান এবং পলেন উপাত্ত ডেটা দ্বারা %s</string>
     <string name="weather_message_data_refresh_failed">আবহাওয়া ডেটা পুনরায় লোড করা যায়নি</string>
-    <string name="weather_message_secondary_data_refresh_failed">দ্বিতীয় আবহাওয়া উৎসের জন্য আবহাওয়া ডেটা পুনরায় লোড করা ব্যর্থ হয়েছে</string>
     <string name="weather_api_limit_reached_content">সীমা অতিক্রম করার জন্য, নিজের API key যোগ করুন।</string>
     <string name="weather_api_unauthorized_title">API অ্যাক্সেস অননুমোদিত</string>
     <string name="weather_api_unauthorized_content">কিছু আবহাওয়া উৎসগুলিতে, আপনাকে নিজের এপিআই কী সরবরাহ করতে হবে। যদি আপনি ইতিমধ্যে একটি সরবরাহ করে থাকেন, তবে দয়া করে সরবরাহ করা API key পুনরায় পরীক্ষা করুন।</string>

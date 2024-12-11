@@ -14,19 +14,22 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package breezyweather.domain.weather.model
+package breezyweather.domain.weather.wrappers
 
-import breezyweather.domain.weather.wrappers.DailyWrapper
-import java.io.Serializable
+import breezyweather.domain.weather.model.AirQuality
+import breezyweather.domain.weather.model.Astro
+import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.DegreeDay
+import breezyweather.domain.weather.model.HalfDay
+import breezyweather.domain.weather.model.MoonPhase
+import breezyweather.domain.weather.model.Pollen
+import breezyweather.domain.weather.model.UV
 import java.util.Date
 
 /**
- * Daily.
+ * Daily wrapper
  */
-data class Daily(
-    /**
-     * Daily date initialized at 00:00 in the TimeZone of the location
-     */
+data class DailyWrapper(
     val date: Date,
     val day: HalfDay? = null,
     val night: HalfDay? = null,
@@ -34,14 +37,16 @@ data class Daily(
     val sun: Astro? = null,
     val moon: Astro? = null,
     val moonPhase: MoonPhase? = null,
-    val airQuality: AirQuality? = null,
-    val pollen: Pollen? = null,
     val uV: UV? = null,
-    // Expressed in hours:
+    /**
+     * Sunshine duration in hours (ex: 0.5 means 30 min)
+     */
     val sunshineDuration: Double? = null,
-) : Serializable {
-
-    fun toDailyWrapper() = DailyWrapper(
+) {
+    fun toDaily(
+        airQuality: AirQuality? = null,
+        pollen: Pollen? = null,
+    ) = Daily(
         date = this.date,
         day = this.day,
         night = this.night,
@@ -49,6 +54,8 @@ data class Daily(
         sun = this.sun,
         moon = this.moon,
         moonPhase = this.moonPhase,
+        airQuality = airQuality,
+        pollen = pollen,
         uV = this.uV,
         sunshineDuration = this.sunshineDuration
     )

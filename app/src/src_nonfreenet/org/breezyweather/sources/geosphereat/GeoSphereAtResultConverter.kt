@@ -18,28 +18,21 @@ package org.breezyweather.sources.geosphereat
 
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
-import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.minus
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtTimeseriesResult
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtWarningsResult
-import java.util.Date
 import kotlin.math.atan2
 import kotlin.math.pow
 import kotlin.math.roundToInt
@@ -47,49 +40,23 @@ import kotlin.math.sqrt
 import kotlin.time.Duration.Companion.seconds
 
 /**
- * Converts DMI result into a forecast
- */
-fun convert(
-    hourlyResult: GeoSphereAtTimeseriesResult,
-    airQualityResult: GeoSphereAtTimeseriesResult,
-    nowcastResult: GeoSphereAtTimeseriesResult,
-    alertsResult: GeoSphereAtWarningsResult,
-    location: Location,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    // If the API doesn’t return timeseries, consider data as garbage and keep cached data
-    if (hourlyResult.timestamps.isNullOrEmpty() ||
-        hourlyResult.features?.getOrNull(0)?.properties?.parameters == null
-    ) {
-        throw InvalidOrIncompleteDataException()
-    }
-
-    return WeatherWrapper(
-        dailyForecast = getDailyForecast(hourlyResult, location),
-        hourlyForecast = getHourlyForecast(hourlyResult, airQualityResult),
-        minutelyForecast = getMinutelyForecast(nowcastResult),
-        alertList = getAlerts(alertsResult),
-        failedFeatures = failedFeatures
-    )
-}
-
-/**
  * Returns daily forecast from hourly forecast
  */
-private fun getDailyForecast(
+internal fun getDailyForecast(
     hourlyResult: GeoSphereAtTimeseriesResult,
     location: Location,
-): List<Daily> {
-    val dayList = hourlyResult.timestamps!!.map {
+): List<DailyWrapper> {
+    if (hourlyResult.timestamps.isNullOrEmpty()) return emptyList()
+    val dayList = hourlyResult.timestamps.map {
         it.getFormattedDate("yyyy-MM-dd", location)
     }.distinct()
 
-    val dailyList = mutableListOf<Daily>()
+    val dailyList = mutableListOf<DailyWrapper>()
     for (i in 0 until dayList.size - 1) {
         val dayDate = dayList[i].toDateNoHour(location.javaTimeZone)
         if (dayDate != null) {
             dailyList.add(
-                Daily(
+                DailyWrapper(
                     date = dayDate
                 )
             )
@@ -102,13 +69,18 @@ private fun getDailyForecast(
 /**
  * Returns hourly forecast
  */
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     hourlyResult: GeoSphereAtTimeseriesResult,
     airQualityResult: GeoSphereAtTimeseriesResult,
 ): List<HourlyWrapper> {
-    return hourlyResult.timestamps!!.mapIndexed { i, date ->
+    if (hourlyResult.timestamps.isNullOrEmpty() ||
+        hourlyResult.features?.getOrNull(0)?.properties?.parameters == null
+    ) {
+        return emptyList()
+    }
+    return hourlyResult.timestamps.mapIndexed { i, date ->
         // Wind
-        val windU = hourlyResult.features!![0].properties!!.parameters!!.u10m?.data?.getOrNull(i)
+        val windU = hourlyResult.features[0].properties!!.parameters!!.u10m?.data?.getOrNull(i)
         val windV = hourlyResult.features[0].properties!!.parameters!!.v10m?.data?.getOrNull(i)
         val windGustU = hourlyResult.features[0].properties!!.parameters!!.ugust?.data?.getOrNull(i)
         val windGustV = hourlyResult.features[0].properties!!.parameters!!.vgust?.data?.getOrNull(i)
@@ -134,9 +106,6 @@ private fun getHourlyForecast(
             null
         }
 
-        // Air quality
-        val airQualityIndex = airQualityResult.timestamps?.indexOfFirst { it == date }
-
         HourlyWrapper(
             date = date,
             weatherCode = getWeatherCode(hourlyResult.features[0].properties!!.parameters!!.sy?.data?.getOrNull(i)),
@@ -160,24 +129,6 @@ private fun getHourlyForecast(
             } else {
                 null
             },
-            airQuality = if (airQualityIndex != null &&
-                airQualityResult.features?.getOrNull(0)?.properties?.parameters != null
-            ) {
-                AirQuality(
-                    pM25 = airQualityResult.features[0].properties!!.parameters!!.pm25surf?.data?.getOrNull(
-                        airQualityIndex
-                    ),
-                    pM10 = airQualityResult.features[0].properties!!.parameters!!.pm10surf?.data?.getOrNull(
-                        airQualityIndex
-                    ),
-                    nO2 = airQualityResult.features[0].properties!!.parameters!!.no2surf?.data?.getOrNull(
-                        airQualityIndex
-                    ),
-                    o3 = airQualityResult.features[0].properties!!.parameters!!.o3surf?.data?.getOrNull(airQualityIndex)
-                )
-            } else {
-                null
-            },
             relativeHumidity = hourlyResult.features[0].properties!!.parameters!!.rh2m?.data?.getOrNull(i),
             pressure = hourlyResult.features[0].properties!!.parameters!!.sp?.data?.getOrNull(i)?.div(100),
             cloudCover = hourlyResult.features[0].properties!!.parameters!!.tcc?.data?.getOrNull(i)?.times(100)
@@ -186,7 +137,7 @@ private fun getHourlyForecast(
     }
 }
 
-private fun getMinutelyForecast(
+internal fun getMinutelyForecast(
     nowcastResult: GeoSphereAtTimeseriesResult,
 ): List<Minutely>? {
     if (nowcastResult.timestamps.isNullOrEmpty() ||
@@ -210,7 +161,7 @@ private fun getMinutelyForecast(
     }
 }
 
-fun getAlerts(alertsResult: GeoSphereAtWarningsResult): List<Alert>? {
+internal fun getAlerts(alertsResult: GeoSphereAtWarningsResult): List<Alert>? {
     if (alertsResult.properties?.warnings == null) return null
     return alertsResult.properties.warnings.map { result ->
         Alert(
@@ -237,39 +188,6 @@ fun getAlerts(alertsResult: GeoSphereAtWarningsResult): List<Alert>? {
             }
         )
     }
-}
-
-fun convertSecondary(
-    airQualityResult: GeoSphereAtTimeseriesResult,
-    nowcastResult: GeoSphereAtTimeseriesResult,
-    alertsResult: GeoSphereAtWarningsResult,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    val airQualityHourly = mutableMapOf<Date, AirQuality>()
-
-    if (!airQualityResult.timestamps.isNullOrEmpty() &&
-        airQualityResult.features?.getOrNull(0)?.properties?.parameters != null
-    ) {
-        airQualityResult.timestamps.forEachIndexed { i, date ->
-            airQualityHourly[date] = AirQuality(
-                pM25 = airQualityResult.features[0].properties!!.parameters!!.pm25surf?.data?.getOrNull(i),
-                pM10 = airQualityResult.features[0].properties!!.parameters!!.pm10surf?.data?.getOrNull(i),
-                nO2 = airQualityResult.features[0].properties!!.parameters!!.no2surf?.data?.getOrNull(i),
-                o3 = airQualityResult.features[0].properties!!.parameters!!.o3surf?.data?.getOrNull(i)
-            )
-        }
-    }
-
-    return SecondaryWeatherWrapper(
-        airQuality = if (airQualityHourly.isNotEmpty()) {
-            AirQualityWrapper(hourlyForecast = airQualityHourly)
-        } else {
-            null
-        },
-        minutelyForecast = getMinutelyForecast(nowcastResult),
-        alertList = getAlerts(alertsResult),
-        failedFeatures = failedFeatures
-    )
 }
 
 /**

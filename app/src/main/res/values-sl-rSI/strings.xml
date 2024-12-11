@@ -291,7 +291,6 @@
     <string name="weather_api_limit_reached_title">Dosežena omejitev zahtevkov API</string>
     <string name="weather_air_quality_and_pollen_data_by">Vir podatkov o kakovosti zraka in o cvetnem prahu: %s</string>
     <string name="weather_message_unsupported_feature">Vir ne podpira ene izmed zahtevanih funkcij</string>
-    <string name="weather_message_secondary_data_refresh_failed">Podatki o vremenu iz sekundarnega vira niso na voljo</string>
     <string name="weather_normals_data_by">Vir podatkov o temperaturnih normalah: %s</string>
     <string name="weather_message_too_frequent_refreshes">Pred ponovnim poskusom počakajte nekaj sekund…</string>
     <string name="weather_message_invalid_location">Nepravilna lokacija, izbrišite jo in jo ponovno dodajte</string>

@@ -73,7 +73,9 @@ class TextWidgetConfigActivity : AbstractWidgetConfigActivity() {
             this,
             locationNow,
             locationNow?.let { location ->
-                sourceManager.getPollenIndexSource((location.pollenSource ?: "").ifEmpty { location.weatherSource })
+                sourceManager.getPollenIndexSource(
+                    (location.pollenSource ?: "").ifEmpty { location.forecastSource }
+                )
             }
         )
     }
@@ -89,7 +91,9 @@ class TextWidgetConfigActivity : AbstractWidgetConfigActivity() {
                 hideSubtitle,
                 subtitleDataValueNow,
                 locationNow?.let { location ->
-                    sourceManager.getPollenIndexSource((location.pollenSource ?: "").ifEmpty { location.weatherSource })
+                    sourceManager.getPollenIndexSource(
+                        (location.pollenSource ?: "").ifEmpty { location.forecastSource }
+                    )
                 }
             )
         }

@@ -18,10 +18,7 @@ package org.breezyweather.sources.namem
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Precipitation
@@ -29,10 +26,9 @@ import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
-import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
@@ -48,7 +44,7 @@ import java.util.Calendar
 import java.util.Date
 
 // Reverse geocoding
-fun convert(
+internal fun convert(
     location: Location,
     stations: List<NamemStation>?,
 ): List<Location> {
@@ -87,7 +83,7 @@ fun convert(
 }
 
 // Location parameters
-fun getLocationParameters(
+internal fun getLocationParameters(
     location: Location,
     stations: List<NamemStation>?,
 ): Map<String, String> {
@@ -125,51 +121,12 @@ private fun getNearestStation(
     return nearestStation
 }
 
-fun convert(
+internal fun getCurrent(
     context: Context,
-    location: Location,
     currentResult: NamemCurrentResult,
-    normalsResult: NamemNormalsResult,
-    dailyResult: NamemDailyResult,
-    hourlyResult: NamemHourlyResult,
-    airQualityResult: NamemAirQualityResult,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    return WeatherWrapper(
-        current = getCurrent(context, location, currentResult, airQualityResult),
-        normals = getNormals(normalsResult),
-        dailyForecast = getDailyForecast(context, dailyResult),
-        hourlyForecast = getHourlyForecast(hourlyResult),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun convertSecondary(
-    context: Context,
-    location: Location,
-    currentResult: NamemCurrentResult?,
-    normalsResult: NamemNormalsResult?,
-    airQualityResult: NamemAirQualityResult?,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = currentResult?.let { getCurrent(context, location, it, null) },
-        airQuality = AirQualityWrapper(
-            current = airQualityResult?.let { getAirQuality(location, it) }
-        ),
-        normals = normalsResult?.let { getNormals(it) },
-        failedFeatures = failedFeatures
-    )
-}
-
-private fun getCurrent(
-    context: Context,
-    location: Location,
-    currentResult: NamemCurrentResult,
-    airQualityResult: NamemAirQualityResult?,
-): Current {
+): CurrentWrapper {
     val current = currentResult.aws?.getOrNull(0)
-    return Current(
+    return CurrentWrapper(
         weatherText = getWeatherText(context, current?.nh),
         weatherCode = getWeatherCode(current?.nh),
         temperature = Temperature(
@@ -180,13 +137,12 @@ private fun getCurrent(
             degree = current?.windDir,
             speed = current?.windSpeed
         ),
-        airQuality = airQualityResult?.let { getAirQuality(location, it) },
         relativeHumidity = current?.ff,
         pressure = current?.pslp
     )
 }
 
-private fun getAirQuality(
+internal fun getAirQuality(
     location: Location,
     airQualityResult: NamemAirQualityResult,
 ): AirQuality {
@@ -219,7 +175,7 @@ private fun getAirQuality(
     )
 }
 
-private fun getNormals(
+internal fun getNormals(
     normalsResult: NamemNormalsResult,
 ): Normals {
     var index = 0
@@ -238,18 +194,18 @@ private fun getNormals(
     )
 }
 
-private fun getDailyForecast(
+internal fun getDailyForecast(
     context: Context,
     dailyResult: NamemDailyResult,
-): List<Daily> {
-    val dailyList = mutableListOf<Daily>()
+): List<DailyWrapper> {
+    val dailyList = mutableListOf<DailyWrapper>()
     var date: Date
     dailyResult.fore5Day?.forEachIndexed { i, forecast ->
         // account for western provinces which are 1 hour behind
         date = Date(forecast.foreDate!!.time.plus(3600000))
         if (i == 0) {
             dailyList.add(
-                Daily(
+                DailyWrapper(
                     date = Date(date.time.minus(86400000)),
                     night = HalfDay(
                         weatherText = getWeatherText(context, forecast.wwN),
@@ -269,7 +225,7 @@ private fun getDailyForecast(
             )
         }
         dailyList.add(
-            Daily(
+            DailyWrapper(
                 date = date,
                 day = HalfDay(
                     weatherText = getWeatherText(context, forecast.wwD),
@@ -307,7 +263,7 @@ private fun getDailyForecast(
     return dailyList
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     hourlyResult: NamemHourlyResult,
 ): List<HourlyWrapper> {
     val hourlyList = mutableListOf<HourlyWrapper>()

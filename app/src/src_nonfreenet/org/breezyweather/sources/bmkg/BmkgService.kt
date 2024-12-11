@@ -21,23 +21,21 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.ApiKeyMissingException
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.bmkg.json.BmkgCurrentResult
 import org.breezyweather.sources.bmkg.json.BmkgForecastResult
@@ -53,7 +51,7 @@ import kotlin.text.ifEmpty
 class BmkgService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, ConfigurableSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource, ConfigurableSource {
 
     override val id = "bmkg"
     override val name = "BMKG (${Locale(context.currentLocale.code, "ID").displayCountry})"
@@ -61,7 +59,6 @@ class BmkgService @Inject constructor(
     override val privacyPolicyUrl = ""
 
     override val color = Color.rgb(0, 153, 0)
-    override val weatherAttribution = "Badan Meteorologi, Klimatologi, dan Geofisika"
 
     private val mApi by lazy {
         client
@@ -77,15 +74,17 @@ class BmkgService @Inject constructor(
             .create(BmkgAppApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_AIR_QUALITY
+    private val weatherAttribution = "Badan Meteorologi, Klimatologi, dan Geofisika"
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution,
+        SourceFeature.AIR_QUALITY to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("ID", ignoreCase = true)
     }
@@ -93,40 +92,47 @@ class BmkgService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         // API Key is needed for warnings, but not for current/forecast.
         // Only throw exception if warnings are needed.
-        if (!isConfigured && !ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val apiKey = getApiKeyOrDefault()
+        if (apiKey.isEmpty() && SourceFeature.ALERT in requestedFeatures) {
             return Observable.error(ApiKeyMissingException())
         }
-        val apiKey = getApiKeyOrDefault()
-
-        val forecast = mApi.getForecast(
-            lat = location.latitude,
-            lon = location.longitude
-        )
 
         val failedFeatures = mutableListOf<SourceFeature>()
-        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getForecast(
+                lat = location.latitude,
+                lon = location.longitude
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(BmkgForecastResult())
+            }
+        } else {
+            Observable.just(BmkgForecastResult())
+        }
+
+        val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(
                 lat = location.latitude,
                 lon = location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(BmkgCurrentResult())
             }
         } else {
             Observable.just(BmkgCurrentResult())
         }
 
-        val warning = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val warning = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getWarning(
                 apiKey = apiKey,
                 lat = location.latitude,
                 lon = location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                failedFeatures.add(SourceFeature.ALERT)
                 Observable.just(BmkgWarningResult())
             }
         } else {
@@ -137,14 +143,14 @@ class BmkgService @Inject constructor(
         val ibf = mutableListOf<Observable<BmkgIbfResult>>()
         for (day in 1..3) {
             ibf.add(
-                if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+                if (SourceFeature.ALERT in requestedFeatures) {
                     mApi.getIbf(
                         apiKey = apiKey,
                         lat = location.latitude,
                         lon = location.longitude,
                         day = day
                     ).onErrorResumeNext {
-                        failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                        failedFeatures.add(SourceFeature.ALERT)
                         Observable.just(BmkgIbfResult())
                     }
                 } else {
@@ -153,9 +159,9 @@ class BmkgService @Inject constructor(
             )
         }
 
-        val pm25 = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
+        val pm25 = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
             mAppApi.getPm25().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                failedFeatures.add(SourceFeature.AIR_QUALITY)
                 Observable.just(emptyList())
             }
         } else {
@@ -171,154 +177,29 @@ class BmkgService @Inject constructor(
                 ibf3Result: BmkgIbfResult,
                 pm25Result: List<BmkgPm25Result>,
             ->
-            convert(
-                context,
-                location,
-                currentResult,
-                forecastResult,
-                warningResult,
-                ibf1Result,
-                ibf2Result,
-                ibf3Result,
-                pm25Result,
-                failedFeatures
-            )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_AIR_QUALITY
-    )
-
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_CURRENT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_AIR_QUALITY)
-        ) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-
-        // API Key is needed for warnings, but not for current/forecast.
-        // Only throw exception if warnings are needed.
-        if (!isConfigured && requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            return Observable.error(ApiKeyMissingException())
-        }
-        val apiKey = getApiKeyOrDefault()
-
-        val failedFeatures = mutableListOf<SourceFeature>()
-        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getCurrent(
-                lat = location.latitude,
-                lon = location.longitude
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(BmkgCurrentResult())
-            }
-        } else {
-            Observable.just(BmkgCurrentResult())
-        }
-
-        val warning = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            mApi.getWarning(
-                apiKey = apiKey,
-                lat = location.latitude,
-                lon = location.longitude
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                Observable.just(BmkgWarningResult())
-            }
-        } else {
-            Observable.just(BmkgWarningResult())
-        }
-
-        // Impact based forecasts provide early warnings of heavy rain up to 3 days
-        val ibf = mutableListOf<Observable<BmkgIbfResult>>()
-        for (day in 1..3) {
-            ibf.add(
-                if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    mApi.getIbf(
-                        apiKey = apiKey,
-                        lat = location.latitude,
-                        lon = location.longitude,
-                        day = day
-                    ).onErrorResumeNext {
-                        failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                        Observable.just(BmkgIbfResult())
-                    }
-                } else {
-                    Observable.just(BmkgIbfResult())
-                }
-            )
-        }
-
-        val pm25 = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-            mAppApi.getPm25().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
-                Observable.just(emptyList())
-            }
-        } else {
-            Observable.just(emptyList())
-        }
-
-        return Observable.zip(current, warning, ibf[0], ibf[1], ibf[2], pm25) {
-                currentResult: BmkgCurrentResult,
-                warningResult: BmkgWarningResult,
-                ibf1Result: BmkgIbfResult,
-                ibf2Result: BmkgIbfResult,
-                ibf3Result: BmkgIbfResult,
-                pm25Result: List<BmkgPm25Result>,
-            ->
-            convertSecondary(
-                context = context,
-                location = location,
-                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    currentResult
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(context, location, forecastResult)
                 } else {
                     null
                 },
-                warningResult = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    warningResult
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(context, forecastResult)
                 } else {
                     null
                 },
-                ibf1Result = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    ibf1Result
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(context, currentResult)
                 } else {
                     null
                 },
-                ibf2Result = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    ibf2Result
+                airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
+                    AirQualityWrapper(current = getAirQuality(location, pm25Result))
                 } else {
                     null
                 },
-                ibf3Result = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    ibf3Result
-                } else {
-                    null
-                },
-                pm25Result = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-                    pm25Result
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlertList(context, warningResult, ibf1Result, ibf2Result, ibf3Result)
                 } else {
                     null
                 },
@@ -353,8 +234,9 @@ class BmkgService @Inject constructor(
         return apikey.ifEmpty { BuildConfig.BMKG_KEY }
     }
 
+    // Always true, as we will filter depending on the feature requested
     override val isConfigured
-        get() = getApiKeyOrDefault().isNotEmpty()
+        get() = true // getApiKeyOrDefault().isNotEmpty()
 
     override val isRestricted
         get() = apikey.isEmpty()

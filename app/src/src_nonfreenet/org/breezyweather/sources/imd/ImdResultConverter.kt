@@ -17,12 +17,11 @@
 package org.breezyweather.sources.imd
 
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.sources.imd.json.ImdWeatherResult
 import java.text.SimpleDateFormat
@@ -32,34 +31,10 @@ import java.util.Locale
 import java.util.TimeZone
 import kotlin.time.Duration.Companion.hours
 
-fun convert(
-    location: Location,
-    forecast1hr: ImdWeatherResult,
-    forecast3hr: ImdWeatherResult,
-    forecast6hr: ImdWeatherResult,
-    forecast1hrTimestamp: Long?,
-    forecast3hrTimestamp: Long?,
-    forecast6hrTimestamp: Long?,
-): WeatherWrapper {
-    val hourlyForecast = getHourlyForecast(
-        forecast1hr,
-        forecast3hr,
-        forecast6hr,
-        forecast1hrTimestamp,
-        forecast3hrTimestamp,
-        forecast6hrTimestamp
-    )
-
-    return WeatherWrapper(
-        dailyForecast = getDailyForecast(location, hourlyForecast),
-        hourlyForecast = hourlyForecast
-    )
-}
-
-private fun getDailyForecast(
+internal fun getDailyForecast(
     location: Location,
     hourlyForecast: List<HourlyWrapper>,
-): List<Daily> {
+): List<DailyWrapper> {
     // Need to provide an empty daily list so that
     // CommonConverter.kt will compute the daily forecast items.
     val dates = hourlyForecast.groupBy { it.date.getFormattedDate("yyyy-MM-dd", location) }.keys
@@ -68,13 +43,13 @@ private fun getDailyForecast(
     val now = Calendar.getInstance(TimeZone.getTimeZone(location.timeZone))
     now.add(Calendar.DATE, -1)
     val yesterday = formatter.format(now.time)
-    val dailyList = mutableListOf<Daily>()
+    val dailyList = mutableListOf<DailyWrapper>()
     dates.forEachIndexed { i, day ->
         // Do not add days prior to yesterday.
         // Do not add the last day to avoid incomplete day.
         if (day >= yesterday && i < (dates.size - 1)) {
             dailyList.add(
-                Daily(
+                DailyWrapper(
                     date = formatter.parse(day)!!
                 )
             )
@@ -83,7 +58,7 @@ private fun getDailyForecast(
     return dailyList
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     forecast1hr: ImdWeatherResult,
     forecast3hr: ImdWeatherResult,
     forecast6hr: ImdWeatherResult,

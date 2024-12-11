@@ -16,6 +16,7 @@
 
 package breezyweather.domain.weather.model
 
+import breezyweather.domain.weather.wrappers.CurrentWrapper
 import java.io.Serializable
 
 /**
@@ -46,4 +47,21 @@ data class Current(
     val dailyForecast: String? = null,
     // Is actually a description of the nowcast
     val hourlyForecast: String? = null,
-) : Serializable
+) : Serializable {
+
+    fun toCurrentWrapper() = CurrentWrapper(
+        weatherText = this.weatherText,
+        weatherCode = this.weatherCode,
+        temperature = this.temperature,
+        wind = this.wind,
+        uV = uV ?: this.uV,
+        relativeHumidity = this.relativeHumidity,
+        dewPoint = this.dewPoint,
+        pressure = this.pressure,
+        cloudCover = this.cloudCover,
+        visibility = this.visibility,
+        ceiling = this.ceiling,
+        dailyForecast = this.dailyForecast,
+        hourlyForecast = this.hourlyForecast
+    )
+}

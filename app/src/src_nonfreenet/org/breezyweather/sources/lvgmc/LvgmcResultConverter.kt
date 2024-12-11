@@ -18,10 +18,6 @@ package org.breezyweather.sources.lvgmc
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.model.AirQuality
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -29,17 +25,14 @@ import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
-import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.sources.lvgmc.json.LvgmcAirQualityLocationResult
-import org.breezyweather.sources.lvgmc.json.LvgmcAirQualityResult
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentLocation
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentResult
 import org.breezyweather.sources.lvgmc.json.LvgmcForecastResult
@@ -50,7 +43,7 @@ import java.util.TimeZone
 import kotlin.time.Duration.Companion.hours
 
 // reverse geocoding
-fun convert(
+internal fun convert(
     location: Location,
     forecastLocationsResult: List<LvgmcForecastResult>,
 ): List<Location> {
@@ -80,7 +73,7 @@ fun convert(
 }
 
 // location parameters
-fun convert(
+internal fun convert(
     location: Location,
     currentLocationsResult: List<LvgmcCurrentLocation>,
     forecastLocationsResult: List<LvgmcForecastResult>,
@@ -100,7 +93,7 @@ fun convert(
         }
     }
 
-    var airQualityLocations = mutableMapOf<String, LatLng>()
+    val airQualityLocations = mutableMapOf<String, LatLng>()
     airQualityLocationsResult.forEach {
         if (it.id != null &&
             it.latitude != null &&
@@ -147,75 +140,19 @@ private fun getNearestLocation(
     return nearestLocation
 }
 
-fun convert(
-    context: Context,
+internal fun getCurrent(
     location: Location,
     currentResult: List<LvgmcCurrentResult>,
-    dailyResult: List<LvgmcForecastResult>,
-    hourlyResult: List<LvgmcForecastResult>,
-    airQualityResult: List<LvgmcAirQualityResult>,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    if (hourlyResult.isEmpty() || dailyResult.isEmpty()) {
-        throw InvalidOrIncompleteDataException()
-    }
-    return WeatherWrapper(
-        current = getCurrent(location, currentResult, airQualityResult),
-        dailyForecast = getDailyForecast(context, dailyResult),
-        hourlyForecast = getHourlyForecast(context, hourlyResult),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun convertSecondary(
-    location: Location,
-    currentResult: List<LvgmcCurrentResult>?,
-    airQualityResult: List<LvgmcAirQualityResult>?,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = currentResult?.let { getCurrent(location, currentResult, null) },
-        airQuality = AirQualityWrapper(
-            current = airQualityResult?.let { aq ->
-                AirQuality(
-                    pM25 = aq.filter { it.code == "PM2.5_60min" }.sortedByDescending { it.time }.firstOrNull()?.value,
-                    pM10 = aq.filter { it.code == "PM10_60min" }.sortedByDescending { it.time }.firstOrNull()?.value,
-                    sO2 = aq.filter { it.code == "SO2" }.sortedByDescending { it.time }.firstOrNull()?.value,
-                    nO2 = aq.filter { it.code == "NO2" }.sortedByDescending { it.time }.firstOrNull()?.value,
-                    o3 = aq.filter { it.code == "O3" }.sortedByDescending { it.time }.firstOrNull()?.value,
-                    cO = aq.filter { it.code == "CO" }.sortedByDescending { it.time }.firstOrNull()?.value
-                )
-            }
-        ),
-        failedFeatures = failedFeatures
-    )
-}
-
-private fun getCurrent(
-    location: Location,
-    currentResult: List<LvgmcCurrentResult>,
-    airQualityResult: List<LvgmcAirQualityResult>?,
-): Current? {
+): CurrentWrapper? {
     val id = "lvgmc"
     val currentLocation = location.parameters.getOrElse(id) { null }?.getOrElse("currentLocation") { null }
     if (currentLocation.isNullOrEmpty()) {
         throw InvalidLocationException()
     }
 
-    val airQuality = airQualityResult?.let { aq ->
-        AirQuality(
-            pM25 = aq.filter { it.code == "PM2.5_60min" }.sortedByDescending { it.time }.firstOrNull()?.value,
-            pM10 = aq.filter { it.code == "PM10_60min" }.sortedByDescending { it.time }.firstOrNull()?.value,
-            sO2 = aq.filter { it.code == "SO2" }.sortedByDescending { it.time }.firstOrNull()?.value,
-            nO2 = aq.filter { it.code == "NO2" }.sortedByDescending { it.time }.firstOrNull()?.value,
-            o3 = aq.filter { it.code == "O3" }.sortedByDescending { it.time }.firstOrNull()?.value,
-            cO = aq.filter { it.code == "CO" }.sortedByDescending { it.time }.firstOrNull()?.value
-        )
-    }
-
     return currentResult.filter { it.stationCode == currentLocation }
         .sortedByDescending { it.time }.firstOrNull()?.let {
-            Current(
+            CurrentWrapper(
                 temperature = Temperature(
                     it.temperature?.toDoubleOrNull()
                 ),
@@ -227,7 +164,6 @@ private fun getCurrent(
                 uV = UV(
                     index = it.uvIndex?.toDoubleOrNull()
                 ),
-                airQuality = airQuality,
                 relativeHumidity = it.relativeHumidity?.toDoubleOrNull(),
                 pressure = it.pressure?.toDoubleOrNull(),
                 visibility = it.visibility?.toDoubleOrNull()
@@ -235,11 +171,11 @@ private fun getCurrent(
         }
 }
 
-private fun getDailyForecast(
+internal fun getDailyForecast(
     context: Context,
     dailyResult: List<LvgmcForecastResult>,
-): List<Daily> {
-    val dailyList = mutableListOf<Daily>()
+): List<DailyWrapper> {
+    val dailyList = mutableListOf<DailyWrapper>()
     val formatter = SimpleDateFormat("yyyyMMdd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Europe/Riga")
     val dayParts = mutableMapOf<Long, HalfDay>()
@@ -293,7 +229,7 @@ private fun getDailyForecast(
     }
     nightParts.keys.sorted().forEach { key ->
         dailyList.add(
-            Daily(
+            DailyWrapper(
                 date = Date(key),
                 day = dayParts.getOrElse(key) { null },
                 night = nightParts.getOrElse(key) { null },
@@ -306,7 +242,7 @@ private fun getDailyForecast(
     if (dayParts.keys.maxOf { it } != nightParts.keys.maxOf { it }) {
         val lastKey = dayParts.keys.maxOf { it }
         dailyList.add(
-            Daily(
+            DailyWrapper(
                 date = Date(lastKey),
                 day = dayParts.getOrElse(lastKey) { null },
                 uV = UV(
@@ -318,7 +254,7 @@ private fun getDailyForecast(
     return dailyList
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     context: Context,
     hourlyResult: List<LvgmcForecastResult>,
 ): List<HourlyWrapper> {

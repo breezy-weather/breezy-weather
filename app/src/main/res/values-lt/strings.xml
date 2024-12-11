@@ -461,7 +461,6 @@
     <string name="weather_pollen_data_by">Duomenys apie alergenus pagal %s</string>
     <string name="weather_minutely_data_by">Kritulių prognozės duomenys pagal %s</string>
     <string name="weather_alert_data_by">Įspėjimo duomenys pagal %s</string>
-    <string name="weather_message_secondary_data_refresh_failed">Nepavyko atnaujinti antrinio orų šaltinio orų duomenų</string>
     <string name="settings_source_default_value">Numatytoji reikšmė (nepakeista)</string>
     <string name="settings_main_cards_other_element_animations_switch">Kitų elementų animacija</string>
     <string name="temperature_degree_day_heating">Šildymo laipsnių diena</string>
@@ -501,7 +500,6 @@
     <string name="temperature_normal_short">Normalus</string>
     <string name="temperature_normals">Temperatūros normos</string>
     <string name="weather_normals_data_by">Temperatūros normų duomenys pagal %s</string>
-    <string name="settings_weather_source_main">Pagrindinis šaltinis</string>
     <string name="settings_units_speed">Greičio vienetas</string>
     <string name="settings_main_background_animation_disabled">Išjungta</string>
     <string name="settings_notifications_forecast_tomorrow_title">Kitos dienos prognozės pranešimas</string>

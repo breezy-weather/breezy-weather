@@ -369,7 +369,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                     if (selectedLocationState.value != null) {
                         // If main source was changed, we need to check first that it doesn't create
                         // a duplicate
-                        if (selectedLocationState.value!!.weatherSource != newLocation.weatherSource) {
+                        if (selectedLocationState.value!!.forecastSource != newLocation.forecastSource) {
                             if (viewModel.locationExists(newLocation)) {
                                 SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
                             } else {

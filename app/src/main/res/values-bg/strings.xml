@@ -536,7 +536,6 @@
     <string name="pollen_level_5">Много високо</string>
     <string name="weather_message_invalid_location">Невалидно местоположение, моля, изтрийте го и добавете отново</string>
     <string name="action_delete">Изтрий</string>
-    <string name="weather_message_secondary_data_refresh_failed">Опресняването на метеорологичните данни за вторичен метеорологичен източник не бе успешно</string>
     <string name="weather_air_quality_data_by">Данни за качеството на въздуха от %s</string>
     <string name="weather_pollen_data_by">Данни за алергените от %s</string>
     <string name="weather_minutely_data_by">Поминутни данни за валежите от %s</string>
@@ -550,7 +549,6 @@
     <string name="about_contact">Контакт</string>
     <string name="about_dependencies">Зависимости</string>
     <string name="action_save">Запази</string>
-    <string name="settings_weather_source_main">Основен източник</string>
     <string name="settings_weather_sources_per_location_summary">Персонализирайте източниците на данни за времето, използвани за това местоположение</string>
     <string name="common_weather_text_rain_freezing_light">Слаб леден дъжд</string>
     <string name="common_weather_text_drizzle_moderate">Умерен ръмеж</string>

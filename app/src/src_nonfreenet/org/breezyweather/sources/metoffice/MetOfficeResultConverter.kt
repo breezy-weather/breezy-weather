@@ -17,7 +17,6 @@
 package org.breezyweather.sources.metoffice
 
 import android.content.Context
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -25,43 +24,24 @@ import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.R
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.sources.metoffice.json.MetOfficeDaily
 import org.breezyweather.sources.metoffice.json.MetOfficeForecast
 import org.breezyweather.sources.metoffice.json.MetOfficeHourly
 
-/**
- * Converts Met Office result into a forecast
- */
-fun convert(
-    hourlyForecastResult: MetOfficeForecast<MetOfficeHourly>,
-    dailyForecastResult: MetOfficeForecast<MetOfficeDaily>,
-    context: Context,
-): WeatherWrapper {
-    if (hourlyForecastResult.features.isEmpty() || dailyForecastResult.features.isEmpty()) {
-        throw InvalidOrIncompleteDataException()
-    }
-
-    return WeatherWrapper(
-        hourlyForecast = getHourlyForecast(hourlyForecastResult, context),
-        dailyForecast = getDailyForecast(dailyForecastResult, context)
-    )
-}
-
-private fun getDailyForecast(
+internal fun getDailyForecast(
     dailyResult: MetOfficeForecast<MetOfficeDaily>,
     context: Context,
-): List<Daily> {
+): List<DailyWrapper> {
     val feature = dailyResult.features[0] // should only be one feature for this kind of API call
     return feature.properties.timeSeries.map { result ->
         val (dayText, dayCode) = convertWeatherCode(result.daySignificantWeatherCode, context)
             ?: Pair(null, null)
         val (nightText, nightCode) = convertWeatherCode(result.nightSignificantWeatherCode, context)
             ?: Pair(null, null)
-        Daily(
+        DailyWrapper(
             date = result.time,
             day = HalfDay(
                 weatherText = dayText,
@@ -99,7 +79,7 @@ private fun getDailyForecast(
 /**
  * Returns hourly forecast
  */
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     hourlyResult: MetOfficeForecast<MetOfficeHourly>,
     context: Context,
 ): List<HourlyWrapper> {
