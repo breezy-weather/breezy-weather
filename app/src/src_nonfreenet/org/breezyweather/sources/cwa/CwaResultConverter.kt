@@ -238,118 +238,70 @@ private fun getDailyForecast(
     formatter.timeZone = TimeZone.getTimeZone("Asia/Taipei")
 
     val dailyList = mutableListOf<Daily>()
-    val popMap = mutableMapOf<String, Double?>()
-    val wsMap = mutableMapOf<String, Double?>()
-    val maxAtMap = mutableMapOf<String, Double?>()
-    val wxTextMap = mutableMapOf<String, String?>()
-    val wxCodeMap = mutableMapOf<String, WeatherCode?>()
-    val minTMap = mutableMapOf<String, Double?>()
-    val uviMap = mutableMapOf<String, Double?>()
-    val minAtMap = mutableMapOf<String, Double?>()
-    val maxTMap = mutableMapOf<String, Double?>()
-    val wdMap = mutableMapOf<String, Double?>()
-    val srMap = mutableMapOf<String, Date?>()
-    val ssMap = mutableMapOf<String, Date?>()
-    val mrMap = mutableMapOf<String, Date?>()
-    val msMap = mutableMapOf<String, Date?>()
+    val popMap = mutableMapOf<Long, Double?>()
+    val wsMap = mutableMapOf<Long, Double?>()
+    val maxAtMap = mutableMapOf<Long, Double?>()
+    val wxTextMap = mutableMapOf<Long, String?>()
+    val wxCodeMap = mutableMapOf<Long, WeatherCode?>()
+    val minTMap = mutableMapOf<Long, Double?>()
+    val uviMap = mutableMapOf<Long, Double?>()
+    val minAtMap = mutableMapOf<Long, Double?>()
+    val maxTMap = mutableMapOf<Long, Double?>()
+    val wdMap = mutableMapOf<Long, Double?>()
+    val srMap = mutableMapOf<Long, Date?>()
+    val ssMap = mutableMapOf<Long, Date?>()
+    val mrMap = mutableMapOf<Long, Date?>()
+    val msMap = mutableMapOf<Long, Date?>()
 
-    var key: String?
-    var value: String?
-    var timestamp: Long
+    var key: Long
     var extraMilliSeconds: Long
-
-    // Legacy schema
-    dailyResult.records?.legacyLocations?.getOrNull(
-        0
-    )?.legacyLocation?.getOrNull(0)?.legacyWeatherElement?.forEach { element ->
-        element.legacyTime?.forEach { item ->
-            key = item.legacyStartTime
-            if (key != null) {
-                // We calculate delta from the previous 06:00 and 18:00 local time (22:00 and 10:00 UTC).
-                // So that we can normalize quarter-day start times to half-day start times.
-                timestamp = formatter.parse(key!!)!!.time
-                extraMilliSeconds = (timestamp - 10.hours.inWholeMilliseconds).mod(12.hours.inWholeMilliseconds)
-                key = formatter.format(timestamp - extraMilliSeconds)
-                value = getValid(item.legacyElementValue?.getOrNull(0)?.legacyValue) as String?
-                when (element.legacyElementName) {
-                    "PoP12h" -> popMap[key!!] = value?.toDoubleOrNull()
-                    "WS" -> {
-                        item.legacyElementValue?.forEach {
-                            if (it.legacyMeasures == "公尺/秒") {
-                                wsMap[key!!] = if (it.legacyValue == ">= 11") {
-                                    11.0
-                                } else {
-                                    it.legacyValue?.toDoubleOrNull()
-                                }
-                            }
-                        }
-                    }
-                    "MaxAT" -> maxAtMap[key!!] = value?.toDoubleOrNull()
-                    "Wx" -> {
-                        item.legacyElementValue?.forEach {
-                            when (it.legacyMeasures) {
-                                "自定義 Wx 文字" -> wxTextMap[key!!] = it.legacyValue
-                                "自定義 Wx 單位" -> wxCodeMap[key!!] = getWeatherCode(it.legacyValue)
-                            }
-                        }
-                    }
-                    "MinT" -> minTMap[key!!] = value?.toDoubleOrNull()
-                    "UVI" -> uviMap[key!!] = value?.toDoubleOrNull()
-                    "MinAT" -> minAtMap[key!!] = value?.toDoubleOrNull()
-                    "MaxT" -> maxTMap[key!!] = value?.toDoubleOrNull()
-                    "WD" -> wdMap[key!!] = getWindDirection(value)
-                }
-            }
-        }
-    }
 
     // New schema from 2024-12-10
     dailyResult.records?.locations?.getOrNull(0)?.location?.getOrNull(0)?.weatherElement?.forEach { element ->
         element.time?.forEach { item ->
-            key = item.startTime
-            if (key != null) {
+            if (item.startTime != null) {
                 // We calculate delta from the previous 06:00 and 18:00 local time (22:00 and 10:00 UTC).
-                // So that we can normalize quarter-day start times to half-day start times.
-                timestamp = formatter.parse(key!!)!!.time
-                extraMilliSeconds = (timestamp - 10.hours.inWholeMilliseconds).mod(12.hours.inWholeMilliseconds)
-                key = formatter.format(timestamp - extraMilliSeconds)
+                // So that we can normalize quarter-day start times (12:00 and 00:00) to half-day start times.
+                extraMilliSeconds =
+                    (item.startTime.time - 10.hours.inWholeMilliseconds).mod(12.hours.inWholeMilliseconds)
+                key = item.startTime.time - extraMilliSeconds
 
                 item.elementValue?.getOrNull(0)?.let {
                     // We have to assign the map values within individual if statements,
                     // otherwise the null values from later elements will overwrite actual values from earlier ones.
                     if (it.maxTemperature != null) {
-                        maxTMap[key!!] = getValid(it.maxTemperature.toDoubleOrNull()) as Double?
+                        maxTMap[key] = getValid(it.maxTemperature.toDoubleOrNull()) as Double?
                     }
                     if (it.minTemperature != null) {
-                        minTMap[key!!] = getValid(it.minTemperature.toDoubleOrNull()) as Double?
+                        minTMap[key] = getValid(it.minTemperature.toDoubleOrNull()) as Double?
                     }
                     if (it.maxApparentTemperature != null) {
-                        maxAtMap[key!!] = getValid(it.maxApparentTemperature.toDoubleOrNull()) as Double?
+                        maxAtMap[key] = getValid(it.maxApparentTemperature.toDoubleOrNull()) as Double?
                     }
                     if (it.minApparentTemperature != null) {
-                        minAtMap[key!!] = getValid(it.minApparentTemperature.toDoubleOrNull()) as Double?
+                        minAtMap[key] = getValid(it.minApparentTemperature.toDoubleOrNull()) as Double?
                     }
                     if (it.windDirection != null) {
-                        wdMap[key!!] = getWindDirection(getValid(it.windDirection) as String?)
+                        wdMap[key] = getWindDirection(getValid(it.windDirection) as String?)
                     }
                     if (it.windSpeed != null) {
-                        wsMap[key!!] = if (it.windSpeed == ">= 11") {
+                        wsMap[key] = if (it.windSpeed == ">= 11") {
                             11.0
                         } else {
                             getValid(it.windSpeed.toDoubleOrNull()) as Double?
                         }
                     }
                     if (it.probabilityOfPrecipitation != null) {
-                        popMap[key!!] = getValid(it.probabilityOfPrecipitation.toDoubleOrNull()) as Double?
+                        popMap[key] = getValid(it.probabilityOfPrecipitation.toDoubleOrNull()) as Double?
                     }
                     if (it.weather != null) {
-                        wxTextMap[key!!] = getValid(it.weather) as String?
+                        wxTextMap[key] = getValid(it.weather) as String?
                     }
                     if (it.weatherCode != null) {
-                        wxCodeMap[key!!] = getWeatherCode(getValid(it.weatherCode) as String?)
+                        wxCodeMap[key] = getWeatherCode(getValid(it.weatherCode) as String?)
                     }
                     if (it.uvIndex != null) {
-                        uviMap[key!!] = getValid(it.uvIndex.toDoubleOrNull()) as Double?
+                        uviMap[key] = getValid(it.uvIndex.toDoubleOrNull()) as Double?
                     }
                 }
             }
@@ -357,24 +309,26 @@ private fun getDailyForecast(
     }
 
     sunResult.records?.locations?.location?.getOrNull(0)?.time?.forEach { it ->
-        srMap[it.date] = formatter.parse("${it.date} ${it.sunRiseTime}:00")
-        ssMap[it.date] = formatter.parse("${it.date} ${it.sunSetTime}:00")
+        key = formatter.parse("${it.date} 06:00:00")!!.time
+        srMap[key] = formatter.parse("${it.date} ${it.sunRiseTime}:00")
+        ssMap[key] = formatter.parse("${it.date} ${it.sunSetTime}:00")
     }
     moonResult.records?.locations?.location?.getOrNull(0)?.time?.forEach { it ->
+        key = formatter.parse("${it.date} 06:00:00")!!.time
         if (it.moonRiseTime != "") {
-            mrMap[it.date] = formatter.parse("${it.date} ${it.moonRiseTime}:00")
+            mrMap[key] = formatter.parse("${it.date} ${it.moonRiseTime}:00")
         }
         if (it.moonSetTime != "") {
-            msMap[it.date] = formatter.parse("${it.date} ${it.moonSetTime}:00")
+            msMap[key] = formatter.parse("${it.date} ${it.moonSetTime}:00")
         }
     }
 
-    val dates = wxTextMap.keys.groupBy { it.substring(0, 10) }.keys
-    var dayTime: String
-    var nightTime: String
+    val dates = wxTextMap.keys.groupBy { formatter.format(it).substring(0, 10) }.keys
+    var dayTime: Long
+    var nightTime: Long
     dates.forEachIndexed { i, date ->
-        dayTime = "$date 06:00:00"
-        nightTime = "$date 18:00:00"
+        dayTime = formatter.parse("$date 06:00:00")!!.time
+        nightTime = formatter.parse("$date 18:00:00")!!.time
         dailyList.add(
             Daily(
                 date = formatter.parse("$date 00:00:00")!!,
@@ -409,12 +363,12 @@ private fun getDailyForecast(
                     )
                 ),
                 sun = Astro(
-                    riseDate = srMap.getOrElse(date) { null },
-                    setDate = ssMap.getOrElse(date) { null }
+                    riseDate = srMap.getOrElse(dayTime) { null },
+                    setDate = ssMap.getOrElse(dayTime) { null }
                 ),
                 moon = Astro(
-                    riseDate = mrMap.getOrElse(date) { null },
-                    setDate = msMap.getOrElse(date) { null }
+                    riseDate = mrMap.getOrElse(dayTime) { null },
+                    setDate = msMap.getOrElse(dayTime) { null }
                 ),
                 uV = UV(
                     index = uviMap.getOrElse(dayTime) { null }
@@ -428,105 +382,59 @@ private fun getDailyForecast(
 // Forecast data from the main weather API call are unsorted.
 // We need to first store the numbers into maps, then sort the keys,
 // and retrieve the relevant numbers using the sorted keys.
-//
-// CWA provides forecasts at 3-hour intervals, rather than hourly.
-// Precipitation probability figures are at 6-hour intervals,
-// so they are duplicated for the next "3-hourly" key.
 private fun getHourlyForecast(
     hourlyResult: CwaForecastResult,
 ): List<HourlyWrapper> {
-    val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
-    formatter.timeZone = TimeZone.getTimeZone("Asia/Taipei")
     val hourlyList = mutableListOf<HourlyWrapper>()
-    val wxTextMap = mutableMapOf<String, String?>()
-    val wxCodeMap = mutableMapOf<String, WeatherCode?>()
-    val atMap = mutableMapOf<String, Double?>()
-    val tMap = mutableMapOf<String, Double?>()
-    val rhMap = mutableMapOf<String, Double?>()
-    val popMap = mutableMapOf<String, Double?>()
-    val wsMap = mutableMapOf<String, Double?>()
-    val wdMap = mutableMapOf<String, Double?>()
-    val tdMap = mutableMapOf<String, Double?>()
-    var key: String?
-    var value: String?
-
-    // Legacy schema
-    hourlyResult.records?.legacyLocations?.getOrNull(
-        0
-    )?.legacyLocation?.getOrNull(0)?.legacyWeatherElement?.forEach { element ->
-        element.legacyTime?.forEach { item ->
-            key = item.legacyDataTime ?: item.legacyStartTime
-            if (key != null) {
-                value = getValid(item.legacyElementValue?.getOrNull(0)?.legacyValue) as String?
-                when (element.legacyElementName) {
-                    "Wx" -> {
-                        item.legacyElementValue?.forEach {
-                            when (it.legacyMeasures) {
-                                "自定義 Wx 文字" -> wxTextMap[key!!] = it.legacyValue
-                                "自定義 Wx 單位" -> wxCodeMap[key!!] = getWeatherCode(it.legacyValue)
-                            }
-                        }
-                    }
-                    "AT" -> atMap[key!!] = value?.toDoubleOrNull()
-                    "T" -> tMap[key!!] = value?.toDoubleOrNull()
-                    "RH" -> rhMap[key!!] = value?.toDoubleOrNull()
-                    "PoP6h" -> popMap[key!!] = value?.toDoubleOrNull()
-                    "WS" -> {
-                        item.legacyElementValue?.forEach {
-                            if (it.legacyMeasures == "公尺/秒") {
-                                wsMap[key!!] = if (it.legacyValue == ">= 11") {
-                                    11.0
-                                } else {
-                                    it.legacyValue?.toDoubleOrNull()
-                                }
-                            }
-                        }
-                    }
-                    "WD" -> wdMap[key!!] = getWindDirection(value)
-                    "Td" -> tdMap[key!!] = value?.toDoubleOrNull()
-                }
-            }
-        }
-    }
+    val wxTextMap = mutableMapOf<Long, String?>()
+    val wxCodeMap = mutableMapOf<Long, WeatherCode?>()
+    val atMap = mutableMapOf<Long, Double?>()
+    val tMap = mutableMapOf<Long, Double?>()
+    val rhMap = mutableMapOf<Long, Double?>()
+    val popMap = mutableMapOf<Long, Double?>()
+    val wsMap = mutableMapOf<Long, Double?>()
+    val wdMap = mutableMapOf<Long, Double?>()
+    val tdMap = mutableMapOf<Long, Double?>()
+    var key: Long
 
     // New schema from 2024-12-10
     hourlyResult.records?.locations?.getOrNull(0)?.location?.getOrNull(0)?.weatherElement?.forEach { element ->
         element.time?.forEach { item ->
-            key = item.dataTime ?: item.startTime
-            if (key != null) {
+            if (item.dataTime != null || item.startTime != null) {
+                key = (item.dataTime ?: item.startTime!!).time
                 item.elementValue?.getOrNull(0)?.let {
                     // We have to assign the map values within individual if statements,
                     // otherwise the null values from later elements will overwrite actual values from earlier ones.
                     if (it.temperature != null) {
-                        tMap[key!!] = getValid(it.temperature.toDoubleOrNull()) as Double?
+                        tMap[key] = getValid(it.temperature.toDoubleOrNull()) as Double?
                     }
                     if (it.dewPoint != null) {
-                        tdMap[key!!] = getValid(it.dewPoint.toDoubleOrNull()) as Double?
+                        tdMap[key] = getValid(it.dewPoint.toDoubleOrNull()) as Double?
                     }
                     if (it.apparentTemperature != null) {
-                        atMap[key!!] = getValid(it.apparentTemperature.toDoubleOrNull()) as Double?
+                        atMap[key] = getValid(it.apparentTemperature.toDoubleOrNull()) as Double?
                     }
                     if (it.relativeHumidity != null) {
-                        rhMap[key!!] = getValid(it.relativeHumidity.toDoubleOrNull()) as Double?
+                        rhMap[key] = getValid(it.relativeHumidity.toDoubleOrNull()) as Double?
                     }
                     if (it.windDirection != null) {
-                        wdMap[key!!] = getWindDirection(getValid(it.windDirection) as String?)
+                        wdMap[key] = getWindDirection(getValid(it.windDirection) as String?)
                     }
                     if (it.windSpeed != null) {
-                        wsMap[key!!] = if (it.windSpeed == ">= 11") {
+                        wsMap[key] = if (it.windSpeed == ">= 11") {
                             11.0
                         } else {
                             getValid(it.windSpeed.toDoubleOrNull()) as Double?
                         }
                     }
                     if (it.probabilityOfPrecipitation != null) {
-                        popMap[key!!] = getValid(it.probabilityOfPrecipitation.toDoubleOrNull()) as Double?
+                        popMap[key] = getValid(it.probabilityOfPrecipitation.toDoubleOrNull()) as Double?
                     }
                     if (it.weather != null) {
-                        wxTextMap[key!!] = getValid(it.weather) as String?
+                        wxTextMap[key] = getValid(it.weather) as String?
                     }
                     if (it.weatherCode != null) {
-                        wxCodeMap[key!!] = getWeatherCode(getValid(it.weatherCode) as String?)
+                        wxCodeMap[key] = getWeatherCode(getValid(it.weatherCode) as String?)
                     }
                 }
             }
@@ -569,7 +477,7 @@ private fun getHourlyForecast(
 
         hourlyList.add(
             HourlyWrapper(
-                date = formatter.parse(key)!!,
+                date = Date(key),
                 weatherText = wxTextMap.getOrElse(key) { null },
                 weatherCode = wxCodeMap.getOrElse(key) { null },
                 temperature = Temperature(
