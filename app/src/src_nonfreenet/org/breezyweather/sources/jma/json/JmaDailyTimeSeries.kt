@@ -22,9 +22,6 @@ import java.util.Date
 
 @Serializable
 data class JmaDailyTimeSeries(
-    val timeDefines: List<
-        @Serializable(DateSerializer::class)
-        Date
-        >?,
+    val timeDefines: List<@Serializable(DateSerializer::class) Date>?,
     val areas: List<JmaDailyArea>?,
 )

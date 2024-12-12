@@ -22,9 +22,7 @@ import java.util.Date
 
 @Serializable
 data class JmaAlertResult(
-    val reportDatetime:
-    @Serializable(DateSerializer::class)
-    Date? = null,
+    @Serializable(DateSerializer::class) val reportDatetime: Date? = null,
     val publishingOffice: String? = null,
     val headlineText: String? = null,
     val areaTypes: List<JmaAlertAreaTypes>? = null,

@@ -7,6 +7,7 @@
 **Weather sources**
 - [ATMO AURA] Fix source no longer showing up in the region it is supported
 - [BrightSky] Fix not working when using it as a secondary current source
+- [CWA] Emergency fix for unscheduled server side change (@chunshek)
 
 **Translations**
 - Translation added for Irish (Aindriú Mac Giolla Eoin)

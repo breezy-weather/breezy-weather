@@ -22,12 +22,8 @@ import java.util.Date
 
 @Serializable
 data class MeteoLuxWeatherVigilance(
-    val datetimeStart:
-    @Serializable(DateSerializer::class)
-    Date?,
-    val datetimeEnd:
-    @Serializable(DateSerializer::class)
-    Date?,
+    @Serializable(DateSerializer::class) val datetimeStart: Date?,
+    @Serializable(DateSerializer::class) val datetimeEnd: Date?,
     val level: Int?,
     val type: Int?,
     val group: Int?,

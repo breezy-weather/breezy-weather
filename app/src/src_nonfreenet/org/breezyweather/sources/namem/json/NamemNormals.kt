@@ -23,9 +23,7 @@ import java.util.Date
 
 @Serializable
 data class NamemNormals(
-    @SerialName("obs_date") val obsDate:
-    @Serializable(DateSerializer::class)
-    Date?,
+    @SerialName("obs_date") @Serializable(DateSerializer::class) val obsDate: Date?,
     @SerialName("tt_min_ave") val ttMinAve: Double?,
     @SerialName("tt_max_ave") val ttMaxAve: Double?,
 )

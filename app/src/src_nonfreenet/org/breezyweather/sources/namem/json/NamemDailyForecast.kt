@@ -23,9 +23,7 @@ import java.util.Date
 
 @Serializable
 data class NamemDailyForecast(
-    @SerialName("fore_date") val foreDate:
-    @Serializable(DateSerializer::class)
-    Date?,
+    @SerialName("fore_date") @Serializable(DateSerializer::class) val foreDate: Date?,
     @SerialName("ww_n") val wwN: Int?,
     @SerialName("ww_d") val wwD: Int?,
     @SerialName("ww_n_per") val wwNPer: Double?,

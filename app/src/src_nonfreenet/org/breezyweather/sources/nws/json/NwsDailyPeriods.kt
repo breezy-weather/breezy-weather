@@ -23,9 +23,7 @@ import java.util.Date
 
 @Serializable
 data class NwsDailyPeriods(
-    val startTime:
-    @Serializable(DateSerializer::class)
-    Date,
+    @Serializable(DateSerializer::class) val startTime: Date,
     val isDaytime: Boolean,
     val temperature: NwsCurrentValue?,
     val probabilityOfPrecipitation: NwsCurrentValue?,

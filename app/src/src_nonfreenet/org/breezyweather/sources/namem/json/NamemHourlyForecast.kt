@@ -23,9 +23,7 @@ import java.util.Date
 
 @Serializable
 data class NamemHourlyForecast(
-    val fdate:
-    @Serializable(DateSerializer::class)
-    Date?,
+    @Serializable(DateSerializer::class) val fdate: Date?,
     val tem: String?,
     val pre: String?,
     val wnd: String?,

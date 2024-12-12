@@ -23,11 +23,7 @@ import java.util.Date
 
 @Serializable
 data class CwaForecastTime(
-    @SerialName("DataTime") val dataTime:
-    @Serializable(DateSerializer::class)
-    Date?,
-    @SerialName("StartTime") val startTime:
-    @Serializable(DateSerializer::class)
-    Date?,
+    @SerialName("DataTime") @Serializable(DateSerializer::class) val dataTime: Date?,
+    @SerialName("StartTime") @Serializable(DateSerializer::class) val startTime: Date?,
     @SerialName("ElementValue") val elementValue: List<CwaForecastElementValue>?,
 )
