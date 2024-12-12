@@ -21,8 +21,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaForecastElementValue(
-    @SerialName("value") val legacyValue: String?,
-    @SerialName("measures") val legacyMeasures: String?,
     @SerialName("Temperature") val temperature: String?,
     @SerialName("MaxTemperature") val maxTemperature: String?,
     @SerialName("MinTemperature") val minTemperature: String?,

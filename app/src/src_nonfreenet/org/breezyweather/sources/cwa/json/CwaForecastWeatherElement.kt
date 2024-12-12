@@ -21,8 +21,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaForecastWeatherElement(
-    @SerialName("elementName") val legacyElementName: String?,
     @SerialName("ElementName") val elementName: String?,
-    @SerialName("time") val legacyTime: List<CwaForecastTime>?,
     @SerialName("Time") val time: List<CwaForecastTime>?,
 )

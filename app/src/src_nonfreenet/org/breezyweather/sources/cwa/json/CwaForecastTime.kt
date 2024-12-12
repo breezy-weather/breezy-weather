@@ -18,13 +18,16 @@ package org.breezyweather.sources.cwa.json
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.breezyweather.common.serializer.DateSerializer
+import java.util.Date
 
 @Serializable
 data class CwaForecastTime(
-    @SerialName("dataTime") val legacyDataTime: String?,
-    @SerialName("DataTime") val dataTime: String?,
-    @SerialName("startTime") val legacyStartTime: String?,
-    @SerialName("StartTime") val startTime: String?,
-    @SerialName("elementValue") val legacyElementValue: List<CwaForecastElementValue>?,
+    @SerialName("DataTime") val dataTime:
+    @Serializable(DateSerializer::class)
+    Date?,
+    @SerialName("StartTime") val startTime:
+    @Serializable(DateSerializer::class)
+    Date?,
     @SerialName("ElementValue") val elementValue: List<CwaForecastElementValue>?,
 )
