@@ -21,6 +21,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaForecastRecords(
-    @SerialName("locations") val legacyLocations: List<CwaForecastLocations>?,
     @SerialName("Locations") val locations: List<CwaForecastLocations>?,
 )
