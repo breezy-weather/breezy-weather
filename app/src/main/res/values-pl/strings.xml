@@ -714,4 +714,17 @@
     <string name="common_weather_text_dust">Pył</string>
     <string name="weather_message_failed_feature">Nie udało się zaktualizować źródła: %s</string>
     <string name="weather_source_continent_worldwide">Na całym świecie</string>
+    <string name="location_message_location_access_off">Dostęp do lokalizacji jest wyłączony</string>
+    <string name="dialog_refresh_error_details_content">Aby uzyskać dalszą pomoc, kliknij komunikat o błędzie ze znakiem zapytania.</string>
+    <string name="common_weather_text_tornado">Tornado</string>
+    <string name="weather_source_continent_south_america">Ameryka Południowa</string>
+    <string name="weather_source_continent_asia">Azja</string>
+    <string name="weather_source_continent_africa">Afryka</string>
+    <string name="weather_source_continent_europe">Europa</string>
+    <string name="weather_source_continent_north_america">Ameryka Północna</string>
+    <string name="weather_source_continent_oceania">Oceania</string>
+    <string name="common_weather_text_squall">Szkwał</string>
+    <string name="action_show">Pokaż</string>
+    <string name="dialog_refresh_error_details_title">Odśwież błędy</string>
+    <string name="message_multiple_refresh_errors">Odświeżanie zakończone z błędami</string>
 </resources>
