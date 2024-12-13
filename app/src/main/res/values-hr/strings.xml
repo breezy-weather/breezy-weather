@@ -714,4 +714,5 @@
     <string name="weather_current_data_by">Trenutačni vremenski podaci od %s</string>
     <string name="common_weather_text_dust_storm">Oluja s prašinom</string>
     <string name="common_weather_text_dust">Prašina</string>
+    <string name="common_weather_text_tornado">Tornado</string>
 </resources>
