@@ -33,6 +33,7 @@ import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.LocationSource
+import org.breezyweather.common.source.getName
 import org.breezyweather.common.ui.widgets.Material3Scaffold
 import org.breezyweather.common.ui.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
@@ -89,7 +90,10 @@ fun LocationSettingsScreen(
                         title = context.getString(id),
                         selectedKey = SettingsManager.getInstance(context).locationSource,
                         valueArray = locationSources.map { it.id }.toTypedArray(),
-                        nameArray = locationSources.map { it.name }.toTypedArray(),
+                        nameArray = locationSources.map { it.getName(context) }.toTypedArray(),
+                        enableArray = locationSources.map {
+                            it !is ConfigurableSource || it.isConfigured
+                        }.toTypedArray(),
                         summary = { _, value -> locationSources.firstOrNull { it.id == value }?.name },
                         onValueChanged = { sourceId ->
                             SettingsManager.getInstance(context).locationSource = sourceId

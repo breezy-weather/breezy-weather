@@ -90,7 +90,9 @@ class DayWeekWidgetConfigActivity : AbstractWidgetConfigActivity() {
             this,
             locationNow,
             locationNow?.let { location ->
-                sourceManager.getPollenIndexSource((location.pollenSource ?: "").ifEmpty { location.weatherSource })
+                sourceManager.getPollenIndexSource(
+                    (location.pollenSource ?: "").ifEmpty { location.forecastSource }
+                )
             }
         )
     }
@@ -108,7 +110,9 @@ class DayWeekWidgetConfigActivity : AbstractWidgetConfigActivity() {
                 hideSubtitle,
                 subtitleDataValueNow,
                 locationNow?.let { location ->
-                    sourceManager.getPollenIndexSource((location.pollenSource ?: "").ifEmpty { location.weatherSource })
+                    sourceManager.getPollenIndexSource(
+                        (location.pollenSource ?: "").ifEmpty { location.forecastSource }
+                    )
                 }
             )
         }

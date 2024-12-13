@@ -21,21 +21,19 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.namem.json.NamemAirQualityResult
 import org.breezyweather.sources.namem.json.NamemCurrentResult
 import org.breezyweather.sources.namem.json.NamemDailyResult
@@ -50,7 +48,7 @@ import kotlin.text.startsWith
 class NamemService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "namem"
     override val name by lazy {
@@ -64,13 +62,6 @@ class NamemService @Inject constructor(
     override val privacyPolicyUrl = ""
 
     override val color = Color.rgb(3, 105, 161)
-    override val weatherAttribution by lazy {
-        if (context.currentLocale.code.startsWith("mn")) {
-            "Цаг уур, орчны шинжилгээний газар"
-        } else {
-            "National Agency for Meteorology and Environmental Monitoring"
-        }
-    }
 
     private val mApi by lazy {
         client
@@ -79,15 +70,23 @@ class NamemService @Inject constructor(
             .create(NamemApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_NORMALS,
-        SourceFeature.FEATURE_AIR_QUALITY
+    private val weatherAttribution by lazy {
+        if (context.currentLocale.code.startsWith("mn")) {
+            "Цаг уур, орчны шинжилгээний газар"
+        } else {
+            "National Agency for Meteorology and Environmental Monitoring"
+        }
+    }
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.NORMALS to weatherAttribution,
+        SourceFeature.AIR_QUALITY to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("MN", ignoreCase = true)
     }
@@ -95,7 +94,7 @@ class NamemService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val stationId = location.parameters.getOrElse(id) { null }?.getOrElse("stationId") { null }?.toLongOrNull()
         if (stationId == null) {
@@ -104,39 +103,53 @@ class NamemService @Inject constructor(
         val body = """{"sid":$stationId}"""
 
         val failedFeatures = mutableListOf<SourceFeature>()
-        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(NamemCurrentResult())
             }
         } else {
             Observable.just(NamemCurrentResult())
         }
 
-        val hourly = mApi.getHourly(
-            body = body.toRequestBody("application/json".toMediaTypeOrNull())
-        )
+        val hourly = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getHourly(
+                body = body.toRequestBody("application/json".toMediaTypeOrNull())
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(NamemHourlyResult())
+            }
+        } else {
+            Observable.just(NamemHourlyResult())
+        }
 
-        val daily = mApi.getDaily(
-            body = body.toRequestBody("application/json".toMediaTypeOrNull())
-        )
+        val daily = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getDaily(
+                body = body.toRequestBody("application/json".toMediaTypeOrNull())
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(NamemDailyResult())
+            }
+        } else {
+            Observable.just(NamemDailyResult())
+        }
 
-        val normals = if (!ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
+        val normals = if (SourceFeature.NORMALS in requestedFeatures) {
             mApi.getNormals(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
+                failedFeatures.add(SourceFeature.NORMALS)
                 Observable.just(NamemNormalsResult())
             }
         } else {
             Observable.just(NamemNormalsResult())
         }
 
-        val airQuality = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
+        val airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
             mApi.getAirQuality().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                failedFeatures.add(SourceFeature.AIR_QUALITY)
                 Observable.just(NamemAirQualityResult())
             }
         } else {
@@ -150,110 +163,31 @@ class NamemService @Inject constructor(
                 normalsResult: NamemNormalsResult,
                 airQualityResult: NamemAirQualityResult,
             ->
-            convert(
-                context = context,
-                location = location,
-                currentResult = currentResult,
-                normalsResult = normalsResult,
-                dailyResult = dailyResult,
-                hourlyResult = hourlyResult,
-                airQualityResult = airQualityResult,
-                failedFeatures = failedFeatures
-            )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_NORMALS,
-        SourceFeature.FEATURE_AIR_QUALITY
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = weatherAttribution
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = null
-    override val normalsAttribution = weatherAttribution
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_NORMALS) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_CURRENT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_AIR_QUALITY)
-        ) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-
-        val stationId = location.parameters.getOrElse(id) { null }?.getOrElse("stationId") { null }?.toLongOrNull()
-        if (stationId == null) {
-            return Observable.error(InvalidLocationException())
-        }
-
-        val body = """{"sid":$stationId}"""
-
-        val failedFeatures = mutableListOf<SourceFeature>()
-        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getCurrent(
-                body = body.toRequestBody("application/json".toMediaTypeOrNull())
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(NamemCurrentResult())
-            }
-        } else {
-            Observable.just(NamemCurrentResult())
-        }
-
-        val normals = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
-            mApi.getNormals(
-                body = body.toRequestBody("application/json".toMediaTypeOrNull())
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
-                Observable.just(NamemNormalsResult())
-            }
-        } else {
-            Observable.just(NamemNormalsResult())
-        }
-
-        val airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-            mApi.getAirQuality().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
-                Observable.just(NamemAirQualityResult())
-            }
-        } else {
-            Observable.just(NamemAirQualityResult())
-        }
-
-        return Observable.zip(current, normals, airQuality) {
-                currentResult: NamemCurrentResult,
-                normalsResult: NamemNormalsResult,
-                airQualityResult: NamemAirQualityResult,
-            ->
-            convertSecondary(
-                context = context,
-                location = location,
-                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    currentResult
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(context, dailyResult)
                 } else {
                     null
                 },
-                normalsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
-                    normalsResult
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(hourlyResult)
                 } else {
                     null
                 },
-                airQualityResult = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-                    airQualityResult
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(context, currentResult)
+                } else {
+                    null
+                },
+                airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
+                    AirQualityWrapper(
+                        current = getAirQuality(location, airQualityResult)
+                    )
+                } else {
+                    null
+                },
+                normals = if (SourceFeature.NORMALS in requestedFeatures) {
+                    getNormals(normalsResult)
                 } else {
                     null
                 },

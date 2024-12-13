@@ -21,7 +21,6 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -29,9 +28,8 @@ import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import retrofit2.Retrofit
 import java.util.Locale
 import javax.inject.Inject
@@ -40,7 +38,7 @@ import javax.inject.Named
 class EcccService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource {
 
     override val id = "eccc"
     override val name = "ECCC (${Locale(context.currentLocale.code, "CA").displayCountry})"
@@ -55,7 +53,15 @@ class EcccService @Inject constructor(
     }
 
     override val color = Color.rgb(255, 0, 0)
-    override val weatherAttribution by lazy {
+
+    private val mApi by lazy {
+        client
+            .baseUrl(ECCC_BASE_URL)
+            .build()
+            .create(EcccApi::class.java)
+    }
+
+    private val weatherAttribution by lazy {
         with(context.currentLocale.code) {
             when {
                 startsWith("fr") ->
@@ -67,23 +73,16 @@ class EcccService @Inject constructor(
             }
         }
     }
-
-    private val mApi by lazy {
-        client
-            .baseUrl(ECCC_BASE_URL)
-            .build()
-            .create(EcccApi::class.java)
-    }
-
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_NORMALS
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution,
+        SourceFeature.NORMALS to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("CA", ignoreCase = true)
     }
@@ -91,7 +90,7 @@ class EcccService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         return mApi.getForecast(
             context.currentLocale.code,
@@ -103,44 +102,34 @@ class EcccService @Inject constructor(
             if (it.isEmpty()) {
                 throw InvalidLocationException()
             }
-            convert(it[0], location)
-        }
-    }
 
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_NORMALS
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = weatherAttribution
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        return mApi.getForecast(
-            context.currentLocale.code,
-            location.latitude,
-            location.longitude
-        ).map {
-            // Can’t do that because it is a List when it succeed
-            // if (it.error == "OUT_OF_SERVICE_BOUNDARY") {
-            if (it.isEmpty()) {
-                throw InvalidLocationException()
-            }
-            convertSecondary(it[0], location)
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(location, it[0].dailyFcst)
+                } else {
+                    null
+                },
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(it[0].hourlyFcst?.hourly)
+                } else {
+                    null
+                },
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(it[0].observation)
+                } else {
+                    null
+                },
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlertList(it[0].alert?.alerts)
+                } else {
+                    null
+                },
+                normals = if (SourceFeature.NORMALS in requestedFeatures) {
+                    getNormals(location, it[0].dailyFcst?.regionalNormals?.metric)
+                } else {
+                    null
+                }
+            )
         }
     }
 

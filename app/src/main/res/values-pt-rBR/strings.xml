@@ -555,7 +555,6 @@
     <string name="weather_minutely_data_by">Dados de previsão imediata por %s</string>
     <string name="weather_alert_data_by">Dados de alerta por %s</string>
     <string name="weather_message_invalid_location">Local inválido, por favor remova e readicione</string>
-    <string name="weather_message_secondary_data_refresh_failed">Falha ao atualizar dados meteorológicos de uma fonte secundária</string>
     <string name="wind_gusts">Rajadas de vento</string>
     <string name="about_dependencies">Dependências</string>
     <string name="about_contact">Contato</string>
@@ -565,7 +564,6 @@
     <string name="settings_appearance_dark_mode_locations_title">Modo Dia / Noite para locais</string>
     <string name="about_contribution_designer">Designer da logo</string>
     <string name="action_save">Salvar</string>
-    <string name="settings_weather_source_main">Fonte principal</string>
     <string name="settings_weather_sources_per_location_summary">Personalizar fontes de dados meteorológicos usadas para este local</string>
     <string name="precipitation_nowcasting">Previsão imediata</string>
     <string name="about_privacy_policy">Política de privacidade</string>

@@ -18,14 +18,12 @@ package org.breezyweather.sources
 
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
-import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.DegreeDay
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Hourly
-import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.MoonPhase
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Pollen
@@ -36,16 +34,13 @@ import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.Weather
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
-import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.PollenWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.median
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
-import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.theme.weatherView.WeatherViewController
 import org.shredzone.commons.suncalc.MoonIllumination
@@ -87,95 +82,67 @@ import kotlin.time.Duration.Companion.hours
 /**
  * Complete previous hours/days with weather data from database
  */
-fun completeMainWeatherWithPreviousData(
+fun completeNewWeatherWithPreviousData(
     newWeather: WeatherWrapper,
     oldWeather: Weather?,
     startDate: Date,
+    airQualitySource: String?,
+    pollenSource: String?,
 ): WeatherWrapper {
     if (oldWeather == null ||
-        (oldWeather.dailyForecast.isEmpty() && oldWeather.hourlyForecast.isEmpty())) {
+        (oldWeather.dailyForecast.isEmpty() && oldWeather.hourlyForecast.isEmpty())
+    ) {
         return newWeather
     }
 
     val missingDailyList = oldWeather.dailyForecast.filter {
-        it.date >= startDate && (newWeather.dailyForecast?.getOrNull(0) == null || it.date < newWeather.dailyForecast!![0].date)
-    }
+        it.date >= startDate &&
+            (newWeather.dailyForecast?.getOrNull(0) == null || it.date < newWeather.dailyForecast!![0].date)
+    }.map { it.toDailyWrapper() }
     val missingHourlyList = oldWeather.hourlyForecast.filter {
-        it.date >= startDate && (newWeather.hourlyForecast?.getOrNull(0) == null || it.date < newWeather.hourlyForecast!![0].date)
+        it.date >= startDate &&
+            (newWeather.hourlyForecast?.getOrNull(0) == null || it.date < newWeather.hourlyForecast!![0].date)
     }.map { it.toHourlyWrapper() }
+    val missingDailyAirQualityList = oldWeather.dailyForecast.filter {
+        it.date >= startDate &&
+            it.airQuality?.isValid == true &&
+            (newWeather.dailyForecast?.getOrNull(0) == null || it.date < newWeather.dailyForecast!![0].date)
+    }.associate { it.date to it.airQuality!! }
+    val missingHourlyAirQualityList = oldWeather.hourlyForecast.filter {
+        it.date >= startDate &&
+            it.airQuality?.isValid == true &&
+            (newWeather.hourlyForecast?.getOrNull(0) == null || it.date < newWeather.hourlyForecast!![0].date)
+    }.associate { it.date to it.airQuality!! }
+    val missingDailyPollenList = oldWeather.dailyForecast.filter {
+        it.date >= startDate &&
+            it.pollen?.isValid == true &&
+            (newWeather.dailyForecast?.getOrNull(0) == null || it.date < newWeather.dailyForecast!![0].date)
+    }.associate { it.date to it.pollen!! }
 
     return if (missingDailyList.isEmpty() && missingHourlyList.isEmpty()) {
         newWeather
     } else {
         newWeather.copy(
             dailyForecast = missingDailyList + (newWeather.dailyForecast ?: emptyList()),
-            hourlyForecast = missingHourlyList + (newWeather.hourlyForecast ?: emptyList())
+            hourlyForecast = missingHourlyList + (newWeather.hourlyForecast ?: emptyList()),
+            airQuality = if (!airQualitySource.isNullOrEmpty()) {
+                newWeather.airQuality?.copy(
+                    dailyForecast = missingDailyAirQualityList +
+                        (newWeather.airQuality!!.dailyForecast ?: emptyMap()),
+                    hourlyForecast = missingHourlyAirQualityList +
+                        (newWeather.airQuality!!.hourlyForecast ?: emptyMap())
+                )
+            } else {
+                null
+            },
+            pollen = if (!pollenSource.isNullOrEmpty()) {
+                newWeather.pollen?.copy(
+                    dailyForecast = missingDailyPollenList + (newWeather.pollen!!.dailyForecast ?: emptyMap())
+                )
+            } else {
+                null
+            }
         )
-    }
-}
-
-/**
- * Get an air quality wrapper object to use from an old weather object
- * @param weather Old weather data
- * @param startDate a date initialized at yesterday 00:00 in the correct timezone, to ignore everything before that date
- */
-fun getAirQualityWrapperFromWeather(
-    weather: Weather?,
-    startDate: Date,
-): AirQualityWrapper? {
-    if (weather == null) return null
-    val hourlyAirQuality = weather.hourlyForecast.filter { it.date >= startDate && it.airQuality?.isValid == true }
-    val dailyAirQuality = weather.dailyForecast.filter { it.date >= startDate && it.airQuality?.isValid == true }
-    if (hourlyAirQuality.isEmpty() && dailyAirQuality.isEmpty()) return null
-
-    return AirQualityWrapper(
-        dailyForecast = dailyAirQuality.associate { it.date to it.airQuality!! },
-        hourlyForecast = hourlyAirQuality.associate { it.date to it.airQuality!! }
-    )
-}
-
-/**
- * Get a pollen wrapper object to use from an old weather object
- * @param weather Old weather data
- * @param startDate a date initialized at yesterday 00:00 in the correct timezone, to ignore everything before that date
- */
-fun getPollenWrapperFromWeather(
-    weather: Weather?,
-    startDate: Date,
-): PollenWrapper? {
-    if (weather == null) return null
-    val dailyPollen = weather.dailyForecast.filter { it.date >= startDate && it.pollen?.isValid == true }
-    if (dailyPollen.isEmpty()) return null
-
-    return PollenWrapper(
-        dailyForecast = dailyPollen.associate { it.date to it.pollen!! }
-    )
-}
-
-/**
- * Get a minutely list to use from an old weather object.
- * Only forecast data is kept (no minutely from the past)
- * @param weather Old weather data
- */
-fun getMinutelyFromWeather(
-    weather: Weather?,
-): List<Minutely>? {
-    if (weather == null) return null
-    val now = Date()
-    return weather.minutelyForecast.filter { it.date >= now }
-}
-
-/**
- * Get an alert list to use from an old weather object.
- * Only alerts still valid (= not in the past) is kept
- * @param weather Old weather data
- */
-fun getAlertsFromWeather(
-    weather: Weather?,
-): List<Alert>? {
-    if (weather == null) return null
-    return weather.alertList.filter {
-        it.endDate == null || it.endDate!!.time > Date().time
     }
 }
 
@@ -196,195 +163,27 @@ fun getNormalsFromWeather(
 /**
  * MERGE MAIN WEATHER DATA WITH SECONDARY WEATHER DATA
  */
-fun getDailyAirQualityFromHourly(
-    hourlyAirQuality: Map<Date, AirQuality>?,
-    location: Location,
-): MutableMap<Date, AirQuality> {
-    val dailyAirQualityMap = mutableMapOf<Date, AirQuality>()
-    hourlyAirQuality?.entries?.groupBy {
-        it.key.getFormattedDate("yyyy-MM-dd", location)
-    }?.forEach { entry ->
-        val airQuality = getDailyAirQualityFromSecondaryHourlyList(entry.value)
-        if (airQuality != null) {
-            dailyAirQualityMap[entry.key.toDateNoHour(location.javaTimeZone)!!] = airQuality
-        }
-    }
-    return dailyAirQualityMap
-}
 
 /**
- * Complete daily data missing on SecondaryWeatherWrapper early
- * to avoid being unable to do it later
+ * Convert List<DailyWrapper> to List<Daily> completing with air quality/pollen data if available
  */
-fun completeMissingSecondaryWeatherDailyData(
-    initialSecondaryWeatherWrapper: SecondaryWeatherWrapper?,
-    location: Location,
-): SecondaryWeatherWrapper? {
-    if (initialSecondaryWeatherWrapper == null) return null
-
-    return if ((!initialSecondaryWeatherWrapper.airQuality?.hourlyForecast.isNullOrEmpty() &&
-            initialSecondaryWeatherWrapper.airQuality?.dailyForecast.isNullOrEmpty()) ||
-        (!initialSecondaryWeatherWrapper.pollen?.hourlyForecast.isNullOrEmpty() &&
-            initialSecondaryWeatherWrapper.pollen?.dailyForecast.isNullOrEmpty())) {
-        val dailyAirQuality: Map<Date, AirQuality>? = if (initialSecondaryWeatherWrapper.airQuality != null &&
-            initialSecondaryWeatherWrapper.airQuality!!.dailyForecast.isNullOrEmpty()) {
-            getDailyAirQualityFromHourly(
-                initialSecondaryWeatherWrapper.airQuality!!.hourlyForecast, location
-            )
-        } else initialSecondaryWeatherWrapper.airQuality?.dailyForecast
-
-        val dailyPollen: Map<Date, Pollen>? = if (initialSecondaryWeatherWrapper.pollen != null &&
-            initialSecondaryWeatherWrapper.pollen!!.dailyForecast.isNullOrEmpty()) {
-            val dailyPollenMap: MutableMap<Date, Pollen> = mutableMapOf()
-            initialSecondaryWeatherWrapper.pollen!!.hourlyForecast?.entries?.groupBy {
-                it.key.getFormattedDate("yyyy-MM-dd", location)
-            }?.forEach { entry ->
-                val pollen = getDailyPollenFromSecondaryHourlyList(entry.value)
-                if (pollen != null) {
-                    dailyPollenMap[entry.key.toDateNoHour(location.javaTimeZone)!!] = pollen
-                }
-            }
-            dailyPollenMap
-        } else initialSecondaryWeatherWrapper.pollen?.dailyForecast
-
-        initialSecondaryWeatherWrapper.copy(
-            airQuality = initialSecondaryWeatherWrapper.airQuality?.copy(
-                dailyForecast = dailyAirQuality
-            ),
-            pollen = initialSecondaryWeatherWrapper.pollen?.copy(
-                dailyForecast = dailyPollen
-            )
-        )
-    } else {
-        initialSecondaryWeatherWrapper
-    }
-}
-
-private fun getDailyAirQualityFromSecondaryHourlyList(
-    hourlyList: List<Map.Entry<Date, AirQuality>>,
-): AirQuality? {
-    // We need at least 18 hours for a signification estimation
-    if (hourlyList.isEmpty() || hourlyList.size < 18) return null
-
-    return AirQuality(
-        // average() would return NaN when called for an empty list, which breaks serialization
-        pM25 = hourlyList.mapNotNull { it.value.pM25 }.takeIf { it.isNotEmpty() }?.average(),
-        pM10 = hourlyList.mapNotNull { it.value.pM10 }.takeIf { it.isNotEmpty() }?.average(),
-        sO2 = hourlyList.mapNotNull { it.value.sO2 }.takeIf { it.isNotEmpty() }?.average(),
-        nO2 = hourlyList.mapNotNull { it.value.nO2 }.takeIf { it.isNotEmpty() }?.average(),
-        o3 = hourlyList.mapNotNull { it.value.o3 }.takeIf { it.isNotEmpty() }?.average(),
-        cO = hourlyList.mapNotNull { it.value.cO }.takeIf { it.isNotEmpty() }?.average()
-    )
-}
-
-/**
- * Returns a Pollen object calculated from a List of Hourly for the day
- * (at least 18 non-null Hourly.Pollen required)
- */
-private fun getDailyPollenFromSecondaryHourlyList(
-    hourlyList: List<Map.Entry<Date, Pollen>>,
-): Pollen? {
-    // We need at least 18 hours for a signification estimation
-    if (hourlyList.isEmpty() || hourlyList.size < 18) return null
-
-    return Pollen(
-        alder = hourlyList.mapNotNull { it.value.alder }.maxOrNull(),
-        ash = hourlyList.mapNotNull { it.value.ash }.maxOrNull(),
-        birch = hourlyList.mapNotNull { it.value.birch }.maxOrNull(),
-        chestnut = hourlyList.mapNotNull { it.value.chestnut }.maxOrNull(),
-        cypress = hourlyList.mapNotNull { it.value.cypress }.maxOrNull(),
-        grass = hourlyList.mapNotNull { it.value.grass }.maxOrNull(),
-        hazel = hourlyList.mapNotNull { it.value.hazel }.maxOrNull(),
-        hornbeam = hourlyList.mapNotNull { it.value.hornbeam }.maxOrNull(),
-        linden = hourlyList.mapNotNull { it.value.linden }.maxOrNull(),
-        mold = hourlyList.mapNotNull { it.value.mold }.maxOrNull(),
-        mugwort = hourlyList.mapNotNull { it.value.mugwort }.maxOrNull(),
-        oak = hourlyList.mapNotNull { it.value.oak }.maxOrNull(),
-        olive = hourlyList.mapNotNull { it.value.olive }.maxOrNull(),
-        plane = hourlyList.mapNotNull { it.value.plane }.maxOrNull(),
-        plantain = hourlyList.mapNotNull { it.value.plantain }.maxOrNull(),
-        poplar = hourlyList.mapNotNull { it.value.poplar }.maxOrNull(),
-        ragweed = hourlyList.mapNotNull { it.value.ragweed }.maxOrNull(),
-        sorrel = hourlyList.mapNotNull { it.value.sorrel }.maxOrNull(),
-        tree = hourlyList.mapNotNull { it.value.tree }.maxOrNull(),
-        urticaceae = hourlyList.mapNotNull { it.value.urticaceae }.maxOrNull(),
-        willow = hourlyList.mapNotNull { it.value.willow }.maxOrNull(),
-    )
-}
-
-/**
- * Completes a List<HourlyWrapper> with data from a SecondaryWeatherWrapper
- * If a data is present in SecondaryWeatherWrapper, it will be used in priority, so don’t send
- * data you don’t want to use in it!
- * Process:
- * - Hourly air quality
- * - Hourly pollen
- */
-fun mergeSecondaryWeatherDataIntoHourlyWrapperList(
-    mainHourlyList: List<HourlyWrapper>?,
-    secondaryWeatherWrapper: SecondaryWeatherWrapper?,
-): List<HourlyWrapper> {
-    if (mainHourlyList.isNullOrEmpty() ||
-        secondaryWeatherWrapper == null ||
-        (secondaryWeatherWrapper.airQuality?.hourlyForecast.isNullOrEmpty() &&
-            secondaryWeatherWrapper.pollen?.hourlyForecast.isNullOrEmpty())) {
-        return mainHourlyList ?: emptyList()
-    }
-
-    return mainHourlyList.map { mainHourly ->
-        val airQuality = secondaryWeatherWrapper.airQuality?.hourlyForecast?.getOrElse(mainHourly.date) { null }
-        val pollen = secondaryWeatherWrapper.pollen?.hourlyForecast?.getOrElse(mainHourly.date) { null }
-
-        if (airQuality != null && pollen != null) {
-            mainHourly.copy(
-                airQuality = airQuality,
-                pollen = pollen
-            )
-        } else if (airQuality != null) {
-            mainHourly.copy(airQuality = airQuality)
-        } else if (pollen != null) {
-            mainHourly.copy(pollen = pollen)
-        } else {
-            mainHourly
-        }
-    }
-}
-
-/**
- * Completes a List<HourlyWrapper> with data from a SecondaryWeatherWrapper
- * If a data is present in SecondaryWeatherWrapper, it will be used in priority, so don’t send
- * data you don’t want to use in it!
- * Process:
- * - Hourly air quality
- * - Hourly pollen
- */
-fun mergeSecondaryWeatherDataIntoDailyList(
-    mainDailyList: List<Daily>?,
-    secondaryWeatherWrapper: SecondaryWeatherWrapper?,
+fun convertDailyWrapperToDailyList(
+    weatherWrapper: WeatherWrapper,
 ): List<Daily> {
-    if (mainDailyList.isNullOrEmpty() ||
-        secondaryWeatherWrapper == null ||
-        (secondaryWeatherWrapper.airQuality?.dailyForecast.isNullOrEmpty() &&
-            secondaryWeatherWrapper.pollen?.dailyForecast.isNullOrEmpty())) {
-        return mainDailyList ?: emptyList()
+    if (weatherWrapper.airQuality?.dailyForecast.isNullOrEmpty() &&
+        weatherWrapper.pollen?.dailyForecast.isNullOrEmpty()
+    ) {
+        return weatherWrapper.dailyForecast?.map { it.toDaily() } ?: emptyList()
     }
 
-    return mainDailyList.map { mainDaily ->
-        val airQuality = secondaryWeatherWrapper.airQuality?.dailyForecast?.getOrElse(mainDaily.date) { null }
-        val pollen = secondaryWeatherWrapper.pollen?.dailyForecast?.getOrElse(mainDaily.date) { null }
+    return weatherWrapper.dailyForecast!!.map { mainDaily ->
+        val airQuality = weatherWrapper.airQuality?.dailyForecast?.getOrElse(mainDaily.date) { null }
+        val pollen = weatherWrapper.pollen?.dailyForecast?.getOrElse(mainDaily.date) { null }
 
-        if (airQuality != null && pollen != null) {
-            mainDaily.copy(
-                airQuality = airQuality,
-                pollen = pollen
-            )
-        } else if (airQuality != null) {
-            mainDaily.copy(airQuality = airQuality)
-        } else if (pollen != null) {
-            mainDaily.copy(pollen = pollen)
-        } else {
-            mainDaily
-        }
+        mainDaily.toDaily(
+            airQuality = airQuality,
+            pollen = pollen
+        )
     }
 }
 
@@ -402,9 +201,9 @@ fun mergeSecondaryWeatherDataIntoDailyList(
  * - Wet bulb temperature
  */
 fun computeMissingHourlyData(
-    hourlyList: List<HourlyWrapper>,
-): List<HourlyWrapper> {
-    return hourlyList.map { hourly ->
+    hourlyList: List<HourlyWrapper>?,
+): List<HourlyWrapper>? {
+    return hourlyList?.map { hourly ->
         if (hourly.dewPoint == null ||
             hourly.temperature?.windChillTemperature == null ||
             hourly.temperature!!.wetBulbTemperature == null ||
@@ -424,12 +223,22 @@ fun computeMissingHourlyData(
                 weatherCode = weatherCode,
                 weatherText = if (hourly.weatherText.isNullOrEmpty()) {
                     weatherCode?.let { WeatherViewController.getWeatherText(it) }
-                } else hourly.weatherText,
-                relativeHumidity = hourly.relativeHumidity ?: computeRelativeHumidity(hourly.temperature?.temperature, hourly.dewPoint),
-                dewPoint = hourly.dewPoint ?: computeDewPoint(hourly.temperature?.temperature, hourly.relativeHumidity),
-                temperature = completeTemperatureWithComputedData(hourly.temperature, hourly.wind?.speed, hourly.relativeHumidity)
+                } else {
+                    hourly.weatherText
+                },
+                relativeHumidity = hourly.relativeHumidity
+                    ?: computeRelativeHumidity(hourly.temperature?.temperature, hourly.dewPoint),
+                dewPoint = hourly.dewPoint
+                    ?: computeDewPoint(hourly.temperature?.temperature, hourly.relativeHumidity),
+                temperature = completeTemperatureWithComputedData(
+                    hourly.temperature,
+                    hourly.wind?.speed,
+                    hourly.relativeHumidity
+                )
             )
-        } else hourly
+        } else {
+            hourly
+        }
     }
 }
 
@@ -448,7 +257,7 @@ private fun computeRelativeHumidity(
     if (temperature == null || dewPoint == null) return null
 
     val b = if (temperature < 0) 17.966 else 17.368
-    val c = if (temperature < 0) 227.15 else 238.88 //°C
+    val c = if (temperature < 0) 227.15 else 238.88 // °C
 
     return 100 * (exp((b * dewPoint).div(c + dewPoint)) / exp((b * temperature).div(c + temperature)))
 }
@@ -465,7 +274,7 @@ private fun computeDewPoint(temperature: Double?, relativeHumidity: Double?): Do
     if (temperature == null || relativeHumidity == null) return null
 
     val b = if (temperature < 0) 17.966 else 17.368
-    val c = if (temperature < 0) 227.15 else 238.88 //°C
+    val c = if (temperature < 0) 227.15 else 238.88 // °C
 
     val magnus = ln(relativeHumidity / 100) + (b * temperature) / (c + temperature)
     return ((c * magnus) / (b - magnus))
@@ -476,12 +285,23 @@ fun completeTemperatureWithComputedData(
     windSpeed: Double?,
     relativeHumidity: Double?,
 ): Temperature? {
-    if (temperature?.temperature == null || temperature.apparentTemperature != null && temperature.windChillTemperature != null && temperature.wetBulbTemperature != null) return temperature
+    if (temperature?.temperature == null ||
+        (
+            temperature.apparentTemperature != null &&
+                temperature.windChillTemperature != null &&
+                temperature.wetBulbTemperature != null
+            )
+    ) {
+        return temperature
+    }
 
     return temperature.copy(
-        apparentTemperature = temperature.apparentTemperature ?: computeApparentTemperature(temperature.temperature!!, relativeHumidity, windSpeed),
-        windChillTemperature = temperature.windChillTemperature ?: computeWindChillTemperature(temperature.temperature!!, windSpeed),
-        wetBulbTemperature = temperature.wetBulbTemperature ?: computeWetBulbTemperature(temperature.temperature!!, relativeHumidity),
+        apparentTemperature = temperature.apparentTemperature
+            ?: computeApparentTemperature(temperature.temperature!!, relativeHumidity, windSpeed),
+        windChillTemperature = temperature.windChillTemperature
+            ?: computeWindChillTemperature(temperature.temperature!!, windSpeed),
+        wetBulbTemperature = temperature.wetBulbTemperature
+            ?: computeWetBulbTemperature(temperature.temperature!!, relativeHumidity)
     )
 }
 
@@ -524,7 +344,10 @@ private fun computeWindChillTemperature(
     val windSpeedKph = windSpeed * 3.6
 
     return if (windSpeedKph >= 5.0) {
-        (13.12 + (0.6215 * temperature) - (11.37 * windSpeedKph.pow(0.16)) + (0.3965 * temperature * windSpeedKph.pow(0.16)))
+        13.12 +
+            (0.6215 * temperature) -
+            (11.37 * windSpeedKph.pow(0.16)) +
+            (0.3965 * temperature * windSpeedKph.pow(0.16))
     } else if (temperature <= 0.0) {
         temperature + ((-1.59 + 0.1345 * temperature) / 5.0) * windSpeedKph
     } else {
@@ -578,11 +401,11 @@ private fun computeWetBulbTemperature(
 ): Double? {
     if (temperature == null || relativeHumidity == null) return null
 
-    return (temperature * atan(0.151977 * (relativeHumidity + 8.313659).pow(0.5))
-        + atan(temperature + relativeHumidity)
-        - atan(relativeHumidity - 1.676331)
-        + 0.00391838 * relativeHumidity.pow(3 / 2) * atan(0.023101 * relativeHumidity)
-        - 4.686035)
+    return temperature * atan(0.151977 * (relativeHumidity + 8.313659).pow(0.5)) +
+        atan(temperature + relativeHumidity) -
+        atan(relativeHumidity - 1.676331) +
+        0.00391838 * relativeHumidity.pow(3 / 2) * atan(0.023101 * relativeHumidity) -
+        4.686035
 }
 
 /**
@@ -614,7 +437,9 @@ fun computeMeanSeaLevelPressure(
     // Source: http://www.bom.gov.au/info/thermal_stress/#atapproximation
     val waterVaporPressure = if (humidity != null && temperature != null) {
         humidity / 100 * 6.105 * exp(17.27 * temperature / (237.7 + temperature))
-    } else 0.0
+    } else {
+        0.0
+    }
 
     // adjustment for temperature
     val term1 = 1.0 + 0.0037 * (temperature ?: 0.0)
@@ -697,11 +522,15 @@ fun computePollutantInPpbFromUgm3(
  *
  * @param dailyList daily data
  * @param hourlyList hourly data
+ * @param hourlyAirQuality hourly air quality data from WeatherWrapper
+ * @param hourlyPollen hourly pollen data from WeatherWrapper
  * @param location for timeZone and calculation of sunrise/set according to lon/lat purposes
  */
 fun completeDailyListFromHourlyList(
     dailyList: List<Daily>,
     hourlyList: List<HourlyWrapper>,
+    hourlyAirQuality: Map<Date, AirQuality>,
+    hourlyPollen: Map<Date, Pollen>,
     location: Location,
 ): List<Daily> {
     if (dailyList.isEmpty() || hourlyList.isEmpty()) return dailyList
@@ -720,6 +549,7 @@ fun completeDailyListFromHourlyList(
             halfDayHourlyList = hourlyListByHalfDay.getOrElse(theDayFormatted) { null }?.get("night"),
             isDay = false
         )
+
         /**
          * Most sources will return null data both on midnight sun and polar night
          * because the sun never rises in both cases
@@ -747,7 +577,9 @@ fun completeDailyListFromHourlyList(
                     minTemp = newDay?.temperature?.temperature,
                     maxTemp = newNight?.temperature?.temperature
                 )
-            } else daily.degreeDay,
+            } else {
+                daily.degreeDay
+            },
             sun = newSun,
             moon = if (daily.moon?.isValid == true) {
                 // We check that the moonrise is indeed between 00:00 and 23:59 that day
@@ -760,28 +592,27 @@ fun completeDailyListFromHourlyList(
             } else {
                 getCalculatedAstroMoon(daily.date, location.longitude, location.latitude)
             },
-            moonPhase = if (daily.moonPhase?.angle != null) daily.moonPhase else {
-                getCalculatedMoonPhase(daily.date)
-            },
+            moonPhase = if (daily.moonPhase?.angle != null) daily.moonPhase else getCalculatedMoonPhase(daily.date),
             airQuality = daily.airQuality ?: getDailyAirQualityFromHourlyList(
-                hourlyListByDay.getOrElse(theDayFormatted) { null }
+                hourlyAirQuality.filter { it.key.getFormattedDate("yyyy-MM-dd", location) == theDayFormatted }.values
             ),
             pollen = daily.pollen ?: getDailyPollenFromHourlyList(
-                hourlyListByDay.getOrElse(theDayFormatted) { null }
+                hourlyPollen.filter { it.key.getFormattedDate("yyyy-MM-dd", location) == theDayFormatted }.values
             ),
-            uV = if (daily.uV?.index != null) daily.uV else getDailyUVFromHourlyList(
-                hourlyListByDay.getOrElse(theDayFormatted) { null }
-            ),
-            sunshineDuration = daily.sunshineDuration ?: getSunshineDuration(
-                hourlyListByDay.getOrElse(theDayFormatted) { null }
-            )
+            uV = if (daily.uV?.index != null) {
+                daily.uV
+            } else {
+                getDailyUVFromHourlyList(hourlyListByDay.getOrElse(theDayFormatted) { null })
+            },
+            sunshineDuration = daily.sunshineDuration
+                ?: getSunshineDuration(hourlyListByDay.getOrElse(theDayFormatted) { null })
         )
     }
 }
 
-const val HEATING_DEGREE_DAY_BASE_TEMPERATURE = 18.0
-const val COOLING_DEGREE_DAY_BASE_TEMPERATURE = 21.0
-const val DEGREE_DAY_TEMPERATURE_MARGIN = 3.0
+const val HEATING_DEGREE_DAY_BASE_TEMP = 18.0
+const val COOLING_DEGREE_DAY_BASE_TEMP = 21.0
+const val DEGREE_DAY_TEMP_MARGIN = 3.0
 
 private fun getDegreeDay(
     minTemp: Double?,
@@ -790,14 +621,16 @@ private fun getDegreeDay(
     if (minTemp == null || maxTemp == null) return null
 
     val meanTemp = (minTemp + maxTemp) / 2
-    if (meanTemp in (HEATING_DEGREE_DAY_BASE_TEMPERATURE - DEGREE_DAY_TEMPERATURE_MARGIN)..(COOLING_DEGREE_DAY_BASE_TEMPERATURE + DEGREE_DAY_TEMPERATURE_MARGIN)) {
+    if (meanTemp in
+        (HEATING_DEGREE_DAY_BASE_TEMP - DEGREE_DAY_TEMP_MARGIN)..(COOLING_DEGREE_DAY_BASE_TEMP + DEGREE_DAY_TEMP_MARGIN)
+    ) {
         return DegreeDay(heating = 0.0, cooling = 0.0)
     }
 
-    return if (meanTemp < HEATING_DEGREE_DAY_BASE_TEMPERATURE) {
-        DegreeDay(heating = (HEATING_DEGREE_DAY_BASE_TEMPERATURE - meanTemp), cooling = 0.0)
+    return if (meanTemp < HEATING_DEGREE_DAY_BASE_TEMP) {
+        DegreeDay(heating = (HEATING_DEGREE_DAY_BASE_TEMP - meanTemp), cooling = 0.0)
     } else {
-        DegreeDay(heating = 0.0, cooling = (meanTemp - COOLING_DEGREE_DAY_BASE_TEMPERATURE))
+        DegreeDay(heating = 0.0, cooling = (meanTemp - COOLING_DEGREE_DAY_BASE_TEMP))
     }
 }
 
@@ -993,25 +826,36 @@ private fun completeHalfDayFromHourlyList(
     val extremeTemperature = if (newHalfDay.temperature?.temperature == null ||
         newHalfDay.temperature!!.apparentTemperature == null ||
         newHalfDay.temperature!!.windChillTemperature == null ||
-        newHalfDay.temperature!!.wetBulbTemperature == null) {
+        newHalfDay.temperature!!.wetBulbTemperature == null
+    ) {
         getHalfDayTemperatureFromHourlyList(newHalfDay.temperature, halfDayHourlyList, isDay)
-    } else newHalfDay.temperature
+    } else {
+        newHalfDay.temperature
+    }
 
     val totalPrecipitation = if (newHalfDay.precipitation?.total == null) {
         getHalfDayPrecipitationFromHourlyList(halfDayHourlyList)
-    } else newHalfDay.precipitation
+    } else {
+        newHalfDay.precipitation
+    }
 
     val maxPrecipitationProbability = if (newHalfDay.precipitationProbability?.total == null) {
         getHalfDayPrecipitationProbabilityFromHourlyList(halfDayHourlyList)
-    } else newHalfDay.precipitationProbability
+    } else {
+        newHalfDay.precipitationProbability
+    }
 
     val maxWind = if (newHalfDay.wind?.speed == null) {
         getHalfDayWindFromHourlyList(halfDayHourlyList)
-    } else newHalfDay.wind
+    } else {
+        newHalfDay.wind
+    }
 
     val avgCloudCover = if (newHalfDay.precipitationProbability?.total == null) {
         getHalfDayCloudCoverFromHourlyList(halfDayHourlyList)
-    } else newHalfDay.cloudCover
+    } else {
+        newHalfDay.cloudCover
+    }
 
     val halfDayWeatherCode = newHalfDay.weatherCode ?: getHalfDayWeatherCodeFromHourlyList(
         halfDayHourlyList,
@@ -1030,12 +874,18 @@ private fun completeHalfDayFromHourlyList(
     val halfDayWeatherTextFromCode = halfDayWeatherCode?.let { WeatherViewController.getWeatherText(it) }
     val halfDayWeatherText = if (newHalfDay.weatherText.isNullOrEmpty()) {
         halfDayWeatherTextFromCode
-    } else newHalfDay.weatherText
+    } else {
+        newHalfDay.weatherText
+    }
     val halfDayWeatherPhase = if (newHalfDay.weatherPhase.isNullOrEmpty()) {
         if (newHalfDay.weatherText.isNullOrEmpty()) {
             halfDayWeatherTextFromCode
-        } else newHalfDay.weatherText
-    } else newHalfDay.weatherPhase
+        } else {
+            newHalfDay.weatherText
+        }
+    } else {
+        newHalfDay.weatherPhase
+    }
 
     return newHalfDay.copy(
         weatherText = halfDayWeatherText,
@@ -1067,7 +917,7 @@ private fun getHalfDayWeatherCodeFromHourlyList(
     maxWind: Wind?,
     avgCloudCover: Int?,
     avgVisibility: Double?,
-) : WeatherCode? {
+): WeatherCode? {
     val minPrecipIntensity = 1.0 // in mm
     val minPrecipProbability = 30.0 // in %
     val maxVisibilityHaze = 5000 // in m
@@ -1100,13 +950,11 @@ private fun getHalfDayWeatherCodeFromHourlyList(
 
         if (isRain || isSnow || isIce || isThunder) {
             return if (isThunder) {
-                if (isRain || isSnow || isIce) WeatherCode.THUNDERSTORM
-                else WeatherCode.THUNDER
+                if (isRain || isSnow || isIce) WeatherCode.THUNDERSTORM else WeatherCode.THUNDER
             } else if (isIce) {
                 WeatherCode.HAIL
             } else if (isSnow) {
-                if (isRain) WeatherCode.SLEET
-                else WeatherCode.SNOW
+                if (isRain) WeatherCode.SLEET else WeatherCode.SNOW
             } else {
                 WeatherCode.RAIN
             }
@@ -1169,9 +1017,13 @@ private fun getHalfDayWeatherCodeFromHourlyList(
         hourlyListWithWeatherCode[
             if (hourlyListWithWeatherCode.size % 2 == 0) {
                 hourlyListWithWeatherCode.size / 2
-            } else (hourlyListWithWeatherCode.size - 1) / 2
+            } else {
+                (hourlyListWithWeatherCode.size - 1) / 2
+            }
         ].weatherCode
-    } else WeatherCode.PARTLY_CLOUDY
+    } else {
+        WeatherCode.PARTLY_CLOUDY
+    }
 }
 
 /**
@@ -1327,21 +1179,19 @@ private fun getHalfDayAvgVisibilityFromHourlyList(
  * (at least 18 non-null Hourly.AirQuality required)
  */
 private fun getDailyAirQualityFromHourlyList(
-    hourlyList: List<HourlyWrapper>? = null,
+    hourlyList: Collection<AirQuality>? = null,
 ): AirQuality? {
     // We need at least 18 hours for a signification estimation
     if (hourlyList.isNullOrEmpty() || hourlyList.size < 18) return null
-    val hourlyListWithAirQuality = hourlyList.mapNotNull { it.airQuality }
-    if (hourlyListWithAirQuality.size < 18) return null
 
     // average() would return NaN when called for an empty list
     return AirQuality(
-        pM25 = hourlyListWithAirQuality.mapNotNull { it.pM25 }.takeIf { it.isNotEmpty() }?.average(),
-        pM10 = hourlyListWithAirQuality.mapNotNull { it.pM10 }.takeIf { it.isNotEmpty() }?.average(),
-        sO2 = hourlyListWithAirQuality.mapNotNull { it.sO2 }.takeIf { it.isNotEmpty() }?.average(),
-        nO2 = hourlyListWithAirQuality.mapNotNull { it.nO2 }.takeIf { it.isNotEmpty() }?.average(),
-        o3 = hourlyListWithAirQuality.mapNotNull { it.o3 }.takeIf { it.isNotEmpty() }?.average(),
-        cO = hourlyListWithAirQuality.mapNotNull { it.cO }.takeIf { it.isNotEmpty() }?.average()
+        pM25 = hourlyList.mapNotNull { it.pM25 }.takeIf { it.isNotEmpty() }?.average(),
+        pM10 = hourlyList.mapNotNull { it.pM10 }.takeIf { it.isNotEmpty() }?.average(),
+        sO2 = hourlyList.mapNotNull { it.sO2 }.takeIf { it.isNotEmpty() }?.average(),
+        nO2 = hourlyList.mapNotNull { it.nO2 }.takeIf { it.isNotEmpty() }?.average(),
+        o3 = hourlyList.mapNotNull { it.o3 }.takeIf { it.isNotEmpty() }?.average(),
+        cO = hourlyList.mapNotNull { it.cO }.takeIf { it.isNotEmpty() }?.average()
     )
 }
 
@@ -1350,34 +1200,32 @@ private fun getDailyAirQualityFromHourlyList(
  * (at least 18 non-null Hourly.Pollen required)
  */
 private fun getDailyPollenFromHourlyList(
-    hourlyList: List<HourlyWrapper>? = null,
+    hourlyList: Collection<Pollen>? = null,
 ): Pollen? {
     // We need at least 18 hours for a signification estimation
     if (hourlyList.isNullOrEmpty() || hourlyList.size < 18) return null
-    val hourlyListWithPollen = hourlyList.mapNotNull { it.pollen }
-    if (hourlyListWithPollen.size < 18) return null
 
     return Pollen(
-        alder = hourlyListWithPollen.mapNotNull { it.alder }.maxOrNull(),
-        ash = hourlyListWithPollen.mapNotNull { it.ash }.maxOrNull(),
-        birch = hourlyListWithPollen.mapNotNull { it.birch }.maxOrNull(),
-        chestnut = hourlyListWithPollen.mapNotNull { it.chestnut }.maxOrNull(),
-        cypress = hourlyListWithPollen.mapNotNull { it.cypress }.maxOrNull(),
-        grass = hourlyListWithPollen.mapNotNull { it.grass }.maxOrNull(),
-        hazel = hourlyListWithPollen.mapNotNull { it.hazel }.maxOrNull(),
-        hornbeam = hourlyListWithPollen.mapNotNull { it.hornbeam }.maxOrNull(),
-        linden = hourlyListWithPollen.mapNotNull { it.linden }.maxOrNull(),
-        mold = hourlyListWithPollen.mapNotNull { it.mold }.maxOrNull(),
-        mugwort = hourlyListWithPollen.mapNotNull { it.mugwort }.maxOrNull(),
-        oak = hourlyListWithPollen.mapNotNull { it.oak }.maxOrNull(),
-        olive = hourlyListWithPollen.mapNotNull { it.olive }.maxOrNull(),
-        plane = hourlyListWithPollen.mapNotNull { it.plane }.maxOrNull(),
-        plantain = hourlyListWithPollen.mapNotNull { it.plantain }.maxOrNull(),
-        poplar = hourlyListWithPollen.mapNotNull { it.poplar }.maxOrNull(),
-        ragweed = hourlyListWithPollen.mapNotNull { it.ragweed }.maxOrNull(),
-        sorrel = hourlyListWithPollen.mapNotNull { it.sorrel }.maxOrNull(),
-        tree = hourlyListWithPollen.mapNotNull { it.tree }.maxOrNull(),
-        urticaceae = hourlyListWithPollen.mapNotNull { it.urticaceae }.maxOrNull(),
+        alder = hourlyList.mapNotNull { it.alder }.maxOrNull(),
+        ash = hourlyList.mapNotNull { it.ash }.maxOrNull(),
+        birch = hourlyList.mapNotNull { it.birch }.maxOrNull(),
+        chestnut = hourlyList.mapNotNull { it.chestnut }.maxOrNull(),
+        cypress = hourlyList.mapNotNull { it.cypress }.maxOrNull(),
+        grass = hourlyList.mapNotNull { it.grass }.maxOrNull(),
+        hazel = hourlyList.mapNotNull { it.hazel }.maxOrNull(),
+        hornbeam = hourlyList.mapNotNull { it.hornbeam }.maxOrNull(),
+        linden = hourlyList.mapNotNull { it.linden }.maxOrNull(),
+        mold = hourlyList.mapNotNull { it.mold }.maxOrNull(),
+        mugwort = hourlyList.mapNotNull { it.mugwort }.maxOrNull(),
+        oak = hourlyList.mapNotNull { it.oak }.maxOrNull(),
+        olive = hourlyList.mapNotNull { it.olive }.maxOrNull(),
+        plane = hourlyList.mapNotNull { it.plane }.maxOrNull(),
+        plantain = hourlyList.mapNotNull { it.plantain }.maxOrNull(),
+        poplar = hourlyList.mapNotNull { it.poplar }.maxOrNull(),
+        ragweed = hourlyList.mapNotNull { it.ragweed }.maxOrNull(),
+        sorrel = hourlyList.mapNotNull { it.sorrel }.maxOrNull(),
+        tree = hourlyList.mapNotNull { it.tree }.maxOrNull(),
+        urticaceae = hourlyList.mapNotNull { it.urticaceae }.maxOrNull()
     )
 }
 
@@ -1422,16 +1270,19 @@ private fun getSunshineDuration(
  * Completes hourly data from daily data:
  * - isDaylight
  * - UV field
+ * Completes hourly data with air quality from WeatherWrapper
  *
  * Also removes hourlys in the past (30 min margin)
  *
  * @param hourlyList hourly data
  * @param dailyList daily data
+ * @param hourlyAirQuality hourly air quality data from WeatherWrapper
  * @param location timeZone of the location
  */
 fun completeHourlyListFromDailyList(
     hourlyList: List<HourlyWrapper>,
     dailyList: List<Daily>,
+    hourlyAirQuality: Map<Date, AirQuality>,
     location: Location,
 ): List<Hourly> {
     val dailyListByDate = dailyList.groupBy {
@@ -1449,14 +1300,19 @@ fun completeHourlyListFromDailyList(
                 )
                 newHourlyList.add(
                     hourly.toHourly(
+                        airQuality = hourlyAirQuality.getOrElse(hourly.date) { null },
                         isDaylight = isDaylight,
-                        uV = if (hourly.uV?.index != null) hourly.uV else getCurrentUVFromDayMax(
-                            daily.uV?.index,
-                            hourly.date,
-                            daily.sun?.riseDate,
-                            daily.sun?.setDate,
-                            location.javaTimeZone
-                        )
+                        uV = if (hourly.uV?.index != null) {
+                            hourly.uV
+                        } else {
+                            getCurrentUVFromDayMax(
+                                daily.uV?.index,
+                                hourly.date,
+                                daily.sun?.riseDate,
+                                daily.sun?.setDate,
+                                location.javaTimeZone
+                            )
+                        }
                     )
                 )
                 return@forEach // continue to next item
@@ -1493,8 +1349,13 @@ private fun getCurrentUVFromDayMax(
     sunsetDate: Date?,
     timeZone: TimeZone,
 ): UV? {
-    if (dayMaxUV == null || currentDate == null || sunriseDate == null || sunsetDate == null ||
-        sunriseDate.after(sunsetDate) || currentDate !in sunriseDate..sunsetDate) {
+    if (dayMaxUV == null ||
+        currentDate == null ||
+        sunriseDate == null ||
+        sunsetDate == null ||
+        sunriseDate.after(sunsetDate) ||
+        currentDate !in sunriseDate..sunsetDate
+    ) {
         return null
     }
 
@@ -1508,7 +1369,7 @@ private fun getCurrentUVFromDayMax(
     val sunRiseTime = calendar[Calendar.HOUR_OF_DAY] + calendar[Calendar.MINUTE] / 60f // b in desmos graph
 
     calendar.time = sunsetDate
-    val sunSetTime =  calendar[Calendar.HOUR_OF_DAY] + calendar[Calendar.MINUTE] / 60f // c in desmos graph
+    val sunSetTime = calendar[Calendar.HOUR_OF_DAY] + calendar[Calendar.MINUTE] / 60f // c in desmos graph
 
     val sunlightDuration = sunSetTime - sunRiseTime // d in desmos graph
     val sunRiseOffset = -Math.PI * sunRiseTime / sunlightDuration // o in desmos graph
@@ -1541,29 +1402,35 @@ private fun getCurrentUVFromDayMax(
  * @param todayDaily daily for today
  * @param location the location
  */
-fun completeCurrentFromSecondaryData(
-    initialCurrent: Current?,
+fun completeCurrentFromHourlyData(
+    initialCurrent: CurrentWrapper?,
     hourly: Hourly?,
     todayDaily: Daily?,
     currentAirQuality: AirQuality?,
     location: Location,
 ): Current {
-    val newCurrent = initialCurrent ?: Current()
+    val newCurrent = initialCurrent ?: CurrentWrapper()
     if (hourly == null) {
-        return newCurrent.copy(
-            uV = if (newCurrent.uV?.index == null && todayDaily != null) getCurrentUVFromDayMax(
-                todayDaily.uV?.index,
-                Date(),
-                todayDaily.sun?.riseDate,
-                todayDaily.sun?.setDate,
-                location.javaTimeZone
-            ) else newCurrent.uV
+        return newCurrent.toCurrent(
+            uV = if (newCurrent.uV?.index == null && todayDaily != null) {
+                getCurrentUVFromDayMax(
+                    todayDaily.uV?.index,
+                    Date(),
+                    todayDaily.sun?.riseDate,
+                    todayDaily.sun?.setDate,
+                    location.javaTimeZone
+                )
+            } else {
+                newCurrent.uV
+            }
         )
     }
 
     val newWind = if (newCurrent.wind?.speed != null || hourly.wind?.speed == null) {
         newCurrent.wind
-    } else hourly.wind
+    } else {
+        hourly.wind
+    }
     val newRelativeHumidity = newCurrent.relativeHumidity ?: hourly.relativeHumidity
     val newTemperature = completeCurrentTemperatureFromHourly(
         newCurrent.temperature,
@@ -1572,29 +1439,40 @@ fun completeCurrentFromSecondaryData(
         newRelativeHumidity
     )
     val newDewPoint = newCurrent.dewPoint ?: if (newCurrent.relativeHumidity != null ||
-        newCurrent.temperature?.temperature != null) {
+        newCurrent.temperature?.temperature != null
+    ) {
         // If current data is available, we compute this over hourly dewpoint
         computeDewPoint(newTemperature?.temperature, newRelativeHumidity)
-    } else hourly.dewPoint // Already calculated earlier
-    return newCurrent.copy(
+    } else {
+        // Already calculated earlier
+        hourly.dewPoint
+    }
+    return newCurrent.toCurrent(
+        uV = if (newCurrent.uV?.index == null && todayDaily != null) {
+            getCurrentUVFromDayMax(
+                todayDaily.uV?.index,
+                Date(),
+                todayDaily.sun?.riseDate,
+                todayDaily.sun?.setDate,
+                location.javaTimeZone
+            )
+        } else {
+            newCurrent.uV
+        }
+    ).copy(
         weatherText = if (newCurrent.weatherText.isNullOrEmpty()) {
             newCurrent.weatherCode?.let {
                 WeatherViewController.getWeatherText(it)
             } ?: hourly.weatherCode?.let {
                 WeatherViewController.getWeatherText(it)
             } ?: hourly.weatherText
-        } else newCurrent.weatherText,
+        } else {
+            newCurrent.weatherText
+        },
         weatherCode = newCurrent.weatherCode ?: hourly.weatherCode,
         temperature = newTemperature,
         wind = newWind,
-        uV = if (newCurrent.uV?.index == null && todayDaily != null) getCurrentUVFromDayMax(
-            todayDaily.uV?.index,
-            Date(),
-            todayDaily.sun?.riseDate,
-            todayDaily.sun?.setDate,
-            location.javaTimeZone
-        ) else newCurrent.uV,
-        airQuality = currentAirQuality ?: newCurrent.airQuality ?: hourly.airQuality,
+        airQuality = currentAirQuality ?: hourly.airQuality,
         relativeHumidity = newRelativeHumidity,
         dewPoint = newDewPoint,
         pressure = newCurrent.pressure ?: hourly.pressure,
@@ -1627,7 +1505,7 @@ private fun completeCurrentTemperatureFromHourly(
             ?: hourlyTemperature.realFeelShaderTemperature,
         apparentTemperature = newTemperature.apparentTemperature ?: hourlyTemperature.apparentTemperature,
         windChillTemperature = newWindChill,
-        wetBulbTemperature = newWetBulb,
+        wetBulbTemperature = newWetBulb
     )
 }
 

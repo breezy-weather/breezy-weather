@@ -550,7 +550,6 @@
     <string name="precipitation_thunderstorm">Олуја са грмљавином</string>
     <string name="pollen_level_2">Ниско</string>
     <string name="pollen_level_3">Умерено</string>
-    <string name="weather_message_secondary_data_refresh_failed">Освежавање података о времену за секундарни извор времена није успело</string>
     <string name="weather_data_by">Подаци од %s</string>
     <string name="weather_message_invalid_location">Неважећа локација, избришите је и поново додајте</string>
     <string name="action_see_more">Види више</string>
@@ -566,7 +565,6 @@
     <string name="unit_mph">mph</string>
     <string name="unit_mph_voice">Миље на сат</string>
     <string name="unit_ftps_voice">Стопе у секунди</string>
-    <string name="settings_weather_source_main">Главни извор</string>
     <string name="settings_weather_sources_per_location_summary">Прилагодите изворе података о времену коришћене за ову локацију</string>
     <string name="settings_main_background_animation_disabled">Онемогућено</string>
     <string name="settings_notifications_forecast_today_title">Обавештење за дневну прогнозу</string>

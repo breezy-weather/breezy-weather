@@ -204,7 +204,6 @@
     <string name="air_quality_so2_info_introduction">גופרית דו-חמצנית (SO₂) הוא גז רעיל חסר צבע האחראי לריחם של גפרורים שרופים.</string>
     <string name="pollen_olea">עץ זית</string>
     <string name="weather_message_data_refresh_failed">רענון נתוני מזג האוויר נכשל</string>
-    <string name="weather_message_secondary_data_refresh_failed">רענון נתוני מזג האוויר עבור מקור משני נכשל</string>
     <string name="location_delete_location_dialog_message_no_name">הנך עומד למחוק את המיקום הזה מרשימת ההמיקומים השמורים שלך.</string>
     <string name="action_search">חיפוש</string>
     <string name="action_app_store">חנות אפליקציות</string>
@@ -366,7 +365,6 @@
     <string name="settings_weather_sources_summary">מקור מזג אוויר ברירת מחדל עבור מיקומים חדשים, מפתחות API מותאמים אישית, הגדרות מקור אחרות</string>
     <string name="settings_weather_sources_default_source">מקור ברירת מחדל עבור מיקומים חדשים</string>
     <string name="settings_weather_source_unavailable">%s (לא זמין)</string>
-    <string name="settings_weather_source_main">מקור ראשי</string>
     <string name="settings_source_instance_invalid">חייבת להיות כתובת אתר https המסתיימת ב /</string>
     <string name="settings_appearance_language_title">שפה</string>
     <string name="settings_weather_sources_per_location_summary">התאם אישית את מקורות מזג אוויר המשמשים את המיקום הזה</string>

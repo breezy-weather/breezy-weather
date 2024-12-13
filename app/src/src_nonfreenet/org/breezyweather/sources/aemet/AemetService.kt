@@ -21,7 +21,6 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -29,7 +28,6 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.code
@@ -39,8 +37,7 @@ import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.MainWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.aemet.json.AemetCurrentResult
 import org.breezyweather.sources.aemet.json.AemetDailyResult
@@ -55,7 +52,7 @@ import kotlin.text.ifEmpty
 class AemetService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, LocationParametersSource, ConfigurableSource {
+) : HttpSource(), WeatherSource, LocationParametersSource, ConfigurableSource {
 
     override val id = "aemet"
     override val name = "AEMET (${Locale(context.currentLocale.code, "ES").displayCountry})"
@@ -63,7 +60,6 @@ class AemetService @Inject constructor(
     override val privacyPolicyUrl = "https://www.aemet.es/es/nota_legal"
 
     override val color = Color.rgb(58, 133, 202)
-    override val weatherAttribution = "Agencia Estatal de Meteorología"
 
     private val mApi by lazy {
         client
@@ -74,14 +70,16 @@ class AemetService @Inject constructor(
 
     private val okHttpClient = OkHttpClient()
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_NORMALS
+    private val weatherAttribution = "Agencia Estatal de Meteorología"
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.NORMALS to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("ES", ignoreCase = true)
     }
@@ -89,11 +87,8 @@ class AemetService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
         val apiKey = getApiKeyOrDefault()
 
         val municipio = location.parameters.getOrElse(id) { null }?.getOrElse("municipio") { null }
@@ -103,7 +98,7 @@ class AemetService @Inject constructor(
         }
 
         val failedFeatures = mutableListOf<SourceFeature>()
-        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrentUrl(
                 apiKey = apiKey,
                 estacion = estacion
@@ -114,18 +109,21 @@ class AemetService @Inject constructor(
                         apiKey = apiKey,
                         path = path
                     ).onErrorResumeNext {
-                        failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                        failedFeatures.add(SourceFeature.CURRENT)
                         Observable.just(emptyList())
                     }.blockingFirst()
                 } else {
                     emptyList()
                 }
+            }.onErrorResumeNext {
+                failedFeatures.add(SourceFeature.CURRENT)
+                Observable.just(emptyList())
             }
         } else {
             Observable.just(emptyList())
         }
 
-        val normals = if (!ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
+        val normals = if (SourceFeature.NORMALS in requestedFeatures) {
             mApi.getNormalsUrl(
                 apiKey = apiKey,
                 estacion = estacion
@@ -136,41 +134,64 @@ class AemetService @Inject constructor(
                         apiKey = apiKey,
                         path = path
                     ).onErrorResumeNext {
-                        failedFeatures.add(SourceFeature.FEATURE_NORMALS)
+                        failedFeatures.add(SourceFeature.NORMALS)
                         Observable.just(emptyList())
                     }.blockingFirst()
                 } else {
                     emptyList()
                 }
+            }.onErrorResumeNext {
+                failedFeatures.add(SourceFeature.NORMALS)
+                Observable.just(emptyList())
             }
         } else {
             Observable.just(emptyList())
         }
 
-        val daily = mApi.getForecastUrl(
-            apiKey = apiKey,
-            range = "diaria",
-            municipio = municipio
-        ).map {
-            val path = it.datos?.substringAfter(AEMET_BASE_URL)
-            if (path.isNullOrEmpty()) throw InvalidOrIncompleteDataException()
-            mApi.getDaily(
+        val daily = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getForecastUrl(
                 apiKey = apiKey,
-                path = path
-            ).blockingFirst()
+                range = "diaria",
+                municipio = municipio
+            ).map {
+                val path = it.datos?.substringAfter(AEMET_BASE_URL)
+                if (path.isNullOrEmpty()) throw InvalidOrIncompleteDataException()
+                mApi.getDaily(
+                    apiKey = apiKey,
+                    path = path
+                ).onErrorResumeNext {
+                    failedFeatures.add(SourceFeature.FORECAST)
+                    Observable.just(emptyList())
+                }.blockingFirst()
+            }.onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(emptyList())
+            }
+        } else {
+            Observable.just(emptyList())
         }
 
-        val hourly = mApi.getForecastUrl(
-            apiKey = apiKey,
-            range = "horaria",
-            municipio = municipio
-        ).map {
-            val path = it.datos?.substringAfter(AEMET_BASE_URL)
-            if (path.isNullOrEmpty()) throw InvalidOrIncompleteDataException()
-            mApi.getHourly(
+        val hourly = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getForecastUrl(
                 apiKey = apiKey,
-                path = path
-            ).blockingFirst()
+                range = "horaria",
+                municipio = municipio
+            ).map {
+                val path = it.datos?.substringAfter(AEMET_BASE_URL)
+                if (path.isNullOrEmpty()) throw InvalidOrIncompleteDataException()
+                mApi.getHourly(
+                    apiKey = apiKey,
+                    path = path
+                ).onErrorResumeNext {
+                    failedFeatures.add(SourceFeature.FORECAST)
+                    Observable.just(emptyList())
+                }.blockingFirst()
+            }.onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(emptyList())
+            }
+        } else {
+            Observable.just(emptyList())
         }
 
         return Observable.zip(current, daily, hourly, normals) {
@@ -179,110 +200,25 @@ class AemetService @Inject constructor(
                 hourlyResult: List<AemetHourlyResult>,
                 normalsResult: List<AemetNormalsResult>,
             ->
-            convert(
-                context = context,
-                location = location,
-                currentResult = currentResult,
-                dailyResult = dailyResult,
-                hourlyResult = hourlyResult,
-                normalsResult = normalsResult,
-                failedFeatures = failedFeatures
-            )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_NORMALS
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = null
-    override val normalsAttribution = weatherAttribution
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
-        val apiKey = getApiKeyOrDefault()
-
-        val municipio = location.parameters.getOrElse(id) { null }?.getOrElse("municipio") { null }
-        val estacion = location.parameters.getOrElse(id) { null }?.getOrElse("estacion") { null }
-        if (municipio.isNullOrEmpty() || estacion.isNullOrEmpty()) {
-            return Observable.error(InvalidLocationException())
-        }
-
-        val failedFeatures = mutableListOf<SourceFeature>()
-        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getCurrentUrl(
-                apiKey = apiKey,
-                estacion = estacion
-            ).map {
-                val path = it.datos?.substringAfter(AEMET_BASE_URL)
-                if (!path.isNullOrEmpty()) {
-                    mApi.getCurrent(
-                        apiKey = apiKey,
-                        path = path
-                    ).onErrorResumeNext {
-                        failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                        Observable.just(emptyList())
-                    }.blockingFirst()
-                } else {
-                    throw InvalidOrIncompleteDataException()
-                }
-            }
-        } else {
-            Observable.just(emptyList())
-        }
-
-        val normals = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
-            mApi.getNormalsUrl(
-                apiKey = apiKey,
-                estacion = estacion
-            ).map {
-                val path = it.datos?.substringAfter(AEMET_BASE_URL)
-                if (!path.isNullOrEmpty()) {
-                    mApi.getNormals(
-                        apiKey = apiKey,
-                        path = path
-                    ).onErrorResumeNext {
-                        failedFeatures.add(SourceFeature.FEATURE_NORMALS)
-                        Observable.just(emptyList())
-                    }.blockingFirst()
-                } else {
-                    throw InvalidOrIncompleteDataException()
-                }
-            }
-        } else {
-            Observable.just(emptyList())
-        }
-
-        return Observable.zip(current, normals) {
-                currentResult: List<AemetCurrentResult>,
-                normalsResult: List<AemetNormalsResult>,
-            ->
-            convertSecondary(
-                location = location,
-                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    currentResult
+            val sunMap = getSunMap(location, hourlyResult)
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(context, location, dailyResult, sunMap)
                 } else {
                     null
                 },
-                normalsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
-                    normalsResult
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(context, location, hourlyResult)
+                } else {
+                    null
+                },
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(currentResult)
+                } else {
+                    null
+                },
+                normals = if (SourceFeature.NORMALS in requestedFeatures) {
+                    getNormals(location, normalsResult)
                 } else {
                     null
                 },
@@ -309,9 +245,6 @@ class AemetService @Inject constructor(
         context: Context,
         location: Location,
     ): Observable<Map<String, String>> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
         val apiKey = getApiKeyOrDefault()
 
         val url = "https://www.aemet.es/es/eltiempo/prediccion/municipios/geolocalizacion?" +
@@ -326,7 +259,7 @@ class AemetService @Inject constructor(
         }
         val matchResult = Regex("""<a href='/es/eltiempo/prediccion/municipios/[^']+-id(\d+)'>""").find(response)
         val municipio = matchResult?.groups?.get(1)?.value
-        if (municipio == null) {
+        if (municipio.isNullOrEmpty()) {
             throw InvalidLocationException()
         }
 

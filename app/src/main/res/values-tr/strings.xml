@@ -384,7 +384,6 @@
     <string name="common_weather_text_snow_showers">Yağmurları göster</string>
     <string name="common_weather_text_drizzle_heavy">Şiddetli çiseleme</string>
     <string name="widget_clock_day_details">Saat + Günlük (Detaylar)</string>
-    <string name="settings_weather_source_main">Ana kaynak</string>
     <string name="settings_weather_sources_per_location_summary">Bu konum için kullanılan hava durumu kaynaklarını yapılandırın</string>
     <string name="unit_cm">cm</string>
     <string name="notification_style_cities">Şehirler</string>
@@ -577,7 +576,6 @@
     <string name="unit_km_voice">Kilometre</string>
     <string name="air_quality_so2_info_origin">Bu volkanik etkinliklerle doğal olarak salınır ve ağırlıklı olarak evsel ısıtma, sanayi ve enerji üretimi için fosil yakıtların kullanımından elde edilir.</string>
     <string name="air_quality_so2_info_consequences">SO₂’ye maruz kalmak astım için hastaneye başvurular ve acil servis ziyaretleriyle ilişkilidir.</string>
-    <string name="weather_message_secondary_data_refresh_failed">İkinci hava durumu kaynağı için hava durumu verisi güncellemesi başarısız oldu</string>
     <string name="notification_update_error">%d güncelleme başarısız oldu</string>
     <string name="notification_updating_weather_data">Hava durumu verisi güncelleniyor (%1$d/%2$d)</string>
     <string name="weather_api_unauthorized_content">Bazı hava durumu kaynakları için kendi API anahtarınızı sağlamanız gerekir. Eğer zaten bir tane sağladıysanız API anahtarınızı iki kere kontrol edin.</string>

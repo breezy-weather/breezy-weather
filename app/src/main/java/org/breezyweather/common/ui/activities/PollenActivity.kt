@@ -151,7 +151,7 @@ class PollenActivity : GeoActivity() {
                         if (!location.value!!.pollenSource.isNullOrEmpty()) {
                             location.value!!.pollenSource!!
                         } else {
-                            location.value!!.weatherSource
+                            location.value!!.forecastSource
                         }
                     )
 

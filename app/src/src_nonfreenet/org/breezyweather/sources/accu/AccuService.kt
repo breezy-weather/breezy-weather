@@ -21,16 +21,14 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
-import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.codeWithCountry
 import org.breezyweather.common.extensions.currentLocale
@@ -42,9 +40,8 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.LocationSearchSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.accu.json.AccuAirQualityResult
@@ -67,8 +64,7 @@ class AccuService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(),
-    MainWeatherSource,
-    SecondaryWeatherSource,
+    WeatherSource,
     LocationSearchSource,
     ReverseGeocodingSource,
     ConfigurableSource,
@@ -80,8 +76,6 @@ class AccuService @Inject constructor(
     override val privacyPolicyUrl = "https://www.accuweather.com/en/privacy"
 
     override val color = Color.rgb(240, 85, 20)
-    override val weatherAttribution = "AccuWeather"
-    override val locationSearchAttribution = weatherAttribution
 
     private val mDeveloperApi by lazy {
         client
@@ -96,30 +90,48 @@ class AccuService @Inject constructor(
             .create(AccuEnterpriseApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_AIR_QUALITY,
-        SourceFeature.FEATURE_POLLEN,
-        SourceFeature.FEATURE_MINUTELY,
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_NORMALS
+    private val weatherAttribution = "AccuWeather"
+    override val locationSearchAttribution = weatherAttribution
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.AIR_QUALITY to weatherAttribution,
+        SourceFeature.POLLEN to weatherAttribution,
+        SourceFeature.MINUTELY to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution,
+        SourceFeature.NORMALS to weatherAttribution
     )
+
+    override fun isFeatureSupportedForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Boolean {
+        return portal == AccuPortalPreference.ENTERPRISE ||
+            feature == SourceFeature.CURRENT ||
+            feature == SourceFeature.ALERT
+    }
 
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
-        val locationKey = location.parameters.getOrElse(id) { null }?.getOrElse("locationKey") { null }
-        if (locationKey.isNullOrEmpty()) {
-            return Observable.error(InvalidLocationException())
-        }
-
         val apiKey = getApiKeyOrDefault()
         val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
+        val locationKey = location.parameters.getOrElse(id) { null }?.getOrElse("locationKey") { null }
+        if (
+            (
+                SourceFeature.FORECAST in requestedFeatures ||
+                    SourceFeature.CURRENT in requestedFeatures ||
+                    SourceFeature.AIR_QUALITY in requestedFeatures ||
+                    SourceFeature.POLLEN in requestedFeatures ||
+                    SourceFeature.NORMALS in requestedFeatures ||
+                    (SourceFeature.ALERT in requestedFeatures && mApi is AccuEnterpriseApi)
+                ) &&
+            locationKey.isNullOrEmpty()
+        ) {
+            return Observable.error(InvalidLocationException())
+        }
 
         val languageCode = if (supportedLanguages.contains(context.currentLocale.codeWithCountry)) {
             context.currentLocale.codeWithCountry
@@ -132,36 +144,50 @@ class AccuService @Inject constructor(
         }
         val metric = SettingsManager.getInstance(context).precipitationUnit != PrecipitationUnit.IN
         val failedFeatures = mutableListOf<SourceFeature>()
-        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(
-                locationKey,
+                locationKey!!,
                 apiKey,
                 languageCode,
                 details = true
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(emptyList())
             }
         } else {
             Observable.just(emptyList())
         }
-        val daily = mApi.getDaily(
-            days.id,
-            locationKey,
-            apiKey,
-            languageCode,
-            details = true,
-            metric = metric
-        )
-        val hourly = mApi.getHourly(
-            hours.id,
-            locationKey,
-            apiKey,
-            languageCode,
-            details = true,
-            metric = metric
-        )
-        val minute = if (!ignoreFeatures.contains(SourceFeature.FEATURE_MINUTELY) &&
+        val daily = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getDaily(
+                days.id,
+                locationKey!!,
+                apiKey,
+                languageCode,
+                details = true,
+                metric = metric
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(AccuForecastDailyResult())
+            }
+        } else {
+            Observable.just(AccuForecastDailyResult())
+        }
+        val hourly = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getHourly(
+                hours.id,
+                locationKey!!,
+                apiKey,
+                languageCode,
+                details = true,
+                metric = metric
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(emptyList())
+            }
+        } else {
+            Observable.just(emptyList())
+        }
+        val minute = if (SourceFeature.MINUTELY in requestedFeatures &&
             mApi is AccuEnterpriseApi
         ) {
             mApi.getMinutely(
@@ -171,13 +197,13 @@ class AccuService @Inject constructor(
                 languageCode,
                 details = true
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
+                failedFeatures.add(SourceFeature.MINUTELY)
                 Observable.just(AccuMinutelyResult())
             }
         } else {
             Observable.just(AccuMinutelyResult())
         }
-        val alert = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val alert = if (SourceFeature.ALERT in requestedFeatures) {
             if (mApi is AccuEnterpriseApi) {
                 mApi.getAlertsByPosition(
                     apiKey,
@@ -185,17 +211,17 @@ class AccuService @Inject constructor(
                     languageCode,
                     details = true
                 ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    failedFeatures.add(SourceFeature.ALERT)
                     Observable.just(emptyList())
                 }
             } else {
                 mApi.getAlertsByCityKey(
-                    locationKey,
+                    locationKey!!,
                     apiKey,
                     languageCode,
                     details = true
                 ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    failedFeatures.add(SourceFeature.ALERT)
                     Observable.just(emptyList())
                 }
             }
@@ -203,16 +229,16 @@ class AccuService @Inject constructor(
             Observable.just(emptyList())
         }
         val airQuality = if (
-            !ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY) &&
+            SourceFeature.AIR_QUALITY in requestedFeatures &&
             mApi is AccuEnterpriseApi
         ) {
             mApi.getAirQuality(
-                locationKey,
+                locationKey!!,
                 apiKey,
                 pollutants = true,
                 languageCode
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                failedFeatures.add(SourceFeature.AIR_QUALITY)
                 Observable.just(AccuAirQualityResult())
             }
         } else {
@@ -221,18 +247,18 @@ class AccuService @Inject constructor(
         // TODO: Only call once a month, unless it’s current position
         val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
         val climoSummary = if (
-            !ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS) &&
+            SourceFeature.NORMALS in requestedFeatures &&
             mApi is AccuEnterpriseApi
         ) {
             mApi.getClimoSummary(
                 cal[Calendar.YEAR],
                 cal[Calendar.MONTH] + 1,
-                locationKey,
+                locationKey!!,
                 apiKey,
                 languageCode,
                 details = false
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
+                failedFeatures.add(SourceFeature.NORMALS)
                 Observable.just(AccuClimoSummaryResult())
             }
         } else {
@@ -255,243 +281,57 @@ class AccuService @Inject constructor(
                 accuAirQualityResult: AccuAirQualityResult,
                 accuClimoResult: AccuClimoSummaryResult,
             ->
-            convert(
-                location,
-                accuRealtimeResults.getOrNull(0),
-                accuDailyResult,
-                accuHourlyResults,
-                accuMinutelyResult,
-                accuAlertResults,
-                accuAirQualityResult,
-                accuClimoResult,
-                cal[Calendar.MONTH],
-                failedFeatures
-            )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_AIR_QUALITY,
-        SourceFeature.FEATURE_POLLEN,
-        SourceFeature.FEATURE_MINUTELY,
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_NORMALS
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isConfigured &&
-            (
-                portal == AccuPortalPreference.ENTERPRISE ||
-                    feature == SourceFeature.FEATURE_CURRENT ||
-                    feature == SourceFeature.FEATURE_ALERT
-                )
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = weatherAttribution
-    override val pollenAttribution = weatherAttribution
-    override val minutelyAttribution = weatherAttribution
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = weatherAttribution
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
-        val mApi = if (portal == AccuPortalPreference.ENTERPRISE) mEnterpriseApi else mDeveloperApi
-
-        val apiKey = getApiKeyOrDefault()
-        val languageCode = if (supportedLanguages.contains(context.currentLocale.codeWithCountry)) {
-            context.currentLocale.codeWithCountry
-        } else if (supportedLanguages.contains(context.currentLocale.code)) {
-            context.currentLocale.code
-        } else if (context.currentLocale.code.startsWith("iw")) {
-            "he"
-        } else {
-            "en"
-        }
-        val locationKey = location.parameters.getOrElse(id) { null }?.getOrElse("locationKey") { null }
-
-        val failedFeatures = mutableListOf<SourceFeature>()
-        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            if (locationKey.isNullOrEmpty()) {
-                return Observable.error(InvalidLocationException())
-            }
-            mApi.getCurrent(
-                locationKey,
-                apiKey,
-                languageCode,
-                details = true
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(emptyList())
-            }
-        } else {
-            Observable.just(emptyList())
-        }
-
-        val airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-            if (portal != AccuPortalPreference.ENTERPRISE) {
-                return Observable.error(SecondaryWeatherException())
-            }
-            if (locationKey.isNullOrEmpty()) {
-                return Observable.error(InvalidLocationException())
-            }
-            mEnterpriseApi.getAirQuality(
-                locationKey,
-                apiKey,
-                pollutants = true,
-                languageCode
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
-                Observable.just(AccuAirQualityResult())
-            }
-        } else {
-            Observable.just(AccuAirQualityResult())
-        }
-
-        val dailyPollen = if (requestedFeatures.contains(SourceFeature.FEATURE_POLLEN)) {
-            if (locationKey.isNullOrEmpty()) {
-                return Observable.error(InvalidLocationException())
-            }
-            mApi.getDaily(
-                days.id,
-                locationKey,
-                apiKey,
-                languageCode,
-                details = true,
-                metric = true
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_POLLEN)
-                Observable.just(AccuForecastDailyResult())
-            }
-        } else {
-            Observable.just(AccuForecastDailyResult())
-        }
-
-        val minute = if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
-            if (portal != AccuPortalPreference.ENTERPRISE) {
-                return Observable.error(SecondaryWeatherException())
-            }
-            mEnterpriseApi.getMinutely(
-                minutes = 1,
-                apiKey,
-                location.latitude.toString() + "," + location.longitude,
-                languageCode,
-                details = true
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
-                Observable.just(AccuMinutelyResult())
-            }
-        } else {
-            Observable.just(AccuMinutelyResult())
-        }
-
-        val alert = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            if (mApi is AccuEnterpriseApi) {
-                mApi.getAlertsByPosition(
-                    apiKey,
-                    location.latitude.toString() + "," + location.longitude,
-                    languageCode,
-                    details = true
-                ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                    Observable.just(emptyList())
-                }
-            } else {
-                if (locationKey.isNullOrEmpty()) {
-                    return Observable.error(InvalidLocationException())
-                }
-                mApi.getAlertsByCityKey(
-                    locationKey,
-                    apiKey,
-                    languageCode,
-                    details = true
-                ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                    Observable.just(emptyList())
-                }
-            }
-        } else {
-            Observable.just(emptyList())
-        }
-
-        // TODO: Only call once a month, unless it’s current position
-        val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
-        val climoSummary = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
-            if (portal != AccuPortalPreference.ENTERPRISE) {
-                return Observable.error(SecondaryWeatherException())
-            }
-            if (locationKey.isNullOrEmpty()) {
-                return Observable.error(InvalidLocationException())
-            }
-            mEnterpriseApi.getClimoSummary(
-                cal[Calendar.YEAR],
-                cal[Calendar.MONTH] + 1,
-                locationKey,
-                apiKey,
-                languageCode,
-                details = false
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
-                Observable.just(AccuClimoSummaryResult())
-            }
-        } else {
-            Observable.just(AccuClimoSummaryResult())
-        }
-
-        return Observable.zip(
-            current,
-            airQuality,
-            dailyPollen,
-            minute,
-            alert,
-            climoSummary
-        ) {
-                accuRealtimeResults: List<AccuCurrentResult>,
-                accuAirQualityResult: AccuAirQualityResult,
-                accuDailyPollenResult: AccuForecastDailyResult,
-                accuMinutelyResult: AccuMinutelyResult,
-                accuAlertResults: List<AccuAlertResult>,
-                accuClimoResult: AccuClimoSummaryResult,
-            ->
-            convertSecondary(
-                location,
-                accuRealtimeResults.getOrNull(0),
-                if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-                    accuAirQualityResult
+            WeatherWrapper(
+                /*base = Base(
+                    publishDate = currentResult.EpochTime.seconds.inWholeMilliseconds.toDate(),
+                ),*/
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyList(accuDailyResult.DailyForecasts, location)
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SourceFeature.FEATURE_POLLEN)) {
-                    accuDailyPollenResult
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyList(accuHourlyResults)
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
-                    accuMinutelyResult
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(accuRealtimeResults.getOrNull(0), accuDailyResult, accuMinutelyResult)
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    accuAlertResults
+                airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
+                    getAirQualityWrapper(accuAirQualityResult.data)
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
-                    accuClimoResult
+                pollen = if (SourceFeature.POLLEN in requestedFeatures) {
+                    getPollenWrapper(accuDailyResult.DailyForecasts, location)
                 } else {
                     null
                 },
-                cal[Calendar.MONTH],
-                failedFeatures
+                minutelyForecast = if (SourceFeature.MINUTELY in requestedFeatures) {
+                    getMinutelyList(accuMinutelyResult)
+                } else {
+                    null
+                },
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlertList(accuAlertResults)
+                } else {
+                    null
+                },
+                normals = if (SourceFeature.NORMALS in requestedFeatures &&
+                    accuClimoResult.Normals?.Temperatures != null
+                ) {
+                    Normals(
+                        month = cal[Calendar.MONTH],
+                        daytimeTemperature = accuClimoResult.Normals.Temperatures.Maximum.Metric?.Value,
+                        nighttimeTemperature = accuClimoResult.Normals.Temperatures.Minimum.Metric?.Value
+                    )
+                } else {
+                    null
+                },
+                failedFeatures = failedFeatures
             )
         }
     }
@@ -500,9 +340,6 @@ class AccuService @Inject constructor(
         context: Context,
         query: String,
     ): Observable<List<Location>> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
         val apiKey = getApiKeyOrDefault()
         val languageCode = if (supportedLanguages.contains(context.currentLocale.codeWithCountry)) {
             context.currentLocale.codeWithCountry
@@ -531,9 +368,6 @@ class AccuService @Inject constructor(
         context: Context,
         location: Location,
     ): Observable<List<Location>> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
         val apiKey = getApiKeyOrDefault()
         val languageCode = if (supportedLanguages.contains(context.currentLocale.codeWithCountry)) {
             context.currentLocale.codeWithCountry
@@ -661,13 +495,14 @@ class AccuService @Inject constructor(
     ): Boolean {
         if (coordinatesChanged) return true
 
-        return if (features.isEmpty() ||
-            features.contains(SourceFeature.FEATURE_AIR_QUALITY) ||
-            features.contains(SourceFeature.FEATURE_POLLEN) ||
-            features.contains(SourceFeature.FEATURE_NORMALS)
+        return if (SourceFeature.FORECAST in features ||
+            SourceFeature.CURRENT in features ||
+            SourceFeature.AIR_QUALITY in features ||
+            SourceFeature.POLLEN in features ||
+            SourceFeature.NORMALS in features ||
+            SourceFeature.ALERT in features
         ) {
-            val currentLocationKey = location.parameters
-                .getOrElse(id) { null }?.getOrElse("locationKey") { null }
+            val currentLocationKey = location.parameters.getOrElse(id) { null }?.getOrElse("locationKey") { null }
             currentLocationKey.isNullOrEmpty()
         } else {
             false
@@ -678,9 +513,6 @@ class AccuService @Inject constructor(
         context: Context,
         location: Location,
     ): Observable<Map<String, String>> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
         val apiKey = getApiKeyOrDefault()
         val languageCode = if (supportedLanguages.contains(context.currentLocale.codeWithCountry)) {
             context.currentLocale.codeWithCountry

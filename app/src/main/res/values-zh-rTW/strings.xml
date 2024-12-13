@@ -458,7 +458,6 @@
     <string name="weather_message_invalid_location">位置無效，請刪除後再新增</string>
     <string name="weather_pollen_data_by">花粉資料由 %s 提供</string>
     <string name="weather_minutely_data_by">降水即時預報資料由 %s 提供</string>
-    <string name="weather_message_secondary_data_refresh_failed">無法更新次要氣象來源的氣象資料</string>
     <string name="weather_alert_data_by">警特報資料由 %s 提供</string>
     <string name="weather_air_quality_and_pollen_data_by">空氣品質和花粉資料由 %s 提供</string>
     <string name="wind_direction_short_SW">西南風</string>
@@ -551,7 +550,6 @@
     <string name="precipitation_nowcasting">降水即時預報</string>
     <string name="action_save">儲存</string>
     <string name="settings_weather_sources_per_location_summary">自訂此位置使用的天氣資料來源</string>
-    <string name="settings_weather_source_main">主要資料來源</string>
     <string name="about_privacy_policy">隱私政策</string>
     <string name="about_contact">聯絡</string>
     <string name="common_weather_text_rain_showers_moderate">中陣雨</string>

@@ -21,7 +21,6 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.PolyUtil
 import com.google.maps.android.data.geojson.GeoJsonMultiPolygon
@@ -30,14 +29,12 @@ import com.google.maps.android.data.geojson.GeoJsonPolygon
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.hko.json.HkoAstroResult
 import org.breezyweather.sources.hko.json.HkoCurrentResult
 import org.breezyweather.sources.hko.json.HkoForecastResult
@@ -56,7 +53,7 @@ import kotlin.math.round
 class HkoService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "hko"
     override val name by lazy {
@@ -79,13 +76,6 @@ class HkoService @Inject constructor(
 
     // Color of HKO's logo
     override val color = Color.rgb(0, 74, 135)
-    override val weatherAttribution by lazy {
-        if (context.currentLocale.code.startsWith("zh")) {
-            "香港天文台"
-        } else {
-            "Hong Kong Observatory"
-        }
-    }
 
     private val mApi by lazy {
         client
@@ -108,15 +98,23 @@ class HkoService @Inject constructor(
             .create(HkoMapsApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_NORMALS
+    private val weatherAttribution by lazy {
+        if (context.currentLocale.code.startsWith("zh")) {
+            "香港天文台"
+        } else {
+            "Hong Kong Observatory"
+        }
+    }
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution,
+        SourceFeature.NORMALS to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("HK", ignoreCase = true)
     }
@@ -124,7 +122,7 @@ class HkoService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val languageCode = context.currentLocale.code
 
@@ -154,10 +152,17 @@ class HkoService @Inject constructor(
         var endPoint: String
 
         val failedFeatures = mutableListOf<SourceFeature>()
-        val forecast = mMapsApi.getForecast(
-            grid = forecastGrid,
-            v = System.currentTimeMillis()
-        )
+        val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
+            mMapsApi.getForecast(
+                grid = forecastGrid,
+                v = System.currentTimeMillis()
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(HkoForecastResult())
+            }
+        } else {
+            Observable.just(HkoForecastResult())
+        }
 
         // ASTRO
         // Get sun and moon data for both the current month and next month,
@@ -165,49 +170,65 @@ class HkoService @Inject constructor(
         val now = Calendar.getInstance(TimeZone.getTimeZone("Asia/Hong_Kong"), Locale.ENGLISH)
         var year = now.get(Calendar.YEAR)
         var month = now.get(Calendar.MONTH) + 1
-        val sun1 = mDataApi.getAstro("SRS", year, month).onErrorResumeNext {
-            /*if (BreezyWeather.instance.debugMode) {
-                failedFeatures.add(SourceFeature.FEATURE_OTHER)
-            }*/
+        val sun1 = if (SourceFeature.FORECAST in requestedFeatures) {
+            mDataApi.getAstro("SRS", year, month).onErrorResumeNext {
+                /*if (BreezyWeather.instance.debugMode) {
+                    failedFeatures.add(SourceFeature.OTHER)
+                }*/
+                Observable.just(HkoAstroResult())
+            }
+        } else {
             Observable.just(HkoAstroResult())
         }
-        val moon1 = mDataApi.getAstro("MRS", year, month).onErrorResumeNext {
-            /*if (BreezyWeather.instance.debugMode) {
-                failedFeatures.add(SourceFeature.FEATURE_OTHER)
-            }*/
+        val moon1 = if (SourceFeature.FORECAST in requestedFeatures) {
+            mDataApi.getAstro("MRS", year, month).onErrorResumeNext {
+                /*if (BreezyWeather.instance.debugMode) {
+                    failedFeatures.add(SourceFeature.OTHER)
+                }*/
+                Observable.just(HkoAstroResult())
+            }
+        } else {
             Observable.just(HkoAstroResult())
         }
 
         now.add(Calendar.MONTH, 1)
         year = now.get(Calendar.YEAR)
         month = now.get(Calendar.MONTH) + 1
-        val sun2 = mDataApi.getAstro("SRS", year, month).onErrorResumeNext {
-            /*if (BreezyWeather.instance.debugMode) {
-                failedFeatures.add(SourceFeature.FEATURE_OTHER)
-            }*/
+        val sun2 = if (SourceFeature.FORECAST in requestedFeatures) {
+            mDataApi.getAstro("SRS", year, month).onErrorResumeNext {
+                /*if (BreezyWeather.instance.debugMode) {
+                    failedFeatures.add(SourceFeature.OTHER)
+                }*/
+                Observable.just(HkoAstroResult())
+            }
+        } else {
             Observable.just(HkoAstroResult())
         }
-        val moon2 = mDataApi.getAstro("MRS", year, month).onErrorResumeNext {
-            /*if (BreezyWeather.instance.debugMode) {
-                failedFeatures.add(SourceFeature.FEATURE_OTHER)
-            }*/
+        val moon2 = if (SourceFeature.FORECAST in requestedFeatures) {
+            mDataApi.getAstro("MRS", year, month).onErrorResumeNext {
+                /*if (BreezyWeather.instance.debugMode) {
+                    failedFeatures.add(SourceFeature.OTHER)
+                }*/
+                Observable.just(HkoAstroResult())
+            }
+        } else {
             Observable.just(HkoAstroResult())
         }
 
         // CURRENT
         // Full current observation takes two API calls: getCurrentWeather and getOneJson
-        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrentWeather(
                 grid = currentGrid
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(HkoCurrentResult())
             }
         } else {
             Observable.just(HkoCurrentResult())
         }
 
-        val oneJson = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val oneJson = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getOneJson(
                 path = path,
                 suffix = if (languageCode.startsWith("zh")) {
@@ -216,7 +237,7 @@ class HkoService @Inject constructor(
                     ""
                 }
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(HkoOneJsonResult())
             }
         } else {
@@ -230,7 +251,7 @@ class HkoService @Inject constructor(
         // First read the warning summary file.
         // Loop through each warning type in the summary; check which ones are current.
         // Then only load the detailed files of the current warning types.
-        val warningDetails = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val warningDetails = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getWarningSummary(
                 path = path
             ).map { warningSummary ->
@@ -244,7 +265,7 @@ class HkoService @Inject constructor(
                                 it.value.Warning_Action != "CANCEL"
                             ) {
                                 warnings[endPoint] = mApi.getWarningText(path, endPoint).onErrorResumeNext {
-                                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                                    failedFeatures.add(SourceFeature.ALERT)
                                     Observable.just(HkoWarningResult())
                                 }.blockingFirst()
                             }
@@ -253,7 +274,7 @@ class HkoService @Inject constructor(
                 }
                 warnings
             }.onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                failedFeatures.add(SourceFeature.ALERT)
                 Observable.just(mutableMapOf())
             }
         } else {
@@ -262,14 +283,14 @@ class HkoService @Inject constructor(
 
         // NORMALS
         // HKO has its own normals endpoint from all the other stations.
-        val normals = if (!ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
+        val normals = if (SourceFeature.NORMALS in requestedFeatures) {
             when (currentStation) {
                 "HKO" -> mApi.getHkoNormals().onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_NORMALS)
+                    failedFeatures.add(SourceFeature.NORMALS)
                     Observable.just(HkoNormalsResult())
                 }
                 else -> mApi.getNormals(currentStation).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_NORMALS)
+                    failedFeatures.add(SourceFeature.NORMALS)
                     Observable.just(HkoNormalsResult())
                 }
             }
@@ -288,173 +309,37 @@ class HkoService @Inject constructor(
                 moon1Result: HkoAstroResult,
                 moon2Result: HkoAstroResult,
             ->
-            convert(
-                context = context,
-                currentResult = currentResult,
-                forecastResult = forecastResult,
-                normalsResult = normalsResult,
-                oneJsonResult = oneJsonResult,
-                warningDetailsResult = warningDetailsResult,
-                sun1Result = sun1Result,
-                sun2Result = sun2Result,
-                moon1Result = moon1Result,
-                moon2Result = moon2Result,
-                failedFeatures = failedFeatures
-            )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_NORMALS
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = weatherAttribution
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_NORMALS) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_CURRENT)
-        ) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-        val languageCode = context.currentLocale.code
-        val currentGrid = location.parameters.getOrElse(id) { null }?.getOrElse("currentGrid") { null }
-        val currentStation = location.parameters.getOrElse(id) { null }?.getOrElse("currentStation") { null }
-        val forecastGrid = location.parameters.getOrElse(id) { null }?.getOrElse("forecastGrid") { null }
-        if (currentGrid.isNullOrEmpty() || currentStation.isNullOrEmpty() || forecastGrid.isNullOrEmpty()) {
-            return Observable.error(InvalidLocationException())
-        }
-        val path = if (languageCode.startsWith("zh") &&
-            languageCode != "zh-tw" &&
-            languageCode != "zh-hk" &&
-            languageCode != "zh-mo"
-        ) {
-            HKO_SIMPLIFIED_CHINESE_PATH
-        } else {
-            ""
-        }
-        val suffix = if (languageCode.startsWith("zh")) "_C" else "_E"
-        val warnings = mutableMapOf<String, HkoWarningResult>()
-        var warningKey: String
-        var endPoint: String
-
-        val failedFeatures = mutableListOf<SourceFeature>()
-        // CURRENT
-        // Full current observation takes two API calls: getCurrentWeather and getOneJson
-        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getCurrentWeather(
-                grid = currentGrid
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(HkoCurrentResult())
-            }
-        } else {
-            Observable.just(HkoCurrentResult())
-        }
-
-        val oneJson = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getOneJson(
-                path = path,
-                suffix = if (languageCode.startsWith("zh")) "_uc" else ""
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(HkoOneJsonResult())
-            }
-        } else {
-            Observable.just(HkoOneJsonResult())
-        }
-
-        // NORMALS
-        // HKO has its own normals endpoint from all the other stations.
-        val normals = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
-            when (currentStation) {
-                "HKO" -> mApi.getHkoNormals()
-                else -> mApi.getNormals(currentStation)
-            }.onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
-                Observable.just(HkoNormalsResult())
-            }
-        } else {
-            Observable.just(HkoNormalsResult())
-        }
-
-        // ALERTS
-        // First read the warning summary file.
-        // Loop through each warning type in the summary; check which ones are current.
-        // Then only load the detailed files of the current warning types.
-        val warningDetails = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            mApi.getWarningSummary(
-                path = path
-            ).map { result ->
-                result.DYN_DAT_WARNSUM?.forEach {
-                    if (it.key.endsWith(suffix)) {
-                        warningKey = it.key.substring(0, it.key.length - 2)
-                        if (HKO_WARNING_ENDPOINTS.containsKey(warningKey)) {
-                            endPoint = HKO_WARNING_ENDPOINTS[warningKey]!!
-                            if (it.value.Warning_Action != null &&
-                                it.value.Warning_Action != "" &&
-                                it.value.Warning_Action != "CANCEL"
-                            ) {
-                                warnings[endPoint] = mApi.getWarningText(path, endPoint).onErrorResumeNext {
-                                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                                    Observable.just(HkoWarningResult())
-                                }.blockingFirst()
-                            }
-                        }
-                    }
-                }
-                warnings
-            }.onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                Observable.just(mutableMapOf())
-            }
-        } else {
-            Observable.just(mutableMapOf())
-        }
-
-        return Observable.zip(current, normals, oneJson, warningDetails) {
-                currentResult: HkoCurrentResult,
-                normalsResult: HkoNormalsResult,
-                oneJsonResult: HkoOneJsonResult,
-                warningDetailsResult: MutableMap<String, HkoWarningResult>,
-            ->
-            convertSecondary(
-                context = context,
-                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    currentResult
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(
+                        context,
+                        forecastResult.DailyForecast,
+                        sun1Result,
+                        sun2Result,
+                        moon1Result,
+                        moon2Result,
+                        oneJsonResult
+                    )
                 } else {
                     null
                 },
-                normalsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
-                    normalsResult
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(context, forecastResult.HourlyWeatherForecast, oneJsonResult)
                 } else {
                     null
                 },
-                oneJsonResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    oneJsonResult
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(context, currentResult.RegionalWeather, oneJsonResult)
                 } else {
                     null
                 },
-                warningDetailsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    warningDetailsResult
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlertList(context, warningDetailsResult)
+                } else {
+                    null
+                },
+                normals = if (SourceFeature.NORMALS in requestedFeatures) {
+                    getNormals(normalsResult)
                 } else {
                     null
                 },

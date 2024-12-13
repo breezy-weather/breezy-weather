@@ -24,7 +24,7 @@ import java.util.Locale
 /**
  * When a preset doesn't have a secondary source listed (null values), it will use main source
  * Current recommendations:
- * - Main source: national weather source or Open-Meteo
+ * - Forecast source: national weather source or Open-Meteo
  * - Current: national weather source or Open-Meteo
  * - Air quality: national weather source or Open-Meteo
  * - Pollen: Open-Meteo
@@ -34,50 +34,220 @@ import java.util.Locale
  * - Normals: national weather source or AccuWeather
  */
 enum class LocationPreset(
-    val main: String,
-    val current: String? = null,
-    val airQuality: String? = null,
-    val pollen: String? = null,
-    val minutely: String? = null,
-    val alert: String? = null,
-    val normals: String? = null,
+    val forecast: String,
+    val current: String?,
+    val airQuality: String?,
+    val pollen: String?,
+    val minutely: String?,
+    val alert: String?,
+    val normals: String?,
 ) {
-    DEFAULT("openmeteo", alert = "accu", normals = "accu"),
-    DEFAULT_FREENET("openmeteo"),
-
-    // North America
-    CANADA("eccc", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
-    USA("nws", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
-
-    // Europe
-    // AUSTRIA("openmeteo" /* GeoSphere too lightweight */, airQuality = "geosphereat", minutely = "geosphereat",
-    //     alert = "geosphereat", normals = "geosphereat"),
-    ANDORRA("mf", airQuality = "openmeteo", pollen = "openmeteo"),
-    DENMARK("dmi", airQuality = "openmeteo", pollen = "openmeteo", minutely = "metno", normals = "accu"),
-    GERMANY("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
-    GERMANY_FREENET("brightsky", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
-    FINLAND("metno", airQuality = "openmeteo", pollen = "openmeteo", alert = "accu", normals = "accu"),
-    FRANCE("mf", airQuality = "openmeteo", pollen = "recosante"),
-    FRANCE_OVERSEAS("mf", airQuality = "openmeteo", minutely = "openmeteo", alert = "accu", normals = "accu"),
-    FRANCE_FREENET("openmeteo", pollen = "recosante"),
-    IRELAND("metie", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
-    ITALY(
-        "meteoam",
+    DEFAULT(
+        forecast = "openmeteo",
+        current = "openmeteo",
         airQuality = "openmeteo",
         pollen = "openmeteo",
         minutely = "openmeteo",
         alert = "accu",
         normals = "accu"
     ),
-    LATVIA("lvgmc", pollen = "openmeteo", minutely = "openmeteo", alert = "accu", normals = "accu"),
-    LITHUANIA("lhmt", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
-    LUXEMBOURG("meteolux", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
-    MONACO("mf", airQuality = "openmeteo", pollen = "openmeteo", alert = "accu"),
-    NORWAY("metno", pollen = "openmeteo", alert = "accu", normals = "accu"),
-    PORTUGAL("ipma", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo", normals = "accu"),
-    SPAIN("aemet", airQuality = "openmeteo", pollen = "openmeteo", alert = "accu", minutely = "openmeteo"),
+    DEFAULT_FREENET(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = null,
+        normals = null
+    ),
+
+    // North America
+    CANADA(
+        forecast = "eccc",
+        current = "eccc",
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "eccc",
+        normals = "eccc"
+    ),
+    USA(
+        forecast = "nws",
+        current = "nws",
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "nws",
+        normals = "accu"
+    ),
+
+    // Europe
+    /*AUSTRIA(
+        forecast = "openmeteo", // GeoSphere too lightweight
+        current = "openmeteo",
+        airQuality = "geosphereat",
+        pollen = "openmeteo",
+        minutely = "geosphereat",
+        alert = "geosphereat",
+        normals = "geosphereat"
+    ),*/
+    ANDORRA(
+        forecast = "mf",
+        current = null,
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "mf",
+        normals = "accu"
+    ),
+    DENMARK(
+        forecast = "dmi",
+        current = null,
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "metno",
+        alert = "dmi",
+        normals = "accu"
+    ),
+    GERMANY(
+        forecast = "brightsky",
+        current = "brightsky",
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "brightsky",
+        normals = "accu"
+    ),
+    GERMANY_FREENET(
+        forecast = "brightsky",
+        current = "brightsky",
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "brightsky",
+        normals = null
+    ),
+    FINLAND(
+        forecast = "metno",
+        current = "metno",
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "metno",
+        alert = "accu",
+        normals = "accu"
+    ),
+    FRANCE(
+        forecast = "mf",
+        current = "mf",
+        airQuality = "openmeteo",
+        pollen = "recosante",
+        minutely = "mf",
+        alert = "mf",
+        normals = "mf"
+    ),
+    FRANCE_OVERSEAS(
+        forecast = "mf",
+        current = null,
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "accu",
+        normals = "accu"
+    ),
+    FRANCE_FREENET(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = "recosante",
+        minutely = "openmeteo",
+        alert = null,
+        normals = null
+    ),
+    IRELAND(
+        forecast = "metie",
+        current = null,
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "metie",
+        normals = "accu"
+    ),
+    ITALY(
+        forecast = "meteoam",
+        current = "meteoam",
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "accu",
+        normals = "accu"
+    ),
+    LATVIA(
+        forecast = "lvgmc",
+        current = "lvgmc",
+        airQuality = "lvgmc",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "accu",
+        normals = "accu"
+    ),
+    LITHUANIA(
+        forecast = "lhmt",
+        current = "lhmt",
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "lhmt",
+        normals = "accu"
+    ),
+    LUXEMBOURG(
+        forecast = "meteolux",
+        current = "meteolux",
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "meteolux",
+        normals = "accu"
+    ),
+    MONACO(
+        forecast = "mf",
+        current = null,
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "accu",
+        normals = "mf"
+    ),
+    NORWAY(
+        forecast = "metno",
+        current = "metno",
+        airQuality = "metno",
+        pollen = "openmeteo",
+        minutely = "metno",
+        alert = "metno",
+        normals = "accu"
+    ),
+    PORTUGAL(
+        forecast = "ipma",
+        current = null,
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "ipma",
+        normals = "accu"
+    ),
+
+    /*SPAIN( // Don't recommend a source with a rate-limited API key
+        forecast = "aemet",
+        current = "aemet",
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "accu",
+        normals = "aemet"
+    ),*/
     SWEDEN(
-        "smhi",
+        forecast = "smhi",
+        current = null,
         airQuality = "openmeteo",
         pollen = "openmeteo",
         minutely = "metno",
@@ -88,36 +258,261 @@ enum class LocationPreset(
     // Asia
     // Do NOT set up other sources as only 中国 source is not rate-limited by the Great Firewall
     // Don’t add cwa for TAIWAN as it is a rate-limited source
-    BANGLADESH("bmd", airQuality = "openmeteo", minutely = "openmeteo", alert = "accu", normals = "accu"),
-    CHINA("china"),
-    HONG_KONG("hko", airQuality = "openmeteo", minutely = "openmeteo"),
-    INDONESIA("bmkg", minutely = "openmeteo", normals = "accu"),
-    INDIA("imd", airQuality = "openmeteo", minutely = "openmeteo", alert = "accu", normals = "accu"),
-    ISRAEL("ims", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
-    JAPAN("jma", airQuality = "openmeteo", minutely = "openmeteo"),
-    MACAO("smg", minutely = "openmeteo"),
-    MONGOLIA("namem", minutely = "openmeteo", alert = "accu"),
-    PHILIPPINES("pagasa", airQuality = "openmeteo", minutely = "openmeteo", alert = "accu", normals = "accu"),
-    TURKIYE("mgm", airQuality = "openmeteo", pollen = "openmeteo", minutely = "openmeteo"),
+    BANGLADESH(
+        forecast = "bmd",
+        current = null,
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "accu",
+        normals = "accu"
+    ),
+    CHINA(
+        forecast = "china",
+        current = "china",
+        airQuality = "china",
+        pollen = null,
+        minutely = "china",
+        alert = "china",
+        normals = null
+    ),
+    HONG_KONG(
+        forecast = "hko",
+        current = "hko",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "hko",
+        normals = "hko"
+    ),
+    INDONESIA(
+        forecast = "bmkg",
+        current = "bmkg",
+        airQuality = "bmkg",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "bmkg",
+        normals = "accu"
+    ),
+    INDIA(
+        forecast = "imd",
+        current = null,
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "accu",
+        normals = "accu"
+    ),
+    ISRAEL(
+        forecast = "ims",
+        current = "ims",
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "ims",
+        normals = "accu"
+    ),
+    JAPAN(
+        forecast = "jma",
+        current = "jma",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "jma",
+        normals = "jma"
+    ),
+    MACAO(
+        forecast = "smg",
+        current = "smg",
+        airQuality = "smg",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "smg",
+        normals = "smg"
+    ),
+    MONGOLIA(
+        forecast = "namem",
+        current = "namem",
+        airQuality = "namem",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "accu",
+        normals = "namem"
+    ),
+    PHILIPPINES(
+        forecast = "pagasa",
+        current = null,
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "accu",
+        normals = "accu"
+    ),
+    TURKIYE(
+        forecast = "mgm",
+        current = "mgm",
+        airQuality = "openmeteo",
+        pollen = "openmeteo",
+        minutely = "openmeteo",
+        alert = "mgm",
+        normals = "mgm"
+    ),
 
     // Africa
-    BENIN("openmeteo", alert = "meteobenin", normals = "meteobenin"),
-    BURKINA_FASO("openmeteo", alert = "anambf"),
-    BURUNDI("openmeteo", alert = "igebu"),
-    CHAD("openmeteo", alert = "meteotchad", normals = "meteotchad"),
-    DR_CONGO("openmeteo", alert = "mettelsat"),
-    ETHIOPIA("openmeteo", alert = "ethiomet", normals = "ethiomet"),
-    GAMBIA("openmeteo", alert = "dwrgm"),
-    GHANA("openmeteo", alert = "gmet"),
-    GUINEA_BISSAU("openmeteo", alert = "inmgb"),
-    MALAWI("openmeteo", alert = "dccms", normals = "dccms"),
-    MALI("openmeteo", alert = "malimeteo"),
-    NIGER("openmeteo", alert = "dmnne", normals = "dmnne"),
-    SEYCHELLES("openmeteo", alert = "smasc", normals = "smasc"),
-    SOUTH_SUDAN("openmeteo", alert = "ssms"),
-    SUDAN("openmeteo", alert = "smasu"),
-    TOGO("openmeteo", alert = "anamet"),
-    ZIMBABWE("openmeteo", alert = "msdzw"),
+    // TODO below
+    BENIN(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "meteobenin",
+        normals = "meteobenin"
+    ),
+    BURKINA_FASO(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "anambf",
+        normals = null
+    ),
+    BURUNDI(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "igebu",
+        normals = null
+    ),
+    CHAD(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "meteotchad",
+        normals = "meteotchad"
+    ),
+    DR_CONGO(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "mettelsat",
+        normals = null
+    ),
+    ETHIOPIA(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "ethiomet",
+        normals = "ethiomet"
+    ),
+    GAMBIA(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "dwrgm",
+        normals = null
+    ),
+    GHANA(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "gmet",
+        normals = null
+    ),
+    GUINEA_BISSAU(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "inmgb",
+        normals = null
+    ),
+    MALAWI(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "dccms",
+        normals = "dccms"
+    ),
+    MALI(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "malimeteo",
+        normals = null
+    ),
+    NIGER(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "dmnne",
+        normals = "dmnne"
+    ),
+    SEYCHELLES(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "smasc",
+        normals = "smasc"
+    ),
+    SOUTH_SUDAN(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "ssms",
+        normals = null
+    ),
+    SUDAN(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "smasu",
+        normals = null
+    ),
+    TOGO(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "anamet",
+        normals = null
+    ),
+    ZIMBABWE(
+        forecast = "openmeteo",
+        current = "openmeteo",
+        airQuality = "openmeteo",
+        pollen = null,
+        minutely = "openmeteo",
+        alert = "msdzw",
+        normals = null
+    ),
     ;
 
     companion object {
@@ -133,7 +528,6 @@ enum class LocationPreset(
                     "AD" -> ANDORRA
                     "DE" -> GERMANY
                     "DK", "FO", "GL" -> DENMARK
-                    "ES" -> SPAIN
                     "FI" -> FINLAND
                     "FR" -> FRANCE
                     "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT" -> FRANCE_OVERSEAS
@@ -215,7 +609,7 @@ enum class LocationPreset(
             val locationPreset = getLocationPreset(location.countryCode)
 
             return location.copy(
-                weatherSource = locationPreset.main,
+                forecastSource = locationPreset.forecast,
                 currentSource = locationPreset.current,
                 airQualitySource = locationPreset.airQuality,
                 pollenSource = locationPreset.pollen,

@@ -23,5 +23,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class MetNoForecastResult(
-    val properties: MetNoForecastProperties?,
+    val properties: MetNoForecastProperties? = null,
 )

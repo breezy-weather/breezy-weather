@@ -216,7 +216,7 @@ class WeatherUpdateJob @AssistedInject constructor(
         val failedUpdates = CopyOnWriteArrayList<Pair<Location, String?>>()
 
         coroutineScope {
-            locationsToUpdate.groupBy { it.weatherSource }.values
+            locationsToUpdate.groupBy { it.forecastSource }.values
                 .map { locationInSource ->
                     async {
                         semaphore.withPermit {

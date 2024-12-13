@@ -49,7 +49,7 @@ object LocationMapper {
         admin4Code = admin4Code,
         city = city,
         district = district,
-        weatherSource = weatherSource,
+        forecastSource = weatherSource,
         currentSource = currentSource,
         airQualitySource = airQualitySource,
         pollenSource = pollenSource,

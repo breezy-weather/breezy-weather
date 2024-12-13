@@ -543,7 +543,6 @@
     <string name="air_quality_no2_info_origin">Sursele de NO₂ din mediul ambiant rezultă din arderea la temperaturi ridicate a combustibililor în procese precum cele utilizate pentru încălzire, transport, industrie și producerea de energie electrică. Sursele casnice de oxizi de azot (NOₓ) includ echipamente care ard combustibili, cum ar fi cuptoarele, șemineele, sobele și cuptoarele cu gaz.</string>
     <string name="air_quality_pm_explanations_origin">Unele particule se produc în mod natural, provenind de la vulcani, furtuni de praf, incendii de pădure și de pășuni, vegetație vie și spray-uri marine. Activitățile umane generează, de asemenea, cantități semnificative de particule, cum ar fi traficul și transportul, activitățile industriale, centralele electrice, șantierele de construcții, arderea deșeurilor sau câmpurile.</string>
     <string name="air_quality_no2_info_consequences">Expunerea la dioxid de azot poate duce la iritarea căilor respiratorii și agravarea bolilor respiratorii. În plus, NO₂ este un precursor important al ozonului, un poluant strâns legat de astm și de alte afecțiuni respiratorii.</string>
-    <string name="weather_message_secondary_data_refresh_failed">Actualizarea datelor meteo pentru o sursă meteorologică secundară a eșuat</string>
     <string name="dialog_permissions_notification_content">Atinge aici pentru a activa notificările privind alertele meteo, sau modifică mai târziu în Setări.</string>
     <string name="pollen_level_3">Moderat</string>
     <string name="pollen_level_4">Ridicat</string>
@@ -594,7 +593,6 @@
     <string name="common_weather_text_rain_snow_mixed_showers">Lapoviță și Ninsoare Torențială</string>
     <string name="settings_weather_sources_per_location_summary">Personalizează furnizorii meteo pentru această locație</string>
     <string name="settings_widgets_broadcast_send_data_title">Trimite date meteo către %s</string>
-    <string name="settings_weather_source_main">Furnizorul principal</string>
     <string name="location_delete_location_dialog_message_no_name">Ești pe cale să ștergi această locație din lista ta de locații salvate.</string>
     <string name="location_search_change_source">Schimbă serviciul de căutare a locației</string>
     <string name="settings_appearance_dark_mode_locations_title">Mod Luminos / Întunecat pentru locații</string>

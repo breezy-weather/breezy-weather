@@ -68,8 +68,7 @@ class WidgetClockDayVerticalProvider : AppWidgetProvider() {
                     ),
                     location?.let { locationNow ->
                         sourceManager.getPollenIndexSource(
-                            (locationNow.pollenSource ?: "")
-                                .ifEmpty { locationNow.weatherSource }
+                            (locationNow.pollenSource ?: "").ifEmpty { locationNow.forecastSource }
                         )
                     }
                 )

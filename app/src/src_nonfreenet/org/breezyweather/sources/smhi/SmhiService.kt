@@ -24,10 +24,11 @@ import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import retrofit2.Retrofit
 import java.util.Locale
 import javax.inject.Inject
@@ -36,7 +37,7 @@ import javax.inject.Named
 class SmhiService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource {
+) : HttpSource(), WeatherSource {
 
     override val id = "smhi"
     override val name = "SMHI (${Locale(context.currentLocale.code, "SE").displayCountry})"
@@ -45,7 +46,6 @@ class SmhiService @Inject constructor(
         "https://www.smhi.se/omsmhi/hantering-av-personuppgifter/hantering-av-personuppgifter-1.135429"
 
     override val color = Color.rgb(0, 0, 0)
-    override val weatherAttribution = "SMHI (Creative commons Erkännande 4.0 SE)"
 
     private val mApi by lazy {
         client
@@ -54,11 +54,13 @@ class SmhiService @Inject constructor(
             .create(SmhiApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf<SourceFeature>()
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to "SMHI (Creative commons Erkännande 4.0 SE)"
+    )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("SE", ignoreCase = true)
     }
@@ -66,13 +68,21 @@ class SmhiService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         return mApi.getForecast(
             location.longitude,
             location.latitude
         ).map {
-            convert(it, location)
+            // If the API doesn’t return data, consider data as garbage and keep cached data
+            if (it.timeSeries.isNullOrEmpty()) {
+                throw InvalidOrIncompleteDataException()
+            }
+
+            WeatherWrapper(
+                dailyForecast = getDailyForecast(location, it.timeSeries),
+                hourlyForecast = getHourlyForecast(it.timeSeries)
+            )
         }
     }
 

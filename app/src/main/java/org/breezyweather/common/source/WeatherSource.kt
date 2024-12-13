@@ -26,7 +26,7 @@ import io.reactivex.rxjava3.core.Observable
 /**
  * Weather service.
  */
-interface MainWeatherSource : Source {
+interface WeatherSource : Source {
 
     /**
      * Official color used by the source
@@ -35,38 +35,30 @@ interface MainWeatherSource : Source {
     val color: Int
 
     /**
-     * Credits and acknowledgments that will be shown at the bottom of main screen
+     * List the features by the source as keys
+     * Values are credits and acknowledgments that will be shown at the bottom of main screen
      * Please check terms of the source to be sure to put the correct term here
-     * Example: MyGreatApi (CC BY 4.0)
+     * Example: <SourceFeature.FORECAST, "MyGreatApi (CC BY 4.0)">
      */
-    val weatherAttribution: String
-
-    /**
-     * List the supported secondary features directly from main weather refresh
-     * Can be a different list from "supportedFeatures" if you also implement SecondaryWeatherSource
-     */
-    val supportedFeaturesInMain: List<SourceFeature>
+    val supportedFeatures: Map<SourceFeature, String>
 
     /**
      * May be used when you don't have reverse geocoding implemented and you want to filter
      * location results from default location search source to only include some countries
      * for example
-     * @feature When null, it is used as main source
      */
-    fun isFeatureSupportedInMainForLocation(
+    fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature? = null,
+        feature: SourceFeature,
     ): Boolean = true
 
     /**
      * Returns weather converted to Breezy Weather Weather object
-     * @param ignoreFeatures List of features we request later to a secondary source. If your
-     * weather source support them, you should ignore them (for example, not call an
-     * additional API endpoint), as they will be overwritten later anyway
+     * @param requestedFeatures List of features requested by the user
      */
     fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper>
 }

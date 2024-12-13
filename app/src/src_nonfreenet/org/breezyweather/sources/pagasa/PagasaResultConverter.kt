@@ -18,14 +18,13 @@ package org.breezyweather.sources.pagasa
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
@@ -41,13 +40,13 @@ import java.util.Locale
 import java.util.TimeZone
 import kotlin.time.Duration.Companion.hours
 
-fun convert(
+internal fun convert(
     location: Location,
     locations: Map<String, PagasaLocationResult>,
 ): Map<String, String> {
     var nearestDistance = Double.POSITIVE_INFINITY
-    var nearestStation: String = ""
-    var nearestKey: String = ""
+    var nearestStation = ""
+    var nearestKey = ""
     var distance = Double.POSITIVE_INFINITY
     locations.keys.forEach { key ->
         locations[key]!!.let {
@@ -75,24 +74,10 @@ fun convert(
     )
 }
 
-fun convert(
-    context: Context,
+internal fun getCurrent(
     location: Location,
     currentResult: List<PagasaCurrentResult>?,
-    hourlyResult: List<PagasaHourlyResult>?,
-): WeatherWrapper {
-    val hourlyForecast = getHourlyForecast(context, hourlyResult)
-    return WeatherWrapper(
-        current = getCurrent(location, currentResult),
-        dailyForecast = getDailyForecast(location, hourlyForecast),
-        hourlyForecast = hourlyForecast
-    )
-}
-
-private fun getCurrent(
-    location: Location,
-    currentResult: List<PagasaCurrentResult>?,
-): Current? {
+): CurrentWrapper? {
     val formatter = SimpleDateFormat("MMMM d, yyyy, h:mm a", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Manila")
     val now = Date().time
@@ -114,7 +99,7 @@ private fun getCurrent(
         }
     }
     return currentResult?.getOrNull(nearestStation)?.let {
-        Current(
+        CurrentWrapper(
             temperature = Temperature(
                 temperature = it.temperature?.substringBefore(" ")?.toDoubleOrNull()
             ),
@@ -128,20 +113,20 @@ private fun getCurrent(
     }
 }
 
-private fun getDailyForecast(
+internal fun getDailyForecast(
     location: Location,
     hourlyForecast: List<HourlyWrapper>,
-): List<Daily> {
+): List<DailyWrapper> {
     // Need to provide an empty daily list so that
     // CommonConverter.kt will compute the daily forecast items.
     val dates = hourlyForecast.groupBy { it.date.getFormattedDate("yyyy-MM-dd", location) }.keys
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
-    val dailyList = mutableListOf<Daily>()
+    val dailyList = mutableListOf<DailyWrapper>()
     dates.forEachIndexed { i, day ->
         if (i < dates.size - 1) { // skip the last day
             dailyList.add(
-                Daily(
+                DailyWrapper(
                     date = formatter.parse(day)!!
                 )
             )
@@ -150,7 +135,7 @@ private fun getDailyForecast(
     return dailyList
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     context: Context,
     hourlyResult: List<PagasaHourlyResult>?,
 ): List<HourlyWrapper> {
