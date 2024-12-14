@@ -45,6 +45,8 @@ import org.breezyweather.sources.mf.json.MfForecastProbability
 import org.breezyweather.sources.mf.json.MfForecastResult
 import org.breezyweather.sources.mf.json.MfNormalsResult
 import org.breezyweather.sources.mf.json.MfRainResult
+import org.breezyweather.sources.mf.json.MfWarningDictionaryResult
+import org.breezyweather.sources.mf.json.MfWarningsOverseasResult
 import org.breezyweather.sources.mf.json.MfWarningsResult
 import java.util.Calendar
 import java.util.Date
@@ -294,6 +296,111 @@ internal fun getMinutelyList(rainResult: MfRainResult?): List<Minutely> {
     return minutelyList
 }
 
+internal fun getOverseasWarningsList(
+    warningsDictionaryResult: MfWarningDictionaryResult,
+    warningsResult: MfWarningsOverseasResult,
+): List<Alert> {
+    val alertList: MutableList<Alert> = arrayListOf()
+    warningsResult.text?.let {
+        if (!it.textBlocItems.isNullOrEmpty()) {
+            val title = "Bulletin de Vigilance météo"
+            val content = StringBuilder()
+            it.textBlocItems.forEach { textBlocItem ->
+                if (content.toString().isNotEmpty()) {
+                    content.append("\n\n")
+                }
+                textBlocItem.title?.forEach { t ->
+                    content
+                        .append(t.uppercase(Locale.FRENCH))
+                        .append("\n")
+                }
+                textBlocItem.text?.forEach { txt ->
+                    content
+                        .append(txt)
+                        .append("\n")
+                }
+            }
+            alertList.add(
+                Alert(
+                    // Create unique ID from: alert type ID, alert level, start time
+                    alertId = Objects.hash(title, warningsResult.colorMax, it.beginTime).toString(),
+                    startDate = it.beginTime,
+                    endDate = it.endTime,
+                    headline = title,
+                    description = content.toString(),
+                    source = "Météo-France",
+                    severity = AlertSeverity.EXTREME, // Let’s put it on top
+                    color = warningsDictionaryResult.colors?.firstOrNull { c -> c.id == warningsResult.colorMax }
+                        ?.hexaCode?.let { h -> Color.parseColor(h) }
+                        ?: Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
+                )
+            )
+        }
+    }
+    warningsResult.timelaps?.forEach { timelaps ->
+        timelaps.timelapsItems
+            ?.filter { it.colorId > 1 }
+            ?.forEach { timelapsItem ->
+                val consequences = warningsResult.consequences?.firstOrNull { it.phenomenonId == timelaps.phenomenonId }
+                    ?.textConsequence?.replace("<br>", "\n")
+                val advices = warningsResult.advices?.firstOrNull { it.phenomenonId == timelaps.phenomenonId }
+                    ?.textAdvice?.replace("<br>", "\n")
+
+                val content = StringBuilder()
+                if (!consequences.isNullOrEmpty()) {
+                    if (content.toString().isNotEmpty()) {
+                        content.append("\n\n")
+                    }
+                    // TODO: Move to non-translatable en/fr strings
+                    content
+                        .append("CONSÉQUENCES POSSIBLES\n")
+                        .append(consequences)
+                }
+                if (!advices.isNullOrEmpty()) {
+                    if (content.toString().isNotEmpty()) {
+                        content.append("\n\n")
+                    }
+                    // TODO: Move to non-translatable en/fr strings
+                    content
+                        .append("CONSEILS DE COMPORTEMENT\n")
+                        .append(advices)
+                }
+
+                alertList.add(
+                    Alert(
+                        // Create unique ID from: alert type ID, alert level, start time
+                        alertId = Objects.hash(timelaps.phenomenonId, timelapsItem.colorId, timelapsItem.beginTime.time)
+                            .toString(),
+                        startDate = timelapsItem.beginTime,
+                        endDate = timelapsItem.endTime,
+                        headline = warningsDictionaryResult.phenomenons
+                            ?.firstOrNull { c -> c.id == timelaps.phenomenonId }
+                            ?.name
+                            ?: getWarningType(timelaps.phenomenonId.toString()),
+                        description = content.toString(),
+                        source = "Météo-France",
+                        severity = warningsDictionaryResult.colors?.firstOrNull { c -> c.id == timelapsItem.colorId }
+                            ?.name?.let { h ->
+                                with(h) {
+                                    when {
+                                        contains("rouge") || contains("violet") -> AlertSeverity.EXTREME
+                                        contains("orange") -> AlertSeverity.SEVERE
+                                        contains("jaune") || contains("blanc") -> AlertSeverity.MODERATE
+                                        contains("vert") || contains("bleu") -> AlertSeverity.MINOR
+                                        else -> AlertSeverity.UNKNOWN
+                                    }
+                                }
+                            } ?: AlertSeverity.UNKNOWN,
+                        color = warningsDictionaryResult.colors?.firstOrNull { c -> c.id == timelapsItem.colorId }
+                            ?.hexaCode?.let { h -> Color.parseColor(h) }
+                            ?: Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
+                    )
+                )
+            }
+    }
+    return alertList
+}
+
 internal fun getWarningsList(warningsJ0Result: MfWarningsResult?, warningsJ1Result: MfWarningsResult?): List<Alert>? {
     return if (warningsJ0Result != null && warningsJ1Result != null) {
         getWarningsList(warningsJ0Result) + getWarningsList(warningsJ1Result)
@@ -395,14 +502,14 @@ private fun getPrecipitationIntensity(rain: Int): Double = when (rain) {
 // TODO: Move to non-translatable en/fr strings
 private fun getWarningType(phemononId: String): String = when (phemononId) {
     "1" -> "Vent"
-    "2" -> "Pluie-Inondation"
+    "2" -> "Pluie-inondation"
     "3" -> "Orages"
     "4" -> "Crues"
-    "5" -> "Neige-Verglas"
+    "5" -> "Neige-verglas"
     "6" -> "Canicule"
-    "7" -> "Grand Froid"
+    "7" -> "Grand froid"
     "8" -> "Avalanches"
-    "9" -> "Vagues-Submersion"
+    "9" -> "Vagues-submersion"
     else -> "Divers"
 }
 
@@ -536,7 +643,7 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
     }
 }
 
-private val frenchDepartments: Map<String, String> = mapOf(
+internal val frenchDepartments: Map<String, String> = mapOf(
     "01" to "Ain",
     "02" to "Aisne",
     "03" to "Allier",
@@ -634,4 +741,18 @@ private val frenchDepartments: Map<String, String> = mapOf(
     "94" to "Val-de-Marne",
     "95" to "Val-d'Oise",
     "99" to "Andorre"
+)
+
+internal val overseaTerritories: Map<String, String> = mapOf(
+    "971" to "Guadeloupe",
+    "972" to "Martinique",
+    "973" to "Guyane",
+    "974" to "La Réunion",
+    "975" to "Saint-Pierre-et-Miquelon",
+    "976" to "Mayotte",
+    "977" to "Saint-Barthélemy",
+    "978" to "Saint-Martin",
+    "986" to "Wallis-et-Futuna",
+    "987" to "Polynésie française",
+    "988" to "Nouvelle-Calédonie"
 )

@@ -21,19 +21,9 @@ import kotlinx.serialization.Serializable
 import org.breezyweather.common.serializer.DateSerializer
 import java.util.Date
 
-/**
- * Mf warning current phenomenons
- */
 @Serializable
-data class MfWarningsResult(
-    @Serializable(DateSerializer::class) @SerialName("update_time") val updateTime: Date? = null,
-    @Serializable(DateSerializer::class) @SerialName("end_validity_time") val endValidityTime: Date? = null,
-    val timelaps: List<MfWarningTimelaps>? = null,
-    // @SerialName("phenomenons_items") val phenomenonsItems: List<MfWarningPhenomenonMaxColor>? = null,
-    val advices: List<MfWarningAdvice>? = null,
-    val consequences: List<MfWarningConsequence>? = null,
-    // @SerialName("max_count_items") val maxCountItems: List<MfWarningMaxCountItems>? = null,
-    val comments: MfWarningComments? = null,
-    val text: MfWarningComments? = null,
-    @SerialName("text_avalanche") val textAvalanche: MfWarningComments? = null,
+data class MfWarningOverseasComments(
+    @Serializable(DateSerializer::class) @SerialName("begin_time") val beginTime: Date? = null,
+    @Serializable(DateSerializer::class) @SerialName("end_time") val endTime: Date? = null,
+    @SerialName("text_bloc_item") val textBlocItems: List<MfWarningOverseasTextBlocItem>?,
 )

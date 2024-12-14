@@ -22,18 +22,19 @@ import org.breezyweather.common.serializer.DateSerializer
 import java.util.Date
 
 /**
- * Mf warning current phenomenons
+ * Mf warning overseas (old endpoint)
  */
 @Serializable
-data class MfWarningsResult(
+data class MfWarningsOverseasResult(
     @Serializable(DateSerializer::class) @SerialName("update_time") val updateTime: Date? = null,
     @Serializable(DateSerializer::class) @SerialName("end_validity_time") val endValidityTime: Date? = null,
-    val timelaps: List<MfWarningTimelaps>? = null,
+    @SerialName("color_max") val colorMax: Int? = null,
+    val timelaps: List<MfWarningOverseasTimelaps>? = null,
     // @SerialName("phenomenons_items") val phenomenonsItems: List<MfWarningPhenomenonMaxColor>? = null,
-    val advices: List<MfWarningAdvice>? = null,
-    val consequences: List<MfWarningConsequence>? = null,
+    val advices: List<MfWarningOverseasAdvice>? = null,
+    val consequences: List<MfWarningOverseasConsequence>? = null,
     // @SerialName("max_count_items") val maxCountItems: List<MfWarningMaxCountItems>? = null,
-    val comments: MfWarningComments? = null,
-    val text: MfWarningComments? = null,
-    @SerialName("text_avalanche") val textAvalanche: MfWarningComments? = null,
+    val comments: MfWarningOverseasComments? = null,
+    val text: MfWarningOverseasComments? = null,
+    @SerialName("text_avalanche") val textAvalanche: MfWarningOverseasComments? = null,
 )

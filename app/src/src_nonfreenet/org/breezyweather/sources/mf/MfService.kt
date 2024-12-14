@@ -44,6 +44,8 @@ import org.breezyweather.sources.mf.json.MfEphemerisResult
 import org.breezyweather.sources.mf.json.MfForecastResult
 import org.breezyweather.sources.mf.json.MfNormalsResult
 import org.breezyweather.sources.mf.json.MfRainResult
+import org.breezyweather.sources.mf.json.MfWarningDictionaryResult
+import org.breezyweather.sources.mf.json.MfWarningsOverseasResult
 import org.breezyweather.sources.mf.json.MfWarningsResult
 import retrofit2.Retrofit
 import java.nio.charset.StandardCharsets
@@ -100,12 +102,8 @@ class MfService @Inject constructor(
             SourceFeature.MINUTELY -> !location.countryCode.isNullOrEmpty() &&
                 location.countryCode.equals("FR", ignoreCase = true)
             SourceFeature.ALERT -> !location.countryCode.isNullOrEmpty() &&
-                arrayOf("FR", "AD").any { location.countryCode.equals(it, ignoreCase = true) }
-            /*
-             * TODO: The current alert v3 endpoint doesn't support oversea territories
-             *  arrayOf("FR", "AD", "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT")
-             *    .any { location.countryCode.equals(it, ignoreCase = true) }
-             */
+                arrayOf("FR", "AD", "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT")
+                    .any { location.countryCode.equals(it, ignoreCase = true) }
             SourceFeature.NORMALS -> !location.countryCode.isNullOrEmpty() &&
                 arrayOf("FR", "AD", "MC").any { location.countryCode.equals(it, ignoreCase = true) }
             SourceFeature.FORECAST -> true // Main source available worldwide
@@ -182,9 +180,14 @@ class MfService @Inject constructor(
         } else {
             Observable.just(MfRainResult())
         }
+
+        val domain = location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }
+        if (SourceFeature.ALERT in requestedFeatures && domain.isNullOrEmpty()) {
+            failedFeatures.add(SourceFeature.ALERT)
+        }
+
         val warningsJ0 = if (SourceFeature.ALERT in requestedFeatures) {
-            val domain = location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }
-            if (!domain.isNullOrEmpty()) {
+            if (!domain.isNullOrEmpty() && !domain.startsWith("VIGI")) {
                 mApi.getWarnings(
                     USER_AGENT,
                     domain,
@@ -196,15 +199,14 @@ class MfService @Inject constructor(
                     Observable.just(MfWarningsResult())
                 }
             } else {
-                failedFeatures.add(SourceFeature.ALERT)
+                // Added to failedFeatures earlier, don't add here or it would fail for oversea territories
                 Observable.just(MfWarningsResult())
             }
         } else {
             Observable.just(MfWarningsResult())
         }
         val warningsJ1 = if (SourceFeature.ALERT in requestedFeatures) {
-            val domain = location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }
-            if (!domain.isNullOrEmpty()) {
+            if (!domain.isNullOrEmpty() && !domain.startsWith("VIGI")) {
                 mApi.getWarnings(
                     USER_AGENT,
                     domain,
@@ -216,11 +218,51 @@ class MfService @Inject constructor(
                     Observable.just(MfWarningsResult())
                 }
             } else {
-                failedFeatures.add(SourceFeature.ALERT)
+                // Added to failedFeatures earlier, don't add here or it would fail for oversea territories
                 Observable.just(MfWarningsResult())
             }
         } else {
             Observable.just(MfWarningsResult())
+        }
+
+        val warningsOverseasDictionary = if (SourceFeature.ALERT in requestedFeatures) {
+            if (!domain.isNullOrEmpty() && domain.startsWith("VIGI")) {
+                mApi.getOverseasWarningsDictionary(
+                    USER_AGENT,
+                    domain,
+                    token
+                ).onErrorResumeNext {
+                    it.printStackTrace()
+                    failedFeatures.add(SourceFeature.ALERT)
+                    Observable.just(MfWarningDictionaryResult())
+                }
+            } else {
+                // Added to failedFeatures earlier, don't add here or it would fail for metropolitan area
+                Observable.just(MfWarningDictionaryResult())
+            }
+        } else {
+            Observable.just(MfWarningDictionaryResult())
+        }
+
+        val warningsOverseas = if (SourceFeature.ALERT in requestedFeatures) {
+            if (!domain.isNullOrEmpty() && domain.startsWith("VIGI")) {
+                mApi.getOverseasWarnings(
+                    USER_AGENT,
+                    domain,
+                    if (domain == "VIGI974") "vigilance4colors" else null,
+                    "iso",
+                    token
+                ).onErrorResumeNext {
+                    it.printStackTrace()
+                    failedFeatures.add(SourceFeature.ALERT)
+                    Observable.just(MfWarningsOverseasResult())
+                }
+            } else {
+                // Added to failedFeatures earlier, don't add here or it would fail for metropolitan area
+                Observable.just(MfWarningsOverseasResult())
+            }
+        } else {
+            Observable.just(MfWarningsOverseasResult())
         }
 
         // TODO: Only call once a month, unless it’s current position
@@ -238,13 +280,25 @@ class MfService @Inject constructor(
             Observable.just(MfNormalsResult())
         }
 
-        return Observable.zip(current, forecast, ephemeris, rain, warningsJ0, warningsJ1, normals) {
+        return Observable.zip(
+            current,
+            forecast,
+            ephemeris,
+            rain,
+            warningsJ0,
+            warningsJ1,
+            warningsOverseasDictionary,
+            warningsOverseas,
+            normals
+        ) {
                 currentResult: MfCurrentResult,
                 forecastResult: MfForecastResult,
                 ephemerisResult: MfEphemerisResult,
                 rainResult: MfRainResult,
                 warningsJ0Result: MfWarningsResult,
                 warningsJ1Result: MfWarningsResult,
+                warningsDictionaryResult: MfWarningDictionaryResult,
+                warningsOverseasResult: MfWarningsOverseasResult,
                 normalsResult: MfNormalsResult,
             ->
             WeatherWrapper(
@@ -279,7 +333,15 @@ class MfService @Inject constructor(
                     null
                 },
                 alertList = if (SourceFeature.ALERT in requestedFeatures) {
-                    getWarningsList(warningsJ0Result, warningsJ1Result)
+                    if (!domain.isNullOrEmpty()) {
+                        if (domain.startsWith("VIGI")) {
+                            getOverseasWarningsList(warningsDictionaryResult, warningsOverseasResult)
+                        } else {
+                            getWarningsList(warningsJ0Result, warningsJ1Result)
+                        }
+                    } else {
+                        null
+                    }
                 } else {
                     null
                 },
@@ -337,12 +399,28 @@ class MfService @Inject constructor(
             "iso",
             getToken()
         ).map {
-            if (it.properties?.zoneVigi1.isNullOrEmpty() && it.properties?.frenchDepartment.isNullOrEmpty()) {
+            if (it.properties?.frenchDepartment.isNullOrEmpty()) {
+                throw InvalidLocationException()
+            }
+
+            val domain = if (frenchDepartments.containsKey(it.properties!!.frenchDepartment!!)) {
+                it.properties.frenchDepartment!!
+            } else if (overseaTerritories.containsKey(it.properties.frenchDepartment)) {
+                if (it.properties.frenchDepartment in arrayOf("977", "978")) {
+                    "VIGI978-977"
+                } else {
+                    "VIGI${it.properties.frenchDepartment}"
+                }
+            } else {
+                null
+            }
+
+            if (domain == null) {
                 throw InvalidLocationException()
             }
 
             mapOf(
-                "domain" to (it.properties!!.zoneVigi1 ?: it.properties.frenchDepartment!!)
+                "domain" to domain
             )
         }
     }
