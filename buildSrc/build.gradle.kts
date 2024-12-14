@@ -9,6 +9,7 @@ dependencies {
     implementation(libs.spotless.gradle)
     implementation(gradleApi())
     implementation(libs.javapoet)
+    implementation(libs.json)
 
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
 }

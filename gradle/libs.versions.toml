@@ -17,6 +17,7 @@ expandabletextcompose = "2.0.1"
 hilt = "1.2.0"
 javapoet = "1.13.0"
 jjwt = "0.12.6"
+json = "20240303"
 junit = "5.11.3"
 kotest-assertions = "5.9.1"
 kotlin = "2.0.21"
@@ -78,6 +79,7 @@ javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet"
 jjwt-api = { group = "io.jsonwebtoken", name = "jjwt-api", version.ref = "jjwt" }
 jjwt-impl = { group = "io.jsonwebtoken", name = "jjwt-impl", version.ref = "jjwt" }
 jjwt-orgjson = { group = "io.jsonwebtoken", name = "jjwt-orgjson", version.ref = "jjwt" }
+json = { group = "org.json", name = "json", version.ref = "json" }
 junit = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
 ktlint-core = { group = "com.pinterest.ktlint", name = "ktlint-cli", version.ref = "ktlint" }
 kotest-assertions = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest-assertions" }

@@ -3,6 +3,7 @@
 import breezy.buildlogic.getCommitCount
 import breezy.buildlogic.getGitSha
 import breezy.buildlogic.registerLocalesConfigTask
+import breezy.buildlogic.registerNaturalEarthConfigTask
 import java.util.Properties
 
 plugins {
@@ -331,6 +332,7 @@ dependencies {
 }
 
 tasks {
+    val naturalEarthConfigTask = registerNaturalEarthConfigTask(project)
     val localesConfigTask = registerLocalesConfigTask(project)
 
     // Duplicating Hebrew string assets due to some locale code issues on different devices
@@ -348,7 +350,7 @@ tasks {
     }
 
     preBuild {
-        dependsOn(copyHebrewStrings, copyIndonesianStrings, localesConfigTask)
+        dependsOn(naturalEarthConfigTask, copyHebrewStrings, copyIndonesianStrings, localesConfigTask)
     }
 }
 
