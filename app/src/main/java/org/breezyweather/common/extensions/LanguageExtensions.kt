@@ -86,7 +86,8 @@ val Locale.codeForNaturalEarthService: String
         return if (!country.isNullOrEmpty() &&
             (
                 country.equals("tw", ignoreCase = true) ||
-                    country.equals("hk", ignoreCase = true)
+                    country.equals("hk", ignoreCase = true) ||
+                    country.equals("mo", ignoreCase = true)
                 )
         ) {
             language.uppercase() + "T"

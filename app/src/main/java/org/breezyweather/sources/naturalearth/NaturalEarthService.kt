@@ -104,15 +104,9 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
         locationList.add(
             location.copy(
                 country = matchingCountries[0].getProperty("NAME_$languageCode")
-                    ?: matchingCountries[0].getProperty("NAME")
-                    ?: matchingCountries[0].getProperty("NAME_EN")
-                    ?: matchingCountries[0].getProperty("ISO_A2").takeIf {
-                        it != "-99"
-                    } ?: matchingCountries[0].getProperty("ISO_A2_EH")
+                    ?: matchingCountries[0].getProperty("NAME_LONG")
                     ?: "",
-                countryCode = matchingCountries[0].getProperty("ISO_A2").takeIf {
-                    it != "-99"
-                } ?: matchingCountries[0].getProperty("ISO_A2_EH"),
+                countryCode = matchingCountries[0].getProperty("ISO_A2"),
                 // Make sure to update TimeZone, especially useful on current location
                 timeZone = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     android.icu.util.TimeZone.getDefault().id
