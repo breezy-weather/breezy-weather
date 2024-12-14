@@ -36,8 +36,14 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@cc4fc85e6b35bafd578d5ffbc76a5518407e1af0 # v4.2.1
 
-      - name: Lint + Assemble basic flavor
-        run: ./gradlew spotlessCheck assembleBasicDebug
+      - name: Lint
+        run: ./gradlew spotlessCheck
+
+      - name: Clean build
+        run: ./gradlew clean
+
+      - name: Assemble basic flavor
+        run: ./gradlew assembleBasicRelease
 
       - uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
         with:

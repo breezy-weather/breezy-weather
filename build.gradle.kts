@@ -14,4 +14,7 @@ plugins {
 
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
+    delete("app/src/main/res/values-in/")
+    delete("app/src/main/res/values-iw/")
+    delete("app/src/main/res/xml/locales_config.xml")
 }
