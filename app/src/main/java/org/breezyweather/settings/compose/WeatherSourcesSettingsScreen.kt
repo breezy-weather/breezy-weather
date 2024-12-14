@@ -35,7 +35,8 @@ import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.LocationSource
-import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.getName
 import org.breezyweather.common.ui.composables.AlertDialogLink
 import org.breezyweather.common.ui.composables.SourceView
 import org.breezyweather.common.ui.widgets.Material3CardListItem
@@ -61,7 +62,7 @@ import java.text.Collator
 fun WeatherSourcesSettingsScreen(
     context: Context,
     onNavigateBack: () -> Unit,
-    configuredWorldwideSources: List<MainWeatherSource>,
+    configuredWorldwideSources: List<WeatherSource>,
     configurableSources: List<ConfigurableSource>,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
@@ -106,7 +107,7 @@ fun WeatherSourcesSettingsScreen(
             sectionHeaderItem(R.string.settings_weather_sources_section_general)
             listPreferenceItem(R.string.settings_weather_sources_default_source) { id ->
                 val configuredWorldwideSourcesAssociated = configuredWorldwideSources.associate { it.id to it.name }
-                val defaultWeatherSource = SettingsManager.getInstance(context).defaultWeatherSource
+                val defaultWeatherSource = SettingsManager.getInstance(context).defaultForecastSource
                 SourceView(
                     title = stringResource(id),
                     selectedKey = if (configuredWorldwideSourcesAssociated.contains(defaultWeatherSource)) {
@@ -114,12 +115,17 @@ fun WeatherSourcesSettingsScreen(
                     } else {
                         "auto"
                     },
-                    sourceList = mapOf(
-                        "auto" to stringResource(R.string.settings_automatic)
-                    ) + configuredWorldwideSources.associate { it.id to it.name },
+                    sourceList = buildList {
+                        add(Triple("auto", stringResource(R.string.settings_automatic), true))
+                        addAll(
+                            configuredWorldwideSources.map {
+                                Triple(it.id, it.getName(context), it !is ConfigurableSource || it.isConfigured)
+                            }
+                        )
+                    },
                     card = true
                 ) { defaultSource ->
-                    SettingsManager.getInstance(context).defaultWeatherSource = defaultSource
+                    SettingsManager.getInstance(context).defaultForecastSource = defaultSource
                 }
             }
             sectionFooterItem(R.string.settings_weather_sources_section_general)

@@ -18,28 +18,23 @@ package org.breezyweather.sources.metie
 
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.metie.json.MetIeHourly
 import org.breezyweather.sources.metie.json.MetIeLocationResult
 import org.breezyweather.sources.metie.json.MetIeWarning
-import org.breezyweather.sources.metie.json.MetIeWarningResult
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
-fun convert(
+internal fun convert(
     location: Location,
     result: MetIeLocationResult,
 ): Location {
@@ -51,36 +46,18 @@ fun convert(
         city = result.city ?: ""
     )
 }
-fun convert(
-    hourlyResult: List<MetIeHourly>?,
-    warningsResult: MetIeWarningResult?,
-    location: Location,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    // If the API doesn’t return data, consider data as garbage and keep cached data
-    if (hourlyResult.isNullOrEmpty()) {
-        throw InvalidOrIncompleteDataException()
-    }
 
-    return WeatherWrapper(
-        dailyForecast = getDailyForecast(location, hourlyResult),
-        hourlyForecast = getHourlyForecast(hourlyResult),
-        alertList = getAlertList(location, warningsResult?.warnings?.national),
-        failedFeatures = failedFeatures
-    )
-}
-
-private fun getDailyForecast(
+internal fun getDailyForecast(
     location: Location,
     hourlyResult: List<MetIeHourly>,
-): List<Daily> {
-    val dailyList = mutableListOf<Daily>()
+): List<DailyWrapper> {
+    val dailyList = mutableListOf<DailyWrapper>()
     val hourlyListByDay = hourlyResult.groupBy { it.date }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
         val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
         if (dayDate != null) {
             dailyList.add(
-                Daily(
+                DailyWrapper(
                     date = dayDate
                 )
             )
@@ -92,7 +69,7 @@ private fun getDailyForecast(
 /**
  * Returns hourly forecast
  */
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     hourlyResult: List<MetIeHourly>,
 ): List<HourlyWrapper> {
     val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH)
@@ -119,7 +96,7 @@ private fun getHourlyForecast(
     }
 }
 
-fun getAlertList(location: Location, warnings: List<MetIeWarning>?): List<Alert>? {
+internal fun getAlertList(location: Location, warnings: List<MetIeWarning>?): List<Alert>? {
     if (warnings == null) return null
     if (warnings.isEmpty()) return emptyList()
 
@@ -160,15 +137,6 @@ fun getAlertList(location: Location, warnings: List<MetIeWarning>?): List<Alert>
                 }
             )
         }
-}
-
-fun convertSecondary(
-    warningsResult: MetIeWarningResult?,
-    location: Location,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        alertList = getAlertList(location, warningsResult?.warnings?.national)
-    )
 }
 
 private fun getWeatherCode(icon: String?): WeatherCode? {

@@ -4,6 +4,7 @@
     <string name="app_name">Weather</string>
     <string name="breezy_weather" translatable="false">Breezy Weather</string>
     <!-- Card names -->
+    <string name="forecast">Forecast</string>
     <string name="daily_forecast">Daily forecast</string>
     <string name="hourly_forecast">Hourly forecast</string>
     <string name="current_weather">Current weather</string>
@@ -237,6 +238,7 @@
     <string name="ceiling_short">Ceiling</string>
     <!-- Weather sources -->
     <string name="weather_data_by">Data by %s</string>
+    <string name="weather_forecast_data_by">Forecast data by %s</string>
     <string name="weather_current_data_by">Current weather data by %s</string>
     <string name="weather_air_quality_data_by">Air quality data by %s</string>
     <string name="weather_pollen_data_by">Pollen data by %s</string>
@@ -245,7 +247,6 @@
     <string name="weather_alert_data_by">Alert data by %s</string>
     <string name="weather_normals_data_by">Temperature normals data by %s</string>
     <string name="weather_message_data_refresh_failed">Weather data refresh failed</string>
-    <string name="weather_message_secondary_data_refresh_failed">Weather data refresh for a secondary weather source failed</string>
     <string name="weather_message_unsupported_feature">Source doesn’t support one of requested features</string>
     <!-- %s is a feature such as: air quality, pollen, alerts, normals, etc -->
     <string name="weather_message_failed_feature">Source failed to update: %s</string>
@@ -533,10 +534,11 @@
     <string name="settings_weather_sources_summary">Default weather source for new locations, custom API keys, other source settings</string>
     <string name="settings_weather_sources_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_weather_sources_default_source">Default source for new locations</string>
-    <string name="settings_weather_source_main">Main source</string>
     <string name="settings_weather_source_unavailable">%s (unavailable)</string>
+    <string name="settings_weather_source_not_configured">%s (not configured)</string>
     <string name="settings_weather_source_none">None</string>
     <string name="settings_weather_source_freenet_disclaimer">More weather sources are available from other flavors of the app. Tap here to learn more.</string>
+    <string name="settings_weather_source_current_position_disclaimer">More weather sources may become available for your location after the first refresh.</string>
     <string name="settings_weather_sources_per_location_summary">Customize weather data sources used for this location</string>
     <string name="settings_source_default_value">Default (unchanged)</string>
     <string name="settings_source_api_key">API key</string>

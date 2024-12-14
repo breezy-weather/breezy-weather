@@ -18,23 +18,19 @@ package org.breezyweather.sources.lhmt
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.sources.lhmt.json.LhmtAlertText
@@ -46,7 +42,7 @@ import java.util.Locale
 import java.util.TimeZone
 
 // reverse geocoding
-fun convert(
+internal fun convert(
     location: Location,
     forecastLocationsResult: List<LhmtLocationsResult>,
 ): List<Location> {
@@ -82,7 +78,7 @@ fun convert(
 }
 
 // location parameters
-fun convert(
+internal fun convert(
     location: Location,
     forecastLocationsResult: List<LhmtLocationsResult>,
     currentLocationsResult: List<LhmtLocationsResult>,
@@ -109,7 +105,7 @@ fun convert(
     )
 }
 
-fun getNearestLocation(
+internal fun getNearestLocation(
     location: Location,
     locationsResult: List<LhmtLocationsResult>,
     limit: Double = 50000.0,
@@ -132,47 +128,12 @@ fun getNearestLocation(
     return nearestLocation
 }
 
-fun convert(
-    context: Context,
-    location: Location,
-    currentResult: LhmtWeatherResult,
-    forecastResult: LhmtWeatherResult,
-    alertsResult: LhmtAlertsResult,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    if (forecastResult.forecastTimestamps.isNullOrEmpty()) {
-        throw InvalidOrIncompleteDataException()
-    }
-    val hourlyForecast = getHourlyForecast(context, forecastResult)
-    return WeatherWrapper(
-        current = getCurrent(context, currentResult),
-        dailyForecast = getDailyForecast(hourlyForecast),
-        hourlyForecast = hourlyForecast,
-        alertList = getAlertList(context, location, alertsResult),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun convertSecondary(
-    context: Context,
-    location: Location,
-    currentResult: LhmtWeatherResult?,
-    alertsResult: LhmtAlertsResult?,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = currentResult?.let { getCurrent(context, it) },
-        alertList = alertsResult?.let { getAlertList(context, location, it) },
-        failedFeatures = failedFeatures
-    )
-}
-
-private fun getCurrent(
+internal fun getCurrent(
     context: Context,
     currentResult: LhmtWeatherResult,
-): Current? {
+): CurrentWrapper? {
     return currentResult.observations?.last()?.let {
-        Current(
+        CurrentWrapper(
             weatherText = getWeatherText(context, it.conditionCode),
             weatherCode = getWeatherCode(it.conditionCode),
             temperature = Temperature(
@@ -191,21 +152,23 @@ private fun getCurrent(
     }
 }
 
-private fun getDailyForecast(
-    hourlyForecast: List<HourlyWrapper>,
-): List<Daily> {
+internal fun getDailyForecast(
+    hourlyForecast: List<HourlyWrapper>?,
+): List<DailyWrapper> {
+    if (hourlyForecast.isNullOrEmpty()) return emptyList()
+
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Europe/Vilnius")
     val hourlyListDates = hourlyForecast.groupBy { formatter.format(it.date) }.keys
 
     return hourlyListDates.map {
-        Daily(
+        DailyWrapper(
             date = formatter.parse(it)!!
         )
     }.dropLast(1) // Remove last (incomplete) daily item
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     context: Context,
     forecastResult: LhmtWeatherResult,
 ): List<HourlyWrapper> {
@@ -239,7 +202,7 @@ private fun getHourlyForecast(
     return hourlyList
 }
 
-private fun getAlertList(
+internal fun getAlertList(
     context: Context,
     location: Location,
     alertsResult: LhmtAlertsResult,

@@ -17,6 +17,9 @@
 package org.breezyweather
 
 import android.content.Context
+import breezyweather.data.location.LocationRepository
+import breezyweather.domain.source.SourceFeature
+import kotlinx.coroutines.runBlocking
 import org.breezyweather.background.forecast.TodayForecastNotificationJob
 import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
 import org.breezyweather.background.weather.WeatherUpdateJob
@@ -24,6 +27,7 @@ import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.settings.SettingsManager
+import org.breezyweather.sources.SourceManager
 import java.io.File
 
 object Migrations {
@@ -33,7 +37,7 @@ object Migrations {
      *
      * @return true if a migration is performed, false otherwise.
      */
-    fun upgrade(context: Context): Boolean {
+    fun upgrade(context: Context, sourceManager: SourceManager, locationRepository: LocationRepository): Boolean {
         val lastVersionCode = SettingsManager.getInstance(context).lastVersionCode
         val oldVersion = lastVersionCode
         if (oldVersion < BuildConfig.VERSION_CODE) {
@@ -97,6 +101,70 @@ object Migrations {
                         }
                     } catch (ignored: Throwable) {
                         // ignored
+                    }
+                }
+
+                if (oldVersion < 50400) {
+                    // V5.4.0 changes the way empty source value work on locations
+                    runBlocking {
+                        locationRepository.getAllLocations(withParameters = false)
+                            .forEach {
+                                val source = sourceManager.getWeatherSource(it.forecastSource)
+                                if (source != null) {
+                                    locationRepository.update(
+                                        it.copy(
+                                            currentSource = if (it.currentSource.isNullOrEmpty() &&
+                                                SourceFeature.CURRENT in source.supportedFeatures &&
+                                                source.isFeatureSupportedForLocation(it, SourceFeature.CURRENT)
+                                            ) {
+                                                source.id
+                                            } else {
+                                                it.currentSource
+                                            },
+                                            airQualitySource = if (it.airQualitySource.isNullOrEmpty() &&
+                                                SourceFeature.AIR_QUALITY in source.supportedFeatures &&
+                                                source.isFeatureSupportedForLocation(it, SourceFeature.AIR_QUALITY)
+                                            ) {
+                                                source.id
+                                            } else {
+                                                it.airQualitySource
+                                            },
+                                            pollenSource = if (it.pollenSource.isNullOrEmpty() &&
+                                                SourceFeature.POLLEN in source.supportedFeatures &&
+                                                source.isFeatureSupportedForLocation(it, SourceFeature.POLLEN)
+                                            ) {
+                                                source.id
+                                            } else {
+                                                it.pollenSource
+                                            },
+                                            minutelySource = if (it.minutelySource.isNullOrEmpty() &&
+                                                SourceFeature.MINUTELY in source.supportedFeatures &&
+                                                source.isFeatureSupportedForLocation(it, SourceFeature.MINUTELY)
+                                            ) {
+                                                source.id
+                                            } else {
+                                                it.minutelySource
+                                            },
+                                            alertSource = if (it.alertSource.isNullOrEmpty() &&
+                                                SourceFeature.ALERT in source.supportedFeatures &&
+                                                source.isFeatureSupportedForLocation(it, SourceFeature.ALERT)
+                                            ) {
+                                                source.id
+                                            } else {
+                                                it.alertSource
+                                            },
+                                            normalsSource = if (it.normalsSource.isNullOrEmpty() &&
+                                                SourceFeature.NORMALS in source.supportedFeatures &&
+                                                source.isFeatureSupportedForLocation(it, SourceFeature.NORMALS)
+                                            ) {
+                                                source.id
+                                            } else {
+                                                it.normalsSource
+                                            }
+                                        )
+                                    )
+                                }
+                            }
                     }
                 }
             }

@@ -548,12 +548,10 @@
     <string name="weather_minutely_data_by">临近降水预报数据来自 %s</string>
     <string name="weather_pollen_data_by">花粉数据来自 %s</string>
     <string name="weather_alert_data_by">预警数据来自 %s</string>
-    <string name="weather_message_secondary_data_refresh_failed">备用天气源的天气数据刷新失败</string>
     <string name="weather_message_invalid_location">无效的位置，请删除并重新添加</string>
     <string name="wind_gusts">阵风</string>
     <string name="about_dependencies">依赖</string>
     <string name="action_save">保存</string>
-    <string name="settings_weather_source_main">主要数据源</string>
     <string name="settings_weather_sources_per_location_summary">自定义用于此位置的天气数据源</string>
     <string name="precipitation_nowcasting">临近降水预报</string>
     <string name="about_privacy_policy">隐私政策</string>

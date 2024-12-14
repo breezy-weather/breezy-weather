@@ -21,7 +21,6 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -35,11 +34,11 @@ import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.brightsky.json.BrightSkyAlertsResult
 import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeatherResult
+import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -50,7 +49,7 @@ import javax.inject.Named
 class BrightSkyService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") val client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ConfigurableSource {
+) : HttpSource(), WeatherSource, ConfigurableSource {
 
     override val id = "brightsky"
     override val name = "Bright Sky (DWD) (${Locale(context.currentLocale.code, "DE").displayCountry})"
@@ -58,7 +57,7 @@ class BrightSkyService @Inject constructor(
     override val privacyPolicyUrl = "https://brightsky.dev/"
 
     override val color = Color.rgb(240, 177, 138)
-    override val weatherAttribution =
+    private val weatherAttribution =
         "Bright Sky, Data basis: Deutscher Wetterdienst, reproduced graphically and with missing data computed or extrapolated by Breezy Weather"
 
     private val mApi: BrightSkyApi
@@ -69,14 +68,15 @@ class BrightSkyService @Inject constructor(
                 .create(BrightSkyApi::class.java)
         }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("DE", ignoreCase = true)
     }
@@ -84,44 +84,51 @@ class BrightSkyService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val initialDate = Date().toTimezoneNoHour(location.javaTimeZone)
-        val date = initialDate!!.toCalendarWithTimeZone(location.javaTimeZone).apply {
-            add(Calendar.DAY_OF_YEAR, -1)
-            set(Calendar.HOUR_OF_DAY, 0)
-        }.time
-        val lastDate = initialDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
-            add(Calendar.DAY_OF_YEAR, 12)
-            set(Calendar.HOUR_OF_DAY, 0)
-        }.time
-
-        val weather = mApi.getWeather(
-            location.latitude,
-            location.longitude,
-            date.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss", location),
-            lastDate.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss", location)
-        )
-
         val failedFeatures = mutableListOf<SourceFeature>()
-        val curWeather = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val weather = if (SourceFeature.FORECAST in requestedFeatures) {
+            val initialDate = Date().toTimezoneNoHour(location.javaTimeZone)
+            val date = initialDate!!.toCalendarWithTimeZone(location.javaTimeZone).apply {
+                add(Calendar.DAY_OF_YEAR, -1)
+                set(Calendar.HOUR_OF_DAY, 0)
+            }.time
+            val lastDate = initialDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
+                add(Calendar.DAY_OF_YEAR, 12)
+                set(Calendar.HOUR_OF_DAY, 0)
+            }.time
+
+            mApi.getWeather(
+                location.latitude,
+                location.longitude,
+                date.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss", location),
+                lastDate.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss", location)
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(BrightSkyWeatherResult())
+            }
+        } else {
+            Observable.just(BrightSkyWeatherResult())
+        }
+
+        val curWeather = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrentWeather(
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(BrightSkyCurrentWeatherResult())
             }
         } else {
             Observable.just(BrightSkyCurrentWeatherResult())
         }
 
-        val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val alerts = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getAlerts(
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                failedFeatures.add(SourceFeature.ALERT)
                 Observable.just(BrightSkyAlertsResult())
             }
         } else {
@@ -130,68 +137,29 @@ class BrightSkyService @Inject constructor(
 
         return Observable.zip(weather, curWeather, alerts) { brightSkyWeather, brightSkyCurWeather, brightSkyAlerts ->
             val languageCode = context.currentLocale.code
-            convert(
-                brightSkyWeather,
-                brightSkyCurWeather,
-                brightSkyAlerts,
-                location,
-                languageCode,
-                failedFeatures
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(location, brightSkyWeather.weather)
+                } else {
+                    null
+                },
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(brightSkyWeather.weather)
+                } else {
+                    null
+                },
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(brightSkyCurWeather.weather)
+                } else {
+                    null
+                },
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlertList(brightSkyAlerts.alerts, languageCode)
+                } else {
+                    null
+                },
+                failedFeatures = failedFeatures
             )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        val failedFeatures = mutableListOf<SourceFeature>()
-        val currentWeather = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getCurrentWeather(
-                location.latitude,
-                location.longitude
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(BrightSkyCurrentWeatherResult())
-            }
-        } else {
-            Observable.just(BrightSkyCurrentWeatherResult())
-        }
-
-        val alerts = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            mApi.getAlerts(
-                location.latitude,
-                location.longitude
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                Observable.just(BrightSkyAlertsResult())
-            }
-        } else {
-            Observable.just(BrightSkyAlertsResult())
-        }
-
-        return Observable.zip(currentWeather, alerts) { brightSkyCurrentWeather, brightSkyAlerts ->
-            val languageCode = context.currentLocale.code
-            convertSecondary(brightSkyCurrentWeather, brightSkyAlerts, languageCode, failedFeatures)
         }
     }
 

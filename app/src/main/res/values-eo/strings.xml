@@ -338,7 +338,6 @@
     <string name="settings_location_service">Loka servo</string>
     <string name="settings_weather_sources">Veterfontoj</string>
     <string name="settings_weather_sources_summary">Agordoj de veterfontoj</string>
-    <string name="settings_weather_source_main">Ĉefa fonto</string>
     <string name="settings_source_default_value">Implicita (neŝanĝita)</string>
     <string name="settings_source_api_key">API ŝlosilo</string>
     <string name="settings_source_instance">Servilo</string>

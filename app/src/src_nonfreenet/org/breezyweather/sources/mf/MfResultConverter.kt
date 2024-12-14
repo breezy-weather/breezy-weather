@@ -19,12 +19,9 @@ package org.breezyweather.sources.mf
 import android.graphics.Color
 import androidx.annotation.ColorInt
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.MoonPhase
@@ -35,15 +32,13 @@ import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.sources.mf.json.MfCurrentResult
 import org.breezyweather.sources.mf.json.MfEphemeris
-import org.breezyweather.sources.mf.json.MfEphemerisResult
 import org.breezyweather.sources.mf.json.MfForecastDaily
 import org.breezyweather.sources.mf.json.MfForecastHourly
 import org.breezyweather.sources.mf.json.MfForecastProbability
@@ -60,7 +55,7 @@ import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 
-fun convert(location: Location, result: MfForecastResult): Location {
+internal fun convert(location: Location, result: MfForecastResult): Location {
     return if (result.properties == null) {
         location
     } else {
@@ -79,51 +74,12 @@ fun convert(location: Location, result: MfForecastResult): Location {
     }
 }
 
-fun convert(
-    location: Location,
-    currentResult: MfCurrentResult,
-    forecastResult: MfForecastResult,
-    ephemerisResult: MfEphemerisResult,
-    rainResult: MfRainResult?,
-    warningsJ0Result: MfWarningsResult,
-    warningsJ1Result: MfWarningsResult,
-    normalsResult: MfNormalsResult,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
-    if (forecastResult.properties == null ||
-        forecastResult.properties.forecast.isNullOrEmpty() ||
-        forecastResult.properties.dailyForecast.isNullOrEmpty()
-    ) {
-        throw InvalidOrIncompleteDataException()
-    }
-    return WeatherWrapper(
-        /*base = Base(
-            publishDate = forecastResult.updateTime ?: Date()
-        ),*/
-        current = getCurrent(currentResult),
-        normals = getNormals(location, normalsResult),
-        dailyForecast = getDailyList(
-            location,
-            forecastResult.properties.dailyForecast,
-            ephemerisResult.properties?.ephemeris
-        ),
-        hourlyForecast = getHourlyList(
-            forecastResult.properties.forecast,
-            forecastResult.properties.probabilityForecast
-        ),
-        minutelyForecast = getMinutelyList(rainResult),
-        alertList = getWarningsList(warningsJ0Result, warningsJ1Result),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun getCurrent(currentResult: MfCurrentResult): Current? {
+internal fun getCurrent(currentResult: MfCurrentResult): CurrentWrapper? {
     if (currentResult.properties?.gridded == null) {
         return null
     }
 
-    return Current(
+    return CurrentWrapper(
         weatherText = currentResult.properties.gridded.weatherDescription,
         weatherCode = getWeatherCode(currentResult.properties.gridded.weatherIcon),
         temperature = Temperature(
@@ -136,12 +92,13 @@ fun getCurrent(currentResult: MfCurrentResult): Current? {
     )
 }
 
-private fun getDailyList(
+internal fun getDailyList(
     location: Location,
-    dailyForecasts: List<MfForecastDaily>,
+    dailyForecasts: List<MfForecastDaily>?,
     ephemerisResult: MfEphemeris?,
-): List<Daily> {
-    val dailyList: MutableList<Daily> = ArrayList(dailyForecasts.size)
+): List<DailyWrapper> {
+    if (dailyForecasts.isNullOrEmpty()) return emptyList()
+    val dailyList: MutableList<DailyWrapper> = ArrayList(dailyForecasts.size)
     for (i in 0 until dailyForecasts.size - 1) {
         val dailyForecast = dailyForecasts[i]
         // Given as UTC, we need to convert in the correct timezone at 00:00
@@ -157,7 +114,7 @@ private fun getDailyList(
         }
         val theDayInLocal = dayInLocalCalendar.time
         dailyList.add(
-            Daily(
+            DailyWrapper(
                 date = theDayInLocal,
                 day = HalfDay(
                     // Too complicated to get weather from hourly, so let's just use daily info for both day and night
@@ -200,11 +157,11 @@ private fun getDailyList(
     return dailyList
 }
 
-private fun getHourlyList(
-    hourlyForecastList: List<MfForecastHourly>,
+internal fun getHourlyList(
+    hourlyForecastList: List<MfForecastHourly>?,
     probabilityForecastResult: List<MfForecastProbability>?,
-): List<HourlyWrapper> {
-    return hourlyForecastList.map { hourlyForecast ->
+): List<HourlyWrapper>? {
+    return hourlyForecastList?.map { hourlyForecast ->
         HourlyWrapper(
             date = hourlyForecast.time,
             weatherText = hourlyForecast.weatherDescription,
@@ -311,7 +268,7 @@ private fun getHourlyPrecipitationProbability(
     )
 }
 
-private fun getMinutelyList(rainResult: MfRainResult?): List<Minutely> {
+internal fun getMinutelyList(rainResult: MfRainResult?): List<Minutely> {
     val minutelyList: MutableList<Minutely> = arrayListOf()
     rainResult?.properties?.rainForecasts?.forEachIndexed { i, rainForecast ->
         minutelyList.add(
@@ -337,7 +294,7 @@ private fun getMinutelyList(rainResult: MfRainResult?): List<Minutely> {
     return minutelyList
 }
 
-private fun getWarningsList(warningsJ0Result: MfWarningsResult?, warningsJ1Result: MfWarningsResult?): List<Alert>? {
+internal fun getWarningsList(warningsJ0Result: MfWarningsResult?, warningsJ1Result: MfWarningsResult?): List<Alert>? {
     return if (warningsJ0Result != null && warningsJ1Result != null) {
         getWarningsList(warningsJ0Result) + getWarningsList(warningsJ1Result)
     } else if (warningsJ0Result != null) {
@@ -414,7 +371,7 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
     return alertList
 }
 
-fun getNormals(location: Location, normalsResult: MfNormalsResult): Normals? {
+internal fun getNormals(location: Location, normalsResult: MfNormalsResult): Normals? {
     val currentMonth = Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.MONTH]
     val normalsStats = normalsResult.properties?.stats?.getOrNull(currentMonth)
     return if (normalsStats != null) {
@@ -435,6 +392,7 @@ private fun getPrecipitationIntensity(rain: Int): Double = when (rain) {
     else -> 0.0
 }
 
+// TODO: Move to non-translatable en/fr strings
 private fun getWarningType(phemononId: String): String = when (phemononId) {
     "1" -> "Vent"
     "2" -> "Pluie-Inondation"
@@ -448,6 +406,7 @@ private fun getWarningType(phemononId: String): String = when (phemononId) {
     else -> "Divers"
 }
 
+// TODO: Move to non-translatable en/fr strings
 private fun getWarningText(colorId: Int): String = when (colorId) {
     4 -> "Vigilance absolue"
     3 -> "Soyez très vigilant"
@@ -508,6 +467,7 @@ private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsR
         if (content.toString().isNotEmpty()) {
             content.append("\n\n")
         }
+        // TODO: Move to non-translatable en/fr strings
         content
             .append("CONSÉQUENCES POSSIBLES\n")
             .append(consequences)
@@ -516,6 +476,7 @@ private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsR
         if (content.toString().isNotEmpty()) {
             content.append("\n\n")
         }
+        // TODO: Move to non-translatable en/fr strings
         content
             .append("CONSEILS DE COMPORTEMENT\n")
             .append(advices)
@@ -575,44 +536,7 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
     }
 }
 
-/**
- * Secondary convert
- */
-fun convertSecondary(
-    location: Location,
-    currentResult: MfCurrentResult?,
-    minuteResult: MfRainResult?,
-    alertJ0ResultList: MfWarningsResult?,
-    alertJ1ResultList: MfWarningsResult?,
-    normalsResult: MfNormalsResult?,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = if (currentResult != null) {
-            getCurrent(currentResult)
-        } else {
-            null
-        },
-        minutelyForecast = if (minuteResult != null) {
-            getMinutelyList(minuteResult)
-        } else {
-            null
-        },
-        alertList = if (alertJ0ResultList != null || alertJ1ResultList != null) {
-            getWarningsList(alertJ0ResultList, alertJ1ResultList)
-        } else {
-            null
-        },
-        normals = if (normalsResult != null) {
-            getNormals(location, normalsResult)
-        } else {
-            null
-        },
-        failedFeatures = failedFeatures
-    )
-}
-
-val frenchDepartments: Map<String, String> = mapOf(
+private val frenchDepartments: Map<String, String> = mapOf(
     "01" to "Ain",
     "02" to "Aisne",
     "03" to "Allier",

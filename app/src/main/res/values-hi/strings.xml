@@ -110,7 +110,6 @@
     <string name="weather_normals_data_by">%s द्वारा तापमान सामान्य डेटा</string>
     <string name="weather_minutely_data_by">%s द्वारा वर्षा की वर्तमान पूर्वानुमान डेटा</string>
     <string name="weather_message_unsupported_feature">स्रोत अनुरोधित सुविधाओं में से किसी एक का समर्थन नहीं करता है</string>
-    <string name="weather_message_secondary_data_refresh_failed">मौसम डेटा एक माध्यमिक मौसम स्रोत के लिए ताज़ा विफल रहा</string>
     <string name="weather_api_limit_reached_title">एपीआई अनुरोध की सीमा पूरी हो गई</string>
     <string name="weather_api_limit_reached_content">सीमा को हल करने के लिए, अपनी स्वयं की एपीआई कुंजी जोड़ें।</string>
     <string name="weather_api_key_required_missing_title">आवश्यक एपीआई कुंजी लापता</string>
@@ -478,7 +477,6 @@
     <string name="widget_custom_subtitle_keyword_xnwd_description">आज, कल, …, 4 दिन बाद की रात्रिकालीन हवा</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">आज, कल, …, 4 दिन बाद का वायु गुणवत्ता सूचकांक</string>
     <string name="settings_weather_sources_default_source">नये स्थानों के लिए डिफ़ॉल्ट स्रोत</string>
-    <string name="settings_weather_source_main">मुख्य स्त्रोत</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">वर्तमान वायु गुणवत्ता सूचकांक</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">आज, कल, …, 4 दिन बाद का पराग सूचकांक सारांश</string>
     <string name="widget_custom_subtitle_explanation">आप कुछ भी इनपुट कर सकते हैं, लेकिन कृपया पाठ की लंबाई पर ध्यान दें। अगर आप मौसम डेटा को उद्धृत करना चाहते हैं, तो कृपया $ का उपयोग करके संबंधित कीवर्ड को संदर्भित करें।

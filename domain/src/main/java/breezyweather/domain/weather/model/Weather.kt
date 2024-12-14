@@ -16,6 +16,10 @@
 
 package breezyweather.domain.weather.model
 
+import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.PollenWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import java.io.Serializable
 import java.util.Date
@@ -117,11 +121,59 @@ data class Weather(
         }
 
     fun toWeatherWrapper() = WeatherWrapper(
-        current = this.current,
+        current = this.current?.toCurrentWrapper(),
         normals = this.normals,
-        dailyForecast = this.dailyForecast,
+        dailyForecast = this.dailyForecast.map { it.toDailyWrapper() },
         hourlyForecast = this.hourlyForecast.map { it.toHourlyWrapper() },
         minutelyForecast = this.minutelyForecast,
         alertList = this.alertList
     )
+
+    fun toDailyWrapperList(startDate: Date): List<DailyWrapper> {
+        return this.dailyForecast
+            .filter { it.date >= startDate }
+            .map { it.toDailyWrapper() }
+    }
+
+    fun toHourlyWrapperList(startDate: Date): List<HourlyWrapper> {
+        return this.hourlyForecast
+            .filter { it.date >= startDate }
+            .map { it.toHourlyWrapper() }
+    }
+
+    fun toAirQualityWrapperList(startDate: Date): AirQualityWrapper? {
+        val hourlyAirQuality = hourlyForecast.filter { it.date >= startDate && it.airQuality?.isValid == true }
+        val dailyAirQuality = dailyForecast.filter { it.date >= startDate && it.airQuality?.isValid == true }
+        val currentAirQuality = current?.airQuality
+        if (hourlyAirQuality.isEmpty() && dailyAirQuality.isEmpty()) return null
+
+        return AirQualityWrapper(
+            current = currentAirQuality,
+            dailyForecast = dailyAirQuality.associate { it.date to it.airQuality!! },
+            hourlyForecast = hourlyAirQuality.associate { it.date to it.airQuality!! }
+        )
+    }
+
+    fun toPollenWrapperList(startDate: Date): PollenWrapper? {
+        val dailyPollen = dailyForecast.filter { it.date >= startDate && it.pollen?.isValid == true }
+        if (dailyPollen.isEmpty()) return null
+
+        return PollenWrapper(
+            dailyForecast = dailyPollen.associate { it.date to it.pollen!! }
+        )
+    }
+
+    fun toMinutelyWrapper(): List<Minutely>? {
+        val now = Date()
+        return minutelyForecast
+            .filter { it.date >= now }
+            .let { if (it.size > 3) it else null }
+    }
+
+    fun toAlertsWrapper(): List<Alert> {
+        val now = Date()
+        return alertList.filter {
+            it.endDate == null || it.endDate.time > now.time
+        }
+    }
 }

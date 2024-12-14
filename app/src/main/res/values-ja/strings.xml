@@ -475,7 +475,6 @@
     <string name="air_quality_no2_info_introduction">二酸化窒素（NO₂）は、特有の刺激的で刺激的な臭気を持つ、窒息性の有毒な赤茶色のガスです。</string>
     <string name="air_quality_co_info_title">一酸化炭素（CO）</string>
     <string name="location_search_no_results">%1$s が %2$s を見つけられません</string>
-    <string name="settings_weather_source_main">主要情報源</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_kgfpsqcm_voice">キログラム力毎平方センチメートル</string>
     <string name="message_network_unavailable">ネットワークを利用できません</string>
@@ -532,7 +531,6 @@
     <string name="weather_air_quality_data_by">大気の質のデータ提供：%s</string>
     <string name="weather_minutely_data_by">降水量の予報データ提供：%s</string>
     <string name="weather_alert_data_by">警報のデータ提供：%s</string>
-    <string name="weather_message_secondary_data_refresh_failed">二次情報源を更新できませんでした</string>
     <string name="ephemeris_sunrise_at">日の出 %s</string>
     <string name="unit_cmph">cm/h</string>
     <string name="setting_weather_source_accu_hours">時間</string>

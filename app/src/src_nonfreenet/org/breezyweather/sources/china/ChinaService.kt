@@ -21,7 +21,8 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.model.AirQuality
+import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -32,9 +33,8 @@ import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.LocationSearchSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import retrofit2.Retrofit
@@ -45,12 +45,7 @@ import javax.inject.Named
 class ChinaService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(),
-    MainWeatherSource,
-    SecondaryWeatherSource,
-    LocationSearchSource,
-    ReverseGeocodingSource,
-    LocationParametersSource {
+) : HttpSource(), WeatherSource, LocationSearchSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "china"
     override val name = Locale(context.currentLocale.code, "CN").displayCountry
@@ -65,7 +60,6 @@ class ChinaService @Inject constructor(
     }
 
     override val color = Color.rgb(255, 105, 0)
-    override val weatherAttribution = "北京天气、彩云天气、中国环境监测总站"
     override val locationSearchAttribution = "北京天气、彩云天气、中国环境监测总站"
 
     private val mApi by lazy {
@@ -75,16 +69,18 @@ class ChinaService @Inject constructor(
             .create(ChinaApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_AIR_QUALITY,
-        SourceFeature.FEATURE_MINUTELY,
-        SourceFeature.FEATURE_ALERT
+    private val weatherAttribution = "北京天气、彩云天气、中国环境监测总站"
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.AIR_QUALITY to weatherAttribution,
+        SourceFeature.MINUTELY to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("CN", ignoreCase = true)
     }
@@ -92,84 +88,9 @@ class ChinaService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
-    ): Observable<WeatherWrapper> {
-        val locationKey = location.parameters
-            .getOrElse(id) { null }?.getOrElse("locationKey") { null }
-
-        if (locationKey.isNullOrEmpty()) {
-            return if (location.isCurrentPosition) {
-                Observable.error(ReverseGeocodingException())
-            } else {
-                Observable.error(InvalidLocationException())
-            }
-        }
-
-        val failedFeatures = mutableListOf<SourceFeature>()
-        val main = mApi.getForecastWeather(
-            location.latitude,
-            location.longitude,
-            location.isCurrentPosition,
-            locationKey = "weathercn%3A$locationKey",
-            days = 15,
-            appKey = CHINA_APP_KEY,
-            sign = CHINA_SIGN,
-            isGlobal = false,
-            context.currentLocale.toString().lowercase()
-        )
-        val minutely = if (!ignoreFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
-            mApi.getMinutelyWeather(
-                location.latitude,
-                location.longitude,
-                context.currentLocale.toString().lowercase(),
-                isGlobal = false,
-                appKey = CHINA_APP_KEY,
-                locationKey = "weathercn%3A$locationKey",
-                sign = CHINA_SIGN
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
-                Observable.just(ChinaMinutelyResult())
-            }
-        } else {
-            Observable.just(ChinaMinutelyResult())
-        }
-        return Observable.zip(main, minutely) { mainResult: ChinaForecastResult, minutelyResult: ChinaMinutelyResult ->
-            convert(
-                location,
-                mainResult,
-                minutelyResult,
-                failedFeatures
-            )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_AIR_QUALITY,
-        SourceFeature.FEATURE_MINUTELY,
-        SourceFeature.FEATURE_ALERT
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = weatherAttribution
-    override val pollenAttribution = null
-    override val minutelyAttribution = weatherAttribution
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
         requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        val locationKey = location.parameters
-            .getOrElse(id) { null }?.getOrElse("locationKey") { null }
+    ): Observable<WeatherWrapper> {
+        val locationKey = location.parameters.getOrElse(id) { null }?.getOrElse("locationKey") { null }
 
         if (locationKey.isNullOrEmpty()) {
             return if (location.isCurrentPosition) {
@@ -180,9 +101,10 @@ class ChinaService @Inject constructor(
         }
 
         val failedFeatures = mutableListOf<SourceFeature>()
-        val main = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT) ||
-            requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY) ||
-            requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)
+        val main = if (SourceFeature.FORECAST in requestedFeatures ||
+            SourceFeature.CURRENT in requestedFeatures ||
+            SourceFeature.AIR_QUALITY in requestedFeatures ||
+            SourceFeature.ALERT in requestedFeatures
         ) {
             mApi.getForecastWeather(
                 location.latitude,
@@ -195,22 +117,24 @@ class ChinaService @Inject constructor(
                 isGlobal = false,
                 context.currentLocale.toString().lowercase()
             ).onErrorResumeNext {
-                if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                if (SourceFeature.FORECAST in requestedFeatures) {
+                    failedFeatures.add(SourceFeature.FORECAST)
                 }
-                if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-                    failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                if (SourceFeature.CURRENT in requestedFeatures) {
+                    failedFeatures.add(SourceFeature.CURRENT)
                 }
-                if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                if (SourceFeature.AIR_QUALITY in requestedFeatures) {
+                    failedFeatures.add(SourceFeature.AIR_QUALITY)
+                }
+                if (SourceFeature.ALERT in requestedFeatures) {
+                    failedFeatures.add(SourceFeature.ALERT)
                 }
                 Observable.just(ChinaForecastResult())
             }
         } else {
             Observable.just(ChinaForecastResult())
         }
-
-        val minutely = if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
+        val minutely = if (SourceFeature.MINUTELY in requestedFeatures) {
             mApi.getMinutelyWeather(
                 location.latitude,
                 location.longitude,
@@ -220,19 +144,67 @@ class ChinaService @Inject constructor(
                 locationKey = "weathercn%3A$locationKey",
                 sign = CHINA_SIGN
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
+                failedFeatures.add(SourceFeature.MINUTELY)
                 Observable.just(ChinaMinutelyResult())
             }
         } else {
             Observable.just(ChinaMinutelyResult())
         }
-
         return Observable.zip(main, minutely) { mainResult: ChinaForecastResult, minutelyResult: ChinaMinutelyResult ->
-            convertSecondary(
-                location,
-                mainResult,
-                minutelyResult,
-                failedFeatures
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyList(
+                        mainResult.current?.pubTime,
+                        location,
+                        mainResult.forecastDaily
+                    )
+                } else {
+                    null
+                },
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyList(
+                        mainResult.current?.pubTime,
+                        location,
+                        mainResult.forecastHourly
+                    )
+                } else {
+                    null
+                },
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(mainResult.current, minutelyResult)
+                } else {
+                    null
+                },
+                airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
+                    mainResult.aqi?.let {
+                        AirQualityWrapper(
+                            current = AirQuality(
+                                pM25 = it.pm25?.toDoubleOrNull(),
+                                pM10 = it.pm10?.toDoubleOrNull(),
+                                sO2 = it.so2?.toDoubleOrNull(),
+                                nO2 = it.no2?.toDoubleOrNull(),
+                                o3 = it.o3?.toDoubleOrNull(),
+                                cO = it.co?.toDoubleOrNull()
+                            )
+                        )
+                    }
+                } else {
+                    null
+                },
+                minutelyForecast = if (SourceFeature.MINUTELY in requestedFeatures) {
+                    getMinutelyList(
+                        location,
+                        minutelyResult
+                    )
+                } else {
+                    null
+                },
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlertList(mainResult)
+                } else {
+                    null
+                },
+                failedFeatures = failedFeatures
             )
         }
     }

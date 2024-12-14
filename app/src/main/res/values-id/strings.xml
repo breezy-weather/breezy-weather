@@ -336,7 +336,6 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="about_contribution_designer">Perancang logo</string>
     <string name="common_weather_text_snow_heavy">Salju lebat</string>
-    <string name="settings_weather_source_main">Sumber utama</string>
     <string name="widget_week_style_3_days">3 hari</string>
     <string name="widget_subtitle_data_time">Waktu pemuatan ulang</string>
     <string name="settings_main">Layar utama</string>
@@ -538,7 +537,6 @@
     <string name="settings_debug_dump_crash_logs_summary">Menyimpan catatan galat di berkas untuk dibagikan dengan pengembang</string>
     <string name="settings_notifications_summary">Notifikasi peringatan cuaca, curah hujan atau prakiraan cuaca lokasi pertama</string>
     <string name="common_weather_text_rain_freezing_heavy">Hujan beku berat</string>
-    <string name="weather_message_secondary_data_refresh_failed">Pemuatan ulang data agar mendapatkan sumber cuaca sekunder gagal</string>
     <string name="settings_location_summary">Pengaturan layanan lokasi</string>
     <string name="common_weather_text_rain_showers_heavy">Hujan berat</string>
     <string name="common_weather_text_rain_snow_mixed">Hujan bercampur salju</string>

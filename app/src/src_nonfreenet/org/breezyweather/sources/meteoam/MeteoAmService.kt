@@ -22,17 +22,14 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.meteoam.json.MeteoAmForecastResult
 import org.breezyweather.sources.meteoam.json.MeteoAmObservationResult
 import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocationResult
@@ -44,7 +41,7 @@ import javax.inject.Named
 class MeteoAmService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource {
 
     override val id = "meteoam"
     override val name = "Servizio Meteo AM (${Locale(context.currentLocale.code, "IT").displayCountry})"
@@ -53,10 +50,6 @@ class MeteoAmService @Inject constructor(
 
     override val color = Color.rgb(20, 122, 179)
 
-    // Required wording for third-party use taken from https://www.meteoam.it/it/condizioni-utilizzo
-    override val weatherAttribution =
-        "Servizio Meteorologico dell’Aeronautica Militare. Informazioni elaborate utilizzando, tra l’altro, dati e prodotti del Servizio Meteorologico dell’Aeronautica Militare pubblicati sul sito www.meteoam.it"
-
     private val mApi by lazy {
         client
             .baseUrl(METEOAM_BASE_URL)
@@ -64,28 +57,40 @@ class MeteoAmService @Inject constructor(
             .create(MeteoAmApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT
+    // Required wording for third-party use taken from https://www.meteoam.it/it/condizioni-utilizzo
+    private val weatherAttribution = "Servizio Meteorologico dell’Aeronautica Militare. Informazioni elaborate " +
+        "utilizzando, tra l’altro, dati e prodotti del Servizio Meteorologico dell’Aeronautica Militare pubblicati " +
+        "sul sito www.meteoam.it"
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution
     )
 
     @SuppressLint("CheckResult")
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val failedFeatures = mutableListOf<SourceFeature>()
 
-        val forecast = mApi.getForecast(
-            location.latitude,
-            location.longitude
-        )
-        val observation = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getForecast(
+                location.latitude,
+                location.longitude
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(MeteoAmForecastResult())
+            }
+        } else {
+            Observable.just(MeteoAmForecastResult())
+        }
+        val observation = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(MeteoAmObservationResult())
             }
         } else {
@@ -95,49 +100,31 @@ class MeteoAmService @Inject constructor(
                 forecastResult: MeteoAmForecastResult,
                 observationResult: MeteoAmObservationResult,
             ->
-            convert(context, forecastResult, observationResult, failedFeatures)
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = null
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_CURRENT)) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-        val failedFeatures = mutableListOf<SourceFeature>()
-        return if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getCurrent(
-                location.latitude,
-                location.longitude
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(MeteoAmObservationResult())
-            }.map {
-                convertSecondary(context, it, failedFeatures)
-            }
-        } else {
-            Observable.just(SecondaryWeatherWrapper())
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(context, forecastResult.extrainfo?.stats)
+                } else {
+                    null
+                },
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(
+                        context,
+                        forecastResult.timeseries,
+                        forecastResult.paramlist,
+                        forecastResult.datasets?.data
+                    )
+                } else {
+                    null
+                },
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    val oParams = observationResult.paramlist
+                    val observationData = observationResult.datasets?.getOrElse("0") { null }
+                    observationData?.let { oParams?.let { getCurrent(context, oParams, observationData) } }
+                } else {
+                    null
+                },
+                failedFeatures = failedFeatures
+            )
         }
     }
 

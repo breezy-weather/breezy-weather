@@ -148,6 +148,7 @@
     <string name="uv_index_8_10">Très élevé</string>
     <string name="uv_index_11">Extrême</string>
 
+    <string name="forecast">Prévisions</string>
     <string name="daily_forecast">Prévisions quotidiennes</string>
     <string name="hourly_forecast">Prévisions heure par heure</string>
     <string name="current_weather">Météo actuelle</string>
@@ -218,7 +219,6 @@
     <string name="location_message_permission_background_missing">Permission d’accéder à la position en arrière-plan manquante</string>
     <string name="location_message_location_access_off">L’accès à la position est désactivé</string>
     <string name="weather_message_data_refresh_failed">Échec d’actualisation des données météo</string>
-    <string name="weather_message_secondary_data_refresh_failed">Échec d’actualisation des données météo d’une source secondaire</string>
     <string name="weather_message_unsupported_feature">La source ne supporte pas une des fonctionnalités demandées</string>
     <string name="weather_message_failed_feature">La source a échoué à mettre à jour : %s</string>
     <string name="weather_message_invalid_location">Emplacement invalide, veuillez le supprimer et le réajouter</string>
@@ -373,10 +373,11 @@
     <string name="settings_weather_sources">Sources météo</string>
     <string name="settings_weather_sources_summary">Source météo par défaut pour les nouveaux emplacements, clés API personnalisées, autres paramètres de source</string>
     <string name="settings_weather_sources_default_source">Source par défaut pour les nouveaux emplacements</string>
-    <string name="settings_weather_source_main">Source principale</string>
     <string name="settings_weather_source_unavailable">%s (indisponible)</string>
+    <string name="settings_weather_source_not_configured">%s (non configuré)</string>
     <string name="settings_weather_source_none">Aucune</string>
     <string name="settings_weather_source_freenet_disclaimer">D’autres sources sont disponibles à partir d’autres versions de l’application. Appuyez ici pour en savoir plus.</string>
+    <string name="settings_weather_source_current_position_disclaimer">D’autres sources pourraient devenir disponibles pour votre emplacement après une première mise à jour.</string>
     <string name="settings_weather_sources_per_location_summary">Personnalisez les sources de données météo utilisées pour cet emplacement</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Instance des prévisions</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Instance de qualité de l’air</string>
@@ -430,6 +431,7 @@
     <string name="settings_item_delete">Supprimer cet élément</string>
     <string name="location_swipe_to_delete">Vous pouvez balayer vers la gauche pour supprimer cet élément</string>
     <string name="weather_data_by">Données par %s</string> <!-- $ = weather source. -->
+    <string name="weather_forecast_data_by">Données de prévision par %s</string>
     <string name="weather_current_data_by">Données de météo actuelle par %s</string> <!-- $ = weather source. -->
     <string name="weather_air_quality_data_by">Données de qualité de l’air par %s</string>
     <string name="weather_pollen_data_by">Données de pollen par %s</string>

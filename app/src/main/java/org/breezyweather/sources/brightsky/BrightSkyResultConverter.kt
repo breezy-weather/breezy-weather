@@ -18,60 +18,28 @@ package org.breezyweather.sources.brightsky
 
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.brightsky.json.BrightSkyAlert
-import org.breezyweather.sources.brightsky.json.BrightSkyAlertsResult
 import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeather
-import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeatherResult
 import org.breezyweather.sources.brightsky.json.BrightSkyWeather
-import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
-
-/**
- * Converts Bright Sky result into a forecast
- */
-fun convert(
-    weatherResult: BrightSkyWeatherResult,
-    currentWeatherResult: BrightSkyCurrentWeatherResult,
-    alertsResult: BrightSkyAlertsResult,
-    location: Location,
-    languageCode: String,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    // If the API doesn’t return weather, consider data as garbage and keep cached data
-    if (weatherResult.weather.isNullOrEmpty()) {
-        throw InvalidOrIncompleteDataException()
-    }
-
-    return WeatherWrapper(
-        current = getCurrent(currentWeatherResult.weather),
-        dailyForecast = getDailyForecast(location, weatherResult.weather),
-        hourlyForecast = getHourlyForecast(weatherResult.weather),
-        alertList = getAlertList(alertsResult.alerts, languageCode),
-        failedFeatures = failedFeatures
-    )
-}
 
 /**
  * Returns current weather
  */
-private fun getCurrent(result: BrightSkyCurrentWeather?): Current? {
+internal fun getCurrent(result: BrightSkyCurrentWeather?): CurrentWrapper? {
     if (result == null) return null
-    return Current(
+    return CurrentWrapper(
         weatherCode = getWeatherCode(result.icon),
         temperature = Temperature(
             temperature = result.temperature
@@ -92,11 +60,13 @@ private fun getCurrent(result: BrightSkyCurrentWeather?): Current? {
 /**
  * Generate empty daily days from hourly weather since daily doesn't exist in API
  */
-private fun getDailyForecast(
+internal fun getDailyForecast(
     location: Location,
-    weatherResult: List<BrightSkyWeather>,
-): List<Daily> {
-    val dailyList = mutableListOf<Daily>()
+    weatherResult: List<BrightSkyWeather>?,
+): List<DailyWrapper>? {
+    if (weatherResult == null) return null
+
+    val dailyList = mutableListOf<DailyWrapper>()
     val hourlyListByDay = weatherResult.groupBy {
         it.timestamp.getFormattedDate("yyyy-MM-dd", location)
     }
@@ -104,7 +74,7 @@ private fun getDailyForecast(
         val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
         if (dayDate != null) {
             dailyList.add(
-                Daily(
+                DailyWrapper(
                     date = dayDate
                 )
             )
@@ -116,9 +86,11 @@ private fun getDailyForecast(
 /**
  * Returns hourly forecast
  */
-private fun getHourlyForecast(
-    weatherResult: List<BrightSkyWeather>,
-): List<HourlyWrapper> {
+internal fun getHourlyForecast(
+    weatherResult: List<BrightSkyWeather>?,
+): List<HourlyWrapper>? {
+    if (weatherResult == null) return null
+
     return weatherResult.map { result ->
         HourlyWrapper(
             date = result.timestamp,
@@ -150,7 +122,7 @@ private fun getHourlyForecast(
 /**
  * Returns alerts
  */
-private fun getAlertList(alertList: List<BrightSkyAlert>?, languageCode: String): List<Alert>? {
+internal fun getAlertList(alertList: List<BrightSkyAlert>?, languageCode: String): List<Alert>? {
     if (alertList.isNullOrEmpty()) return null
     return alertList.map { alert ->
         Alert(
@@ -193,17 +165,4 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
         "thunderstorm" -> WeatherCode.THUNDERSTORM
         else -> null
     }
-}
-
-fun convertSecondary(
-    currentWeather: BrightSkyCurrentWeatherResult,
-    alertsResult: BrightSkyAlertsResult,
-    languageCode: String,
-    failedFeatures: MutableList<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = getCurrent(currentWeather.weather),
-        alertList = getAlertList(alertsResult.alerts, languageCode),
-        failedFeatures = failedFeatures
-    )
 }

@@ -561,14 +561,12 @@
     <string name="settings_notifications_alerts_title">Meldingen van weeralarmen</string>
     <string name="settings_notifications_precipitations_title">Meldingen van neerslag</string>
     <string name="settings_debug_summary">Crashlogs</string>
-    <string name="weather_message_secondary_data_refresh_failed">Het verversen van weergegevens voor een secundaire weerbron is mislukt</string>
     <string name="weather_message_invalid_location">Ongeldige locatie, verwijderen en opnieuw toevoegen</string>
     <string name="action_save">Opslaan</string>
     <string name="dialog_permissions_location_title">Locatie-informatie openen</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Nachtweer van vandaag, morgen, …, 4 dagen later</string>
     <string name="widget_style_tile">Tegel</string>
     <string name="widget_style_mini">Mini</string>
-    <string name="settings_weather_source_main">Hoofdbron</string>
     <string name="settings_weather_sources_per_location_summary">Weergegevensbronnen voor deze locatie aanpassen</string>
     <string name="settings_background_updates">Achtergrondupdates</string>
     <string name="settings_background_updates_summary">Vernieuwingsfrequentie, problemen oplossen</string>

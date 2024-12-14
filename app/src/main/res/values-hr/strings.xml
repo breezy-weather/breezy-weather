@@ -105,7 +105,6 @@
     <string name="settings_widgets_section_widgets_in_use">Korišteni widgeti</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Zalazak Mjeseca danas, sutra, …, 4 dana kasnije</string>
     <string name="message_parsing_error_content">Provjerite je li aplikacija ažurna. Server može biti privremeno nedostupan. U tom slučaju pokušajte kasnije. Ako problem ne nestane, pokrenite dnevnik o padu aplikacije u postavkama za otklanjanje grešaka te prijavite problem na GitHub-u.</string>
-    <string name="settings_weather_source_main">Glavni izvor</string>
     <string name="widget_week_style_3_days">3 dana</string>
     <string name="widget_subtitle_data_time">Vrijeme osvježavanja</string>
     <string name="settings_main">Glavni ekran</string>
@@ -118,7 +117,6 @@
     <string name="widget_clock_font_analog">Analogni</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Dnevna temperatura danas, sutra, …, 4 dana kasnije (°)</string>
     <string name="ephemeris_sunset_at">Zalazak sunca u %s</string>
-    <string name="weather_message_secondary_data_refresh_failed">Osvježavanje vremenskih podataka za sekundarni izvor vremena neuspjelo</string>
     <string name="widget_live_wallpaper_day_night_type">Vrijeme</string>
     <string name="pollen_tap_to_see_more">Dodirnite za više…</string>
     <string name="location_service_native">Izvorni API</string>

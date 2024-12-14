@@ -109,6 +109,7 @@ fun ListPreferenceView(
     selectedKey: String,
     valueArray: Array<String>,
     nameArray: Array<String>,
+    enableArray: Array<Boolean>? = null,
     enabled: Boolean = true,
     card: Boolean = true,
     colors: ListItemColors = ListItemDefaults.colors(),
@@ -279,17 +280,20 @@ fun ListPreferenceView(
                             }
                         } else {
                             RadioButton(
+                                enabled = enableArray?.getOrNull(i) ?: true,
                                 selected = if (withState) {
                                     listSelectedState.value == it.first
                                 } else {
                                     selectedKey == it.first
                                 },
                                 onClick = {
-                                    if (withState) {
-                                        listSelectedState.value = it.first
+                                    if (enableArray?.getOrNull(i) != false) {
+                                        if (withState) {
+                                            listSelectedState.value = it.first
+                                        }
+                                        dialogOpenState.value = false
+                                        onValueChanged(it.first)
                                     }
-                                    dialogOpenState.value = false
-                                    onValueChanged(it.first)
                                 },
                                 text = it.second
                             )
@@ -319,7 +323,7 @@ fun ListPreferenceWithGroupsView(
     @DrawableRes iconId: Int? = null,
     summary: (Context, String) -> String?, // value -> summary.
     selectedKey: String,
-    values: Map<String?, Map<String, String>>,
+    values: Map<String?, List<Triple<String, String, Boolean>>>,
     enabled: Boolean = true,
     card: Boolean = true,
     colors: ListItemColors = ListItemDefaults.colors(),
@@ -329,6 +333,7 @@ fun ListPreferenceWithGroupsView(
 ) {
     val keyList = mutableListOf<String>()
     val nameList = mutableListOf<String>()
+    val enableList = mutableListOf<Boolean>()
     for ((k1, v1) in values) {
         if (k1 != null) {
             // Typed array, so no null; we use an empty value
@@ -336,10 +341,12 @@ fun ListPreferenceWithGroupsView(
             // ListPreferenceView to recognize our group
             keyList.add(k1)
             nameList.add("")
+            enableList.add(false)
         }
-        for ((k2, v2) in v1) {
-            keyList.add(k2)
-            nameList.add(v2)
+        for (triple in v1) {
+            keyList.add(triple.first)
+            nameList.add(triple.second)
+            enableList.add(triple.third)
         }
     }
 
@@ -350,6 +357,7 @@ fun ListPreferenceWithGroupsView(
         selectedKey = selectedKey,
         valueArray = keyList.toTypedArray(),
         nameArray = nameList.toTypedArray(),
+        enableArray = enableList.toTypedArray(),
         enabled = enabled,
         card = card,
         colors = colors,
@@ -364,6 +372,7 @@ internal fun RadioButton(
     selected: Boolean,
     onClick: () -> Unit,
     text: String,
+    enabled: Boolean = true,
 ) {
     Row(
         modifier = Modifier
@@ -379,13 +388,18 @@ internal fun RadioButton(
         verticalAlignment = Alignment.CenterVertically
     ) {
         androidx.compose.material3.RadioButton(
+            enabled = enabled,
             selected = selected,
             onClick = onClick
         )
         Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
         Text(
             text = text,
-            color = DayNightTheme.colors.titleColor,
+            color = if (enabled) {
+                DayNightTheme.colors.titleColor
+            } else {
+                DayNightTheme.colors.titleColor.copy(alpha = 0.5f)
+            },
             style = MaterialTheme.typography.titleMedium
         )
     }

@@ -21,22 +21,19 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -45,7 +42,7 @@ import javax.inject.Named
 class PirateWeatherService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ConfigurableSource {
+) : HttpSource(), WeatherSource, ConfigurableSource {
 
     override val id = "pirateweather"
     override val name = "PirateWeather"
@@ -53,7 +50,6 @@ class PirateWeatherService @Inject constructor(
     override val privacyPolicyUrl = "https://pirate-weather.apiable.io/privacy"
 
     override val color = Color.rgb(113, 129, 145)
-    override val weatherAttribution = "PirateWeather"
 
     private val mApi by lazy {
         client
@@ -62,80 +58,59 @@ class PirateWeatherService @Inject constructor(
             .create(PirateWeatherApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_MINUTELY,
-        SourceFeature.FEATURE_ALERT
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to name,
+        SourceFeature.CURRENT to name,
+        SourceFeature.MINUTELY to name,
+        SourceFeature.ALERT to name
     )
 
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
-
         val apiKey = getApiKeyOrDefault()
 
         return mApi.getForecast(
             apiKey,
             location.latitude,
             location.longitude,
-            "si", // represents metric,
+            "si", // represents metric
             context.currentLocale.code,
             null,
             "hourly"
         ).map {
-            convert(it)
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_MINUTELY,
-        SourceFeature.FEATURE_ALERT
-    )
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = weatherAttribution
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
-
-        val apiKey = getApiKeyOrDefault()
-        val exclude = mutableListOf("hourly", "daily")
-        if (!requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            exclude.add("currently")
-        }
-        if (!requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            exclude.add("alerts")
-        }
-        if (!requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
-            exclude.add("minutely")
-        }
-
-        return mApi.getForecast(
-            apiKey,
-            location.latitude,
-            location.longitude,
-            "si", // represents metric,
-            context.currentLocale.code,
-            exclude.joinToString(","),
-            null
-        ).map {
-            convertSecondary(it)
+            WeatherWrapper(
+                /*base = Base(
+                    publishDate = it.currently?.time?.seconds?.inWholeMilliseconds?.toDate() ?: Date()
+                ),*/
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(it.daily?.data)
+                } else {
+                    null
+                },
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(it.hourly?.data)
+                } else {
+                    null
+                },
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(it.currently)
+                } else {
+                    null
+                },
+                minutelyForecast = if (SourceFeature.MINUTELY in requestedFeatures) {
+                    getMinutelyForecast(it.minutely?.data)
+                } else {
+                    null
+                },
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlertList(it.alerts)
+                } else {
+                    null
+                }
+            )
         }
     }
 

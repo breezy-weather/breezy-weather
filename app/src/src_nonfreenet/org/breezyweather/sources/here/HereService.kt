@@ -27,7 +27,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.exceptions.ApiKeyMissingException
+import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.extensions.codeWithCountry
 import org.breezyweather.common.extensions.currentLocale
@@ -35,8 +35,8 @@ import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -45,15 +45,13 @@ import javax.inject.Named
 class HereService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, ReverseGeocodingSource, ConfigurableSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource, ConfigurableSource {
     override val id = "here"
     override val name = "HERE"
     override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = "https://legal.here.com/privacy/policy"
 
     override val color = Color.rgb(72, 218, 208)
-    override val weatherAttribution = "HERE"
-    // override val locationSearchAttribution = "HERE"
 
     private val mWeatherApi by lazy {
         client
@@ -76,9 +74,11 @@ class HereService @Inject constructor(
             .create(HereRevGeocodingApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT
+    private val weatherAttribution = "HERE"
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution
     )
 
     /**
@@ -87,23 +87,19 @@ class HereService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
-
         val apiKey = getApiKeyOrDefault()
-        val products = listOfNotNull(
-            if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                "observation"
-            } else {
-                null
-            },
-            "forecast7daysSimple",
-            "forecastHourly",
-            "forecastAstronomy"
-        )
+        val products = buildList {
+            if (SourceFeature.CURRENT in requestedFeatures) {
+                add("observation")
+            }
+            if (SourceFeature.FORECAST in requestedFeatures) {
+                add("forecast7daysSimple")
+                add("forecastHourly")
+                add("forecastAstronomy")
+            }
+        }
 
         return mWeatherApi.getForecast(
             apiKey,
@@ -112,8 +108,43 @@ class HereService @Inject constructor(
             "metric",
             context.currentLocale.codeWithCountry,
             oneObservation = true
-        ).map {
-            convert(it)
+        ).map { hereWeatherForecastResult ->
+            if (hereWeatherForecastResult.places.isNullOrEmpty()) {
+                throw InvalidOrIncompleteDataException()
+            }
+
+            WeatherWrapper(
+                /*base = Base(
+                    publishDate = currentForecast?.time ?: Date()
+                ),*/
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    val dailySimpleForecasts = hereWeatherForecastResult.places.firstNotNullOfOrNull {
+                        it.dailyForecasts?.getOrNull(0)?.forecasts
+                    }
+                    val astronomyForecasts = hereWeatherForecastResult.places.firstNotNullOfOrNull {
+                        it.astronomyForecasts?.getOrNull(0)?.forecasts
+                    }
+                    getDailyForecast(dailySimpleForecasts, astronomyForecasts)
+                } else {
+                    null
+                },
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    val hourlyForecasts = hereWeatherForecastResult.places.firstNotNullOfOrNull {
+                        it.hourlyForecasts?.getOrNull(0)?.forecasts
+                    }
+                    getHourlyForecast(hourlyForecasts)
+                } else {
+                    null
+                },
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    val currentForecast = hereWeatherForecastResult.places.firstNotNullOfOrNull {
+                        it.observations?.getOrNull(0)
+                    }
+                    getCurrentForecast(currentForecast)
+                } else {
+                    null
+                }
+            )
         }
     }
 
@@ -124,10 +155,6 @@ class HereService @Inject constructor(
         context: Context,
         query: String,
     ): Observable<List<Location>> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
-
         val apiKey = getApiKeyOrDefault()
         val languageCode = SettingsManager.getInstance(context).language.code
 
@@ -154,10 +181,6 @@ class HereService @Inject constructor(
         context: Context,
         location: Location,
     ): Observable<List<Location>> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
-
         val apiKey = getApiKeyOrDefault()
 
         return mRevGeocodingApi.revGeoCode(

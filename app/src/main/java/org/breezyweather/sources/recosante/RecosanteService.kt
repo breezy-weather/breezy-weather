@@ -17,15 +17,15 @@
 package org.breezyweather.sources.recosante
 
 import android.content.Context
+import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.preference.EditTextPreference
@@ -34,7 +34,7 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.PollenIndexSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SourceConfigStore
 import retrofit2.Retrofit
 import java.util.Locale
@@ -47,10 +47,11 @@ import javax.inject.Named
 class RecosanteService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") val client: Retrofit.Builder,
-) : HttpSource(), SecondaryWeatherSource, PollenIndexSource, LocationParametersSource, ConfigurableSource {
+) : HttpSource(), WeatherSource, PollenIndexSource, LocationParametersSource, ConfigurableSource {
 
     override val id = "recosante"
     override val name = "Recosanté (${Locale(context.currentLocale.code, "FR").displayCountry})"
+    override val color = Color.rgb(0, 0, 145)
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://recosante.beta.gouv.fr/donnees-personnelles/"
 
@@ -69,41 +70,34 @@ class RecosanteService @Inject constructor(
                 .create(RecosanteApi::class.java)
         }
 
-    override val supportedFeaturesInSecondary = listOf(SourceFeature.FEATURE_POLLEN)
-    override fun isFeatureSupportedInSecondaryForLocation(
+    override val supportedFeatures = mapOf(
+        SourceFeature.POLLEN to
+            "Recosanté, Le Réseau national de surveillance aérobiologique (RNSA) https://www.pollens.fr/"
+    )
+    override fun isFeatureSupportedForLocation(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
         return !location.countryCode.isNullOrEmpty() && location.countryCode.equals("FR", ignoreCase = true)
     }
-    override val currentAttribution = null
-    override val airQualityAttribution = null
-    override val pollenAttribution =
-        "Recosanté, Le Réseau national de surveillance aérobiologique (RNSA) https://www.pollens.fr/"
-    override val minutelyAttribution = null
-    override val alertAttribution = null
-    override val normalsAttribution = null
 
-    override fun requestSecondaryWeather(
+    override fun requestWeather(
         context: Context,
         location: Location,
         requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_POLLEN)) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-        val insee = location.parameters
-            .getOrElse(id) { null }?.getOrElse("insee") { null }
+    ): Observable<WeatherWrapper> {
+        val insee = location.parameters.getOrElse(id) { null }?.getOrElse("insee") { null }
         if (insee.isNullOrEmpty()) {
-            return Observable.error(SecondaryWeatherException())
+            return Observable.error(InvalidLocationException())
         }
 
         return mPollenApi.getData(
             true,
             insee
         ).map {
-            convert(location, it)
+            WeatherWrapper(
+                pollen = getPollen(location, it)
+            )
         }
     }
 
@@ -115,8 +109,7 @@ class RecosanteService @Inject constructor(
     ): Boolean {
         if (coordinatesChanged) return true
 
-        val currentInsee = location.parameters
-            .getOrElse(id) { null }?.getOrElse("insee") { null }
+        val currentInsee = location.parameters.getOrElse(id) { null }?.getOrElse("insee") { null }
 
         return currentInsee.isNullOrEmpty()
     }

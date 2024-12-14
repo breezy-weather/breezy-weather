@@ -21,22 +21,21 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.nws.json.NwsAlertsResult
 import org.breezyweather.sources.nws.json.NwsCurrentResult
+import org.breezyweather.sources.nws.json.NwsDailyResult
+import org.breezyweather.sources.nws.json.NwsGridPointResult
 import retrofit2.Retrofit
 import java.util.Locale
 import javax.inject.Inject
@@ -45,7 +44,7 @@ import javax.inject.Named
 class NwsService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "nws"
     override val name = "NWS (${Locale(context.currentLocale.code, "US").displayCountry})"
@@ -53,7 +52,6 @@ class NwsService @Inject constructor(
     override val privacyPolicyUrl = "https://www.weather.gov/privacy"
 
     override val color = Color.rgb(51, 176, 225)
-    override val weatherAttribution = "National Weather Service (NWS)"
 
     private val mApi by lazy {
         client
@@ -62,9 +60,11 @@ class NwsService @Inject constructor(
             .create(NwsApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT
+    private val weatherAttribution = "National Weather Service (NWS)"
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution
     )
 
     private val supportedCountries = setOf(
@@ -81,9 +81,9 @@ class NwsService @Inject constructor(
         // Minor Outlying Islands are largely uninhabited, except for temporary U.S. military staff
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         return supportedCountries.any {
             location.countryCode.equals(it, ignoreCase = true)
@@ -93,7 +93,7 @@ class NwsService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val gridId = location.parameters.getOrElse(id) { null }?.getOrElse("gridId") { null }
         val gridX = location.parameters.getOrElse(id) { null }?.getOrElse("gridX") { null }
@@ -103,45 +103,59 @@ class NwsService @Inject constructor(
         if (gridId.isNullOrEmpty() ||
             gridX.isNullOrEmpty() ||
             gridY.isNullOrEmpty() ||
-            (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT) && station.isNullOrEmpty())
+            (SourceFeature.CURRENT in requestedFeatures && station.isNullOrEmpty())
         ) {
             return Observable.error(InvalidLocationException())
         }
 
-        val nwsForecastResult = mApi.getForecast(
-            USER_AGENT,
-            gridId,
-            gridX.toInt(),
-            gridY.toInt()
-        )
-
-        val nwsDailyResult = mApi.getDaily(
-            userAgent = USER_AGENT,
-            gridId = gridId,
-            gridX = gridX.toInt(),
-            gridY = gridY.toInt()
-        )
-
         val failedFeatures = mutableListOf<SourceFeature>()
 
-        val nwsCurrentResult = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val nwsForecastResult = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getForecast(
+                USER_AGENT,
+                gridId,
+                gridX.toInt(),
+                gridY.toInt()
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(NwsGridPointResult())
+            }
+        } else {
+            Observable.just(NwsGridPointResult())
+        }
+
+        val nwsDailyResult = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getDaily(
+                userAgent = USER_AGENT,
+                gridId = gridId,
+                gridX = gridX.toInt(),
+                gridY = gridY.toInt()
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(NwsDailyResult())
+            }
+        } else {
+            Observable.just(NwsDailyResult())
+        }
+
+        val nwsCurrentResult = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(
                 USER_AGENT,
                 station!!
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(NwsCurrentResult())
             }
         } else {
             Observable.just(NwsCurrentResult())
         }
 
-        val nwsAlertsResult = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val nwsAlertsResult = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getActiveAlerts(
                 USER_AGENT,
                 "${location.latitude},${location.longitude}"
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                failedFeatures.add(SourceFeature.ALERT)
                 Observable.just(NwsAlertsResult())
             }
         } else {
@@ -154,94 +168,24 @@ class NwsService @Inject constructor(
             nwsCurrentResult,
             nwsAlertsResult
         ) { forecastResult, dailyResult, currentResult, alertResult ->
-            convert(
-                context = context,
-                currentResult = currentResult,
-                dailyResult = dailyResult,
-                forecastResult = forecastResult,
-                alertResult = alertResult,
-                location = location,
-                failedFeatures = failedFeatures
-            )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_CURRENT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT)
-        ) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-        val station = location.parameters.getOrElse(id) { null }?.getOrElse("station") { null }
-        if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT) && station.isNullOrEmpty()) {
-            return Observable.error(InvalidLocationException())
-        }
-
-        val failedFeatures = mutableListOf<SourceFeature>()
-        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            if (!station.isNullOrEmpty()) {
-                mApi.getCurrent(
-                    USER_AGENT,
-                    station
-                ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                    Observable.just(NwsCurrentResult())
-                }
-            } else {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(NwsCurrentResult())
-            }
-        } else {
-            Observable.just(NwsCurrentResult())
-        }
-
-        val alerts = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            mApi.getActiveAlerts(
-                USER_AGENT,
-                "${location.latitude},${location.longitude}"
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                Observable.just(NwsAlertsResult())
-            }
-        } else {
-            Observable.just(NwsAlertsResult())
-        }
-
-        return Observable.zip(current, alerts) {
-                currentResult: NwsCurrentResult,
-                alertsResult: NwsAlertsResult,
-            ->
-            convertSecondary(
-                currentResult = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    currentResult
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(location, dailyResult)
                 } else {
                     null
                 },
-                alertsResult = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    alertsResult
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(forecastResult.properties, location, context)
+                } else {
+                    null
+                },
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(currentResult)
+                } else {
+                    null
+                },
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlerts(alertResult.features)
                 } else {
                     null
                 },
@@ -276,7 +220,7 @@ class NwsService @Inject constructor(
         features: List<SourceFeature>,
     ): Boolean {
         // Not needed for alert endpoint
-        // if (features.contains(SourceFeature.FEATURE_ALERT)) return false
+        // if (SourceFeature.FEATURE_ALERT in features) return false
 
         // Commented the line above for now, because location parameters are still needed,
         // if NWS is used as secondary source for both CURRENT and ALERT.
@@ -286,7 +230,7 @@ class NwsService @Inject constructor(
         val currentGridId = location.parameters.getOrElse(id) { null }?.getOrElse("gridId") { null }
         val currentGridX = location.parameters.getOrElse(id) { null }?.getOrElse("gridX") { null }
         val currentGridY = location.parameters.getOrElse(id) { null }?.getOrElse("gridY") { null }
-        val currentStation = if (features.contains(SourceFeature.FEATURE_CURRENT)) {
+        val currentStation = if (SourceFeature.CURRENT in features) {
             location.parameters.getOrElse(id) { null }?.getOrElse("station") { null }
         } else {
             null
@@ -295,7 +239,7 @@ class NwsService @Inject constructor(
         return currentGridId.isNullOrEmpty() ||
             currentGridX.isNullOrEmpty() ||
             currentGridY.isNullOrEmpty() ||
-            (features.contains(SourceFeature.FEATURE_CURRENT) && currentStation.isNullOrEmpty())
+            (SourceFeature.CURRENT in features && currentStation.isNullOrEmpty())
     }
 
     override fun requestLocationParameters(

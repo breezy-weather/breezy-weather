@@ -545,13 +545,11 @@
     <string name="weather_alert_data_by">Оповещения о погоде предоставлены %s</string>
     <string name="weather_message_invalid_location">Неверное местоположение, удалите его и добавьте заново</string>
     <string name="weather_air_quality_data_by">Информация о качестве воздуха предоставлена %s</string>
-    <string name="weather_message_secondary_data_refresh_failed">Не удалось обновить данные о погоде для дополнительного источника погоды</string>
     <string name="weather_minutely_data_by">Данные прогноза осадков предоставлены %s</string>
     <string name="wind_gusts">Порывы ветра</string>
     <string name="about_dependencies">Зависимости</string>
     <string name="precipitation_nowcasting">Поминутные осадки</string>
     <string name="action_save">Сохранить</string>
-    <string name="settings_weather_source_main">Основной источник</string>
     <string name="settings_weather_sources_per_location_summary">Настройте источники информации о погоде использующиеся для этого местоположения</string>
     <string name="about_privacy_policy">Политика конфиденциальности</string>
     <string name="about_contact">Контакты</string>

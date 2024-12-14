@@ -2,19 +2,16 @@ package org.breezyweather.sources.ipma
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
@@ -28,7 +25,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
-fun convert(
+internal fun convert(
     location: Location,
     districts: List<IpmaDistrictResult>,
     locations: List<IpmaLocationResult>,
@@ -67,7 +64,7 @@ fun convert(
     return locationList
 }
 
-fun convert(
+internal fun convert(
     location: Location,
     locations: List<IpmaLocationResult>,
 ): Map<String, String> {
@@ -78,42 +75,18 @@ fun convert(
     )
 }
 
-fun convert(
+internal fun getDailyForecast(
     context: Context,
     location: Location,
     forecastResult: List<IpmaForecastResult>,
-    alertResult: IpmaAlertResult,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    return WeatherWrapper(
-        dailyForecast = getDailyForecast(context, location, forecastResult),
-        hourlyForecast = getHourlyForecast(context, location, forecastResult),
-        alertList = getAlertList(location, alertResult),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun convertSecondary(
-    location: Location,
-    alertResult: IpmaAlertResult?,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        alertList = alertResult?.let { getAlertList(location, it) }
-    )
-}
-
-private fun getDailyForecast(
-    context: Context,
-    location: Location,
-    forecastResult: List<IpmaForecastResult>,
-): List<Daily> {
+): List<DailyWrapper> {
     val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
-    val dailyList = mutableListOf<Daily>()
+    val dailyList = mutableListOf<DailyWrapper>()
     forecastResult.forEach {
         if (it.idPeriodo == 24) {
             dailyList.add(
-                Daily(
+                DailyWrapper(
                     date = formatter.parse(it.dataPrev)!!,
                     day = HalfDay(
                         weatherText = getWeatherText(context, it.idTipoTempo),
@@ -151,7 +124,7 @@ private fun getDailyForecast(
     return dailyList
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     context: Context,
     location: Location,
     forecastResult: List<IpmaForecastResult>,
@@ -193,7 +166,7 @@ private fun getHourlyForecast(
     return hourlyList
 }
 
-private fun getAlertList(
+internal fun getAlertList(
     location: Location,
     alertResult: IpmaAlertResult,
 ): List<Alert> {

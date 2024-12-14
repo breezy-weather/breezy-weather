@@ -21,7 +21,6 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
@@ -30,14 +29,12 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.utils.helpers.LogHelper
 import retrofit2.Retrofit
 import java.util.Locale
@@ -50,7 +47,7 @@ import javax.inject.Named
 class ImsService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource, ReverseGeocodingSource, LocationParametersSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "ims"
     override val name by lazy {
@@ -73,15 +70,6 @@ class ImsService @Inject constructor(
     }
 
     override val color = Color.rgb(52, 79, 110)
-    override val weatherAttribution by lazy {
-        with(context.currentLocale.code) {
-            when {
-                startsWith("ar") -> "خدمة الأرصاد الجوية الإسرائيلية"
-                startsWith("he") || startsWith("iw") -> "השירות המטאורולוגי הישראלי"
-                else -> "Israel Meteorological Service"
-            }
-        }
-    }
 
     private val mApi by lazy {
         client
@@ -90,14 +78,24 @@ class ImsService @Inject constructor(
             .create(ImsApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT
+    private val weatherAttribution by lazy {
+        with(context.currentLocale.code) {
+            when {
+                startsWith("ar") -> "خدمة الأرصاد الجوية الإسرائيلية"
+                startsWith("he") || startsWith("iw") -> "השירות המטאורולוגי הישראלי"
+                else -> "Israel Meteorological Service"
+            }
+        }
+    }
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         // Israel + West Bank + Gaza Strip
         return location.countryCode.equals("IL", ignoreCase = true) ||
@@ -107,56 +105,9 @@ class ImsService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
-    ): Observable<WeatherWrapper> {
-        val locationId = location.parameters
-            .getOrElse(id) { null }?.getOrElse("locationId") { null }
-
-        if (locationId.isNullOrEmpty()) {
-            throw InvalidLocationException()
-        }
-
-        val languageCode = when (context.currentLocale.code) {
-            "ar" -> "ar"
-            "he", "iw" -> "he"
-            else -> "en"
-        }
-
-        return mApi.getWeather(languageCode, locationId).map { convert(context, it, location) }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_ALERT
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = null
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
         requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_CURRENT) ||
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT)
-        ) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-
-        val locationId = location.parameters
-            .getOrElse(id) { null }?.getOrElse("locationId") { null }
+    ): Observable<WeatherWrapper> {
+        val locationId = location.parameters.getOrElse(id) { null }?.getOrElse("locationId") { null }
 
         if (locationId.isNullOrEmpty()) {
             throw InvalidLocationException()
@@ -168,7 +119,30 @@ class ImsService @Inject constructor(
             else -> "en"
         }
 
-        return mApi.getWeather(languageCode, locationId).map { convertSecondary(context, it, requestedFeatures) }
+        return mApi.getWeather(languageCode, locationId).map {
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(location, it.data)
+                } else {
+                    null
+                },
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(context, location, it.data)
+                } else {
+                    null
+                },
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(context, it.data)
+                } else {
+                    null
+                },
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlerts(context, it.data)
+                } else {
+                    null
+                }
+            )
+        }
     }
 
     override fun requestReverseGeocodingLocation(
@@ -224,8 +198,7 @@ class ImsService @Inject constructor(
     ): Boolean {
         if (coordinatesChanged) return true
 
-        val currentLocationId = location.parameters
-            .getOrElse(id) { null }?.getOrElse("locationId") { null }
+        val currentLocationId = location.parameters.getOrElse(id) { null }?.getOrElse("locationId") { null }
 
         return currentLocationId.isNullOrEmpty()
     }
