@@ -22,6 +22,8 @@ import org.breezyweather.sources.mf.json.MfEphemerisResult
 import org.breezyweather.sources.mf.json.MfForecastResult
 import org.breezyweather.sources.mf.json.MfNormalsResult
 import org.breezyweather.sources.mf.json.MfRainResult
+import org.breezyweather.sources.mf.json.MfWarningDictionaryResult
+import org.breezyweather.sources.mf.json.MfWarningsOverseasResult
 import org.breezyweather.sources.mf.json.MfWarningsResult
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -87,4 +89,20 @@ interface MfApi {
         @Query("formatDate") formatDate: String,
         @Query("token") token: String,
     ): Observable<MfWarningsResult>
+
+    @GET("v2/warning/dictionary")
+    fun getOverseasWarningsDictionary(
+        @Header("User-Agent") userAgent: String,
+        @Query(encoded = true, value = "domain") domain: String,
+        @Query("token") token: String,
+    ): Observable<MfWarningDictionaryResult>
+
+    @GET("v2/warning/full")
+    fun getOverseasWarnings(
+        @Header("User-Agent") userAgent: String,
+        @Query(encoded = true, value = "domain") domain: String,
+        @Query("warning_type") warningType: String?, // vigilance4colors needed for VIGI974 / La Réunion
+        @Query("formatDate") formatDate: String,
+        @Query("token") token: String,
+    ): Observable<MfWarningsOverseasResult>
 }

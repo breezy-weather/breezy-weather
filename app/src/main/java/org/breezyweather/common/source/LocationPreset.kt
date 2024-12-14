@@ -151,7 +151,7 @@ enum class LocationPreset(
         airQuality = "openmeteo",
         pollen = null,
         minutely = "openmeteo",
-        alert = "accu",
+        alert = "mf",
         normals = "accu"
     ),
     FRANCE_FREENET(
