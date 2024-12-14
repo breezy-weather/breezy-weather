@@ -6,6 +6,9 @@
 **Improvements and fixes**
 - Fixed duplicate Indonesian and Hebrew languages in the standard flavor
 
+**Translations**
+- Translations updated
+
 
 # Version 5.3.1 (2024-12-12)
 
