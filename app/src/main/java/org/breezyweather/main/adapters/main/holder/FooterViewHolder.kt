@@ -41,11 +41,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceFeature
 import io.github.giangpham96.expandable_text_compose.ExpandableText
 import org.breezyweather.R
-import org.breezyweather.common.source.MainWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSource
-import org.breezyweather.common.source.Source
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.main.MainActivity
 import org.breezyweather.main.utils.MainThemeColorProvider
 import org.breezyweather.theme.ThemeManager
@@ -71,70 +70,59 @@ class FooterViewHolder(
             .weatherThemeDelegate
             .getHomeCardMargins(context).toFloat()
 
-        val distinctSources = mutableMapOf<String, Source?>()
+        val distinctSources = mutableMapOf<String, WeatherSource?>()
         listOf(
-            location.weatherSource,
-            location.currentSourceNotNull,
-            location.airQualitySourceNotNull,
-            location.pollenSourceNotNull,
-            location.minutelySourceNotNull,
-            location.alertSourceNotNull,
-            location.normalsSourceNotNull
-        ).distinct().forEach {
-            distinctSources[it] = (context as MainActivity).sourceManager.getSource(it)
+            location.forecastSource,
+            location.currentSource,
+            location.airQualitySource,
+            location.pollenSource,
+            location.minutelySource,
+            location.alertSource,
+            location.normalsSource
+        ).filter { !it.isNullOrEmpty() }.distinct().forEach {
+            distinctSources[it!!] = (context as MainActivity).sourceManager.getWeatherSource(it)
         }
 
         val credits = mutableMapOf<String, String?>()
-        credits["weather"] = if (distinctSources[location.weatherSource] is MainWeatherSource) {
-            (distinctSources[location.weatherSource] as MainWeatherSource).weatherAttribution
+        credits["weather"] = if (location.forecastSource.isNotEmpty()) {
+            distinctSources[location.forecastSource]?.supportedFeatures
+                ?.getOrElse(SourceFeature.FORECAST) { null }
         } else {
             null
         }
-        credits["current"] = if (distinctSources[location.currentSourceNotNull] is SecondaryWeatherSource &&
-            (distinctSources[location.currentSourceNotNull] as SecondaryWeatherSource).currentAttribution !=
-            credits["weather"]
-        ) {
-            (distinctSources[location.currentSourceNotNull] as SecondaryWeatherSource).currentAttribution
+        credits["current"] = if (!location.currentSource.isNullOrEmpty()) {
+            distinctSources[location.currentSource]?.supportedFeatures
+                ?.getOrElse(SourceFeature.CURRENT) { null }
         } else {
             null
         }
-        credits["minutely"] = if (distinctSources[location.minutelySourceNotNull] is SecondaryWeatherSource &&
-            (distinctSources[location.minutelySourceNotNull] as SecondaryWeatherSource).minutelyAttribution !=
-            credits["weather"]
-        ) {
-            (distinctSources[location.minutelySourceNotNull] as SecondaryWeatherSource).minutelyAttribution
+        credits["minutely"] = if (!location.minutelySource.isNullOrEmpty()) {
+            distinctSources[location.minutelySource]?.supportedFeatures
+                ?.getOrElse(SourceFeature.MINUTELY) { null }
         } else {
             null
         }
-        credits["alert"] = if (distinctSources[location.alertSourceNotNull] is SecondaryWeatherSource &&
-            (distinctSources[location.alertSourceNotNull] as SecondaryWeatherSource).alertAttribution !=
-            credits["weather"]
-        ) {
-            (distinctSources[location.alertSourceNotNull] as SecondaryWeatherSource).alertAttribution
+        credits["alert"] = if (!location.alertSource.isNullOrEmpty()) {
+            distinctSources[location.alertSource]?.supportedFeatures
+                ?.getOrElse(SourceFeature.ALERT) { null }
         } else {
             null
         }
-        credits["airQuality"] = if (distinctSources[location.airQualitySourceNotNull] is SecondaryWeatherSource &&
-            (distinctSources[location.airQualitySourceNotNull] as SecondaryWeatherSource).airQualityAttribution !=
-            credits["weather"]
-        ) {
-            (distinctSources[location.airQualitySourceNotNull] as SecondaryWeatherSource).airQualityAttribution
+        credits["airQuality"] = if (!location.airQualitySource.isNullOrEmpty()) {
+            distinctSources[location.airQualitySource]?.supportedFeatures
+                ?.getOrElse(SourceFeature.AIR_QUALITY) { null }
         } else {
             null
         }
-        credits["pollen"] = if (distinctSources[location.pollenSourceNotNull] is SecondaryWeatherSource &&
-            (distinctSources[location.pollenSourceNotNull] as SecondaryWeatherSource).pollenAttribution !=
-            credits["weather"]
-        ) {
-            (distinctSources[location.pollenSourceNotNull] as SecondaryWeatherSource).pollenAttribution
+        credits["pollen"] = if (!location.pollenSource.isNullOrEmpty()) {
+            distinctSources[location.pollenSource]?.supportedFeatures
+                ?.getOrElse(SourceFeature.POLLEN) { null }
         } else {
             null
         }
-        credits["normals"] = if (distinctSources[location.normalsSourceNotNull] is SecondaryWeatherSource &&
-            (distinctSources[location.normalsSourceNotNull] as SecondaryWeatherSource).normalsAttribution !=
-            credits["weather"]
-        ) {
-            (distinctSources[location.normalsSourceNotNull] as SecondaryWeatherSource).normalsAttribution
+        credits["normals"] = if (!location.normalsSource.isNullOrEmpty()) {
+            distinctSources[location.normalsSource]?.supportedFeatures
+                ?.getOrElse(SourceFeature.NORMALS) { null }
         } else {
             null
         }
@@ -147,24 +135,30 @@ class FooterViewHolder(
                     credits["weather"] ?: context.getString(R.string.null_data_text)
                 )
             )
-            if (!credits["current"].isNullOrEmpty()) {
+            if (!credits["current"].isNullOrEmpty() && credits["current"] != credits["weather"]) {
                 creditsText.append(
                     "\n" + context.getString(R.string.weather_current_data_by, credits["current"]!!)
                 )
             }
-            if (weather.minutelyForecast.isNotEmpty() && !credits["minutely"].isNullOrEmpty()) {
+            if (weather.minutelyForecast.isNotEmpty() &&
+                !credits["minutely"].isNullOrEmpty() &&
+                credits["minutely"] != credits["weather"]
+            ) {
                 creditsText.append(
                     "\n" + context.getString(R.string.weather_minutely_data_by, credits["minutely"]!!)
                 )
             }
-            if (weather.alertList.isNotEmpty() && !credits["alert"].isNullOrEmpty()) {
+            if (weather.alertList.isNotEmpty() &&
+                !credits["alert"].isNullOrEmpty() &&
+                credits["alert"] != credits["weather"]
+            ) {
                 creditsText.append(
                     "\n" + context.getString(R.string.weather_alert_data_by, credits["alert"]!!)
                 )
             }
             // Open-Meteo has a lengthy credits so we merge air quality and pollen identical credit in that case
-            if (!credits["airQuality"].isNullOrEmpty()) {
-                if (!credits["pollen"].isNullOrEmpty()) {
+            if (!credits["airQuality"].isNullOrEmpty() && credits["airQuality"] != credits["weather"]) {
+                if (!credits["pollen"].isNullOrEmpty() && credits["pollen"] != credits["weather"]) {
                     if (credits["airQuality"] == credits["pollen"]) {
                         creditsText.append(
                             "\n" + context.getString(
@@ -184,13 +178,16 @@ class FooterViewHolder(
                     )
                 }
             } else {
-                if (!credits["pollen"].isNullOrEmpty()) {
+                if (!credits["pollen"].isNullOrEmpty() && credits["pollen"] != credits["weather"]) {
                     creditsText.append(
                         "\n" + context.getString(R.string.weather_pollen_data_by, credits["pollen"]!!)
                     )
                 }
             }
-            if (weather.normals?.month != null && !credits["normals"].isNullOrEmpty()) {
+            if (weather.normals?.month != null &&
+                !credits["normals"].isNullOrEmpty() &&
+                credits["normals"] != credits["weather"]
+            ) {
                 creditsText.append(
                     "\n" + context.getString(R.string.weather_normals_data_by, credits["normals"]!!)
                 )

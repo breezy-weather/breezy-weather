@@ -132,9 +132,6 @@ enum class RefreshErrorType(
     FAILED_FEATURE(
         shortMessage = R.string.weather_message_failed_feature
     ),
-    SECONDARY_WEATHER_FAILED(
-        shortMessage = R.string.weather_message_secondary_data_refresh_failed
-    ),
     INVALID_INCOMPLETE_DATA(
         shortMessage = R.string.message_invalid_incomplete_data
     ),

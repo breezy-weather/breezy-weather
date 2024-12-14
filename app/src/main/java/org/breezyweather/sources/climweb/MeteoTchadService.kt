@@ -17,6 +17,7 @@
 package org.breezyweather.sources.climweb
 
 import android.content.Context
+import android.graphics.Color
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.R
 import org.breezyweather.common.extensions.code
@@ -44,6 +45,7 @@ class MeteoTchadService @Inject constructor(
             "$it ($countryName)"
         }
     }
+    override val color = Color.rgb(0, 0, 0) // FIXME
     override val privacyPolicyUrl = ""
     override val weatherAttribution = "Agence Nationale de la Météorologie du Tchad"
 

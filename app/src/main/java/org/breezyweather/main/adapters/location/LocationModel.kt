@@ -24,13 +24,13 @@ import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
-import org.breezyweather.common.source.MainWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.domain.location.model.getPlace
 
 class LocationModel(
     context: Context,
     val location: Location,
-    val mainWeatherSource: MainWeatherSource?,
+    val forecastWeatherSource: WeatherSource?,
     unit: TemperatureUnit, // TODO: Add back temperature
     var selected: Boolean,
 ) {

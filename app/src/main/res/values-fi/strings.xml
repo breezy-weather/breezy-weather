@@ -513,7 +513,6 @@
     <string name="weather_minutely_data_by">Sademäärän nowcast-ennusteen tiedot tarjoaa %s</string>
     <string name="air_quality_no2_info_origin">NO₂:n lähteet ympäristössä ovat peräisin polttoaineiden poltosta korkeissa lämpötiloissa esimerkiksi lämmityksessä, liikenteessä, teollisuudessa ja sähköntuotannossa käytetyissä prosesseissa. Kotitalouksien typen oksidien (NOₓ) lähteisiin kuuluvat laitteet, jotka polttavat polttoaineita, kuten uunit, takat ja kaasuliedet ja -uunit.</string>
     <string name="air_quality_o3_info_title">Maanpinnan otsoni (O₃)</string>
-    <string name="weather_message_secondary_data_refresh_failed">Toissijaisen säälähteen säätietojen päivitys epäonnistui</string>
     <string name="weather_pollen_data_by">Allergeenitiedot tarjoaa %s</string>
     <string name="air_quality_pm_explanations_introduction">Hiukkaset tai ilmakehän hiukkaset ovat ilmassa leijuvia mikroskooppisen pieniä kiinteän tai nestemäisen aineen hiukkasia.</string>
     <string name="air_quality_so2_info_origin">Sitä vapautuu luonnostaan tulivuoritoiminnasta ja pääasiassa kotitalouksien lämmityksessä, teollisuudessa ja sähköntuotannossa käytettävien fossiilisten polttoaineiden poltosta.</string>
@@ -558,7 +557,6 @@
     <string name="common_weather_text_drizzle_freezing_light">Kevyttä jäätävää tihkusadetta</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Ukkosmyrsky ja lieviä raekuuroja</string>
     <string name="message_parsing_error_content">Varmista, että olet päivittänyt sovelluksen uusimpaan versioon. Palvelin saattaa olla tilapäisesti poissa käytöstä, yritä siinä tapauksessa myöhemmin uudelleen. Jos ongelma jatkuu, poista kaatumisloki debug-asetuksista ja ilmoita ongelmasta GitHubissa.</string>
-    <string name="settings_weather_source_main">Pääasiallinen lähde</string>
     <string name="settings_location_summary">Sijaintipalvelujen asetukset</string>
     <string name="common_weather_text_rain_snow_mixed">Vesisateen ja lumen sekoitusta</string>
     <string name="unit_ppcm_voice">Per kuutiometri</string>

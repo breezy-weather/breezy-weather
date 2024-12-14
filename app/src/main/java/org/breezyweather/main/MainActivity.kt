@@ -61,6 +61,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import breezyweather.data.location.LocationRepository
 import breezyweather.domain.location.model.Location
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -103,6 +104,9 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
 
     @Inject
     lateinit var sourceManager: SourceManager
+
+    @Inject
+    lateinit var locationRepository: LocationRepository
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
@@ -227,7 +231,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
         super.onCreate(savedInstanceState)
 
         if (isLaunch) {
-            Migrations.upgrade(applicationContext)
+            Migrations.upgrade(applicationContext, sourceManager, locationRepository)
         }
 
         binding = ActivityMainBinding.inflate(layoutInflater)

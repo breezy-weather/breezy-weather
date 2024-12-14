@@ -75,7 +75,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                             WeatherViewController.isDaylight(location)
                         )[0]
                 )
-                mTime.text = weather.base.mainUpdateTime?.getFormattedTime(location, context, context.is12Hour)
+                mTime.text = weather.base.forecastUpdateTime?.getFormattedTime(location, context, context.is12Hour)
                 mDetailsList.setContent {
                     BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
                         ContentView(

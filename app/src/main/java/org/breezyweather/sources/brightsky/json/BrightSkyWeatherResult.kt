@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class BrightSkyWeatherResult(
-    val weather: List<BrightSkyWeather>?,
+    val weather: List<BrightSkyWeather>? = null,
 )

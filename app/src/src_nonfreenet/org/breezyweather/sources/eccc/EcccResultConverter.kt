@@ -21,18 +21,15 @@ import android.os.Build
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
@@ -49,7 +46,7 @@ import java.util.Date
 import java.util.Objects
 import kotlin.time.Duration.Companion.seconds
 
-fun convert(
+internal fun convert(
     location: Location,
     result: EcccResult,
 ): Location {
@@ -75,35 +72,11 @@ fun convert(
 }
 
 /**
- * Converts ECCC result into a forecast
- */
-fun convert(
-    ecccResult: EcccResult,
-    location: Location,
-): WeatherWrapper {
-    // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
-    if (ecccResult.dailyFcst?.daily.isNullOrEmpty() ||
-        ecccResult.dailyFcst?.dailyIssuedTimeEpoch.isNullOrEmpty() ||
-        ecccResult.hourlyFcst?.hourly.isNullOrEmpty()
-    ) {
-        throw InvalidOrIncompleteDataException()
-    }
-
-    return WeatherWrapper(
-        current = getCurrent(ecccResult.observation),
-        dailyForecast = getDailyForecast(location, ecccResult.dailyFcst!!),
-        hourlyForecast = getHourlyForecast(ecccResult.hourlyFcst!!.hourly!!),
-        alertList = getAlertList(ecccResult.alert?.alerts),
-        normals = getNormals(location, ecccResult.dailyFcst.regionalNormals?.metric)
-    )
-}
-
-/**
  * Returns current weather
  */
-private fun getCurrent(result: EcccObservation?): Current? {
+internal fun getCurrent(result: EcccObservation?): CurrentWrapper? {
     if (result == null) return null
-    return Current(
+    return CurrentWrapper(
         weatherCode = getWeatherCode(result.iconCode),
         weatherText = result.condition,
         temperature = Temperature(
@@ -127,13 +100,14 @@ private fun getCurrent(result: EcccObservation?): Current? {
  * The daily list is actually a list of daytime/nighttime periods starting from dailyIssuedTime,
  * making the parsing a bit more complex than other sources
  */
-private fun getDailyForecast(
+internal fun getDailyForecast(
     location: Location,
-    dailyResult: EcccDailyFcst,
-): List<Daily> {
+    dailyResult: EcccDailyFcst?,
+): List<DailyWrapper> {
+    if (dailyResult == null) return emptyList()
     val dailyFirstDay = dailyResult.dailyIssuedTimeEpoch!!.toLong().seconds.inWholeMilliseconds.toDate()
         .toTimezoneNoHour(location.javaTimeZone)
-    val dailyList = mutableListOf<Daily>()
+    val dailyList = mutableListOf<DailyWrapper>()
     if (dailyFirstDay != null) {
         val firstDayIsNight = dailyResult.daily!![0].temperature?.periodLow != null
         for (i in 0 until 6) {
@@ -163,7 +137,7 @@ private fun getDailyForecast(
                 }
 
                 dailyList.add(
-                    Daily(
+                    DailyWrapper(
                         date = currentDay,
                         day = if (daytime != null) {
                             HalfDay(
@@ -203,9 +177,10 @@ private fun getDailyForecast(
 /**
  * Returns hourly forecast
  */
-private fun getHourlyForecast(
-    hourlyResult: List<EcccHourly>,
+internal fun getHourlyForecast(
+    hourlyResult: List<EcccHourly>?,
 ): List<HourlyWrapper> {
+    if (hourlyResult.isNullOrEmpty()) return emptyList()
     return hourlyResult.map { result ->
         HourlyWrapper(
             date = result.epochTime.times(1000L).toDate(),
@@ -232,7 +207,7 @@ private fun getHourlyForecast(
 /**
  * Returns alerts
  */
-private fun getAlertList(alertList: List<EcccAlert>?): List<Alert>? {
+internal fun getAlertList(alertList: List<EcccAlert>?): List<Alert>? {
     if (alertList.isNullOrEmpty()) return null
     return alertList.map { alert ->
         val severity = when (alert.type) {
@@ -258,7 +233,7 @@ private fun getAlertList(alertList: List<EcccAlert>?): List<Alert>? {
 /**
  * Returns normals
  */
-private fun getNormals(location: Location, normals: EcccRegionalNormalsMetric?): Normals? {
+internal fun getNormals(location: Location, normals: EcccRegionalNormalsMetric?): Normals? {
     if (normals?.highTemp == null || normals.lowTemp == null) return null
     val currentMonth = Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.MONTH]
     return Normals(
@@ -294,15 +269,4 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
         "25", "40", "41", "42", "43", "48" -> WeatherCode.WIND
         else -> null
     }
-}
-
-fun convertSecondary(
-    ecccResult: EcccResult,
-    location: Location,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = getCurrent(ecccResult.observation),
-        alertList = getAlertList(ecccResult.alert?.alerts),
-        normals = getNormals(location, ecccResult.dailyFcst?.regionalNormals?.metric)
-    )
 }

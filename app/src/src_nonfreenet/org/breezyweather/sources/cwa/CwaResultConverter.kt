@@ -18,13 +18,10 @@ package org.breezyweather.sources.cwa
 
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -32,10 +29,9 @@ import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
-import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.sources.computeMeanSeaLevelPressure
@@ -54,7 +50,7 @@ import java.util.Locale
 import java.util.TimeZone
 import kotlin.time.Duration.Companion.hours
 
-fun convert(
+internal fun convert(
     location: Location,
     town: CwaLocationTown,
 ): Location {
@@ -68,52 +64,10 @@ fun convert(
     )
 }
 
-fun convert(
-    currentResult: CwaCurrentResult,
-    airQualityResult: CwaAirQualityResult,
-    dailyResult: CwaForecastResult,
-    hourlyResult: CwaForecastResult,
-    normalsResult: CwaNormalsResult,
-    alertResult: CwaAlertResult,
-    sunResult: CwaAstroResult,
-    moonResult: CwaAstroResult,
-    assistantResult: CwaAssistantResult,
-    location: Location,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    return WeatherWrapper(
-        current = getCurrent(currentResult, assistantResult, airQualityResult),
-        normals = getNormals(normalsResult),
-        dailyForecast = getDailyForecast(dailyResult, sunResult, moonResult),
-        hourlyForecast = getHourlyForecast(hourlyResult),
-        alertList = getAlertList(alertResult, location),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun convertSecondary(
-    currentResult: CwaCurrentResult?,
-    assistantResult: CwaAssistantResult?,
-    airQualityResult: CwaAirQualityResult?,
-    alertResult: CwaAlertResult?,
-    normalsResult: CwaNormalsResult?,
-    location: Location,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = currentResult?.let { assistantResult?.let { getCurrent(currentResult, assistantResult) } },
-        airQuality = airQualityResult?.let { AirQualityWrapper(current = getAirQuality(it, null, null)) },
-        alertList = alertResult?.let { getAlertList(it, location) },
-        normals = normalsResult?.let { getNormals(it) },
-        failedFeatures = failedFeatures
-    )
-}
-
-private fun getCurrent(
+internal fun getCurrent(
     currentResult: CwaCurrentResult,
     assistantResult: CwaAssistantResult,
-    airQualityResult: CwaAirQualityResult? = null,
-): Current? {
+): CurrentWrapper {
     var latitude: Double? = null
     currentResult.records?.station?.getOrNull(0)?.geoInfo?.coordinates?.forEach {
         if (it.coordinateName == "WGS84") {
@@ -168,7 +122,7 @@ private fun getCurrent(
         }
     }
 
-    return Current(
+    return CurrentWrapper(
         weatherText = weatherText,
         weatherCode = weatherCode,
         temperature = Temperature(
@@ -179,7 +133,6 @@ private fun getCurrent(
             speed = windSpeed,
             gusts = windGusts
         ),
-        airQuality = getAirQuality(airQualityResult, temperature, barometricPressure),
         relativeHumidity = relativeHumidity,
         pressure = computeMeanSeaLevelPressure(
             barometricPressure = barometricPressure,
@@ -194,7 +147,7 @@ private fun getCurrent(
     )
 }
 
-private fun getNormals(
+internal fun getNormals(
     normalsResult: CwaNormalsResult,
 ): Normals? {
     return normalsResult.records?.data?.surfaceObs?.location?.getOrNull(0)
@@ -209,7 +162,7 @@ private fun getNormals(
 
 // Concentrations of SO₂, NO₂, O₃ are given in ppb (and in ppm for CO).
 // We need to convert these figures to µg/m³ (and mg/m³ for CO).
-private fun getAirQuality(
+internal fun getAirQuality(
     airQualityResult: CwaAirQualityResult?,
     temperature: Double?,
     pressure: Double?,
@@ -229,15 +182,15 @@ private fun getAirQuality(
 // Forecast data from the main weather API call are unsorted.
 // We need to first store the numbers into maps, then sort the keys,
 // and retrieve the relevant numbers using the sorted keys.
-private fun getDailyForecast(
+internal fun getDailyForecast(
     dailyResult: CwaForecastResult,
     sunResult: CwaAstroResult,
     moonResult: CwaAstroResult,
-): List<Daily> {
+): List<DailyWrapper> {
     val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Taipei")
 
-    val dailyList = mutableListOf<Daily>()
+    val dailyList = mutableListOf<DailyWrapper>()
     val popMap = mutableMapOf<Long, Double?>()
     val wsMap = mutableMapOf<Long, Double?>()
     val maxAtMap = mutableMapOf<Long, Double?>()
@@ -330,7 +283,7 @@ private fun getDailyForecast(
         dayTime = formatter.parse("$date 06:00:00")!!.time
         nightTime = formatter.parse("$date 18:00:00")!!.time
         dailyList.add(
-            Daily(
+            DailyWrapper(
                 date = formatter.parse("$date 00:00:00")!!,
                 day = HalfDay(
                     weatherText = wxTextMap.getOrElse(dayTime) { null },
@@ -382,7 +335,7 @@ private fun getDailyForecast(
 // Forecast data from the main weather API call are unsorted.
 // We need to first store the numbers into maps, then sort the keys,
 // and retrieve the relevant numbers using the sorted keys.
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     hourlyResult: CwaForecastResult,
 ): List<HourlyWrapper> {
     val hourlyList = mutableListOf<HourlyWrapper>()
@@ -506,7 +459,7 @@ private fun getHourlyForecast(
 //  • 恆春半島 Hengchun Peninsula ("H"): 6 townships
 //  • 蘭嶼綠島 Lanyu and Ludao ("L"): 2 townships
 // These specifications are stored in CWA_TOWNSHIP_WARNING_AREAS.
-private fun getAlertList(
+internal fun getAlertList(
     alertResult: CwaAlertResult,
     location: Location,
 ): List<Alert> {
@@ -641,7 +594,7 @@ private fun getAlertColor(headline: String, severity: AlertSeverity): Int {
     }
 }
 
-private fun getValid(
+internal fun getValid(
     value: Any?,
 ): Any? {
     return if (value != -99 && value != -99.0 && value != "-99" && value != "-99.0") {

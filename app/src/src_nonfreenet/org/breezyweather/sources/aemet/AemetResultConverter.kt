@@ -18,10 +18,7 @@ package org.breezyweather.sources.aemet
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Astro
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Precipitation
@@ -30,9 +27,9 @@ import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
@@ -48,7 +45,7 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-fun convert(
+internal fun convert(
     location: Location,
     stationList: List<AemetStationsResult>,
 ): String {
@@ -93,43 +90,11 @@ private fun getDecimalDegrees(
         }
 }
 
-fun convert(
-    context: Context,
-    location: Location,
+internal fun getCurrent(
     currentResult: List<AemetCurrentResult>,
-    dailyResult: List<AemetDailyResult>,
-    hourlyResult: List<AemetHourlyResult>,
-    normalsResult: List<AemetNormalsResult>,
-    failedFeatures: MutableList<SourceFeature>,
-): WeatherWrapper {
-    val sunMap = getSunMap(location, hourlyResult)
-    return WeatherWrapper(
-        current = getCurrent(currentResult),
-        normals = getNormals(location, normalsResult),
-        dailyForecast = getDailyForecast(context, location, dailyResult, sunMap),
-        hourlyForecast = getHourlyForecast(context, location, hourlyResult),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun convertSecondary(
-    location: Location,
-    currentResult: List<AemetCurrentResult>?,
-    normalsResult: List<AemetNormalsResult>?,
-    failedFeatures: MutableList<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = currentResult?.let { getCurrent(it) },
-        normals = normalsResult?.let { getNormals(location, it) },
-        failedFeatures = failedFeatures
-    )
-}
-
-private fun getCurrent(
-    currentResult: List<AemetCurrentResult>,
-): Current? {
-    return currentResult.last().let {
-        Current(
+): CurrentWrapper? {
+    return currentResult.lastOrNull()?.let {
+        CurrentWrapper(
             temperature = Temperature(
                 temperature = it.ta
             ),
@@ -146,10 +111,12 @@ private fun getCurrent(
     }
 }
 
-private fun getNormals(
+internal fun getNormals(
     location: Location,
     normalsResult: List<AemetNormalsResult>,
 ): Normals? {
+    if (normalsResult.isEmpty()) return null
+
     val timeZone = TimeZone.getTimeZone(location.timeZone)
     val month = Calendar.getInstance(timeZone).get(Calendar.MONTH) + 1
     var max: Double? = null
@@ -167,13 +134,13 @@ private fun getNormals(
     )
 }
 
-private fun getDailyForecast(
+internal fun getDailyForecast(
     context: Context,
     location: Location,
     dailyResult: List<AemetDailyResult>,
     sunMap: Map<Long, Astro>,
-): List<Daily> {
-    val dailyList = mutableListOf<Daily>()
+): List<DailyWrapper> {
+    val dailyList = mutableListOf<DailyWrapper>()
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
     var date: String
@@ -224,7 +191,7 @@ private fun getDailyForecast(
 
     wxMap.keys.sorted().forEach { key ->
         dailyList.add(
-            Daily(
+            DailyWrapper(
                 date = Date(key),
                 day = HalfDay(
                     weatherText = getWeatherText(context, wxMap.getOrElse(key) { null }),
@@ -269,7 +236,7 @@ private fun getDailyForecast(
     return dailyList
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     context: Context,
     location: Location,
     hourlyResult: List<AemetHourlyResult>,
@@ -400,7 +367,7 @@ private fun getHourlyForecast(
     return hourlyList
 }
 
-private fun getSunMap(
+internal fun getSunMap(
     location: Location,
     hourlyResult: List<AemetHourlyResult>,
 ): Map<Long, Astro> {

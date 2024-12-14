@@ -494,7 +494,7 @@ class MainActivityViewModel @Inject constructor(
         return validLocationList.value.firstOrNull { item ->
             item.longitude == location.longitude &&
                 item.latitude == location.latitude &&
-                item.weatherSource == location.weatherSource
+                item.forecastSource == location.forecastSource
         } != null
     }
 

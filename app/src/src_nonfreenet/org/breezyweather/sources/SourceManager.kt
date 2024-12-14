@@ -27,12 +27,11 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.LocationSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.source.PreferencesParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
 import org.breezyweather.common.source.Source
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.accu.AccuService
 import org.breezyweather.sources.aemet.AemetService
@@ -185,61 +184,57 @@ class SourceManager @Inject constructor(
         hereService,
         metNoService,
         openWeatherService,
-        pirateWeatherService
+        pirateWeatherService,
+        wmoSevereWeatherService
     )
 
     // Region-specific or national weather sources
     private val nationalWeatherSourceList = listOf(
         aemetService,
+        anamBfService,
+        anametService,
         bmdService,
         bmkgService,
         brightSkyService,
         chinaService,
         cwaService,
+        atmoAuraService,
+        dccmsService,
         dmiService,
+        dmnNeService,
+        dwrGmService,
         ecccService,
+        ethioMetService,
         geoSphereAtService,
+        gMetService,
         hkoService,
+        igebuService,
         imdService,
         imsService,
+        inmgbService,
         ipmaService,
         jmaService,
         lhmtService,
         lvgmcService,
+        maliMeteoService,
         meteoAmService,
+        meteoBeninService,
         meteoLuxService,
+        meteoTchadService,
         metIeService,
         metOfficeService,
+        mettelsatService,
         mfService,
         mgmService,
+        msdZwService,
         namemService,
         nwsService,
         pagasaService,
-        smgService,
-        smhiService
-    )
-
-    // Secondary weather sources
-    private val secondaryWeatherSourceList = listOf(
-        wmoSevereWeatherService,
-        anamBfService,
-        anametService,
-        atmoAuraService,
-        dccmsService,
-        dmnNeService,
-        dwrGmService,
-        ethioMetService,
-        gMetService,
-        igebuService,
-        inmgbService,
-        maliMeteoService,
-        meteoBeninService,
-        meteoTchadService,
-        mettelsatService,
-        msdZwService,
         recosanteService,
         smaScService,
         smaSuService,
+        smgService,
+        smhiService,
         ssmsService
     )
 
@@ -261,7 +256,6 @@ class SourceManager @Inject constructor(
                     Collator.getInstance(context.currentLocale).compare(ws1.name, ws2.name)
                 }
         )
-        addAll(secondaryWeatherSourceList)
         addAll(broadcastSourceList)
     }
 
@@ -271,23 +265,34 @@ class SourceManager @Inject constructor(
     // Location
     fun getLocationSources(): List<LocationSource> = sourceList.filterIsInstance<LocationSource>()
     fun getLocationSource(id: String): LocationSource? = getLocationSources().firstOrNull { it.id == id }
-    fun getConfiguredLocationSources(): List<LocationSource> = getLocationSources().filter {
-        it !is ConfigurableSource || it.isConfigured
-    }
     fun getLocationSourceOrDefault(id: String): LocationSource = getLocationSource(id)
         ?: getLocationSource(BuildConfig.DEFAULT_LOCATION_SOURCE)!!
 
     // Weather
-    fun getMainWeatherSources(): List<MainWeatherSource> = sourceList.filterIsInstance<MainWeatherSource>()
-    fun getMainWeatherSource(id: String): MainWeatherSource? = getMainWeatherSources().firstOrNull { it.id == id }
-    fun getConfiguredMainWeatherSources(): List<MainWeatherSource> = getMainWeatherSources()
-        .filter { it !is ConfigurableSource || it.isConfigured }
+    fun getWeatherSources(): List<WeatherSource> = sourceList.filterIsInstance<WeatherSource>()
+    fun getWeatherSource(id: String): WeatherSource? = getWeatherSources().firstOrNull { it.id == id }
+    fun getSupportedWeatherSources(
+        feature: SourceFeature? = null,
+        location: Location? = null,
+        // Optional id of the source that will always be taken, even if not matching the criteria
+        sourceException: String? = null,
+    ): List<WeatherSource> = getWeatherSources()
+        .filter {
+            it.id == sourceException ||
+                (
+                    feature == null ||
+                        (
+                            it.supportedFeatures.containsKey(feature) &&
+                                (
+                                    location == null ||
+                                        (location.isCurrentPosition && !location.isUsable) ||
+                                        it.isFeatureSupportedForLocation(location, feature)
+                                    )
+                            )
+                    )
+        }
 
     // Secondary weather
-    fun getSecondaryWeatherSources(): List<SecondaryWeatherSource> =
-        sourceList.filterIsInstance<SecondaryWeatherSource>()
-    fun getSecondaryWeatherSource(id: String): SecondaryWeatherSource? = getSecondaryWeatherSources()
-        .firstOrNull { it.id == id }
     fun getPollenIndexSource(id: String): PollenIndexSource? = sourceList.filterIsInstance<PollenIndexSource>()
         .firstOrNull { it.id == id }
 
@@ -324,26 +329,22 @@ class SourceManager @Inject constructor(
     ): List<PreferencesParametersSource> {
         val preferencesScreenSources = mutableListOf<PreferencesParametersSource>()
 
-        val mainSource = getMainWeatherSource(location.weatherSource)
-        if (mainSource is PreferencesParametersSource && mainSource.hasPreferencesScreen(location, emptyList())) {
-            preferencesScreenSources.add(mainSource)
-        }
-
         with(location) {
             listOf(
-                Pair(currentSource, SourceFeature.FEATURE_CURRENT),
-                Pair(airQualitySource, SourceFeature.FEATURE_AIR_QUALITY),
-                Pair(pollenSource, SourceFeature.FEATURE_POLLEN),
-                Pair(minutelySource, SourceFeature.FEATURE_MINUTELY),
-                Pair(alertSource, SourceFeature.FEATURE_ALERT),
-                Pair(normalsSource, SourceFeature.FEATURE_NORMALS)
+                Pair(forecastSource, SourceFeature.FORECAST),
+                Pair(currentSource, SourceFeature.CURRENT),
+                Pair(airQualitySource, SourceFeature.AIR_QUALITY),
+                Pair(pollenSource, SourceFeature.POLLEN),
+                Pair(minutelySource, SourceFeature.MINUTELY),
+                Pair(alertSource, SourceFeature.ALERT),
+                Pair(normalsSource, SourceFeature.NORMALS)
             ).forEach {
-                val secondarySource = getSecondaryWeatherSource(it.first ?: location.weatherSource)
-                if (secondarySource is PreferencesParametersSource &&
-                    secondarySource.hasPreferencesScreen(location, listOf(it.second)) &&
-                    !preferencesScreenSources.contains(secondarySource)
+                val source = getWeatherSource(it.first ?: location.forecastSource)
+                if (source is PreferencesParametersSource &&
+                    source.hasPreferencesScreen(location, listOf(it.second)) &&
+                    !preferencesScreenSources.contains(source)
                 ) {
-                    preferencesScreenSources.add(secondarySource)
+                    preferencesScreenSources.add(source)
                 }
             }
         }

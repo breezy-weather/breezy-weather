@@ -111,7 +111,7 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 if (!location.pollenSource.isNullOrEmpty()) {
                     location.pollenSource!!
                 } else {
-                    location.weatherSource
+                    location.forecastSource
                 }
             ),
             location.weather?.dailyForecast?.map { daily ->

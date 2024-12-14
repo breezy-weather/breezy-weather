@@ -21,21 +21,21 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
+import breezyweather.domain.weather.model.AirQuality
+import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.model.LatLng
 import com.google.maps.android.model.LatLngBounds
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.MainWeatherSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtTimeseriesResult
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtWarningsResult
 import retrofit2.Retrofit
+import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
@@ -43,7 +43,7 @@ import javax.inject.Named
 class GeoSphereAtService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), MainWeatherSource, SecondaryWeatherSource {
+) : HttpSource(), WeatherSource {
 
     override val id = "geosphereat"
     val countryName = Locale(context.currentLocale.code, "AT").displayCountry
@@ -58,7 +58,6 @@ class GeoSphereAtService @Inject constructor(
     override val privacyPolicyUrl = "https://www.geosphere.at/de/legal"
 
     override val color = Color.rgb(191, 206, 64)
-    override val weatherAttribution = "GeoSphere Austria (Creative Commons Attribution 4.0)"
 
     private val mApi by lazy {
         client
@@ -73,22 +72,24 @@ class GeoSphereAtService @Inject constructor(
             .create(GeoSphereAtWarningApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_AIR_QUALITY,
-        SourceFeature.FEATURE_MINUTELY,
-        SourceFeature.FEATURE_ALERT
+    private val weatherAttribution = "GeoSphere Austria (Creative Commons Attribution 4.0)"
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.AIR_QUALITY to weatherAttribution,
+        SourceFeature.MINUTELY to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution
     )
 
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
         val latLng = LatLng(location.latitude, location.longitude)
         return when (feature) {
-            null -> hourlyBbox.contains(latLng)
-            SourceFeature.FEATURE_AIR_QUALITY -> airQuality12KmBbox.contains(latLng)
-            SourceFeature.FEATURE_MINUTELY -> nowcastBbox.contains(latLng)
-            SourceFeature.FEATURE_ALERT -> location.countryCode.equals("AT", ignoreCase = true)
+            SourceFeature.FORECAST -> hourlyBbox.contains(latLng)
+            SourceFeature.AIR_QUALITY -> airQuality12KmBbox.contains(latLng)
+            SourceFeature.MINUTELY -> nowcastBbox.contains(latLng)
+            SourceFeature.ALERT -> location.countryCode.equals("AT", ignoreCase = true)
             else -> false
         }
     }
@@ -103,68 +104,67 @@ class GeoSphereAtService @Inject constructor(
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val hourlyParameters = arrayOf(
-            "sy", // Weather symbol
-            "t2m", // Temperature at 2 meters
-            "rr_acc", // Total precipitation amount
-            "rain_acc", // Total rainfall amount
-            "snow_acc", // Total surface snow amount
-            "u10m", // 10 m wind speed in eastward direction
-            "ugust", // u component of maximum wind gust
-            "v10m", // 10 m wind speed in northward direction
-            "vgust", // v component of maximum wind gust
-            "rh2m", // Relative humidity 2 meters
-            "tcc", // Total cloud cover
-            "sp" // Surface pressure
-        )
-
-        val hourly = mApi.getHourlyForecast(
-            "${location.latitude},${location.longitude}",
-            hourlyParameters.joinToString(",")
-        )
-
         val failedFeatures = mutableListOf<SourceFeature>()
-        val airQuality = if (!ignoreFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY) &&
-            isFeatureSupportedInMainForLocation(location, SourceFeature.FEATURE_AIR_QUALITY)
-        ) {
+        val hourly = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getHourlyForecast(
+                "${location.latitude},${location.longitude}",
+                arrayOf(
+                    "sy", // Weather symbol
+                    "t2m", // Temperature at 2 meters
+                    "rr_acc", // Total precipitation amount
+                    "rain_acc", // Total rainfall amount
+                    "snow_acc", // Total surface snow amount
+                    "u10m", // 10 m wind speed in eastward direction
+                    "ugust", // u component of maximum wind gust
+                    "v10m", // 10 m wind speed in northward direction
+                    "vgust", // v component of maximum wind gust
+                    "rh2m", // Relative humidity 2 meters
+                    "tcc", // Total cloud cover
+                    "sp" // Surface pressure
+                ).joinToString(",")
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(GeoSphereAtTimeseriesResult())
+            }
+        } else {
+            Observable.just(GeoSphereAtTimeseriesResult())
+        }
+
+        val airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
             val latLng = LatLng(location.latitude, location.longitude)
             mApi.getAirQuality(
                 if (airQuality4KmBbox.contains(latLng)) 4 else 12,
                 "${location.latitude},${location.longitude}",
                 airQualityParameters.joinToString(",")
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
+                failedFeatures.add(SourceFeature.AIR_QUALITY)
                 Observable.just(GeoSphereAtTimeseriesResult())
             }
         } else {
             Observable.just(GeoSphereAtTimeseriesResult())
         }
 
-        val nowcast = if (!ignoreFeatures.contains(SourceFeature.FEATURE_MINUTELY) &&
-            isFeatureSupportedInMainForLocation(location, SourceFeature.FEATURE_MINUTELY)
-        ) {
+        val nowcast = if (SourceFeature.MINUTELY in requestedFeatures) {
             mApi.getNowcast(
                 "${location.latitude},${location.longitude}",
                 "rr" // precipitation sum
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
+                failedFeatures.add(SourceFeature.MINUTELY)
                 Observable.just(GeoSphereAtTimeseriesResult())
             }
         } else {
             Observable.just(GeoSphereAtTimeseriesResult())
         }
 
-        val alerts = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT) &&
-            isFeatureSupportedInMainForLocation(location, SourceFeature.FEATURE_ALERT)
-        ) {
+        val alerts = if (SourceFeature.ALERT in requestedFeatures) {
             mWarningApi.getWarningsForCoords(
                 location.longitude,
                 location.latitude,
                 if (context.currentLocale.code == "de") "de" else "en"
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                failedFeatures.add(SourceFeature.ALERT)
                 Observable.just(GeoSphereAtWarningsResult())
             }
         } else {
@@ -177,96 +177,50 @@ class GeoSphereAtService @Inject constructor(
             nowcast,
             alerts
         ) { hourlyResult, airQualityResult, nowcastResult, alertsResult ->
-            convert(hourlyResult, airQualityResult, nowcastResult, alertsResult, location, failedFeatures)
-        }
-    }
+            WeatherWrapper(
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyForecast(hourlyResult, location)
+                } else {
+                    null
+                },
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyForecast(hourlyResult, airQualityResult)
+                } else {
+                    null
+                },
+                airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
+                    val airQualityHourly = mutableMapOf<Date, AirQuality>()
 
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_AIR_QUALITY,
-        SourceFeature.FEATURE_MINUTELY,
-        SourceFeature.FEATURE_ALERT
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = null
-    override val airQualityAttribution = weatherAttribution
-    override val pollenAttribution = null
-    override val minutelyAttribution = weatherAttribution
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = null
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        // TODO: Should be checked earlier for each requested feature
-        if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY) &&
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_MINUTELY)
-        ) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-        if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY) &&
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_AIR_QUALITY)
-        ) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-        if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT) &&
-            !isFeatureSupportedInSecondaryForLocation(location, SourceFeature.FEATURE_ALERT)
-        ) {
-            // TODO: return Observable.error(UnsupportedFeatureForLocationException())
-            return Observable.error(SecondaryWeatherException())
-        }
-
-        val failedFeatures = mutableListOf<SourceFeature>()
-        val airQuality = if (requestedFeatures.contains(SourceFeature.FEATURE_AIR_QUALITY)) {
-            val latLng = LatLng(location.latitude, location.longitude)
-            mApi.getAirQuality(
-                if (airQuality4KmBbox.contains(latLng)) 4 else 12,
-                "${location.latitude},${location.longitude}",
-                airQualityParameters.joinToString(",")
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_AIR_QUALITY)
-                Observable.just(GeoSphereAtTimeseriesResult())
-            }
-        } else {
-            Observable.just(GeoSphereAtTimeseriesResult())
-        }
-
-        val nowcast = if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
-            mApi.getNowcast(
-                "${location.latitude},${location.longitude}",
-                "rr" // precipitation sum
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(GeoSphereAtTimeseriesResult())
-            }
-        } else {
-            Observable.just(GeoSphereAtTimeseriesResult())
-        }
-
-        val alerts = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            mWarningApi.getWarningsForCoords(
-                location.longitude,
-                location.latitude,
-                if (context.currentLocale.code == "de") "de" else "en"
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                Observable.just(GeoSphereAtWarningsResult())
-            }
-        } else {
-            Observable.just(GeoSphereAtWarningsResult())
-        }
-
-        return Observable.zip(airQuality, nowcast, alerts) { airQualityResult, nowcastResult, alertsResult ->
-            convertSecondary(airQualityResult, nowcastResult, alertsResult, failedFeatures)
+                    if (!airQualityResult.timestamps.isNullOrEmpty() &&
+                        airQualityResult.features?.getOrNull(0)?.properties?.parameters != null
+                    ) {
+                        airQualityResult.timestamps.forEachIndexed { i, date ->
+                            airQualityHourly[date] = airQualityResult.features[0].properties!!.parameters!!.let {
+                                AirQuality(
+                                    pM25 = it.pm25surf?.data?.getOrNull(i),
+                                    pM10 = it.pm10surf?.data?.getOrNull(i),
+                                    nO2 = it.no2surf?.data?.getOrNull(i),
+                                    o3 = it.o3surf?.data?.getOrNull(i)
+                                )
+                            }
+                        }
+                    }
+                    AirQualityWrapper(hourlyForecast = airQualityHourly)
+                } else {
+                    null
+                },
+                minutelyForecast = if (SourceFeature.MINUTELY in requestedFeatures) {
+                    getMinutelyForecast(nowcastResult)
+                } else {
+                    null
+                },
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getAlerts(alertsResult)
+                } else {
+                    null
+                },
+                failedFeatures = failedFeatures
+            )
         }
     }
 

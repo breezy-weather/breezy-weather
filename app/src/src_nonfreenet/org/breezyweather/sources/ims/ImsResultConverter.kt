@@ -19,33 +19,28 @@ package org.breezyweather.sources.ims
 import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.R
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.ims.json.ImsLocation
 import org.breezyweather.sources.ims.json.ImsWeatherData
-import org.breezyweather.sources.ims.json.ImsWeatherResult
 import java.util.Calendar
 import java.util.Date
 import kotlin.text.startsWith
 
-fun convert(
+internal fun convert(
     location: Location,
     result: ImsLocation,
 ): Location {
@@ -56,31 +51,14 @@ fun convert(
         city = result.name
     )
 }
-fun convert(
-    context: Context,
-    weatherResult: ImsWeatherResult?,
-    location: Location,
-): WeatherWrapper {
-    // If the API doesn’t return data, consider data as garbage and keep cached data
-    if (weatherResult?.data?.forecastData.isNullOrEmpty()) {
-        throw InvalidOrIncompleteDataException()
-    }
 
-    return WeatherWrapper(
-        dailyForecast = getDailyForecast(location, weatherResult.data),
-        hourlyForecast = getHourlyForecast(context, location, weatherResult.data),
-        current = getCurrent(context, weatherResult.data),
-        alertList = getAlerts(context, weatherResult.data)
-    )
-}
-
-private fun getDailyForecast(
+internal fun getDailyForecast(
     location: Location,
-    data: ImsWeatherData,
-): List<Daily> {
-    return data.forecastData!!.keys.mapNotNull {
+    data: ImsWeatherData?,
+): List<DailyWrapper>? {
+    return data?.forecastData?.keys?.mapNotNull {
         it.toDateNoHour(location.javaTimeZone)?.let { dayDate ->
-            Daily(
+            DailyWrapper(
                 date = dayDate,
                 uV = data.forecastData[it]!!.daily?.maximumUVI?.toDoubleOrNull()?.let { uvi ->
                     UV(uvi)
@@ -90,15 +68,15 @@ private fun getDailyForecast(
     }
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     context: Context,
     location: Location,
-    data: ImsWeatherData,
+    data: ImsWeatherData?,
 ): List<HourlyWrapper> {
     val hourlyList = mutableListOf<HourlyWrapper>()
     var previousWeatherCode = ""
     var currentWeatherCode = ""
-    data.forecastData!!.keys.forEach {
+    data?.forecastData?.keys?.forEach {
         it.toDateNoHour(location.javaTimeZone)?.let { dayDate ->
             data.forecastData[it]!!.hourly?.forEach { hourlyResult ->
                 val hourlyDate = dayDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
@@ -143,15 +121,15 @@ private fun getHourlyForecast(
     return hourlyList
 }
 
-fun getCurrent(
+internal fun getCurrent(
     context: Context,
     data: ImsWeatherData?,
-): Current? {
+): CurrentWrapper? {
     if (data?.analysis == null) return null
-    val firstDay = data.forecastData?.keys?.sorted()?.firstOrNull()
+    val firstDay = data.forecastData?.keys?.minOrNull()
     val dailyForecast = firstDay?.let { data.forecastData.getOrElse(it) { null }?.country?.description }
 
-    return Current(
+    return CurrentWrapper(
         weatherText = getWeatherText(context, data.analysis.weatherCode),
         weatherCode = getWeatherCode(data.analysis.weatherCode),
         temperature = data.analysis.temperature?.toDoubleOrNull()?.let {
@@ -176,11 +154,11 @@ fun getCurrent(
     )
 }
 
-fun getAlerts(
+internal fun getAlerts(
     context: Context,
-    data: ImsWeatherData,
+    data: ImsWeatherData?,
 ): List<Alert>? {
-    return data.allWarnings?.mapNotNull { warningEntry ->
+    return data?.allWarnings?.mapNotNull { warningEntry ->
         val severity = when (warningEntry.value.severityId) {
             "6" -> AlertSeverity.EXTREME
             "4", "5" -> AlertSeverity.SEVERE
@@ -211,25 +189,6 @@ fun getAlerts(
             } ?: Alert.colorFromSeverity(severity)
         )
     }
-}
-
-fun convertSecondary(
-    context: Context,
-    weatherResult: ImsWeatherResult?,
-    requestedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            getCurrent(context, weatherResult?.data)
-        } else {
-            null
-        },
-        alertList = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            weatherResult?.data?.let { getAlerts(context, it) }
-        } else {
-            null
-        }
-    )
 }
 
 // Source: https://ims.gov.il/en/weather_codes

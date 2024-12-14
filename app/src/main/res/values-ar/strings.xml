@@ -545,10 +545,8 @@
     <string name="weather_minutely_data_by">بيانات التنبؤ بهطول الأمطار بواسطة %s</string>
     <string name="weather_message_invalid_location">الموقع غير صالح، يرجى حذفه وإعادة إضافته</string>
     <string name="weather_alert_data_by">بيانات التنبيه حسب %s</string>
-    <string name="weather_message_secondary_data_refresh_failed">فشل تحديث بيانات الطقس لمصدر طقس ثانوي</string>
     <string name="wind_gusts">هبوب الرياح</string>
     <string name="about_dependencies">التبعيات</string>
-    <string name="settings_weather_source_main">المصدر الرئيسي</string>
     <string name="precipitation_nowcasting">التساقطات دقيقة بدقيقة</string>
     <string name="action_save">حفظ</string>
     <string name="settings_weather_sources_per_location_summary">تخصيص مصادر بيانات الطقس المستخدمة لهذا الموقع</string>

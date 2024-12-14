@@ -18,18 +18,14 @@ package org.breezyweather.sources.accu
 
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.DegreeDay
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.MoonPhase
-import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationDuration
@@ -39,17 +35,14 @@ import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.PollenWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.sources.accu.json.AccuAirQualityData
-import org.breezyweather.sources.accu.json.AccuAirQualityResult
 import org.breezyweather.sources.accu.json.AccuAlertResult
-import org.breezyweather.sources.accu.json.AccuClimoSummaryResult
 import org.breezyweather.sources.accu.json.AccuCurrentResult
 import org.breezyweather.sources.accu.json.AccuForecastAirAndPollen
 import org.breezyweather.sources.accu.json.AccuForecastDailyForecast
@@ -63,7 +56,7 @@ import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
-fun convert(
+internal fun convert(
     location: Location?, // Null if location search, current location if reverse geocoding
     result: AccuLocationResult,
 ): Location {
@@ -83,53 +76,14 @@ fun convert(
         )
 }
 
-fun convert(
-    location: Location,
-    currentResult: AccuCurrentResult?,
-    dailyResult: AccuForecastDailyResult,
-    hourlyResultList: List<AccuForecastHourlyResult>,
-    minuteResult: AccuMinutelyResult?,
-    alertResultList: List<AccuAlertResult>,
-    airQualityHourlyResult: AccuAirQualityResult,
-    climoSummaryResult: AccuClimoSummaryResult,
-    currentMonth: Int,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    // If the API doesn’t return hourly or daily, consider data as garbage and keep cached data
-    if (dailyResult.DailyForecasts.isNullOrEmpty() || hourlyResultList.isEmpty()) {
-        throw InvalidOrIncompleteDataException()
-    }
-
-    return WeatherWrapper(
-        /*base = Base(
-            publishDate = currentResult.EpochTime.seconds.inWholeMilliseconds.toDate(),
-        ),*/
-        current = getCurrent(currentResult, dailyResult, minuteResult),
-        normals = if (climoSummaryResult.Normals?.Temperatures != null) {
-            Normals(
-                month = currentMonth,
-                daytimeTemperature = climoSummaryResult.Normals.Temperatures.Maximum.Metric?.Value,
-                nighttimeTemperature = climoSummaryResult.Normals.Temperatures.Minimum.Metric?.Value
-            )
-        } else {
-            null
-        },
-        dailyForecast = getDailyList(dailyResult.DailyForecasts, location),
-        hourlyForecast = getHourlyList(hourlyResultList, airQualityHourlyResult.data),
-        minutelyForecast = getMinutelyList(minuteResult),
-        alertList = getAlertList(alertResultList),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun getCurrent(
+internal fun getCurrent(
     currentResult: AccuCurrentResult?,
     dailyResult: AccuForecastDailyResult? = null,
     minuteResult: AccuMinutelyResult? = null,
-): Current? {
+): CurrentWrapper? {
     if (currentResult == null) return null
 
-    return Current(
+    return CurrentWrapper(
         weatherText = currentResult.WeatherText,
         weatherCode = getWeatherCode(currentResult.WeatherIcon),
         temperature = Temperature(
@@ -157,14 +111,12 @@ fun getCurrent(
     )
 }
 
-private fun getDailyList(
-    dailyForecasts: List<AccuForecastDailyForecast>,
+internal fun getDailyList(
+    dailyForecasts: List<AccuForecastDailyForecast>?,
     location: Location,
-): List<Daily> {
-    val supportsPollen = supportsPollen(dailyForecasts)
-
-    return dailyForecasts.map { forecasts ->
-        Daily(
+): List<DailyWrapper>? {
+    return dailyForecasts?.map { forecasts ->
+        DailyWrapper(
             date = forecasts.EpochDate.seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.javaTimeZone)!!,
             day = HalfDay(
                 weatherText = forecasts.Day?.LongPhrase,
@@ -251,7 +203,6 @@ private fun getDailyList(
             moonPhase = MoonPhase(
                 angle = MoonPhase.getAngleFromEnglishDescription(forecasts.Moon?.Phase)
             ),
-            pollen = if (supportsPollen) getDailyPollen(forecasts.AirAndPollen) else null,
             uV = getDailyUV(forecasts.AirAndPollen),
             sunshineDuration = forecasts.HoursOfSun
         )
@@ -263,7 +214,7 @@ private fun getDailyList(
  * This function will tell us if they measured at least one pollen or mold during the 15-day period
  * to make the difference between a 0 and a null
  */
-fun supportsPollen(dailyForecasts: List<AccuForecastDailyForecast>): Boolean {
+private fun supportsPollen(dailyForecasts: List<AccuForecastDailyForecast>): Boolean {
     dailyForecasts.forEach { daily ->
         val pollens = listOf(
             daily.AirAndPollen?.firstOrNull { it.Name == "Tree" },
@@ -300,9 +251,8 @@ private fun getDailyUV(
     return UV(index = uv?.Value?.toDouble())
 }
 
-private fun getHourlyList(
+internal fun getHourlyList(
     resultList: List<AccuForecastHourlyResult>,
-    airQualityData: List<AccuAirQualityData>?,
 ): List<HourlyWrapper> {
     return resultList.map { result ->
         HourlyWrapper(
@@ -334,7 +284,6 @@ private fun getHourlyList(
                 speed = getSpeedInMetersPerSecond(result.Wind?.Speed),
                 gusts = getSpeedInMetersPerSecond(result.WindGust?.Speed)
             ),
-            airQuality = getAirQualityForHour(result.EpochDateTime, airQualityData),
             uV = UV(index = result.UVIndex?.toDouble()),
             relativeHumidity = result.RelativeHumidity?.toDouble(),
             dewPoint = getTemperatureInCelsius(result.DewPoint),
@@ -344,50 +293,7 @@ private fun getHourlyList(
     }
 }
 
-fun getAirQualityForHour(
-    requestedTime: Long,
-    accuAirQualityDataList: List<AccuAirQualityData>?,
-): AirQuality? {
-    if (accuAirQualityDataList == null) return null
-
-    var pm25: Double? = null
-    var pm10: Double? = null
-    var so2: Double? = null
-    var no2: Double? = null
-    var o3: Double? = null
-    var co: Double? = null
-    accuAirQualityDataList
-        .firstOrNull { it.epochDate == requestedTime }
-        ?.pollutants?.forEach { p ->
-            when (p.type) {
-                "O3" -> o3 = p.concentration.value
-                "NO2" -> no2 = p.concentration.value
-                "PM2_5" -> pm25 = p.concentration.value
-                "PM10" -> pm10 = p.concentration.value
-                "SO2" -> so2 = p.concentration.value
-                "CO" -> co = p.concentration.value?.div(1000.0)
-            }
-        }
-
-    // Return null instead of an object initialized with null values to ease the filtering later when aggregating for daily
-    return if (pm25 != null || pm10 != null || so2 != null || no2 != null || o3 != null || co != null) {
-        AirQuality(
-            pM25 = pm25,
-            pM10 = pm10,
-            sO2 = so2,
-            nO2 = no2,
-            o3 = o3,
-            cO = co
-        )
-    } else {
-        null
-    }
-}
-
-/**
- * Used from secondary
- */
-fun getAirQualityWrapper(airQualityHourlyResult: List<AccuAirQualityData>?): AirQualityWrapper? {
+internal fun getAirQualityWrapper(airQualityHourlyResult: List<AccuAirQualityData>?): AirQualityWrapper? {
     if (airQualityHourlyResult.isNullOrEmpty()) return null
 
     val airQualityHourly = mutableMapOf<Date, AirQuality>()
@@ -440,7 +346,7 @@ fun getAirQualityWrapper(airQualityHourlyResult: List<AccuAirQualityData>?): Air
 /**
  * Used from secondary
  */
-fun getPollenWrapper(
+internal fun getPollenWrapper(
     dailyPollenResult: List<AccuForecastDailyForecast>?,
     location: Location,
 ): PollenWrapper? {
@@ -463,7 +369,7 @@ fun getPollenWrapper(
     )
 }
 
-private fun getMinutelyList(
+internal fun getMinutelyList(
     minuteResult: AccuMinutelyResult?,
 ): List<Minutely>? {
     if (minuteResult == null) return null
@@ -487,7 +393,7 @@ private fun getMinutelyList(
     }
 }
 
-private fun getAlertList(
+internal fun getAlertList(
     resultList: List<AccuAlertResult>?,
 ): List<Alert>? {
     if (resultList == null) return null
@@ -536,40 +442,7 @@ private fun getWeatherCode(icon: Int?): WeatherCode? {
     }
 }
 
-/**
- * Secondary convert
- */
-fun convertSecondary(
-    location: Location,
-    currentResult: AccuCurrentResult?,
-    airQualityHourlyResult: AccuAirQualityResult?,
-    dailyPollenResult: AccuForecastDailyResult?,
-    minuteResult: AccuMinutelyResult?,
-    alertResultList: List<AccuAlertResult>?,
-    climoSummaryResult: AccuClimoSummaryResult?,
-    currentMonth: Int,
-    failedFeatures: List<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = getCurrent(currentResult),
-        airQuality = getAirQualityWrapper(airQualityHourlyResult?.data),
-        pollen = getPollenWrapper(dailyPollenResult?.DailyForecasts, location),
-        minutelyForecast = getMinutelyList(minuteResult),
-        alertList = getAlertList(alertResultList),
-        normals = if (climoSummaryResult?.Normals?.Temperatures != null) {
-            Normals(
-                month = currentMonth,
-                daytimeTemperature = climoSummaryResult.Normals.Temperatures.Maximum.Metric?.Value,
-                nighttimeTemperature = climoSummaryResult.Normals.Temperatures.Minimum.Metric?.Value
-            )
-        } else {
-            null
-        },
-        failedFeatures = failedFeatures
-    )
-}
-
-fun getTemperatureInCelsius(value: AccuValue?): Double? {
+private fun getTemperatureInCelsius(value: AccuValue?): Double? {
     return if (value?.UnitType == 18) { // F
         value.Value?.minus(32)?.div(1.8)
     } else {
@@ -577,7 +450,7 @@ fun getTemperatureInCelsius(value: AccuValue?): Double? {
     }
 }
 
-fun getDegreeDayInCelsius(value: AccuValue?): Double? {
+private fun getDegreeDayInCelsius(value: AccuValue?): Double? {
     return if (value?.UnitType == 18) { // F
         value.Value?.div(1.8)
     } else {
@@ -585,7 +458,7 @@ fun getDegreeDayInCelsius(value: AccuValue?): Double? {
     }
 }
 
-fun getSpeedInMetersPerSecond(value: AccuValue?): Double? {
+private fun getSpeedInMetersPerSecond(value: AccuValue?): Double? {
     return if (value?.UnitType == 9) { // mi/h
         value.Value?.div(2.23694)
     } else {
@@ -593,7 +466,7 @@ fun getSpeedInMetersPerSecond(value: AccuValue?): Double? {
     }
 }
 
-fun getDistanceInMeters(value: AccuValue?): Double? {
+private fun getDistanceInMeters(value: AccuValue?): Double? {
     return when (value?.UnitType) {
         2 -> value.Value?.times(1609.344) // mi
         0 -> value.Value?.div(3.28084) // ft
@@ -602,7 +475,7 @@ fun getDistanceInMeters(value: AccuValue?): Double? {
     }
 }
 
-fun getQuantityInMillimeters(value: AccuValue?): Double? {
+private fun getQuantityInMillimeters(value: AccuValue?): Double? {
     return when (value?.UnitType) {
         1 -> value.Value?.times(25.4) // in
         4 -> value.Value?.times(10) // cm

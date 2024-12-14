@@ -21,7 +21,6 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.jsonwebtoken.Jwts
@@ -29,7 +28,6 @@ import io.jsonwebtoken.security.Keys
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
@@ -38,9 +36,8 @@ import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
-import org.breezyweather.common.source.MainWeatherSource
 import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.SecondaryWeatherSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.sources.mf.json.MfCurrentResult
 import org.breezyweather.sources.mf.json.MfEphemerisResult
@@ -62,12 +59,7 @@ import javax.inject.Named
 class MfService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(),
-    MainWeatherSource,
-    SecondaryWeatherSource,
-    ReverseGeocodingSource,
-    LocationParametersSource,
-    ConfigurableSource {
+) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource, ConfigurableSource {
 
     override val id = "mf"
     val countryName = Locale(context.currentLocale.code, "FR").displayCountry
@@ -82,7 +74,6 @@ class MfService @Inject constructor(
     override val privacyPolicyUrl = "https://meteofrance.com/application-meteo-france-politique-de-confidentialite"
 
     override val color = Color.rgb(0, 87, 147)
-    override val weatherAttribution = "Météo-France (Etalab)"
 
     private val mApi by lazy {
         client
@@ -91,48 +82,46 @@ class MfService @Inject constructor(
             .create(MfApi::class.java)
     }
 
-    override val supportedFeaturesInMain = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_MINUTELY,
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_NORMALS
+    private val weatherAttribution = "Météo-France (Etalab)"
+    override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
+        SourceFeature.MINUTELY to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution,
+        SourceFeature.NORMALS to weatherAttribution
     )
-    override fun isFeatureSupportedInMainForLocation(
+    override fun isFeatureSupportedForLocation(
         location: Location,
-        feature: SourceFeature?,
+        feature: SourceFeature,
     ): Boolean {
-        return isConfigured &&
-            when (feature) {
-                SourceFeature.FEATURE_CURRENT -> !location.countryCode.isNullOrEmpty() &&
-                    location.countryCode.equals("FR", ignoreCase = true)
-                SourceFeature.FEATURE_MINUTELY -> !location.countryCode.isNullOrEmpty() &&
-                    location.countryCode.equals("FR", ignoreCase = true)
-                SourceFeature.FEATURE_ALERT -> !location.countryCode.isNullOrEmpty() &&
-                    arrayOf("FR", "AD").any { location.countryCode.equals(it, ignoreCase = true) }
-                /*
-                 * TODO: The current v3 endpoint doesn't support oversea territories
-                 *  arrayOf("FR", "AD", "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT")
-                 *    .any { location.countryCode.equals(it, ignoreCase = true) }
-                 */
-                SourceFeature.FEATURE_NORMALS -> !location.countryCode.isNullOrEmpty() &&
-                    arrayOf("FR", "AD", "MC").any { location.countryCode.equals(it, ignoreCase = true) }
-                null -> true // Main source available worldwide
-                else -> false
-            }
+        return when (feature) {
+            SourceFeature.CURRENT -> !location.countryCode.isNullOrEmpty() &&
+                location.countryCode.equals("FR", ignoreCase = true)
+            SourceFeature.MINUTELY -> !location.countryCode.isNullOrEmpty() &&
+                location.countryCode.equals("FR", ignoreCase = true)
+            SourceFeature.ALERT -> !location.countryCode.isNullOrEmpty() &&
+                arrayOf("FR", "AD").any { location.countryCode.equals(it, ignoreCase = true) }
+            /*
+             * TODO: The current alert v3 endpoint doesn't support oversea territories
+             *  arrayOf("FR", "AD", "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT")
+             *    .any { location.countryCode.equals(it, ignoreCase = true) }
+             */
+            SourceFeature.NORMALS -> !location.countryCode.isNullOrEmpty() &&
+                arrayOf("FR", "AD", "MC").any { location.countryCode.equals(it, ignoreCase = true) }
+            SourceFeature.FORECAST -> true // Main source available worldwide
+            else -> false
+        }
     }
 
     override fun requestWeather(
         context: Context,
         location: Location,
-        ignoreFeatures: List<SourceFeature>,
+        requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
         val languageCode = context.currentLocale.code
         val token = getToken()
         val failedFeatures = mutableListOf<SourceFeature>()
-        val current = if (!ignoreFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
+        val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(
                 USER_AGENT,
                 location.latitude,
@@ -141,33 +130,44 @@ class MfService @Inject constructor(
                 "iso",
                 token
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
+                failedFeatures.add(SourceFeature.CURRENT)
                 Observable.just(MfCurrentResult())
             }
         } else {
             Observable.just(MfCurrentResult())
         }
-        val forecast = mApi.getForecast(
-            USER_AGENT,
-            location.latitude,
-            location.longitude,
-            "iso",
-            token
-        )
-        val ephemeris = mApi.getEphemeris(
-            USER_AGENT,
-            location.latitude,
-            location.longitude,
-            "en", // English required to convert moon phase
-            "iso",
-            token
-        ).onErrorResumeNext {
-            /*if (BreezyWeather.instance.debugMode) {
-                failedFeatures.add(SourceFeature.FEATURE_OTHER)
-            }*/
+        val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getForecast(
+                USER_AGENT,
+                location.latitude,
+                location.longitude,
+                "iso",
+                token
+            ).onErrorResumeNext {
+                failedFeatures.add(SourceFeature.FORECAST)
+                Observable.just(MfForecastResult())
+            }
+        } else {
+            Observable.just(MfForecastResult())
+        }
+        val ephemeris = if (SourceFeature.FORECAST in requestedFeatures) {
+            mApi.getEphemeris(
+                USER_AGENT,
+                location.latitude,
+                location.longitude,
+                "en", // English required to convert moon phase
+                "iso",
+                token
+            ).onErrorResumeNext {
+                /*if (BreezyWeather.instance.debugMode) {
+                    failedFeatures.add(SourceFeature.OTHER)
+                }*/
+                Observable.just(MfEphemerisResult())
+            }
+        } else {
             Observable.just(MfEphemerisResult())
         }
-        val rain = if (!ignoreFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
+        val rain = if (SourceFeature.MINUTELY in requestedFeatures) {
             mApi.getRain(
                 USER_AGENT,
                 location.latitude,
@@ -176,13 +176,13 @@ class MfService @Inject constructor(
                 "iso",
                 token
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
+                failedFeatures.add(SourceFeature.MINUTELY)
                 Observable.just(MfRainResult())
             }
         } else {
             Observable.just(MfRainResult())
         }
-        val warningsJ0 = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val warningsJ0 = if (SourceFeature.ALERT in requestedFeatures) {
             val domain = location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }
             if (!domain.isNullOrEmpty()) {
                 mApi.getWarnings(
@@ -192,17 +192,17 @@ class MfService @Inject constructor(
                     "iso",
                     token
                 ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    failedFeatures.add(SourceFeature.ALERT)
                     Observable.just(MfWarningsResult())
                 }
             } else {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                failedFeatures.add(SourceFeature.ALERT)
                 Observable.just(MfWarningsResult())
             }
         } else {
             Observable.just(MfWarningsResult())
         }
-        val warningsJ1 = if (!ignoreFeatures.contains(SourceFeature.FEATURE_ALERT)) {
+        val warningsJ1 = if (SourceFeature.ALERT in requestedFeatures) {
             val domain = location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }
             if (!domain.isNullOrEmpty()) {
                 mApi.getWarnings(
@@ -212,11 +212,11 @@ class MfService @Inject constructor(
                     "iso",
                     token
                 ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                    failedFeatures.add(SourceFeature.ALERT)
                     Observable.just(MfWarningsResult())
                 }
             } else {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
+                failedFeatures.add(SourceFeature.ALERT)
                 Observable.just(MfWarningsResult())
             }
         } else {
@@ -224,14 +224,14 @@ class MfService @Inject constructor(
         }
 
         // TODO: Only call once a month, unless it’s current position
-        val normals = if (!ignoreFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
+        val normals = if (SourceFeature.NORMALS in requestedFeatures) {
             mApi.getNormals(
                 USER_AGENT,
                 location.latitude,
                 location.longitude,
                 token
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
+                failedFeatures.add(SourceFeature.NORMALS)
                 Observable.just(MfNormalsResult())
             }
         } else {
@@ -239,182 +239,56 @@ class MfService @Inject constructor(
         }
 
         return Observable.zip(current, forecast, ephemeris, rain, warningsJ0, warningsJ1, normals) {
-                mfCurrentResult: MfCurrentResult,
-                mfForecastResult: MfForecastResult,
-                mfEphemerisResult: MfEphemerisResult,
-                mfRainResult: MfRainResult,
-                mfWarningJ0Results: MfWarningsResult,
-                mfWarningJ1Results: MfWarningsResult,
-                mfNormalsResult: MfNormalsResult,
+                currentResult: MfCurrentResult,
+                forecastResult: MfForecastResult,
+                ephemerisResult: MfEphemerisResult,
+                rainResult: MfRainResult,
+                warningsJ0Result: MfWarningsResult,
+                warningsJ1Result: MfWarningsResult,
+                normalsResult: MfNormalsResult,
             ->
-            convert(
-                location,
-                mfCurrentResult,
-                mfForecastResult,
-                mfEphemerisResult,
-                mfRainResult,
-                mfWarningJ0Results,
-                mfWarningJ1Results,
-                mfNormalsResult,
-                failedFeatures
-            )
-        }
-    }
-
-    // SECONDARY WEATHER SOURCE
-    override val supportedFeaturesInSecondary = listOf(
-        SourceFeature.FEATURE_CURRENT,
-        SourceFeature.FEATURE_MINUTELY,
-        SourceFeature.FEATURE_ALERT,
-        SourceFeature.FEATURE_NORMALS
-    )
-    override fun isFeatureSupportedInSecondaryForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return isFeatureSupportedInMainForLocation(location, feature)
-    }
-    override val currentAttribution = weatherAttribution
-    override val airQualityAttribution = null
-    override val pollenAttribution = null
-    override val minutelyAttribution = weatherAttribution
-    override val alertAttribution = weatherAttribution
-    override val normalsAttribution = weatherAttribution
-
-    override fun requestSecondaryWeather(
-        context: Context,
-        location: Location,
-        requestedFeatures: List<SourceFeature>,
-    ): Observable<SecondaryWeatherWrapper> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
-        val languageCode = context.currentLocale.code
-        val token = getToken()
-
-        val failedFeatures = mutableListOf<SourceFeature>()
-        val current = if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-            mApi.getCurrent(
-                USER_AGENT,
-                location.latitude,
-                location.longitude,
-                languageCode,
-                "iso",
-                token
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_CURRENT)
-                Observable.just(MfCurrentResult())
-            }
-        } else {
-            Observable.just(MfCurrentResult())
-        }
-        val rain = if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
-            mApi.getRain(
-                USER_AGENT,
-                location.latitude,
-                location.longitude,
-                languageCode,
-                "iso",
-                token
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_MINUTELY)
-                Observable.just(MfRainResult())
-            }
-        } else {
-            Observable.just(MfRainResult())
-        }
-
-        val warningsJ0 = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            val domain = location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }
-            if (!domain.isNullOrEmpty()) {
-                mApi.getWarnings(
-                    USER_AGENT,
-                    domain,
-                    "J0",
-                    "iso",
-                    token
-                ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                    Observable.just(MfWarningsResult())
-                }
-            } else {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                Observable.just(MfWarningsResult())
-            }
-        } else {
-            Observable.just(MfWarningsResult())
-        }
-
-        val warningsJ1 = if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-            val domain = location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }
-            if (!domain.isNullOrEmpty()) {
-                mApi.getWarnings(
-                    USER_AGENT,
-                    domain,
-                    "J1",
-                    "iso",
-                    token
-                ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                    Observable.just(MfWarningsResult())
-                }
-            } else {
-                failedFeatures.add(SourceFeature.FEATURE_ALERT)
-                Observable.just(MfWarningsResult())
-            }
-        } else {
-            Observable.just(MfWarningsResult())
-        }
-
-        val normals = if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
-            mApi.getNormals(
-                USER_AGENT,
-                location.latitude,
-                location.longitude,
-                token
-            ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FEATURE_NORMALS)
-                Observable.just(MfNormalsResult())
-            }
-        } else {
-            Observable.just(MfNormalsResult())
-        }
-
-        return Observable.zip(current, rain, warningsJ0, warningsJ1, normals) {
-                mfCurrentResult: MfCurrentResult,
-                mfRainResult: MfRainResult,
-                mfWarningJ0Results: MfWarningsResult,
-                mfWarningJ1Results: MfWarningsResult,
-                mfNormalsResult: MfNormalsResult,
-            ->
-            convertSecondary(
-                location,
-                if (requestedFeatures.contains(SourceFeature.FEATURE_CURRENT)) {
-                    mfCurrentResult
+            WeatherWrapper(
+                /*base = Base(
+                    publishDate = forecastResult.updateTime ?: Date()
+                ),*/
+                dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getDailyList(
+                        location,
+                        forecastResult.properties?.dailyForecast,
+                        ephemerisResult.properties?.ephemeris
+                    )
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SourceFeature.FEATURE_MINUTELY)) {
-                    mfRainResult
+                hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                    getHourlyList(
+                        forecastResult.properties?.forecast,
+                        forecastResult.properties?.probabilityForecast
+                    )
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    mfWarningJ0Results
+                current = if (SourceFeature.CURRENT in requestedFeatures) {
+                    getCurrent(currentResult)
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SourceFeature.FEATURE_ALERT)) {
-                    mfWarningJ1Results
+                minutelyForecast = if (SourceFeature.MINUTELY in requestedFeatures) {
+                    getMinutelyList(rainResult)
                 } else {
                     null
                 },
-                if (requestedFeatures.contains(SourceFeature.FEATURE_NORMALS)) {
-                    mfNormalsResult
+                alertList = if (SourceFeature.ALERT in requestedFeatures) {
+                    getWarningsList(warningsJ0Result, warningsJ1Result)
                 } else {
                     null
                 },
-                failedFeatures
+                normals = if (SourceFeature.NORMALS in requestedFeatures) {
+                    getNormals(location, normalsResult)
+                } else {
+                    null
+                },
+                failedFeatures = failedFeatures
             )
         }
     }
@@ -423,9 +297,6 @@ class MfService @Inject constructor(
         context: Context,
         location: Location,
     ): Observable<List<Location>> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
         return mApi.getForecast(
             USER_AGENT,
             location.latitude,
@@ -448,11 +319,7 @@ class MfService @Inject constructor(
          * Just to be safe we query it when Meteo-France is the main source
          * See also #1497
          */
-        if (features.isNotEmpty() && !features.contains(SourceFeature.FEATURE_ALERT)) return false
-
-        // When used as main and doesn't support alerts:
-        if (location.countryCode.isNullOrEmpty()) return false
-        if (!arrayOf("FR", "AD").any { location.countryCode.equals(it, ignoreCase = true) }) return false
+        if (SourceFeature.ALERT !in features) return false
 
         if (coordinatesChanged) return true
 
@@ -463,9 +330,6 @@ class MfService @Inject constructor(
         context: Context,
         location: Location,
     ): Observable<Map<String, String>> {
-        if (!isConfigured) {
-            return Observable.error(ApiKeyMissingException())
-        }
         return mApi.getForecast(
             USER_AGENT,
             location.latitude,

@@ -427,12 +427,10 @@
     <string name="widget_custom_subtitle_keyword_xms_description">Månnedgång för i dag, i morgon, …, 4 dagar senare</string>
     <string name="message_parsing_error_content">Se till att du har uppdaterat till den senaste versionen av appen. Servern kan vara tillfälligt ej tillgänglig, vänligen försök igen senare i så fall. Om problemet kvarstår, vänligen skapa en kraschlogg i felsökningsinställningarna och rapportera ett problem på GitHub.</string>
     <string name="common_weather_text_snow_heavy">Kraftigt snöfall</string>
-    <string name="settings_weather_source_main">Huvudkälla</string>
     <string name="settings_debug_dump_crash_logs_summary">Sparar felloggar i en fil för att dela med utvecklarna</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Temperatur dagtid för i dag, i morgon, …, 4 dagar senare (°C/°F)</string>
     <string name="common_weather_text_rain_freezing_heavy">Kraftigt underkylt regn</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Temperatur dagtid för i dag, i morgon, …, 4 dagar senare (°)</string>
-    <string name="weather_message_secondary_data_refresh_failed">Väderdatauppdatering från en sekundär väderkälla misslyckades</string>
     <string name="common_weather_text_snow_light">Lätt snö</string>
     <string name="common_weather_text_rain_showers_heavy">Kraftiga regnskurar</string>
     <string name="settings_color_light">Ljus</string>

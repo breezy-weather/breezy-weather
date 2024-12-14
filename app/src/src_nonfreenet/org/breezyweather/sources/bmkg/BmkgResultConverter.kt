@@ -18,20 +18,16 @@ package org.breezyweather.sources.bmkg
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
-import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
@@ -50,7 +46,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
-fun convert(
+internal fun convert(
     location: Location,
     result: BmkgLocationResult,
 ): Location {
@@ -78,65 +74,11 @@ fun convert(
     )
 }
 
-fun convert(
+internal fun getCurrent(
     context: Context,
-    location: Location,
     currentResult: BmkgCurrentResult,
-    forecastResult: BmkgForecastResult,
-    warningResult: BmkgWarningResult,
-    ibf1Result: BmkgIbfResult,
-    ibf2Result: BmkgIbfResult,
-    ibf3Result: BmkgIbfResult,
-    pm25Result: List<BmkgPm25Result>,
-    failedFeatures: List<SourceFeature>,
-): WeatherWrapper {
-    return WeatherWrapper(
-        current = getCurrent(context, location, currentResult, pm25Result),
-        dailyForecast = getDailyForecast(context, location, forecastResult),
-        hourlyForecast = getHourlyForecast(context, forecastResult),
-        alertList = getAlertList(context, warningResult, ibf1Result, ibf2Result, ibf3Result),
-        failedFeatures = failedFeatures
-    )
-}
-
-fun convertSecondary(
-    context: Context,
-    location: Location,
-    currentResult: BmkgCurrentResult?,
-    warningResult: BmkgWarningResult?,
-    ibf1Result: BmkgIbfResult?,
-    ibf2Result: BmkgIbfResult?,
-    ibf3Result: BmkgIbfResult?,
-    pm25Result: List<BmkgPm25Result>?,
-    failedFeatures: MutableList<SourceFeature>,
-): SecondaryWeatherWrapper {
-    return SecondaryWeatherWrapper(
-        current = if (currentResult !== null) {
-            getCurrent(context, location, currentResult, pm25Result)
-        } else {
-            null
-        },
-        airQuality = if (pm25Result !== null) {
-            AirQualityWrapper(current = getAirQuality(location, pm25Result))
-        } else {
-            null
-        },
-        alertList = if (warningResult !== null && ibf1Result !== null && ibf2Result !== null && ibf3Result !== null) {
-            getAlertList(context, warningResult, ibf1Result, ibf2Result, ibf3Result)
-        } else {
-            null
-        },
-        failedFeatures = failedFeatures
-    )
-}
-
-private fun getCurrent(
-    context: Context,
-    location: Location,
-    currentResult: BmkgCurrentResult,
-    pm25Result: List<BmkgPm25Result>?,
-): Current {
-    return Current(
+): CurrentWrapper {
+    return CurrentWrapper(
         weatherText = getWeatherText(context, currentResult.data?.cuaca?.weather),
         weatherCode = getWeatherCode(currentResult.data?.cuaca?.weather),
         temperature = Temperature(
@@ -146,28 +88,27 @@ private fun getCurrent(
             degree = currentResult.data?.cuaca?.wdDeg,
             speed = currentResult.data?.cuaca?.ws?.div(3.6) // convert km/h to m/s
         ),
-        airQuality = getAirQuality(location, pm25Result),
         relativeHumidity = currentResult.data?.cuaca?.hu,
         visibility = currentResult.data?.cuaca?.vs
     )
 }
 
-private fun getDailyForecast(
+internal fun getDailyForecast(
     context: Context,
     location: Location,
     forecastResult: BmkgForecastResult,
-): List<Daily> {
+): List<DailyWrapper> {
     // CommonConverter.kt does not compute daily for this source
     // without providing at least a empty list filled with dates.
     val hourlyList = getHourlyForecast(context, forecastResult)
     val hourlyListDates = hourlyList.groupBy { it.date.getFormattedDate("yyyy-MM-dd", location) }.keys
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
-    val dailyList = mutableListOf<Daily>()
+    val dailyList = mutableListOf<DailyWrapper>()
     hourlyListDates.forEachIndexed { i, date ->
         if (i < hourlyListDates.size - 1) { // Don't store last index to avoid incomplete day
             dailyList.add(
-                Daily(
+                DailyWrapper(
                     date = formatter.parse(date)!!
                 )
             )
@@ -176,7 +117,7 @@ private fun getDailyForecast(
     return dailyList
 }
 
-private fun getHourlyForecast(
+internal fun getHourlyForecast(
     context: Context,
     forecastResult: BmkgForecastResult,
 ): List<HourlyWrapper> {
@@ -212,7 +153,7 @@ private fun getHourlyForecast(
     return hourlyList
 }
 
-private fun getAlertList(
+internal fun getAlertList(
     context: Context,
     warningResult: BmkgWarningResult,
     ibf1Result: BmkgIbfResult,
@@ -300,7 +241,7 @@ private fun getAlertList(
     return alertList
 }
 
-private fun getAirQuality(
+internal fun getAirQuality(
     location: Location,
     pm25Result: List<BmkgPm25Result>?,
 ): AirQuality {

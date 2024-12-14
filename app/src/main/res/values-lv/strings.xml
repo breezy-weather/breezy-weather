@@ -85,7 +85,6 @@
     <string name="visibility">Redzamība</string>
     <string name="dew_point">Rasas punkts</string>
     <string name="weather_message_data_refresh_failed">Laikapstākļu datu atsvaidzināšana neizdevās</string>
-    <string name="weather_message_secondary_data_refresh_failed">Neizdevās atsvaidzināt laikapstākļu datus otrējam laikapstākļu avotam</string>
     <string name="weather_message_invalid_location">Nederīga atrašanās vieta, lūgums to izdzēst un pievienot vēlreiz</string>
     <string name="weather_api_limit_reached_title">Sasniegts API pieprasījumu ierobežojums</string>
     <string name="weather_api_limit_reached_content">Lai apietu ierobežojumu, jāpievieno sava API atslēga.</string>
@@ -243,7 +242,6 @@
     <string name="settings_location_access_permission_already_granted">Atļauja jau piešķirta</string>
     <string name="settings_weather_sources">Laikapstākļu avoti</string>
     <string name="settings_weather_sources_summary">Noklusējuma laikapstākļu avots jaunām atrašanās vietām, pielāgotām API atslēgām, citiem avota iestatījumiem</string>
-    <string name="settings_weather_source_main">Galvenais avots</string>
     <string name="settings_weather_sources_per_location_summary">Pielāgot laikapstākļu datu avotus, kas tiek izmantoti šai atrašanās vietai</string>
     <string name="settings_source_api_key">API atslēga</string>
     <string name="settings_appearance_summary">Valoda, tumšais izskats, ikonu pakotne, mērvienības</string>

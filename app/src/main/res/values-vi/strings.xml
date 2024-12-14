@@ -537,10 +537,8 @@
     <string name="weather_air_quality_data_by">Dữ liệu chất lượng không khí bởi %s</string>
     <string name="weather_minutely_data_by">Dữ liệu lượng mưa hiện đang truyền theo %s</string>
     <string name="weather_alert_data_by">Dữ liệu báo động bởi %s</string>
-    <string name="weather_message_secondary_data_refresh_failed">Sự làm mới dữ liệu thời cho nguồn thời tiết phụ đã thất bại</string>
     <string name="weather_message_invalid_location">Địa điểm không hợp lệ, hãy xoá và thêm lại</string>
     <string name="action_save">Lưu</string>
-    <string name="settings_weather_source_main">Nguồn chính</string>
     <string name="settings_weather_sources_per_location_summary">Tùy chỉnh nguồn dữ liệu thời tiết được sử dụng cho vị trí này</string>
     <string name="about_privacy_policy">Chính sách riêng tư</string>
     <string name="about_contact">Liên hệ</string>

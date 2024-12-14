@@ -19,8 +19,6 @@ package org.breezyweather.sources.recosante
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.wrappers.PollenWrapper
-import breezyweather.domain.weather.wrappers.SecondaryWeatherWrapper
-import org.breezyweather.common.exceptions.SecondaryWeatherException
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.common.extensions.toTimezoneNoHour
@@ -29,21 +27,21 @@ import org.breezyweather.sources.recosante.json.RecosanteResult
 import java.util.Calendar
 import java.util.Date
 
-fun convert(location: Location, result: RecosanteResult): SecondaryWeatherWrapper {
-    if (result.raep == null) {
-        throw SecondaryWeatherException()
-    }
-    if (result.raep.indice?.details.isNullOrEmpty()) {
+internal fun getPollen(
+    location: Location,
+    result: RecosanteResult,
+): PollenWrapper? {
+    if (result.raep?.indice?.details.isNullOrEmpty()) {
         // Don’t throw an error if empty or null
         // This can happen when the weekly bulletin has not been emitted yet on Friday
         // See also bug #804
-        return SecondaryWeatherWrapper()
+        return null
     }
 
     val dayList = mutableListOf<Date>()
-    if (result.raep.validity?.start != null && result.raep.validity.end != null) {
-        var startDate = result.raep.validity.start.toDateNoHour(location.javaTimeZone)
-        val endDate = result.raep.validity.end.toDateNoHour(location.javaTimeZone)
+    if (result.raep!!.validity?.start != null && result.raep.validity!!.end != null) {
+        var startDate = result.raep.validity.start!!.toDateNoHour(location.javaTimeZone)
+        val endDate = result.raep.validity.end!!.toDateNoHour(location.javaTimeZone)
         if (startDate != null && endDate != null) {
             var i = 0
             while (true) {
@@ -65,12 +63,10 @@ fun convert(location: Location, result: RecosanteResult): SecondaryWeatherWrappe
         dayList.add(Date().toTimezoneNoHour(location.javaTimeZone)!!)
     }
 
-    return SecondaryWeatherWrapper(
-        pollen = PollenWrapper(
-            dailyForecast = getPollen(result.raep.indice!!.details!!).let { pollenData ->
-                dayList.associateWith { pollenData }
-            }
-        )
+    return PollenWrapper(
+        dailyForecast = getPollen(result.raep.indice!!.details!!).let { pollenData ->
+            dayList.associateWith { pollenData }
+        }
     )
 }
 

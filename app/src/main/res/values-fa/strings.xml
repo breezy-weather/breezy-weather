@@ -300,7 +300,6 @@
     <string name="settings_background_updates">به روز رسانی های پس زمینه</string>
     <string name="widget_custom_subtitle_keyword_ct_description">دمای فعلی (°C/°F)</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
-    <string name="weather_message_secondary_data_refresh_failed">تازه سازی داده آب و هوا برای منبع آب و هوایی دوم انجام نشد</string>
     <string name="weather_message_unsupported_feature">منبع از یکی از ویژگی های درخواست شده پشتیبانی نمی کند</string>
     <string name="weather_message_invalid_location">مکان نادرست است، خواهشمند است آن را پاک کرده و دوباره بیافزایید</string>
     <string name="weather_api_limit_reached_content">برای رهایی از محدودیت، کلید API خود را بیافزایید.</string>
@@ -418,7 +417,6 @@
     <string name="settings_background_updates_battery_optimization_summary">این اولین چیزی است که وقتی آگاه‌ساز دریافت نمی کنید یا ابزارک ها به روز نمی شوند، امتحان کنید.</string>
     <string name="settings_weather_source_none">هیچکدام</string>
     <string name="settings_weather_sources_default_source">منبع انتخابی برای‌ مکان های تازه</string>
-    <string name="settings_weather_source_main">منبع اصلی</string>
     <string name="air_quality_no2_info_origin">منابع محیطی NO₂ از احتراق سوخت در دمای بالا در فرآیندهایی مانند آنهایی که برای گرمایش، حمل و نقل، صنعت و تولید برق استفاده می شوند، ایجاد می شود. منابع خانگی اکسیدهای نیتروژن (NOₓ) شامل تجهیزاتی است که سوخت هایی مانند کوره، شومینه و اجاق گاز و اجاق را می سوزانند.</string>
     <string name="air_quality_so2_info_origin">به طور طبیعی توسط فعالیت های آتشفشانی آزاد می شود و عمدتاً از احتراق سوخت های فسیلی برای گرمایش خانگی، صنایع و تولید برق به وجود می آید.</string>
     <string name="pollen_carpinus">مَمرَز</string>

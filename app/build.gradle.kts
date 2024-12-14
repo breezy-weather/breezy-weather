@@ -83,7 +83,7 @@ android {
         )
         it.buildConfigField(
             "String",
-            "DEFAULT_WEATHER_SOURCE",
+            "DEFAULT_FORECAST_SOURCE",
             "\"${properties.getProperty("breezy.source.default_weather") ?: "auto"}\""
         )
         it.buildConfigField(

@@ -362,7 +362,6 @@
     <string name="weather_minutely_data_by">Údaje o minútových zrážkach od %s</string>
     <string name="weather_alert_data_by">Údaje o výstrahách od %s</string>
     <string name="weather_message_data_refresh_failed">Aktualizácia dát o počasí zlyhala</string>
-    <string name="weather_message_secondary_data_refresh_failed">Aktualizácia dát o počasí z alternatívneho zdroja zlyhala</string>
     <string name="weather_message_unsupported_feature">Zdroj nepodporuje niektorú z požadovaných funkcií</string>
     <string name="weather_message_too_frequent_refreshes">Počkajte prosím niekoľko sekúnd pred opätovným pokusom…</string>
     <string name="pollen_tilia">Lipa</string>
@@ -466,7 +465,6 @@
     <string name="message_parsing_error_title">Nepodarilo sa spracovať dáta o počasí</string>
     <string name="settings_source_api_key">API kľúč</string>
     <string name="unit_h">h</string>
-    <string name="settings_weather_source_main">Hlavný zdroj</string>
     <string name="unit_mmhg_voice">Milimetre ortuti</string>
     <string name="notification_precipitation_stopping_desc">Predpokladaný koniec o %s</string>
     <string name="unit_mgpcum_voice">Miligramy na meter kubický</string>

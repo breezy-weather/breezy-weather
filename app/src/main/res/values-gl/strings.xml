@@ -81,7 +81,6 @@
     <string name="message_parsing_error_title">Error ao analizar os datos meteorolóxicos</string>
     <string name="message_source_not_installed_error_title">Fonte non dispoñible</string>
     <string name="settings_global">Axustes globais</string>
-    <string name="settings_weather_source_main">Fonte principal</string>
     <string name="settings_weather_source_none">Ningunha</string>
     <string name="settings_source_api_key">Clave da API</string>
     <string name="settings_source_instance">Servidor</string>
