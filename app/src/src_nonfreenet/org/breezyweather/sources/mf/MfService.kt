@@ -114,6 +114,8 @@ class MfService @Inject constructor(
                  *  arrayOf("FR", "AD", "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT")
                  *    .any { location.countryCode.equals(it, ignoreCase = true) }
                  */
+                SourceFeature.FEATURE_NORMALS -> !location.countryCode.isNullOrEmpty() &&
+                    arrayOf("FR", "AD", "MC").any { location.countryCode.equals(it, ignoreCase = true) }
                 null -> true // Main source available worldwide
                 else -> false
             }

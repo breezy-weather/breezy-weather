@@ -1,3 +1,12 @@
+# Version 5.3.2 (not yet released)
+
+**Weather sources**
+- [Météo-France] Add back support for normals in France, Monaco and Andorra
+
+**Improvements and fixes**
+- Fixed duplicate Indonesian and Hebrew languages in the standard flavor
+
+
 # Version 5.3.1 (2024-12-12)
 
 **Improvements and fixes**
