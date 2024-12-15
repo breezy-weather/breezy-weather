@@ -14,22 +14,15 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.atmoaura
+package org.breezyweather.sources.atmo.json
 
-import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.sources.atmoaura.json.AtmoAuraPointResult
-import retrofit2.http.GET
-import retrofit2.http.Query
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import org.breezyweather.common.serializer.DateSerializer
+import java.util.Date
 
-/**
- * API ATMO Auvergne-Rhône-Alpes
- */
-interface AtmoAuraAirQualityApi {
-    @GET("air2go/v3/point?with_list=true")
-    fun getPointDetails(
-        @Query("api_token") apiToken: String,
-        @Query("x") longitude: Double,
-        @Query("y") latitude: Double,
-        @Query("datetime_echeance") datetimeEcheance: String,
-    ): Observable<AtmoAuraPointResult>
-}
+@Serializable
+data class AtmoPointHoraire(
+    @SerialName("datetime_echeance") @Serializable(DateSerializer::class) val datetimeEcheance: Date,
+    val concentration: Double?,
+)

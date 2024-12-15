@@ -14,16 +14,11 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.atmoaura.json
+package org.breezyweather.sources.atmo.json
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.breezyweather.common.serializer.DateSerializer
-import java.util.Date
 
 @Serializable
-data class AtmoAuraPointHoraire(
-    @SerialName("datetime_echeance") @Serializable(DateSerializer::class) val datetimeEcheance: Date,
-    @SerialName("indice_atmo") val indiceAtmo: Int?,
-    val concentration: Int?,
+data class AtmoPointResult(
+    val polluants: List<AtmoPointPolluant>? = null,
 )

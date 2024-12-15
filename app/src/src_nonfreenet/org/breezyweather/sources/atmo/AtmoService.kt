@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.atmoaura
+package org.breezyweather.sources.atmo
 
 import android.content.Context
 import android.graphics.Color
@@ -24,9 +24,7 @@ import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
-import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
-import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
@@ -38,93 +36,59 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.settings.SourceConfigStore
-import org.breezyweather.sources.atmoaura.json.AtmoAuraPointResult
+import org.breezyweather.sources.atmo.json.AtmoPointResult
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
-import javax.inject.Inject
-import javax.inject.Named
 
 /**
- * ATMO Auvergne-Rhône-Alpes air quality service.
+ * ATMO services
  */
-class AtmoAuraService @Inject constructor(
-    @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ConfigurableSource {
+abstract class AtmoService : HttpSource(), WeatherSource, ConfigurableSource {
 
-    override val id = "atmoaura"
-    override val name = "ATMO Auvergne-Rhône-Alpes (${Locale(context.currentLocale.code, "FR").displayCountry})"
+    protected abstract val context: Context
+    protected abstract val jsonClient: Retrofit.Builder
+
+    protected abstract val regionName: String
+    protected abstract val attribution: String
+
+    override val name
+        get() = "ATMO $regionName (${Locale(context.currentLocale.code, "FR").displayCountry})"
     override val continent = SourceContinent.EUROPE
-    override val privacyPolicyUrl = "https://www.atmo-auvergnerhonealpes.fr/article/politique-de-confidentialite"
 
     override val color = Color.rgb(49, 77, 154)
 
+    /**
+     * E.g. https://api.atmo-aura.fr/air2go/v3/
+     */
+    protected abstract val baseUrl: String
     private val mApi by lazy {
-        client
-            .baseUrl(ATMO_AURA_BASE_URL)
+        jsonClient
+            .baseUrl(baseUrl)
             .build()
-            .create(AtmoAuraAirQualityApi::class.java)
+            .create(AtmoApi::class.java)
     }
 
-    override val supportedFeatures = mapOf(
-        SourceFeature.AIR_QUALITY to "ATMO Auvergne-Rhône-Alpes"
-    )
+    /**
+     * E.g. R.string.settings_weather_source_atmo_aura_api_key
+     */
+    protected abstract val apiKeyPreference: Int
+    protected abstract val builtInApiKey: String
+
+    override val supportedFeatures
+        get() = mapOf(
+            SourceFeature.AIR_QUALITY to attribution
+        )
+    protected abstract fun isLocationInRegion(location: Location): Boolean
     override fun isFeatureSupportedForLocation(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        // FIXME: We no longer have admin2Code, use a geometry instead of hardcoding departments
         return feature == SourceFeature.AIR_QUALITY &&
             !location.countryCode.isNullOrEmpty() &&
             location.countryCode.equals("FR", ignoreCase = true) &&
-            (
-                location.admin1 in arrayOf(
-                    "Auvergne-Rhône-Alpes",
-                    "Auvergne-Rhone-Alpes",
-                    "Auvergne Rhône Alpes",
-                    "Auvergne Rhone Alpes"
-                ) ||
-                    location.admin1Code == "84" ||
-                    location.admin2 in arrayOf(
-                        "Ain", // 01
-                        "Allier", // 03
-                        "Ardèche", // 07
-                        "Ardeche", // 07
-                        "Cantal", // 15
-                        "Drôme", // 26
-                        "Drome", // 26
-                        "Isère", // 38
-                        "Isere", // 38
-                        "Loire", // 42
-                        "Haute Loire", // 43
-                        "Haute-Loire", // 43
-                        "Puy-de-Dôme", // 63
-                        "Puy-de-Dome", // 63
-                        "Puy de Dôme", // 63
-                        "Puy de Dome", // 63
-                        "Rhône", // 69
-                        "Rhone", // 69
-                        "Savoie", // 73
-                        "Haute-Savoie", // 74
-                        "Haute Savoie" // 74
-                    ) ||
-                    location.admin2Code in arrayOf(
-                        "01", // Ain
-                        "03", // Allier
-                        "07", // Ardèche
-                        "15", // Cantal
-                        "26", // Drôme
-                        "38", // Isère
-                        "42", // Loire
-                        "43", // Haute-Loire
-                        "63", // Puy-de-Dôme
-                        "69", // Rhône
-                        "73", // Savoie
-                        "74" // Haute-Savoie
-                    )
-                )
+            isLocationInRegion(location)
     }
 
     override fun requestWeather(
@@ -159,7 +123,7 @@ class AtmoAuraService @Inject constructor(
         }
     }
 
-    private fun getAirQuality(requestedDate: Date, aqiAtmoAuraResult: AtmoAuraPointResult): AirQuality {
+    private fun getAirQuality(requestedDate: Date, aqiAtmoAuraResult: AtmoPointResult): AirQuality {
         var pm25: Double? = null
         var pm10: Double? = null
         var so2: Double? = null
@@ -172,19 +136,19 @@ class AtmoAuraService @Inject constructor(
                 when (p.polluant) {
                     "o3" -> o3 = p.horaires?.firstOrNull {
                         it.datetimeEcheance == requestedDate
-                    }?.concentration?.toDouble()
+                    }?.concentration
                     "no2" -> no2 = p.horaires?.firstOrNull {
                         it.datetimeEcheance == requestedDate
-                    }?.concentration?.toDouble()
+                    }?.concentration
                     "pm2.5" -> pm25 = p.horaires?.firstOrNull {
                         it.datetimeEcheance == requestedDate
-                    }?.concentration?.toDouble()
+                    }?.concentration
                     "pm10" -> pm10 = p.horaires?.firstOrNull {
                         it.datetimeEcheance == requestedDate
-                    }?.concentration?.toDouble()
+                    }?.concentration
                     "so2" -> so2 = p.horaires?.firstOrNull {
                         it.datetimeEcheance == requestedDate
-                    }?.concentration?.toDouble()
+                    }?.concentration
                 }
             }
 
@@ -198,14 +162,15 @@ class AtmoAuraService @Inject constructor(
     }
 
     // CONFIG
-    private val config = SourceConfigStore(context, id)
+    private val config
+        get() = SourceConfigStore(context, id)
     private var apikey: String
         set(value) {
             config.edit().putString("apikey", value).apply()
         }
         get() = config.getString("apikey", null) ?: ""
     private fun getApiKeyOrDefault(): String {
-        return apikey.ifEmpty { BuildConfig.ATMO_AURA_KEY }
+        return apikey.ifEmpty { builtInApiKey }
     }
     override val isConfigured
         get() = getApiKeyOrDefault().isNotEmpty()
@@ -215,7 +180,7 @@ class AtmoAuraService @Inject constructor(
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(
             EditTextPreference(
-                titleId = R.string.settings_weather_source_atmo_aura_api_key,
+                titleId = apiKeyPreference,
                 summary = { c, content ->
                     content.ifEmpty {
                         c.getString(R.string.settings_source_default_value)
@@ -227,9 +192,5 @@ class AtmoAuraService @Inject constructor(
                 }
             )
         )
-    }
-
-    companion object {
-        private const val ATMO_AURA_BASE_URL = "https://api.atmo-aura.fr/"
     }
 }

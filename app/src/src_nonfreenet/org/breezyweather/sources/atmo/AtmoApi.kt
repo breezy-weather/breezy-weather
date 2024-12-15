@@ -14,11 +14,23 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.atmoaura.json
+package org.breezyweather.sources.atmo
 
-import kotlinx.serialization.Serializable
+import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.sources.atmo.json.AtmoPointResult
+import retrofit2.http.GET
+import retrofit2.http.Query
 
-@Serializable
-data class AtmoAuraPointResult(
-    val polluants: List<AtmoAuraPointPolluant>? = null,
-)
+/**
+ * API
+ */
+interface AtmoApi {
+
+    @GET("point?with_list=true")
+    fun getPointDetails(
+        @Query("api_token") apiToken: String,
+        @Query("x") longitude: Double,
+        @Query("y") latitude: Double,
+        @Query("datetime_echeance") datetimeEcheance: String,
+    ): Observable<AtmoPointResult>
+}

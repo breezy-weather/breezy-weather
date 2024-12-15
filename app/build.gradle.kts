@@ -103,6 +103,11 @@ android {
         )
         it.buildConfigField(
             "String",
+            "ATMO_GRAND_EST_KEY",
+            "\"${properties.getProperty("breezy.atmograndest.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
             "BAIDU_IP_LOCATION_AK",
             "\"${properties.getProperty("breezy.baiduip.key") ?: ""}\""
         )

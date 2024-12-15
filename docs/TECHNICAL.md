@@ -9,6 +9,7 @@ breezy.accu.key=myapikey
 breezy.accu.days=15
 breezy.accu.hours=120
 breezy.atmoaura.key=myapikey
+breezy.atmograndest.key=myapikey
 breezy.baiduip.key=myapikey
 breezy.geonames.key=myapikey
 breezy.here.key=myapikey

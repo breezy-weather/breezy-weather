@@ -14,12 +14,12 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.sources.atmoaura.json
+package org.breezyweather.sources.atmo.json
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class AtmoAuraPointPolluant(
+data class AtmoPointPolluant(
     val polluant: String?,
-    val horaires: List<AtmoAuraPointHoraire>?,
+    val horaires: List<AtmoPointHoraire>?,
 )

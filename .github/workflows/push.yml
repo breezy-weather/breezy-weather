@@ -47,6 +47,7 @@ jobs:
           echo "breezy.accu.key=$ACCU_WEATHER_KEY" >> local.properties
           echo "breezy.aemet.key=$AEMET_KEY" >> local.properties
           echo "breezy.atmoaura.key=$ATMO_AURA_KEY" >> local.properties
+          echo "breezy.atmograndest.key=$ATMO_GRAND_EST_KEY" >> local.properties
           echo "breezy.baiduip.key=$BAIDU_IP_LOCATION_AK" >> local.properties
           echo "breezy.bmkg.key=$BMKG_KEY" >> local.properties
           echo "breezy.cwa.key=$CWA_KEY" >> local.properties
