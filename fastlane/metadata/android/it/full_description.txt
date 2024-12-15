@@ -20,7 +20,7 @@ L'app è fortemente incentrata sul design, con una UX semplice e pulita, animazi
 
 More than 50 sources available:
 - In all flavors: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Recosanté, SMA (Seychelles), SMA (Sudan), SSMS
-- Not libre/self-hostable (not included in versions with suffix _freenet): AccuWeather, AEMET, ATMO AURA, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, GeoNames, GeoSphere AT, HERE, HKO, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Varie fonti per la Cina, NAMEM, NWS, OpenWeather, PAGASA, Pirate Weather, SMG, OMM Severe Weather
+- Not libre/self-hostable (not included in versions with suffix _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, ATMO GrandEst, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, GeoNames, GeoSphere AT, HERE, HKO, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Varie fonti per la Cina, NAMEM, NWS, OpenWeather, PAGASA, Pirate Weather, SMG, OMM Severe Weather
 
 <b>Autorizzazioni</b>
 

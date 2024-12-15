@@ -21,7 +21,10 @@ import breezyweather.domain.location.model.Location
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import retrofit2.Retrofit
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -34,7 +37,7 @@ class AtmoGrandEstService @Inject constructor(
 ) : AtmoService() {
 
     override val id = "atmograndest"
-    override val regionName = "GrandEst"
+    override val name = "ATMO GrandEst (${Locale(injectedContext.currentLocale.code, "FR").displayCountry})"
     override val attribution = "ATMO GrandEst (licence ODbL https://opendatacommons.org/licenses/odbl )"
     override val privacyPolicyUrl = "https://www.atmo-grandest.eu/article/politique-de-confidentialite"
 

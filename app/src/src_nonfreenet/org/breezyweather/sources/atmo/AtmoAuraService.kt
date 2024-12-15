@@ -21,7 +21,10 @@ import breezyweather.domain.location.model.Location
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import retrofit2.Retrofit
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -34,8 +37,8 @@ class AtmoAuraService @Inject constructor(
 ) : AtmoService() {
 
     override val id = "atmoaura"
-    override val regionName = "Auvergne-Rhône-Alpes"
-    override val attribution = "ATMO Auvergne-Rhône-Alpes"
+    override val name = "Atmo Auvergne-Rhône-Alpes (${Locale(injectedContext.currentLocale.code, "FR").displayCountry})"
+    override val attribution = "Atmo Auvergne-Rhône-Alpes"
     override val privacyPolicyUrl = "https://www.atmo-auvergnerhonealpes.fr/article/politique-de-confidentialite"
 
     override val context = injectedContext

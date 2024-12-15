@@ -83,7 +83,9 @@ Below, you can find details about the support and implementation status for feat
 | 🇨🇩 Democratic Republic of Congo  | [ClimWeb](#climweb)                       | Alerts          |
 | 🇪🇹 Ethiopia                      | [ClimWeb](#climweb)                       | Alerts, Normals |
 | 🇫🇷 France                        | [Recosanté](#recosanté)                   | Pollen          |
-| 🇫🇷 France (Auvergne-Rhône-Alpes) | [Atmo AURA](#atmo-aura)                   | Air Quality     |
+| 🇫🇷 France (Auvergne-Rhône-Alpes) | [Atmo Auvergne-Rhône-Alpes](#atmo)        | Air Quality     |
+| 🇫🇷 France (Grand Est)            | [ATMO GrandEst](#atmo)                    | Air Quality     |
+| 🇫🇷 France (PACA)                 | [AtmoSud](#atmo)                          | Air Quality     |
 | 🇬🇲 Gambia                        | [ClimWeb](#climweb)                       | Alerts          |
 | 🇬🇭 Ghana                         | [ClimWeb](#climweb)                       | Alerts          |
 | 🇬🇼 Guinea-Bissau                 | [ClimWeb](#climweb)                       | Alerts          |
@@ -1148,8 +1150,13 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 ## Secondary weather sources
 
-### Atmo AURA
-**[Atmo Auvergne-Rhône-Alpes](https://www.atmo-auvergnerhonealpes.fr/)** provides air quality information for the French region of Auvergne-Rhône-Alpes. This source can be added as a secondary **Air Quality** source.
+### ATMO
+ATMO sources can be added as a secondary **Air Quality** source.
+
+**[Atmo Auvergne-Rhône-Alpes](https://www.atmo-auvergnerhonealpes.fr/)** provides air quality information for the French region of Auvergne-Rhône-Alpes.
+**[ATMO GrandEst](https://www.atmo-grandest.eu/)** provides air quality information for the French region of Grand Est.
+**[AtmoSud](https://www.atmosud.org/)** provides air quality information for the French region of Provence-Alpes-Côte d’Azur.
+
 
 ### ClimWeb
 **[ClimWeb](https://github.com/wmo-raf/climweb)** is an open source content management system developed by WMO Africa for 17 of its member states:

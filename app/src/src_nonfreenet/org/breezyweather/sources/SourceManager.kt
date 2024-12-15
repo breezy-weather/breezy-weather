@@ -38,6 +38,7 @@ import org.breezyweather.sources.aemet.AemetService
 import org.breezyweather.sources.android.AndroidLocationService
 import org.breezyweather.sources.atmo.AtmoAuraService
 import org.breezyweather.sources.atmo.AtmoGrandEstService
+import org.breezyweather.sources.atmo.AtmoSudService
 import org.breezyweather.sources.baiduip.BaiduIPLocationService
 import org.breezyweather.sources.bmd.BmdService
 import org.breezyweather.sources.bmkg.BmkgService
@@ -105,6 +106,7 @@ class SourceManager @Inject constructor(
     androidLocationService: AndroidLocationService,
     atmoAuraService: AtmoAuraService,
     atmoGrandEstService: AtmoGrandEstService,
+    atmoSudService: AtmoSudService,
     baiduIPService: BaiduIPLocationService,
     bmdService: BmdService,
     bmkgService: BmkgService,
@@ -197,6 +199,7 @@ class SourceManager @Inject constructor(
         anametService,
         atmoAuraService,
         atmoGrandEstService,
+        atmoSudService,
         bmdService,
         bmkgService,
         brightSkyService,

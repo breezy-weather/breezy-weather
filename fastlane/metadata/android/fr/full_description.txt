@@ -20,7 +20,7 @@ L’application met l’accent sur l’esthétique, avec une expérience utilisa
 
 Plus de 50 sources disponibles:
 - Toutes versions : Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Recosanté, SMA (Seychelles), SMA (Sudan), SSMS
-- Sites non libres/auto-hébergeables (non inclues dans les versions avec suffixe _freenet) : AccuWeather, AEMET, ATMO AURA, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, GeoNames, GeoSphere AT, HERE, HKO, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mix de sources pour la Chine, NAMEM, NWS, OpenWeather, PAGASA, Pirate Weather, SMG, OMM Centre d’Information des Phénomènes Dangereux
+- Sites non libres/auto-hébergeables (non inclues dans les versions avec suffixe _freenet) : AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, ATMO GrandEst, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, GeoNames, GeoSphere AT, HERE, HKO, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mix de sources pour la Chine, NAMEM, NWS, OpenWeather, PAGASA, Pirate Weather, SMG, OMM Centre d’Information des Phénomènes Dangereux
 
 <b>Permissions</b>
 

@@ -26,8 +26,6 @@ import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
-import org.breezyweather.common.extensions.code
-import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.preference.EditTextPreference
@@ -40,7 +38,6 @@ import org.breezyweather.sources.atmo.json.AtmoPointResult
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
-import java.util.Locale
 
 /**
  * ATMO services
@@ -50,11 +47,8 @@ abstract class AtmoService : HttpSource(), WeatherSource, ConfigurableSource {
     protected abstract val context: Context
     protected abstract val jsonClient: Retrofit.Builder
 
-    protected abstract val regionName: String
     protected abstract val attribution: String
 
-    override val name
-        get() = "ATMO $regionName (${Locale(context.currentLocale.code, "FR").displayCountry})"
     override val continent = SourceContinent.EUROPE
 
     override val color = Color.rgb(49, 77, 154)

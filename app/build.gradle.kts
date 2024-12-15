@@ -108,6 +108,11 @@ android {
         )
         it.buildConfigField(
             "String",
+            "ATMO_SUD_KEY",
+            "\"${properties.getProperty("breezy.atmosud.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
             "BAIDU_IP_LOCATION_AK",
             "\"${properties.getProperty("breezy.baiduip.key") ?: ""}\""
         )

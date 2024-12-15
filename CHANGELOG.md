@@ -7,7 +7,8 @@
 - It's now possible to always being able to select “None” as an option for air quality, pollen, nowcasting, alerts, normals sources.
 
 **Weather sources**
-- [ATMO GrandEst] Added as a new source for air quality in GrandEst (France)
+- [ATMO GrandEst] Added as a new source for air quality in Grand Est (France)
+- [AtmoSud] Added as a new source for air quality in Provence-Alpes-Côte d’Azur (France)
 - [Météo-France] Add support for alerts in oversea territories
 - [Météo-France] Add back support for normals in France, Monaco and Andorra
 
