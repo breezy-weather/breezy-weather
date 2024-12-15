@@ -730,4 +730,8 @@
     <string name="dialog_refresh_error_details_title">Obnovit chyby</string>
     <string name="message_multiple_refresh_errors">Obnovit dokončené s chybami</string>
     <string name="common_weather_text_tornado">Tornádo</string>
+    <string name="forecast">Předpověď</string>
+    <string name="weather_forecast_data_by">Předpověď od %s</string>
+    <string name="settings_weather_source_not_configured">%s (nenastaveno)</string>
+    <string name="settings_weather_source_current_position_disclaimer">Po první aktualizaci mohou být pro vaši lokalitu k dispozici další zdroje počasí.</string>
 </resources>
