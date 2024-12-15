@@ -17,7 +17,6 @@
 package org.breezyweather.sources.atmo
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.BuildConfig
