@@ -1,6 +1,13 @@
-# Version 5.3.2 (not yet released)
+# Version 5.4.0 (not yet released)
+
+**Improvements and fixes**
+- Sources not configured will now be shown as disabled in the source list so that you know they exist
+- When adding current location, you will no longer be able to select a source only compatible with some parts of the world. You will need to have your position found with a worldwide source at least once first.
+- App will now report more strictly errors if you are using a non-compatible source (please report any false positive)
+- It's now possible to always being able to select “None” as an option for air quality, pollen, nowcasting, alerts, normals sources.
 
 **Weather sources**
+- [Météo-France] Add support for alerts in oversea territories
 - [Météo-France] Add back support for normals in France, Monaco and Andorra
 
 **Improvements and fixes**
@@ -8,6 +15,10 @@
 
 **Translations**
 - Translations updated
+
+**Technical**
+- Major refactoring of sources to merge main and secondary sources logic
+- Optimized filesize of the Natural Earth offline geocoding
 
 
 # Version 5.3.1 (2024-12-12)
