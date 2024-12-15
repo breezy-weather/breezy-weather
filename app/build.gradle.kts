@@ -3,7 +3,6 @@
 import breezy.buildlogic.getCommitCount
 import breezy.buildlogic.getGitSha
 import breezy.buildlogic.registerLocalesConfigTask
-import breezy.buildlogic.registerNaturalEarthConfigTask
 import java.util.Properties
 
 plugins {
