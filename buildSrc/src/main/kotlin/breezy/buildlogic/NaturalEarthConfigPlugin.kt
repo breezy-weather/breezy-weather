@@ -4,7 +4,16 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.TaskContainerScope
+import org.json.JSONArray
 import org.json.JSONObject
+import java.math.RoundingMode
+
+/**
+ * 4 is ~10 m
+ * 5 is ~1 m
+ * 6 is ~10 cm
+ */
+const val COORDINATES_PRECISION = 5
 
 /**
  * Performs a few corrections and optimize by removing unused properties
@@ -23,44 +32,68 @@ fun TaskContainerScope.registerNaturalEarthConfigTask(project: Project): TaskPro
             json.put(
                 "features",
                 (json.getJSONArray("features")).map { features ->
-                    if (features is JSONObject && features.has("properties")) {
-                        features.put(
-                            "properties",
-                            features.getJSONObject("properties").let { properties ->
-                                // Fix Taiwan inexisting ISO A2 code
-                                // Fix a few countries with no code, such as France and Norway
-                                if (properties.has("ISO_A2")) {
-                                    when (properties.getString("ISO_A2")) {
-                                        "CN-TW" -> properties.put("ISO_A2", "TW")
-                                        "-99" -> properties.put(
-                                            "ISO_A2",
-                                            properties.getString("ISO_A2_EH").takeIf { it != "-99" } ?: ""
-                                        )
-                                        else -> {}
+                    if (features is JSONObject) {
+                        // Geometry
+                        if (features.has("geometry")) {
+                            features.put(
+                                "geometry",
+                                features.getJSONObject("geometry").let { geometry ->
+                                    if (geometry.has("type")) {
+                                        when (geometry.getString("type")) {
+                                            "MultiPolygon", "Polygon" -> {
+                                                geometry.put(
+                                                    "coordinates",
+                                                    reduceDecimalPrecision(geometry.getJSONArray("coordinates"))
+                                                )
+                                            }
+                                            // No other cases in this file
+                                            else -> {}
+                                        }
                                     }
+                                    geometry
                                 }
+                            )
+                        }
 
-                                // Must be stored to avoid ConcurrentModificationException
-                                val propertiesToRemove = mutableSetOf(
-                                    "NAME_CIAWF",
-                                    "NAME_SORT",
-                                    "NAME_ALT",
-                                    "NAME_LEN"
-                                )
-                                properties.keys().forEach { k ->
-                                    if (!k.startsWith("NAME_") && k != "ISO_A2") {
-                                        propertiesToRemove.add(k)
+                        // Properties
+                        if (features.has("properties")) {
+                            features.put(
+                                "properties",
+                                features.getJSONObject("properties").let { properties ->
+                                    // Fix Taiwan inexisting ISO A2 code
+                                    // Fix a few countries with no code, such as France and Norway
+                                    if (properties.has("ISO_A2")) {
+                                        when (properties.getString("ISO_A2")) {
+                                            "CN-TW" -> properties.put("ISO_A2", "TW")
+                                            "-99" -> properties.put(
+                                                "ISO_A2",
+                                                properties.getString("ISO_A2_EH").takeIf { it != "-99" } ?: ""
+                                            )
+                                            else -> {}
+                                        }
                                     }
+
+                                    // Must be stored to avoid ConcurrentModificationException
+                                    val propertiesToRemove = mutableSetOf(
+                                        "NAME_CIAWF",
+                                        "NAME_SORT",
+                                        "NAME_ALT",
+                                        "NAME_LEN"
+                                    )
+                                    properties.keys().forEach { k ->
+                                        if (!k.startsWith("NAME_") && k != "ISO_A2") {
+                                            propertiesToRemove.add(k)
+                                        }
+                                    }
+                                    propertiesToRemove.forEach { p ->
+                                        properties.remove(p)
+                                    }
+                                    properties
                                 }
-                                propertiesToRemove.forEach { p ->
-                                    properties.remove(p)
-                                }
-                                properties
-                            }
-                        )
-                    } else {
-                        features
+                            )
+                        }
                     }
+                    features
                 }
             )
 
@@ -69,4 +102,26 @@ fun TaskContainerScope.registerNaturalEarthConfigTask(project: Project): TaskPro
             localeFile.writeText(json.toString())
         }
     }
+}
+
+private fun reduceDecimalPrecision(coordinates: JSONArray): JSONArray {
+    if (coordinates.get(0) is Number) {
+        coordinates.put(
+            0,
+            coordinates.getBigDecimal(0)
+                .setScale(COORDINATES_PRECISION, RoundingMode.HALF_UP)
+        )
+        coordinates.put(
+            1,
+            coordinates.getBigDecimal(1)
+                .setScale(COORDINATES_PRECISION, RoundingMode.HALF_UP)
+        )
+    }
+
+    if (coordinates.get(0) is JSONArray) {
+        coordinates.map {
+            reduceDecimalPrecision(it as JSONArray)
+        }
+    }
+    return coordinates
 }

@@ -332,7 +332,8 @@ dependencies {
 }
 
 tasks {
-    val naturalEarthConfigTask = registerNaturalEarthConfigTask(project)
+    // May be too heavy to run, so let’s keep the generated file in Git
+    // val naturalEarthConfigTask = registerNaturalEarthConfigTask(project)
     val localesConfigTask = registerLocalesConfigTask(project)
 
     // Duplicating Hebrew string assets due to some locale code issues on different devices
@@ -350,7 +351,12 @@ tasks {
     }
 
     preBuild {
-        dependsOn(naturalEarthConfigTask, copyHebrewStrings, copyIndonesianStrings, localesConfigTask)
+        dependsOn(
+            // naturalEarthConfigTask,
+            copyHebrewStrings,
+            copyIndonesianStrings,
+            localesConfigTask
+        )
     }
 }
 
