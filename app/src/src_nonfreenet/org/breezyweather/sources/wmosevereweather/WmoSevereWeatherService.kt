@@ -24,6 +24,7 @@ import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.extensions.capitalize
@@ -46,6 +47,7 @@ import javax.inject.Named
  * Based on WFS from SWIC v3.0 that was released on 2024-03-29
  */
 class WmoSevereWeatherService @Inject constructor(
+    @ApplicationContext context: Context,
     @Named("JsonClient") jsonClient: Retrofit.Builder,
     @Named("XmlClient") xmlClient: Retrofit.Builder,
 ) : HttpSource(), WeatherSource {
