@@ -85,6 +85,7 @@ Below, you can find details about the support and implementation status for feat
 | 🇫🇷 France                        | [Recosanté](#recosanté)                   | Pollen          |
 | 🇫🇷 France (Auvergne-Rhône-Alpes) | [Atmo Auvergne-Rhône-Alpes](#atmo)        | Air Quality     |
 | 🇫🇷 France (Grand Est)            | [ATMO GrandEst](#atmo)                    | Air Quality     |
+| 🇫🇷 France (Hauts-de-France)      | [Atmo Hauts-de-France](#atmo)             | Air Quality     |
 | 🇫🇷 France (PACA)                 | [AtmoSud](#atmo)                          | Air Quality     |
 | 🇬🇲 Gambia                        | [ClimWeb](#climweb)                       | Alerts          |
 | 🇬🇭 Ghana                         | [ClimWeb](#climweb)                       | Alerts          |
@@ -1151,10 +1152,11 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 ## Secondary weather sources
 
 ### ATMO
-ATMO sources can be added as a secondary **Air Quality** source.
+ATMO sources can be added as a secondary **Air Quality** source for some regions of France.
 
 **[Atmo Auvergne-Rhône-Alpes](https://www.atmo-auvergnerhonealpes.fr/)** provides air quality information for the French region of Auvergne-Rhône-Alpes.
 **[ATMO GrandEst](https://www.atmo-grandest.eu/)** provides air quality information for the French region of Grand Est.
+**[Atmo Hauts-de-France](https://www.atmo-hdf.fr/)** provides air quality information for the French region of Hauts-de-France.
 **[AtmoSud](https://www.atmosud.org/)** provides air quality information for the French region of Provence-Alpes-Côte d’Azur.
 
 

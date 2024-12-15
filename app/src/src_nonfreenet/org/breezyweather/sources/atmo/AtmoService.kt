@@ -63,6 +63,7 @@ abstract class AtmoService : HttpSource(), WeatherSource, ConfigurableSource {
             .build()
             .create(AtmoApi::class.java)
     }
+    protected open val isTokenInHeaders = false
 
     /**
      * E.g. R.string.settings_weather_source_atmo_aura_api_key
@@ -99,10 +100,12 @@ abstract class AtmoService : HttpSource(), WeatherSource, ConfigurableSource {
         }
 
         return mApi.getPointDetails(
-            getApiKeyOrDefault(),
-            location.longitude,
-            location.latitude, // Tomorrow because it gives access to D-1 and D+1
-            calendar.time.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", location)
+            headerApiToken = if (isTokenInHeaders) getApiKeyOrDefault() else null,
+            queryApiToken = if (isTokenInHeaders) null else getApiKeyOrDefault(),
+            longitude = location.longitude,
+            latitude = location.latitude,
+            // Tomorrow because it gives access to D-1 and D+1
+            datetimeEcheance = calendar.time.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", location)
         ).map {
             val airQualityHourly = mutableMapOf<Date, AirQuality>()
             it.polluants?.getOrNull(0)?.horaires?.forEach { h ->

@@ -8,6 +8,7 @@
 
 **Weather sources**
 - [ATMO GrandEst] Added as a new source for air quality in Grand Est (France)
+- [Atmo Hauts-de-France] Added as a new source for air quality in Hauts-de-France (France)
 - [AtmoSud] Added as a new source for air quality in Provence-Alpes-Côte d’Azur (France)
 - [Météo-France] Add support for alerts in oversea territories
 - [Météo-France] Add back support for normals in France, Monaco and Andorra

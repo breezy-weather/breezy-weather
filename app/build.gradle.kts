@@ -108,6 +108,11 @@ android {
         )
         it.buildConfigField(
             "String",
+            "ATMO_HDF_KEY",
+            "\"${properties.getProperty("breezy.atmohdf.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
             "ATMO_SUD_KEY",
             "\"${properties.getProperty("breezy.atmosud.key") ?: ""}\""
         )
