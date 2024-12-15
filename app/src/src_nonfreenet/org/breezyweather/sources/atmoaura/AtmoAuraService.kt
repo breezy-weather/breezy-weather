@@ -79,29 +79,52 @@ class AtmoAuraService @Inject constructor(
         return feature == SourceFeature.AIR_QUALITY &&
             !location.countryCode.isNullOrEmpty() &&
             location.countryCode.equals("FR", ignoreCase = true) &&
-            location.admin2 in arrayOf(
-                "Ain", // 01
-                "Allier", // 03
-                "Ardèche", // 07
-                "Ardeche", // 07
-                "Cantal", // 15
-                "Drôme", // 26
-                "Drome", // 26
-                "Isère", // 38
-                "Isere", // 38
-                "Loire", // 42
-                "Haute Loire", // 43
-                "Haute-Loire", // 43
-                "Puy-de-Dôme", // 63
-                "Puy-de-Dome", // 63
-                "Puy de Dôme", // 63
-                "Puy de Dome", // 63
-                "Rhône", // 69
-                "Rhone", // 69
-                "Savoie", // 73
-                "Haute-Savoie", // 74
-                "Haute Savoie" // 74
-            )
+            (
+                location.admin1 in arrayOf(
+                    "Auvergne-Rhône-Alpes",
+                    "Auvergne-Rhone-Alpes",
+                    "Auvergne Rhône Alpes",
+                    "Auvergne Rhone Alpes"
+                ) ||
+                    location.admin1Code == "84" ||
+                    location.admin2 in arrayOf(
+                        "Ain", // 01
+                        "Allier", // 03
+                        "Ardèche", // 07
+                        "Ardeche", // 07
+                        "Cantal", // 15
+                        "Drôme", // 26
+                        "Drome", // 26
+                        "Isère", // 38
+                        "Isere", // 38
+                        "Loire", // 42
+                        "Haute Loire", // 43
+                        "Haute-Loire", // 43
+                        "Puy-de-Dôme", // 63
+                        "Puy-de-Dome", // 63
+                        "Puy de Dôme", // 63
+                        "Puy de Dome", // 63
+                        "Rhône", // 69
+                        "Rhone", // 69
+                        "Savoie", // 73
+                        "Haute-Savoie", // 74
+                        "Haute Savoie" // 74
+                    ) ||
+                    location.admin2Code in arrayOf(
+                        "01", // Ain
+                        "03", // Allier
+                        "07", // Ardèche
+                        "15", // Cantal
+                        "26", // Drôme
+                        "38", // Isère
+                        "42", // Loire
+                        "43", // Haute-Loire
+                        "63", // Puy-de-Dôme
+                        "69", // Rhône
+                        "73", // Savoie
+                        "74" // Haute-Savoie
+                    )
+                )
     }
 
     override fun requestWeather(
