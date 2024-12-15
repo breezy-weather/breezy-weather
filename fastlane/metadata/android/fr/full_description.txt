@@ -18,36 +18,9 @@ L’application met l’accent sur l’esthétique, avec une expérience utilisa
 
 <b>Sources</b>
 
-Sources météo mondiales disponibles :
-
-- Open-Meteo
-- AccuWeather¹
-- MET Norway¹
-- Pirate Weather¹²
-- HERE¹²
-- Météo France¹
-- Danmarks Meteorologiske Institut (DMI)¹
-
-Sources météo uniquement nationales disponibles :
-
-- Mix de sources pour la Chine¹
-- National Weather Service (NWS)¹
-- Bright Sky (DWD)
-- GeoSphere Austria
-- Environnement et Changement Climatique Canada¹
-- Israel Meteorological Service (IMS)¹
-- SMHI¹
-- MET Éireann¹
-
-Sources météo secondaires disponibles :
-
-- OMM Centre d’Information des Phénomènes Dangereux¹
-- Recosanté
-- ATMO AuRA¹
-
-¹ Les sources qui ne sont pas libres/auto-hébergeables ne sont pas inclues dans les versions avec suffixe _freenet
-² Nécessite une clé API
-
+Plus de 50 sources disponibles:
+- Toutes versions : Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Recosanté, SMA (Seychelles), SMA (Sudan), SSMS
+- Sites non libres/auto-hébergeables (non inclues dans les versions avec suffixe _freenet) : AccuWeather, AEMET, ATMO AURA, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, GeoNames, GeoSphere AT, HERE, HKO, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mix de sources pour la Chine, NAMEM, NWS, OpenWeather, PAGASA, Pirate Weather, SMG, OMM Centre d’Information des Phénomènes Dangereux
 
 <b>Permissions</b>
 

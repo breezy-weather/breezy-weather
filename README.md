@@ -103,29 +103,7 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
       - Cloud cover
       - Ceiling
 
-- <details><summary>Multiple weather sources (<a href="docs/SOURCES.md">comparison</a>)</summary>
-
-  - Open-Meteo
-  - AccuWeather
-  - MET Norway
-  - Pirate Weather (no API key provided)
-  - HERE (no API key provided)
-  - Météo France
-  - Danmarks Meteorologiske Institut (DMI)
-  - Servizio Meteorologico dell’Aeronautica Militare (Meteo AM)
-  - Mixed China sources
-  - National Weather Service (NWS)
-  - Bright Sky (DWD)
-  - Environment and Climate Change Canada
-  - Central Weather Administration (CMA), Taiwan
-  - Israel Meteorological Service (IMS)
-  - SMHI
-  - MET Éireann
-  - World Meteorological Organization (WMO) Severe Weather
-  - Recosanté
-  - ATMO AuRA
-</details>
-
+- More than 50 weather sources supported (<a href="docs/SOURCES.md">full list</a>)
 - Large selection of home screen widgets for at-a-glance information
 - Live wallpaper
 - Custom icon packs
@@ -165,6 +143,7 @@ Pull requests are welcome. You can have a look at [issues opened to contribution
 
 ## Features currently being worked on by a contributor
 
+- [#863](https://github.com/breezy-weather/breezy-weather/issues/863) - Make Breezy weather data available through a ContentProvider
 - [#14](https://github.com/breezy-weather/breezy-weather/issues/14), [#252](https://github.com/breezy-weather/breezy-weather/issues/252) - New 24-hour fitting charts
 
 ## Features lacking an active contributor

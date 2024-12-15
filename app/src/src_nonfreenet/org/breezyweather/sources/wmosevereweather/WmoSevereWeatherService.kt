@@ -51,7 +51,20 @@ class WmoSevereWeatherService @Inject constructor(
 ) : HttpSource(), WeatherSource {
 
     override val id = "wmosevereweather"
-    override val name = "WMO Severe Weather Information Centre"
+    override val name by lazy {
+        with(context.currentLocale.code) {
+            when {
+                // Missing arabic abbreviation for WMO
+                startsWith("eo") -> "MOM Severe Weather Information Centre"
+                startsWith("es") -> "OMM Severe Weather Information Centre"
+                startsWith("fr") -> "OMM Centre d’Information des Phénomènes Dangereux"
+                startsWith("it") -> "OMM Severe Weather Information Centre"
+                startsWith("ru") -> "ВМО Severe Weather Information Centre"
+                startsWith("zh") -> "世界气象组织 Severe Weather Information Centre"
+                else -> "WMO Severe Weather Information Centre"
+            }
+        }
+    }
     override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = "https://wmo.int/privacy-policy"
     override val color = Color.rgb(31, 78, 149)
@@ -70,7 +83,7 @@ class WmoSevereWeatherService @Inject constructor(
     }
 
     override val supportedFeatures = mapOf(
-        SourceFeature.ALERT to "Hong Kong Observatory on behalf of WMO + 136 issuing organizations " +
+        SourceFeature.ALERT to "Hong Kong Observatory on behalf of WMO + 137 issuing organizations " +
             "https://severeweather.wmo.int/sources.html"
     )
 
