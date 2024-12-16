@@ -789,4 +789,8 @@
     <string name="dialog_refresh_error_details_content">點選錯誤訊息旁邊的問號，以獲得詳細說明。</string>
     <string name="message_multiple_refresh_errors">更新過程中發生錯誤</string>
     <string name="common_weather_text_tornado">龍捲風</string>
+    <string name="weather_forecast_data_by">預測資料由 %s 提供</string>
+    <string name="settings_weather_source_not_configured">%s（尚未設定）</string>
+    <string name="forecast">預測</string>
+    <string name="settings_weather_source_current_position_disclaimer">您的位置首次更新後，可能會有更多天氣來源讓您選擇。</string>
 </resources>
