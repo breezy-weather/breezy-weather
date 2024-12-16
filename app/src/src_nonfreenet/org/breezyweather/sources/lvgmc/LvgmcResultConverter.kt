@@ -49,8 +49,7 @@ internal fun convert(
 ): List<Location> {
     val locationList = mutableListOf<Location>()
     val forecastLocations = forecastLocationsResult.filter {
-        it.point != null && it.latitude != null &&
-            it.longitude != null
+        it.point != null && it.latitude != null && it.longitude != null
     }.associate {
         it.point!! to LatLng(it.latitude!!.toDouble(), it.longitude!!.toDouble())
     }
@@ -92,8 +91,11 @@ internal fun convert(
     }
 
     val airQualityLocations = airQualityLocationsResult.filter {
-        it.id != null && it.latitude != null && it.longitude != null &&
-            it.group == "Atmosfēras gaisa novērojumu stacija" && it.isActive == true
+        it.id != null &&
+            it.latitude != null &&
+            it.longitude != null &&
+            it.group == "Atmosfēras gaisa novērojumu stacija" &&
+            it.isActive == true
     }.associate {
         it.id.toString() to LatLng(it.latitude!!, it.longitude!!)
     }

@@ -56,7 +56,7 @@ internal fun convert(
     }
     val station = stations?.firstOrNull { it.sid.toString() == getNearestLocation(location, stationMap, 200000.0) }
 
-    if (station == null || station.lat == null || station.lon == null) {
+    if (station?.lat == null || station.lon == null) {
         throw InvalidLocationException()
     }
     locationList.add(
@@ -371,7 +371,7 @@ private fun convertAqi(
         PollutantIndex.O3 to listOf(0.0, 50.0, 100.0, 265.0, 800.0, 1000.0, 1200.0)
     )
     // AQI less than 500
-    for (i in 1..thresholds.size - 1) {
+    for (i in 1..<thresholds.size) {
         if (aqi > thresholds[i - 1] && aqi <= thresholds[i]) {
             return (aqi - thresholds[i - 1]) /
                 (thresholds[i] - thresholds[i - 1]) *

@@ -32,15 +32,15 @@ internal fun convert(
 ): List<Location> {
     val locationList = mutableListOf<Location>()
     val locationMap = mutableMapOf<String, LatLng>()
-    locations.forEachIndexed { i, loc ->
-        locationMap[i.toString()] = LatLng(loc.latitude.toDouble(), loc.longitude.toDouble())
+    locations.mapIndexed { i, loc ->
+        i.toString() to LatLng(loc.latitude.toDouble(), loc.longitude.toDouble())
     }
     getNearestLocation(location, locationMap, 50000.0)?.let {
         val nearestLocation = locations[it.toInt()]
         var districtName: String? = null
-        districts.forEach {
-            if (it.idRegiao == nearestLocation.idRegiao && it.idDistrito == nearestLocation.idDistrito) {
-                districtName = it.nome
+        districts.forEach { d ->
+            if (d.idRegiao == nearestLocation.idRegiao && d.idDistrito == nearestLocation.idDistrito) {
+                districtName = d.nome
             }
         }
         locationList.add(

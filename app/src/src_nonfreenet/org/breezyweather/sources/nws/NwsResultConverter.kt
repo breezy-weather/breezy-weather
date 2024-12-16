@@ -282,8 +282,8 @@ internal fun getAlerts(alerts: List<NwsAlert>?): List<Alert>? {
             startDate = it.properties.onset,
             endDate = it.properties.expires,
             headline = it.properties.event ?: it.properties.headline,
-            description = it.properties.description?.let { regex.replace(it, "$1 $2") },
-            instruction = it.properties.instruction?.let { regex.replace(it, "$1 $2") },
+            description = it.properties.description?.let { d -> regex.replace(d, "$1 $2") },
+            instruction = it.properties.instruction?.let { d -> regex.replace(d, "$1 $2") },
             source = it.properties.senderName?.ifEmpty { null } ?: it.properties.sender ?: "NWS",
             severity = severity,
             color = getAlertColor(it.properties.event) ?: Alert.colorFromSeverity(severity)
