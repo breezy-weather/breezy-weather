@@ -798,4 +798,8 @@
     <string name="message_multiple_refresh_errors">更新過程中發生錯誤</string>
     <string name="action_show">顯示</string>
     <string name="common_weather_text_tornado">龍捲風</string>
+    <string name="forecast">預報</string>
+    <string name="settings_weather_source_not_configured">%s（尚未設定）</string>
+    <string name="weather_forecast_data_by">預報資料由 %s 提供</string>
+    <string name="settings_weather_source_current_position_disclaimer">您的位置首次更新後，可能會有更多天氣來源讓您選擇。</string>
 </resources>
