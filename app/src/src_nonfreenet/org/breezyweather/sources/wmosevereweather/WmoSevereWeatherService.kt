@@ -58,11 +58,15 @@ class WmoSevereWeatherService @Inject constructor(
             when {
                 // Missing arabic abbreviation for WMO
                 startsWith("eo") -> "MOM Severe Weather Information Centre"
-                startsWith("es") -> "OMM Severe Weather Information Centre"
+                startsWith("es") -> "OMM Centro de Información de Tiempo Severo"
                 startsWith("fr") -> "OMM Centre d’Information des Phénomènes Dangereux"
                 startsWith("it") -> "OMM Severe Weather Information Centre"
+                startsWith("ko") -> "WMO 위험기상정보센터"
+                startsWith("pl") -> "WMO Centrum Informacji o Groźnych Zjawiskach Pogodowych"
+                startsWith("pt") -> "OMM Centro de informação tempo severo"
                 startsWith("ru") -> "ВМО Severe Weather Information Centre"
-                startsWith("zh") -> "世界气象组织 Severe Weather Information Centre"
+                equals("zh-tw") || equals("zh-hk") || equals("zh-mo") -> "世界氣象組職惡劣天氣信息中心"
+                startsWith("zh") -> "世界气象组织恶劣天气信息中心"
                 else -> "WMO Severe Weather Information Centre"
             }
         }
