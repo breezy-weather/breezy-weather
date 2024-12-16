@@ -79,8 +79,8 @@ class MetNoService @Inject constructor(
     private val weatherAttribution = "MET Norway (NLOD / CC BY 4.0)"
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.AIR_QUALITY to weatherAttribution,
         SourceFeature.MINUTELY to weatherAttribution,
+        SourceFeature.AIR_QUALITY to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
     )
 

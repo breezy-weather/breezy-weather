@@ -103,8 +103,8 @@ class SmgService @Inject constructor(
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution,
         SourceFeature.AIR_QUALITY to weatherAttribution,
+        SourceFeature.ALERT to weatherAttribution,
         SourceFeature.NORMALS to weatherAttribution
     )
 
