@@ -48,6 +48,7 @@ import org.breezyweather.sources.cwa.json.CwaAstroResult
 import org.breezyweather.sources.cwa.json.CwaCurrentResult
 import org.breezyweather.sources.cwa.json.CwaForecastResult
 import org.breezyweather.sources.cwa.json.CwaNormalsResult
+import org.breezyweather.sources.getNearestLocation
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -262,11 +263,11 @@ class CwaService @Inject constructor(
             Observable.just(CwaAstroResult())
         }
 
-        // Temperature normals are only available at 26 stations (out of 700+),
+        // Temperature normals are only available at 27 stations (out of 700+),
         // and not available in the main weather API call.
         // Therefore we will call a different endpoint,
         // but we must specify the station ID rather than using lat/lon.
-        val station = getNearestStation(location, CWA_NORMALS_STATIONS)
+        val station = getNearestLocation(location, CWA_NORMALS_STATIONS)
         val normals = if (SourceFeature.NORMALS in requestedFeatures && station != null) {
             mApi.getNormals(
                 apiKey = apiKey,

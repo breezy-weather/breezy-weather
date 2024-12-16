@@ -12,10 +12,10 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.sources.getNearestLocation
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.ipma.json.IpmaAlertResult
 import org.breezyweather.sources.ipma.json.IpmaDistrictResult
@@ -31,36 +31,42 @@ internal fun convert(
     locations: List<IpmaLocationResult>,
 ): List<Location> {
     val locationList = mutableListOf<Location>()
-    val nearestLocation = getNearestLocation(location, locations)
-    var districtName: String? = null
-    districts.forEach {
-        if (it.idRegiao == nearestLocation.idRegiao && it.idDistrito == nearestLocation.idDistrito) {
-            districtName = it.nome
-        }
+    val locationMap = mutableMapOf<String, LatLng>()
+    locations.forEachIndexed { i, loc ->
+        locationMap[i.toString()] = LatLng(loc.latitude.toDouble(), loc.longitude.toDouble())
     }
-    locationList.add(
-        location.copy(
-            latitude = location.latitude,
-            longitude = location.longitude,
-            timeZone = when (nearestLocation.idRegiao) {
-                2 -> "Atlantic/Madeira"
-                3 -> "Atlantic/Azores"
-                else -> "Europe/Lisbon"
-            },
-            country = "Portugal",
-            countryCode = "PT",
-            admin1 = when (nearestLocation.idRegiao) {
-                2 -> "Madeira"
-                3 -> "Azores"
-                else -> districtName
-            },
-            admin2 = when (nearestLocation.idRegiao) {
-                2, 3 -> districtName
-                else -> null
-            },
-            city = nearestLocation.local ?: ""
+    getNearestLocation(location, locationMap, 50000.0)?.let {
+        val nearestLocation = locations[it.toInt()]
+        var districtName: String? = null
+        districts.forEach {
+            if (it.idRegiao == nearestLocation.idRegiao && it.idDistrito == nearestLocation.idDistrito) {
+                districtName = it.nome
+            }
+        }
+        locationList.add(
+            location.copy(
+                latitude = location.latitude,
+                longitude = location.longitude,
+                timeZone = when (nearestLocation.idRegiao) {
+                    2 -> "Atlantic/Madeira"
+                    3 -> "Atlantic/Azores"
+                    else -> "Europe/Lisbon"
+                },
+                country = "Portugal",
+                countryCode = "PT",
+                admin1 = when (nearestLocation.idRegiao) {
+                    2 -> "Madeira"
+                    3 -> "Azores"
+                    else -> districtName
+                },
+                admin2 = when (nearestLocation.idRegiao) {
+                    2, 3 -> districtName
+                    else -> null
+                },
+                city = nearestLocation.local ?: ""
+            )
         )
-    )
+    }
     return locationList
 }
 
@@ -68,11 +74,19 @@ internal fun convert(
     location: Location,
     locations: List<IpmaLocationResult>,
 ): Map<String, String> {
-    val nearestLocation = getNearestLocation(location, locations)
-    return mapOf(
-        "globalIdLocal" to nearestLocation.globalIdLocal.toString(),
-        "idAreaAviso" to nearestLocation.idAreaAviso.toString()
-    )
+    val locationMap = mutableMapOf<String, LatLng>()
+    locations.forEachIndexed { i, loc ->
+        locationMap[i.toString()] = LatLng(loc.latitude.toDouble(), loc.longitude.toDouble())
+    }
+    getNearestLocation(location, locationMap, 50000.0)?.let {
+        val nearestLocation = locations[it.toInt()]
+        return mapOf(
+            "globalIdLocal" to nearestLocation.globalIdLocal.toString(),
+            "idAreaAviso" to nearestLocation.idAreaAviso.toString()
+        )
+    }
+    // No forecast location within 50km
+    throw InvalidLocationException()
 }
 
 internal fun getDailyForecast(
@@ -200,30 +214,6 @@ internal fun getAlertList(
         }
     }
     return alertList
-}
-
-private fun getNearestLocation(
-    location: Location,
-    locations: List<IpmaLocationResult>,
-): IpmaLocationResult {
-    var nearestDistance = Double.POSITIVE_INFINITY
-    var nearestLocation = Int.MAX_VALUE
-    var distance = Double.POSITIVE_INFINITY
-    locations.forEachIndexed { i, loc ->
-        distance = SphericalUtil.computeDistanceBetween(
-            LatLng(loc.latitude.toDouble(), loc.longitude.toDouble()),
-            LatLng(location.latitude, location.longitude)
-        )
-        if (distance < nearestDistance) {
-            nearestDistance = distance
-            nearestLocation = i
-        }
-    }
-    // Make sure location is within 50km of a known location in Portugal
-    if (nearestDistance > 50000) {
-        throw InvalidLocationException()
-    }
-    return locations[nearestLocation]
 }
 
 // Source: https://www.ipma.pt/opencms/bin/file.data/weathertypes.json
