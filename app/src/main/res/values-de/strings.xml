@@ -731,4 +731,5 @@
     <string name="common_weather_text_tornado">Tornado</string>
     <string name="settings_weather_source_not_configured">%s (nicht konfiguriert)</string>
     <string name="forecast">Vorhersage</string>
+    <string name="weather_forecast_data_by">Vorhersagedaten von %s</string>
 </resources>
