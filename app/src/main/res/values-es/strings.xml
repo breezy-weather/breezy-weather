@@ -752,4 +752,8 @@
     <string name="dialog_refresh_error_details_title">Refrescar errores</string>
     <string name="common_weather_text_squall">Chubasco</string>
     <string name="common_weather_text_tornado">Tornado</string>
+    <string name="settings_weather_source_current_position_disclaimer">Es posible que haya más fuentes meteorológicas disponibles para su ubicación después de la primera actualización.</string>
+    <string name="forecast">Pronóstico</string>
+    <string name="weather_forecast_data_by">Datos del pronóstico por %s</string>
+    <string name="settings_weather_source_not_configured">%s (no configurado)</string>
 </resources>
