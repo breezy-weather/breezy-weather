@@ -16,67 +16,45 @@
 
 package org.breezyweather.sources.cwa
 
-import breezyweather.domain.location.model.Location
-import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 
-// This function returns the geographically nearest CWA station ID from a list of stations.
-// This function is only used for getting UV Index and temperature normals.
-fun getNearestStation(location: Location, stationList: Map<String, Map<String, Double>>): String? {
-    var distance: Double
-    var nearestStation: String? = null
-    var nearestDistance: Double
-
-    nearestDistance = Double.POSITIVE_INFINITY
-    stationList.forEach { station ->
-        distance = SphericalUtil.computeDistanceBetween(
-            LatLng(location.latitude, location.longitude),
-            LatLng(station.value["lat"] as Double, station.value["lon"] as Double)
-        )
-        if (distance < nearestDistance) {
-            nearestStation = station.key
-            nearestDistance = distance
-        }
-    }
-    return nearestStation
-}
-
-// Temperature normals are only available at 26 stations (out of 700+).
+// Temperature normals are only available at 27 stations (out of 700+).
 // They are not available from the main weather API call,
 // and must be called with a different endpoint with the exact station ID.
-// This list allows matching a location to the nearest of those 26 stations.
+// This list allows matching a location to the nearest of those 27 stations.
 //
 // Information is updated once every 10 years. Last update was after 2020.
 //
-// Source (last checked 2024-05-29):
+// Source (last checked 2024-12-16):
 // https://opendata.cwa.gov.tw/dataset/climate/C-B0027-001
 val CWA_NORMALS_STATIONS = mapOf(
-    "466880" to mapOf("lat" to 24.997646, "lon" to 121.44202), // 板橋 BANQIAO
-    "466900" to mapOf("lat" to 25.164888, "lon" to 121.448906), // 淡水 TAMSUI
-    "466910" to mapOf("lat" to 25.182587, "lon" to 121.52973), // 鞍部 ANBU
-    "466920" to mapOf("lat" to 25.037659, "lon" to 121.514854), // 臺北 TAIPEI
-    "466930" to mapOf("lat" to 25.162079, "lon" to 121.54455), // 竹子湖 ZHUZIHU
-    "466940" to mapOf("lat" to 25.133314, "lon" to 121.74048), // 基隆 KEELUNG
-    "466950" to mapOf("lat" to 25.627975, "lon" to 122.07974), // 彭佳嶼 PENGJIAYU
-    "466990" to mapOf("lat" to 23.975128, "lon" to 121.61327), // 花蓮 HUALIEN
-    "467060" to mapOf("lat" to 24.596737, "lon" to 121.85737), // 蘇澳 SU-AO
-    "467080" to mapOf("lat" to 24.763975, "lon" to 121.75653), // 宜蘭 YILAN
-    "467300" to mapOf("lat" to 23.25695, "lon" to 119.667465), // 東吉島 DONGJIDAO
-    "467350" to mapOf("lat" to 23.565502, "lon" to 119.563095), // 澎湖 PENGHU
-    "467410" to mapOf("lat" to 22.993238, "lon" to 120.20477), // 臺南 TAINAN
-    "467440" to mapOf("lat" to 22.565992, "lon" to 120.315735), // 高雄 KAOHSIUNG
-    "467480" to mapOf("lat" to 23.495926, "lon" to 120.43291), // 嘉義 CHIAYI
-    "467490" to mapOf("lat" to 24.145737, "lon" to 120.684074), // 臺中 TAICHUNG
-    "467530" to mapOf("lat" to 23.508207, "lon" to 120.81324), // 阿里山 ALISHAN
-    "467540" to mapOf("lat" to 22.355675, "lon" to 120.903786), // 大武 DAWU
-    "467550" to mapOf("lat" to 23.487614, "lon" to 120.95952), // 玉山 YUSHAN
-    "467571" to mapOf("lat" to 24.827852, "lon" to 121.01422), // 新竹 HSINCHU
-    "467590" to mapOf("lat" to 22.003897, "lon" to 120.74634), // 恆春 HENGCHUN
-    "467610" to mapOf("lat" to 23.097486, "lon" to 121.37343), // 成功 CHENGGONG
-    "467620" to mapOf("lat" to 22.036968, "lon" to 121.55834), // 蘭嶼 LANYU
-    "467650" to mapOf("lat" to 23.881325, "lon" to 120.90805), // 日月潭 SUN MOON LAKE
-    "467660" to mapOf("lat" to 22.75221, "lon" to 121.15459), // 臺東 TAITUNG
-    "467770" to mapOf("lat" to 24.256002, "lon" to 120.523384) // 梧棲 WUQI
+    "466880" to LatLng(24.997646, 121.44202), // 板橋 BANQIAO
+    "466900" to LatLng(25.164888, 121.448906), // 淡水 TAMSUI
+    "466910" to LatLng(25.182587, 121.52973), // 鞍部 ANBU
+    "466920" to LatLng(25.037659, 121.514854), // 臺北 TAIPEI
+    "466930" to LatLng(25.162079, 121.54455), // 竹子湖 ZHUZIHU
+    "466940" to LatLng(25.133314, 121.74048), // 基隆 KEELUNG
+    "466950" to LatLng(25.627975, 122.07974), // 彭佳嶼 PENGJIAYU
+    "466990" to LatLng(23.975128, 121.61327), // 花蓮 HUALIEN
+    "467060" to LatLng(24.596737, 121.85737), // 蘇澳 SU-AO
+    "467080" to LatLng(24.763975, 121.75653), // 宜蘭 YILAN
+    "467300" to LatLng(23.25695, 119.667465), // 東吉島 DONGJIDAO
+    "467350" to LatLng(23.565502, 119.563095), // 澎湖 PENGHU
+    "467410" to LatLng(22.993238, 120.20477), // 臺南 TAINAN
+    "467420" to LatLng(23.038385, 120.2367), // 永康 YONGKANG
+    "467440" to LatLng(22.565992, 120.315735), // 高雄 KAOHSIUNG
+    "467480" to LatLng(23.495926, 120.43291), // 嘉義 CHIAYI
+    "467490" to LatLng(24.145737, 120.684074), // 臺中 TAICHUNG
+    "467530" to LatLng(23.508207, 120.81324), // 阿里山 ALISHAN
+    "467540" to LatLng(22.355675, 120.903786), // 大武 DAWU
+    "467550" to LatLng(23.487614, 120.95952), // 玉山 YUSHAN
+    "467571" to LatLng(24.827852, 121.01422), // 新竹 HSINCHU
+    "467590" to LatLng(22.003897, 120.74634), // 恆春 HENGCHUN
+    "467610" to LatLng(23.097486, 121.37343), // 成功 CHENGGONG
+    "467620" to LatLng(22.036968, 121.55834), // 蘭嶼 LANYU
+    "467650" to LatLng(23.881325, 120.90805), // 日月潭 SUN MOON LAKE
+    "467660" to LatLng(22.75221, 121.15459), // 臺東 TAITUNG
+    "467770" to LatLng(24.256002, 120.523384) // 梧棲 WUQI
 )
 
 // CWA issues warnings for different counties and specific townships classified as:

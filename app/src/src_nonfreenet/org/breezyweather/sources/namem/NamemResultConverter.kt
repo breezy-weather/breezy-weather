@@ -29,11 +29,11 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.domain.weather.index.PollutantIndex
+import org.breezyweather.sources.getNearestLocation
 import org.breezyweather.sources.namem.json.NamemAirQualityResult
 import org.breezyweather.sources.namem.json.NamemCurrentResult
 import org.breezyweather.sources.namem.json.NamemDailyResult
@@ -49,7 +49,12 @@ internal fun convert(
     stations: List<NamemStation>?,
 ): List<Location> {
     val locationList = mutableListOf<Location>()
-    val station = getNearestStation(location, stations, 200000.0)
+    val stationMap = stations?.filter {
+        it.lat != null && it.lon != null && (it.sid != null || it.id != null)
+    }?.associate {
+        it.sid.toString() to LatLng(it.lat!!, it.lon!!)
+    }
+    val station = stations?.firstOrNull { it.sid.toString() == getNearestLocation(location, stationMap, 200000.0) }
 
     if (station == null || station.lat == null || station.lon == null) {
         throw InvalidLocationException()
@@ -87,38 +92,18 @@ internal fun getLocationParameters(
     location: Location,
     stations: List<NamemStation>?,
 ): Map<String, String> {
-    val weatherStation = getNearestStation(location, stations, 200000.0)
-    if (weatherStation?.sid == null) {
+    val stationMap = stations?.filter {
+        it.lat != null && it.lon != null && (it.sid != null || it.id != null)
+    }?.associate {
+        it.sid.toString() to LatLng(it.lat!!, it.lon!!)
+    }
+    val nearestStation = getNearestLocation(location, stationMap, 200000.0)
+    if (nearestStation == null) {
         throw InvalidLocationException()
     }
     return mapOf(
-        "stationId" to weatherStation.sid.toString()
+        "stationId" to nearestStation
     )
-}
-
-private fun getNearestStation(
-    location: Location,
-    stations: List<NamemStation>?,
-    limit: Double? = null,
-): NamemStation? {
-    var distance: Double
-    var nearestDistance: Double = Double.POSITIVE_INFINITY
-    var nearestStation: NamemStation? = null
-    stations?.forEach {
-        if (it.lat != null && it.lon != null && (it.sid != null || it.id != null)) {
-            distance = SphericalUtil.computeDistanceBetween(
-                LatLng(location.latitude, location.longitude),
-                LatLng(it.lat, it.lon)
-            )
-            if (distance < nearestDistance) {
-                if (limit == null || distance <= limit) {
-                    nearestDistance = distance
-                    nearestStation = it
-                }
-            }
-        }
-    }
-    return nearestStation
 }
 
 internal fun getCurrent(
@@ -146,7 +131,16 @@ internal fun getAirQuality(
     location: Location,
     airQualityResult: NamemAirQualityResult,
 ): AirQuality {
-    val station = getNearestStation(location, airQualityResult.data, 50000.0)
+    val stationMap = airQualityResult.data?.filter {
+        it.lat != null && it.lon != null &&
+            (it.sid != null || it.id != null)
+    }?.associate {
+        it.sid.toString() to LatLng(it.lat!!, it.lon!!)
+    }
+    val station = airQualityResult.data?.firstOrNull {
+        it.sid.toString() ==
+            getNearestLocation(location, stationMap, 50000.0)
+    }
     var pM25: Double? = null
     var pM10: Double? = null
     var sO2: Double? = null

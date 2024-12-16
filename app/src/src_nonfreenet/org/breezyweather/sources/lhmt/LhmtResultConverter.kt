@@ -27,12 +27,12 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.sources.getNearestLocation
 import org.breezyweather.sources.lhmt.json.LhmtAlertText
 import org.breezyweather.sources.lhmt.json.LhmtAlertsResult
 import org.breezyweather.sources.lhmt.json.LhmtLocationsResult
@@ -44,11 +44,14 @@ import java.util.TimeZone
 // reverse geocoding
 internal fun convert(
     location: Location,
-    forecastLocationsResult: List<LhmtLocationsResult>,
+    forecastLocations: List<LhmtLocationsResult>,
 ): List<Location> {
     val locationList = mutableListOf<Location>()
-    val nearestLocation = getNearestLocation(location, forecastLocationsResult)
-    nearestLocation?.let {
+    val forecastLocationMap = forecastLocations.filter { it.countryCode == null || it.countryCode == "LT" }.associate {
+        it.code to LatLng(it.coordinates.latitude, it.coordinates.longitude)
+    }
+    val forecastLocation = getNearestLocation(location, forecastLocationMap, 50000.0)
+    forecastLocations.firstOrNull { it.code == forecastLocation }?.let {
         val municipalityName = it.administrativeDivision
         val municipalityCode = MUNICIPALITIES.firstOrNull { pair ->
             pair.second == municipalityName
@@ -80,12 +83,20 @@ internal fun convert(
 // location parameters
 internal fun convert(
     location: Location,
-    forecastLocationsResult: List<LhmtLocationsResult>,
-    currentLocationsResult: List<LhmtLocationsResult>,
+    forecastLocations: List<LhmtLocationsResult>,
+    currentLocations: List<LhmtLocationsResult>,
 ): Map<String, String> {
-    val forecastLocation = getNearestLocation(location, forecastLocationsResult)
-    val currentLocation = getNearestLocation(location, currentLocationsResult)
-    val municipalityName = forecastLocation?.administrativeDivision
+    val forecastLocationMap = forecastLocations.filter { it.countryCode == null || it.countryCode == "LT" }.associate {
+        it.code to LatLng(it.coordinates.latitude, it.coordinates.longitude)
+    }
+    val forecastLocation = getNearestLocation(location, forecastLocationMap, 50000.0)
+
+    val currentLocationMap = currentLocations.filter { it.countryCode == null || it.countryCode == "LT" }.associate {
+        it.code to LatLng(it.coordinates.latitude, it.coordinates.longitude)
+    }
+    val currentLocation = getNearestLocation(location, currentLocationMap, 50000.0)
+
+    val municipalityName = forecastLocations.firstOrNull { it.code == forecastLocation }?.administrativeDivision
     val municipalityCode = MUNICIPALITIES.firstOrNull { pair ->
         pair.second == municipalityName
     }?.first
@@ -98,34 +109,11 @@ internal fun convert(
     }
 
     return mapOf(
-        "forecastLocation" to forecastLocation.code,
-        "currentLocation" to currentLocation.code,
+        "forecastLocation" to forecastLocation,
+        "currentLocation" to currentLocation,
         "municipality" to municipalityCode,
         "county" to countyCode
     )
-}
-
-internal fun getNearestLocation(
-    location: Location,
-    locationsResult: List<LhmtLocationsResult>,
-    limit: Double = 50000.0,
-): LhmtLocationsResult? {
-    var nearestDistance = Double.POSITIVE_INFINITY
-    var nearestLocation: LhmtLocationsResult? = null
-    var distance: Double
-    locationsResult.forEach {
-        if (it.countryCode == null || it.countryCode == "LT") {
-            distance = SphericalUtil.computeDistanceBetween(
-                LatLng(location.latitude, location.longitude),
-                LatLng(it.coordinates.latitude, it.coordinates.longitude)
-            )
-            if ((distance < nearestDistance) && (distance <= limit)) {
-                nearestDistance = distance
-                nearestLocation = it
-            }
-        }
-    }
-    return nearestLocation
 }
 
 internal fun getCurrent(

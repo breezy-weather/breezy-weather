@@ -28,10 +28,10 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.sources.getNearestLocation
 import org.breezyweather.sources.lvgmc.json.LvgmcAirQualityLocationResult
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentLocation
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentResult
@@ -48,15 +48,15 @@ internal fun convert(
     forecastLocationsResult: List<LvgmcForecastResult>,
 ): List<Location> {
     val locationList = mutableListOf<Location>()
-    val forecastLocations = mutableMapOf<String, LatLng>()
-    forecastLocationsResult.forEach {
-        if (it.point != null && it.latitude != null && it.longitude != null) {
-            forecastLocations[it.point] = LatLng(it.latitude.toDouble(), it.longitude.toDouble())
-        }
+    val forecastLocations = forecastLocationsResult.filter {
+        it.point != null && it.latitude != null &&
+            it.longitude != null
+    }.associate {
+        it.point!! to LatLng(it.latitude!!.toDouble(), it.longitude!!.toDouble())
     }
     val forecastLocation = getNearestLocation(location, forecastLocations)
 
-    forecastLocationsResult.filter { it.point == forecastLocation }.firstOrNull()?.let {
+    forecastLocationsResult.firstOrNull { it.point == forecastLocation }?.let {
         locationList.add(
             location.copy(
                 latitude = location.latitude,
@@ -79,30 +79,23 @@ internal fun convert(
     forecastLocationsResult: List<LvgmcForecastResult>,
     airQualityLocationsResult: List<LvgmcAirQualityLocationResult>,
 ): Map<String, String> {
-    val forecastLocations = mutableMapOf<String, LatLng>()
-    forecastLocationsResult.forEach {
-        if (it.point != null && it.latitude != null && it.longitude != null) {
-            forecastLocations[it.point] = LatLng(it.latitude.toDouble(), it.longitude.toDouble())
-        }
+    val forecastLocations = forecastLocationsResult.filter {
+        it.point != null && it.latitude != null && it.longitude != null
+    }.associate {
+        it.point!! to LatLng(it.latitude!!.toDouble(), it.longitude!!.toDouble())
     }
 
-    val currentLocations = mutableMapOf<String, LatLng>()
-    currentLocationsResult.forEach {
-        if (it.code != null && it.latitude != null && it.longitude != null) {
-            currentLocations[it.code] = LatLng(it.latitude.toDouble(), it.longitude.toDouble())
-        }
+    val currentLocations = currentLocationsResult.filter {
+        it.code != null && it.latitude != null && it.longitude != null
+    }.associate {
+        it.code!! to LatLng(it.latitude!!.toDouble(), it.longitude!!.toDouble())
     }
 
-    val airQualityLocations = mutableMapOf<String, LatLng>()
-    airQualityLocationsResult.forEach {
-        if (it.id != null &&
-            it.latitude != null &&
-            it.longitude != null &&
-            it.group == "Atmosfēras gaisa novērojumu stacija" &&
-            it.isActive == true
-        ) {
-            airQualityLocations[it.id.toString()] = LatLng(it.latitude, it.longitude)
-        }
+    val airQualityLocations = airQualityLocationsResult.filter {
+        it.id != null && it.latitude != null && it.longitude != null &&
+            it.group == "Atmosfēras gaisa novērojumu stacija" && it.isActive == true
+    }.associate {
+        it.id.toString() to LatLng(it.latitude!!, it.longitude!!)
     }
 
     val forecastLocation = getNearestLocation(location, forecastLocations)
@@ -118,26 +111,6 @@ internal fun convert(
         "currentLocation" to currentLocation,
         "airQualityLocation" to airQualityLocation
     )
-}
-
-private fun getNearestLocation(
-    location: Location,
-    locations: Map<String, LatLng>,
-): String? {
-    var distance: Double
-    var nearestDistance = Double.POSITIVE_INFINITY
-    var nearestLocation: String? = null
-    locations.keys.forEach { key ->
-        distance = SphericalUtil.computeDistanceBetween(
-            LatLng(location.latitude, location.longitude),
-            locations[key]!!
-        )
-        if (distance < nearestDistance) {
-            nearestDistance = distance
-            nearestLocation = key
-        }
-    }
-    return nearestLocation
 }
 
 internal fun getCurrent(
