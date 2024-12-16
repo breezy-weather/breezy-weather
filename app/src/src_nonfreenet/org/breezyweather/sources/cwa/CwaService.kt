@@ -24,6 +24,8 @@ import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import com.google.maps.android.model.LatLng
+import com.google.maps.android.model.LatLngBounds
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -104,7 +106,13 @@ class CwaService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        return location.countryCode.equals("TW", ignoreCase = true)
+        val latLng = LatLng(location.latitude, location.longitude)
+        return location.countryCode.equals("TW", ignoreCase = true) ||
+            TAIWAN_BBOX.contains(latLng) ||
+            PENGHU_BBOX.contains(latLng) ||
+            KINMEN_BBOX.contains(latLng) ||
+            WUQIU_BBOX.contains(latLng) ||
+            MATSU_BBOX.contains(latLng)
     }
 
     @SuppressLint("CheckResult")
@@ -507,5 +515,11 @@ class CwaService @Inject constructor(
         private const val MOON_ENDPOINT = "A-B0063-001"
         private const val MOON_PARAMETERS = "MoonRiseTime,MoonSetTime"
         private val LINE_FEED_SPACES = Regex("""\n\s*""")
+
+        private val TAIWAN_BBOX = LatLngBounds.parse(119.99690416, 21.756143532, 122.10915909, 25.633378776)
+        private val PENGHU_BBOX = LatLngBounds.parse(119.314301816, 23.186561404, 119.726986388, 23.810692086)
+        private val KINMEN_BBOX = LatLngBounds.parse(118.137979837, 24.160255444, 118.505977425, 24.534228163)
+        private val WUQIU_BBOX = LatLngBounds.parse(119.443195363, 24.97760013, 119.479213453, 24.999614154)
+        private val MATSU_BBOX = LatLngBounds.parse(119.908905081, 25.940995457, 120.511750672, 26.385275262)
     }
 }
