@@ -12,84 +12,84 @@ Below, you can find details about the support and implementation status for feat
 | 🌐 Worldwide                       | [Open-Meteo](#open-meteo)                          | Forecast, Current, Air quality, Pollen, Normals, Search                              |
 | 🌐 Worldwide                       | [AccuWeather](#accuweather) 🔓                     | Forecast, Current, Air quality, Pollen, Nowcasting, Alerts, Normals, Search, Reverse |
 | 🌐 Worldwide                       | [GeoNames](#geonames) 🔐                           | Search                                                                               |
-| 🌐 Worldwide                       | [HERE](#here-destination-weather) 🔐               | Forecast, Current, Alerts                                                            |
+| 🌐 Worldwide                       | [HERE](#here-destination-weather) 🔐               | Forecast, Current, Alerts, Reverse                                                   |
 | 🌐 Worldwide                       | [OpenWeather](#openweather) 🔓                     | Forecast, Current, Air quality                                                       |
 | 🌐 Worldwide                       | [Pirate Weather](#pirate-weather) 🔐               | Forecast, Current, Nowcasting, Alerts                                                |
 | 🌐 Worldwide                       | [WMO Severe Weather](#wmo-severe-weather)          | Alerts                                                                               |
 | 🇦🇹 Austria                       | [GeoSphere Austria](#geosphere-austria)            | Forecast, Air quality, Nowcasting, Alerts                                            |
-| 🇧🇩 Bangladesh                    | [BMD](#bangladesh-meteorological-department)       | Forecast                                                                             |
+| 🇧🇩 Bangladesh                    | [BMD](#bangladesh-meteorological-department)       | Forecast, Reverse                                                                    |
 | 🇧🇯 Benin                         | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
 | 🇧🇫 Burkina Faso                  | [ClimWeb](#climweb)                                | Alerts                                                                               |
 | 🇧🇮 Burundi                       | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇨🇦 Canada                        | [ECCC](#environment-and-climate-change-canada)     | Forecast, Current, Alerts, Normals                                                   |
+| 🇨🇦 Canada                        | [ECCC](#environment-and-climate-change-canada)     | Forecast, Current, Alerts, Normals, Reverse                                          |
 | 🇹🇩 Chad                          | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
-| 🇨🇳 China                         | [China](#china)                                    | Forecast, Current, Air quality, Nowcasting, Alerts                                   |
+| 🇨🇳 China                         | [China](#china)                                    | Forecast, Current, Air quality, Nowcasting, Alerts, Reverse                          |
 | 🇨🇩 Democratic Republic of Congo  | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇩🇰 Denmark                       | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts                                                                     |
+| 🇩🇰 Denmark                       | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Reverse                                                            |
 | 🇪🇹 Ethiopia                      | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
-| 🇫🇰 Falkland Is.                  | [Met Office](#met-office) 🔐                       | Forecast                                                                             |
-| 🇫🇴 Faroe Is.                     | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts                                                                     |
-| 🇫🇷 France                        | [Météo-France](#météo-france)                      | Forecast, Current, Nowcasting, Alerts, Normals                                       |
+| 🇫🇰 Falkland Is.                  | [Met Office](#met-office) 🔐                       | Forecast, Reverse                                                                    |
+| 🇫🇴 Faroe Is.                     | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Reverse                                                            |
+| 🇫🇷 France                        | [Météo-France](#météo-france)                      | Forecast, Current, Nowcasting, Alerts, Normals, Reverse                              |
 | 🇫🇷 France                        | [Recosanté](#recosanté)                            | Pollen                                                                               |
 | 🇫🇷 France (Auvergne-Rhône-Alpes) | [Atmo Auvergne-Rhône-Alpes](#atmo)                 | Air Quality                                                                          |
 | 🇫🇷 France (Grand Est)            | [ATMO GrandEst](#atmo)                             | Air Quality                                                                          |
 | 🇫🇷 France (Hauts-de-France)      | [Atmo Hauts-de-France](#atmo)                      | Air Quality                                                                          |
 | 🇫🇷 France (PACA)                 | [AtmoSud](#atmo)                                   | Air Quality                                                                          |
-| 🇬🇫 French Guiana                 | [Météo-France](#météo-france)                      | Forecast, Alerts                                                                     |
-| 🇵🇫 French Polynesia              | [Météo-France](#météo-france)                      | Forecast, Alerts                                                                     |
+| 🇬🇫 French Guiana                 | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
+| 🇵🇫 French Polynesia              | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
 | 🇬🇲 Gambia                        | [ClimWeb](#climweb)                                | Alerts                                                                               |
 | 🇩🇪 Germany                       | [Bright Sky](#bright-sky)                          | Forecast, Current, Alerts                                                            |
 | 🇬🇭 Ghana                         | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇬🇮 Gibraltar                     | [Met Office](#met-office) 🔐                       | Forecast                                                                             |
-| 🇬🇱 Greenland                     | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts                                                                     |
-| 🇬🇵 Guadeloupe                    | [Météo-France](#météo-france)                      | Forecast, Alerts                                                                     |
-| 🇬🇺 Guam                          | [NWS](#national-weather-service)                   | Forecast, Current, Alerts                                                            |
-| 🇬🇬 Guernsey                      | [Met Office](#met-office) 🔐                       | Forecast                                                                             |
+| 🇬🇮 Gibraltar                     | [Met Office](#met-office) 🔐                       | Forecast, Reverse                                                                    |
+| 🇬🇱 Greenland                     | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Reverse                                                            |
+| 🇬🇵 Guadeloupe                    | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
+| 🇬🇺 Guam                          | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Reverse                                                   |
+| 🇬🇬 Guernsey                      | [Met Office](#met-office) 🔐                       | Forecast, Reverse                                                                    |
 | 🇬🇼 Guinea-Bissau                 | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇭🇰 Hong Kong                     | [HKO](#hong-kong-observatory)                      | Forecast, Current, Alerts, Normals                                                   |
+| 🇭🇰 Hong Kong                     | [HKO](#hong-kong-observatory)                      | Forecast, Current, Alerts, Normals, Reverse                                          |
 | 🇮🇳 India                         | [IMD](#india-meteorological-department)            | Forecast                                                                             |
-| 🇮🇩 Indonesia                     | [BMKG](#bmkg)                                      | Forecast, Current, Air quality, Alerts                                               |
-| 🇮🇪 Ireland                       | [MET Éireann](#met-éireann)                        | Forecast, Alerts                                                                     |
-| 🇮🇲 Isle of Man                   | [Met Office](#met-office) 🔐                       | Forecast                                                                             |
-| 🇮🇱 Israel                        | [IMS](#israel-meteorological-service)              | Forecast, Current, Alerts                                                            |
-| 🇮🇹 Italy                         | [Meteo AM](#servizio-meteo-am)                     | Forecast, Current                                                                    |
-| 🇯🇵 Japan                         | [JMA](#japan-meteorological-agency)                | Forecast, Current, Alerts, Normals                                                   |
-| 🇯🇪 Jersey                        | [Met Office](#met-office) 🔐                       | Forecast                                                                             |
-| 🇱🇻 Latvia                        | [LVĢMC](#lvģmc)                                    | Forecast, Current, Air quality                                                       |
-| 🇱🇹 Lithuania                     | [LHMT](#lhmt)                                      | Forecast, Current, Alerts                                                            |
-| 🇱🇺 Luxembourg                    | [MeteoLux](#meteolux)                              | Forecast, Current, Alerts                                                            |
+| 🇮🇩 Indonesia                     | [BMKG](#bmkg)                                      | Forecast, Current, Air quality, Alerts, Reverse                                      |
+| 🇮🇪 Ireland                       | [MET Éireann](#met-éireann)                        | Forecast, Alerts, Reverse                                                            |
+| 🇮🇲 Isle of Man                   | [Met Office](#met-office) 🔐                       | Forecast, Reverse                                                                    |
+| 🇮🇱 Israel                        | [IMS](#israel-meteorological-service)              | Forecast, Current, Alerts, Reverse                                                   |
+| 🇮🇹 Italy                         | [Meteo AM](#servizio-meteo-am)                     | Forecast, Current, Reverse                                                           |
+| 🇯🇵 Japan                         | [JMA](#japan-meteorological-agency)                | Forecast, Current, Alerts, Normals, Reverse                                          |
+| 🇯🇪 Jersey                        | [Met Office](#met-office) 🔐                       | Forecast, Reverse                                                                    |
+| 🇱🇻 Latvia                        | [LVĢMC](#lvģmc)                                    | Forecast, Current, Air quality, Reverse                                              |
+| 🇱🇹 Lithuania                     | [LHMT](#lhmt)                                      | Forecast, Current, Alerts, Reverse                                                   |
+| 🇱🇺 Luxembourg                    | [MeteoLux](#meteolux)                              | Forecast, Current, Alerts, Reverse                                                   |
 | 🇲🇴 Macao                         | [SMG](#serviços-meteorológicos-e-geofísicos)       | Forecast, Current, Air quality, Alerts, Normals                                      |
 | 🇲🇼 Malawi                        | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
 | 🇲🇱 Mali                          | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇲🇶 Martinique                    | [Météo-France](#météo-france)                      | Forecast, Alerts                                                                     |
-| 🇾🇹 Mayotte                       | [Météo-France](#météo-france)                      | Forecast, Alerts                                                                     |
-| 🇲🇳 Mongolia                      | [NAMEM](#namem)                                    | Forecast, Current, Air quality, Normals                                              |
-| 🇳🇨 New Caledonia                 | [Météo-France](#météo-france)                      | Forecast, Alerts                                                                     |
+| 🇲🇶 Martinique                    | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
+| 🇾🇹 Mayotte                       | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
+| 🇲🇳 Mongolia                      | [NAMEM](#namem)                                    | Forecast, Current, Air quality, Normals, Reverse                                     |
+| 🇳🇨 New Caledonia                 | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
 | 🇳🇪 Niger                         | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
-| 🇲🇵 Northern Mariana Is.          | [NWS](#national-weather-service)                   | Forecast, Current, Alerts                                                            |
+| 🇲🇵 Northern Mariana Is.          | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Reverse                                                   |
 | 🇳🇴 Norway                        | [MET Norway](#met-norway)                          | Forecast, Nowcasting, Air quality, Alerts                                            |
 | 🇵🇭 Philippines                   | [PAGASA](#pagasa)                                  | Forecast, Current                                                                    |
-| 🇵🇹 Portugal                      | [IPMA](#instituto-português-do-mar-e-da-atmosfera) | Forecast, Alerts                                                                     |
-| 🇵🇷 Puerto Rico                   | [NWS](#national-weather-service)                   | Forecast, Current, Alerts                                                            |
-| 🇷🇪 Réunion                       | [Météo-France](#météo-france)                      | Forecast, Current?, Alerts                                                           |
-| 🇸🇲 San Marino                    | [Meteo AM](#servizio-meteo-am)                     | Forecast, Current                                                                    |
+| 🇵🇹 Portugal                      | [IPMA](#instituto-português-do-mar-e-da-atmosfera) | Forecast, Alerts, Reverse                                                            |
+| 🇵🇷 Puerto Rico                   | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Reverse                                                   |
+| 🇷🇪 Réunion                       | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
+| 🇸🇲 San Marino                    | [Meteo AM](#servizio-meteo-am)                     | Forecast, Current, Reverse                                                           |
 | 🇸🇨 Seychelles                    | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
 | 🇸🇸 South Sudan                   | [ClimWeb](#climweb)                                | Alerts                                                                               |
 | 🇪🇸 Spain                         | [AEMET](#aemet) 🔐                                 | Forecast, Current, Normals                                                           |
-| 🇧🇱 St. Barthélemy                | [Météo-France](#météo-france)                      | Forecast, Alerts                                                                     |
-| 🇲🇫 St. Martin                    | [Météo-France](#météo-france)                      | Forecast, Alerts                                                                     |
-| 🇵🇲 St. Pierre &amp; Miquelon     | [Météo-France](#météo-france)                      | Forecast, Alerts                                                                     |
+| 🇧🇱 St. Barthélemy                | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
+| 🇲🇫 St. Martin                    | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
+| 🇵🇲 St. Pierre &amp; Miquelon     | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
 | 🇸🇩 Sudan                         | [ClimWeb](#climweb)                                | Alerts                                                                               |
 | 🇸🇯 Svalbard &amp; Jan Mayen      | [MET Norway](#met-norway)                          | Forecast, Alerts                                                                     |
 | 🇸🇪 Sweden                        | [SMHI](#smhi)                                      | Forecast                                                                             |
-| 🇹🇼 Taiwan                        | [CWA](#central-weather-administration) 🔐          | Forecast, Current, Air quality, Alerts, Normals                                      |
+| 🇹🇼 Taiwan                        | [CWA](#central-weather-administration) 🔐          | Forecast, Current, Air quality, Alerts, Normals, Reverse                             |
 | 🇹🇬 Togo                          | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇹🇷 Türkiye                       | [MGM](#meteoroloji-genel-müdürlüğü)                | Forecast, Current, Alerts, Normals                                                   |
-| 🇬🇧 United Kingdom                | [Met Office](#met-office) 🔐                       | Forecast                                                                             |
-| 🇺🇸 United States                 | [NWS](#national-weather-service)                   | Forecast, Current, Alerts                                                            |
-| 🇻🇮 U.S. Virgin Is.               | [NWS](#national-weather-service)                   | Forecast, Current, Alerts                                                            |
-| 🇻🇦 Vatican City                  | [Meteo AM](#servizio-meteo-am)                     | Forecast, Current                                                                    |
-| 🇼🇫 Wallis &amp; Futuna           | [Météo-France](#météo-france)                      | Forecast, Alerts                                                                     |
+| 🇹🇷 Türkiye                       | [MGM](#meteoroloji-genel-müdürlüğü)                | Forecast, Current, Alerts, Normals, Reverse                                          |
+| 🇬🇧 United Kingdom                | [Met Office](#met-office) 🔐                       | Forecast, Reverse                                                                    |
+| 🇺🇸 United States                 | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Reverse                                                   |
+| 🇻🇮 U.S. Virgin Is.               | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Reverse                                                   |
+| 🇻🇦 Vatican City                  | [Meteo AM](#servizio-meteo-am)                     | Forecast, Current, Reverse                                                           |
+| 🇼🇫 Wallis &amp; Futuna           | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
 | 🇿🇼 Zimbabwe                      | [ClimWeb](#climweb)                                | Alerts                                                                               |
 
 ## Worldwide sources
