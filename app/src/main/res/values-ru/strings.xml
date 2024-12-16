@@ -721,4 +721,8 @@
     <string name="dialog_refresh_error_details_content">Нажмите на сообщение об ошибке со знаком вопроса, чтобы получить дополнительную помощь.</string>
     <string name="message_multiple_refresh_errors">Обновление завершено с ошибками</string>
     <string name="common_weather_text_tornado">Торнадо</string>
+    <string name="forecast">Прогноз</string>
+    <string name="settings_weather_source_current_position_disclaimer">После первого обновления для вашего местоположения могут стать доступны дополнительные источники погоды.</string>
+    <string name="weather_forecast_data_by">Прогноз предоставлен %s</string>
+    <string name="settings_weather_source_not_configured">%s (не настроено)</string>
 </resources>
