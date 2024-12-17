@@ -132,8 +132,7 @@ internal fun getAirQuality(
     airQualityResult: NamemAirQualityResult,
 ): AirQuality {
     val stationMap = airQualityResult.data?.filter {
-        it.lat != null && it.lon != null &&
-            (it.sid != null || it.id != null)
+        it.lat != null && it.lon != null && (it.sid != null || it.id != null)
     }?.associate {
         it.sid.toString() to LatLng(it.lat!!, it.lon!!)
     }
