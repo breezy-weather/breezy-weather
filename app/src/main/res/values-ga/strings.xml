@@ -712,4 +712,8 @@
     <string name="common_weather_text_sand_storm">Stoirm ghainimh</string>
     <string name="common_weather_text_mist">Ceo</string>
     <string name="null_data_text">N/A</string>
+    <string name="settings_weather_source_current_position_disclaimer">Seans go mbeidh níos mó foinsí aimsire ar fáil le do shuíomh tar éis an chéad athnuachana.</string>
+    <string name="weather_forecast_data_by">Sonraí réamhaisnéise faoi %s</string>
+    <string name="settings_weather_source_not_configured">%s (gan cumraithe)</string>
+    <string name="forecast">Réamhaisnéis</string>
 </resources>
