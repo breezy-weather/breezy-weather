@@ -720,4 +720,9 @@
     <string name="dialog_refresh_error_details_title">Σφάλματα ανανέωσης</string>
     <string name="dialog_refresh_error_details_content">Πατήστε τα μηνύματα σφάλματος με ερωτηματικό για να λάβετε περαιτέρω βοήθεια.</string>
     <string name="action_show">Εμφάνιση</string>
+    <string name="forecast">Πρόβλεψη</string>
+    <string name="weather_forecast_data_by">Δεδομένα πρόβλεψης από %s</string>
+    <string name="common_weather_text_tornado">Ανεμοστρόβιλος</string>
+    <string name="settings_weather_source_not_configured">%s (δεν έχει διαμορφωθεί)</string>
+    <string name="settings_weather_source_current_position_disclaimer">Περισσότερες πηγές καιρού ενδέχεται να είναι διαθέσιμες για την τοποθεσία σας μετά την πρώτη ανανέωση.</string>
 </resources>
