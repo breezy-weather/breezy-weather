@@ -211,8 +211,15 @@ class AccuService @Inject constructor(
                     languageCode,
                     details = true
                 ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.ALERT)
-                    Observable.just(emptyList())
+                    mApi.getAlertsByCityKey(
+                        locationKey!!,
+                        apiKey,
+                        languageCode,
+                        details = true
+                    ).onErrorResumeNext {
+                        failedFeatures.add(SourceFeature.ALERT)
+                        Observable.just(emptyList())
+                    }
                 }
             } else {
                 mApi.getAlertsByCityKey(
