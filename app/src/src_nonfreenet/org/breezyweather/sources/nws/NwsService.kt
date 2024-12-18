@@ -273,6 +273,8 @@ class NwsService @Inject constructor(
         }
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val NWS_BASE_URL = "https://api.weather.gov/"
         private const val USER_AGENT =

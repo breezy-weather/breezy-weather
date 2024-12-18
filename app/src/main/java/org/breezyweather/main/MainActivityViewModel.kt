@@ -75,6 +75,9 @@ class MainActivityViewModel @Inject constructor(
     private val _dialogChooseWeatherSourcesOpen = MutableStateFlow(false)
     val dialogChooseWeatherSourcesOpen = _dialogChooseWeatherSourcesOpen.asStateFlow()
 
+    private val _dialogChooseDebugLocationOpen = MutableStateFlow(false)
+    val dialogChooseDebugLocationOpen = _dialogChooseDebugLocationOpen.asStateFlow()
+
     private val _dialogRefreshErrorDetails = MutableStateFlow(false)
     val dialogRefreshErrorDetails = _dialogRefreshErrorDetails.asStateFlow()
 
@@ -150,6 +153,14 @@ class MainActivityViewModel @Inject constructor(
     fun closeChooseWeatherSourcesDialog() {
         _dialogChooseWeatherSourcesOpen.value = false
         _selectedLocation.value = null
+    }
+
+    fun openChooseDebugLocationDialog() {
+        _dialogChooseDebugLocationOpen.value = true
+    }
+
+    fun closeChooseDebugLocationDialog() {
+        _dialogChooseDebugLocationOpen.value = false
     }
 
     fun setRefreshErrorDetailsDialogVisible(visible: Boolean) {

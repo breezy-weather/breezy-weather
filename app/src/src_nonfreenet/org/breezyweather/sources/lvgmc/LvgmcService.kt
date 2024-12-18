@@ -249,6 +249,8 @@ class LvgmcService @Inject constructor(
             (location.longitude - 0.1) + " " + (location.latitude - 0.1) + "))"
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val LVGMC_BASE_URL = "https://videscentrs.lvgmc.lv/"
     }

@@ -244,6 +244,8 @@ class MgmService @Inject constructor(
         }
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val MGM_BASE_URL = "https://servis.mgm.gov.tr/"
     }

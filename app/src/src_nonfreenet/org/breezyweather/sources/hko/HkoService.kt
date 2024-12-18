@@ -503,6 +503,8 @@ class HkoService @Inject constructor(
         return column.toString().padStart(2, '0') + row.toString().padStart(2, '0')
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val HKO_BASE_URL = "https://www.hko.gov.hk/"
         private const val HKO_DATA_BASE_URL = "https://data.weather.gov.hk/"

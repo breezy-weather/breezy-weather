@@ -41,6 +41,7 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.BugReport
 import androidx.compose.material.icons.outlined.MyLocation
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -74,11 +75,13 @@ import breezyweather.domain.location.model.Location
 import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.rememberPermissionState
 import kotlinx.coroutines.launch
+import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.source.LocationPreset
+import org.breezyweather.common.ui.composables.DebugLocationScreen
 import org.breezyweather.common.ui.composables.NotificationCard
 import org.breezyweather.common.ui.composables.SecondarySourcesPreference
 import org.breezyweather.common.ui.decorations.Material3ListItemDecoration
@@ -164,6 +167,9 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
         val dialogChooseWeatherSourcesOpenState = viewModel.dialogChooseWeatherSourcesOpen.collectAsState()
         val selectedLocationState = viewModel.selectedLocation.collectAsState()
+
+        val dialogChooseDebugLocationOpenState = viewModel.dialogChooseDebugLocationOpen.collectAsState()
+
         /*
          * We should add a scroll behavior to make the top bar change color when scrolling, but
          * as we mix ComposeView and XML views, this leads to stuttering in scrolling.
@@ -183,6 +189,19 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             floatingActionButton = {
                 if (validLocationListState.value.isNotEmpty()) {
                     Column {
+                        if (BreezyWeather.instance.debugMode) {
+                            FloatingActionButton(
+                                onClick = {
+                                    viewModel.openChooseDebugLocationDialog()
+                                }
+                            ) {
+                                Icon(
+                                    Icons.Outlined.BugReport,
+                                    stringResource(R.string.action_add_debug_location)
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+                        }
                         if (validLocationListState.value.firstOrNull { it.isCurrentPosition } == null) {
                             FloatingActionButton(
                                 onClick = {
@@ -353,6 +372,26 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                 textAlign = TextAlign.Center
                             )
                         }
+                        if (BreezyWeather.instance.debugMode) {
+                            OutlinedButton(
+                                onClick = {
+                                    viewModel.openChooseDebugLocationDialog()
+                                }
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Outlined.BugReport,
+                                    contentDescription = stringResource(R.string.settings_debug),
+                                    modifier = Modifier.size(ButtonDefaults.IconSize)
+                                )
+                                Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+                                Text(
+                                    text = stringResource(R.string.action_add_debug_location),
+                                    color = MaterialTheme.colorScheme.primary,
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                        }
                     }
                 }
             }
@@ -384,6 +423,23 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                         }
                     } else {
                         viewModel.addLocation(newLocation, null)
+                        SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
+                    }
+                }
+            }
+        }
+
+        if (BreezyWeather.instance.debugMode && dialogChooseDebugLocationOpenState.value) {
+            DebugLocationScreen(
+                (requireActivity() as MainActivity).sourceManager
+            ) { addedLocation: Location? ->
+                viewModel.closeChooseDebugLocationDialog()
+
+                if (addedLocation != null) {
+                    if (viewModel.locationExists(addedLocation)) {
+                        SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
+                    } else {
+                        viewModel.addLocation(addedLocation, null)
                         SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
                     }
                 }

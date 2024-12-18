@@ -227,6 +227,8 @@ class NamemService @Inject constructor(
         }
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val NAMEM_BASE_URL = "https://weather.gov.mn/"
     }

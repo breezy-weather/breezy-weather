@@ -91,4 +91,6 @@ class AtmoSudService @Inject constructor(
                 "84" // Vaucluse
             )
     }
+
+    override val testingLocations: List<Location> = emptyList()
 }

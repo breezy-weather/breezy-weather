@@ -342,6 +342,8 @@ class JmaService @Inject constructor(
         }
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val JMA_BASE_URL = "https://www.jma.go.jp/"
     }

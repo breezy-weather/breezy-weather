@@ -315,6 +315,8 @@ class AemetService @Inject constructor(
         )
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val AEMET_BASE_URL = "https://opendata.aemet.es/opendata/"
     }

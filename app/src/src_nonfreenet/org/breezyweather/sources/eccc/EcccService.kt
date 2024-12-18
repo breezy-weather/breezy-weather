@@ -151,6 +151,8 @@ class EcccService @Inject constructor(
         }
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val ECCC_BASE_URL = "https://app.weather.gc.ca/"
     }

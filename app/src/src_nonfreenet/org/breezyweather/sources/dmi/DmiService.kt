@@ -172,6 +172,8 @@ class DmiService @Inject constructor(
         }
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val DMI_BASE_URL = "https://www.dmi.dk/"
         private const val DMI_WEATHER_CMD = "llj"

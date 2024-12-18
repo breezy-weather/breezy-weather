@@ -18,6 +18,7 @@ package org.breezyweather.sources.climweb
 
 import android.content.Context
 import android.graphics.Color
+import breezyweather.domain.location.model.Location
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.R
 import org.breezyweather.common.extensions.code
@@ -52,4 +53,6 @@ class AnametService @Inject constructor(
     override val normalsAttribution = weatherAttribution
 
     override val cityClimatePageId = null
+
+    override val testingLocations: List<Location> = emptyList()
 }

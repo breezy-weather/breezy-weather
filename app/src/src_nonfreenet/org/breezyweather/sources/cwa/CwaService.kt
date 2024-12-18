@@ -509,6 +509,8 @@ class CwaService @Inject constructor(
         )
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val CWA_BASE_URL = "https://opendata.cwa.gov.tw/"
         private const val SUN_ENDPOINT = "A-B0062-001"

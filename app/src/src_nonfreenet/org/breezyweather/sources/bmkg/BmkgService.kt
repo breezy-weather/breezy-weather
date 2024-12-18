@@ -258,6 +258,8 @@ class BmkgService @Inject constructor(
         )
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val BMKG_BASE_URL = "https://cuaca.bmkg.go.id/"
         private const val BMKG_APP_BASE_URL = "https://api-apps.bmkg.go.id/"

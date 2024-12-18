@@ -169,6 +169,8 @@ class IpmaService @Inject constructor(
         }
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val IPMA_BASE_URL = "https://api.ipma.pt/"
     }

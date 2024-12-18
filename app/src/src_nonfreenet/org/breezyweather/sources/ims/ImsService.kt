@@ -249,6 +249,8 @@ class ImsService @Inject constructor(
             }
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val IMS_BASE_URL = "https://ims.gov.il/"
         private const val MINIMUM_DISTANCE_WITH_STATION = 50000 // 50 km is more than enough

@@ -138,6 +138,8 @@ class MetOfficeService @Inject constructor(
         )
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val MET_OFFICE_BASE_URL =
             "https://data.hub.api.metoffice.gov.uk/sitespecific/v0/"

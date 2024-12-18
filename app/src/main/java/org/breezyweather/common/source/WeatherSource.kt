@@ -43,6 +43,34 @@ interface WeatherSource : Source {
     val supportedFeatures: Map<SourceFeature, String>
 
     /**
+     * One or a few locations that represents use cases you want to test for this source
+     * They will be available to add in the debug version
+     *
+     * Usually, you will need: name, longitude, latitude, timezone, countryCode, xxxxSource
+     * Don't bother adding things not useful for the tests such as administration levels
+     * To find coordinates and timezone, go to https://open-meteo.com/en/docs/geocoding-api
+     *
+     * Example:
+     * Location(
+     *     city = "State College",
+     *     latitude = 40.79339,
+     *     longitude = -77.86,
+     *     timeZone = "America/New_York",
+     *     countryCode = "US",
+     *     forecastSource = id,
+     *     currentSource = id,
+     *     airQualitySource = id,
+     *     pollenSource = id,
+     *     minutelySource = id,
+     *     alertSource = id,
+     *     normalsSource = id
+     * )
+     *
+     * Can be an emptyList(), although we recommend adding at least one
+     */
+    val testingLocations: List<Location>
+
+    /**
      * May be used when you don't have reverse geocoding implemented and you want to filter
      * location results from default location search source to only include some countries
      * for example

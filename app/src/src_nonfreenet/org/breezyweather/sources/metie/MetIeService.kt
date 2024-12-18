@@ -182,6 +182,8 @@ class MetIeService @Inject constructor(
         }
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val MET_IE_BASE_URL = "https://prodapi.metweb.ie/"
 

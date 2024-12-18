@@ -486,6 +486,8 @@ class MfService @Inject constructor(
         )
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val MF_BASE_URL = "https://webservice.meteofrance.com/"
         private const val USER_AGENT = "okhttp/4.9.2"

@@ -74,4 +74,6 @@ class AtmoHdfService @Inject constructor(
                 "80" // Somme
             )
     }
+
+    override val testingLocations: List<Location> = emptyList()
 }

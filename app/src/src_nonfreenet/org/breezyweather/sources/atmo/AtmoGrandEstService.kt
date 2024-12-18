@@ -84,4 +84,6 @@ class AtmoGrandEstService @Inject constructor(
                 "88" // Vosges
             )
     }
+
+    override val testingLocations: List<Location> = emptyList()
 }

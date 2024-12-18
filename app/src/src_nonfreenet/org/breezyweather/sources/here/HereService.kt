@@ -234,6 +234,8 @@ class HereService @Inject constructor(
         )
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         // private const val HERE_GEOCODING_BASE_URL = "https://geocode.search.hereapi.com/"
         private const val HERE_WEATHER_BASE_URL = "https://weather.cc.api.here.com/"

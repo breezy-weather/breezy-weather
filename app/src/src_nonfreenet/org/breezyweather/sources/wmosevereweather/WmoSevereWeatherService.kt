@@ -256,6 +256,12 @@ class WmoSevereWeatherService @Inject constructor(
         } ?: originalAlert
     }
 
+    /**
+     * TODO: Probably needs a minimum of one location per country
+     * Needs a way to mark tested countries as working as of <date of test>
+     */
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val WMO_ALERTS_BASE_URL = "https://severeweather.wmo.int/"
     }

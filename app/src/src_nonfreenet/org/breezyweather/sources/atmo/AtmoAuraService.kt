@@ -94,4 +94,6 @@ class AtmoAuraService @Inject constructor(
                 "74" // Haute-Savoie
             )
     }
+
+    override val testingLocations: List<Location> = emptyList()
 }

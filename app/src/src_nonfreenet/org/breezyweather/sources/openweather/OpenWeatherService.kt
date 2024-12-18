@@ -184,6 +184,8 @@ class OpenWeatherService @Inject constructor(
         )
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val OPEN_WEATHER_BASE_URL = "https://api.openweathermap.org/"
     }

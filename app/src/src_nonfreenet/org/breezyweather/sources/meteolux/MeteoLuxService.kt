@@ -139,6 +139,8 @@ class MeteoLuxService @Inject constructor(
         }
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val METEOLUX_BASE_URL = "https://metapi.ana.lu/"
     }

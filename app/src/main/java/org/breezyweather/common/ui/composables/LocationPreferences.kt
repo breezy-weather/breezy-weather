@@ -18,11 +18,17 @@ package org.breezyweather.common.ui.composables
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialogDefaults
+import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemColors
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
@@ -32,9 +38,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -47,6 +56,7 @@ import org.breezyweather.common.source.getName
 import org.breezyweather.common.ui.widgets.Material3CardListItem
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
+import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.source.resourceName
 import org.breezyweather.main.MainActivity
 import org.breezyweather.settings.SettingsManager
@@ -57,6 +67,7 @@ import org.breezyweather.settings.preference.composables.SectionFooter
 import org.breezyweather.settings.preference.composables.SectionHeader
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.DayNightTheme
+import org.breezyweather.theme.compose.themeRipple
 import java.text.Collator
 
 @Composable
@@ -907,4 +918,73 @@ fun SourceViewWithContinents(
             linkToOpen = "https://github.com/breezy-weather/breezy-weather/blob/main/docs/SOURCES.md"
         )
     }
+}
+
+@Composable
+fun DebugLocationScreen(
+    sourceManager: SourceManager,
+    onClose: ((location: Location?) -> Unit),
+) {
+    val context = LocalContext.current
+
+    AlertDialogNoPadding(
+        onDismissRequest = {
+            onClose(null)
+        },
+        title = {
+            Text(
+                text = stringResource(R.string.action_add_debug_location),
+                color = MaterialTheme.colorScheme.onSurface,
+                style = MaterialTheme.typography.headlineSmall
+            )
+        },
+        text = {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                items(sourceManager.getWeatherSources().filter { it.testingLocations.isNotEmpty() }) {
+                    ListItem(
+                        modifier = Modifier
+                            .clickable(
+                                interactionSource = remember { MutableInteractionSource() },
+                                indication = themeRipple(),
+                                onClick = {
+                                    onClose(it.testingLocations[0])
+                                }
+                            ),
+                        colors = ListItemDefaults.colors(
+                            containerColor = Color.Transparent
+                        ),
+                        headlineContent = {
+                            Text(
+                                it.getName(context),
+                                fontWeight = FontWeight.Bold,
+                                color = DayNightTheme.colors.titleColor
+                            )
+                        },
+                        supportingContent = {
+                            Text(
+                                it.testingLocations[0].getPlace(context),
+                                color = DayNightTheme.colors.bodyColor
+                            )
+                        }
+                    )
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    onClose(null)
+                }
+            ) {
+                Text(
+                    text = stringResource(R.string.action_close),
+                    color = MaterialTheme.colorScheme.primary,
+                    style = MaterialTheme.typography.labelLarge
+                )
+            }
+        }
+    )
 }

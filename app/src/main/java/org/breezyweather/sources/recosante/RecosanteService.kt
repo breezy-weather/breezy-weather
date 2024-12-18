@@ -185,6 +185,17 @@ class RecosanteService @Inject constructor(
     override val pollenLabels = R.array.pollen_recosante_levels
     override val pollenColors = R.array.pollen_recosante_level_colors
 
+    override val testingLocations = listOf(
+        Location(
+            city = "Marseille",
+            latitude = 43.29695,
+            longitude = 5.38107,
+            timeZone = "Europe/Paris",
+            countryCode = "FR",
+            pollenSource = id
+        )
+    )
+
     companion object {
         private const val GEO_BASE_URL = "https://geo.api.gouv.fr/"
         private const val RECOSANTE_BASE_URL = "https://api.recosante.beta.gouv.fr/"

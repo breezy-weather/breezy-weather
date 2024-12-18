@@ -152,6 +152,8 @@ class ImdService @Inject constructor(
         }
     }
 
+    override val testingLocations: List<Location> = emptyList()
+
     companion object {
         private const val IMD_BASE_URL = "https://mausamgram.imd.gov.in/"
         private val IMD_TIMEFRAMES = arrayOf("1hr", "3hr", "6hr")

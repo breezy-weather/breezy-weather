@@ -543,6 +543,23 @@ class AccuService @Inject constructor(
         }
     }
 
+    override val testingLocations = listOf(
+        Location(
+            city = "State College",
+            latitude = 40.79339,
+            longitude = -77.86,
+            timeZone = "America/New_York",
+            countryCode = "US",
+            forecastSource = id,
+            currentSource = id,
+            airQualitySource = id,
+            pollenSource = id,
+            minutelySource = id,
+            alertSource = id,
+            normalsSource = id
+        )
+    )
+
     companion object {
         private const val ACCU_DEVELOPER_BASE_URL = "https://dataservice.accuweather.com/"
         private const val ACCU_ENTERPRISE_BASE_URL = "https://api.accuweather.com/"
