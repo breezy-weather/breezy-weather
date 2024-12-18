@@ -5,6 +5,7 @@
 - When adding current location, you will no longer be able to select a source only compatible with some parts of the world. You will need to have your position found with a worldwide source at least once first.
 - App will now report more strictly errors if you are using a non-compatible source (please report any false positive)
 - It's now possible to always being able to select “None” as an option for air quality, pollen, nowcasting, alerts, normals sources.
+- Fix normals not working in some cases
 
 **Weather sources**
 - [AccuWeather] When alerts by coordinates is unavailable, it will now fallback to alerts for your city instead of failing completely

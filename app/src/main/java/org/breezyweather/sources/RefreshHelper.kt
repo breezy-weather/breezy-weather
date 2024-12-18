@@ -1070,7 +1070,7 @@ class RefreshHelper @Inject constructor(
                 )
             }
             SourceFeature.NORMALS -> {
-                if (location.weather!!.base.normalsUpdateTime == null) return true
+                if (location.weather!!.base.normalsUpdateTime == null) return false
 
                 if (location.isCurrentPosition) {
                     return isUpdateStillValid(
