@@ -78,6 +78,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.plus
+import org.breezyweather.common.source.LocationPreset
 import org.breezyweather.common.ui.composables.NotificationCard
 import org.breezyweather.common.ui.composables.SecondarySourcesPreference
 import org.breezyweather.common.ui.decorations.Material3ListItemDecoration
@@ -360,7 +361,8 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         if (dialogChooseWeatherSourcesOpenState.value) {
             SecondarySourcesPreference(
                 (requireActivity() as MainActivity).sourceManager,
-                selectedLocationState.value ?: Location(isCurrentPosition = true)
+                selectedLocationState.value
+                    ?: LocationPreset.getLocationWithPresetApplied(Location(isCurrentPosition = true))
             ) { newLocation: Location? ->
                 viewModel.closeChooseWeatherSourcesDialog()
 
