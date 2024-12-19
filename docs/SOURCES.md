@@ -6,6 +6,9 @@ By default, when you add a location manually, Breezy Weather will auto-suggest y
 
 Below, you can find details about the support and implementation status for features on each weather source. Note that no forecast above 7 days is reliable, so you should not decide based on the highest number of days available.
 
+> Note: The following features and sources are only available starting from (unreleased) v5.4.0:
+> - Sources: ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, EPD
+
 ## Summary
 | Country/Territory                  | Source                                             | Supported features                                                                   |
 |------------------------------------|----------------------------------------------------|--------------------------------------------------------------------------------------|
@@ -47,6 +50,7 @@ Below, you can find details about the support and implementation status for feat
 | 🇬🇬 Guernsey                      | [Met Office](#met-office) 🔐                       | Forecast, Reverse                                                                    |
 | 🇬🇼 Guinea-Bissau                 | [ClimWeb](#climweb)                                | Alerts                                                                               |
 | 🇭🇰 Hong Kong                     | [HKO](#hong-kong-observatory)                      | Forecast, Current, Alerts, Normals, Reverse                                          |
+| 🇭🇰 Hong Kong                     | [EPD](#environmental-protection-department)        | Air quality                                                                          |
 | 🇮🇳 India                         | [IMD](#india-meteorological-department)            | Forecast                                                                             |
 | 🇮🇩 Indonesia                     | [BMKG](#bmkg)                                      | Forecast, Current, Air quality, Alerts, Reverse                                      |
 | 🇮🇪 Ireland                       | [MET Éireann](#met-éireann)                        | Forecast, Alerts, Reverse                                                            |
@@ -1137,7 +1141,6 @@ ATMO sources can be added as a secondary **Air Quality** source for some regions
 - **[Atmo Hauts-de-France](https://www.atmo-hdf.fr/)** (starting from v5.4.0) provides air quality information for the French region of Hauts-de-France.
 - **[AtmoSud](https://www.atmosud.org/)** (starting from v5.4.0) provides air quality information for the French region of Provence-Alpes-Côte d’Azur.
 
-
 ### ClimWeb
 **[ClimWeb](https://github.com/wmo-raf/climweb)** is an open source content management system developed by WMO Africa for 17 of its member states:
 
@@ -1162,6 +1165,11 @@ ATMO sources can be added as a secondary **Air Quality** source for some regions
 | 🇿🇼 Zimbabwe                     | [MSD](https://www.weatherzw.org.zw/)       |
 
 These sources can be added as a secondary **Alert** and **Temperature normals** source for their respective countries.
+
+### Environmental Protection Department
+> Coming soon: will be available starting from v5.4.0
+
+**[Environmental Protection Department](https://www.aqhi.gov.hk/)** can be added as a secondary **Air quality** source for Hong Kong.
 
 ### GeoNames
 > 🔐 **This source requires an API key.** [Register here](https://www.geonames.org/login)
