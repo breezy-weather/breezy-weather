@@ -279,7 +279,7 @@ enum class LocationPreset(
     HONG_KONG(
         forecast = "hko",
         current = "hko",
-        airQuality = "openmeteo",
+        airQuality = "epdhk",
         pollen = null,
         minutely = "openmeteo",
         alert = "hko",
