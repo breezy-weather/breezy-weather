@@ -65,6 +65,7 @@ import org.breezyweather.sources.climweb.SsmsService
 import org.breezyweather.sources.cwa.CwaService
 import org.breezyweather.sources.dmi.DmiService
 import org.breezyweather.sources.eccc.EcccService
+import org.breezyweather.sources.epdhk.EpdHkService
 import org.breezyweather.sources.gadgetbridge.GadgetbridgeService
 import org.breezyweather.sources.geonames.GeoNamesService
 import org.breezyweather.sources.geosphereat.GeoSphereAtService
@@ -120,6 +121,7 @@ class SourceManager @Inject constructor(
     dmiService: DmiService,
     dwrGmService: DwrGmService,
     ecccService: EcccService,
+    epdHkService: EpdHkService,
     ethioMetService: EthioMetService,
     gadgetbridgeService: GadgetbridgeService,
     geoNamesService: GeoNamesService,
@@ -213,6 +215,7 @@ class SourceManager @Inject constructor(
         dmnNeService,
         dwrGmService,
         ecccService,
+        epdHkService,
         ethioMetService,
         geoSphereAtService,
         gMetService,
