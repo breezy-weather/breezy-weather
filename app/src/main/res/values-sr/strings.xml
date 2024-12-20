@@ -467,7 +467,7 @@
     <string name="widget_custom_subtitle_keyword_ct_description">Тренутна температура (°C/°F)</string>
     <string name="settings_background_updates_refresh_1h">1 сат</string>
     <string name="settings_background_updates_refresh_6h">6 сати</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Игнорисати, када је батерија празна</string>
+    <string name="settings_background_updates_refresh_ignore_when_battery_low">Занемарити, када је батерија празна</string>
     <string name="about_dependencies">Зависности</string>
     <string name="air_quality_index">Индекс квалитета ваздуха</string>
     <string name="air_quality_level_3_description">Ваздух је достигао висок ниво загађења и нездрав је за осетљиве групе особа. Смањите време проведено на отвореном простору, ако осећате симптоме као што су отежано дисање или иритација грла.</string>
