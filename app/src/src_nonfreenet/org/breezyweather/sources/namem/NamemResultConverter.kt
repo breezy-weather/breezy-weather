@@ -33,7 +33,6 @@ import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.domain.weather.index.PollutantIndex
-import org.breezyweather.sources.getNearestLocation
 import org.breezyweather.sources.namem.json.NamemAirQualityResult
 import org.breezyweather.sources.namem.json.NamemCurrentResult
 import org.breezyweather.sources.namem.json.NamemDailyResult
@@ -54,7 +53,9 @@ internal fun convert(
     }?.associate {
         it.sid.toString() to LatLng(it.lat!!, it.lon!!)
     }
-    val station = stations?.firstOrNull { it.sid.toString() == getNearestLocation(location, stationMap, 200000.0) }
+    val station = stations?.firstOrNull {
+        it.sid.toString() == LatLng(location.latitude, location.longitude).getNearestLocation(stationMap, 200000.0)
+    }
 
     if (station?.lat == null || station.lon == null) {
         throw InvalidLocationException()
@@ -97,7 +98,7 @@ internal fun getLocationParameters(
     }?.associate {
         it.sid.toString() to LatLng(it.lat!!, it.lon!!)
     }
-    val nearestStation = getNearestLocation(location, stationMap, 200000.0)
+    val nearestStation = LatLng(location.latitude, location.longitude).getNearestLocation(stationMap, 200000.0)
     if (nearestStation == null) {
         throw InvalidLocationException()
     }
@@ -137,8 +138,7 @@ internal fun getAirQuality(
         it.sid.toString() to LatLng(it.lat!!, it.lon!!)
     }
     val station = airQualityResult.data?.firstOrNull {
-        it.sid.toString() ==
-            getNearestLocation(location, stationMap, 50000.0)
+        it.sid.toString() == LatLng(location.latitude, location.longitude).getNearestLocation(stationMap, 50000.0)
     }
     var pM25: Double? = null
     var pM10: Double? = null

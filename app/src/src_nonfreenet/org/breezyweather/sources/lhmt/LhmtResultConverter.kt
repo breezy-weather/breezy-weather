@@ -32,7 +32,6 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.sources.getNearestLocation
 import org.breezyweather.sources.lhmt.json.LhmtAlertText
 import org.breezyweather.sources.lhmt.json.LhmtAlertsResult
 import org.breezyweather.sources.lhmt.json.LhmtLocationsResult
@@ -50,7 +49,8 @@ internal fun convert(
     val forecastLocationMap = forecastLocations.filter { it.countryCode == null || it.countryCode == "LT" }.associate {
         it.code to LatLng(it.coordinates.latitude, it.coordinates.longitude)
     }
-    val forecastLocation = getNearestLocation(location, forecastLocationMap, 50000.0)
+    val forecastLocation = LatLng(location.latitude, location.longitude)
+        .getNearestLocation(forecastLocationMap, 50000.0)
     forecastLocations.firstOrNull { it.code == forecastLocation }?.let {
         val municipalityName = it.administrativeDivision
         val municipalityCode = MUNICIPALITIES.firstOrNull { pair ->
@@ -89,12 +89,13 @@ internal fun convert(
     val forecastLocationMap = forecastLocations.filter { it.countryCode == null || it.countryCode == "LT" }.associate {
         it.code to LatLng(it.coordinates.latitude, it.coordinates.longitude)
     }
-    val forecastLocation = getNearestLocation(location, forecastLocationMap, 50000.0)
+    val forecastLocation = LatLng(location.latitude, location.longitude)
+        .getNearestLocation(forecastLocationMap, 50000.0)
 
     val currentLocationMap = currentLocations.filter { it.countryCode == null || it.countryCode == "LT" }.associate {
         it.code to LatLng(it.coordinates.latitude, it.coordinates.longitude)
     }
-    val currentLocation = getNearestLocation(location, currentLocationMap, 50000.0)
+    val currentLocation = LatLng(location.latitude, location.longitude).getNearestLocation(currentLocationMap, 50000.0)
 
     val municipalityName = forecastLocations.firstOrNull { it.code == forecastLocation }?.administrativeDivision
     val municipalityCode = MUNICIPALITIES.firstOrNull { pair ->

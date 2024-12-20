@@ -31,7 +31,6 @@ import breezyweather.domain.weather.wrappers.HourlyWrapper
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.sources.getNearestLocation
 import org.breezyweather.sources.lvgmc.json.LvgmcAirQualityLocationResult
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentLocation
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentResult
@@ -53,7 +52,7 @@ internal fun convert(
     }.associate {
         it.point!! to LatLng(it.latitude!!.toDouble(), it.longitude!!.toDouble())
     }
-    val forecastLocation = getNearestLocation(location, forecastLocations)
+    val forecastLocation = LatLng(location.latitude, location.longitude).getNearestLocation(forecastLocations)
 
     forecastLocationsResult.firstOrNull { it.point == forecastLocation }?.let {
         locationList.add(
@@ -100,9 +99,9 @@ internal fun convert(
         it.id.toString() to LatLng(it.latitude!!, it.longitude!!)
     }
 
-    val forecastLocation = getNearestLocation(location, forecastLocations)
-    val currentLocation = getNearestLocation(location, currentLocations)
-    val airQualityLocation = getNearestLocation(location, airQualityLocations)
+    val forecastLocation = LatLng(location.latitude, location.longitude).getNearestLocation(forecastLocations)
+    val currentLocation = LatLng(location.latitude, location.longitude).getNearestLocation(currentLocations)
+    val airQualityLocation = LatLng(location.latitude, location.longitude).getNearestLocation(airQualityLocations)
 
     if (forecastLocation.isNullOrEmpty() || currentLocation.isNullOrEmpty() || airQualityLocation.isNullOrEmpty()) {
         throw InvalidLocationException()

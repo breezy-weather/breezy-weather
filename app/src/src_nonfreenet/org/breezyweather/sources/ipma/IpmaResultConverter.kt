@@ -15,7 +15,6 @@ import breezyweather.domain.weather.wrappers.HourlyWrapper
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.sources.getNearestLocation
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.ipma.json.IpmaAlertResult
 import org.breezyweather.sources.ipma.json.IpmaDistrictResult
@@ -35,7 +34,7 @@ internal fun convert(
     locations.mapIndexed { i, loc ->
         i.toString() to LatLng(loc.latitude.toDouble(), loc.longitude.toDouble())
     }
-    getNearestLocation(location, locationMap, 50000.0)?.let {
+    LatLng(location.latitude, location.longitude).getNearestLocation(locationMap, 50000.0)?.let {
         val nearestLocation = locations[it.toInt()]
         var districtName: String? = null
         districts.forEach { d ->
@@ -78,7 +77,7 @@ internal fun convert(
     locations.forEachIndexed { i, loc ->
         locationMap[i.toString()] = LatLng(loc.latitude.toDouble(), loc.longitude.toDouble())
     }
-    getNearestLocation(location, locationMap, 50000.0)?.let {
+    LatLng(location.latitude, location.longitude).getNearestLocation(locationMap, 50000.0)?.let {
         val nearestLocation = locations[it.toInt()]
         return mapOf(
             "globalIdLocal" to nearestLocation.globalIdLocal.toString(),

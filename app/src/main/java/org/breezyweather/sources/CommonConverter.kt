@@ -37,8 +37,6 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
-import com.google.maps.android.SphericalUtil
-import com.google.maps.android.model.LatLng
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.median
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
@@ -1522,41 +1520,4 @@ fun completeNormalsFromDaily(
         daytimeTemperature = dailyForecast.mapNotNull { it.day?.temperature?.temperature }.toTypedArray().median,
         nighttimeTemperature = dailyForecast.mapNotNull { it.night?.temperature?.temperature }.toTypedArray().median
     )
-}
-
-/**
- * GEOLOCATION FUNCTIONS
- */
-
-/**
- * Returns the key of the nearest location from a predefined map of locations
- * to a specific location
- *
- * @param location specific location
- * @param locationMap map of locations
- * @param limit furthest allowed match in meters, null if no limit
- */
-fun getNearestLocation(
-    location: Location,
-    locationMap: Map<String, LatLng>?,
-    limit: Double? = null,
-): String? {
-    var distance: Double
-    var nearestDistance = Double.POSITIVE_INFINITY
-    var nearestLocation: String? = null
-    locationMap?.keys?.forEach { key ->
-        if (locationMap[key] != null) {
-            distance = SphericalUtil.computeDistanceBetween(
-                LatLng(location.latitude, location.longitude),
-                locationMap[key]!!
-            )
-            if (distance < nearestDistance) {
-                if (limit == null || distance <= limit) {
-                    nearestDistance = distance
-                    nearestLocation = key
-                }
-            }
-        }
-    }
-    return nearestLocation
 }
