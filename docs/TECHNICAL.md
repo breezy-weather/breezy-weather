@@ -41,6 +41,15 @@ You can omit any of the following properties to let the user configure their own
 11) Update GitHub templates in `.github/` to show the new latest version.
 
 
+# Adding a new source
+
+After merging a new source, the following things need to be done:
+1) Update `CHANGELOG.md`
+2) Update `docs/SOURCES.md`
+3) Update `docs/COVERAGE.md`
+4) Update `fastlane/metadata/android/{en-US,fr,it}/full_description.txt`
+
+
 # Decode crash logs from users
 
 1) Save crash log in a text file `stacktrace.txt` and remove things like `2023-08-14 21:28:58.229 12804-12804 View org.breezyweather.debug` if they are present.
