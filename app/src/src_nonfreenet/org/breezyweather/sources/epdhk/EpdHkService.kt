@@ -56,11 +56,8 @@ class EpdHkService @Inject constructor(
     override val privacyPolicyUrl by lazy {
         with(context.currentLocale.code) {
             when {
-                equals(
-                    "zh-tw"
-                ) ||
-                    equals("zh-hk") ||
-                    equals("zh-mo") -> "https://www.aqhi.gov.hk/tc/privacy-policy.html"
+                equals("zh-tw") || equals("zh-hk") || equals("zh-mo")
+                -> "https://www.aqhi.gov.hk/tc/privacy-policy.html"
                 startsWith("zh") -> "https://www.aqhi.gov.hk/sc/privacy-policy.html"
                 else -> "https://www.aqhi.gov.hk/en/privacy-policy.html"
             }
