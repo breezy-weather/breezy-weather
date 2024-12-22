@@ -15,6 +15,7 @@
 - [EPD] Added as a new source for air quality in Hong Kong (@chunshek)
 - [Météo-France] Add support for alerts in oversea territories
 - [Météo-France] Fix alert error when refreshing at midnight
+- [Météo-France] Deduplicated bulletin when the bulletin is the same for today and tomorrow
 - [Météo-France] Add back support for normals in France, Monaco and Andorra
 
 **Improvements and fixes**

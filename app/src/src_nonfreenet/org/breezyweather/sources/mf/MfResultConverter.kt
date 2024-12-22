@@ -401,21 +401,40 @@ internal fun getOverseasWarningsList(
     return alertList
 }
 
-internal fun getWarningsList(warningsJ0Result: MfWarningsResult?, warningsJ1Result: MfWarningsResult?): List<Alert>? {
-    return if (warningsJ0Result != null && warningsJ1Result != null) {
-        getWarningsList(warningsJ0Result) + getWarningsList(warningsJ1Result)
-    } else if (warningsJ0Result != null) {
-        getWarningsList(warningsJ0Result)
-    } else if (warningsJ1Result != null) {
+internal fun getWarningsList(warningsJ0Result: MfWarningsResult, warningsJ1Result: MfWarningsResult): List<Alert> {
+    return getMergedBulletinWarning(warningsJ0Result, warningsJ1Result) +
+        getWarningsList(warningsJ0Result) +
         getWarningsList(warningsJ1Result)
+}
+
+internal fun getMergedBulletinWarning(warningsJ0Result: MfWarningsResult, warningsJ1Result: MfWarningsResult): List<Alert> {
+    if (warningsJ0Result.text == null && warningsJ1Result.text == null) return emptyList()
+
+    val warningBulletinJ0 = getBulletinWarning(warningsJ0Result)
+    val warningBulletinJ1 = getBulletinWarning(warningsJ1Result)
+
+    return if (warningBulletinJ0 != null && warningBulletinJ1 != null) {
+        if (warningBulletinJ0.headline == warningBulletinJ1.headline &&
+            warningBulletinJ0.startDate == warningBulletinJ1.startDate &&
+            warningBulletinJ0.color == warningBulletinJ1.color &&
+            warningBulletinJ0.description == warningBulletinJ1.description
+        ) {
+            // In case bulletins are identical, let's show the one from J1 which has a later validity end date
+            listOf(warningBulletinJ1)
+        } else {
+            listOf(warningBulletinJ0, warningBulletinJ1)
+        }
+    } else if (warningBulletinJ0 != null) {
+        listOf(warningBulletinJ0)
+    } else if (warningBulletinJ1 != null) {
+        listOf(warningBulletinJ1)
     } else {
-        null
+        emptyList()
     }
 }
 
-private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
-    val alertList: MutableList<Alert> = arrayListOf()
-    warningsResult.text?.let {
+fun getBulletinWarning(warningsResult: MfWarningsResult): Alert? {
+    return warningsResult.text?.let {
         if (warningsResult.updateTime != null) {
             val textBlocs = it.textBlocItems?.filter { textBlocItem ->
                 textBlocItem.textItems?.any { textItem -> textItem.hazardCode == null } == true
@@ -435,22 +454,28 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
                 }
                 val color = getWarningColor(colors)
                 val title = it.blocTitle ?: "Bulletin de Vigilance météo"
-                alertList.add(
-                    Alert(
-                        // Create unique ID from: alert type ID, alert level, start time
-                        alertId = Objects.hash(title, color, warningsResult.updateTime).toString(),
-                        startDate = warningsResult.updateTime,
-                        endDate = warningsResult.endValidityTime,
-                        headline = title,
-                        description = getWarningContent(null, warningsResult),
-                        source = "Météo-France",
-                        severity = AlertSeverity.EXTREME, // Let’s put it on top
-                        color = color
-                    )
+                Alert(
+                    // Create unique ID from: alert type ID, alert level, start time
+                    alertId = Objects.hash(title, color, warningsResult.updateTime).toString(),
+                    startDate = warningsResult.updateTime,
+                    endDate = warningsResult.endValidityTime,
+                    headline = title,
+                    description = getWarningContent(null, warningsResult),
+                    source = "Météo-France",
+                    severity = AlertSeverity.EXTREME, // Let’s put it on top
+                    color = color
                 )
+            } else {
+                null
             }
+        } else {
+            null
         }
     }
+}
+
+private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
+    val alertList: MutableList<Alert> = arrayListOf()
     warningsResult.timelaps?.forEach { timelaps ->
         timelaps.timelapsItems
             ?.filter { it.colorId > 1 }
