@@ -407,7 +407,10 @@ internal fun getWarningsList(warningsJ0Result: MfWarningsResult, warningsJ1Resul
         getWarningsList(warningsJ1Result)
 }
 
-internal fun getMergedBulletinWarning(warningsJ0Result: MfWarningsResult, warningsJ1Result: MfWarningsResult): List<Alert> {
+internal fun getMergedBulletinWarning(
+    warningsJ0Result: MfWarningsResult,
+    warningsJ1Result: MfWarningsResult,
+): List<Alert> {
     if (warningsJ0Result.text == null && warningsJ1Result.text == null) return emptyList()
 
     val warningBulletinJ0 = getBulletinWarning(warningsJ0Result)

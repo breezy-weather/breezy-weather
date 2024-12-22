@@ -31,6 +31,7 @@ spotless {
             "src/main/java/org/breezyweather/remoteviews/config/AbstractWidgetConfigActivity.kt",
             "src/main/java/org/breezyweather/remoteviews/presenters/AbstractRemoteViewsPresenter.kt",
             "src/main/java/org/breezyweather/search/SearchActivityRepository.kt",
+            "src/main/java/org/breezyweather/sources/openmeteo/json/OpenMeteoWeatherHourly.kt",
             "src/src_nonfreenet/org/breezyweather/sources/geosphereat/json/GeoSphereAtTimeseriesResult.kt",
             "src/src_nonfreenet/org/breezyweather/sources/imd/json/ImdWeatherResult.kt",
             "src/src_nonfreenet/org/breezyweather/sources/jma/json/JmaDailyTimeSeries.kt",
