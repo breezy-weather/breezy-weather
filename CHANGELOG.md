@@ -14,6 +14,7 @@
 - [AtmoSud] Added as a new source for air quality in Provence-Alpes-Côte d’Azur (France)
 - [EPD] Added as a new source for air quality in Hong Kong (@chunshek)
 - [Météo-France] Add support for alerts in oversea territories
+- [Météo-France] Fix alert error when refreshing at midnight
 - [Météo-France] Add back support for normals in France, Monaco and Andorra
 
 **Improvements and fixes**

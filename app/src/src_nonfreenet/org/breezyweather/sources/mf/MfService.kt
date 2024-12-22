@@ -214,7 +214,7 @@ class MfService @Inject constructor(
                     "iso",
                     token
                 ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.ALERT)
+                    // Don't fail on tomorrow. At 00:00, J1 alerts are not yet generated and fails
                     Observable.just(MfWarningsResult())
                 }
             } else {
