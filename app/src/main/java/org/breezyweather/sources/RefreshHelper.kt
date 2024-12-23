@@ -368,6 +368,17 @@ class RefreshHelper @Inject constructor(
             var alertsUpdateTime = base.alertsUpdateTime
             var normalsUpdateTime = base.normalsUpdateTime
 
+            // TODO: Debug source is not online, don't use this check in that case
+            // Can't return from inside `async`
+            if (!context.isOnline()) {
+                return WeatherResult(
+                    location.weather,
+                    listOf(
+                        RefreshError(RefreshErrorType.NETWORK_UNAVAILABLE)
+                    )
+                )
+            }
+
             val errors = CopyOnWriteArrayList<RefreshError>()
             val weatherWrapper = if (featuresBySources.isNotEmpty()) {
                 val semaphore = Semaphore(5)
@@ -381,16 +392,6 @@ class RefreshHelper @Inject constructor(
                                     if (service == null) {
                                         errors.add(RefreshError(RefreshErrorType.SOURCE_NOT_INSTALLED, entry.key))
                                     } else {
-                                        // Debug source is not online
-                                        if (service is HttpSource && !context.isOnline()) {
-                                            return@async WeatherResult(
-                                                location.weather,
-                                                listOf(
-                                                    RefreshError(RefreshErrorType.NETWORK_UNAVAILABLE)
-                                                )
-                                            )
-                                        }
-
                                         val featuresToUpdate = entry.value
                                             .filter {
                                                 // Remove sources that are not configured
