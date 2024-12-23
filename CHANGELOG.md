@@ -1,6 +1,7 @@
 # Version 5.4.0 (not yet released)
 
 **Improvements and fixes**
+- Greatly improve weather update time, especially when using different sources on a single location (see technical section for details)
 - Sources not configured will now be shown as disabled in the source list so that you know they exist
 - When adding current location, you will no longer be able to select a source only compatible with some parts of the world. You will need to have your position found with a worldwide source at least once first.
 - App will now report more strictly errors if you are using a non-compatible source (please report any false positive)
@@ -18,15 +19,15 @@
 - [Météo-France] Deduplicated bulletin when the bulletin is the same for today and tomorrow
 - [Météo-France] Add back support for normals in France, Monaco and Andorra
 
-**Improvements and fixes**
-- Fixed duplicate Indonesian and Hebrew languages in the standard flavor
-
 **Translations**
 - Translations updated
+- Fixed duplicate Indonesian and Hebrew languages in the standard flavor
 
 **Technical**
 - Major refactoring of sources to merge main and secondary sources logic
 - Improved weather update process time by optimizing date parsing functions
+- Improved weather update process time by running all sources of the location in parallel
+- Remove refreshing locations in parallel in background in favor of previous point
 - Optimized filesize of the Natural Earth offline geocoding
 
 

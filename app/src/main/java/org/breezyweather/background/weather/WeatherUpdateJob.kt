@@ -209,106 +209,93 @@ class WeatherUpdateJob @AssistedInject constructor(
      * @return an observable delivering the progress of each update.
      */
     private suspend fun updateWeatherData() {
-        val semaphore = Semaphore(5)
         val progressCount = AtomicInteger(0)
         val currentlyUpdatingLocation = CopyOnWriteArrayList<Location>()
         val newUpdates = CopyOnWriteArrayList<Pair<Location, Location>>()
         val skippedUpdates = CopyOnWriteArrayList<Pair<Location, String?>>()
         val failedUpdates = CopyOnWriteArrayList<Pair<Location, String?>>()
 
-        coroutineScope {
-            locationsToUpdate.groupBy { it.forecastSource }.values
-                .map { locationInSource ->
-                    async {
-                        semaphore.withPermit {
-                            locationInSource.forEach { location ->
-                                ensureActive()
+        locationsToUpdate.forEach { location ->
+            withUpdateNotification(
+                currentlyUpdatingLocation,
+                progressCount,
+                location
+            ) {
+                // TODO: Implement this, it’s a good idea
+                /*if (location.updateStrategy != UpdateStrategy.ALWAYS_UPDATE) {
+                    skippedUpdates.add(location to context.getString(R.string.skipped_reason_not_always_update))
+                } else {*/
+                try {
+                    val locationResult = updateLocation(location)
 
-                                withUpdateNotification(
-                                    currentlyUpdatingLocation,
-                                    progressCount,
-                                    location
-                                ) {
-                                    // TODO: Implement this, it’s a good idea
-                                    /*if (location.updateStrategy != UpdateStrategy.ALWAYS_UPDATE) {
-                                        skippedUpdates.add(location to context.getString(R.string.skipped_reason_not_always_update))
-                                    } else {*/
-                                    try {
-                                        val locationResult = updateLocation(location)
-
-                                        locationResult.errors.forEach {
-                                            val shortMessage = if (!it.source.isNullOrEmpty()) {
-                                                "${it.source}${context.getString(
-                                                    R.string.colon_separator
-                                                )}${context.getString(it.error.shortMessage)}"
-                                            } else {
-                                                context.getString(it.error.shortMessage)
-                                            }
-                                            if (it.error != RefreshErrorType.NETWORK_UNAVAILABLE &&
-                                                it.error != RefreshErrorType.SERVER_TIMEOUT &&
-                                                it.error != RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING
-                                            ) {
-                                                failedUpdates.add(locationResult.location to shortMessage)
-                                            } else {
-                                                // Report this error only if we can’t refresh weather data
-                                                if (it.error == RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING &&
-                                                    !locationResult.location.isUsable
-                                                ) {
-                                                    failedUpdates.add(locationResult.location to shortMessage)
-                                                } else {
-                                                    skippedUpdates.add(locationResult.location to shortMessage)
-                                                }
-                                            }
-                                        }
-                                        if (locationResult.location.isUsable &&
-                                            !locationResult.location.needsGeocodeRefresh
-                                        ) {
-                                            val weatherResult = updateWeather(
-                                                locationResult.location,
-                                                location.longitude != locationResult.location.longitude ||
-                                                    location.latitude != locationResult.location.latitude
-                                            )
-                                            newUpdates.add(
-                                                location to
-                                                    locationResult.location.copy(weather = weatherResult.weather)
-                                            )
-                                            weatherResult.errors.forEach {
-                                                val shortMessage = if (it.error == RefreshErrorType.FAILED_FEATURE) {
-                                                    context.getString(
-                                                        it.error.shortMessage,
-                                                        context.getString(it.feature!!.resourceName!!)
-                                                    )
-                                                } else {
-                                                    context.getString(it.error.shortMessage)
-                                                }
-                                                val shortMessageWithSource = if (!it.source.isNullOrEmpty()) {
-                                                    val sourceName = sourceManager.getSource(it.source)?.name
-                                                        ?: it.source
-                                                    "$sourceName${context.getString(
-                                                        R.string.colon_separator
-                                                    )}$shortMessage"
-                                                } else {
-                                                    shortMessage
-                                                }
-                                                failedUpdates.add(location to shortMessageWithSource)
-                                            }
-                                        }
-                                    } catch (e: Throwable) {
-                                        e.printStackTrace()
-                                        val errorMessage = if (e.message.isNullOrEmpty()) {
-                                            context.getString(RefreshErrorType.WEATHER_REQ_FAILED.shortMessage)
-                                        } else {
-                                            e.message
-                                        }
-                                        failedUpdates.add(location to errorMessage)
-                                    }
-                                    // }
-                                }
+                    locationResult.errors.forEach {
+                        val shortMessage = if (!it.source.isNullOrEmpty()) {
+                            "${it.source}${context.getString(
+                                R.string.colon_separator
+                            )}${context.getString(it.error.shortMessage)}"
+                        } else {
+                            context.getString(it.error.shortMessage)
+                        }
+                        if (it.error != RefreshErrorType.NETWORK_UNAVAILABLE &&
+                            it.error != RefreshErrorType.SERVER_TIMEOUT &&
+                            it.error != RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING
+                        ) {
+                            failedUpdates.add(locationResult.location to shortMessage)
+                        } else {
+                            // Report this error only if we can’t refresh weather data
+                            if (it.error == RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING &&
+                                !locationResult.location.isUsable
+                            ) {
+                                failedUpdates.add(locationResult.location to shortMessage)
+                            } else {
+                                skippedUpdates.add(locationResult.location to shortMessage)
                             }
                         }
                     }
+                    if (locationResult.location.isUsable &&
+                        !locationResult.location.needsGeocodeRefresh
+                    ) {
+                        val weatherResult = updateWeather(
+                            locationResult.location,
+                            location.longitude != locationResult.location.longitude ||
+                                location.latitude != locationResult.location.latitude
+                        )
+                        newUpdates.add(
+                            location to
+                                locationResult.location.copy(weather = weatherResult.weather)
+                        )
+                        weatherResult.errors.forEach {
+                            val shortMessage = if (it.error == RefreshErrorType.FAILED_FEATURE) {
+                                context.getString(
+                                    it.error.shortMessage,
+                                    context.getString(it.feature!!.resourceName!!)
+                                )
+                            } else {
+                                context.getString(it.error.shortMessage)
+                            }
+                            val shortMessageWithSource = if (!it.source.isNullOrEmpty()) {
+                                val sourceName = sourceManager.getSource(it.source)?.name
+                                    ?: it.source
+                                "$sourceName${context.getString(
+                                    R.string.colon_separator
+                                )}$shortMessage"
+                            } else {
+                                shortMessage
+                            }
+                            failedUpdates.add(location to shortMessageWithSource)
+                        }
+                    }
+                } catch (e: Throwable) {
+                    e.printStackTrace()
+                    val errorMessage = if (e.message.isNullOrEmpty()) {
+                        context.getString(RefreshErrorType.WEATHER_REQ_FAILED.shortMessage)
+                    } else {
+                        e.message
+                    }
+                    failedUpdates.add(location to errorMessage)
                 }
-                .awaitAll()
+                // }
+            }
         }
 
         notifier.cancelProgressNotification()
