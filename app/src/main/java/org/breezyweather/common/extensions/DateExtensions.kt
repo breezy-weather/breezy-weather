@@ -218,12 +218,14 @@ fun Date.toCalendar(location: Location): Calendar {
  * Takes 0 ms on my device compared to 2-3 ms for getFormattedDate() (which uses SimpleDateFormat)
  * Saves about 1 second when looping through 24 hourly over a 16 day period
  */
+fun Calendar.getIsoFormattedDate(): String {
+    return "${this[Calendar.YEAR]}-${(this[Calendar.MONTH] + 1).let { month ->
+        if (month.toString().length < 2) "0$month" else month
+    }}-${this[Calendar.DAY_OF_MONTH].let { day ->
+        if (day.toString().length < 2) "0$day" else day
+    }}"
+}
+
 fun Date.getIsoFormattedDate(location: Location): String {
-    return this.toCalendar(location).let {
-        "${it[Calendar.YEAR]}-${(it[Calendar.MONTH] + 1).let { month ->
-            if (month.toString().length < 2) "0$month" else month
-        }}-${it[Calendar.DAY_OF_MONTH].let { day ->
-            if (day.toString().length < 2) "0$day" else day
-        }}"
-    }
+    return this.toCalendar(location).getIsoFormattedDate()
 }

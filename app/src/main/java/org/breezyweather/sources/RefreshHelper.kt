@@ -339,6 +339,8 @@ class RefreshHelper @Inject constructor(
                 }
             }
 
+            val sourceCalls = mutableMapOf<String, WeatherWrapper?>()
+
             // Always update refresh time displayed to the user, even if just re-using cached data
             val base = location.weather?.base?.copy(
                 refreshTime = Date()
