@@ -52,7 +52,7 @@ import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.exceptions.SourceNotInstalledException
 import org.breezyweather.common.exceptions.WeatherException
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.getStringByLocale
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isOnline
@@ -353,7 +353,7 @@ class RefreshHelper @Inject constructor(
             // COMPLETE BACK TO YESTERDAY 00:00 MAX
             // TODO: Use Calendar to handle DST
             val yesterdayMidnight = Date(Date().time - 1.days.inWholeMilliseconds)
-                .getFormattedDate("yyyy-MM-dd", location)
+                .getIsoFormattedDate(location)
                 .toDateNoHour(location.javaTimeZone)!!
             var forecastUpdateTime = base.forecastUpdateTime
             var currentUpdateTime = base.currentUpdateTime

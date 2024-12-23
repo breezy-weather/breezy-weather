@@ -28,7 +28,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.brightsky.json.BrightSkyAlert
 import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeather
@@ -68,7 +68,7 @@ internal fun getDailyForecast(
 
     val dailyList = mutableListOf<DailyWrapper>()
     val hourlyListByDay = weatherResult.groupBy {
-        it.timestamp.getFormattedDate("yyyy-MM-dd", location)
+        it.timestamp.getIsoFormattedDate(location)
     }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
         val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)

@@ -27,7 +27,7 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.minus
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toDateNoHour
@@ -48,7 +48,7 @@ internal fun getDailyForecast(
 ): List<DailyWrapper> {
     if (hourlyResult.timestamps.isNullOrEmpty()) return emptyList()
     val dayList = hourlyResult.timestamps.map {
-        it.getFormattedDate("yyyy-MM-dd", location)
+        it.getIsoFormattedDate(location)
     }.distinct()
 
     val dailyList = mutableListOf<DailyWrapper>()

@@ -37,7 +37,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.median
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
@@ -536,9 +536,9 @@ fun completeDailyListFromHourlyList(
     if (dailyList.isEmpty() || hourlyList.isEmpty()) return dailyList
 
     val hourlyListByHalfDay = getHourlyListByHalfDay(hourlyList, location)
-    val hourlyListByDay = hourlyList.groupBy { it.date.getFormattedDate("yyyy-MM-dd", location) }
+    val hourlyListByDay = hourlyList.groupBy { it.date.getIsoFormattedDate(location) }
     return dailyList.map { daily ->
-        val theDayFormatted = daily.date.getFormattedDate("yyyy-MM-dd", location)
+        val theDayFormatted = daily.date.getIsoFormattedDate(location)
         val newDay = completeHalfDayFromHourlyList(
             initialHalfDay = daily.day,
             halfDayHourlyList = hourlyListByHalfDay.getOrElse(theDayFormatted) { null }?.get("day"),
@@ -594,10 +594,10 @@ fun completeDailyListFromHourlyList(
             },
             moonPhase = if (daily.moonPhase?.angle != null) daily.moonPhase else getCalculatedMoonPhase(daily.date),
             airQuality = daily.airQuality ?: getDailyAirQualityFromHourlyList(
-                hourlyAirQuality.filter { it.key.getFormattedDate("yyyy-MM-dd", location) == theDayFormatted }.values
+                hourlyAirQuality.filter { it.key.getIsoFormattedDate(location) == theDayFormatted }.values
             ),
             pollen = daily.pollen ?: getDailyPollenFromHourlyList(
-                hourlyPollen.filter { it.key.getFormattedDate("yyyy-MM-dd", location) == theDayFormatted }.values
+                hourlyPollen.filter { it.key.getIsoFormattedDate(location) == theDayFormatted }.values
             ),
             uV = if (daily.uV?.index != null) {
                 daily.uV
@@ -777,7 +777,7 @@ private fun getHourlyListByHalfDay(
     hourlyList.forEach { hourly ->
         // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
         val theDayShifted = Date(hourly.date.time - 6.hours.inWholeMilliseconds)
-        val theDayFormatted = theDayShifted.getFormattedDate("yyyy-MM-dd", location)
+        val theDayFormatted = theDayShifted.getIsoFormattedDate(location)
 
         if (!hourlyByHalfDay.containsKey(theDayFormatted)) {
             hourlyByHalfDay[theDayFormatted] = hashMapOf(
@@ -1285,42 +1285,32 @@ fun completeHourlyListFromDailyList(
     hourlyAirQuality: Map<Date, AirQuality>,
     location: Location,
 ): List<Hourly> {
-    val dailyListByDate = dailyList.groupBy {
-        it.date.getFormattedDate("yyyyMMdd", location)
-    }
-    val newHourlyList: MutableList<Hourly> = ArrayList(hourlyList.size)
-    hourlyList.forEach { hourly ->
-        val dateForHourFormatted = hourly.date.getFormattedDate("yyyyMMdd", location)
-        dailyListByDate.getOrElse(dateForHourFormatted) { null }
-            ?.first()?.let { daily ->
-                val isDaylight = hourly.isDaylight ?: isDaylight(
-                    daily.sun?.riseDate,
-                    daily.sun?.setDate,
+    val dailyListByDate = dailyList.groupBy { it.date.getIsoFormattedDate(location) }
+        .mapValues { it.value.first().let { day -> Pair(day.uV, day.sun) } }
+    return hourlyList.map { hourly ->
+        val dateForHourFormatted = hourly.date.getIsoFormattedDate(location)
+        dailyListByDate.getOrElse(dateForHourFormatted) { null }?.let { daily ->
+            hourly.toHourly(
+                airQuality = hourlyAirQuality.getOrElse(hourly.date) { null },
+                isDaylight = hourly.isDaylight ?: isDaylight(
+                    daily.second?.riseDate,
+                    daily.second?.setDate,
                     hourly.date
-                )
-                newHourlyList.add(
-                    hourly.toHourly(
-                        airQuality = hourlyAirQuality.getOrElse(hourly.date) { null },
-                        isDaylight = isDaylight,
-                        uV = if (hourly.uV?.index != null) {
-                            hourly.uV
-                        } else {
-                            getCurrentUVFromDayMax(
-                                daily.uV?.index,
-                                hourly.date,
-                                daily.sun?.riseDate,
-                                daily.sun?.setDate,
-                                location.javaTimeZone
-                            )
-                        }
+                ),
+                uV = if (hourly.uV?.index != null) {
+                    hourly.uV
+                } else {
+                    getCurrentUVFromDayMax(
+                        daily.first?.index,
+                        hourly.date,
+                        daily.second?.riseDate,
+                        daily.second?.setDate,
+                        location.javaTimeZone
                     )
-                )
-                return@forEach // continue to next item
-            }
-        newHourlyList.add(hourly.toHourly())
+                }
+            )
+        } ?: hourly.toHourly()
     }
-
-    return newHourlyList
 }
 
 /**

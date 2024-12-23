@@ -29,7 +29,7 @@ import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.pagasa.json.PagasaCurrentResult
 import org.breezyweather.sources.pagasa.json.PagasaHourlyResult
@@ -119,7 +119,7 @@ internal fun getDailyForecast(
 ): List<DailyWrapper> {
     // Need to provide an empty daily list so that
     // CommonConverter.kt will compute the daily forecast items.
-    val dates = hourlyForecast.groupBy { it.date.getFormattedDate("yyyy-MM-dd", location) }.keys
+    val dates = hourlyForecast.groupBy { it.date.getIsoFormattedDate(location) }.keys
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
     val dailyList = mutableListOf<DailyWrapper>()

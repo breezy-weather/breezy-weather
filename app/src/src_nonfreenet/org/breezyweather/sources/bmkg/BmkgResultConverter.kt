@@ -34,7 +34,7 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.sources.bmkg.json.BmkgCurrentResult
 import org.breezyweather.sources.bmkg.json.BmkgForecastResult
 import org.breezyweather.sources.bmkg.json.BmkgIbfMessage
@@ -101,7 +101,7 @@ internal fun getDailyForecast(
     // CommonConverter.kt does not compute daily for this source
     // without providing at least a empty list filled with dates.
     val hourlyList = getHourlyForecast(context, forecastResult)
-    val hourlyListDates = hourlyList.groupBy { it.date.getFormattedDate("yyyy-MM-dd", location) }.keys
+    val hourlyListDates = hourlyList.groupBy { it.date.getIsoFormattedDate(location) }.keys
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
     val dailyList = mutableListOf<DailyWrapper>()

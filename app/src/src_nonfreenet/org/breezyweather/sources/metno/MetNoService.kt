@@ -29,7 +29,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.metno.json.MetNoAirQualityResult
@@ -132,7 +132,7 @@ class MetNoService @Inject constructor(
             Observable.just(MetNoForecastResult())
         }
 
-        val formattedDate = Date().getFormattedDate("yyyy-MM-dd", location)
+        val formattedDate = Date().getIsoFormattedDate(location)
         val sun = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getSun(
                 USER_AGENT,

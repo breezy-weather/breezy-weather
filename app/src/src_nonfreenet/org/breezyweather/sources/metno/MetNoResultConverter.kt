@@ -33,7 +33,7 @@ import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import org.breezyweather.R
-import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.metno.json.MetNoAlertResult
 import org.breezyweather.sources.metno.json.MetNoForecastTimeseries
@@ -122,7 +122,7 @@ internal fun getDailyList(
     if (forecastTimeseries.isNullOrEmpty()) return emptyList()
     val dailyList = mutableListOf<DailyWrapper>()
     val hourlyListByDay = forecastTimeseries.groupBy {
-        it.time.getFormattedDate("yyyy-MM-dd", location)
+        it.time.getIsoFormattedDate(location)
     }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
         val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)

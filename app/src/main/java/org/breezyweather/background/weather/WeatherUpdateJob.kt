@@ -52,6 +52,7 @@ import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.createFileInCacheDir
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.getUriCompat
 import org.breezyweather.common.extensions.isOnline
 import org.breezyweather.common.extensions.isRunning
@@ -192,7 +193,7 @@ class WeatherUpdateJob @AssistedInject constructor(
                     // Only refresh secondary locations once a day as we only need daily info
                     i == 0 ||
                         location.weather?.base?.refreshTime == null ||
-                        location.weather!!.base.refreshTime!!.getFormattedDate("yyyy-MM-dd", location) <
+                        location.weather!!.base.refreshTime!!.getIsoFormattedDate(location) <
                         Date().getFormattedDate("yyyy-MM-dd")
                 }
                 .toMutableList()

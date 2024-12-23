@@ -30,6 +30,7 @@ import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.chickenhook.restrictionbypass.RestrictionBypass
 import java.lang.reflect.Method
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -202,5 +203,27 @@ fun Date.getFormattedMediumDayAndMonthInAdditionalCalendar(
         }
     } else {
         null
+    }
+}
+
+fun Date.toCalendar(location: Location): Calendar {
+    return Calendar.getInstance().also {
+        it.time = this
+        it.timeZone = location.javaTimeZone
+    }
+}
+
+/**
+ * Optimized function to get yyyy-MM-dd formatted date
+ * Takes 0 ms on my device compared to 2-3 ms for getFormattedDate() (which uses SimpleDateFormat)
+ * Saves about 1 second when looping through 24 hourly over a 16 day period
+ */
+fun Date.getIsoFormattedDate(location: Location): String {
+    return this.toCalendar(location).let {
+        "${it[Calendar.YEAR]}-${(it[Calendar.MONTH] + 1).let { month ->
+            if (month.toString().length < 2) "0$month" else month
+        }}-${it[Calendar.DAY_OF_MONTH].let { day ->
+            if (day.toString().length < 2) "0$day" else day
+        }}"
     }
 }

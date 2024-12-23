@@ -26,6 +26,7 @@
 
 **Technical**
 - Major refactoring of sources to merge main and secondary sources logic
+- Improved weather update process time by optimizing date parsing functions
 - Optimized filesize of the Natural Earth offline geocoding
 
 
