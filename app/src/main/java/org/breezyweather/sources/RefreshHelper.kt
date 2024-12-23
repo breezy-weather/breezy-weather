@@ -310,6 +310,7 @@ class RefreshHelper @Inject constructor(
         coordinatesChanged: Boolean,
     ): WeatherResult {
         try {
+            val t0 = System.currentTimeMillis()
             if (!location.isUsable || location.needsGeocodeRefresh) {
                 return WeatherResult(
                     location.weather,
@@ -338,6 +339,7 @@ class RefreshHelper @Inject constructor(
                     }
                 }
             }
+            LogHelper.log(msg = "Features grouped by sources: ${System.currentTimeMillis() - t0} ms")
 
             // Always update refresh time displayed to the user, even if just re-using cached data
             val base = location.weather?.base?.copy(
@@ -362,10 +364,12 @@ class RefreshHelper @Inject constructor(
             var minutelyUpdateTime = base.minutelyUpdateTime
             var alertsUpdateTime = base.alertsUpdateTime
             var normalsUpdateTime = base.normalsUpdateTime
+            LogHelper.log(msg = "Starting fetching wrapper: ${System.currentTimeMillis() - t0} ms")
             val weatherWrapper = if (featuresBySources.isNotEmpty()) {
                 val sourceCalls = mutableMapOf<String, WeatherWrapper?>()
                 featuresBySources
                     .forEach { entry ->
+                        LogHelper.log(msg = "[${entry.key}] Begin: ${System.currentTimeMillis() - t0} ms")
                         val service = sourceManager.getWeatherSource(entry.key)
                         if (service == null) {
                             errors.add(RefreshError(RefreshErrorType.SOURCE_NOT_INSTALLED, entry.key))
@@ -418,6 +422,9 @@ class RefreshHelper @Inject constructor(
                                         minimumTime = languageUpdateTime
                                     )
                                 }
+                            LogHelper.log(
+                                msg = "[${entry.key}] Filtered features 2 update: ${System.currentTimeMillis() - t0} ms"
+                            )
                             if (featuresToUpdate.isEmpty()) {
                                 // Setting to null will make it use previous data
                                 sourceCalls[entry.key] = null
@@ -488,6 +495,8 @@ class RefreshHelper @Inject constructor(
                         )
                     }
                 }
+
+                LogHelper.log(msg = "Done fetching wrapper: ${System.currentTimeMillis() - t0} ms")
 
                 /**
                  * Make sure we return data from the correct source
@@ -636,6 +645,7 @@ class RefreshHelper @Inject constructor(
                     listOf(RefreshError(RefreshErrorType.INVALID_LOCATION))
                 )
             }
+            LogHelper.log(msg = "Wrapper reconstructed: ${System.currentTimeMillis() - t0} ms")
 
             // COMPLETING DATA
 
@@ -647,20 +657,25 @@ class RefreshHelper @Inject constructor(
                 location.airQualitySource,
                 location.pollenSource
             )
+            LogHelper.log(msg = "Wrapper completed with previous data: ${System.currentTimeMillis() - t0} ms")
 
             // 2) Computes as many data as possible (weather code, weather text, dew point, feels like temp., etc)
             val hourlyComputedMissingData = computeMissingHourlyData(
                 weatherWrapperCompleted.hourlyForecast
             ) ?: emptyList()
+            LogHelper.log(msg = "Wrapper completed with missing hourly: ${System.currentTimeMillis() - t0} ms")
 
             // 3) Create the daily object with air quality/pollen data + computes missing data
+            val dailyList = convertDailyWrapperToDailyList(weatherWrapperCompleted)
+            LogHelper.log(msg = "Daily list prepared: ${System.currentTimeMillis() - t0} ms")
             val dailyForecast = completeDailyListFromHourlyList(
-                convertDailyWrapperToDailyList(weatherWrapperCompleted),
+                dailyList,
                 hourlyComputedMissingData,
                 weatherWrapperCompleted.airQuality?.hourlyForecast ?: emptyMap(),
                 weatherWrapperCompleted.pollen?.hourlyForecast ?: emptyMap(),
                 location
             )
+            LogHelper.log(msg = "Wrapper completed with missing daily: ${System.currentTimeMillis() - t0} ms")
 
             // 4) Complete UV and isDaylight + air quality in hourly
             val hourlyForecast = completeHourlyListFromDailyList(
@@ -669,6 +684,7 @@ class RefreshHelper @Inject constructor(
                 weatherWrapperCompleted.airQuality?.hourlyForecast ?: emptyMap(),
                 location
             )
+            LogHelper.log(msg = "Wrapper completed with missing hourly 2: ${System.currentTimeMillis() - t0} ms")
 
             // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00
             val currentHour = hourlyForecast.firstOrNull {
@@ -702,8 +718,10 @@ class RefreshHelper @Inject constructor(
                 minutelyForecast = weatherWrapperCompleted.minutelyForecast ?: emptyList(),
                 alertList = weatherWrapperCompleted.alertList ?: emptyList()
             )
+            LogHelper.log(msg = "Wrapper is complete: ${System.currentTimeMillis() - t0} ms")
             locationRepository.insertParameters(location.formattedId, locationParameters)
             weatherRepository.insert(location, weather)
+            LogHelper.log(msg = "Data inserted in database: ${System.currentTimeMillis() - t0} ms")
             return WeatherResult(weather, errors)
         } catch (e: Throwable) {
             e.printStackTrace()
