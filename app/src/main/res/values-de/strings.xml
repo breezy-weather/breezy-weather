@@ -732,4 +732,5 @@
     <string name="settings_weather_source_not_configured">%s (nicht konfiguriert)</string>
     <string name="forecast">Vorhersage</string>
     <string name="weather_forecast_data_by">Vorhersagedaten von %s</string>
+    <string name="settings_weather_source_current_position_disclaimer">Weitere Wetterquellen für Ihren Ort können nach der ersten Aktualisierung verfügbar werden.</string>
 </resources>
