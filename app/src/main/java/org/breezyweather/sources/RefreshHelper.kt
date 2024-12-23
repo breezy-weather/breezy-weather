@@ -33,7 +33,12 @@ import breezyweather.domain.weather.model.Weather
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.rx3.awaitFirstOrElse
+import kotlinx.coroutines.sync.Semaphore
+import kotlinx.coroutines.sync.withPermit
 import kotlinx.serialization.MissingFieldException
 import kotlinx.serialization.SerializationException
 import org.breezyweather.BreezyWeather
@@ -95,6 +100,7 @@ import java.net.UnknownHostException
 import java.text.ParseException
 import java.util.Calendar
 import java.util.Date
+import java.util.concurrent.CopyOnWriteArrayList
 import javax.inject.Inject
 import kotlin.math.min
 import kotlin.time.Duration.Companion.days
@@ -348,7 +354,6 @@ class RefreshHelper @Inject constructor(
 
             val languageUpdateTime = SettingsManager.getInstance(context).languageUpdateLastTimestamp
             val locationParameters = location.parameters.toMutableMap()
-            val errors = mutableListOf<RefreshError>()
 
             // COMPLETE BACK TO YESTERDAY 00:00 MAX
             // TODO: Use Calendar to handle DST
@@ -362,120 +367,144 @@ class RefreshHelper @Inject constructor(
             var minutelyUpdateTime = base.minutelyUpdateTime
             var alertsUpdateTime = base.alertsUpdateTime
             var normalsUpdateTime = base.normalsUpdateTime
-            val weatherWrapper = if (featuresBySources.isNotEmpty()) {
-                val sourceCalls = mutableMapOf<String, WeatherWrapper?>()
-                featuresBySources
-                    .forEach { entry ->
-                        val service = sourceManager.getWeatherSource(entry.key)
-                        if (service == null) {
-                            errors.add(RefreshError(RefreshErrorType.SOURCE_NOT_INSTALLED, entry.key))
-                        } else {
-                            // Debug source is not online
-                            if (service is HttpSource && !context.isOnline()) {
-                                return WeatherResult(
-                                    location.weather,
-                                    listOf(
-                                        RefreshError(RefreshErrorType.NETWORK_UNAVAILABLE)
-                                    )
-                                )
-                            }
 
-                            val featuresToUpdate = entry.value
-                                .filter {
-                                    // Remove sources that are not configured
-                                    if (service is ConfigurableSource && !service.isConfigured) {
-                                        errors.add(RefreshError(RefreshErrorType.API_KEY_REQUIRED_MISSING, entry.key))
-                                        false
+            val errors = CopyOnWriteArrayList<RefreshError>()
+            val weatherWrapper = if (featuresBySources.isNotEmpty()) {
+                val semaphore = Semaphore(5)
+                val sourceCalls = mutableMapOf<String, WeatherWrapper?>()
+                coroutineScope {
+                    featuresBySources
+                        .map { entry ->
+                            async {
+                                semaphore.withPermit {
+                                    val service = sourceManager.getWeatherSource(entry.key)
+                                    if (service == null) {
+                                        errors.add(RefreshError(RefreshErrorType.SOURCE_NOT_INSTALLED, entry.key))
                                     } else {
-                                        true
-                                    }
-                                }
-                                .filter {
-                                    // Remove sources that no longer supports the feature
-                                    if (!service.supportedFeatures.containsKey(it)) {
-                                        errors.add(RefreshError(RefreshErrorType.UNSUPPORTED_FEATURE, entry.key))
-                                        false
-                                    } else {
-                                        true
-                                    }
-                                }
-                                .filter {
-                                    // Remove sources that no longer supports the feature for that location
-                                    if (!service.isFeatureSupportedForLocation(location, it)) {
-                                        errors.add(RefreshError(RefreshErrorType.UNSUPPORTED_FEATURE, entry.key))
-                                        false
-                                    } else {
-                                        true
-                                    }
-                                }
-                                .filter {
-                                    !isWeatherDataStillValid(
-                                        location,
-                                        it,
-                                        isRestricted = !BreezyWeather.instance.debugMode &&
-                                            service is ConfigurableSource &&
-                                            service.isRestricted,
-                                        minimumTime = languageUpdateTime
-                                    )
-                                }
-                            if (featuresToUpdate.isEmpty()) {
-                                // Setting to null will make it use previous data
-                                sourceCalls[entry.key] = null
-                            } else {
-                                sourceCalls[entry.key] = try {
-                                    if (service is LocationParametersSource &&
-                                        service.needsLocationParametersRefresh(
-                                            location,
-                                            coordinatesChanged,
-                                            featuresToUpdate
-                                        )
-                                    ) {
-                                        locationParameters[service.id] = buildMap {
-                                            if (locationParameters.getOrElse(service.id) { null } != null) {
-                                                putAll(locationParameters[service.id]!!)
-                                            }
-                                            putAll(
-                                                service
-                                                    .requestLocationParameters(context, location.copy())
-                                                    .awaitFirstOrElse {
-                                                        throw WeatherException()
-                                                    }
+                                        // Debug source is not online
+                                        if (service is HttpSource && !context.isOnline()) {
+                                            return@async WeatherResult(
+                                                location.weather,
+                                                listOf(
+                                                    RefreshError(RefreshErrorType.NETWORK_UNAVAILABLE)
+                                                )
                                             )
                                         }
-                                    }
-                                    service
-                                        .requestWeather(
-                                            context,
-                                            location.copy(parameters = locationParameters),
-                                            featuresToUpdate
-                                        ).awaitFirstOrElse {
-                                            featuresToUpdate.forEach {
-                                                errors.add(
-                                                    RefreshError(
-                                                        RefreshErrorType.FAILED_FEATURE,
-                                                        entry.key,
-                                                        it
+
+                                        val featuresToUpdate = entry.value
+                                            .filter {
+                                                // Remove sources that are not configured
+                                                if (service is ConfigurableSource && !service.isConfigured) {
+                                                    errors.add(
+                                                        RefreshError(
+                                                            RefreshErrorType.API_KEY_REQUIRED_MISSING,
+                                                            entry.key
+                                                        )
                                                     )
+                                                    false
+                                                } else {
+                                                    true
+                                                }
+                                            }
+                                            .filter {
+                                                // Remove sources that no longer supports the feature
+                                                if (!service.supportedFeatures.containsKey(it)) {
+                                                    errors.add(
+                                                        RefreshError(
+                                                            RefreshErrorType.UNSUPPORTED_FEATURE,
+                                                            entry.key
+                                                        )
+                                                    )
+                                                    false
+                                                } else {
+                                                    true
+                                                }
+                                            }
+                                            .filter {
+                                                // Remove sources that no longer supports the feature for that location
+                                                if (!service.isFeatureSupportedForLocation(location, it)) {
+                                                    errors.add(
+                                                        RefreshError(
+                                                            RefreshErrorType.UNSUPPORTED_FEATURE,
+                                                            entry.key
+                                                        )
+                                                    )
+                                                    false
+                                                } else {
+                                                    true
+                                                }
+                                            }
+                                            .filter {
+                                                !isWeatherDataStillValid(
+                                                    location,
+                                                    it,
+                                                    isRestricted = !BreezyWeather.instance.debugMode &&
+                                                        service is ConfigurableSource &&
+                                                        service.isRestricted,
+                                                    minimumTime = languageUpdateTime
                                                 )
                                             }
-                                            null
+                                        if (featuresToUpdate.isEmpty()) {
+                                            // Setting to null will make it use previous data
+                                            sourceCalls[entry.key] = null
+                                        } else {
+                                            sourceCalls[entry.key] = try {
+                                                if (service is LocationParametersSource &&
+                                                    service.needsLocationParametersRefresh(
+                                                        location,
+                                                        coordinatesChanged,
+                                                        featuresToUpdate
+                                                    )
+                                                ) {
+                                                    locationParameters[service.id] = buildMap {
+                                                        if (locationParameters.getOrElse(service.id) { null } != null) {
+                                                            putAll(locationParameters[service.id]!!)
+                                                        }
+                                                        putAll(
+                                                            service
+                                                                .requestLocationParameters(context, location.copy())
+                                                                .awaitFirstOrElse {
+                                                                    throw WeatherException()
+                                                                }
+                                                        )
+                                                    }
+                                                }
+                                                service
+                                                    .requestWeather(
+                                                        context,
+                                                        location.copy(parameters = locationParameters),
+                                                        featuresToUpdate
+                                                    ).awaitFirstOrElse {
+                                                        featuresToUpdate.forEach {
+                                                            errors.add(
+                                                                RefreshError(
+                                                                    RefreshErrorType.FAILED_FEATURE,
+                                                                    entry.key,
+                                                                    it
+                                                                )
+                                                            )
+                                                        }
+                                                        null
+                                                    }
+                                            } catch (e: Throwable) {
+                                                e.printStackTrace()
+                                                featuresToUpdate.forEach {
+                                                    errors.add(
+                                                        RefreshError(
+                                                            RefreshErrorType.FAILED_FEATURE,
+                                                            entry.key,
+                                                            it
+                                                        )
+                                                    )
+                                                }
+                                                null
+                                            }
                                         }
-                                } catch (e: Throwable) {
-                                    e.printStackTrace()
-                                    featuresToUpdate.forEach {
-                                        errors.add(
-                                            RefreshError(
-                                                RefreshErrorType.FAILED_FEATURE,
-                                                entry.key,
-                                                it
-                                            )
-                                        )
                                     }
-                                    null
                                 }
                             }
-                        }
-                    }
+                        }.awaitAll()
+                }
 
                 for ((k, v) in sourceCalls) {
                     v?.failedFeatures?.forEach {
