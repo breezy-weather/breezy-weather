@@ -127,6 +127,15 @@ enum class LocationPreset(
         alert = "brightsky",
         normals = null
     ),
+    ESTONIA(
+        forecast = "ilmateenistus",
+        current = null,
+        airQuality = "ekuk",
+        pollen = "ekuk",
+        minutely = "openmeteo",
+        alert = "accu",
+        normals = "accu"
+    ),
     FINLAND(
         forecast = "metno",
         current = "metno",
@@ -528,6 +537,7 @@ enum class LocationPreset(
                     "AD" -> ANDORRA
                     "DE" -> GERMANY
                     "DK", "FO", "GL" -> DENMARK
+                    "EE" -> ESTONIA
                     "FI" -> FINLAND
                     "FR" -> FRANCE
                     "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT" -> FRANCE_OVERSEAS

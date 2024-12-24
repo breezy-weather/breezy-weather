@@ -65,12 +65,14 @@ import org.breezyweather.sources.climweb.SsmsService
 import org.breezyweather.sources.cwa.CwaService
 import org.breezyweather.sources.dmi.DmiService
 import org.breezyweather.sources.eccc.EcccService
+import org.breezyweather.sources.ekuk.EkukService
 import org.breezyweather.sources.epdhk.EpdHkService
 import org.breezyweather.sources.gadgetbridge.GadgetbridgeService
 import org.breezyweather.sources.geonames.GeoNamesService
 import org.breezyweather.sources.geosphereat.GeoSphereAtService
 import org.breezyweather.sources.here.HereService
 import org.breezyweather.sources.hko.HkoService
+import org.breezyweather.sources.ilmateenistus.IlmateenistusService
 import org.breezyweather.sources.imd.ImdService
 import org.breezyweather.sources.ims.ImsService
 import org.breezyweather.sources.ipma.IpmaService
@@ -121,6 +123,7 @@ class SourceManager @Inject constructor(
     dmiService: DmiService,
     dwrGmService: DwrGmService,
     ecccService: EcccService,
+    ekukService: EkukService,
     epdHkService: EpdHkService,
     ethioMetService: EthioMetService,
     gadgetbridgeService: GadgetbridgeService,
@@ -130,6 +133,7 @@ class SourceManager @Inject constructor(
     hereService: HereService,
     hkoService: HkoService,
     igebuService: IgebuService,
+    ilmateenistusService: IlmateenistusService,
     imdService: ImdService,
     imsService: ImsService,
     inmgbService: InmgbService,
@@ -215,12 +219,14 @@ class SourceManager @Inject constructor(
         dmnNeService,
         dwrGmService,
         ecccService,
+        ekukService,
         epdHkService,
         ethioMetService,
         geoSphereAtService,
         gMetService,
         hkoService,
         igebuService,
+        ilmateenistusService,
         imdService,
         imsService,
         inmgbService,

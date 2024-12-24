@@ -689,4 +689,14 @@
     <string name="common_weather_text_smoke">Suits</string>
     <string name="current_weather">Praegune ilm</string>
     <string name="weather_current_data_by">Praegune ilm andmete allikas: %s</string>
+    <string name="common_weather_text_blowing_snow">Üldtuisk</string>
+    <string name="common_weather_text_drifting_snow">Pinnatuisk</string>
+    <string name="common_weather_text_glaze">Jäide</string>
+    <string name="pollen_alternaria">Alternaria</string>
+    <string name="pollen_ulmus">Jalakas</string>
+    <string name="pollen_juniperus">Kadakas</string>
+    <string name="pollen_picea">Kuusk</string>
+    <string name="pollen_pinus">Mänd</string>
+    <string name="pollen_acer">Vaher</string>
+    <string name="pollen_atriplex">Malts</string>
 </resources>

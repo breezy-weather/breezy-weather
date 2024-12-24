@@ -2,12 +2,12 @@
 
 This page documents the coverage status of weather sources around the world in Breezy Weather. Before you submit a request for a new source, please check this document to see if it has been considered for coverage in the past.
 
-In general, a main weather source can be considered for inclusion in the official release of Breezy Weather if it meets the following requirements:
+In general, a weather source can be considered for inclusion in the official release of Breezy Weather if it meets the following requirements:
 
-- **Geolocation availability:** A source should be able to provide forecast directly from geographical coordinates (latitude and longitude) directly, or return forecast locations from given coordinates. Breezy Weather is a mobile app, and is primary used for querying weather forecasts on the go. It is not enough to for a source to provide forecast from location names alone.
+- **Geolocation availability:** A source should be able to provide data directly from geographical coordinates (latitude and longitude) directly, or return forecast locations from given coordinates. Breezy Weather is a mobile app, and is primary used for querying weather forecasts on the go. It is not enough to for a source to provide forecast from location names alone.
 - **Data format:** A source should provide its forecast data in JSON or XML format.
-- **Forecast availability:** _(for Main sources)_ A source should provide hourly forecast. The minimum frequency should be 6-hourly. Sources providing current observation, air pollution, pollen, alerts, or temperature normals WITHOUT hourly forecast can be implemented as a “Secondary Source.”
-- **Privacy requirement:** If an API key is needed to access the forecast data, it should not ask for personally identifiable information such as credit card or telephone number.
+- **Forecast availability:** _(for Forecast sources)_ A source should provide hourly forecast. The minimum frequency should be 6-hourly. Sources providing current observation, air pollution, pollen, alerts, or temperature normals WITHOUT hourly forecast can be implemented as a “Secondary Source.”
+- **Privacy requirement:** If an API key is needed to access the data, it should not ask for personally identifiable information such as credit card or telephone number.
 - **Concentration requirement:**  _(for Air Quality and Pollen sources)_ A source must provide air pollutant concentration data in µg/m³, mg/m³, ppb, or ppm. Pollen concentration must be in pollen count /m³. If the data source only provides a calculated index, it cannot be included in Breezy Weather, since every country has its own AQI standard which is often different from others.
 
 ## Summary
@@ -155,7 +155,7 @@ In general, a main weather source can be considered for inclusion in the officia
 | 🇨🇾 Cyprus                   | [Cyprus](https://www.moa.gov.cy/)                     |                                                                                       |              |
 | 🇨🇿 Czechia                  | [CHMI](https://www.chmi.cz/)                          |                                                                                       |              |
 | 🇩🇰 Denmark                  | [DMI](https://www.dmi.dk)                             | ✅ included from v5.0.0                                                                |              |
-| 🇪🇪 Estonia                  | [EEA](https://www.ilmateenistus.ee/)                  |                                                                                       |              |
+| 🇪🇪 Estonia                  | [Ilmateenistus](https://www.ilmateenistus.ee/)        | ✅ included from v5.4.0                                                                | 2024-12-24   |
 | 🇫🇴 Faroe Is.                | [DMI](https://www.dmi.dk)                             | ✅ included from v5.0.0                                                                |              |
 | 🇫🇮 Finland                  | [FMI](https://en.ilmatieteenlaitos.fi/)               | [data in XML](https://github.com/breezy-weather/breezy-weather/issues/1211)           | 2024-07-22   |
 | 🇫🇷 France                   | [Météo-France](https://meteofrance.com/)              | ✅ included                                                                            |              |
@@ -300,6 +300,8 @@ In general, a main weather source can be considered for inclusion in the officia
 ## Other sources
 | Source             | Status                                                                                     | Last Checked |
 |--------------------|--------------------------------------------------------------------------------------------|--------------|
+| EKUK               | ✅ included from v5.4.0                                                                     | 2024-12-24   |
+| EPD HK             | ✅ included from v5.4.0                                                                     | 2024-12-19   |
 | GeoNames           | ✅ included from v4.5.0                                                                     |              | 
 | HERE               | ✅ included from v4.5.0                                                                     |              |
 | Natural Earth      | ✅ included from v5.0.3                                                                     |              |
