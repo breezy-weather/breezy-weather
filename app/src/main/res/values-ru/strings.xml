@@ -725,4 +725,14 @@
     <string name="settings_weather_source_current_position_disclaimer">После первого обновления для вашего местоположения могут стать доступны дополнительные источники погоды.</string>
     <string name="weather_forecast_data_by">Прогноз предоставлен %s</string>
     <string name="settings_weather_source_not_configured">%s (не настроено)</string>
+    <string name="common_weather_text_blowing_snow">Общая метель</string>
+    <string name="common_weather_text_drifting_snow">Позёмка</string>
+    <string name="common_weather_text_glaze">Гололёд</string>
+    <string name="pollen_alternaria">Альтернариa</string>
+    <string name="pollen_ulmus">Вяз</string>
+    <string name="pollen_juniperus">Можжевельник</string>
+    <string name="pollen_picea">Ель</string>
+    <string name="pollen_pinus">Сосна</string>
+    <string name="pollen_acer">Клен</string>
+    <string name="pollen_atriplex">Лебеда</string>
 </resources>

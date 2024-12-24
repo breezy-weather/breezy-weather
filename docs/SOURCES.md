@@ -7,7 +7,7 @@ By default, when you add a location manually, Breezy Weather will auto-suggest y
 Below, you can find details about the support and implementation status for features on each weather source. Note that no forecast above 7 days is reliable, so you should not decide based on the highest number of days available.
 
 > Note: The following features and sources are only available starting from (unreleased) v5.4.0:
-> - Sources: ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, EPD
+> - Sources: ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, EKUK, EPD, Ilmateenistus
 
 ## Summary
 | Country/Territory                  | Source                                             | Supported features                                                                   |
@@ -29,6 +29,8 @@ Below, you can find details about the support and implementation status for feat
 | 🇨🇳 China                         | [China](#china)                                    | Forecast, Current, Air quality, Nowcasting, Alerts, Reverse                          |
 | 🇨🇩 Democratic Republic of Congo  | [ClimWeb](#climweb)                                | Alerts                                                                               |
 | 🇩🇰 Denmark                       | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Reverse                                                            |
+| 🇪🇪 Estonia                       | [Ilmateenistus](#ilmateenistus)                    | Forecast, Reverse                                                                    |
+| 🇪🇪 Estonia                       | [EKUK](#ekuk)                                      | Air quality, Pollen                                                                  |
 | 🇪🇹 Ethiopia                      | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
 | 🇫🇰 Falkland Is.                  | [Met Office](#met-office) 🔐                       | Forecast, Reverse                                                                    |
 | 🇫🇴 Faroe Is.                     | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Reverse                                                            |
@@ -552,7 +554,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | 📆 **Daily forecast**          | Up to 9 days                                                                                                                                      |
 | ⏱️ **Hourly forecast**         | Up to 9 days                                                                                                                                      |
 | ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source**                                                                        |
-| 😶‍🌫️ **Air quality**         | Not available                                                                                                                                     |
+| 😶‍🌫️ **Air quality**         | Not available: Users can add [EPD](#environmental-protection-department) as a secondary source                                                    |
 | 🤧 **Pollen**                  | Not available                                                                                                                                     |
 | ☔ **Precipitation nowcasting** | Not available                                                                                                                                     |
 | ⚠️ **Alerts**                  | Available in English, Traditional Chines, and Simplified Chinese. Alert headlines are additionally available in Hindi, Indonesian, and Vietnamese |
@@ -571,6 +573,38 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | Wind                      | ✅         | Cloud Cover       | ❌           |
 | Humidity                  | ✅         | Visibility        | ❌           |
 | Dew Point                 | ✅         | Ceiling           | ❌           |
+</details>
+
+### Ilmateenistus
+> Coming soon: will be available starting from v5.4.0
+
+**[Ilmateeniustus](https://www.ilmateenistus.ee/)** is the official meteorological service of Estonia.
+
+| Feature                        | Detail                                                           |
+|--------------------------------|------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇪🇪 Estonia                                                     |
+| 📆 **Daily forecast**          | Up to 4 days                                                     |
+| ⏱️ **Hourly forecast**         | Up to 4 days                                                     |
+| ▶️ **Current observation**     | Not available: will show hourly forecast data                    |
+| 😶‍🌫️ **Air quality**         | Not available: Users can add [EKUK](#ekuk) as a secondary source |
+| 🤧 **Pollen**                  | Not available: Users can add [EKUK](#ekuk) as a secondary source |
+| ☔ **Precipitation nowcasting** | Not available                                                    |
+| ⚠️ **Alerts**                  | Not available                                                    |
+| 📊 **Normals**                 | Not available                                                    |
+| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location in Estonia |
+
+<details><summary><h4>Details of available data from Ilmateenistus</h4></summary>
+
+| Data                      | Available | Data              | Available |
+|---------------------------|-----------|-------------------|-----------|
+| Weather Condition         | ✅         | Pressure          | ✅         |
+| Temperature               | ✅         | UV Index          | ❌         |
+| Precipitation             | ✅         | Sunshine Duration | ❌         |
+| Precipitation Probability | ❌         | Sun &amp; Moon    | ❌         |
+| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
+| Wind                      | ✅         | Cloud Cover       | ❌         |
+| Humidity                  | ❌         | Visibility        | ❌         |
+| Dew Point                 | ❌         | Ceiling           | ❌         |
 </details>
 
 ### India Meteorological Department
@@ -1165,6 +1199,11 @@ ATMO sources can be added as a secondary **Air Quality** source for some regions
 | 🇿🇼 Zimbabwe                     | [MSD](https://www.weatherzw.org.zw/)       |
 
 These sources can be added as a secondary **Alert** and **Temperature normals** source for their respective countries.
+
+### EKUK
+> Coming soon: will be available starting from v5.4.0
+
+**[Eesti Keskkonnauuringute Keskus](https://www.ohuseire.ee/)** (EKUK) can be added as a secondary **Air quality** and **Pollen** source for Estonia.
 
 ### Environmental Protection Department
 > Coming soon: will be available starting from v5.4.0

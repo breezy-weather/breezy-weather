@@ -539,7 +539,7 @@ private fun getWeatherText(
     weatherText = when (weather?.weather) {
         "blowing_dust" -> context.getString(R.string.common_weather_text_dust_storm)
         "blowing_sand" -> context.getString(R.string.common_weather_text_sand_storm)
-        "blowing_snow" -> context.getString(R.string.nws_weather_text_blowing_snow)
+        "blowing_snow" -> context.getString(R.string.common_weather_text_blowing_snow)
         "drizzle" -> context.getString(R.string.common_weather_text_drizzle)
         "fog" -> context.getString(R.string.common_weather_text_fog)
         "freezing_drizzle" -> context.getString(R.string.common_weather_text_drizzle_freezing)

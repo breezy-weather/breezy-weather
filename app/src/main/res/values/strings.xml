@@ -151,12 +151,18 @@
     <!-- Pollen -->
     <string name="pollen_tree">Tree</string>
     <string name="pollen_mold">Mold</string>
+    <!-- Latin name: Acer. Use latin (not English!) if no matching translation -->
+    <string name="pollen_acer">Maple</string>
     <!-- Latin name: Alnus. Use latin (not English!) if no matching translation -->
     <string name="pollen_alnus">Alder</string>
+    <!-- Latin name: Alternaria. Use latin (not English!) if no matching translation -->
+    <string name="pollen_alternaria">Alternaria</string>
     <!-- Latin name: Ambrosia. Use latin (not English!) if no matching translation -->
     <string name="pollen_ambrosia">Ragweed</string>
     <!-- Latin name: Artemisia. Use latin (not English!) if no matching translation -->
     <string name="pollen_artemisia">Mugwort</string>
+    <!-- Latin name: Atriplex. Use latin (not English!) if no matching translation -->
+    <string name="pollen_atriplex">Saltbush</string>
     <!-- Latin name: Betula. Use latin (not English!) if no matching translation -->
     <string name="pollen_betula">Birch</string>
     <!-- Latin name: Carpinus. Use latin (not English!) if no matching translation -->
@@ -169,8 +175,14 @@
     <string name="pollen_cupressaceae_taxaceae">Cypress</string>
     <!-- Latin name: Fraxinus. Use latin (not English!) if no matching translation -->
     <string name="pollen_fraxinus">Ash</string>
+    <!-- Latin name: Juniperus. Use latin (not English!) if no matching translation -->
+    <string name="pollen_juniperus">Juniper</string>
     <!-- Latin name: Olea. Use latin (not English!) if no matching translation -->
     <string name="pollen_olea">Olive tree</string>
+    <!-- Latin name: Picea. Use latin (not English!) if no matching translation -->
+    <string name="pollen_picea">Spruce</string>
+    <!-- Latin name: Pinus. Use latin (not English!) if no matching translation -->
+    <string name="pollen_pinus">Pine</string>
     <!-- Latin name: Plantaginaceae. Use latin (not English!) if no matching translation -->
     <string name="pollen_plantaginaceae">Plantain</string>
     <!-- Latin name: Platanus. Use latin (not English!) if no matching translation -->
@@ -187,6 +199,8 @@
     <string name="pollen_salix">Willow</string>
     <!-- Latin name: Tilia. Use latin (not English!) if no matching translation -->
     <string name="pollen_tilia">Linden</string>
+    <!-- Latin name: Ulmus. Use latin (not English!) if no matching translation -->
+    <string name="pollen_ulmus">Elm</string>
     <!-- Latin name: Urticaceae. Use latin (not English!) if no matching translation -->
     <string name="pollen_urticaceae">Nettle/Pellitory</string>
     <!-- Pollen level means “Potential risk of allergy” -->
@@ -859,6 +873,9 @@
     <string name="common_weather_text_frost">Frost</string>
     <string name="common_weather_text_squall">Squall</string>
     <string name="common_weather_text_tornado">Tornado</string>
+    <string name="common_weather_text_blowing_snow">Blowing snow</string>
+    <string name="common_weather_text_drifting_snow">Drifting snow</string>
+    <string name="common_weather_text_glaze">Glaze</string>
     <!-- Weather kind -->
     <string name="weather_kind_clear" translatable="false">@string/common_weather_text_clear_sky</string>
     <string name="weather_kind_partly_cloudy" translatable="false">@string/common_weather_text_partly_cloudy</string>
@@ -1061,7 +1078,6 @@
     <string name="jma_warning_text_ice_accretion_advisory" translatable="false">Ice accretion advisory</string>
     <string name="jma_warning_text_snow_accretion_advisory" translatable="false">Snow accretion advisory</string>
     <!-- Weather texts for NWS -->
-    <string name="nws_weather_text_blowing_snow" translatable="false">Blowing snow</string>
     <string name="nws_weather_text_freezing_spray" translatable="false">Freezing spray</string>
     <string name="nws_weather_text_ice_crystals" translatable="false">Ice crystals</string>
     <string name="nws_weather_text_ice_fog" translatable="false">Ice fog</string>
