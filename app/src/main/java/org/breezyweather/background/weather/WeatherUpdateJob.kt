@@ -234,13 +234,17 @@ class WeatherUpdateJob @AssistedInject constructor(
                         }
                         if (it.error != RefreshErrorType.NETWORK_UNAVAILABLE &&
                             it.error != RefreshErrorType.SERVER_TIMEOUT &&
-                            it.error != RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING
+                            it.error != RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING &&
+                            it.error != RefreshErrorType.LOCATION_ACCESS_OFF
                         ) {
                             failedUpdates.add(locationResult.location to shortMessage)
                         } else {
                             // Report this error only if we can’t refresh weather data
-                            if (it.error == RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING &&
-                                !locationResult.location.isUsable
+                            if (!locationResult.location.isUsable &&
+                                (
+                                    it.error == RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING ||
+                                        it.error == RefreshErrorType.LOCATION_ACCESS_OFF
+                                    )
                             ) {
                                 failedUpdates.add(locationResult.location to shortMessage)
                             } else {
