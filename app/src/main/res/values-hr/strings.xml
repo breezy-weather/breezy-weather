@@ -713,4 +713,7 @@
     <string name="common_weather_text_dust_storm">Oluja s prašinom</string>
     <string name="common_weather_text_dust">Prašina</string>
     <string name="common_weather_text_tornado">Tornado</string>
+    <string name="forecast">Prognoza</string>
+    <string name="weather_forecast_data_by">Podaci prognoze od %s</string>
+    <string name="settings_weather_source_not_configured">%s (nije konfigurirano)</string>
 </resources>
