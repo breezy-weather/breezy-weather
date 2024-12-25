@@ -714,4 +714,8 @@
     <string name="message_multiple_refresh_errors">Uppdatering slutförd med fel</string>
     <string name="common_weather_text_squall">Kastby</string>
     <string name="common_weather_text_tornado">Tromb</string>
+    <string name="settings_weather_source_not_configured">%s (ej konfigurerad)</string>
+    <string name="settings_weather_source_current_position_disclaimer">Fler väderkällor kan bli tillgängliga för din plats efter den första uppdateringen.</string>
+    <string name="forecast">Prognos</string>
+    <string name="weather_forecast_data_by">Prognosdata från %s</string>
 </resources>
