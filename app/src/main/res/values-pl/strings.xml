@@ -697,7 +697,7 @@
     <string name="common_weather_text_sand_storm">Burza piaskowa</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornado lub trąba wodna</string>
     <string name="common_weather_text_smoke">Dym</string>
-    <string name="settings_unavailable_no_animations">Niedostępne. Najpierw włącz animacje w ustawieniach Androida.</string>
+    <string name="settings_unavailable_no_animations">Niedostępne, najpierw włącz animacje w ustawieniach Androida</string>
     <string name="current_weather">Aktualna pogoda</string>
     <string name="weather_current_data_by">Aktualne dane pogodowe dostarczone przez %s</string>
     <string name="common_weather_text_mist">Mgła</string>
@@ -725,4 +725,8 @@
     <string name="action_show">Pokaż</string>
     <string name="dialog_refresh_error_details_title">Odśwież błędy</string>
     <string name="message_multiple_refresh_errors">Odświeżanie zakończone z błędami</string>
+    <string name="settings_weather_source_not_configured">%s (nie skonfigurowano)</string>
+    <string name="forecast">Prognoza</string>
+    <string name="weather_forecast_data_by">Dane prognozy z %s</string>
+    <string name="settings_weather_source_current_position_disclaimer">Po pierwszym odświeżeniu danych dla Twojej lokalizacji mogą być dostępne dodatkowe źródła informacji o pogodzie.</string>
 </resources>
