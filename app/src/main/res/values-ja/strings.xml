@@ -668,7 +668,7 @@
     <string name="settings_weather_source_freenet_disclaimer">他のバージョンでは情報源をさらに利用できます。ここをタップすると詳細を表示します。</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">大気の質のサーバー</string>
     <string name="settings_widgets_broadcast_title">データの共有</string>
-    <string name="settings_invalid_syntax">無効な構文</string>
+    <string name="settings_invalid_syntax">構文が正しくありません</string>
     <string name="alert_source">情報提供：%s</string>
     <string name="dialog_time_picker_select_time">時間を選択</string>
     <string name="dialog_time_picker_input_time">時間を入力</string>
