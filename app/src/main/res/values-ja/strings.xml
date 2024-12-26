@@ -400,10 +400,10 @@
     <string name="widget_material_you_current">Material You - 現在</string>
     <string name="widget_custom_subtitle_keyword_als_description">警報（短い）</string>
     <string name="widget_week_style_5_days">5日間</string>
-    <string name="widget_week_style_3_days">3 日間</string>
+    <string name="widget_week_style_3_days">3日間</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif（太字）</string>
     <string name="settings_section_general">一般</string>
-    <string name="settings_location_access_precise_summaryOn">有効です。デバイスのネットワークとGPSの両方が使用されています。デバイスのネットワークプロバイダーが優先的に、ほとんどの場合使用されますが、GPSもフォールバックとして使用できます。</string>
+    <string name="settings_location_access_precise_summaryOn">有効です。デバイスのネットワークとGPSの両方が使用されています。通常、デバイスのネットワークプロバイダーが優先的に使用されますが、GPSもフォールバックとして使用できます。</string>
     <string name="settings_location_access_precise_summaryOff">位置情報を取得できない場合、「正確な位置情報を使用する」を有効にしてください。</string>
     <string name="settings_widgets_broadcast_send_data_title">気象データを%sに送信</string>
     <string name="settings_debug_summary">クラッシュログ</string>
@@ -477,7 +477,7 @@
     <string name="location_search_no_results">%1$s が %2$s を見つけられません</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_kgfpsqcm_voice">キログラム力毎平方センチメートル</string>
-    <string name="message_network_unavailable">ネットワークを利用できません</string>
+    <string name="message_network_unavailable">ネットワークが利用できません</string>
     <string name="unit_atm_voice">標準気圧</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="common_weather_text_snow_showers">にわか雪</string>
@@ -673,10 +673,10 @@
     <string name="dialog_time_picker_select_time">時間を選択</string>
     <string name="dialog_time_picker_input_time">時間を入力</string>
     <string name="widget_label_hide_alternate_calendar">他の種類のカレンダーを表示しない</string>
-    <string name="settings_background_updates_refresh_never_warning2">バックグラウンドにおける更新プロセスは軽量です。メインの位置情報は選択した頻度でのみ更新され、二次位置情報は、これが必要な場合にのみ、1日に1回更新されます。この機能のバッテリー効率は高く、1か月あたりのデータ消費量は %d MB を超えません。</string>
-    <string name="message_server_unavailable_title">サーバー利用不可</string>
+    <string name="settings_background_updates_refresh_never_warning2">バックグラウンドで行われる更新プロセスは軽量です。メインの位置情報は選択した頻度でのみ更新され、二次位置情報は、これが必要な場合にのみ、1日に1回更新されます。この機能のバッテリー効率は高く、1か月あたりのデータ消費量は %d MB を超えません。</string>
+    <string name="message_server_unavailable_title">サーバーが利用できません</string>
     <string name="settings_background_updates_refresh_never_warning1">バックグラウンド更新をオフにすると、警報や降水（降雪）の通知が届かなくなります。ウィジェットはアプリを開くまで更新されません。</string>
-    <string name="settings_background_updates_refresh_never_warning3">バックグラウンド更新をオフにする代わりに、より低い頻度の更新レートの使用をご検討ください。それでも続行したい場合は、「続行」をタップしてください。</string>
+    <string name="settings_background_updates_refresh_never_warning3">バックグラウンド更新を無効に設定する代わりに、更新の頻度を低めることを検討してみてください。無効に設定したい場合は、「続行」をタップしてください。</string>
     <string name="message_server_unavailable_content">これは通常、一時的なエラーです。エラーが続く場合はGitHubで問題を報告してください。</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">タッチ入力に切り替える</string>
     <string name="dialog_time_picker_toggle_text_input_voice">テキスト入力に切り替える</string>
