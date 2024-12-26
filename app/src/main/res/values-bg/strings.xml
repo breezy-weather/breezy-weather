@@ -592,7 +592,7 @@
     <string name="settings_color_app">Следвай приложението</string>
     <string name="settings_debug_dump_crash_logs_saved">Журналите за сривове са запазени</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Докосни за отваряне</string>
-    <string name="notification_channel_crash_logs">Журнали за сривове</string>
+    <string name="notification_channel_crash_logs">Логове на сривовете</string>
     <string name="settings_unavailable_no_background_updates">Недосъпни, първо активирайте актуализациите във фонов режим</string>
     <string name="notification_precipitation_starting">Скоро започват валежи</string>
     <string name="notification_precipitation_starting_desc">Очаква се да започнат в %s</string>
