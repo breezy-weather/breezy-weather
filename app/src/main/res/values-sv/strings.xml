@@ -480,7 +480,7 @@
     <string name="common_weather_text_overcast">Mulet</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Nederbörd nattetid för i dag, i morgon, …, 4 dagar senare (%)</string>
     <string name="settings_main_section_options">Alternativ</string>
-    <string name="weather_kind_haze">Smog</string>
+    <string name="weather_kind_haze">Torrdis</string>
     <string name="settings_main_section_animations">Animationer</string>
     <string name="air_quality_no2_info_consequences">Exponering för kvävedioxid kan irritera luftvägarna och förvärra luftvägssjukdomar. Vidare är NO₂ ett viktigt förstadium till ozon, en förorening som är starkt kopplad till astma och andra luftvägsbesvär.</string>
     <string name="widget_multi_city">Flera orter</string>
@@ -689,7 +689,7 @@
     <string name="settings_background_updates_refresh_never_warning1">Genom att stänga av bakgrundsuppdateringar får du inte längre aviseringar om varningar eller nederbörd. Widgetar uppdateras inte förrän du öppnar appen.</string>
     <string name="settings_background_updates_refresh_never_warning3">Överväg att använda en lägre uppdateringsfrekvens i stället för att stänga av bakgrundsuppdateringar, annars tryck på ”Fortsätt” om du fortfarande vill gå vidare.</string>
     <string name="settings_background_updates_refresh_never_warning2">Bakgrundsuppdateringsprocessen är resurssnål: den uppdaterar endast din första plats med din valda frekvens och sekundära platser endast om du behöver dem, en gång per dag. Den är batterisnål och bör inte överskrida %d MB dataförbrukning per månad.</string>
-    <string name="common_weather_text_mist">Dis</string>
+    <string name="common_weather_text_mist">Fuktdis</string>
     <string name="common_weather_text_cool">Svalt</string>
     <string name="common_weather_text_cold">Kallt</string>
     <string name="common_weather_text_humid">Fuktigt</string>
