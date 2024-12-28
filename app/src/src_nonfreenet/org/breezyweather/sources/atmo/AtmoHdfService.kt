@@ -48,7 +48,7 @@ class AtmoHdfService @Inject constructor(
     override val baseUrl = "https://api.atmo-hdf.fr/airtogo/"
     override val isTokenInHeaders = true
 
-    override val apiKeyPreference = R.string.settings_weather_source_atmo_aura_api_key
+    override val apiKeyPreference = R.string.settings_weather_source_atmo_hdf_api_key
     override val builtInApiKey = BuildConfig.ATMO_HDF_KEY
 
     override fun isLocationInRegion(location: Location): Boolean {
