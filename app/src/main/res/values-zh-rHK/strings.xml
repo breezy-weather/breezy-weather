@@ -235,7 +235,7 @@
     <string name="weather_api_unauthorized_title">API 存取未經授權</string>
     <string name="weather_api_unauthorized_content">某些天氣資料來源需要您提供自己的 API 金鑰。若您已提供，請仔細檢查所輸入的 API 金鑰。</string>
     <string name="weather_api_key_required_missing_title">缺少必要的 API 金鑰</string>
-    <string name="weather_api_key_required_missing_content">要使用這個資料來源，您需要提供一個 API 金鑰。</string>
+    <string name="weather_api_key_required_missing_content">要使用這個資料來源，您需要提供 API 金鑰。</string>
     <string name="weather_source_accu_preference_days_5">5 日</string>
     <string name="weather_source_accu_preference_days_10">10 日</string>
     <string name="weather_source_accu_preference_days_15">15 日</string>
