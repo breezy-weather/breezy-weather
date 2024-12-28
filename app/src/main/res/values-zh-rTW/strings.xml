@@ -40,7 +40,7 @@
     <string name="temperature_wet_bulb">溼球溫度</string>
     <string name="temperature_degree_day">度日數</string>
     <string name="precipitation_total">總量</string>
-    <string name="precipitation_thunderstorm">雷暴</string>
+    <string name="precipitation_thunderstorm">雷雨</string>
     <string name="precipitation_rain">雨</string>
     <string name="precipitation_snow">雪</string>
     <string name="precipitation_ice">冰</string>
@@ -263,7 +263,7 @@
     <string name="common_weather_text_fog">霧</string>
     <string name="weather_kind_haze">霾</string>
     <string name="weather_kind_thunder">閃電</string>
-    <string name="weather_kind_thunderstorm">雷暴</string>
+    <string name="weather_kind_thunderstorm">雷雨</string>
     <string name="weather_kind_wind">風</string>
     <!-- Units -->
     <string name="unit_kph">公里/時</string>
@@ -374,11 +374,11 @@
     <string name="unit_kelvin">K</string>
     <string name="about_source_code">原始碼</string>
     <string name="common_weather_text_clear_sky">天晴</string>
-    <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">雷暴伴有大冰雹</string>
+    <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">雷雨伴有大冰雹</string>
     <string name="weather_api_key_required_missing_title">缺少必要的 API 金鑰</string>
     <string name="weather_api_unauthorized_title">API 存取未經授權</string>
     <string name="weather_api_unauthorized_content">某些氣象資料來源需要您提供自己的 API 金鑰。若您已提供，請仔細檢查所輸入的 API 金鑰。</string>
-    <string name="weather_api_key_required_missing_content">要使用這個資料來源，您需要提供一個 API 金鑰。</string>
+    <string name="weather_api_key_required_missing_content">要使用這個資料來源，您需要提供 API 金鑰。</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">沉積霧凇</string>
     <string name="settings_background_updates_summary">更新率、疑難排解</string>
     <string name="common_weather_text_overcast">天陰</string>
@@ -445,7 +445,7 @@
     <string name="uv_alert_level">過量級</string>
     <string name="message_tap_again_to_exit">再次點選以結束</string>
     <string name="common_weather_text_mainly_clear">大致天晴</string>
-    <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">雷暴伴有小冰雹</string>
+    <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">雷雨伴有小冰雹</string>
     <string name="air_quality_level_6">危險</string>
     <string name="wind_direction_short_variable">不定</string>
     <string name="air_quality_level_2_description">空氣品質對大多數人來說一般是可接受的。但敏感人群長期暴露在戶外可能會出現輕度至中度症狀。</string>
