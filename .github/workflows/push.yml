@@ -69,6 +69,25 @@ jobs:
           MF_WSFT_KEY: ${{ secrets.MF_WSFT_KEY }}
           OPEN_WEATHER_KEY: ${{ secrets.OPEN_WEATHER_KEY }}
 
+      - name: Sign APK (free networks)
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
+        uses: r0adkll/sign-android-release@349ebdef58775b1e0d8099458af0816dc79b6407 # v1
+        with:
+          releaseDirectory: app/build/outputs/apk/freenet/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Prepare APKs with checksums, archive mapping.txt file (freenet)
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
+        run: |
+          set -e
+          mv app/build/outputs/apk/freenet/release/app-freenet-universal-release-unsigned-signed.apk breezy-weather-${{ env.VERSION_TAG }}_freenet.apk
+          sha256=`sha256sum breezy-weather-${{ env.VERSION_TAG }}_freenet.apk | awk '{ print $1 }'`
+          echo "APK_UNIVERSAL_FREENET_SHA256=$sha256" >> $GITHUB_ENV
+          tar -czvf mapping-${{ env.VERSION_TAG }}_freenet.tar.gz --directory=app/build/outputs/mapping/freenetRelease/ mapping.txt
+
       - name: Clean build
         run: ./gradlew clean
 
@@ -87,16 +106,6 @@ jobs:
           set -x
           echo "VERSION_TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
-      - name: Sign APK (free networks)
-        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
-        uses: r0adkll/sign-android-release@349ebdef58775b1e0d8099458af0816dc79b6407 # v1
-        with:
-          releaseDirectory: app/build/outputs/apk/freenet/release
-          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-          alias: ${{ secrets.ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-
       - name: Sign APK (basic)
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
         uses: r0adkll/sign-android-release@349ebdef58775b1e0d8099458af0816dc79b6407 # v1
@@ -107,7 +116,7 @@ jobs:
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
 
-      - name: Prepare APKs with checksums, archive mapping.txt file
+      - name: Prepare APKs with checksums, archive mapping.txt file (basic)
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
         run: |
           set -e
@@ -126,11 +135,7 @@ jobs:
           mv app/build/outputs/apk/basic/release/app-basic-x86_64-release-unsigned-signed.apk breezy-weather-x86_64-${{ env.VERSION_TAG }}_standard.apk
           sha256=`sha256sum breezy-weather-x86_64-${{ env.VERSION_TAG }}_standard.apk | awk '{ print $1 }'`
           echo "APK_X86_64_SHA256=$sha256" >> $GITHUB_ENV
-          mv app/build/outputs/apk/freenet/release/app-freenet-universal-release-unsigned-signed.apk breezy-weather-${{ env.VERSION_TAG }}_freenet.apk
-          sha256=`sha256sum breezy-weather-${{ env.VERSION_TAG }}_freenet.apk | awk '{ print $1 }'`
-          echo "APK_UNIVERSAL_FREENET_SHA256=$sha256" >> $GITHUB_ENV
           tar -czvf mapping-${{ env.VERSION_TAG }}_standard.tar.gz --directory=app/build/outputs/mapping/basicRelease/ mapping.txt
-          tar -czvf mapping-${{ env.VERSION_TAG }}_freenet.tar.gz --directory=app/build/outputs/mapping/freenetRelease/ mapping.txt
 
       - name: Create release
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
