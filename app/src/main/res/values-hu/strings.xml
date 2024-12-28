@@ -732,4 +732,6 @@
     <string name="pollen_pinus">Fenyő</string>
     <string name="pollen_ulmus">Szilfa</string>
     <string name="common_weather_text_blowing_snow">Hófúvás</string>
+    <string name="common_weather_text_drifting_snow">Hóforgatag</string>
+    <string name="common_weather_text_glaze">Ónos jégréteg</string>
 </resources>
