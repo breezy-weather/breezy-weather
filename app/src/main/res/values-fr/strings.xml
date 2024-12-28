@@ -65,7 +65,7 @@
     <string name="precipitation_thunderstorm">Orage</string>
     <string name="precipitation_rain">Pluie</string>
     <string name="precipitation_snow">Neige</string>
-    <string name="precipitation_ice">Verglas</string>
+    <string name="precipitation_ice">Glace</string>
 
     <string name="wind">Vent</string>
     <string name="wind_short">Vent</string>
@@ -111,16 +111,22 @@
     <string name="ephemeris_moon_phase_waning_crescent">Dernier croissant</string>
 
     <string name="pollen_tree">Arbres</string>
+    <string name="pollen_acer">Érable</string>
     <string name="pollen_alnus">Aulne</string>
+    <string name="pollen_alternaria">Alternaria</string>
     <string name="pollen_ambrosia">Ambroisies</string>
     <string name="pollen_artemisia">Armoises</string>
+    <string name="pollen_atriplex">Arroches</string>
     <string name="pollen_betula">Bouleau</string>
     <string name="pollen_carpinus">Charme</string>
     <string name="pollen_castanea">Châtaignier</string>
     <string name="pollen_corylus">Noisetier</string>
     <string name="pollen_cupressaceae_taxaceae">Cyprès</string>
     <string name="pollen_fraxinus">Frêne</string>
+    <string name="pollen_juniperus">Genévrier</string>
     <string name="pollen_olea">Olivier</string>
+    <string name="pollen_picea">Épicéas</string>
+    <string name="pollen_pinus">Pin</string>
     <string name="pollen_plantaginaceae">Plantain</string>
     <string name="pollen_platanus">Platane</string>
     <string name="pollen_poaeceae">Graminées</string>
@@ -129,6 +135,7 @@
     <string name="pollen_rumex">Oseille</string>
     <string name="pollen_salix">Saule</string>
     <string name="pollen_tilia">Tilleul</string>
+    <string name="pollen_ulmus">Orme</string>
     <string name="pollen_urticaceae">Urticacées</string>
     <string name="pollen_mold">Moisissure</string>
     <!-- Pollen level means “Potential risk of allergy” -->
@@ -778,6 +785,9 @@
     <string name="common_weather_text_frost">Frost</string>
     <string name="common_weather_text_squall">Grain</string>
     <string name="common_weather_text_tornado">Tornade</string>
+    <string name="common_weather_text_blowing_snow">Poudrerie élevée</string>
+    <string name="common_weather_text_drifting_snow">Poudrerie basse</string>
+    <string name="common_weather_text_glaze">Verglas</string>
     <string name="metno_weather_text_andthunder">%s et tonnerre</string>
     <string name="meteolux_warning_text_wind">Avis de vent</string>
     <string name="meteolux_warning_text_rain">Avis de pluie</string>
