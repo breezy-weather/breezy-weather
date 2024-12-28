@@ -14,7 +14,9 @@
 - [ATMO GrandEst] Added as a new source for air quality in Grand Est (France)
 - [Atmo Hauts-de-France] Added as a new source for air quality in Hauts-de-France (France)
 - [AtmoSud] Added as a new source for air quality in Provence-Alpes-Côte d’Azur (France)
+- [EKUK] Added as a new source for air quality in Estonia (@chunshek). Pollen will come later this year
 - [EPD] Added as a new source for air quality in Hong Kong (@chunshek)
+- [Ilmateenistus] Added as a new source for forecast in Estonia (@chunshek)
 - [Météo-France] Add support for alerts in oversea territories
 - [Météo-France] Fix alert error when refreshing at midnight
 - [Météo-France] Deduplicated bulletin when the bulletin is the same for today and tomorrow
