@@ -1,4 +1,10 @@
-# Version 5.4.0 (not yet released)
+# Version 5.4.1 (not yet released)
+
+**Translations**
+- Translations updated
+
+
+# Version 5.4.0 (2024-12-28)
 
 **Improvements and fixes**
 - Greatly improve weather update time, especially when using different sources on a single location (see technical section for details)

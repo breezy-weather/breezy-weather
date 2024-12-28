@@ -1,12 +1,12 @@
 # Weather sources
 
-This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md). Unless otherwise mentioned, **the information below is valid assuming you’re using version 5.3.1 or later of Breezy Weather**. 
+This is a user-end guide to weather sources available in Breezy Weather. If you are a developer looking to add a new source in Breezy Weather, have a look at [contribute](../CONTRIBUTE.md). Unless otherwise mentioned, **the information below is valid assuming you’re using version 5.4.0 or later of Breezy Weather**. 
 
 By default, when you add a location manually, Breezy Weather will auto-suggest your national weather source if we have support for it, and combine it with other secondary weather sources for missing features. When we don’t have support for your national weather source, we suggest **Open-Meteo** which is the only free and open source weather source on this list, and probably also the most privacy-friendly.
 
 Below, you can find details about the support and implementation status for features on each weather source. Note that no forecast above 7 days is reliable, so you should not decide based on the highest number of days available.
 
-> Note: The following features and sources are only available starting from (unreleased) v5.4.0:
+> Note: The following features and sources are only available starting from (pre-release) v5.4.0:
 > - Sources: ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, EKUK, EPD, Ilmateenistus
 
 ## Summary
@@ -576,7 +576,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 </details>
 
 ### Ilmateenistus
-> Coming soon: will be available starting from v5.4.0
+> Available starting from v5.4.0
 
 **[Ilmateeniustus](https://www.ilmateenistus.ee/)** is the official meteorological service of Estonia.
 
@@ -1171,9 +1171,9 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 ATMO sources can be added as a secondary **Air Quality** source for some regions of France.
 
 - **[Atmo Auvergne-Rhône-Alpes](https://www.atmo-auvergnerhonealpes.fr/)** provides air quality information for the French region of Auvergne-Rhône-Alpes.
-- **[ATMO GrandEst](https://www.atmo-grandest.eu/)** (starting from v5.4.0) provides air quality information for the French region of Grand Est.
-- **[Atmo Hauts-de-France](https://www.atmo-hdf.fr/)** (starting from v5.4.0) provides air quality information for the French region of Hauts-de-France.
-- **[AtmoSud](https://www.atmosud.org/)** (starting from v5.4.0) provides air quality information for the French region of Provence-Alpes-Côte d’Azur.
+- **[ATMO GrandEst](https://www.atmo-grandest.eu/)** provides air quality information for the French region of Grand Est.
+- **[Atmo Hauts-de-France](https://www.atmo-hdf.fr/)** provides air quality information for the French region of Hauts-de-France.
+- **[AtmoSud](https://www.atmosud.org/)** provides air quality information for the French region of Provence-Alpes-Côte d’Azur.
 
 ### ClimWeb
 **[ClimWeb](https://github.com/wmo-raf/climweb)** is an open source content management system developed by WMO Africa for 17 of its member states:
@@ -1201,12 +1201,12 @@ ATMO sources can be added as a secondary **Air Quality** source for some regions
 These sources can be added as a secondary **Alert** and **Temperature normals** source for their respective countries.
 
 ### EKUK
-> Coming soon: will be available starting from v5.4.0
+> Available starting from v5.4.0
 
 **[Eesti Keskkonnauuringute Keskus](https://www.ohuseire.ee/)** (EKUK) can be added as a secondary **Air quality** and **Pollen** (later this year) source for Estonia.
 
 ### Environmental Protection Department
-> Coming soon: will be available starting from v5.4.0
+> Available starting from v5.4.0
 
 **[Environmental Protection Department](https://www.aqhi.gov.hk/)** can be added as a secondary **Air quality** source for Hong Kong.
 
