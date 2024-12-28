@@ -8,7 +8,7 @@
     <string name="notification_refreshed_at">更新於</string>
     <string name="precipitation">降水量</string>
     <string name="precipitation_probability">降水機率</string>
-    <string name="precipitation_duration">降水時長</string>
+    <string name="precipitation_duration">降水時數</string>
     <string name="temperature">氣溫</string>
     <string name="wind">風勢</string>
     <string name="wind_direction">風向</string>
@@ -72,7 +72,7 @@
     <string name="pollen_ambrosia">豬草</string>
     <string name="pollen_tree">樹木花粉</string>
     <string name="daily_forecast">逐日預報</string>
-    <string name="hourly_forecast">逐小時預報</string>
+    <string name="hourly_forecast">逐時預報</string>
     <string name="air_quality">空氣品質</string>
     <string name="pollen">花粉濃度</string>
     <string name="details">詳細資訊</string>
@@ -179,9 +179,9 @@
     <string name="settings_item_delete">刪除這個項目</string>
     <string name="location_swipe_to_delete">您可以向左滑動以刪除這個項目</string>
     <string name="settings_icon_packs_weather_adaptive_icon">天氣圖示</string>
-    <string name="settings_icon_packs_weather_icon_light">亮色圖示</string>
+    <string name="settings_icon_packs_weather_icon_light">淺色圖示</string>
     <string name="settings_icon_packs_weather_icon_grey">灰色圖示</string>
-    <string name="settings_icon_packs_weather_icon_dark">暗色圖示</string>
+    <string name="settings_icon_packs_weather_icon_dark">深色圖示</string>
     <!-- action -->
     <string name="alerts">警特報</string>
     <string name="action_search">搜尋</string>
@@ -198,8 +198,8 @@
     <string name="widget_clock_day_vertical">時鐘 + 今日（垂直排列）</string>
     <string name="widget_clock_day_week">時鐘 + 今日 + 一週</string>
     <string name="widget_text">純文字</string>
-    <string name="widget_trend_daily">每日趨勢</string>
-    <string name="widget_trend_hourly">每小時趨勢</string>
+    <string name="widget_trend_daily">逐日趨勢</string>
+    <string name="widget_trend_hourly">逐時趨勢</string>
     <string name="widget_multi_city">多個城市</string>
     <string name="widget_material_you_forecast">Material You - 預報</string>
     <string name="widget_material_you_current">Material You - 目前</string>
