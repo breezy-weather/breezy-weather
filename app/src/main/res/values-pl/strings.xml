@@ -729,4 +729,14 @@
     <string name="forecast">Prognoza</string>
     <string name="weather_forecast_data_by">Dane prognozy z %s</string>
     <string name="settings_weather_source_current_position_disclaimer">Po pierwszym odświeżeniu danych dla Twojej lokalizacji mogą być dostępne dodatkowe źródła informacji o pogodzie.</string>
+    <string name="pollen_acer">Klon</string>
+    <string name="pollen_alternaria">Alternaria</string>
+    <string name="pollen_atriplex">Łoboda</string>
+    <string name="pollen_juniperus">Jałowiec</string>
+    <string name="pollen_picea">Świerk</string>
+    <string name="pollen_pinus">Sosna</string>
+    <string name="pollen_ulmus">Wiąz</string>
+    <string name="common_weather_text_blowing_snow">Śnieg podmuchowy</string>
+    <string name="common_weather_text_drifting_snow">Zawieje śnieżne</string>
+    <string name="common_weather_text_glaze">Oblodzenie</string>
 </resources>
