@@ -678,7 +678,7 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">空氣品質伺服器</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">最佳匹配</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">找不到相容套件</string>
-    <string name="settings_background_updates_refresh_never_warning2">幕後更新處理不會消耗太多資源：它只會按您選擇的頻率重新整理您的第一個位置，而次要位置只在您需要時每天重新整理一次。該處理耗電量低，每月的資料使用量不應超過 %d MB。</string>
+    <string name="settings_background_updates_refresh_never_warning2">幕後更新處理不會消耗太多資源：它只會按您選擇的頻率重新整理您的第一個位置，而次要位置只在您需要時每天重新整理一次。該處理耗電量低，每月的資料使用量應不超過 %d MB。</string>
     <string name="settings_background_updates_refresh_never_warning3">考慮使用較低的重新整理頻率而不是關閉背景更新，如果您仍想關閉背景更新，請點選「繼續」。</string>
     <string name="settings_per_location_summary">此位置的附加自訂</string>
     <string name="settings_per_location_theme">主題</string>
