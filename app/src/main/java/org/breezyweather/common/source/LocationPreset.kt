@@ -131,7 +131,7 @@ enum class LocationPreset(
         forecast = "ilmateenistus",
         current = null,
         airQuality = "ekuk",
-        pollen = "ekuk",
+        pollen = "openmeteo", // TODO: At pollen season
         minutely = "openmeteo",
         alert = "accu",
         normals = "accu"

@@ -30,7 +30,7 @@ Below, you can find details about the support and implementation status for feat
 | 🇨🇩 Democratic Republic of Congo  | [ClimWeb](#climweb)                                | Alerts                                                                               |
 | 🇩🇰 Denmark                       | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Reverse                                                            |
 | 🇪🇪 Estonia                       | [Ilmateenistus](#ilmateenistus)                    | Forecast, Reverse                                                                    |
-| 🇪🇪 Estonia                       | [EKUK](#ekuk)                                      | Air quality, Pollen                                                                  |
+| 🇪🇪 Estonia                       | [EKUK](#ekuk)                                      | Air quality, Pollen (later this year)                                                |
 | 🇪🇹 Ethiopia                      | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
 | 🇫🇰 Falkland Is.                  | [Met Office](#met-office) 🔐                       | Forecast, Reverse                                                                    |
 | 🇫🇴 Faroe Is.                     | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Reverse                                                            |
@@ -580,18 +580,18 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 **[Ilmateeniustus](https://www.ilmateenistus.ee/)** is the official meteorological service of Estonia.
 
-| Feature                        | Detail                                                           |
-|--------------------------------|------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇪🇪 Estonia                                                     |
-| 📆 **Daily forecast**          | Up to 4 days                                                     |
-| ⏱️ **Hourly forecast**         | Up to 4 days                                                     |
-| ▶️ **Current observation**     | Not available: will show hourly forecast data                    |
-| 😶‍🌫️ **Air quality**         | Not available: Users can add [EKUK](#ekuk) as a secondary source |
-| 🤧 **Pollen**                  | Not available: Users can add [EKUK](#ekuk) as a secondary source |
-| ☔ **Precipitation nowcasting** | Not available                                                    |
-| ⚠️ **Alerts**                  | Not available                                                    |
-| 📊 **Normals**                 | Not available                                                    |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location in Estonia |
+| Feature                        | Detail                                                                                       |
+|--------------------------------|----------------------------------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇪🇪 Estonia                                                                                 |
+| 📆 **Daily forecast**          | Up to 4 days                                                                                 |
+| ⏱️ **Hourly forecast**         | Up to 4 days                                                                                 |
+| ▶️ **Current observation**     | Not available: will show hourly forecast data                                                |
+| 😶‍🌫️ **Air quality**         | Not available: Users can add [EKUK](#ekuk) as a secondary source                             |
+| 🤧 **Pollen**                  | Not available: Users will be able to add [EKUK](#ekuk) as a secondary source later this year |
+| ☔ **Precipitation nowcasting** | Not available                                                                                |
+| ⚠️ **Alerts**                  | Not available                                                                                |
+| 📊 **Normals**                 | Not available                                                                                |
+| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location in Estonia                             |
 
 <details><summary><h4>Details of available data from Ilmateenistus</h4></summary>
 
@@ -1203,7 +1203,7 @@ These sources can be added as a secondary **Alert** and **Temperature normals** 
 ### EKUK
 > Coming soon: will be available starting from v5.4.0
 
-**[Eesti Keskkonnauuringute Keskus](https://www.ohuseire.ee/)** (EKUK) can be added as a secondary **Air quality** and **Pollen** source for Estonia.
+**[Eesti Keskkonnauuringute Keskus](https://www.ohuseire.ee/)** (EKUK) can be added as a secondary **Air quality** and **Pollen** (later this year) source for Estonia.
 
 ### Environmental Protection Department
 > Coming soon: will be available starting from v5.4.0

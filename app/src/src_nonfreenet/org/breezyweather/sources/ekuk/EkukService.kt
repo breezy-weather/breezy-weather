@@ -67,8 +67,8 @@ class EkukService @Inject constructor(
     }
 
     override val supportedFeatures = mapOf(
-        SourceFeature.AIR_QUALITY to weatherAttribution,
-        SourceFeature.POLLEN to weatherAttribution
+        SourceFeature.AIR_QUALITY to weatherAttribution
+        // TODO at pollen season: SourceFeature.POLLEN to weatherAttribution
     )
 
     override fun isFeatureSupportedForLocation(
