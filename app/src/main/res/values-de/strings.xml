@@ -733,4 +733,14 @@
     <string name="forecast">Vorhersage</string>
     <string name="weather_forecast_data_by">Vorhersagedaten von %s</string>
     <string name="settings_weather_source_current_position_disclaimer">Weitere Wetterquellen für Ihren Ort können nach der ersten Aktualisierung verfügbar werden.</string>
+    <string name="pollen_acer">Ahorn</string>
+    <string name="pollen_atriplex">Melde</string>
+    <string name="pollen_juniperus">Wacholder</string>
+    <string name="pollen_picea">Fichte</string>
+    <string name="pollen_ulmus">Ulme</string>
+    <string name="common_weather_text_glaze">Klareis</string>
+    <string name="pollen_pinus">Kiefer</string>
+    <string name="common_weather_text_blowing_snow">Schneetreiben</string>
+    <string name="common_weather_text_drifting_snow">Schneefegen</string>
+    <string name="pollen_alternaria">Alternaria</string>
 </resources>
