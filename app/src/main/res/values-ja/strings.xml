@@ -42,7 +42,7 @@
     <string name="precipitation_rain">雨</string>
     <string name="precipitation_snow">雪</string>
     <string name="precipitation_ice">氷</string>
-    <string name="wind_strength_0">平穏</string>
+    <string name="wind_strength_0">静穏</string>
     <string name="wind_strength_1">至軽風</string>
     <string name="wind_strength_2">軽風</string>
     <string name="wind_strength_3">軟風</string>
@@ -225,8 +225,8 @@
     <string name="common_weather_text_rain">雨</string>
     <string name="common_weather_text_snow">雪</string>
     <string name="weather_kind_hail">あられ</string>
-    <string name="common_weather_text_fog">霧</string>
-    <string name="weather_kind_haze">もや</string>
+    <string name="common_weather_text_fog">濃霧</string>
+    <string name="weather_kind_haze">薄霧</string>
     <string name="weather_kind_thunder">雷</string>
     <string name="weather_kind_thunderstorm">雷雨</string>
     <string name="weather_kind_wind">風</string>
@@ -416,7 +416,7 @@
     <string name="weather_source_accu_preference_hours_120">120時間</string>
     <string name="weather_source_accu_preference_hours_240">240時間</string>
     <string name="message_source_not_installed_error_title">情報源は利用できなくなりました</string>
-    <string name="settings_location_access_precise_title">デバイスの GPS の使用状況</string>
+    <string name="settings_location_access_precise_title">デバイスのGPSの使用状況</string>
     <string name="settings_widgets_week_icon_mode_title">週次ビューで表示するアイコン</string>
     <string name="settings_notifications_alerts_title">悪天候警報の通知</string>
     <string name="settings_widgets_notification_feels_like_switch">体感温度を使用</string>
@@ -660,7 +660,7 @@
     <string name="pollen_tilia">リンデン</string>
     <string name="alert">警報</string>
     <string name="settings_source_instance">サーバー</string>
-    <string name="settings_source_instance_invalid">半角スラッシュ「/」で終わるhttpsプロトコルのURLを指定してください</string>
+    <string name="settings_source_instance_invalid">半角スラッシュ（/）で終わるhttpsプロトコルのURLを指定してください</string>
     <string name="message_invalid_incomplete_data">サーバーから無効または不完全なデータを受信しました</string>
     <string name="settings_per_location_theme">テーマ</string>
     <string name="settings_source_instance_geocoding">ジオコーディングのサーバー</string>
@@ -757,4 +757,14 @@
     <string name="common_weather_text_squall">スコール</string>
     <string name="common_weather_text_dust">塵</string>
     <string name="common_weather_text_dust_storm">砂嵐</string>
+    <string name="pollen_acer">カエデ</string>
+    <string name="pollen_alternaria">アルタナリア</string>
+    <string name="pollen_atriplex">ハマアカザ</string>
+    <string name="pollen_juniperus">ヨウシュネズ</string>
+    <string name="pollen_picea">トウヒ</string>
+    <string name="pollen_pinus">マツ</string>
+    <string name="pollen_ulmus">ニレ</string>
+    <string name="common_weather_text_blowing_snow">地吹雪</string>
+    <string name="common_weather_text_glaze">雨氷</string>
+    <string name="common_weather_text_drifting_snow">低い地吹雪</string>
 </resources>
