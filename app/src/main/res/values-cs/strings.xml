@@ -734,4 +734,14 @@
     <string name="weather_forecast_data_by">Předpověď od %s</string>
     <string name="settings_weather_source_not_configured">%s (nenastaveno)</string>
     <string name="settings_weather_source_current_position_disclaimer">Po první aktualizaci mohou být pro vaši lokalitu k dispozici další zdroje počasí.</string>
+    <string name="pollen_acer">Javor</string>
+    <string name="pollen_alternaria">Čerň střídavá</string>
+    <string name="pollen_juniperus">Jalovec</string>
+    <string name="common_weather_text_blowing_snow">Odfukování sněhu</string>
+    <string name="common_weather_text_drifting_snow">Tající sníh</string>
+    <string name="common_weather_text_glaze">Ledovka</string>
+    <string name="pollen_atriplex">Lebeda</string>
+    <string name="pollen_pinus">Borovice</string>
+    <string name="pollen_picea">Smrk</string>
+    <string name="pollen_ulmus">Jilm</string>
 </resources>
