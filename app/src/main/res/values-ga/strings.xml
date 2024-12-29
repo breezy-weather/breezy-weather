@@ -716,4 +716,14 @@
     <string name="weather_forecast_data_by">Sonraí réamhaisnéise faoi %s</string>
     <string name="settings_weather_source_not_configured">%s (gan cumraithe)</string>
     <string name="forecast">Réamhaisnéis</string>
+    <string name="pollen_alternaria">Alternaria</string>
+    <string name="pollen_atriplex">Atriplex</string>
+    <string name="pollen_pinus">Péine</string>
+    <string name="pollen_ulmus">Leamhán</string>
+    <string name="pollen_juniperus">Juniperus</string>
+    <string name="common_weather_text_drifting_snow">Sneachta ag snámh</string>
+    <string name="common_weather_text_glaze">Glónra</string>
+    <string name="pollen_acer">Acer</string>
+    <string name="pollen_picea">Sprús</string>
+    <string name="common_weather_text_blowing_snow">Sneachta ag séideadh</string>
 </resources>
