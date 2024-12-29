@@ -805,4 +805,14 @@
     <string name="weather_forecast_data_by">%s 的预报数据</string>
     <string name="settings_weather_source_not_configured">%s （未配置）</string>
     <string name="settings_weather_source_current_position_disclaimer">首次刷新后你的位置可能会有更多天气数据源可用。</string>
+    <string name="pollen_alternaria">链格孢属</string>
+    <string name="pollen_atriplex">滨藜</string>
+    <string name="pollen_juniperus">刺柏</string>
+    <string name="common_weather_text_glaze">雨凇</string>
+    <string name="pollen_acer">枫树</string>
+    <string name="pollen_picea">云杉</string>
+    <string name="common_weather_text_drifting_snow">吹雪（高度 8 英尺以下）</string>
+    <string name="common_weather_text_blowing_snow">吹雪（高度 8 英尺或以上）</string>
+    <string name="pollen_pinus">松树</string>
+    <string name="pollen_ulmus">榆树</string>
 </resources>
