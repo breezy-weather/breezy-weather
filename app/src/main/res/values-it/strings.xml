@@ -726,4 +726,11 @@
     <string name="settings_weather_source_not_configured">%s (non configurato)</string>
     <string name="forecast">Previsione</string>
     <string name="weather_forecast_data_by">Dati previsioni da %s</string>
+    <string name="pollen_juniperus">Ginepro</string>
+    <string name="pollen_picea">Peccio</string>
+    <string name="pollen_pinus">Pino</string>
+    <string name="pollen_ulmus">Olmo</string>
+    <string name="common_weather_text_glaze">Gelicidio</string>
+    <string name="pollen_acer">Acero</string>
+    <string name="pollen_alternaria">Alternaria</string>
 </resources>
