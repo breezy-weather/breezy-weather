@@ -724,4 +724,14 @@
     <string name="weather_forecast_data_by">Подаци о прогнози од %s</string>
     <string name="forecast">Прогноза</string>
     <string name="settings_weather_source_not_configured">%s (није подешено)</string>
+    <string name="pollen_acer">Јавор</string>
+    <string name="pollen_alternaria">Алтернарија</string>
+    <string name="pollen_atriplex">Лобода</string>
+    <string name="pollen_juniperus">Клека</string>
+    <string name="pollen_picea">Смрча</string>
+    <string name="pollen_pinus">Бор</string>
+    <string name="pollen_ulmus">Брест</string>
+    <string name="common_weather_text_blowing_snow">Снежна мећава</string>
+    <string name="common_weather_text_drifting_snow">Наносни снег</string>
+    <string name="common_weather_text_glaze">Леђење</string>
 </resources>
