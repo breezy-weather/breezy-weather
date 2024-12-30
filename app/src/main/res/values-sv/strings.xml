@@ -718,4 +718,14 @@
     <string name="settings_weather_source_current_position_disclaimer">Fler väderkällor kan bli tillgängliga för din plats efter den första uppdateringen.</string>
     <string name="forecast">Prognos</string>
     <string name="weather_forecast_data_by">Prognosdata från %s</string>
+    <string name="pollen_alternaria">Alternaria</string>
+    <string name="pollen_atriplex">Fetmållor</string>
+    <string name="pollen_juniperus">En</string>
+    <string name="pollen_pinus">Tall</string>
+    <string name="pollen_ulmus">Alm</string>
+    <string name="common_weather_text_glaze">Glattis</string>
+    <string name="common_weather_text_drifting_snow">Drivsnö</string>
+    <string name="common_weather_text_blowing_snow">Yrsnö</string>
+    <string name="pollen_picea">Gran</string>
+    <string name="pollen_acer">Lönn</string>
 </resources>
