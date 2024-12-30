@@ -720,4 +720,12 @@
     <string name="weather_forecast_data_by">Prognožu dati no %s</string>
     <string name="pollen_alternaria">Alternaria</string>
     <string name="pollen_acer">Kļava</string>
+    <string name="pollen_atriplex">Balodenes</string>
+    <string name="pollen_picea">Egle</string>
+    <string name="pollen_juniperus">Kadiķis</string>
+    <string name="pollen_pinus">Priede</string>
+    <string name="pollen_ulmus">Goba</string>
+    <string name="common_weather_text_drifting_snow">Sniegvilksnis</string>
+    <string name="common_weather_text_blowing_snow">Zemais putenis</string>
+    <string name="common_weather_text_glaze">Apledojums</string>
 </resources>
