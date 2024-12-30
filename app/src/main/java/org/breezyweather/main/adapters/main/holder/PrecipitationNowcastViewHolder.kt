@@ -49,8 +49,8 @@ import com.patrykandpatrick.vico.compose.cartesian.rememberVicoScrollState
 import com.patrykandpatrick.vico.compose.common.component.rememberLineComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberShapeComponent
 import com.patrykandpatrick.vico.compose.common.component.rememberTextComponent
-import com.patrykandpatrick.vico.compose.common.dimensions
 import com.patrykandpatrick.vico.compose.common.fill
+import com.patrykandpatrick.vico.compose.common.insets
 import com.patrykandpatrick.vico.core.cartesian.CartesianDrawingContext
 import com.patrykandpatrick.vico.core.cartesian.axis.HorizontalAxis
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
@@ -59,9 +59,9 @@ import com.patrykandpatrick.vico.core.cartesian.data.columnSeries
 import com.patrykandpatrick.vico.core.cartesian.decoration.HorizontalLine
 import com.patrykandpatrick.vico.core.cartesian.layer.ColumnCartesianLayer
 import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarker
-import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarkerValueFormatter
+import com.patrykandpatrick.vico.core.cartesian.marker.DefaultCartesianMarker
 import com.patrykandpatrick.vico.core.common.Fill
-import com.patrykandpatrick.vico.core.common.VerticalPosition
+import com.patrykandpatrick.vico.core.common.Position
 import com.patrykandpatrick.vico.core.common.component.Shadow
 import com.patrykandpatrick.vico.core.common.component.TextComponent
 import com.patrykandpatrick.vico.core.common.shape.CorneredShape
@@ -196,10 +196,10 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                     CorneredShape.Pill,
                     shadow = Shadow(
                         radiusDp = LABEL_BACKGROUND_SHADOW_RADIUS_DP,
-                        dyDp = LABEL_BACKGROUND_SHADOW_DY_DP
+                        yDp = LABEL_BACKGROUND_SHADOW_DY_DP
                     )
                 ),
-                padding = dimensions(
+                padding = insets(
                     dimensionResource(R.dimen.normal_margin),
                     dimensionResource(R.dimen.little_margin)
                 ),
@@ -259,7 +259,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                         if (it && SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled) {
                             HorizontalLine(
                                 y = { Precipitation.PRECIPITATION_HOURLY_LIGHT },
-                                verticalLabelPosition = VerticalPosition.Bottom,
+                                verticalLabelPosition = Position.Vertical.Bottom,
                                 line = rememberLineComponent(
                                     fill = fill(colorResource(thresholdLineColor))
                                 ),
@@ -276,7 +276,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                         if (it && isTrendHorizontalLinesEnabled) {
                             HorizontalLine(
                                 y = { Precipitation.PRECIPITATION_HOURLY_MEDIUM },
-                                verticalLabelPosition = VerticalPosition.Bottom,
+                                verticalLabelPosition = Position.Vertical.Bottom,
                                 line = rememberLineComponent(
                                     fill = fill(colorResource(thresholdLineColor))
                                 ),
@@ -292,7 +292,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                     if (SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled) {
                         HorizontalLine(
                             y = { Precipitation.PRECIPITATION_HOURLY_HEAVY },
-                            verticalLabelPosition = VerticalPosition.Bottom,
+                            verticalLabelPosition = Position.Vertical.Bottom,
                             line = rememberLineComponent(
                                 fill = fill(colorResource(thresholdLineColor))
                             ),
@@ -356,7 +356,7 @@ private class MarkerLabelFormatterMinutelyDecorator(
     private val location: Location,
     private val aContext: Context,
     private val hasOnlyThresholdValues: Boolean,
-) : CartesianMarkerValueFormatter {
+) : DefaultCartesianMarker.ValueFormatter {
 
     override fun format(
         context: CartesianDrawingContext,
