@@ -718,4 +718,6 @@
     <string name="settings_weather_source_not_configured">%s (nav konfigurēts)</string>
     <string name="settings_weather_source_current_position_disclaimer">Vairāk laikapstākļu avotu pašreizējai atrašanās vietai var būt pieejami pēc pirmās atsvaidzināšanas.</string>
     <string name="weather_forecast_data_by">Prognožu dati no %s</string>
+    <string name="pollen_alternaria">Alternaria</string>
+    <string name="pollen_acer">Kļava</string>
 </resources>
