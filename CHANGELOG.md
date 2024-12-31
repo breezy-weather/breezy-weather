@@ -3,6 +3,11 @@
 **Improvements and fixes**
 - Fix crash of Weather source settings screen
 
+**Weather sources**
+- [ATMO GrandEst] Fix missing default key in release builds
+- [Atmo Hauts-de-France] Fix missing default key in release builds
+- [AtmoSud] Fix missing default key in release builds
+
 **Translations**
 - Translations updated
 
