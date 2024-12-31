@@ -301,7 +301,7 @@
     <string name="settings_main_daily_trends_title">今日の予報</string>
     <string name="about_contributors">貢献者</string>
     <string name="settings_background_updates_dont_kill_my_app_title">端末メーカー別の説明</string>
-    <string name="precipitation_nowcasting">降水予報</string>
+    <string name="precipitation_nowcasting">今後数時間の降水予報</string>
     <string name="settings_location">位置情報</string>
     <string name="settings_widgets_live_wallpaper_summary">天気アニメーションをライブ壁紙に設定</string>
     <string name="about_privacy_policy">プライバシーポリシー</string>
