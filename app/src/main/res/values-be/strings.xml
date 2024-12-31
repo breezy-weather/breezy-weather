@@ -717,5 +717,5 @@
     <string name="settings_weather_source_not_configured">%s (не наладжана)</string>
     <string name="forecast">Прагноз</string>
     <string name="weather_forecast_data_by">Прагноз прадастаўлены %s</string>
-    <string name="settings_weather_source_current_position_disclaimer">Пасля першага абнаўлення для вашага месцазнаходжання могуць стаць даступныя дадатковыя крыніцы надвор\'я.</string>
+    <string name="settings_weather_source_current_position_disclaimer">Пасля першага абнаўлення для вашага месцазнаходжання могуць стаць даступныя дадатковыя крыніцы надвор’я.</string>
 </resources>

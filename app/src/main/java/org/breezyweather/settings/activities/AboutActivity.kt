@@ -265,6 +265,7 @@ class AboutActivity : GeoActivity() {
         TranslatorItem(arrayOf("it"), "Lorenzo Romano", weblate = "lloranmorenzio"),
         TranslatorItem(arrayOf("it"), "Innominatapersona", github = "Innominatapersona"),
         TranslatorItem(arrayOf("it"), "bryce-lynch", weblate = "bryce-lynch"),
+        TranslatorItem(arrayOf("it"), "Giorgio", github = "dimeglio98"),
         TranslatorItem(arrayOf("ja"), "rikupin1105", github = "rikupin1105"),
         TranslatorItem(arrayOf("ja"), "Suguru Hirahara", weblate = "shirahara"),
         TranslatorItem(arrayOf("ja"), "Meiru", weblate = "Tenbin"),
