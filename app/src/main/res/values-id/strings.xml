@@ -793,4 +793,14 @@
     <string name="weather_forecast_data_by">Data prakiraan oleh %s</string>
     <string name="settings_weather_source_not_configured">%s (tidak diatur)</string>
     <string name="settings_weather_source_current_position_disclaimer">Lebih banyak sumber cuaca dapat tersedia untuk lokasi Anda setelah penyegaran pertama.</string>
+    <string name="common_weather_text_drifting_snow">Salju melayang</string>
+    <string name="pollen_juniperus">Juniperus</string>
+    <string name="common_weather_text_blowing_snow">Salju bertiup</string>
+    <string name="pollen_acer">Acer</string>
+    <string name="pollen_alternaria">Alternaria</string>
+    <string name="pollen_atriplex">Semak garam</string>
+    <string name="pollen_picea">Picea</string>
+    <string name="pollen_pinus">Pinus</string>
+    <string name="pollen_ulmus">Ulmus</string>
+    <string name="common_weather_text_glaze">Glasir</string>
 </resources>
