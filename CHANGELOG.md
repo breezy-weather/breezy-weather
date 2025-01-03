@@ -1,4 +1,4 @@
-# Version 5.4.1 (not yet released)
+# Version 5.4.1 (2024-01-03)
 
 **Improvements and fixes**
 - Fix crash of Weather source settings screen
