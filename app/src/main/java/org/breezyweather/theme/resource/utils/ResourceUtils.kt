@@ -32,12 +32,16 @@ object ResourceUtils {
         } catch (e: Exception) {
             // TODO: Dirty way to avoid crashes on debug build (because of applicationIdSuffix ".debug")
             try {
-                context.classLoader
-                    .loadClass("org.breezyweather.R$$type")
-                    .getField(resName)
-                    .getInt(null)
-            } catch (ignored: Exception) {
-                0
+                context.resources.getIdentifier(resName, type, context.packageName)
+            }catch (e: Exception) {
+                try {
+                    context.classLoader
+                        .loadClass("org.breezyweather.R$$type")
+                        .getField(resName)
+                        .getInt(null)
+                } catch (ignored: Exception) {
+                    0
+                }
             }
         }
     }
