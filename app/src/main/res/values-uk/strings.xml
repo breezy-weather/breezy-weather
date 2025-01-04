@@ -720,10 +720,10 @@
     <string name="weather_forecast_data_by">Прогноз надано %s</string>
     <string name="pollen_alternaria">Альтернаріоз</string>
     <string name="pollen_pinus">Сосна</string>
-    <string name="pollen_ulmus">в’яз</string>
+    <string name="pollen_ulmus">В’яз</string>
     <string name="common_weather_text_blowing_snow">Сніговий метел</string>
     <string name="common_weather_text_drifting_snow">Заносний сніг</string>
-    <string name="common_weather_text_glaze">глазурувати</string>
+    <string name="common_weather_text_glaze">Ожеледь</string>
     <string name="pollen_atriplex">Соляний кущ</string>
     <string name="pollen_acer">Клен</string>
     <string name="pollen_juniperus">Ялівець</string>
