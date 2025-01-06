@@ -1,10 +1,15 @@
+# Version 5.4.2 (not yet released)
+
+**Weather sources**
+- [AccuWeather] Fix missing forecast when using Developer portal (custom API keys)
+
+
 # Version 5.4.1 (2024-01-03)
 
 **Improvements and fixes**
 - Fix crash of Weather source settings screen
 
 **Weather sources**
-- [AccuWeather] Fix missing forecast when using Developer portal (custom API keys)
 - [ATMO GrandEst] Fix missing default key in release builds
 - [Atmo Hauts-de-France] Fix missing default key in release builds
 - [AtmoSud] Fix missing default key in release builds
