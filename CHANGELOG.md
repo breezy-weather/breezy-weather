@@ -3,6 +3,9 @@
 **Weather sources**
 - [AccuWeather] Fix missing forecast when using Developer portal (custom API keys)
 
+**Translations**
+- Translations updated
+
 
 # Version 5.4.1 (2024-01-03)
 
