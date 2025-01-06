@@ -13,7 +13,7 @@
     <string name="precipitation_total">Вкупно</string>
     <string name="precipitation_snow">Снег</string>
     <string name="precipitation_ice">Мраз</string>
-    <string name="precipitation_intensity_heavy">Многу дожд</string>
+    <string name="precipitation_intensity_heavy">Пороен</string>
     <string name="wind_direction">Правец на ветрот</string>
     <string name="wind_direction_short_variable">Променливо</string>
     <string name="wind_direction_short_NE">СИ</string>
@@ -609,4 +609,11 @@
     <string name="uv_index_short">УВ индекс</string>
     <string name="visibility_short">Видливост</string>
     <string name="pressure_short">Притисок</string>
+    <string name="current_weather">Времето во моментов</string>
+    <string name="precipitation_intensity_medium">Умерен</string>
+    <string name="temperature_feels_like_short">Се чувствува како</string>
+    <string name="forecast">Прогноза</string>
+    <string name="alert">Предупредување</string>
+    <string name="pollen_acer">Јавор</string>
+    <string name="alert_source">Извор: %s</string>
 </resources>
