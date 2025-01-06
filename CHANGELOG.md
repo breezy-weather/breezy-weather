@@ -4,6 +4,7 @@
 - Fix crash of Weather source settings screen
 
 **Weather sources**
+- [AccuWeather] Fix missing forecast when using Developer portal (custom API keys)
 - [ATMO GrandEst] Fix missing default key in release builds
 - [Atmo Hauts-de-France] Fix missing default key in release builds
 - [AtmoSud] Fix missing default key in release builds

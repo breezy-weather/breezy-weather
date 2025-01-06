@@ -107,6 +107,7 @@ class AccuService @Inject constructor(
         feature: SourceFeature,
     ): Boolean {
         return portal == AccuPortalPreference.ENTERPRISE ||
+            feature == SourceFeature.FORECAST ||
             feature == SourceFeature.CURRENT ||
             feature == SourceFeature.ALERT
     }
