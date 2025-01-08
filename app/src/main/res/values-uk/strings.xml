@@ -199,7 +199,7 @@
     <string name="weather_alert_data_by">Дані про попередження надані %s</string>
     <string name="weather_api_limit_reached_content">Щоб обійти це обмеження, додайте власний ключ API.</string>
     <string name="weather_api_unauthorized_content">Для деяких джерел погодних даних вам потрібно надати власний ключ API. Якщо ви вже надали його, будь ласка, перевірте наданий вами ключ API.</string>
-    <string name="weather_message_data_refresh_failed">Не вдалося оновити погодні дані</string>
+    <string name="weather_message_data_refresh_failed">Не вдалося оновити дані</string>
     <string name="weather_api_unauthorized_title">Доступ до API несанкціонований</string>
     <string name="weather_api_key_required_missing_content">Щоб використовувати це джерело, вам потрібно надати ключ API.</string>
     <string name="settings_weather_source_portal">Портал</string>
