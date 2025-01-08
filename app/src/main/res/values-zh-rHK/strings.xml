@@ -227,7 +227,7 @@
     <string name="weather_minutely_data_by">降水臨近預測資料由 %s 提供</string>
     <string name="weather_alert_data_by">警告資料由 %s 提供</string>
     <string name="weather_normals_data_by">正常溫度範圍資料由 %s 提供</string>
-    <string name="weather_message_data_refresh_failed">無法更新天氣資料</string>
+    <string name="weather_message_data_refresh_failed">無法更新資料</string>
     <string name="weather_message_unsupported_feature">該來源並不支援某項要求的功能</string>
     <string name="weather_message_invalid_location">位置無效，請刪除後再新增</string>
     <string name="weather_api_limit_reached_title">API 要求次數已達上限</string>
