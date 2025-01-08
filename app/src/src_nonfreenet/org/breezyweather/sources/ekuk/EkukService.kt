@@ -90,7 +90,7 @@ class EkukService @Inject constructor(
         now.add(Calendar.DATE, -1)
         val yesterday = formatter.format(now.time)
 
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
 
         val airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
             val airQualityStation = location.parameters.getOrElse(id) { null }?.getOrElse("airQualityStation") { null }
@@ -100,7 +100,7 @@ class EkukService @Inject constructor(
                     indicators = EKUK_AIR_QUALITY_INDICATORS,
                     range = "$yesterday,$today"
                 ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.AIR_QUALITY)
+                    failedFeatures[SourceFeature.AIR_QUALITY] = it
                     Observable.just(emptyList())
                 }
             } else {
@@ -119,7 +119,7 @@ class EkukService @Inject constructor(
                     indicators = EKUK_POLLEN_INDICATORS,
                     range = "$yesterday,$today"
                 ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.POLLEN)
+                    failedFeatures[SourceFeature.POLLEN] = it
                     Observable.just(emptyList())
                 }
             } else {

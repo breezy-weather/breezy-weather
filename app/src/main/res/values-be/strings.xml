@@ -700,7 +700,6 @@
     <string name="common_weather_text_dust">Пыл</string>
     <string name="common_weather_text_dust_storm">Пыльная бура</string>
     <string name="location_message_location_access_off">Доступ да месцазнаходжання адключаны</string>
-    <string name="weather_message_failed_feature">Крыніцы не ўдалося абнавіць: %s</string>
     <string name="weather_source_continent_north_america">Паўночная Амерыка</string>
     <string name="weather_source_continent_oceania">Акіянія</string>
     <string name="weather_source_continent_asia">Азія</string>

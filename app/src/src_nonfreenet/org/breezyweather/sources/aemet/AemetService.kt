@@ -97,7 +97,7 @@ class AemetService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrentUrl(
                 apiKey = apiKey,
@@ -109,14 +109,14 @@ class AemetService @Inject constructor(
                         apiKey = apiKey,
                         path = path
                     ).onErrorResumeNext {
-                        failedFeatures.add(SourceFeature.CURRENT)
+                        failedFeatures[SourceFeature.CURRENT] = it
                         Observable.just(emptyList())
                     }.blockingFirst()
                 } else {
                     emptyList()
                 }
             }.onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(emptyList())
             }
         } else {
@@ -134,14 +134,14 @@ class AemetService @Inject constructor(
                         apiKey = apiKey,
                         path = path
                     ).onErrorResumeNext {
-                        failedFeatures.add(SourceFeature.NORMALS)
+                        failedFeatures[SourceFeature.NORMALS] = it
                         Observable.just(emptyList())
                     }.blockingFirst()
                 } else {
                     emptyList()
                 }
             }.onErrorResumeNext {
-                failedFeatures.add(SourceFeature.NORMALS)
+                failedFeatures[SourceFeature.NORMALS] = it
                 Observable.just(emptyList())
             }
         } else {
@@ -160,11 +160,11 @@ class AemetService @Inject constructor(
                     apiKey = apiKey,
                     path = path
                 ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FORECAST)
+                    failedFeatures[SourceFeature.FORECAST] = it
                     Observable.just(emptyList())
                 }.blockingFirst()
             }.onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(emptyList())
             }
         } else {
@@ -183,11 +183,11 @@ class AemetService @Inject constructor(
                     apiKey = apiKey,
                     path = path
                 ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FORECAST)
+                    failedFeatures[SourceFeature.FORECAST] = it
                     Observable.just(emptyList())
                 }.blockingFirst()
             }.onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(emptyList())
             }
         } else {

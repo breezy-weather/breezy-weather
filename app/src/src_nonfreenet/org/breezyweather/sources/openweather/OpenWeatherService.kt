@@ -78,7 +78,7 @@ class OpenWeatherService @Inject constructor(
     ): Observable<WeatherWrapper> {
         val apiKey = getApiKeyOrDefault()
         val languageCode = context.currentLocale.code
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getForecast(
                 apiKey,
@@ -87,7 +87,7 @@ class OpenWeatherService @Inject constructor(
                 "metric",
                 languageCode
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(OpenWeatherForecastResult())
             }
         } else {
@@ -101,7 +101,7 @@ class OpenWeatherService @Inject constructor(
                 "metric",
                 languageCode
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(OpenWeatherForecast())
             }
         } else {
@@ -113,7 +113,7 @@ class OpenWeatherService @Inject constructor(
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.AIR_QUALITY)
+                failedFeatures[SourceFeature.AIR_QUALITY] = it
                 Observable.just(OpenWeatherAirPollutionResult())
             }
         } else {

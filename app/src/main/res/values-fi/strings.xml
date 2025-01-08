@@ -705,7 +705,6 @@
     <string name="common_weather_text_cool">Viileä</string>
     <string name="common_weather_text_mist">Usva</string>
     <string name="common_weather_text_hot">Kuuma</string>
-    <string name="weather_message_failed_feature">Lähde ei pystynyt päivittämään: %s</string>
     <string name="common_weather_text_dry">Kuiva</string>
     <string name="common_weather_text_humid">Kostea</string>
     <string name="meteoam_weather_text_tornado_watersprout">Pyörremyrsky tai vesipatsas</string>

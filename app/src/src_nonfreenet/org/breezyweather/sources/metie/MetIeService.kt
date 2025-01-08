@@ -90,13 +90,13 @@ class MetIeService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getForecast(
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(emptyList())
             }
         } else {
@@ -104,7 +104,7 @@ class MetIeService @Inject constructor(
         }
         val alerts = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getWarnings().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.ALERT)
+                failedFeatures[SourceFeature.ALERT] = it
                 Observable.just(MetIeWarningResult())
             }
         } else {

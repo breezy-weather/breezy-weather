@@ -706,7 +706,6 @@
     <string name="common_weather_text_frost">Мраз</string>
     <string name="common_weather_text_dust_storm">Олуја с прашином</string>
     <string name="location_message_location_access_off">Приступ локацији је искључен</string>
-    <string name="weather_message_failed_feature">Неуспешно ажурирање извора: %s</string>
     <string name="weather_source_continent_north_america">Северна Америка</string>
     <string name="weather_source_continent_oceania">Океанија</string>
     <string name="weather_source_continent_south_america">Јужна Америка</string>

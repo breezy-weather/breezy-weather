@@ -72,14 +72,14 @@ class MeteoAmService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
 
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getForecast(
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(MeteoAmForecastResult())
             }
         } else {
@@ -90,7 +90,7 @@ class MeteoAmService @Inject constructor(
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(MeteoAmObservationResult())
             }
         } else {

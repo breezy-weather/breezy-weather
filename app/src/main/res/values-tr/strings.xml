@@ -702,7 +702,6 @@
     <string name="common_weather_text_dry">Kuru</string>
     <string name="common_weather_text_humid">Nemli</string>
     <string name="common_weather_text_warm">Ilık</string>
-    <string name="weather_message_failed_feature">Kaynak güncellenemedi: %s</string>
     <string name="common_weather_text_squall">Sert Rüzgar/Fırtına</string>
     <string name="weather_source_continent_worldwide">Dünya çapında</string>
     <string name="weather_source_continent_asia">Asya</string>

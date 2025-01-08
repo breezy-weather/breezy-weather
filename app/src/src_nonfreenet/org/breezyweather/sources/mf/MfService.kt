@@ -118,7 +118,7 @@ class MfService @Inject constructor(
     ): Observable<WeatherWrapper> {
         val languageCode = context.currentLocale.code
         val token = getToken()
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(
                 USER_AGENT,
@@ -128,7 +128,7 @@ class MfService @Inject constructor(
                 "iso",
                 token
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(MfCurrentResult())
             }
         } else {
@@ -142,7 +142,7 @@ class MfService @Inject constructor(
                 "iso",
                 token
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(MfForecastResult())
             }
         } else {
@@ -174,7 +174,7 @@ class MfService @Inject constructor(
                 "iso",
                 token
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.MINUTELY)
+                failedFeatures[SourceFeature.MINUTELY] = it
                 Observable.just(MfRainResult())
             }
         } else {
@@ -183,7 +183,7 @@ class MfService @Inject constructor(
 
         val domain = location.parameters.getOrElse(id) { null }?.getOrElse("domain") { null }
         if (SourceFeature.ALERT in requestedFeatures && domain.isNullOrEmpty()) {
-            failedFeatures.add(SourceFeature.ALERT)
+            failedFeatures[SourceFeature.ALERT] = InvalidLocationException()
         }
 
         val warningsJ0 = if (SourceFeature.ALERT in requestedFeatures) {
@@ -195,7 +195,7 @@ class MfService @Inject constructor(
                     "iso",
                     token
                 ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.ALERT)
+                    failedFeatures[SourceFeature.ALERT] = it
                     Observable.just(MfWarningsResult())
                 }
             } else {
@@ -233,7 +233,7 @@ class MfService @Inject constructor(
                     token
                 ).onErrorResumeNext {
                     it.printStackTrace()
-                    failedFeatures.add(SourceFeature.ALERT)
+                    failedFeatures[SourceFeature.ALERT] = it
                     Observable.just(MfWarningDictionaryResult())
                 }
             } else {
@@ -254,7 +254,7 @@ class MfService @Inject constructor(
                     token
                 ).onErrorResumeNext {
                     it.printStackTrace()
-                    failedFeatures.add(SourceFeature.ALERT)
+                    failedFeatures[SourceFeature.ALERT] = it
                     Observable.just(MfWarningsOverseasResult())
                 }
             } else {
@@ -273,7 +273,7 @@ class MfService @Inject constructor(
                 location.longitude,
                 token
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.NORMALS)
+                failedFeatures[SourceFeature.NORMALS] = it
                 Observable.just(MfNormalsResult())
             }
         } else {

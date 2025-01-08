@@ -25,6 +25,7 @@ import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
+import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -120,10 +121,10 @@ abstract class ClimWebService : HttpSource(), WeatherSource, ConfigurableSource,
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val alerts = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getAlerts().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.ALERT)
+                failedFeatures[SourceFeature.ALERT] = it
                 Observable.just(ClimWebAlertsResult())
             }
         } else {
@@ -141,7 +142,7 @@ abstract class ClimWebService : HttpSource(), WeatherSource, ConfigurableSource,
                 }
             } else {
                 // Fail here: There should be a city ID in the location parameters
-                failedFeatures.add(SourceFeature.NORMALS)
+                failedFeatures[SourceFeature.NORMALS] = InvalidLocationException()
                 Observable.just(emptyList())
             }
         } else {

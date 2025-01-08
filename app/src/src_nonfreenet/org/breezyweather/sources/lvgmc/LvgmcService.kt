@@ -90,14 +90,14 @@ class LvgmcService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
 
         val daily = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getForecast(
                 scope = "daily",
                 punkts = forecastLocation
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(emptyList())
             }
         } else {
@@ -108,7 +108,7 @@ class LvgmcService @Inject constructor(
                 scope = "hourly",
                 punkts = forecastLocation
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(emptyList())
             }
         } else {
@@ -117,7 +117,7 @@ class LvgmcService @Inject constructor(
 
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(emptyList())
             }
         } else {
@@ -132,7 +132,7 @@ class LvgmcService @Inject constructor(
                 station = airQualityLocation,
                 fromDate = fromDate
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.AIR_QUALITY)
+                failedFeatures[SourceFeature.AIR_QUALITY] = it
                 Observable.just(emptyList())
             }
         } else {

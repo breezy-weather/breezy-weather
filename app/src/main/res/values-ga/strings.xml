@@ -162,7 +162,6 @@
     <string name="weather_message_data_refresh_failed">Theip ar athnuachan sonraí aimsire</string>
     <string name="weather_message_unsupported_feature">Ní thacaíonn foinse le ceann de na gnéithe iarrtha</string>
     <string name="weather_message_invalid_location">Suíomh neamhbhailí, scrios é agus ath-chur leis</string>
-    <string name="weather_message_failed_feature">Theip ar nuashonrú foinse: %s</string>
     <string name="weather_message_too_frequent_refreshes">Fan cúpla soicind sula mbainfidh tú triail as…</string>
     <string name="weather_api_limit_reached_title">Teorainn iarratais API bainte amach</string>
     <string name="weather_api_limit_reached_content">Chun an teorainn a oibriú, cuir d’eochair API féin leis.</string>

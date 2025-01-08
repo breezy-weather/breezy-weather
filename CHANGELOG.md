@@ -1,5 +1,8 @@
 # Version 5.4.2 (not yet released)
 
+**Improvements and fixes**
+- Refresh errors are now detailed again (regression introduced in v5.3)
+
 **Weather sources**
 - [AccuWeather] Fix missing forecast when using Developer portal (custom API keys)
 

@@ -34,5 +34,5 @@ data class WeatherWrapper(
     val minutelyForecast: List<Minutely>? = null,
     val alertList: List<Alert>? = null,
     val normals: Normals? = null,
-    val failedFeatures: List<SourceFeature>? = null,
+    val failedFeatures: Map<SourceFeature, Throwable>? = null,
 )

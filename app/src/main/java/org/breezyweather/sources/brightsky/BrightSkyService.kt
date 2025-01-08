@@ -86,7 +86,7 @@ class BrightSkyService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val weather = if (SourceFeature.FORECAST in requestedFeatures) {
             val initialDate = Date().toTimezoneNoHour(location.javaTimeZone)
             val date = initialDate!!.toCalendarWithTimeZone(location.javaTimeZone).apply {
@@ -104,7 +104,7 @@ class BrightSkyService @Inject constructor(
                 date.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss", location),
                 lastDate.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss", location)
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(BrightSkyWeatherResult())
             }
         } else {
@@ -116,7 +116,7 @@ class BrightSkyService @Inject constructor(
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(BrightSkyCurrentWeatherResult())
             }
         } else {
@@ -128,7 +128,7 @@ class BrightSkyService @Inject constructor(
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.ALERT)
+                failedFeatures[SourceFeature.ALERT] = it
                 Observable.just(BrightSkyAlertsResult())
             }
         } else {

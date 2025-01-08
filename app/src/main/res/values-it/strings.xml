@@ -703,7 +703,6 @@
     <string name="common_weather_text_mist">Nebbia</string>
     <string name="common_weather_text_cool">Fresco</string>
     <string name="common_weather_text_cold">Freddo</string>
-    <string name="weather_message_failed_feature">Aggiornamento fonte fallito: %s</string>
     <string name="weather_source_continent_worldwide">Mondiale</string>
     <string name="weather_source_continent_africa">Africa</string>
     <string name="weather_source_continent_asia">Asia</string>

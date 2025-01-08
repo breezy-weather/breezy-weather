@@ -698,7 +698,6 @@
     <string name="common_weather_text_cool">Прохладен</string>
     <string name="common_weather_text_cold">Студен</string>
     <string name="location_message_location_access_off">Достъпът до местоположението е изключен</string>
-    <string name="weather_message_failed_feature">Източникът не успя да се актуализира: %s</string>
     <string name="weather_source_continent_worldwide">Глобален</string>
     <string name="weather_source_continent_africa">Африка</string>
     <string name="weather_source_continent_south_america">Южна Америка</string>

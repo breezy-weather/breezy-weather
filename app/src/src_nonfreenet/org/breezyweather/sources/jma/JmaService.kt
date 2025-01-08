@@ -27,6 +27,7 @@ import io.reactivex.rxjava3.core.Observable
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
@@ -135,10 +136,10 @@ class JmaService @Inject constructor(
             prefArea
         }
 
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val daily = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getDaily(forecastPrefArea).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(emptyList())
             }
         } else {
@@ -146,7 +147,7 @@ class JmaService @Inject constructor(
         }
         val hourly = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getHourly(class10s).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(JmaHourlyResult())
             }
         } else {
@@ -175,11 +176,11 @@ class JmaService @Inject constructor(
                         amedas = currentAmedas,
                         timestamp = outgoingFormatter.format(timestamp)
                     ).onErrorResumeNext {
-                        failedFeatures.add(SourceFeature.CURRENT)
+                        failedFeatures[SourceFeature.CURRENT] = it
                         Observable.just(emptyMap())
                     }
                 } else {
-                    failedFeatures.add(SourceFeature.CURRENT)
+                    failedFeatures[SourceFeature.CURRENT] = WeatherException()
                     Observable.just(emptyMap())
                 }
             }
@@ -189,7 +190,7 @@ class JmaService @Inject constructor(
 
         val bulletin = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getBulletin(forecastPrefArea).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(JmaBulletinResult())
             }
         } else {
@@ -199,7 +200,7 @@ class JmaService @Inject constructor(
         // ALERT
         val alert = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getAlert(prefArea).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.ALERT)
+                failedFeatures[SourceFeature.ALERT] = it
                 Observable.just(JmaAlertResult())
             }
         } else {

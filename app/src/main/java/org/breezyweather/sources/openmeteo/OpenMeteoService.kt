@@ -120,7 +120,7 @@ class OpenMeteoService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val weather = if (SourceFeature.FORECAST in requestedFeatures ||
             SourceFeature.MINUTELY in requestedFeatures ||
             SourceFeature.CURRENT in requestedFeatures
@@ -210,13 +210,13 @@ class OpenMeteoService @Inject constructor(
                     Observable.error(InvalidLocationException())
                 } else {
                     if (SourceFeature.FORECAST in requestedFeatures) {
-                        failedFeatures.add(SourceFeature.FORECAST)
+                        failedFeatures[SourceFeature.FORECAST] = it
                     }
                     if (SourceFeature.MINUTELY in requestedFeatures) {
-                        failedFeatures.add(SourceFeature.MINUTELY)
+                        failedFeatures[SourceFeature.MINUTELY] = it
                     }
                     if (SourceFeature.CURRENT in requestedFeatures) {
-                        failedFeatures.add(SourceFeature.CURRENT)
+                        failedFeatures[SourceFeature.CURRENT] = it
                     }
                     Observable.just(OpenMeteoWeatherResult())
                 }
@@ -261,10 +261,10 @@ class OpenMeteoService @Inject constructor(
                 pastDays = 1
             ).onErrorResumeNext {
                 if (SourceFeature.AIR_QUALITY in requestedFeatures) {
-                    failedFeatures.add(SourceFeature.AIR_QUALITY)
+                    failedFeatures[SourceFeature.AIR_QUALITY] = it
                 }
                 if (SourceFeature.POLLEN in requestedFeatures) {
-                    failedFeatures.add(SourceFeature.POLLEN)
+                    failedFeatures[SourceFeature.POLLEN] = it
                 }
                 Observable.just(OpenMeteoAirQualityResult())
             }

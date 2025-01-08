@@ -101,13 +101,13 @@ class BmkgService @Inject constructor(
             return Observable.error(ApiKeyMissingException())
         }
 
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getForecast(
                 lat = location.latitude,
                 lon = location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(BmkgForecastResult())
             }
         } else {
@@ -119,7 +119,7 @@ class BmkgService @Inject constructor(
                 lat = location.latitude,
                 lon = location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(BmkgCurrentResult())
             }
         } else {
@@ -132,7 +132,7 @@ class BmkgService @Inject constructor(
                 lat = location.latitude,
                 lon = location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.ALERT)
+                failedFeatures[SourceFeature.ALERT] = it
                 Observable.just(BmkgWarningResult())
             }
         } else {
@@ -150,7 +150,7 @@ class BmkgService @Inject constructor(
                         lon = location.longitude,
                         day = day
                     ).onErrorResumeNext {
-                        failedFeatures.add(SourceFeature.ALERT)
+                        failedFeatures[SourceFeature.ALERT] = it
                         Observable.just(BmkgIbfResult())
                     }
                 } else {
@@ -161,7 +161,7 @@ class BmkgService @Inject constructor(
 
         val pm25 = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
             mAppApi.getPm25().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.AIR_QUALITY)
+                failedFeatures[SourceFeature.AIR_QUALITY] = it
                 Observable.just(emptyList())
             }
         } else {

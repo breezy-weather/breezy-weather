@@ -108,7 +108,7 @@ class NwsService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
 
         val nwsForecastResult = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getForecast(
@@ -117,7 +117,7 @@ class NwsService @Inject constructor(
                 gridX.toInt(),
                 gridY.toInt()
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(NwsGridPointResult())
             }
         } else {
@@ -131,7 +131,7 @@ class NwsService @Inject constructor(
                 gridX = gridX.toInt(),
                 gridY = gridY.toInt()
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(NwsDailyResult())
             }
         } else {
@@ -143,7 +143,7 @@ class NwsService @Inject constructor(
                 USER_AGENT,
                 station!!
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(NwsCurrentResult())
             }
         } else {
@@ -155,7 +155,7 @@ class NwsService @Inject constructor(
                 USER_AGENT,
                 "${location.latitude},${location.longitude}"
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.ALERT)
+                failedFeatures[SourceFeature.ALERT] = it
                 Observable.just(NwsAlertsResult())
             }
         } else {

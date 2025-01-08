@@ -318,7 +318,6 @@
     <string name="settings_appearance_dark_mode_title">இருண்ட முறை</string>
     <string name="settings_widgets_notification_feels_like_switch">பயன்பாடு வெப்பநிலை போல உணர்கிறது</string>
     <string name="settings_automatic">தானியங்கி</string>
-    <string name="weather_message_failed_feature">மூலத்தைப் புதுப்பிக்கத் தவறிவிட்டது: %s</string>
     <string name="weather_api_limit_reached_content">வரம்பை பணிபுரிய, உங்கள் சொந்த பநிஇ விசையைச் சேர்க்கவும்.</string>
     <string name="settings_weather_source_unavailable">%s (கிடைக்கவில்லை)</string>
     <string name="settings_weather_source_none">எதுவுமில்லை</string>

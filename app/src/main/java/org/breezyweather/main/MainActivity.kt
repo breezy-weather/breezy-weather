@@ -78,20 +78,17 @@ import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.snackbar.SnackbarContainer
-import org.breezyweather.common.source.RefreshError
 import org.breezyweather.common.ui.composables.AlertDialogConfirmOnly
 import org.breezyweather.common.ui.composables.AlertDialogNoPadding
 import org.breezyweather.common.ui.composables.LocationPreference
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.databinding.ActivityMainBinding
-import org.breezyweather.domain.source.resourceName
 import org.breezyweather.main.fragments.HomeFragment
 import org.breezyweather.main.fragments.ManagementFragment
 import org.breezyweather.main.fragments.ModifyMainSystemBarMessage
 import org.breezyweather.main.fragments.PushedManagementFragment
 import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.search.SearchActivity
 import org.breezyweather.settings.SettingsChangedMessage
 import org.breezyweather.sources.SourceManager
@@ -439,22 +436,15 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                 }
             } else {
                 errors.firstOrNull()?.let { error ->
-                    val shortMessage = getRefreshErrorShortMessage(error)
-                    val shortMessageWithSource = if (!error.source.isNullOrEmpty()) {
-                        "${sourceManager.getSource(
-                            error.source
-                        )?.name ?: error.source}${getString(R.string.colon_separator)}$shortMessage"
-                    } else {
-                        shortMessage
-                    }
+                    val shortMessage = error.getMessage(this, sourceManager)
                     error.error.showDialogAction?.let { showDialogAction ->
                         SnackbarHelper.showSnackbar(
-                            content = shortMessageWithSource,
+                            content = shortMessage,
                             action = getString(error.error.actionButtonMessage)
                         ) {
                             showDialogAction(this)
                         }
-                    } ?: SnackbarHelper.showSnackbar(shortMessageWithSource)
+                    } ?: SnackbarHelper.showSnackbar(shortMessage)
                 }
             }
         }
@@ -635,8 +625,8 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                 text = {
                     LazyColumn {
                         items(viewModel.snackbarError.value!!) {
-                            val source = it.source?.let { s -> sourceManager.getSource(s)?.name } ?: it.source
-                            val message = getRefreshErrorShortMessage(it)
+                            val source = it.getSourceWithOptionalFeature(this@MainActivity, sourceManager)
+                            val message = this@MainActivity.getString(it.error.shortMessage)
 
                             ListItem(
                                 colors = ListItemDefaults.colors(AlertDialogDefaults.containerColor),
@@ -747,18 +737,6 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
 
     val isDaylight: Boolean
         get() = viewModel.currentLocation.value?.daylight ?: true
-
-    private fun getRefreshErrorShortMessage(error: RefreshError): String =
-        if (error.error == RefreshErrorType.FAILED_FEATURE) {
-            getString(
-                error.error.shortMessage,
-                getString(error.feature!!.resourceName!!)
-            )
-        } else {
-            getString(error.error.shortMessage)
-        }
-
-    // control.
 
     private fun consumeIntentAction(intent: Intent) {
         val action = intent.action

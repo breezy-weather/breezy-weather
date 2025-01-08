@@ -102,12 +102,12 @@ class NamemService @Inject constructor(
         }
         val body = """{"sid":$stationId}"""
 
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(NamemCurrentResult())
             }
         } else {
@@ -118,7 +118,7 @@ class NamemService @Inject constructor(
             mApi.getHourly(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(NamemHourlyResult())
             }
         } else {
@@ -129,7 +129,7 @@ class NamemService @Inject constructor(
             mApi.getDaily(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(NamemDailyResult())
             }
         } else {
@@ -140,7 +140,7 @@ class NamemService @Inject constructor(
             mApi.getNormals(
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.NORMALS)
+                failedFeatures[SourceFeature.NORMALS] = it
                 Observable.just(NamemNormalsResult())
             }
         } else {
@@ -149,7 +149,7 @@ class NamemService @Inject constructor(
 
         val airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
             mApi.getAirQuality().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.AIR_QUALITY)
+                failedFeatures[SourceFeature.AIR_QUALITY] = it
                 Observable.just(NamemAirQualityResult())
             }
         } else {

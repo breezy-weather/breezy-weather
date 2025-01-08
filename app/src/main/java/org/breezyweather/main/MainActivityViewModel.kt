@@ -602,7 +602,7 @@ class MainActivityViewModel @Inject constructor(
             e.printStackTrace()
             callback.onCompleted(
                 location,
-                listOf(RefreshError(RefreshErrorType.WEATHER_REQ_FAILED))
+                listOf(RefreshError(RefreshErrorType.DATA_REFRESH_FAILED))
             )
         }
     }

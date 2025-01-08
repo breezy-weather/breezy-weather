@@ -80,11 +80,11 @@ class PagasaService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
 
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(emptyMap())
             }
         } else {
@@ -97,7 +97,7 @@ class PagasaService @Inject constructor(
                     site = station,
                     day = day
                 ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.FORECAST)
+                    failedFeatures[SourceFeature.FORECAST] = it
                     Observable.just(PagasaHourlyResult())
                 }
             } else {

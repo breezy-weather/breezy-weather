@@ -260,10 +260,8 @@
     <string name="weather_minutely_data_by">Precipitation nowcasting data by %s</string>
     <string name="weather_alert_data_by">Alert data by %s</string>
     <string name="weather_normals_data_by">Temperature normals data by %s</string>
-    <string name="weather_message_data_refresh_failed">Weather data refresh failed</string>
+    <string name="weather_message_data_refresh_failed">Data refresh failed</string>
     <string name="weather_message_unsupported_feature">Source doesn’t support one of requested features</string>
-    <!-- %s is a feature such as: air quality, pollen, alerts, normals, etc -->
-    <string name="weather_message_failed_feature">Source failed to update: %s</string>
     <string name="weather_message_invalid_location">Invalid location, please delete it and re-add</string>
     <string name="weather_message_too_frequent_refreshes">Please wait a few seconds before retrying…</string>
     <string name="weather_api_limit_reached_title">API requests limit reached</string>
@@ -1196,5 +1194,6 @@
     <!-- Keyword shown when data is missing, for example requesting humidity in widgets but data doesn’t exist -->
     <string name="null_data_text">N/A</string>
     <string name="colon_separator" translatable="false">:\u0020</string>
+    <string name="parenthesis" translatable="false">(%s)</string>
     <string name="comma_separator" translatable="false">,\u0020</string>
 </resources>

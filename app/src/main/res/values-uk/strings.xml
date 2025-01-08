@@ -700,7 +700,6 @@
     <string name="common_weather_text_dust_storm">Пильна буря</string>
     <string name="common_weather_text_dust">Пил</string>
     <string name="location_message_location_access_off">Доступ до місцезнаходження вимкнено</string>
-    <string name="weather_message_failed_feature">Джерело не вдалося оновити: %s</string>
     <string name="weather_source_continent_worldwide">По всьому світу</string>
     <string name="weather_source_continent_asia">Азія</string>
     <string name="weather_source_continent_europe">Європа</string>

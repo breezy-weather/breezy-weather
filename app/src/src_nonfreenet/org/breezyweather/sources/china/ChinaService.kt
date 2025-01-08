@@ -100,7 +100,7 @@ class ChinaService @Inject constructor(
             }
         }
 
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val main = if (SourceFeature.FORECAST in requestedFeatures ||
             SourceFeature.CURRENT in requestedFeatures ||
             SourceFeature.AIR_QUALITY in requestedFeatures ||
@@ -118,16 +118,16 @@ class ChinaService @Inject constructor(
                 context.currentLocale.toString().lowercase()
             ).onErrorResumeNext {
                 if (SourceFeature.FORECAST in requestedFeatures) {
-                    failedFeatures.add(SourceFeature.FORECAST)
+                    failedFeatures[SourceFeature.FORECAST] = it
                 }
                 if (SourceFeature.CURRENT in requestedFeatures) {
-                    failedFeatures.add(SourceFeature.CURRENT)
+                    failedFeatures[SourceFeature.CURRENT] = it
                 }
                 if (SourceFeature.AIR_QUALITY in requestedFeatures) {
-                    failedFeatures.add(SourceFeature.AIR_QUALITY)
+                    failedFeatures[SourceFeature.AIR_QUALITY] = it
                 }
                 if (SourceFeature.ALERT in requestedFeatures) {
-                    failedFeatures.add(SourceFeature.ALERT)
+                    failedFeatures[SourceFeature.ALERT] = it
                 }
                 Observable.just(ChinaForecastResult())
             }
@@ -144,7 +144,7 @@ class ChinaService @Inject constructor(
                 locationKey = "weathercn%3A$locationKey",
                 sign = CHINA_SIGN
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.MINUTELY)
+                failedFeatures[SourceFeature.MINUTELY] = it
                 Observable.just(ChinaMinutelyResult())
             }
         } else {

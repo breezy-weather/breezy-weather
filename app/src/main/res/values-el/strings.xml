@@ -707,7 +707,6 @@
     <string name="common_weather_text_dust_storm">Θύελλα Σκόνης</string>
     <string name="common_weather_text_dust">Σκόνη</string>
     <string name="location_message_location_access_off">Η πρόσβαση στην τοποθεσία είναι ανενεργή</string>
-    <string name="weather_message_failed_feature">Η πηγή απέτυχε να ενημερώσει: %s</string>
     <string name="weather_source_continent_africa">Αφρική</string>
     <string name="weather_source_continent_worldwide">Παγκοσμίως</string>
     <string name="weather_source_continent_asia">Ασία</string>

@@ -737,7 +737,6 @@
     <string name="common_weather_text_mist">霧</string>
     <string name="common_weather_text_hot">熱</string>
     <string name="common_weather_text_dry">乾燥</string>
-    <string name="weather_message_failed_feature">%sを更新できませんでした</string>
     <string name="weather_source_continent_worldwide">全世界</string>
     <string name="weather_source_continent_africa">アフリカ</string>
     <string name="weather_source_continent_asia">アジア</string>

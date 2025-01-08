@@ -479,7 +479,7 @@ class RefreshHelper @Inject constructor(
                                                         featuresToUpdate.forEach {
                                                             errors.add(
                                                                 RefreshError(
-                                                                    RefreshErrorType.FAILED_FEATURE,
+                                                                    RefreshErrorType.DATA_REFRESH_FAILED,
                                                                     entry.key,
                                                                     it
                                                                 )
@@ -492,7 +492,7 @@ class RefreshHelper @Inject constructor(
                                                 featuresToUpdate.forEach {
                                                     errors.add(
                                                         RefreshError(
-                                                            RefreshErrorType.FAILED_FEATURE,
+                                                            RefreshErrorType.DATA_REFRESH_FAILED,
                                                             entry.key,
                                                             it
                                                         )
@@ -508,12 +508,16 @@ class RefreshHelper @Inject constructor(
                 }
 
                 for ((k, v) in sourceCalls) {
-                    v?.failedFeatures?.forEach {
+                    v?.failedFeatures?.entries?.forEach { entry ->
                         errors.add(
                             RefreshError(
-                                RefreshErrorType.FAILED_FEATURE,
+                                getRequestErrorType(
+                                    context,
+                                    entry.value,
+                                    RefreshErrorType.DATA_REFRESH_FAILED
+                                ),
                                 k,
-                                it
+                                entry.key
                             )
                         )
                     }
@@ -535,7 +539,7 @@ class RefreshHelper @Inject constructor(
                                 if (it.isEmpty()) {
                                     errors.add(
                                         RefreshError(
-                                            RefreshErrorType.FAILED_FEATURE,
+                                            RefreshErrorType.INVALID_INCOMPLETE_DATA,
                                             location.forecastSource,
                                             SourceFeature.FORECAST
                                         )
@@ -739,7 +743,7 @@ class RefreshHelper @Inject constructor(
             e.printStackTrace()
             return WeatherResult(
                 location.weather,
-                listOf(RefreshError(RefreshErrorType.WEATHER_REQ_FAILED))
+                listOf(RefreshError(RefreshErrorType.DATA_REFRESH_FAILED))
             )
         }
     }
@@ -783,7 +787,7 @@ class RefreshHelper @Inject constructor(
             is SourceNotInstalledException -> RefreshErrorType.SOURCE_NOT_INSTALLED
             is LocationSearchException -> RefreshErrorType.LOCATION_SEARCH_FAILED
             is InvalidOrIncompleteDataException -> RefreshErrorType.INVALID_INCOMPLETE_DATA
-            is WeatherException -> RefreshErrorType.WEATHER_REQ_FAILED
+            is WeatherException -> RefreshErrorType.DATA_REFRESH_FAILED
             else -> {
                 e.printStackTrace()
                 defaultRefreshError

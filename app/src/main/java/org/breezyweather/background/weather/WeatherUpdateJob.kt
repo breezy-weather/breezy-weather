@@ -42,7 +42,6 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.ensureActive
 import org.breezyweather.BuildConfig
-import org.breezyweather.R
 import org.breezyweather.background.updater.AppUpdateChecker
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.bus.EventBus
@@ -58,7 +57,6 @@ import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.WeatherResult
 import org.breezyweather.domain.location.model.getPlace
-import org.breezyweather.domain.source.resourceName
 import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
@@ -225,13 +223,7 @@ class WeatherUpdateJob @AssistedInject constructor(
                     val locationResult = updateLocation(location)
 
                     locationResult.errors.forEach {
-                        val shortMessage = if (!it.source.isNullOrEmpty()) {
-                            "${it.source}${context.getString(
-                                R.string.colon_separator
-                            )}${context.getString(it.error.shortMessage)}"
-                        } else {
-                            context.getString(it.error.shortMessage)
-                        }
+                        val shortMessage = it.getMessage(context, sourceManager)
                         if (it.error != RefreshErrorType.NETWORK_UNAVAILABLE &&
                             it.error != RefreshErrorType.SERVER_TIMEOUT &&
                             it.error != RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING &&
@@ -252,43 +244,23 @@ class WeatherUpdateJob @AssistedInject constructor(
                             }
                         }
                     }
-                    if (locationResult.location.isUsable &&
-                        !locationResult.location.needsGeocodeRefresh
-                    ) {
+                    if (locationResult.location.isUsable && !locationResult.location.needsGeocodeRefresh) {
                         val weatherResult = updateWeather(
                             locationResult.location,
                             location.longitude != locationResult.location.longitude ||
                                 location.latitude != locationResult.location.latitude
                         )
                         newUpdates.add(
-                            location to
-                                locationResult.location.copy(weather = weatherResult.weather)
+                            location to locationResult.location.copy(weather = weatherResult.weather)
                         )
                         weatherResult.errors.forEach {
-                            val shortMessage = if (it.error == RefreshErrorType.FAILED_FEATURE) {
-                                context.getString(
-                                    it.error.shortMessage,
-                                    context.getString(it.feature!!.resourceName!!)
-                                )
-                            } else {
-                                context.getString(it.error.shortMessage)
-                            }
-                            val shortMessageWithSource = if (!it.source.isNullOrEmpty()) {
-                                val sourceName = sourceManager.getSource(it.source)?.name
-                                    ?: it.source
-                                "$sourceName${context.getString(
-                                    R.string.colon_separator
-                                )}$shortMessage"
-                            } else {
-                                shortMessage
-                            }
-                            failedUpdates.add(location to shortMessageWithSource)
+                            failedUpdates.add(location to it.getMessage(context, sourceManager))
                         }
                     }
                 } catch (e: Throwable) {
                     e.printStackTrace()
                     val errorMessage = if (e.message.isNullOrEmpty()) {
-                        context.getString(RefreshErrorType.WEATHER_REQ_FAILED.shortMessage)
+                        context.getString(RefreshErrorType.DATA_REFRESH_FAILED.shortMessage)
                     } else {
                         e.message
                     }

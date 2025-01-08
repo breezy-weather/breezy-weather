@@ -92,11 +92,11 @@ class LhmtService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
 
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getForecast(forecastLocation).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(LhmtWeatherResult())
             }
         } else {
@@ -104,7 +104,7 @@ class LhmtService @Inject constructor(
         }
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(currentLocation).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(LhmtWeatherResult())
             }
         } else {
@@ -115,11 +115,11 @@ class LhmtService @Inject constructor(
             mWwwApi.getAlertList().map { list ->
                 val path = list.first().substringAfter(LHMT_WWW_BASE_URL)
                 mWwwApi.getAlerts(path).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.ALERT)
+                    failedFeatures[SourceFeature.ALERT] = it
                     Observable.just(LhmtAlertsResult())
                 }.blockingFirst()
             }.onErrorResumeNext {
-                failedFeatures.add(SourceFeature.ALERT)
+                failedFeatures[SourceFeature.ALERT] = it
                 Observable.just(LhmtAlertsResult())
             }
         } else {

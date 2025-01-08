@@ -144,7 +144,7 @@ class AccuService @Inject constructor(
             "en"
         }
         val metric = SettingsManager.getInstance(context).precipitationUnit != PrecipitationUnit.IN
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(
                 locationKey!!,
@@ -152,7 +152,7 @@ class AccuService @Inject constructor(
                 languageCode,
                 details = true
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(emptyList())
             }
         } else {
@@ -167,7 +167,7 @@ class AccuService @Inject constructor(
                 details = true,
                 metric = metric
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(AccuForecastDailyResult())
             }
         } else {
@@ -182,7 +182,7 @@ class AccuService @Inject constructor(
                 details = true,
                 metric = metric
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(emptyList())
             }
         } else {
@@ -198,7 +198,7 @@ class AccuService @Inject constructor(
                 languageCode,
                 details = true
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.MINUTELY)
+                failedFeatures[SourceFeature.MINUTELY] = it
                 Observable.just(AccuMinutelyResult())
             }
         } else {
@@ -218,7 +218,7 @@ class AccuService @Inject constructor(
                         languageCode,
                         details = true
                     ).onErrorResumeNext {
-                        failedFeatures.add(SourceFeature.ALERT)
+                        failedFeatures[SourceFeature.ALERT] = it
                         Observable.just(emptyList())
                     }
                 }
@@ -229,7 +229,7 @@ class AccuService @Inject constructor(
                     languageCode,
                     details = true
                 ).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.ALERT)
+                    failedFeatures[SourceFeature.ALERT] = it
                     Observable.just(emptyList())
                 }
             }
@@ -246,7 +246,7 @@ class AccuService @Inject constructor(
                 pollutants = true,
                 languageCode
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.AIR_QUALITY)
+                failedFeatures[SourceFeature.AIR_QUALITY] = it
                 Observable.just(AccuAirQualityResult())
             }
         } else {
@@ -266,7 +266,7 @@ class AccuService @Inject constructor(
                 languageCode,
                 details = false
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.NORMALS)
+                failedFeatures[SourceFeature.NORMALS] = it
                 Observable.just(AccuClimoSummaryResult())
             }
         } else {

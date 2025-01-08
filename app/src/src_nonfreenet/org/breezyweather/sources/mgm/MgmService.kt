@@ -92,10 +92,10 @@ class MgmService @Inject constructor(
 
         val now = Calendar.getInstance(TimeZone.getTimeZone("Europe/Istanbul"), Locale.ENGLISH)
 
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(currentStation).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(emptyList())
             }
         } else {
@@ -104,7 +104,7 @@ class MgmService @Inject constructor(
 
         val daily = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getDaily(dailyStation).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(emptyList())
             }
         } else {
@@ -125,7 +125,7 @@ class MgmService @Inject constructor(
 
         val todayAlerts = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getAlert("today").onErrorResumeNext {
-                failedFeatures.add(SourceFeature.ALERT)
+                failedFeatures[SourceFeature.ALERT] = it
                 Observable.just(emptyList())
             }
         } else {
@@ -134,7 +134,7 @@ class MgmService @Inject constructor(
 
         val tomorrowAlerts = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getAlert("tomorrow").onErrorResumeNext {
-                failedFeatures.add(SourceFeature.ALERT)
+                failedFeatures[SourceFeature.ALERT] = it
                 Observable.just(emptyList())
             }
         } else {
@@ -148,7 +148,7 @@ class MgmService @Inject constructor(
                 month = now.get(Calendar.MONTH) + 1,
                 day = now.get(Calendar.DATE)
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.NORMALS)
+                failedFeatures[SourceFeature.NORMALS] = it
                 Observable.just(emptyList())
             }
         } else {

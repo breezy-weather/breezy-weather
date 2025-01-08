@@ -75,14 +75,14 @@ class DmiService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val weather = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getWeather(
                 location.latitude,
                 location.longitude,
                 DMI_WEATHER_CMD
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(DmiResult())
             }
         } else {
@@ -92,11 +92,11 @@ class DmiService @Inject constructor(
             val id = location.parameters.getOrElse(id) { null }?.getOrElse("id") { null }
             if (!id.isNullOrEmpty()) {
                 mApi.getAlerts(id).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.ALERT)
+                    failedFeatures[SourceFeature.ALERT] = it
                     Observable.just(DmiWarningResult())
                 }
             } else {
-                failedFeatures.add(SourceFeature.ALERT)
+                failedFeatures[SourceFeature.ALERT] = InvalidLocationException()
                 Observable.just(DmiWarningResult())
             }
         } else {

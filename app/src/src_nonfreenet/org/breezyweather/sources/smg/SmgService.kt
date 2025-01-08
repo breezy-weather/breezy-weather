@@ -120,10 +120,10 @@ class SmgService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val daily = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getDaily().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(SmgForecastResult())
             }
         } else {
@@ -131,7 +131,7 @@ class SmgService @Inject constructor(
         }
         val hourly = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getHourly().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(SmgForecastResult())
             }
         } else {
@@ -159,7 +159,7 @@ class SmgService @Inject constructor(
         // CURRENT
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(SmgCurrentResult())
             }
         } else {
@@ -177,7 +177,7 @@ class SmgService @Inject constructor(
             mApi.getBulletin(
                 lang = lang
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(SmgBulletinResult())
             }
         } else {
@@ -185,7 +185,7 @@ class SmgService @Inject constructor(
         }
         val uv = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getUVIndex().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(SmgUvResult())
             }
         } else {
@@ -196,7 +196,7 @@ class SmgService @Inject constructor(
         val alerts = MutableList(SMG_ALERT_TYPES.size) {
             if (SourceFeature.ALERT in requestedFeatures) {
                 mApi.getWarning(SMG_ALERT_TYPES[it], lang).onErrorResumeNext {
-                    failedFeatures.add(SourceFeature.ALERT)
+                    failedFeatures[SourceFeature.ALERT] = it
                     Observable.just(SmgWarningResult())
                 }
             } else {
@@ -229,7 +229,7 @@ class SmgService @Inject constructor(
         // AIR QUALITY
         val airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
             mCmsApi.getAirQuality(Calendar.getInstance().timeInMillis).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.AIR_QUALITY)
+                failedFeatures[SourceFeature.AIR_QUALITY] = it
                 Observable.just(SmgAirQualityResult())
             }
         } else {

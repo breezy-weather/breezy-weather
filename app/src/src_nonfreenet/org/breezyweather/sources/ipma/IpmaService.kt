@@ -89,10 +89,10 @@ class IpmaService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getForecast(globalIdLocal).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(emptyList())
             }
         } else {
@@ -100,7 +100,7 @@ class IpmaService @Inject constructor(
         }
         val alerts = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getAlerts().onErrorResumeNext {
-                failedFeatures.add(SourceFeature.ALERT)
+                failedFeatures[SourceFeature.ALERT] = it
                 Observable.just(IpmaAlertResult())
             }
         } else {

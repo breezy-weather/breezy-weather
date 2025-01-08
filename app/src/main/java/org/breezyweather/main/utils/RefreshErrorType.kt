@@ -129,13 +129,10 @@ enum class RefreshErrorType(
     UNSUPPORTED_FEATURE(
         shortMessage = R.string.weather_message_unsupported_feature
     ),
-    FAILED_FEATURE(
-        shortMessage = R.string.weather_message_failed_feature
-    ),
     INVALID_INCOMPLETE_DATA(
         shortMessage = R.string.message_invalid_incomplete_data
     ),
-    WEATHER_REQ_FAILED(
+    DATA_REFRESH_FAILED(
         shortMessage = R.string.weather_message_data_refresh_failed
     ),
 }

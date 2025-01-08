@@ -225,9 +225,8 @@
     <string name="location_message_reverse_geocoding_failed">La source météo ne reconnaît pas votre emplacement</string>
     <string name="location_message_permission_background_missing">Permission d’accéder à la position en arrière-plan manquante</string>
     <string name="location_message_location_access_off">L’accès à la position est désactivé</string>
-    <string name="weather_message_data_refresh_failed">Échec d’actualisation des données météo</string>
+    <string name="weather_message_data_refresh_failed">Échec d’actualisation des données</string>
     <string name="weather_message_unsupported_feature">La source ne supporte pas une des fonctionnalités demandées</string>
-    <string name="weather_message_failed_feature">La source a échoué à mettre à jour : %s</string>
     <string name="weather_message_invalid_location">Emplacement invalide, veuillez le supprimer et le réajouter</string>
     <string name="weather_message_too_frequent_refreshes">Veuillez patienter quelques secondes avant de réessayer…</string>
     <string name="location_dialog_failed_to_locate_title">Vous ne parvenez pas à être localisé ?</string>

@@ -106,7 +106,7 @@ class GeoSphereAtService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val hourly = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getHourlyForecast(
                 "${location.latitude},${location.longitude}",
@@ -125,7 +125,7 @@ class GeoSphereAtService @Inject constructor(
                     "sp" // Surface pressure
                 ).joinToString(",")
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(GeoSphereAtTimeseriesResult())
             }
         } else {
@@ -139,7 +139,7 @@ class GeoSphereAtService @Inject constructor(
                 "${location.latitude},${location.longitude}",
                 airQualityParameters.joinToString(",")
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.AIR_QUALITY)
+                failedFeatures[SourceFeature.AIR_QUALITY] = it
                 Observable.just(GeoSphereAtTimeseriesResult())
             }
         } else {
@@ -151,7 +151,7 @@ class GeoSphereAtService @Inject constructor(
                 "${location.latitude},${location.longitude}",
                 "rr" // precipitation sum
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.MINUTELY)
+                failedFeatures[SourceFeature.MINUTELY] = it
                 Observable.just(GeoSphereAtTimeseriesResult())
             }
         } else {
@@ -164,7 +164,7 @@ class GeoSphereAtService @Inject constructor(
                 location.latitude,
                 if (context.currentLocale.code == "de") "de" else "en"
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.ALERT)
+                failedFeatures[SourceFeature.ALERT] = it
                 Observable.just(GeoSphereAtWarningsResult())
             }
         } else {

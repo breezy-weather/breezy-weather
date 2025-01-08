@@ -690,7 +690,6 @@
     <string name="common_weather_text_cool">Prohladno</string>
     <string name="common_weather_text_cold">Hladno</string>
     <string name="common_weather_text_humid">Vlažno</string>
-    <string name="weather_message_failed_feature">Neuspjelo aktualiziranje izvora: %s</string>
     <string name="common_weather_text_squall">Oluja</string>
     <string name="weather_source_continent_worldwide">Svijet</string>
     <string name="weather_source_continent_africa">Afrika</string>

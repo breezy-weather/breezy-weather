@@ -141,14 +141,14 @@ class CwaService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val hourly = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getForecast(
                 apiKey = apiKey,
                 endpoint = CWA_HOURLY_ENDPOINTS[countyName]!!,
                 townshipName = townshipName
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(CwaForecastResult())
             }
         } else {
@@ -160,7 +160,7 @@ class CwaService @Inject constructor(
                 endpoint = CWA_DAILY_ENDPOINTS[countyName]!!,
                 townshipName = townshipName
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(CwaForecastResult())
             }
         } else {
@@ -172,7 +172,7 @@ class CwaService @Inject constructor(
                 apiKey = apiKey,
                 stationId = stationId
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(CwaCurrentResult())
             }
         } else {
@@ -185,7 +185,7 @@ class CwaService @Inject constructor(
                 endpoint = CWA_ASSISTANT_ENDPOINTS[countyName]!!,
                 apiKey = apiKey
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.CURRENT)
+                failedFeatures[SourceFeature.CURRENT] = it
                 Observable.just(CwaAssistantResult())
             }
         } else {
@@ -218,7 +218,7 @@ class CwaService @Inject constructor(
                 apiKey = apiKey,
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.AIR_QUALITY)
+                failedFeatures[SourceFeature.AIR_QUALITY] = it
                 Observable.just(CwaAirQualityResult())
             }
         } else {
@@ -281,7 +281,7 @@ class CwaService @Inject constructor(
                 stationId = station,
                 month = (now.get(Calendar.MONTH) + 1).toString()
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.NORMALS)
+                failedFeatures[SourceFeature.NORMALS] = it
                 Observable.just(CwaNormalsResult())
             }
         } else {
@@ -292,7 +292,7 @@ class CwaService @Inject constructor(
             mApi.getAlerts(
                 apiKey = apiKey
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.ALERT)
+                failedFeatures[SourceFeature.ALERT] = it
                 Observable.just(CwaAlertResult())
             }
         } else {

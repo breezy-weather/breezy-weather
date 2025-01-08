@@ -118,14 +118,14 @@ class MetNoService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val failedFeatures = mutableListOf<SourceFeature>()
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getForecast(
                 USER_AGENT,
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.FORECAST)
+                failedFeatures[SourceFeature.FORECAST] = it
                 Observable.just(MetNoForecastResult())
             }
         } else {
@@ -173,10 +173,10 @@ class MetNoService @Inject constructor(
                 location.longitude
             ).onErrorResumeNext {
                 if (SourceFeature.MINUTELY in requestedFeatures) {
-                    failedFeatures.add(SourceFeature.MINUTELY)
+                    failedFeatures[SourceFeature.MINUTELY] = it
                 }
                 if (SourceFeature.CURRENT in requestedFeatures) {
-                    failedFeatures.add(SourceFeature.CURRENT)
+                    failedFeatures[SourceFeature.CURRENT] = it
                 }
                 Observable.just(MetNoNowcastResult())
             }
@@ -190,7 +190,7 @@ class MetNoService @Inject constructor(
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.AIR_QUALITY)
+                failedFeatures[SourceFeature.AIR_QUALITY] = it
                 Observable.just(MetNoAirQualityResult())
             }
         } else {
@@ -204,7 +204,7 @@ class MetNoService @Inject constructor(
                 location.latitude,
                 location.longitude
             ).onErrorResumeNext {
-                failedFeatures.add(SourceFeature.ALERT)
+                failedFeatures[SourceFeature.ALERT] = it
                 Observable.just(MetNoAlertResult())
             }
         } else {

@@ -700,7 +700,6 @@
     <string name="common_weather_text_dust_storm">Putekļu vētra</string>
     <string name="common_weather_text_frost">Sals</string>
     <string name="location_message_location_access_off">Ir izslēgta piekļuve atrašanās vietai</string>
-    <string name="weather_message_failed_feature">Avotam neizdevās atjaunināt: %s</string>
     <string name="weather_source_continent_worldwide">Visa pasaule</string>
     <string name="weather_source_continent_africa">Āfrika</string>
     <string name="weather_source_continent_asia">Āzija</string>
