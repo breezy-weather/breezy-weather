@@ -353,7 +353,7 @@
     <string name="widget_clock_day_details">Klocka + daglig (detaljer)</string>
     <string name="weather_alert_data_by">Varningsdata från %s</string>
     <string name="weather_api_key_required_missing_content">För att använda denna källan behöver du bidra med en API-nyckel.</string>
-    <string name="weather_message_data_refresh_failed">Väderdatauppdatering misslyckades</string>
+    <string name="weather_message_data_refresh_failed">Datauppdatering misslyckades</string>
     <string name="ephemeris_moon_phase_last_quarter">Fjärde kvarteret</string>
     <string name="widget_trend_hourly">Timtrend</string>
     <string name="widget_clock_day_week">Klocka + daglig + veckovis</string>
