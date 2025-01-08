@@ -39,26 +39,13 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.rx3.awaitFirstOrElse
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
-import kotlinx.serialization.MissingFieldException
-import kotlinx.serialization.SerializationException
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.exceptions.ApiKeyMissingException
-import org.breezyweather.common.exceptions.ApiLimitReachedException
-import org.breezyweather.common.exceptions.ApiUnauthorizedException
-import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
-import org.breezyweather.common.exceptions.LocationAccessOffException
 import org.breezyweather.common.exceptions.LocationException
-import org.breezyweather.common.exceptions.LocationSearchException
-import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException
-import org.breezyweather.common.exceptions.MissingPermissionLocationException
 import org.breezyweather.common.exceptions.NoNetworkException
-import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
-import org.breezyweather.common.exceptions.SourceNotInstalledException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getIsoFormattedDate
-import org.breezyweather.common.extensions.getStringByLocale
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isOnline
 import org.breezyweather.common.extensions.locationManager
@@ -94,10 +81,6 @@ import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationI
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.SourceConfigStore
 import org.breezyweather.theme.resource.ResourcesProviderFactory
-import retrofit2.HttpException
-import java.net.SocketTimeoutException
-import java.net.UnknownHostException
-import java.text.ParseException
 import java.util.Calendar
 import java.util.Date
 import java.util.concurrent.CopyOnWriteArrayList
@@ -183,7 +166,7 @@ class RefreshHelper @Inject constructor(
                         currentLocation,
                         errors = currentErrors + listOf(
                             RefreshError(
-                                getRequestErrorType(
+                                RefreshErrorType.getTypeFromThrowable(
                                     context,
                                     e,
                                     RefreshErrorType.REVERSE_GEOCODING_FAILED
@@ -279,7 +262,7 @@ class RefreshHelper @Inject constructor(
                 location,
                 errors = listOf(
                     RefreshError(
-                        getRequestErrorType(context, e, RefreshErrorType.LOCATION_FAILED),
+                        RefreshErrorType.getTypeFromThrowable(context, e, RefreshErrorType.LOCATION_FAILED),
                         locationService.name
                     )
                 )
@@ -511,7 +494,7 @@ class RefreshHelper @Inject constructor(
                     v?.failedFeatures?.entries?.forEach { entry ->
                         errors.add(
                             RefreshError(
-                                getRequestErrorType(
+                                RefreshErrorType.getTypeFromThrowable(
                                     context,
                                     entry.value,
                                     RefreshErrorType.DATA_REFRESH_FAILED
@@ -746,57 +729,6 @@ class RefreshHelper @Inject constructor(
                 listOf(RefreshError(RefreshErrorType.DATA_REFRESH_FAILED))
             )
         }
-    }
-
-    private fun getRequestErrorType(
-        context: Context,
-        e: Throwable,
-        defaultRefreshError: RefreshErrorType,
-    ): RefreshErrorType {
-        val refreshErrorType = when (e) {
-            is NoNetworkException -> RefreshErrorType.NETWORK_UNAVAILABLE
-            // Can mean different things but most of the time, it’s a network issue:
-            is UnknownHostException -> RefreshErrorType.NETWORK_UNAVAILABLE
-            is HttpException -> {
-                LogHelper.log(msg = "HttpException ${e.code()}")
-                when (e.code()) {
-                    401, 403 -> RefreshErrorType.API_UNAUTHORIZED
-                    409, 429 -> RefreshErrorType.API_LIMIT_REACHED
-                    in 500..599 -> RefreshErrorType.SERVER_UNAVAILABLE
-                    else -> {
-                        e.printStackTrace()
-                        defaultRefreshError
-                    }
-                }
-            }
-            is SocketTimeoutException -> RefreshErrorType.SERVER_TIMEOUT
-            is ApiLimitReachedException -> RefreshErrorType.API_LIMIT_REACHED
-            is ApiKeyMissingException -> RefreshErrorType.API_KEY_REQUIRED_MISSING
-            is ApiUnauthorizedException -> RefreshErrorType.API_UNAUTHORIZED
-            is InvalidLocationException -> RefreshErrorType.INVALID_LOCATION
-            is LocationException -> RefreshErrorType.LOCATION_FAILED
-            is LocationAccessOffException -> RefreshErrorType.LOCATION_ACCESS_OFF
-            is MissingPermissionLocationException -> RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING
-            is MissingPermissionLocationBackgroundException ->
-                RefreshErrorType.ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING
-            is ReverseGeocodingException -> RefreshErrorType.REVERSE_GEOCODING_FAILED
-            is MissingFieldException, is SerializationException, is ParsingException, is ParseException -> {
-                e.printStackTrace()
-                RefreshErrorType.PARSING_ERROR
-            }
-            is SourceNotInstalledException -> RefreshErrorType.SOURCE_NOT_INSTALLED
-            is LocationSearchException -> RefreshErrorType.LOCATION_SEARCH_FAILED
-            is InvalidOrIncompleteDataException -> RefreshErrorType.INVALID_INCOMPLETE_DATA
-            is WeatherException -> RefreshErrorType.DATA_REFRESH_FAILED
-            else -> {
-                e.printStackTrace()
-                defaultRefreshError
-            }
-        }
-
-        LogHelper.log(msg = "Refresh error: ${context.getStringByLocale(refreshErrorType.shortMessage)}")
-
-        return refreshErrorType
     }
 
     fun requestSearchLocations(
