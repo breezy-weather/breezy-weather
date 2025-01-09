@@ -84,7 +84,7 @@
     <string name="pressure">Spiediens</string>
     <string name="visibility">Redzamība</string>
     <string name="dew_point">Rasas punkts</string>
-    <string name="weather_message_data_refresh_failed">Laikapstākļu datu atsvaidzināšana neizdevās</string>
+    <string name="weather_message_data_refresh_failed">Datu atsvaidzināšana neizdevās</string>
     <string name="weather_message_invalid_location">Nederīga atrašanās vieta, lūgums to izdzēst un pievienot vēlreiz</string>
     <string name="weather_api_limit_reached_title">Sasniegts API pieprasījumu ierobežojums</string>
     <string name="weather_api_limit_reached_content">Lai apietu ierobežojumu, jāpievieno sava API atslēga.</string>
