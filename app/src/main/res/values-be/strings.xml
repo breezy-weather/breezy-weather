@@ -61,7 +61,7 @@
     <string name="humidity_dew_point">Вільготнасць / Кропка расы</string>
     <string name="weather_data_by">Дадзеныя прадастаўлены %s</string>
     <string name="weather_air_quality_data_by">Інфармацыя аб якасці паветра прадастаўлена %s</string>
-    <string name="weather_message_data_refresh_failed">Не ўдалося абнавіць дадзеныя аб надвор’і</string>
+    <string name="weather_message_data_refresh_failed">Не ўдалося абнавіць дадзеныя</string>
     <string name="weather_api_limit_reached_title">Перавышаны ліміт API-выклікаў</string>
     <string name="weather_api_key_required_missing_title">Адсутнічае API-ключ</string>
     <string name="settings_weather_source_portal">Канал</string>
