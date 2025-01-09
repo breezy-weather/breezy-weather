@@ -95,7 +95,7 @@
     <string name="dialog_permissions_location_background_title">Přístup k poloze na pozadí</string>
     <string name="dialog_permissions_location_background_content">Chcete-li povolit obnovení počasí na pozadí pro nejnovější aktuální polohu známou systému Android, musíte nastavit oprávnění k poloze na hodnotu „Povolit vždy“. Pokud tak neučiníte, bude se počasí v popředí obnovovat na základě posledních načtených souřadnic, které mohou být zastaralé.</string>
     <string name="location_message_failed_to_locate">Nepodařilo se zjistit aktuální polohu</string>
-    <string name="weather_message_data_refresh_failed">Nepodařilo se načíst data o počasí</string>
+    <string name="weather_message_data_refresh_failed">Nepodařilo se načíst data</string>
     <string name="location_dialog_failed_to_locate_title">Ukazuje aplikace nesprávnou polohu\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Zkontrolujte oprávnění polohy</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Povolte přístup k informacím o poloze</string>
