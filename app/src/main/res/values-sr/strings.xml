@@ -45,7 +45,7 @@
     <string name="about_translators">Преводиоци</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Проналажење тренутне локације није успело</string>
-    <string name="weather_message_data_refresh_failed">Освежавање података о времену није успело</string>
+    <string name="weather_message_data_refresh_failed">Освежавање података није успело</string>
     <string name="widget_label_view_style">Стил приказа</string>
     <string name="widget_label_show_widget_card">Боја позадине</string>
     <string name="widget_label_text_color">Боја текста</string>
