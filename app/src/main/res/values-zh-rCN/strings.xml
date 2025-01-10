@@ -116,7 +116,7 @@
     <string name="dialog_permissions_location_background_title">在后台访问位置</string>
     <string name="dialog_permissions_location_background_content">要允许后台刷新 Android 系统所知的当前最新位置的天气数据，你需要将位置权限设为“始终允许”。如果不这样设置，应用将基于前台获取的最新坐标刷新天气数据，而前台坐标表明的位置可能和当前实际位置有时间差。</string>
     <string name="location_message_failed_to_locate">无法定位当前位置</string>
-    <string name="weather_message_data_refresh_failed">天气数据刷新失败</string>
+    <string name="weather_message_data_refresh_failed">数据刷新失败</string>
     <string name="location_dialog_failed_to_locate_title">无法获取正确位置？</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">检查位置权限</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">开启位置信息</string>
