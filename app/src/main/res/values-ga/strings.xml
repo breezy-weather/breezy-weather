@@ -159,7 +159,7 @@
     <string name="weather_minutely_data_by">Frasaíocht á chraoladh anois ag %s</string>
     <string name="weather_alert_data_by">Sonraí foláirimh de réir %s</string>
     <string name="weather_normals_data_by">Gnáthshonraí teochta de réir %s</string>
-    <string name="weather_message_data_refresh_failed">Theip ar athnuachan sonraí aimsire</string>
+    <string name="weather_message_data_refresh_failed">Theip ar athnuachan sonraí</string>
     <string name="weather_message_unsupported_feature">Ní thacaíonn foinse le ceann de na gnéithe iarrtha</string>
     <string name="weather_message_invalid_location">Suíomh neamhbhailí, scrios é agus ath-chur leis</string>
     <string name="weather_message_too_frequent_refreshes">Fan cúpla soicind sula mbainfidh tú triail as…</string>
