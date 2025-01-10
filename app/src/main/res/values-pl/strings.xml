@@ -91,7 +91,7 @@
     <string name="about_translators">Tłumacze</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Nie udało się znaleźć bieżącej lokalizacji</string>
-    <string name="weather_message_data_refresh_failed">Pobranie danych pogodowych nie powiodło się</string>
+    <string name="weather_message_data_refresh_failed">Odświeżanie danych nie powiodło się</string>
     <string name="location_dialog_failed_to_locate_title">Nie można poprawnie ustalić lokalizacji\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Sprawdź uprawnienia lokalizacji</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Włącz informacje o lokalizacji</string>
