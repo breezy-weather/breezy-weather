@@ -87,7 +87,7 @@
     <string name="about_translators">翻訳者</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">現在地が見つかりませんでした</string>
-    <string name="weather_message_data_refresh_failed">気象データを更新できませんでした</string>
+    <string name="weather_message_data_refresh_failed">データを更新できませんでした</string>
     <string name="location_dialog_failed_to_locate_title">位置情報を正しく取得できませんか？</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">位置情報の権限を確認してください</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">位置情報を有効にする</string>
