@@ -16,7 +16,7 @@
   <img src="https://img.shields.io/github/license/breezy-weather/breezy-weather?style=for-the-badge" alt="License LGPL-3.0" />
   <img src="https://img.shields.io/github/languages/code-size/breezy-weather/breezy-weather?style=for-the-badge" alt="GitHub code size in bytes" />
   <br /><br />
-  <a href="https://github.com/breezy-weather/breezy-weather/releases/latest">
+  <a href="https://github.com/breezy-weather/breezy-weather/releases">
       <img src="https://img.shields.io/github/v/release/breezy-weather/breezy-weather?color=purple&include_prereleases&logo=github&style=for-the-badge" alt="Download from GitHub" />
   </a>
   <a href="https://apt.izzysoft.de/fdroid/index/apk/org.breezyweather/">
