@@ -55,7 +55,7 @@ After merging a new source, the following things need to be done:
 1) Save crash log in a text file `stacktrace.txt` and remove things like `2023-08-14 21:28:58.229 12804-12804 View org.breezyweather.debug` if they are present.
 2) From the release page, download mapping-vX.Y.Z-standard.tar.gz or mapping-vX.Y.Z-freenet.tar.gz depending on the flavor used by the user.
 3) Unzip `mapping.txt`.
-4) `~/Android/Sdk/tools/proguard/bin/retrace.sh mapping.txt stacktrace.txt`
+4) `~/Android/Sdk/cmdline-tools/latest/bin/retrace mapping.txt stacktrace.txt`
 
 
 # Translations
