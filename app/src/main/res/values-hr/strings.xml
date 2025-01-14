@@ -397,7 +397,7 @@
     <string name="settings_location_access_permission_already_granted">Dozvola je već odobrena</string>
     <string name="ephemeris_moonrise_at">Izlazak mjeseca u %s</string>
     <string name="wind_direction_short_SE">JI</string>
-    <string name="weather_message_data_refresh_failed">Osvježavanje vremenskih podataka neuspjelo</string>
+    <string name="weather_message_data_refresh_failed">Osvježavanje podataka neuspjelo</string>
     <string name="app_name">Vrijeme</string>
     <string name="settings_location_access_switch_title">Pristup lokaciji</string>
     <string name="weather_api_unauthorized_title">Pristup API-ju nije autoriziran</string>
@@ -429,7 +429,7 @@
     <string name="widget_live_wallpaper_weather_kind">Vrijeme</string>
     <string name="precipitation_between_time">Oborine između %1$s i %2$s</string>
     <string name="settings_main_threshold_lines_on_charts">Linije praga na grafikonima</string>
-    <string name="ephemeris_moon_phase_last_quarter">Posljednja četvrt</string>
+    <string name="ephemeris_moon_phase_last_quarter">Zadnja četvrt</string>
     <string name="wind">Vjetar</string>
     <string name="wind_strength_5">Umjereno jak vjetar</string>
     <string name="settings_location_access_background_title">Pristup lokaciji u pozadini</string>
@@ -522,7 +522,7 @@
     <string name="unit_mugpcum">μg/m³</string>
     <string name="common_weather_text_fog">Magla</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Rastuća četvrt</string>
-    <string name="ephemeris_moon_phase_waning_gibbous">Opadajuća četvrt mjeseca</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Opadajuća četvrt</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="notification_refreshed_at">Osvježeno u</string>
     <string name="common_weather_text_clear_sky">Vedro</string>
@@ -715,4 +715,15 @@
     <string name="forecast">Prognoza</string>
     <string name="weather_forecast_data_by">Podaci prognoze od %s</string>
     <string name="settings_weather_source_not_configured">%s (nije konfigurirano)</string>
+    <string name="pollen_acer">Javor</string>
+    <string name="pollen_alternaria">Crna trulež</string>
+    <string name="pollen_atriplex">Loboda</string>
+    <string name="pollen_picea">Smreka</string>
+    <string name="pollen_juniperus">Borovica</string>
+    <string name="pollen_pinus">Bor</string>
+    <string name="pollen_ulmus">Brijest</string>
+    <string name="settings_weather_source_current_position_disclaimer">Više izvora vremenskih izvora može postati dostupno za vašu lokaciju nakon prvog aktualiziranja.</string>
+    <string name="common_weather_text_blowing_snow">Mećava</string>
+    <string name="common_weather_text_drifting_snow">Nanosi snjiega</string>
+    <string name="common_weather_text_glaze">Inje</string>
 </resources>
