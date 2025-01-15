@@ -276,7 +276,7 @@ private fun TimePickerDialog(
                         onClick = onCancel
                     ) {
                         Text(
-                            text = stringResource(R.string.action_cancel),
+                            text = stringResource(android.R.string.cancel),
                             overflow = TextOverflow.Clip,
                             maxLines = 1
                         )

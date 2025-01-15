@@ -53,7 +53,7 @@ class WeatherUpdateNotifier(
             setSmallIcon(R.drawable.ic_running_in_background)
             setOngoing(true)
             setOnlyAlertOnce(true)
-            addAction(R.drawable.ic_close, context.getString(R.string.action_cancel), cancelIntent)
+            addAction(R.drawable.ic_close, context.getString(android.R.string.cancel), cancelIntent)
         }
     }
 

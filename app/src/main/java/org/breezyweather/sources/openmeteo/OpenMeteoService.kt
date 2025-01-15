@@ -575,7 +575,7 @@ class OpenMeteoService @Inject constructor(
                         }
                     ) {
                         Text(
-                            text = stringResource(R.string.action_cancel),
+                            text = stringResource(android.R.string.cancel),
                             color = MaterialTheme.colorScheme.primary,
                             style = MaterialTheme.typography.labelLarge
                         )

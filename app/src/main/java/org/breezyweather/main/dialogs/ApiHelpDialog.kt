@@ -78,7 +78,7 @@ object ApiHelpDialog {
                                     dialogOpenState.value = false
                                 }
                             ) {
-                                Text(stringResource(id = R.string.action_cancel))
+                                Text(stringResource(id = android.R.string.cancel))
                             }
                         },
                         title = {
