@@ -30,7 +30,7 @@
     <string name="location_message_added">Ort hinzugefügt</string>
     <string name="location_message_deleted">Ort gelöscht</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Standortbestimmung aktivieren</string>
-    <string name="weather_message_data_refresh_failed">Abruf der Wetterdaten fehlgeschlagen</string>
+    <string name="weather_message_data_refresh_failed">Datenabruf fehlgeschlagen</string>
     <string name="widget_label_hide_subtitle">Untertitel ausblenden</string>
     <string name="widget_live_wallpaper_day_night_type">Zeit</string>
     <string name="widget_live_wallpaper_weather_kind">Wetter</string>
@@ -49,7 +49,7 @@
     <string name="notification_updating_weather_data">Aktualisierung der Wetterdaten (%1$d/%2$d)</string>
     <string name="widget_label_view_style">Ansicht</string>
     <string name="temperature_feels_like">Gefühlt</string>
-    <string name="settings_follow_system">System folgen</string>
+    <string name="settings_follow_system">Systemstandard</string>
     <string name="notification_channel_forecast">Vorhersage</string>
     <string name="settings_icon_packs_get_more">Mehr erhalten</string>
     <string name="action_set">Festlegen</string>
@@ -92,16 +92,16 @@
     <string name="settings_appearance_language_title">Sprache</string>
     <string name="settings_appearance">Erscheinungsbild</string>
     <string name="settings_appearance_dark_mode_title">Dunkler Modus</string>
-    <string name="settings_units_distance">Einheit Entfernung</string>
+    <string name="settings_units_distance">Einheit für Entfernung</string>
     <string name="settings_main_gravity_sensor_switch">Lagesensor</string>
     <string name="settings_appearance_icon_pack_title">Symbolpaket</string>
     <string name="settings_widgets_live_wallpaper_title">Live-Hintergrund</string>
     <string name="settings_location_service">Standortanbieter</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatur in der Statusleiste anzeigen</string>
-    <string name="settings_units_precipitation">Einheit Niederschlag</string>
-    <string name="settings_units_pressure">Einheit Luftdruck</string>
-    <string name="settings_units_speed">Einheit Geschwindigkeit</string>
-    <string name="settings_units_temperature">Einheit Temperatur</string>
+    <string name="settings_units_precipitation">Einheit für Niederschlag</string>
+    <string name="settings_units_pressure">Einheit für Luftdruck</string>
+    <string name="settings_units_speed">Einheit für Geschwindigkeit</string>
+    <string name="settings_units_temperature">Einheit für Temperatur</string>
     <string name="settings_units">Einheiten</string>
     <string name="precipitation_snow">Schnee</string>
     <string name="ephemeris">Sonne &amp; Mond</string>
@@ -376,7 +376,7 @@
     <string name="settings_background_updates_section_troubleshoot">Fehlerbehebung</string>
     <string name="settings_background_updates_battery_optimization">Akkuoptimierung deaktivieren</string>
     <string name="settings_background_updates_refresh_title">Aktualisierungsrate</string>
-    <string name="settings_main_cards_fade_in_switch">Karten werden animiert eingeblendet</string>
+    <string name="settings_main_cards_fade_in_switch">Kacheln werden animiert eingeblendet</string>
     <string name="action_see_more">Mehr anzeigen</string>
     <string name="settings_units_summary">Temperatur, Niederschlag, Entfernung, Geschwindigkeit, Druck</string>
     <string name="settings_main">Hauptbildschirm</string>
@@ -392,10 +392,10 @@
     <string name="weather_air_quality_and_pollen_data_by">Luftqualitäts- und Pollendaten von %s</string>
     <string name="action_continue">Weiter</string>
     <string name="settings_icon_packs_title">Symbolpakete</string>
-    <string name="settings_main_cards_title">Karten</string>
+    <string name="settings_main_cards_title">Kacheln</string>
     <string name="settings_main_section_options">Optionen</string>
     <string name="settings_main_section_animations">Animationen</string>
-    <string name="settings_main_summary">Kartenreihenfolge, angezeigte Daten, Animationen</string>
+    <string name="settings_main_summary">Kachelreihenfolge, angezeigte Daten, Animationen</string>
     <string name="settings_main_background_animation_disabled">Aus</string>
     <string name="settings_notifications">Benachrichtigungen</string>
     <string name="settings_main_cards_other_element_animations_switch">Animation weiterer Elemente</string>
@@ -418,7 +418,7 @@
     <string name="weather_source_accu_preference_hours_24">24 Stunden</string>
     <string name="weather_source_accu_preference_hours_72">72 Stunden</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Geräteeinstellungen konnten nicht geöffnet werden.</string>
-    <string name="settings_background_updates_battery_optimization_summary">Der erste Schritt, der unternommen werden sollte, wenn Sie keine Benachrichtigungen erhalten oder die Widgets nicht aktualisiert werden.</string>
+    <string name="settings_background_updates_battery_optimization_summary">Dies ist der erste Schritt, der unternommen werden sollte, wenn Sie keine Benachrichtigungen erhalten oder die Widgets nicht aktualisiert werden.</string>
     <string name="weather_api_key_required_missing_content">Um diese Quelle nutzen zu können, benötigen Sie einen API-Schlüssel.</string>
     <string name="weather_source_accu_preference_days_5">5 Tage</string>
     <string name="weather_source_accu_preference_days_1">1 Tag</string>
@@ -442,7 +442,7 @@
     <string name="settings_widgets_notification_persistent_switch">Permanent</string>
     <string name="settings_widgets_notification_style_title">Stil</string>
     <string name="unit_inph">Zoll/h</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Einige Hersteller nutzen zusätzliche App-Einschränkungen, die Hintergrunddienste abschalten. Auf der Website Don’t kill my app! finden Sie Informationen zur Deaktivierung dieser Einschränkungen.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Einige Hersteller nutzen zusätzliche App-Einschränkungen, die Hintergrunddienste abschalten. Auf der Website „Don’t kill my app!“ finden Sie Informationen zur Deaktivierung dieser Einschränkungen.</string>
     <string name="widget_multi_city">Mehrere Orte</string>
     <string name="settings_widgets_week_icon_mode_title">Symbol für die Anzeige in Wochenansichten</string>
     <string name="settings_widgets_monochrome_icons_title">Einfarbige Symbole</string>
@@ -503,7 +503,7 @@
     <string name="air_quality_so2_info_introduction">Schwefeldioxid (SO₂) ist ein farbloses, giftiges Gas, das für den Geruch entzündeter Streichhölzer verantwortlich ist.</string>
     <string name="air_quality_so2_info_origin">In der Natur entsteht es bei vulkanischer Aktivität, durch menschliche Aktivität bei der Verbrennung fossiler Energieträger zur Wärme-und Stromerzeugung sowie in der Industrie.</string>
     <string name="air_quality_so2_info_consequences">SO₂-Exposition wird mit klinischer und ambulanter Behandlung asthmatischer Beschwerden in Verbindung gebracht.</string>
-    <string name="dialog_permissions_notification_content">Hier tippen, um Benachrichtigungen über Wetterwarnungen zu aktivieren, oder entscheiden Sie dies später in den Einstellungen.</string>
+    <string name="dialog_permissions_notification_content">Hier tippen, um Benachrichtigungen über Wetterwarnungen zu aktivieren. Alternativ können Sie dies später in den Einstellungen entscheiden.</string>
     <string name="dialog_permissions_notification_title">Informiert bleiben</string>
     <string name="air_quality_o3_info_origin">Es wird bei photochemischen Reaktionen von organischen Stoffen, Kohlenmonoxid und Stickoxiden (NOₓ) freigesetzt, die von Fahrzeugen und der Industrie ausgestoßen werden. Bedingt durch den photochemischen Prozess entstehen die höchsten Ozon-Konzentrationen bei sonnigem Wetter.</string>
     <string name="air_quality_no2_info_consequences">Stickstoffdioxid-Exposition kann die Atemwege reizen und Atemwegserkrankungen verschlimmern. Zudem ist NO₂ ein bedeutender Ausgangsbestandteil von Ozon, einem Schadstoff im Zusammenhang mit Asthma und Atembeschwerden.</string>
@@ -515,7 +515,7 @@
     <string name="message_source_not_installed_error_title">Quelle nicht mehr verfügbar</string>
     <string name="action_show_errors">Antippen, um Details anzuzeigen</string>
     <string name="message_parsing_error_content">Stellen Sie sicher, dass Sie auf die neueste Version der App aktualisiert haben. Der Server kann vorübergehend nicht verfügbar sein. In diesem Fall versuchen Sie es bitte später erneut. Wenn das Problem weiterhin besteht, erstellen Sie bitte ein Absturzprotokoll in den Debugging-Einstellungen und melden Sie den Fehler auf GitHub.</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorieren, wenn Akku niedrig ist</string>
+    <string name="settings_background_updates_refresh_ignore_when_battery_low">Bei niedrigem Akku nicht aktualisieren</string>
     <string name="wind_strength">Windstärke</string>
     <string name="message_server_timeout">Zeitüberschreitung bei Anforderung</string>
     <string name="message_parsing_error_title">Wetterdaten konnten nicht ausgewertet werden</string>
@@ -544,7 +544,7 @@
     <string name="weather_air_quality_data_by">Luftqualitätsdaten von %s</string>
     <string name="action_save">Speichern</string>
     <string name="settings_weather_sources_per_location_summary">Wetterdatenquellen für diesen Ort anpassen</string>
-    <string name="precipitation_nowcasting">Minutengenaue Niederschläge</string>
+    <string name="precipitation_nowcasting">Kurzvorhersage von Niederschlägen</string>
     <string name="about_dependencies">Abhängigkeiten</string>
     <string name="about_privacy_policy">Datenschutzerklärung</string>
     <string name="about_contact">Kontakt</string>
@@ -583,7 +583,7 @@
     <string name="settings_appearance_dark_mode_locations_title">Tag- / Nachtmodus für Orte</string>
     <string name="weather_message_unsupported_feature">Quelle unterstützt eines der gewünschten Features nicht</string>
     <string name="about_contribution_designer">Logo-Designer</string>
-    <string name="temperature_normals">Temperaturnormalwerte</string>
+    <string name="temperature_normals">Temperatur-Normalwerte</string>
     <string name="temperature_normal_short">Normalwert</string>
     <string name="settings_main_threshold_lines_on_charts">Grenzlinien in Diagrammen</string>
     <string name="weather_normals_data_by">Daten für Temperaturnormalwerte von %s</string>
@@ -658,7 +658,7 @@
     <string name="settings_source_instance_geocoding">Geokodierungsinstanz</string>
     <string name="settings_widgets_broadcast_title">Meine Wetterdaten mit anderen Apps teilen</string>
     <string name="message_invalid_incomplete_data">Ungültige oder unvollständige Daten vom Server empfangen</string>
-    <string name="settings_per_location_theme">Thema</string>
+    <string name="settings_per_location_theme">Erscheinungsbild</string>
     <string name="settings_source_instance_invalid">Muss eine https-URL sein, die mit einem / endet</string>
     <string name="settings_invalid_syntax">Ungültige Syntax</string>
     <string name="alert_source">Quelle: %s</string>
@@ -686,7 +686,7 @@
     <string name="common_weather_text_sand_storm">Sandsturm</string>
     <string name="common_weather_text_smoke">Rauch</string>
     <string name="dialog_app_update_check_content">Tippen Sie hier, um Benachrichtigungen über App-Updates zu aktivieren.</string>
-    <string name="dialog_app_update_check_title">Aktuell bleiben</string>
+    <string name="dialog_app_update_check_title">Up to date bleiben</string>
     <string name="meteoam_weather_text_tornado_watersprout">Wind- oder Wasserhose</string>
     <string name="settings_unavailable_no_animations">Nicht verfügbar, aktivieren Sie Animationen zuerst in den Android-Einstellungen</string>
     <string name="current_weather">Aktuelles Wetter</string>
@@ -726,7 +726,7 @@
     <string name="action_show">Anzeigen</string>
     <string name="dialog_refresh_error_details_content">Tippen Sie auf Fehlermeldungen mit einem Fragezeichen, um weitere Hilfe zu erhalten.</string>
     <string name="dialog_refresh_error_details_title">Aktualisierungsfehler</string>
-    <string name="message_multiple_refresh_errors">Aktualisierung mit Fehlern abgeschlossen</string>
+    <string name="message_multiple_refresh_errors">Mehrere Fehler beim Aktualisieren</string>
     <string name="common_weather_text_tornado">Tornado</string>
     <string name="settings_weather_source_not_configured">%s (nicht konfiguriert)</string>
     <string name="forecast">Vorhersage</string>
