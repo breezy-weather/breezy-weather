@@ -230,6 +230,8 @@ internal fun getHourlyForecast(
             }
 
             // The last hour in the output is just the condition for the previous 3 hours. Don't add to the list.
+            // Occasionally HKO's numerical weather forecast models will produce nonsensical output (e.g. 9999°C).
+            // Reject them.
             if (i < hourlyWeatherForecast.size - 1) {
                 hourlyList.add(
                     HourlyWrapper(
@@ -237,13 +239,21 @@ internal fun getHourlyForecast(
                         weatherText = getWeatherText(context, currentHourWeather),
                         weatherCode = getWeatherCode(currentHourWeather),
                         temperature = Temperature(
-                            temperature = value.ForecastTemperature
+                            temperature = value.ForecastTemperature?.let {
+                                if (it < 100.0) it else null
+                            }
                         ),
                         wind = Wind(
-                            degree = value.ForecastWindDirection,
-                            speed = value.ForecastWindSpeed?.div(3.6) // convert km/h to m/s
+                            degree = value.ForecastWindDirection?.let {
+                                if (it >= 0.0 && it < 360.0) it else null
+                            },
+                            speed = value.ForecastWindSpeed?.let {
+                                if (it < 1000.0) it.div(3.6) else null // convert km/h to m/s
+                            }
                         ),
-                        relativeHumidity = value.ForecastRelativeHumidity
+                        relativeHumidity = value.ForecastRelativeHumidity?.let {
+                            if (it <= 100.0) it else null
+                        }
                     )
                 )
             }
