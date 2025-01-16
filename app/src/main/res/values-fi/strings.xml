@@ -93,7 +93,7 @@
     <string name="dialog_permissions_location_background_title">Pääsy sijaintitietoihin taustalla</string>
     <string name="dialog_permissions_location_background_content">Ottaaksesi käyttöön säätietojen päivityksen taustalla viimeisimmälle Androidin tietämälle sijainnille, sijainnin käyttöoikeuden tulee olla “Salli aina”. Muuten säätiedot päivitetään viimeisimpien haettujen koordinaattien perusteella kun sovellus oli viimeksi käytössä. Kyseiset koordinaatit voivat olla vanhentuneita.</string>
     <string name="location_message_failed_to_locate">Tämänhetkisen sijainnin haku epäonnistui</string>
-    <string name="weather_message_data_refresh_failed">Säätietojen haku epäonnistui</string>
+    <string name="weather_message_data_refresh_failed">Tietojen haku epäonnistui</string>
     <string name="location_dialog_failed_to_locate_title">Etkö saa oikeaa sijaintia\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Tarkista sijaintitietojen käyttöoikeudet</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Ota sijaintitiedot käyttöön</string>
@@ -728,4 +728,17 @@
     <string name="about_no_new_updates">Ei uusia päivityksiä saatavilla</string>
     <string name="common_weather_text_dust">Pöly</string>
     <string name="common_weather_text_dust_storm">Pölymyrsky</string>
+    <string name="forecast">Ennuste</string>
+    <string name="settings_weather_source_current_position_disclaimer">Lisää sää lähteitä voi tulla saataville sijainnillesi ensimmäisen päivityksen jälkeen.</string>
+    <string name="common_weather_text_tornado">Tornaado</string>
+    <string name="settings_weather_source_not_configured">%s (ei asetettu)</string>
+    <string name="common_weather_text_blowing_snow">Lumipuhallus</string>
+    <string name="pollen_acer">Vaahtera</string>
+    <string name="pollen_alternaria">Alternaria</string>
+    <string name="pollen_atriplex">Maltsat</string>
+    <string name="pollen_juniperus">Kataja</string>
+    <string name="pollen_picea">Kuusi</string>
+    <string name="pollen_pinus">Mänty</string>
+    <string name="pollen_ulmus">Jalava</string>
+    <string name="common_weather_text_drifting_snow">Lennehtelevä lumi</string>
 </resources>
