@@ -703,7 +703,7 @@
     <string name="weather_source_continent_africa">Afrika</string>
     <string name="weather_source_continent_asia">Asien</string>
     <string name="weather_source_continent_europe">Europa</string>
-    <string name="weather_source_continent_worldwide">Global</string>
+    <string name="weather_source_continent_worldwide">Hela världen</string>
     <string name="weather_source_continent_north_america">Nordamerika</string>
     <string name="weather_source_continent_oceania">Oceanien</string>
     <string name="weather_source_continent_south_america">Sydamerika</string>
