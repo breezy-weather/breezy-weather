@@ -27,7 +27,7 @@
     <string name="dew_point">Punto di rugiada</string>
     <string name="cloud_cover">Copertura nuvolosa</string>
     <string name="ceiling">Base delle nubi</string>
-    <string name="settings_icon_packs_get_more">Altro…</string>
+    <string name="settings_icon_packs_get_more">Altro</string>
     <string name="action_refresh">Ricarica</string>
     <string name="action_restart">Riavvia</string>
     <string name="action_edit">Modifica</string>
