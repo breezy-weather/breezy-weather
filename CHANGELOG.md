@@ -5,6 +5,7 @@
 
 **Weather sources**
 - [AccuWeather] Fix missing forecast when using Developer portal (custom API keys)
+- [HKO] Ignore non-sense values sent by the server (@chunshek)
 
 **Translations**
 - Translations updated
