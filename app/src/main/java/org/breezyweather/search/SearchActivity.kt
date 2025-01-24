@@ -287,14 +287,15 @@ class SearchActivity : GeoActivity() {
                         }
                         if (dialogLocationSourcesOpenState.value && selectedLocation != null) {
                             SecondarySourcesPreference(
-                                sourceManager,
-                                selectedLocation!!
-                            ) { location: Location? ->
-                                if (location != null) {
-                                    finishSelf(location)
+                                sourceManager = sourceManager,
+                                location = selectedLocation!!,
+                                onClose = { location: Location? ->
+                                    if (location != null) {
+                                        finishSelf(location)
+                                    }
+                                    dialogLocationSourcesOpenState.value = false
                                 }
-                                dialogLocationSourcesOpenState.value = false
-                            }
+                            )
                         }
                     } else {
                         Column(

@@ -416,51 +416,53 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
         if (dialogChooseWeatherSourcesOpenState.value) {
             SecondarySourcesPreference(
-                (requireActivity() as MainActivity).sourceManager,
-                selectedLocationState.value
-                    ?: LocationPreset.getLocationWithPresetApplied(Location(isCurrentPosition = true))
-            ) { newLocation: Location? ->
-                viewModel.closeChooseWeatherSourcesDialog()
+                sourceManager = (requireActivity() as MainActivity).sourceManager,
+                location = selectedLocationState.value
+                    ?: LocationPreset.getLocationWithPresetApplied(Location(isCurrentPosition = true)),
+                onClose = { newLocation: Location? ->
+                    viewModel.closeChooseWeatherSourcesDialog()
 
-                if (newLocation != null) {
-                    // If coming from an existing location
-                    if (selectedLocationState.value != null) {
-                        // If main source was changed, we need to check first that it doesn't create
-                        // a duplicate
-                        if (selectedLocationState.value!!.forecastSource != newLocation.forecastSource) {
-                            if (viewModel.locationExists(newLocation)) {
-                                SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
+                    if (newLocation != null) {
+                        // If coming from an existing location
+                        if (selectedLocationState.value != null) {
+                            // If main source was changed, we need to check first that it doesn't create
+                            // a duplicate
+                            if (selectedLocationState.value!!.forecastSource != newLocation.forecastSource) {
+                                if (viewModel.locationExists(newLocation)) {
+                                    SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
+                                } else {
+                                    viewModel.updateLocation(newLocation, selectedLocationState.value!!)
+                                    SnackbarHelper.showSnackbar(getString(R.string.location_message_updated))
+                                }
                             } else {
                                 viewModel.updateLocation(newLocation, selectedLocationState.value!!)
                                 SnackbarHelper.showSnackbar(getString(R.string.location_message_updated))
                             }
                         } else {
-                            viewModel.updateLocation(newLocation, selectedLocationState.value!!)
-                            SnackbarHelper.showSnackbar(getString(R.string.location_message_updated))
+                            viewModel.addLocation(newLocation, null)
+                            SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
                         }
-                    } else {
-                        viewModel.addLocation(newLocation, null)
-                        SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
                     }
                 }
-            }
+            )
         }
 
         if (BreezyWeather.instance.debugMode && dialogChooseDebugLocationOpenState.value) {
             DebugLocationScreen(
-                (requireActivity() as MainActivity).sourceManager
-            ) { addedLocation: Location? ->
-                viewModel.closeChooseDebugLocationDialog()
+                sourceManager = (requireActivity() as MainActivity).sourceManager,
+                onClose = { addedLocation: Location? ->
+                    viewModel.closeChooseDebugLocationDialog()
 
-                if (addedLocation != null) {
-                    if (viewModel.locationExists(addedLocation)) {
-                        SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
-                    } else {
-                        viewModel.addLocation(addedLocation, null)
-                        SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
+                    if (addedLocation != null) {
+                        if (viewModel.locationExists(addedLocation)) {
+                            SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
+                        } else {
+                            viewModel.addLocation(addedLocation, null)
+                            SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
+                        }
                     }
                 }
-            }
+            )
         }
     }
 
@@ -605,10 +607,12 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     fun DebugLocationScreen(
         sourceManager: SourceManager,
         onClose: ((location: Location?) -> Unit),
+        modifier: Modifier = Modifier,
     ) {
         val context = LocalContext.current
 
         AlertDialogNoPadding(
+            modifier = modifier,
             onDismissRequest = {
                 onClose(null)
             },

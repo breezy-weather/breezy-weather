@@ -26,6 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.core.app.ActivityCompat
 import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.rememberPermissionState
+import kotlinx.collections.immutable.ImmutableList
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.extensions.openApplicationDetailsSettings
@@ -56,7 +57,8 @@ import org.breezyweather.settings.preference.sectionHeaderItem
 fun LocationSettingsScreen(
     context: Activity,
     onNavigateBack: () -> Unit,
-    locationSources: List<LocationSource>,
+    locationSources: ImmutableList<LocationSource>,
+    modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
     val accessCoarseLocationPermissionState =
@@ -72,7 +74,7 @@ fun LocationSettingsScreen(
     }
 
     Material3Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             FitStatusBarTopAppBar(
                 title = stringResource(R.string.settings_location),

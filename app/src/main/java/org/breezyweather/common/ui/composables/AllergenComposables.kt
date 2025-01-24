@@ -35,6 +35,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import breezyweather.domain.weather.model.Pollen
+import kotlinx.collections.immutable.ImmutableSet
+import kotlinx.collections.immutable.persistentSetOf
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.PollenUnit
 import org.breezyweather.common.extensions.currentLocale
@@ -52,13 +54,15 @@ import java.text.Collator
 @Composable
 fun PollenGrid(
     pollen: Pollen,
+    modifier: Modifier = Modifier,
     pollenIndexSource: PollenIndexSource? = null,
-    specificPollens: Set<PollenIndex> = setOf(),
+    specificPollens: ImmutableSet<PollenIndex> = persistentSetOf(),
 ) {
     val context = LocalContext.current
     val unit = PollenUnit.PPCM
     FlowRow(
-        maxItemsInEachRow = 2
+        maxItemsInEachRow = 2,
+        modifier = modifier
     ) {
         specificPollens.ifEmpty { pollen.validPollens }
             .sortedWith { va1, va2 ->

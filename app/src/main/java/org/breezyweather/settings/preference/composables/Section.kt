@@ -31,8 +31,11 @@ import org.breezyweather.R
 @Composable
 fun SectionHeader(
     title: String,
+    modifier: Modifier = Modifier,
 ) {
-    Box(modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin))) {
+    Box(
+        modifier = modifier.padding(dimensionResource(R.dimen.normal_margin))
+    ) {
         Text(
             text = title,
             fontWeight = FontWeight.SemiBold,

@@ -54,7 +54,6 @@
             android:ellipsize="end"
             android:drawablePadding="6dp"
             android:gravity="center_vertical"
-            android:drawableTint="#fff"
             android:drawableStart="@drawable/ic_time"
             style="@style/large_title_text"
             tools:text="1 minute ago"

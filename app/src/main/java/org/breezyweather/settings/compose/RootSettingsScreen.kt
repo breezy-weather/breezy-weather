@@ -34,11 +34,12 @@ import org.breezyweather.settings.preference.composables.PreferenceView
 fun RootSettingsView(
     onNavigateTo: (route: String) -> Unit,
     onNavigateBack: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
 
     Material3Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             FitStatusBarTopAppBar(
                 title = stringResource(R.string.action_settings),

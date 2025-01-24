@@ -20,6 +20,7 @@ import android.content.Context
 import androidx.compose.runtime.Composable
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceFeature
+import kotlinx.collections.immutable.ImmutableList
 
 /**
  * Implement this if you need parameters specific to each location
@@ -43,7 +44,7 @@ interface PreferencesParametersSource : Source {
     fun PerLocationPreferences(
         context: Context,
         location: Location,
-        features: List<SourceFeature>,
+        features: ImmutableList<SourceFeature>,
         onSave: (Map<String, String>) -> Unit,
     )
 }

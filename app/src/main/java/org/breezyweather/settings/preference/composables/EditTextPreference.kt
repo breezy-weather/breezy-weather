@@ -50,9 +50,9 @@ import org.breezyweather.theme.compose.themeRipple
 @Composable
 fun EditTextPreferenceView(
     @StringRes titleId: Int,
-    summary: ((Context, String) -> String?)? = null,
     content: String?,
     placeholder: String?,
+    summary: ((Context, String) -> String?)? = null,
     enabled: Boolean = true,
     regex: Regex? = null,
     regexError: String? = null,

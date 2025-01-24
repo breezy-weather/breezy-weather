@@ -39,6 +39,7 @@ import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
+import kotlinx.collections.immutable.ImmutableList
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.LocationSearchException
@@ -441,7 +442,7 @@ class OpenMeteoService @Inject constructor(
     override fun PerLocationPreferences(
         context: Context,
         location: Location,
-        features: List<SourceFeature>,
+        features: ImmutableList<SourceFeature>,
         onSave: (Map<String, String>) -> Unit,
     ) {
         val dialogModelsOpenState = remember { mutableStateOf(false) }

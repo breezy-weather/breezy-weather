@@ -46,11 +46,12 @@ fun NotificationsSettingsScreen(
     todayForecastEnabled: Boolean,
     tomorrowForecastEnabled: Boolean,
     postNotificationPermissionEnsurer: (succeedCallback: () -> Unit) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
 
     Material3Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             FitStatusBarTopAppBar(
                 title = stringResource(R.string.settings_notifications),

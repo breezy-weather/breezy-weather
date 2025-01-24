@@ -208,12 +208,13 @@ class FooterViewHolder(
     fun ComposeView(
         creditsText: String,
         cardMarginsVertical: Int,
+        modifier: Modifier = Modifier,
     ) {
         var expand by remember { mutableStateOf(false) }
 
         val paddingTop = dimensionResource(R.dimen.little_margin) - cardMarginsVertical.dp
         Row(
-            modifier = Modifier
+            modifier = modifier
                 .padding(
                     PaddingValues(
                         start = dimensionResource(R.dimen.normal_margin),

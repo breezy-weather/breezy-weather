@@ -39,11 +39,12 @@ import org.breezyweather.settings.preference.listPreferenceItem
 fun UnitSettingsScreen(
     context: Context,
     onNavigateBack: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
 
     Material3Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             FitStatusBarTopAppBar(
                 title = stringResource(R.string.settings_units),

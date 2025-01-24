@@ -20,6 +20,9 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceFeature
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.BroadcastSource
@@ -172,25 +175,25 @@ class SourceManager @Inject constructor(
     // TODO: Initialize lazily
 
     // Location sources
-    private val locationSourceList = listOf(
+    private val locationSourceList = persistentListOf(
         androidLocationService,
         ipSbService,
         baiduIPService
     )
 
     // Location search sources
-    private val locationSearchSourceList = listOf(
+    private val locationSearchSourceList = persistentListOf(
         geoNamesService
     )
 
     // Reverse geocoding sources
-    private val reverseGeocodingSourceList = listOf(
+    private val reverseGeocodingSourceList = persistentListOf(
         naturalEarthService
     )
 
     // Worldwide weather sources, excluding national sources with worldwide support,
     // with the exception of MET Norway
-    private val worldwideWeatherSourceList = listOf(
+    private val worldwideWeatherSourceList = persistentListOf(
         openMeteoService,
         accuService,
         hereService,
@@ -201,7 +204,7 @@ class SourceManager @Inject constructor(
     )
 
     // Region-specific or national weather sources
-    private val nationalWeatherSourceList = listOf(
+    private val nationalWeatherSourceList = persistentListOf(
         aemetService,
         anamBfService,
         anametService,
@@ -257,12 +260,12 @@ class SourceManager @Inject constructor(
     )
 
     // Broadcast sources
-    private val broadcastSourceList = listOf(
+    private val broadcastSourceList = persistentListOf(
         gadgetbridgeService
     )
 
     // The order of this list is preserved in "source chooser" dialogs
-    private val sourceList: List<Source> = buildList {
+    private val sourceList: ImmutableList<Source> = buildList {
         addAll(locationSourceList)
         addAll(locationSearchSourceList)
         addAll(reverseGeocodingSourceList)
@@ -275,26 +278,32 @@ class SourceManager @Inject constructor(
                 }
         )
         addAll(broadcastSourceList)
-    }
+    }.toImmutableList()
 
     fun getSource(id: String): Source? = sourceList.firstOrNull { it.id == id }
-    fun getHttpSources(): List<HttpSource> = sourceList.filterIsInstance<HttpSource>()
+    fun getHttpSources(): ImmutableList<HttpSource> = sourceList
+        .filterIsInstance<HttpSource>()
+        .toImmutableList()
 
     // Location
-    fun getLocationSources(): List<LocationSource> = sourceList.filterIsInstance<LocationSource>()
+    fun getLocationSources(): ImmutableList<LocationSource> = sourceList
+        .filterIsInstance<LocationSource>()
+        .toImmutableList()
     fun getLocationSource(id: String): LocationSource? = getLocationSources().firstOrNull { it.id == id }
     fun getLocationSourceOrDefault(id: String): LocationSource = getLocationSource(id)
         ?: getLocationSource(BuildConfig.DEFAULT_LOCATION_SOURCE)!!
 
     // Weather
-    fun getWeatherSources(): List<WeatherSource> = sourceList.filterIsInstance<WeatherSource>()
+    fun getWeatherSources(): ImmutableList<WeatherSource> = sourceList
+        .filterIsInstance<WeatherSource>()
+        .toImmutableList()
     fun getWeatherSource(id: String): WeatherSource? = getWeatherSources().firstOrNull { it.id == id }
     fun getSupportedWeatherSources(
         feature: SourceFeature? = null,
         location: Location? = null,
         // Optional id of the source that will always be taken, even if not matching the criteria
         sourceException: String? = null,
-    ): List<WeatherSource> = getWeatherSources()
+    ): ImmutableList<WeatherSource> = getWeatherSources()
         .filter {
             it.id == sourceException ||
                 (
@@ -308,31 +317,38 @@ class SourceManager @Inject constructor(
                                     )
                             )
                     )
-        }
+        }.toImmutableList()
 
     // Secondary weather
-    fun getPollenIndexSource(id: String): PollenIndexSource? = sourceList.filterIsInstance<PollenIndexSource>()
+    fun getPollenIndexSource(id: String): PollenIndexSource? = sourceList
+        .filterIsInstance<PollenIndexSource>()
         .firstOrNull { it.id == id }
 
     // Location search
-    fun getLocationSearchSources(): List<LocationSearchSource> = sourceList.filterIsInstance<LocationSearchSource>()
+    fun getLocationSearchSources(): ImmutableList<LocationSearchSource> = sourceList
+        .filterIsInstance<LocationSearchSource>()
+        .toImmutableList()
     fun getLocationSearchSource(id: String): LocationSearchSource? = getLocationSearchSources()
         .firstOrNull { it.id == id }
     fun getLocationSearchSourceOrDefault(id: String): LocationSearchSource = getLocationSearchSource(id)
         ?: getLocationSearchSource(BuildConfig.DEFAULT_LOCATION_SEARCH_SOURCE)!!
-    fun getConfiguredLocationSearchSources(): List<LocationSearchSource> = getLocationSearchSources()
+    fun getConfiguredLocationSearchSources(): ImmutableList<LocationSearchSource> = getLocationSearchSources()
         .filter { it !is ConfigurableSource || it.isConfigured }
+        .toImmutableList()
 
     // Reverse geocoding
-    fun getReverseGeocodingSources(): List<ReverseGeocodingSource> =
-        sourceList.filterIsInstance<ReverseGeocodingSource>()
+    fun getReverseGeocodingSources(): ImmutableList<ReverseGeocodingSource> = sourceList
+        .filterIsInstance<ReverseGeocodingSource>()
+        .toImmutableList()
     fun getReverseGeocodingSource(id: String): ReverseGeocodingSource? = getReverseGeocodingSources()
         .firstOrNull { it.id == id }
     fun getReverseGeocodingSourceOrDefault(id: String): ReverseGeocodingSource = getReverseGeocodingSource(id)
         ?: getReverseGeocodingSource(BuildConfig.DEFAULT_GEOCODING_SOURCE)!!
 
     // Broadcast
-    fun getBroadcastSources(): List<BroadcastSource> = sourceList.filterIsInstance<BroadcastSource>()
+    fun getBroadcastSources(): ImmutableList<BroadcastSource> = sourceList
+        .filterIsInstance<BroadcastSource>()
+        .toImmutableList()
     fun isBroadcastSourcesEnabled(context: Context): Boolean {
         return getBroadcastSources().any {
             (SourceConfigStore(context, it.id).getString("packages", null) ?: "").isNotEmpty()
@@ -340,11 +356,13 @@ class SourceManager @Inject constructor(
     }
 
     // Configurables sources
-    fun getConfigurableSources(): List<ConfigurableSource> = sourceList.filterIsInstance<ConfigurableSource>()
+    fun getConfigurableSources(): ImmutableList<ConfigurableSource> = sourceList
+        .filterIsInstance<ConfigurableSource>()
+        .toImmutableList()
 
     fun sourcesWithPreferencesScreen(
         location: Location,
-    ): List<PreferencesParametersSource> {
+    ): ImmutableList<PreferencesParametersSource> {
         val preferencesScreenSources = mutableListOf<PreferencesParametersSource>()
 
         with(location) {
@@ -374,5 +392,6 @@ class SourceManager @Inject constructor(
                     SettingsManager.getInstance(context).language.locale
                 ).compare(s1.name, s2.name)
             })*/
+            .toImmutableList()
     }
 }

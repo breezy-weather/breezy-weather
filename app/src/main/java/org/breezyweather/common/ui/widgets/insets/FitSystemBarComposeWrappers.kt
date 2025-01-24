@@ -91,10 +91,12 @@ fun FitStatusBarTopAppBar(
 fun FitStatusBarTopAppBar(
     title: String,
     onBackPressed: () -> Unit,
+    modifier: Modifier = Modifier,
     actions: @Composable RowScope.() -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior? = null,
 ) = FitStatusBarTopAppBar(
     title = { Text(text = title) },
+    modifier = modifier,
     navigationIcon = {
         IconButton(onClick = onBackPressed) {
             Icon(

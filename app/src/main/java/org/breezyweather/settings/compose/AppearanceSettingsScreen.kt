@@ -78,11 +78,12 @@ fun AppearanceSettingsScreen(
     context: Context,
     onNavigateTo: (route: String) -> Unit,
     onNavigateBack: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
 
     Material3Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             FitStatusBarTopAppBar(
                 title = stringResource(R.string.settings_appearance),

@@ -26,11 +26,12 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun PreferenceScreen(
+    modifier: Modifier = Modifier,
     paddingValues: PaddingValues = PaddingValues(0.dp),
     content: LazyListScope.() -> Unit,
 ) {
     LazyColumn(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         contentPadding = paddingValues,
         content = content
     )

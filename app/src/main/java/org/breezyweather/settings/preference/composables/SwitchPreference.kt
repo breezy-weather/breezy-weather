@@ -56,10 +56,10 @@ import org.breezyweather.theme.compose.themeRipple
 @Composable
 fun SwitchPreferenceView(
     @StringRes titleId: Int,
-    @DrawableRes iconId: Int? = null,
     @StringRes summaryOnId: Int,
     @StringRes summaryOffId: Int,
     checked: Boolean,
+    @DrawableRes iconId: Int? = null,
     withState: Boolean = true,
     enabled: Boolean = true,
     card: Boolean = true,
@@ -82,9 +82,9 @@ fun SwitchPreferenceView(
 @Composable
 fun SwitchPreferenceView(
     title: String,
-    @DrawableRes iconId: Int? = null,
     summary: (Context, Boolean) -> String?,
     checked: Boolean,
+    @DrawableRes iconId: Int? = null,
     withState: Boolean = true,
     enabled: Boolean = true,
     card: Boolean = true,

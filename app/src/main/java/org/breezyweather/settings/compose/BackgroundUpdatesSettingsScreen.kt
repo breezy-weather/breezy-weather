@@ -69,12 +69,13 @@ fun BackgroundSettingsScreen(
     context: Context,
     updateInterval: UpdateInterval,
     onNavigateBack: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val uriHandler = LocalUriHandler.current
     val scrollBehavior = generateCollapsedScrollBehavior()
 
     Material3Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             FitStatusBarTopAppBar(
                 title = stringResource(R.string.settings_background_updates),

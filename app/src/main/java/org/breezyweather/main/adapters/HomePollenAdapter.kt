@@ -22,6 +22,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
+import kotlinx.collections.immutable.ImmutableSet
 import org.breezyweather.R
 import org.breezyweather.common.extensions.capitalize
 import org.breezyweather.common.extensions.currentLocale
@@ -38,7 +39,7 @@ import org.breezyweather.theme.compose.BreezyWeatherTheme
 open class HomePollenAdapter(
     private val location: Location,
     private val pollenIndexSource: PollenIndexSource?,
-    private val specificPollens: Set<PollenIndex>,
+    private val specificPollens: ImmutableSet<PollenIndex>,
 ) : RecyclerView.Adapter<HomePollenViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePollenViewHolder {
@@ -71,7 +72,7 @@ class HomePollenViewHolder internal constructor(
         location: Location,
         daily: Daily,
         pollenIndexSource: PollenIndexSource?,
-        specificPollens: Set<PollenIndex>,
+        specificPollens: ImmutableSet<PollenIndex>,
     ) {
         val context = itemView.context
 

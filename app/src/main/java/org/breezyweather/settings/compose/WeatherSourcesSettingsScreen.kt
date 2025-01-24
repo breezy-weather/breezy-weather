@@ -28,6 +28,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
@@ -62,13 +64,14 @@ import java.text.Collator
 fun WeatherSourcesSettingsScreen(
     context: Context,
     onNavigateBack: () -> Unit,
-    configuredWorldwideSources: List<WeatherSource>,
-    configurableSources: List<ConfigurableSource>,
+    configuredWorldwideSources: ImmutableList<WeatherSource>,
+    configurableSources: ImmutableList<ConfigurableSource>,
+    modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
 
     Material3Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             FitStatusBarTopAppBar(
                 title = stringResource(R.string.settings_weather_sources),
@@ -122,7 +125,7 @@ fun WeatherSourcesSettingsScreen(
                                 Triple(it.id, it.getName(context), it !is ConfigurableSource || it.isConfigured)
                             }
                         )
-                    },
+                    }.toImmutableList(),
                     card = true
                 ) { defaultSource ->
                     SettingsManager.getInstance(context).defaultForecastSource = defaultSource

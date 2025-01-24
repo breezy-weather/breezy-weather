@@ -38,6 +38,11 @@ import androidx.compose.ui.res.stringResource
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.ImmutableMap
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
+import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
@@ -64,14 +69,14 @@ fun LocationPreference(
     activity: MainActivity,
     location: Location,
     onClose: ((location: Location?) -> Unit),
+    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
     val dialogWeatherSourcesOpenState = remember { mutableStateOf(false) }
     val dialogAdditionalLocationPreferencesOpenState = remember { mutableStateOf(false) }
 
     Column(
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
+        modifier = modifier.verticalScroll(rememberScrollState())
     ) {
         if (location.isCurrentPosition) {
             val locationSources = activity.sourceManager.getLocationSources()
@@ -81,7 +86,7 @@ fun LocationPreference(
                 selectedKey = SettingsManager.getInstance(activity).locationSource,
                 sourceList = locationSources.map {
                     Triple(it.id, it.getName(context), it !is ConfigurableSource || it.isConfigured)
-                }
+                }.toImmutableList()
             ) { sourceId ->
                 SettingsManager.getInstance(activity).locationSource = sourceId
                 onClose(null)
@@ -119,30 +124,31 @@ fun LocationPreference(
         if (dialogWeatherSourcesOpenState.value) {
             SecondarySourcesPreference(
                 sourceManager = activity.sourceManager,
-                location = location
-            ) { newLocation ->
-                if (newLocation != null) {
-                    if (location.forecastSource != newLocation.forecastSource) {
-                        // TODO: Don't save if match an existing location/main weather source
-                        val locationExists = false
-                        if (locationExists) {
-                            SnackbarHelper.showSnackbar(
-                                activity.getString(R.string.location_message_already_exists)
-                            )
-                            dialogWeatherSourcesOpenState.value = false
-                            onClose(null)
+                location = location,
+                onClose = { newLocation ->
+                    if (newLocation != null) {
+                        if (location.forecastSource != newLocation.forecastSource) {
+                            // TODO: Don't save if match an existing location/main weather source
+                            val locationExists = false
+                            if (locationExists) {
+                                SnackbarHelper.showSnackbar(
+                                    activity.getString(R.string.location_message_already_exists)
+                                )
+                                dialogWeatherSourcesOpenState.value = false
+                                onClose(null)
+                            } else {
+                                dialogWeatherSourcesOpenState.value = false
+                                onClose(newLocation)
+                            }
                         } else {
                             dialogWeatherSourcesOpenState.value = false
                             onClose(newLocation)
                         }
                     } else {
                         dialogWeatherSourcesOpenState.value = false
-                        onClose(newLocation)
                     }
-                } else {
-                    dialogWeatherSourcesOpenState.value = false
                 }
-            }
+            )
         }
 
         if (dialogAdditionalLocationPreferencesOpenState.value) {
@@ -203,7 +209,7 @@ fun LocationPreference(
                             preferenceSource.PerLocationPreferences(
                                 context = activity,
                                 location = location,
-                                features = emptyList() // TODO
+                                features = persistentListOf() // TODO
                             ) {
                                 val newParameters = location.parameters.toMutableMap()
                                 newParameters[preferenceSource.id] = buildMap {
@@ -277,6 +283,7 @@ fun SecondarySourcesPreference(
     sourceManager: SourceManager,
     location: Location,
     onClose: ((location: Location?) -> Unit),
+    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
     val continentComparator = Comparator<SourceContinent?> { va1, va2 ->
@@ -328,8 +335,8 @@ fun SecondarySourcesPreference(
                     (it !is ConfigurableSource || it.isConfigured) &&
                         it.isFeatureSupportedForLocation(location, SourceFeature.FORECAST)
                 )
-            }
-        }
+            }.toImmutableList()
+        }.toImmutableMap()
 
     val compatibleCurrentSources = sourceManager
         .getSupportedWeatherSources(SourceFeature.CURRENT, location, currentSource.value)
@@ -343,8 +350,8 @@ fun SecondarySourcesPreference(
                     (it !is ConfigurableSource || it.isConfigured) &&
                         it.isFeatureSupportedForLocation(location, SourceFeature.CURRENT)
                 )
-            }
-        }
+            }.toImmutableList()
+        }.toImmutableMap()
     val compatibleAirQualitySources = sourceManager
         .getSupportedWeatherSources(SourceFeature.AIR_QUALITY, location, airQualitySource.value)
         .groupBy { if (it is HttpSource) it.continent else null }
@@ -357,8 +364,8 @@ fun SecondarySourcesPreference(
                     (it !is ConfigurableSource || it.isConfigured) &&
                         it.isFeatureSupportedForLocation(location, SourceFeature.AIR_QUALITY)
                 )
-            }
-        }
+            }.toImmutableList()
+        }.toImmutableMap()
     val compatiblePollenSources = sourceManager
         .getSupportedWeatherSources(SourceFeature.POLLEN, location, pollenSource.value)
         .groupBy { if (it is HttpSource) it.continent else null }
@@ -371,8 +378,8 @@ fun SecondarySourcesPreference(
                     (it !is ConfigurableSource || it.isConfigured) &&
                         it.isFeatureSupportedForLocation(location, SourceFeature.POLLEN)
                 )
-            }
-        }
+            }.toImmutableList()
+        }.toImmutableMap()
     val compatibleMinutelySources = sourceManager
         .getSupportedWeatherSources(SourceFeature.MINUTELY, location, minutelySource.value)
         .groupBy { if (it is HttpSource) it.continent else null }
@@ -385,8 +392,8 @@ fun SecondarySourcesPreference(
                     (it !is ConfigurableSource || it.isConfigured) &&
                         it.isFeatureSupportedForLocation(location, SourceFeature.MINUTELY)
                 )
-            }
-        }
+            }.toImmutableList()
+        }.toImmutableMap()
     val compatibleAlertSources = sourceManager
         .getSupportedWeatherSources(SourceFeature.ALERT, location, alertSource.value)
         .groupBy { if (it is HttpSource) it.continent else null }
@@ -399,8 +406,8 @@ fun SecondarySourcesPreference(
                     (it !is ConfigurableSource || it.isConfigured) &&
                         it.isFeatureSupportedForLocation(location, SourceFeature.ALERT)
                 )
-            }
-        }
+            }.toImmutableList()
+        }.toImmutableMap()
     val compatibleNormalsSources = sourceManager
         .getSupportedWeatherSources(SourceFeature.NORMALS, location, normalsSource.value)
         .groupBy { if (it is HttpSource) it.continent else null }
@@ -413,10 +420,11 @@ fun SecondarySourcesPreference(
                     (it !is ConfigurableSource || it.isConfigured) &&
                         it.isFeatureSupportedForLocation(location, SourceFeature.NORMALS)
                 )
-            }
-        }
+            }.toImmutableList()
+        }.toImmutableMap()
 
     AlertDialogNoPadding(
+        modifier = modifier,
         onDismissRequest = {
             onClose(null)
         },
@@ -483,11 +491,11 @@ fun SecondarySourcesPreference(
                                             false
                                         )
                                     )
-                                }
+                                }.toImmutableList()
                             )
                         }
                         putAll(compatibleForecastSources)
-                    },
+                    }.toImmutableMap(),
                     withState = false
                 ) { sourceId ->
                     forecastSource.value = sourceId
@@ -523,10 +531,10 @@ fun SecondarySourcesPreference(
                                         true
                                     )
                                 )
-                            }
+                            }.toImmutableList()
                         )
                         putAll(compatibleCurrentSources)
-                    },
+                    }.toImmutableMap(),
                     withState = false
                 ) { sourceId ->
                     currentSource.value = sourceId
@@ -562,10 +570,10 @@ fun SecondarySourcesPreference(
                                         true
                                     )
                                 )
-                            }
+                            }.toImmutableList()
                         )
                         putAll(compatibleAirQualitySources)
-                    },
+                    }.toImmutableMap(),
                     withState = false
                 ) { sourceId ->
                     airQualitySource.value = sourceId
@@ -601,10 +609,10 @@ fun SecondarySourcesPreference(
                                         true
                                     )
                                 )
-                            }
+                            }.toImmutableList()
                         )
                         putAll(compatiblePollenSources)
-                    },
+                    }.toImmutableMap(),
                     withState = false
                 ) { sourceId ->
                     pollenSource.value = sourceId
@@ -640,10 +648,10 @@ fun SecondarySourcesPreference(
                                         true
                                     )
                                 )
-                            }
+                            }.toImmutableList()
                         )
                         putAll(compatibleMinutelySources)
-                    },
+                    }.toImmutableMap(),
                     withState = false
                 ) { sourceId ->
                     minutelySource.value = sourceId
@@ -679,10 +687,10 @@ fun SecondarySourcesPreference(
                                         true
                                     )
                                 )
-                            }
+                            }.toImmutableList()
                         )
                         putAll(compatibleAlertSources)
-                    },
+                    }.toImmutableMap(),
                     withState = false
                 ) { sourceId ->
                     alertSource.value = sourceId
@@ -718,10 +726,10 @@ fun SecondarySourcesPreference(
                                         true
                                     )
                                 )
-                            }
+                            }.toImmutableList()
                         )
                         putAll(compatibleNormalsSources)
-                    },
+                    }.toImmutableMap(),
                     withState = false
                 ) { sourceId ->
                     normalsSource.value = sourceId
@@ -802,7 +810,7 @@ fun SecondarySourcesPreference(
 fun SourceView(
     title: String,
     selectedKey: String,
-    sourceList: List<Triple<String, String, Boolean>>,
+    sourceList: ImmutableList<Triple<String, String, Boolean>>,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     card: Boolean = false,
@@ -856,7 +864,7 @@ fun SourceView(
 fun SourceViewWithContinents(
     title: String,
     selectedKey: String,
-    sourceList: Map<SourceContinent?, List<Triple<String, String, Boolean>>>,
+    sourceList: ImmutableMap<SourceContinent?, ImmutableList<Triple<String, String, Boolean>>>,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     card: Boolean = false,
@@ -873,7 +881,7 @@ fun SourceViewWithContinents(
         selectedKey = selectedKey,
         values = sourceList.mapKeys {
             it.key?.let { k -> context.getString(k.resourceName!!) }
-        },
+        }.toImmutableMap(),
         summary = { _, value ->
             sourceList.values.firstOrNull { c ->
                 c.firstOrNull { it.first == value } != null

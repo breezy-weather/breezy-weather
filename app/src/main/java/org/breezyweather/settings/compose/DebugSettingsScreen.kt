@@ -43,12 +43,13 @@ import org.breezyweather.settings.preference.sectionHeaderItem
 fun DebugSettingsScreen(
     context: SettingsActivity,
     onNavigateBack: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val scope = rememberCoroutineScope()
     val scrollBehavior = generateCollapsedScrollBehavior()
 
     Material3Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             FitStatusBarTopAppBar(
                 title = stringResource(R.string.settings_debug),

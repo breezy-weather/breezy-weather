@@ -58,6 +58,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.os.LocaleListCompat
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.ImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.basic.models.options.appearance.LocaleHelper
@@ -72,11 +74,11 @@ import java.util.Date
 @Composable
 fun ListPreferenceView(
     @StringRes titleId: Int,
-    @DrawableRes iconId: Int? = null,
     @ArrayRes valueArrayId: Int,
     @ArrayRes nameArrayId: Int,
-    @ArrayRes summaryArrayId: Int? = null,
     selectedKey: String,
+    @ArrayRes summaryArrayId: Int? = null,
+    @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     card: Boolean = true,
     colors: ListItemColors = ListItemDefaults.colors(),
@@ -104,11 +106,11 @@ fun ListPreferenceView(
 @Composable
 fun ListPreferenceView(
     title: String,
-    @DrawableRes iconId: Int? = null,
     summary: (Context, String) -> String?, // value -> summary.
     selectedKey: String,
     valueArray: Array<String>,
     nameArray: Array<String>,
+    @DrawableRes iconId: Int? = null,
     enableArray: Array<Boolean>? = null,
     enabled: Boolean = true,
     card: Boolean = true,
@@ -320,10 +322,10 @@ fun ListPreferenceView(
 @Composable
 fun ListPreferenceWithGroupsView(
     title: String,
-    @DrawableRes iconId: Int? = null,
     summary: (Context, String) -> String?, // value -> summary.
     selectedKey: String,
-    values: Map<String?, List<Triple<String, String, Boolean>>>,
+    values: ImmutableMap<String?, ImmutableList<Triple<String, String, Boolean>>>,
+    @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     card: Boolean = true,
     colors: ListItemColors = ListItemDefaults.colors(),

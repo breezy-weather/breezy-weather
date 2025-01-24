@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
+import kotlinx.collections.immutable.ImmutableList
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
@@ -51,16 +52,17 @@ import org.breezyweather.settings.preference.switchPreferenceItem
 fun MainScreenSettingsScreen(
     context: Context,
     onNavigateBack: () -> Unit,
-    cardDisplayList: List<CardDisplay>,
-    dailyTrendDisplayList: List<DailyTrendDisplay>,
-    hourlyTrendDisplayList: List<HourlyTrendDisplay>,
-    detailDisplayList: List<DetailDisplay>,
+    cardDisplayList: ImmutableList<CardDisplay>,
+    dailyTrendDisplayList: ImmutableList<DailyTrendDisplay>,
+    hourlyTrendDisplayList: ImmutableList<HourlyTrendDisplay>,
+    detailDisplayList: ImmutableList<DetailDisplay>,
     updateWidgetIfNecessary: (Context) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
 
     Material3Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             FitStatusBarTopAppBar(
                 title = stringResource(R.string.settings_main),

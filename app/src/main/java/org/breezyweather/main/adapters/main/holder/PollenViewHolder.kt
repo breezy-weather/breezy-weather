@@ -23,6 +23,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import breezyweather.domain.location.model.Location
+import kotlinx.collections.immutable.ImmutableSet
+import kotlinx.collections.immutable.persistentSetOf
+import kotlinx.collections.immutable.toImmutableSet
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.source.PollenIndexSource
@@ -51,7 +54,7 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     private class DailyPollenPagerAdapter(
         location: Location,
         pollenIndexSource: PollenIndexSource?,
-        specificPollens: Set<PollenIndex>,
+        specificPollens: ImmutableSet<PollenIndex>,
     ) : HomePollenAdapter(location, pollenIndexSource, specificPollens) {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePollenViewHolder {
             val holder = super.onCreateViewHolder(parent, viewType)
@@ -116,7 +119,7 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             ),
             location.weather?.dailyForecast?.map { daily ->
                 daily.pollen?.pollensWithConcentration ?: setOf()
-            }?.flatten()?.toSet() ?: setOf()
+            }?.flatten()?.toImmutableSet() ?: persistentSetOf()
         )
         mPager.currentItem = 0
         mCallback = DailyPollenPageChangeCallback(activity, location)

@@ -477,12 +477,14 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
     @Composable
     fun PerLocationSettingsDialog(
         location: Location?,
+        modifier: Modifier = Modifier,
     ) {
         val dialogPerLocationSettingsOpenState = dialogPerLocationSettingsOpen.collectAsState()
         if (dialogPerLocationSettingsOpenState.value) {
             location?.let {
                 val dialogDeleteLocationOpenState = remember { mutableStateOf(false) }
                 AlertDialogNoPadding(
+                    modifier = modifier,
                     onDismissRequest = {
                         _dialogPerLocationSettingsOpen.value = false
                     },
@@ -494,12 +496,16 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                         )
                     },
                     text = {
-                        LocationPreference(this, it) { newLocation: Location? ->
-                            if (newLocation != null) {
-                                updateLocation(newLocation)
+                        LocationPreference(
+                            activity = this,
+                            location = it,
+                            onClose = { newLocation: Location? ->
+                                if (newLocation != null) {
+                                    updateLocation(newLocation)
+                                }
+                                _dialogPerLocationSettingsOpen.value = false
                             }
-                            _dialogPerLocationSettingsOpen.value = false
-                        }
+                        )
                     },
                     confirmButton = {
                         TextButton(

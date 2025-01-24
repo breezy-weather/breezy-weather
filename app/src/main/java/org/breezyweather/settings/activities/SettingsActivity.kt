@@ -33,6 +33,7 @@ import androidx.navigation.compose.rememberNavController
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceFeature
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.bus.EventBus
@@ -216,10 +217,10 @@ class SettingsActivity : GeoActivity() {
                 MainScreenSettingsScreen(
                     context = this@SettingsActivity,
                     onNavigateBack = { onBack() },
-                    cardDisplayList = remember { cardDisplayState }.value,
-                    dailyTrendDisplayList = remember { dailyTrendDisplayState }.value,
-                    hourlyTrendDisplayList = remember { hourlyTrendDisplayState }.value,
-                    detailDisplayList = remember { detailsDisplayState }.value,
+                    cardDisplayList = remember { cardDisplayState }.value.toImmutableList(),
+                    dailyTrendDisplayList = remember { dailyTrendDisplayState }.value.toImmutableList(),
+                    hourlyTrendDisplayList = remember { hourlyTrendDisplayState }.value.toImmutableList(),
+                    detailDisplayList = remember { detailsDisplayState }.value.toImmutableList(),
                     updateWidgetIfNecessary = { context: Context ->
                         scope.launch {
                             refreshHelper.updateWidgetIfNecessary(context)

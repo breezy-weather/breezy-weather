@@ -33,6 +33,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Current
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
@@ -79,8 +81,8 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 mDetailsList.setContent {
                     BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
                         ContentView(
-                            SettingsManager.getInstance(context).detailDisplayList,
-                            SettingsManager.getInstance(context).detailDisplayUnlisted,
+                            SettingsManager.getInstance(context).detailDisplayList.toImmutableList(),
+                            SettingsManager.getInstance(context).detailDisplayUnlisted.toImmutableList(),
                             current,
                             location
                         )
@@ -92,8 +94,8 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
     @Composable
     private fun ContentView(
-        detailsInHeaderList: List<DetailDisplay>,
-        detailsNotInHeaderList: List<DetailDisplay>,
+        detailsInHeaderList: ImmutableList<DetailDisplay>,
+        detailsNotInHeaderList: ImmutableList<DetailDisplay>,
         current: Current,
         location: Location,
     ) {

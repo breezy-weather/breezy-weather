@@ -26,6 +26,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
@@ -84,12 +87,13 @@ fun WidgetsSettingsScreen(
     updateWidgetIfNecessary: (Context) -> Unit,
     updateNotificationIfNecessary: (Context) -> Unit,
     broadcastDataIfNecessary: (Context, String) -> Unit,
-    broadcastSources: List<BroadcastSource>,
+    broadcastSources: ImmutableList<BroadcastSource>,
+    modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
 
     Material3Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             FitStatusBarTopAppBar(
                 title = stringResource(R.string.settings_widgets),
@@ -391,9 +395,9 @@ fun WidgetsSettingsScreen(
                         val config = SourceConfigStore(context, broadcastSource.id)
                         val enabledPackages = (config.getString("packages", null) ?: "").let {
                             if (it.isNotEmpty()) {
-                                it.split(",")
+                                it.split(",").toImmutableList()
                             } else {
-                                emptyList()
+                                persistentListOf()
                             }
                         }
                         PackagePreferenceView(

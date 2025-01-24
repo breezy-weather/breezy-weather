@@ -53,6 +53,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import kotlinx.collections.immutable.ImmutableList
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.toBitmap
@@ -73,10 +74,10 @@ data class PreferenceItem(
 @Composable
 fun MultiListPreferenceView(
     title: String,
-    @DrawableRes iconId: Int? = null,
-    selectedKeys: List<String>,
+    selectedKeys: ImmutableList<String>,
     itemsArray: Array<PreferenceItem>,
     noItemsMessage: String,
+    @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     card: Boolean = true,
     onValueChanged: (List<String>) -> Unit,
@@ -357,7 +358,7 @@ internal fun Switch(
 @Composable
 fun PackagePreferenceView(
     title: String,
-    selectedKeys: List<String>,
+    selectedKeys: ImmutableList<String>,
     intent: String,
     onValueChanged: (List<String>) -> Unit,
 ) {

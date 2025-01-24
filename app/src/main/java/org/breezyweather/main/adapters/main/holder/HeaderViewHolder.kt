@@ -51,6 +51,8 @@ import androidx.compose.ui.unit.sp
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Current
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
@@ -129,7 +131,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                                 detailList.size,
                                 if (context.isLandscape) NB_CURRENT_ITEMS_LANDSCAPE else NB_CURRENT_ITEMS_PORTRAIT
                             )
-                        ),
+                        ).toImmutableList(),
                         current,
                         location.isDaylight
                     )
@@ -146,7 +148,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
 
     @Composable
     private fun HeaderDetails(
-        detailDisplayList: List<DetailDisplay>,
+        detailDisplayList: ImmutableList<DetailDisplay>,
         current: Current,
         isDaylight: Boolean = true,
     ) {
