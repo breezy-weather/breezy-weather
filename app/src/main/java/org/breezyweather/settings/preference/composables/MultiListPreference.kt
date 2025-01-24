@@ -35,8 +35,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemColors
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -47,6 +50,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
@@ -72,6 +76,34 @@ data class PreferenceItem(
 )
 
 @Composable
+fun MultiListPreferenceViewWithCard(
+    title: String,
+    selectedKeys: ImmutableList<String>,
+    itemsArray: Array<PreferenceItem>,
+    noItemsMessage: String,
+    @DrawableRes iconId: Int? = null,
+    enabled: Boolean = true,
+    colors: ListItemColors = ListItemDefaults.colors(),
+    onValueChanged: (List<String>) -> Unit,
+) {
+    Material3CardListItem(
+        elevation = if (enabled) defaultCardListItemElevation else 0.dp
+    ) {
+        MultiListPreferenceView(
+            title = title,
+            selectedKeys = selectedKeys,
+            itemsArray = itemsArray,
+            noItemsMessage = noItemsMessage,
+            iconId = iconId,
+            enabled = enabled,
+            colors = colors,
+            card = true,
+            onValueChanged = onValueChanged
+        )
+    }
+}
+
+@Composable
 fun MultiListPreferenceView(
     title: String,
     selectedKeys: ImmutableList<String>,
@@ -79,7 +111,8 @@ fun MultiListPreferenceView(
     noItemsMessage: String,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
-    card: Boolean = true,
+    colors: ListItemColors = ListItemDefaults.colors(),
+    card: Boolean = false,
     onValueChanged: (List<String>) -> Unit,
 ) {
     val context = LocalContext.current
@@ -97,116 +130,58 @@ fun MultiListPreferenceView(
             stringResource(R.string.settings_disabled)
         }
 
-    // TODO: Redundancy
-    if (card) {
-        Material3CardListItem(
-            elevation = if (enabled) defaultCardListItemElevation else 0.dp
-        ) {
-            ListItem(
-                tonalElevation = if (enabled) defaultCardListItemElevation else 0.dp,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .alpha(if (enabled) 1f else 0.5f)
-                    .clickable(
-                        interactionSource = remember { MutableInteractionSource() },
-                        indication = themeRipple(),
-                        onClick = { dialogOpenState.value = true },
-                        enabled = enabled
-                    )
-                    .padding(PaddingValues(vertical = 8.dp)),
-                leadingContent = if (iconId != null) {
-                    {
-                        Icon(
-                            painter = painterResource(iconId),
-                            tint = DayNightTheme.colors.titleColor,
-                            contentDescription = null,
-                            modifier = Modifier.size(24.dp)
-                        )
-                    }
-                } else {
-                    null
-                },
-                headlineContent = {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Column(
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            Text(
-                                text = title,
-                                color = DayNightTheme.colors.titleColor,
-                                style = MaterialTheme.typography.titleMedium
-                            )
-                        }
-                    }
-                },
-                supportingContent = {
-                    Column {
-                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                        Text(
-                            text = currentSummary,
-                            color = DayNightTheme.colors.bodyColor,
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                    }
-                }
+    ListItem(
+        colors = colors,
+        tonalElevation = if (card && enabled) defaultCardListItemElevation else 0.dp,
+        modifier = Modifier
+            .fillMaxWidth()
+            .alpha(if (enabled) 1f else 0.5f)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = themeRipple(),
+                onClick = { dialogOpenState.value = true },
+                enabled = enabled
             )
-        }
-    } else {
-        ListItem(
-            tonalElevation = 0.dp,
-            modifier = Modifier
-                .fillMaxWidth()
-                .alpha(if (enabled) 1f else 0.5f)
-                .clickable(
-                    interactionSource = remember { MutableInteractionSource() },
-                    indication = themeRipple(),
-                    onClick = { dialogOpenState.value = true },
-                    enabled = enabled
+            .padding(PaddingValues(vertical = 8.dp)),
+        leadingContent = if (iconId != null) {
+            {
+                Icon(
+                    painter = painterResource(iconId),
+                    tint = DayNightTheme.colors.titleColor,
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
                 )
-                .padding(PaddingValues(vertical = 8.dp)),
-            leadingContent = if (iconId != null) {
-                {
-                    Icon(
-                        painter = painterResource(iconId),
-                        tint = DayNightTheme.colors.titleColor,
-                        contentDescription = null,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
-            } else {
-                null
-            },
-            headlineContent = {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
+            }
+        } else {
+            null
+        },
+        headlineContent = {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f)
                 ) {
-                    Column(
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text(
-                            text = title,
-                            color = DayNightTheme.colors.titleColor,
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                    }
-                }
-            },
-            supportingContent = {
-                Column {
-                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                     Text(
-                        text = currentSummary,
-                        color = DayNightTheme.colors.bodyColor,
-                        style = MaterialTheme.typography.bodyMedium
+                        text = title,
+                        color = DayNightTheme.colors.titleColor,
+                        style = MaterialTheme.typography.titleMedium
                     )
                 }
             }
-        )
-    }
+        },
+        supportingContent = {
+            Column {
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                Text(
+                    text = currentSummary,
+                    color = DayNightTheme.colors.bodyColor,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
+        }
+    )
 
     if (dialogOpenState.value) {
         if (itemsArray.isNotEmpty()) {
@@ -240,6 +215,9 @@ fun MultiListPreferenceView(
                                         listSelectedState.add(it.value)
                                     }
                                 },
+                                colors = ListItemDefaults.colors(
+                                    containerColor = Color.Transparent
+                                ),
                                 text = it.name,
                                 subtext = it.subname
                             )
@@ -320,14 +298,17 @@ internal fun Switch(
     selected: Boolean,
     onClick: () -> Unit,
     text: String,
+    colors: ListItemColors = ListItemDefaults.colors(),
     icon: Drawable? = null,
     subtext: String? = null,
 ) {
     ListItem(
+        colors = colors,
         headlineContent = {
             Text(text)
         },
         modifier = Modifier
+            .fillMaxWidth()
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = themeRipple(),
@@ -367,7 +348,7 @@ fun PackagePreferenceView(
         context.packageManager.queryBroadcastReceivers(Intent(intent), PackageManager.GET_RESOLVED_FILTER)
     }
 
-    MultiListPreferenceView(
+    MultiListPreferenceViewWithCard(
         title = title,
         selectedKeys = selectedKeys,
         itemsArray = packages

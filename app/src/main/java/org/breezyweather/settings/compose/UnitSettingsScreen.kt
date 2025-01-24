@@ -61,6 +61,7 @@ fun UnitSettingsScreen(
                     selectedKey = SettingsManager.getInstance(context).temperatureUnit.id,
                     valueArrayId = R.array.temperature_unit_values,
                     nameArrayId = R.array.temperature_units,
+                    card = true,
                     onValueChanged = {
                         SettingsManager
                             .getInstance(context)
@@ -74,6 +75,7 @@ fun UnitSettingsScreen(
                     selectedKey = SettingsManager.getInstance(context).precipitationUnit.id,
                     valueArrayId = R.array.precipitation_unit_values,
                     nameArrayId = R.array.precipitation_units,
+                    card = true,
                     onValueChanged = {
                         SettingsManager
                             .getInstance(context)
@@ -87,6 +89,7 @@ fun UnitSettingsScreen(
                     selectedKey = SettingsManager.getInstance(context).distanceUnit.id,
                     valueArrayId = R.array.distance_unit_values,
                     nameArrayId = R.array.distance_units,
+                    card = true,
                     onValueChanged = {
                         SettingsManager
                             .getInstance(context)
@@ -100,6 +103,7 @@ fun UnitSettingsScreen(
                     selectedKey = SettingsManager.getInstance(context).speedUnit.id,
                     valueArrayId = R.array.speed_unit_values,
                     nameArrayId = R.array.speed_units,
+                    card = true,
                     onValueChanged = {
                         SettingsManager
                             .getInstance(context)
@@ -113,6 +117,7 @@ fun UnitSettingsScreen(
                     selectedKey = SettingsManager.getInstance(context).pressureUnit.id,
                     valueArrayId = R.array.pressure_unit_values,
                     nameArrayId = R.array.pressure_units,
+                    card = true,
                     onValueChanged = {
                         SettingsManager
                             .getInstance(context)

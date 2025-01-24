@@ -44,6 +44,7 @@ import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.EditTextPreferenceView
 import org.breezyweather.settings.preference.composables.ListPreferenceView
+import org.breezyweather.settings.preference.composables.ListPreferenceViewWithCard
 import org.breezyweather.settings.preference.composables.PreferenceScreen
 import org.breezyweather.settings.preference.composables.PreferenceView
 import org.breezyweather.settings.preference.composables.SectionFooter
@@ -88,7 +89,7 @@ fun LocationSettingsScreen(
             if (BuildConfig.FLAVOR != "freenet") {
                 sectionHeaderItem(R.string.settings_location_section_general)
                 listPreferenceItem(R.string.settings_location_service) { id ->
-                    ListPreferenceView(
+                    ListPreferenceViewWithCard(
                         title = context.getString(id),
                         selectedKey = SettingsManager.getInstance(context).locationSource,
                         valueArray = locationSources.map { it.id }.toTypedArray(),
@@ -214,6 +215,7 @@ fun LocationSettingsScreen(
                                     selectedKey = preference.selectedKey,
                                     valueArrayId = preference.valueArrayId,
                                     nameArrayId = preference.nameArrayId,
+                                    card = true,
                                     onValueChanged = preference.onValueChanged
                                 )
                             }

@@ -155,6 +155,7 @@ fun MainScreenSettingsScreen(
                     selectedKey = SettingsManager.getInstance(context).backgroundAnimationMode.id,
                     valueArrayId = R.array.background_animation_values,
                     nameArrayId = R.array.background_animation,
+                    card = true,
                     onValueChanged = {
                         SettingsManager
                             .getInstance(context)

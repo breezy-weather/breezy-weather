@@ -80,7 +80,7 @@ fun ListPreferenceView(
     @ArrayRes summaryArrayId: Int? = null,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
-    card: Boolean = true,
+    card: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(),
     withState: Boolean = true,
     onValueChanged: (String) -> Unit,
@@ -88,19 +88,69 @@ fun ListPreferenceView(
     val values = stringArrayResource(valueArrayId)
     val names = stringArrayResource(nameArrayId)
     val summaries = if (summaryArrayId == null) names else stringArrayResource(summaryArrayId)
-    ListPreferenceView(
-        title = stringResource(titleId),
-        iconId = iconId,
-        summary = { _, value -> summaries[values.indexOfFirst { it == value }] },
-        selectedKey = selectedKey,
-        valueArray = values,
-        nameArray = names,
-        enabled = enabled,
-        card = card,
-        colors = colors,
-        withState = withState,
-        onValueChanged = onValueChanged
-    )
+    if (card) {
+        ListPreferenceViewWithCard(
+            title = stringResource(titleId),
+            iconId = iconId,
+            summary = { _, value -> summaries[values.indexOfFirst { it == value }] },
+            selectedKey = selectedKey,
+            valueArray = values,
+            nameArray = names,
+            enabled = enabled,
+            colors = colors,
+            withState = withState,
+            onValueChanged = onValueChanged
+        )
+    } else {
+        ListPreferenceView(
+            title = stringResource(titleId),
+            iconId = iconId,
+            summary = { _, value -> summaries[values.indexOfFirst { it == value }] },
+            selectedKey = selectedKey,
+            valueArray = values,
+            nameArray = names,
+            enabled = enabled,
+            colors = colors,
+            withState = withState,
+            onValueChanged = onValueChanged
+        )
+    }
+}
+
+@Composable
+fun ListPreferenceViewWithCard(
+    title: String,
+    summary: (Context, String) -> String?, // value -> summary.
+    selectedKey: String,
+    valueArray: Array<String>,
+    nameArray: Array<String>,
+    @DrawableRes iconId: Int? = null,
+    enableArray: Array<Boolean>? = null,
+    enabled: Boolean = true,
+    colors: ListItemColors = ListItemDefaults.colors(),
+    withState: Boolean = true,
+    dismissButton: @Composable (() -> Unit)? = null,
+    onValueChanged: (String) -> Unit,
+) {
+    Material3CardListItem(
+        elevation = if (enabled) defaultCardListItemElevation else 0.dp
+    ) {
+        ListPreferenceView(
+            title = title,
+            summary = summary,
+            selectedKey = selectedKey,
+            valueArray = valueArray,
+            nameArray = nameArray,
+            iconId = iconId,
+            enableArray = enableArray,
+            enabled = enabled,
+            card = true,
+            colors = colors,
+            withState = withState,
+            dismissButton = dismissButton,
+            onValueChanged = onValueChanged
+        )
+    }
 }
 
 @Composable
@@ -113,7 +163,7 @@ fun ListPreferenceView(
     @DrawableRes iconId: Int? = null,
     enableArray: Array<Boolean>? = null,
     enabled: Boolean = true,
-    card: Boolean = true,
+    card: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(),
     withState: Boolean = true,
     dismissButton: @Composable (() -> Unit)? = null,
@@ -123,125 +173,62 @@ fun ListPreferenceView(
     val dialogOpenState = remember { mutableStateOf(false) }
     val currentSummary = summary(LocalContext.current, if (withState) listSelectedState.value else selectedKey)
 
-    // TODO: Redundancy
-    if (card) {
-        Material3CardListItem(
-            elevation = if (enabled) defaultCardListItemElevation else 0.dp
-        ) {
-            ListItem(
-                tonalElevation = if (enabled) defaultCardListItemElevation else 0.dp,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .alpha(if (enabled) 1f else 0.5f)
-                    .clickable(
-                        interactionSource = remember { MutableInteractionSource() },
-                        indication = themeRipple(),
-                        onClick = { dialogOpenState.value = true },
-                        enabled = enabled
-                    )
-                    .padding(PaddingValues(vertical = 8.dp)),
-                leadingContent = if (iconId != null) {
-                    {
-                        Icon(
-                            painter = painterResource(iconId),
-                            tint = DayNightTheme.colors.titleColor,
-                            contentDescription = null,
-                            modifier = Modifier.size(24.dp)
-                        )
-                    }
-                } else {
-                    null
-                },
-                headlineContent = {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Column(
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            Text(
-                                text = title,
-                                color = DayNightTheme.colors.titleColor,
-                                style = MaterialTheme.typography.titleMedium
-                            )
-                        }
-                    }
-                },
-                supportingContent = if (currentSummary?.isNotEmpty() == true) {
-                    {
-                        Column {
-                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                            Text(
-                                text = currentSummary,
-                                color = DayNightTheme.colors.bodyColor,
-                                style = MaterialTheme.typography.bodyMedium
-                            )
-                        }
-                    }
-                } else {
-                    null
-                }
+    ListItem(
+        colors = colors,
+        tonalElevation = if (card && enabled) defaultCardListItemElevation else 0.dp,
+        modifier = Modifier
+            .fillMaxWidth()
+            .alpha(if (enabled) 1f else 0.5f)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = themeRipple(),
+                onClick = { dialogOpenState.value = true },
+                enabled = enabled
             )
-        }
-    } else {
-        ListItem(
-            colors = colors,
-            tonalElevation = 0.dp,
-            modifier = Modifier
-                .fillMaxWidth()
-                .alpha(if (enabled) 1f else 0.5f)
-                .clickable(
-                    interactionSource = remember { MutableInteractionSource() },
-                    indication = themeRipple(),
-                    onClick = { dialogOpenState.value = true },
-                    enabled = enabled
+            .padding(PaddingValues(vertical = 8.dp)),
+        leadingContent = if (iconId != null) {
+            {
+                Icon(
+                    painter = painterResource(iconId),
+                    tint = DayNightTheme.colors.titleColor,
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
                 )
-                .padding(PaddingValues(vertical = 8.dp)),
-            leadingContent = if (iconId != null) {
-                {
-                    Icon(
-                        painter = painterResource(iconId),
-                        tint = DayNightTheme.colors.titleColor,
-                        contentDescription = null,
-                        modifier = Modifier.size(24.dp)
+            }
+        } else {
+            null
+        },
+        headlineContent = {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = title,
+                        color = DayNightTheme.colors.titleColor,
+                        style = MaterialTheme.typography.titleMedium
                     )
                 }
-            } else {
-                null
-            },
-            headlineContent = {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Column(
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Text(
-                            text = title,
-                            color = DayNightTheme.colors.titleColor,
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                    }
-                }
-            },
-            supportingContent = if (currentSummary?.isNotEmpty() == true) {
-                {
-                    Column {
-                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                        Text(
-                            text = currentSummary,
-                            color = DayNightTheme.colors.bodyColor,
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                    }
-                }
-            } else {
-                null
             }
-        )
-    }
+        },
+        supportingContent = if (currentSummary?.isNotEmpty() == true) {
+            {
+                Column {
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                    Text(
+                        text = currentSummary,
+                        color = DayNightTheme.colors.bodyColor,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+            }
+        } else {
+            null
+        }
+    )
 
     if (dialogOpenState.value) {
         AlertDialogNoPadding(
@@ -327,7 +314,6 @@ fun ListPreferenceWithGroupsView(
     values: ImmutableMap<String?, ImmutableList<Triple<String, String, Boolean>>>,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
-    card: Boolean = true,
     colors: ListItemColors = ListItemDefaults.colors(),
     withState: Boolean = true,
     dismissButton: @Composable (() -> Unit)? = null,
@@ -361,7 +347,6 @@ fun ListPreferenceWithGroupsView(
         nameArray = nameList.toTypedArray(),
         enableArray = enableList.toTypedArray(),
         enabled = enabled,
-        card = card,
         colors = colors,
         withState = withState,
         dismissButton = dismissButton,
@@ -418,7 +403,7 @@ fun LanguagePreferenceView(
         mutableStateOf(AppCompatDelegate.getApplicationLocales().get(0)?.toLanguageTag() ?: "")
     }
 
-    ListPreferenceView(
+    ListPreferenceViewWithCard(
         title = stringResource(titleId),
         summary = { _, value -> langs.firstOrNull { value == it.langTag }?.displayName ?: "" },
         selectedKey = langs.firstOrNull { currentLanguage == it.langTag }?.langTag ?: "",
@@ -447,7 +432,7 @@ fun CalendarPreferenceView(
         mutableStateOf(SettingsManager.getInstance(context).alternateCalendar)
     }
 
-    ListPreferenceView(
+    ListPreferenceViewWithCard(
         title = stringResource(titleId),
         summary = { _, value -> calendars.firstOrNull { value == it.id }?.displayName ?: "" },
         selectedKey = calendars.firstOrNull { currentCalendar == it.id }?.id ?: "",

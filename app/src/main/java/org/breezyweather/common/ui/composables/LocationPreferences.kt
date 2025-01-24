@@ -56,6 +56,7 @@ import org.breezyweather.domain.source.resourceName
 import org.breezyweather.main.MainActivity
 import org.breezyweather.settings.SettingsManager
 import org.breezyweather.settings.preference.composables.ListPreferenceView
+import org.breezyweather.settings.preference.composables.ListPreferenceViewWithCard
 import org.breezyweather.settings.preference.composables.ListPreferenceWithGroupsView
 import org.breezyweather.settings.preference.composables.PreferenceView
 import org.breezyweather.settings.preference.composables.SectionFooter
@@ -86,7 +87,8 @@ fun LocationPreference(
                 selectedKey = SettingsManager.getInstance(activity).locationSource,
                 sourceList = locationSources.map {
                     Triple(it.id, it.getName(context), it !is ConfigurableSource || it.isConfigured)
-                }.toImmutableList()
+                }.toImmutableList(),
+                colors = ListItemDefaults.colors(AlertDialogDefaults.containerColor)
             ) { sourceId ->
                 SettingsManager.getInstance(activity).locationSource = sourceId
                 onClose(null)
@@ -181,7 +183,6 @@ fun LocationPreference(
                             selectedKey = backgroundWeatherKind.value,
                             nameArrayId = R.array.live_wallpaper_weather_kinds,
                             valueArrayId = R.array.live_wallpaper_weather_kind_values,
-                            card = false,
                             colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
                         ) { newValue ->
                             if (newValue != backgroundWeatherKind.value) {
@@ -194,7 +195,6 @@ fun LocationPreference(
                             selectedKey = backgroundDayNightType.value,
                             nameArrayId = R.array.live_wallpaper_day_night_types,
                             valueArrayId = R.array.live_wallpaper_day_night_type_values,
-                            card = false,
                             colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
                         ) { newValue ->
                             if (newValue != backgroundDayNightType.value) {
@@ -814,43 +814,76 @@ fun SourceView(
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     card: Boolean = false,
-    colors: ListItemColors = ListItemDefaults.colors(AlertDialogDefaults.containerColor),
+    colors: ListItemColors = ListItemDefaults.colors(),
     withState: Boolean = true,
     onValueChanged: (String) -> Unit,
 ) {
     val dialogLinkOpenState = remember { mutableStateOf(false) }
 
-    ListPreferenceView(
-        title = title,
-        iconId = iconId,
-        selectedKey = selectedKey,
-        valueArray = sourceList.map { it.first }.toTypedArray(),
-        nameArray = sourceList.map { it.second }.toTypedArray(),
-        enableArray = sourceList.map { it.third }.toTypedArray(),
-        summary = { _, value ->
-            sourceList.firstOrNull { it.first == value }?.second
-        },
-        onValueChanged = { sourceId ->
-            onValueChanged(sourceId)
-        },
-        dismissButton = {
-            TextButton(
-                onClick = {
-                    dialogLinkOpenState.value = true
+    // TODO: Reduce redundancy
+    if (card) {
+        ListPreferenceViewWithCard(
+            title = title,
+            iconId = iconId,
+            selectedKey = selectedKey,
+            valueArray = sourceList.map { it.first }.toTypedArray(),
+            nameArray = sourceList.map { it.second }.toTypedArray(),
+            enableArray = sourceList.map { it.third }.toTypedArray(),
+            summary = { _, value ->
+                sourceList.firstOrNull { it.first == value }?.second
+            },
+            onValueChanged = { sourceId ->
+                onValueChanged(sourceId)
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = {
+                        dialogLinkOpenState.value = true
+                    }
+                ) {
+                    Text(
+                        text = stringResource(R.string.action_help_me_choose),
+                        color = MaterialTheme.colorScheme.primary,
+                        style = MaterialTheme.typography.labelLarge
+                    )
                 }
-            ) {
-                Text(
-                    text = stringResource(R.string.action_help_me_choose),
-                    color = MaterialTheme.colorScheme.primary,
-                    style = MaterialTheme.typography.labelLarge
-                )
-            }
-        },
-        enabled = enabled,
-        card = card,
-        colors = colors,
-        withState = withState
-    )
+            },
+            enabled = enabled,
+            colors = colors,
+            withState = withState
+        )
+    } else {
+        ListPreferenceView(
+            title = title,
+            iconId = iconId,
+            selectedKey = selectedKey,
+            valueArray = sourceList.map { it.first }.toTypedArray(),
+            nameArray = sourceList.map { it.second }.toTypedArray(),
+            enableArray = sourceList.map { it.third }.toTypedArray(),
+            summary = { _, value ->
+                sourceList.firstOrNull { it.first == value }?.second
+            },
+            onValueChanged = { sourceId ->
+                onValueChanged(sourceId)
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = {
+                        dialogLinkOpenState.value = true
+                    }
+                ) {
+                    Text(
+                        text = stringResource(R.string.action_help_me_choose),
+                        color = MaterialTheme.colorScheme.primary,
+                        style = MaterialTheme.typography.labelLarge
+                    )
+                }
+            },
+            enabled = enabled,
+            colors = colors,
+            withState = withState
+        )
+    }
 
     if (dialogLinkOpenState.value) {
         AlertDialogLink(
@@ -867,7 +900,6 @@ fun SourceViewWithContinents(
     sourceList: ImmutableMap<SourceContinent?, ImmutableList<Triple<String, String, Boolean>>>,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
-    card: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(AlertDialogDefaults.containerColor),
     withState: Boolean = true,
     onValueChanged: (String) -> Unit,
@@ -904,7 +936,6 @@ fun SourceViewWithContinents(
             }
         },
         enabled = enabled,
-        card = card,
         colors = colors,
         withState = withState
     )

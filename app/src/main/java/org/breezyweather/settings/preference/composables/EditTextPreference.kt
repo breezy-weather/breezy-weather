@@ -75,6 +75,7 @@ fun EditTextPreferenceView(
     title: String,
     summary: (Context, String) -> String?, // content -> summary.
     content: String,
+    modifier: Modifier = Modifier,
     placeholder: String? = null,
     enabled: Boolean = true,
     regex: Regex? = null,
@@ -85,6 +86,7 @@ fun EditTextPreferenceView(
     val dialogOpenState = remember { mutableStateOf(false) }
 
     Material3CardListItem(
+        modifier = modifier,
         elevation = if (enabled) defaultCardListItemElevation else 0.dp
     ) {
         Column(

@@ -147,6 +147,7 @@ fun WidgetsSettingsScreen(
                     selectedKey = SettingsManager.getInstance(context).widgetWeekIconMode.id,
                     valueArrayId = R.array.week_icon_mode_values,
                     nameArrayId = R.array.week_icon_modes,
+                    card = true,
                     onValueChanged = {
                         SettingsManager
                             .getInstance(context)
@@ -339,6 +340,7 @@ fun WidgetsSettingsScreen(
                     valueArrayId = R.array.notification_style_values,
                     nameArrayId = R.array.notification_styles,
                     enabled = notificationEnabled,
+                    card = true,
                     onValueChanged = {
                         SettingsManager
                             .getInstance(context)

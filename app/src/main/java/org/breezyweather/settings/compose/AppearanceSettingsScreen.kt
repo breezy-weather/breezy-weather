@@ -105,6 +105,7 @@ fun AppearanceSettingsScreen(
                     selectedKey = SettingsManager.getInstance(context).darkMode.id,
                     valueArrayId = R.array.dark_mode_values,
                     nameArrayId = R.array.dark_modes,
+                    card = true,
                     onValueChanged = {
                         SettingsManager
                             .getInstance(context)

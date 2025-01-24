@@ -95,6 +95,7 @@ fun BackgroundSettingsScreen(
                     valueArrayId = R.array.automatic_refresh_rate_values,
                     nameArrayId = R.array.automatic_refresh_rates,
                     withState = false,
+                    card = true,
                     onValueChanged = {
                         val newValue = UpdateInterval.getInstance(it)
                         if (newValue == UpdateInterval.INTERVAL_NEVER) {

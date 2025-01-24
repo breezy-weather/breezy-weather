@@ -155,6 +155,7 @@ fun WeatherSourcesSettingsScreen(
                                         selectedKey = preference.selectedKey,
                                         valueArrayId = preference.valueArrayId,
                                         nameArrayId = preference.nameArrayId,
+                                        card = true,
                                         onValueChanged = preference.onValueChanged
                                     )
                                 }
