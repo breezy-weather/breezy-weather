@@ -88,7 +88,7 @@
     <string name="about_translators">المترجمون</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">فشل في العثور على الموقع</string>
-    <string name="weather_message_data_refresh_failed">فشل في الحصول على بيانات الطقس</string>
+    <string name="weather_message_data_refresh_failed">فشل الحصول على البيانات</string>
     <string name="location_dialog_failed_to_locate_title">غير قادر على تحديد الموقع بشكل صحيح؟</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">قم بفحص أذونات الموقع</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">تمكين نظام تحديد الموقع العالمي (GPS)</string>
@@ -706,4 +706,8 @@
     <string name="common_weather_text_dust_storm">عاصفة ترابية</string>
     <string name="common_weather_text_frost">الصقيع</string>
     <string name="common_weather_text_dust">تراب</string>
+    <string name="forecast">التوقعات</string>
+    <string name="pollen_acer">القيقب</string>
+    <string name="pollen_alternaria">ألتيرناريا</string>
+    <string name="pollen_atriplex">سالتبوش</string>
 </resources>
