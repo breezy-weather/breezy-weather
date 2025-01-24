@@ -46,7 +46,7 @@ import org.breezyweather.settings.preference.composables.EditTextPreferenceView
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.ListPreferenceViewWithCard
 import org.breezyweather.settings.preference.composables.PreferenceScreen
-import org.breezyweather.settings.preference.composables.PreferenceView
+import org.breezyweather.settings.preference.composables.PreferenceViewWithCard
 import org.breezyweather.settings.preference.composables.SectionFooter
 import org.breezyweather.settings.preference.composables.SectionHeader
 import org.breezyweather.settings.preference.editTextPreferenceItem
@@ -109,7 +109,7 @@ fun LocationSettingsScreen(
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 sectionHeaderItem(R.string.location_service_native)
                 clickablePreferenceItem(R.string.settings_location_access_switch_title) { id ->
-                    PreferenceView(
+                    PreferenceViewWithCard(
                         titleId = id,
                         summaryId = if (accessCoarseLocationPermissionState.status == PermissionStatus.Granted) {
                             R.string.settings_location_access_switch_summaryOn
@@ -138,7 +138,7 @@ fun LocationSettingsScreen(
                 }
                 accessBackgroundLocationPermissionState?.let {
                     clickablePreferenceItem(R.string.settings_location_access_background_title) { id ->
-                        PreferenceView(
+                        PreferenceViewWithCard(
                             titleId = id,
                             summaryId = if (it.status == PermissionStatus.Granted) {
                                 R.string.settings_location_access_background_summaryOn
@@ -169,7 +169,7 @@ fun LocationSettingsScreen(
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     clickablePreferenceItem(R.string.settings_location_access_precise_title) { id ->
-                        PreferenceView(
+                        PreferenceViewWithCard(
                             titleId = id,
                             summaryId = if (accessFineLocationPermissionState.status == PermissionStatus.Granted) {
                                 R.string.settings_location_access_precise_summaryOn

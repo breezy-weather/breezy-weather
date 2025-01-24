@@ -64,7 +64,7 @@ import org.breezyweather.settings.preference.composables.CalendarPreferenceView
 import org.breezyweather.settings.preference.composables.LanguagePreferenceView
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceScreen
-import org.breezyweather.settings.preference.composables.PreferenceView
+import org.breezyweather.settings.preference.composables.PreferenceViewWithCard
 import org.breezyweather.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.settings.preference.listPreferenceItem
 import org.breezyweather.settings.preference.switchPreferenceItem
@@ -144,7 +144,7 @@ fun AppearanceSettingsScreen(
                     mutableStateOf(listOf<ResourceProvider>())
                 }
 
-                PreferenceView(
+                PreferenceViewWithCard(
                     title = stringResource(it),
                     summary = ResourcesProviderFactory
                         .getNewInstance(iconProviderState.value)
@@ -260,7 +260,7 @@ fun AppearanceSettingsScreen(
                 }
             }
             clickablePreferenceItem(R.string.settings_units) { id ->
-                PreferenceView(
+                PreferenceViewWithCard(
                     titleId = id,
                     summaryId = R.string.settings_units_summary
                 ) {

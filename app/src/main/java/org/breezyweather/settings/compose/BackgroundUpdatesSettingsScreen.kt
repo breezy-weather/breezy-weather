@@ -55,7 +55,7 @@ import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceScreen
-import org.breezyweather.settings.preference.composables.PreferenceView
+import org.breezyweather.settings.preference.composables.PreferenceViewWithCard
 import org.breezyweather.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.settings.preference.listPreferenceItem
 import org.breezyweather.settings.preference.sectionFooterItem
@@ -189,7 +189,7 @@ fun BackgroundSettingsScreen(
             sectionHeaderItem(R.string.settings_background_updates_section_troubleshoot)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 clickablePreferenceItem(R.string.settings_background_updates_battery_optimization) { id ->
-                    PreferenceView(
+                    PreferenceViewWithCard(
                         titleId = id,
                         summaryId = R.string.settings_background_updates_battery_optimization_summary
                     ) {
@@ -219,7 +219,7 @@ fun BackgroundSettingsScreen(
                 }
             }
             clickablePreferenceItem(R.string.settings_background_updates_dont_kill_my_app_title) { id ->
-                PreferenceView(
+                PreferenceViewWithCard(
                     titleId = id,
                     summaryId = R.string.settings_background_updates_dont_kill_my_app_summary
                 ) {
@@ -227,7 +227,7 @@ fun BackgroundSettingsScreen(
                 }
             }
             clickablePreferenceItem(R.string.settings_background_updates_worker_info_title) { id ->
-                PreferenceView(
+                PreferenceViewWithCard(
                     title = context.getString(id),
                     summary = if (SettingsManager.getInstance(context).weatherUpdateLastTimestamp > 0) {
                         context.getString(

@@ -98,7 +98,6 @@ fun LocationPreference(
             titleId = R.string.settings_weather_sources,
             iconId = R.drawable.ic_factory,
             summaryId = R.string.settings_weather_sources_per_location_summary,
-            card = false,
             colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
         ) {
             dialogWeatherSourcesOpenState.value = true
@@ -107,7 +106,6 @@ fun LocationPreference(
             titleId = R.string.settings_per_location,
             iconId = R.drawable.ic_settings,
             summaryId = R.string.settings_per_location_summary,
-            card = false,
             colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
         ) {
             dialogAdditionalLocationPreferencesOpenState.value = true
@@ -116,7 +114,6 @@ fun LocationPreference(
             titleId = R.string.settings_global,
             iconId = R.drawable.ic_home,
             summaryId = R.string.settings_main_summary,
-            card = false,
             colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
         ) {
             IntentHelper.startMainScreenSettingsActivity(activity)
@@ -898,6 +895,7 @@ fun SourceViewWithContinents(
     title: String,
     selectedKey: String,
     sourceList: ImmutableMap<SourceContinent?, ImmutableList<Triple<String, String, Boolean>>>,
+    modifier: Modifier = Modifier,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     colors: ListItemColors = ListItemDefaults.colors(AlertDialogDefaults.containerColor),
@@ -908,6 +906,7 @@ fun SourceViewWithContinents(
     val context = LocalContext.current
 
     ListPreferenceWithGroupsView(
+        modifier = modifier,
         title = title,
         iconId = iconId,
         selectedKey = selectedKey,

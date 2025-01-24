@@ -474,7 +474,6 @@ class OpenMeteoService @Inject constructor(
                 .joinToString(context.getString(R.string.comma_separator)) {
                     it.model.getName(context)
                 },
-            card = false,
             colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
         ) {
             dialogModelsOpenState.value = true

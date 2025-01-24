@@ -160,6 +160,7 @@ fun ListPreferenceView(
     selectedKey: String,
     valueArray: Array<String>,
     nameArray: Array<String>,
+    modifier: Modifier = Modifier,
     @DrawableRes iconId: Int? = null,
     enableArray: Array<Boolean>? = null,
     enabled: Boolean = true,
@@ -176,7 +177,7 @@ fun ListPreferenceView(
     ListItem(
         colors = colors,
         tonalElevation = if (card && enabled) defaultCardListItemElevation else 0.dp,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .alpha(if (enabled) 1f else 0.5f)
             .clickable(
@@ -312,6 +313,7 @@ fun ListPreferenceWithGroupsView(
     summary: (Context, String) -> String?, // value -> summary.
     selectedKey: String,
     values: ImmutableMap<String?, ImmutableList<Triple<String, String, Boolean>>>,
+    modifier: Modifier = Modifier,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     colors: ListItemColors = ListItemDefaults.colors(),
@@ -339,6 +341,7 @@ fun ListPreferenceWithGroupsView(
     }
 
     return ListPreferenceView(
+        modifier = modifier,
         title = title,
         iconId = iconId,
         summary = summary,

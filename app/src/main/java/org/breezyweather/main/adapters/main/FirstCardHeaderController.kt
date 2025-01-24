@@ -23,8 +23,6 @@ import android.widget.LinearLayout
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
@@ -69,7 +67,11 @@ class FirstCardHeaderController(
             }
             mView.findViewById<ComposeView>(R.id.container_main_first_card_alert_list).setContent {
                 BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(mActivity, location)) {
-                    ContentView(location)
+                    if (location.weather!!.currentAlertList.isEmpty()) {
+                        UpcomingAlerts()
+                    } else {
+                        AlertList(location)
+                    }
                 }
             }
         } else {
@@ -78,93 +80,98 @@ class FirstCardHeaderController(
     }
 
     @Composable
-    fun ContentView(location: Location) {
-        val weather = location.weather ?: return
-        if (weather.currentAlertList.isEmpty()) {
-            ListItem(
-                modifier = Modifier
-                    .clickable(
-                        interactionSource = remember { MutableInteractionSource() },
-                        indication = themeRipple(),
-                        onClick = {
-                            IntentHelper.startAlertActivity(mActivity, mFormattedId)
-                        }
-                    ),
-                colors = ListItemDefaults.colors(
-                    containerColor = Color.Transparent
+    fun UpcomingAlerts(
+        modifier: Modifier = Modifier,
+    ) {
+        ListItem(
+            modifier = modifier
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = themeRipple(),
+                    onClick = {
+                        IntentHelper.startAlertActivity(mActivity, mFormattedId)
+                    }
                 ),
-                headlineContent = {
-                    Text(
-                        stringResource(R.string.alerts_to_follow),
-                        color = DayNightTheme.colors.titleColor,
-                        style = MaterialTheme.typography.titleMedium
-                    )
-                },
-                leadingContent = {
-                    Icon(
-                        painterResource(R.drawable.ic_alert),
-                        contentDescription = stringResource(R.string.alerts_to_follow),
-                        tint = DayNightTheme.colors.titleColor
-                    )
-                }
-            )
-        } else {
-            Column {
-                weather.currentAlertList.forEach { currentAlert ->
-                    ListItem(
-                        modifier = Modifier
-                            .clickable(
-                                interactionSource = remember { MutableInteractionSource() },
-                                indication = themeRipple(),
-                                onClick = {
-                                    IntentHelper.startAlertActivity(mActivity, mFormattedId, currentAlert.alertId)
-                                }
-                            ),
-                        colors = ListItemDefaults.colors(
-                            containerColor = Color.Transparent
-                        ),
-                        headlineContent = {
-                            Text(
-                                currentAlert.headline?.ifEmpty {
-                                    stringResource(R.string.alert)
-                                } ?: stringResource(R.string.alert),
-                                color = DayNightTheme.colors.titleColor,
-                                style = MaterialTheme.typography.titleMedium
-                            )
-                        },
-                        supportingContent = currentAlert.startDate?.let { startDate ->
-                            {
-                                val builder = StringBuilder()
-                                val startDateDay = startDate.getFormattedMediumDayAndMonth(location, mActivity)
-                                builder.append(startDateDay)
-                                    .append(stringResource(R.string.comma_separator))
-                                    .append(startDate.getFormattedTime(location, mActivity, mActivity.is12Hour))
-                                currentAlert.endDate?.let { endDate ->
-                                    builder.append(" — ")
-                                    val endDateDay = endDate.getFormattedMediumDayAndMonth(location, mActivity)
-                                    if (startDateDay != endDateDay) {
-                                        builder.append(endDateDay)
-                                            .append(stringResource(R.string.comma_separator))
-                                    }
-                                    builder.append(endDate.getFormattedTime(location, mActivity, mActivity.is12Hour))
-                                }
-                                Text(
-                                    builder.toString(),
-                                    color = DayNightTheme.colors.bodyColor
-                                )
+            colors = ListItemDefaults.colors(
+                containerColor = Color.Transparent
+            ),
+            headlineContent = {
+                Text(
+                    stringResource(R.string.alerts_to_follow),
+                    color = DayNightTheme.colors.titleColor,
+                    style = MaterialTheme.typography.titleMedium
+                )
+            },
+            leadingContent = {
+                Icon(
+                    painterResource(R.drawable.ic_alert),
+                    contentDescription = stringResource(R.string.alerts_to_follow),
+                    tint = DayNightTheme.colors.titleColor
+                )
+            }
+        )
+    }
+
+    @Composable
+    fun AlertList(
+        location: Location,
+        modifier: Modifier = Modifier,
+    ) {
+        Column {
+            location.weather!!.currentAlertList.forEach { currentAlert ->
+                ListItem(
+                    modifier = modifier
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = themeRipple(),
+                            onClick = {
+                                IntentHelper.startAlertActivity(mActivity, mFormattedId, currentAlert.alertId)
                             }
-                        },
-                        leadingContent = {
-                            Icon(
-                                painterResource(R.drawable.ic_alert),
-                                contentDescription = currentAlert.headline?.ifEmpty {
-                                    stringResource(R.string.alert)
-                                } ?: stringResource(R.string.alert),
-                                tint = Color(ColorUtils.getDarkerColor(currentAlert.color))
+                        ),
+                    colors = ListItemDefaults.colors(
+                        containerColor = Color.Transparent
+                    ),
+                    headlineContent = {
+                        Text(
+                            currentAlert.headline?.ifEmpty {
+                                stringResource(R.string.alert)
+                            } ?: stringResource(R.string.alert),
+                            color = DayNightTheme.colors.titleColor,
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                    },
+                    supportingContent = currentAlert.startDate?.let { startDate ->
+                        {
+                            val builder = StringBuilder()
+                            val startDateDay = startDate.getFormattedMediumDayAndMonth(location, mActivity)
+                            builder.append(startDateDay)
+                                .append(stringResource(R.string.comma_separator))
+                                .append(startDate.getFormattedTime(location, mActivity, mActivity.is12Hour))
+                            currentAlert.endDate?.let { endDate ->
+                                builder.append(" — ")
+                                val endDateDay = endDate.getFormattedMediumDayAndMonth(location, mActivity)
+                                if (startDateDay != endDateDay) {
+                                    builder.append(endDateDay)
+                                        .append(stringResource(R.string.comma_separator))
+                                }
+                                builder.append(endDate.getFormattedTime(location, mActivity, mActivity.is12Hour))
+                            }
+                            Text(
+                                builder.toString(),
+                                color = DayNightTheme.colors.bodyColor
                             )
                         }
-                    )
-                }
+                    },
+                    leadingContent = {
+                        Icon(
+                            painterResource(R.drawable.ic_alert),
+                            contentDescription = currentAlert.headline?.ifEmpty {
+                                stringResource(R.string.alert)
+                            } ?: stringResource(R.string.alert),
+                            tint = Color(ColorUtils.getDarkerColor(currentAlert.color))
+                        )
+                    }
+                )
             }
         }
     }

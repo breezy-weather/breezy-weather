@@ -35,7 +35,7 @@ import org.breezyweather.settings.activities.SettingsActivity
 import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.PreferenceScreen
-import org.breezyweather.settings.preference.composables.PreferenceView
+import org.breezyweather.settings.preference.composables.PreferenceViewWithCard
 import org.breezyweather.settings.preference.sectionFooterItem
 import org.breezyweather.settings.preference.sectionHeaderItem
 
@@ -61,7 +61,7 @@ fun DebugSettingsScreen(
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
             clickablePreferenceItem(R.string.settings_debug_dump_crash_logs_title) { id ->
-                PreferenceView(
+                PreferenceViewWithCard(
                     titleId = id,
                     summaryId = R.string.settings_debug_dump_crash_logs_summary
                 ) {
@@ -73,7 +73,7 @@ fun DebugSettingsScreen(
 
             if (BreezyWeather.instance.debugMode) {
                 clickablePreferenceItem(R.string.settings_debug_force_weather_update) { id ->
-                    PreferenceView(
+                    PreferenceViewWithCard(
                         title = stringResource(id),
                         summary = "Execute job for debugging purpose"
                     ) {
@@ -84,7 +84,7 @@ fun DebugSettingsScreen(
                 sectionHeaderItem(R.string.settings_debug_section_refresh_error)
                 RefreshErrorType.entries.forEach { refreshError ->
                     clickablePreferenceItem(refreshError.shortMessage) { shortMessage ->
-                        PreferenceView(
+                        PreferenceViewWithCard(
                             titleId = shortMessage,
                             onClick = {
                                 refreshError.showDialogAction?.let { showDialogAction ->

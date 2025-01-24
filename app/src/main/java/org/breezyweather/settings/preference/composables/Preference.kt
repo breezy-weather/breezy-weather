@@ -56,31 +56,79 @@ import org.breezyweather.theme.compose.DayNightTheme
 import org.breezyweather.theme.compose.themeRipple
 
 @Composable
-fun PreferenceView(
+fun PreferenceViewWithCard(
     @StringRes titleId: Int,
+    modifier: Modifier = Modifier,
     @StringRes summaryId: Int? = null,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
-    card: Boolean = true,
     colors: ListItemColors = ListItemDefaults.colors(),
     onClick: () -> Unit,
-) = PreferenceView(
+) = PreferenceViewWithCard(
     title = stringResource(titleId),
+    modifier = modifier,
     summary = if (summaryId != null) stringResource(summaryId) else null,
     iconId = iconId,
     enabled = enabled,
-    card = card,
     colors = colors,
     onClick = onClick
 )
 
 @Composable
 fun PreferenceView(
+    @StringRes titleId: Int,
+    modifier: Modifier = Modifier,
+    @StringRes summaryId: Int? = null,
+    @DrawableRes iconId: Int? = null,
+    enabled: Boolean = true,
+    colors: ListItemColors = ListItemDefaults.colors(),
+    onClick: () -> Unit,
+) = PreferenceView(
+    title = stringResource(titleId),
+    modifier = modifier,
+    summary = if (summaryId != null) stringResource(summaryId) else null,
+    iconId = iconId,
+    enabled = enabled,
+    colors = colors,
+    onClick = onClick
+)
+
+@Composable
+fun PreferenceViewWithCard(
     title: String,
+    modifier: Modifier = Modifier,
     summary: String? = null,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
-    card: Boolean = true,
+    colors: ListItemColors = ListItemDefaults.colors(),
+    onClose: (() -> Unit)? = null,
+    onClick: () -> Unit,
+) {
+    Material3CardListItem(
+        elevation = if (enabled) defaultCardListItemElevation else 0.dp
+    ) {
+        PreferenceView(
+            title = title,
+            modifier = modifier,
+            summary = summary,
+            iconId = iconId,
+            enabled = enabled,
+            card = true,
+            colors = colors,
+            onClose = onClose,
+            onClick = onClick
+        )
+    }
+}
+
+@Composable
+fun PreferenceView(
+    title: String,
+    modifier: Modifier = Modifier,
+    summary: String? = null,
+    @DrawableRes iconId: Int? = null,
+    enabled: Boolean = true,
+    card: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(),
     onClose: (() -> Unit)? = null,
     onClick: () -> Unit,
@@ -90,157 +138,78 @@ fun PreferenceView(
     } else {
         PaddingValues(bottom = 8.dp)
     }
-    // TODO: Redundant
-    if (card) {
-        Material3CardListItem(
-            elevation = if (enabled) defaultCardListItemElevation else 0.dp
-        ) {
-            ListItem(
-                tonalElevation = if (enabled) defaultCardListItemElevation else 0.dp,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .alpha(if (enabled) 1f else 0.5f)
-                    .clickable(
-                        interactionSource = remember { MutableInteractionSource() },
-                        indication = themeRipple(),
-                        onClick = onClick,
-                        enabled = enabled
-                    )
-                    .padding(paddingValues),
-                leadingContent = if (iconId != null) {
-                    {
-                        Icon(
-                            painter = painterResource(iconId),
-                            tint = DayNightTheme.colors.titleColor,
-                            contentDescription = null,
-                            modifier = Modifier.size(24.dp)
-                        )
-                    }
-                } else {
-                    null
-                },
-                headlineContent = {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Column(
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            Text(
-                                text = title,
-                                color = DayNightTheme.colors.titleColor,
-                                style = MaterialTheme.typography.titleMedium
-                            )
-                        }
-                        if (onClose != null) {
-                            Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
-                            IconButton(
-                                onClick = {
-                                    onClose()
-                                },
-                                modifier = Modifier.clip(CircleShape)
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Default.Close,
-                                    contentDescription = stringResource(R.string.action_close),
-                                    tint = DayNightTheme.colors.bodyColor
-                                )
-                            }
-                        }
-                    }
-                },
-                supportingContent = if (!summary.isNullOrEmpty()) {
-                    {
-                        Column {
-                            if (onClose == null) { // We already have spacing from close button
-                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                            }
-                            Text(
-                                text = summary,
-                                color = DayNightTheme.colors.bodyColor,
-                                style = MaterialTheme.typography.bodyMedium
-                            )
-                        }
-                    }
-                } else {
-                    null
-                }
+
+    ListItem(
+        colors = colors,
+        tonalElevation = if (card && enabled) defaultCardListItemElevation else 0.dp,
+        modifier = modifier
+            .fillMaxWidth()
+            .alpha(if (enabled) 1f else 0.5f)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = themeRipple(),
+                onClick = onClick,
+                enabled = enabled
             )
-        }
-    } else {
-        ListItem(
-            colors = colors,
-            tonalElevation = 0.dp,
-            modifier = Modifier
-                .fillMaxWidth()
-                .alpha(if (enabled) 1f else 0.5f)
-                .clickable(
-                    interactionSource = remember { MutableInteractionSource() },
-                    indication = themeRipple(),
-                    onClick = onClick,
-                    enabled = enabled
+            .padding(paddingValues),
+        leadingContent = if (iconId != null) {
+            {
+                Icon(
+                    painter = painterResource(iconId),
+                    tint = DayNightTheme.colors.titleColor,
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
                 )
-                .padding(paddingValues),
-            leadingContent = if (iconId != null) {
-                {
-                    Icon(
-                        painter = painterResource(iconId),
-                        tint = DayNightTheme.colors.titleColor,
-                        contentDescription = null,
-                        modifier = Modifier.size(24.dp)
+            }
+        } else {
+            null
+        },
+        headlineContent = {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(
+                        text = title,
+                        color = DayNightTheme.colors.titleColor,
+                        style = MaterialTheme.typography.titleMedium
                     )
                 }
-            } else {
-                null
-            },
-            headlineContent = {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Column(
-                        modifier = Modifier.weight(1f)
+                if (onClose != null) {
+                    Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
+                    IconButton(
+                        onClick = {
+                            onClose()
+                        },
+                        modifier = Modifier.clip(CircleShape)
                     ) {
-                        Text(
-                            text = title,
-                            color = DayNightTheme.colors.titleColor,
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                    }
-                    if (onClose != null) {
-                        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
-                        IconButton(
-                            onClick = {
-                                onClose()
-                            },
-                            modifier = Modifier.clip(CircleShape)
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Close,
-                                contentDescription = stringResource(R.string.action_close),
-                                tint = DayNightTheme.colors.bodyColor
-                            )
-                        }
-                    }
-                }
-            },
-            supportingContent = if (!summary.isNullOrEmpty()) {
-                {
-                    Column {
-                        if (onClose == null) { // We already have spacing from close button
-                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                        }
-                        Text(
-                            text = summary,
-                            color = DayNightTheme.colors.bodyColor,
-                            style = MaterialTheme.typography.bodyMedium
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = stringResource(R.string.action_close),
+                            tint = DayNightTheme.colors.bodyColor
                         )
                     }
                 }
-            } else {
-                null
             }
-        )
-    }
+        },
+        supportingContent = if (!summary.isNullOrEmpty()) {
+            {
+                Column {
+                    if (onClose == null) { // We already have spacing from close button
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                    }
+                    Text(
+                        text = summary,
+                        color = DayNightTheme.colors.bodyColor,
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+            }
+        } else {
+            null
+        }
+    )
 }

@@ -68,7 +68,7 @@ import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PackagePreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceScreen
-import org.breezyweather.settings.preference.composables.PreferenceView
+import org.breezyweather.settings.preference.composables.PreferenceViewWithCard
 import org.breezyweather.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.settings.preference.listPreferenceItem
 import org.breezyweather.settings.preference.sectionFooterItem
@@ -107,7 +107,7 @@ fun WidgetsSettingsScreen(
             // widget.
             sectionHeaderItem(R.string.settings_widgets_section_general)
             clickablePreferenceItem(R.string.settings_widgets_live_wallpaper_title) { id ->
-                PreferenceView(
+                PreferenceViewWithCard(
                     titleId = id,
                     summaryId = R.string.settings_widgets_live_wallpaper_summary
                 ) {
@@ -185,7 +185,7 @@ fun WidgetsSettingsScreen(
                 sectionHeaderItem(R.string.settings_widgets_section_widgets_in_use)
                 if (DayWidgetIMP.isInUse(context)) {
                     clickablePreferenceItem(R.string.widget_day) {
-                        PreferenceView(
+                        PreferenceViewWithCard(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
@@ -195,7 +195,7 @@ fun WidgetsSettingsScreen(
                 }
                 if (WeekWidgetIMP.isInUse(context)) {
                     clickablePreferenceItem(R.string.widget_week) {
-                        PreferenceView(
+                        PreferenceViewWithCard(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
@@ -205,7 +205,7 @@ fun WidgetsSettingsScreen(
                 }
                 if (DayWeekWidgetIMP.isInUse(context)) {
                     clickablePreferenceItem(R.string.widget_day_week) {
-                        PreferenceView(
+                        PreferenceViewWithCard(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
@@ -215,7 +215,7 @@ fun WidgetsSettingsScreen(
                 }
                 if (ClockDayHorizontalWidgetIMP.isInUse(context)) {
                     clickablePreferenceItem(R.string.widget_clock_day_horizontal) {
-                        PreferenceView(
+                        PreferenceViewWithCard(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
@@ -225,7 +225,7 @@ fun WidgetsSettingsScreen(
                 }
                 if (ClockDayDetailsWidgetIMP.isInUse(context)) {
                     clickablePreferenceItem(R.string.widget_clock_day_details) {
-                        PreferenceView(
+                        PreferenceViewWithCard(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
@@ -235,7 +235,7 @@ fun WidgetsSettingsScreen(
                 }
                 if (ClockDayVerticalWidgetIMP.isInUse(context)) {
                     clickablePreferenceItem(R.string.widget_clock_day_vertical) {
-                        PreferenceView(
+                        PreferenceViewWithCard(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
@@ -245,7 +245,7 @@ fun WidgetsSettingsScreen(
                 }
                 if (ClockDayWeekWidgetIMP.isInUse(context)) {
                     clickablePreferenceItem(R.string.widget_clock_day_week) {
-                        PreferenceView(
+                        PreferenceViewWithCard(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
@@ -255,7 +255,7 @@ fun WidgetsSettingsScreen(
                 }
                 if (TextWidgetIMP.isInUse(context)) {
                     clickablePreferenceItem(R.string.widget_text) {
-                        PreferenceView(
+                        PreferenceViewWithCard(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
@@ -265,7 +265,7 @@ fun WidgetsSettingsScreen(
                 }
                 if (DailyTrendWidgetIMP.isInUse(context)) {
                     clickablePreferenceItem(R.string.widget_trend_daily) {
-                        PreferenceView(
+                        PreferenceViewWithCard(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
@@ -275,7 +275,7 @@ fun WidgetsSettingsScreen(
                 }
                 if (HourlyTrendWidgetIMP.isInUse(context)) {
                     clickablePreferenceItem(R.string.widget_trend_hourly) {
-                        PreferenceView(
+                        PreferenceViewWithCard(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {
@@ -285,7 +285,7 @@ fun WidgetsSettingsScreen(
                 }
                 if (MultiCityWidgetIMP.isInUse(context)) {
                     clickablePreferenceItem(R.string.widget_multi_city) {
-                        PreferenceView(
+                        PreferenceViewWithCard(
                             title = stringResource(it),
                             summary = stringResource(R.string.settings_widgets_configure_widget_summary)
                         ) {

@@ -41,7 +41,7 @@ import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.ListPreferenceView
 import org.breezyweather.settings.preference.composables.PreferenceScreen
-import org.breezyweather.settings.preference.composables.PreferenceView
+import org.breezyweather.settings.preference.composables.PreferenceViewWithCard
 import org.breezyweather.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.settings.preference.listPreferenceItem
 import org.breezyweather.settings.preference.sectionFooterItem
@@ -77,7 +77,7 @@ fun MainScreenSettingsScreen(
             clickablePreferenceItem(
                 R.string.settings_main_cards_title
             ) {
-                PreferenceView(
+                PreferenceViewWithCard(
                     title = stringResource(it),
                     summary = CardDisplay.getSummary(context, cardDisplayList)
                 ) {
@@ -89,7 +89,7 @@ fun MainScreenSettingsScreen(
             clickablePreferenceItem(
                 R.string.settings_main_daily_trends_title
             ) {
-                PreferenceView(
+                PreferenceViewWithCard(
                     title = stringResource(it),
                     summary = DailyTrendDisplay.getSummary(context, dailyTrendDisplayList)
                 ) {
@@ -101,7 +101,7 @@ fun MainScreenSettingsScreen(
             clickablePreferenceItem(
                 R.string.settings_main_hourly_trends_title
             ) {
-                PreferenceView(
+                PreferenceViewWithCard(
                     title = stringResource(it),
                     summary = HourlyTrendDisplay.getSummary(context, hourlyTrendDisplayList)
                 ) {
@@ -113,7 +113,7 @@ fun MainScreenSettingsScreen(
             clickablePreferenceItem(
                 R.string.settings_main_header_details_title
             ) {
-                PreferenceView(
+                PreferenceViewWithCard(
                     title = stringResource(it),
                     summary = DetailDisplay.getSummary(context, detailDisplayList)
                 ) {

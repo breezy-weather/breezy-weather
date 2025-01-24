@@ -28,7 +28,7 @@ import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.PreferenceScreen
-import org.breezyweather.settings.preference.composables.PreferenceView
+import org.breezyweather.settings.preference.composables.PreferenceViewWithCard
 
 @Composable
 fun RootSettingsView(
@@ -51,7 +51,7 @@ fun RootSettingsView(
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
             clickablePreferenceItem(R.string.settings_background_updates) { id ->
-                PreferenceView(
+                PreferenceViewWithCard(
                     titleId = id,
                     iconId = R.drawable.ic_sync,
                     summaryId = R.string.settings_background_updates_summary
@@ -60,7 +60,7 @@ fun RootSettingsView(
                 }
             }
             clickablePreferenceItem(R.string.settings_appearance) { id ->
-                PreferenceView(
+                PreferenceViewWithCard(
                     titleId = id,
                     iconId = R.drawable.ic_palette,
                     summaryId = R.string.settings_appearance_summary
@@ -69,7 +69,7 @@ fun RootSettingsView(
                 }
             }
             clickablePreferenceItem(R.string.settings_main) { id ->
-                PreferenceView(
+                PreferenceViewWithCard(
                     titleId = id,
                     iconId = R.drawable.ic_home,
                     summaryId = R.string.settings_main_summary
@@ -78,7 +78,7 @@ fun RootSettingsView(
                 }
             }
             clickablePreferenceItem(R.string.settings_notifications) { id ->
-                PreferenceView(
+                PreferenceViewWithCard(
                     titleId = id,
                     iconId = R.drawable.ic_notifications,
                     summaryId = R.string.settings_notifications_summary
@@ -87,7 +87,7 @@ fun RootSettingsView(
                 }
             }
             clickablePreferenceItem(R.string.settings_widgets) { id ->
-                PreferenceView(
+                PreferenceViewWithCard(
                     titleId = id,
                     iconId = R.drawable.ic_widgets,
                     summaryId = R.string.settings_widgets_summary
@@ -96,7 +96,7 @@ fun RootSettingsView(
                 }
             }
             clickablePreferenceItem(R.string.settings_location) { id ->
-                PreferenceView(
+                PreferenceViewWithCard(
                     titleId = id,
                     iconId = R.drawable.ic_location,
                     summaryId = R.string.settings_location_summary
@@ -105,7 +105,7 @@ fun RootSettingsView(
                 }
             }
             clickablePreferenceItem(R.string.settings_weather_sources) { id ->
-                PreferenceView(
+                PreferenceViewWithCard(
                     titleId = id,
                     iconId = R.drawable.ic_factory,
                     summaryId = R.string.settings_weather_sources_summary
@@ -114,7 +114,7 @@ fun RootSettingsView(
                 }
             }
             clickablePreferenceItem(R.string.settings_debug) { id ->
-                PreferenceView(
+                PreferenceViewWithCard(
                     titleId = id,
                     iconId = R.drawable.ic_bug_report,
                     summaryId = R.string.settings_debug_summary

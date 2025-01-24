@@ -35,7 +35,7 @@ import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.settings.preference.bottomInsetItem
 import org.breezyweather.settings.preference.clickablePreferenceItem
 import org.breezyweather.settings.preference.composables.PreferenceScreen
-import org.breezyweather.settings.preference.composables.PreferenceView
+import org.breezyweather.settings.preference.composables.PreferenceViewWithCard
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.compose.BreezyWeatherTheme
 import java.text.Collator
@@ -74,7 +74,7 @@ class PrivacyPolicyActivity : GeoActivity() {
             PreferenceScreen(paddingValues = paddingValues) {
                 clickablePreferenceItem(R.string.breezy_weather) { id ->
                     val url = "https://github.com/breezy-weather/breezy-weather/blob/main/PRIVACY.md"
-                    PreferenceView(
+                    PreferenceViewWithCard(
                         title = stringResource(id),
                         summary = url
                     ) {
@@ -92,7 +92,7 @@ class PrivacyPolicyActivity : GeoActivity() {
                             ).compare(s1.name, s2.name)
                         }
                 ) { preferenceSource ->
-                    PreferenceView(
+                    PreferenceViewWithCard(
                         title = preferenceSource.name,
                         summary = preferenceSource.privacyPolicyUrl
                     ) {

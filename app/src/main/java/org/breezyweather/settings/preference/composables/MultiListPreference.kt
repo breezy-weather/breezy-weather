@@ -35,7 +35,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemColors
@@ -109,6 +108,7 @@ fun MultiListPreferenceView(
     selectedKeys: ImmutableList<String>,
     itemsArray: Array<PreferenceItem>,
     noItemsMessage: String,
+    modifier: Modifier = Modifier,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     colors: ListItemColors = ListItemDefaults.colors(),
@@ -133,7 +133,7 @@ fun MultiListPreferenceView(
     ListItem(
         colors = colors,
         tonalElevation = if (card && enabled) defaultCardListItemElevation else 0.dp,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .alpha(if (enabled) 1f else 0.5f)
             .clickable(
