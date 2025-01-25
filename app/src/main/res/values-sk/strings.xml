@@ -658,4 +658,5 @@
     <string name="settings_units_pressure">Jednotka tlaku</string>
     <string name="settings_main_section_displayed_data">Zobrazené dáta</string>
     <string name="settings_units_summary">Teplota, zrážky, vzdialenosť, rýchlosť, tlak</string>
+    <string name="forecast">Predpoveď</string>
 </resources>
