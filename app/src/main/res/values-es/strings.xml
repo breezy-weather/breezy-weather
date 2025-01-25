@@ -755,4 +755,8 @@
     <string name="forecast">Pronóstico</string>
     <string name="weather_forecast_data_by">Datos del pronóstico por %s</string>
     <string name="settings_weather_source_not_configured">%s (no configurado)</string>
+    <string name="pollen_acer">Arce</string>
+    <string name="pollen_picea">Pícea</string>
+    <string name="pollen_pinus">Pino</string>
+    <string name="pollen_ulmus">Olmo</string>
 </resources>
