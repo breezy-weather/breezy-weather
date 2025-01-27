@@ -18,6 +18,7 @@ package org.breezyweather.common.preference
 
 import android.content.Context
 import androidx.annotation.StringRes
+import androidx.compose.ui.text.input.KeyboardType
 
 class EditTextPreference(
     @StringRes override val titleId: Int,
@@ -26,6 +27,7 @@ class EditTextPreference(
     val placeholder: String? = null,
     val regex: Regex? = null,
     val regexError: String? = null,
+    val keyboardType: KeyboardType? = null,
     val onValueChanged: (String) -> Unit,
 ) : Preference {
 

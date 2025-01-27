@@ -18,6 +18,7 @@ package org.breezyweather.sources.brightsky
 
 import android.content.Context
 import android.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -187,6 +188,7 @@ class BrightSkyService @Inject constructor(
                 placeholder = BRIGHT_SKY_BASE_URL,
                 regex = EditTextPreference.URL_REGEX,
                 regexError = context.getString(R.string.settings_source_instance_invalid),
+                keyboardType = KeyboardType.Uri,
                 onValueChanged = {
                     instance = if (it == BRIGHT_SKY_BASE_URL) null else it.ifEmpty { null }
                 }

@@ -170,6 +170,7 @@ fun WeatherSourcesSettingsScreen(
                                         placeholder = preference.placeholder,
                                         regex = preference.regex,
                                         regexError = preference.regexError,
+                                        keyboardType = preference.keyboardType,
                                         onValueChanged = preference.onValueChanged
                                     )
                                 }

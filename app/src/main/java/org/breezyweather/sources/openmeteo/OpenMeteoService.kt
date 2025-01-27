@@ -33,6 +33,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -375,6 +376,7 @@ class OpenMeteoService @Inject constructor(
                 placeholder = OPEN_METEO_FORECAST_BASE_URL,
                 regex = EditTextPreference.URL_REGEX,
                 regexError = context.getString(R.string.settings_source_instance_invalid),
+                keyboardType = KeyboardType.Uri,
                 onValueChanged = {
                     forecastInstance = if (it == OPEN_METEO_FORECAST_BASE_URL) null else it.ifEmpty { null }
                 }
@@ -390,6 +392,7 @@ class OpenMeteoService @Inject constructor(
                 placeholder = OPEN_METEO_AIR_QUALITY_BASE_URL,
                 regex = EditTextPreference.URL_REGEX,
                 regexError = context.getString(R.string.settings_source_instance_invalid),
+                keyboardType = KeyboardType.Uri,
                 onValueChanged = {
                     airQualityInstance = if (it == OPEN_METEO_AIR_QUALITY_BASE_URL) null else it.ifEmpty { null }
                 }
@@ -405,6 +408,7 @@ class OpenMeteoService @Inject constructor(
                 placeholder = OPEN_METEO_GEOCODING_BASE_URL,
                 regex = EditTextPreference.URL_REGEX,
                 regexError = context.getString(R.string.settings_source_instance_invalid),
+                keyboardType = KeyboardType.Uri,
                 onValueChanged = {
                     geocodingInstance = if (it == OPEN_METEO_GEOCODING_BASE_URL) null else it.ifEmpty { null }
                 }

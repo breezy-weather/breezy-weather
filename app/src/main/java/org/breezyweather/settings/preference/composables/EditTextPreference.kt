@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -40,6 +41,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import org.breezyweather.R
 import org.breezyweather.common.ui.widgets.Material3CardListItem
@@ -56,6 +58,7 @@ fun EditTextPreferenceView(
     enabled: Boolean = true,
     regex: Regex? = null,
     regexError: String? = null,
+    keyboardType: KeyboardType? = null,
     onValueChanged: (String) -> Unit,
 ) = EditTextPreferenceView(
     title = stringResource(titleId),
@@ -67,6 +70,7 @@ fun EditTextPreferenceView(
     enabled = enabled,
     regex = regex,
     regexError = regexError,
+    keyboardType = keyboardType,
     onValueChanged = onValueChanged
 )
 
@@ -80,6 +84,7 @@ fun EditTextPreferenceView(
     enabled: Boolean = true,
     regex: Regex? = null,
     regexError: String? = null,
+    keyboardType: KeyboardType? = null,
     onValueChanged: (String) -> Unit,
 ) {
     val contentState = remember { mutableStateOf(content) }
@@ -138,6 +143,11 @@ fun EditTextPreferenceView(
                     onValueChange = { inputState.value = it },
                     modifier = Modifier
                         .fillMaxWidth(),
+                    keyboardOptions = if (keyboardType != null) {
+                        KeyboardOptions(keyboardType = keyboardType)
+                    } else {
+                        KeyboardOptions.Default
+                    },
                     readOnly = false,
                     enabled = true,
                     singleLine = true,

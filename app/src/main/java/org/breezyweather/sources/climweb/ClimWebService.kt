@@ -17,6 +17,7 @@
 package org.breezyweather.sources.climweb
 
 import android.content.Context
+import androidx.compose.ui.text.input.KeyboardType
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -247,6 +248,7 @@ abstract class ClimWebService : HttpSource(), WeatherSource, ConfigurableSource,
                 placeholder = baseUrl,
                 regex = EditTextPreference.URL_REGEX,
                 regexError = context.getString(R.string.settings_source_instance_invalid),
+                keyboardType = KeyboardType.Uri,
                 onValueChanged = {
                     instance = if (it == baseUrl) null else it.ifEmpty { null }
                 }
