@@ -39,6 +39,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
@@ -133,12 +134,10 @@ fun AppearanceSettingsScreen(
             clickablePreferenceItem(
                 R.string.settings_appearance_icon_pack_title
             ) {
-                val dialogIconPackOpenState = remember { mutableStateOf(false) }
-                val dialogLinkOpenState = remember { mutableStateOf(false) }
-                val iconProviderState = remember {
-                    mutableStateOf(
-                        SettingsManager.getInstance(context).iconProvider
-                    )
+                val dialogIconPackOpenState = rememberSaveable { mutableStateOf(false) }
+                val dialogLinkOpenState = rememberSaveable { mutableStateOf(false) }
+                val iconProviderState = rememberSaveable {
+                    mutableStateOf(SettingsManager.getInstance(context).iconProvider)
                 }
                 val listProviderState = remember {
                     mutableStateOf(listOf<ResourceProvider>())

@@ -81,16 +81,12 @@ class AlertActivity : GeoActivity() {
     @Inject
     lateinit var weatherRepository: WeatherRepository
 
-    companion object {
-        const val KEY_FORMATTED_ID = "formatted_id"
-        const val KEY_ALERT_ID = "alert_id"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val formattedId = intent.getStringExtra(KEY_FORMATTED_ID)
         setContent {
-            ContentView()
+            ContentView(formattedId)
         }
     }
 
@@ -114,8 +110,7 @@ class AlertActivity : GeoActivity() {
     }
 
     @Composable
-    private fun ContentView() {
-        val formattedId = intent.getStringExtra(KEY_FORMATTED_ID)
+    private fun ContentView(formattedId: String?) {
         val location = remember { mutableStateOf<Location?>(null) }
         val listState = rememberLazyListState()
         val context = LocalContext.current
@@ -270,5 +265,10 @@ class AlertActivity : GeoActivity() {
                 }
             }
         }
+    }
+
+    companion object {
+        const val KEY_FORMATTED_ID = "formatted_id"
+        const val KEY_ALERT_ID = "alert_id"
     }
 }

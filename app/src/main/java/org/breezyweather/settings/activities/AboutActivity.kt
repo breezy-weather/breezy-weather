@@ -42,6 +42,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -416,8 +417,8 @@ class AboutActivity : GeoActivity() {
         val isCheckingUpdates = remember { mutableStateOf(false) }
 
         val uriHandler = LocalUriHandler.current
-        val linkToOpen = remember { mutableStateOf("") }
-        val dialogLinkOpenState = remember { mutableStateOf(false) }
+        val linkToOpen = rememberSaveable { mutableStateOf("") }
+        val dialogLinkOpenState = rememberSaveable { mutableStateOf(false) }
 
         val locale = this.currentLocale
         val language = locale.language

@@ -20,7 +20,6 @@ import android.annotation.SuppressLint
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -30,7 +29,6 @@ import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
-import com.google.android.material.appbar.MaterialToolbar
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
@@ -43,10 +41,10 @@ import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getLongWeekdayDayMonth
 import org.breezyweather.common.extensions.launchUI
-import org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
 import org.breezyweather.common.ui.widgets.insets.FitSystemBarViewPager
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.daily.adapter.DailyWeatherAdapter
+import org.breezyweather.databinding.ActivityWeatherDailyBinding
 import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.theme.ThemeManager
@@ -65,16 +63,15 @@ class DailyWeatherActivity : GeoActivity() {
 
     @Inject lateinit var weatherRepository: WeatherRepository
 
-    private var mToolbar: MaterialToolbar? = null
-    private var mTitle: TextView? = null
-    private var mSubtitle: TextView? = null
-    private var mIndicator: TextView? = null
+    private lateinit var binding: ActivityWeatherDailyBinding
+
     private var mFormattedId: String? = null
     private var mPosition = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_weather_daily)
+        binding = ActivityWeatherDailyBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         initData()
         initWidget()
     }
@@ -85,29 +82,21 @@ class DailyWeatherActivity : GeoActivity() {
     }
 
     private fun initWidget() {
-        val appBarLayout = findViewById<FitSystemBarAppBarLayout>(R.id.activity_weather_daily_appBar)
-        appBarLayout.injectDefaultSurfaceTintColor()
-        mToolbar = findViewById<MaterialToolbar>(R.id.activity_weather_daily_toolbar).also {
-            it.setBackgroundColor(
+        binding.activityWeatherDailyAppBar.injectDefaultSurfaceTintColor()
+        binding.activityWeatherDailyToolbar.apply {
+            setBackgroundColor(
                 ColorUtils.getWidgetSurfaceColor(
                     6f,
-                    ThemeManager.getInstance(this)
-                        .getThemeColor(this, androidx.appcompat.R.attr.colorPrimary),
-                    ThemeManager.getInstance(this)
-                        .getThemeColor(this, com.google.android.material.R.attr.colorSurface)
+                    ThemeManager.getInstance(this@DailyWeatherActivity)
+                        .getThemeColor(this@DailyWeatherActivity, androidx.appcompat.R.attr.colorPrimary),
+                    ThemeManager.getInstance(this@DailyWeatherActivity)
+                        .getThemeColor(this@DailyWeatherActivity, com.google.android.material.R.attr.colorSurface)
                 )
             )
-            it.setNavigationOnClickListener { finish() }
+            setNavigationOnClickListener { finish() }
         }
-        mTitle = findViewById(R.id.activity_weather_daily_title)
-        mSubtitle = findViewById<TextView>(R.id.activity_weather_daily_subtitle).also {
-            it.visibility = if (CalendarHelper.getAlternateCalendarSetting(this@DailyWeatherActivity) != null) {
-                View.VISIBLE
-            } else {
-                View.GONE
-            }
-        }
-        mIndicator = findViewById(R.id.activity_weather_daily_indicator)
+        binding.activityWeatherDailySubtitle.visibility =
+            if (CalendarHelper.getAlternateCalendarSetting(this) != null) View.VISIBLE else View.GONE
         val formattedId = mFormattedId
 
         lifecycleScope.launchUI {
@@ -176,58 +165,60 @@ class DailyWeatherActivity : GeoActivity() {
                 titleList.add((i + 1).toString())
             }
 
-            val pager = findViewById<FitSystemBarViewPager>(R.id.activity_weather_daily_pager)
-            pager.adapter = FitSystemBarViewPager.FitBottomSystemBarPagerAdapter(viewList, titleList)
-            pager.pageMargin = this@DailyWeatherActivity.dpToPx(1f).toInt()
-            pager.setPageMarginDrawable(
-                ColorDrawable(
-                    ThemeManager.getInstance(this@DailyWeatherActivity)
-                        .getThemeColor(
-                            this@DailyWeatherActivity,
-                            com.google.android.material.R.attr.colorOutline
-                        )
+            binding.activityWeatherDailyPager.apply {
+                adapter = FitSystemBarViewPager.FitBottomSystemBarPagerAdapter(viewList, titleList)
+                pageMargin = this@DailyWeatherActivity.dpToPx(1f).toInt()
+                setPageMarginDrawable(
+                    ColorDrawable(
+                        ThemeManager.getInstance(this@DailyWeatherActivity)
+                            .getThemeColor(
+                                this@DailyWeatherActivity,
+                                com.google.android.material.R.attr.colorOutline
+                            )
+                    )
                 )
-            )
-            pager.currentItem = mPosition
-            pager.clearOnPageChangeListeners()
-            pager.addOnPageChangeListener(
-                object : ViewPager.OnPageChangeListener {
-                    override fun onPageScrolled(
-                        position: Int,
-                        positionOffset: Float,
-                        positionOffsetPixels: Int,
-                    ) {
-                        // do nothing.
-                    }
+                currentItem = mPosition
+                clearOnPageChangeListeners()
+                addOnPageChangeListener(
+                    object : ViewPager.OnPageChangeListener {
+                        override fun onPageScrolled(
+                            position: Int,
+                            positionOffset: Float,
+                            positionOffsetPixels: Int,
+                        ) {
+                            // do nothing.
+                        }
 
-                    override fun onPageSelected(position: Int) {
-                        selectPage(
-                            weather.dailyForecast[position],
-                            location,
-                            position,
-                            weather.dailyForecast.size
-                        )
-                    }
+                        override fun onPageSelected(position: Int) {
+                            selectPage(
+                                weather.dailyForecast[position],
+                                location,
+                                position,
+                                weather.dailyForecast.size
+                            )
+                        }
 
-                    override fun onPageScrollStateChanged(state: Int) {
-                        // do nothing.
+                        override fun onPageScrollStateChanged(state: Int) {
+                            // do nothing.
+                        }
                     }
-                }
-            )
+                )
+            }
         }
     }
 
     @SuppressLint("SetTextI18n")
     private fun selectPage(daily: Daily, location: Location, position: Int, size: Int) {
-        mTitle?.text = daily.date.getFormattedDate(
+        binding.activityWeatherDailyTitle.text = daily.date.getFormattedDate(
             getLongWeekdayDayMonth(this),
             location,
             this
         ).capitalize(this.currentLocale)
-        mSubtitle?.text = daily.date.getFormattedMediumDayAndMonthInAdditionalCalendar(location, this)
-        mToolbar?.contentDescription =
-            mTitle?.text.toString() + this.getString(R.string.comma_separator) + mSubtitle?.text
-        mIndicator?.text = if (daily.isToday(location)) {
+        binding.activityWeatherDailySubtitle.text = daily.date
+            .getFormattedMediumDayAndMonthInAdditionalCalendar(location, this)
+        binding.activityWeatherDailyToolbar.contentDescription = binding.activityWeatherDailyTitle.text.toString() +
+            this.getString(R.string.comma_separator) + binding.activityWeatherDailySubtitle.text
+        binding.activityWeatherDailyIndicator.text = if (daily.isToday(location)) {
             getString(R.string.short_today)
         } else {
             (position + 1).toString() + "/" + size

@@ -72,22 +72,17 @@ class PollenActivity : GeoActivity() {
 
     @Inject lateinit var weatherRepository: WeatherRepository
 
-    companion object {
-        const val KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID =
-            "POLLEN_ACTIVITY_LOCATION_FORMATTED_ID"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val formattedId = intent.getStringExtra(KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID)
         setContent {
-            ContentView()
+            ContentView(formattedId)
         }
     }
 
     @Composable
-    private fun ContentView() {
-        val formattedId = intent.getStringExtra(KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID)
+    private fun ContentView(formattedId: String?) {
         val location = remember { mutableStateOf<Location?>(null) }
         val context = LocalContext.current
 
@@ -196,5 +191,9 @@ class PollenActivity : GeoActivity() {
                 }
             }
         }
+    }
+
+    companion object {
+        const val KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID = "POLLEN_ACTIVITY_LOCATION_FORMATTED_ID"
     }
 }

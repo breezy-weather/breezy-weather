@@ -57,7 +57,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -109,8 +108,8 @@ class SearchActivity : GeoActivity() {
     @Composable
     private fun ContentView() {
         val context = LocalContext.current
-        val dialogLocationSearchSourceOpenState = remember { mutableStateOf(false) }
-        val dialogLocationSourcesOpenState = remember { mutableStateOf(false) }
+        val dialogLocationSearchSourceOpenState = rememberSaveable { mutableStateOf(false) }
+        val dialogLocationSourcesOpenState = rememberSaveable { mutableStateOf(false) }
         var selectedLocation: Location? by rememberSaveable { mutableStateOf(null) }
         var text by rememberSaveable { mutableStateOf("") }
         var latestTextSearch by rememberSaveable { mutableStateOf("") }
