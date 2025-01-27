@@ -82,7 +82,7 @@ import kotlin.time.Duration.Companion.hours
 /**
  * Complete previous hours/days with weather data from database
  */
-fun completeNewWeatherWithPreviousData(
+internal fun completeNewWeatherWithPreviousData(
     newWeather: WeatherWrapper,
     oldWeather: Weather?,
     startDate: Date,
@@ -151,7 +151,7 @@ fun completeNewWeatherWithPreviousData(
  * Only normals still valid will be returned
  * @param location Location containing old weather data
  */
-fun getNormalsFromWeather(
+internal fun getNormalsFromWeather(
     location: Location,
 ): Normals? {
     return location.weather?.normals?.let { normals ->
@@ -167,7 +167,7 @@ fun getNormalsFromWeather(
 /**
  * Convert List<DailyWrapper> to List<Daily> completing with air quality/pollen data if available
  */
-fun convertDailyWrapperToDailyList(
+internal fun convertDailyWrapperToDailyList(
     weatherWrapper: WeatherWrapper,
 ): List<Daily> {
     if (weatherWrapper.airQuality?.dailyForecast.isNullOrEmpty() &&
@@ -200,7 +200,7 @@ fun convertDailyWrapperToDailyList(
  * - Wind chill temperature
  * - Wet bulb temperature
  */
-fun computeMissingHourlyData(
+internal fun computeMissingHourlyData(
     hourlyList: List<HourlyWrapper>?,
 ): List<HourlyWrapper>? {
     return hourlyList?.map { hourly ->
@@ -280,7 +280,7 @@ private fun computeDewPoint(temperature: Double?, relativeHumidity: Double?): Do
     return ((c * magnus) / (b - magnus))
 }
 
-fun completeTemperatureWithComputedData(
+private fun completeTemperatureWithComputedData(
     temperature: Temperature?,
     windSpeed: Double?,
     relativeHumidity: Double?,
@@ -364,7 +364,7 @@ private fun computeWindChillTemperature(
  * - N, O, E, S cardinal points (French, Spanish)
  * - VR, VAR for variable direction
  */
-fun getWindDegree(
+internal fun getWindDegree(
     direction: String?,
 ): Double? = when (direction) {
     "N" -> 0.0
@@ -422,7 +422,7 @@ private fun computeWetBulbTemperature(
  * @param humidity in % (optional)
  * @param latitude in ° (optional)
  */
-fun computeMeanSeaLevelPressure(
+internal fun computeMeanSeaLevelPressure(
     barometricPressure: Double?,
     altitude: Double?,
     temperature: Double? = null,
@@ -469,7 +469,7 @@ fun computeMeanSeaLevelPressure(
  * @param temperature in °C (assumed 25 °C if omitted)
  * @param barometricPressure in hPa (assumed 1 atm = 1013.25 hPa if omitted)
  */
-fun computePollutantInUgm3FromPpb(
+internal fun computePollutantInUgm3FromPpb(
     pollutant: PollutantIndex,
     concentrationInPpb: Double?,
     temperature: Double? = null,
@@ -494,7 +494,7 @@ fun computePollutantInUgm3FromPpb(
  * @param temperature in °C (assumed 25 °C if omitted)
  * @param barometricPressure in hPa (assumed 1 atm = 1013.25 hPa if omitted)
  */
-fun computePollutantInPpbFromUgm3(
+internal fun computePollutantInPpbFromUgm3(
     pollutant: PollutantIndex,
     concentrationInUgm3: Double?,
     temperature: Double? = null,
@@ -526,7 +526,7 @@ fun computePollutantInPpbFromUgm3(
  * @param hourlyPollen hourly pollen data from WeatherWrapper
  * @param location for timeZone and calculation of sunrise/set according to lon/lat purposes
  */
-fun completeDailyListFromHourlyList(
+internal fun completeDailyListFromHourlyList(
     dailyList: List<Daily>,
     hourlyList: List<HourlyWrapper>,
     hourlyAirQuality: Map<Date, AirQuality>,
@@ -610,9 +610,9 @@ fun completeDailyListFromHourlyList(
     }
 }
 
-const val HEATING_DEGREE_DAY_BASE_TEMP = 18.0
-const val COOLING_DEGREE_DAY_BASE_TEMP = 21.0
-const val DEGREE_DAY_TEMP_MARGIN = 3.0
+private const val HEATING_DEGREE_DAY_BASE_TEMP = 18.0
+private const val COOLING_DEGREE_DAY_BASE_TEMP = 21.0
+private const val DEGREE_DAY_TEMP_MARGIN = 3.0
 
 private fun getDegreeDay(
     minTemp: Double?,
@@ -1279,7 +1279,7 @@ private fun getSunshineDuration(
  * @param hourlyAirQuality hourly air quality data from WeatherWrapper
  * @param location timeZone of the location
  */
-fun completeHourlyListFromDailyList(
+internal fun completeHourlyListFromDailyList(
     hourlyList: List<HourlyWrapper>,
     dailyList: List<Daily>,
     hourlyAirQuality: Map<Date, AirQuality>,
@@ -1392,7 +1392,7 @@ private fun getCurrentUVFromDayMax(
  * @param todayDaily daily for today
  * @param location the location
  */
-fun completeCurrentFromHourlyData(
+internal fun completeCurrentFromHourlyData(
     initialCurrent: CurrentWrapper?,
     hourly: Hourly?,
     todayDaily: Daily?,
@@ -1499,7 +1499,7 @@ private fun completeCurrentTemperatureFromHourly(
     )
 }
 
-fun completeNormalsFromDaily(
+internal fun completeNormalsFromDaily(
     normals: Normals?,
     dailyForecast: List<Daily>,
 ): Normals? {

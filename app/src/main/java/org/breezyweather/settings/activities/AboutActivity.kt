@@ -413,7 +413,7 @@ class AboutActivity : GeoActivity() {
         val scrollBehavior = generateCollapsedScrollBehavior()
 
         val scope = rememberCoroutineScope()
-        var isCheckingUpdates = remember { mutableStateOf(false) }
+        val isCheckingUpdates = remember { mutableStateOf(false) }
 
         val uriHandler = LocalUriHandler.current
         val linkToOpen = remember { mutableStateOf("") }
