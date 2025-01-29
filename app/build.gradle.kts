@@ -271,6 +271,7 @@ dependencies {
     implementation(libs.cardview)
     implementation(libs.swiperefreshlayout)
 
+    implementation(platform(libs.compose.bom))
     implementation(libs.activity.compose)
     implementation(libs.compose.material.ripple)
     implementation(libs.compose.animation)
