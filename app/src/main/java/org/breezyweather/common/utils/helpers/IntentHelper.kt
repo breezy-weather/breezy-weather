@@ -23,12 +23,12 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
 import breezyweather.domain.location.model.Location
+import org.breezyweather.ui.about.AboutActivity
 import org.breezyweather.ui.alert.AlertActivity
 import org.breezyweather.ui.daily.DailyWeatherActivity
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.pollen.PollenActivity
 import org.breezyweather.ui.search.SearchActivity
-import org.breezyweather.ui.about.AboutActivity
 import org.breezyweather.ui.settings.activities.CardDisplayManageActivity
 import org.breezyweather.ui.settings.activities.DailyTrendDisplayManageActivity
 import org.breezyweather.ui.settings.activities.DependenciesActivity

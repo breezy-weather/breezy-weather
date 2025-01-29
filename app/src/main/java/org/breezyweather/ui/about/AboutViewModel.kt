@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AboutViewModel @Inject constructor(
-    private val updateChecker: AppUpdateChecker
+    private val updateChecker: AppUpdateChecker,
 ) : ViewModel() {
     internal fun getAboutAppLinks(activity: Activity): Array<AboutAppLinkItem> {
         return arrayOf(
@@ -33,7 +33,7 @@ class AboutViewModel @Inject constructor(
 
     internal suspend fun checkForUpdate(
         context: Context,
-        forceCheck: Boolean = false
+        forceCheck: Boolean = false,
     ): GetApplicationRelease.Result {
         return updateChecker.checkForUpdate(context, forceCheck)
     }
