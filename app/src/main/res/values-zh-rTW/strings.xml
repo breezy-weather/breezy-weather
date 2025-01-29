@@ -79,7 +79,6 @@
     <string name="ephemeris">日月出沒</string>
     <string name="action_next">下一步</string>
     <string name="action_done">完成</string>
-    <string name="action_cancel">取消</string>
     <string name="settings_enabled">啟用</string>
     <string name="settings_disabled">停用</string>
     <string name="action_set">設定</string>

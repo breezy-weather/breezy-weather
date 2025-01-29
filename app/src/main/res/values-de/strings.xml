@@ -11,7 +11,6 @@
     <string name="pollen">Pollen</string>
     <string name="app_name">Wetter</string>
     <string name="temperature_apparent">Gefühlt</string>
-    <string name="action_cancel">Abbrechen</string>
     <string name="ceiling">Wolkendecke</string>
     <string name="cloud_cover">Bewölkung</string>
     <string name="location_current">Aktueller Standort</string>

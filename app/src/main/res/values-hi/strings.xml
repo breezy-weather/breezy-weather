@@ -360,7 +360,6 @@
     <string name="action_undo">पूर्ववत</string>
     <string name="action_set">तय करे</string>
     <string name="action_save">सहेजें</string>
-    <string name="action_cancel">रद्द करे</string>
     <string name="message_source_not_installed_error_title">स्रोत अब उपलब्ध नहीं है</string>
     <string name="message_parsing_error_title">मौसम संबंधी माहिती पार्स करने में विफल</string>
     <string name="message_parsing_error_content">सुनिश्चित करें कि आपने ऐप के नवीनतम संस्करण को अपडेट कर लिया है। सर्वर अस्थायी रूप से अनुपलब्ध हो सकता है, उस स्थिति में, कृपया बाद में पुनः प्रयास करें। यदि समस्या बनी रहती है, तो कृपया डिबग सेटिंग्स से क्रैश लॉग डंप करें, और GitHub पर समस्या की रिपोर्ट करें।</string>

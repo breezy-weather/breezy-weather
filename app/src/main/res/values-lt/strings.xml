@@ -200,7 +200,6 @@
     <string name="location_current_not_found_yet">Dabartinė buvimo vieta dar nerasta…</string>
     <string name="action_done">Atlikta</string>
     <string name="action_about">Apie</string>
-    <string name="action_cancel">AtŠaukti</string>
     <string name="message_source_not_installed_error_title">Šaltinis nebeprieinamas</string>
     <string name="location_search_no_results">%1$s negali rasti %2$s</string>
     <string name="action_search">Paieška</string>

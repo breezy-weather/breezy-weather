@@ -78,7 +78,6 @@
     <string name="ephemeris">الشمس والقمر</string>
     <string name="action_next">التالي</string>
     <string name="action_done">تم</string>
-    <string name="action_cancel">إلغاء</string>
     <string name="settings_enabled">ممكّن</string>
     <string name="settings_disabled">مُعطل</string>
     <string name="action_set">تعيين</string>

@@ -79,7 +79,6 @@
     <string name="ephemeris">Aurinko &amp; kuu</string>
     <string name="action_next">Seuraava</string>
     <string name="action_done">Valmis</string>
-    <string name="action_cancel">Peruuta</string>
     <string name="settings_enabled">Käytössä</string>
     <string name="settings_disabled">Ei käytössä</string>
     <string name="action_set">Aseta</string>

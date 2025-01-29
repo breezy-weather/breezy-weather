@@ -232,7 +232,6 @@
     <string name="action_restart">אתחל מחדש</string>
     <string name="action_edit">ערוך</string>
     <string name="action_delete">מחק</string>
-    <string name="action_cancel">בטל</string>
     <string name="action_back">חזור</string>
     <string name="action_save">שמור</string>
     <string name="action_undo">לבטל</string>

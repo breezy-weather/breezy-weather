@@ -179,7 +179,6 @@
     <string name="action_next">Suivant</string>
     <string name="action_done">OK</string>
     <string name="action_save">Enregistrer</string>
-    <string name="action_cancel">Annuler</string>
     <string name="action_undo">Annuler</string>
     <string name="settings_enabled">Actif</string>
     <string name="settings_disabled">Inactif</string>

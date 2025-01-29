@@ -79,7 +79,6 @@
     <string name="ephemeris">해와 달</string>
     <string name="action_next">다음</string>
     <string name="action_done">완료</string>
-    <string name="action_cancel">취소</string>
     <string name="settings_enabled">켜짐</string>
     <string name="settings_disabled">꺼짐</string>
     <string name="action_set">설정</string>

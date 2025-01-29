@@ -73,7 +73,6 @@
     <string name="ephemeris">Восход и закат</string>
     <string name="action_next">Далее</string>
     <string name="action_done">ОК</string>
-    <string name="action_cancel">Отмена</string>
     <string name="settings_enabled">Вкл</string>
     <string name="settings_disabled">Выкл</string>
     <string name="action_set">Установить</string>

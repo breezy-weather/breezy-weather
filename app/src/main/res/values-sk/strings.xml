@@ -326,7 +326,6 @@
     <string name="location_search_no_results_advice">Uistite sa, že je vaše vyhľadávanie napísané správne a nie je príliš špecifické. Prípadne môžete vyskúšať iný zdroj, ktorý môže poskytnúť iné výsledky.</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Zapnite informácie o polohe</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Vyberte službu na určenie polohy</string>
-    <string name="action_cancel">Zrušiť</string>
     <string name="action_undo">Vrátiť späť</string>
     <string name="action_set">Nastaviť</string>
     <string name="action_help">Nápoveda</string>

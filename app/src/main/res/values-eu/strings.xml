@@ -139,7 +139,6 @@
     <string name="action_next">Hurrengoa</string>
     <string name="action_done">Eginda</string>
     <string name="action_save">Gorde</string>
-    <string name="action_cancel">Ezeztatu</string>
     <string name="dialog_permissions_location_title">Atzitu kokapenari buruzko informazioa</string>
     <string name="dialog_permissions_location_background_title">Atzitu kokapena atzeko planoan</string>
     <string name="message_network_unavailable">Sarea ez dago erabilgarri</string>

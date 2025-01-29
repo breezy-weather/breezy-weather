@@ -79,7 +79,6 @@
     <string name="ephemeris">Nap és Hold</string>
     <string name="action_next">Következő</string>
     <string name="action_done">Kész</string>
-    <string name="action_cancel">Mégse</string>
     <string name="settings_enabled">Engedélyezve</string>
     <string name="settings_disabled">Letiltva</string>
     <string name="action_set">Beállítás</string>

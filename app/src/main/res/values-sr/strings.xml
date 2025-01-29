@@ -38,7 +38,6 @@
     <string name="ephemeris">Сунце и Месец</string>
     <string name="action_next">Следеће</string>
     <string name="action_done">Готово</string>
-    <string name="action_cancel">Откажи</string>
     <string name="settings_enabled">Омогућено</string>
     <string name="settings_disabled">Онемогућено</string>
     <string name="about_app">О апликацији</string>

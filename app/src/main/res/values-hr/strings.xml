@@ -411,7 +411,6 @@
     <string name="weather_source_accu_preference_hours_24">24 sata</string>
     <string name="settings_location_access_precise_summaryOn">Omogućeno. Pružatelji mrežne usluge uređaja će se koristit po prioritetu i u većini slučajeva, ali se GPS također može koristiti kao rezervna mogućnost.</string>
     <string name="action_continue">Nastavi</string>
-    <string name="action_cancel">Otkaži</string>
     <string name="action_close">Zatvori</string>
     <string name="settings_notifications_section_forecast">Prognoza</string>
     <string name="location_search_no_results">%1$s ne može pronaći %2$s</string>

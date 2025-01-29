@@ -581,7 +581,6 @@
     <string name="weather_source_accu_preference_days_1">1 dag</string>
     <string name="weather_message_too_frequent_refreshes">Vennligst vent et par sekunder før du prøver igjen…</string>
     <string name="action_undo">Angre</string>
-    <string name="action_cancel">Avbryt</string>
     <string name="action_save">Lagre</string>
     <string name="action_done">Ferdig</string>
     <string name="action_next">Neste</string>

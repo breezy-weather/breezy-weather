@@ -80,7 +80,6 @@
     <string name="ephemeris">Sol e lua</string>
     <string name="action_next">Próximo</string>
     <string name="action_done">Concluído</string>
-    <string name="action_cancel">Cancelar</string>
     <string name="settings_enabled">Ativado</string>
     <string name="settings_disabled">Desativado</string>
     <string name="action_set">Definir</string>

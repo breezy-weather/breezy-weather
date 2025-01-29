@@ -101,7 +101,6 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">雷阵雨伴有大冰雹</string>
     <string name="action_next">下一步</string>
     <string name="action_done">完成</string>
-    <string name="action_cancel">取消</string>
     <string name="settings_enabled">启用</string>
     <string name="settings_disabled">禁用</string>
     <string name="action_set">设置</string>

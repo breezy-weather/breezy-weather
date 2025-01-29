@@ -588,7 +588,6 @@
     <string name="action_about">Om</string>
     <string name="action_app_store">App Store</string>
     <string name="action_restart">Genstart</string>
-    <string name="action_cancel">Afbryd</string>
     <string name="action_undo">Fortryd</string>
     <string name="action_set">Indstil</string>
     <string name="action_continue">Fortsæt</string>

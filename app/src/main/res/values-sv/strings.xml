@@ -271,7 +271,6 @@
     <string name="weather_source_accu_preference_days_15">15 dagar</string>
     <string name="weather_source_accu_preference_hours_24">24 timmar</string>
     <string name="action_continue">Fortsätt</string>
-    <string name="action_cancel">Avbryt</string>
     <string name="action_close">Stäng</string>
     <string name="unit_lpsqm_voice">Liter per kvadratmeter</string>
     <string name="notification_channel_crash_logs">Krashloggar</string>

@@ -80,7 +80,6 @@
     <string name="ephemeris">Sol i lluna</string>
     <string name="action_next">Següent</string>
     <string name="action_done">Fet</string>
-    <string name="action_cancel">Cancel·la</string>
     <string name="settings_enabled">Activat</string>
     <string name="settings_disabled">Desactivat</string>
     <string name="action_set">Estableix</string>

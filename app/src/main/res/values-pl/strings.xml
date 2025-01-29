@@ -81,7 +81,6 @@
     <string name="ephemeris">Słońce i księżyc</string>
     <string name="action_next">Następny</string>
     <string name="action_done">Gotowe</string>
-    <string name="action_cancel">Anuluj</string>
     <string name="settings_enabled">Włączony</string>
     <string name="settings_disabled">Wyłączony</string>
     <string name="action_set">Ustaw</string>

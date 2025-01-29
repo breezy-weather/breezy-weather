@@ -349,8 +349,6 @@
     <string name="action_next">Next</string>
     <string name="action_done">Done</string>
     <string name="action_save">Save</string>
-    <!-- TODO 2025-01-15: No longer used, must be removed once new translation toolkit is deployed to Hosted Weblate (see also translate/translate#5465) -->
-    <string name="action_cancel" translatable="false">Cancel</string>
     <string name="action_undo">Undo</string>
     <string name="action_set">Set</string>
     <string name="action_help">Help</string>
