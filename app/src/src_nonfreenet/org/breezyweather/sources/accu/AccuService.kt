@@ -42,8 +42,8 @@ import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.settings.SettingsManager
-import org.breezyweather.settings.SourceConfigStore
+import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.accu.json.AccuAirQualityResult
 import org.breezyweather.sources.accu.json.AccuAlertResult
 import org.breezyweather.sources.accu.json.AccuClimoSummaryResult
@@ -158,7 +158,7 @@ class AccuService @Inject constructor(
         } else {
             Observable.just(emptyList())
         }
-        val daily = if (SourceFeature.FORECAST in requestedFeatures) {
+        val daily = if (SourceFeature.FORECAST in requestedFeatures || SourceFeature.POLLEN in requestedFeatures) {
             mApi.getDaily(
                 days.id,
                 locationKey!!,
@@ -188,9 +188,7 @@ class AccuService @Inject constructor(
         } else {
             Observable.just(emptyList())
         }
-        val minute = if (SourceFeature.MINUTELY in requestedFeatures &&
-            mApi is AccuEnterpriseApi
-        ) {
+        val minute = if (SourceFeature.MINUTELY in requestedFeatures && mApi is AccuEnterpriseApi) {
             mApi.getMinutely(
                 minutes = 1,
                 apiKey,

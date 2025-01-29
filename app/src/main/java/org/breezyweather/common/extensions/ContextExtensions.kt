@@ -29,7 +29,7 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
-import org.breezyweather.settings.SettingsManager
+import org.breezyweather.domain.settings.SettingsManager
 import java.io.File
 
 /**

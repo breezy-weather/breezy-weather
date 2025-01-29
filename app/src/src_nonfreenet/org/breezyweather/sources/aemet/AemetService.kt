@@ -38,7 +38,7 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.settings.SourceConfigStore
+import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.aemet.json.AemetCurrentResult
 import org.breezyweather.sources.aemet.json.AemetDailyResult
 import org.breezyweather.sources.aemet.json.AemetHourlyResult

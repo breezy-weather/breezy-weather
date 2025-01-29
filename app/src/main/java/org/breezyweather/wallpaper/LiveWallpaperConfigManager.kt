@@ -17,7 +17,7 @@
 package org.breezyweather.wallpaper
 
 import android.content.Context
-import org.breezyweather.settings.ConfigStore
+import org.breezyweather.domain.settings.ConfigStore
 
 class LiveWallpaperConfigManager(context: Context) {
     val weatherKind: String

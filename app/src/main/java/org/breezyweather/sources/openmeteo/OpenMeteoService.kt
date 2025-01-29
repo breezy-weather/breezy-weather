@@ -53,12 +53,12 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.PreferencesParametersSource
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.ui.composables.AlertDialogNoPadding
-import org.breezyweather.settings.SourceConfigStore
-import org.breezyweather.settings.preference.composables.PreferenceView
-import org.breezyweather.settings.preference.composables.SwitchPreferenceView
+import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherResult
+import org.breezyweather.ui.common.composables.AlertDialogNoPadding
+import org.breezyweather.ui.settings.preference.composables.PreferenceView
+import org.breezyweather.ui.settings.preference.composables.SwitchPreferenceView
 import retrofit2.HttpException
 import retrofit2.Retrofit
 import java.text.Collator

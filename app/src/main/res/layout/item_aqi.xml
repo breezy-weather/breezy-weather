@@ -17,7 +17,7 @@
         style="@style/title_text"
         tools:text="PM 2.5"/>
 
-    <org.breezyweather.common.ui.widgets.RoundProgress
+    <org.breezyweather.ui.common.widgets.RoundProgress
         android:id="@+id/item_aqi_progress"
         android:layout_width="match_parent"
         android:layout_height="8dp" />

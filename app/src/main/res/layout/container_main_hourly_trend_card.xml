@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <org.breezyweather.common.ui.widgets.trend.TrendRecyclerView
+        <org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
             android:id="@+id/container_main_hourly_trend_card_trendRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/hourly_trend_item_height"

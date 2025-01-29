@@ -35,6 +35,7 @@ import org.breezyweather.common.extensions.notificationBuilder
 import org.breezyweather.common.extensions.notify
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getStrength
 import org.breezyweather.domain.weather.model.getTrendTemperature
@@ -43,10 +44,9 @@ import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
-import org.breezyweather.settings.SettingsManager
-import org.breezyweather.theme.resource.ResourceHelper
-import org.breezyweather.theme.resource.ResourcesProviderFactory
-import org.breezyweather.theme.resource.providers.ResourceProvider
+import org.breezyweather.ui.theme.resource.ResourceHelper
+import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
+import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import java.util.Date
 
 object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {

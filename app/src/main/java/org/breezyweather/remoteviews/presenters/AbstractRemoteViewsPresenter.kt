@@ -47,6 +47,8 @@ import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.settings.ConfigStore
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
@@ -56,9 +58,7 @@ import org.breezyweather.domain.weather.model.getSummary
 import org.breezyweather.domain.weather.model.getSummaryFromSource
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.pollensWithConcentration
-import org.breezyweather.main.utils.MainThemeColorProvider
-import org.breezyweather.settings.ConfigStore
-import org.breezyweather.settings.SettingsManager
+import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import java.text.NumberFormat
 import java.util.Date
 

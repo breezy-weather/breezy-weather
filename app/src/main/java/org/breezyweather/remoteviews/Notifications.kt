@@ -42,11 +42,11 @@ import org.breezyweather.common.extensions.notify
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.settings.ConfigStore
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getMinutelyDescription
 import org.breezyweather.domain.weather.model.getMinutelyTitle
 import org.breezyweather.domain.weather.model.hasMinutelyPrecipitation
-import org.breezyweather.settings.ConfigStore
-import org.breezyweather.settings.SettingsManager
 import java.text.DateFormat
 
 object Notifications {

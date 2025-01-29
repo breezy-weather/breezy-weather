@@ -37,7 +37,7 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.settings.SourceConfigStore
+import org.breezyweather.domain.settings.SourceConfigStore
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named

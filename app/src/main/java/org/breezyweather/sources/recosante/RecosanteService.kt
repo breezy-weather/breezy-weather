@@ -36,7 +36,7 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.settings.SourceConfigStore
+import org.breezyweather.domain.settings.SourceConfigStore
 import retrofit2.Retrofit
 import java.util.Locale
 import javax.inject.Inject

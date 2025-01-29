@@ -34,7 +34,7 @@ import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.settings.SourceConfigStore
+import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.openweather.json.OpenWeatherAirPollutionResult
 import org.breezyweather.sources.openweather.json.OpenWeatherForecast
 import org.breezyweather.sources.openweather.json.OpenWeatherForecastResult

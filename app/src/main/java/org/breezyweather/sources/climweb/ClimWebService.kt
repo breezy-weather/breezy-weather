@@ -33,7 +33,7 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.settings.SourceConfigStore
+import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.climweb.json.ClimWebAlertsResult
 import org.breezyweather.sources.climweb.json.ClimWebNormals
 import retrofit2.Retrofit

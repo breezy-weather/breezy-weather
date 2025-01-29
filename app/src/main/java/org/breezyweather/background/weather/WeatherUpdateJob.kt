@@ -57,12 +57,12 @@ import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.WeatherResult
 import org.breezyweather.domain.location.model.getPlace
-import org.breezyweather.main.utils.RefreshErrorType
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
-import org.breezyweather.settings.SettingsManager
 import org.breezyweather.sources.RefreshHelper
 import org.breezyweather.sources.SourceManager
+import org.breezyweather.ui.main.utils.RefreshErrorType
 import java.io.File
 import java.util.Date
 import java.util.concurrent.CopyOnWriteArrayList

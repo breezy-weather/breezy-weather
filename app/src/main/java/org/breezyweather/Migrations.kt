@@ -26,7 +26,7 @@ import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
-import org.breezyweather.settings.SettingsManager
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.sources.SourceManager
 import java.io.File
 

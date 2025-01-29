@@ -34,8 +34,8 @@ import org.breezyweather.common.extensions.isRunning
 import org.breezyweather.common.extensions.setForegroundSafely
 import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.utils.helpers.LogHelper
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.remoteviews.Notifications
-import org.breezyweather.settings.SettingsManager
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.days

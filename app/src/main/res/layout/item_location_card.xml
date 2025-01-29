@@ -9,7 +9,7 @@
     app:cardCornerRadius="@dimen/material3_card_list_item_corner_radius"
     tools:ignore="UnusedAttribute">
 
-    <org.breezyweather.common.ui.widgets.slidingItem.SlidingItemContainerLayout
+    <org.breezyweather.ui.common.widgets.slidingItem.SlidingItemContainerLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -107,6 +107,6 @@
 
         </LinearLayout>
 
-    </org.breezyweather.common.ui.widgets.slidingItem.SlidingItemContainerLayout>
+    </org.breezyweather.ui.common.widgets.slidingItem.SlidingItemContainerLayout>
 
 </com.google.android.material.card.MaterialCardView>

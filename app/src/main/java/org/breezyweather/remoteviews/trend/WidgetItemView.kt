@@ -28,7 +28,7 @@ import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
-import org.breezyweather.common.ui.widgets.trend.chart.PolylineAndHistogramView
+import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 
 /**
  * Widget item view.

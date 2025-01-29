@@ -4,7 +4,7 @@ import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.background.updater.data.ReleaseService
 import org.breezyweather.background.updater.model.Release
-import org.breezyweather.settings.SettingsManager
+import org.breezyweather.domain.settings.SettingsManager
 import java.util.Date
 import javax.inject.Inject
 import kotlin.time.Duration.Companion.days

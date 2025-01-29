@@ -61,7 +61,7 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
-        <org.breezyweather.common.ui.widgets.astro.MoonPhaseView
+        <org.breezyweather.ui.common.widgets.astro.MoonPhaseView
             android:id="@+id/item_weather_daily_astro_moonPhaseIcon"
             android:src="@drawable/weather_clear_night_mini_xml"
             android:layout_gravity="center_vertical"

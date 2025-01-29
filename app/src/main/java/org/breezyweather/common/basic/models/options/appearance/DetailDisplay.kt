@@ -23,9 +23,9 @@ import breezyweather.domain.weather.model.Current
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.BaseEnum
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getShortUVDescription
-import org.breezyweather.settings.SettingsManager
 import java.text.NumberFormat
 
 enum class DetailDisplay(

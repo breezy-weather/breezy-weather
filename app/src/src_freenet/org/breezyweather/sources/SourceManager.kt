@@ -33,7 +33,7 @@ import org.breezyweather.common.source.PreferencesParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.Source
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.settings.SourceConfigStore
+import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.android.AndroidLocationService
 import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.gadgetbridge.GadgetbridgeService

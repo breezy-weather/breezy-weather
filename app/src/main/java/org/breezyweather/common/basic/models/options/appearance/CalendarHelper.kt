@@ -28,7 +28,7 @@ import org.breezyweather.common.extensions.capitalize
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.extensions.isIndian
-import org.breezyweather.settings.SettingsManager
+import org.breezyweather.domain.settings.SettingsManager
 import java.util.Locale
 
 object CalendarHelper {

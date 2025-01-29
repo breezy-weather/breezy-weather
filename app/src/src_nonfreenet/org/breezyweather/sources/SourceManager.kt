@@ -35,7 +35,7 @@ import org.breezyweather.common.source.PreferencesParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.Source
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.settings.SourceConfigStore
+import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.accu.AccuService
 import org.breezyweather.sources.aemet.AemetService
 import org.breezyweather.sources.android.AndroidLocationService

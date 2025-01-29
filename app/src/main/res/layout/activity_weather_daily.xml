@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout
+        <org.breezyweather.ui.common.widgets.insets.FitSystemBarAppBarLayout
             android:id="@+id/activity_weather_daily_appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,9 +76,9 @@
 
             </com.google.android.material.appbar.MaterialToolbar>
 
-        </org.breezyweather.common.ui.widgets.insets.FitSystemBarAppBarLayout>
+        </org.breezyweather.ui.common.widgets.insets.FitSystemBarAppBarLayout>
 
-        <org.breezyweather.common.ui.widgets.insets.FitSystemBarViewPager
+        <org.breezyweather.ui.common.widgets.insets.FitSystemBarViewPager
             android:id="@+id/activity_weather_daily_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.breezyweather.common.ui.widgets.TagView xmlns:android="http://schemas.android.com/apk/res/android"
+<org.breezyweather.ui.common.widgets.TagView xmlns:android="http://schemas.android.com/apk/res/android"
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:id="@+id/item_tag"

@@ -36,7 +36,7 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.settings.SourceConfigStore
+import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.bmkg.json.BmkgCurrentResult
 import org.breezyweather.sources.bmkg.json.BmkgForecastResult
 import org.breezyweather.sources.bmkg.json.BmkgIbfResult

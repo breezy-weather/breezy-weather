@@ -38,7 +38,7 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.settings.SourceConfigStore
+import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.mf.json.MfCurrentResult
 import org.breezyweather.sources.mf.json.MfEphemerisResult
 import org.breezyweather.sources.mf.json.MfForecastResult

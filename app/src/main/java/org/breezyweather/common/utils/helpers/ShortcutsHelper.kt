@@ -23,8 +23,8 @@ import android.graphics.drawable.Icon
 import android.os.Build
 import androidx.annotation.RequiresApi
 import breezyweather.domain.weather.model.WeatherCode
-import org.breezyweather.theme.resource.ResourceHelper
-import org.breezyweather.theme.resource.providers.ResourceProvider
+import org.breezyweather.ui.theme.resource.ResourceHelper
+import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
 /**
  * Shortcuts manager.

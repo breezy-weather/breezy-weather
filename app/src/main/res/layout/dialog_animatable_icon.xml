@@ -8,7 +8,7 @@
     android:foreground="@drawable/selectable_item_background"
     tools:ignore="UnusedAttribute">
 
-    <org.breezyweather.common.ui.widgets.AnimatableIconView
+    <org.breezyweather.ui.common.widgets.AnimatableIconView
         android:id="@+id/dialog_animatable_icon_icon"
         android:layout_width="@dimen/current_weather_icon_container_size"
         android:layout_height="@dimen/current_weather_icon_container_size"

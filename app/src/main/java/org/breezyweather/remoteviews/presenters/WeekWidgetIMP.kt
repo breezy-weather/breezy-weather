@@ -27,13 +27,13 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetWeekProvider
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getTrendTemperature
 import org.breezyweather.domain.weather.model.getWeek
 import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.remoteviews.Widgets
-import org.breezyweather.settings.SettingsManager
-import org.breezyweather.theme.resource.ResourceHelper
-import org.breezyweather.theme.resource.ResourcesProviderFactory
+import org.breezyweather.ui.theme.resource.ResourceHelper
+import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 
 object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
 

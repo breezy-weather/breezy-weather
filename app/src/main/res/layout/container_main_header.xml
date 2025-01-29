@@ -17,7 +17,7 @@
         android:id="@+id/container_main_header_temperature"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <org.breezyweather.common.ui.widgets.NumberAnimTextView
+        <org.breezyweather.ui.common.widgets.NumberAnimTextView
                 android:id="@+id/container_main_header_temperature_value"
                 android:layout_width="wrap_content"
                 android:textSize="@dimen/main_title_text_size"

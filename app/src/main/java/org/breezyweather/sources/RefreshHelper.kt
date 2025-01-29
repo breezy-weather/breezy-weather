@@ -63,7 +63,8 @@ import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.common.utils.helpers.ShortcutsHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
-import org.breezyweather.main.utils.RefreshErrorType
+import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.remoteviews.presenters.ClockDayDetailsWidgetIMP
 import org.breezyweather.remoteviews.presenters.ClockDayHorizontalWidgetIMP
 import org.breezyweather.remoteviews.presenters.ClockDayVerticalWidgetIMP
@@ -78,9 +79,8 @@ import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
 import org.breezyweather.remoteviews.presenters.TextWidgetIMP
 import org.breezyweather.remoteviews.presenters.WeekWidgetIMP
 import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
-import org.breezyweather.settings.SettingsManager
-import org.breezyweather.settings.SourceConfigStore
-import org.breezyweather.theme.resource.ResourcesProviderFactory
+import org.breezyweather.ui.main.utils.RefreshErrorType
+import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import java.util.Calendar
 import java.util.Date
 import java.util.concurrent.CopyOnWriteArrayList

@@ -55,11 +55,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.toSize
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.ui.widgets.Material3Scaffold
-import org.breezyweather.common.ui.widgets.insets.FitStatusBarTopAppBar
-import org.breezyweather.theme.compose.BreezyWeatherTheme
-import org.breezyweather.theme.compose.DayNightTheme
-import org.breezyweather.theme.compose.themeRipple
+import org.breezyweather.ui.common.widgets.Material3Scaffold
+import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
+import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
+import org.breezyweather.ui.theme.compose.DayNightTheme
+import org.breezyweather.ui.theme.compose.themeRipple
 
 class LiveWallpaperConfigActivity : GeoActivity() {
 

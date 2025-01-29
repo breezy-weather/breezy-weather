@@ -31,10 +31,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.breezyweather.domain.location.model.isDaylight
-import org.breezyweather.main.MainActivity
-import org.breezyweather.settings.SettingsManager
-import org.breezyweather.theme.resource.ResourceHelper
-import org.breezyweather.theme.resource.ResourcesProviderFactory
+import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.ui.main.MainActivity
+import org.breezyweather.ui.theme.resource.ResourceHelper
+import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 

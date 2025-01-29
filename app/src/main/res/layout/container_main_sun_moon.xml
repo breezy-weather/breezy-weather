@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/normal_margin">
 
-            <org.breezyweather.common.ui.widgets.astro.MoonPhaseView
+            <org.breezyweather.ui.common.widgets.astro.MoonPhaseView
                 android:id="@+id/container_main_sun_moon_phaseView"
                 android:layout_width="@dimen/material_icon_size"
                 android:layout_height="@dimen/material_icon_size"
@@ -44,7 +44,7 @@
 
         </RelativeLayout>
 
-        <org.breezyweather.common.ui.widgets.astro.SunMoonView
+        <org.breezyweather.ui.common.widgets.astro.SunMoonView
             android:id="@+id/container_main_sun_moon_controlView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

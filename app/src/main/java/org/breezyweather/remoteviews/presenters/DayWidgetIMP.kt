@@ -38,14 +38,14 @@ import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getTrendTemperature
 import org.breezyweather.remoteviews.Widgets
-import org.breezyweather.settings.SettingsManager
-import org.breezyweather.theme.resource.ResourceHelper
-import org.breezyweather.theme.resource.ResourcesProviderFactory
+import org.breezyweather.ui.theme.resource.ResourceHelper
+import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import java.util.Date
 import kotlin.math.abs
 import kotlin.math.roundToInt

@@ -17,7 +17,7 @@
         android:ellipsize="end"
         style="@style/title_text" />
 
-    <org.breezyweather.common.ui.widgets.RoundProgress
+    <org.breezyweather.ui.common.widgets.RoundProgress
         android:id="@+id/item_weather_daily_air_progress"
         android:layout_width="match_parent"
         android:layout_height="8dp" />

@@ -66,7 +66,7 @@ import org.breezyweather.common.extensions.launchUI
 import org.breezyweather.common.snackbar.Snackbar
 import org.breezyweather.common.snackbar.SnackbarManager
 import org.breezyweather.common.utils.helpers.SnackbarHelper
-import org.breezyweather.settings.ConfigStore
+import org.breezyweather.domain.settings.ConfigStore
 import java.text.NumberFormat
 import kotlin.math.max
 import kotlin.math.min

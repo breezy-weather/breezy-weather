@@ -28,12 +28,12 @@ import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetMaterialYouCurrentProvider
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.remoteviews.common.WidgetSize
 import org.breezyweather.remoteviews.common.WidgetSizeUtils
-import org.breezyweather.settings.SettingsManager
-import org.breezyweather.theme.resource.ResourceHelper
-import org.breezyweather.theme.resource.ResourcesProviderFactory
+import org.breezyweather.ui.theme.resource.ResourceHelper
+import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import kotlin.math.min
 import kotlin.math.roundToInt
 

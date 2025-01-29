@@ -20,8 +20,8 @@ import android.content.Context
 import breezyweather.domain.source.SourceFeature
 import org.breezyweather.R
 import org.breezyweather.domain.source.resourceName
-import org.breezyweather.main.utils.RefreshErrorType
 import org.breezyweather.sources.SourceManager
+import org.breezyweather.ui.main.utils.RefreshErrorType
 
 class RefreshError(
     val error: RefreshErrorType,

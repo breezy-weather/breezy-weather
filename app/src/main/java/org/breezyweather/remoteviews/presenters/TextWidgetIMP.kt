@@ -35,11 +35,11 @@ import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.spToPx
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.remoteviews.Widgets
-import org.breezyweather.settings.SettingsManager
 import java.util.Date
 
 object TextWidgetIMP : AbstractRemoteViewsPresenter() {

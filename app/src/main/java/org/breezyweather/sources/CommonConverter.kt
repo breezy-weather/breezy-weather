@@ -42,7 +42,7 @@ import org.breezyweather.common.extensions.median
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.domain.weather.index.PollutantIndex
-import org.breezyweather.theme.weatherView.WeatherViewController
+import org.breezyweather.ui.theme.weatherView.WeatherViewController
 import org.shredzone.commons.suncalc.MoonIllumination
 import org.shredzone.commons.suncalc.MoonTimes
 import org.shredzone.commons.suncalc.SunTimes

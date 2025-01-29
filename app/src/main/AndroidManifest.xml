@@ -95,7 +95,7 @@
             android:resource="@xml/icon_provider_sun_moon_filter" />
 
         <activity
-            android:name=".main.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/BreezyWeatherTheme.Main"
             android:configChanges="uiMode"
@@ -115,28 +115,28 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".search.SearchActivity"
+        <activity android:name=".ui.search.SearchActivity"
             android:label="@string/action_search"
             android:theme="@style/BreezyWeatherTheme.Search"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".daily.DailyWeatherActivity"
+            android:name=".ui.daily.DailyWeatherActivity"
             android:label="@string/daily_forecast"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
-            android:name=".common.ui.activities.AlertActivity"
+            android:name=".ui.alert.AlertActivity"
             android:label="@string/alerts"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
-            android:name=".common.ui.activities.PollenActivity"
+            android:name=".ui.pollen.PollenActivity"
             android:label="@string/pollen"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
-            android:name=".settings.activities.SettingsActivity"
+            android:name=".ui.settings.activities.SettingsActivity"
             android:exported="true"
             android:label="@string/action_settings"
             android:theme="@style/BreezyWeatherTheme">
@@ -148,47 +148,47 @@
         </activity>
 
         <activity
-            android:name=".settings.activities.CardDisplayManageActivity"
+            android:name=".ui.settings.activities.CardDisplayManageActivity"
             android:label="@string/settings_main_cards_title"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
-            android:name=".settings.activities.DailyTrendDisplayManageActivity"
+            android:name=".ui.settings.activities.DailyTrendDisplayManageActivity"
             android:label="@string/settings_main_daily_trends_title"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
-            android:name=".settings.activities.HourlyTrendDisplayManageActivity"
+            android:name=".ui.settings.activities.HourlyTrendDisplayManageActivity"
             android:label="@string/settings_main_hourly_trends_title"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
-            android:name=".settings.activities.DetailDisplayManageActivity"
+            android:name=".ui.settings.activities.DetailDisplayManageActivity"
             android:label="@string/settings_main_header_details_title"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
-            android:name=".settings.activities.PreviewIconActivity"
+            android:name=".ui.settings.activities.PreviewIconActivity"
             android:label="@string/action_preview"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
-            android:name=".settings.activities.WorkerInfoActivity"
+            android:name=".ui.settings.activities.WorkerInfoActivity"
             android:label="@string/settings_background_updates_worker_info_title"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
-            android:name=".settings.activities.AboutActivity"
+            android:name=".ui.settings.activities.AboutActivity"
             android:label="@string/action_about"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
-            android:name=".settings.activities.DependenciesActivity"
+            android:name=".ui.settings.activities.DependenciesActivity"
             android:label="@string/action_dependencies"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
-            android:name=".settings.activities.PrivacyPolicyActivity"
+            android:name=".ui.settings.activities.PrivacyPolicyActivity"
             android:label="@string/about_privacy_policy"
             android:theme="@style/BreezyWeatherTheme" />
 

@@ -6,17 +6,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <org.breezyweather.common.ui.widgets.SwipeSwitchLayout
+    <org.breezyweather.ui.common.widgets.SwipeSwitchLayout
         android:id="@+id/switch_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <org.breezyweather.common.ui.widgets.insets.FitSystemBarSwipeRefreshLayout
+        <org.breezyweather.ui.common.widgets.insets.FitSystemBarSwipeRefreshLayout
             android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <org.breezyweather.main.widgets.FitTabletRecyclerView
+            <org.breezyweather.ui.main.widgets.FitTabletRecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -24,9 +24,9 @@
                 android:clipToPadding="false"
                 android:descendantFocusability="blocksDescendants" />
 
-        </org.breezyweather.common.ui.widgets.insets.FitSystemBarSwipeRefreshLayout>
+        </org.breezyweather.ui.common.widgets.insets.FitSystemBarSwipeRefreshLayout>
 
-    </org.breezyweather.common.ui.widgets.SwipeSwitchLayout>
+    </org.breezyweather.ui.common.widgets.SwipeSwitchLayout>
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -47,7 +47,7 @@
             app:titleTextColor="@android:color/white"
             app:titleTextAppearance="?attr/textAppearanceHeadline6" />
 
-        <org.breezyweather.main.widgets.TextRelativeClock
+        <org.breezyweather.ui.main.widgets.TextRelativeClock
             android:id="@+id/refreshTimeText"
             android:textSize="@dimen/content_text_size"
             android:maxLines="1"
@@ -61,14 +61,14 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <org.breezyweather.common.ui.widgets.InkPageIndicator
+    <org.breezyweather.ui.common.widgets.InkPageIndicator
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/normal_margin"
         android:alpha="0"
         android:layout_gravity="bottom|center_horizontal"
-        app:layout_behavior="org.breezyweather.common.ui.behaviors.FloatingAboveSnackbarBehavior"
+        app:layout_behavior="org.breezyweather.ui.common.behaviors.FloatingAboveSnackbarBehavior"
         app:dotDiameter="8dp"
         app:dotGap="8dp"
         app:animationDuration="300" />

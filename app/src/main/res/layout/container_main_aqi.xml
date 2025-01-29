@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <org.breezyweather.common.ui.widgets.ArcProgress
+            <org.breezyweather.ui.common.widgets.ArcProgress
                 android:id="@+id/container_main_aqi_progress"
                 android:layout_width="172dp"
                 android:layout_height="172dp"

@@ -33,7 +33,7 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.remoteviews.Notifications
-import org.breezyweather.theme.ThemeManager
+import org.breezyweather.ui.theme.ThemeManager
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader

@@ -31,15 +31,15 @@ import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.extensions.getHour
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getWeek
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.remoteviews.Widgets
-import org.breezyweather.settings.SettingsManager
-import org.breezyweather.theme.resource.ResourceHelper
-import org.breezyweather.theme.resource.ResourcesProviderFactory
+import org.breezyweather.ui.theme.resource.ResourceHelper
+import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 
 class MaterialYouForecastWidgetIMP : AbstractRemoteViewsPresenter() {
 

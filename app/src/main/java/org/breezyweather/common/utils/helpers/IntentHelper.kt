@@ -23,21 +23,21 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.Settings
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.ui.activities.AlertActivity
-import org.breezyweather.common.ui.activities.PollenActivity
-import org.breezyweather.daily.DailyWeatherActivity
-import org.breezyweather.main.MainActivity
-import org.breezyweather.search.SearchActivity
-import org.breezyweather.settings.activities.AboutActivity
-import org.breezyweather.settings.activities.CardDisplayManageActivity
-import org.breezyweather.settings.activities.DailyTrendDisplayManageActivity
-import org.breezyweather.settings.activities.DependenciesActivity
-import org.breezyweather.settings.activities.DetailDisplayManageActivity
-import org.breezyweather.settings.activities.HourlyTrendDisplayManageActivity
-import org.breezyweather.settings.activities.PreviewIconActivity
-import org.breezyweather.settings.activities.PrivacyPolicyActivity
-import org.breezyweather.settings.activities.SettingsActivity
-import org.breezyweather.settings.compose.SettingsScreenRouter
+import org.breezyweather.ui.alert.AlertActivity
+import org.breezyweather.ui.daily.DailyWeatherActivity
+import org.breezyweather.ui.main.MainActivity
+import org.breezyweather.ui.pollen.PollenActivity
+import org.breezyweather.ui.search.SearchActivity
+import org.breezyweather.ui.settings.activities.AboutActivity
+import org.breezyweather.ui.settings.activities.CardDisplayManageActivity
+import org.breezyweather.ui.settings.activities.DailyTrendDisplayManageActivity
+import org.breezyweather.ui.settings.activities.DependenciesActivity
+import org.breezyweather.ui.settings.activities.DetailDisplayManageActivity
+import org.breezyweather.ui.settings.activities.HourlyTrendDisplayManageActivity
+import org.breezyweather.ui.settings.activities.PreviewIconActivity
+import org.breezyweather.ui.settings.activities.PrivacyPolicyActivity
+import org.breezyweather.ui.settings.activities.SettingsActivity
+import org.breezyweather.ui.settings.compose.SettingsScreenRouter
 
 /**
  * Intent helper.

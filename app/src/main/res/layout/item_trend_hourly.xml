@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.breezyweather.common.ui.widgets.trend.item.HourlyTrendItemView
+<org.breezyweather.ui.common.widgets.trend.item.HourlyTrendItemView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_trend_hourly"
