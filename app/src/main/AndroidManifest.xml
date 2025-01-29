@@ -178,7 +178,7 @@
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
-            android:name=".ui.settings.activities.AboutActivity"
+            android:name=".ui.about.AboutActivity"
             android:label="@string/action_about"
             android:theme="@style/BreezyWeatherTheme" />
 

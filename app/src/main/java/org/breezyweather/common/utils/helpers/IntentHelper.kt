@@ -28,7 +28,7 @@ import org.breezyweather.ui.daily.DailyWeatherActivity
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.pollen.PollenActivity
 import org.breezyweather.ui.search.SearchActivity
-import org.breezyweather.ui.settings.activities.AboutActivity
+import org.breezyweather.ui.about.AboutActivity
 import org.breezyweather.ui.settings.activities.CardDisplayManageActivity
 import org.breezyweather.ui.settings.activities.DailyTrendDisplayManageActivity
 import org.breezyweather.ui.settings.activities.DependenciesActivity
