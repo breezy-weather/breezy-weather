@@ -3,6 +3,7 @@ package org.breezyweather.ui.about
 import androidx.activity.compose.LocalActivity
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -123,7 +125,31 @@ internal fun AboutScreen(
             item {
                 Header()
                 AboutAppLink(
-                    iconId = R.drawable.ic_sync, // TODO: Replace with a circular progress indicator
+                    icon = {
+                        // Use crossfade animation to prevent the progress indicator from flickering when repeatedly
+                        // pressing the update card as this causes the loading state to change back and forth almost
+                        // instantly.
+                        Crossfade(
+                            targetState = isCheckingUpdates.value,
+                            label = ""
+                        ) { loading ->
+                            when (loading) {
+                                false -> {
+                                    Icon(
+                                        painter = painterResource(R.drawable.ic_sync),
+                                        contentDescription = null,
+                                        tint = DayNightTheme.colors.titleColor
+                                    )
+                                }
+                                true -> {
+                                    CircularProgressIndicator(
+                                        modifier = Modifier.size(24.dp),
+                                        color = DayNightTheme.colors.titleColor
+                                    )
+                                }
+                            }
+                        }
+                    },
                     title = stringResource(R.string.about_check_for_app_updates),
                     onClick = {
                         if (BuildConfig.FLAVOR == "freenet") {
@@ -299,7 +325,7 @@ private val versionFormatted: String
 
 @Composable
 private fun AboutAppLink(
-    @DrawableRes iconId: Int,
+    icon: @Composable () -> Unit,
     title: String,
     onClick: () -> Unit,
 ) {
@@ -315,11 +341,7 @@ private fun AboutAppLink(
                 .padding(dimensionResource(R.dimen.normal_margin)),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(
-                painter = painterResource(iconId),
-                contentDescription = null,
-                tint = DayNightTheme.colors.titleColor
-            )
+            icon()
             Spacer(modifier = Modifier.width(dimensionResource(R.dimen.normal_margin)))
             Text(
                 text = title,
@@ -328,6 +350,25 @@ private fun AboutAppLink(
             )
         }
     }
+}
+
+@Composable
+private fun AboutAppLink(
+    @DrawableRes iconId: Int,
+    title: String,
+    onClick: () -> Unit,
+) {
+    AboutAppLink(
+        icon = {
+            Icon(
+                painter = painterResource(iconId),
+                contentDescription = null,
+                tint = DayNightTheme.colors.titleColor
+            )
+        },
+        title = title,
+        onClick = onClick
+    )
 }
 
 @Composable
