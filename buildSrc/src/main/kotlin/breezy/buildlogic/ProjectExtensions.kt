@@ -5,6 +5,7 @@ import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
 import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
@@ -23,7 +24,7 @@ internal fun Project.configureAndroid(commonExtension: CommonExtension<*, *, *, 
         compileOptions {
             sourceCompatibility = AndroidConfig.JavaVersion
             targetCompatibility = AndroidConfig.JavaVersion
-            // isCoreLibraryDesugaringEnabled = true
+            isCoreLibraryDesugaringEnabled = true
         }
     }
 
@@ -40,6 +41,10 @@ internal fun Project.configureAndroid(commonExtension: CommonExtension<*, *, *, 
             val warningsAsErrors: String? by project
             allWarningsAsErrors.set(warningsAsErrors.toBoolean())
         }
+    }
+
+    dependencies {
+        "coreLibraryDesugaring"(libs.desugar)
     }
 }
 

@@ -12,6 +12,7 @@ core-ktx = "1.15.0"
 core-splashscreen = "1.0.1"
 dagger = "2.55"
 #datastore = "1.1.1"
+desugar = "2.1.4"
 expandabletextcompose = "2.0.1"
 hilt = "1.2.0"
 javapoet = "1.13.0"
@@ -72,6 +73,7 @@ dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compi
 dagger-hilt-core = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger" }
 dagger-hilt-gradle = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "dagger" }
 #datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+desugar = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar" }
 expandabletextcompose = { group = "com.github.giangpham96.expandable-text", name = "expandable_text_compose", version.ref = "expandabletextcompose" }
 hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hilt" }
 hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hilt" }
