@@ -25,7 +25,7 @@ import android.provider.Settings
 import breezyweather.domain.location.model.Location
 import org.breezyweather.ui.about.AboutActivity
 import org.breezyweather.ui.alert.AlertActivity
-import org.breezyweather.ui.daily.DailyWeatherActivity
+import org.breezyweather.ui.daily.DailyActivity
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.pollen.PollenActivity
 import org.breezyweather.ui.search.SearchActivity
@@ -101,9 +101,9 @@ object IntentHelper {
         index: Int,
     ) {
         activity.startActivity(
-            Intent(activity, DailyWeatherActivity::class.java).apply {
-                putExtra(DailyWeatherActivity.KEY_FORMATTED_LOCATION_ID, formattedId)
-                putExtra(DailyWeatherActivity.KEY_CURRENT_DAILY_INDEX, index)
+            Intent(activity, DailyActivity::class.java).apply {
+                putExtra(DailyActivity.KEY_FORMATTED_LOCATION_ID, formattedId)
+                putExtra(DailyActivity.KEY_CURRENT_DAILY_INDEX, index)
             }
         )
     }

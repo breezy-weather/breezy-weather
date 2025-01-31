@@ -19,7 +19,6 @@ package org.breezyweather.ui.main.dialogs
 import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -59,7 +58,6 @@ object HourlyWeatherDialog {
 
         val composeView = view.findViewById<ComposeView>(R.id.dialog_weather_hourly)
         val dialogOpenState = mutableStateOf(true)
-        val weatherIconView = AnimatableIconView(view.context)
         val weatherText = buildWeatherText(view, hourly)
 
         composeView.setContent {
@@ -83,14 +81,11 @@ object HourlyWeatherDialog {
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .clickable {
-                                        weatherIconView.startAnimators()
-                                    }
                             ) {
                                 AndroidView(
                                     modifier = Modifier.size(dimensionResource(R.dimen.standard_weather_icon_size)),
                                     factory = {
-                                        weatherIconView.apply {
+                                        AnimatableIconView(view.context).apply {
                                             val provider = ResourcesProviderFactory.newInstance
                                             val weatherCode = hourly.weatherCode
                                             val daytime = hourly.isDaylight
@@ -107,6 +102,9 @@ object HourlyWeatherDialog {
                                                         daytime
                                                     )
                                                 )
+                                            }
+                                            setOnClickListener {
+                                                startAnimators()
                                             }
                                         }
                                     }
