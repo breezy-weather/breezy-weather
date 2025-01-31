@@ -685,7 +685,7 @@
     <string name="common_weather_text_sand_storm">Sandsturm</string>
     <string name="common_weather_text_smoke">Rauch</string>
     <string name="dialog_app_update_check_content">Tippen Sie hier, um Benachrichtigungen über App-Updates zu aktivieren.</string>
-    <string name="dialog_app_update_check_title">Up to date bleiben</string>
+    <string name="dialog_app_update_check_title">Aktuell bleiben</string>
     <string name="meteoam_weather_text_tornado_watersprout">Wind- oder Wasserhose</string>
     <string name="settings_unavailable_no_animations">Nicht verfügbar, aktivieren Sie Animationen zuerst in den Android-Einstellungen</string>
     <string name="current_weather">Aktuelles Wetter</string>
