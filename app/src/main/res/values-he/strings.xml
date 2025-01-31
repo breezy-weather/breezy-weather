@@ -134,7 +134,7 @@
     <string name="settings_background_updates_refresh_24h">24 שעות</string>
     <string name="settings_background_updates_refresh_6h">6 שעות</string>
     <string name="settings_background_updates_refresh_12h">12 שעות</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">התעלם כאשר הסוללה חלשה</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">התעלם כאשר הסוללה חלשה</string>
     <string name="widget_week_style_5_days">5 ימים</string>
     <string name="widget_week_style_3_days">3 ימים</string>
     <string name="air_quality_co_info_title">פחמן חד-חמצני (CO)</string>

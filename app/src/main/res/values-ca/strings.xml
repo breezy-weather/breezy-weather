@@ -321,7 +321,7 @@
     <string name="settings_background_updates_refresh_title">Freqüència de refresc</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="air_quality_so2_info_title">Diòxid de sofre (SO₂)</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorar quan la bateria està baixa</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorar quan la bateria està baixa</string>
     <string name="air_quality_pm_info_title">Partícules (PM2,5 i PM10)</string>
     <string name="location_message_reverse_geocoding_failed">La font meteorològica no ha trobat una ubicació coincident</string>
     <string name="settings_items_drag_to_sort">Toqueu per arrossegar els elements de la llista i ordenar-los</string>

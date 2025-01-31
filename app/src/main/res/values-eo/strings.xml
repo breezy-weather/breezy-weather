@@ -329,7 +329,7 @@
     <string name="settings_background_updates_refresh_6h">6 horoj</string>
     <string name="settings_background_updates_refresh_12h">12 horoj</string>
     <string name="settings_background_updates_refresh_24h">24 horoj</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignori kiam baterio estas malalta</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignori kiam baterio estas malalta</string>
     <string name="settings_background_updates_section_troubleshoot">Problemsolvi</string>
     <string name="settings_background_updates_battery_optimization">Malŝalti baterian optimumigon</string>
     <string name="settings_location">Loko</string>

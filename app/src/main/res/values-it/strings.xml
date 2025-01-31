@@ -484,7 +484,7 @@
     <string name="settings_weather_sources_summary">Fonte meteo predefinita per le nuove località, chiavi API personalizzate, altre impostazioni della fonte</string>
     <string name="action_show_errors">Tocca per dettagli</string>
     <string name="dialog_permissions_notification_title">Rimani informato</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignora quando la batteria è bassa</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignora quando la batteria è bassa</string>
     <string name="air_quality_so2_info_title">Biossido di zolfo (SO₂)</string>
     <string name="air_quality_pm_explanations_origin">Alcuni particolati sono generati naturalmente, provenienti da vulcani, tempeste di polvere, incendi boschivi e praterie, vegetazione vivente e spray marino. Le attività umane generano anche quantità significative di particolati, come il traffico e il trasporto, le attività industriali, le centrali elettriche, i cantieri, la combustione dei rifiuti o i campi.</string>
     <string name="location_search_no_results">%1$s non è riuscito a trovare %2$s</string>

@@ -171,7 +171,7 @@ fun BackgroundSettingsScreen(
                     )
                 }
             }
-            switchPreferenceItem(R.string.settings_background_updates_refresh_ignore_when_battery_low) { id ->
+            switchPreferenceItem(R.string.settings_background_updates_refresh_skip_when_battery_low) { id ->
                 SwitchPreferenceView(
                     titleId = id,
                     summaryOnId = R.string.settings_enabled,

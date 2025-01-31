@@ -523,7 +523,7 @@
     <string name="openmeteo_weather_text_depositing_rime_fog">Nevoeiro depositante de geada</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Tempestade com granizo pesado</string>
     <string name="action_show_errors">Toque para ver detalhes</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorar quando a bateria estiver baixa</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorar quando a bateria estiver baixa</string>
     <string name="message_parsing_error_title">Falha ao analisar dados meteorológicos</string>
     <string name="notification_update_error">%d falha na(s) atualização(ões)</string>
     <string name="wind_strength">Força do vento</string>

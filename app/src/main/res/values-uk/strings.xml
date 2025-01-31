@@ -340,7 +340,7 @@
     <string name="settings_background_updates_refresh_6h">6 годин</string>
     <string name="settings_background_updates_refresh_12h">12 годин</string>
     <string name="settings_background_updates_refresh_24h">24 години</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ігнорувати, коли батарея розряджена</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ігнорувати, коли батарея розряджена</string>
     <string name="settings_background_updates_battery_optimization_summary">Це перше, що варто спробувати, якщо ви не отримуєте повідомлення або віджети не оновлюються.</string>
     <string name="settings_background_updates_section_troubleshoot">Відлагодження</string>
     <string name="settings_background_updates_battery_optimization">Вимкнути оптимізацію батареї</string>

@@ -590,7 +590,7 @@
     <string name="settings_background_updates_refresh_6h">6 tundi</string>
     <string name="settings_background_updates_refresh_12h">12 tundi</string>
     <string name="settings_background_updates_refresh_24h">24 tundi</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignoreeri kui on vähe akut</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignoreeri kui on vähe akut</string>
     <string name="settings_background_updates_section_troubleshoot">Tõrkeotsing</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Tootja spetsiifilised juhised</string>
     <string name="settings_location">Asukoht</string>

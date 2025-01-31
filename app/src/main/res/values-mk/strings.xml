@@ -195,7 +195,7 @@
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_style_temperature">Температура</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Игнорирајте кога батеријата е празна</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Игнорирајте кога батеријата е празна</string>
     <string name="settings_background_updates_section_troubleshoot">Решавање проблеми</string>
     <string name="settings_background_updates_battery_optimization">Оневозможете ја оптимизацијата на батеријата</string>
     <string name="settings_background_updates_battery_optimization_summary">Ова е првото нешто што треба да се обидете кога не добивате известувања или виџетите не се освежуваат.</string>

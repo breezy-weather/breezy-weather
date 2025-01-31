@@ -233,7 +233,7 @@
     <string name="settings_debug_dump_crash_logs_title">Partilhar registos de falhas</string>
     <string name="notification_channel_background_services">Serviços em segundo plano</string>
     <string name="message_server_timeout">Solicitação expirou</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorar quando a pilha estiver baixa</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorar quando a pilha estiver baixa</string>
     <string name="settings_main_section_displayed_data">Dados exibidos</string>
     <string name="unit_mph">mph</string>
     <string name="settings_main_header_details_title">Detalhes no cabeçalho</string>

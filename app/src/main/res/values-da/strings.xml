@@ -286,7 +286,7 @@
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Kraftigt isglat</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorér når batteriet er lavt</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorér når batteriet er lavt</string>
     <string name="settings_background_updates_section_troubleshoot">Fejlfinding</string>
     <string name="settings_weather_sources_default_source">Standardkilde for nye placeringer</string>
     <string name="settings_widgets_configure_widget_summary">Konfigurér denne widget</string>

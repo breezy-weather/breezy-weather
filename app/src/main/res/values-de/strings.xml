@@ -514,7 +514,7 @@
     <string name="message_source_not_installed_error_title">Quelle nicht mehr verfügbar</string>
     <string name="action_show_errors">Antippen, um Details anzuzeigen</string>
     <string name="message_parsing_error_content">Stellen Sie sicher, dass Sie auf die neueste Version der App aktualisiert haben. Der Server kann vorübergehend nicht verfügbar sein. In diesem Fall versuchen Sie es bitte später erneut. Wenn das Problem weiterhin besteht, erstellen Sie bitte ein Absturzprotokoll in den Debugging-Einstellungen und melden Sie den Fehler auf GitHub.</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Bei niedrigem Akku nicht aktualisieren</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Bei niedrigem Akku nicht aktualisieren</string>
     <string name="wind_strength">Windstärke</string>
     <string name="message_server_timeout">Zeitüberschreitung bei Anforderung</string>
     <string name="message_parsing_error_title">Wetterdaten konnten nicht ausgewertet werden</string>

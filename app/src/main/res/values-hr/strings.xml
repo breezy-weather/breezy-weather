@@ -43,7 +43,7 @@
     <string name="pollen_and_mold">Pelud i plijesan</string>
     <string name="wind_strength_9">Jak olujni vjetar</string>
     <string name="wind_speed">Brzina vjetra</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignoriraj kada je baterija slaba</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignoriraj kada je baterija slaba</string>
     <string name="ephemeris_moon_phase_full_moon">Puni mjesec</string>
     <string name="air_quality_pm_info_title">Čestice (PM2.5 i PM10)</string>
     <string name="location_message_reverse_geocoding_failed">Izvor vremena nije uspio pronaći jednu odgovarajuću lokaciju</string>

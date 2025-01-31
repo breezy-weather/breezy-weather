@@ -514,7 +514,7 @@
     <string name="settings_location_summary">Настройки сервисов местоположения</string>
     <string name="settings_weather_sources">Источники погоды</string>
     <string name="action_show_errors">Нажмите, чтобы увидеть детали</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Игнорировать, когда батарея разряжена</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Игнорировать, когда батарея разряжена</string>
     <string name="message_server_timeout">Истекло время запроса</string>
     <string name="message_parsing_error_title">Не удалось проанализировать данные о погоде</string>
     <string name="wind_strength">Сила ветра</string>

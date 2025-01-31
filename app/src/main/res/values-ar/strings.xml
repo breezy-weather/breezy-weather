@@ -517,7 +517,7 @@
     <string name="settings_main">الشاشة الرئيسية</string>
     <string name="action_show_errors">انقر لرؤية التفاصيل</string>
     <string name="notification_update_error">%d فشل التحديث</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">تجاهل عندما تكون البطارية منخفضة</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">تجاهل عندما تكون البطارية منخفضة</string>
     <string name="wind_strength">قوة الرياح</string>
     <string name="message_parsing_error_title">فشل تحليل بيانات الطقس</string>
     <string name="message_server_timeout">انتهت مهلة الطلب</string>

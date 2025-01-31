@@ -270,7 +270,7 @@
     <string name="air_quality_level_5">大きな健康被害あり</string>
     <string name="air_quality_level_2_description">大気の質はほとんどの人にとって一般的な許容範囲にあります。ただし、長期間さらされると敏感な人々に軽度から中程度の症状が発生する場合があります。</string>
     <string name="air_quality_level_3">悪い</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">電池残量が少ない場合に一時停止</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">電池残量が少ない場合に一時停止</string>
     <string name="settings_main_header_details_title">ヘッダーに表示する情報</string>
     <string name="settings_main_section_displayed_data">表示するデータ</string>
     <string name="settings_background_updates_summary">更新間隔・自動更新の問題のトラブルシューティング</string>

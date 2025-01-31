@@ -326,7 +326,7 @@
     <string name="settings_background_updates_refresh_1h_30min">1.5 часа</string>
     <string name="settings_background_updates_refresh_3h">3 часа</string>
     <string name="settings_background_updates_refresh_24h">24 часа</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Игнорирай, когато батерията е изтощена</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Игнорирай, когато батерията е изтощена</string>
     <string name="settings_background_updates_section_troubleshoot">Отстраняване на неизправности</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Настройките на устройството не можаха да бъдат отворени.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Специфични инструкции от производителя</string>

@@ -172,7 +172,7 @@
     <string name="settings_background_updates_refresh_title">Frekvencia aktualizácie</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="common_weather_text_snow">Sneh</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Neaktualizovať ak je slabá batéria</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Neaktualizovať ak je slabá batéria</string>
     <string name="common_weather_text_cloudy">Oblačno</string>
     <string name="common_weather_text_drizzle_freezing_light">Slabé mrznúce mrholenie</string>
     <string name="settings_background_updates_battery_optimization">Vypnúť optimalizáciu batérie</string>

@@ -506,7 +506,7 @@
     <string name="settings_background_updates_refresh_6h">6 hours</string>
     <string name="settings_background_updates_refresh_12h">12 hours</string>
     <string name="settings_background_updates_refresh_24h">24 hours</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignore when battery is low</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Skip when battery is low</string>
     <string name="settings_background_updates_section_troubleshoot">Troubleshoot</string>
     <string name="settings_background_updates_battery_optimization">Disable battery optimization</string>
     <string name="settings_background_updates_battery_optimization_summary">This is the first thing to try when you don’t receive notifications or widgets are not refreshing.</string>

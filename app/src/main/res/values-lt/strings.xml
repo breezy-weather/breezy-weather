@@ -264,7 +264,7 @@
     <string name="widget_week_style_5_days">5 dienos</string>
     <string name="widget_week_style_3_days">3 dienos</string>
     <string name="settings_background_updates_summary">Atnaujinimo dažnis, trikčių šalinimas</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignoruoti, kai išsikrauna akumuliatorius</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignoruoti, kai išsikrauna akumuliatorius</string>
     <string name="settings_background_updates_battery_optimization">Išjungti akumuliatoriaus optimizavimą</string>
     <string name="settings_background_updates_worker_info_summary">Paskutinis paleidimas: %s</string>
     <string name="widget_multi_city">Keli miestai</string>

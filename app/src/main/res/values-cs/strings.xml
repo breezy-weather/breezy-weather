@@ -393,7 +393,7 @@
     <string name="air_quality_co_info_consequences">Oxid uhelnatý proniká přes plicní tkáně do krevního oběhu a ztěžuje tělesným buňkám vazbu kyslíku. Tento nedostatek kyslíku poškozuje tkáně a buňky. Vystavení oxidu uhelnatému může způsobit potíže s dýcháním, vyčerpání, závratě a další příznaky podobné chřipce. Vystavení vysokým hladinám oxidu uhelnatého může být smrtelné.</string>
     <string name="location_search_no_results_advice">Ujistěte se, že vaše vyhledávání je napsáno správně a není příliš konkrétní. Případně můžete vyzkoušet jiný zdroj vyhledávání polohy, který může poskytnout jiné výsledky.</string>
     <string name="message_parsing_error_content">Ujistěte se, že jste aktualizovali nejnovější verzi aplikace. Server může být dočasně nedostupný, v takovém případě to zkuste později. Pokud problém přetrvává, vypište prosím protokol o pádu z nastavení ladění a nahlaste problém na GitHub.</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorovat, když je baterie vybitá</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorovat, když je baterie vybitá</string>
     <string name="settings_background_updates_battery_optimization_summary">To je první věc, kterou je třeba vyzkoušet, když nedostáváte oznámení nebo se widgety neobnovují.</string>
     <string name="settings_widgets_summary">Nastavení tapety, konfigurace použitých widgetů, widget oznámení</string>
     <string name="wind_direction_short_NE">SV</string>

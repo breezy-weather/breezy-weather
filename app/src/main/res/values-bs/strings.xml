@@ -496,7 +496,7 @@
     <string name="settings_background_updates_refresh_6h">6 sati</string>
     <string name="settings_background_updates_refresh_12h">12 sati</string>
     <string name="settings_background_updates_refresh_24h">24 sata</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignoriši kada je baterija slaba</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignoriši kada je baterija slaba</string>
     <string name="settings_background_updates_section_troubleshoot">Rješavanje problema</string>
     <string name="settings_background_updates_battery_optimization">Onemogući optimizaciju baterije</string>
     <string name="settings_background_updates_battery_optimization_summary">Ovo je prva stvar koju trebate pokušati kada ne primate obavijesti ili se widgeti ne osvježavaju.</string>

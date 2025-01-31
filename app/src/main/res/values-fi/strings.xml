@@ -278,7 +278,7 @@
     <string name="settings_background_updates_refresh_title">Päivitystahti</string>
     <string name="air_quality_so2_info_title">Rikkidioksidi (SO₂)</string>
     <string name="pollen_and_mold">Siitepöly &amp; home</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Jätä huomiotta, kun akku on vähissä</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Jätä huomiotta, kun akku on vähissä</string>
     <string name="air_quality_pm_info_title">Hiukkaset (PM2.5 &amp; PM10)</string>
     <string name="unit_hpa">hPa</string>
     <string name="settings_background_updates_battery_optimization">Poista akun käytön optimointi käytöstä</string>

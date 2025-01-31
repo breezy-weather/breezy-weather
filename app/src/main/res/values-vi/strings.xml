@@ -455,7 +455,7 @@
     <string name="notification_style_native">Tự nhiên</string>
     <string name="notification_style_cities">Các thành phố</string>
     <string name="location_search_no_results">%1$s không thể tìm %2$s</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Bỏ qua khi pin yếu</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Bỏ qua khi pin yếu</string>
     <string name="action_show_errors">Bấm để xem chi tiết</string>
     <string name="wind_strength">Sức gió</string>
     <string name="notification_update_error">%d cập nhật thất bại</string>

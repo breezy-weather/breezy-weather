@@ -26,7 +26,7 @@
     <string name="pollen_and_mold">Pollen &amp; mögel</string>
     <string name="unit_mugpcum_voice">Mikrogram per kubikmeter</string>
     <string name="wind_speed">Vindhastighet</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorera när batterinivån är låg</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorera när batterinivån är låg</string>
     <string name="ephemeris_moon_phase_full_moon">Fullmåne</string>
     <string name="air_quality_pm_info_title">Partiklar (PM2,5 &amp; PM10)</string>
     <string name="common_weather_text_cloudy">Molnigt</string>

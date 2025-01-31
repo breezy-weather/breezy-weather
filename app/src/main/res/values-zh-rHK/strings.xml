@@ -427,7 +427,7 @@
     <string name="settings_background_updates_refresh_6h">6 小時</string>
     <string name="settings_background_updates_refresh_12h">12 小時</string>
     <string name="settings_background_updates_refresh_24h">24 小時</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">電池電量低時忽略更新</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">電池電量低時忽略更新</string>
     <string name="settings_background_updates_section_troubleshoot">疑難排解</string>
     <string name="settings_background_updates_battery_optimization">停用電池最佳化</string>
     <string name="settings_background_updates_battery_optimization_summary">當您未收到通知或小工具未重新整理時，首先嘗試這個選項。</string>

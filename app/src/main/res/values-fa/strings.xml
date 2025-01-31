@@ -284,7 +284,7 @@
     <string name="settings_background_updates_refresh_3h">۳ ساعت</string>
     <string name="settings_background_updates_refresh_12h">۱۲ ساعت</string>
     <string name="settings_background_updates_refresh_24h">۲۴ ساعت</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">نادیده گرفتن زمانی که باتری کم است</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">نادیده گرفتن زمانی که باتری کم است</string>
     <string name="settings_background_updates_section_troubleshoot">عیب یابی</string>
     <string name="settings_background_updates_battery_optimization">غیرفعال کردن بهینه سازی باتری</string>
     <string name="settings_background_updates_worker_info_summary">آخرین اجرا: %s</string>

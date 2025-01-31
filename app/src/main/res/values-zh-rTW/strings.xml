@@ -406,7 +406,7 @@
     <string name="message_parsing_error_title">無法剖析天氣資料</string>
     <string name="settings_location_access_switch_summaryOff">如果您希望在位置清單新增目前位置，請允許該權限。</string>
     <string name="settings_location_access_background_title">在背景存取位置</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">電池電量低時忽略更新</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">電池電量低時忽略更新</string>
     <string name="settings_main_hourly_trends_title">逐時趨勢</string>
     <string name="settings_notifications_forecast_time_today_title">當日天氣預報通知時間</string>
     <string name="settings_widgets_monochrome_icons_title">單色圖示</string>

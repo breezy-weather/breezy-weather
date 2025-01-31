@@ -352,7 +352,7 @@
     <string name="settings_background_updates_refresh_6h">6 часов</string>
     <string name="settings_background_updates_refresh_12h">12 часов</string>
     <string name="settings_background_updates_refresh_24h">24 часа</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ігнараваць, калі батарэя разраджана</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ігнараваць, калі батарэя разраджана</string>
     <string name="settings_background_updates_section_troubleshoot">Адладка</string>
     <string name="settings_background_updates_battery_optimization">Адключыць аптымізацыю батарэі</string>
     <string name="settings_background_updates_battery_optimization_summary">Гэта першае, што трэба паспрабаваць, калі вы не атрымліваеце апавяшчэння або фішкі не абнаўляюцца.</string>

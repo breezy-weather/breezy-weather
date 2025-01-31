@@ -345,7 +345,7 @@
     <string name="settings_background_updates_refresh_3h">3 uair an chloig</string>
     <string name="settings_background_updates_refresh_12h">12 uair an chloig</string>
     <string name="settings_background_updates_refresh_24h">24 uair an chloig</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Déan neamhaird de nuair atá an ceallraí íseal</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Déan neamhaird de nuair atá an ceallraí íseal</string>
     <string name="settings_background_updates_section_troubleshoot">Fabhtcheartú</string>
     <string name="settings_background_updates_battery_optimization">Díchumasaigh leas iomlán a bhaint ceallraí</string>
     <string name="settings_background_updates_battery_optimization_summary">Is é seo an chéad rud chun iarracht a dhéanamh nuair nach bhfaigheann tú fógraí nó giuirléidí nach bhfuil athnuachan.</string>

@@ -214,7 +214,7 @@
     <string name="weather_api_key_required_missing_content">Bu kaynağı kullanmak için bir API anahtarı sağlamanız gerekir.</string>
     <string name="location_search_no_results">%1$s, %2$s konumunu bulamadı</string>
     <string name="action_undo">Geri al</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Pil düşükse yoksay</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Pil düşükse yoksay</string>
     <string name="settings_icon_packs_title">Simge paketleri</string>
     <string name="settings_notifications">Bildirimler</string>
     <string name="settings_weather_source_portal">Portal</string>

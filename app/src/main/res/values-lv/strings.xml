@@ -151,7 +151,7 @@
     <string name="settings_section_general">Vispārīgi</string>
     <string name="settings_background_updates_refresh_30min">30 minūtes</string>
     <string name="settings_background_updates_refresh_never">Nekad</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Neņemt vērā, kad baterijas līmenis ir zems</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Neņemt vērā, kad baterijas līmenis ir zems</string>
     <string name="settings_background_updates_section_troubleshoot">Problēmu novēršana</string>
     <string name="settings_background_updates_battery_optimization">Atspējot baterijas optimizāciju</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nevarēja atvērt ierīces iestatījumus.</string>

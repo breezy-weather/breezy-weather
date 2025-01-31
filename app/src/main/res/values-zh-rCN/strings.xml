@@ -524,7 +524,7 @@
     <string name="wind_strength">风力</string>
     <string name="message_server_timeout">请求超时</string>
     <string name="message_parsing_error_title">天气数据解析失败</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">电池电量低时停用后台刷新</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">电池电量低时停用后台刷新</string>
     <string name="temperature_degree_day_heating">采暖度日</string>
     <string name="settings_background_updates_worker_info_summary">最后运行：%s</string>
     <string name="settings_source_api_key">API 密钥</string>

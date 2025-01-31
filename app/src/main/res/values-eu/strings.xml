@@ -255,7 +255,7 @@
     <string name="settings_background_updates_refresh_3h">3 ordu</string>
     <string name="settings_background_updates_refresh_6h">6 ordu</string>
     <string name="settings_background_updates_refresh_12h">12 ordu</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Baztertu bateria baxu dagoenean</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Baztertu bateria baxu dagoenean</string>
     <string name="settings_background_updates_section_troubleshoot">Arazoak konpontzea</string>
     <string name="settings_background_updates_battery_optimization">Desaktibatu bateria optimizatzailea</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Ezin izan da gailuaren konfigurazioa ireki.</string>

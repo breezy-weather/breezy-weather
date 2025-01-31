@@ -336,7 +336,7 @@
     <string name="settings_background_updates_summary">Frissítési gyakoriság, hibaelhárítás</string>
     <string name="settings_background_updates_refresh_3h">3 óra</string>
     <string name="settings_background_updates_refresh_6h">6 óra</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Mellőzés alacsony töltöttségnél</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Mellőzés alacsony töltöttségnél</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nem sikerült megnyitni a készülék beállításait.</string>
     <string name="settings_background_updates_worker_info_title">Folyamatinformáció</string>
     <string name="settings_weather_sources_per_location_summary">A helyszínhez használt időjárási adatforrások testreszabása</string>

@@ -408,7 +408,7 @@
     <string name="air_quality_pm_explanations_consequences">Cząstki stałe są najbardziej szkodliwą formą zanieczyszczenia powietrza ze względu na ich zdolność do przenikania głęboko do płuc i mózgu z krwiobiegu, powodując problemy zdrowotne, takie jak choroby serca, choroby płuc i przedwczesną śmierć.</string>
     <string name="weather_data_by">Dane według %s</string>
     <string name="action_show_errors">Dotknij, aby zobaczyć szczegóły</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignoruj, gdy poziom naładowania baterii jest niski</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignoruj, gdy poziom naładowania baterii jest niski</string>
     <string name="location_message_reverse_geocoding_failed">Źródło danych pogodowych nie znalazło pasującej lokalizacji</string>
     <string name="widget_material_you_current">Material You - Aktualnie</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optymalizacja baterii jest już wyłączona.</string>

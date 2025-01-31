@@ -189,7 +189,7 @@
     <string name="settings_background_updates_refresh_3h">3 மணி நேரம்</string>
     <string name="settings_background_updates_refresh_12h">12 மணி நேரம்</string>
     <string name="settings_background_updates_refresh_24h">24 மணி நேரம்</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">பேட்டரி குறைவாக இருக்கும்போது புறக்கணிக்கவும்</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">பேட்டரி குறைவாக இருக்கும்போது புறக்கணிக்கவும்</string>
     <string name="settings_background_updates_section_troubleshoot">சரிசெய்தல்</string>
     <string name="settings_background_updates_battery_optimization">பேட்டரி தேர்வுமுறை முடக்கு</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">சாதன அமைப்புகளைத் திறக்க முடியவில்லை.</string>

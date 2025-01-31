@@ -396,7 +396,7 @@
     <string name="common_weather_text_drizzle_freezing_light">Lett underkjølt yr</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Ny linje</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Vær på nattestid i dag, i morgen, …, 4 dager senere</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Ignorer ved lavt batterinivå</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorer ved lavt batterinivå</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Nedbør på dagtid i dag, i morgen, …, 4 dager senere (%)</string>
     <string name="widget_week_style_3_days">3 dager</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Pollenvarsel i dag, i morgen, …, 4 dager senere</string>

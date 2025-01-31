@@ -518,7 +518,7 @@
     <string name="settings_widgets_week_icon_mode_title">Ikon untuk ditampilkan dalam tampilan mingguan</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Hujan lebat bercampur salju</string>
     <string name="unit_mugpcum_voice">Mikrogram per meter kubik</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">Abaikan ketika baterai lemah</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">Abaikan ketika baterai lemah</string>
     <string name="location_message_reverse_geocoding_failed">Sumber cuaca gagal mencari lokasi yang cocok</string>
     <string name="common_weather_text_drizzle_freezing_light">Gerimis beku ringan</string>
     <string name="settings_background_updates_battery_optimization">Nonaktifkan optimasi baterai</string>

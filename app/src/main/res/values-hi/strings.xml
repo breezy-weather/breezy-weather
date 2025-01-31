@@ -245,7 +245,7 @@
     <string name="settings_background_updates_refresh_3h">3 घंटे</string>
     <string name="settings_background_updates_refresh_6h">6 घंटे</string>
     <string name="settings_background_updates_refresh_24h">24 घंटे</string>
-    <string name="settings_background_updates_refresh_ignore_when_battery_low">बैटरी कम होने पर ध्यान न दें</string>
+    <string name="settings_background_updates_refresh_skip_when_battery_low">बैटरी कम होने पर ध्यान न दें</string>
     <string name="settings_background_updates_battery_optimization">बैटरी अनुकूलन अक्षम करें</string>
     <string name="settings_background_updates_refresh_1h">1 घंटा</string>
     <string name="settings_background_updates_section_troubleshoot">समस्याओं का निवारण</string>
