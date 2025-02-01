@@ -164,7 +164,7 @@ internal fun getHourlyList(
                 precipitation = Precipitation(
                     total = hourlyResult.precipitation?.getOrNull(i),
                     rain = hourlyResult.rain?.getOrNull(i) + hourlyResult.showers?.getOrNull(i),
-                    snow = hourlyResult.snowfall?.getOrNull(i)
+                    snow = hourlyResult.snowfall?.getOrNull(i)?.times(10) // convert cm -> mm
                 ),
                 precipitationProbability = PrecipitationProbability(
                     total = hourlyResult.precipitationProbability?.getOrNull(i)?.toDouble()

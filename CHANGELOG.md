@@ -4,6 +4,7 @@
 - Refresh errors are now detailed again (regression introduced in v5.3)
 
 **Weather sources**
+- [Open-Meteo] Fix snow quantity reported 10 times too low
 - [AccuWeather] Fix missing pollen when not using AccuWeather as forecast source
 - [AccuWeather] Fix missing forecast when using Developer portal (custom API keys)
 - [HKO] Ignore non-sense values sent by the server (@chunshek)
