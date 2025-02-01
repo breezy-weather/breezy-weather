@@ -84,6 +84,7 @@ internal fun getCurrent(
     val windGusts = getValid(current?.gustInfo?.peakGustSpeed) as Double?
     val weatherText = getValid(current?.weather) as String?
     var weatherCode: WeatherCode? = null
+    var dailyForecast: String? = null
 
     // The current observation result does not come with a "code".
     // We need to decipher the best code to use based on the text.
@@ -122,6 +123,15 @@ internal fun getCurrent(
         }
     }
 
+    // "Weather Assistant" returns a few paragraphs of human-written forecast summary.
+    // We only want the first paragraph to keep it concise.
+    dailyForecast = if (assistantResult.cwaopendata != null) {
+        assistantResult.cwaopendata.dataset?.parameterSet?.parameter?.getOrNull(0)?.parameterValue
+    } else {
+        // Just in case the Assistant feed regresses to "cwbopendata" as the root property.
+        assistantResult.cwbopendata?.dataset?.parameterSet?.parameter?.getOrNull(0)?.parameterValue
+    }
+
     return CurrentWrapper(
         weatherText = weatherText,
         weatherCode = weatherCode,
@@ -141,9 +151,7 @@ internal fun getCurrent(
             humidity = relativeHumidity,
             latitude = latitude
         ),
-        // "Weather Assistant" returns a few paragraphs of human-written forecast summary.
-        // We only want the first paragraph to keep it concise.
-        dailyForecast = assistantResult.cwaopendata?.dataset?.parameterSet?.parameter?.getOrNull(0)?.parameterValue
+        dailyForecast = dailyForecast
     )
 }
 
