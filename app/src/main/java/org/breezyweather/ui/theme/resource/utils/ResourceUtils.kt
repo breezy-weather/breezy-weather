@@ -25,16 +25,9 @@ object ResourceUtils {
     @AnyRes
     fun getResId(context: Context, resName: String, type: String): Int {
         return try {
-            context.classLoader
-                .loadClass(context.packageName + ".R$" + type)
-                .getField(resName)
-                .getInt(null)
-        } catch (e: Exception) {
-            try {
-                context.resources.getIdentifier(resName, type, context.packageName)
-            } catch (ignored: Exception) {
-                0
-            }
+            context.resources.getIdentifier(resName, type, context.packageName)
+        } catch (ignored: Exception) {
+            0
         }
     }
 
