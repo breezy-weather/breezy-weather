@@ -55,8 +55,10 @@ import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
-import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
+import org.breezyweather.common.extensions.getDayOfMonth
+import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getWeek
+import org.breezyweather.common.extensions.toCalendar
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.settings.SettingsManager
@@ -166,6 +168,7 @@ fun DailyPagerIndicator(
         modifier = modifier.fillMaxWidth()
     ) {
         pages.forEachIndexed { i, date ->
+            val cal = date.toCalendar(location)
             Tab(
                 selected = (selected == i),
                 unselectedContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -179,12 +182,18 @@ fun DailyPagerIndicator(
                         Text(
                             text = when {
                                 todayIndex == null -> date.getWeek(location, context)
+                                i == todayIndex - 1 -> stringResource(R.string.short_yesterday)
                                 i == todayIndex -> stringResource(R.string.short_today)
+                                i == todayIndex + 1 -> stringResource(R.string.short_tomorrow)
                                 else -> date.getWeek(location, context)
                             }
                         )
                         Text(
-                            text = date.getFormattedShortDayAndMonth(location, context)
+                            text = cal.getDayOfMonth(twoDigits = true),
+                            style = MaterialTheme.typography.headlineMedium
+                        )
+                        Text(
+                            text = date.getFormattedDate("MMM", location, context, withBestPattern = true)
                         )
                     }
                 }

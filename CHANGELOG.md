@@ -2,6 +2,8 @@
 
 **Improvements and fixes**
 - Refresh errors are now detailed again (regression introduced in v5.3)
+- Redesigned daily details screen to be more in line with the rest of the app
+- Added tabs to the daily details screen to switch more easily between days
 
 **Weather sources**
 - [Open-Meteo] Fix snow quantity reported 10 times too low

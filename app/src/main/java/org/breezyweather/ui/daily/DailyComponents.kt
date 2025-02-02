@@ -477,7 +477,8 @@ fun DailyAirQuality(
             progress = { progress },
             color = color,
             trackColor = Color.Transparent, // Uses the background color from Modifier
-            strokeCap = StrokeCap.Round
+            strokeCap = StrokeCap.Round,
+            drawStopIndicator = {}
         )
         Text(
             modifier = Modifier.align(Alignment.End),

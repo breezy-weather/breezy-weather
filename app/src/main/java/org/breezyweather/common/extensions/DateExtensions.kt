@@ -219,10 +219,18 @@ fun Date.toCalendar(location: Location): Calendar {
  * Saves about 1 second when looping through 24 hourly over a 16 day period
  */
 fun Calendar.getIsoFormattedDate(): String {
-    return "${this[Calendar.YEAR]}-${(this[Calendar.MONTH] + 1).let { month ->
-        if (month.toString().length < 2) "0$month" else month
-    }}-${this[Calendar.DAY_OF_MONTH].let { day ->
-        if (day.toString().length < 2) "0$day" else day
+    return "${this[Calendar.YEAR]}-${getMonth(twoDigits = true)}-${getDayOfMonth(twoDigits = true)}"
+}
+
+fun Calendar.getMonth(twoDigits: Boolean = false): String {
+    return "${(this[Calendar.MONTH] + 1).let { month ->
+        if (twoDigits && month.toString().length < 2) "0$month" else month
+    }}"
+}
+
+fun Calendar.getDayOfMonth(twoDigits: Boolean = false): String {
+    return "${this[Calendar.DAY_OF_MONTH].let { day ->
+        if (twoDigits && day.toString().length < 2) "0$day" else day
     }}"
 }
 
