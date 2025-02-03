@@ -107,7 +107,7 @@ fun SwitchPreferenceView(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = themeRipple(),
                         onClick = {
-                            state.value = !state.value
+                            state.value = if (withState) !state.value else !checked
                             onValueChanged(state.value)
                         },
                         enabled = enabled
