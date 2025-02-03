@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     style="?attr/materialCardViewFilledStyle"
-    app:cardCornerRadius="@dimen/material3_card_list_item_corner_radius"
+    app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
     tools:ignore="UnusedAttribute">
 
     <org.breezyweather.ui.common.widgets.slidingItem.SlidingItemContainerLayout
@@ -43,7 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/normal_margin"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginBottom="@dimen/normal_margin"
                     android:layout_marginEnd="@dimen/normal_margin"
                     tools:ignore="UseCompoundDrawables">
 
@@ -88,20 +88,6 @@
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                 </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/source"
-                    android:layout_width="match_parent"
-                    android:layout_marginEnd="@dimen/normal_margin"
-                    android:layout_marginBottom="@dimen/normal_margin"
-                    android:textStyle="bold"
-                    android:textSize="10sp"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textAlignment="viewStart"
-                    style="@style/subtitle_text"
-                    tools:text="Data by Open-Meteo"
-                    tools:ignore="RtlHardcoded,SmallSp" />
 
             </LinearLayout>
 

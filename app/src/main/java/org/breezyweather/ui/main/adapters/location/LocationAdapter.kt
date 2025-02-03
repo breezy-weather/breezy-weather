@@ -81,7 +81,6 @@ class LocationAdapter(
                 LocationModel(
                     mContext,
                     model.location,
-                    sourceManager.getWeatherSource(model.location.forecastSource),
                     mTemperatureUnit,
                     model.location.formattedId == selectedId
                 )
@@ -97,7 +96,6 @@ class LocationAdapter(
                 LocationModel(
                     mContext,
                     l,
-                    sourceManager.getWeatherSource(l.forecastSource),
                     mTemperatureUnit,
                     l.formattedId == selectedId
                 )

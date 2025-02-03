@@ -31,8 +31,9 @@ interface WeatherSource : Source {
     /**
      * Official color used by the source
      */
+    @Deprecated("No longer used")
     @get:ColorInt
-    val color: Int
+    val color: Int?
 
     /**
      * List the features by the source as keys

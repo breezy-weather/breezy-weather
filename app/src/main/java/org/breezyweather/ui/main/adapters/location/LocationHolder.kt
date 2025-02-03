@@ -21,13 +21,10 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.view.MotionEvent
 import android.view.View
-import androidx.core.graphics.ColorUtils
 import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
-import breezyweather.domain.source.SourceFeature
 import org.breezyweather.R
 import org.breezyweather.common.extensions.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP
-import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.databinding.ItemLocationCardBinding
 import org.breezyweather.domain.location.model.isDaylight
@@ -47,14 +44,6 @@ class LocationHolder(
             MainThemeColorProvider.getColor(lightTheme, androidx.appcompat.R.attr.colorPrimary),
             MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorSurface)
         )
-        if (model.selected) {
-            mBinding.root.apply {
-                strokeWidth = context.dpToPx(4f).toInt()
-                strokeColor = elevatedSurfaceColor
-            }
-        } else {
-            mBinding.root.strokeWidth = 0
-        }
         val talkBackBuilder = StringBuilder()
         if (model.currentPosition) {
             talkBackBuilder.append(context.getString(R.string.location_current))
@@ -88,17 +77,23 @@ class LocationHolder(
         }
         mBinding.item.setBackgroundColor(
             if (model.selected) {
-                org.breezyweather.common.utils.ColorUtils.blendColor(
-                    ColorUtils.setAlphaComponent(elevatedSurfaceColor, (255 * 0.5).toInt()),
-                    MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorSurfaceVariant)
-                )
+                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorPrimaryContainer)
             } else {
                 elevatedSurfaceColor
             }
         )
         ImageViewCompat.setImageTintList(
             mBinding.sortButton,
-            ColorStateList.valueOf(MainThemeColorProvider.getColor(lightTheme, androidx.appcompat.R.attr.colorPrimary))
+            ColorStateList.valueOf(
+                if (model.selected) {
+                    MainThemeColorProvider.getColor(
+                        lightTheme,
+                        com.google.android.material.R.attr.colorOnPrimaryContainer
+                    )
+                } else {
+                    MainThemeColorProvider.getColor(lightTheme, androidx.appcompat.R.attr.colorPrimary)
+                }
+            )
         )
         mBinding.sortButton.visibility = View.VISIBLE
         mBinding.content.setPaddingRelative(0, 0, 0, 0)
@@ -126,15 +121,6 @@ class LocationHolder(
             mBinding.title2.text = model.body
         }
 
-        // source.
-        mBinding.source.text = context.getString(
-            R.string.weather_forecast_data_by,
-            model.forecastWeatherSource?.supportedFeatures?.getOrElse(SourceFeature.FORECAST) { null }
-                ?: context.getString(R.string.null_data_text)
-        )
-        mBinding.source.setTextColor(
-            model.forecastWeatherSource?.color ?: MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
-        )
         mBinding.container.setOnClickListener { mClickListener(model.location.formattedId) }
         // TODO
         mBinding.sortButton.setOnTouchListener { _: View?, event: MotionEvent ->

@@ -21,64 +21,50 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
-import org.breezyweather.common.extensions.getFormattedTime
-import org.breezyweather.common.extensions.is12Hour
-import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.domain.location.model.getPlace
 
 class LocationModel(
     context: Context,
     val location: Location,
-    val forecastWeatherSource: WeatherSource?,
     unit: TemperatureUnit, // TODO: Add back temperature
     var selected: Boolean,
 ) {
     var weatherCode: WeatherCode? = null
     var weatherText: String? = null
     val currentPosition: Boolean = location.isCurrentPosition
-    val title: String = location.getPlace(context, true)
-    val body: String = if (location.isUsable) {
-        location.administrationLevels()
-    } else {
-        context.getString(R.string.location_current_not_found_yet)
-    }
-    var alerts: String? = null
+    val title: String = (if (location.isCurrentPosition) "⊙ " else "") + location.getPlace(context)
+    var alerts: Boolean = false
+    var body: String
 
     init {
         location.weather?.let { weather ->
             weatherCode = weather.current?.weatherCode
             weatherText = weather.current?.weatherText
-            if (weather.currentAlertList.isNotEmpty()) {
-                val builder = StringBuilder()
-                weather.currentAlertList.forEach { alert ->
-                    if (builder.toString().isNotEmpty()) {
-                        builder.append("\n")
-                    }
-                    builder.append(
-                        alert.headline?.ifEmpty {
-                            context.getString(R.string.alert)
-                        } ?: context.getString(R.string.alert)
-                    )
-                    alert.startDate?.let { startDate ->
-                        val startDateDay = startDate.getFormattedShortDayAndMonth(location, context)
-                        builder.append(context.getString(R.string.comma_separator))
-                            .append(startDateDay)
-                            .append(context.getString(R.string.comma_separator))
-                            .append(startDate.getFormattedTime(location, context, context.is12Hour))
-                        alert.endDate?.let { endDate ->
-                            builder.append("-")
-                            val endDateDay = endDate.getFormattedShortDayAndMonth(location, context)
-                            if (startDateDay != endDateDay) {
-                                builder.append(endDateDay)
-                                    .append(context.getString(R.string.comma_separator))
-                            }
-                            builder.append(endDate.getFormattedTime(location, context, context.is12Hour))
-                        }
-                    }
-                }
-                alerts = builder.toString()
-            }
+            alerts = weather.currentAlertList.isNotEmpty()
+        }
+        body = getWeatherText(context)
+    }
+
+    private fun getWeatherText(context: Context): String {
+        return if (!location.isUsable) {
+            context.getString(R.string.location_current_not_found_yet)
+        }
+        /*else if (location.weather?.base?.refreshTime != null &&
+            location.weather!!.base.refreshTime!!.time < Date().time - 24.hours.inWholeMilliseconds
+        ) {
+            // TODO: Consider displaying last update time when it's been more than 24 hours with no refresh
+            context.getString(
+                R.string.location_last_updated_x,
+                location.weather!!.base.refreshTime!!.getRelativeTime(context)
+            )
+        } else if (alerts) {
+            // TODO: Consider displaying currently active alerts
+            // context.getString(R.string.location_has_active_alerts)
+        }*/
+        else if (!weatherText.isNullOrEmpty()) {
+            weatherText!!
+        } else {
+            location.administrationLevels()
         }
     }
 
