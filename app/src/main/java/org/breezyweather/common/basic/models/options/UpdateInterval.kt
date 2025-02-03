@@ -23,18 +23,18 @@ import org.breezyweather.common.basic.models.options.basic.Utils
 
 enum class UpdateInterval(
     override val id: String,
-    val intervalInHour: Float?,
+    val intervalInHour: Double?,
 ) : BaseEnum {
 
     INTERVAL_NEVER("never", null),
-    INTERVAL_0_30("0:30", 0.5f),
-    INTERVAL_1_00("1:00", 1.0f),
-    INTERVAL_1_30("1:30", 1.5f),
-    INTERVAL_2_00("2:00", 2.0f),
-    INTERVAL_3_00("3:00", 3.0f),
-    INTERVAL_6_00("6:00", 6.0f),
-    INTERVAL_12_00("12:00", 12.0f),
-    INTERVAL_24_00("24:00", 24.0f),
+    INTERVAL_0_30("0:30", 0.5),
+    INTERVAL_1_00("1:00", 1.0),
+    INTERVAL_1_30("1:30", 1.5),
+    INTERVAL_2_00("2:00", 2.0),
+    INTERVAL_3_00("3:00", 3.0),
+    INTERVAL_6_00("6:00", 6.0),
+    INTERVAL_12_00("12:00", 12.0),
+    INTERVAL_24_00("24:00", 24.0),
     ;
 
     companion object {
@@ -52,5 +52,5 @@ enum class UpdateInterval(
     override fun getName(context: Context) = Utils.getName(context, this)
 
     // Makes locations valid for 1.5 hours when background updates are disabled
-    val validityInHour = intervalInHour ?: 1.5f
+    val validityInHour = intervalInHour ?: 1.5
 }

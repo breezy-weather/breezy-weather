@@ -77,6 +77,10 @@
     <color name="colorWidgetM3TextSecondary">@color/md_theme_onSurface</color>
     <color name="colorWidgetTextShadow">#99000000</color>
 
+    <!-- Alert card -->
+    <color name="alert_background">#fffad2cf</color>
+    <color name="alert_text">#ffb31412</color>
+
     <!-- material 3. -->
 
     <color name="md_theme_primary">#205DAF</color>

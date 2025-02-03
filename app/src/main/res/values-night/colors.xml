@@ -15,6 +15,10 @@
 
     <color name="colorWidgetM3TextPrimary">@android:color/white</color>
 
+    <!-- Alert card -->
+    <color name="alert_background">#3b2d2c</color>
+    <color name="alert_text">#fff28b82</color>
+
     <!-- material 3. -->
 
     <color name="md_theme_primary">#A8C7FF</color>

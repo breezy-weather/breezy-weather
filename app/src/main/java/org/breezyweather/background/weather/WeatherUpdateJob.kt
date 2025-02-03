@@ -431,7 +431,7 @@ class WeatherUpdateJob @AssistedInject constructor(
         ) {
             val settings = SettingsManager.getInstance(context)
             val pollingRate = settings.updateInterval.intervalInHour
-            if (pollingRate != null && pollingRate > 0.25f) {
+            if (pollingRate != null && pollingRate > 0.25) {
                 val constraints = Constraints(
                     requiredNetworkType = NetworkType.CONNECTED,
                     requiresBatteryNotLow = settings.ignoreUpdatesWhenBatteryLow

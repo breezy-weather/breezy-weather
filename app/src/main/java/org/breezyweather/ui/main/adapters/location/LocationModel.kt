@@ -21,7 +21,13 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getRelativeTime
+import org.breezyweather.common.extensions.uncapitalize
 import org.breezyweather.domain.location.model.getPlace
+import org.breezyweather.domain.settings.SettingsManager
+import java.util.Date
+import kotlin.time.Duration.Companion.hours
 
 class LocationModel(
     context: Context,
@@ -33,35 +39,44 @@ class LocationModel(
     var weatherText: String? = null
     val currentPosition: Boolean = location.isCurrentPosition
     val title: String = (if (location.isCurrentPosition) "⊙ " else "") + location.getPlace(context)
-    var alerts: Boolean = false
+    var alerts: Int = 0
     var body: String
 
     init {
         location.weather?.let { weather ->
             weatherCode = weather.current?.weatherCode
             weatherText = weather.current?.weatherText
-            alerts = weather.currentAlertList.isNotEmpty()
+            alerts = weather.currentAlertList.size
         }
         body = getWeatherText(context)
     }
 
     private fun getWeatherText(context: Context): String {
-        return if (!location.isUsable) {
-            context.getString(R.string.location_current_not_found_yet)
+        if (!location.isUsable) {
+            return context.getString(R.string.location_current_not_found_yet)
         }
-        /*else if (location.weather?.base?.refreshTime != null &&
-            location.weather!!.base.refreshTime!!.time < Date().time - 24.hours.inWholeMilliseconds
-        ) {
-            // TODO: Consider displaying last update time when it's been more than 24 hours with no refresh
+
+        val refreshTime = location.weather?.base?.refreshTime
+            ?: return location.administrationLevels()
+
+        if (!location.alertSource.isNullOrEmpty()) {
+            if (refreshTime.time < Date().time - 24.hours.inWholeMilliseconds) {
+                return context.getString(
+                    R.string.location_last_updated_x,
+                    refreshTime.getRelativeTime(context).uncapitalize(context.currentLocale)
+                )
+            } else if (alerts > 0) {
+                return "⚠ " + context.getString(R.string.location_has_active_alerts)
+            }
+        }
+
+        val validityInHour = SettingsManager.getInstance(context).updateInterval.validityInHour
+        return if (refreshTime.time < Date().time - validityInHour.hours.inWholeMilliseconds) {
             context.getString(
                 R.string.location_last_updated_x,
-                location.weather!!.base.refreshTime!!.getRelativeTime(context)
+                refreshTime.getRelativeTime(context).uncapitalize(context.currentLocale)
             )
-        } else if (alerts) {
-            // TODO: Consider displaying currently active alerts
-            // context.getString(R.string.location_has_active_alerts)
-        }*/
-        else if (!weatherText.isNullOrEmpty()) {
+        } else if (!weatherText.isNullOrEmpty()) {
             weatherText!!
         } else {
             location.administrationLevels()

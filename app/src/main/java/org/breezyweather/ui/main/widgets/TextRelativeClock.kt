@@ -21,7 +21,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.RemoteViews.RemoteView
 import android.widget.TextView
+import org.breezyweather.R
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getRelativeTime
+import org.breezyweather.common.extensions.uncapitalize
 import java.util.Date
 import kotlin.time.Duration.Companion.minutes
 
@@ -101,6 +104,9 @@ class TextRelativeClock @JvmOverloads constructor(
     private fun onTimeChanged() {
         val relativeTimeFormatted = mDate.getRelativeTime(context)
         text = relativeTimeFormatted
-        contentDescription = relativeTimeFormatted
+        contentDescription = context.getString(
+            R.string.location_last_updated_x,
+            relativeTimeFormatted.uncapitalize(context.currentLocale)
+        )
     }
 }

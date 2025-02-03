@@ -317,6 +317,8 @@
     <string name="location_search_source">Source de recherche d’emplacements</string>
     <string name="location_search_change_source">Changer la source de recherche d’emplacements</string>
     <string name="location_current_not_found_yet">Pas encore localisé…</string>
+    <string name="location_last_updated_x">Mis à jour %s</string>
+    <string name="location_has_active_alerts">Vigilance en cours</string>
     <string name="location_search_no_results">%1$s n’a pu trouver aucun résultat pour %2$s</string>
     <string name="location_search_no_results_advice">Vérifiez l’orthographe de votre requête, et que celle-ci n’est pas trop spécifique. Alternativement, vous pouvez essayer une autre source de recherche d’emplacements qui peut produire des résultats différents.</string>
 

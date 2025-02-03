@@ -124,6 +124,16 @@ fun String.capitalize(locale: Locale = Locale("en", "001")): String {
     }
 }
 
+fun String.uncapitalize(locale: Locale = Locale("en", "001")): String {
+    return this.replaceFirstChar { firstChar ->
+        if (firstChar.isUpperCase()) {
+            firstChar.lowercase(locale)
+        } else {
+            firstChar.toString()
+        }
+    }
+}
+
 fun Context.getStringByLocale(id: Int, locale: Locale = Locale("en", "001")): String {
     val configuration = Configuration(resources.configuration)
     configuration.setLocale(locale)

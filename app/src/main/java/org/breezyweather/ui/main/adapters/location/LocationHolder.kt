@@ -21,6 +21,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
@@ -78,6 +79,8 @@ class LocationHolder(
         mBinding.item.setBackgroundColor(
             if (model.selected) {
                 MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorPrimaryContainer)
+            } else if (model.alerts > 0) {
+                ContextCompat.getColor(context, R.color.alert_background)
             } else {
                 elevatedSurfaceColor
             }
@@ -90,6 +93,8 @@ class LocationHolder(
                         lightTheme,
                         com.google.android.material.R.attr.colorOnPrimaryContainer
                     )
+                } else if (model.alerts > 0) {
+                    ContextCompat.getColor(context, R.color.alert_text)
                 } else {
                     MainThemeColorProvider.getColor(lightTheme, androidx.appcompat.R.attr.colorPrimary)
                 }
@@ -117,7 +122,13 @@ class LocationHolder(
             mBinding.title2.visibility = View.GONE
         } else {
             mBinding.title2.visibility = View.VISIBLE
-            mBinding.title2.setTextColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText))
+            mBinding.title2.setTextColor(
+                if (model.alerts > 0) {
+                    ContextCompat.getColor(context, R.color.alert_text)
+                } else {
+                    MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
+                }
+            )
             mBinding.title2.text = model.body
         }
 

@@ -320,12 +320,16 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Select location service</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Add location manually and delete “%s”</string>
     <string name="location_search_placeholder">Search for a location…</string>
-    <!-- Example: AccuWeather can’t find djglidfjg -->
     <string name="location_search_source">Location search source</string>
     <string name="location_search_change_source">Change location search source</string>
+    <!-- Example: AccuWeather can’t find djglidfjg -->
     <string name="location_search_no_results">%1$s can’t find %2$s</string>
     <string name="location_search_no_results_advice">Make sure your search is spelled correctly and not too specific. Alternatively, you can try another location search source which may produce different results.</string>
     <string name="location_current_not_found_yet">Current location not found yet…</string>
+    <!-- Example: Last updated 3 hours ago. Don't translate “3 hours ago”. For example in Spanish, “3 hours ago” will be replaced by “hace 3 horas” so don’t translate as “Last updated hace %s”, or it will display as “Last updated hace hace 3 horas” -->
+    <string name="location_last_updated_x">Last updated %s</string>
+    <!-- Displayed in the location list when the location has at least 1 alert currently active -->
+    <string name="location_has_active_alerts">Active alert</string>
     <!-- To be deprecated -->
     <string name="location_service_native">Native API</string>
     <!-- Actions -->

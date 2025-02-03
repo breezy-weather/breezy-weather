@@ -59,7 +59,7 @@ data class Weather(
         emptyList()
     }
 
-    fun isValid(pollingIntervalHours: Float?): Boolean {
+    fun isValid(pollingIntervalHours: Double?): Boolean {
         val updateTime = base.refreshTime?.time ?: 0
         val currentTime = System.currentTimeMillis()
         return pollingIntervalHours == null ||
