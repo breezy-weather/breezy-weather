@@ -21,7 +21,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.provider.Settings
+import androidx.annotation.RequiresApi
 import breezyweather.domain.location.model.Location
 import org.breezyweather.ui.about.AboutActivity
 import org.breezyweather.ui.alert.AlertActivity
@@ -220,6 +222,15 @@ object IntentHelper {
 
     fun startLocationSettingsActivity(context: Context) {
         context.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun startNotificationSettingsActivity(context: Context, pkgName: String? = context.packageName) {
+        context.startActivity(
+            Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
+                putExtra(Settings.EXTRA_APP_PACKAGE, pkgName)
+            }
+        )
     }
 
     private fun isIntentAvailable(context: Context, intent: Intent): Boolean {

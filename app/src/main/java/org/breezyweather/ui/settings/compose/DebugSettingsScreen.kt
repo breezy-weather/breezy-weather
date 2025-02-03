@@ -16,6 +16,7 @@
 
 package org.breezyweather.ui.settings.compose
 
+import android.os.Build
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -27,6 +28,7 @@ import org.breezyweather.R
 import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.utils.CrashLogUtils
 import org.breezyweather.common.utils.helpers.SnackbarHelper
+import org.breezyweather.ui.common.composables.AnimatedVisibilitySlideVertically
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
@@ -36,6 +38,7 @@ import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.settings.preference.clickablePreferenceItem
 import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.composables.PreferenceViewWithCard
+import org.breezyweather.ui.settings.preference.listPreferenceItem
 import org.breezyweather.ui.settings.preference.sectionFooterItem
 import org.breezyweather.ui.settings.preference.sectionHeaderItem
 
@@ -43,6 +46,8 @@ import org.breezyweather.ui.settings.preference.sectionHeaderItem
 fun DebugSettingsScreen(
     context: SettingsActivity,
     onNavigateBack: () -> Unit,
+    hasNotificationPermission: Boolean,
+    postNotificationPermissionEnsurer: (succeedCallback: () -> Unit) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val scope = rememberCoroutineScope()
@@ -60,10 +65,30 @@ fun DebugSettingsScreen(
         }
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                listPreferenceItem(R.string.settings_notifications_permission) { title ->
+                    AnimatedVisibilitySlideVertically(
+                        visible = !hasNotificationPermission
+                    ) {
+                        PreferenceViewWithCard(
+                            iconId = R.drawable.ic_about,
+                            title = stringResource(title),
+                            summary = stringResource(
+                                R.string.settings_debug_notification_permission,
+                                stringResource(R.string.action_grant_permission)
+                            ),
+                            onClick = {
+                                postNotificationPermissionEnsurer { /* no callback */ }
+                            }
+                        )
+                    }
+                }
+            }
             clickablePreferenceItem(R.string.settings_debug_dump_crash_logs_title) { id ->
                 PreferenceViewWithCard(
                     titleId = id,
-                    summaryId = R.string.settings_debug_dump_crash_logs_summary
+                    summaryId = R.string.settings_debug_dump_crash_logs_summary,
+                    enabled = hasNotificationPermission
                 ) {
                     scope.launch {
                         CrashLogUtils(context).dumpLogs()
@@ -75,7 +100,8 @@ fun DebugSettingsScreen(
                 clickablePreferenceItem(R.string.settings_debug_force_weather_update) { id ->
                     PreferenceViewWithCard(
                         title = stringResource(id),
-                        summary = "Execute job for debugging purpose"
+                        summary = "Execute job for debugging purpose",
+                        enabled = hasNotificationPermission
                     ) {
                         WeatherUpdateJob.startNow(context)
                     }

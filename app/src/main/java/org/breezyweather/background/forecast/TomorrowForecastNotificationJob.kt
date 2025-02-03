@@ -30,6 +30,7 @@ import breezyweather.data.weather.WeatherRepository
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import org.breezyweather.common.extensions.cancelNotification
+import org.breezyweather.common.extensions.hasNotificationPermission
 import org.breezyweather.common.extensions.isRunning
 import org.breezyweather.common.extensions.setForegroundSafely
 import org.breezyweather.common.extensions.workManager
@@ -55,20 +56,22 @@ class TomorrowForecastNotificationJob @AssistedInject constructor(
         setForegroundSafely()
 
         return try {
-            val location = locationRepository.getFirstLocation(withParameters = false)
-            if (location != null) {
-                notifier.showComplete(
-                    location.copy(
-                        weather = weatherRepository.getWeatherByLocationId(
-                            location.formattedId,
-                            withDaily = true,
-                            withHourly = false,
-                            withMinutely = false,
-                            withAlerts = false
-                        )
-                    ),
-                    today = false
-                )
+            if (SettingsManager.getInstance(context).isTomorrowForecastEnabled) {
+                val location = locationRepository.getFirstLocation(withParameters = false)
+                if (location != null) {
+                    notifier.showComplete(
+                        location.copy(
+                            weather = weatherRepository.getWeatherByLocationId(
+                                location.formattedId,
+                                withDaily = true,
+                                withHourly = false,
+                                withMinutely = false,
+                                withAlerts = false
+                            )
+                        ),
+                        today = false
+                    )
+                }
             }
             Result.success()
         } catch (e: Exception) {
@@ -104,17 +107,21 @@ class TomorrowForecastNotificationJob @AssistedInject constructor(
         fun setupTask(context: Context, nextDay: Boolean) {
             val settings = SettingsManager.getInstance(context)
             if (settings.isTomorrowForecastEnabled) {
-                val request = OneTimeWorkRequestBuilder<TomorrowForecastNotificationJob>()
-                    .setInitialDelay(
-                        getForecastAlarmDelayInMinutes(settings.tomorrowForecastTime, nextDay),
-                        TimeUnit.MINUTES
-                    )
-                    .addTag(TAG)
-                    .build()
-                context.workManager.enqueueUniqueWork(TAG, ExistingWorkPolicy.REPLACE, request)
-            } else {
-                context.workManager.cancelUniqueWork(TAG)
+                if (context.hasNotificationPermission) {
+                    val request = OneTimeWorkRequestBuilder<TomorrowForecastNotificationJob>()
+                        .setInitialDelay(
+                            getForecastAlarmDelayInMinutes(settings.tomorrowForecastTime, nextDay),
+                            TimeUnit.MINUTES
+                        )
+                        .addTag(TAG)
+                        .build()
+                    context.workManager.enqueueUniqueWork(TAG, ExistingWorkPolicy.REPLACE, request)
+                    return
+                } else {
+                    settings.isTomorrowForecastEnabled = false
+                }
             }
+            context.workManager.cancelUniqueWork(TAG)
         }
 
         fun stop(context: Context) {

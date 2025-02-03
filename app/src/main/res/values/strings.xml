@@ -365,6 +365,7 @@
     <string name="action_download">Download</string>
     <string name="action_show_errors">Tap to see details</string>
     <string name="action_show">Show</string>
+    <string name="action_grant_permission">Tap to grant the permission.</string>
     <!-- Button shown in the weather selection dialog -->
     <string name="action_help_me_choose">Help me choose</string>
     <!-- Dialogs -->
@@ -653,6 +654,9 @@
     <string name="settings_notifications">Notifications</string>
     <string name="settings_notifications_summary">Notifications of weather alerts, precipitations or forecast for the first location</string>
     <string name="settings_notifications_app_updates_check">Notifications of app updates</string>
+    <string name="settings_notifications_permission">Notification permission required</string>
+    <!-- %s is the string with the key action_grant_permission -->
+    <string name="settings_notifications_permission_summary">Needed to notify about alerts, forecasts and app updates. %s</string>
     <string name="settings_notifications_section_general" translatable="false">@string/settings_section_general</string>
     <!-- “important” means we won’t send notifications for minor severity alerts -->
     <string name="settings_notifications_alerts_title">Notifications of severe weather alerts</string>
@@ -674,6 +678,8 @@
     <string name="settings_widgets_section_widgets_in_use">Widgets in use</string>
     <string name="settings_widgets_configure_widget_summary">Configure this widget</string>
     <string name="settings_widgets_section_notification_widget">Notification widget</string>
+    <!-- %s is the string with the key action_grant_permission -->
+    <string name="settings_widgets_notification_permission_summary">Needed to show the notification widget. %s</string>
     <string name="settings_widgets_notification_widget_title">Notification widget</string>
     <string name="settings_widgets_notification_persistent_switch">Persistent</string>
     <string name="settings_widgets_notification_style_title">Style</string>
@@ -685,6 +691,8 @@
     <string name="settings_widgets_broadcast_send_data_summary_empty">No compatible packages found</string>
     <string name="about_privacy_policy">Privacy policy</string>
     <string name="settings_debug">Debug</string>
+    <!-- %s is the string with the key action_grant_permission -->
+    <string name="settings_debug_notification_permission">Needed to notify about crash logs and failed weather updates. %s</string>
     <string name="settings_debug_summary">Crash logs</string>
     <string name="settings_debug_dump_crash_logs_title">Share crash logs</string>
     <string name="settings_debug_dump_crash_logs_summary">Saves error logs to a file for sharing with the developers</string>

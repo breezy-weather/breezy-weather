@@ -17,6 +17,7 @@
 package org.breezyweather.ui.settings.compose
 
 import android.content.Context
+import android.os.Build
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -27,13 +28,16 @@ import org.breezyweather.background.forecast.TodayForecastNotificationJob
 import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
 import org.breezyweather.common.basic.models.options.UpdateInterval
 import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.ui.common.composables.AnimatedVisibilitySlideVertically
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
+import org.breezyweather.ui.settings.preference.composables.PreferenceViewWithCard
 import org.breezyweather.ui.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.ui.settings.preference.composables.TimePickerPreferenceView
+import org.breezyweather.ui.settings.preference.listPreferenceItem
 import org.breezyweather.ui.settings.preference.sectionFooterItem
 import org.breezyweather.ui.settings.preference.sectionHeaderItem
 import org.breezyweather.ui.settings.preference.switchPreferenceItem
@@ -43,9 +47,10 @@ import org.breezyweather.ui.settings.preference.timePickerPreferenceItem
 fun NotificationsSettingsScreen(
     context: Context,
     onNavigateBack: () -> Unit,
+    hasNotificationPermission: Boolean,
+    postNotificationPermissionEnsurer: (succeedCallback: () -> Unit) -> Unit,
     todayForecastEnabled: Boolean,
     tomorrowForecastEnabled: Boolean,
-    postNotificationPermissionEnsurer: (succeedCallback: () -> Unit) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
@@ -62,6 +67,25 @@ fun NotificationsSettingsScreen(
         }
     ) { paddings ->
         PreferenceScreen(paddingValues = paddings) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                listPreferenceItem(R.string.settings_notifications_permission) { title ->
+                    AnimatedVisibilitySlideVertically(
+                        visible = !hasNotificationPermission
+                    ) {
+                        PreferenceViewWithCard(
+                            iconId = R.drawable.ic_about,
+                            title = stringResource(title),
+                            summary = stringResource(
+                                R.string.settings_notifications_permission_summary,
+                                stringResource(R.string.action_grant_permission)
+                            ),
+                            onClick = {
+                                postNotificationPermissionEnsurer { /* no callback */ }
+                            }
+                        )
+                    }
+                }
+            }
             sectionHeaderItem(R.string.notification_channel_app_updates)
             if (BuildConfig.FLAVOR != "freenet") {
                 switchPreferenceItem(R.string.settings_notifications_app_updates_check) { id ->
@@ -70,6 +94,7 @@ fun NotificationsSettingsScreen(
                         summaryOnId = R.string.settings_enabled,
                         summaryOffId = R.string.settings_disabled,
                         checked = SettingsManager.getInstance(context).isAppUpdateCheckEnabled,
+                        enabled = hasNotificationPermission,
                         onValueChanged = {
                             SettingsManager.getInstance(context).isAppUpdateCheckEnabled = it
                         }
@@ -83,8 +108,8 @@ fun NotificationsSettingsScreen(
                 SwitchPreferenceView(
                     titleId = id,
                     summaryOnId = R.string.settings_enabled,
-                    summaryOffId = if (
-                        SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER
+                    summaryOffId = if (SettingsManager.getInstance(context).updateInterval !=
+                        UpdateInterval.INTERVAL_NEVER
                     ) {
                         R.string.settings_disabled
                     } else {
@@ -92,14 +117,10 @@ fun NotificationsSettingsScreen(
                     },
                     checked = SettingsManager.getInstance(context).isAlertPushEnabled &&
                         SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
-                    enabled = SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
+                    enabled = SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER &&
+                        hasNotificationPermission,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isAlertPushEnabled = it
-                        if (it) {
-                            postNotificationPermissionEnsurer {
-                                // Do nothing
-                            }
-                        }
                     }
                 )
             }
@@ -107,8 +128,8 @@ fun NotificationsSettingsScreen(
                 SwitchPreferenceView(
                     titleId = id,
                     summaryOnId = R.string.settings_enabled,
-                    summaryOffId = if (
-                        SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER
+                    summaryOffId = if (SettingsManager.getInstance(context).updateInterval !=
+                        UpdateInterval.INTERVAL_NEVER
                     ) {
                         R.string.settings_disabled
                     } else {
@@ -116,14 +137,10 @@ fun NotificationsSettingsScreen(
                     },
                     checked = SettingsManager.getInstance(context).isPrecipitationPushEnabled &&
                         SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
-                    enabled = SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
+                    enabled = SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER &&
+                        hasNotificationPermission,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isPrecipitationPushEnabled = it
-                        if (it) {
-                            postNotificationPermissionEnsurer {
-                                // Do nothing
-                            }
-                        }
                     }
                 )
             }
@@ -137,6 +154,8 @@ fun NotificationsSettingsScreen(
                     summaryOnId = R.string.settings_enabled,
                     summaryOffId = R.string.settings_disabled,
                     checked = todayForecastEnabled,
+                    withState = false,
+                    enabled = hasNotificationPermission,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isTodayForecastEnabled = it
                         TodayForecastNotificationJob.setupTask(context, false)
@@ -147,7 +166,7 @@ fun NotificationsSettingsScreen(
                 TimePickerPreferenceView(
                     titleId = id,
                     currentTime = SettingsManager.getInstance(context).todayForecastTime,
-                    enabled = todayForecastEnabled,
+                    enabled = todayForecastEnabled && hasNotificationPermission,
                     onValueChanged = {
                         SettingsManager.getInstance(context).todayForecastTime = it
                         TodayForecastNotificationJob.setupTask(context, false)
@@ -160,6 +179,8 @@ fun NotificationsSettingsScreen(
                     summaryOnId = R.string.settings_enabled,
                     summaryOffId = R.string.settings_disabled,
                     checked = tomorrowForecastEnabled,
+                    withState = false,
+                    enabled = hasNotificationPermission,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isTomorrowForecastEnabled = it
                         TomorrowForecastNotificationJob.setupTask(context, false)
@@ -170,7 +191,7 @@ fun NotificationsSettingsScreen(
                 TimePickerPreferenceView(
                     titleId = id,
                     currentTime = SettingsManager.getInstance(context).tomorrowForecastTime,
-                    enabled = tomorrowForecastEnabled,
+                    enabled = tomorrowForecastEnabled && hasNotificationPermission,
                     onValueChanged = {
                         SettingsManager.getInstance(context).tomorrowForecastTime = it
                         TomorrowForecastNotificationJob.setupTask(context, false)
