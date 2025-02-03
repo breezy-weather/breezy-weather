@@ -16,7 +16,9 @@
 
 package org.breezyweather
 
+import android.Manifest
 import android.content.Context
+import android.os.Build
 import breezyweather.data.location.LocationRepository
 import breezyweather.domain.source.SourceFeature
 import kotlinx.coroutines.runBlocking
@@ -28,6 +30,7 @@ import org.breezyweather.common.basic.models.options.appearance.DailyTrendDispla
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.sources.SourceManager
+import org.breezyweather.ui.main.utils.StatementManager
 import java.io.File
 
 object Migrations {
@@ -76,6 +79,7 @@ object Migrations {
                         }
                     }
                 }
+
                 if (oldVersion < 50102) {
                     // V5.1.2 adds daily sunshine chart
                     try {
@@ -165,6 +169,18 @@ object Migrations {
                                     )
                                 }
                             }
+                    }
+                }
+
+                if (oldVersion < 50402) {
+                    try {
+                        // We cannot determine if the permission was permanently denied in the past. That is why we
+                        // need to update the state for all users updating from an older version.
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                            StatementManager(context).setPermissionDenied(Manifest.permission.POST_NOTIFICATIONS)
+                        }
+                    } catch (ignored: Throwable) {
+                        // ignored
                     }
                 }
             }

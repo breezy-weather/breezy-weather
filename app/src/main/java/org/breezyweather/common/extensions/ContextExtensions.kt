@@ -16,6 +16,7 @@
 
 package org.breezyweather.common.extensions
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -23,6 +24,7 @@ import android.content.pm.ShortcutManager
 import android.hardware.SensorManager
 import android.location.LocationManager
 import android.net.Uri
+import android.os.Build
 import android.os.PowerManager
 import android.provider.Settings
 import android.view.WindowManager
@@ -48,6 +50,16 @@ import java.io.File
 fun Context.hasPermission(
     permission: String,
 ) = ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+
+/**
+ * Checks if the notification permission is granted.
+ *
+ * @return true if the permission is granted. Always returns true on Android 12 and lower.
+ */
+val Context.hasNotificationPermission
+    get() = !(
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !hasPermission(Manifest.permission.POST_NOTIFICATIONS)
+        )
 
 val Context.inputMethodManager: InputMethodManager
     get() = getSystemService()!!

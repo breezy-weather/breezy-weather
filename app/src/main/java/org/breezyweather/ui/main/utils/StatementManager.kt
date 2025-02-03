@@ -50,6 +50,9 @@ class StatementManager @Inject constructor(
             config.edit().putBoolean(KEY_APP_UPDATE_CHECK_ASKED, value).apply()
         }
 
+    private fun getPermissionDeniedKey(permission: String): String =
+        permission.replace(".", "_").lowercase() + "_denied"
+
     fun setLocationPermissionDialogAlreadyShown() {
         isLocationPermissionDialogAlreadyShown = true
     }
@@ -64,6 +67,13 @@ class StatementManager @Inject constructor(
 
     fun setAppUpdateCheckDialogAlreadyShown() {
         isAppUpdateCheckDialogAlreadyShown = true
+    }
+
+    fun isPermissionDenied(permission: String): Boolean =
+        config.getBoolean(getPermissionDeniedKey(permission), false)
+
+    fun setPermissionDenied(permission: String) {
+        config.edit().putBoolean(getPermissionDeniedKey(permission), true).apply()
     }
 
     companion object {

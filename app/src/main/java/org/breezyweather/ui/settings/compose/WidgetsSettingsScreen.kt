@@ -60,6 +60,7 @@ import org.breezyweather.remoteviews.presenters.MultiCityWidgetIMP
 import org.breezyweather.remoteviews.presenters.TextWidgetIMP
 import org.breezyweather.remoteviews.presenters.WeekWidgetIMP
 import org.breezyweather.remoteviews.presenters.notification.WidgetNotificationIMP
+import org.breezyweather.ui.common.composables.AnimatedVisibilitySlideVertically
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
@@ -81,6 +82,7 @@ import java.text.Collator
 fun WidgetsSettingsScreen(
     context: Context,
     onNavigateBack: () -> Unit,
+    hasNotificationPermission: Boolean,
     notificationEnabled: Boolean,
     notificationTemperatureIconEnabled: Boolean,
     postNotificationPermissionEnsurer: (succeedCallback: () -> Unit) -> Unit,
@@ -298,12 +300,35 @@ fun WidgetsSettingsScreen(
 
             // notification.
             sectionHeaderItem(R.string.settings_widgets_section_notification_widget)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                listPreferenceItem(R.string.settings_notifications_permission) { title ->
+                    AnimatedVisibilitySlideVertically(
+                        visible = !hasNotificationPermission
+                    ) {
+                        PreferenceViewWithCard(
+                            iconId = R.drawable.ic_about,
+                            title = stringResource(title),
+                            summary = stringResource(
+                                R.string.settings_widgets_notification_permission_summary,
+                                stringResource(R.string.action_grant_permission)
+                            ),
+                            onClick = {
+                                postNotificationPermissionEnsurer {
+                                    updateNotificationIfNecessary(context)
+                                }
+                            }
+                        )
+                    }
+                }
+            }
             switchPreferenceItem(R.string.settings_widgets_notification_widget_title) { id ->
                 SwitchPreferenceView(
                     titleId = id,
                     summaryOnId = R.string.settings_enabled,
                     summaryOffId = R.string.settings_disabled,
                     checked = notificationEnabled,
+                    withState = false,
+                    enabled = hasNotificationPermission,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isWidgetNotificationEnabled = it
                         if (it) { // open notification.
@@ -324,7 +349,7 @@ fun WidgetsSettingsScreen(
                     checked = SettingsManager
                         .getInstance(context)
                         .isWidgetNotificationPersistent,
-                    enabled = notificationEnabled,
+                    enabled = notificationEnabled && hasNotificationPermission,
                     onValueChanged = {
                         SettingsManager
                             .getInstance(context)
@@ -339,7 +364,7 @@ fun WidgetsSettingsScreen(
                     selectedKey = SettingsManager.getInstance(context).widgetNotificationStyle.id,
                     valueArrayId = R.array.notification_style_values,
                     nameArrayId = R.array.notification_styles,
-                    enabled = notificationEnabled,
+                    enabled = notificationEnabled && hasNotificationPermission,
                     card = true,
                     onValueChanged = {
                         SettingsManager
@@ -358,7 +383,7 @@ fun WidgetsSettingsScreen(
                         checked = SettingsManager
                             .getInstance(context)
                             .isWidgetNotificationTemperatureIconEnabled,
-                        enabled = notificationEnabled,
+                        enabled = notificationEnabled && hasNotificationPermission,
                         onValueChanged = {
                             SettingsManager
                                 .getInstance(context)
@@ -375,7 +400,9 @@ fun WidgetsSettingsScreen(
                         checked = SettingsManager
                             .getInstance(context)
                             .isWidgetNotificationUsingFeelsLike,
-                        enabled = notificationEnabled && notificationTemperatureIconEnabled,
+                        enabled = notificationEnabled &&
+                            hasNotificationPermission &&
+                            notificationTemperatureIconEnabled,
                         onValueChanged = {
                             SettingsManager
                                 .getInstance(context)

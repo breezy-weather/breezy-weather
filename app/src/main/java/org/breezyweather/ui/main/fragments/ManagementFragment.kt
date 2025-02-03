@@ -94,6 +94,8 @@ import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.source.LocationPreset
 import org.breezyweather.common.source.getName
+import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.common.utils.helpers.PermissionHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.settings.SettingsManager
@@ -272,9 +274,13 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                 onClick = {
                                     viewModel.statementManager.setPostNotificationDialogAlreadyShown()
                                     notificationDismissed = true
-                                    requireActivity().requestPermissions(
-                                        arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                                        0
+
+                                    PermissionHelper.requestPermissionWithFallback(
+                                        activity = requireActivity(),
+                                        permission = Manifest.permission.POST_NOTIFICATIONS,
+                                        fallback = {
+                                            IntentHelper.startNotificationSettingsActivity(requireActivity())
+                                        }
                                     )
                                 },
                                 onClose = {
