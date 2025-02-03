@@ -726,4 +726,6 @@
     <string name="pollen_acer">Клен</string>
     <string name="pollen_juniperus">Ялівець</string>
     <string name="pollen_picea">Ялина</string>
+    <string name="location_has_active_alerts">Активне сповіщення</string>
+    <string name="location_last_updated_x">Останнє оновлення %s</string>
 </resources>
