@@ -25,53 +25,45 @@ class StatementManager @Inject constructor(
     @ApplicationContext context: Context,
 ) {
     private val config: ConfigStore = ConfigStore(context, SP_STATEMENT_RECORD)
-    var isLocationPermissionDialogAlreadyShown: Boolean = config.getBoolean(
-        KEY_LOCATION_PERMISSION_DECLARED,
-        false
-    )
-        private set
-    var isBackgroundLocationPermissionDialogAlreadyShown: Boolean = config.getBoolean(
-        KEY_BACKGROUND_LOCATION_DECLARED,
-        false
-    )
-        private set
-    var isPostNotificationDialogAlreadyShown: Boolean = config.getBoolean(
-        KEY_POST_NOTIFICATION_REQUIRED,
-        false
-    )
-        private set
-    var isAppUpdateCheckDialogAlreadyShown: Boolean = config.getBoolean(
-        KEY_APP_UPDATE_CHECK_ASKED,
-        false
-    )
-        private set
+
+    var isLocationPermissionDialogAlreadyShown: Boolean
+        get() = config.getBoolean(KEY_LOCATION_PERMISSION_DECLARED, false)
+        private set(value) {
+            config.edit().putBoolean(KEY_LOCATION_PERMISSION_DECLARED, value).apply()
+        }
+
+    var isBackgroundLocationPermissionDialogAlreadyShown: Boolean
+        get() = config.getBoolean(KEY_BACKGROUND_LOCATION_DECLARED, false)
+        private set(value) {
+            config.edit().putBoolean(KEY_BACKGROUND_LOCATION_DECLARED, value).apply()
+        }
+
+    var isPostNotificationDialogAlreadyShown: Boolean
+        get() = config.getBoolean(KEY_POST_NOTIFICATION_REQUIRED, false)
+        private set(value) {
+            config.edit().putBoolean(KEY_POST_NOTIFICATION_REQUIRED, value).apply()
+        }
+
+    var isAppUpdateCheckDialogAlreadyShown: Boolean
+        get() = config.getBoolean(KEY_APP_UPDATE_CHECK_ASKED, false)
+        private set(value) {
+            config.edit().putBoolean(KEY_APP_UPDATE_CHECK_ASKED, value).apply()
+        }
 
     fun setLocationPermissionDialogAlreadyShown() {
         isLocationPermissionDialogAlreadyShown = true
-        config.edit()
-            .putBoolean(KEY_LOCATION_PERMISSION_DECLARED, true)
-            .apply()
     }
 
     fun setBackgroundLocationPermissionDialogAlreadyShown() {
         isBackgroundLocationPermissionDialogAlreadyShown = true
-        config.edit()
-            .putBoolean(KEY_BACKGROUND_LOCATION_DECLARED, true)
-            .apply()
     }
 
     fun setPostNotificationDialogAlreadyShown() {
         isPostNotificationDialogAlreadyShown = true
-        config.edit()
-            .putBoolean(KEY_POST_NOTIFICATION_REQUIRED, true)
-            .apply()
     }
 
     fun setAppUpdateCheckDialogAlreadyShown() {
         isAppUpdateCheckDialogAlreadyShown = true
-        config.edit()
-            .putBoolean(KEY_APP_UPDATE_CHECK_ASKED, true)
-            .apply()
     }
 
     companion object {
