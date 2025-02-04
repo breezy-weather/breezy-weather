@@ -408,7 +408,7 @@
     <string name="widget_custom_subtitle_keyword_cv_description">Jelenlegi látótávolság</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Jelenlegi harmatpont</string>
     <string name="widget_custom_subtitle_keyword_al_description">Riasztások</string>
-    <string name="settings_location">Helyszín meghatározás</string>
+    <string name="settings_location">Helyszín-meghatározás</string>
     <string name="settings_location_summary">Helyszín meghatározási szolgáltatások beállításai</string>
     <string name="common_weather_text_rain_freezing_heavy">Heves ónos eső</string>
     <string name="metno_weather_text_andthunder">%s és mennydörgés</string>
@@ -680,7 +680,7 @@
     <string name="action_edit_location">Helyszín szerkesztése</string>
     <string name="settings_global">Általános beállítások</string>
     <string name="precipitation_intensity_medium">Közepes</string>
-    <string name="about_check_for_app_updates">Alkalmazás frissítések ellenőrzése</string>
+    <string name="about_check_for_app_updates">Alkalmazás-frissítések ellenőrzése</string>
     <string name="about_no_new_updates">Nincs elérhető új frissítés</string>
     <string name="action_download">Letöltés</string>
     <string name="settings_notifications_app_updates_check">Értesítések az alkalmazás-frissítésekről</string>
@@ -732,4 +732,6 @@
     <string name="common_weather_text_blowing_snow">Hófúvás</string>
     <string name="common_weather_text_drifting_snow">Hóforgatag</string>
     <string name="common_weather_text_glaze">Ónos jégréteg</string>
+    <string name="location_last_updated_x">Utoljára frissítve: %s</string>
+    <string name="location_has_active_alerts">Aktív riasztás</string>
 </resources>
