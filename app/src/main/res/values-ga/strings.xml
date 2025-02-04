@@ -724,4 +724,6 @@
     <string name="pollen_acer">Acer</string>
     <string name="pollen_picea">Sprús</string>
     <string name="common_weather_text_blowing_snow">Sneachta ag séideadh</string>
+    <string name="location_last_updated_x">Nuashonrú is déanaí %s</string>
+    <string name="location_has_active_alerts">Foláireamh gníomhach</string>
 </resources>
