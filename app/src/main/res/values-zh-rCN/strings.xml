@@ -813,4 +813,6 @@
     <string name="common_weather_text_blowing_snow">吹雪（高度 8 英尺或以上）</string>
     <string name="pollen_pinus">松树</string>
     <string name="pollen_ulmus">榆树</string>
+    <string name="location_has_active_alerts">活动警报</string>
+    <string name="location_last_updated_x">上次更新于 %s</string>
 </resources>
