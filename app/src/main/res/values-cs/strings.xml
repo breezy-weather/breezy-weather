@@ -742,4 +742,6 @@
     <string name="pollen_pinus">Borovice</string>
     <string name="pollen_picea">Smrk</string>
     <string name="pollen_ulmus">Jilm</string>
+    <string name="location_last_updated_x">Naposledy aktualizováno %s</string>
+    <string name="location_has_active_alerts">Aktivní upozornění</string>
 </resources>
