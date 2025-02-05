@@ -104,7 +104,7 @@ class MainLayoutManager : RecyclerView.LayoutManager() {
     override fun scrollVerticallyBy(dy: Int, recycler: Recycler, state: RecyclerView.State): Int {
         // dy : + ===> content scroll up.   / show bottom content.
         //      - ===> content scroll down. / show top content.
-        if (childCount == 0 || dy == 0) return 0
+        if (childCount == 0 || dy == 0 || height > mMeasuredHeight) return 0
         var consumed = dy
         if (scrollOffset + consumed + height > mMeasuredHeight) {
             consumed = mMeasuredHeight - scrollOffset - height
