@@ -498,9 +498,13 @@
     <string name="settings_background_updates_refresh_24h">24 heures</string>
     <string name="action_show_errors">Appuyez pour voir les détails</string>
     <string name="action_show">Voir</string>
+    <string name="action_grant_permission">Appuyez pour accorder la permission.</string>
     <string name="action_help_me_choose">Aidez-moi à choisir</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorer quand la batterie est faible</string>
     <string name="settings_notifications_app_updates_check">Notifications des mises à jour de l’appli</string>
+    <string name="settings_notifications_permission">Permission de notification requise</string>
+    <!-- %s is the string with the key action_grant_permission -->
+    <string name="settings_notifications_permission_summary">Nécessaire pour envoyer des notifications de vigilances, prévisions et mises à jour de l’appli. %s</string>
     <string name="settings_background_updates_section_troubleshoot">Résolution de problèmes</string>
     <string name="settings_background_updates_battery_optimization">Désactiver l’optimisation de la batterie</string>
     <string name="settings_background_updates_battery_optimization_summary">C’est la première chose à essayer si vous ne recevez pas les notifications ou que les widgets ne s’actualisent pas.</string>
@@ -560,6 +564,7 @@
     <string name="settings_widgets_section_widgets_in_use">Widgets utilisés</string>
     <string name="settings_widgets_configure_widget_summary">Configurer ce widget</string>
     <string name="settings_widgets_section_notification_widget">Notification widget</string>
+    <string name="settings_widgets_notification_permission_summary">Nécessaire pour afficher la notification widget. %s</string>
     <string name="settings_widgets_notification_widget_title">Notification widget</string>
     <string name="settings_widgets_notification_persistent_switch">Persistante</string>
     <string name="settings_widgets_notification_style_title">Style</string>
@@ -570,6 +575,7 @@
     <string name="settings_widgets_broadcast_send_data_summary_empty">Aucun paquet compatible trouvé</string>
     <string name="about_privacy_policy">Politique de confidentialité</string>
     <string name="settings_debug">Débogage</string>
+    <string name="settings_debug_notification_permission">Nécessaire pour envoyer des notifications de journaux d’incident et d’échecs de mise à jour. %s</string>
     <string name="settings_debug_summary">Journaux d’incident</string>
     <string name="settings_debug_dump_crash_logs_title">Exporter les journaux d’incident</string>
     <string name="settings_debug_dump_crash_logs_summary">Enregistre les journaux d’incident dans un fichier pour les partager avec les développeurs</string>
