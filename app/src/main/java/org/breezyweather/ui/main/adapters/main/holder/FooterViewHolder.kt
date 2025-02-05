@@ -128,21 +128,29 @@ class FooterViewHolder(
         }
 
         val creditsText = StringBuilder()
+        var hasForecastCredits: Boolean = false
         location.weather?.let { weather ->
-            creditsText.append(
-                context.getString(
-                    R.string.weather_data_by,
-                    credits["weather"] ?: context.getString(R.string.null_data_text)
-                )
-            )
-            if (!credits["current"].isNullOrEmpty() && credits["current"] != credits["weather"]) {
+            if (weather.dailyForecast.isNotEmpty() || weather.hourlyForecast.isNotEmpty()) {
                 creditsText.append(
-                    "\n" + context.getString(R.string.weather_current_data_by, credits["current"]!!)
+                    context.getString(
+                        R.string.weather_data_by,
+                        credits["weather"] ?: context.getString(R.string.null_data_text)
+                    )
                 )
+                hasForecastCredits = true
+            }
+            if (weather.current?.temperature?.temperature != null) {
+                if (!credits["current"].isNullOrEmpty() &&
+                    (credits["current"] != credits["weather"] || !hasForecastCredits)
+                ) {
+                    creditsText.append(
+                        "\n" + context.getString(R.string.weather_current_data_by, credits["current"]!!)
+                    )
+                }
             }
             if (weather.minutelyForecast.isNotEmpty() &&
                 !credits["minutely"].isNullOrEmpty() &&
-                credits["minutely"] != credits["weather"]
+                (credits["minutely"] != credits["weather"] || !hasForecastCredits)
             ) {
                 creditsText.append(
                     "\n" + context.getString(R.string.weather_minutely_data_by, credits["minutely"]!!)
@@ -150,15 +158,19 @@ class FooterViewHolder(
             }
             if (weather.alertList.isNotEmpty() &&
                 !credits["alert"].isNullOrEmpty() &&
-                credits["alert"] != credits["weather"]
+                (credits["alert"] != credits["weather"] || !hasForecastCredits)
             ) {
                 creditsText.append(
                     "\n" + context.getString(R.string.weather_alert_data_by, credits["alert"]!!)
                 )
             }
             // Open-Meteo has a lengthy credits so we merge air quality and pollen identical credit in that case
-            if (!credits["airQuality"].isNullOrEmpty() && credits["airQuality"] != credits["weather"]) {
-                if (!credits["pollen"].isNullOrEmpty() && credits["pollen"] != credits["weather"]) {
+            if (!credits["airQuality"].isNullOrEmpty() &&
+                (credits["airQuality"] != credits["weather"] || !hasForecastCredits)
+            ) {
+                if (!credits["pollen"].isNullOrEmpty() &&
+                    (credits["pollen"] != credits["weather"] || !hasForecastCredits)
+                ) {
                     if (credits["airQuality"] == credits["pollen"]) {
                         creditsText.append(
                             "\n" + context.getString(
@@ -178,7 +190,9 @@ class FooterViewHolder(
                     )
                 }
             } else {
-                if (!credits["pollen"].isNullOrEmpty() && credits["pollen"] != credits["weather"]) {
+                if (!credits["pollen"].isNullOrEmpty() &&
+                    (credits["pollen"] != credits["weather"] || !hasForecastCredits)
+                ) {
                     creditsText.append(
                         "\n" + context.getString(R.string.weather_pollen_data_by, credits["pollen"]!!)
                     )
@@ -186,7 +200,7 @@ class FooterViewHolder(
             }
             if (weather.normals?.month != null &&
                 !credits["normals"].isNullOrEmpty() &&
-                credits["normals"] != credits["weather"]
+                (credits["normals"] != credits["weather"] || !hasForecastCredits)
             ) {
                 creditsText.append(
                     "\n" + context.getString(R.string.weather_normals_data_by, credits["normals"]!!)
