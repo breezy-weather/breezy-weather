@@ -801,4 +801,6 @@
     <string name="pollen_pinus">Pinus</string>
     <string name="pollen_ulmus">Ulmus</string>
     <string name="common_weather_text_glaze">Glasir</string>
+    <string name="location_last_updated_x">Terakhir diperbarui %s</string>
+    <string name="location_has_active_alerts">Peringatan aktif</string>
 </resources>
