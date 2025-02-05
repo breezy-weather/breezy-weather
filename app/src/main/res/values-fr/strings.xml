@@ -5,6 +5,7 @@
 
     <!-- mots-clés -->
     <string name="location_current">Ma position</string>
+    <string name="location_custom_name">Nom personnalisé</string>
     <string name="short_today">Auj.</string>
     <string name="notification_refreshed_at">Consulté à</string>
     <string name="alerts_to_follow">Vigilances à venir, appuyez pour voir.</string>

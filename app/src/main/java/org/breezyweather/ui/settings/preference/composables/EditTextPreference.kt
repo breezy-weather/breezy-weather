@@ -50,29 +50,37 @@ import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 
 @Composable
-fun EditTextPreferenceView(
+fun EditTextPreferenceViewWithCard(
     @StringRes titleId: Int,
     content: String?,
     placeholder: String?,
+    modifier: Modifier = Modifier,
     summary: ((Context, String) -> String?)? = null,
     enabled: Boolean = true,
     regex: Regex? = null,
     regexError: String? = null,
     keyboardType: KeyboardType? = null,
     onValueChanged: (String) -> Unit,
-) = EditTextPreferenceView(
-    title = stringResource(titleId),
-    summary = { context, value ->
-        summary?.let { it(context, value) }
-    },
-    content = content ?: "",
-    placeholder = placeholder,
-    enabled = enabled,
-    regex = regex,
-    regexError = regexError,
-    keyboardType = keyboardType,
-    onValueChanged = onValueChanged
-)
+) {
+    Material3CardListItem(
+        modifier = modifier,
+        elevation = if (enabled) defaultCardListItemElevation else 0.dp
+    ) {
+        EditTextPreferenceView(
+            title = stringResource(titleId),
+            summary = { context, value ->
+                summary?.let { it(context, value) }
+            },
+            content = content ?: "",
+            placeholder = placeholder,
+            enabled = enabled,
+            regex = regex,
+            regexError = regexError,
+            keyboardType = keyboardType,
+            onValueChanged = onValueChanged
+        )
+    }
+}
 
 @Composable
 fun EditTextPreferenceView(
@@ -90,38 +98,33 @@ fun EditTextPreferenceView(
     val contentState = remember { mutableStateOf(content) }
     val dialogOpenState = remember { mutableStateOf(false) }
 
-    Material3CardListItem(
-        modifier = modifier,
-        elevation = if (enabled) defaultCardListItemElevation else 0.dp
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .alpha(if (enabled) 1f else 0.5f)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = themeRipple(),
+                onClick = { dialogOpenState.value = true },
+                enabled = enabled
+            )
+            .padding(dimensionResource(R.dimen.normal_margin)),
+        verticalArrangement = Arrangement.Center
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .alpha(if (enabled) 1f else 0.5f)
-                .clickable(
-                    interactionSource = remember { MutableInteractionSource() },
-                    indication = themeRipple(),
-                    onClick = { dialogOpenState.value = true },
-                    enabled = enabled
-                )
-                .padding(dimensionResource(R.dimen.normal_margin)),
-            verticalArrangement = Arrangement.Center
-        ) {
-            Column {
+        Column {
+            Text(
+                text = title,
+                color = DayNightTheme.colors.titleColor,
+                style = MaterialTheme.typography.titleMedium
+            )
+            val currentSummary = summary(LocalContext.current, contentState.value)
+            if (currentSummary?.isNotEmpty() == true) {
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
                 Text(
-                    text = title,
-                    color = DayNightTheme.colors.titleColor,
-                    style = MaterialTheme.typography.titleMedium
+                    text = currentSummary,
+                    color = DayNightTheme.colors.bodyColor,
+                    style = MaterialTheme.typography.bodyMedium
                 )
-                val currentSummary = summary(LocalContext.current, contentState.value)
-                if (currentSummary?.isNotEmpty() == true) {
-                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                    Text(
-                        text = currentSummary,
-                        color = DayNightTheme.colors.bodyColor,
-                        style = MaterialTheme.typography.bodyMedium
-                    )
-                }
             }
         }
     }

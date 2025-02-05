@@ -56,6 +56,7 @@ import org.breezyweather.domain.source.resourceName
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.ui.common.widgets.Material3CardListItem
 import org.breezyweather.ui.main.MainActivity
+import org.breezyweather.ui.settings.preference.composables.EditTextPreferenceView
 import org.breezyweather.ui.settings.preference.composables.ListPreferenceView
 import org.breezyweather.ui.settings.preference.composables.ListPreferenceViewWithCard
 import org.breezyweather.ui.settings.preference.composables.ListPreferenceWithGroupsView
@@ -151,7 +152,10 @@ fun LocationPreference(
         }
 
         if (dialogAdditionalLocationPreferencesOpenState.value) {
-            val hasChangedBackground = remember { mutableStateOf(false) }
+            val hasChangedPreferences = remember { mutableStateOf(false) }
+            val customName = remember {
+                mutableStateOf(location.customName)
+            }
             val backgroundWeatherKind = remember {
                 mutableStateOf(location.backgroundWeatherKind ?: "auto")
             }
@@ -174,6 +178,31 @@ fun LocationPreference(
                         modifier = Modifier
                             .verticalScroll(rememberScrollState())
                     ) {
+                        if (!location.isCurrentPosition) {
+                            SectionHeader(title = stringResource(R.string.settings_section_general))
+                            EditTextPreferenceView(
+                                title = stringResource(R.string.location_custom_name),
+                                summary = { _, value ->
+                                    value.ifEmpty { location.cityAndDistrict }
+                                },
+                                content = location.customName.let {
+                                    if (it.isNullOrEmpty()) location.cityAndDistrict else it
+                                },
+                                onValueChanged = {
+                                    if (it != location.cityAndDistrict && it != location.customName) {
+                                        customName.value = it
+                                        hasChangedPreferences.value = true
+                                    } else if ((it == location.cityAndDistrict || it.isEmpty()) &&
+                                        !location.customName.isNullOrEmpty()
+                                    ) {
+                                        customName.value = ""
+                                        hasChangedPreferences.value = true
+                                    }
+                                }
+                            )
+                            SectionFooter()
+                        }
+
                         SectionHeader(title = stringResource(R.string.settings_per_location_theme))
                         ListPreferenceView(
                             titleId = R.string.widget_live_wallpaper_weather_kind,
@@ -184,7 +213,7 @@ fun LocationPreference(
                         ) { newValue ->
                             if (newValue != backgroundWeatherKind.value) {
                                 backgroundWeatherKind.value = newValue
-                                hasChangedBackground.value = true
+                                hasChangedPreferences.value = true
                             }
                         }
                         ListPreferenceView(
@@ -196,7 +225,7 @@ fun LocationPreference(
                         ) { newValue ->
                             if (newValue != backgroundDayNightType.value) {
                                 backgroundDayNightType.value = newValue
-                                hasChangedBackground.value = true
+                                hasChangedPreferences.value = true
                             }
                         }
                         SectionFooter()
@@ -249,11 +278,12 @@ fun LocationPreference(
                 confirmButton = {
                     TextButton(
                         onClick = {
-                            if (hasChangedBackground.value) {
+                            if (hasChangedPreferences.value) {
                                 dialogAdditionalLocationPreferencesOpenState.value = false
                                 dialogWeatherSourcesOpenState.value = false
                                 onClose(
                                     location.copy(
+                                        customName = customName.value,
                                         backgroundWeatherKind = backgroundWeatherKind.value,
                                         backgroundDayNightType = backgroundDayNightType.value
                                     )

@@ -295,6 +295,7 @@
     <!-- Location -->
     <string name="locations">Locations</string>
     <string name="location_current">Current location</string>
+    <string name="location_custom_name">Custom name</string>
     <string name="location_search_weather_source">Weather source</string>
     <!-- Ex: Location results by Open-Meteo -->
     <string name="location_results_by">Location results by %s</string>

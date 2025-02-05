@@ -8,6 +8,7 @@
   - Locations with currently active alerts will now be highlighted
   - Last update of the location will be displayed on outdated locations (based on configured refresh rate)
   - Removed less relevant information from the location card
+- Added ability to customize the name of a manually added location (in Edit location > Location preferences)
 - Fix main screen displaying an incorrect current temperature, when the location has never been refreshed and forecast source failed to refresh
 
 **Weather sources**

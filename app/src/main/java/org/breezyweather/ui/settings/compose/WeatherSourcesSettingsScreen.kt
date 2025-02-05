@@ -48,7 +48,7 @@ import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.settings.preference.clickablePreferenceItem
-import org.breezyweather.ui.settings.preference.composables.EditTextPreferenceView
+import org.breezyweather.ui.settings.preference.composables.EditTextPreferenceViewWithCard
 import org.breezyweather.ui.settings.preference.composables.ListPreferenceView
 import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.composables.SectionFooter
@@ -163,7 +163,7 @@ fun WeatherSourcesSettingsScreen(
 
                             is EditTextPreference -> {
                                 editTextPreferenceItem(preference.titleId) { id ->
-                                    EditTextPreferenceView(
+                                    EditTextPreferenceViewWithCard(
                                         titleId = id,
                                         summary = preference.summary,
                                         content = preference.content,

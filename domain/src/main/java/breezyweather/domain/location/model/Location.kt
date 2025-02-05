@@ -39,6 +39,7 @@ data class Location(
         java.util.TimeZone.getDefault().id
     },
 
+    val customName: String? = null,
     val country: String = "",
     val countryCode: String? = null,
     val admin1: String? = null,
@@ -96,6 +97,7 @@ data class Location(
         parcel.writeDouble(latitude)
         parcel.writeDouble(longitude)
         parcel.writeString(timeZone)
+        parcel.writeString(customName)
         parcel.writeString(country)
         parcel.writeString(countryCode)
         parcel.writeString(admin1)
@@ -128,6 +130,7 @@ data class Location(
         latitude = parcel.readDouble(),
         longitude = parcel.readDouble(),
         timeZone = parcel.readString()!!,
+        customName = parcel.readString(),
         country = parcel.readString()!!,
         countryCode = parcel.readString(),
         admin1 = parcel.readString(),
@@ -162,6 +165,10 @@ data class Location(
         }
 
         if (formattedId != other.formattedId) {
+            return false
+        }
+
+        if (customName != other.customName) {
             return false
         }
 

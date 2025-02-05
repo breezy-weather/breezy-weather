@@ -13,12 +13,16 @@ fun Location.getPlace(context: Context, showCurrentPositionInPriority: Boolean =
     if (showCurrentPositionInPriority && isCurrentPosition) {
         return context.getString(R.string.location_current)
     }
-    val builder = StringBuilder()
-    builder.append(cityAndDistrict)
-    if (builder.toString().isEmpty() && isCurrentPosition) {
+    if (!customName.isNullOrEmpty()) {
+        return customName!!
+    }
+    if (cityAndDistrict.isNotEmpty()) {
+        return cityAndDistrict
+    }
+    if (cityAndDistrict.isEmpty() && isCurrentPosition) {
         return context.getString(R.string.location_current)
     }
-    return builder.toString()
+    return ""
 }
 
 val Location.isDaylight: Boolean

@@ -8,6 +8,7 @@ CREATE TABLE locations(
     latitude REAL NOT NULL,
     longitude REAL NOT NULL,
     timezone TEXT NOT NULL,
+    custom_name TEXT,
     country TEXT NOT NULL,
     country_code TEXT,
     admin1 TEXT,
@@ -39,36 +40,37 @@ CREATE TABLE locations(
 );
 
 getLocationById:
-SELECT city_id, latitude, longitude, timezone, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, current_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
+SELECT city_id, latitude, longitude, timezone, custom_name, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, current_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
 FROM locations
 WHERE formatted_id = :formattedId;
 
 getAllLocations:
-SELECT city_id, latitude, longitude, timezone, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, current_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
+SELECT city_id, latitude, longitude, timezone, custom_name, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, current_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
 FROM locations
 ORDER BY list_order;
 
 getXLocations:
-SELECT city_id, latitude, longitude, timezone, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, current_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
+SELECT city_id, latitude, longitude, timezone, custom_name, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, current_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
 FROM locations
 ORDER BY list_order
 LIMIT :limit;
 
 getFirstLocation:
-SELECT city_id, latitude, longitude, timezone, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, current_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
+SELECT city_id, latitude, longitude, timezone, custom_name, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, current_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type
 FROM locations
 ORDER BY list_order
 LIMIT 1;
 
 insert:
-INSERT INTO locations(formatted_id, list_order, city_id, latitude, longitude, timezone, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, current_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type)
-VALUES (:formattedId, :listOrder, :cityId, :latitude, :longitude, :timezone, :country, :countryCode, :admin1, :admin1Code, :admin2, :admin2Code, :admin3, :admin3Code, :admin4, :admin4Code, :city, :district, :weatherSource, :currentSource, :airQualitySource, :pollenSource, :minutelySource, :alertSource, :normalsSource, :currentPosition, :needsGeocodeRefresh, :backgroundWeatherKind, :backgroundDayNightType)
+INSERT INTO locations(formatted_id, list_order, city_id, latitude, longitude, timezone, custom_name, country, country_code, admin1, admin1_code, admin2, admin2_code, admin3, admin3_code, admin4, admin4_code, city, district, weather_source, current_source, air_quality_source, pollen_source, minutely_source, alert_source, normals_source, current_position, needs_geocode_refresh, background_weather_kind, background_day_night_type)
+VALUES (:formattedId, :listOrder, :cityId, :latitude, :longitude, :timezone, :customName, :country, :countryCode, :admin1, :admin1Code, :admin2, :admin2Code, :admin3, :admin3Code, :admin4, :admin4Code, :city, :district, :weatherSource, :currentSource, :airQualitySource, :pollenSource, :minutelySource, :alertSource, :normalsSource, :currentPosition, :needsGeocodeRefresh, :backgroundWeatherKind, :backgroundDayNightType)
 ON CONFLICT(formatted_id) DO UPDATE SET
     list_order = coalesce(:listOrder, list_order),
     city_id = coalesce(:cityId, city_id),
     latitude = coalesce(:latitude, latitude),
     longitude = coalesce(:longitude, longitude),
     timezone = coalesce(:timezone, timezone),
+    custom_name = coalesce(:customName, custom_name),
     country = coalesce(:country, country),
     country_code = coalesce(:countryCode, country_code),
     admin1 = coalesce(:admin1, admin1),
@@ -104,6 +106,7 @@ SET city_id = coalesce(:cityId, city_id),
     latitude = coalesce(:latitude, latitude),
     longitude = coalesce(:longitude, longitude),
     timezone = coalesce(:timezone, timezone),
+    custom_name = coalesce(:customName, custom_name),
     country = coalesce(:country, country),
     country_code = coalesce(:countryCode, country_code),
     admin1 = coalesce(:admin1, admin1),
