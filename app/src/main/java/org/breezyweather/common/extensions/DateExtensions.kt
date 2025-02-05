@@ -107,7 +107,7 @@ fun Date.getFormattedTime(
     twelveHour: Boolean,
 ): String {
     return if (twelveHour) {
-        this.getFormattedDate("h:mm aa", location, context)
+        this.getFormattedDate("h:mm aa", location, context, withBestPattern = true)
     } else {
         this.getFormattedDate("HH:mm", location, context)
     }
@@ -158,7 +158,7 @@ fun Date.getWeek(location: Location, context: Context?): String {
 }
 
 fun Date.getHour(location: Location, context: Context): String {
-    return getFormattedDate(if (context.is12Hour) "h aa" else "H:mm", location, context)
+    return getFormattedDate(if (context.is12Hour) "h aa" else "H:mm", location, context, withBestPattern = true)
 }
 
 fun Date.getHourIn24Format(location: Location): String {

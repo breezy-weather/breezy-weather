@@ -18,6 +18,7 @@
 
 **Translations**
 - Translations updated
+- Fix 12-hour formatting in Korean (only on Android >= 7)
 
 
 # Version 5.4.1 (2024-01-03)
