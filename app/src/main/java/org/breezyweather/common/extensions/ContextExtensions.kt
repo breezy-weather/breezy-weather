@@ -57,9 +57,8 @@ fun Context.hasPermission(
  * @return true if the permission is granted. Always returns true on Android 12 and lower.
  */
 val Context.hasNotificationPermission
-    get() = !(
-        Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && !hasPermission(Manifest.permission.POST_NOTIFICATIONS)
-        )
+    get() = Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
+        hasPermission(Manifest.permission.POST_NOTIFICATIONS)
 
 val Context.inputMethodManager: InputMethodManager
     get() = getSystemService()!!
