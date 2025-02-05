@@ -24,6 +24,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -74,6 +75,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_header, parent, false)
 ) {
     private val mContainer: LinearLayout = itemView.findViewById(R.id.container_main_header)
+    private val mTemperatureContainer: RelativeLayout = itemView.findViewById(R.id.container_main_header_temperature)
     private val mTemperature: NumberAnimTextView = itemView.findViewById(R.id.container_main_header_temperature_value)
     private val mTemperatureUnitView: TextView = itemView.findViewById(R.id.container_main_header_temperature_unit)
     private val mWeatherText: TextView = itemView.findViewById(R.id.container_main_header_weather_text)
@@ -104,6 +106,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
         mTemperatureUnit = SettingsManager.getInstance(context).temperatureUnit
         location.weather?.current?.let { current ->
             current.temperature?.temperature?.let {
+                mTemperatureContainer.visibility = View.VISIBLE
                 mTemperatureCFrom = mTemperatureCTo
                 mTemperatureCTo = it
                 mTemperature.isAnimEnabled = itemAnimationEnabled
@@ -111,6 +114,8 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                 mTemperature.duration =
                     max(2000.0, abs(mTemperatureCTo - mTemperatureCFrom) / 10f * 1000).toLong()
                 mTemperatureUnitView.text = mTemperatureUnit!!.getName(context)
+            } ?: run {
+                mTemperatureContainer.visibility = View.GONE
             }
             if (!current.weatherText.isNullOrEmpty()) {
                 mWeatherText.visibility = View.VISIBLE

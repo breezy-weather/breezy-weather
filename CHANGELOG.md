@@ -8,6 +8,7 @@
   - Locations with currently active alerts will now be highlighted
   - Last update of the location will be displayed on outdated locations (based on configured refresh rate)
   - Removed less relevant information from the location card
+- Fix main screen displaying an incorrect current temperature, when the location has never been refreshed and forecast source failed to refresh
 
 **Weather sources**
 - [Open-Meteo] Fix snow quantity reported 10 times too low
