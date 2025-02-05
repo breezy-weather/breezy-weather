@@ -728,4 +728,10 @@
     <string name="pollen_picea">Ялина</string>
     <string name="location_has_active_alerts">Активне сповіщення</string>
     <string name="location_last_updated_x">Останнє оновлення %s</string>
+    <string name="settings_debug_notification_permission">Необхідний для сповіщення про журнали збоїв і невдалі оновлення погоди. %s</string>
+    <string name="action_grant_permission">Торкніться, щоб надати дозвіл.</string>
+    <string name="settings_notifications_permission_summary">Необхідний для сповіщення про сповіщення, прогнози та оновлення програми. %s</string>
+    <string name="settings_widgets_notification_permission_summary">Потрібно, щоб показати віджет сповіщень. %s</string>
+    <string name="location_custom_name">Спеціальна назва</string>
+    <string name="settings_notifications_permission">Потрібен дозвіл на сповіщення</string>
 </resources>
