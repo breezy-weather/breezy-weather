@@ -815,4 +815,10 @@
     <string name="pollen_ulmus">榆树</string>
     <string name="location_has_active_alerts">活动警报</string>
     <string name="location_last_updated_x">上次更新于 %s</string>
+    <string name="settings_notifications_permission">需要通知权限</string>
+    <string name="location_custom_name">自定义名称</string>
+    <string name="settings_widgets_notification_permission_summary">需要该权限来显示通知小部件。%s</string>
+    <string name="action_grant_permission">轻按授予权限。</string>
+    <string name="settings_notifications_permission_summary">需要该权限来发出警报、预报和应用更新的提醒。%s</string>
+    <string name="settings_debug_notification_permission">需要该权限来发出崩溃记录和天气更新失败的提醒。%s</string>
 </resources>
