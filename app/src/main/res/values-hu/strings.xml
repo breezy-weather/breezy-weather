@@ -232,7 +232,7 @@
     <string name="settings_weather_source_portal">Portál</string>
     <string name="setting_weather_source_accu_days">Napok</string>
     <string name="locations">Helyszínek</string>
-    <string name="action_help_me_choose">Segíts választani</string>
+    <string name="action_help_me_choose">Segítsen választani</string>
     <string name="settings_weather_sources">Időjárásforrások</string>
     <string name="settings_icon_packs_title">Ikonkészletek</string>
     <string name="settings_icon_packs_weather_icon_light">Világos ikon</string>
@@ -734,4 +734,10 @@
     <string name="common_weather_text_glaze">Ónos jégréteg</string>
     <string name="location_last_updated_x">Utoljára frissítve: %s</string>
     <string name="location_has_active_alerts">Aktív riasztás</string>
+    <string name="action_grant_permission">Koppintson ide az engedély megadásához.</string>
+    <string name="settings_notifications_permission">Értesítési engedély szükséges</string>
+    <string name="settings_widgets_notification_permission_summary">Szükséges az értesítésmodul megjelenítéséhez. %s</string>
+    <string name="settings_notifications_permission_summary">Szükséges a riasztások, előrejelzések és az alkalmazás-frissítések értesítéseihez. %s</string>
+    <string name="location_custom_name">Egyéni név</string>
+    <string name="settings_debug_notification_permission">Szükséges az összeomlási naplók és a sikertelen időjárás-frissítések értesítéseihez. %s</string>
 </resources>

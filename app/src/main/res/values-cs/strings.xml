@@ -744,4 +744,10 @@
     <string name="pollen_ulmus">Jilm</string>
     <string name="location_last_updated_x">Naposledy aktualizováno %s</string>
     <string name="location_has_active_alerts">Aktivní upozornění</string>
+    <string name="settings_notifications_permission">Vyžadováno oprávnění k oznámením</string>
+    <string name="settings_debug_notification_permission">Potřeba k oznamování o pádech a selhaných aktualizacích počasí. %s</string>
+    <string name="location_custom_name">Vlastní název</string>
+    <string name="settings_notifications_permission_summary">Potřeba k oznamování výstrah, předpovědí a aktualizací aplikace. %s</string>
+    <string name="settings_widgets_notification_permission_summary">Potřeba ke zobrazení widgetu oznámení. %s</string>
+    <string name="action_grant_permission">Klepněte pro udělení oprávnění.</string>
 </resources>
