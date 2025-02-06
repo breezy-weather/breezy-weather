@@ -134,15 +134,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
     }
 
     private val backgroundUpdateObserver: Observer<Location> = Observer { location ->
-        location.let {
-            viewModel.updateLocationFromBackground(it)
-
-            // TODO: Leads to annoying popup, disabling for now
-            /*if (isActivityStarted &&
-                it.formattedId == viewModel.currentLocation.value?.location?.formattedId) {
-                SnackbarHelper.showSnackbar(getString(R.string.message_updated_in_background))
-            }*/
-        }
+        viewModel.updateLocationFromBackground(location)
     }
 
     private val openSearchActivity =
