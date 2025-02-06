@@ -810,4 +810,12 @@
     <string name="pollen_acer">楓樹</string>
     <string name="pollen_juniperus">杜松</string>
     <string name="common_weather_text_blowing_snow">高吹雪</string>
+    <string name="action_grant_permission">點選以授予權限。</string>
+    <string name="settings_notifications_permission">需要通知權限</string>
+    <string name="settings_debug_notification_permission">授予權限後，才能收到損毀記錄和無法更新天氣資料的通知。%s</string>
+    <string name="location_last_updated_x">%s更新</string>
+    <string name="settings_notifications_permission_summary">授予權限後，才能收到警特報、預報及應用程式更新的通知。%s</string>
+    <string name="location_custom_name">自訂名稱</string>
+    <string name="location_has_active_alerts">現有發布之警特報</string>
+    <string name="settings_widgets_notification_permission_summary">授予權限後，才能顯示通知小工具。%s</string>
 </resources>
