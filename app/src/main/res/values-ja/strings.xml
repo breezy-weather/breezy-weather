@@ -388,13 +388,13 @@
     <string name="weather_air_quality_and_pollen_data_by">大気の質と花粉のデータ提供：%s</string>
     <string name="settings_weather_source_portal">ポータル</string>
     <string name="location_message_reverse_geocoding_failed">情報源が一致する場所を見つけられませんでした</string>
-    <string name="action_location_list">場所リスト</string>
+    <string name="action_location_list">場所の一覧</string>
     <string name="action_add_current_location">現在地を追加</string>
     <string name="action_back">戻る</string>
     <string name="action_continue">続き</string>
     <string name="action_close">閉じる</string>
     <string name="action_show_errors">タップすると詳細を表示</string>
-    <string name="dialog_permissions_notification_content">ここをタップすると気象警報に関する通知を有効にできます。後から設定で決定することもできます。</string>
+    <string name="dialog_permissions_notification_content">ここをタップすると気象警報に関する通知を有効にできます。後から設定画面で有効にすることもできます。</string>
     <string name="message_parsing_error_title">気象データを解析できませんでした</string>
     <string name="widget_material_you_current">Material You - 現在</string>
     <string name="widget_custom_subtitle_keyword_als_description">警報（短い）</string>
@@ -765,4 +765,12 @@
     <string name="common_weather_text_blowing_snow">地吹雪</string>
     <string name="common_weather_text_glaze">雨氷</string>
     <string name="common_weather_text_drifting_snow">低い地吹雪</string>
+    <string name="action_grant_permission">タップして権限を付与してください。</string>
+    <string name="settings_notifications_permission_summary">警報、予報、アプリのアップデートの通知に必要です。%s</string>
+    <string name="settings_widgets_notification_permission_summary">通知用ウィジェットの表示に必要です。%s</string>
+    <string name="settings_debug_notification_permission">クラッシュログと、天気を更新できなかった際の通知に必要です。%s</string>
+    <string name="location_has_active_alerts">現在の気象警報</string>
+    <string name="location_custom_name">任意の名称</string>
+    <string name="location_last_updated_x">最終更新時間：%s</string>
+    <string name="settings_notifications_permission">通知の権限が必要です</string>
 </resources>
