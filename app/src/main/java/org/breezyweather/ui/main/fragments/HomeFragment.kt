@@ -502,9 +502,7 @@ class HomeFragment : MainModuleFragment() {
 
     private inner class OnScrollListener : RecyclerView.OnScrollListener() {
 
-        private var mTopChanged: Boolean? = null
         var topOverlap = false
-        private var mFirstCardMarginTop = 0
         private var mScrollY = 0
         private var mLastAppBarTranslationY = 0f
 
@@ -513,9 +511,7 @@ class HomeFragment : MainModuleFragment() {
                 if (!isFragmentViewCreated) {
                     return@post
                 }
-                mTopChanged = null
                 topOverlap = false
-                mFirstCardMarginTop = 0
                 mScrollY = 0
                 mLastAppBarTranslationY = 0f
                 onScrolled(recyclerView, 0, 0)
@@ -523,12 +519,6 @@ class HomeFragment : MainModuleFragment() {
         }
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            mFirstCardMarginTop = if (recyclerView.childCount > 0) {
-                recyclerView.getChildAt(0).top
-            } else {
-                -1
-            }
-
             mScrollY = recyclerView.computeVerticalScrollOffset()
             mLastAppBarTranslationY = binding.appBar.translationY
             weatherView.onScroll(mScrollY)
@@ -551,13 +541,9 @@ class HomeFragment : MainModuleFragment() {
             }
 
             // set system bar style.
-            mTopChanged = if (mFirstCardMarginTop <= 0) {
-                (binding.appBar.translationY != 0f) != (mLastAppBarTranslationY != 0f)
-            } else {
-                true
-            }
             topOverlap = binding.appBar.translationY != 0f
-            if (mTopChanged!!) {
+            if ((binding.appBar.translationY == 0f) != (mLastAppBarTranslationY == 0f)) {
+                // Only update the system bars when the app bar actually starts collapsing or stops expanding.
                 checkToSetSystemBarStyle()
             }
         }
