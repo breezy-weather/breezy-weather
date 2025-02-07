@@ -204,7 +204,7 @@
     <string name="settings_background_updates_refresh_6h">6 hodín</string>
     <string name="common_weather_text_drizzle_freezing">Mrznúce mrholenie</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Špecifické pokyny výrobcu</string>
-    <string name="settings_widgets_notification_feels_like_switch">Použitie \"pocitovej teploty\"</string>
+    <string name="settings_widgets_notification_feels_like_switch">Použitie “pocitovej teploty”</string>
     <string name="common_weather_text_rain_freezing">Mrznúci dážď</string>
     <string name="common_weather_text_rain_snow_mixed_light">Slabý dážď so snehom</string>
     <string name="settings_background_updates_refresh_12h">12 hodín</string>
