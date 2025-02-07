@@ -803,4 +803,10 @@
     <string name="common_weather_text_glaze">Glasir</string>
     <string name="location_last_updated_x">Terakhir diperbarui %s</string>
     <string name="location_has_active_alerts">Peringatan aktif</string>
+    <string name="settings_notifications_permission">Perizinan notifikasi diperlukan</string>
+    <string name="action_grant_permission">Ketuk untuk memberikan perizinan.</string>
+    <string name="settings_notifications_permission_summary">Diperlukan untuk memberi tahu peringatan, prakiraan, dan pembaruan aplikasi. %s</string>
+    <string name="settings_widgets_notification_permission_summary">Diperlukan untuk menampilkan widget notifikasi. %s</string>
+    <string name="settings_debug_notification_permission">Diperlukan untuk log kemogokan dan pembaruan cuaca gagal. %s</string>
+    <string name="location_custom_name">Nama kustom</string>
 </resources>
