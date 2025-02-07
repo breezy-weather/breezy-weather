@@ -806,7 +806,7 @@
     <string name="settings_debug_notification_permission">授予權限後，才能收到損毀記錄和無法更新天氣資料的通知。%s</string>
     <string name="settings_notifications_permission_summary">授予權限後，才能收到警告、預報及應用程式更新的通知。%s</string>
     <string name="location_custom_name">自訂名稱</string>
-    <string name="location_has_active_alerts">現正生效的警告</string>
+    <string name="location_has_active_alerts">警告現正生效</string>
     <string name="location_last_updated_x">%s更新</string>
     <string name="settings_notifications_permission">需要通知權限</string>
 </resources>
