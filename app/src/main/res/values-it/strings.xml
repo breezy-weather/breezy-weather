@@ -731,4 +731,10 @@
     <string name="common_weather_text_glaze">Gelicidio</string>
     <string name="pollen_acer">Acero</string>
     <string name="pollen_alternaria">Alternaria</string>
+    <string name="settings_notifications_permission">Permesso per le notifiche richiesto</string>
+    <string name="settings_widgets_notification_permission_summary">Necessario per mostrare il widget notifiche. %s</string>
+    <string name="settings_debug_notification_permission">Necessario per notificare i log di crash e gli aggiornamenti meteo falliti. %s</string>
+    <string name="action_grant_permission">Premi per garantire il permesso.</string>
+    <string name="settings_notifications_permission_summary">Necessario per notificare allerte, previsioni e aggiornamenti dell\'applicazione. %s</string>
+    <string name="location_custom_name">Nome personalizzato</string>
 </resources>
