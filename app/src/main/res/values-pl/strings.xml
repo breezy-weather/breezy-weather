@@ -737,4 +737,12 @@
     <string name="common_weather_text_blowing_snow">Śnieg podmuchowy</string>
     <string name="common_weather_text_drifting_snow">Zawieje śnieżne</string>
     <string name="common_weather_text_glaze">Oblodzenie</string>
+    <string name="action_grant_permission">Stuknij, aby udzielić pozwolenia.</string>
+    <string name="settings_notifications_permission">Wymagane pozwolenie na powiadomienie</string>
+    <string name="settings_debug_notification_permission">Wymagane do powiadamiania o dziennikach awarii i nieudanych aktualizacjach pogody. %s</string>
+    <string name="settings_widgets_notification_permission_summary">Potrzebne do wyświetlenia widżetu powiadomień. %s</string>
+    <string name="settings_notifications_permission_summary">Potrzebne do powiadamiania o alertach, prognozach i aktualizacjach aplikacji. %s</string>
+    <string name="location_custom_name">Nazwa niestandardowa</string>
+    <string name="location_last_updated_x">Ostatnia aktualizacja %s</string>
+    <string name="location_has_active_alerts">Aktywny alert</string>
 </resources>
