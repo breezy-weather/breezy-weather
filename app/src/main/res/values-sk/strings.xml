@@ -365,7 +365,7 @@
     <string name="weather_message_too_frequent_refreshes">Počkajte prosím niekoľko sekúnd pred opätovným pokusom…</string>
     <string name="pollen_tilia">Lipa</string>
     <string name="pollen_urticaceae">Žihľava</string>
-    <string name="alert_source">Zdroje: %s</string>
+    <string name="alert_source">Zdroj: %s</string>
     <string name="unit_m_voice">Metre</string>
     <string name="unit_kpa">kPa</string>
     <string name="settings_notifications_precipitations_title">Notifikácie o zrážkach</string>
@@ -450,13 +450,13 @@
     <string name="settings_notifications">Notifikácie</string>
     <string name="unit_h_voice">hodín</string>
     <string name="action_continue">Pokračovať</string>
-    <string name="action_close">Zavrieť</string>
+    <string name="action_close">Zatvoriť</string>
     <string name="message_network_unavailable">Sieť nie je k dispozícii</string>
     <string name="dialog_time_picker_select_time">Vybrať čas</string>
     <string name="dialog_time_picker_input_time">Zadajte čas</string>
     <string name="message_invalid_incomplete_data">Neplatné alebo neúplné dáta obdržané zo servera</string>
     <string name="action_edit_location">Upraviť túto lokalitu</string>
-    <string name="action_learn_more">Zistiť viac</string>
+    <string name="action_learn_more">Viac informácií</string>
     <string name="action_confirm">Potvrdiť</string>
     <string name="action_share">Zdieľať</string>
     <string name="dialog_permissions_location_background_title">Prístup k polohe v pozadí</string>
@@ -698,7 +698,7 @@
     <string name="weather_forecast_data_by">Predpoveď od %s</string>
     <string name="settings_weather_source_not_configured">%s (nenastavené)</string>
     <string name="settings_weather_source_current_position_disclaimer">Po prvej aktualizácii môžu byť pre vašu lokalitu k dispozícii ďalšie zdroje počasia.</string>
-    <string name="widget_custom_subtitle_explanation">Môžete zadať čokoľvek, ale dávajte pozor na dĺžku textu. Ak chcete citovať údaje o počasí, použite znak $ ako odkaz na príslušné kľúčové slovo.\nNapríklad “Aktuálne počasie: $cw$” sa zobrazí ako “Aktuálne počasie: Jasno”.</string>
+    <string name="widget_custom_subtitle_explanation">Môžete zadať čokoľvek, ale dávajte pozor na dĺžku textu. Ak chcete citovať údaje o počasí, použite znak $ ako odkaz na príslušné kľúčové slovo.\n\nNapríklad “Aktuálne počasie: $cw$” sa zobrazí ako “Aktuálne počasie: Jasno”.</string>
     <string name="pollen_acer">Javor</string>
     <string name="pollen_alternaria">Alternária</string>
     <string name="pollen_atriplex">Loboda</string>
@@ -724,4 +724,12 @@
     <string name="weather_source_continent_north_america">Severná Amerika</string>
     <string name="location_message_location_access_off">Poloha je vypnutá</string>
     <string name="widget_clock_day_vertical">Hodiny + denná (zvislý štýl)</string>
+    <string name="action_grant_permission">Ťuknite pre povolenie oprávnenia.</string>
+    <string name="settings_debug_notification_permission">Potrebné ku oznámeniam o pádoch appky a zlyhaných aktualizáciach počasia. %s</string>
+    <string name="settings_notifications_permission">Vyžadované oprávnenie ku oznámeniam</string>
+    <string name="settings_notifications_permission_summary">Potrebné ku oznámeniam o výstrahach, predpovedi a dostupnej aktualizácie appky. %s</string>
+    <string name="settings_widgets_notification_permission_summary">Potrebné ku zobrazeniu widget oznámení. %s</string>
+    <string name="location_custom_name">Vlastný názov</string>
+    <string name="location_last_updated_x">Naposledy aktualizované %s</string>
+    <string name="location_has_active_alerts">Zapnuté upozornenia</string>
 </resources>
