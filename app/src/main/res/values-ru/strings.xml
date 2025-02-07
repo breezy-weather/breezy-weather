@@ -195,9 +195,9 @@
     <string name="settings_color_day_night">День / Ночь</string>
     <string name="settings_color_day_always">Всегда день</string>
     <string name="settings_color_night_always">Всегда ночь</string>
-    <string name="settings_color_light">Светло</string>
-    <string name="settings_color_grey">Серо</string>
-    <string name="settings_color_dark">Темно</string>
+    <string name="settings_color_light">Светлая</string>
+    <string name="settings_color_grey">Серая</string>
+    <string name="settings_color_dark">Темная</string>
     <string name="settings_background_updates_refresh_30min">30 минут</string>
     <string name="settings_background_updates_refresh_1h">1 час</string>
     <string name="settings_background_updates_refresh_1h_30min">1.5 часа</string>
