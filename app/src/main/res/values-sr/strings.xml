@@ -179,11 +179,11 @@
     <string name="settings_units_distance">Јединица за удаљеност</string>
     <string name="settings_units_speed">Јединица за брзину</string>
     <string name="settings_main_section_displayed_data">Приказани подаци</string>
-    <string name="settings_widgets_notification_widget_title">Виџет као обавештење</string>
+    <string name="settings_widgets_notification_widget_title">Виџет у обавештењима</string>
     <string name="settings_widgets_notification_persistent_switch">Константан</string>
     <string name="settings_widgets_notification_style_title">Стил</string>
     <string name="settings_debug_summary">Евиденције отказивања</string>
-    <string name="settings_widgets_section_notification_widget">Виџет као обавештење</string>
+    <string name="settings_widgets_section_notification_widget">Виџет у обавештењима</string>
     <string name="unit_atm">atm</string>
     <string name="notification_update_error">%d ажурирања није успело</string>
     <string name="common_weather_text_clear_sky">Ведро небо</string>
@@ -362,7 +362,7 @@
     <string name="common_weather_text_rain_showers_heavy">Јаки пљускови</string>
     <string name="common_weather_text_rain_snow_mixed_light">Помешана слаба киша и снег</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Помешани пљускови са слабом кишом и снегом</string>
-    <string name="settings_widgets_summary">Поставите позадину, конфигуришите коришћене виџете, виџет као обавештење</string>
+    <string name="settings_widgets_summary">Поставите позадину, конфигуришите коришћене виџете, виџет у обавештењима</string>
     <string name="common_weather_text_snow_light">Слаб снег</string>
     <string name="common_weather_text_snow_moderate">Умерен снег</string>
     <string name="common_weather_text_snow_heavy">Јак снег</string>
@@ -732,4 +732,12 @@
     <string name="common_weather_text_blowing_snow">Снежна мећава</string>
     <string name="common_weather_text_drifting_snow">Наносни снег</string>
     <string name="common_weather_text_glaze">Леђење</string>
+    <string name="action_grant_permission">Додирните да бисте дали дозволу.</string>
+    <string name="settings_debug_notification_permission">Неопходно за обавештавање о евиденцијама отказивања и неуспелим ажурирањима времена. %s</string>
+    <string name="settings_widgets_notification_permission_summary">Неопходно за приказивање виџета у обавештењима. %s</string>
+    <string name="settings_notifications_permission">Неопходна је дозвола за обавештења</string>
+    <string name="settings_notifications_permission_summary">Неопходно за обавештавање о упозорењима, прогнозама и ажурирањима апликације. %s</string>
+    <string name="location_has_active_alerts">Активно упозорење</string>
+    <string name="location_custom_name">Прилагођени назив</string>
+    <string name="location_last_updated_x">Последње ажурирање: %s</string>
 </resources>
