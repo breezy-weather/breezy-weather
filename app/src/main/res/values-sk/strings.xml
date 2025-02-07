@@ -108,7 +108,7 @@
     <string name="air_quality_so2_info_origin">Uvoľňuje sa prirodzene pri sopečnej činnosti a prevažne pochádza zo spaľovania fosílnych palív určených na vykurovanie domácností, v priemysle a na výrobu energie.</string>
     <string name="air_quality_so2_info_consequences">Vystavenie SO₂ sa spája s hospitalizáciami kvôli astme a návštevami pohotovosti.</string>
     <string name="air_quality_co_info_title">Oxid uhoľnatý (CO)</string>
-    <string name="air_quality_co_info_introduction">Oxid uhoľnatý (CO) je jedovatý, horľavý a bezfarebný plyn, ktorý je bez zápachu, chuti a nie je dráždivý.</string>
+    <string name="air_quality_co_info_introduction">Oxid uhoľnatý (CO) je jedovatý, horľavý a bezfarebný plyn bez zápachu, chuti a nie je dráždivý.</string>
     <string name="pollen_tree">Strom</string>
     <string name="pollen_alnus">Jelša</string>
     <string name="pollen_betula">Breza</string>
@@ -116,7 +116,7 @@
     <string name="pollen_artemisia">Palina</string>
     <string name="pollen_olea">Olivovník</string>
     <string name="air_quality_no2_info_consequences">Vystavenie oxidu dusičitému môže dráždiť dýchacie cesty a zhoršovať ochorenia dýchacích ciest. Okrem toho je NO₂ dôležitým prekurzorom ozónu, znečisťujúcej látky, ktorá úzko súvisí s astmou a inými ochoreniami dýchacích ciest.</string>
-    <string name="air_quality_co_info_origin">Vzniká pri neúplnom spaľovaní uhlíkových palív, ako sú drevo, benzín, uhlie, zemný plyn a petrolej, v jednoduchých kachliach, otvorených ohňoch, knôtových lampách, peciach a krboch. Dominantným zdrojom oxidu uhoľnatého (CO) v okolitom ovzduší sú motorové vozidlá.</string>
+    <string name="air_quality_co_info_origin">Vzniká pri neúplnom spaľovaní uhlíkových palív, ako napr. drevo, benzín, uhlie, zemný plyn a petrolej, v jednoduchých kachliach, otvorených ohňoch, knôtových lampách, peciach a krboch. Dominantným zdrojom oxidu uhoľnatého (CO) v ovzduší sú motorové vozidlá.</string>
     <string name="air_quality_co_info_consequences">Oxid uhoľnatý preniká cez pľúcne tkanivá do krvného obehu a sťažuje väzbu kyslíka na bunky tela. Tento nedostatok kyslíka poškodzuje tkanivá a bunky. Vystavenie oxidu uhoľnatému môže spôsobiť ťažkosti s dýchaním, vyčerpanosť, závraty a iné príznaky podobné chrípke. Vystavenie vysokým hladinám oxidu uhoľnatého môže byť smrteľné.</string>
     <string name="pollen_mold">Plesne</string>
     <string name="pollen_level_0">Žiadne</string>
@@ -204,7 +204,7 @@
     <string name="settings_background_updates_refresh_6h">6 hodín</string>
     <string name="common_weather_text_drizzle_freezing">Mrznúce mrholenie</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Špecifické pokyny výrobcu</string>
-    <string name="settings_widgets_notification_feels_like_switch">Použiť pocitovú teplotu</string>
+    <string name="settings_widgets_notification_feels_like_switch">Použitie \"pocitovej teploty\"</string>
     <string name="common_weather_text_rain_freezing">Mrznúci dážď</string>
     <string name="common_weather_text_rain_snow_mixed_light">Slabý dážď so snehom</string>
     <string name="settings_background_updates_refresh_12h">12 hodín</string>
@@ -277,7 +277,7 @@
     <string name="alert">Výstraha</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Dorastajúce tri štvrtiny</string>
     <string name="ephemeris_moon_phase_last_quarter">Zmenšujúci sa polmesiac</string>
-    <string name="ephemeris_moon_phase_waning_gibbous">Zmenšujúce sa 3/4</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Zmenšujúce sa tri štvrtiny</string>
     <string name="ephemeris_moon_phase_waning_crescent">Zmenšujúca sa štvrtina</string>
     <string name="weather_message_invalid_location">Neplatné umiestnenie, odstraňte ho a znovu pridajte</string>
     <string name="weather_source_accu_preference_days_1">1 deň</string>
