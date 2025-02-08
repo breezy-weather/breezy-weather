@@ -1,4 +1,4 @@
-# Version 5.4.2 (not yet released)
+# Version 5.4.2 (2025-02-08)
 
 **Improvements and fixes**
 - Refresh errors are now detailed again (regression introduced in v5.3)

@@ -22,8 +22,8 @@ android {
 
     defaultConfig {
         applicationId = "org.breezyweather"
-        versionCode = 50402
-        versionName = "5.4.2"
+        versionCode = 50403
+        versionName = "5.4.3"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")

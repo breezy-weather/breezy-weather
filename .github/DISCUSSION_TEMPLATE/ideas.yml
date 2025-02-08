@@ -28,7 +28,7 @@ body:
           required: true
         - label: The idea I’m suggesting is not in the [list of features that will not be implemented](https://github.com/breezy-weather/breezy-weather/blob/main/README.md#features-that-will-not-be-implemented).
           required: true
-        - label: I have updated the app to **[version 5.4.1 or later](https://github.com/breezy-weather/breezy-weather/releases)**. Even if I’m getting updates from F-Droid default repo, I don’t need to uninstall/reinstall to update.
+        - label: I have updated the app to **[version 5.4.2 or later](https://github.com/breezy-weather/breezy-weather/releases)**. Even if I’m getting updates from F-Droid default repo, I don’t need to uninstall/reinstall to update.
           required: true
         - label: I wrote my request in English, and any screenshot I attached are also in English (language can be changed from Settings > Appearance). I can write in my native language under the English text, if necessary.
           required: true
