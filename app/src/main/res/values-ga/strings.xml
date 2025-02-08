@@ -11,7 +11,7 @@
     <string name="alerts">Foláirimh</string>
     <string name="alerts_to_follow">Foláirimh atá le teacht, tapáil anseo chun iad a fheiceáil.</string>
     <string name="alert_source">Foinse: %s</string>
-    <string name="short_yesterday">Yda</string>
+    <string name="short_yesterday">YdaInné</string>
     <string name="short_tomorrow">Amár</string>
     <string name="temperature">Teocht</string>
     <string name="temperature_feels_like_short">Mothaíonn sé cosúil le</string>
@@ -128,7 +128,7 @@
     <string name="ephemeris_moon_phase_first_quarter">An chéad ráithe</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Céiriú gibbous</string>
     <string name="ephemeris_moon_phase_full_moon">Gealach lán</string>
-    <string name="ephemeris_moon_phase_waning_gibbous">Waning gibbous</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Ag caoineadh gibbous</string>
     <string name="ephemeris_moon_phase_last_quarter">An ráithe dheireanach</string>
     <string name="ephemeris_moon_phase_waning_crescent">Corrán waning</string>
     <string name="ephemeris_sunrise_at">Éirí gréine ag %s</string>
@@ -327,7 +327,7 @@
     <string name="widget_week_style_5_days">5 lá</string>
     <string name="widget_week_style_3_days">laethanta 3</string>
     <string name="widget_clock_font_sans_serif_light">Solas Sans Serif</string>
-    <string name="widget_clock_font_sans_serif">Sans Serif</string>
+    <string name="widget_clock_font_sans_serif">San Serif</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Dubh</string>
     <string name="widget_clock_font_analog">Analógach</string>
     <string name="widget_live_wallpaper_weather_kind">Aimsir</string>
@@ -726,4 +726,10 @@
     <string name="common_weather_text_blowing_snow">Sneachta ag séideadh</string>
     <string name="location_last_updated_x">Nuashonrú is déanaí %s</string>
     <string name="location_has_active_alerts">Foláireamh gníomhach</string>
+    <string name="location_custom_name">Ainm saincheaptha</string>
+    <string name="action_grant_permission">Tapáil chun an cead a thabhairt.</string>
+    <string name="settings_notifications_permission">Teastaíonn cead fógra</string>
+    <string name="settings_notifications_permission_summary">Is gá fógra a thabhairt faoi fholáirimh, réamhaisnéisí agus nuashonruithe aipeanna. %s</string>
+    <string name="settings_widgets_notification_permission_summary">Ag teastáil chun an ghiuirléid fógraí a thaispeáint. %s</string>
+    <string name="settings_debug_notification_permission">Ag teastáil chun fógra a thabhairt faoi logaí cliste agus nuashonruithe aimsire ar theip orthu. %s</string>
 </resources>
