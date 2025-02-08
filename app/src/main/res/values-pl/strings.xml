@@ -691,7 +691,7 @@
     <string name="settings_notifications_app_updates_check">Powiadomienia o aktualizacjach aplikacji</string>
     <string name="notification_channel_app_updates">Aktualizacje aplikacji</string>
     <string name="notification_app_update_available">Nowa wersja aplikacji dostępna!</string>
-    <string name="about_check_for_app_updates">Sprawdź uaktualnienia</string>
+    <string name="about_check_for_app_updates">Sprawdź aktualizacje</string>
     <string name="about_no_new_updates">Brak nowych aktualizacji</string>
     <string name="common_weather_text_sand_storm">Burza piaskowa</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornado lub trąba wodna</string>
