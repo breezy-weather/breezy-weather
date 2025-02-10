@@ -734,4 +734,6 @@
     <string name="settings_widgets_notification_permission_summary">Потрібно, щоб показати віджет сповіщень. %s</string>
     <string name="location_custom_name">Спеціальна назва</string>
     <string name="settings_notifications_permission">Потрібен дозвіл на сповіщення</string>
+    <string name="location_reverse_geocoding">Пошук адреси</string>
+    <string name="location_reverse_geocoding_by">Пошук адреси %s</string>
 </resources>
