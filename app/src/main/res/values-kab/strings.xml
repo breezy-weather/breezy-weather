@@ -126,4 +126,7 @@
     <string name="unit_mm_voice">Imilimitren</string>
     <string name="settings_per_location_theme">Asentel</string>
     <string name="widget_style_rectangle">Asrem</string>
+    <string name="common_weather_text_partly_cloudy">Issegnew cwiṭ</string>
+    <string name="ephemeris_sunset_at">Alluy n wass %s</string>
+    <string name="common_weather_text_cloudy">Issegnew</string>
 </resources>
