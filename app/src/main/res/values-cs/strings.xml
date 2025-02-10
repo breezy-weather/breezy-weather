@@ -750,4 +750,6 @@
     <string name="settings_notifications_permission_summary">Potřeba k oznamování výstrah, předpovědí a aktualizací aplikace. %s</string>
     <string name="settings_widgets_notification_permission_summary">Potřeba ke zobrazení widgetu oznámení. %s</string>
     <string name="action_grant_permission">Klepněte pro udělení oprávnění.</string>
+    <string name="location_reverse_geocoding_by">Hledání adres od %s</string>
+    <string name="location_reverse_geocoding">Hledání adres</string>
 </resources>
