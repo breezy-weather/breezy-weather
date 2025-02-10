@@ -126,9 +126,15 @@ class FooterViewHolder(
         } else {
             null
         }
+        credits["reverseGeocoding"] = if (!location.reverseGeocodingSource.isNullOrEmpty()) {
+            (context as MainActivity).sourceManager.getReverseGeocodingSource(location.reverseGeocodingSource!!)
+                ?.reverseGeocodingAttribution
+        } else {
+            null
+        }
 
         val creditsText = StringBuilder()
-        var hasForecastCredits: Boolean = false
+        var hasForecastCredits = false
         location.weather?.let { weather ->
             if (weather.dailyForecast.isNotEmpty() || weather.hourlyForecast.isNotEmpty()) {
                 creditsText.append(
@@ -206,6 +212,18 @@ class FooterViewHolder(
                     "\n" + context.getString(R.string.weather_normals_data_by, credits["normals"]!!)
                 )
             }
+        }
+
+        if (location.city.isNotEmpty() &&
+            !credits["reverseGeocoding"].isNullOrEmpty() &&
+            (credits["reverseGeocoding"] != credits["weather"] || !hasForecastCredits)
+        ) {
+            creditsText.append(
+                "\n" + context.getString(
+                    R.string.location_reverse_geocoding_by,
+                    credits["reverseGeocoding"] ?: context.getString(R.string.null_data_text)
+                )
+            )
         }
 
         composeView.setContent {

@@ -183,6 +183,25 @@ object Migrations {
                         // ignored
                     }
                 }
+
+                if (oldVersion < 50403) {
+                    // V5.4.3 no longer uses forecastSource as reverseGeocodingSource. Migrates current location
+                    runBlocking {
+                        locationRepository.getAllLocations(withParameters = false)
+                            .forEach {
+                                if (it.isCurrentPosition) {
+                                    val source = sourceManager.getReverseGeocodingSource(it.forecastSource)
+                                    if (source != null && source.isReverseGeocodingSupportedForLocation(it)) {
+                                        locationRepository.update(
+                                            it.copy(
+                                                reverseGeocodingSource = source.id
+                                            )
+                                        )
+                                    }
+                                }
+                            }
+                    }
+                }
             }
 
             SettingsManager.getInstance(context).lastVersionCode = BuildConfig.VERSION_CODE

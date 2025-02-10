@@ -25,8 +25,14 @@ import io.reactivex.rxjava3.core.Observable
  */
 interface ReverseGeocodingSource : Source {
 
+    val reverseGeocodingAttribution: String
+
     /**
      * Returns location converted to Breezy Weather Location object
      */
     fun requestReverseGeocodingLocation(context: Context, location: Location): Observable<List<Location>>
+
+    fun isReverseGeocodingSupportedForLocation(
+        location: Location,
+    ): Boolean = true
 }

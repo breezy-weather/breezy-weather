@@ -67,6 +67,7 @@ class IlmateenistusService @Inject constructor(
             }
         }
     }
+    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution
     )
@@ -75,6 +76,10 @@ class IlmateenistusService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
+        return isReverseGeocodingSupportedForLocation(location)
+    }
+
+    override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
         return location.countryCode.equals("EE", ignoreCase = true)
     }
 

@@ -92,6 +92,7 @@ class AccuService @Inject constructor(
 
     private val weatherAttribution = "AccuWeather"
     override val locationSearchAttribution = weatherAttribution
+    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,

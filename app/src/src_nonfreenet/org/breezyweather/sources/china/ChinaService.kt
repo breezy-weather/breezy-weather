@@ -70,6 +70,7 @@ class ChinaService @Inject constructor(
     }
 
     private val weatherAttribution = "北京天气、彩云天气、中国环境监测总站"
+    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
@@ -82,6 +83,10 @@ class ChinaService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
+        return isReverseGeocodingSupportedForLocation(location)
+    }
+
+    override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
         return location.countryCode.equals("CN", ignoreCase = true)
     }
 

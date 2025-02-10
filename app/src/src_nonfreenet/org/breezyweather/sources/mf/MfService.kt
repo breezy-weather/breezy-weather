@@ -85,6 +85,7 @@ class MfService @Inject constructor(
     }
 
     private val weatherAttribution = "Météo-France (Etalab)"
+    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,

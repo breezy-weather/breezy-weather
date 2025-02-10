@@ -87,6 +87,7 @@ class ImsService @Inject constructor(
             }
         }
     }
+    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
@@ -97,6 +98,10 @@ class ImsService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
+        return isReverseGeocodingSupportedForLocation(location)
+    }
+
+    override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
         // Israel + West Bank + Gaza Strip
         return location.countryCode.equals("IL", ignoreCase = true) ||
             location.countryCode.equals("PS", ignoreCase = true)

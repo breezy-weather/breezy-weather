@@ -61,6 +61,7 @@ class NwsService @Inject constructor(
     }
 
     private val weatherAttribution = "National Weather Service (NWS)"
+    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
@@ -85,6 +86,10 @@ class NwsService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
+        return isReverseGeocodingSupportedForLocation(location)
+    }
+
+    override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
         return supportedCountries.any {
             location.countryCode.equals(it, ignoreCase = true)
         }

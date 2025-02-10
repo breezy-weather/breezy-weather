@@ -24,6 +24,7 @@ import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
@@ -72,7 +73,8 @@ class MetIeService @Inject constructor(
         "Commons Attribution 4.0 International (CC BY 4.0) https://creativecommons.org/licenses/by/4.0/. Met Éireann " +
         "does not accept any liability whatsoever for any error or omission in the data, their availability, or for " +
         "any loss or damage arising from their use. This material has been modified from the original by " +
-        "Breezy Weather, mainly to compute or extrapolate missing data."
+        "${context.getString(R.string.app_name)}, mainly to compute or extrapolate missing data."
+    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
@@ -82,6 +84,10 @@ class MetIeService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
+        return isReverseGeocodingSupportedForLocation(location)
+    }
+
+    override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
         return location.countryCode.equals("IE", ignoreCase = true)
     }
 

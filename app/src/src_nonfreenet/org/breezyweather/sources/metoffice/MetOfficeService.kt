@@ -60,8 +60,9 @@ class MetOfficeService @Inject constructor(
             .create(MetOfficeApi::class.java)
     }
 
+    override val reverseGeocodingAttribution = "Met Office"
     override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to "Met Office"
+        SourceFeature.FORECAST to reverseGeocodingAttribution
     )
 
     override fun requestWeather(

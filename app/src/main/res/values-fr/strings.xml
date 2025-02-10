@@ -6,6 +6,7 @@
     <!-- mots-clés -->
     <string name="location_current">Ma position</string>
     <string name="location_custom_name">Nom personnalisé</string>
+    <string name="location_reverse_geocoding">Recherche d’adresse</string>
     <string name="short_today">Auj.</string>
     <string name="notification_refreshed_at">Consulté à</string>
     <string name="alerts_to_follow">Vigilances à venir, appuyez pour voir.</string>
@@ -447,6 +448,7 @@
     <string name="weather_minutely_data_by">Données de prévisions immédiates de précipitations par %s</string>
     <string name="weather_alert_data_by">Données d’alertes par %s</string>
     <string name="weather_normals_data_by">Données des normales de température par %s</string>
+    <string name="location_reverse_geocoding_by">Recherche d’adresse par %s</string>
     <string name="location_results_by">Résultats d’emplacement par %s</string> <!-- $ = location source -->
     <string name="settings_icon_packs_weather_adaptive_icon">Icône météo</string>
     <string name="settings_icon_packs_weather_icon_light">Icône claire</string>

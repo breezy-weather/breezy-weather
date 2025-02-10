@@ -61,6 +61,7 @@ data class Location(
     val minutelySource: String? = null,
     val alertSource: String? = null,
     val normalsSource: String? = null,
+    val reverseGeocodingSource: String? = null,
 
     val isCurrentPosition: Boolean = false,
 
@@ -117,6 +118,7 @@ data class Location(
         parcel.writeString(minutelySource)
         parcel.writeString(alertSource)
         parcel.writeString(normalsSource)
+        parcel.writeString(reverseGeocodingSource)
         parcel.writeByte(if (isCurrentPosition) 1 else 0)
         parcel.writeByte(if (needsGeocodeRefresh) 1 else 0)
         parcel.writeString(backgroundWeatherKind)
@@ -150,6 +152,7 @@ data class Location(
         minutelySource = parcel.readString(),
         alertSource = parcel.readString(),
         normalsSource = parcel.readString(),
+        reverseGeocodingSource = parcel.readString(),
         isCurrentPosition = parcel.readByte() != 0.toByte(),
         needsGeocodeRefresh = parcel.readByte() != 0.toByte(),
         backgroundWeatherKind = parcel.readString(),

@@ -26,6 +26,7 @@ enum class SourceFeature(
     MINUTELY("minutely"),
     ALERT("alert"),
     NORMALS("normals"),
+    REVERSE_GEOCODING("reverseGeocoding"),
     ;
 
     companion object {

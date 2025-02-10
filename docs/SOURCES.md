@@ -13,89 +13,89 @@ Below, you can find details about the support and implementation status for feat
 | Country/Territory                  | Source                                             | Supported features                                                                   |
 |------------------------------------|----------------------------------------------------|--------------------------------------------------------------------------------------|
 | 🌐 Worldwide                       | [Open-Meteo](#open-meteo)                          | Forecast, Current, Air quality, Pollen, Normals, Search                              |
-| 🌐 Worldwide                       | [AccuWeather](#accuweather) 🔓                     | Forecast, Current, Air quality, Pollen, Nowcasting, Alerts, Normals, Search, Reverse |
+| 🌐 Worldwide                       | [AccuWeather](#accuweather) 🔓                     | Forecast, Current, Air quality, Pollen, Nowcasting, Alerts, Normals, Search, Address |
 | 🌐 Worldwide                       | [GeoNames](#geonames) 🔐                           | Search                                                                               |
-| 🌐 Worldwide                       | [HERE](#here-destination-weather) 🔐               | Forecast, Current, Alerts, Reverse                                                   |
+| 🌐 Worldwide                       | [HERE](#here-destination-weather) 🔐               | Forecast, Current, Alerts, Address                                                   |
 | 🌐 Worldwide                       | [OpenWeather](#openweather) 🔓                     | Forecast, Current, Air quality                                                       |
 | 🌐 Worldwide                       | [Pirate Weather](#pirate-weather) 🔐               | Forecast, Current, Nowcasting, Alerts                                                |
 | 🌐 Worldwide                       | [WMO Severe Weather](#wmo-severe-weather)          | Alerts                                                                               |
 | 🇦🇹 Austria                       | [GeoSphere Austria](#geosphere-austria)            | Forecast, Air quality, Nowcasting, Alerts                                            |
-| 🇧🇩 Bangladesh                    | [BMD](#bangladesh-meteorological-department)       | Forecast, Reverse                                                                    |
+| 🇧🇩 Bangladesh                    | [BMD](#bangladesh-meteorological-department)       | Forecast, Address                                                                    |
 | 🇧🇯 Benin                         | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
 | 🇧🇫 Burkina Faso                  | [ClimWeb](#climweb)                                | Alerts                                                                               |
 | 🇧🇮 Burundi                       | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇨🇦 Canada                        | [ECCC](#environment-and-climate-change-canada)     | Forecast, Current, Alerts, Normals, Reverse                                          |
+| 🇨🇦 Canada                        | [ECCC](#environment-and-climate-change-canada)     | Forecast, Current, Alerts, Normals, Address                                          |
 | 🇹🇩 Chad                          | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
-| 🇨🇳 China                         | [China](#china)                                    | Forecast, Current, Air quality, Nowcasting, Alerts, Reverse                          |
+| 🇨🇳 China                         | [China](#china)                                    | Forecast, Current, Air quality, Nowcasting, Alerts, Address                          |
 | 🇨🇩 Democratic Republic of Congo  | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇩🇰 Denmark                       | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Reverse                                                            |
-| 🇪🇪 Estonia                       | [Ilmateenistus](#ilmateenistus)                    | Forecast, Reverse                                                                    |
+| 🇩🇰 Denmark                       | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Address                                                            |
+| 🇪🇪 Estonia                       | [Ilmateenistus](#ilmateenistus)                    | Forecast, Address                                                                    |
 | 🇪🇪 Estonia                       | [EKUK](#ekuk)                                      | Air quality, Pollen (later this year)                                                |
 | 🇪🇹 Ethiopia                      | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
-| 🇫🇰 Falkland Is.                  | [Met Office](#met-office) 🔐                       | Forecast, Reverse                                                                    |
-| 🇫🇴 Faroe Is.                     | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Reverse                                                            |
-| 🇫🇷 France                        | [Météo-France](#météo-france)                      | Forecast, Current, Nowcasting, Alerts, Normals, Reverse                              |
+| 🇫🇰 Falkland Is.                  | [Met Office](#met-office) 🔐                       | Forecast, Address                                                                    |
+| 🇫🇴 Faroe Is.                     | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Address                                                            |
+| 🇫🇷 France                        | [Météo-France](#météo-france)                      | Forecast, Current, Nowcasting, Alerts, Normals, Address                              |
 | 🇫🇷 France                        | [Recosanté](#recosanté)                            | Pollen                                                                               |
 | 🇫🇷 France (Auvergne-Rhône-Alpes) | [Atmo Auvergne-Rhône-Alpes](#atmo)                 | Air Quality                                                                          |
 | 🇫🇷 France (Grand Est)            | [ATMO GrandEst](#atmo)                             | Air Quality                                                                          |
 | 🇫🇷 France (Hauts-de-France)      | [Atmo Hauts-de-France](#atmo)                      | Air Quality                                                                          |
 | 🇫🇷 France (PACA)                 | [AtmoSud](#atmo)                                   | Air Quality                                                                          |
-| 🇬🇫 French Guiana                 | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
-| 🇵🇫 French Polynesia              | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
+| 🇬🇫 French Guiana                 | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
+| 🇵🇫 French Polynesia              | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
 | 🇬🇲 Gambia                        | [ClimWeb](#climweb)                                | Alerts                                                                               |
 | 🇩🇪 Germany                       | [Bright Sky](#bright-sky)                          | Forecast, Current, Alerts                                                            |
 | 🇬🇭 Ghana                         | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇬🇮 Gibraltar                     | [Met Office](#met-office) 🔐                       | Forecast, Reverse                                                                    |
-| 🇬🇱 Greenland                     | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Reverse                                                            |
-| 🇬🇵 Guadeloupe                    | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
-| 🇬🇺 Guam                          | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Reverse                                                   |
-| 🇬🇬 Guernsey                      | [Met Office](#met-office) 🔐                       | Forecast, Reverse                                                                    |
+| 🇬🇮 Gibraltar                     | [Met Office](#met-office) 🔐                       | Forecast, Address                                                                    |
+| 🇬🇱 Greenland                     | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Address                                                            |
+| 🇬🇵 Guadeloupe                    | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
+| 🇬🇺 Guam                          | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Address                                                   |
+| 🇬🇬 Guernsey                      | [Met Office](#met-office) 🔐                       | Forecast, Address                                                                    |
 | 🇬🇼 Guinea-Bissau                 | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇭🇰 Hong Kong                     | [HKO](#hong-kong-observatory)                      | Forecast, Current, Alerts, Normals, Reverse                                          |
+| 🇭🇰 Hong Kong                     | [HKO](#hong-kong-observatory)                      | Forecast, Current, Alerts, Normals, Address                                          |
 | 🇭🇰 Hong Kong                     | [EPD](#environmental-protection-department)        | Air quality                                                                          |
 | 🇮🇳 India                         | [IMD](#india-meteorological-department)            | Forecast                                                                             |
-| 🇮🇩 Indonesia                     | [BMKG](#bmkg)                                      | Forecast, Current, Air quality, Alerts, Reverse                                      |
-| 🇮🇪 Ireland                       | [MET Éireann](#met-éireann)                        | Forecast, Alerts, Reverse                                                            |
-| 🇮🇲 Isle of Man                   | [Met Office](#met-office) 🔐                       | Forecast, Reverse                                                                    |
-| 🇮🇱 Israel                        | [IMS](#israel-meteorological-service)              | Forecast, Current, Alerts, Reverse                                                   |
-| 🇮🇹 Italy                         | [Meteo AM](#servizio-meteo-am)                     | Forecast, Current, Reverse                                                           |
-| 🇯🇵 Japan                         | [JMA](#japan-meteorological-agency)                | Forecast, Current, Alerts, Normals, Reverse                                          |
-| 🇯🇪 Jersey                        | [Met Office](#met-office) 🔐                       | Forecast, Reverse                                                                    |
-| 🇱🇻 Latvia                        | [LVĢMC](#lvģmc)                                    | Forecast, Current, Air quality, Reverse                                              |
-| 🇱🇹 Lithuania                     | [LHMT](#lhmt)                                      | Forecast, Current, Alerts, Reverse                                                   |
-| 🇱🇺 Luxembourg                    | [MeteoLux](#meteolux)                              | Forecast, Current, Alerts, Reverse                                                   |
+| 🇮🇩 Indonesia                     | [BMKG](#bmkg)                                      | Forecast, Current, Air quality, Alerts, Address                                      |
+| 🇮🇪 Ireland                       | [MET Éireann](#met-éireann)                        | Forecast, Alerts, Address                                                            |
+| 🇮🇲 Isle of Man                   | [Met Office](#met-office) 🔐                       | Forecast, Address                                                                    |
+| 🇮🇱 Israel                        | [IMS](#israel-meteorological-service)              | Forecast, Current, Alerts, Address                                                   |
+| 🇮🇹 Italy                         | [Meteo AM](#servizio-meteo-am)                     | Forecast, Current, Address                                                           |
+| 🇯🇵 Japan                         | [JMA](#japan-meteorological-agency)                | Forecast, Current, Alerts, Normals, Address                                          |
+| 🇯🇪 Jersey                        | [Met Office](#met-office) 🔐                       | Forecast, Address                                                                    |
+| 🇱🇻 Latvia                        | [LVĢMC](#lvģmc)                                    | Forecast, Current, Air quality, Address                                              |
+| 🇱🇹 Lithuania                     | [LHMT](#lhmt)                                      | Forecast, Current, Alerts, Address                                                   |
+| 🇱🇺 Luxembourg                    | [MeteoLux](#meteolux)                              | Forecast, Current, Alerts, Address                                                   |
 | 🇲🇴 Macao                         | [SMG](#serviços-meteorológicos-e-geofísicos)       | Forecast, Current, Air quality, Alerts, Normals                                      |
 | 🇲🇼 Malawi                        | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
 | 🇲🇱 Mali                          | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇲🇶 Martinique                    | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
-| 🇾🇹 Mayotte                       | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
-| 🇲🇳 Mongolia                      | [NAMEM](#namem)                                    | Forecast, Current, Air quality, Normals, Reverse                                     |
-| 🇳🇨 New Caledonia                 | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
+| 🇲🇶 Martinique                    | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
+| 🇾🇹 Mayotte                       | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
+| 🇲🇳 Mongolia                      | [NAMEM](#namem)                                    | Forecast, Current, Air quality, Normals, Address                                     |
+| 🇳🇨 New Caledonia                 | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
 | 🇳🇪 Niger                         | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
-| 🇲🇵 Northern Mariana Is.          | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Reverse                                                   |
+| 🇲🇵 Northern Mariana Is.          | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Address                                                   |
 | 🇳🇴 Norway                        | [MET Norway](#met-norway)                          | Forecast, Nowcasting, Air quality, Alerts                                            |
 | 🇵🇭 Philippines                   | [PAGASA](#pagasa)                                  | Forecast, Current                                                                    |
-| 🇵🇹 Portugal                      | [IPMA](#instituto-português-do-mar-e-da-atmosfera) | Forecast, Alerts, Reverse                                                            |
-| 🇵🇷 Puerto Rico                   | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Reverse                                                   |
-| 🇷🇪 Réunion                       | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
-| 🇸🇲 San Marino                    | [Meteo AM](#servizio-meteo-am)                     | Forecast, Current, Reverse                                                           |
+| 🇵🇹 Portugal                      | [IPMA](#instituto-português-do-mar-e-da-atmosfera) | Forecast, Alerts, Address                                                            |
+| 🇵🇷 Puerto Rico                   | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Address                                                   |
+| 🇷🇪 Réunion                       | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
+| 🇸🇲 San Marino                    | [Meteo AM](#servizio-meteo-am)                     | Forecast, Current, Address                                                           |
 | 🇸🇨 Seychelles                    | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
 | 🇸🇸 South Sudan                   | [ClimWeb](#climweb)                                | Alerts                                                                               |
 | 🇪🇸 Spain                         | [AEMET](#aemet) 🔐                                 | Forecast, Current, Normals                                                           |
-| 🇧🇱 St. Barthélemy                | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
-| 🇲🇫 St. Martin                    | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
-| 🇵🇲 St. Pierre &amp; Miquelon     | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
+| 🇧🇱 St. Barthélemy                | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
+| 🇲🇫 St. Martin                    | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
+| 🇵🇲 St. Pierre &amp; Miquelon     | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
 | 🇸🇩 Sudan                         | [ClimWeb](#climweb)                                | Alerts                                                                               |
 | 🇸🇯 Svalbard &amp; Jan Mayen      | [MET Norway](#met-norway)                          | Forecast, Alerts                                                                     |
 | 🇸🇪 Sweden                        | [SMHI](#smhi)                                      | Forecast                                                                             |
-| 🇹🇼 Taiwan                        | [CWA](#central-weather-administration) 🔐          | Forecast, Current, Air quality, Alerts, Normals, Reverse                             |
+| 🇹🇼 Taiwan                        | [CWA](#central-weather-administration) 🔐          | Forecast, Current, Air quality, Alerts, Normals, Address                             |
 | 🇹🇬 Togo                          | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇹🇷 Türkiye                       | [MGM](#meteoroloji-genel-müdürlüğü)                | Forecast, Current, Alerts, Normals, Reverse                                          |
-| 🇬🇧 United Kingdom                | [Met Office](#met-office) 🔐                       | Forecast, Reverse                                                                    |
-| 🇺🇸 United States                 | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Reverse                                                   |
-| 🇻🇮 U.S. Virgin Is.               | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Reverse                                                   |
-| 🇻🇦 Vatican City                  | [Meteo AM](#servizio-meteo-am)                     | Forecast, Current, Reverse                                                           |
-| 🇼🇫 Wallis &amp; Futuna           | [Météo-France](#météo-france)                      | Forecast, Alerts, Reverse                                                            |
+| 🇹🇷 Türkiye                       | [MGM](#meteoroloji-genel-müdürlüğü)                | Forecast, Current, Alerts, Normals, Address                                          |
+| 🇬🇧 United Kingdom                | [Met Office](#met-office) 🔐                       | Forecast, Address                                                                    |
+| 🇺🇸 United States                 | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Address                                                   |
+| 🇻🇮 U.S. Virgin Is.               | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Address                                                   |
+| 🇻🇦 Vatican City                  | [Meteo AM](#servizio-meteo-am)                     | Forecast, Current, Address                                                           |
+| 🇼🇫 Wallis &amp; Futuna           | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
 | 🇿🇼 Zimbabwe                      | [ClimWeb](#climweb)                                | Alerts                                                                               |
 
 ## Worldwide sources
@@ -114,7 +114,7 @@ Below, you can find details about the support and implementation status for feat
 | ☔ **Precipitation nowcasting** | Available (works best in Europe at the moment)                             |
 | ⚠️ **Alerts**                  | Not available                                                              |
 | 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Reverse geocoding**       | Not available                                                              |
+| 🧭 **Address lookup**          | Not available                                                              |
 
 For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has temperature and precipitation 1-3 days accuracy comparison by city between the following sources: [AccuWeather](#accuweather), [NWS](#national-weather-service), **Open-Meteo** and [Pirate Weather](#pirate-weather).
 
@@ -148,7 +148,7 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | ☔ **Precipitation nowcasting** | Available                                                                  |
 | ⚠️ **Alerts**                  | Available                                                                  |
 | 📊 **Normals**                 | Available                                                                  |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location                      |
+| 🧭 **Address lookup**          | Available                                                                  |
 
 For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has temperature and precipitation 1-3 days accuracy comparison by city between the following sources: **AccuWeather**, [NWS](#national-weather-service), [Open-Meteo](#open-meteo) and [Pirate Weather](#pirate-weather).
 
@@ -182,7 +182,7 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | ☔ **Precipitation nowcasting** | Not available                                                              |
 | ⚠️ **Alerts**                  | Not available                                                              |
 | 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Reverse geocoding**       | Not available: will not show the name of device location                   |
+| 🧭 **Address lookup**          | Not available                                                              |
 
 <details><summary><h4>Details of available data from OpenWeather</h4></summary>
 
@@ -214,7 +214,7 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | ☔ **Precipitation nowcasting** | Available                                                                  |
 | ⚠️ **Alerts**                  | Available                                                                  |
 | 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Reverse geocoding**       | Not available: will not show the name of device location                   |
+| 🧭 **Address lookup**          | Not available                                                              |
 
 For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has temperature and precipitation 1-3 days accuracy comparison by city between the following sources: [AccuWeather](#accuweather), [NWS](#national-weather-service), [Open-Meteo](#open-meteo) and **Pirate Weather**.
 
@@ -248,7 +248,7 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | ☔ **Precipitation nowcasting** | Not available                                                              |
 | ⚠️ **Alerts**                  | Not available                                                              |
 | 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location                      |
+| 🧭 **Address lookup**          | Available                                                                  |
 
 <details><summary><h4>Details of available data from HERE</h4></summary>
 
@@ -284,7 +284,7 @@ Unless otherwise specified, features in the following sources will only work for
 | ☔ **Precipitation nowcasting** | Not available                                                              |
 | ⚠️ **Alerts**                  | Not available                                                              |
 | 📊 **Normals**                 | Available                                                                  |
-| 🧭 **Reverse geocoding**       | Not available: will not show the name of device location                   |
+| 🧭 **Address lookup**          | Not available                                                              |
 
 <details><summary><h4>Details of available data from AEMET</h4></summary>
 
@@ -304,18 +304,18 @@ Unless otherwise specified, features in the following sources will only work for
 
 **[Bangladesh Meteorological Department](https://live6.bmd.gov.bd/)** (BMD) is the official meteorological service of Bangladesh.
 
-| Feature                        | Detail                                                                  |
-|--------------------------------|-------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇧🇩 Bangladesh                                                         |
-| 📆 **Daily forecast**          | Up to 10 days                                                           |
-| ⏱️ **Hourly forecast**         | Up to 4 days                                                            |
-| ▶️ **Current observation**     | Not available: will show hourly forecast data                           |
-| 😶‍🌫️ **Air quality**         | Not available                                                           |
-| 🤧 **Pollen**                  | Not available                                                           |
-| ☔ **Precipitation nowcasting** | Not available                                                           |
-| ⚠️ **Alerts**                  | Not available                                                           |
-| 📊 **Normals**                 | Not available                                                           |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location within Bangladesh |
+| Feature                        | Detail                                        |
+|--------------------------------|-----------------------------------------------|
+| 🗺️ **Coverage**               | 🇧🇩 Bangladesh                               |
+| 📆 **Daily forecast**          | Up to 10 days                                 |
+| ⏱️ **Hourly forecast**         | Up to 4 days                                  |
+| ▶️ **Current observation**     | Not available: will show hourly forecast data |
+| 😶‍🌫️ **Air quality**         | Not available                                 |
+| 🤧 **Pollen**                  | Not available                                 |
+| ☔ **Precipitation nowcasting** | Not available                                 |
+| ⚠️ **Alerts**                  | Not available                                 |
+| 📊 **Normals**                 | Not available                                 |
+| 🧭 **Address lookup**          | Available                                     |
 
 <details><summary><h4>Details of available data from BMD</h4></summary>
 
@@ -346,7 +346,7 @@ Unless otherwise specified, features in the following sources will only work for
 | ☔ **Precipitation nowcasting** | Not available                                                                   |
 | ⚠️ **Alerts**                  | Available in Indonesian; Impact Based Forecast alerts also available in English |
 | 📊 **Normals**                 | Not available                                                                   |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location within Indonesia          |
+| 🧭 **Address lookup**          | Available                                                                       |
 
 <details><summary><h4>Details of available data from BMKG</h4></summary>
 
@@ -376,7 +376,7 @@ Unless otherwise specified, features in the following sources will only work for
 | ☔ **Precipitation nowcasting** | Not available                                                              |
 | ⚠️ **Alerts**                  | Available in both English and German                                       |
 | 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Reverse geocoding**       | Not available: will not show the name of device location                   |
+| 🧭 **Address lookup**          | Not available                                                              |
 
 <details><summary><h4>Details of available data from Bright Sky</h4></summary>
 
@@ -408,7 +408,7 @@ Unless otherwise specified, features in the following sources will only work for
 | ☔ **Precipitation nowcasting** | Not available                                                                                  |
 | ⚠️ **Alerts**                  | Available in Traditional Chinese                                                               |
 | 📊 **Normals**                 | Available                                                                                      |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location within Taiwan                            |
+| 🧭 **Address lookup**          | Available                                                                                      |
 
 <details><summary><h4>Details of available data from CWA</h4></summary>
 
@@ -438,7 +438,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Available                                                                  |
 | ⚠️ **Alerts**                  | Available                                                                  |
 | 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location                      |
+| 🧭 **Address lookup**          | Available                                                                  |
 
 <details><summary><h4>Details of available data from China source</h4></summary>
 
@@ -468,7 +468,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Not available                                                                                                             |
 | ⚠️ **Alerts**                  | Available for Denmark                                                                                                     |
 | 📊 **Normals**                 | Not available                                                                                                             |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location                                                                     |
+| 🧭 **Address lookup**          | Available                                                                                                                 |
 
 <details><summary><h4>Details of available data from DMI</h4></summary>
 
@@ -498,7 +498,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Not available                                                              |
 | ⚠️ **Alerts**                  | Available                                                                  |
 | 📊 **Normals**                 | Available                                                                  |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location                      |
+| 🧭 **Address lookup**          | Available                                                                  |
 
 <details><summary><h4>Details of available data from ECCC</h4></summary>
 
@@ -528,7 +528,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Available for Austria and nearby                                                      |
 | ⚠️ **Alerts**                  | Available                                                                             |
 | 📊 **Normals**                 | 🚧 *(in progress)* 🚧                                                                 |
-| 🧭 **Reverse geocoding**       | Not available: will not show the name of device location                              |
+| 🧭 **Address lookup**          | Not available                                                                         |
 
 <details><summary><h4>Details of available data from Geosphere Austria</h4></summary>
 
@@ -559,7 +559,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Not available                                                                                                                                     |
 | ⚠️ **Alerts**                  | Available in English, Traditional Chines, and Simplified Chinese. Alert headlines are additionally available in Hindi, Indonesian, and Vietnamese |
 | 📊 **Normals**                 | Available                                                                                                                                         |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location in Hong Kong                                                                                |
+| 🧭 **Address lookup**          | Available                                                                                                                                         |
 
 <details><summary><h4>Details of available data from HKO</h4></summary>
 
@@ -591,7 +591,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Not available                                                                                |
 | ⚠️ **Alerts**                  | Not available                                                                                |
 | 📊 **Normals**                 | Not available                                                                                |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location in Estonia                             |
+| 🧭 **Address lookup**          | Available                                                                                    |
 
 <details><summary><h4>Details of available data from Ilmateenistus</h4></summary>
 
@@ -622,7 +622,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Not available                                            |
 | ⚠️ **Alerts**                  | Not available                                            |
 | 📊 **Normals**                 | Not available                                            |
-| 🧭 **Reverse geocoding**       | Not available: will not show the name of device location |
+| 🧭 **Address lookup**          | Not available                                            |
 
 <details><summary><h4>Details of available data from IMD</h4></summary>
 
@@ -642,18 +642,18 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 **[Instituto Português do Mar e da Atmosfera](https://www.ipma.pt/)** (IPMA) is the official meteorological service of Portugal.
 
-| Feature                        | Detail                                                            |
-|--------------------------------|-------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇵🇹 Portugal                                                     |
-| 📆 **Daily forecast**          | Up to 10 days                                                     |
-| ⏱️ **Hourly forecast**         | Up to 5 days                                                      |
-| ▶️ **Current observation**     | Not available: will show hourly forecast data                     |
-| 😶‍🌫️ **Air quality**         | Not available                                                     |
-| 🤧 **Pollen**                  | Not available                                                     |
-| ☔ **Precipitation nowcasting** | Not available                                                     |
-| ⚠️ **Alerts**                  | Available                                                         |
-| 📊 **Normals**                 | Not available                                                     |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location in Portugal |
+| Feature                        | Detail                                        |
+|--------------------------------|-----------------------------------------------|
+| 🗺️ **Coverage**               | 🇵🇹 Portugal                                 |
+| 📆 **Daily forecast**          | Up to 10 days                                 |
+| ⏱️ **Hourly forecast**         | Up to 5 days                                  |
+| ▶️ **Current observation**     | Not available: will show hourly forecast data |
+| 😶‍🌫️ **Air quality**         | Not available                                 |
+| 🤧 **Pollen**                  | Not available                                 |
+| ☔ **Precipitation nowcasting** | Not available                                 |
+| ⚠️ **Alerts**                  | Available                                     |
+| 📊 **Normals**                 | Not available                                 |
+| 🧭 **Address lookup**          | Available                                     |
 
 <details><summary><h4>Details of available data from IPMA</h4></summary>
 
@@ -683,7 +683,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Not available                                                                          |
 | ⚠️ **Alerts**                  | Available in English and Hebrew. Alert headlines are additionally available in Arabic. |
 | 📊 **Normals**                 | Not available                                                                          |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location                                  |
+| 🧭 **Address lookup**          | Available                                                                              |
 
 <details><summary><h4>Details of available data from IMS</h4></summary>
 
@@ -714,7 +714,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Not available                                                                           |
 | ⚠️ **Alerts**                  | Available in Japanese. Alert headlines are additionally available in multiple languages |
 | 📊 **Normals**                 | Available                                                                               |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location in Japan                          |
+| 🧭 **Address lookup**          | Available                                                                               |
 
 <details><summary><h4>Details of available data from IPMA</h4></summary>
 
@@ -745,7 +745,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Not available                                                              |
 | ⚠️ **Alerts**                  | Available                                                                  |
 | 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location in Lithuania         |
+| 🧭 **Address lookup**          | Available                                                                  |
 
 <details><summary><h4>Details of available data from LHMT</h4></summary>
 
@@ -776,7 +776,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Not available                                                              |
 | ⚠️ **Alerts**                  | 🚧 *in progress*                                                           |
 | 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location in Latvia            |
+| 🧭 **Address lookup**          | Available                                                                  |
 
 <details><summary><h4>Details of available data from LVĢMC</h4></summary>
 
@@ -795,18 +795,18 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 ### Met Éireann
 **[Met Éireann](https://www.met.ie/)** is the official meteorological service of Ireland.
 
-| Feature                        | Detail                                                           |
-|--------------------------------|------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇮🇪 Ireland                                                     |
-| 📆 **Daily forecast**          | Up to 7 days                                                     |
-| ⏱️ **Hourly forecast**         | Up to 7 days                                                     |
-| ▶️ **Current observation**     | Not available: will show hourly forecast data                    |
-| 😶‍🌫️ **Air quality**         | Not available                                                    |
-| 🤧 **Pollen**                  | Not available                                                    |
-| ☔ **Precipitation nowcasting** | Not available                                                    |
-| ⚠️ **Alerts**                  | Available                                                        |
-| 📊 **Normals**                 | Not available                                                    |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location in Ireland |
+| Feature                        | Detail                                        |
+|--------------------------------|-----------------------------------------------|
+| 🗺️ **Coverage**               | 🇮🇪 Ireland                                  |
+| 📆 **Daily forecast**          | Up to 7 days                                  |
+| ⏱️ **Hourly forecast**         | Up to 7 days                                  |
+| ▶️ **Current observation**     | Not available: will show hourly forecast data |
+| 😶‍🌫️ **Air quality**         | Not available                                 |
+| 🤧 **Pollen**                  | Not available                                 |
+| ☔ **Precipitation nowcasting** | Not available                                 |
+| ⚠️ **Alerts**                  | Available                                     |
+| 📊 **Normals**                 | Not available                                 |
+| 🧭 **Address lookup**          | Available                                     |
 
 <details><summary><h4>Details of available data from MET Éireann</h4></summary>
 
@@ -839,7 +839,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Available for Metropolitan France                                                                                                                                    |
 | ⚠️ **Alerts**                  | Available for France and its overseas territories                                                                                                                    |
 | 📊 **Normals**                 | Available for France and its overseas territories                                                                                                                    |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location                                                                                                                |
+| 🧭 **Address lookup**          | Available                                                                                                                                                            |
 
 <details><summary><h4>Details of available data from Météo-France</h4></summary>
 
@@ -870,7 +870,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Not available                                                              |
 | ⚠️ **Alerts**                  | Available in English, French, and German                                   |
 | 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location in Luxembourg        |
+| 🧭 **Address lookup**          | Available                                                                  |
 
 <details><summary><h4>Details of available data from MeteoLux</h4></summary>
 
@@ -901,7 +901,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Not available                                                              |
 | ⚠️ **Alerts**                  | Available                                                                  |
 | 📊 **Normals**                 | Available                                                                  |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location within Türkiye       |
+| 🧭 **Address lookup**          | Available                                                                  |
 
 <details><summary><h4>Details of available data from MGM</h4></summary>
 
@@ -931,7 +931,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Available for the Nordic region                                                     |
 | ⚠️ **Alerts**                  | Available for Norway                                                                |
 | 📊 **Normals**                 | Not available                                                                       |
-| 🧭 **Reverse geocoding**       | Not available: will not show the name of device location                            |
+| 🧭 **Address lookup**          | Not available                                                                       |
 
 <details><summary><h4>Details of available data from MET Norway</h4></summary>
 
@@ -964,7 +964,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Not available                                                                                                          |
 | ⚠️ **Alerts**                  | Not available                                                                                                          |
 | 📊 **Normals**                 | Not available                                                                                                          |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location                                                                  |
+| 🧭 **Address lookup**          | Available                                                                                                              |
 
 <details><summary><h4>Details of available data from Met Office</h4></summary>
 
@@ -995,7 +995,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Not available                                                              |
 | ⚠️ **Alerts**                  | Not available                                                              |
 | 📊 **Normals**                 | Available                                                                  |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location in Mongolia          |
+| 🧭 **Address lookup**          | Available                                                                  |
 
 <details><summary><h4>Details of available data from NAMEM</h4></summary>
 
@@ -1025,7 +1025,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | ☔ **Precipitation nowcasting** | Not available                                                                                            |
 | ⚠️ **Alerts**                  | Available                                                                                                |
 | 📊 **Normals**                 | Not available                                                                                            |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location                                                    |
+| 🧭 **Address lookup**          | Available                                                                                                |
 
 For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has temperature and precipitation 1-3 days accuracy comparison by city between the following sources: [AccuWeather](#accuweather), **NWS**, [Open-Meteo](#open-meteo) and [Pirate Weather](#pirate-weather).
 
@@ -1058,7 +1058,7 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | ☔ **Precipitation nowcasting** | Not available                                                              |
 | ⚠️ **Alerts**                  | Not available                                                              |
 | 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Reverse geocoding**       | Not available: will not show the name of device location                   |
+| 🧭 **Address lookup**          | Not available                                                              |
 
 <details><summary><h4>Details of available data from PAGASA</h4></summary>
 
@@ -1089,7 +1089,7 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | ☔ **Precipitation nowcasting** | Not available                                                              |
 | ⚠️ **Alerts**                  | Available in English, Traditional Chinese, and Portuguese                  |
 | 📊 **Normals**                 | Available                                                                  |
-| 🧭 **Reverse geocoding**       | Not available: will not show the name of device location                   |
+| 🧭 **Address lookup**          | Not available                                                              |
 
 <details><summary><h4>Details of available data from SMG</h4></summary>
 
@@ -1119,7 +1119,7 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | ☔ **Precipitation nowcasting** | Not available                                                                                                           |
 | ⚠️ **Alerts**                  | Not available                                                                                                           |
 | 📊 **Normals**                 | Not available                                                                                                           |
-| 🧭 **Reverse geocoding**       | Available: will show the name of the nearest location                                                                   |
+| 🧭 **Address lookup**          | Available                                                                                                               |
 
 <details><summary><h4>Details of available data from Meteo AM</h4></summary>
 
@@ -1149,7 +1149,7 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | ☔ **Precipitation nowcasting** | Not available                                            |
 | ⚠️ **Alerts**                  | Not available                                            |
 | 📊 **Normals**                 | Not available                                            |
-| 🧭 **Reverse geocoding**       | Not available: will not show the name of device location |
+| 🧭 **Address lookup**          | Not available                                            |
 
 <details><summary><h4>Details of available data from SMHI</h4></summary>
 

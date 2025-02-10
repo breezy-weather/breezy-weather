@@ -1,13 +1,13 @@
 ## Weather update process
 
-*Latest update of this document: 2024-10-21 (v5.3.0)*
+*Latest update of this document: 2025-02-10 (v5.4.3)*
 
 1. If the location refreshed is current location, the first thing done is refresh the current longitude and latitude from your location source.
     - If it fails, it will fallback to latest known longitude and latitude, and continue to the next step.
     - If we don’t have latest known longitude and latitude (meaning there has never been any successful refresh), the refresh process for this location ends now.
     - If refreshing manually, an error will be displayed in both cases.
     - If refreshing in the background, an error will only be displayed if we don’t have any latest known longitude and latitude.
-2. If the location refreshed is current location AND (longitude OR latitude OR main weather source changed), we try to get from the main weather source a reverse geocoding update (updated city/province/country info). If the main weather source doesn’t support reverse geocoding, we fallback to an offline reverse geocoding that only supports country reverse geocoding.
+2. If the location refreshed is current location AND (longitude OR latitude OR address lookup source changed), we try to get from the address lookup source an update (city/province/country info). If no address lookup source is selected, we fallback to an offline reverse geocoding that only supports country lookup.
 
 Info: Some weather sources need what we call "location parameters" before we can get weather. An example is that we have a longitude/latitude, but some weather sources only want a city identifier or grid forecast identifier on the weather endpoint. In such cases, we ask the weather source to provide us these information before we can proceed to actual weather request. These information are then saved, and usually no longer requested if it is a manually added location or only if longitude/latitude changed if current location.
 

@@ -260,6 +260,8 @@
     <string name="weather_minutely_data_by">Precipitation nowcasting data by %s</string>
     <string name="weather_alert_data_by">Alert data by %s</string>
     <string name="weather_normals_data_by">Temperature normals data by %s</string>
+    <!-- Address is singular -->
+    <string name="location_reverse_geocoding_by">Address lookup by %s</string>
     <string name="weather_message_data_refresh_failed">Data refresh failed</string>
     <string name="weather_message_unsupported_feature">Source doesn’t support one of requested features</string>
     <string name="weather_message_invalid_location">Invalid location, please delete it and re-add</string>
@@ -296,6 +298,8 @@
     <string name="locations">Locations</string>
     <string name="location_current">Current location</string>
     <string name="location_custom_name">Custom name</string>
+    <!-- Address is singular -->
+    <string name="location_reverse_geocoding">Address lookup</string>
     <string name="location_search_weather_source">Weather source</string>
     <!-- Ex: Location results by Open-Meteo -->
     <string name="location_results_by">Location results by %s</string>

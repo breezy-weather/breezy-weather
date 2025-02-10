@@ -64,6 +64,7 @@ class LvgmcService @Inject constructor(
     }
 
     private val weatherAttribution = "Latvijas Vides, ģeoloģijas un meteoroloģijas centrs"
+    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
@@ -74,6 +75,10 @@ class LvgmcService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
+        return isReverseGeocodingSupportedForLocation(location)
+    }
+
+    override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
         return location.countryCode.equals("LV", ignoreCase = true)
     }
 

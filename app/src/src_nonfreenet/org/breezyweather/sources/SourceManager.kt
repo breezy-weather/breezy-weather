@@ -340,6 +340,17 @@ class SourceManager @Inject constructor(
     fun getReverseGeocodingSources(): ImmutableList<ReverseGeocodingSource> = sourceList
         .filterIsInstance<ReverseGeocodingSource>()
         .toImmutableList()
+    fun getSupportedReverseGeocodingSources(
+        location: Location? = null,
+    ): ImmutableList<ReverseGeocodingSource> = getReverseGeocodingSources()
+        .filter {
+            it.id != "naturalearth" &&
+                (
+                    location == null ||
+                        (location.isCurrentPosition && !location.isUsable) ||
+                        it.isReverseGeocodingSupportedForLocation(location)
+                    )
+        }.toImmutableList()
     fun getReverseGeocodingSource(id: String): ReverseGeocodingSource? = getReverseGeocodingSources()
         .firstOrNull { it.id == id }
     fun getReverseGeocodingSourceOrDefault(id: String): ReverseGeocodingSource = getReverseGeocodingSource(id)

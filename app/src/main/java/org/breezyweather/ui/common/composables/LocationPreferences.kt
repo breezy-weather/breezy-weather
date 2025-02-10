@@ -336,8 +336,8 @@ fun SecondarySourcesPreference(
     }
 
     val dialogLinkOpenState = remember { mutableStateOf(false) }
-    val hasChangedMainSource = remember { mutableStateOf(false) }
-    val hasChangedASecondarySource = remember { mutableStateOf(false) }
+    val hasChangedReverseGeocodingSource = remember { mutableStateOf(false) }
+    val hasChangedASource = remember { mutableStateOf(false) }
     val forecastSource = remember { mutableStateOf(location.forecastSource) }
     val currentSource = remember { mutableStateOf(location.currentSource ?: "") }
     val airQualitySource = remember { mutableStateOf(location.airQualitySource ?: "") }
@@ -345,6 +345,7 @@ fun SecondarySourcesPreference(
     val minutelySource = remember { mutableStateOf(location.minutelySource ?: "") }
     val alertSource = remember { mutableStateOf(location.alertSource ?: "") }
     val normalsSource = remember { mutableStateOf(location.normalsSource ?: "") }
+    val reverseGeocodingSource = remember { mutableStateOf(location.reverseGeocodingSource ?: "") }
 
     /**
      * In the filter condition, we always take the current source, even if no longer compatible
@@ -450,6 +451,21 @@ fun SecondarySourcesPreference(
             }.toImmutableList()
         }.toImmutableMap()
 
+    val compatibleReverseGeocodingSources = sourceManager
+        .getSupportedReverseGeocodingSources(location)
+        .groupBy { if (it is HttpSource) it.continent else null }
+        .toSortedMap(continentComparator)
+        .mapValues { m ->
+            m.value.map {
+                Triple(
+                    it.id,
+                    it.getName(context, SourceFeature.REVERSE_GEOCODING, location),
+                    (it !is ConfigurableSource || it.isConfigured) &&
+                        it.isReverseGeocodingSupportedForLocation(location)
+                )
+            }.toImmutableList()
+        }.toImmutableMap()
+
     AlertDialogNoPadding(
         modifier = modifier,
         onDismissRequest = {
@@ -526,7 +542,7 @@ fun SecondarySourcesPreference(
                     withState = false
                 ) { sourceId ->
                     forecastSource.value = sourceId
-                    hasChangedMainSource.value = true
+                    hasChangedASource.value = true
                 }
                 SourceViewWithContinents(
                     title = stringResource(SourceFeature.CURRENT.resourceName!!),
@@ -565,7 +581,7 @@ fun SecondarySourcesPreference(
                     withState = false
                 ) { sourceId ->
                     currentSource.value = sourceId
-                    hasChangedASecondarySource.value = true
+                    hasChangedASource.value = true
                 }
                 SourceViewWithContinents(
                     title = stringResource(SourceFeature.AIR_QUALITY.resourceName!!),
@@ -604,7 +620,7 @@ fun SecondarySourcesPreference(
                     withState = false
                 ) { sourceId ->
                     airQualitySource.value = sourceId
-                    hasChangedASecondarySource.value = true
+                    hasChangedASource.value = true
                 }
                 SourceViewWithContinents(
                     title = stringResource(SourceFeature.POLLEN.resourceName!!),
@@ -643,7 +659,7 @@ fun SecondarySourcesPreference(
                     withState = false
                 ) { sourceId ->
                     pollenSource.value = sourceId
-                    hasChangedASecondarySource.value = true
+                    hasChangedASource.value = true
                 }
                 SourceViewWithContinents(
                     title = stringResource(SourceFeature.MINUTELY.resourceName!!),
@@ -682,7 +698,7 @@ fun SecondarySourcesPreference(
                     withState = false
                 ) { sourceId ->
                     minutelySource.value = sourceId
-                    hasChangedASecondarySource.value = true
+                    hasChangedASource.value = true
                 }
                 SourceViewWithContinents(
                     title = stringResource(SourceFeature.ALERT.resourceName!!),
@@ -721,7 +737,7 @@ fun SecondarySourcesPreference(
                     withState = false
                 ) { sourceId ->
                     alertSource.value = sourceId
-                    hasChangedASecondarySource.value = true
+                    hasChangedASource.value = true
                 }
                 SourceViewWithContinents(
                     title = stringResource(SourceFeature.NORMALS.resourceName!!),
@@ -760,18 +776,59 @@ fun SecondarySourcesPreference(
                     withState = false
                 ) { sourceId ->
                     normalsSource.value = sourceId
-                    hasChangedASecondarySource.value = true
+                    hasChangedASource.value = true
+                }
+                // No reverse geocoding sources available in the freenet version, so hiding for now
+                if (location.isCurrentPosition && BuildConfig.FLAVOR != "freenet") {
+                    SourceViewWithContinents(
+                        title = stringResource(SourceFeature.REVERSE_GEOCODING.resourceName!!),
+                        selectedKey = reverseGeocodingSource.value,
+                        sourceList = buildMap {
+                            put(
+                                null,
+                                buildList {
+                                    if (reverseGeocodingSource.value.isNotEmpty() &&
+                                        !compatibleReverseGeocodingSources.values.any { l ->
+                                            l.any { it.first == reverseGeocodingSource.value }
+                                        }
+                                    ) {
+                                        add(
+                                            Triple(
+                                                reverseGeocodingSource.value,
+                                                stringResource(
+                                                    R.string.settings_weather_source_unavailable,
+                                                    reverseGeocodingSource.value
+                                                ),
+                                                false
+                                            )
+                                        )
+                                    }
+                                    add(
+                                        Triple(
+                                            "",
+                                            stringResource(R.string.settings_weather_source_none),
+                                            true
+                                        )
+                                    )
+                                }.toImmutableList()
+                            )
+                            putAll(compatibleReverseGeocodingSources)
+                        }.toImmutableMap(),
+                        withState = false
+                    ) { sourceId ->
+                        reverseGeocodingSource.value = sourceId
+                        hasChangedReverseGeocodingSource.value = true
+                    }
                 }
             }
         },
         confirmButton = {
             TextButton(
                 onClick = {
-                    if (hasChangedMainSource.value || hasChangedASecondarySource.value) {
+                    if (hasChangedReverseGeocodingSource.value || hasChangedASource.value) {
                         val newLocation = location.copy(
-                            // Reset cityId when changing source as they are linked to source
-                            // Also reset secondary weather sources which are the new main source
-                            cityId = if (hasChangedMainSource.value) "" else location.cityId,
+                            // Reset cityId as they differ from one reverse geocoding source to another
+                            cityId = if (hasChangedReverseGeocodingSource.value) "" else location.cityId,
                             forecastSource = forecastSource.value,
                             currentSource = currentSource.value,
                             airQualitySource = airQualitySource.value,
@@ -779,7 +836,8 @@ fun SecondarySourcesPreference(
                             minutelySource = minutelySource.value,
                             alertSource = alertSource.value,
                             normalsSource = normalsSource.value,
-                            needsGeocodeRefresh = hasChangedMainSource.value && location.isCurrentPosition,
+                            reverseGeocodingSource = reverseGeocodingSource.value,
+                            needsGeocodeRefresh = hasChangedReverseGeocodingSource.value && location.isCurrentPosition,
                             // TODO: Will trigger a full refresh which we should avoid
                             // if we only change a secondary weather source
                             weather = location.weather?.let { weather ->

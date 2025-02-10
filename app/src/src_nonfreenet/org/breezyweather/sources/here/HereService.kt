@@ -75,6 +75,7 @@ class HereService @Inject constructor(
     }
 
     private val weatherAttribution = "HERE"
+    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,

@@ -11,7 +11,14 @@ fun Source.getName(context: Context, feature: SourceFeature? = null, location: L
     } else if (this is WeatherSource &&
         location != null &&
         feature != null &&
+        feature != SourceFeature.REVERSE_GEOCODING &&
         !isFeatureSupportedForLocation(location, feature)
+    ) {
+        context.getString(R.string.settings_weather_source_unavailable, name)
+    } else if (this is ReverseGeocodingSource &&
+        location != null &&
+        feature == SourceFeature.REVERSE_GEOCODING &&
+        !isReverseGeocodingSupportedForLocation(location)
     ) {
         context.getString(R.string.settings_weather_source_unavailable, name)
     } else {

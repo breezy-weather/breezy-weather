@@ -61,6 +61,7 @@ class MeteoAmService @Inject constructor(
     private val weatherAttribution = "Servizio Meteorologico dell’Aeronautica Militare. Informazioni elaborate " +
         "utilizzando, tra l’altro, dati e prodotti del Servizio Meteorologico dell’Aeronautica Militare pubblicati " +
         "sul sito www.meteoam.it"
+    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution

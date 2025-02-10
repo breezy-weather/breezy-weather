@@ -40,6 +40,7 @@ import kotlinx.coroutines.rx3.awaitFirstOrElse
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import org.breezyweather.BreezyWeather
+import org.breezyweather.BuildConfig
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.exceptions.NoNetworkException
@@ -116,7 +117,7 @@ class RefreshHelper @Inject constructor(
         }
 
         if (currentLocation.isUsable) {
-            val source = location.forecastSource
+            val source = location.reverseGeocodingSource ?: BuildConfig.DEFAULT_GEOCODING_SOURCE
             val weatherService = sourceManager.getReverseGeocodingSourceOrDefault(source)
             val locationGeocoded = if (
                 location.longitude != currentLocation.longitude ||

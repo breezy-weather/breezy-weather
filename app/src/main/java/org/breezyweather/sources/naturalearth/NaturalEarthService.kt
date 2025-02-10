@@ -55,6 +55,7 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
 
     override val id = "naturalearth"
     override val name = "Natural Earth"
+    override val reverseGeocodingAttribution = name
 
     private fun getMatchingFeaturesForLocation(
         context: Context,
