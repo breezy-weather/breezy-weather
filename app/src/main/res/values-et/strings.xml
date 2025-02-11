@@ -161,7 +161,7 @@
     <string name="weather_air_quality_data_by">Õhukvaliteedi andmete allikas:%s</string>
     <string name="weather_pollen_data_by">Õietolmu andmete allikas:%s</string>
     <string name="weather_air_quality_and_pollen_data_by">Õhukvaliteedi ja õietolmu andmete allikas:%s</string>
-    <string name="weather_message_data_refresh_failed">Ilma andmete värskendamine ebaõnnestus</string>
+    <string name="weather_message_data_refresh_failed">Andmete värskendamine ebaõnnestus</string>
     <string name="weather_message_too_frequent_refreshes">Palun oodake mõni sekund enne uuesti proovimist…</string>
     <string name="weather_api_limit_reached_title">API päringute limiit on ületatud</string>
     <string name="weather_api_limit_reached_content">API päringute limiidi kõrvaldamiseks lisage omaenda API võti.</string>
@@ -698,4 +698,27 @@
     <string name="pollen_pinus">Mänd</string>
     <string name="pollen_acer">Vaher</string>
     <string name="pollen_atriplex">Malts</string>
+    <string name="action_show">Näita</string>
+    <string name="dialog_refresh_error_details_content">Vajuta küsimärgiga veateadetele lisateabe jaoks.</string>
+    <string name="message_multiple_refresh_errors">Vigadega värskendamised</string>
+    <string name="dialog_refresh_error_details_title">Värskendamise vead</string>
+    <string name="weather_source_continent_europe">Euroopa</string>
+    <string name="weather_source_continent_north_america">Põhja-Ameerika</string>
+    <string name="weather_source_continent_south_america">Lõuna-Ameerika</string>
+    <string name="forecast">Prognoos</string>
+    <string name="location_has_active_alerts">Aktiveeri hoiatus</string>
+    <string name="settings_weather_source_current_position_disclaimer">Rohkem ilmateate allikaid võivad muutuda kättesaadavaks teie asukohale peale värskendamist.</string>
+    <string name="location_message_location_access_off">Juurdepääs asukohale on väljas</string>
+    <string name="location_reverse_geocoding_by">Aadressi otsing %s poolt</string>
+    <string name="weather_source_continent_worldwide">Ülemaailmne</string>
+    <string name="weather_source_continent_africa">Aafrika</string>
+    <string name="location_custom_name">Kohandatud nimi</string>
+    <string name="location_reverse_geocoding">Aadressi otsing</string>
+    <string name="settings_notifications_permission">Teavituste luba vajalik</string>
+    <string name="weather_forecast_data_by">Proignoosi andmed %s poolt</string>
+    <string name="weather_source_continent_asia">Aasia</string>
+    <string name="location_last_updated_x">Viimati uuendatud %s</string>
+    <string name="weather_source_continent_oceania">Okeaania</string>
+    <string name="action_grant_permission">Vajuta, et anda luba.</string>
+    <string name="settings_weather_source_not_configured">%s (pole seadistatud)</string>
 </resources>
