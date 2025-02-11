@@ -821,4 +821,6 @@
     <string name="action_grant_permission">轻按授予权限。</string>
     <string name="settings_notifications_permission_summary">需要该权限来发出警报、预报和应用更新的提醒。%s</string>
     <string name="settings_debug_notification_permission">需要该权限来发出崩溃记录和天气更新失败的提醒。%s</string>
+    <string name="location_reverse_geocoding_by">通过 %s 查询位置</string>
+    <string name="location_reverse_geocoding">位置查询</string>
 </resources>
