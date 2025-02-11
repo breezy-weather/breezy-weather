@@ -94,7 +94,7 @@
     <string name="dialog_permissions_location_background_title">Accedi alla posizione in background</string>
     <string name="dialog_permissions_location_background_content">Per consentire l’aggiornamento del meteo in background sulla base delle posizioni più recenti memorizzate da Android, devi settare i permessi di geolocalizzazione su “Concedi sempre”. Se non lo fai, il meteo verrà aggiornato sulla base delle ultime coordinate registrate, per cui i dati potrebbero essere obsoleti.</string>
     <string name="location_message_failed_to_locate">Localizzazione fallita</string>
-    <string name="weather_message_data_refresh_failed">Aggiornamento previsioni fallito</string>
+    <string name="weather_message_data_refresh_failed">Aggiornamento dati fallito</string>
     <string name="location_dialog_failed_to_locate_title">Errore inserimento luogo\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Controlla i permessi di Localizzazione</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Abilita la Localizzazione</string>
@@ -737,4 +737,6 @@
     <string name="action_grant_permission">Premi per garantire il permesso.</string>
     <string name="settings_notifications_permission_summary">Necessario per notificare allerte, previsioni e aggiornamenti dell’applicazione. %s</string>
     <string name="location_custom_name">Nome personalizzato</string>
+    <string name="location_reverse_geocoding">Ricerca indirizzo</string>
+    <string name="location_reverse_geocoding_by">Cerca indirizzo per %s</string>
 </resources>
