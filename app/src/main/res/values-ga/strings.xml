@@ -11,7 +11,7 @@
     <string name="alerts">Foláirimh</string>
     <string name="alerts_to_follow">Foláirimh atá le teacht, tapáil anseo chun iad a fheiceáil.</string>
     <string name="alert_source">Foinse: %s</string>
-    <string name="short_yesterday">YdaInné</string>
+    <string name="short_yesterday">Yda</string>
     <string name="short_tomorrow">Amár</string>
     <string name="temperature">Teocht</string>
     <string name="temperature_feels_like_short">Mothaíonn sé cosúil le</string>
