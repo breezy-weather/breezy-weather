@@ -297,7 +297,7 @@
     <string name="unit_m_voice">公尺</string>
     <string name="unit_mi">mi</string>
     <string name="unit_mi_voice">英里</string>
-    <string name="unit_nmi">nmi</string>
+    <string name="unit_nmi">海里</string>
     <string name="unit_nmi_voice">海里</string>
     <string name="unit_ft">ft</string>
     <string name="unit_ft_voice">英尺</string>
@@ -818,4 +818,6 @@
     <string name="location_custom_name">自訂名稱</string>
     <string name="location_has_active_alerts">現有發布警特報</string>
     <string name="settings_widgets_notification_permission_summary">授予權限後，才能顯示通知小工具。%s</string>
+    <string name="location_reverse_geocoding_by">透過 %s 查找地址</string>
+    <string name="location_reverse_geocoding">地址查找</string>
 </resources>
