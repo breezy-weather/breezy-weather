@@ -18,7 +18,6 @@ package org.breezyweather.sources.nominatim
 
 import android.content.Context
 import android.os.Build
-import androidx.compose.ui.text.toUpperCase
 import breezyweather.domain.location.model.Location
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
