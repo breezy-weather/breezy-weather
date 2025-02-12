@@ -18,9 +18,11 @@ package org.breezyweather.sources.nominatim
 
 import android.content.Context
 import android.os.Build
+import androidx.compose.ui.text.toUpperCase
 import breezyweather.domain.location.model.Location
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.ReverseGeocodingSource
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -69,7 +71,11 @@ class NominatimService @Inject constructor(
                         if (country.isNullOrEmpty()) location.country else country
                     },
                     countryCode = it.address?.countryCode.let { countryCode ->
-                        if (countryCode.isNullOrEmpty()) location.countryCode else countryCode
+                        if (countryCode.isNullOrEmpty()) {
+                            location.countryCode
+                        } else {
+                            countryCode.uppercase(context.currentLocale)
+                        }
                     },
                     // Make sure to update TimeZone, especially useful on current location
                     timeZone = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
