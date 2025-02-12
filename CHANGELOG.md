@@ -3,6 +3,9 @@
 **New features**
 - Address lookup source: allows to choose a source different from forecast source for address lookup of current location. Docs were updated to use the terms “address lookup” where it was previously called “reverse geocoding”
 
+**Improvements and fixes**
+- [Live Wallpaper] Attempt to reduce power consumption when used with animations off
+
 **Weather sources**
 - Android Geocoder: added as possible Address lookup source on devices supporting it
 - Nominatim: added as possible Address lookup source

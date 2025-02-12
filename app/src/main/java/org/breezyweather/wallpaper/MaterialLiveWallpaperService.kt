@@ -114,14 +114,15 @@ class MaterialLiveWallpaperService : WallpaperService() {
         private var mHandlerThread: HandlerThread? = null
         private var mHandler: Handler? = null
         private val mDrawableRunnable = Runnable {
-            // Commented because not updating on rotate otherwise
-            /*if (mIntervalComputer == null ||
+            if (mIntervalComputer == null ||
                 mImplementor == null ||
                 mBackground == null ||
                 mRotators == null ||
-                mHandler == null) {
-                return;
-            }*/
+                mHandler == null
+            ) {
+                return@Runnable
+            }
+            // LogHelper.log(msg = "[LiveWallpaper] Runnable is running")
             mIntervalComputer?.invalidate()
             if (mRotators != null && mIntervalComputer != null) {
                 mRotators!![0].updateRotation(mRotation2D.toDouble(), mIntervalComputer!!.interval)
@@ -223,7 +224,14 @@ class MaterialLiveWallpaperService : WallpaperService() {
                 applicationContext
             ) {
                 override fun onOrientationChanged(orientation: Int) {
-                    mDeviceOrientation = getDeviceOrientation(orientation)
+                    val newOrientation = getDeviceOrientation(orientation)
+                    if (newOrientation != mDeviceOrientation) {
+                        // LogHelper.log(msg = "[LiveWallpaper] Orientation: $mDeviceOrientation -> $newOrientation")
+                        mDeviceOrientation = newOrientation
+                        if (!mAnimate) {
+                            mHandler?.post(mDrawableRunnable)
+                        }
+                    }
                 }
 
                 private fun getDeviceOrientation(orientation: Int): DeviceOrientation {
@@ -406,15 +414,24 @@ class MaterialLiveWallpaperService : WallpaperService() {
             }
 
             setWeatherBackgroundDrawable()
-            val screenRefreshRate = ContextCompat.getDisplayOrDefault(this@MaterialLiveWallpaperService)
-                .refreshRate.let {
-                    if (it > 60f) 60f else it
-                }
-            mIntervalController = AsyncHelper.intervalRunOnUI(
-                { mHandler?.post(mDrawableRunnable) },
-                (1000.0 / screenRefreshRate).toLong(),
-                0
-            )
+            if (mAnimate) {
+                val screenRefreshRate = ContextCompat.getDisplayOrDefault(this@MaterialLiveWallpaperService)
+                    .refreshRate.let {
+                        if (it > 60f) 60f else it
+                    }
+                mIntervalController = AsyncHelper.intervalRunOnUI(
+                    { mHandler?.post(mDrawableRunnable) },
+                    (1000.0 / screenRefreshRate).toLong(),
+                    0
+                )
+            } else {
+                mHandler?.post(mDrawableRunnable)
+                // Run again 1 sec later in case the canvas size was not correctly set the first time on preview screen
+                AsyncHelper.delayRunOnUI(
+                    { mHandler?.post(mDrawableRunnable) },
+                    1000
+                )
+            }
         }
 
         @RequiresApi(Build.VERSION_CODES.O_MR1)

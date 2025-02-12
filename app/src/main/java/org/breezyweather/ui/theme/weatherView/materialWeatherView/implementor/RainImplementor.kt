@@ -162,71 +162,75 @@ class RainImplementor(
     }
 
     init {
-        var colors = IntArray(3)
-        var rainCount = RAIN_COUNT
-        when (type) {
-            TYPE_RAIN -> if (daylight) {
-                rainCount = RAIN_COUNT
-                mThunder = null
-                colors = intArrayOf(
-                    Color.rgb(223, 179, 114),
-                    Color.rgb(152, 175, 222),
-                    Color.rgb(255, 255, 255)
-                )
-            } else {
-                rainCount = RAIN_COUNT
-                mThunder = null
-                colors = intArrayOf(
-                    Color.rgb(182, 142, 82),
-                    Color.rgb(88, 92, 113),
-                    Color.rgb(255, 255, 255)
-                )
-            }
+        if (mAnimate) {
+            var colors = IntArray(3)
+            var rainCount = RAIN_COUNT
+            when (type) {
+                TYPE_RAIN -> if (daylight) {
+                    rainCount = RAIN_COUNT
+                    mThunder = null
+                    colors = intArrayOf(
+                        Color.rgb(223, 179, 114),
+                        Color.rgb(152, 175, 222),
+                        Color.rgb(255, 255, 255)
+                    )
+                } else {
+                    rainCount = RAIN_COUNT
+                    mThunder = null
+                    colors = intArrayOf(
+                        Color.rgb(182, 142, 82),
+                        Color.rgb(88, 92, 113),
+                        Color.rgb(255, 255, 255)
+                    )
+                }
 
-            TYPE_THUNDERSTORM -> if (daylight) {
-                rainCount = RAIN_COUNT
-                mThunder = Thunder()
-                colors = intArrayOf(
-                    Color.rgb(182, 142, 82),
-                    -0x93aa6e,
-                    Color.rgb(255, 255, 255)
-                )
-            } else {
-                rainCount = RAIN_COUNT
-                mThunder = Thunder()
-                colors = intArrayOf(
-                    Color.rgb(182, 142, 82),
-                    Color.rgb(88, 92, 113),
-                    Color.rgb(255, 255, 255)
-                )
-            }
+                TYPE_THUNDERSTORM -> if (daylight) {
+                    rainCount = RAIN_COUNT
+                    mThunder = Thunder()
+                    colors = intArrayOf(
+                        Color.rgb(182, 142, 82),
+                        -0x93aa6e,
+                        Color.rgb(255, 255, 255)
+                    )
+                } else {
+                    rainCount = RAIN_COUNT
+                    mThunder = Thunder()
+                    colors = intArrayOf(
+                        Color.rgb(182, 142, 82),
+                        Color.rgb(88, 92, 113),
+                        Color.rgb(255, 255, 255)
+                    )
+                }
 
-            TYPE_SLEET -> if (daylight) {
-                rainCount = SLEET_COUNT
-                mThunder = null
-                colors = intArrayOf(
-                    Color.rgb(128, 197, 255),
-                    Color.rgb(185, 222, 255),
-                    Color.rgb(255, 255, 255)
-                )
-            } else {
-                rainCount = SLEET_COUNT
-                mThunder = null
-                colors = intArrayOf(
-                    Color.rgb(40, 102, 155),
-                    Color.rgb(99, 144, 182),
-                    Color.rgb(255, 255, 255)
+                TYPE_SLEET -> if (daylight) {
+                    rainCount = SLEET_COUNT
+                    mThunder = null
+                    colors = intArrayOf(
+                        Color.rgb(128, 197, 255),
+                        Color.rgb(185, 222, 255),
+                        Color.rgb(255, 255, 255)
+                    )
+                } else {
+                    rainCount = SLEET_COUNT
+                    mThunder = null
+                    colors = intArrayOf(
+                        Color.rgb(40, 102, 155),
+                        Color.rgb(99, 144, 182),
+                        Color.rgb(255, 255, 255)
+                    )
+                }
+            }
+            val scales = floatArrayOf(0.6f, 0.8f, 1f)
+            mRains = Array(rainCount) { i ->
+                Rain(
+                    canvasSizes[0],
+                    canvasSizes[1],
+                    colors[i * 3 / rainCount],
+                    scales[i * 3 / rainCount]
                 )
             }
-        }
-        val scales = floatArrayOf(0.6f, 0.8f, 1f)
-        mRains = Array(rainCount) { i ->
-            Rain(
-                canvasSizes[0],
-                canvasSizes[1],
-                colors[i * 3 / rainCount],
-                scales[i * 3 / rainCount]
-            )
+        } else {
+            mRains = emptyArray()
         }
         mLastRotation3D = INITIAL_ROTATION_3D
     }
