@@ -778,8 +778,7 @@ fun SecondarySourcesPreference(
                     normalsSource.value = sourceId
                     hasChangedASource.value = true
                 }
-                // No reverse geocoding sources available in the freenet version, so hiding for now
-                if (location.isCurrentPosition && BuildConfig.FLAVOR != "freenet") {
+                if (location.isCurrentPosition) {
                     SourceViewWithContinents(
                         title = stringResource(SourceFeature.REVERSE_GEOCODING.resourceName!!),
                         selectedKey = reverseGeocodingSource.value,

@@ -93,6 +93,7 @@ import org.breezyweather.sources.mf.MfService
 import org.breezyweather.sources.mgm.MgmService
 import org.breezyweather.sources.namem.NamemService
 import org.breezyweather.sources.naturalearth.NaturalEarthService
+import org.breezyweather.sources.nominatim.NominatimService
 import org.breezyweather.sources.nws.NwsService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
 import org.breezyweather.sources.openweather.OpenWeatherService
@@ -161,6 +162,7 @@ class SourceManager @Inject constructor(
     msdZwService: MsdZwService,
     namemService: NamemService,
     naturalEarthService: NaturalEarthService,
+    nominatimService: NominatimService,
     nwsService: NwsService,
     openMeteoService: OpenMeteoService,
     openWeatherService: OpenWeatherService,
@@ -191,7 +193,8 @@ class SourceManager @Inject constructor(
     // Reverse geocoding sources
     private val reverseGeocodingSourceList = persistentListOf(
         naturalEarthService,
-        androidGeocoderService
+        androidGeocoderService,
+        nominatimService
     )
 
     // Worldwide weather sources, excluding national sources with worldwide support,

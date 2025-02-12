@@ -633,7 +633,8 @@ enum class LocationPreset(
                     null
                 } else {
                     locationPreset.normals
-                }
+                },
+                reverseGeocodingSource = if (location.isCurrentPosition) "nominatim" else null
             )
         }
     }

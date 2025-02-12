@@ -6,9 +6,6 @@ By default, when you add a location manually, Breezy Weather will auto-suggest y
 
 Below, you can find details about the support and implementation status for features on each weather source. Note that no forecast above 7 days is reliable, so you should not decide based on the highest number of days available.
 
-> Note: The following features and sources are only available starting from (pre-release) v5.4.0:
-> - Sources: ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, EKUK, EPD, Ilmateenistus
-
 ## Summary
 | Country/Territory                  | Source                                             | Supported features                                                                   |
 |------------------------------------|----------------------------------------------------|--------------------------------------------------------------------------------------|
@@ -17,6 +14,7 @@ Below, you can find details about the support and implementation status for feat
 | 🌐 Worldwide                       | [Android](#android)                                | Address                                                                              |
 | 🌐 Worldwide                       | [GeoNames](#geonames) 🔐                           | Search                                                                               |
 | 🌐 Worldwide                       | [HERE](#here-destination-weather) 🔐               | Forecast, Current, Alerts, Address                                                   |
+| 🌐 Worldwide                       | [Nominatim](#nominatim)                            | Address                                                                              |
 | 🌐 Worldwide                       | [OpenWeather](#openweather) 🔓                     | Forecast, Current, Air quality                                                       |
 | 🌐 Worldwide                       | [Pirate Weather](#pirate-weather) 🔐               | Forecast, Current, Nowcasting, Alerts                                                |
 | 🌐 Worldwide                       | [WMO Severe Weather](#wmo-severe-weather)          | Alerts                                                                               |
@@ -176,6 +174,13 @@ Android can provide on some devices the address lookup feature.
 It uses the native Geocoder APIs. However, a backend for this geocoder is necessary for this to work.
 Google Play Services usually provide this backend.
 Some OS with only a partial subset of Google Play Services features, such as GrapheneOS, don’t have a backend implementation.
+
+This source doesn’t provide timezone support, so Breezy Weather will fallback to device’s timezone.
+
+
+### Nominatim
+
+Nominatim can provide the address lookup feature, using OpenStreetMap data.
 
 This source doesn’t provide timezone support, so Breezy Weather will fallback to device’s timezone.
 

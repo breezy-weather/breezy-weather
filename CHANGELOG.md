@@ -5,6 +5,7 @@
 
 **Weather sources**
 - Android Geocoder: added as possible Address lookup source on devices supporting it
+- Nominatim: added as possible Address lookup source
 
 
 # Version 5.4.2 (2025-02-08)
