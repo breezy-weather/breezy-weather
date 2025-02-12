@@ -38,6 +38,7 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.accu.AccuService
 import org.breezyweather.sources.aemet.AemetService
+import org.breezyweather.sources.android.AndroidGeocoderService
 import org.breezyweather.sources.android.AndroidLocationService
 import org.breezyweather.sources.atmo.AtmoAuraService
 import org.breezyweather.sources.atmo.AtmoGrandEstService
@@ -110,6 +111,7 @@ class SourceManager @Inject constructor(
     aemetService: AemetService,
     anamBfService: AnamBfService,
     anametService: AnametService,
+    androidGeocoderService: AndroidGeocoderService,
     androidLocationService: AndroidLocationService,
     atmoAuraService: AtmoAuraService,
     atmoGrandEstService: AtmoGrandEstService,
@@ -188,7 +190,8 @@ class SourceManager @Inject constructor(
 
     // Reverse geocoding sources
     private val reverseGeocodingSourceList = persistentListOf(
-        naturalEarthService
+        naturalEarthService,
+        androidGeocoderService
     )
 
     // Worldwide weather sources, excluding national sources with worldwide support,

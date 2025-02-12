@@ -14,6 +14,7 @@ Below, you can find details about the support and implementation status for feat
 |------------------------------------|----------------------------------------------------|--------------------------------------------------------------------------------------|
 | 🌐 Worldwide                       | [Open-Meteo](#open-meteo)                          | Forecast, Current, Air quality, Pollen, Normals, Search                              |
 | 🌐 Worldwide                       | [AccuWeather](#accuweather) 🔓                     | Forecast, Current, Air quality, Pollen, Nowcasting, Alerts, Normals, Search, Address |
+| 🌐 Worldwide                       | [Android](#android)                                | Address                                                                              |
 | 🌐 Worldwide                       | [GeoNames](#geonames) 🔐                           | Search                                                                               |
 | 🌐 Worldwide                       | [HERE](#here-destination-weather) 🔐               | Forecast, Current, Alerts, Address                                                   |
 | 🌐 Worldwide                       | [OpenWeather](#openweather) 🔓                     | Forecast, Current, Air quality                                                       |
@@ -165,6 +166,19 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | Humidity                  | ✅         | Visibility        | ✅           |
 | Dew Point                 | ✅         | Ceiling           | ✅           |
 </details>
+
+
+### Android
+
+*New in v5.4.3 (unreleased)*
+
+Android can provide on some devices the address lookup feature.
+It uses the native Geocoder APIs. However, a backend for this geocoder is necessary for this to work.
+Google Play Services usually provide this backend.
+Some OS with only a partial subset of Google Play Services features, such as GrapheneOS, don’t have a backend implementation.
+
+This source doesn’t provide timezone support, so Breezy Weather will fallback to device’s timezone.
+
 
 ### OpenWeather
 > 🔐 **This source requires an API key.** Breezy Weather comes with a pre-bundled API key. However, it is often rate-limited, so you may want to configure your own API key instead. [Register here](https://www.here.com/get-started/marketplace-listings/here-destination-weather)

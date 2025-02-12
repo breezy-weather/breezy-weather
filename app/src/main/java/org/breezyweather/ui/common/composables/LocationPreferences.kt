@@ -353,7 +353,7 @@ fun SecondarySourcesPreference(
      */
     val compatibleForecastSources = sourceManager
         .getSupportedWeatherSources(SourceFeature.FORECAST, location, forecastSource.value)
-        .groupBy { if (it is HttpSource) it.continent else null }
+        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
         .toSortedMap(continentComparator)
         .mapValues { m ->
             m.value.map {
@@ -368,7 +368,7 @@ fun SecondarySourcesPreference(
 
     val compatibleCurrentSources = sourceManager
         .getSupportedWeatherSources(SourceFeature.CURRENT, location, currentSource.value)
-        .groupBy { if (it is HttpSource) it.continent else null }
+        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
         .toSortedMap(continentComparator)
         .mapValues { m ->
             m.value.map {
@@ -382,7 +382,7 @@ fun SecondarySourcesPreference(
         }.toImmutableMap()
     val compatibleAirQualitySources = sourceManager
         .getSupportedWeatherSources(SourceFeature.AIR_QUALITY, location, airQualitySource.value)
-        .groupBy { if (it is HttpSource) it.continent else null }
+        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
         .toSortedMap(continentComparator)
         .mapValues { m ->
             m.value.map {
@@ -396,7 +396,7 @@ fun SecondarySourcesPreference(
         }.toImmutableMap()
     val compatiblePollenSources = sourceManager
         .getSupportedWeatherSources(SourceFeature.POLLEN, location, pollenSource.value)
-        .groupBy { if (it is HttpSource) it.continent else null }
+        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
         .toSortedMap(continentComparator)
         .mapValues { m ->
             m.value.map {
@@ -410,7 +410,7 @@ fun SecondarySourcesPreference(
         }.toImmutableMap()
     val compatibleMinutelySources = sourceManager
         .getSupportedWeatherSources(SourceFeature.MINUTELY, location, minutelySource.value)
-        .groupBy { if (it is HttpSource) it.continent else null }
+        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
         .toSortedMap(continentComparator)
         .mapValues { m ->
             m.value.map {
@@ -424,7 +424,7 @@ fun SecondarySourcesPreference(
         }.toImmutableMap()
     val compatibleAlertSources = sourceManager
         .getSupportedWeatherSources(SourceFeature.ALERT, location, alertSource.value)
-        .groupBy { if (it is HttpSource) it.continent else null }
+        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
         .toSortedMap(continentComparator)
         .mapValues { m ->
             m.value.map {
@@ -438,7 +438,7 @@ fun SecondarySourcesPreference(
         }.toImmutableMap()
     val compatibleNormalsSources = sourceManager
         .getSupportedWeatherSources(SourceFeature.NORMALS, location, normalsSource.value)
-        .groupBy { if (it is HttpSource) it.continent else null }
+        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
         .toSortedMap(continentComparator)
         .mapValues { m ->
             m.value.map {
@@ -453,7 +453,7 @@ fun SecondarySourcesPreference(
 
     val compatibleReverseGeocodingSources = sourceManager
         .getSupportedReverseGeocodingSources(location)
-        .groupBy { if (it is HttpSource) it.continent else null }
+        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
         .toSortedMap(continentComparator)
         .mapValues { m ->
             m.value.map {
