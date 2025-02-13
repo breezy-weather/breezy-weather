@@ -725,4 +725,12 @@
     <string name="common_weather_text_blowing_snow">Mećava</string>
     <string name="common_weather_text_drifting_snow">Nanosi snjiega</string>
     <string name="common_weather_text_glaze">Inje</string>
+    <string name="action_grant_permission">Dodirni za davanje dozvole.</string>
+    <string name="settings_notifications_permission">Potrebna je dozvola za obavijesti</string>
+    <string name="settings_notifications_permission_summary">Neophodno za obavještavanje o upozorenjima, prognozama i aktualiziranjima aplikacije. %s</string>
+    <string name="location_custom_name">Prilagođeno ime</string>
+    <string name="location_has_active_alerts">Aktivno upozorenje</string>
+    <string name="settings_widgets_notification_permission_summary">Potrebno za prikaz widgeta za obavijest. %s</string>
+    <string name="settings_debug_notification_permission">Potrebno za obavještavanje o zapisima prekida rada aplikacije i neuspjelim aktualiziranjima vremena. %s</string>
+    <string name="location_last_updated_x">Zadnje aktualiziranje %s</string>
 </resources>
