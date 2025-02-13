@@ -29,8 +29,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.graphics.ColorUtils
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -118,14 +116,6 @@ class HomeFragment : MainModuleFragment() {
             BackgroundAnimationMode.DISABLED -> false
         }
 
-    private fun isButtonNavigation(): Boolean {
-        val insets = ViewCompat.getRootWindowInsets(requireActivity().window.decorView)
-        val tappableElement = insets?.getInsets(WindowInsetsCompat.Type.tappableElement())
-        val bottomPixels = tappableElement?.bottom
-
-        return (bottomPixels != null && bottomPixels != 0)
-    }
-
     override fun onResume() {
         super.onResume()
         weatherView.setDrawable(!isHidden)
@@ -157,7 +147,7 @@ class HomeFragment : MainModuleFragment() {
                 requireActivity().window,
                 statusShader = scrollListener?.topOverlap == true,
                 lightStatus = false,
-                navigationShader = isButtonNavigation(), // no shade when gesture navigation is used
+                navigationShader = true,
                 lightNavigation = false
             )
     }
