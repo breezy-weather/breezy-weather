@@ -732,4 +732,6 @@
     <string name="settings_notifications_permission_summary">Is gá fógra a thabhairt faoi fholáirimh, réamhaisnéisí agus nuashonruithe aipeanna. %s</string>
     <string name="settings_widgets_notification_permission_summary">Ag teastáil chun an ghiuirléid fógraí a thaispeáint. %s</string>
     <string name="settings_debug_notification_permission">Ag teastáil chun fógra a thabhairt faoi logaí cliste agus nuashonruithe aimsire ar theip orthu. %s</string>
+    <string name="location_reverse_geocoding">Cuardach seoltaí</string>
+    <string name="location_reverse_geocoding_by">Cuardaigh seolta de réir %s</string>
 </resources>

@@ -44,7 +44,7 @@
     <string name="about_translators">Çevirmenler</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Mevcut konumu bulma başarısız oldu</string>
-    <string name="weather_message_data_refresh_failed">Hava durumu bilgisi yenileme başarısız</string>
+    <string name="weather_message_data_refresh_failed">Veri yenileme başarısız</string>
     <string name="widget_label_view_style">Görüntüleme şekli</string>
     <string name="widget_label_show_widget_card">Arka plan rengi</string>
     <string name="widget_label_text_color">Yazı rengi</string>
@@ -717,4 +717,29 @@
     <string name="weather_source_continent_africa">Afrika</string>
     <string name="message_multiple_refresh_errors">Yenileme hatalarla tamamlandı</string>
     <string name="common_weather_text_dust">Toz</string>
+    <string name="settings_weather_source_current_position_disclaimer">İlk yenilemeden sonra konumunuz için daha fazla hava durumu kaynağı mevcut hale gelebilir.</string>
+    <string name="settings_widgets_notification_permission_summary">Bildirim widget\'ını göstermek için gerekli. %s</string>
+    <string name="settings_weather_source_not_configured">%s (ayarlanmadı)</string>
+    <string name="common_weather_text_drifting_snow">Savrulan kar</string>
+    <string name="common_weather_text_glaze">Şeffaf buzlanma</string>
+    <string name="location_reverse_geocoding_by">%s tarafından adres sorgusu</string>
+    <string name="location_reverse_geocoding">Adres sorgusu</string>
+    <string name="settings_notifications_permission">Bildirim izni gerekli</string>
+    <string name="settings_notifications_permission_summary">Uyarılar, hava tahmini ve uygulama güncellemelerini bildirmek için gerekli. %s</string>
+    <string name="settings_debug_notification_permission">Çökme raporları ve başarısız hava durumu güncellemelerini bildirmek için gerekli. %s</string>
+    <string name="common_weather_text_tornado">Hortum</string>
+    <string name="location_custom_name">Özelleştirilmiş isim</string>
+    <string name="location_has_active_alerts">Aktif uyarı</string>
+    <string name="common_weather_text_blowing_snow">Kar tipisi</string>
+    <string name="forecast">Hava tahmini</string>
+    <string name="location_last_updated_x">En son %s güncellendi</string>
+    <string name="action_grant_permission">İzini vermek için basın.</string>
+    <string name="pollen_acer">Akçaağaç</string>
+    <string name="pollen_alternaria">Alternaria</string>
+    <string name="pollen_atriplex">Tuz çalısı</string>
+    <string name="pollen_juniperus">Ardıç</string>
+    <string name="pollen_picea">Ladin</string>
+    <string name="pollen_pinus">Çam</string>
+    <string name="pollen_ulmus">Karaağaç</string>
+    <string name="weather_forecast_data_by">%s tarafından hava tahmini verisi</string>
 </resources>
