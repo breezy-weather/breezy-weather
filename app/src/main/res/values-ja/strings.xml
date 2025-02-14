@@ -100,9 +100,7 @@
     <string name="widget_label_text_color">文字の色</string>
     <string name="widget_label_text_size">文字サイズ</string>
     <string name="widget_label_clock_font">時計のスタイル</string>
-    <string name="widget_custom_subtitle_explanation">任意の文章を入力できますが、長さに注意してください。天気のデータを参照する場合は、対応するキーワードを$で参照してください。
-\n
-\n例えば、「現在の天気：$cw$」の場合は、「現在の天気：晴れ」と表示されます。</string>
+    <string name="widget_custom_subtitle_explanation">任意の文章を入力できますが、長さに注意してください。天気のデータを参照する場合は、対応するキーワードを$で参照してください。\n \n例えば、「現在の天気：$cw$」の場合は、「現在の天気：晴れ」と表示されます。</string>
     <!-- keep those content with the format "$xxx$". -->
     <!-- keep "\n" -->
     <string name="widget_custom_subtitle_keyword_cw_description">現在の天気</string>
@@ -231,7 +229,7 @@
     <string name="weather_kind_wind">風</string>
     <string name="setting_weather_source_accu_days">日数</string>
     <string name="settings_background_updates_battery_optimization">電池の最適化を無効にする</string>
-    <string name="settings_background_updates_battery_optimization_summary">通知が受信できなかったり、ウィジェットが更新されなかったりする場合、まずこちらを試してください。</string>
+    <string name="settings_background_updates_battery_optimization_summary">通知が受信できなかったり、ウィジェットが更新されなかったりする場合、まずこちらをお試しください。</string>
     <string name="weather_source_accu_preference_days_1">1日</string>
     <string name="weather_source_accu_preference_days_5">5日</string>
     <string name="weather_source_accu_preference_days_10">10日</string>
@@ -471,7 +469,7 @@
     <string name="temperature_normals">温度標準値</string>
     <string name="air_quality_pm_info_title">微粒子（PM2.5 &amp; PM10）</string>
     <string name="air_quality_o3_info_consequences">過剰なオゾンにさらされると、呼吸困難を引き起こし、喘息を引き起こし、肺機能を低下させ、肺疾患を引き起こす可能性があります。</string>
-    <string name="air_quality_no2_info_introduction">二酸化窒素（NO₂）は、特有の刺激的で刺激的な臭気を持つ、窒息性の有毒な赤茶色のガスです。</string>
+    <string name="air_quality_no2_info_introduction">二酸化窒素（NO₂）は、特有の刺激的な臭気をもつ、窒息性の有毒な赤茶色のガスです。</string>
     <string name="air_quality_co_info_title">一酸化炭素（CO）</string>
     <string name="location_search_no_results">%1$s が %2$s を見つけられません</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
@@ -544,7 +542,7 @@
     <string name="widget_clock_font_sans_serif_light">Sans Serif（細字）</string>
     <string name="settings_weather_sources_summary">新しい場所の既定の情報源、カスタムAPIキー、その他情報源に関する設定</string>
     <string name="settings_weather_sources_per_location_summary">この場所の情報源をカスタマイズ</string>
-    <string name="settings_location_access_switch_summaryOff">現在地を場所として追加したい場合、許可してください。</string>
+    <string name="settings_location_access_switch_summaryOff">現在地を場所として追加したい場合は許可してください。</string>
     <string name="settings_weather_sources">気象情報源</string>
     <string name="settings_source_default_value">既定（変更なし）</string>
     <string name="settings_source_api_key">APIキー</string>
@@ -576,7 +574,7 @@
     <string name="settings_widgets_monochrome_icons_title">モノクロアイコン</string>
     <string name="settings_debug_dump_crash_logs_saved">クラッシュログを保存しました</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">タップすると開きます</string>
-    <string name="message_parsing_error_content">アプリが最新バージョンに更新されていることを確認してください。サーバーが一時的に利用できない状態になっている可能性があります。その場合は、しばらくしてから再度お試しください。問題が解決しない場合は、デバッグ設定からクラッシュログを出力し、GitHubで問題を報告してください。</string>
+    <string name="message_parsing_error_content">アプリのバージョンを確認してください。サーバーが一時的に利用できない状態になっている可能性があります。その場合は、しばらくしてから再度お試しください。問題が解決しない場合は、デバッグ設定からクラッシュログを出力し、GitHubで問題を報告してください。</string>
     <string name="widget_material_you_forecast">Material You - 予報</string>
     <string name="widget_clock_font_analog">アナログ</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">デバイス設定を開けませんでした。</string>
@@ -603,7 +601,7 @@
     <string name="notification_channel_background_services">バックグラウンドサービス</string>
     <string name="notification_precipitation_continuing">雨が降っています</string>
     <string name="common_weather_text_rain_snow_mixed_light">弱いみぞれ</string>
-    <string name="dialog_permissions_location_content">この機能を使用するには、現在の位置情報へのアクセスの権限をアプリに与える必要があります。位置情報は、選択した情報源とのみ共有されます。後から位置情報へのアクセスを取り消して、手動で位置情報を指定することもできます。</string>
+    <string name="dialog_permissions_location_content">この機能を使用するには、現在の位置情報へのアクセスの権限をアプリに付与する必要があります。位置情報は、選択した情報源とのみ共有されます。後から位置情報へのアクセスを取り消して、手動で位置情報を設定することもできます。</string>
     <string name="message_server_timeout">リクエストはタイムアウトになりました</string>
     <string name="temperature_feels_like_short">体感温度</string>
     <string name="dew_point_short">露点</string>
@@ -675,7 +673,7 @@
     <string name="settings_background_updates_refresh_never_warning2">バックグラウンドで行われる更新プロセスは軽量です。メインの位置情報は選択した頻度でのみ更新され、二次位置情報は、これが必要な場合にのみ、1日に1回更新されます。この機能のバッテリー効率は高く、1か月あたりのデータ消費量は %d MB を超えません。</string>
     <string name="message_server_unavailable_title">サーバーが利用できません</string>
     <string name="settings_background_updates_refresh_never_warning1">バックグラウンド更新をオフにすると、警報や降水（降雪）の通知が届かなくなります。ウィジェットはアプリを開くまで更新されません。</string>
-    <string name="settings_background_updates_refresh_never_warning3">バックグラウンド更新を無効に設定する代わりに、更新の頻度を低めることを検討してみてください。無効に設定したい場合は、「続行」をタップしてください。</string>
+    <string name="settings_background_updates_refresh_never_warning3">バックグラウンド更新を無効に設定する代わりに、更新の頻度を下げてみてください。無効に設定したい場合は、「続行」をタップしてください。</string>
     <string name="message_server_unavailable_content">これは通常、一時的なエラーです。エラーが続く場合はGitHubで問題を報告してください。</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">タッチ入力に切り替える</string>
     <string name="dialog_time_picker_toggle_text_input_voice">テキスト入力に切り替える</string>
@@ -773,6 +771,6 @@
     <string name="location_custom_name">任意の名称</string>
     <string name="location_last_updated_x">最終更新時間：%s</string>
     <string name="settings_notifications_permission">通知の権限が必要です</string>
-    <string name="location_reverse_geocoding_by">%sでアドレスを検索</string>
-    <string name="location_reverse_geocoding">アドレスを検索</string>
+    <string name="location_reverse_geocoding_by">%sで位置を検索</string>
+    <string name="location_reverse_geocoding">位置を検索</string>
 </resources>
