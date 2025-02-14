@@ -773,4 +773,6 @@
     <string name="location_custom_name">任意の名称</string>
     <string name="location_last_updated_x">最終更新時間：%s</string>
     <string name="settings_notifications_permission">通知の権限が必要です</string>
+    <string name="location_reverse_geocoding_by">%sでアドレスを検索</string>
+    <string name="location_reverse_geocoding">アドレスを検索</string>
 </resources>
