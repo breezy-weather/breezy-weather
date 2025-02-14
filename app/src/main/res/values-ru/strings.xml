@@ -733,4 +733,12 @@
     <string name="pollen_pinus">Сосна</string>
     <string name="pollen_acer">Клён</string>
     <string name="pollen_atriplex">Лебеда</string>
+    <string name="location_custom_name">Пользовательское название</string>
+    <string name="location_last_updated_x">Последнее обновление %s</string>
+    <string name="location_reverse_geocoding_by">Поиск адреса %s</string>
+    <string name="location_reverse_geocoding">Поиск адреса</string>
+    <string name="location_has_active_alerts">Активное уведомление</string>
+    <string name="action_grant_permission">Нажмите, чтобы предоставить разрешение.</string>
+    <string name="settings_notifications_permission">Требуется разрешение на уведомление</string>
+    <string name="settings_notifications_permission_summary">Необходим для уведомления об уведомлениях, прогнозах и обновлениях программы. %s</string>
 </resources>
