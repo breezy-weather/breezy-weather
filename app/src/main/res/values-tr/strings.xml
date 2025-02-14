@@ -718,7 +718,7 @@
     <string name="message_multiple_refresh_errors">Yenileme hatalarla tamamlandı</string>
     <string name="common_weather_text_dust">Toz</string>
     <string name="settings_weather_source_current_position_disclaimer">İlk yenilemeden sonra konumunuz için daha fazla hava durumu kaynağı mevcut hale gelebilir.</string>
-    <string name="settings_widgets_notification_permission_summary">Bildirim widget\'ını göstermek için gerekli. %s</string>
+    <string name="settings_widgets_notification_permission_summary">Bildirim widget’ını göstermek için gerekli. %s</string>
     <string name="settings_weather_source_not_configured">%s (ayarlanmadı)</string>
     <string name="common_weather_text_drifting_snow">Savrulan kar</string>
     <string name="common_weather_text_glaze">Şeffaf buzlanma</string>
