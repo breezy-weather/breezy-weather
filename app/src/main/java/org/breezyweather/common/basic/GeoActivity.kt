@@ -40,7 +40,6 @@ abstract class GeoActivity : AppCompatActivity() {
             window.setSystemBarStyle(
                 statusShaderP = false,
                 lightStatusP = !this.isDarkMode,
-                navigationShaderP = true,
                 lightNavigationP = !this.isDarkMode
             )
         }

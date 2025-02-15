@@ -94,7 +94,6 @@ internal fun DailyWeatherScreen(
                     window = activity.window,
                     statusShader = false,
                     lightStatus = isLightTheme,
-                    navigationShader = true,
                     lightNavigation = isLightTheme
                 )
         }

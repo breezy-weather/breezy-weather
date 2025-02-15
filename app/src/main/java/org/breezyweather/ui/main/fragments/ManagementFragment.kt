@@ -136,7 +136,6 @@ class PushedManagementFragment : ManagementFragment() {
                 requireActivity().window,
                 statusShader = false,
                 lightStatus = !requireActivity().isDarkMode,
-                navigationShader = true,
                 lightNavigation = !requireActivity().isDarkMode
             )
     }

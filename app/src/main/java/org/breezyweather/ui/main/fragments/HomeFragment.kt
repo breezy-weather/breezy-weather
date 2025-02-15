@@ -147,7 +147,6 @@ class HomeFragment : MainModuleFragment() {
                 requireActivity().window,
                 statusShader = scrollListener?.topOverlap == true,
                 lightStatus = false,
-                navigationShader = true,
                 lightNavigation = false
             )
     }
