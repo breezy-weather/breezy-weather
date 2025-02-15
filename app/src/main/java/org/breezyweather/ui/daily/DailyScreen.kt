@@ -21,13 +21,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -46,6 +47,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -107,8 +109,7 @@ internal fun DailyWeatherScreen(
             topBar = {
                 BWCenterAlignedTopAppBar(
                     title = stringResource(R.string.daily_forecast),
-                    onBackPressed = onBackPressed,
-                    windowInsets = WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
+                    onBackPressed = onBackPressed
                 )
             }
         ) { paddings ->
@@ -128,7 +129,8 @@ internal fun DailyWeatherScreen(
                         .fillMaxSize()
                         .padding(
                             top = paddings.calculateTopPadding(),
-                            bottom = paddings.calculateBottomPadding()
+                            start = paddings.calculateStartPadding(LocalLayoutDirection.current),
+                            end = paddings.calculateEndPadding(LocalLayoutDirection.current)
                         )
                 ) {
                     DailyPagerIndicator(
@@ -357,6 +359,9 @@ fun DailyPagerContent(
                     )
                 }
             }
+        }
+        item {
+            Spacer(modifier = Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
         }
     }
 }
