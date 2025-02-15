@@ -17,7 +17,6 @@
 package org.breezyweather.sources.dmi
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -47,8 +46,6 @@ class DmiService @Inject constructor(
     override val name = "DMI (${Locale(context.currentLocale.code, "DK").displayCountry})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.dmi.dk/om-hjemmesiden/privatliv/"
-
-    override val color = Color.rgb(12, 45, 131)
 
     private val mApi by lazy {
         client

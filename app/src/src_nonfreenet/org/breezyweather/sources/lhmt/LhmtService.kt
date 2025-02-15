@@ -17,7 +17,6 @@
 package org.breezyweather.sources.lhmt
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -47,7 +46,6 @@ class LhmtService @Inject constructor(
     override val name = "LHMT (${Locale(context.currentLocale.code, "LT").displayCountry})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.meteo.lt/istaiga/asmens-duomenu-apsauga/privatumo-politika/"
-    override val color = Color.rgb(79, 136, 228)
 
     private val mApi by lazy {
         client.baseUrl(LHMT_BASE_URL)

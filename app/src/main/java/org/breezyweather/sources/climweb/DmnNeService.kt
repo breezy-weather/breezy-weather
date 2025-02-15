@@ -17,7 +17,6 @@
 package org.breezyweather.sources.climweb
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.R
@@ -40,7 +39,6 @@ class DmnNeService @Inject constructor(
     override val countryCode = "NE"
     val countryName = Locale(injectedContext.currentLocale.code, countryCode).displayCountry
     override val name = "DMN ($countryName)"
-    override val color = Color.rgb(0, 0, 0) // FIXME
     override val privacyPolicyUrl = ""
     override val weatherAttribution = "Direction de la Météorologie Nationale du Niger"
 

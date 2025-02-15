@@ -17,7 +17,6 @@
 package org.breezyweather.sources.eccc
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -51,8 +50,6 @@ class EcccService @Inject constructor(
             }
         }
     }
-
-    override val color = Color.rgb(255, 0, 0)
 
     private val mApi by lazy {
         client

@@ -17,7 +17,6 @@
 package org.breezyweather.common.source
 
 import android.content.Context
-import androidx.annotation.ColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -27,13 +26,6 @@ import io.reactivex.rxjava3.core.Observable
  * Weather service.
  */
 interface WeatherSource : Source {
-
-    /**
-     * Official color used by the source
-     */
-    @Deprecated("No longer used")
-    @get:ColorInt
-    val color: Int?
 
     /**
      * List the features by the source as keys

@@ -17,7 +17,6 @@
 package org.breezyweather.sources.bmkg
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -57,8 +56,6 @@ class BmkgService @Inject constructor(
     override val name = "BMKG (${Locale(context.currentLocale.code, "ID").displayCountry})"
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = ""
-
-    override val color = Color.rgb(0, 153, 0)
 
     private val mApi by lazy {
         client

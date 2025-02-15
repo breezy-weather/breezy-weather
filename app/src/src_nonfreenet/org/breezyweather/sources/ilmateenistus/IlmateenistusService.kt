@@ -17,7 +17,6 @@
 package org.breezyweather.sources.ilmateenistus
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -50,7 +49,6 @@ class IlmateenistusService @Inject constructor(
             }
         }
     }
-    override val color = Color.rgb(0, 0, 150)
 
     private val mApi by lazy {
         client.baseUrl(ILMATEENISTUS_BASE_URL)

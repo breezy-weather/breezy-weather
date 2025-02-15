@@ -17,7 +17,6 @@
 package org.breezyweather.sources.metno
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -66,8 +65,6 @@ class MetNoService @Inject constructor(
             }
         }
     }
-
-    override val color = Color.rgb(11, 69, 94)
 
     private val mApi by lazy {
         client

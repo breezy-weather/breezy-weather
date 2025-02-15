@@ -17,7 +17,6 @@
 package org.breezyweather.sources.smhi
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -44,8 +43,6 @@ class SmhiService @Inject constructor(
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl =
         "https://www.smhi.se/omsmhi/hantering-av-personuppgifter/hantering-av-personuppgifter-1.135429"
-
-    override val color = Color.rgb(0, 0, 0)
 
     private val mApi by lazy {
         client

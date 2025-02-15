@@ -17,7 +17,6 @@
 package org.breezyweather.sources.ims
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -68,8 +67,6 @@ class ImsService @Inject constructor(
             }
         }
     }
-
-    override val color = Color.rgb(52, 79, 110)
 
     private val mApi by lazy {
         client

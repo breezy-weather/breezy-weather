@@ -17,7 +17,6 @@
 package org.breezyweather.sources.openmeteo
 
 import android.content.Context
-import android.graphics.Color
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -75,7 +74,6 @@ class OpenMeteoService @Inject constructor(
     override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = "https://open-meteo.com/en/terms#privacy"
 
-    override val color = Color.rgb(255, 136, 0)
     override val locationSearchAttribution = "Open-Meteo (CC BY 4.0) / GeoNames"
 
     private val mForecastApi: OpenMeteoForecastApi

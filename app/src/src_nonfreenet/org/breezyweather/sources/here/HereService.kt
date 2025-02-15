@@ -17,7 +17,6 @@
 package org.breezyweather.sources.here
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -50,8 +49,6 @@ class HereService @Inject constructor(
     override val name = "HERE"
     override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = "https://legal.here.com/privacy/policy"
-
-    override val color = Color.rgb(72, 218, 208)
 
     private val mWeatherApi by lazy {
         client

@@ -17,7 +17,6 @@
 package org.breezyweather.sources.pirateweather
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -48,8 +47,6 @@ class PirateWeatherService @Inject constructor(
     override val name = "PirateWeather"
     override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = "https://pirate-weather.apiable.io/privacy"
-
-    override val color = Color.rgb(113, 129, 145)
 
     private val mApi by lazy {
         client

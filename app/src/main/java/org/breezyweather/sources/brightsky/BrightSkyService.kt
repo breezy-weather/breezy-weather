@@ -17,7 +17,6 @@
 package org.breezyweather.sources.brightsky
 
 import android.content.Context
-import android.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
@@ -57,7 +56,6 @@ class BrightSkyService @Inject constructor(
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://brightsky.dev/"
 
-    override val color = Color.rgb(240, 177, 138)
     private val weatherAttribution =
         "Bright Sky, Data basis: Deutscher Wetterdienst, reproduced graphically and with missing data computed or extrapolated by Breezy Weather"
 

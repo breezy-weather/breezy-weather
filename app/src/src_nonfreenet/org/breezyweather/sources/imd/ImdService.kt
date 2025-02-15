@@ -17,7 +17,6 @@
 package org.breezyweather.sources.imd
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -48,8 +47,6 @@ class ImdService @Inject constructor(
     override val name = "IMD (${Locale(context.currentLocale.code, "IN").displayCountry})"
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = ""
-
-    override val color = Color.rgb(10, 88, 202)
 
     private val mApi by lazy {
         client

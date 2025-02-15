@@ -17,7 +17,6 @@
 package org.breezyweather.sources.accu
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -74,8 +73,6 @@ class AccuService @Inject constructor(
     override val name = "AccuWeather"
     override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = "https://www.accuweather.com/en/privacy"
-
-    override val color = Color.rgb(240, 85, 20)
 
     private val mDeveloperApi by lazy {
         client

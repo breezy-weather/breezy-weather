@@ -17,7 +17,6 @@
 package org.breezyweather.sources.ipma
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -56,7 +55,6 @@ class IpmaService @Inject constructor(
             "https://www.ipma.pt/en/siteinfo/index.html"
         }
     }
-    override val color = Color.rgb(32, 196, 244)
 
     private val mApi by lazy {
         client

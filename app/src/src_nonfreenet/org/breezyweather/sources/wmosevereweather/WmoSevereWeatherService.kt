@@ -74,7 +74,6 @@ class WmoSevereWeatherService @Inject constructor(
     }
     override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = "https://wmo.int/privacy-policy"
-    override val color = Color.rgb(31, 78, 149)
 
     private val mAlertsJsonApi by lazy {
         jsonClient

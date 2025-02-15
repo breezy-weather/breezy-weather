@@ -17,7 +17,6 @@
 package org.breezyweather.sources.ekuk
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -48,7 +47,6 @@ class EkukService @Inject constructor(
     override val name = "EKUK (${Locale(context.currentLocale.code, "EE").displayCountry})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = ""
-    override val color = Color.rgb(51, 153, 51)
     private val weatherAttribution by lazy {
         with(context.currentLocale.code) {
             when {

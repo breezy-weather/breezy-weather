@@ -17,7 +17,6 @@
 package org.breezyweather.sources.atmo
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -50,8 +49,6 @@ abstract class AtmoService : HttpSource(), WeatherSource, ConfigurableSource {
     protected abstract val attribution: String
 
     override val continent = SourceContinent.EUROPE
-
-    override val color = Color.rgb(49, 77, 154)
 
     /**
      * E.g. https://api.atmo-aura.fr/air2go/v3/

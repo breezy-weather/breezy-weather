@@ -18,7 +18,6 @@ package org.breezyweather.sources.pagasa
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -47,7 +46,6 @@ class PagasaService @Inject constructor(
     override val name = "PAGASA (${Locale(context.currentLocale.code, "PH").displayCountry})"
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = ""
-    override val color = Color.rgb(75, 196, 211)
 
     private val mApi by lazy {
         client

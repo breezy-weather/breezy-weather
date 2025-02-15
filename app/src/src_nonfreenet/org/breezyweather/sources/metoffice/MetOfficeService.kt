@@ -17,7 +17,6 @@
 package org.breezyweather.sources.metoffice
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -50,8 +49,6 @@ class MetOfficeService @Inject constructor(
     override val name = "Met Office (${Locale(context.currentLocale.code, "GB").displayCountry})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.metoffice.gov.uk/policies/privacy"
-
-    override val color = Color.rgb(185, 213, 50)
 
     private val mApi by lazy {
         client

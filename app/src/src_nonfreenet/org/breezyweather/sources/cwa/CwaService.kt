@@ -18,7 +18,6 @@ package org.breezyweather.sources.cwa
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -81,10 +80,6 @@ class CwaService @Inject constructor(
             }
         }
     }
-
-    // Color of CWA's logo
-    // Source: https://www.cwa.gov.tw/V8/assets/img/logoBlue.svg
-    override val color = Color.rgb(55, 74, 135)
 
     private val mApi by lazy {
         client

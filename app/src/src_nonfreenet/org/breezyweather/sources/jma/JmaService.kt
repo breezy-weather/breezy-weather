@@ -17,7 +17,6 @@
 package org.breezyweather.sources.jma
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -72,7 +71,6 @@ class JmaService @Inject constructor(
             "https://www.jma.go.jp/jma/en/copyright.html"
         }
     }
-    override val color = Color.rgb(64, 86, 106)
 
     private val mApi by lazy {
         client

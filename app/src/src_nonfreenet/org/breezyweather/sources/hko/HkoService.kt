@@ -17,7 +17,6 @@
 package org.breezyweather.sources.hko
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -73,9 +72,6 @@ class HkoService @Inject constructor(
             }
         }
     }
-
-    // Color of HKO's logo
-    override val color = Color.rgb(0, 74, 135)
 
     private val mApi by lazy {
         client

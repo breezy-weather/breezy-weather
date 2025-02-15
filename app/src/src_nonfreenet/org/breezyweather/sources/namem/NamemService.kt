@@ -17,7 +17,6 @@
 package org.breezyweather.sources.namem
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -60,8 +59,6 @@ class NamemService @Inject constructor(
     }
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = ""
-
-    override val color = Color.rgb(3, 105, 161)
 
     private val mApi by lazy {
         client

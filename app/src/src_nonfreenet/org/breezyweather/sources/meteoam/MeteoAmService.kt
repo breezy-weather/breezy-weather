@@ -18,7 +18,6 @@ package org.breezyweather.sources.meteoam
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -47,8 +46,6 @@ class MeteoAmService @Inject constructor(
     override val name = "Servizio Meteo AM (${Locale(context.currentLocale.code, "IT").displayCountry})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.meteoam.it/it/privacy-policy"
-
-    override val color = Color.rgb(20, 122, 179)
 
     private val mApi by lazy {
         client

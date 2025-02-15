@@ -17,7 +17,6 @@
 package org.breezyweather.sources.china
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -59,7 +58,6 @@ class ChinaService @Inject constructor(
         }
     }
 
-    override val color = Color.rgb(255, 105, 0)
     override val locationSearchAttribution = "北京天气、彩云天气、中国环境监测总站"
 
     private val mApi by lazy {

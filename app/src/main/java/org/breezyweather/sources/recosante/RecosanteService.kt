@@ -17,7 +17,6 @@
 package org.breezyweather.sources.recosante
 
 import android.content.Context
-import android.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
@@ -52,7 +51,6 @@ class RecosanteService @Inject constructor(
 
     override val id = "recosante"
     override val name = "Recosanté (${Locale(context.currentLocale.code, "FR").displayCountry})"
-    override val color = Color.rgb(0, 0, 145)
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://recosante.beta.gouv.fr/donnees-personnelles/"
 

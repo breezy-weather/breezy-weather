@@ -17,7 +17,6 @@
 package org.breezyweather.sources.lvgmc
 
 import android.content.Context
-import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -55,7 +54,6 @@ class LvgmcService @Inject constructor(
     override val name = "LVĢMC (${Locale(context.currentLocale.code, "LV").displayCountry})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = ""
-    override val color = Color.rgb(11, 71, 135)
 
     private val mApi by lazy {
         client.baseUrl(LVGMC_BASE_URL)
