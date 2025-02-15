@@ -110,16 +110,14 @@ fun Context.getTypefaceFromTextAppearance(
     return TextAppearance(this, textAppearanceId).getFont(this)
 }
 
+@Suppress("DEPRECATION")
 fun Window.setSystemBarStyle(
     statusShaderP: Boolean,
     lightStatusP: Boolean,
-    navigationShaderP: Boolean,
     lightNavigationP: Boolean,
 ) {
     var lightStatus = lightStatusP
     var statusShader = statusShaderP
-    var lightNavigation = lightNavigationP
-    var navigationShader = navigationShaderP
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
         // Use default dark and light platform colors from EdgeToEdge
@@ -137,25 +135,20 @@ fun Window.setSystemBarStyle(
             Color.TRANSPARENT
         }
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            // Always apply a dark shader as a light or transparent navigation bar is not supported
-            lightNavigation = false
-            navigationShader = true
-        }
-        this.navigationBarColor = if (navigationShader) {
-            if (lightNavigation) colorSystemBarLight else colorSystemBarDark
+        this.navigationBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && lightNavigationP) {
+            colorSystemBarLight
         } else {
-            Color.TRANSPARENT
+            colorSystemBarDark
         }
     } else {
         this.isStatusBarContrastEnforced = statusShader
-        this.isNavigationBarContrastEnforced = navigationShaderP
+        this.isNavigationBarContrastEnforced = true
     }
 
     // Contrary to the documentation FALSE applies a light foreground color and TRUE a dark foreground color
     WindowInsetsControllerCompat(this, this.decorView).run {
         isAppearanceLightStatusBars = lightStatus
-        isAppearanceLightNavigationBars = lightNavigation
+        isAppearanceLightNavigationBars = lightNavigationP
     }
 }
 

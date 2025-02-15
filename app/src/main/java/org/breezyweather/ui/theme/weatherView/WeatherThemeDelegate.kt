@@ -60,7 +60,6 @@ interface WeatherThemeDelegate {
         window: Window,
         statusShader: Boolean,
         lightStatus: Boolean,
-        navigationShader: Boolean,
         lightNavigation: Boolean,
     )
 

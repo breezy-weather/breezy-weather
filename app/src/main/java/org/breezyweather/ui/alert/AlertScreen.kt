@@ -103,7 +103,6 @@ internal fun AlertScreen(
                     window = activity.window,
                     statusShader = false,
                     lightStatus = isLightTheme,
-                    navigationShader = true,
                     lightNavigation = isLightTheme
                 )
         }
