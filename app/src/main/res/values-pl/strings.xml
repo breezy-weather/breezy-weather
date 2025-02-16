@@ -745,4 +745,6 @@
     <string name="location_custom_name">Nazwa niestandardowa</string>
     <string name="location_last_updated_x">Ostatnia aktualizacja %s</string>
     <string name="location_has_active_alerts">Aktywny alert</string>
+    <string name="location_reverse_geocoding_by">Wyszukiwanie adresu według %s</string>
+    <string name="location_reverse_geocoding">Wyszukiwanie adresu</string>
 </resources>
