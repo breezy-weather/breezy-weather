@@ -345,8 +345,11 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                 // Note that this happens when lifecycle is STARTED and stops
                 // collecting when the lifecycle is STOPPED
                 viewModel.validLocationList.collect {
-                    if (it.isEmpty()) {
+                    val isLandscape = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+                    if (it.isEmpty() || (isLandscape && it.size > 1)) {
                         setManagementFragmentVisibility(true)
+                    } else {
+                        setManagementFragmentVisibility(false)
                     }
                     refreshBackgroundViews(it)
                 }
