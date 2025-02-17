@@ -726,4 +726,14 @@
     <string name="common_weather_text_drifting_snow">Замець</string>
     <string name="common_weather_text_glaze">Галалёд</string>
     <string name="pollen_atriplex">Лебяда</string>
+    <string name="location_last_updated_x">Апошняе абнаўленне %s</string>
+    <string name="location_has_active_alerts">Актыўны апавяшчэнне</string>
+    <string name="location_custom_name">Карыстацкае назву</string>
+    <string name="settings_widgets_notification_permission_summary">Неабходна для адлюстравання фішкі апавяшчэнняў. %s</string>
+    <string name="action_grant_permission">Націсніце, каб даць дазвол.</string>
+    <string name="settings_notifications_permission_summary">Неабходны для апавяшчэння аб апавяшчэннях, прагнозах і абнаўленнях праграмы. %s</string>
+    <string name="location_reverse_geocoding_by">Пошук адрасы %s</string>
+    <string name="location_reverse_geocoding">Пошук адрасы</string>
+    <string name="settings_notifications_permission">Патрабуецца дазвол на апавяшчэнне</string>
+    <string name="settings_debug_notification_permission">Неабходна паведаміць аб збоях і няўдалых абнаўленнях надвор\'я. %s</string>
 </resources>
