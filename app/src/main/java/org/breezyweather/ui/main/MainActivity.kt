@@ -77,6 +77,7 @@ import org.breezyweather.common.extensions.conditional
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isDarkMode
+import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.snackbar.SnackbarContainer
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
@@ -231,6 +232,10 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
 
         initModel(savedInstanceState == null)
         initView()
+
+        if (viewModel.validLocationList.value.size == 1 && this.isLandscape && isDrawerLayoutVisible) {
+            setManagementFragmentVisibility(false)
+        }
 
         consumeIntentAction(intent)
 
