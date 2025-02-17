@@ -741,4 +741,6 @@
     <string name="action_grant_permission">Нажмите, чтобы предоставить разрешение.</string>
     <string name="settings_notifications_permission">Требуется разрешение на уведомление</string>
     <string name="settings_notifications_permission_summary">Необходим для уведомления об уведомлениях, прогнозах и обновлениях программы. %s</string>
+    <string name="settings_widgets_notification_permission_summary">Необходимо для отображения виджета уведомлений. %s</string>
+    <string name="settings_debug_notification_permission">Необходимо уведомить о сбоях и неудачных обновлениях погоды. %s</string>
 </resources>
