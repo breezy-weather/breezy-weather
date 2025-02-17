@@ -33,7 +33,7 @@ navigation-compose = "2.8.7"
 okhttp = "4.12.0"
 preference-ktx = "1.2.1"
 recyclerview = "1.4.0"
-restrictionBypass = "2.2"
+restrictionBypass = "86d4e2959ed4c439d02ebf3bcc5a6a5d3296d408"
 retrofit = "2.11.0"
 rxandroid = "3.0.2"
 rxjava = "3.1.10"
@@ -105,7 +105,7 @@ okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor",
 okhttp-tls = { group = "com.squareup.okhttp3", name = "okhttp-tls", version.ref = "okhttp" }
 preference-ktx = { group = "androidx.preference", name = "preference-ktx", version.ref = "preference-ktx" }
 recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
-restrictionBypass = { group = "com.github.ChickenHook", name = "RestrictionBypass", version.ref = "restrictionBypass" }
+restrictionBypass = { group = "com.github.breezy-weather", name = "RestrictionBypass", version.ref = "restrictionBypass" }
 retrofit-adapter-rxjava3 = { group = "com.squareup.retrofit2", name = "adapter-rxjava3", version.ref = "retrofit" }
 retrofit-converter-kotlinx-serialization = { group = "com.squareup.retrofit2", name = "converter-kotlinx-serialization", version.ref = "retrofit" }
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }

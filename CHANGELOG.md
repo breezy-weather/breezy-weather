@@ -5,6 +5,7 @@
 
 **Improvements and fixes**
 - [Live Wallpaper] Attempt to reduce power consumption when used with animations off
+- Add support for devices with 16 KB page sizes
 
 **Weather sources**
 - Android Geocoder: added as possible Address lookup source on devices supporting it
