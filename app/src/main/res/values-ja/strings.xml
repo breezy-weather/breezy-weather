@@ -534,7 +534,7 @@
     <string name="weather_source_accu_preference_hours_12">12時間</string>
     <string name="weather_source_accu_preference_hours_24">24時間</string>
     <string name="location_message_permission_background_missing">バックグラウンドで位置情報へのアクセス権限がありません</string>
-    <string name="action_see_more">詳細を見る</string>
+    <string name="action_see_more">詳細を表示</string>
     <string name="action_delete">削除</string>
     <string name="widget_label_align_end">右端に揃える</string>
     <string name="widget_custom_subtitle_keyword_al_description">警報</string>
