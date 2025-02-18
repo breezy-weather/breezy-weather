@@ -98,7 +98,7 @@
     <string name="widget_label_hide_subtitle">サブタイトルを表示しない</string>
     <string name="widget_label_subtitle_data">サブタイトルのデータ</string>
     <string name="widget_label_text_color">文字の色</string>
-    <string name="widget_label_text_size">文字サイズ</string>
+    <string name="widget_label_text_size">文字の大きさ</string>
     <string name="widget_label_clock_font">時計のスタイル</string>
     <string name="widget_custom_subtitle_explanation">任意の文章を入力できますが、長さに注意してください。天気のデータを参照する場合は、対応するキーワードを$で参照してください。\n \n例えば、「現在の天気：$cw$」の場合は、「現在の天気：晴れ」と表示されます。</string>
     <!-- keep those content with the format "$xxx$". -->
@@ -389,7 +389,7 @@
     <string name="action_location_list">場所の一覧</string>
     <string name="action_add_current_location">現在地を追加</string>
     <string name="action_back">戻る</string>
-    <string name="action_continue">続き</string>
+    <string name="action_continue">続行</string>
     <string name="action_close">閉じる</string>
     <string name="action_show_errors">タップすると詳細を表示</string>
     <string name="dialog_permissions_notification_content">ここをタップすると気象警報に関する通知を有効にできます。後から設定画面で有効にすることもできます。</string>
