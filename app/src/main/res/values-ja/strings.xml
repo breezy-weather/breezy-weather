@@ -120,7 +120,7 @@
     <string name="widget_custom_subtitle_keyword_ut_description">更新時間</string>
     <string name="widget_custom_subtitle_keyword_d_description">日付</string>
     <string name="widget_custom_subtitle_keyword_w_description">曜日</string>
-    <string name="widget_custom_subtitle_keyword_ws_description">曜日（短い）</string>
+    <string name="widget_custom_subtitle_keyword_ws_description">曜日（短）</string>
     <string name="widget_custom_subtitle_keyword_dd_description">今日の説明文</string>
     <string name="widget_custom_subtitle_keyword_hd_description">各時間の説明文</string>
     <string name="widget_custom_subtitle_keyword_enter_description">改行</string>
@@ -395,7 +395,7 @@
     <string name="dialog_permissions_notification_content">ここをタップすると気象警報に関する通知を有効にできます。後から設定画面で有効にすることもできます。</string>
     <string name="message_parsing_error_title">気象データを解析できませんでした</string>
     <string name="widget_material_you_current">Material You - 現在</string>
-    <string name="widget_custom_subtitle_keyword_als_description">警報（短い）</string>
+    <string name="widget_custom_subtitle_keyword_als_description">警報（短）</string>
     <string name="widget_week_style_5_days">5日間</string>
     <string name="widget_week_style_3_days">3日間</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif（太字）</string>
