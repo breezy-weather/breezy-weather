@@ -740,4 +740,6 @@
     <string name="location_has_active_alerts">Активно упозорење</string>
     <string name="location_custom_name">Прилагођени назив</string>
     <string name="location_last_updated_x">Последње ажурирање: %s</string>
+    <string name="location_reverse_geocoding_by">Претрага адресе путем %s</string>
+    <string name="location_reverse_geocoding">Претрага адресе</string>
 </resources>
