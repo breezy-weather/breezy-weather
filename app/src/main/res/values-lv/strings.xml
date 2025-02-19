@@ -675,7 +675,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Vienoti</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Apvieno visus šī nodrošinātāja laikapstākļu modeļus vienotā prognozē</string>
     <string name="action_download">Lejuplādēt</string>
-    <string name="dialog_app_update_check_content">Pieskarties šeit, lai iespējotu paziņojumus par lietotnes atjauninājumiem.</string>
+    <string name="dialog_app_update_check_content">Piesist šeit, lai iespējotu paziņojumus par lietotnes atjauninājumiem.</string>
     <string name="dialog_app_update_check_title">Sekot līdzi jaunumiem</string>
     <string name="settings_notifications_app_updates_check">Paziņojumi par lietotnes atjauninājumiem</string>
     <string name="notification_channel_app_updates">Lietotnes atjauninājumi</string>
@@ -726,4 +726,14 @@
     <string name="common_weather_text_drifting_snow">Sniegvilksnis</string>
     <string name="common_weather_text_blowing_snow">Zemais putenis</string>
     <string name="common_weather_text_glaze">Apledojums</string>
+    <string name="settings_debug_notification_permission">Nepieciešama, lai paziņotu par avāriju žurnāliem un laikapstākļu atjauninājumiem, kas nav izdevušies. %s</string>
+    <string name="location_has_active_alerts">Spēkā esoša trauksme</string>
+    <string name="location_reverse_geocoding_by">Adreses uzmeklēšana ar %s</string>
+    <string name="location_custom_name">Pielāgots nosaukums</string>
+    <string name="location_reverse_geocoding">Adreses uzmeklēšana</string>
+    <string name="location_last_updated_x">Pēdējoreiz atjaunināta %s</string>
+    <string name="action_grant_permission">Jāpiesit, lai nodrošinātu atļauju.</string>
+    <string name="settings_notifications_permission">Nepieciešama paziņojumu atļauja</string>
+    <string name="settings_notifications_permission_summary">Nepieciešama, lai paziņotu par trauksmēm, prognozēm un lietotnes atjauninājumiem. %s</string>
+    <string name="settings_widgets_notification_permission_summary">Nepieciešama, lai parādītu paziņojumu logrīku. %s</string>
 </resources>
