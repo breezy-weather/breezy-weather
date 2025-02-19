@@ -735,5 +735,5 @@
     <string name="location_reverse_geocoding_by">Пошук адрасы %s</string>
     <string name="location_reverse_geocoding">Пошук адрасы</string>
     <string name="settings_notifications_permission">Патрабуецца дазвол на апавяшчэнне</string>
-    <string name="settings_debug_notification_permission">Неабходна паведаміць аб збоях і няўдалых абнаўленнях надвор\'я. %s</string>
+    <string name="settings_debug_notification_permission">Неабходна паведаміць аб збоях і няўдалых абнаўленнях надвор’я. %s</string>
 </resources>
