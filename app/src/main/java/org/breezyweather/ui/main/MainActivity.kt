@@ -233,7 +233,9 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
         initModel(savedInstanceState == null)
         initView()
 
-        if (viewModel.validLocationList.value.size == 1 && this.isLandscape && isDrawerLayoutVisible) {
+        if (viewModel.validLocationList.value.isEmpty()) {
+            setManagementFragmentVisibility(true)
+        } else if (viewModel.validLocationList.value.size == 1 && isLandscape && isDrawerLayoutVisible) {
             setManagementFragmentVisibility(false)
         }
 
@@ -350,9 +352,6 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                 // Note that this happens when lifecycle is STARTED and stops
                 // collecting when the lifecycle is STOPPED
                 viewModel.validLocationList.collect {
-                    if (it.isEmpty()) {
-                        setManagementFragmentVisibility(true)
-                    }
                     refreshBackgroundViews(it)
                 }
             }
