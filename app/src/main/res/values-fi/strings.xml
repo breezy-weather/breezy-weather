@@ -740,4 +740,16 @@
     <string name="pollen_pinus">Mänty</string>
     <string name="pollen_ulmus">Jalava</string>
     <string name="common_weather_text_drifting_snow">Lennehtelevä lumi</string>
+    <string name="common_weather_text_glaze">Lasite</string>
+    <string name="weather_forecast_data_by">Ennustetiedot tuonut %s</string>
+    <string name="location_has_active_alerts">Aktiivinen hälytys</string>
+    <string name="location_reverse_geocoding_by">Osoitehaun suoritti %s</string>
+    <string name="location_custom_name">Mukautettu nimi</string>
+    <string name="location_reverse_geocoding">Osoitehaku</string>
+    <string name="location_last_updated_x">Viimeksi päivitetty %s</string>
+    <string name="action_grant_permission">Napauta myöntääksesi luvan.</string>
+    <string name="settings_notifications_permission_summary">Tarvitaan ilmoittamaan hälytyksistä, ennusteista ja sovelluspäivityksistä. %s</string>
+    <string name="settings_notifications_permission">Ilmoituslupa vaaditaan</string>
+    <string name="settings_widgets_notification_permission_summary">Tarvitaan ilmoitus-vimpaimen näyttämiseen. %s</string>
+    <string name="settings_debug_notification_permission">Tarvitaan ilmoittamaan kaatumislokeista ja epäonnistuneista sääpäivityksistä. %s</string>
 </resources>
