@@ -749,7 +749,7 @@ class RefreshHelper @Inject constructor(
             locationList.map {
                 it.copy(
                     longitude = it.longitude.roundDecimals(6)!!,
-                    latitude = it.longitude.roundDecimals(6)!!
+                    latitude = it.latitude.roundDecimals(6)!!
                 )
             }
         }
