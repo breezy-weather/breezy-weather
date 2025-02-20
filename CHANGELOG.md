@@ -12,6 +12,7 @@
 - [Android Geocoder] added as possible Address lookup source on devices supporting it
 - [MET Norway] fix missing as possible current source in some cases
 - [Nominatim] added as possible Address lookup source
+- [SMHI] fix failing to refresh in some cases (manually added locations will need to be re-added)
 
 
 # Version 5.4.2 (2025-02-08)

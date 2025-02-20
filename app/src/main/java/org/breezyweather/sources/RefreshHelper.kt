@@ -50,6 +50,7 @@ import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isOnline
 import org.breezyweather.common.extensions.locationManager
+import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.common.extensions.shortcutManager
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
@@ -232,8 +233,8 @@ class RefreshHelper @Inject constructor(
             return LocationResult(
                 if (result.latitude != location.latitude || result.longitude != location.longitude) {
                     location.copy(
-                        latitude = result.latitude,
-                        longitude = result.longitude,
+                        latitude = result.latitude.roundDecimals(6)!!,
+                        longitude = result.longitude.roundDecimals(6)!!,
                         timeZone = result.timeZone ?: location.timeZone,
                         /*
                          * Don’t keep old data as the user can have changed position
@@ -744,7 +745,14 @@ class RefreshHelper @Inject constructor(
             return Observable.error(NoNetworkException())
         }
 
-        return searchService.requestLocationSearch(context, query)
+        return searchService.requestLocationSearch(context, query).map { locationList ->
+            locationList.map {
+                it.copy(
+                    longitude = it.longitude.roundDecimals(6)!!,
+                    latitude = it.longitude.roundDecimals(6)!!
+                )
+            }
+        }
     }
 
     fun updateWidgetIfNecessary(context: Context, locationList: List<Location>) {
