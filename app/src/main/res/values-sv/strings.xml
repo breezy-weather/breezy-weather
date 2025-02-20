@@ -726,4 +726,5 @@
     <string name="common_weather_text_blowing_snow">Yrsnö</string>
     <string name="pollen_picea">Gran</string>
     <string name="pollen_acer">Lönn</string>
+    <string name="location_last_updated_x">Senast uppdaterad %s</string>
 </resources>
