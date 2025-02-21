@@ -16,14 +16,12 @@
 
 package org.breezyweather.ui.common.widgets.trend.item
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.view.MotionEvent
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.IntDef
@@ -51,7 +49,6 @@ class DailyTrendItemView @JvmOverloads constructor(
         isAntiAlias = true
         textAlign = Paint.Align.CENTER
     }
-    private var mClickListener: OnClickListener? = null
     private var mWeekText: String? = null
     private var mDateText: String? = null
 
@@ -191,14 +188,6 @@ class DailyTrendItemView @JvmOverloads constructor(
         }
     }
 
-    @SuppressLint("ClickableViewAccessibility")
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        if (event.action == MotionEvent.ACTION_UP) {
-            mClickListener?.onClick(this)
-        }
-        return super.onTouchEvent(event)
-    }
-
     fun setWeekText(weekText: String?) {
         mWeekText = weekText
         invalidate()
@@ -245,11 +234,6 @@ class DailyTrendItemView @JvmOverloads constructor(
         } else {
             invalidate()
         }
-    }
-
-    override fun setOnClickListener(l: OnClickListener?) {
-        mClickListener = l
-        super.setOnClickListener { }
     }
 
     override var chartItemView: AbsChartItemView?

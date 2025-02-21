@@ -16,6 +16,7 @@
 
 **Accessibility**
 - Main screen: details in header should now be read in the correct order by screen readers
+- Main screen: fix, clicking on a day or an hour will now correctly open details on screen readers
 - Main screen: improved content description of detail items, daily and hourly trend items
 - Main screen: removed unused ability to tap on cards which was confusing for screen readers
 - Main screen: add detailed content description of the nowcasting chart
