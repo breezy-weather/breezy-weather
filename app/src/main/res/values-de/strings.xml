@@ -746,7 +746,7 @@
     <string name="location_has_active_alerts">Aktive Warnung</string>
     <string name="action_grant_permission">Antippen, um die Berechtigung zu erteilen.</string>
     <string name="settings_notifications_permission_summary">Benötigt, um über Warnungen, Vorhersagen und App-Updates zu informieren. %s</string>
-    <string name="settings_notifications_permission">Benachrichtigungsberechtigung erforderlich</string>
+    <string name="settings_notifications_permission">Berechtigung für Benachrichtigungen erforderlich</string>
     <string name="settings_widgets_notification_permission_summary">Benötigt, um das Benachrichtigungs-Widget anzuzeigen. %s</string>
     <string name="settings_debug_notification_permission">Benötigt, um über Absturzprotokolle und fehlgeschlagene Wetteraktualisierungen zu informieren. %s</string>
     <string name="location_reverse_geocoding_by">Adressermittlung durch %s</string>
