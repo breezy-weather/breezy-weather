@@ -736,4 +736,15 @@
     <string name="settings_notifications_permission">Потрібен дозвіл на сповіщення</string>
     <string name="location_reverse_geocoding">Пошук адреси</string>
     <string name="location_reverse_geocoding_by">Пошук адреси %s</string>
+    <string name="wind_direction_SE">Південний схід</string>
+    <string name="daily_today">Сьогодні</string>
+    <string name="wind_direction_SW">Південний Захід</string>
+    <string name="wind_direction_W">Захід</string>
+    <string name="wind_direction_NW">Північний Захід</string>
+    <string name="wind_direction_E">Схід</string>
+    <string name="daily_yesterday">Вчора</string>
+    <string name="daily_tomorrow">Завтра</string>
+    <string name="wind_direction_NE">Північний схід</string>
+    <string name="wind_direction_N">Північ</string>
+    <string name="wind_direction_S">Південь</string>
 </resources>
