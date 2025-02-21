@@ -742,4 +742,15 @@
     <string name="settings_debug_notification_permission">Szükséges az összeomlási naplók és a sikertelen időjárás-frissítések értesítéseihez. %s</string>
     <string name="location_reverse_geocoding">Címkeresés</string>
     <string name="location_reverse_geocoding_by">Címkeresés a(z) %s segítségével</string>
+    <string name="wind_direction_N">Észak</string>
+    <string name="daily_today">Ma</string>
+    <string name="wind_direction_E">Kelet</string>
+    <string name="wind_direction_SE">Délkelet</string>
+    <string name="daily_yesterday">Tegnap</string>
+    <string name="daily_tomorrow">Holnap</string>
+    <string name="wind_direction_NE">Északkelet</string>
+    <string name="wind_direction_S">Dél</string>
+    <string name="wind_direction_SW">Délnyugat</string>
+    <string name="wind_direction_W">Nyugat</string>
+    <string name="wind_direction_NW">Északnyugat</string>
 </resources>
