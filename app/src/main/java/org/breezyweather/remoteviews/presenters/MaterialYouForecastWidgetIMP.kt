@@ -306,7 +306,7 @@ private fun buildRemoteViews(
             views.setTextViewText(
                 dailyId[0],
                 if (it.isToday(location)) {
-                    context.getString(R.string.short_today)
+                    context.getString(R.string.daily_today_short)
                 } else {
                     it.getWeek(location, context)
                 }

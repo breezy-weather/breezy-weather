@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="short_yesterday">Iḍl</string>
+    <string name="daily_yesterday_short">Iḍl</string>
     <string name="wind_speed">Arured n waḍu</string>
     <string name="setting_weather_source_accu_days">Ussan</string>
     <string name="weather_source_accu_preference_days_5">5 wussan</string>
     <string name="weather_source_accu_preference_days_10">10 wussan</string>
     <string name="weather_source_accu_preference_days_1">1 wass</string>
     <string name="wind_direction">Tanila n waḍu</string>
-    <string name="short_today">Ass-a</string>
+    <string name="daily_today_short">Ass-a</string>
     <string name="app_name">Tagnewt</string>
     <string name="weather_source_accu_preference_days_15">15 yum</string>
     <string name="settings_appearance_language_title">Tutlayt</string>
@@ -46,7 +46,7 @@
     <string name="widget_style_temperature">Taẓɣelt</string>
     <string name="metno_weather_text_andthunder">%s akked rɛud</string>
     <string name="temperature">Taẓɣelt</string>
-    <string name="short_tomorrow">Azk</string>
+    <string name="daily_tomorrow_short">Azk</string>
     <string name="temperature_feels_like">Ad s-tiniḍ</string>
     <string name="wind_strength">Lǧehd n waḍu</string>
     <string name="wind_strength_0">Yerked</string>

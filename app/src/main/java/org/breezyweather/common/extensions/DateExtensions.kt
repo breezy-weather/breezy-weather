@@ -128,6 +128,14 @@ fun Date.getFormattedMediumDayAndMonth(
     return this.getFormattedDate("d MMM", location, context, withBestPattern = true).capitalize(locale)
 }
 
+fun Date.getFormattedFullDayAndMonth(
+    location: Location,
+    context: Context?,
+): String {
+    val locale = context?.currentLocale ?: Locale("en", "001")
+    return this.getFormattedDate("d MMMM", location, context, withBestPattern = true).capitalize(locale)
+}
+
 fun getShortWeekdayDayMonth(
     context: Context?,
 ): String {
@@ -152,9 +160,9 @@ fun getLongWeekdayDayMonth(
     }
 }
 
-fun Date.getWeek(location: Location, context: Context?): String {
+fun Date.getWeek(location: Location, context: Context?, full: Boolean = false): String {
     val locale = context?.currentLocale ?: Locale("en", "001")
-    return getFormattedDate("E", location, context).capitalize(locale)
+    return getFormattedDate(if (full) "EEEE" else "E", location, context).capitalize(locale)
 }
 
 fun Date.getHour(location: Location, context: Context): String {

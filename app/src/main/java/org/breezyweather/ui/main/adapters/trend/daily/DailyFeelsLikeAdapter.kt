@@ -68,7 +68,7 @@ class DailyFeelsLikeAdapter(
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))
                 day.temperature?.feelsLikeTemperature?.let {
-                    talkBackBuilder.append(mTemperatureUnit.getValueText(activity, it))
+                    talkBackBuilder.append(mTemperatureUnit.getValueVoice(activity, it))
                 }
             }
             daily.night?.let { night ->
@@ -76,7 +76,7 @@ class DailyFeelsLikeAdapter(
                     .append(activity.getString(R.string.nighttime))
                     .append(activity.getString(R.string.colon_separator))
                 night.temperature?.feelsLikeTemperature?.let {
-                    talkBackBuilder.append(mTemperatureUnit.getValueText(activity, it))
+                    talkBackBuilder.append(mTemperatureUnit.getValueVoice(activity, it))
                 }
             }
             dailyItem.setDayIconDrawable(

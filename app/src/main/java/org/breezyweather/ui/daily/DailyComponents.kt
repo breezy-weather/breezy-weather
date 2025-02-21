@@ -63,9 +63,9 @@ import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.domain.weather.model.getDirection
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
+import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getStrength
 import org.breezyweather.domain.weather.model.getUVColor
-import org.breezyweather.domain.weather.model.getUVDescription
 import org.breezyweather.ui.common.widgets.AnimatableIconView
 import org.breezyweather.ui.common.widgets.astro.MoonPhaseView
 import org.breezyweather.ui.theme.ThemeManager
@@ -504,7 +504,7 @@ fun DailyUV(
         },
         headlineContent = {
             Text(
-                text = uv.getUVDescription(context),
+                text = uv.getShortDescription(context),
                 color = DayNightTheme.colors.titleColor,
                 fontWeight = FontWeight.Black
             )

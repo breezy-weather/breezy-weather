@@ -257,7 +257,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                         setTextViewText(
                             viewId.first,
                             if (daily.isToday(location)) {
-                                context.getString(R.string.short_today)
+                                context.getString(R.string.daily_today_short)
                             } else {
                                 daily.getWeek(location, context)
                             }

@@ -7,8 +7,8 @@ import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getWeek
 import java.util.Calendar
 
-fun Daily.getWeek(location: Location, context: Context?): String {
-    return date.getWeek(location, context)
+fun Daily.getWeek(location: Location, context: Context?, full: Boolean = false): String {
+    return date.getWeek(location, context, full)
 }
 
 fun Daily.isToday(location: Location): Boolean {

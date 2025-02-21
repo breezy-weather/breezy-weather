@@ -4,7 +4,7 @@
     <string name="app_name">天气</string>
     <!-- keyword. -->
     <string name="location_current">当前位置</string>
-    <string name="short_today">今日</string>
+    <string name="daily_today_short">今日</string>
     <string name="notification_refreshed_at">更新于</string>
     <string name="precipitation">降水量</string>
     <string name="precipitation_probability">降水概率</string>
@@ -31,8 +31,8 @@
     <string name="action_refresh">刷新</string>
     <string name="action_restart">重启</string>
     <string name="action_edit">编辑</string>
-    <string name="short_yesterday">昨日</string>
-    <string name="short_tomorrow">明日</string>
+    <string name="daily_yesterday_short">昨日</string>
+    <string name="daily_tomorrow_short">明日</string>
     <string name="temperature_real_feel">体感温度®</string>
     <string name="temperature_real_feel_shade">阴面体感温度™</string>
     <string name="temperature_apparent">体感温度</string>
@@ -57,15 +57,15 @@
     <string name="wind_strength_10">狂风</string>
     <string name="wind_strength_11">暴风</string>
     <string name="wind_strength_12">飓风</string>
-    <string name="wind_direction_short_variable">风向不定</string>
-    <string name="wind_direction_short_N">北风</string>
-    <string name="wind_direction_short_NE">东北风</string>
-    <string name="wind_direction_short_E">东风</string>
-    <string name="wind_direction_short_SE">东南风</string>
-    <string name="wind_direction_short_S">南风</string>
-    <string name="wind_direction_short_SW">西南风</string>
-    <string name="wind_direction_short_W">西风</string>
-    <string name="wind_direction_short_NW">西北风</string>
+    <string name="wind_direction_variable">风向不定</string>
+    <string name="wind_direction_N_short">北风</string>
+    <string name="wind_direction_NE_short">东北风</string>
+    <string name="wind_direction_E_short">东风</string>
+    <string name="wind_direction_SE_short">东南风</string>
+    <string name="wind_direction_S_short">南风</string>
+    <string name="wind_direction_SW_short">西南风</string>
+    <string name="wind_direction_W_short">西风</string>
+    <string name="wind_direction_NW_short">西北风</string>
     <string name="precipitation_intensity_light">小雨</string>
     <string name="precipitation_intensity_heavy">大雨</string>
     <string name="ephemeris_moon_phase_new_moon">新月</string>

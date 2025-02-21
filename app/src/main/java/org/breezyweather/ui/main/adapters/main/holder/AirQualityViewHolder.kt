@@ -114,7 +114,12 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                     )[0]
             )
             mTime.text = if (isDaily) {
-                context.getString(R.string.short_today)
+                context.getString(R.string.daily_today_short)
+            } else {
+                location.weather!!.base.refreshTime?.getFormattedTime(location, context, context.is12Hour)
+            }
+            mTime.contentDescription = if (isDaily) {
+                context.getString(R.string.daily_today)
             } else {
                 location.weather!!.base.refreshTime?.getFormattedTime(location, context, context.is12Hour)
             }

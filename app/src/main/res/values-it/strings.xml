@@ -4,7 +4,7 @@
     <string name="app_name">Meteo</string>
     <!-- keyword. -->
     <string name="location_current">Posizione automatica</string>
-    <string name="short_today">Oggi</string>
+    <string name="daily_today_short">Oggi</string>
     <string name="notification_refreshed_at">Aggiornato il</string>
     <string name="precipitation">Precipitazioni</string>
     <string name="precipitation_probability">Probabilità di precipitazioni</string>
@@ -32,8 +32,8 @@
     <string name="action_restart">Riavvia</string>
     <string name="action_edit">Modifica</string>
     <!-- The following set of strings should be as short as possible. -->
-    <string name="short_yesterday">Ieri</string>
-    <string name="short_tomorrow">Domani</string>
+    <string name="daily_yesterday_short">Ieri</string>
+    <string name="daily_tomorrow_short">Domani</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Apparente</string>
@@ -297,9 +297,9 @@
     <string name="unit_h_voice">ore</string>
     <string name="unit_ppcm_voice">Per metro cubo</string>
     <string name="weather_api_limit_reached_content">Per risolvere il problema, aggiungi la tua chiave API.</string>
-    <string name="wind_direction_short_NE">NE</string>
-    <string name="wind_direction_short_S">S</string>
-    <string name="wind_direction_short_SW">SO</string>
+    <string name="wind_direction_NE_short">NE</string>
+    <string name="wind_direction_S_short">S</string>
+    <string name="wind_direction_SW_short">SO</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_background_updates_summary">Frequenza di aggiornamento, risoluzione problemi</string>
     <string name="settings_section_general">Generale</string>
@@ -318,8 +318,8 @@
     <string name="widget_clock_font_analog">Analog</string>
     <string name="uv_index_0_2">Basso</string>
     <string name="alerts_to_follow">Ci sono allerte da seguire, tocca qui per visualizzarle.</string>
-    <string name="wind_direction_short_variable">Variabile</string>
-    <string name="wind_direction_short_N">N</string>
+    <string name="wind_direction_variable">Variabile</string>
+    <string name="wind_direction_N_short">N</string>
     <string name="uv_index_3_5">Moderato</string>
     <string name="uv_index_6_7">Alto</string>
     <string name="uv_index_8_10">Molto alto</string>
@@ -375,10 +375,10 @@
     <string name="settings_background_updates_battery_optimization">Disabilita ottimizzazione batteria</string>
     <string name="settings_background_updates_battery_optimization_summary">Questa è la prima cosa da provare quando non ricevi notifiche o i widget non si aggiornano.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Impossibile visualizzare le impostazioni del dispositivo.</string>
-    <string name="wind_direction_short_E">E</string>
-    <string name="wind_direction_short_SE">SE</string>
-    <string name="wind_direction_short_W">O</string>
-    <string name="wind_direction_short_NW">NO</string>
+    <string name="wind_direction_E_short">E</string>
+    <string name="wind_direction_SE_short">SE</string>
+    <string name="wind_direction_W_short">O</string>
+    <string name="wind_direction_NW_short">NO</string>
     <string name="air_quality_level_5_description">Gli effetti sulla salute saranno immediatamente avvertiti dai gruppi sensibili ed è sconsigliata ogni attività all’aperto. È probabile che le persone sane abbiano difficoltà respiratorie e irritazione alla gola; considera di rimanere in casa e riprogrammare le attività all’aperto.</string>
     <string name="weather_api_unauthorized_title">Accesso API non autorizzato</string>
     <string name="weather_api_key_required_missing_content">Per utilizzare questa fonte, devi fornire una chiave API.</string>

@@ -4,7 +4,7 @@
     <string name="app_name">Погода</string>
     <!-- keyword. -->
     <string name="location_current">Текущее местоположение</string>
-    <string name="short_today">Сегодня</string>
+    <string name="daily_today_short">Сегодня</string>
     <string name="notification_refreshed_at">Обновлено в</string>
     <string name="precipitation">Осадки</string>
     <string name="precipitation_probability">Вероятность осадков</string>
@@ -31,8 +31,8 @@
     <string name="action_refresh">Обновить</string>
     <string name="action_restart">Перезапуск</string>
     <string name="action_edit">Редактировать</string>
-    <string name="short_yesterday">Вчера</string>
-    <string name="short_tomorrow">Завтра</string>
+    <string name="daily_yesterday_short">Вчера</string>
+    <string name="daily_tomorrow_short">Завтра</string>
     <string name="temperature_apparent">По ощущениям</string>
     <string name="temperature_wind_chill">Ощущается при ветре</string>
     <string name="temperature_wet_bulb">Влажный термометр</string>
@@ -269,13 +269,13 @@
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="precipitation_none">Без осадков</string>
     <string name="precipitation_between_time">Осадки от %1$s до %2$s</string>
-    <string name="wind_direction_short_N">С</string>
-    <string name="wind_direction_short_NE">СВ</string>
-    <string name="wind_direction_short_E">В</string>
-    <string name="wind_direction_short_SE">ЮВ</string>
-    <string name="wind_direction_short_SW">ЮЗ</string>
-    <string name="wind_direction_short_W">З</string>
-    <string name="wind_direction_short_NW">СЗ</string>
+    <string name="wind_direction_N_short">С</string>
+    <string name="wind_direction_NE_short">СВ</string>
+    <string name="wind_direction_E_short">В</string>
+    <string name="wind_direction_SE_short">ЮВ</string>
+    <string name="wind_direction_SW_short">ЮЗ</string>
+    <string name="wind_direction_W_short">З</string>
+    <string name="wind_direction_NW_short">СЗ</string>
     <string name="uv_index_6_7">Высокий</string>
     <string name="uv_index_11">Чрезмерный</string>
     <string name="air_quality_level_1_description">Качество воздуха идеальное для большинства людей; можно проводить время на улице без ограничений.</string>
@@ -320,7 +320,7 @@
     <string name="air_quality_no2_voice">Диоксид азота</string>
     <string name="settings_main_cards_title">Карточки</string>
     <string name="settings_main_section_displayed_data">Отображаемые данные</string>
-    <string name="wind_direction_short_S">Ю</string>
+    <string name="wind_direction_S_short">Ю</string>
     <string name="air_quality_level_2_description">Качество воздуха в целом является приемлемым для большинства людей. Однако у людей с повышенной чувствительностью после длительного нахождения на улице могут появляться симптомы малой и средней тяжести.</string>
     <string name="air_quality_level_5_description">Люди с повышенной чувствительностью могут мгновенно почувствовать себя плохо, им следует избегать пребывания на улице. У здоровых людей могут возникать симптомы затрудненного дыхания или раздражения горла; рекомендуется оставаться в помещении и перенести мероприятия на улице.</string>
     <string name="air_quality_level_6_description">Любое пребывание на улице, даже в течение нескольких минут, может привести к серьезным осложнениям у всех. Старайтесь не выходить на улицу.</string>
@@ -406,7 +406,7 @@
     <string name="common_weather_text_clear_sky">Ясно</string>
     <string name="unit_cmph_voice">Сантиметров в час</string>
     <string name="alerts_to_follow">Для просмотра оповещений о погоде нажмите здесь.</string>
-    <string name="wind_direction_short_variable">Значение</string>
+    <string name="wind_direction_variable">Значение</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Иконка погоды</string>
     <string name="unit_m_voice">Метры</string>
     <string name="unit_mi_voice">Мили</string>

@@ -4,7 +4,7 @@
     <string name="app_name">天気</string>
     <!-- keyword. -->
     <string name="location_current">現在地</string>
-    <string name="short_today">今日</string>
+    <string name="daily_today_short">今日</string>
     <string name="notification_refreshed_at">更新時刻</string>
     <string name="precipitation">降水量</string>
     <string name="precipitation_probability">降水確率</string>
@@ -31,8 +31,8 @@
     <string name="action_refresh">更新</string>
     <string name="action_restart">再起動</string>
     <string name="action_edit">編集</string>
-    <string name="short_yesterday">昨日</string>
-    <string name="short_tomorrow">明日</string>
+    <string name="daily_yesterday_short">昨日</string>
+    <string name="daily_tomorrow_short">明日</string>
     <string name="temperature_apparent">地表温度</string>
     <string name="temperature_wind_chill">風冷指数</string>
     <string name="temperature_wet_bulb">湿球温度</string>
@@ -237,9 +237,9 @@
     <string name="temperature_degree_day_heating">暖房度日</string>
     <string name="temperature_degree_day_cooling">冷房度日</string>
     <string name="precipitation_none">降水なし</string>
-    <string name="wind_direction_short_variable">風向不定</string>
-    <string name="wind_direction_short_N">北</string>
-    <string name="wind_direction_short_NE">北東</string>
+    <string name="wind_direction_variable">風向不定</string>
+    <string name="wind_direction_N_short">北</string>
+    <string name="wind_direction_NE_short">北東</string>
     <string name="wind_strength">風力</string>
     <string name="uv_index_0_2">弱</string>
     <string name="uv_index_3_5">中程度</string>
@@ -249,14 +249,14 @@
     <string name="uv_index_8_10">非常に強い</string>
     <string name="air_quality_level_5_description">敏感な人々は直ちに健康への影響を受けるため、屋外活動を避ける必要があります。健康な人々は呼吸困難やのどの痛みを感じる可能性が高くなります。屋内に留まり、屋外活動の予定を変更することを検討してください。</string>
     <string name="uv_index_11">極端に強い</string>
-    <string name="wind_direction_short_W">西</string>
-    <string name="wind_direction_short_SW">南西</string>
+    <string name="wind_direction_W_short">西</string>
+    <string name="wind_direction_SW_short">南西</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
-    <string name="wind_direction_short_S">南</string>
-    <string name="wind_direction_short_NW">北西</string>
-    <string name="wind_direction_short_E">東</string>
-    <string name="wind_direction_short_SE">南東</string>
+    <string name="wind_direction_S_short">南</string>
+    <string name="wind_direction_NW_short">北西</string>
+    <string name="wind_direction_E_short">東</string>
+    <string name="wind_direction_SE_short">南東</string>
     <string name="alerts_to_follow">ここをタップすると警報を表示します。</string>
     <string name="air_quality_level_1">優良</string>
     <string name="air_quality_level_3_description">大気汚染が高いレベルに達しており、敏感な人々に健康被害が生じる場合があります。呼吸困難やのどの痛みなどの症状を感じている場合は、屋外で過ごす時間を減らしてください。</string>

@@ -74,7 +74,7 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         override fun onPageSelected(position: Int) {
             val daily = mLocation.weather!!.dailyForecastStartingToday[position]
             if (daily.isToday(mLocation)) {
-                mIndicator.text = mContext.getString(R.string.short_today)
+                mIndicator.text = mContext.getString(R.string.daily_today_short)
             } else {
                 mIndicator.text = (position + 1).toString() +
                     "/" +

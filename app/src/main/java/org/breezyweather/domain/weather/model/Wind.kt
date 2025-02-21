@@ -22,19 +22,37 @@ fun Wind.getColor(context: Context): Int {
     }
 }
 
-fun Wind.getDirection(context: Context): String? {
+fun Wind.getDirection(context: Context, short: Boolean = true): String? {
     if (degree == null) return null
     return when (degree!!) {
-        in 0.0..22.5 -> context.getString(R.string.wind_direction_short_N)
-        in 22.5..67.5 -> context.getString(R.string.wind_direction_short_NE)
-        in 67.5..112.5 -> context.getString(R.string.wind_direction_short_E)
-        in 112.5..157.5 -> context.getString(R.string.wind_direction_short_SE)
-        in 157.5..202.5 -> context.getString(R.string.wind_direction_short_S)
-        in 202.5..247.5 -> context.getString(R.string.wind_direction_short_SW)
-        in 247.5..292.5 -> context.getString(R.string.wind_direction_short_W)
-        in 292.5..337.5 -> context.getString(R.string.wind_direction_short_NW)
-        in 337.5..360.0 -> context.getString(R.string.wind_direction_short_N)
-        else -> context.getString(R.string.wind_direction_short_variable)
+        in 0.0..22.5 -> context.getString(
+            if (short) R.string.wind_direction_N_short else R.string.wind_direction_N
+        )
+        in 22.5..67.5 -> context.getString(
+            if (short) R.string.wind_direction_NE_short else R.string.wind_direction_NE
+        )
+        in 67.5..112.5 -> context.getString(
+            if (short) R.string.wind_direction_E_short else R.string.wind_direction_E
+        )
+        in 112.5..157.5 -> context.getString(
+            if (short) R.string.wind_direction_SE_short else R.string.wind_direction_SE
+        )
+        in 157.5..202.5 -> context.getString(
+            if (short) R.string.wind_direction_S_short else R.string.wind_direction_S
+        )
+        in 202.5..247.5 -> context.getString(
+            if (short) R.string.wind_direction_SW_short else R.string.wind_direction_SW
+        )
+        in 247.5..292.5 -> context.getString(
+            if (short) R.string.wind_direction_W_short else R.string.wind_direction_W
+        )
+        in 292.5..337.5 -> context.getString(
+            if (short) R.string.wind_direction_NW_short else R.string.wind_direction_NW
+        )
+        in 337.5..360.0 -> context.getString(
+            if (short) R.string.wind_direction_N_short else R.string.wind_direction_N
+        )
+        else -> context.getString(R.string.wind_direction_variable)
     }
 }
 
@@ -70,22 +88,22 @@ fun Wind.getShortDescription(context: Context, unit: SpeedUnit): String? {
     return builder.toString().ifEmpty { null }
 }
 
-fun Wind.getDescription(context: Context, unit: SpeedUnit): String {
+fun Wind.getContentDescription(context: Context, unit: SpeedUnit): String {
     val builder = StringBuilder()
-    if (!getDirection(context).isNullOrEmpty()) {
-        builder.append(getDirection(context))
-    }
     speed?.let {
-        if (builder.toString().isNotEmpty()) builder.append(" ")
-        builder.append(unit.getValueText(context, it))
+        builder.append(context.getString(R.string.wind_speed))
+        builder.append(context.getString(R.string.colon_separator))
+        builder.append(unit.getValueVoice(context, it))
+        if (!getStrength(context).isNullOrEmpty()) {
+            builder.append(context.getString(R.string.comma_separator))
+            builder.append(getStrength(context))
+        }
     }
-    if (!getStrength(context).isNullOrEmpty()) {
-        if (builder.toString().isNotEmpty()) builder.append(" ")
-        builder.append("(").append(getStrength(context)).append(")")
-    }
-    arrow?.let {
-        if (builder.toString().isNotEmpty()) builder.append(" ")
-        builder.append(it)
+    if (!getDirection(context).isNullOrEmpty()) {
+        if (builder.toString().isNotEmpty()) builder.append(context.getString(R.string.comma_separator))
+        builder.append(context.getString(R.string.wind_direction))
+        builder.append(context.getString(R.string.colon_separator))
+        builder.append(getDirection(context, short = false))
     }
     return builder.toString()
 }

@@ -89,7 +89,11 @@ class ForecastNotificationNotifier(
             priority = NotificationCompat.PRIORITY_MAX
             setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             setSubText(
-                if (today) context.getString(R.string.short_today) else context.getString(R.string.short_tomorrow)
+                if (today) {
+                    context.getString(R.string.daily_today_short)
+                } else {
+                    context.getString(R.string.daily_tomorrow_short)
+                }
             )
             setDefaults(Notification.DEFAULT_SOUND or Notification.DEFAULT_VIBRATE)
             setAutoCancel(true)

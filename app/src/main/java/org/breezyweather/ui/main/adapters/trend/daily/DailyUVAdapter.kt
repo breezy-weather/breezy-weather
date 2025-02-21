@@ -28,7 +28,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.format
 import org.breezyweather.common.extensions.roundDecimals
-import org.breezyweather.domain.weather.model.getLevel
+import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getUVColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
@@ -62,9 +62,7 @@ class DailyUVAdapter(
             val index = daily.uV?.index
             if (index != null) {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(index)
-                    .append(activity.getString(R.string.comma_separator))
-                    .append(daily.uV!!.getLevel(activity))
+                    .append(daily.uV!!.getContentDescription(activity))
             }
             mPolylineAndHistogramView.setData(
                 null, null,

@@ -201,7 +201,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             weather.dailyForecastStartingToday.getOrNull(i)?.let { daily ->
                 widgetItemView.setTitleText(
                     if (daily.isToday(location)) {
-                        context.getString(R.string.short_today)
+                        context.getString(R.string.daily_today_short)
                     } else {
                         daily.getWeek(location, context)
                     }

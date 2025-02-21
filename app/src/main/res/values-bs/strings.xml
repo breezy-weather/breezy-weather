@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="short_yesterday">Jučer</string>
+    <string name="daily_yesterday_short">Jučer</string>
     <string name="precipitation_thunderstorm">Oluja sa grmljavinom</string>
-    <string name="wind_direction_short_S">J</string>
+    <string name="wind_direction_S_short">J</string>
     <string name="pollen_and_mold">Polen i plijesan/buđ</string>
     <string name="wind_speed">Brzina vjetra</string>
     <string name="temperature">Temperatura</string>
     <string name="precipitation_ice">Led</string>
     <string name="precipitation_nowcasting">Padavine iz minute u minutu</string>
     <string name="temperature_wet_bulb">Mokrina termosijalice</string>
-    <string name="short_tomorrow">Sutra</string>
+    <string name="daily_tomorrow_short">Sutra</string>
     <string name="air_quality">Kvalitet zraka</string>
-    <string name="wind_direction_short_W">Z</string>
+    <string name="wind_direction_W_short">Z</string>
     <string name="daily_forecast">Dnevna prognoza</string>
     <string name="precipitation_intensity_heavy">Jako</string>
     <string name="precipitation_none">Nema padavine</string>
@@ -29,7 +29,7 @@
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_normal_short">Normala</string>
     <string name="details">Detalji</string>
-    <string name="wind_direction_short_SW">JZ</string>
+    <string name="wind_direction_SW_short">JZ</string>
     <string name="wind_gusts">Naleti vjetra</string>
     <string name="precipitation_duration">Trajanje/duljina padavina</string>
     <string name="temperature_degree_day_heating">Stepen grijanja dana</string>
@@ -37,19 +37,19 @@
     <string name="temperature_degree_day_cooling">Stepen hlađenja dana</string>
     <string name="alerts_to_follow">Predstojeća ili nadolazeća upozorenja, dodirnite ovdje da biste ih prikazali.</string>
     <string name="temperature_wind_chill">Hladnoća vjetra</string>
-    <string name="wind_direction_short_variable">Promjenjiv</string>
+    <string name="wind_direction_variable">Promjenjiv</string>
     <string name="temperature_apparent">Očigledno</string>
-    <string name="wind_direction_short_NE">SI</string>
+    <string name="wind_direction_NE_short">SI</string>
     <string name="wind_direction">Smjer vjetra</string>
     <string name="alerts">Upozorenja</string>
-    <string name="wind_direction_short_NW">SZ</string>
+    <string name="wind_direction_NW_short">SZ</string>
     <string name="temperature_degree_day">Stepen dana</string>
-    <string name="short_today">Danas</string>
+    <string name="daily_today_short">Danas</string>
     <string name="precipitation_snow">Snijeg</string>
-    <string name="wind_direction_short_SE">JI</string>
+    <string name="wind_direction_SE_short">JI</string>
     <string name="app_name">Vrijeme</string>
-    <string name="wind_direction_short_N">S</string>
-    <string name="wind_direction_short_E">I</string>
+    <string name="wind_direction_N_short">S</string>
+    <string name="wind_direction_E_short">I</string>
     <string name="temperature_average_short">Prosjek</string>
     <string name="precipitation_between_time">Padavine između %1$s i %2$s</string>
     <string name="wind">Vjetar</string>

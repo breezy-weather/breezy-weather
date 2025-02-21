@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
+import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.model.getWeek
@@ -52,19 +52,21 @@ abstract class AbsDailyTrendAdapter(
             val context = itemView.context
             val weather = location.weather
             val daily = weather!!.dailyForecast[position]
-            if (daily.isToday(location)) {
-                talkBackBuilder.append(context.getString(R.string.comma_separator))
-                    .append(context.getString(R.string.short_today))
-                dailyItem.setWeekText(context.getString(R.string.short_today))
+            val todayIndex = weather.todayIndex
+            talkBackBuilder.append(context.getString(R.string.comma_separator))
+            when (position) {
+                todayIndex -> talkBackBuilder.append(context.getString(R.string.daily_today))
+                todayIndex - 1 -> talkBackBuilder.append(context.getString(R.string.daily_yesterday))
+                todayIndex + 1 -> talkBackBuilder.append(context.getString(R.string.daily_tomorrow))
+                else -> talkBackBuilder.append(daily.getWeek(location, context, full = true))
+            }
+            if (position == todayIndex) {
+                dailyItem.setWeekText(context.getString(R.string.daily_today_short))
             } else {
-                talkBackBuilder.append(context.getString(R.string.comma_separator))
-                    .append(daily.getWeek(location, context))
                 dailyItem.setWeekText(daily.getWeek(location, context))
             }
             talkBackBuilder.append(context.getString(R.string.comma_separator))
-                .append(
-                    daily.date.getFormattedMediumDayAndMonth(location, context)
-                )
+                .append(daily.date.getFormattedFullDayAndMonth(location, context))
             dailyItem.setDateText(daily.date.getFormattedShortDayAndMonth(location, context))
             val useAccentColorForDate = daily.isToday(location) || daily.date > Date()
             dailyItem.setTextColor(

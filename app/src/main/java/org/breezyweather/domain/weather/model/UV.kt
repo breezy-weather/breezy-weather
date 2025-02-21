@@ -20,19 +20,19 @@ fun UV.getLevel(context: Context): String? {
     }
 }
 
-fun UV.getUVDescription(context: Context): String {
+fun UV.getContentDescription(context: Context): String {
     val builder = StringBuilder()
     index?.let {
-        builder.append(it.format(1))
+        builder.append(it.format(0))
     }
     getLevel(context)?.let {
-        if (builder.toString().isNotEmpty()) builder.append(" ")
+        if (builder.toString().isNotEmpty()) builder.append(context.getString(R.string.comma_separator))
         builder.append(it)
     }
     return builder.toString()
 }
 
-fun UV.getShortUVDescription(context: Context): String {
+fun UV.getShortDescription(context: Context): String {
     val builder = StringBuilder()
     index?.let {
         builder.append(it.format(0))

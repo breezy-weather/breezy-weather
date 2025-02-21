@@ -144,7 +144,7 @@ class MainAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractMainViewHolder = when (viewType) {
-        ViewType.HEADER -> HeaderViewHolder(parent, mWeatherView!!)
+        ViewType.HEADER -> HeaderViewHolder(parent)
         ViewType.PRECIPITATION_NOWCAST -> PrecipitationNowcastViewHolder(parent)
         ViewType.DAILY -> DailyViewHolder(parent)
         ViewType.HOURLY -> HourlyViewHolder(parent)

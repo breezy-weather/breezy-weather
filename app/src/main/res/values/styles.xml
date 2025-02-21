@@ -96,11 +96,9 @@
         <item name="android:layout_marginLeft">@dimen/little_margin</item>
         <item name="android:layout_marginRight">@dimen/little_margin</item>
         <item name="android:layout_marginBottom">@dimen/little_margin</item>
-        <item name="android:clickable">true</item>
         <item name="cardCornerRadius">@dimen/material3_card_list_item_corner_radius</item>
         <item name="cardElevation">2dp</item>
         <item name="cardBackgroundColor">?attr/colorSurface</item>
-        <item name="android:stateListAnimator" tools:ignore="NewApi">@animator/touch_raise</item>
         <item name="android:foreground">@drawable/selectable_item_background</item>
     </style>
 

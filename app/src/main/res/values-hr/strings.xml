@@ -2,7 +2,7 @@
 <resources>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nemoguće otvoriti postavke uređaja.</string>
     <string name="settings_source_api_key">API ključ</string>
-    <string name="short_yesterday">Jučer</string>
+    <string name="daily_yesterday_short">Jučer</string>
     <string name="widget_refreshing">Osvježavanje</string>
     <string name="widget_label_text_color">Boja teksta</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Mjesečeva mijena danas, sutra, …, 4 dana kasnije</string>
@@ -33,7 +33,7 @@
     <string name="settings_background_updates_refresh_title">Učestalost osvježavanja</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="pollen_tree">Stablo</string>
-    <string name="wind_direction_short_S">J</string>
+    <string name="wind_direction_S_short">J</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Geografska dužina</string>
     <string name="air_quality_so2_info_title">Sumporov dioksid (SO₂)</string>
     <string name="widget_label_text_size">Veličina teksta</string>
@@ -74,7 +74,7 @@
     <string name="settings_notifications_forecast_today_title">Obavijest za dnevnu prognozu</string>
     <string name="precipitation_nowcasting">Oborine iz minute u minutu</string>
     <string name="temperature_wet_bulb">Mokar termometar</string>
-    <string name="short_tomorrow">Sutra</string>
+    <string name="daily_tomorrow_short">Sutra</string>
     <string name="air_quality">Kvaliteta zraka</string>
     <string name="weather_api_key_required_missing_title">Nedostaje potreban API ključ</string>
     <string name="settings_background_updates_refresh_never">Nikada</string>
@@ -86,7 +86,7 @@
     <string name="uv_alert_level">Upozorenje</string>
     <string name="settings_main_gravity_sensor_switch">Senzor gravitacije</string>
     <string name="settings_location_access_switch_summaryOff">Dozvolite, ako želite biti u mogućnosti dodati vašu trenutnu lokaciju kao lokaciju.</string>
-    <string name="wind_direction_short_W">Z</string>
+    <string name="wind_direction_W_short">Z</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Dnevni opis</string>
     <string name="visibility">Vidljivost</string>
     <string name="air_quality_level_2">Prosječno</string>
@@ -289,7 +289,7 @@
     <string name="air_quality_level_6">Opasno</string>
     <string name="settings_background_updates_summary">Učestalost osvježavanja, rješavanje problema</string>
     <string name="settings_location_access_precise_title">Korištenje GPS-a uređaja</string>
-    <string name="wind_direction_short_SW">JZ</string>
+    <string name="wind_direction_SW_short">JZ</string>
     <string name="wind_gusts">Naleti vjetra</string>
     <string name="precipitation_duration">Trajanje oborina</string>
     <string name="air_quality_co_info_consequences">Ugljikov monoksid se raspršuje kroz plućna tkiva u krvotok te otežava povezivanje kisika na tjelesne stanice. Manjak kisika oštećuje tkiva i stanice. Izloženost ugljikovom dioksidu može stvoriti poteškoće disanja, umor, vrtoglavicu te druge simptome slične gripi.</string>
@@ -346,10 +346,10 @@
     <string name="widget_subtitle_data_wind">Vjetar</string>
     <string name="widget_style_symmetry">Simetrija</string>
     <string name="action_delete">Obriši</string>
-    <string name="wind_direction_short_variable">Promjenjivo</string>
+    <string name="wind_direction_variable">Promjenjivo</string>
     <string name="settings_debug_dump_crash_logs_saved">Zapisnici o padu spremljeni</string>
     <string name="temperature_apparent">Očito</string>
-    <string name="wind_direction_short_NE">SI</string>
+    <string name="wind_direction_NE_short">SI</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Dodirnite za otvaranje</string>
     <string name="action_save">Spremi</string>
     <string name="weather_api_limit_reached_content">Kako biste zaobišli ograničenje, dodajte svoj API ključ.</string>
@@ -368,12 +368,12 @@
     <string name="settings_units_summary">Temperatura, oborine, udaljenost, brzina, tlak</string>
     <string name="widget_style_tile">Pločica</string>
     <string name="widget_clock_day_details">Sat + Dnevno (Detalji)</string>
-    <string name="wind_direction_short_NW">SZ</string>
+    <string name="wind_direction_NW_short">SZ</string>
     <string name="settings_icon_packs_get_more">Preuzmi više</string>
     <string name="temperature_degree_day">Temperatura za grijanje ili hlađenje</string>
     <string name="action_settings">Postavke</string>
     <string name="settings_main_header_details_title">Detalji u zaglavlju</string>
-    <string name="short_today">Danas</string>
+    <string name="daily_today_short">Danas</string>
     <string name="humidity">Vlažnost</string>
     <string name="humidity_dew_point">Vlažnost / Točka orošenja</string>
     <string name="settings_main_background_animation_disabled">Onemogućeno</string>
@@ -396,7 +396,7 @@
     <string name="settings_units_distance">Jedinica za udaljenost</string>
     <string name="settings_location_access_permission_already_granted">Dozvola je već odobrena</string>
     <string name="ephemeris_moonrise_at">Izlazak mjeseca u %s</string>
-    <string name="wind_direction_short_SE">JI</string>
+    <string name="wind_direction_SE_short">JI</string>
     <string name="weather_message_data_refresh_failed">Osvježavanje podataka neuspjelo</string>
     <string name="app_name">Vrijeme</string>
     <string name="settings_location_access_switch_title">Pristup lokaciji</string>
@@ -415,11 +415,11 @@
     <string name="settings_notifications_section_forecast">Prognoza</string>
     <string name="location_search_no_results">%1$s ne može pronaći %2$s</string>
     <string name="widget_label_subtitle_data">Podatci podnaslova</string>
-    <string name="wind_direction_short_N">S</string>
+    <string name="wind_direction_N_short">S</string>
     <string name="air_quality_level_2_description">Kvaliteta zraka uglavnom je prihvatljiva za većinu osoba. Međutim, osjetljive skupine ljudi mogu osjetiti simptome manje do srednje jačine ako budu dulje izložene.</string>
     <string name="pollen_poaeceae">Trava</string>
     <string name="settings_location_access_switch_summaryOn">Dozvoljeno. Vašu trenutnu lokaciju možete dodati kao lokaciju.</string>
-    <string name="wind_direction_short_E">I</string>
+    <string name="wind_direction_E_short">I</string>
     <string name="settings_widgets">Widgeti i žive pozadine</string>
     <string name="location_current">Trenutna lokacija</string>
     <string name="settings_appearance_language_title">Jezik</string>

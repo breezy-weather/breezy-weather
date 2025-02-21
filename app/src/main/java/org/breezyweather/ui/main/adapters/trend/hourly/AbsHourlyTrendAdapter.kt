@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
+import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.extensions.getHour
 import org.breezyweather.common.extensions.getHourIn24Format
@@ -52,7 +52,7 @@ abstract class AbsHourlyTrendAdapter(
             hourlyItem.setDayText(hourly.date.getFormattedShortDayAndMonth(location, context))
             talkBackBuilder
                 .append(context.getString(R.string.comma_separator))
-                .append(hourly.date.getFormattedMediumDayAndMonth(location, context))
+                .append(hourly.date.getFormattedFullDayAndMonth(location, context))
                 .append(context.getString(R.string.comma_separator))
                 .append(hourly.date.getHour(location, activity))
             hourlyItem.setHourText(hourly.date.getHour(location, activity))

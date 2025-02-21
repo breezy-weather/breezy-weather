@@ -32,7 +32,7 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getColor
-import org.breezyweather.domain.weather.model.getDescription
+import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.ui.common.images.RotateDrawable
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.DoubleHistogramView
@@ -58,7 +58,7 @@ class DailyWindAdapter(
 
         @SuppressLint("SetTextI18n, InflateParams")
         fun onBindView(activity: GeoActivity, location: Location, position: Int) {
-            val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_wind))
+            val talkBackBuilder = StringBuilder()
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]
 
@@ -67,7 +67,7 @@ class DailyWindAdapter(
                     .append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(daily.day!!.wind!!.getDescription(activity, mSpeedUnit))
+                    .append(daily.day!!.wind!!.getContentDescription(activity, mSpeedUnit))
             }
             val dayWindColor = daily.day?.wind?.getColor(activity) ?: Color.TRANSPARENT
             val dayIcon = daily.day?.wind?.degree?.let { degree ->
@@ -106,7 +106,7 @@ class DailyWindAdapter(
                     .append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.nighttime))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(daily.night!!.wind!!.getDescription(activity, mSpeedUnit))
+                    .append(daily.night!!.wind!!.getContentDescription(activity, mSpeedUnit))
             }
             val nightIcon = daily.night?.wind?.degree?.let { degree ->
                 if (degree == -1.0) {

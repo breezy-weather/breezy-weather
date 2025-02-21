@@ -44,7 +44,6 @@ interface WeatherView {
 
     fun setWeather(@WeatherKindRule weatherKind: Int, daytime: Boolean, provider: ResourceProvider?)
 
-    fun onClick()
     fun onScroll(scrollY: Int)
 
     @get:WeatherKindRule

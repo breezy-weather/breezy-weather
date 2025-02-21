@@ -19,9 +19,9 @@
     <string name="alerts_to_follow">Venontaj atentigoj, tuŝeti ĉi tie por vidi ilin.</string>
     <string name="alert_source">Fonto: %s</string>
     <!-- Daily/hourly forecast columns, must be as short as possible. -->
-    <string name="short_yesterday">Hie</string>
-    <string name="short_today">Hod</string>
-    <string name="short_tomorrow">Mor</string>
+    <string name="daily_yesterday_short">Hie</string>
+    <string name="daily_today_short">Hod</string>
+    <string name="daily_tomorrow_short">Mor</string>
     <!-- Temperature -->
     <string name="temperature">Temperaturo</string>
     <string name="temperature_feels_like">Sentotemperaturo</string>
@@ -59,15 +59,23 @@
     <string name="wind_speed">Rapideco de vento</string>
     <string name="wind_gusts">Ventoblovoj</string>
     <string name="wind_direction">Direkto de vento</string>
-    <string name="wind_direction_short_variable">Ŝanĝiĝema</string>
-    <string name="wind_direction_short_N">N</string>
-    <string name="wind_direction_short_NE">NE</string>
-    <string name="wind_direction_short_E">E</string>
-    <string name="wind_direction_short_SE">SE</string>
-    <string name="wind_direction_short_S">S</string>
-    <string name="wind_direction_short_SW">SU</string>
-    <string name="wind_direction_short_W">U</string>
-    <string name="wind_direction_short_NW">NU</string>
+    <string name="wind_direction_variable">Ŝanĝiĝema</string>
+    <string name="wind_direction_N">Nordo</string>
+    <string name="wind_direction_NE">Nordoriento</string>
+    <string name="wind_direction_E">Oriento</string>
+    <string name="wind_direction_SE">Sudoriento</string>
+    <string name="wind_direction_S">Sudo</string>
+    <string name="wind_direction_SW">Sudokcidento</string>
+    <string name="wind_direction_W">Okcidento</string>
+    <string name="wind_direction_NW">Nordokcidento</string>
+    <string name="wind_direction_N_short">N</string>
+    <string name="wind_direction_NE_short">NE</string>
+    <string name="wind_direction_E_short">E</string>
+    <string name="wind_direction_SE_short">SE</string>
+    <string name="wind_direction_S_short">S</string>
+    <string name="wind_direction_SW_short">SU</string>
+    <string name="wind_direction_W_short">U</string>
+    <string name="wind_direction_NW_short">NU</string>
     <string name="wind_strength">Fortecon de vento</string>
     <string name="wind_strength_0">Kalmo</string>
     <string name="wind_strength_1">Sereno</string>

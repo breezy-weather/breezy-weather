@@ -72,24 +72,24 @@ class DailyTemperatureAdapter(
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))
-                if (!day.weatherText.isNullOrEmpty()) {
-                    talkBackBuilder.append(day.weatherText)
+                day.temperature?.temperature?.let {
+                    talkBackBuilder.append(mTemperatureUnit.getValueVoice(activity, it))
                         .append(activity.getString(R.string.comma_separator))
                 }
-                day.temperature?.temperature?.let {
-                    talkBackBuilder.append(mTemperatureUnit.getValueText(activity, it))
+                if (!day.weatherText.isNullOrEmpty()) {
+                    talkBackBuilder.append(day.weatherText)
                 }
             }
             daily.night?.let { night ->
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.nighttime))
                     .append(activity.getString(R.string.colon_separator))
+                night.temperature?.temperature?.let {
+                    talkBackBuilder.append(mTemperatureUnit.getValueVoice(activity, it))
+                }
                 if (!night.weatherText.isNullOrEmpty()) {
                     talkBackBuilder.append(night.weatherText)
                         .append(activity.getString(R.string.comma_separator))
-                }
-                night.temperature?.temperature?.let {
-                    talkBackBuilder.append(mTemperatureUnit.getValueText(activity, it))
                 }
             }
             dailyItem.setDayIconDrawable(

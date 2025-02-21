@@ -4,7 +4,7 @@
     <string name="app_name">Počasí</string>
     <!-- keyword. -->
     <string name="location_current">Aktuální umístění</string>
-    <string name="short_today">Dnes</string>
+    <string name="daily_today_short">Dnes</string>
     <string name="notification_refreshed_at">Aktualizováno</string>
     <string name="precipitation">Srážky</string>
     <string name="precipitation_probability">Pravděpodobnost srážek</string>
@@ -31,8 +31,8 @@
     <string name="action_refresh">Obnovit</string>
     <string name="action_restart">Restartovat</string>
     <string name="action_edit">Upravit</string>
-    <string name="short_yesterday">Včr</string>
-    <string name="short_tomorrow">Zít</string>
+    <string name="daily_yesterday_short">Včr</string>
+    <string name="daily_tomorrow_short">Zít</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Pocitová</string>
@@ -396,7 +396,7 @@
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorovat, když je baterie vybitá</string>
     <string name="settings_background_updates_battery_optimization_summary">To je první věc, kterou je třeba vyzkoušet, když nedostáváte oznámení nebo se widgety neobnovují.</string>
     <string name="settings_widgets_summary">Nastavení tapety, konfigurace použitých widgetů, widget oznámení</string>
-    <string name="wind_direction_short_NE">SV</string>
+    <string name="wind_direction_NE_short">SV</string>
     <string name="settings_main_background_animation_enabled">Povoleno</string>
     <string name="settings_main_section_animations">Animace</string>
     <string name="settings_widgets_live_wallpaper_error">Nelze spustit nástroj pro výběr tapet. Tapetu %s můžete stále povolit výběrem možnosti „Živé tapety“ ve výběru tapet na domovské obrazovce.</string>
@@ -419,15 +419,15 @@
     <string name="air_quality_level_6_description">Jakékoli vystavení ovzduší, byť jen na několik minut, může mít pro každého vážné zdravotní následky. Vyhněte se venkovním aktivitám.</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="action_location_list">Seznam poloh</string>
-    <string name="wind_direction_short_SE">JV</string>
+    <string name="wind_direction_SE_short">JV</string>
     <string name="alerts_to_follow">Nadcházející upozornění, klepněte sem pro jejich zobrazení.</string>
-    <string name="wind_direction_short_N">S</string>
-    <string name="wind_direction_short_E">V</string>
-    <string name="wind_direction_short_S">J</string>
-    <string name="wind_direction_short_SW">JZ</string>
-    <string name="wind_direction_short_variable">Proměnný</string>
-    <string name="wind_direction_short_NW">SZ</string>
-    <string name="wind_direction_short_W">Z</string>
+    <string name="wind_direction_N_short">S</string>
+    <string name="wind_direction_E_short">V</string>
+    <string name="wind_direction_S_short">J</string>
+    <string name="wind_direction_SW_short">JZ</string>
+    <string name="wind_direction_variable">Proměnný</string>
+    <string name="wind_direction_NW_short">SZ</string>
+    <string name="wind_direction_W_short">Z</string>
     <string name="uv_alert_level">Upozornění</string>
     <string name="air_quality_level_3">Špatná</string>
     <string name="air_quality_level_3_description">Ovzduší je vysoce znečištěno a je nezdravé pro citlivé skupiny lidí. Snižte čas strávený venku, pokud cítíte symptomy jako obtížné dýchání nebo podrážděný krk.</string>

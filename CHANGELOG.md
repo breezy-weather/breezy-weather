@@ -14,6 +14,14 @@
 - [Nominatim] added as possible Address lookup source
 - [SMHI] fix failing to refresh in some cases (manually added locations will need to be re-added)
 
+**Accessibility**
+- Main screen: details in header should now be read in the correct order by screen readers
+- Main screen: content description of detail items, daily and hourly trend items was improved
+- Main screen: removed unused ability to tap on cards which was confusing for screen readers
+- Main screen: add detailed content description of the nowcasting chart
+- Alerts: better content description (in Main screen and Detailed alerts screen)
+- Temperature units will now be read as "degree celsius" instead of "degree C" on Android >= 7
+
 
 # Version 5.4.2 (2025-02-08)
 

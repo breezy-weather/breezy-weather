@@ -8,7 +8,7 @@
     <string name="app_name">Pogoda</string>
     <!-- keyword. -->
     <string name="location_current">Obecna lokalizacja</string>
-    <string name="short_today">Dziś</string>
+    <string name="daily_today_short">Dziś</string>
     <string name="notification_refreshed_at">Odświeżono</string>
     <string name="precipitation">Opad atmosferyczny</string>
     <string name="precipitation_probability">Prawdopodobieństwo opadów</string>
@@ -35,8 +35,8 @@
     <string name="action_refresh">Odśwież</string>
     <string name="action_restart">Restartuj</string>
     <string name="action_edit">Edytuj</string>
-    <string name="short_yesterday">Wczoraj</string>
-    <string name="short_tomorrow">Jutro</string>
+    <string name="daily_yesterday_short">Wczoraj</string>
+    <string name="daily_tomorrow_short">Jutro</string>
     <string name="temperature_apparent">Temperatura odczuwalna</string>
     <string name="temperature_wind_chill">Chłód</string>
     <string name="temperature_wet_bulb">Temperatura mokrego termometru</string>
@@ -276,8 +276,8 @@
     <string name="unit_in">cal</string>
     <string name="unit_mb_voice">Milibary</string>
     <string name="unit_kpa">kPa</string>
-    <string name="wind_direction_short_variable">Zmienna</string>
-    <string name="wind_direction_short_NW">NW</string>
+    <string name="wind_direction_variable">Zmienna</string>
+    <string name="wind_direction_NW_short">NW</string>
     <string name="uv_index_0_2">Niski</string>
     <string name="uv_index_3_5">Średni</string>
     <string name="uv_index_6_7">Wysoki</string>
@@ -318,8 +318,8 @@
     <string name="about_source_code">Kod źródłowy</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="precipitation_none">Brak opadów</string>
-    <string name="wind_direction_short_N">N</string>
-    <string name="wind_direction_short_NE">NE</string>
+    <string name="wind_direction_N_short">N</string>
+    <string name="wind_direction_NE_short">NE</string>
     <string name="air_quality_level_6">Groźna</string>
     <string name="action_back">Wstecz</string>
     <string name="widget_multi_city">Wiele miast</string>
@@ -348,11 +348,11 @@
     <string name="settings_background_updates_worker_info_title">Informacje o procesie</string>
     <string name="settings_main_background_animation_enabled">Włączone</string>
     <string name="settings_main_background_animation_disabled">Wyłączone</string>
-    <string name="wind_direction_short_E">E</string>
-    <string name="wind_direction_short_SE">SE</string>
-    <string name="wind_direction_short_S">S</string>
-    <string name="wind_direction_short_SW">SW</string>
-    <string name="wind_direction_short_W">W</string>
+    <string name="wind_direction_E_short">E</string>
+    <string name="wind_direction_SE_short">SE</string>
+    <string name="wind_direction_S_short">S</string>
+    <string name="wind_direction_SW_short">SW</string>
+    <string name="wind_direction_W_short">W</string>
     <string name="uv_index_11">Ekstremalnie wysoki</string>
     <string name="unit_inhg">inHg</string>
     <string name="air_quality_level_4">Szkodliwe</string>

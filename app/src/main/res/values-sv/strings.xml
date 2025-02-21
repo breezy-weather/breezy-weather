@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="unit_celsius_short">°</string>
-    <string name="short_yesterday">I går</string>
+    <string name="daily_yesterday_short">I går</string>
     <string name="about_app">Om appen</string>
     <string name="uv_index_6_7">Högt</string>
     <string name="precipitation_thunderstorm">Åskväder</string>
@@ -17,7 +17,7 @@
     <string name="unit_nmi_voice">Sjömil</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="pollen_tree">Träd</string>
-    <string name="wind_direction_short_S">S</string>
+    <string name="wind_direction_S_short">S</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Longitud</string>
     <string name="air_quality_so2_info_title">Svaveldioxid (SO₂)</string>
     <string name="uv_index">UV-index</string>
@@ -51,7 +51,7 @@
     <string name="settings_section_general">Allmänt</string>
     <string name="precipitation_nowcasting">Nederbörd minut för minut</string>
     <string name="unit_lpsqmph_voice">Liter per kvadratmeter per timme</string>
-    <string name="short_tomorrow">Imrn</string>
+    <string name="daily_tomorrow_short">Imrn</string>
     <string name="air_quality">Luftkvalitet</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_cm_voice">Centimeter</string>
@@ -59,7 +59,7 @@
     <string name="unit_inph">inch/h</string>
     <string name="action_help_me_choose">Hjälp mig välja</string>
     <string name="uv_alert_level">Varning</string>
-    <string name="wind_direction_short_W">V</string>
+    <string name="wind_direction_W_short">V</string>
     <string name="about_contact">Kontakt</string>
     <string name="unit_kelvin">K</string>
     <string name="widget_style_pixel">Pixel</string>
@@ -186,7 +186,7 @@
     <string name="widget_custom_subtitle_keyword_w_description">Vecka</string>
     <string name="air_quality_pm_explanations_origin">En del partiklar förekommer naturligt och kommer från vulkaner, sandstormar, skogs- och gräsbränder, levande vegetation och havsstänk. Mänskliga aktiviteter genererar också ansenliga mängder partiklar, t.ex. trafik och transporter, industriella verksamheter, kraftverk, byggarbetsplatser, avfallsförbränning och jordbruk.</string>
     <string name="unit_mgpcum">mg/m³</string>
-    <string name="wind_direction_short_SW">SV</string>
+    <string name="wind_direction_SW_short">SV</string>
     <string name="wind_gusts">Vindbyar</string>
     <string name="precipitation_duration">Nederbördens varaktighet</string>
     <string name="setting_weather_source_accu_hours">Timmar</string>
@@ -228,7 +228,7 @@
     <string name="widget_subtitle_data_wind">Vind</string>
     <string name="widget_style_symmetry">Symmetri</string>
     <string name="action_delete">Ta bort</string>
-    <string name="wind_direction_short_NE">NO</string>
+    <string name="wind_direction_NE_short">NO</string>
     <string name="action_save">Spara</string>
     <string name="wind_direction">Vindriktning</string>
     <string name="unit_mps_voice">Meter per sekund</string>
@@ -240,10 +240,10 @@
     <string name="unit_celsius">°C</string>
     <string name="action_next">Nästa</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Nuvarande vind</string>
-    <string name="wind_direction_short_NW">NV</string>
+    <string name="wind_direction_NW_short">NV</string>
     <string name="action_settings">Inställningar</string>
     <string name="unit_kn">kn</string>
-    <string name="short_today">I dag</string>
+    <string name="daily_today_short">I dag</string>
     <string name="humidity">Luftfuktighet</string>
     <string name="humidity_dew_point">Luftfuktighet / Daggpunkt</string>
     <string name="precipitation_snow">Snö</string>
@@ -260,7 +260,7 @@
     <string name="pollen_level_0">Ingen</string>
     <string name="settings_units_distance">Längdenhet</string>
     <string name="ephemeris_moonrise_at">Månuppgång vid %s</string>
-    <string name="wind_direction_short_SE">SO</string>
+    <string name="wind_direction_SE_short">SO</string>
     <string name="app_name">Väder</string>
     <string name="dew_point">Daggpunkt</string>
     <string name="sunshine_duration">Soltimmar</string>
@@ -275,9 +275,9 @@
     <string name="unit_lpsqm_voice">Liter per kvadratmeter</string>
     <string name="notification_channel_crash_logs">Krashloggar</string>
     <string name="location_search_no_results">%1$s kan inte hitta %2$s</string>
-    <string name="wind_direction_short_N">N</string>
+    <string name="wind_direction_N_short">N</string>
     <string name="pollen_poaeceae">Gräs</string>
-    <string name="wind_direction_short_E">O</string>
+    <string name="wind_direction_E_short">O</string>
     <string name="about_source_code">Källkod</string>
     <string name="location_current">Nuvarande plats</string>
     <string name="temperature_average_short">Med</string>
@@ -345,7 +345,7 @@
     <string name="location_swipe_to_delete">Du kan svepa åt vänster för att ta bort detta objekt</string>
     <string name="widget_trend_daily">Dagstrend</string>
     <string name="widget_clock_day_vertical">Klocka + daglig (lodrät stil)</string>
-    <string name="wind_direction_short_variable">Skiftande</string>
+    <string name="wind_direction_variable">Skiftande</string>
     <string name="air_quality_o3_info_consequences">Exponering för alltför höga halter av ozon kan orsaka andningssvårigheter, utlösa astma, försämra lungfunktionen och leda till lungsjukdomar.</string>
     <string name="air_quality_o3_info_introduction">Marknära ozon (O₃) är en viktig komponent i smog. Även om det är samma molekyl så kan marknära ozon vara skadligt för människors hälsa, till skillnad från stratosfäriskt ozon, som skyddar jorden från överdriven UV-strålning.</string>
     <string name="widget_material_you_current">Material You - nuvarande</string>

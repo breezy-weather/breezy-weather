@@ -53,7 +53,6 @@ import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
-import org.breezyweather.domain.weather.model.getShortUVDescription
 import org.breezyweather.domain.weather.model.getSummary
 import org.breezyweather.domain.weather.model.getSummaryFromSource
 import org.breezyweather.domain.weather.model.isIndexValid
@@ -318,7 +317,7 @@ abstract class AbstractRemoteViewsPresenter {
                     }
                 ).replace(
                     "\$cuv$",
-                    weather.current?.uV?.getShortUVDescription(context)
+                    weather.current?.uV?.getShortDescription(context)
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$ch$",

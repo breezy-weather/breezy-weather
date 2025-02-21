@@ -72,7 +72,7 @@ class HourlyTemperatureAdapter(
             }
             hourly.temperature?.temperature?.let {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(mTemperatureUnit.getValueText(activity, it))
+                    .append(mTemperatureUnit.getValueVoice(activity, it))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {

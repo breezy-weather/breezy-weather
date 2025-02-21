@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="alert_source">來源：%s</string>
-    <string name="short_yesterday">昨日</string>
+    <string name="daily_yesterday_short">昨日</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_normals">正常溫度範圍</string>
     <string name="precipitation">降水量</string>
@@ -68,8 +68,8 @@
     <string name="alert">警告</string>
     <string name="alerts">警告</string>
     <string name="alerts_to_follow">點選這裡查看即將發出的天氣警告。</string>
-    <string name="short_today">今日</string>
-    <string name="short_tomorrow">明日</string>
+    <string name="daily_today_short">今日</string>
+    <string name="daily_tomorrow_short">明日</string>
     <string name="temperature">氣溫</string>
     <string name="temperature_feels_like">體感溫度</string>
     <string name="temperature_feels_like_short">體感溫度</string>
@@ -99,15 +99,15 @@
     <string name="wind_short">風勢</string>
     <string name="wind_speed">風速</string>
     <string name="wind_gusts">陣風</string>
-    <string name="wind_direction_short_variable">不定</string>
-    <string name="wind_direction_short_N">北風</string>
-    <string name="wind_direction_short_NE">東北風</string>
-    <string name="wind_direction_short_E">東風</string>
-    <string name="wind_direction_short_SE">東南風</string>
-    <string name="wind_direction_short_S">南風</string>
-    <string name="wind_direction_short_SW">西南風</string>
-    <string name="wind_direction_short_W">西風</string>
-    <string name="wind_direction_short_NW">西北風</string>
+    <string name="wind_direction_variable">不定</string>
+    <string name="wind_direction_N_short">北風</string>
+    <string name="wind_direction_NE_short">東北風</string>
+    <string name="wind_direction_E_short">東風</string>
+    <string name="wind_direction_SE_short">東南風</string>
+    <string name="wind_direction_S_short">南風</string>
+    <string name="wind_direction_SW_short">西南風</string>
+    <string name="wind_direction_W_short">西風</string>
+    <string name="wind_direction_NW_short">西北風</string>
     <string name="wind_strength">風力</string>
     <string name="wind_strength_0">無風</string>
     <string name="wind_strength_1">輕微</string>

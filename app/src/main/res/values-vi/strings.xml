@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="short_today">Hnay</string>
+    <string name="daily_today_short">Hnay</string>
     <string name="ephemeris">Mặt trời &amp; mặt trăng</string>
     <string name="pollen">Dị ứng phấn hoa</string>
     <string name="alerts">Cảnh báo</string>
@@ -300,9 +300,9 @@
     <string name="settings_notifications">Thông báo</string>
     <string name="settings_notifications_summary">Thông báo về cảnh báo thời tiết, lượng mưa hoặc dự báo cho địa điểm đầu tiên</string>
     <string name="settings_notifications_alerts_title">Thông báo cảnh báo thời tiết khắc nghiệt</string>
-    <string name="short_yesterday">Hqua</string>
+    <string name="daily_yesterday_short">Hqua</string>
     <string name="daily_forecast">Dự báo hàng ngày</string>
-    <string name="short_tomorrow">Nmai</string>
+    <string name="daily_tomorrow_short">Nmai</string>
     <string name="temperature">Nhiệt độ</string>
     <string name="temperature_feels_like">Cảm giác như</string>
     <string name="temperature_wind_chill">Gió lạnh</string>
@@ -322,15 +322,15 @@
     <string name="wind">Gió</string>
     <string name="wind_speed">Vận tốc gió</string>
     <string name="wind_direction">Hướng gió</string>
-    <string name="wind_direction_short_variable">Biến số</string>
-    <string name="wind_direction_short_N">B</string>
-    <string name="wind_direction_short_NE">ĐB</string>
-    <string name="wind_direction_short_E">Đ</string>
-    <string name="wind_direction_short_SE">ĐN</string>
-    <string name="wind_direction_short_S">N</string>
-    <string name="wind_direction_short_SW">TN</string>
-    <string name="wind_direction_short_W">T</string>
-    <string name="wind_direction_short_NW">TB</string>
+    <string name="wind_direction_variable">Biến số</string>
+    <string name="wind_direction_N_short">B</string>
+    <string name="wind_direction_NE_short">ĐB</string>
+    <string name="wind_direction_E_short">Đ</string>
+    <string name="wind_direction_SE_short">ĐN</string>
+    <string name="wind_direction_S_short">N</string>
+    <string name="wind_direction_SW_short">TN</string>
+    <string name="wind_direction_W_short">T</string>
+    <string name="wind_direction_NW_short">TB</string>
     <string name="wind_strength_0">Êm đềm</string>
     <string name="wind_strength_1">Gió rất nhẹ</string>
     <string name="wind_strength_4">Gió vừa phải</string>

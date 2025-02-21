@@ -42,7 +42,8 @@
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
             android:layout_marginTop="@dimen/little_margin"
-            android:layout_marginBottom="@dimen/normal_margin">
+            android:layout_marginBottom="@dimen/normal_margin"
+            android:importantForAccessibility="noHideDescendants">
 
             <TextView
                 android:id="@+id/container_main_minutely_card_minutelyStartText"

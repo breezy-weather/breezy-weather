@@ -4,7 +4,7 @@
     <string name="app_name">الطقس</string>
     <!-- keyword. -->
     <string name="location_current">المنطقة الحالية</string>
-    <string name="short_today">اليوم</string>
+    <string name="daily_today_short">اليوم</string>
     <string name="notification_refreshed_at">تم التحديث في</string>
     <string name="precipitation">التساقطات</string>
     <string name="precipitation_probability">إحتمالية الهطول</string>
@@ -30,8 +30,8 @@
     <string name="action_refresh">تحديث</string>
     <string name="action_restart">إعادة التشغيل</string>
     <string name="action_edit">تحرير</string>
-    <string name="short_yesterday">أمس</string>
-    <string name="short_tomorrow">غداً</string>
+    <string name="daily_yesterday_short">أمس</string>
+    <string name="daily_tomorrow_short">غداً</string>
     <string name="temperature_real_feel">الشعور الحقيقي</string>
     <string name="temperature_real_feel_shade">الشعور الحقيقي في الظل</string>
     <string name="temperature_apparent">ظاهر</string>
@@ -288,10 +288,10 @@
     <string name="widget_style_rectangle">مستطيل</string>
     <string name="widget_style_pixel">بكسل</string>
     <string name="ephemeris_moonrise_at">طلوع القمر عند %s</string>
-    <string name="wind_direction_short_NW">ش غ</string>
+    <string name="wind_direction_NW_short">ش غ</string>
     <string name="unit_cm_voice">السنتيمترات</string>
     <string name="location_swipe_to_delete">يمكنك التمرير إلى اليسار لحذف هذا العنصر</string>
-    <string name="wind_direction_short_variable">متغير</string>
+    <string name="wind_direction_variable">متغير</string>
     <string name="air_quality_level_2">متوسطة</string>
     <string name="widget_week_style_3_days">3 أيام</string>
     <string name="unit_lpsqmph">لتر / م² / ساعة</string>
@@ -301,7 +301,7 @@
     <string name="uv_index_8_10">مرتفع جدا</string>
     <string name="location_results_by">نتائج البحث بواسطة %s</string>
     <string name="unit_mmph">مم / ساعة</string>
-    <string name="wind_direction_short_SE">ج ش</string>
+    <string name="wind_direction_SE_short">ج ش</string>
     <string name="air_quality_co_voice">أحادي أكسيد الكربون</string>
     <string name="air_quality_level_3_description">وصل الهواء إلى مستوى عال من التلوث وهو غير صحي للأشخاص الحساسين. قلل من الوقت الذي تقضيه في الخارج إذا كنت تشعر بأعراض مثل صعوبة التنفس أو تهيج الحلق.</string>
     <string name="air_quality_pm25_voice">جسيمات اثنين فاصلة خمسة</string>
@@ -313,10 +313,10 @@
     <string name="widget_custom_subtitle_keyword_enter_description">خط جديد</string>
     <string name="settings_item_delete">حذف هذا العنصر</string>
     <string name="alerts_to_follow">تنبيهات قادمة، أنقر هنا لرؤيتهم.</string>
-    <string name="wind_direction_short_N">شم</string>
-    <string name="wind_direction_short_NE">ش ش</string>
-    <string name="wind_direction_short_E">ش</string>
-    <string name="wind_direction_short_S">ج</string>
+    <string name="wind_direction_N_short">شم</string>
+    <string name="wind_direction_NE_short">ش ش</string>
+    <string name="wind_direction_E_short">ش</string>
+    <string name="wind_direction_S_short">ج</string>
     <string name="air_quality_level_2_description">جودة هواء مقبولة بشكل عام لمعظم الأفراد. ومع ذلك، قد يعاني الأشخاص الحساسون من أعراض طفيفة إلى معتدلة في حال التعرض الطويل.</string>
     <string name="air_quality_level_3">غير جيد</string>
     <string name="uv_index_6_7">عالية</string>
@@ -410,9 +410,9 @@
     <string name="settings_widgets_live_wallpaper_summary">تعيين حركة الطقس كخلفية</string>
     <string name="unit_lpsqm_voice">لتر لكل متر مربع</string>
     <string name="air_quality_pm_info_title">الجسيمات (PM2.5 و PM10)</string>
-    <string name="wind_direction_short_W">غ</string>
+    <string name="wind_direction_W_short">غ</string>
     <string name="uv_index_0_2">منخفض</string>
-    <string name="wind_direction_short_SW">ج غ</string>
+    <string name="wind_direction_SW_short">ج غ</string>
     <string name="uv_index_3_5">معتدل</string>
     <string name="air_quality_level_5_description">سيشعر الأشخاص الحساسون بآثار صحية على الفور ويجب تجنب النشاط في الهواء الطلق. من المرجح أن يعاني الأفراد الأصحاء من صعوبة في التنفس وتهيج الحلق. ضع في اعتبارك البقاء في الداخل وإعادة جدولة الأنشطة الخارجية.</string>
     <string name="air_quality_no2_voice">ثاني أكسيد النيتروجين</string>

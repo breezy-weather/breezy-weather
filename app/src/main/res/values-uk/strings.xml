@@ -19,7 +19,7 @@
     <string name="wind_strength_2">Легкий</string>
     <string name="wind_strength">Сила вітру</string>
     <string name="pollen">Алергени</string>
-    <string name="short_yesterday">Вчора</string>
+    <string name="daily_yesterday_short">Вчора</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_degree_day_heating">Опалювальний градус дня</string>
     <string name="temperature_degree_day_cooling">Охолодження градуса дня</string>
@@ -31,11 +31,11 @@
     <string name="precipitation_none">Без опадів</string>
     <string name="wind_speed">Швидкість вітру</string>
     <string name="wind_gusts">Пориви вітру</string>
-    <string name="wind_direction_short_variable">Змінний</string>
-    <string name="wind_direction_short_NE">Пн. Сх.</string>
-    <string name="wind_direction_short_E">Сх.</string>
-    <string name="wind_direction_short_SE">Пд. Сх.</string>
-    <string name="wind_direction_short_S">Пд.</string>
+    <string name="wind_direction_variable">Змінний</string>
+    <string name="wind_direction_NE_short">Пн. Сх.</string>
+    <string name="wind_direction_E_short">Сх.</string>
+    <string name="wind_direction_SE_short">Пд. Сх.</string>
+    <string name="wind_direction_S_short">Пд.</string>
     <string name="wind_strength_1">Тихий</string>
     <string name="wind_strength_4">Помірний</string>
     <string name="wind_strength_7">Міцний</string>
@@ -125,7 +125,7 @@
     <string name="details">Подробиці</string>
     <string name="alerts_to_follow">Щоб переглянути майбутні попередження, натисніть тут.</string>
     <string name="alerts">Попередження</string>
-    <string name="short_today">Сьогодні</string>
+    <string name="daily_today_short">Сьогодні</string>
     <string name="temperature">Температура</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="precipitation_ice">Лід</string>
@@ -143,7 +143,7 @@
     <string name="air_quality_no2_info_consequences">Вплив діоксиду азоту може подразнювати дихальні шляхи та загострювати респіраторні захворювання. Крім того, NO₂ є важливим попередником озону, забруднювачем, який тісно пов’язаний з астмою та іншими респіраторними захворюваннями.</string>
     <string name="wind_strength_6">Сильний</string>
     <string name="wind_strength_10">Сильний шторм</string>
-    <string name="short_tomorrow">Завтра</string>
+    <string name="daily_tomorrow_short">Завтра</string>
     <string name="air_quality_co_info_consequences">Монооксид вуглецю проникає через тканини легень та потрапляє у кровообіг, ускладнюючи зв’язок клітин організму з киснем. Нестача кисню пошкоджує тканини та клітини. Вплив монооксиду вуглецю може викликати утруднене дихання, виснаження, запаморочення та інші симптоми, схожі на грип. Вплив високих рівнів чадного газу може бути смертельним.</string>
     <string name="pollen_tree">Дерева</string>
     <string name="pollen_alnus">Вільха</string>
@@ -177,8 +177,8 @@
     <string name="cloud_cover">Хмарність</string>
     <string name="ceiling">Висота хмар</string>
     <string name="air_quality_co_info_title">Монооксид вуглецю (CO)</string>
-    <string name="wind_direction_short_SW">Пд. Зх.</string>
-    <string name="wind_direction_short_W">Зх.</string>
+    <string name="wind_direction_SW_short">Пд. Зх.</string>
+    <string name="wind_direction_W_short">Зх.</string>
     <string name="common_weather_text_partly_cloudy">Мінлива хмарність</string>
     <string name="common_weather_text_fog">Туман</string>
     <string name="weather_data_by">Дані надані %s</string>
@@ -226,7 +226,7 @@
     <string name="location_current_not_found_yet">Поточне місцезнаходження поки що не знайдено…</string>
     <string name="action_back">Назад</string>
     <string name="action_continue">Продовжити</string>
-    <string name="wind_direction_short_NW">Пн. Зх.</string>
+    <string name="wind_direction_NW_short">Пн. Зх.</string>
     <string name="action_add_new_location">Додати нове розташування</string>
     <string name="action_share">Поділитися</string>
     <string name="message_network_unavailable">Мережа недоступна</string>
@@ -259,7 +259,7 @@
     <string name="air_quality_no2_info_origin">Джерелами NO₂ у навколишньому середовищі є результатами високотемпературного згорання палива в таких процесах, як опалення, транспорт, промисловість та виробництво електроенергії. До побутових джерел оксидів азоту (NOₓ) належить обладнання, яке спалює паливо, наприклад, печі, каміни, газові плити та духовки.</string>
     <string name="message_parsing_error_title">Не вдалося отримати погодні дані</string>
     <string name="temperature_apparent">Відчутна</string>
-    <string name="wind_direction_short_N">Пн.</string>
+    <string name="wind_direction_N_short">Пн.</string>
     <string name="wind_strength_3">Слабкий</string>
     <string name="pollen_olea">Олива</string>
     <string name="widget_label_show_widget_card_alpha">Прозорість</string>

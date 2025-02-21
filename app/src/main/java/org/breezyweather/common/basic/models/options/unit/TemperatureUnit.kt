@@ -17,11 +17,15 @@
 package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
+import android.icu.text.MeasureFormat
+import android.icu.util.MeasureUnit
+import android.os.Build
 import android.text.BidiFormatter
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitEnum
 import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.extensions.isRtl
+import org.breezyweather.common.extensions.roundDecimals
 
 enum class TemperatureUnit(
     override val id: String,
@@ -162,11 +166,24 @@ enum class TemperatureUnit(
         context: Context,
         valueInDefaultUnit: Double,
         rtl: Boolean,
-    ) = Utils.getVoiceText(
-        context = context,
-        enum = this,
-        valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = 0,
-        rtl = rtl
-    )
+    ) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        UnitEnum.formatWithIcu(
+            context,
+            getValueWithoutUnit(valueInDefaultUnit).roundDecimals(0)!!,
+            when (this) {
+                C -> MeasureUnit.CELSIUS
+                F -> MeasureUnit.FAHRENHEIT
+                K -> MeasureUnit.KELVIN
+            },
+            MeasureFormat.FormatWidth.WIDE
+        )
+    } else {
+        Utils.getVoiceText(
+            context = context,
+            enum = this,
+            valueInDefaultUnit = valueInDefaultUnit,
+            decimalNumber = 0,
+            rtl = rtl
+        )
+    }
 }

@@ -4,7 +4,7 @@
     <string name="app_name">Clima</string>
     <!-- keyword. -->
     <string name="location_current">Localização atual</string>
-    <string name="short_today">Hoje</string>
+    <string name="daily_today_short">Hoje</string>
     <string name="notification_refreshed_at">Atualizado às</string>
     <string name="precipitation">Precipitação</string>
     <string name="precipitation_probability">Probabilidade de precipitação</string>
@@ -32,8 +32,8 @@
     <string name="action_restart">Reiniciar</string>
     <string name="action_edit">Editar</string>
     <!-- The following set of strings should be as short as possible. -->
-    <string name="short_yesterday">Ontem</string>
-    <string name="short_tomorrow">Amanhã</string>
+    <string name="daily_yesterday_short">Ontem</string>
+    <string name="daily_tomorrow_short">Amanhã</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Aparente</string>
@@ -343,7 +343,7 @@
     <string name="alerts_to_follow">Próximos alertas, toque aqui para vê-los.</string>
     <string name="location_results_by">Resultados de locais por %s</string>
     <string name="about_contribution_WangDaYeeeeee">Desenvolvedor do projeto original Geometric Weather</string>
-    <string name="wind_direction_short_variable">Variável</string>
+    <string name="wind_direction_variable">Variável</string>
     <string name="action_location_list">Lista de locais</string>
     <string name="message_network_unavailable">Rede indisponível</string>
     <string name="settings_main_cards_title">Cartões</string>
@@ -429,10 +429,10 @@
     <string name="settings_icon_packs_title">Pacotes de ícones</string>
     <string name="settings_notifications_forecast_today_title">Notificação sobre a previsão do dia</string>
     <string name="common_weather_text_overcast">Muito nublado</string>
-    <string name="wind_direction_short_SW">SO</string>
-    <string name="wind_direction_short_E">L</string>
-    <string name="wind_direction_short_W">O</string>
-    <string name="wind_direction_short_NW">NO</string>
+    <string name="wind_direction_SW_short">SO</string>
+    <string name="wind_direction_E_short">L</string>
+    <string name="wind_direction_W_short">O</string>
+    <string name="wind_direction_NW_short">NO</string>
     <string name="air_quality_level_2">Razoável</string>
     <string name="settings_notifications_forecast_time_today_title">Horário de notificação para a previsão do dia</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notificação para a previsão do dia seguinte</string>
@@ -446,11 +446,11 @@
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_ft">ft</string>
     <string name="unit_mmhg">mmHg</string>
-    <string name="wind_direction_short_S">S</string>
+    <string name="wind_direction_S_short">S</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="unit_mps">m/s</string>
-    <string name="wind_direction_short_NE">NE</string>
-    <string name="wind_direction_short_SE">SE</string>
+    <string name="wind_direction_NE_short">NE</string>
+    <string name="wind_direction_SE_short">SE</string>
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_vertical">Vertical</string>
@@ -460,7 +460,7 @@
     <string name="unit_mm">mm</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_hpa">hPa</string>
-    <string name="wind_direction_short_N">N</string>
+    <string name="wind_direction_N_short">N</string>
     <string name="widget_style_mini">Mini</string>
     <string name="unit_kph">km/h</string>
     <string name="unit_kn">kn</string>

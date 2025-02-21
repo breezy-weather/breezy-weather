@@ -4,7 +4,7 @@
     <string name="app_name">Време</string>
     <!-- keyword. -->
     <string name="location_current">Тренутна локација</string>
-    <string name="short_today">Данас</string>
+    <string name="daily_today_short">Данас</string>
     <string name="notification_refreshed_at">Освежено у</string>
     <string name="precipitation">Падавине</string>
     <string name="wind">Ветар</string>
@@ -16,8 +16,8 @@
     <string name="nighttime">Ноћно</string>
     <string name="temperature_feels_like">Осећа се као</string>
     <string name="settings_follow_system">Прати систем</string>
-    <string name="short_yesterday">Јуче</string>
-    <string name="short_tomorrow">Сутра</string>
+    <string name="daily_yesterday_short">Јуче</string>
+    <string name="daily_tomorrow_short">Сутра</string>
     <string name="wind_strength_0">Мирно</string>
     <string name="wind_strength_1">Лахор</string>
     <string name="wind_strength_2">Поветарац</string>
@@ -105,8 +105,8 @@
     <string name="precipitation_intensity_light">Слабо</string>
     <string name="wind_speed">Брзина ветра</string>
     <string name="wind_direction">Правац ветра</string>
-    <string name="wind_direction_short_N">С</string>
-    <string name="wind_direction_short_variable">Променљива</string>
+    <string name="wind_direction_N_short">С</string>
+    <string name="wind_direction_variable">Променљива</string>
     <string name="uv_index_6_7">Високо</string>
     <string name="uv_index_8_10">Веома високо</string>
     <string name="air_quality_pm_explanations_introduction">Честице или атмосферске честице су микроскопске честице чврсте или течне материје суспендоване у ваздуху.</string>
@@ -298,11 +298,11 @@
     <string name="precipitation_rain">Киша</string>
     <string name="precipitation_snow">Снег</string>
     <string name="precipitation_ice">Лед</string>
-    <string name="wind_direction_short_NE">СИ</string>
-    <string name="wind_direction_short_E">И</string>
-    <string name="wind_direction_short_SE">ЈИ</string>
-    <string name="wind_direction_short_S">Ј</string>
-    <string name="wind_direction_short_SW">ЈЗ</string>
+    <string name="wind_direction_NE_short">СИ</string>
+    <string name="wind_direction_E_short">И</string>
+    <string name="wind_direction_SE_short">ЈИ</string>
+    <string name="wind_direction_S_short">Ј</string>
+    <string name="wind_direction_SW_short">ЈЗ</string>
     <string name="uv_index_11">Екстремно високо</string>
     <string name="uv_index_3_5">Умерено</string>
     <string name="air_quality_level_2">Пристојно</string>
@@ -443,8 +443,8 @@
     <string name="settings_location_access_switch_title">Приступ локацији</string>
     <string name="settings_icon_packs_title">Пакети иконица</string>
     <string name="wind_gusts">Удари ветра</string>
-    <string name="wind_direction_short_W">З</string>
-    <string name="wind_direction_short_NW">СЗ</string>
+    <string name="wind_direction_W_short">З</string>
+    <string name="wind_direction_NW_short">СЗ</string>
     <string name="wind_strength">Снага ветра</string>
     <string name="air_quality_o3_info_introduction">Приземни озон (O₃) је главна компонента смога. Иако је исти молекул, приземни озон може бити штетан по људско здравље, за разлику од стратосферског озона који штити земљу од вишка УВ зрачења.</string>
     <string name="air_quality_o3_info_origin">Настаје фотохемијским реакцијама са загађивачима као што су испарљива органска једињења, угљен-моноксид и оксиди азота (NOₓ) који се емитују из возила и индустрије. Због фотохемијске природе, највиши нивои озона се виде током периода сунчаног времена.</string>

@@ -44,6 +44,9 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -65,13 +68,12 @@ import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
-import org.breezyweather.ui.theme.weatherView.WeatherView
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
 
-class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMainViewHolder(
+class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_header, parent, false)
 ) {
     private val mContainer: LinearLayout = itemView.findViewById(R.id.container_main_header)
@@ -82,10 +84,6 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
     private var mTemperatureCFrom = 0.0
     private var mTemperatureCTo = 0.0
     private var mTemperatureUnit: TemperatureUnit? = null
-
-    init {
-        mContainer.setOnClickListener { weatherView.onClick() }
-    }
 
     @SuppressLint("SetTextI18n")
     override fun onBindView(
@@ -107,6 +105,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
         location.weather?.current?.let { current ->
             current.temperature?.temperature?.let {
                 mTemperatureContainer.visibility = View.VISIBLE
+                mTemperatureContainer.contentDescription = mTemperatureUnit!!.getValueVoice(context, it)
                 mTemperatureCFrom = mTemperatureCTo
                 mTemperatureCTo = it
                 mTemperature.isAnimEnabled = itemAnimationEnabled
@@ -158,6 +157,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
         isDaylight: Boolean = true,
     ) {
         if (detailDisplayList.isNotEmpty()) {
+            val context = LocalContext.current
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxWidth()
@@ -172,10 +172,20 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     detailDisplayList.forEach { detailDisplay ->
-                        detailDisplay.getCurrentValue(LocalContext.current, current, isDaylight)?.let { currentValue ->
+                        detailDisplay.getCurrentValue(context, current, isDaylight)?.let { currentValue ->
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 modifier = Modifier
+                                    .semantics(mergeDescendants = true) {}
+                                    .clearAndSetSemantics {
+                                        contentDescription = detailDisplay
+                                            .getContentDescription(context, current, isDaylight)
+                                            ?: (
+                                                detailDisplay.getShortName(context) +
+                                                    context.getString(R.string.colon_separator) +
+                                                    currentValue
+                                                )
+                                    }
                                     .fillMaxWidth()
                                     .weight(1f)
                                     .padding(horizontal = 5.dp)
@@ -183,7 +193,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                             ) {
                                 Icon(
                                     painterResource(detailDisplay.iconId),
-                                    contentDescription = detailDisplay.getName(LocalContext.current),
+                                    contentDescription = null,
                                     tint = Color.White
                                 )
                                 Text(
@@ -198,7 +208,7 @@ class HeaderViewHolder(parent: ViewGroup, weatherView: WeatherView) : AbstractMa
                                     overflow = TextOverflow.Ellipsis
                                 )
                                 Text(
-                                    detailDisplay.getShortName(LocalContext.current),
+                                    detailDisplay.getShortName(context),
                                     color = Color.White,
                                     fontSize = dimensionResource(
                                         R.dimen.current_weather_details_name_text_size

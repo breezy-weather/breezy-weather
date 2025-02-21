@@ -7,7 +7,6 @@
     <string name="location_current">Ma position</string>
     <string name="location_custom_name">Nom personnalisé</string>
     <string name="location_reverse_geocoding">Recherche d’adresse</string>
-    <string name="short_today">Auj.</string>
     <string name="notification_refreshed_at">Consulté à</string>
     <string name="alerts_to_follow">Vigilances à venir, appuyez pour voir.</string>
     <string name="alert_source">Source : %s</string>
@@ -46,9 +45,13 @@
     <string name="action_see_more">Voir plus</string>
     <string name="action_edit">Modifier</string>
 
+    <string name="daily_yesterday">Hier</string>
+    <string name="daily_today">Aujourd’hui</string>
+    <string name="daily_tomorrow">Demain</string>
     <!-- The following set of strings should be as short as possible. -->
-    <string name="short_yesterday">Hier</string>
-    <string name="short_tomorrow">Dem.</string>
+    <string name="daily_yesterday_short">Hier</string>
+    <string name="daily_today_short">Auj.</string>
+    <string name="daily_tomorrow_short">Dem.</string>
 
     <string name="temperature">Température</string>
     <string name="temperature_real_feel">RealFeel®</string>
@@ -89,15 +92,23 @@
     <string name="wind_strength_11">Violente tempête</string>
     <string name="wind_strength_12">Ouragan</string>
 
-    <string name="wind_direction_short_variable">Variable</string>
-    <string name="wind_direction_short_N">N</string>
-    <string name="wind_direction_short_NE">NE</string>
-    <string name="wind_direction_short_E">E</string>
-    <string name="wind_direction_short_SE">SE</string>
-    <string name="wind_direction_short_S">S</string>
-    <string name="wind_direction_short_SW">SO</string>
-    <string name="wind_direction_short_W">O</string>
-    <string name="wind_direction_short_NW">NO</string>
+    <string name="wind_direction_variable">Variable</string>
+    <string name="wind_direction_N">Nord</string>
+    <string name="wind_direction_NE">Nord Est</string>
+    <string name="wind_direction_E">Est</string>
+    <string name="wind_direction_SE">Sud Est</string>
+    <string name="wind_direction_S">Sud</string>
+    <string name="wind_direction_SW">Sud Ouest</string>
+    <string name="wind_direction_W">Ouest</string>
+    <string name="wind_direction_NW">Nord Ouest</string>
+    <string name="wind_direction_N_short">N</string>
+    <string name="wind_direction_NE_short">NE</string>
+    <string name="wind_direction_E_short">E</string>
+    <string name="wind_direction_SE_short">SE</string>
+    <string name="wind_direction_S_short">S</string>
+    <string name="wind_direction_SW_short">SO</string>
+    <string name="wind_direction_W_short">O</string>
+    <string name="wind_direction_NW_short">NO</string>
 
     <string name="precipitation_intensity_light">Faible</string>
     <string name="precipitation_intensity_medium">Modérée</string>

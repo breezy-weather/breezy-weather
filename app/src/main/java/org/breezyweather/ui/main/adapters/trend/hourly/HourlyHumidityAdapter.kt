@@ -59,13 +59,25 @@ class HourlyHumidityAdapter(
         }
 
         fun onBindView(activity: GeoActivity, location: Location, position: Int) {
-            val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_humidity_dew_point))
+            val talkBackBuilder = StringBuilder()
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
+            hourly.relativeHumidity?.let {
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(activity.getString(R.string.humidity))
+                    .append(activity.getString(R.string.colon_separator))
+                    .append(
+                        NumberFormat.getPercentInstance(activity.currentLocale).apply {
+                            maximumFractionDigits = 0
+                        }.format(it.div(100.0))
+                    )
+            }
             hourly.dewPoint?.let {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(mDewPointUnit.getValueText(activity, it))
+                    .append(activity.getString(R.string.dew_point))
+                    .append(activity.getString(R.string.colon_separator))
+                    .append(mDewPointUnit.getValueVoice(activity, it))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {

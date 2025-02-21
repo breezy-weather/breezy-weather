@@ -18,26 +18,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <org.breezyweather.ui.common.widgets.NumberAnimTextView
-                android:id="@+id/container_main_header_temperature_value"
-                android:layout_width="wrap_content"
-                android:textSize="@dimen/main_title_text_size"
-                android:includeFontPadding="false"
-                android:textFontWeight="200"
-                android:layout_centerHorizontal="true"
-                style="@style/large_title_text"
-                tools:text="11"
-                tools:ignore="RelativeOverlap,RtlSymmetry" />
+            android:id="@+id/container_main_header_temperature_value"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/main_title_text_size"
+            android:includeFontPadding="false"
+            android:textFontWeight="200"
+            android:layout_centerHorizontal="true"
+            android:importantForAccessibility="no"
+            style="@style/large_title_text"
+            tools:text="11"
+            tools:ignore="RelativeOverlap,RtlSymmetry" />
         <TextView
-                android:id="@+id/container_main_header_temperature_unit"
-                android:layout_marginTop="15dp"
-                android:textSize="25sp"
-                android:textFontWeight="400"
-                android:includeFontPadding="false"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/container_main_header_temperature_value"
-                style="@style/large_title_text"
-                tools:text="°C" />
+            android:id="@+id/container_main_header_temperature_unit"
+            android:layout_marginTop="15dp"
+            android:textSize="25sp"
+            android:textFontWeight="400"
+            android:includeFontPadding="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/container_main_header_temperature_value"
+            android:importantForAccessibility="no"
+            style="@style/large_title_text"
+            tools:text="°C" />
     </RelativeLayout>
 
     <TextView

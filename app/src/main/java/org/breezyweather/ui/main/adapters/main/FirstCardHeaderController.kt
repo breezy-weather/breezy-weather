@@ -33,16 +33,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
-import org.breezyweather.common.extensions.getFormattedTime
-import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.domain.weather.model.getFormattedDates
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import org.breezyweather.ui.theme.compose.DayNightTheme
@@ -117,6 +118,7 @@ class FirstCardHeaderController(
         location: Location,
         modifier: Modifier = Modifier,
     ) {
+        val context = LocalContext.current
         Column {
             location.weather!!.currentAlertList.forEach { currentAlert ->
                 ListItem(
@@ -140,34 +142,26 @@ class FirstCardHeaderController(
                             style = MaterialTheme.typography.titleMedium
                         )
                     },
-                    supportingContent = currentAlert.startDate?.let { startDate ->
+                    supportingContent = currentAlert.startDate?.let {
                         {
-                            val builder = StringBuilder()
-                            val startDateDay = startDate.getFormattedMediumDayAndMonth(location, mActivity)
-                            builder.append(startDateDay)
-                                .append(stringResource(R.string.comma_separator))
-                                .append(startDate.getFormattedTime(location, mActivity, mActivity.is12Hour))
-                            currentAlert.endDate?.let { endDate ->
-                                builder.append(" — ")
-                                val endDateDay = endDate.getFormattedMediumDayAndMonth(location, mActivity)
-                                if (startDateDay != endDateDay) {
-                                    builder.append(endDateDay)
-                                        .append(stringResource(R.string.comma_separator))
-                                }
-                                builder.append(endDate.getFormattedTime(location, mActivity, mActivity.is12Hour))
-                            }
                             Text(
-                                builder.toString(),
-                                color = DayNightTheme.colors.bodyColor
+                                currentAlert.getFormattedDates(location, context),
+                                color = DayNightTheme.colors.bodyColor,
+                                modifier = Modifier
+                                    .clearAndSetSemantics {
+                                        contentDescription = currentAlert.getFormattedDates(
+                                            location,
+                                            context,
+                                            full = true
+                                        )
+                                    }
                             )
                         }
                     },
                     leadingContent = {
                         Icon(
                             painterResource(R.drawable.ic_alert),
-                            contentDescription = currentAlert.headline?.ifEmpty {
-                                stringResource(R.string.alert)
-                            } ?: stringResource(R.string.alert),
+                            contentDescription = null,
                             tint = Color(ColorUtils.getDarkerColor(currentAlert.color))
                         )
                     }

@@ -4,7 +4,7 @@
     <string name="app_name">El tiempo</string>
     <!-- keyword. -->
     <string name="location_current">Ubicación actual</string>
-    <string name="short_today">Hoy</string>
+    <string name="daily_today_short">Hoy</string>
     <string name="notification_refreshed_at">Actualizado a las</string>
     <string name="precipitation">Precipitación</string>
     <string name="precipitation_probability">Probabilidad de precipitación</string>
@@ -32,8 +32,8 @@
     <string name="action_refresh">Refrescar</string>
     <string name="action_restart">Reiniciar</string>
     <string name="action_edit">Editar</string>
-    <string name="short_yesterday">Ayer</string>
-    <string name="short_tomorrow">Mña</string>
+    <string name="daily_yesterday_short">Ayer</string>
+    <string name="daily_tomorrow_short">Mña</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Aparente</string>
@@ -266,18 +266,18 @@
     <string name="unit_ppcm_voice">Por metro cúbico</string>
     <string name="air_quality_level_1">Excelente</string>
     <string name="uv_index_8_10">Muy alto</string>
-    <string name="wind_direction_short_NW">NO</string>
-    <string name="wind_direction_short_variable">Variable</string>
+    <string name="wind_direction_NW_short">NO</string>
+    <string name="wind_direction_variable">Variable</string>
     <string name="uv_index_6_7">Alto</string>
     <string name="alerts_to_follow">Próximas alertas, pulsa aquí para verlas.</string>
     <string name="precipitation_between_time">Precipitaciones entre %1$s y %2$s</string>
-    <string name="wind_direction_short_N">N</string>
-    <string name="wind_direction_short_NE">NE</string>
-    <string name="wind_direction_short_E">E</string>
-    <string name="wind_direction_short_SE">SE</string>
-    <string name="wind_direction_short_S">S</string>
-    <string name="wind_direction_short_SW">SO</string>
-    <string name="wind_direction_short_W">O</string>
+    <string name="wind_direction_N_short">N</string>
+    <string name="wind_direction_NE_short">NE</string>
+    <string name="wind_direction_E_short">E</string>
+    <string name="wind_direction_SE_short">SE</string>
+    <string name="wind_direction_S_short">S</string>
+    <string name="wind_direction_SW_short">SO</string>
+    <string name="wind_direction_W_short">O</string>
     <string name="uv_index_0_2">Bajo</string>
     <string name="uv_index_3_5">Moderado</string>
     <string name="uv_index_11">Extremo</string>

@@ -163,7 +163,10 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         }
         views.setTextViewText(R.id.widget_clock_day_subtitle, builder.toString())
         weather.today?.getTrendTemperature(context, temperatureUnit)?.let {
-            views.setTextViewText(R.id.widget_clock_day_todayTemp, context.getString(R.string.short_today) + " " + it)
+            views.setTextViewText(
+                R.id.widget_clock_day_todayTemp,
+                context.getString(R.string.daily_today_short) + " " + it
+            )
         } ?: run {
             views.setTextViewText(R.id.widget_clock_day_todayTemp, null)
         }

@@ -182,9 +182,9 @@ fun DailyPagerIndicator(
                         Text(
                             text = when {
                                 todayIndex == null -> date.getWeek(location, context)
-                                i == todayIndex - 1 -> stringResource(R.string.short_yesterday)
-                                i == todayIndex -> stringResource(R.string.short_today)
-                                i == todayIndex + 1 -> stringResource(R.string.short_tomorrow)
+                                i == todayIndex - 1 -> stringResource(R.string.daily_yesterday_short)
+                                i == todayIndex -> stringResource(R.string.daily_today_short)
+                                i == todayIndex + 1 -> stringResource(R.string.daily_tomorrow_short)
                                 else -> date.getWeek(location, context)
                             }
                         )

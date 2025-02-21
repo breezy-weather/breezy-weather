@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="short_yesterday">Eile</string>
-    <string name="short_today">Täna</string>
-    <string name="short_tomorrow">Homme</string>
+    <string name="daily_yesterday_short">Eile</string>
+    <string name="daily_today_short">Täna</string>
+    <string name="daily_tomorrow_short">Homme</string>
     <string name="ephemeris">Päike ja kuu</string>
     <string name="details">Lisateave</string>
     <string name="alert">Hoiatus</string>
@@ -73,7 +73,7 @@
     <string name="wind_gusts">Tuule puhangud</string>
     <string name="wind_direction">Tuule suund</string>
     <string name="precipitation_intensity_medium">Keskmine</string>
-    <string name="wind_direction_short_variable">Muutlik</string>
+    <string name="wind_direction_variable">Muutlik</string>
     <string name="wind_strength">Tuule tugevus</string>
     <string name="ephemeris_sunrise_at">Päikesetõus %s</string>
     <string name="ephemeris_sunset_at">Päikeseloojang %s</string>
@@ -105,11 +105,11 @@
     <string name="temperature_normals">Temperatuuri normid</string>
     <string name="uv_alert_level">Hoiatus</string>
     <string name="air_quality_pm25">PM2,5</string>
-    <string name="wind_direction_short_N">N</string>
-    <string name="wind_direction_short_NE">NE</string>
-    <string name="wind_direction_short_E">E</string>
-    <string name="wind_direction_short_SE">SE</string>
-    <string name="wind_direction_short_S">S</string>
+    <string name="wind_direction_N_short">N</string>
+    <string name="wind_direction_NE_short">NE</string>
+    <string name="wind_direction_E_short">E</string>
+    <string name="wind_direction_SE_short">SE</string>
+    <string name="wind_direction_S_short">S</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_so2_voice">Vääveldioksiid</string>
@@ -130,9 +130,9 @@
     <string name="air_quality_no2_info_introduction">Lämmastikdioksiid (NO₂) on lämmatava toimega mürgine punakaspruun gaas, millel on iseloomulik tugev, ärritav lõhn.</string>
     <string name="air_quality_so2_info_title">Vääveldioksiid (SO₂)</string>
     <string name="air_quality_co_info_title">Vingugaas (CO)</string>
-    <string name="wind_direction_short_NW">NW</string>
-    <string name="wind_direction_short_SW">SW</string>
-    <string name="wind_direction_short_W">W</string>
+    <string name="wind_direction_NW_short">NW</string>
+    <string name="wind_direction_SW_short">SW</string>
+    <string name="wind_direction_W_short">W</string>
     <string name="air_quality_pm_explanations_consequences">Peenosakesed on kõige kahjulikum õhusaaste vorm, kuna nad suudavad tungida sügavale kopsudesse ja vereringe kaudu ka ajju. Peenosakesed põhjustavad erinevaid terviseprobleeme nagu südame- ja kopsuhaigused, mille tagajärjeks võib olla enneaegne surm.</string>
     <string name="pollen_fraxinus">Saar</string>
     <string name="pollen_level_1">Väga madal</string>

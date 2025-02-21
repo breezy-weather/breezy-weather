@@ -44,6 +44,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -135,9 +137,7 @@ internal fun AlertScreen(
                             ) {
                                 Icon(
                                     painterResource(R.drawable.ic_alert),
-                                    contentDescription = alert.headline?.ifEmpty {
-                                        stringResource(R.string.alert)
-                                    } ?: stringResource(R.string.alert),
+                                    contentDescription = null,
                                     tint = Color(ColorUtils.getDarkerColor(alert.color))
                                 )
                                 Spacer(modifier = Modifier.width(dimensionResource(R.dimen.normal_margin)))
@@ -153,7 +153,15 @@ internal fun AlertScreen(
                                     Text(
                                         text = alert.getFormattedDates(alertUiState.location!!, context),
                                         color = DayNightTheme.colors.captionColor,
-                                        style = MaterialTheme.typography.labelMedium
+                                        style = MaterialTheme.typography.labelMedium,
+                                        modifier = Modifier
+                                            .clearAndSetSemantics {
+                                                contentDescription = alert.getFormattedDates(
+                                                    alertUiState.location!!,
+                                                    context,
+                                                    full = true
+                                                )
+                                            }
                                     )
                                 }
                             }

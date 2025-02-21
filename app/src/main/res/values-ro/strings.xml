@@ -4,7 +4,7 @@
     <string name="app_name">Meteo</string>
     <!-- keyword. -->
     <string name="location_current">Locația curentă</string>
-    <string name="short_today">Azi</string>
+    <string name="daily_today_short">Azi</string>
     <string name="notification_refreshed_at">Actualizat la</string>
     <string name="precipitation">Precipitații</string>
     <string name="precipitation_probability">Probabilitate de precipitații</string>
@@ -32,8 +32,8 @@
     <string name="action_restart">Repornește</string>
     <string name="action_edit">Modifică</string>
     <!-- The following set of strings should be as short as possible. -->
-    <string name="short_yesterday">Ieri</string>
-    <string name="short_tomorrow">Mâine</string>
+    <string name="daily_yesterday_short">Ieri</string>
+    <string name="daily_tomorrow_short">Mâine</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Temp. aparentă</string>
@@ -330,13 +330,13 @@
     <string name="common_weather_text_clear_sky">Senin</string>
     <string name="precipitation_none">Fără precipitații</string>
     <string name="precipitation_between_time">Precipitații între %1$s și %2$s</string>
-    <string name="wind_direction_short_variable">Variabilă</string>
-    <string name="wind_direction_short_N">N</string>
-    <string name="wind_direction_short_NE">NE</string>
-    <string name="wind_direction_short_E">E</string>
-    <string name="wind_direction_short_SW">SV</string>
-    <string name="wind_direction_short_W">V</string>
-    <string name="wind_direction_short_NW">NV</string>
+    <string name="wind_direction_variable">Variabilă</string>
+    <string name="wind_direction_N_short">N</string>
+    <string name="wind_direction_NE_short">NE</string>
+    <string name="wind_direction_E_short">E</string>
+    <string name="wind_direction_SW_short">SV</string>
+    <string name="wind_direction_W_short">V</string>
+    <string name="wind_direction_NW_short">NV</string>
     <string name="uv_index_0_2">Scăzut</string>
     <string name="uv_index_3_5">Moderat</string>
     <string name="air_quality_level_4_description">Efectele asupra sănătății pot fi simțite imediat de către persoanele sensibile. Persoanele sănătoase pot experimenta dificultăți în respirație sau iritații a gâtului la expunerea prelungită. Limitează activitățile în aer liber.</string>
@@ -378,8 +378,8 @@
     <string name="unit_m_voice">metri</string>
     <string name="notification_channel_background_services">Servicii de fundal</string>
     <string name="alerts_to_follow">Există alerte viitoare, apasă aici pentru a le vedea.</string>
-    <string name="wind_direction_short_SE">SE</string>
-    <string name="wind_direction_short_S">S</string>
+    <string name="wind_direction_SE_short">SE</string>
+    <string name="wind_direction_S_short">S</string>
     <string name="uv_index_6_7">Ridicat</string>
     <string name="uv_index_8_10">Foarte ridicat</string>
     <string name="uv_alert_level">Alertă</string>

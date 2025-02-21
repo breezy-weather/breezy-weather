@@ -4,7 +4,7 @@
     <string name="app_name">Clima</string>
     <!-- keyword. -->
     <string name="location_current">localização atual</string>
-    <string name="short_today">Hoje</string>
+    <string name="daily_today_short">Hoje</string>
     <string name="notification_refreshed_at">Atualizado em</string>
     <string name="precipitation">Precipitação</string>
     <string name="wind">Vento</string>
@@ -20,8 +20,8 @@
     <string name="visibility">Visibilidade</string>
     <string name="dew_point">Ponto de Orvalho</string>
     <string name="cloud_cover">Nebulosidade</string>
-    <string name="short_yesterday">Ontem</string>
-    <string name="short_tomorrow">Amanhã</string>
+    <string name="daily_yesterday_short">Ontem</string>
+    <string name="daily_tomorrow_short">Amanhã</string>
     <string name="wind_strength_0">Calmo</string>
     <string name="wind_strength_1">Fresco</string>
     <string name="wind_strength_2">Brisa Leve</string>
@@ -140,7 +140,7 @@
     <string name="precipitation_duration">Duração de precipitação</string>
     <string name="wind_speed">Velocidade do vento</string>
     <string name="wind_direction">Direção do vento</string>
-    <string name="wind_direction_short_variable">Variável</string>
+    <string name="wind_direction_variable">Variável</string>
     <string name="wind_strength">Força do vento</string>
     <string name="air_quality_so2_info_consequences">A exposição ao SO₂ está associada a internações hospitalares por asma e visitas ao pronto-socorro.</string>
     <string name="air_quality_co_info_title">Monóxido de carbono (CO)</string>
@@ -310,15 +310,15 @@
     <string name="settings_none">Nenhum</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Descrição diária</string>
     <string name="unit_mi_voice">Milhas</string>
-    <string name="wind_direction_short_SE">SE</string>
+    <string name="wind_direction_SE_short">SE</string>
     <string name="unit_kelvin_short">K</string>
     <string name="temperature_wind_chill">Frio do vento</string>
     <string name="unit_m_voice">Metros</string>
     <string name="temperature">Temperatura</string>
     <string name="temperature_apparent">Aparente</string>
-    <string name="wind_direction_short_E">L</string>
-    <string name="wind_direction_short_W">O</string>
-    <string name="wind_direction_short_NW">NO</string>
+    <string name="wind_direction_E_short">L</string>
+    <string name="wind_direction_W_short">O</string>
+    <string name="wind_direction_NW_short">NO</string>
     <string name="uv_alert_level">Alerta</string>
     <string name="air_quality_level_1">Excelente</string>
     <string name="air_quality_level_1_description">A qualidade do ar é ideal para a maioria das pessoas; aproveite as suas atividades normais ao ar livre.</string>
@@ -405,8 +405,8 @@
     <string name="settings_units_precipitation">Unidade de precipitação</string>
     <string name="settings_color_day_night">Dia / Noite</string>
     <string name="temperature_degree_day">Graus dia</string>
-    <string name="wind_direction_short_N">N</string>
-    <string name="wind_direction_short_NE">NE</string>
+    <string name="wind_direction_N_short">N</string>
+    <string name="wind_direction_NE_short">NE</string>
     <string name="sunshine_duration">Horas de sol</string>
     <string name="weather_kind_haze">Neblina</string>
     <string name="weather_kind_thunderstorm">Trovoada</string>
@@ -444,8 +444,8 @@
     <string name="null_data_text">N/A</string>
     <string name="action_refresh">Atualizar</string>
     <string name="air_quality_no2_info_consequences">A exposição ao dióxido de nitrogênio pode irritar as vias aéreas e agravar doenças respiratórias. Além disso, o NO₂ é um importante precursor do ozônio, um poluente intimamente ligado à asma e a outras doenças respiratórias.</string>
-    <string name="wind_direction_short_S">S</string>
-    <string name="wind_direction_short_SW">SO</string>
+    <string name="wind_direction_S_short">S</string>
+    <string name="wind_direction_SW_short">SO</string>
     <string name="uv_index_3_5">Moderado</string>
     <string name="uv_index_6_7">Alto</string>
     <string name="uv_index_8_10">Muito alto</string>

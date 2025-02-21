@@ -26,10 +26,13 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.font.FontWeight
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Current
@@ -99,6 +102,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         current: Current,
         location: Location,
     ) {
+        val context = LocalContext.current
         // TODO: Lazy
         Column {
             availableDetails(
@@ -109,26 +113,36 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 location.isDaylight
             ).forEach { detailDisplay ->
                 ListItem(
+                    modifier = Modifier
+                        .clearAndSetSemantics {
+                            contentDescription = detailDisplay
+                                .getContentDescription(context, current, location.isDaylight)
+                                ?: (
+                                    detailDisplay.getShortName(context) +
+                                        context.getString(R.string.colon_separator) +
+                                        detailDisplay.getCurrentValue(context, current, location.isDaylight)!!
+                                    )
+                        },
                     colors = ListItemDefaults.colors(
                         containerColor = Color.Transparent
                     ),
                     headlineContent = {
                         Text(
-                            detailDisplay.getName(LocalContext.current),
+                            detailDisplay.getName(context),
                             fontWeight = FontWeight.Bold,
                             color = DayNightTheme.colors.titleColor
                         )
                     },
                     supportingContent = {
                         Text(
-                            detailDisplay.getCurrentValue(LocalContext.current, current, location.isDaylight)!!,
+                            detailDisplay.getCurrentValue(context, current, location.isDaylight)!!,
                             color = DayNightTheme.colors.bodyColor
                         )
                     },
                     leadingContent = {
                         Icon(
                             painterResource(detailDisplay.iconId),
-                            contentDescription = detailDisplay.getName(LocalContext.current),
+                            contentDescription = null,
                             tint = DayNightTheme.colors.titleColor
                         )
                     }

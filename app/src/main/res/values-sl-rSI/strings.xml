@@ -4,7 +4,7 @@
     <string name="app_name">Vreme</string>
     <!-- keyword. -->
     <string name="location_current">Trenutna lokacija</string>
-    <string name="short_today">Danes</string>
+    <string name="daily_today_short">Danes</string>
     <string name="notification_refreshed_at">Osveži ob</string>
     <string name="precipitation">Padavine</string>
     <string name="wind">Veter</string>
@@ -21,8 +21,8 @@
     <string name="dew_point">Točka rose</string>
     <string name="settings_icon_packs_get_more">Več</string>
     <string name="action_refresh">Osveži</string>
-    <string name="short_yesterday">Včr</string>
-    <string name="short_tomorrow">Jtr</string>
+    <string name="daily_yesterday_short">Včr</string>
+    <string name="daily_tomorrow_short">Jtr</string>
     <string name="wind_strength_0">Mirno</string>
     <string name="wind_strength_1">Lahen zrak</string>
     <string name="wind_strength_2">Lahen vetrič</string>
@@ -194,7 +194,7 @@
     <string name="ephemeris_sunset_at">Sončni zahod ob %s</string>
     <string name="pollen">Cvetni prah</string>
     <string name="pollen_and_mold">Cvetni prah in plesen</string>
-    <string name="wind_direction_short_variable">Spremenljiva</string>
+    <string name="wind_direction_variable">Spremenljiva</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="pollen_tree">Drevo</string>
     <string name="ephemeris_moonset_at">Lunin zahod ob %s</string>
@@ -205,11 +205,11 @@
     <string name="precipitation_none">Brez padavin</string>
     <string name="wind_speed">Hitrost vetra</string>
     <string name="wind_gusts">Sunki vetra</string>
-    <string name="wind_direction_short_N">S</string>
-    <string name="wind_direction_short_NE">SV</string>
-    <string name="wind_direction_short_E">V</string>
-    <string name="wind_direction_short_W">Z</string>
-    <string name="wind_direction_short_NW">SZ</string>
+    <string name="wind_direction_N_short">S</string>
+    <string name="wind_direction_NE_short">SV</string>
+    <string name="wind_direction_E_short">V</string>
+    <string name="wind_direction_W_short">Z</string>
+    <string name="wind_direction_NW_short">SZ</string>
     <string name="wind_strength">Moč vetra</string>
     <string name="air_quality_pm25_voice">Prašni delci dva cela pet</string>
     <string name="air_quality_pm10">PM10</string>
@@ -222,7 +222,7 @@
     <string name="precipitation_snow">Sneg</string>
     <string name="precipitation_intensity_light">Sodra</string>
     <string name="precipitation_between_time">Padavine med%1$s in %2$s</string>
-    <string name="wind_direction_short_SE">JV</string>
+    <string name="wind_direction_SE_short">JV</string>
     <string name="uv_index_0_2">Nizek</string>
     <string name="air_quality_no2_voice">Dušikov dioksid</string>
     <string name="precipitation_ice">Led</string>
@@ -235,7 +235,7 @@
     <string name="temperature">Temperatura</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_wind_chill">Hladen veter</string>
-    <string name="wind_direction_short_S">J</string>
+    <string name="wind_direction_S_short">J</string>
     <string name="temperature_average_short">Povp</string>
     <string name="temperature_normals">Temperaturne normale</string>
     <string name="uv_index_6_7">Visok</string>
@@ -253,7 +253,7 @@
     <string name="air_quality_co_info_title">Ogljikov monoksid (CO)</string>
     <string name="air_quality_co_info_introduction">Ogljikov monoksid (CO) je strupen, vnetljiv plin, ki je brez barve, vonja in okusa ter ni dražeč.</string>
     <string name="alerts_to_follow">Če si želite ogledati prihajajoča opozorila, se dotaknite tukaj.</string>
-    <string name="wind_direction_short_SW">JZ</string>
+    <string name="wind_direction_SW_short">JZ</string>
     <string name="air_quality_no2_info_consequences">Izpostavljenost dušikovemu dioksidu lahko draži dihalne poti in poslabša bolezni dihal. Poleg tega je NO₂ pomemben predhodnik ozona, onesnaževala, ki je tesno povezano z astmo in drugimi boleznimi dihal.</string>
     <string name="air_quality_so2_info_consequences">Izpostavljenost SO₂ je povezana s hospitalizacijami zaradi astme in obiski na urgenci.</string>
     <string name="pollen_mold">Plesen</string>

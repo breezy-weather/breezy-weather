@@ -24,8 +24,8 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.BaseEnum
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getShortDescription
-import org.breezyweather.domain.weather.model.getShortUVDescription
 import java.text.NumberFormat
 
 enum class DetailDisplay(
@@ -153,7 +153,7 @@ enum class DetailDisplay(
             null
         }
         "uv_index" -> if (current.uV?.index != null && (isDaylight || current.uV!!.index!! > 0)) {
-            current.uV!!.getShortUVDescription(context)
+            current.uV!!.getShortDescription(context)
         } else {
             null
         }
@@ -178,6 +178,65 @@ enum class DetailDisplay(
         }
         "ceiling" -> current.ceiling?.let {
             SettingsManager.getInstance(context).distanceUnit.getValueText(context, it)
+        }
+        else -> null
+    }
+
+    fun getContentDescription(context: Context, current: Current, isDaylight: Boolean = true): String? = when (id) {
+        "feels_like" -> current.temperature?.feelsLikeTemperature?.let {
+            getName(context) +
+                context.getString(R.string.colon_separator) +
+                SettingsManager.getInstance(context).temperatureUnit.getValueVoice(context, it)
+        }
+        "wind" -> if (!current.wind?.getContentDescription(
+                context,
+                SettingsManager.getInstance(context).speedUnit
+            ).isNullOrEmpty()
+        ) {
+            current.wind!!.getContentDescription(context, SettingsManager.getInstance(context).speedUnit)
+        } else {
+            null
+        }
+        "uv_index" -> if (current.uV?.index != null && (isDaylight || current.uV!!.index!! > 0)) {
+            getName(context) +
+                context.getString(R.string.colon_separator) +
+                current.uV!!.getContentDescription(context)
+        } else {
+            null
+        }
+        "humidity" -> current.relativeHumidity?.let {
+            getName(context) +
+                context.getString(R.string.colon_separator) +
+                NumberFormat.getPercentInstance(context.currentLocale).apply {
+                    maximumFractionDigits = 0
+                }.format(it.div(100.0))
+        }
+        "dew_point" -> current.dewPoint?.let {
+            getName(context) +
+                context.getString(R.string.colon_separator) +
+                SettingsManager.getInstance(context).temperatureUnit.getValueVoice(context, it)
+        }
+        "pressure" -> current.pressure?.let {
+            getName(context) +
+                context.getString(R.string.colon_separator) +
+                SettingsManager.getInstance(context).pressureUnit.getValueVoice(context, it)
+        }
+        "visibility" -> current.visibility?.let {
+            getName(context) +
+                context.getString(R.string.colon_separator) +
+                SettingsManager.getInstance(context).distanceUnit.getValueVoice(context, it)
+        }
+        "cloud_cover" -> current.cloudCover?.let {
+            getName(context) +
+                context.getString(R.string.colon_separator) +
+                NumberFormat.getPercentInstance(context.currentLocale).apply {
+                    maximumFractionDigits = 0
+                }.format(it.div(100.0))
+        }
+        "ceiling" -> current.ceiling?.let {
+            getName(context) +
+                context.getString(R.string.colon_separator) +
+                SettingsManager.getInstance(context).distanceUnit.getValueVoice(context, it)
         }
         else -> null
     }

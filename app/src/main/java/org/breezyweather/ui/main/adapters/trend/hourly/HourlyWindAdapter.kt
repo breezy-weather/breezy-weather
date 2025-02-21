@@ -31,7 +31,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.domain.weather.model.getColor
-import org.breezyweather.domain.weather.model.getDescription
+import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.ui.common.images.RotateDrawable
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
@@ -57,16 +57,14 @@ class HourlyWindAdapter(
 
         @SuppressLint("SetTextI18n, InflateParams")
         fun onBindView(activity: GeoActivity, location: Location, position: Int) {
-            val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_wind))
+            val talkBackBuilder = StringBuilder()
             super.onBindView(activity, location, talkBackBuilder, position)
             val hourly = location.weather!!.nextHourlyForecast[position]
 
             if (hourly.wind?.isValid == true) {
                 talkBackBuilder
                     .append(activity.getString(R.string.comma_separator))
-                    .append(activity.getString(R.string.tag_wind))
-                    .append(activity.getString(R.string.colon_separator))
-                    .append(hourly.wind!!.getDescription(activity, mSpeedUnit))
+                    .append(hourly.wind!!.getContentDescription(activity, mSpeedUnit))
             }
             val windColor = hourly.wind?.getColor(activity) ?: Color.TRANSPARENT
             val hourlyIcon = hourly.wind?.degree?.let { degree ->

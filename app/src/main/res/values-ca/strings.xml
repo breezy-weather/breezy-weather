@@ -4,7 +4,7 @@
     <string name="app_name">El temps</string>
     <!-- keyword. -->
     <string name="location_current">Ubicació actual</string>
-    <string name="short_today">Avui</string>
+    <string name="daily_today_short">Avui</string>
     <string name="notification_refreshed_at">Actualitzat a les</string>
     <string name="precipitation">Precipitació</string>
     <string name="precipitation_probability">Probabilitat de precipitació</string>
@@ -32,8 +32,8 @@
     <string name="action_restart">Reinicia</string>
     <string name="action_edit">Edita</string>
     <!-- The following set of strings should be as short as possible. -->
-    <string name="short_yesterday">Ahir</string>
-    <string name="short_tomorrow">Dmà</string>
+    <string name="daily_yesterday_short">Ahir</string>
+    <string name="daily_tomorrow_short">Dmà</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Aparent</string>
@@ -268,26 +268,26 @@
     <string name="pollen_and_mold">Pol·len i floridura</string>
     <string name="alerts_to_follow">Alertes pròximes, toca per a veure-les.</string>
     <string name="wind_gusts">Ràfegues de vent</string>
-    <string name="wind_direction_short_N">N</string>
-    <string name="wind_direction_short_NE">NE</string>
-    <string name="wind_direction_short_E">E</string>
-    <string name="wind_direction_short_SE">SE</string>
+    <string name="wind_direction_N_short">N</string>
+    <string name="wind_direction_NE_short">NE</string>
+    <string name="wind_direction_E_short">E</string>
+    <string name="wind_direction_SE_short">SE</string>
     <string name="uv_index_0_2">Baix</string>
     <string name="uv_index_3_5">Moderat</string>
     <string name="uv_index_6_7">Alt</string>
     <string name="uv_index_11">Extrem</string>
     <string name="wind_strength">Força del vent</string>
     <string name="uv_index_8_10">Molt alt</string>
-    <string name="wind_direction_short_S">S</string>
+    <string name="wind_direction_S_short">S</string>
     <string name="temperature_average_short">Mitj</string>
     <string name="temperature_normal_short">Normal</string>
     <string name="temperature_normals">Normals de temperatura</string>
-    <string name="wind_direction_short_variable">Variable</string>
-    <string name="wind_direction_short_W">O</string>
+    <string name="wind_direction_variable">Variable</string>
+    <string name="wind_direction_W_short">O</string>
     <string name="precipitation_between_time">Precipitació entre %1$s i %2$s</string>
-    <string name="wind_direction_short_NW">NO</string>
+    <string name="wind_direction_NW_short">NO</string>
     <string name="precipitation_none">Sense precipitació</string>
-    <string name="wind_direction_short_SW">SO</string>
+    <string name="wind_direction_SW_short">SO</string>
     <string name="uv_alert_level">Alerta</string>
     <string name="air_quality_index">Índex de Qualitat de l’aire</string>
     <string name="air_quality_level_1">Excel·lent</string>

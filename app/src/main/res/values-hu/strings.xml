@@ -4,7 +4,7 @@
     <string name="app_name">Időjárás</string>
     <!-- keyword. -->
     <string name="location_current">Jelenlegi helyszín</string>
-    <string name="short_today">Ma</string>
+    <string name="daily_today_short">Ma</string>
     <string name="notification_refreshed_at">Frissítve:</string>
     <string name="precipitation">Csapadék</string>
     <string name="precipitation_probability">Csapadék esélye</string>
@@ -31,8 +31,8 @@
     <string name="action_refresh">Frissítés</string>
     <string name="action_restart">Újraindítás</string>
     <string name="action_edit">Szerkesztés</string>
-    <string name="short_yesterday">T</string>
-    <string name="short_tomorrow">H</string>
+    <string name="daily_yesterday_short">T</string>
+    <string name="daily_tomorrow_short">H</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Hőérzet</string>
@@ -253,12 +253,12 @@
     <string name="precipitation_none">Nincs csapadék</string>
     <string name="precipitation_between_time">Csapadék %1$s és %2$s között</string>
     <string name="wind_gusts">Széllökések</string>
-    <string name="wind_direction_short_variable">Változó</string>
-    <string name="wind_direction_short_N">É</string>
-    <string name="wind_direction_short_NE">ÉK</string>
-    <string name="wind_direction_short_E">K</string>
-    <string name="wind_direction_short_SE">DK</string>
-    <string name="wind_direction_short_S">D</string>
+    <string name="wind_direction_variable">Változó</string>
+    <string name="wind_direction_N_short">É</string>
+    <string name="wind_direction_NE_short">ÉK</string>
+    <string name="wind_direction_E_short">K</string>
+    <string name="wind_direction_SE_short">DK</string>
+    <string name="wind_direction_S_short">D</string>
     <string name="wind_strength">Szélerősség</string>
     <string name="air_quality_level_2_description">A légszennyezettség a legtöbb ember számára általában elfogadható. Az érzékeny csoportok azonban a hosszú távú kitettség következtében kisebb vagy közepes mértékű tüneteket tapasztalhatnak.</string>
     <string name="air_quality_level_5_description">Az érzékeny csoportok azonnal érzik az egészségügyi hatásokat, és kerülniük kell a szabadtéri tevékenységeket. Az egészséges egyének valószínűleg légzési nehézségeket és torokirritációt tapasztalnak; fontolja meg a beltérben maradást és a szabadtéri tevékenységek átütemezését.</string>
@@ -344,9 +344,9 @@
     <string name="air_quality_level_3_description">A légszennyezettség elérte a magas szintet, és az érzékeny csoportok számára egészségtelen. Csökkentse a szabadban töltött időt, ha olyan tüneteket tapasztal, mint légzési nehézség vagy torokirritáció.</string>
     <string name="air_quality_level_1_description">A levegő minősége a legtöbb ember számára ideális; élvezze a szokásos szabadtéri tevékenységeket.</string>
     <string name="air_quality_level_5">Nagyon káros</string>
-    <string name="wind_direction_short_NW">ÉNy</string>
-    <string name="wind_direction_short_W">Ny</string>
-    <string name="wind_direction_short_SW">DNy</string>
+    <string name="wind_direction_NW_short">ÉNy</string>
+    <string name="wind_direction_W_short">Ny</string>
+    <string name="wind_direction_SW_short">DNy</string>
     <string name="air_quality_level_2">Elégséges</string>
     <string name="uv_alert_level">Riasztás</string>
     <string name="air_quality_level_1">Kitűnő</string>

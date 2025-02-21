@@ -169,10 +169,6 @@ class MaterialWeatherView(
         }
     }
 
-    override fun onClick() {
-        // do nothing.
-    }
-
     override fun onScroll(scrollY: Int) {
         val scrollRate = min(1.0, 1.0 * scrollY / mFirstCardMarginTop).toFloat()
         mCurrentView?.let {

@@ -4,7 +4,7 @@
     <string name="app_name">Cuaca</string>
     <!-- keyword. -->
     <string name="location_current">Lokasi saat ini</string>
-    <string name="short_today">Hari ini</string>
+    <string name="daily_today_short">Hari ini</string>
     <string name="notification_refreshed_at">Dimuat ulang pada</string>
     <string name="precipitation">Curah hujan</string>
     <string name="precipitation_probability">Kemungkinan curah hujan</string>
@@ -33,8 +33,8 @@
     <string name="action_refresh">Muat ulang</string>
     <string name="action_restart">Mulai ulang</string>
     <string name="action_edit">Sunting</string>
-    <string name="short_yesterday">Kmrn</string>
-    <string name="short_tomorrow">Bsk</string>
+    <string name="daily_yesterday_short">Kmrn</string>
+    <string name="daily_tomorrow_short">Bsk</string>
     <string name="temperature_apparent">Tampak</string>
     <string name="temperature_wind_chill">Kesejukan angin</string>
     <string name="temperature_wet_bulb">Suhu bola basah</string>
@@ -243,8 +243,8 @@
     <string name="alerts_to_follow">Peringatan yang akan datang, ketuk di sini untuk melihatnya.</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
-    <string name="wind_direction_short_variable">Variabel</string>
-    <string name="wind_direction_short_N">U</string>
+    <string name="wind_direction_variable">Variabel</string>
+    <string name="wind_direction_N_short">U</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Badai petir dengan hujan es lebat</string>
     <string name="settings_background_updates_refresh_30min">30 menit</string>
     <string name="settings_background_updates_refresh_2h">2 jam</string>
@@ -254,7 +254,7 @@
     <string name="precipitation_nowcasting">Curah hujan menit demi menit</string>
     <string name="temperature_degree_day_heating">Hari-derajat pemanasan</string>
     <string name="temperature_degree_day_cooling">Hari-derajat pendinginan</string>
-    <string name="wind_direction_short_E">T</string>
+    <string name="wind_direction_E_short">T</string>
     <string name="uv_index_0_2">Rendah</string>
     <string name="uv_index_3_5">Sedang</string>
     <string name="uv_index_6_7">Tinggi</string>
@@ -265,7 +265,7 @@
     <string name="temperature_average_short">Rata-rata</string>
     <string name="temperature_normal_short">Normal</string>
     <string name="temperature_normals">Suhu normal</string>
-    <string name="wind_direction_short_W">B</string>
+    <string name="wind_direction_W_short">B</string>
     <string name="wind_strength">Kekuatan angin</string>
     <string name="uv_index_11">Ekstrem</string>
     <string name="air_quality_level_1">Sempurna</string>
@@ -273,14 +273,14 @@
     <string name="uv_alert_level">Waspada</string>
     <string name="air_quality_level_3">Buruk</string>
     <string name="wind_gusts">Embusan angin</string>
-    <string name="wind_direction_short_S">S</string>
+    <string name="wind_direction_S_short">S</string>
     <string name="air_quality_index">Indeks Kualitas Udara</string>
     <string name="air_quality_level_3_description">Udara telah mencapai tingkat polusi yang tinggi dan tidak sehat bagi kelompok sensitif. Kurangi waktu di luar ruangan jika Anda merasakan gejala seperti kesulitan bernapas atau radang tenggorokan.</string>
-    <string name="wind_direction_short_NE">TL</string>
-    <string name="wind_direction_short_SE">TG</string>
-    <string name="wind_direction_short_NW">BL</string>
+    <string name="wind_direction_NE_short">TL</string>
+    <string name="wind_direction_SE_short">TG</string>
+    <string name="wind_direction_NW_short">BL</string>
     <string name="air_quality_level_5">Sangat tidak sehat</string>
-    <string name="wind_direction_short_SW">BD</string>
+    <string name="wind_direction_SW_short">BD</string>
     <string name="unit_celsius_short">°</string>
     <string name="settings_source_api_key">Kunci API</string>
     <string name="dialog_permissions_notification_title">Tetap terinformasi</string>

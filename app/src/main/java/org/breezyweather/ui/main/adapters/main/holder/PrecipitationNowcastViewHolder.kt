@@ -72,6 +72,7 @@ import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getMinutelyDescription
 import org.breezyweather.domain.weather.model.getMinutelyTitle
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
@@ -133,12 +134,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                 ContentView(location)
             }
         }
-        chartComposeView.contentDescription =
-            activity.getString(
-                R.string.precipitation_between_time,
-                minutelyList.first().date.getFormattedTime(location, context, context.is12Hour),
-                minutelyList.last().date.getFormattedTime(location, context, context.is12Hour)
-            )
+        chartComposeView.contentDescription = minutelyList.getContentDescription(context, location)
 
         val firstTime = minutelyList.first().date
         val lastTime = Date(

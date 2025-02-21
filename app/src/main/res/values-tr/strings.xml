@@ -4,7 +4,7 @@
     <string name="app_name">Hava Durumu</string>
     <!-- keyword. -->
     <string name="location_current">Konumunuz</string>
-    <string name="short_today">Bugün</string>
+    <string name="daily_today_short">Bugün</string>
     <string name="notification_refreshed_at">Son güncelleme</string>
     <string name="precipitation">Yağış</string>
     <string name="wind">Rüzgar</string>
@@ -16,8 +16,8 @@
     <string name="nighttime">Gece</string>
     <string name="temperature_feels_like">Hissedilen</string>
     <string name="settings_follow_system">Sistem Dili</string>
-    <string name="short_yesterday">Dün</string>
-    <string name="short_tomorrow">Yarın</string>
+    <string name="daily_yesterday_short">Dün</string>
+    <string name="daily_tomorrow_short">Yarın</string>
     <string name="wind_strength_0">Sakin</string>
     <string name="wind_strength_1">Hafif</string>
     <string name="wind_strength_2">Hafif bir esinti</string>
@@ -91,9 +91,9 @@
     <string name="air_quality_level_4_description">Sağlık üzerindeki etkileri risk altındaki bireyler tarafından anında hissedilebilir. Uzun süreli maruz kalma durumunda sağlıklı kişiler nefes alma güçlüğü ve boğazda tahriş hissedebilir. Açık hava aktivitelerini azaltın.</string>
     <string name="temperature_apparent">Görülen</string>
     <string name="air_quality_level_4">Sağlık Açısından Sakıncalı</string>
-    <string name="wind_direction_short_SW">GB</string>
+    <string name="wind_direction_SW_short">GB</string>
     <string name="temperature_wet_bulb">Islak hazne sıcaklığı</string>
-    <string name="wind_direction_short_variable">Değişken</string>
+    <string name="wind_direction_variable">Değişken</string>
     <string name="temperature_wind_chill">Rüzgar soğuğu</string>
     <string name="temperature">Sıcaklık</string>
     <string name="temperature_real_feel">RealFeel®</string>
@@ -108,14 +108,14 @@
     <string name="precipitation_snow">Kar</string>
     <string name="precipitation_intensity_heavy">Sağanak</string>
     <string name="wind_speed">Rüzgar hızı</string>
-    <string name="wind_direction_short_N">K</string>
-    <string name="wind_direction_short_NE">KD</string>
+    <string name="wind_direction_N_short">K</string>
+    <string name="wind_direction_NE_short">KD</string>
     <string name="wind_direction">Rüzgar yönü</string>
-    <string name="wind_direction_short_E">D</string>
-    <string name="wind_direction_short_S">G</string>
-    <string name="wind_direction_short_W">B</string>
-    <string name="wind_direction_short_NW">KB</string>
-    <string name="wind_direction_short_SE">GD</string>
+    <string name="wind_direction_E_short">D</string>
+    <string name="wind_direction_S_short">G</string>
+    <string name="wind_direction_W_short">B</string>
+    <string name="wind_direction_NW_short">KB</string>
+    <string name="wind_direction_SE_short">GD</string>
     <string name="uv_alert_level">Uyarı</string>
     <string name="air_quality_level_1">Mükemmel</string>
     <string name="air_quality_level_1_description">Hava kalitesi birçok kişi için ideal. Her zamanki açık hava aktivitelerinizin keyfini çıkarın.</string>

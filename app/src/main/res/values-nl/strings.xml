@@ -4,7 +4,7 @@
     <string name="app_name">Weer</string>
     <!-- keyword. -->
     <string name="location_current">Huidige locatie</string>
-    <string name="short_today">Vandaag</string>
+    <string name="daily_today_short">Vandaag</string>
     <string name="notification_refreshed_at">Vernieuwd om</string>
     <string name="precipitation">Neerslag</string>
     <string name="wind">Wind</string>
@@ -16,8 +16,8 @@
     <string name="nighttime">’s Nachts</string>
     <string name="temperature_feels_like">Gevoelstemperatuur</string>
     <string name="settings_follow_system">Volg systeem</string>
-    <string name="short_yesterday">Gisteren</string>
-    <string name="short_tomorrow">Morgen</string>
+    <string name="daily_yesterday_short">Gisteren</string>
+    <string name="daily_tomorrow_short">Morgen</string>
     <string name="wind_strength_0">Stil</string>
     <string name="wind_strength_1">Licht lucht</string>
     <string name="wind_strength_2">Licht briesje</string>
@@ -124,8 +124,8 @@
     <string name="precipitation_snow">Sneeuw</string>
     <string name="precipitation_ice">IJs</string>
     <string name="precipitation_between_time">Neerslag tussen %1$s en %2$s</string>
-    <string name="wind_direction_short_S">Z</string>
-    <string name="wind_direction_short_SW">ZW</string>
+    <string name="wind_direction_S_short">Z</string>
+    <string name="wind_direction_SW_short">ZW</string>
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="pollen_tree">Bomen</string>
@@ -384,13 +384,13 @@
     <string name="precipitation_none">Geen neerslag</string>
     <string name="wind_speed">Windsnelheid</string>
     <string name="wind_direction">Windrichting</string>
-    <string name="wind_direction_short_variable">Variabel</string>
-    <string name="wind_direction_short_N">N</string>
-    <string name="wind_direction_short_NE">NO</string>
-    <string name="wind_direction_short_E">O</string>
-    <string name="wind_direction_short_SE">ZO</string>
-    <string name="wind_direction_short_W">W</string>
-    <string name="wind_direction_short_NW">NW</string>
+    <string name="wind_direction_variable">Variabel</string>
+    <string name="wind_direction_N_short">N</string>
+    <string name="wind_direction_NE_short">NO</string>
+    <string name="wind_direction_E_short">O</string>
+    <string name="wind_direction_SE_short">ZO</string>
+    <string name="wind_direction_W_short">W</string>
+    <string name="wind_direction_NW_short">NW</string>
     <string name="air_quality_level_1">Uitstekend</string>
     <string name="air_quality_level_3">Slecht</string>
     <string name="air_quality_level_2_description">De luchtkwaliteit is voor de meeste mensen acceptabel. Bij langdurige blootstelling kunnen personen met overgevoeligheid echter lichte tot matige symptomen ervaren.</string>

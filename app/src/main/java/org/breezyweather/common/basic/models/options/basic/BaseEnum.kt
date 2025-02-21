@@ -17,6 +17,14 @@
 package org.breezyweather.common.basic.models.options.basic
 
 import android.content.Context
+import android.icu.number.LocalizedNumberFormatter
+import android.icu.number.NumberFormatter
+import android.icu.text.MeasureFormat
+import android.icu.util.Measure
+import android.icu.util.MeasureUnit
+import android.os.Build
+import androidx.annotation.RequiresApi
+import org.breezyweather.common.extensions.currentLocale
 
 interface BaseEnum {
     val id: String
@@ -38,4 +46,36 @@ interface UnitEnum<T : Number> : VoiceEnum {
     fun getValueText(context: Context, valueInDefaultUnit: T, rtl: Boolean): String
     fun getValueVoice(context: Context, valueInDefaultUnit: T): String
     fun getValueVoice(context: Context, valueInDefaultUnit: T, rtl: Boolean): String
+
+    companion object {
+        /**
+         * Uses LocalizedNumberFormatter on Android SDK >= 30 (which is the recommended way)
+         * Uses MeasureFormat on Android SDK < 30
+         */
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        fun formatWithIcu(
+            context: Context,
+            valueWithoutUnit: Number,
+            unit: MeasureUnit,
+            unitWidth: MeasureFormat.FormatWidth,
+        ): String {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                (NumberFormatter.withLocale(context.currentLocale) as LocalizedNumberFormatter)
+                    .unit(unit)
+                    .unitWidth(
+                        if (unitWidth == MeasureFormat.FormatWidth.WIDE) {
+                            NumberFormatter.UnitWidth.FULL_NAME
+                        } else {
+                            NumberFormatter.UnitWidth.SHORT
+                        }
+                    )
+                    .format(valueWithoutUnit)
+                    .toString()
+            } else {
+                MeasureFormat
+                    .getInstance(context.currentLocale, unitWidth)
+                    .format(Measure(valueWithoutUnit, unit))
+            }
+        }
+    }
 }

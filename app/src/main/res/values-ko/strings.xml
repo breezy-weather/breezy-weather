@@ -4,7 +4,7 @@
     <string name="app_name">날씨</string>
     <!-- keyword. -->
     <string name="location_current">현재 위치</string>
-    <string name="short_today">오늘</string>
+    <string name="daily_today_short">오늘</string>
     <string name="notification_refreshed_at">새로고침 시간:</string>
     <string name="precipitation">강수</string>
     <string name="precipitation_probability">강수 확률</string>
@@ -31,8 +31,8 @@
     <string name="action_refresh">새로고침</string>
     <string name="action_restart">재시작</string>
     <string name="action_edit">편집</string>
-    <string name="short_yesterday">어제</string>
-    <string name="short_tomorrow">내일</string>
+    <string name="daily_yesterday_short">어제</string>
+    <string name="daily_tomorrow_short">내일</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">겉보기 온도</string>
@@ -250,8 +250,8 @@
     <string name="settings_debug_dump_crash_logs_title">충돌 로그 공유</string>
     <string name="unit_ft_voice">피트</string>
     <string name="notification_channel_widget">위젯</string>
-    <string name="wind_direction_short_NE">북동</string>
-    <string name="wind_direction_short_SE">남동</string>
+    <string name="wind_direction_NE_short">북동</string>
+    <string name="wind_direction_SE_short">남동</string>
     <string name="settings_background_updates">백그라운드 업데이트</string>
     <string name="settings_background_updates_section_troubleshoot">문제 해결</string>
     <string name="settings_background_updates_refresh_title">새로고침 간격</string>
@@ -298,11 +298,11 @@
     <string name="alerts_to_follow">날씨 경보가 있습니다. 여기를 눌러 확인하세요.</string>
     <string name="precipitation_none">강수 없음</string>
     <string name="precipitation_between_time">%1$s부터 %2$s 까지 강수</string>
-    <string name="wind_direction_short_E">동</string>
-    <string name="wind_direction_short_S">남</string>
-    <string name="wind_direction_short_SW">남서</string>
-    <string name="wind_direction_short_W">서</string>
-    <string name="wind_direction_short_NW">북서</string>
+    <string name="wind_direction_E_short">동</string>
+    <string name="wind_direction_S_short">남</string>
+    <string name="wind_direction_SW_short">남서</string>
+    <string name="wind_direction_W_short">서</string>
+    <string name="wind_direction_NW_short">북서</string>
     <string name="uv_index_3_5">보통</string>
     <string name="uv_index_6_7">높음</string>
     <string name="uv_index_8_10">매우 높음</string>
@@ -336,8 +336,8 @@
     <string name="settings_debug">디버그</string>
     <string name="settings_debug_summary">충돌 로그</string>
     <string name="about_contribution_WangDaYeeeeee">기존 Geometric Weather 프로젝트 개발자</string>
-    <string name="wind_direction_short_variable">다양</string>
-    <string name="wind_direction_short_N">북</string>
+    <string name="wind_direction_variable">다양</string>
+    <string name="wind_direction_N_short">북</string>
     <string name="ephemeris_sunrise_at">%s에 일출</string>
     <string name="ephemeris_sunset_at">%s에 일몰</string>
     <string name="ephemeris_moonrise_at">%s에 월출</string>

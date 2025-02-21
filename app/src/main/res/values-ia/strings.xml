@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="short_tomorrow">Dmn</string>
+    <string name="daily_tomorrow_short">Dmn</string>
     <string name="temperature">Temperatura</string>
     <string name="nighttime">Nocte</string>
     <string name="visibility_short">Visibilitate</string>
@@ -14,8 +14,8 @@
     <string name="settings_background_updates_refresh_24h">24 horas</string>
     <string name="app_name">Tempore</string>
     <string name="details">Detalios</string>
-    <string name="short_yesterday">Heri</string>
-    <string name="short_today">Hodie</string>
+    <string name="daily_yesterday_short">Heri</string>
+    <string name="daily_today_short">Hodie</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="precipitation_total">Total</string>

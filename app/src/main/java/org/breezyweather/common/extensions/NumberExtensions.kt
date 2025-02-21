@@ -46,7 +46,7 @@ operator fun Double?.minus(other: Double?): Double? = if (this != null || other 
 
 fun Double.roundDecimals(decimals: Int): Double? {
     return if (!this.isNaN()) {
-        BigDecimal(this).setScale(decimals, RoundingMode.HALF_EVEN).toDouble()
+        BigDecimal(this).setScale(decimals, RoundingMode.HALF_UP).toDouble()
     } else {
         null
     }
