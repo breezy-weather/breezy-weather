@@ -16,10 +16,11 @@
 
 **Accessibility**
 - Main screen: details in header should now be read in the correct order by screen readers
-- Main screen: content description of detail items, daily and hourly trend items was improved
+- Main screen: improved content description of detail items, daily and hourly trend items
 - Main screen: removed unused ability to tap on cards which was confusing for screen readers
 - Main screen: add detailed content description of the nowcasting chart
-- Alerts: better content description (in Main screen and Detailed alerts screen)
+- Daily details screen: improved content descriptions
+- Alerts: improved content description (in Main screen and Detailed alerts screen)
 - Temperature units will now be read as "degree celsius" instead of "degree C" on Android >= 7
 
 

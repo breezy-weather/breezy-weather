@@ -174,9 +174,9 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 mSunTxt.text = sunriseTime + "↑" + "\n" + sunsetTime + "↓"
                 talkBackBuilder
                     .append(context.getString(R.string.comma_separator))
-                    .append(activity.getString(R.string.ephemeris_sunrise_at, sunriseTime))
+                    .append(context.getString(R.string.ephemeris_sunrise_at, sunriseTime))
                     .append(context.getString(R.string.comma_separator))
-                    .append(activity.getString(R.string.ephemeris_sunset_at, sunsetTime))
+                    .append(context.getString(R.string.ephemeris_sunset_at, sunsetTime))
             } else {
                 mSunContainer.visibility = View.GONE
             }
@@ -192,9 +192,9 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 mMoonTxt.text = moonriseTime + "↑" + "\n" + moonsetTime + "↓"
                 talkBackBuilder
                     .append(context.getString(R.string.comma_separator))
-                    .append(activity.getString(R.string.ephemeris_moonrise_at, moonriseTime))
+                    .append(context.getString(R.string.ephemeris_moonrise_at, moonriseTime))
                     .append(context.getString(R.string.comma_separator))
-                    .append(activity.getString(R.string.ephemeris_moonset_at, moonsetTime))
+                    .append(context.getString(R.string.ephemeris_moonset_at, moonsetTime))
             } else {
                 mMoonContainer.visibility = View.GONE
             }

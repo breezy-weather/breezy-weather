@@ -1,6 +1,7 @@
 package org.breezyweather.ui.daily
 
 import android.content.Context
+import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -32,6 +33,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -59,6 +62,7 @@ import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getColor
+import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.domain.weather.model.getDirection
 import org.breezyweather.domain.weather.model.getIndex
@@ -189,18 +193,20 @@ fun DailyOverview(
     modifier: Modifier = Modifier,
 ) {
     val builder = StringBuilder()
+    val contentDescription = StringBuilder()
     val context = LocalContext.current
     val temperatureUnit: TemperatureUnit = SettingsManager.getInstance(context).temperatureUnit
     if (!halfDay.weatherText.isNullOrEmpty()) {
         builder.append(halfDay.weatherText)
+        contentDescription.append(halfDay.weatherText)
     }
     halfDay.temperature?.temperature?.let {
         if (builder.toString().isNotEmpty()) {
             builder.append(context.getString(R.string.comma_separator))
+            contentDescription.append(context.getString(R.string.comma_separator))
         }
-        builder.append(
-            temperatureUnit.getValueText(context, it)
-        )
+        builder.append(temperatureUnit.getValueText(context, it))
+        contentDescription.append(temperatureUnit.getValueVoice(context, it))
     }
     ListItem(
         leadingContent = if (halfDay.weatherCode != null) {
@@ -209,6 +215,7 @@ fun DailyOverview(
                 AndroidView(
                     factory = {
                         AnimatableIconView(context).apply {
+                            importantForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_NO
                             setAnimatableIcon(
                                 provider.getWeatherIcons(halfDay.weatherCode, isDaytime),
                                 provider.getWeatherAnimators(halfDay.weatherCode, isDaytime)
@@ -229,7 +236,10 @@ fun DailyOverview(
             Text(
                 text = builder.toString(),
                 color = DayNightTheme.colors.titleColor,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.clearAndSetSemantics {
+                    this.contentDescription = contentDescription.toString()
+                }
             )
         },
         modifier = modifier
@@ -269,12 +279,14 @@ fun DailyWind(
                             wind.getDirection(context)
                         } else {
                             wind.getDirection(context) + " (" + (degree % 360).toInt() + "°)"
-                        }!!
+                        }!!,
+                        supportingContentDescription = wind.getDirection(context, short = false)
                     )
                 }
                 DailyItem(
                     headlineText = stringResource(R.string.wind_speed),
-                    supportingText = speedUnit.getValueText(context, wind.speed!!)
+                    supportingText = speedUnit.getValueText(context, wind.speed!!),
+                    supportingContentDescription = speedUnit.getValueVoice(context, wind.speed!!)
                 )
                 wind.getStrength(context)?.let {
                     DailyItem(
@@ -323,7 +335,8 @@ fun LazyListScope.dailyFeelsLikeTemperatures(
     gridItems(temperatureItems, nColumns = 3) { item ->
         DailyItem(
             headlineText = stringResource(item.first),
-            supportingText = temperatureUnit.getValueText(context, item.second)
+            supportingText = temperatureUnit.getValueText(context, item.second),
+            supportingContentDescription = temperatureUnit.getValueVoice(context, item.second)
         )
     }
 }
@@ -419,6 +432,7 @@ fun DailyItem(
     headlineText: String,
     supportingText: String,
     modifier: Modifier = Modifier,
+    supportingContentDescription: String? = null,
     @DrawableRes icon: Int? = null,
 ) {
     ListItem(
@@ -442,7 +456,14 @@ fun DailyItem(
             Text(
                 text = supportingText,
                 color = DayNightTheme.colors.titleColor,
-                fontWeight = FontWeight.Black
+                fontWeight = FontWeight.Black,
+                modifier = if (supportingContentDescription != null) {
+                    Modifier.clearAndSetSemantics {
+                        contentDescription = supportingContentDescription
+                    }
+                } else {
+                    Modifier
+                }
             )
         },
         modifier = modifier
@@ -506,7 +527,11 @@ fun DailyUV(
             Text(
                 text = uv.getShortDescription(context),
                 color = DayNightTheme.colors.titleColor,
-                fontWeight = FontWeight.Black
+                fontWeight = FontWeight.Black,
+                modifier = Modifier
+                    .clearAndSetSemantics {
+                        contentDescription = uv.getContentDescription(context)
+                    }
             )
         },
         modifier = modifier
@@ -520,6 +545,8 @@ fun DailySun(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    val sunriseTime = sun.riseDate?.getFormattedTime(location, context, context.is12Hour)
+    val sunsetTime = sun.setDate?.getFormattedTime(location, context, context.is12Hour)
     ListItem(
         leadingContent = {
             Image(
@@ -544,13 +571,11 @@ fun DailySun(
                         (sun.duration?.let { " / " + DurationUnit.H.getValueText(context, it) } ?: "")
                 } else {
                     (
-                        sun.riseDate?.getFormattedTime(location, context, context.is12Hour)
-                            ?: context.getString(R.string.null_data_text)
+                        sunriseTime ?: context.getString(R.string.null_data_text)
                         ) +
                         "↑ / " +
                         (
-                            sun.setDate?.getFormattedTime(location, context, context.is12Hour)
-                                ?: context.getString(R.string.null_data_text)
+                            sunsetTime ?: context.getString(R.string.null_data_text)
                             ) +
                         "↓" +
                         (sun.duration?.let { " / " + DurationUnit.H.getValueText(context, it) } ?: "")
@@ -560,6 +585,26 @@ fun DailySun(
             )
         },
         modifier = modifier
+            .clearAndSetSemantics {
+                val talkBackBuilder = StringBuilder()
+                if (sunriseTime != null) {
+                    talkBackBuilder.append(context.getString(R.string.ephemeris_sunrise_at, sunriseTime))
+                }
+                if (sunsetTime != null) {
+                    if (talkBackBuilder.toString().isNotEmpty()) {
+                        talkBackBuilder.append(context.getString(R.string.comma_separator))
+                    }
+                    talkBackBuilder.append(context.getString(R.string.ephemeris_sunset_at, sunsetTime))
+                }
+                sun.duration?.let {
+                    if (talkBackBuilder.toString().isNotEmpty()) {
+                        talkBackBuilder.append(context.getString(R.string.comma_separator))
+                    }
+                    talkBackBuilder.append(context.getString(R.string.sunshine_duration))
+                    talkBackBuilder.append(DurationUnit.H.getValueVoice(context, it))
+                }
+                contentDescription = talkBackBuilder.toString()
+            }
     )
 }
 
@@ -570,6 +615,8 @@ fun DailyMoon(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    val moonriseTime = moon.riseDate?.getFormattedTime(location, context, context.is12Hour)
+    val moonsetTime = moon.setDate?.getFormattedTime(location, context, context.is12Hour)
     ListItem(
         leadingContent = {
             Image(
@@ -593,13 +640,11 @@ fun DailyMoon(
                         "↓"
                 } else {
                     (
-                        moon.riseDate?.getFormattedTime(location, context, context.is12Hour)
-                            ?: context.getString(R.string.null_data_text)
+                        moonriseTime ?: context.getString(R.string.null_data_text)
                         ) +
                         "↑ / " +
                         (
-                            moon.setDate?.getFormattedTime(location, context, context.is12Hour)
-                                ?: context.getString(R.string.null_data_text)
+                            moonsetTime ?: context.getString(R.string.null_data_text)
                             ) +
                         "↓"
                 },
@@ -608,6 +653,19 @@ fun DailyMoon(
             )
         },
         modifier = modifier
+            .clearAndSetSemantics {
+                val talkBackBuilder = StringBuilder()
+                if (moonriseTime != null) {
+                    talkBackBuilder.append(context.getString(R.string.ephemeris_moonrise_at, moonriseTime))
+                }
+                if (moonsetTime != null) {
+                    if (talkBackBuilder.toString().isNotEmpty()) {
+                        talkBackBuilder.append(context.getString(R.string.comma_separator))
+                    }
+                    talkBackBuilder.append(context.getString(R.string.ephemeris_moonset_at, moonsetTime))
+                }
+                contentDescription = talkBackBuilder.toString()
+            }
     )
 }
 

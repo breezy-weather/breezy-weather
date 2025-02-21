@@ -131,6 +131,24 @@ enum class TemperatureUnit(
         rtl = rtl
     )
 
+    fun getDegreeDayValueVoice(
+        context: Context,
+        valueInDefaultUnit: Double,
+    ) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        UnitEnum.formatWithIcu(
+            context,
+            getDegreeDayValueWithoutUnit(valueInDefaultUnit).roundDecimals(0)!!,
+            when (this) {
+                C -> MeasureUnit.CELSIUS
+                F -> MeasureUnit.FAHRENHEIT
+                K -> MeasureUnit.KELVIN
+            },
+            MeasureFormat.FormatWidth.WIDE
+        )
+    } else {
+        getDegreeDayValueText(context, valueInDefaultUnit)
+    }
+
     fun getShortValueText(
         context: Context,
         valueInDefaultUnit: Double,

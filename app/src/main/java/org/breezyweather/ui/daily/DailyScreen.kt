@@ -48,6 +48,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.lifecycle.viewmodel.compose.viewModel
 import breezyweather.domain.location.model.Location
 import kotlinx.collections.immutable.ImmutableList
@@ -57,6 +59,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.extensions.getDayOfMonth
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
 import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.common.extensions.toCalendar
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
@@ -177,7 +180,17 @@ fun DailyPagerIndicator(
                 },
                 text = {
                     Column(
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .clearAndSetSemantics {
+                                contentDescription = when {
+                                    todayIndex == null -> date.getWeek(location, context, full = true)
+                                    i == todayIndex - 1 -> context.getString(R.string.daily_yesterday)
+                                    i == todayIndex -> context.getString(R.string.daily_today)
+                                    i == todayIndex + 1 -> context.getString(R.string.daily_tomorrow)
+                                    else -> date.getWeek(location, context, full = true)
+                                } + " " + date.getFormattedFullDayAndMonth(location, context)
+                            }
                     ) {
                         Text(
                             text = when {
@@ -318,6 +331,8 @@ fun DailyPagerContent(
                             DailyItem(
                                 headlineText = stringResource(R.string.temperature_degree_day_heating),
                                 supportingText = temperatureUnit.getDegreeDayValueText(context, degreeDay.heating!!),
+                                supportingContentDescription = temperatureUnit
+                                    .getDegreeDayValueVoice(context, degreeDay.heating!!),
                                 icon = R.drawable.ic_mode_heat
                             )
                         }
@@ -326,6 +341,8 @@ fun DailyPagerContent(
                             DailyItem(
                                 headlineText = stringResource(R.string.temperature_degree_day_cooling),
                                 supportingText = temperatureUnit.getDegreeDayValueText(context, degreeDay.cooling!!),
+                                supportingContentDescription = temperatureUnit
+                                    .getDegreeDayValueVoice(context, degreeDay.cooling!!),
                                 icon = R.drawable.ic_mode_cool
                             )
                         }
