@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- Preferences -->
+    <string name="sp_widget_day_setting" translatable="false">widget_day_setting</string>
+    <string name="sp_widget_week_setting" translatable="false">widget_week_setting</string>
+    <string name="sp_widget_day_week_setting" translatable="false">widget_day_week_setting</string>
+    <string name="sp_widget_clock_day_horizontal_setting" translatable="false">widget_clock_day_horizontal_setting</string>
+    <string name="sp_widget_clock_day_details_setting" translatable="false">widget_clock_day_details_setting</string>
+    <string name="sp_widget_clock_day_vertical_setting" translatable="false">widget_clock_day_vertical_setting</string>
+    <string name="sp_widget_clock_day_week_setting" translatable="false">widget_clock_day_week_setting</string>
+    <string name="sp_widget_text_setting" translatable="false">widget_text_setting</string>
+    <string name="sp_widget_daily_trend_setting" translatable="false">widget_daily_trend_setting</string>
+    <string name="sp_widget_hourly_trend_setting" translatable="false">widget_hourly_trend_setting</string>
+    <string name="sp_widget_multi_city" translatable="false">widget_multi_city</string>
+    <string name="key_view_type" translatable="false">view_type</string>
+    <string name="key_card_style" translatable="false">card_style</string>
+    <string name="key_card_alpha" translatable="false">card_alpha_1</string>
+    <string name="key_hide_subtitle" translatable="false">hide_refresh_time</string>
+    <string name="key_subtitle_data" translatable="false">subtitle_data</string>
+    <string name="key_text_color" translatable="false">text_color</string>
+    <string name="key_text_size" translatable="false">text_size</string>
+    <string name="key_clock_font" translatable="false">clock_font</string>
+    <!-- Alternate calendar, keep the old name for compatibility reasons -->
+    <string name="key_hide_alternate_calendar" translatable="false">hide_lunar</string>
+    <string name="key_align_end" translatable="false">align_end</string>
+</resources>
