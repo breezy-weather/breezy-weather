@@ -25,8 +25,12 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewOutlineProvider
+import android.view.accessibility.AccessibilityNodeInfo
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.view.AccessibilityDelegateCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import org.breezyweather.R
 
 class TagView @JvmOverloads constructor(
@@ -55,6 +59,19 @@ class TagView @JvmOverloads constructor(
         mUncheckedBackgroundColor =
             a.getColor(R.styleable.TagView_unchecked_background_color, Color.LTGRAY)
         a.recycle()
+
+        ViewCompat.setAccessibilityDelegate(
+            this,
+            object : AccessibilityDelegateCompat() {
+                override fun onInitializeAccessibilityNodeInfo(
+                    host: View,
+                    info: AccessibilityNodeInfoCompat,
+                ) {
+                    super.onInitializeAccessibilityNodeInfo(host, info)
+                    info.roleDescription = context.resources.getString(androidx.compose.ui.R.string.tab)
+                }
+            }
+        )
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -98,4 +115,11 @@ class TagView @JvmOverloads constructor(
             mUncheckedBackgroundColor = uncheckedBackgroundColor
             invalidate()
         }
+
+    override fun onInitializeAccessibilityNodeInfo(info: AccessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(info)
+        info.isSelected = isChecked
+        info.isCheckable = false
+        info.isClickable = !isChecked // TODO: Not working
+    }
 }
