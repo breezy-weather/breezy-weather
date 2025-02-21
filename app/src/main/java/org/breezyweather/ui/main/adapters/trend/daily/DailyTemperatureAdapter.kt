@@ -79,6 +79,18 @@ class DailyTemperatureAdapter(
                 if (!day.weatherText.isNullOrEmpty()) {
                     talkBackBuilder.append(day.weatherText)
                 }
+                if (mShowPrecipitationProbability) {
+                    day.precipitationProbability?.total?.let { p ->
+                        talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                            .append(activity.getString(R.string.precipitation_probability))
+                            .append(activity.getString(R.string.colon_separator))
+                            .append(
+                                NumberFormat.getPercentInstance(activity.currentLocale).apply {
+                                    maximumFractionDigits = 0
+                                }.format(if (p > 0) p.div(100.0) else 0)
+                            )
+                    }
+                }
             }
             daily.night?.let { night ->
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
@@ -86,10 +98,22 @@ class DailyTemperatureAdapter(
                     .append(activity.getString(R.string.colon_separator))
                 night.temperature?.temperature?.let {
                     talkBackBuilder.append(mTemperatureUnit.getValueVoice(activity, it))
+                        .append(activity.getString(R.string.comma_separator))
                 }
                 if (!night.weatherText.isNullOrEmpty()) {
                     talkBackBuilder.append(night.weatherText)
-                        .append(activity.getString(R.string.comma_separator))
+                }
+                if (mShowPrecipitationProbability) {
+                    night.precipitationProbability?.total?.let { p ->
+                        talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                            .append(activity.getString(R.string.precipitation_probability))
+                            .append(activity.getString(R.string.colon_separator))
+                            .append(
+                                NumberFormat.getPercentInstance(activity.currentLocale).apply {
+                                    maximumFractionDigits = 0
+                                }.format(if (p > 0) p.div(100.0) else 0)
+                            )
+                    }
                 }
             }
             dailyItem.setDayIconDrawable(

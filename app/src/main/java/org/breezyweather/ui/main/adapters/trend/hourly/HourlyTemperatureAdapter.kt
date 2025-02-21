@@ -66,13 +66,13 @@ class HourlyTemperatureAdapter(
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
-            if (hourly.weatherText.isNullOrEmpty()) {
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(hourly.weatherText)
-            }
             hourly.temperature?.temperature?.let {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(mTemperatureUnit.getValueVoice(activity, it))
+            }
+            if (!hourly.weatherText.isNullOrEmpty()) {
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(hourly.weatherText)
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -84,6 +84,15 @@ class HourlyTemperatureAdapter(
             var p: Float = precipitationProbability?.toFloat() ?: 0f
             if (!mShowPrecipitationProbability) {
                 p = 0f
+            } else if (hourly.precipitationProbability?.total != null) {
+                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                    .append(activity.getString(R.string.precipitation_probability))
+                    .append(activity.getString(R.string.colon_separator))
+                    .append(
+                        NumberFormat.getPercentInstance(activity.currentLocale).apply {
+                            maximumFractionDigits = 0
+                        }.format(if (p > 0) p.div(100.0) else 0)
+                    )
             }
             mPolylineAndHistogramView.setData(
                 buildTemperatureArrayForItem(mTemperatures, position),
