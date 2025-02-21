@@ -21,6 +21,7 @@ import android.animation.FloatEvaluator
 import android.animation.TypeEvaluator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,14 +54,14 @@ import kotlin.math.min
 class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_sun_moon, parent, false)
 ) {
-    private val mTitle: TextView
-    private val mPhaseText: TextView
-    private val mPhaseView: MoonPhaseView
-    private val mSunMoonView: SunMoonView
-    private val mSunContainer: RelativeLayout
-    private val mSunTxt: TextView
-    private val mMoonContainer: RelativeLayout
-    private val mMoonTxt: TextView
+    private val mTitle: TextView = itemView.findViewById(R.id.container_main_sun_moon_title)
+    private val mPhaseText: TextView = itemView.findViewById(R.id.container_main_sun_moon_phaseText)
+    private val mPhaseView: MoonPhaseView = itemView.findViewById(R.id.container_main_sun_moon_phaseView)
+    private val mSunMoonView: SunMoonView = itemView.findViewById(R.id.container_main_sun_moon_controlView)
+    private val mSunContainer: RelativeLayout = itemView.findViewById(R.id.container_main_sun_moon_sunContainer)
+    private val mSunTxt: TextView = itemView.findViewById(R.id.container_main_sun_moon_sunrise_sunset)
+    private val mMoonContainer: RelativeLayout = itemView.findViewById(R.id.container_main_sun_moon_moonContainer)
+    private val mMoonTxt: TextView = itemView.findViewById(R.id.container_main_sun_moon_moonrise_moonset)
     private var mWeather: Weather? = null
 
     @Size(2)
@@ -80,14 +81,6 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     private val mAttachAnimatorSets: Array<AnimatorSet?>
 
     init {
-        mTitle = itemView.findViewById(R.id.container_main_sun_moon_title)
-        mPhaseText = itemView.findViewById(R.id.container_main_sun_moon_phaseText)
-        mPhaseView = itemView.findViewById(R.id.container_main_sun_moon_phaseView)
-        mSunMoonView = itemView.findViewById(R.id.container_main_sun_moon_controlView)
-        mSunContainer = itemView.findViewById(R.id.container_main_sun_moon_sunContainer)
-        mSunTxt = itemView.findViewById(R.id.container_main_sun_moon_sunrise_sunset)
-        mMoonContainer = itemView.findViewById(R.id.container_main_sun_moon_moonContainer)
-        mMoonTxt = itemView.findViewById(R.id.container_main_sun_moon_moonrise_moonset)
         mAttachAnimatorSets = arrayOf(null, null, null)
     }
 
@@ -109,7 +102,13 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 WeatherViewController.getWeatherKind(location),
                 WeatherViewController.isDaylight(location)
             )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            mTitle.isAccessibilityHeading = true
+        }
         mTitle.setTextColor(themeColors[0])
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            mTitle.isAccessibilityHeading = true
+        }
         val talkBackBuilder = StringBuilder(mTitle.text)
         ensureTime(mWeather!!, location.javaTimeZone)
         ensurePhaseAngle(mWeather!!)

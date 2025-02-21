@@ -18,6 +18,7 @@ package org.breezyweather.ui.main.adapters.main.holder
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -93,6 +94,9 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         firstCard: Boolean,
     ) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            mTitle.isAccessibilityHeading = true
+        }
         if (location.weather?.dailyForecast?.any { it.pollen?.isMoldValid == true } == true) {
             mTitle.text = context.getString(R.string.pollen_and_mold)
         } else {

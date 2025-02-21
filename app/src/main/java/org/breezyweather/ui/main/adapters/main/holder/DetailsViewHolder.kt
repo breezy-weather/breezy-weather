@@ -17,6 +17,7 @@
 package org.breezyweather.ui.main.adapters.main.holder
 
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -71,6 +72,9 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
         location.weather?.let { weather ->
             weather.current?.let { current ->
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    mTitle.isAccessibilityHeading = true
+                }
                 mTitle.setTextColor(
                     ThemeManager.getInstance(context)
                         .weatherThemeDelegate

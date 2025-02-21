@@ -16,6 +16,7 @@
 
 package org.breezyweather.ui.main.adapters.main.holder
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -75,6 +76,9 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 WeatherViewController.isDaylight(location)
             )
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            title.isAccessibilityHeading = true
+        }
         title.setTextColor(colors[0])
 
         if (weather.current?.hourlyForecast.isNullOrEmpty()) {

@@ -21,6 +21,7 @@ import android.animation.ArgbEvaluator
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
@@ -104,6 +105,9 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         location.weather!!.validAirQuality?.let { airQuality ->
             mAqiIndex = airQuality.getIndex() ?: 0
             mEnable = true
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                mTitle.isAccessibilityHeading = true
+            }
             mTitle.setTextColor(
                 ThemeManager.getInstance(context)
                     .weatherThemeDelegate

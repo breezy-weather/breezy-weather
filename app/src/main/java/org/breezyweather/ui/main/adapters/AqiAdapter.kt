@@ -88,20 +88,13 @@ class AqiAdapter(
         private var mLightTheme: Boolean? = null
         private var mExecuteAnimation = false
         private var mAttachAnimatorSet: AnimatorSet? = null
-        private val mTitle: TextView
-        private val mContent: TextView
-        private val mDialog: ComposeView
-        private val mProgress: RoundProgress
+        private val mTitle: TextView = itemView.findViewById(R.id.item_aqi_title)
+        private val mContent: TextView = itemView.findViewById(R.id.item_aqi_content)
+        private val mDialog: ComposeView = itemView.findViewById(R.id.item_aqi_dialog)
+        private val mProgress: RoundProgress = itemView.findViewById(R.id.item_aqi_progress)
 
         private val _dialogState: MutableStateFlow<Boolean> = MutableStateFlow(false)
         val dialogState = _dialogState.asStateFlow()
-
-        init {
-            mTitle = itemView.findViewById(R.id.item_aqi_title)
-            mContent = itemView.findViewById(R.id.item_aqi_content)
-            mDialog = itemView.findViewById(R.id.item_aqi_dialog)
-            mProgress = itemView.findViewById(R.id.item_aqi_progress)
-        }
 
         fun onBindView(lightTheme: Boolean, item: AqiItem) {
             val context = itemView.context

@@ -17,6 +17,7 @@
 package org.breezyweather.ui.main.adapters.main.holder
 
 import android.content.Context
+import android.os.Build
 import android.text.Layout
 import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
@@ -122,6 +123,9 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                 WeatherViewController.isDaylight(location)
             )
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            title.isAccessibilityHeading = true
+        }
         title.setTextColor(colors[0])
         title.text = weather.getMinutelyTitle(context)
         subtitle.text = weather.getMinutelyDescription(context, location)
