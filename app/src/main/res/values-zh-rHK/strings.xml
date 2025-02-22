@@ -809,4 +809,17 @@
     <string name="location_has_active_alerts">警告現正生效</string>
     <string name="location_last_updated_x">%s更新</string>
     <string name="settings_notifications_permission">需要通知權限</string>
+    <string name="daily_yesterday">昨日</string>
+    <string name="daily_today">今日</string>
+    <string name="daily_tomorrow">明日</string>
+    <string name="wind_direction_E">東風</string>
+    <string name="wind_direction_S">南風</string>
+    <string name="wind_direction_SE">東南風</string>
+    <string name="location_reverse_geocoding_by">位置查詢由 %s 提供</string>
+    <string name="wind_direction_SW">西南風</string>
+    <string name="wind_direction_N">北風</string>
+    <string name="wind_direction_NE">東北風</string>
+    <string name="wind_direction_W">西風</string>
+    <string name="wind_direction_NW">西北風</string>
+    <string name="location_reverse_geocoding">位置查詢</string>
 </resources>
