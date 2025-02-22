@@ -752,4 +752,15 @@
     <string name="action_grant_permission">Klepněte pro udělení oprávnění.</string>
     <string name="location_reverse_geocoding_by">Hledání adres od %s</string>
     <string name="location_reverse_geocoding">Hledání adres</string>
+    <string name="daily_today">Dnes</string>
+    <string name="wind_direction_NE">Severovýchod</string>
+    <string name="wind_direction_E">Východ</string>
+    <string name="wind_direction_SE">Jihovýchod</string>
+    <string name="wind_direction_S">Jih</string>
+    <string name="wind_direction_SW">Jihozápad</string>
+    <string name="wind_direction_NW">Severozápad</string>
+    <string name="daily_tomorrow">Zítra</string>
+    <string name="daily_yesterday">Včera</string>
+    <string name="wind_direction_N">Sever</string>
+    <string name="wind_direction_W">Západ</string>
 </resources>
