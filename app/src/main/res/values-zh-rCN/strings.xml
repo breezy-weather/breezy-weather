@@ -823,4 +823,15 @@
     <string name="settings_debug_notification_permission">需要该权限来发出崩溃记录和天气更新失败的提醒。%s</string>
     <string name="location_reverse_geocoding_by">通过 %s 查询位置</string>
     <string name="location_reverse_geocoding">位置查询</string>
+    <string name="daily_yesterday">昨天</string>
+    <string name="daily_today">今天</string>
+    <string name="daily_tomorrow">明天</string>
+    <string name="wind_direction_N">北</string>
+    <string name="wind_direction_NE">东北</string>
+    <string name="wind_direction_E">东</string>
+    <string name="wind_direction_SE">东南</string>
+    <string name="wind_direction_S">南</string>
+    <string name="wind_direction_NW">西北</string>
+    <string name="wind_direction_SW">西南</string>
+    <string name="wind_direction_W">西</string>
 </resources>
