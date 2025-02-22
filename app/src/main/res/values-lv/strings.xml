@@ -736,4 +736,15 @@
     <string name="settings_notifications_permission">Nepieciešama paziņojumu atļauja</string>
     <string name="settings_notifications_permission_summary">Nepieciešama, lai paziņotu par trauksmēm, prognozēm un lietotnes atjauninājumiem. %s</string>
     <string name="settings_widgets_notification_permission_summary">Nepieciešama, lai parādītu paziņojumu logrīku. %s</string>
+    <string name="daily_yesterday">Vakar</string>
+    <string name="daily_today">Šodien</string>
+    <string name="daily_tomorrow">Rīt</string>
+    <string name="wind_direction_N">Ziemeļi</string>
+    <string name="wind_direction_NE">Ziemeļaustrumi</string>
+    <string name="wind_direction_E">Austrumi</string>
+    <string name="wind_direction_SE">Dienvidaustrumi</string>
+    <string name="wind_direction_S">Dienvidi</string>
+    <string name="wind_direction_SW">Dienvidrietumi</string>
+    <string name="wind_direction_W">Rietumi</string>
+    <string name="wind_direction_NW">Ziemeļrietumi</string>
 </resources>
