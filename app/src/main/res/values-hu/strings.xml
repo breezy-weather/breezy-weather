@@ -5,7 +5,7 @@
     <!-- keyword. -->
     <string name="location_current">Jelenlegi helyszín</string>
     <string name="daily_today_short">Ma</string>
-    <string name="notification_refreshed_at">Frissítve:</string>
+    <string name="notification_refreshed_at">Frissítés ideje</string>
     <string name="precipitation">Csapadék</string>
     <string name="precipitation_probability">Csapadék esélye</string>
     <string name="precipitation_duration">Csapadék időtartama</string>
@@ -95,7 +95,7 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Helymeghatározó szolgáltatás kiválasztása</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adja hozzá a helyszínt manuálisan és törölje a következőt: „%s”</string>
     <string name="dialog_permissions_location_background_title">Hozzáférés a helymeghatározáshoz a háttérben</string>
-    <string name="dialog_permissions_location_background_content">Ahhoz, hogy a háttérben az Android rendszer által ismert legfrissebb jelenlegi helyszínhez lehessen időjárásfrissítést végezni, a helyszínmeghatározási engedélyt “Mindig engedélyezett” értékre kell állítani. Ellenkező esetben az időjárás az előtérben a legfrissebb lekérdezett koordináták alapján frissül, ami elavult lehet.</string>
+    <string name="dialog_permissions_location_background_content">Ahhoz, hogy a háttérben az Android rendszer által ismert legfrissebb jelenlegi helyszínhez lehessen időjárás-frissítést végezni, a helyszín-meghatározási engedélyt “Mindig engedélyezett” értékre kell állítani. Ellenkező esetben az időjárás az előtérben a legfrissebb lekérdezett koordináták alapján frissül, ami elavult lehet.</string>
     <string name="widget_label_view_style">Nézet stílusa</string>
     <string name="widget_label_show_widget_card">Háttérszín</string>
     <string name="widget_label_show_widget_card_alpha">Átlátszóság</string>
@@ -392,10 +392,10 @@
     <string name="air_quality_level_4">Káros</string>
     <string name="air_quality_pm25">PM2,5</string>
     <string name="air_quality_pm10">PM10</string>
-    <string name="ephemeris_moonset_at">Holdnyugta: %s</string>
-    <string name="ephemeris_moonrise_at">Holdkelte: %s</string>
-    <string name="ephemeris_sunset_at">Napnyugta: %s</string>
-    <string name="ephemeris_sunrise_at">Napkelte: %s</string>
+    <string name="ephemeris_moonset_at">Hold-nyugta: %s</string>
+    <string name="ephemeris_moonrise_at">Hold-kelte: %s</string>
+    <string name="ephemeris_sunset_at">Nap-nyugta: %s</string>
+    <string name="ephemeris_sunrise_at">Nap-kelte: %s</string>
     <string name="settings_location_access_background_summaryOff">Válassza ki a „Mindig engedélyezett” lehetőséget, hogy a háttérben frissülhessenek a jelenlegi tartózkodási helyszínének időjárásadatai.</string>
     <string name="weather_api_key_required_missing_title">A szükséges API-kulcs hiányzik</string>
     <string name="pollen_level_3">Mérsékelt</string>
@@ -484,7 +484,7 @@
     <string name="settings_color_night_always">Mindig éjszakai</string>
     <string name="settings_color_day_night">Nappali / Éjszakai</string>
     <string name="settings_none">Nincs</string>
-    <string name="unit_mb_voice">Millibár</string>
+    <string name="unit_mb_voice">Millibar</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_kgfpsqcm_voice">Kilogramm erő per négyzetcentiméter</string>
     <string name="unit_mb">mb</string>
