@@ -751,4 +751,15 @@
     <string name="settings_debug_notification_permission">Benötigt, um über Absturzprotokolle und fehlgeschlagene Wetteraktualisierungen zu informieren. %s</string>
     <string name="location_reverse_geocoding_by">Adressermittlung durch %s</string>
     <string name="location_reverse_geocoding">Adressermittlung</string>
+    <string name="daily_yesterday">Gestern</string>
+    <string name="daily_today">Heute</string>
+    <string name="daily_tomorrow">Morgen</string>
+    <string name="wind_direction_S">Süden</string>
+    <string name="wind_direction_SW">Südwesten</string>
+    <string name="wind_direction_W">Westen</string>
+    <string name="wind_direction_E">Osten</string>
+    <string name="wind_direction_NE">Nordosten</string>
+    <string name="wind_direction_SE">Südosten</string>
+    <string name="wind_direction_N">Norden</string>
+    <string name="wind_direction_NW">Nordwesten</string>
 </resources>
