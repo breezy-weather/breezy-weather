@@ -592,7 +592,7 @@
     <string name="settings_debug_dump_crash_logs_saved">Absturzprotokolle gespeichert</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Zum Öffnen antippen</string>
     <string name="notification_channel_crash_logs">Absturzprotokolle</string>
-    <string name="settings_color_app">App folgen</string>
+    <string name="settings_color_app">App-Standard</string>
     <string name="settings_unavailable_no_background_updates">Nicht verfügbar, aktivieren Sie zuerst die Hintergrundaktualisierungen</string>
     <string name="notification_precipitation_starting_desc">Voraussichtlicher Beginn um %s</string>
     <string name="notification_precipitation_starting">Baldiger Niederschlag</string>
