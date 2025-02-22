@@ -818,6 +818,17 @@
     <string name="location_custom_name">自訂名稱</string>
     <string name="location_has_active_alerts">現有發布警特報</string>
     <string name="settings_widgets_notification_permission_summary">授予權限後，才能顯示通知小工具。%s</string>
-    <string name="location_reverse_geocoding_by">透過 %s 查找地址</string>
-    <string name="location_reverse_geocoding">地址查找</string>
+    <string name="location_reverse_geocoding_by">位置查詢由 %s 提供</string>
+    <string name="location_reverse_geocoding">位置查詢</string>
+    <string name="daily_today">今日</string>
+    <string name="wind_direction_SE">東南風</string>
+    <string name="wind_direction_SW">西南風</string>
+    <string name="daily_yesterday">昨日</string>
+    <string name="daily_tomorrow">明日</string>
+    <string name="wind_direction_NE">東北風</string>
+    <string name="wind_direction_W">西風</string>
+    <string name="wind_direction_NW">西北風</string>
+    <string name="wind_direction_E">東風</string>
+    <string name="wind_direction_N">北風</string>
+    <string name="wind_direction_S">南風</string>
 </resources>
