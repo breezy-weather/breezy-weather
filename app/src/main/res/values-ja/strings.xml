@@ -497,7 +497,7 @@
     <string name="air_quality_pm_explanations_origin">一部の微粒子は、火山、砂嵐、森林火災、草原火災、生きた植物、波飛沫などに由来して自然に発生します。交通や輸送、産業活動、発電所、建設現場、廃棄物の焼却や畑などの人間の活動によっても、大量の微粒子が発生します。</string>
     <string name="air_quality_so2_info_introduction">二酸化硫黄（SO₂）は、マッチの燃えた臭いの原因となる無色の有毒ガスです。</string>
     <string name="air_quality_so2_info_origin">SO₂は自然の火山活動により放出され、また、主に家庭の暖房、工業、発電用の化石燃料の燃焼によって生じます。</string>
-    <string name="air_quality_co_info_origin">COは、木材、ガソリン、石炭、天然ガス、灯油などの炭素質燃料が、簡易ストーブ、焚き火、芯ランプ、炉、暖炉で不完全燃焼することによって生じます。周囲空気中の主な一酸化炭素の発生源は自動車です。</string>
+    <string name="air_quality_co_info_origin">一酸化炭素は、木材、ガソリン、石炭、天然ガス、灯油などの炭素質燃料が、簡易ストーブ、焚き火、芯ランプ、炉、暖炉で不完全燃焼することによって生じます。周囲空気中の主な一酸化炭素の発生源は自動車です。</string>
     <string name="action_help_me_choose">ヘルプ</string>
     <string name="weather_normals_data_by">標準温度のデータ提供：%s</string>
     <string name="weather_api_unauthorized_content">一部の情報源には、あなた自身のAPIキーを使用する必要があります。既に使用している場合は、キーを再確認してください。</string>
@@ -773,4 +773,15 @@
     <string name="settings_notifications_permission">通知の権限が必要です</string>
     <string name="location_reverse_geocoding_by">%sで位置を検索</string>
     <string name="location_reverse_geocoding">位置を検索</string>
+    <string name="daily_yesterday">昨日</string>
+    <string name="daily_tomorrow">明日</string>
+    <string name="wind_direction_N">北</string>
+    <string name="wind_direction_NE">北東</string>
+    <string name="wind_direction_E">東</string>
+    <string name="wind_direction_SE">南東</string>
+    <string name="wind_direction_S">南</string>
+    <string name="wind_direction_SW">南西</string>
+    <string name="wind_direction_W">西</string>
+    <string name="wind_direction_NW">北西</string>
+    <string name="daily_today">今日</string>
 </resources>
