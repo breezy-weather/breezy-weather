@@ -659,7 +659,7 @@
     <string name="settings_source_instance_geocoding">Geokódolási példány</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Előrejelzés példány</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Légszennyezettség példány</string>
-    <string name="settings_widgets_broadcast_title">Időjárás adatok továbbítása más alkalmazásoknak</string>
+    <string name="settings_widgets_broadcast_title">Időjárásadatok továbbítása más alkalmazásoknak</string>
     <string name="message_invalid_incomplete_data">Érvénytelen, vagy hiányos adatokat küldött a kiszolgáló</string>
     <string name="settings_per_location_theme">Téma</string>
     <string name="settings_source_instance_invalid">Egy https URL címnek kell lennie, amely /-re végződik</string>
