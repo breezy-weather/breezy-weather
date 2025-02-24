@@ -809,4 +809,17 @@
     <string name="settings_widgets_notification_permission_summary">Diperlukan untuk menampilkan widget notifikasi. %s</string>
     <string name="settings_debug_notification_permission">Diperlukan untuk log kemogokan dan pembaruan cuaca gagal. %s</string>
     <string name="location_custom_name">Nama kustom</string>
+    <string name="daily_yesterday">Kemarin</string>
+    <string name="daily_today">Hari ini</string>
+    <string name="wind_direction_E">Timur</string>
+    <string name="wind_direction_SE">Tenggara</string>
+    <string name="wind_direction_S">Selatan</string>
+    <string name="wind_direction_NE">Timur Laut</string>
+    <string name="wind_direction_NW">Barat Laut</string>
+    <string name="daily_tomorrow">Besok</string>
+    <string name="wind_direction_SW">Barat Daya</string>
+    <string name="wind_direction_W">Barat</string>
+    <string name="wind_direction_N">Utara</string>
+    <string name="location_reverse_geocoding_by">Pencarian alamat dengan %s</string>
+    <string name="location_reverse_geocoding">Pencarian alamat</string>
 </resources>
