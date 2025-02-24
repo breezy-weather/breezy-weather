@@ -721,4 +721,18 @@
     <string name="hko_warning_text_tsunami">सुनामी चेतावनी</string>
     <string name="hko_warning_text_fire_yellow_description">पीले की अग्नि खतरा चेतावनी जारी की गई थी और अग्नि जोखिम उच्च है</string>
     <string name="hko_warning_text_fire_red_description">रंग की अग्नि खतरा चेतावनी जारी की गई थी और अग्नि जोखिम अत्यधिक है</string>
+    <string name="current_weather">अभी का मौसम</string>
+    <string name="daily_yesterday">कल</string>
+    <string name="daily_today">आज</string>
+    <string name="daily_tomorrow">कल</string>
+    <string name="wind_direction_N">उत्तर</string>
+    <string name="wind_direction_NE">उत्तर - पूर्व</string>
+    <string name="wind_direction_S">दक्षिण</string>
+    <string name="wind_direction_SW">दक्षिण पश्चिम</string>
+    <string name="wind_direction_W">पश्चिम</string>
+    <string name="wind_direction_NW">उत्तर पश्चिम</string>
+    <string name="forecast">पूर्वानुमान</string>
+    <string name="wind_direction_SE">दक्षिण पूर्व</string>
+    <string name="wind_direction_E">पूर्व</string>
+    <string name="pollen_pinus">पाइन</string>
 </resources>
