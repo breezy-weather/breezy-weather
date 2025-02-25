@@ -20,7 +20,6 @@ import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
@@ -155,7 +154,6 @@ object Notifications {
     ): NotificationCompat.Builder {
         return context.notificationBuilder(CHANNEL_ALERT).apply {
             setSmallIcon(iconId)
-            setLargeIcon(BitmapFactory.decodeResource(context.resources, R.drawable.ic_launcher))
             setContentTitle(title)
             setSubText(subtitle)
             setContentText(content)
