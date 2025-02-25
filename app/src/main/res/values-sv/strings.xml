@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="unit_celsius_short">°</string>
-    <string name="daily_yesterday_short">I går</string>
+    <string name="daily_yesterday_short">Igår</string>
     <string name="about_app">Om appen</string>
     <string name="uv_index_6_7">Högt</string>
     <string name="precipitation_thunderstorm">Åskväder</string>
@@ -223,7 +223,7 @@
     <string name="unit_mps">m/s</string>
     <string name="unit_hpa_voice">Hektopascal</string>
     <string name="ephemeris_sunrise_at">Soluppgång vid %s</string>
-    <string name="temperature_wind_chill">Vindavkylning</string>
+    <string name="temperature_wind_chill">Vindkyla</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Lägg till plats manuellt och ta bort ”%s”</string>
     <string name="widget_subtitle_data_wind">Vind</string>
     <string name="widget_style_symmetry">Symmetri</string>
@@ -243,9 +243,9 @@
     <string name="wind_direction_NW_short">NV</string>
     <string name="action_settings">Inställningar</string>
     <string name="unit_kn">kn</string>
-    <string name="daily_today_short">I dag</string>
+    <string name="daily_today_short">Idag</string>
     <string name="humidity">Luftfuktighet</string>
-    <string name="humidity_dew_point">Luftfuktighet / Daggpunkt</string>
+    <string name="humidity_dew_point">Luftfuktighet / daggpunkt</string>
     <string name="precipitation_snow">Snö</string>
     <string name="unit_kph">km/h</string>
     <string name="ephemeris_moonset_at">Månnedgång vid %s</string>
@@ -545,7 +545,7 @@
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Kraftiga snöblandade regnskurar</string>
     <string name="common_weather_text_rain_showers">Regnskurar</string>
     <string name="unit_kgfpsqcm_voice">Kilogram kraft per kvadratcentimeter</string>
-    <string name="settings_location_access_permission_already_granted">Behörighet tillåts redan</string>
+    <string name="settings_location_access_permission_already_granted">Behörighet redan beviljad</string>
     <string name="notification_update_error">%d uppdatering(ar) misslyckades</string>
     <string name="settings_location_access_switch_title">Platsåtkomst</string>
     <string name="weather_api_unauthorized_title">Obehörig API-tillgång</string>
@@ -610,10 +610,10 @@
     <string name="uv_index_short">UV-index</string>
     <string name="visibility_short">Sikt</string>
     <string name="pressure_short">Lufttryck</string>
-    <string name="humidity_short">Luftfuktighet</string>
+    <string name="humidity_short">Luftfukt.</string>
     <string name="cloud_cover_short">Molntäcke</string>
     <string name="settings_weather_sources_default_source">Förvald källa för nya platser</string>
-    <string name="alert">Larm</string>
+    <string name="alert">Varning</string>
     <string name="location_delete_location_dialog_title">Ta bort plats?</string>
     <string name="weather_message_too_frequent_refreshes">Vänta några sekunder innan du försöker igen…</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Rådande Luftkvalitetsindex</string>
@@ -727,4 +727,20 @@
     <string name="pollen_picea">Gran</string>
     <string name="pollen_acer">Lönn</string>
     <string name="location_last_updated_x">Senast uppdaterad %s</string>
+    <string name="daily_yesterday">I går</string>
+    <string name="daily_today">I dag</string>
+    <string name="daily_tomorrow">I morgon</string>
+    <string name="wind_direction_N">Nord</string>
+    <string name="wind_direction_NE">Nordost</string>
+    <string name="wind_direction_E">Ost</string>
+    <string name="wind_direction_SE">Sydost</string>
+    <string name="wind_direction_S">Syd</string>
+    <string name="wind_direction_SW">Sydväst</string>
+    <string name="wind_direction_W">Väst</string>
+    <string name="wind_direction_NW">Nordväst</string>
+    <string name="location_reverse_geocoding_by">Adressuppslagning via %s</string>
+    <string name="location_reverse_geocoding">Adressuppslagning</string>
+    <string name="location_has_active_alerts">Aktiv varning</string>
+    <string name="location_custom_name">Anpassat namn</string>
+    <string name="action_grant_permission">Tryck för att bevilja behörigheten.</string>
 </resources>
