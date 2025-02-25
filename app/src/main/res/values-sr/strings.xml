@@ -742,4 +742,15 @@
     <string name="location_last_updated_x">Последње ажурирање: %s</string>
     <string name="location_reverse_geocoding_by">Претрага адресе путем %s</string>
     <string name="location_reverse_geocoding">Претрага адресе</string>
+    <string name="daily_yesterday">Јуче</string>
+    <string name="daily_today">Данас</string>
+    <string name="daily_tomorrow">Сутра</string>
+    <string name="wind_direction_N">Север</string>
+    <string name="wind_direction_NE">Североисток</string>
+    <string name="wind_direction_E">Исток</string>
+    <string name="wind_direction_SE">Југоисток</string>
+    <string name="wind_direction_S">Југ</string>
+    <string name="wind_direction_SW">Југозапад</string>
+    <string name="wind_direction_W">Запад</string>
+    <string name="wind_direction_NW">Северозапад</string>
 </resources>
