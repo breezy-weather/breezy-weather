@@ -7,6 +7,7 @@
 - [Live Wallpaper] Attempt to reduce power consumption when used with animations off
 - Add support for devices with 16 KB page sizes
 - The location list drawer will now always be closed by default if you only have 1 location
+- [Alert screen] Allow to select the description of the alert to copy it
 
 **Weather sources**
 - [Android Geocoder] added as possible Address lookup source on devices supporting it

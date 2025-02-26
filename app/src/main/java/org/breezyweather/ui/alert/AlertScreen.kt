@@ -28,6 +28,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -166,11 +167,13 @@ internal fun AlertScreen(
                             }
                             if (!alert.description.isNullOrBlank()) {
                                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                                Text(
-                                    text = alert.description!!,
-                                    color = DayNightTheme.colors.bodyColor,
-                                    style = MaterialTheme.typography.bodyMedium
-                                )
+                                SelectionContainer {
+                                    Text(
+                                        text = alert.description!!,
+                                        color = DayNightTheme.colors.bodyColor,
+                                        style = MaterialTheme.typography.bodyMedium
+                                    )
+                                }
                             }
                             if (!alert.instruction.isNullOrBlank()) {
                                 if (!alert.description.isNullOrBlank()) {
@@ -178,11 +181,13 @@ internal fun AlertScreen(
                                     HorizontalDivider()
                                 }
                                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
-                                Text(
-                                    text = alert.instruction!!,
-                                    color = DayNightTheme.colors.bodyColor,
-                                    style = MaterialTheme.typography.bodyMedium
-                                )
+                                SelectionContainer {
+                                    Text(
+                                        text = alert.instruction!!,
+                                        color = DayNightTheme.colors.bodyColor,
+                                        style = MaterialTheme.typography.bodyMedium
+                                    )
+                                }
                             }
                             if (!alert.source.isNullOrBlank()) {
                                 if (!alert.description.isNullOrBlank() || !alert.instruction.isNullOrBlank()) {
