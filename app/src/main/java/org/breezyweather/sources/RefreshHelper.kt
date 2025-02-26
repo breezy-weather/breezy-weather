@@ -477,7 +477,11 @@ class RefreshHelper @Inject constructor(
                                                 featuresToUpdate.forEach {
                                                     errors.add(
                                                         RefreshError(
-                                                            RefreshErrorType.DATA_REFRESH_FAILED,
+                                                            RefreshErrorType.getTypeFromThrowable(
+                                                                context,
+                                                                e,
+                                                                RefreshErrorType.DATA_REFRESH_FAILED
+                                                            ),
                                                             entry.key,
                                                             it
                                                         )
