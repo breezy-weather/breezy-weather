@@ -30,7 +30,7 @@
     <string name="ephemeris_moon_phase_full_moon">Fullmåne</string>
     <string name="air_quality_pm_info_title">Partiklar (PM2,5 &amp; PM10)</string>
     <string name="common_weather_text_cloudy">Molnigt</string>
-    <string name="location_message_reverse_geocoding_failed">Väderkällan misslyckades att hitta en matchande plats</string>
+    <string name="location_message_reverse_geocoding_failed">Väderkällan misslyckades med att hitta en matchande plats</string>
     <string name="air_quality_pm_explanations_consequences">Partiklar är den mest hälsovådliga formen av luftföroreningar p.g.a. sin förmåga att tränga djupt in i lungorna och hjärnan via blodomloppet, vilket orsakar hälsoproblem såsom hjärtsjukdom, lungsjukdom och förtida död.</string>
     <string name="unit_hpa">hPa</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
@@ -46,7 +46,7 @@
     <string name="location_message_permission_missing">Behörighet till platsåtkomst saknas</string>
     <string name="unit_cm">cm</string>
     <string name="location_search_weather_source">Väderkälla</string>
-    <string name="location_message_failed_to_locate">Misslyckades att hitta nuvarande plats</string>
+    <string name="location_message_failed_to_locate">Misslyckades med att hitta nuvarande plats</string>
     <string name="settings_background_updates_refresh_2h">2 timmar</string>
     <string name="settings_section_general">Allmänt</string>
     <string name="precipitation_nowcasting">Nederbörd minut för minut</string>
@@ -193,7 +193,7 @@
     <string name="about_matrix">Matrixrum</string>
     <string name="unit_kpa">kPa</string>
     <string name="unit_in_voice">Tum</string>
-    <string name="location_message_search_failed">Platssök misslyckades</string>
+    <string name="location_message_search_failed">Platssökning misslyckades</string>
     <string name="weather_source_accu_preference_hours_120">120 timmar</string>
     <string name="unit_kpa_voice">Kilopascal</string>
     <string name="unit_atm_voice">Atmosfärer</string>
@@ -202,7 +202,7 @@
     <string name="pollen_alnus">Al</string>
     <string name="location_message_deleted">Plats borttagen</string>
     <string name="weather_kind_wind">Vind</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Kontrollera behörigheterna för platsåtkomst</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Kontrollera platsbehörigheterna</string>
     <string name="pollen_level_3">Medelhög</string>
     <string name="weather_data_by">Data från %s</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Nuvarande lufttryck</string>
@@ -368,7 +368,7 @@
     <string name="settings_notifications">Aviseringar</string>
     <string name="settings_main_summary">Kortordning, visade objekt, animationer</string>
     <string name="about_contributors">Utvecklare</string>
-    <string name="settings_widgets_summary">Ange bakgrund, konfigurera använda widgetar, aviseringswidget</string>
+    <string name="settings_widgets_summary">Ange bakgrundsbild, konfigurera använda widgetar, aviseringswidget</string>
     <string name="settings_background_updates_summary">Uppdateringsfrekvens, problemlösning</string>
     <string name="settings_appearance_summary">Språk, mörkt läge, ikonpaket, enheter</string>
     <string name="settings_debug_summary">Kraschloggar</string>
@@ -441,7 +441,7 @@
     <string name="settings_color_day_night">Dag/natt</string>
     <string name="settings_appearance_icon_pack_title">Ikonpaket</string>
     <string name="settings_widgets_live_wallpaper_summary">Ange en väderanimation som bakgrund</string>
-    <string name="message_parsing_error_title">Misslyckades att tolka väderdata</string>
+    <string name="message_parsing_error_title">Misslyckades med att tolka väderdata</string>
     <string name="weather_api_limit_reached_title">Max antal API-förfrågningar begärda</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Vecka (kort)</string>
     <string name="settings_weather_source_portal">Portal</string>
@@ -457,12 +457,12 @@
     <string name="settings_widgets_notification_feels_like_switch">Använd känns som-temperatur</string>
     <string name="dialog_permissions_location_content">För att använda denna funktion måste du ge appen behörighet att komma åt din nuvarande plats. Den kommer endast att delas med de valda väderkällorna. Om du har ångrat dig, kan du avbryta processen och lägga till en fast plats manuellt.</string>
     <string name="settings_notifications_forecast_time_today_title">Aviseringstid för dagens prognos</string>
-    <string name="location_dialog_failed_to_locate_title">Kan inte få platsen korrekt\?</string>
+    <string name="location_dialog_failed_to_locate_title">Kan inte hitta rätt plats?</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Temperatur nattetid för i dag, i morgon, …, 4 dagar senare (°)</string>
     <string name="common_weather_text_rain_freezing">Underkylt regn</string>
     <string name="common_weather_text_rain_snow_mixed_light">Lätt snöblandat regn</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Väder dagtid för i dag, i morgon, …, 4 dagar senare</string>
-    <string name="settings_notifications_precipitations_title">Aviseringar för nederbörd</string>
+    <string name="settings_notifications_precipitations_title">Aviseringar om nederbörd</string>
     <string name="settings_source_default_value">Förvald (oförändrad)</string>
     <string name="settings_automatic">Automatisk</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Väderikon</string>
@@ -743,4 +743,8 @@
     <string name="location_has_active_alerts">Aktiv varning</string>
     <string name="location_custom_name">Anpassat namn</string>
     <string name="action_grant_permission">Tryck för att bevilja behörigheten.</string>
+    <string name="settings_notifications_permission">Aviseringsbehörighet krävs</string>
+    <string name="settings_notifications_permission_summary">Behövs för att avisera om varningar, prognoser och appuppdateringar. %s</string>
+    <string name="settings_debug_notification_permission">Behövs för att avisera om kraschloggar och misslyckade väderuppdateringar. %s</string>
+    <string name="settings_widgets_notification_permission_summary">Behövs för att visa aviseringswidgeten. %s</string>
 </resources>
