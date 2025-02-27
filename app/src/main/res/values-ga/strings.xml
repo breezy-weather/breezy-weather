@@ -734,4 +734,15 @@
     <string name="settings_debug_notification_permission">Ag teastáil chun fógra a thabhairt faoi logaí cliste agus nuashonruithe aimsire ar theip orthu. %s</string>
     <string name="location_reverse_geocoding">Cuardach seoltaí</string>
     <string name="location_reverse_geocoding_by">Cuardaigh seolta de réir %s</string>
+    <string name="daily_yesterday">Inné</string>
+    <string name="daily_today">Inniu</string>
+    <string name="daily_tomorrow">Amárach</string>
+    <string name="wind_direction_N">Thuaidh</string>
+    <string name="wind_direction_NE">Thoir Thuaidh</string>
+    <string name="wind_direction_E">Oirthear</string>
+    <string name="wind_direction_SE">Thoir Theas</string>
+    <string name="wind_direction_S">Theas</string>
+    <string name="wind_direction_SW">Thiar Theas</string>
+    <string name="wind_direction_W">Iarthar</string>
+    <string name="wind_direction_NW">Thiar Thuaidh</string>
 </resources>
