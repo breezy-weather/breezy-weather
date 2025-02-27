@@ -132,7 +132,6 @@ class PushedManagementFragment : ManagementFragment() {
             .getInstance(requireContext())
             .weatherThemeDelegate
             .setSystemBarStyle(
-                requireContext(),
                 requireActivity().window,
                 statusShader = false,
                 lightStatus = !requireActivity().isDarkMode,
