@@ -143,7 +143,6 @@ class HomeFragment : MainModuleFragment() {
             .getInstance(requireContext())
             .weatherThemeDelegate
             .setSystemBarStyle(
-                requireContext(),
                 requireActivity().window,
                 statusShader = scrollListener?.topOverlap == true,
                 lightStatus = false,

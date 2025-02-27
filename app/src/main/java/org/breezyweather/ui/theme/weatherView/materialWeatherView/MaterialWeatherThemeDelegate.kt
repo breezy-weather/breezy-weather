@@ -128,7 +128,6 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
     }
 
     override fun setSystemBarStyle(
-        context: Context,
         window: Window,
         statusShader: Boolean,
         lightStatus: Boolean,

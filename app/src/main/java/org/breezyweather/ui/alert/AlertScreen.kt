@@ -100,7 +100,6 @@ internal fun AlertScreen(
                 .getInstance(context)
                 .weatherThemeDelegate
                 .setSystemBarStyle(
-                    context = context,
                     window = activity.window,
                     statusShader = false,
                     lightStatus = isLightTheme,

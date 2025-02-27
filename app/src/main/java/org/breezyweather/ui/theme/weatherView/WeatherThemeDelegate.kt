@@ -56,7 +56,6 @@ interface WeatherThemeDelegate {
     fun getHeaderTextColor(context: Context): Int
 
     fun setSystemBarStyle(
-        context: Context,
         window: Window,
         statusShader: Boolean,
         lightStatus: Boolean,
