@@ -54,6 +54,7 @@ val appContributors: Array<ContributorItem> = arrayOf(
     ContributorItem("Devy Ballard", github = "devycarol"),
     ContributorItem("Mushfiq1060", github = "Mushfiq1060"),
     ContributorItem("ccyybn", github = "ccyybn"),
+    ContributorItem("Doğaç Tanrıverdi", github = "DogacTanriverdi"),
     ContributorItem(
         "Anthony Dégrange",
         url = "https://anthony-degrange-design.fr/",
@@ -156,6 +157,7 @@ val appTranslators = arrayOf(
     TranslatorItem(arrayOf("hi"), "Chandra Mohan Jha", github = "ChAJ07"),
     TranslatorItem(arrayOf("hi"), "Deepesh Singh Chauhan", github = "master2619"),
     TranslatorItem(arrayOf("hi"), "ShareASmile", weblate = "ShareASmile"),
+    TranslatorItem(arrayOf("hi"), "Akshat", weblate = "Akshat-Projects"),
     TranslatorItem(arrayOf("hr"), "Mateo Spajić", github = "Spajki001"),
     TranslatorItem(arrayOf("hr"), "Milo Ivir", github = "milotype"),
     TranslatorItem(arrayOf("hu"), "Viktor Blaskó", github = "blaskoviktor"),

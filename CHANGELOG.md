@@ -8,7 +8,7 @@
 
 **Improvements and fixes**
 - Add support for devices with 16 KB page sizes
-- The location list drawer will now always be closed by default if you only have 1 location
+- The location list drawer will now always be closed by default if you only have 1 location (@DogacTanriverdi)
 - [Alert screen] Allow to select the description of the alert to copy it
 
 **Weather sources**
@@ -28,6 +28,9 @@
 - Daily details screen: improved content descriptions
 - Alerts: improved content description (in Main screen and Detailed alerts screen)
 - Temperature units will now be read as "degree celsius" instead of "degree C" on Android >= 7
+
+**Translations**
+- Translations updated
 
 
 # Version 5.4.2 (2025-02-08)
