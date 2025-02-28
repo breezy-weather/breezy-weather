@@ -758,4 +758,14 @@
     <string name="pollen_picea">Pícea</string>
     <string name="pollen_pinus">Pino</string>
     <string name="pollen_ulmus">Olmo</string>
+    <string name="daily_tomorrow">Mañana</string>
+    <string name="daily_today">Hoy</string>
+    <string name="wind_direction_N">Norte</string>
+    <string name="wind_direction_NE">Noreste</string>
+    <string name="wind_direction_E">Este</string>
+    <string name="wind_direction_SE">Sudeste</string>
+    <string name="wind_direction_S">Sur</string>
+    <string name="wind_direction_W">Oeste</string>
+    <string name="wind_direction_NW">Noroeste</string>
+    <string name="wind_direction_SW">Sudoeste</string>
 </resources>

@@ -468,7 +468,7 @@
     <string name="settings_notifications_alerts_title">Benachrichtigungen über schwere Unwetterwarnungen</string>
     <string name="settings_notifications_forecast_today_title">Benachrichtigung über die Tagesvorhersage</string>
     <string name="settings_notifications_forecast_time_today_title">Benachrichtigungszeit für die Tagesvorhersage</string>
-    <string name="settings_notifications_forecast_tomorrow_title">Benachrichtigung für die Vorhersage des nächsten Tages</string>
+    <string name="settings_notifications_forecast_tomorrow_title">Benachrichtigung über die Vorhersage des nächsten Tages</string>
     <string name="location_message_permission_missing">Standortberechtigung fehlt</string>
     <string name="location_message_permission_background_missing">Berechtigung zum Zugriff auf Standort im Hintergrund fehlt</string>
     <string name="settings_icon_packs_check_details">Details prüfen</string>
