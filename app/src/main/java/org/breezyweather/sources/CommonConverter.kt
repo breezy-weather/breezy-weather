@@ -524,6 +524,7 @@ internal fun computePollutantInPpbFromUgm3(
  * @param hourlyList hourly data
  * @param hourlyAirQuality hourly air quality data from WeatherWrapper
  * @param hourlyPollen hourly pollen data from WeatherWrapper
+ * @param currentPollen current pollen data from WeatherWrapper, will be used as "Today" if hourlyPollen is empty
  * @param location for timeZone and calculation of sunrise/set according to lon/lat purposes
  */
 internal fun completeDailyListFromHourlyList(
@@ -531,12 +532,14 @@ internal fun completeDailyListFromHourlyList(
     hourlyList: List<HourlyWrapper>,
     hourlyAirQuality: Map<Date, AirQuality>,
     hourlyPollen: Map<Date, Pollen>,
+    currentPollen: Pollen?,
     location: Location,
 ): List<Daily> {
     if (dailyList.isEmpty() || hourlyList.isEmpty()) return dailyList
 
     val hourlyListByHalfDay = getHourlyListByHalfDay(hourlyList, location)
     val hourlyListByDay = hourlyList.groupBy { it.date.getIsoFormattedDate(location) }
+    val todayFormatted = Date().getIsoFormattedDate(location)
     return dailyList.map { daily ->
         val theDayFormatted = daily.date.getIsoFormattedDate(location)
         val newDay = completeHalfDayFromHourlyList(
@@ -596,9 +599,18 @@ internal fun completeDailyListFromHourlyList(
             airQuality = daily.airQuality ?: getDailyAirQualityFromHourlyList(
                 hourlyAirQuality.filter { it.key.getIsoFormattedDate(location) == theDayFormatted }.values
             ),
-            pollen = daily.pollen ?: getDailyPollenFromHourlyList(
-                hourlyPollen.filter { it.key.getIsoFormattedDate(location) == theDayFormatted }.values
-            ),
+            pollen = daily.pollen ?: if (hourlyPollen.isEmpty() &&
+                currentPollen != null &&
+                todayFormatted == theDayFormatted
+            ) {
+                getDailyPollenFromHourlyList(listOf(currentPollen), byPassSizeCheck = true)
+            } else if (hourlyPollen.isNotEmpty()) {
+                getDailyPollenFromHourlyList(
+                    hourlyPollen.filter { it.key.getIsoFormattedDate(location) == theDayFormatted }.values
+                )
+            } else {
+                null
+            },
             uV = if (daily.uV?.index != null) {
                 daily.uV
             } else {
@@ -1201,9 +1213,10 @@ private fun getDailyAirQualityFromHourlyList(
  */
 private fun getDailyPollenFromHourlyList(
     hourlyList: Collection<Pollen>? = null,
+    byPassSizeCheck: Boolean = false,
 ): Pollen? {
     // We need at least 18 hours for a signification estimation
-    if (hourlyList.isNullOrEmpty() || hourlyList.size < 18) return null
+    if (hourlyList.isNullOrEmpty() || (hourlyList.size < 18 && !byPassSizeCheck)) return null
 
     return Pollen(
         alder = hourlyList.mapNotNull { it.alder }.maxOrNull(),
