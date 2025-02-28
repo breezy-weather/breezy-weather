@@ -17,7 +17,7 @@ hilt = "1.2.0"
 javapoet = "1.13.0"
 jjwt = "0.12.6"
 json = "20250107"
-junit = "5.12.0"
+junit = "5.11.4"
 kotest-assertions = "5.9.1"
 kotlin = "2.1.10"
 kotlinx-coroutines = "1.10.1"
@@ -80,7 +80,7 @@ jjwt-api = { group = "io.jsonwebtoken", name = "jjwt-api", version.ref = "jjwt" 
 jjwt-impl = { group = "io.jsonwebtoken", name = "jjwt-impl", version.ref = "jjwt" }
 jjwt-orgjson = { group = "io.jsonwebtoken", name = "jjwt-orgjson", version.ref = "jjwt" }
 json = { group = "org.json", name = "json", version.ref = "json" }
-junit = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
+junit = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit" }
 ktlint-core = { group = "com.pinterest.ktlint", name = "ktlint-cli", version.ref = "ktlint" }
 kotest-assertions = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest-assertions" }
 kotlinx-coroutines-rx3 = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-rx3", version.ref = "kotlinx-coroutines" }

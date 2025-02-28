@@ -1,7 +1,6 @@
 package breezy.buildlogic
 
 import org.gradle.api.Project
-import java.io.ByteArrayOutputStream
 
 // Git is needed in your system PATH for these commands to work.
 // If it's not installed, you can return a random value as a workaround
@@ -16,10 +15,11 @@ fun Project.getGitSha(): String {
 }
 
 fun Project.runCommand(command: String): String {
-    val byteOut = ByteArrayOutputStream()
-    exec {
+    return providers.exec {
         commandLine = command.split(" ")
-        standardOutput = byteOut
     }
-    return String(byteOut.toByteArray()).trim()
+        .standardOutput
+        .asText
+        .get()
+        .trim()
 }
