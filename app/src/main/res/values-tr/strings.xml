@@ -406,7 +406,7 @@
     <string name="weather_minutely_data_by">%s tarafından bugünlük yağış verileri</string>
     <string name="weather_api_limit_reached_title">API sorgu limitine ulaşıldı</string>
     <string name="weather_api_unauthorized_title">API erişimi reddedildi</string>
-    <string name="location_results_by">$ tarafından konum sonuçları</string>
+    <string name="location_results_by">%s tarafından konum sonuçları</string>
     <string name="widget_material_you_current">Material You - Anlık</string>
     <string name="widget_label_align_end">Sağa yasla</string>
     <string name="widget_custom_subtitle_explanation">İstediğinizi yazabilirsiniz ama metin uzunluğuna dikkat edin. Hava durumu verilerini almak için referans vermek istiyorsanız $ kullanın.
