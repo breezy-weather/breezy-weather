@@ -252,6 +252,10 @@ class HomeFragment : MainModuleFragment() {
         binding.recyclerView.addOnScrollListener(OnScrollListener().also { scrollListener = it })
         binding.recyclerView.setOnTouchListener(indicatorStateListener)
 
+        if (isAdded && context != null) {
+            updatePreviewSubviews()
+        }
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.currentLocation.collect {
@@ -292,14 +296,6 @@ class HomeFragment : MainModuleFragment() {
                 }
             }
         }
-
-        previewOffset.observe(viewLifecycleOwner) {
-            binding.root.post {
-                if (isFragmentViewCreated) {
-                    updatePreviewSubviews()
-                }
-            }
-        }
     }
 
     private fun updateDayNightColors() {
@@ -315,10 +311,8 @@ class HomeFragment : MainModuleFragment() {
     fun updateViews(location: Location? = viewModel.currentLocation.value?.location) {
         ensureResourceProvider()
         updateContentViews(location = location)
-        binding.root.post {
-            if (isFragmentViewCreated) {
-                updatePreviewSubviews()
-            }
+        if (isAdded && context != null) {
+            updatePreviewSubviews()
         }
     }
 
