@@ -11,12 +11,13 @@ val xmlFormatExclude = buildList(2) {
 
     projectDir
         .resolve("src/main/res/")
-        .takeIf { it.isDirectory &&
-            (!it.name.startsWith("values-") ||
-                it.name.endsWith("hdpi") ||
-                it.name.endsWith("v29") ||
-                it.name.endsWith("v31")
-            )
+        .takeIf {
+            it.isDirectory &&
+                (!it.name.startsWith("values-") ||
+                    it.name.endsWith("hdpi") ||
+                    it.name.endsWith("v29") ||
+                    it.name.endsWith("v31")
+                    )
         }?.let(::fileTree)
         ?.let(::add)
 }.toTypedArray()
@@ -24,32 +25,8 @@ val xmlFormatExclude = buildList(2) {
 spotless {
     kotlin {
         target("**/*.kt", "**/*.kts")
-        targetExclude(
-            "**/build/**/*.kt",
-            // TODO:
-            "src/main/java/org/breezyweather/domain/weather/index/PollenIndex.kt",
-            "src/main/java/org/breezyweather/remoteviews/config/AbstractWidgetConfigActivity.kt",
-            "src/main/java/org/breezyweather/remoteviews/presenters/AbstractRemoteViewsPresenter.kt",
-            "src/main/java/org/breezyweather/search/SearchActivityRepository.kt",
-            "src/main/java/org/breezyweather/sources/openmeteo/json/OpenMeteoWeatherHourly.kt",
-            "src/src_nonfreenet/org/breezyweather/sources/geosphereat/json/GeoSphereAtTimeseriesResult.kt",
-            "src/src_nonfreenet/org/breezyweather/sources/imd/json/ImdWeatherResult.kt",
-            "src/src_nonfreenet/org/breezyweather/sources/jma/json/JmaDailyTimeSeries.kt",
-            "src/src_nonfreenet/org/breezyweather/sources/meteoam/json/MeteoAmForecastDatasets.kt",
-            "src/src_nonfreenet/org/breezyweather/sources/meteoam/json/MeteoAmForecastResult.kt",
-            "src/src_nonfreenet/org/breezyweather/sources/meteoam/json/MeteoAmObservationResult.kt",
-            "src/src_nonfreenet/org/breezyweather/sources/metno/json/MetNoAlertWhen.kt"
-        )
+        targetExclude("**/build/**/*.kt")
         ktlint(libs.ktlint.core.get().version)
-            .editorConfigOverride(
-                mapOf(
-                    "ktlint_function_naming_ignore_when_annotated_with" to "Composable",
-                    "ktlint_standard_class-signature" to "disabled",
-                    "ktlint_standard_discouraged-comment-location" to "disabled",
-                    "ktlint_standard_function-expression-body" to "disabled",
-                    "ktlint_standard_function-signature" to "disabled"
-                )
-            )
         trimTrailingWhitespace()
         endWithNewline()
     }

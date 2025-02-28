@@ -19,6 +19,7 @@ package org.breezyweather.sources.openmeteo.json
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@Suppress("ktlint")
 @Serializable
 data class OpenMeteoWeatherHourly(
     val time: LongArray,

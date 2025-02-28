@@ -19,14 +19,14 @@ import com.google.maps.android.data.MultiGeometry
 
 /**
  * A GeoJsonMultiPolygon geometry contains a number of [GeoJsonPolygon]s.
+ *
+ * @param geoJsonPolygons list of GeoJsonPolygons to store
  */
 class GeoJsonMultiPolygon(
     geoJsonPolygons: List<GeoJsonPolygon>,
 ) : MultiGeometry(geoJsonPolygons) {
     /**
      * Creates a new GeoJsonMultiPolygon
-     *
-     * @param geoJsonPolygons list of GeoJsonPolygons to store
      */
     init {
         geometryType = "MultiPolygon"

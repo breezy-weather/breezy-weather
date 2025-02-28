@@ -491,8 +491,10 @@ abstract class AbstractRemoteViewsPresenter {
                         ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "nwd$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.wind?.getShortDescription(context, speedUnit)
-                        ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.night?.wind?.getShortDescription(
+                        context,
+                        speedUnit
+                    ) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "aqi$",
                     if (weather.dailyForecastStartingToday.getOrNull(i)?.airQuality?.isIndexValid == true) {
@@ -503,7 +505,9 @@ abstract class AbstractRemoteViewsPresenter {
                     }
                 ).replace(
                     "$" + i + "pis$",
-                    if (weather.dailyForecastStartingToday.getOrNull(i)?.pollen?.pollensWithConcentration?.isNotEmpty() == true) {
+                    if (weather.dailyForecastStartingToday.getOrNull(i)?.pollen
+                            ?.pollensWithConcentration?.isNotEmpty() == true
+                    ) {
                         if (pollenIndexSource != null) {
                             weather.dailyForecastStartingToday[i].pollen!!.getSummaryFromSource(
                                 context,
@@ -517,20 +521,32 @@ abstract class AbstractRemoteViewsPresenter {
                     }
                 ).replace(
                     "$" + i + "sr$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.sun?.riseDate?.getFormattedTime(location, context, context.is12Hour)
-                        ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.sun?.riseDate?.getFormattedTime(
+                        location,
+                        context,
+                        context.is12Hour
+                    ) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "ss$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.sun?.setDate?.getFormattedTime(location, context, context.is12Hour)
-                        ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.sun?.setDate?.getFormattedTime(
+                        location,
+                        context,
+                        context.is12Hour
+                    ) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "mr$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.moon?.riseDate?.getFormattedTime(location, context, context.is12Hour)
-                        ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.moon?.riseDate?.getFormattedTime(
+                        location,
+                        context,
+                        context.is12Hour
+                    ) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "ms$",
-                    weather.dailyForecastStartingToday.getOrNull(i)?.moon?.setDate?.getFormattedTime(location, context, context.is12Hour)
-                        ?: context.getString(R.string.null_data_text)
+                    weather.dailyForecastStartingToday.getOrNull(i)?.moon?.setDate?.getFormattedTime(
+                        location,
+                        context,
+                        context.is12Hour
+                    ) ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "mp$",
                     weather.dailyForecastStartingToday.getOrNull(i)?.moonPhase?.getDescription(context)

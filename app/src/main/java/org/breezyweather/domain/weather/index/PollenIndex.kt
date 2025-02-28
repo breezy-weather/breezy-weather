@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat
 import org.breezyweather.R
 import kotlin.math.roundToInt
 
+@Suppress("ktlint")
 enum class PollenIndex(
     val id: String,
     @StringRes val pollenName: Int,

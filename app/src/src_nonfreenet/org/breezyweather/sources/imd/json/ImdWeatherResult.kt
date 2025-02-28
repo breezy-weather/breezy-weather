@@ -20,12 +20,13 @@ import kotlinx.serialization.Serializable
 import org.breezyweather.sources.imd.serializers.ImdAnySerializer
 
 @Serializable
+@Suppress("ktlint")
 data class ImdWeatherResult(
-    val apcp: List<@Serializable(with = ImdAnySerializer::class) Any?>? = null,
-    val temp: List<@Serializable(with = ImdAnySerializer::class) Any?>? = null,
-    val wspd: List<@Serializable(with = ImdAnySerializer::class) Any?>? = null,
-    val wdir: List<@Serializable(with = ImdAnySerializer::class) Any?>? = null,
-    val rh: List<@Serializable(with = ImdAnySerializer::class) Any?>? = null,
-    val tcdc: List<@Serializable(with = ImdAnySerializer::class) Any?>? = null,
-    val gust: List<@Serializable(with = ImdAnySerializer::class) Any?>? = null,
+    val apcp: List<@Serializable(ImdAnySerializer::class) Any?>? = null,
+    val temp: List<@Serializable(ImdAnySerializer::class) Any?>? = null,
+    val wspd: List<@Serializable(ImdAnySerializer::class) Any?>? = null,
+    val wdir: List<@Serializable(ImdAnySerializer::class) Any?>? = null,
+    val rh: List<@Serializable(ImdAnySerializer::class) Any?>? = null,
+    val tcdc: List<@Serializable(ImdAnySerializer::class) Any?>? = null,
+    val gust: List<@Serializable(ImdAnySerializer::class) Any?>? = null,
 )

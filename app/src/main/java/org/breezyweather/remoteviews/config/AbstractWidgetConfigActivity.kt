@@ -562,6 +562,8 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             }
             return true
         }
+
+    @Suppress("ktlint")
     private val subtitleCustomKeywords: String
         get() = """
             ${getString(R.string.widget_custom_subtitle_keyword_cw)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_cw_description)}
@@ -578,7 +580,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             ${getString(R.string.widget_custom_subtitle_keyword_cv)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_cv_description)}
             ${getString(R.string.widget_custom_subtitle_keyword_al)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_al_description)}
             ${getString(R.string.widget_custom_subtitle_keyword_als)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_als_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_l)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_l_description)}
             ${getString(R.string.widget_custom_subtitle_keyword_lat)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_lat_description)}
             ${getString(R.string.widget_custom_subtitle_keyword_lon)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_lon_description)}
@@ -590,31 +592,31 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             ${getString(R.string.widget_custom_subtitle_keyword_dd)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_dd_description)}
             ${getString(R.string.widget_custom_subtitle_keyword_hd)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_hd_description)}
             ${getString(R.string.widget_custom_subtitle_keyword_enter)}${getString(R.string.colon_separator)}${getString(R.string.widget_custom_subtitle_keyword_enter_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_xdw)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xdw_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_xnw)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xnw_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_xdt)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xdt_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_xnt)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xnt_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_xdtd)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xdtd_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_xntd)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xntd_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_xdp)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xdp_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_xnp)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xnp_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_xdwd)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xdwd_description)}
 
@@ -629,16 +631,16 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
 
             ${getString(R.string.widget_custom_subtitle_keyword_xsr)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xsr_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_xss)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xss_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_xmr)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xmr_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_xms)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xms_description)}
-            
+
             ${getString(R.string.widget_custom_subtitle_keyword_xmp)}${getString(R.string.colon_separator)}
             ${getString(R.string.widget_custom_subtitle_keyword_xmp_description)}
             """.trimIndent()

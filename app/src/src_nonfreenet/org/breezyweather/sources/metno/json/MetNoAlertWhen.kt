@@ -23,6 +23,7 @@ import java.util.Date
 /**
  * MET Norway when interval
  */
+@Suppress("ktlint")
 @Serializable
 data class MetNoAlertWhen(
     val interval: List<@Serializable(DateSerializer::class) Date>?,
