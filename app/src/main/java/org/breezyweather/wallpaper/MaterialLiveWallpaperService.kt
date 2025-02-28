@@ -41,10 +41,8 @@ import breezyweather.domain.weather.model.WeatherCode
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
 import org.breezyweather.BreezyWeather
-import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.isLandscape
-import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.extensions.sensorManager
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.domain.location.model.isDaylight
@@ -314,12 +312,14 @@ class MaterialLiveWallpaperService : WallpaperService() {
                                 applicationContext.getTabletListAdaptiveWidth(mSizes[0])
                             mAdaptiveSize[1] = mSizes[1]
                             mBackground?.setBounds(0, 0, mSizes[0], mSizes[1])
-                            mAnimate =
+                            // Animations disabled: see #1006, #1325
+                            // Possible way to bring it back using shaders: #1665
+                            /*mAnimate =
                                 when (SettingsManager.getInstance(applicationContext).backgroundAnimationMode) {
                                     BackgroundAnimationMode.SYSTEM -> !applicationContext.isMotionReduced
                                     BackgroundAnimationMode.ENABLED -> true
                                     BackgroundAnimationMode.DISABLED -> false
-                                }
+                                }*/
                             setWeatherImplementor()
                         }
                     }
@@ -352,12 +352,14 @@ class MaterialLiveWallpaperService : WallpaperService() {
             }
 
             val settingsManager = SettingsManager.getInstance(applicationContext)
-            mAnimate =
+            // Animations disabled: see #1006, #1325
+            // Possible way to bring it back using shaders: #1665
+            /*mAnimate =
                 when (settingsManager.backgroundAnimationMode) {
                     BackgroundAnimationMode.SYSTEM -> !applicationContext.isMotionReduced
                     BackgroundAnimationMode.ENABLED -> true
                     BackgroundAnimationMode.DISABLED -> false
-                }
+                }*/
             mRotation2D = 0f
             mRotation3D = 0f
             if (mOrientationListener.canDetectOrientation()) {

@@ -3,8 +3,10 @@
 **New features**
 - Address lookup source: allows to choose a source different from forecast source for address lookup of current location. Docs were updated to use the terms “address lookup” where it was previously called “reverse geocoding”
 
+**Removed features**
+- [Live Wallpaper] Removed animations to fix an abnormal memory/power consumption. If you have expertise with shaders, please check #1665 for a possible way to bring them back
+
 **Improvements and fixes**
-- [Live Wallpaper] Attempt to reduce power consumption when used with animations off
 - Add support for devices with 16 KB page sizes
 - The location list drawer will now always be closed by default if you only have 1 location
 - [Alert screen] Allow to select the description of the alert to copy it
