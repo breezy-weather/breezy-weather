@@ -1,4 +1,4 @@
-# Version 5.4.3 (unreleased)
+# Version 5.4.3 (2025-02-28)
 
 **New features**
 - Address lookup source: allows to choose a source different from forecast source for address lookup of current location. Docs were updated to use the terms “address lookup” where it was previously called “reverse geocoding”

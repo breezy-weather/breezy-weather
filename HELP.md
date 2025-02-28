@@ -4,9 +4,7 @@
 
 First of all, address lookup is absolutely not required to get an accurate forecast, since it’s based on your longitude and latitude, not on your address, which is a totally different process.
 
-If it’s still an important matter to you, you will need to choose as your main source [a weather source supporting reverse geocoding](https://github.com/breezy-weather/breezy-weather/blob/main/docs/SOURCES.md#location).
-
-**New in v5.4.3 (unreleased):** you can now select your address lookup source.
+If it’s still an important matter to you, you can select an address lookup source in the location settings.
 
 
 ## Troubleshooting errors
