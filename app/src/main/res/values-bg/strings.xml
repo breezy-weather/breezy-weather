@@ -245,7 +245,7 @@
     <string name="weather_kind_wind">Вятър</string>
     <string name="weather_data_by">Данни от %s</string>
     <string name="weather_air_quality_and_pollen_data_by">Данни за качеството на въздуха и праха от %s</string>
-    <string name="weather_message_data_refresh_failed">Опресняването на данните за времето неуспешно</string>
+    <string name="weather_message_data_refresh_failed">Опресняването на данните е неуспешно</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Текущо налягане</string>
     <string name="settings_units_summary">Температура, валежи, разстояние, скорост, налягане</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Текуща влажност</string>
@@ -337,7 +337,7 @@
     <string name="settings_background_updates_refresh_never">Никога</string>
     <string name="settings_background_updates_refresh_2h">2 часа</string>
     <string name="settings_background_updates_refresh_12h">12 часа</string>
-    <string name="settings_background_updates_battery_optimization">Изключване на оптимизацията на батерията</string>
+    <string name="settings_background_updates_battery_optimization">Изключи оптимизацията на батерията</string>
     <string name="settings_background_updates_battery_optimization_summary">Това е първото нещо, което трябва да опитате, когато не получавате известия или приспособленията не се опресняват.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Оптимизацията на батерията вече е деактивирана.</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Някои производители имат допълнителни ограничения за приложения, които убиват фоновите услуги. Уебсайтът The Don’t kill my app! има информация как да го оправите.</string>
@@ -716,4 +716,19 @@
     <string name="common_weather_text_dust">Прашен</string>
     <string name="weather_source_continent_asia">Азия</string>
     <string name="weather_source_continent_oceania">Океания</string>
+    <string name="location_last_updated_x">Последно обновено %s</string>
+    <string name="daily_yesterday">Вчера</string>
+    <string name="daily_today">Днес</string>
+    <string name="daily_tomorrow">Утре</string>
+    <string name="wind_direction_N">Север</string>
+    <string name="wind_direction_NE">Североизток</string>
+    <string name="wind_direction_E">Изток</string>
+    <string name="wind_direction_SE">Югоизток</string>
+    <string name="wind_direction_S">Юг</string>
+    <string name="wind_direction_SW">Югозапад</string>
+    <string name="wind_direction_W">Запад</string>
+    <string name="wind_direction_NW">Северозапад</string>
+    <string name="pollen_pinus">Бор</string>
+    <string name="location_has_active_alerts">Активен сигнал</string>
+    <string name="pollen_acer">Клен</string>
 </resources>
