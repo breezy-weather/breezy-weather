@@ -538,12 +538,12 @@
     <string name="weather_message_invalid_location">Ungültiger Ort, bitte löschen und erneut hinzufügen</string>
     <string name="wind_gusts">Windböen</string>
     <string name="weather_pollen_data_by">Pollendaten von %s</string>
-    <string name="weather_minutely_data_by">Daten für Nowcasting (Gegenwartsvorhersage) von %s</string>
+    <string name="weather_minutely_data_by">Daten für Kurzvorhersage von Niederschlägen von %s</string>
     <string name="weather_alert_data_by">Warndaten von %s</string>
     <string name="weather_air_quality_data_by">Luftqualitätsdaten von %s</string>
     <string name="action_save">Speichern</string>
     <string name="settings_weather_sources_per_location_summary">Wetterdatenquellen für diesen Ort anpassen</string>
-    <string name="precipitation_nowcasting">Nowcasting (Gegenwartsvorhersage)</string>
+    <string name="precipitation_nowcasting">Kurzvorhersage von Niederschlägen</string>
     <string name="about_dependencies">Abhängigkeiten</string>
     <string name="about_privacy_policy">Datenschutzerklärung</string>
     <string name="about_contact">Kontakt</string>
