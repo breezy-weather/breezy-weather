@@ -743,4 +743,15 @@
     <string name="settings_notifications_permission_summary">Необходим для уведомления об уведомлениях, прогнозах и обновлениях программы. %s</string>
     <string name="settings_widgets_notification_permission_summary">Необходимо для отображения виджета уведомлений. %s</string>
     <string name="settings_debug_notification_permission">Необходимо уведомить о сбоях и неудачных обновлениях погоды. %s</string>
+    <string name="daily_today">Сегодня</string>
+    <string name="daily_yesterday">Вчера</string>
+    <string name="daily_tomorrow">Завтра</string>
+    <string name="wind_direction_N">Север</string>
+    <string name="wind_direction_NE">Северо-восток</string>
+    <string name="wind_direction_E">Восток</string>
+    <string name="wind_direction_SE">Юго-восток</string>
+    <string name="wind_direction_S">Юг</string>
+    <string name="wind_direction_SW">Юго-запад</string>
+    <string name="wind_direction_W">Запад</string>
+    <string name="wind_direction_NW">Северо-запад</string>
 </resources>
