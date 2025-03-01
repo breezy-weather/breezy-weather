@@ -16,7 +16,7 @@
     <string name="humidity">Páratartalom</string>
     <string name="humidity_dew_point">Páratartalom / Harmatpont</string>
     <string name="uv_index">UV-szint</string>
-    <string name="sunshine_duration">Napsütéses órák</string>
+    <string name="sunshine_duration">Napsütéses órák száma</string>
     <string name="notification_channel_forecast">Előrejelzés</string>
     <string name="daytime">Nappal</string>
     <string name="nighttime">Éjszaka</string>
@@ -95,7 +95,7 @@
     <string name="location_dialog_failed_to_locate_action_select_source">Helymeghatározó szolgáltatás kiválasztása</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adja hozzá a helyszínt manuálisan és törölje a következőt: „%s”</string>
     <string name="dialog_permissions_location_background_title">Hozzáférés a helymeghatározáshoz a háttérben</string>
-    <string name="dialog_permissions_location_background_content">Ahhoz, hogy a háttérben az Android rendszer által ismert legfrissebb jelenlegi helyszínhez lehessen időjárás-frissítést végezni, a helyszín-meghatározási engedélyt “Mindig engedélyezett” értékre kell állítani. Ellenkező esetben az időjárás az előtérben a legfrissebb lekérdezett koordináták alapján frissül, ami elavult lehet.</string>
+    <string name="dialog_permissions_location_background_content">Ahhoz, hogy a háttérben az Android rendszer által ismert legfrissebb jelenlegi helyszínhez lehessen frissíteni az időjárásadatokat, a helyszínmeghatározási engedélyt „Mindig engedélyezett” értékre kell állítani. Ellenkező esetben az időjárás az előtérben a legfrissebb lekérdezett koordináták alapján frissül, ami elavult lehet.</string>
     <string name="widget_label_view_style">Nézet stílusa</string>
     <string name="widget_label_show_widget_card">Háttérszín</string>
     <string name="widget_label_show_widget_card_alpha">Átlátszóság</string>
@@ -139,8 +139,8 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">Holdkelte ma, holnap, …, 4 nap múlva</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Holdnyugta ma, holnap, …, 4 nap múlva</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Holdfázis ma, holnap, …, 4 nap múlva</string>
-    <string name="widget_live_wallpaper_weather_kind">Időjárás</string>
-    <string name="widget_live_wallpaper_day_night_type">Idő</string>
+    <string name="widget_live_wallpaper_weather_kind">A háttérkép időjárás-animációjának típusa</string>
+    <string name="widget_live_wallpaper_day_night_type">A háttérkép időjárás-animációjának módja</string>
     <string name="location_message_added">Helyszín sikeresen hozzáadva</string>
     <string name="location_message_deleted">Helyszín sikeresen eltávolítva</string>
     <string name="location_message_list_cannot_be_empty">A helyszínlista nem lehet üres</string>
@@ -173,7 +173,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Élő háttérkép</string>
-    <string name="settings_location_service">Helyszín meghatározási szolgáltatás</string>
+    <string name="settings_location_service">Helyszínmeghatározási szolgáltatás</string>
     <string name="settings_appearance_dark_mode_title">Színtéma</string>
     <string name="settings_appearance_icon_pack_title">Ikonkészlet</string>
     <string name="settings_appearance">Megjelenés</string>
@@ -230,7 +230,7 @@
     <string name="widget_week_style_5_days">5 nap</string>
     <string name="uv_index_8_10">Nagyon magas</string>
     <string name="settings_weather_source_portal">Portál</string>
-    <string name="setting_weather_source_accu_days">Napok</string>
+    <string name="setting_weather_source_accu_days">Napok száma</string>
     <string name="locations">Helyszínek</string>
     <string name="action_help_me_choose">Segítsen választani</string>
     <string name="settings_weather_sources">Időjárásforrások</string>
@@ -286,7 +286,7 @@
     <string name="dialog_permissions_notification_title">Informálódjon</string>
     <string name="settings_location_access_switch_summaryOn">Engedélyezve. Most már hozzáadhatja a jelenlegi tartózkodási helyszínét az alkalmazáshoz.</string>
     <string name="settings_background_updates_worker_info_summary">Utoljára futtatva: %s</string>
-    <string name="settings_location_access_background_title">Helyszín hozzáférés a háttérben</string>
+    <string name="settings_location_access_background_title">Helyszínhozzáférés a háttérben</string>
     <string name="settings_location_access_precise_title">A készülék GPS-ének használata</string>
     <string name="settings_source_default_value">Alapértelmezett (változatlan)</string>
     <string name="settings_icon_packs_weather_icon_grey">Szürke ikon</string>
@@ -301,7 +301,7 @@
     <string name="weather_api_unauthorized_content">Egyes időjárási adatforrások esetében saját API-kulcsot kell megadnia. Ha már megadott egyet, ellenőrizze kétszer is a megadott API-kulcsot.</string>
     <string name="weather_source_accu_preference_days_1">1 nap</string>
     <string name="weather_source_accu_preference_days_5">5 nap</string>
-    <string name="setting_weather_source_accu_hours">Órák</string>
+    <string name="setting_weather_source_accu_hours">Órák száma</string>
     <string name="location_service_native">Natív API</string>
     <string name="action_location_list">Helyszínlista</string>
     <string name="action_add_current_location">Jelenlegi helyszín hozzáadása</string>
@@ -353,7 +353,7 @@
     <string name="air_quality_level_6">Veszélyes</string>
     <string name="air_quality_so2_voice">Kén dioxid</string>
     <string name="widget_week_style_3_days">3 nap</string>
-    <string name="location_results_by">Helyszín találatok a(z) %s által</string>
+    <string name="location_results_by">Helyszíntalálatok a(z) %s által</string>
     <string name="action_delete">Törlés</string>
     <string name="dialog_permissions_notification_content">Koppintson ide a riasztásokkal kapcsolatos értesítések engedélyezéséhez, ez bármikor módosítható a beállításokban.</string>
     <string name="settings_weather_sources_summary">Alapértelmezett időjárásforrások az új helyszínekhez, egyéni API-kulcsok, egyéb forrásbeállítások</string>
@@ -408,8 +408,8 @@
     <string name="widget_custom_subtitle_keyword_cv_description">Jelenlegi látótávolság</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Jelenlegi harmatpont</string>
     <string name="widget_custom_subtitle_keyword_al_description">Riasztások</string>
-    <string name="settings_location">Helyszín-meghatározás</string>
-    <string name="settings_location_summary">Helyszín meghatározási szolgáltatások beállításai</string>
+    <string name="settings_location">Helyszínmeghatározás</string>
+    <string name="settings_location_summary">Helyszínmeghatározási szolgáltatások beállításai</string>
     <string name="common_weather_text_rain_freezing_heavy">Heves ónos eső</string>
     <string name="metno_weather_text_andthunder">%s és mennydörgés</string>
     <string name="weather_kind_haze">Száraz légköri homály</string>
@@ -514,9 +514,9 @@
     <string name="settings_main_hourly_trends_title">Óránkénti trendek</string>
     <string name="settings_main_header_details_title">Fejlécben megjelenő részletek</string>
     <string name="settings_notifications_precipitations_title">Értesítések csapadékról</string>
-    <string name="settings_notifications_forecast_time_today_title">Értesítési idő a napi előrejelzéshez</string>
+    <string name="settings_notifications_forecast_time_today_title">Értesítés ideje a napi előrejelzéshez</string>
     <string name="settings_notifications_summary">Értesítések az első helyszínre vonatkozó időjárási riasztásokról, csapadékról vagy előrejelzésekről</string>
-    <string name="settings_notifications_forecast_time_tomorrow_title">Értesítési idő a másnapi előrejelzéshez</string>
+    <string name="settings_notifications_forecast_time_tomorrow_title">Értesítés ideje a másnapi előrejelzéshez</string>
     <string name="settings_debug_dump_crash_logs_summary">A hibanaplót fájlba menti, hogy megoszthassa a fejlesztőkkel</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
@@ -581,7 +581,7 @@
     <string name="notification_style_native">Natív</string>
     <string name="null_data_text">N/A</string>
     <string name="settings_main_daily_trends_title">Napi trendek</string>
-    <string name="settings_widgets_broadcast_send_data_title">Időjárásadatok elküldése a %s számára</string>
+    <string name="settings_widgets_broadcast_send_data_title">Időjárásadatok elküldése a(z) „%s” számára</string>
     <string name="settings_color_dark">Sötét</string>
     <string name="unit_mi_voice">Mérföld</string>
     <string name="notification_channel_background_services">Háttérszolgáltatások</string>
@@ -601,11 +601,11 @@
     <string name="notification_precipitation_starting">Hamarosan csapadék várható</string>
     <string name="notification_precipitation_continuing">Csapadék</string>
     <string name="notification_precipitation_stopping">Hamarosan megszűnik a csapadék</string>
-    <string name="notification_precipitation_stopping_desc">Várhatóan %s-kor eláll</string>
+    <string name="notification_precipitation_stopping_desc">Várhatóan %s-kor megszűnik a csapadék</string>
     <string name="notification_precipitation_continuing_desc">Várhatóan legalább %s-ig esni fog</string>
     <string name="notification_precipitation_starting_desc">Várhatóan %s-kor esni kezd</string>
     <string name="location_search_source">Helyszín keresés forrása</string>
-    <string name="location_search_change_source">Helyszín keresés forrásának megváltoztatása</string>
+    <string name="location_search_change_source">Helyszínkeresés forrásának megváltoztatása</string>
     <string name="settings_weather_source_none">Semmi</string>
     <string name="location_message_already_exists">Már létezik egy olyan helyszín, ahol ugyanez a fő időjárási forrás található.</string>
     <string name="location_message_updated">Helyszín frissítve</string>
@@ -623,7 +623,7 @@
     <string name="settings_weather_source_freenet_disclaimer">További időjárási források állnak rendelkezésre az alkalmazás egyéb kiadási változataiból. További információkért koppintson ide.</string>
     <string name="weather_message_too_frequent_refreshes">Várjon néhány másodpercet mielőtt újrapróbálkozna…</string>
     <string name="location_delete_location_dialog_title">Eltávolítja ezt helyszínt?</string>
-    <string name="location_delete_location_dialog_message">A(z) “%s” nevű helyszínt készül törölni a mentett helyszínek listájáról.</string>
+    <string name="location_delete_location_dialog_message">A(z) „%s” nevű helyszínt készül törölni a mentett helyszínek listájáról.</string>
     <string name="location_delete_location_dialog_message_no_name">Ez a helyszín törölve lesz a mentett helyszínek listájáról.</string>
     <string name="action_confirm">Megerősít</string>
     <string name="widget_label_hide_header">Fejléc elrejtése</string>
@@ -648,7 +648,7 @@
     <string name="message_source_not_installed_error_content_tip_1">Ez akkor fordulhat elő, ha az alkalmazás normál változatában adta hozzá a helyszínt, majd átváltott a csak nyílt forráskódot tartalmazó változatra. A probléma megoldódhat, ha visszatér a normál verzióra.</string>
     <string name="message_source_not_installed_error_content_tip_2">Vagy változtassa meg a helyszínhez tartozó időjárási forrást, esetleg törölje és adja hozzá újra a helyszínt.</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Zökkenőmentes</string>
-    <string name="settings_per_location">Helyszín beállítások</string>
+    <string name="settings_per_location">Helyszínbeállítások</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kombinálja az összes időjárási modellt ettől a szolgáltatótól egy zökkenőmentes előrejelzéshez</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Legjobb egyezés</string>
     <string name="settings_weather_source_open_meteo_weather_models">Időjárás modellek</string>
@@ -657,8 +657,8 @@
     <string name="settings_source_instance">Példány</string>
     <string name="alert">Riasztás</string>
     <string name="settings_source_instance_geocoding">Geokódolási példány</string>
-    <string name="settings_weather_source_open_meteo_instance_forecast">Előrejelzés példány</string>
-    <string name="settings_weather_source_open_meteo_instance_air_quality">Légszennyezettség példány</string>
+    <string name="settings_weather_source_open_meteo_instance_forecast">Előrejelzési példány</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">Légszennyezettségi példány</string>
     <string name="settings_widgets_broadcast_title">Időjárásadatok továbbítása más alkalmazásoknak</string>
     <string name="message_invalid_incomplete_data">Érvénytelen, vagy hiányos adatokat küldött a kiszolgáló</string>
     <string name="settings_per_location_theme">Téma</string>
@@ -672,7 +672,7 @@
     <string name="widget_label_hide_alternate_calendar">Alternatív naptár elrejtése</string>
     <string name="settings_appearance_calendar_title">Alternatív naptár</string>
     <string name="settings_background_updates_refresh_never_warning2">A háttérben zajló frissítési folyamat ritkán fut: csak az első helyszínt frissíti az Ön által kiválasztott ütemben, a másodlagos helyszíneket pedig csak akkor, ha szüksége van rájuk, naponta egyszer. Az akkumulátorral takarékos, és nem haladhatja meg az %d MB adatforgalmat havonta.</string>
-    <string name="settings_background_updates_refresh_never_warning3">Fontolja meg, hogy a háttérfrissítések kikapcsolása helyett ritkább frissítési gyakoriságot használjon, ellenkező esetben koppintson a “Folytatás” gombra, ha továbbra is folytatni szeretné.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Fontolja meg, hogy a háttérfrissítések kikapcsolása helyett ritkább frissítési gyakoriságot használjon, ellenkező esetben koppintson a „Folytatás” gombra, ha továbbra is folytatni szeretné.</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Nem találhatók kompatibilis csomagok</string>
     <string name="settings_background_updates_refresh_never_warning1">A háttérfrissítések kikapcsolásával többé nem kap értesítést a riasztásokról vagy a csapadék előrejelzésről. A modulok nem frissülnek, amíg meg nem nyitja az alkalmazást.</string>
     <string name="message_server_unavailable_title">A kiszolgáló nem érhető el</string>
@@ -685,7 +685,7 @@
     <string name="action_download">Letöltés</string>
     <string name="settings_notifications_app_updates_check">Értesítések az alkalmazás-frissítésekről</string>
     <string name="notification_app_update_available">Új verzió érhető el!</string>
-    <string name="notification_channel_app_updates">Alkalmazás frissítések</string>
+    <string name="notification_channel_app_updates">Alkalmazás-frissítések</string>
     <string name="common_weather_text_sand_storm">Homokvihar</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornádó vagy víztölcsér</string>
     <string name="common_weather_text_smoke">Füst</string>
