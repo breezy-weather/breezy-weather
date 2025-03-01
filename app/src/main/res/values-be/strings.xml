@@ -736,4 +736,15 @@
     <string name="location_reverse_geocoding">Пошук адрасы</string>
     <string name="settings_notifications_permission">Патрабуецца дазвол на апавяшчэнне</string>
     <string name="settings_debug_notification_permission">Неабходна паведаміць аб збоях і няўдалых абнаўленнях надвор’я. %s</string>
+    <string name="wind_direction_W">Захад</string>
+    <string name="daily_yesterday">Учора</string>
+    <string name="daily_today">Сёння</string>
+    <string name="daily_tomorrow">Заўтра</string>
+    <string name="wind_direction_N">Поўнач</string>
+    <string name="wind_direction_NE">Паўночны ўсход</string>
+    <string name="wind_direction_E">Усход</string>
+    <string name="wind_direction_SE">Паўднёвы усход</string>
+    <string name="wind_direction_S">Поўдзень</string>
+    <string name="wind_direction_SW">Паўднёвы захад</string>
+    <string name="wind_direction_NW">Паўночны захад</string>
 </resources>
