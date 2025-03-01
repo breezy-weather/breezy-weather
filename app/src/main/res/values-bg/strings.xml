@@ -731,4 +731,7 @@
     <string name="pollen_pinus">Бор</string>
     <string name="location_has_active_alerts">Активен сигнал</string>
     <string name="pollen_acer">Клен</string>
+    <string name="settings_notifications_permission">Необходимо е разрешение за нотификации</string>
+    <string name="common_weather_text_blowing_snow">Навяващ сняг</string>
+    <string name="action_grant_permission">Докоснете, за да дадете разрешение.</string>
 </resources>
