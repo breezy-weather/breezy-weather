@@ -117,7 +117,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
     private fun getDailyForecasts(dailyForecast: List<Daily>?): List<GadgetbridgeDailyForecast>? {
         if (dailyForecast.isNullOrEmpty() || dailyForecast.size < 2) return null
 
-        return dailyForecast.slice(1 until dailyForecast.size).map { day ->
+        return dailyForecast.subList(1, dailyForecast.size).map { day ->
             val maxWind = listOf(
                 day.day?.wind,
                 day.night?.wind
