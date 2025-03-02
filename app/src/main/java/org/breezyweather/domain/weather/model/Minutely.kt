@@ -7,6 +7,8 @@ import breezyweather.domain.weather.model.Precipitation
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import java.util.Date
+import kotlin.time.Duration.Companion.minutes
 
 fun Minutely.getLevel(context: Context): String {
     return context.getString(
@@ -41,12 +43,13 @@ fun List<Minutely>.getContentDescription(context: Context, location: Location): 
                     contentDescription.append(context.getString(R.string.comma_separator))
                 }
 
-                val slice = slice(startingIndex!! until index)
+                val slice = subList(startingIndex!!, index)
                 contentDescription.append(
                     context.getString(
                         R.string.precipitation_between_time,
                         slice.first().date.getFormattedTime(location, context, context.is12Hour),
-                        slice.last().date.getFormattedTime(location, context, context.is12Hour)
+                        Date(slice.last().date.time + slice.last().minuteInterval.minutes.inWholeMilliseconds)
+                            .getFormattedTime(location, context, context.is12Hour)
                     )
                 )
                 contentDescription.append(context.getString(R.string.colon_separator))
@@ -57,12 +60,16 @@ fun List<Minutely>.getContentDescription(context: Context, location: Location): 
     }
 
     if (startingIndex != null) {
-        val slice = slice(startingIndex!! until lastIndex)
+        val slice = subList(startingIndex!!, size)
+        if (contentDescription.toString().isNotEmpty()) {
+            contentDescription.append(context.getString(R.string.comma_separator))
+        }
         contentDescription.append(
             context.getString(
                 R.string.precipitation_between_time,
                 slice.first().date.getFormattedTime(location, context, context.is12Hour),
-                slice.last().date.getFormattedTime(location, context, context.is12Hour)
+                Date(slice.last().date.time + slice.last().minuteInterval.minutes.inWholeMilliseconds)
+                    .getFormattedTime(location, context, context.is12Hour)
             )
         )
         contentDescription.append(context.getString(R.string.colon_separator))

@@ -126,11 +126,11 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             title.isAccessibilityHeading = true
         }
+        val minutelyList = weather.minutelyForecast
         title.setTextColor(colors[0])
         title.text = weather.getMinutelyTitle(context)
         subtitle.text = weather.getMinutelyDescription(context, location)
 
-        val minutelyList = weather.minutelyForecast
         chartComposeView.setContent {
             BreezyWeatherTheme(
                 lightTheme = MainThemeColorProvider.isLightTheme(context, location)

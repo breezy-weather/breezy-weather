@@ -1,3 +1,15 @@
+# Version 5.4.4 (unreleased)
+
+**Improvements and fixes**
+- Fix crash of the nowcasting chart in some cases resulting in app always crashing on opening
+
+**Accessibility**
+- Fix content description of the nowcasting chart
+
+**Translations**
+- Translations updated
+
+
 # Version 5.4.3 (2025-02-28)
 
 **New features**
