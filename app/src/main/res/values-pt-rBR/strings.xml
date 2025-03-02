@@ -805,4 +805,11 @@
     <string name="pollen_alternaria">Alternaria</string>
     <string name="pollen_juniperus">Zimbro</string>
     <string name="pollen_picea">Abeto</string>
+    <string name="common_weather_text_tornado">Tornado</string>
+    <string name="common_weather_text_blowing_snow">Neve soprada</string>
+    <string name="common_weather_text_warm">Agradável</string>
+    <string name="common_weather_text_cool">Fresco</string>
+    <string name="common_weather_text_cold">Frio</string>
+    <string name="common_weather_text_drifting_snow">Neve á deriva</string>
+    <string name="common_weather_text_glaze">Camada de gelo</string>
 </resources>
