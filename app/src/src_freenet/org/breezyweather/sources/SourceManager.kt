@@ -36,6 +36,7 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.android.AndroidLocationService
 import org.breezyweather.sources.brightsky.BrightSkyService
+import org.breezyweather.sources.debug.DebugService
 import org.breezyweather.sources.gadgetbridge.GadgetbridgeService
 import org.breezyweather.sources.naturalearth.NaturalEarthService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
@@ -45,6 +46,7 @@ import javax.inject.Inject
 class SourceManager @Inject constructor(
     androidLocationService: AndroidLocationService,
     brightSkyService: BrightSkyService,
+    debugService: DebugService,
     gadgetbridgeService: GadgetbridgeService,
     naturalEarthService: NaturalEarthService,
     openMeteoService: OpenMeteoService,
@@ -83,6 +85,9 @@ class SourceManager @Inject constructor(
         addAll(locationSourceList)
         addAll(reverseGeocodingSourceList)
         addAll(worldwideWeatherSourceList)
+        if (BreezyWeather.instance.debugMode) {
+            add(debugService)
+        }
         addAll(
             nationalWeatherSourceList
             // Only one source in the freenet flavor, so no need to do that atm

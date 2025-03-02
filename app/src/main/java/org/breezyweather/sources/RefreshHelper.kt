@@ -421,14 +421,15 @@ class RefreshHelper @Inject constructor(
                                                 }
                                             }
                                             .filter {
-                                                !isWeatherDataStillValid(
-                                                    location,
-                                                    it,
-                                                    isRestricted = !BreezyWeather.instance.debugMode &&
-                                                        service is ConfigurableSource &&
-                                                        service.isRestricted,
-                                                    minimumTime = languageUpdateTime
-                                                )
+                                                service !is HttpSource ||
+                                                    !isWeatherDataStillValid(
+                                                        location,
+                                                        it,
+                                                        isRestricted = !BreezyWeather.instance.debugMode &&
+                                                            service is ConfigurableSource &&
+                                                            service.isRestricted,
+                                                        minimumTime = languageUpdateTime
+                                                    )
                                             }
                                         if (featuresToUpdate.isEmpty()) {
                                             // Setting to null will make it use previous data

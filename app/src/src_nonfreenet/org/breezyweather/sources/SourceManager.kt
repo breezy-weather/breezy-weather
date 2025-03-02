@@ -23,6 +23,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
+import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.BroadcastSource
@@ -67,6 +68,7 @@ import org.breezyweather.sources.climweb.SmaScService
 import org.breezyweather.sources.climweb.SmaSuService
 import org.breezyweather.sources.climweb.SsmsService
 import org.breezyweather.sources.cwa.CwaService
+import org.breezyweather.sources.debug.DebugService
 import org.breezyweather.sources.dmi.DmiService
 import org.breezyweather.sources.eccc.EcccService
 import org.breezyweather.sources.ekuk.EkukService
@@ -125,6 +127,7 @@ class SourceManager @Inject constructor(
     chinaService: ChinaService,
     cwaService: CwaService,
     dccmsService: DccmsService,
+    debugService: DebugService,
     dmnNeService: DmnNeService,
     dmiService: DmiService,
     dwrGmService: DwrGmService,
@@ -276,6 +279,9 @@ class SourceManager @Inject constructor(
         addAll(locationSearchSourceList)
         addAll(reverseGeocodingSourceList)
         addAll(worldwideWeatherSourceList)
+        if (BreezyWeather.instance.debugMode) {
+            add(debugService)
+        }
         addAll(
             nationalWeatherSourceList
                 .sortedWith { ws1, ws2 ->
