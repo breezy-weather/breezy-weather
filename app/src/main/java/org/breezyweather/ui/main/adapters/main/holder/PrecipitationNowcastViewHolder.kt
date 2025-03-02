@@ -368,7 +368,7 @@ private class MarkerLabelFormatterMinutelyDecorator(
         val endTime = (minutely[model.x.toInt()].date.time + 5.minutes.inWholeMilliseconds).toDate()
             .getFormattedTime(location, aContext, aContext.is12Hour)
         val quantityFormatted = if (hasOnlyThresholdValues) {
-            when (minutely[model.x.toInt()].precipitationIntensity!!) {
+            when (minutely[model.x.toInt()].precipitationIntensity ?: 0.0) {
                 0.0 -> aContext.getString(R.string.precipitation_none)
                 Precipitation.PRECIPITATION_HOURLY_LIGHT -> aContext.getString(R.string.precipitation_intensity_light)
                 Precipitation.PRECIPITATION_HOURLY_MEDIUM -> aContext.getString(R.string.precipitation_intensity_medium)
@@ -377,13 +377,13 @@ private class MarkerLabelFormatterMinutelyDecorator(
                     SettingsManager
                         .getInstance(aContext)
                         .precipitationIntensityUnit
-                        .getValueText(aContext, minutely[model.x.toInt()].precipitationIntensity!!)
+                        .getValueText(aContext, minutely[model.x.toInt()].precipitationIntensity ?: 0.0)
             }
         } else {
             SettingsManager
                 .getInstance(aContext)
                 .precipitationIntensityUnit
-                .getValueText(aContext, minutely[model.x.toInt()].precipitationIntensity!!)
+                .getValueText(aContext, minutely[model.x.toInt()].precipitationIntensity ?: 0.0)
         }
 
         return SpannableStringBuilder().append(
