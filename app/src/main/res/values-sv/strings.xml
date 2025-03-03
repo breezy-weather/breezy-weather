@@ -610,7 +610,7 @@
     <string name="uv_index_short">UV-index</string>
     <string name="visibility_short">Sikt</string>
     <string name="pressure_short">Lufttryck</string>
-    <string name="humidity_short">Luftfukt.</string>
+    <string name="humidity_short">Luftfukt</string>
     <string name="cloud_cover_short">Molntäcke</string>
     <string name="settings_weather_sources_default_source">Förvald källa för nya platser</string>
     <string name="alert">Varning</string>
