@@ -1,3 +1,12 @@
+# Version 5.4.5 (unreleased)
+
+**Improvements and fixes**
+- Fix refreshing errors (and potential missing place name) in the following case: using current location + using Android as location source + using country-specific sources + position remained the same
+
+**Translations**
+- Translations updated
+
+
 # Version 5.4.4 (2025-03-02)
 
 **Improvements and fixes**

@@ -60,8 +60,10 @@ fun Double.format(decimals: Int): String {
     return df.format(this)
 }
 
-val Array<Double>.median: Double
+val Array<Double>.median: Double?
     get() {
+        if (this.isEmpty()) return null
+
         this.sort()
 
         return if (this.size % 2 != 0) {

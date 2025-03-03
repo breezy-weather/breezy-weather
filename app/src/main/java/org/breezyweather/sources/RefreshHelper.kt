@@ -59,6 +59,7 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.LocationResult
 import org.breezyweather.common.source.RefreshError
+import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherResult
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.LogHelper
@@ -107,84 +108,80 @@ class RefreshHelper @Inject constructor(
         }
 
         var currentErrors = mutableListOf<RefreshError>()
+
+        // Getting current longitude and latitude
         val currentLocation = try {
-            val currentLocationResult = requestCurrentLocation(context, location, background)
-            currentErrors = currentLocationResult.errors.toMutableList()
-            currentLocationResult.location
+            requestCurrentLocation(context, location, background)
+                .also { currentErrors = it.errors.toMutableList() }
+                .location
         } catch (e: Throwable) {
             e.printStackTrace()
             currentErrors.add(RefreshError(RefreshErrorType.LOCATION_FAILED))
             location
         }
 
-        if (currentLocation.isUsable) {
-            val source = location.reverseGeocodingSource ?: BuildConfig.DEFAULT_GEOCODING_SOURCE
-            val weatherService = sourceManager.getReverseGeocodingSourceOrDefault(source)
-            val locationGeocoded = if (
-                location.longitude != currentLocation.longitude ||
-                location.latitude != currentLocation.latitude ||
-                location.needsGeocodeRefresh
-            ) {
-                try {
-                    val locationWithGeocodeInfo = if (weatherService is ConfigurableSource &&
-                        !weatherService.isConfigured
-                    ) {
-                        throw ApiKeyMissingException()
-                    } else {
-                        weatherService
-                            .requestReverseGeocodingLocation(context, currentLocation)
-                            .map { locationList ->
-                                if (locationList.isNotEmpty()) {
-                                    val result = locationList[0]
-                                    currentLocation.copy(
-                                        cityId = result.cityId,
-                                        timeZone = result.timeZone,
-                                        country = result.country,
-                                        countryCode = result.countryCode ?: "",
-                                        admin1 = result.admin1 ?: "",
-                                        admin1Code = result.admin1Code ?: "",
-                                        admin2 = result.admin2 ?: "",
-                                        admin2Code = result.admin2Code ?: "",
-                                        admin3 = result.admin3 ?: "",
-                                        admin3Code = result.admin3Code ?: "",
-                                        admin4 = result.admin4 ?: "",
-                                        admin4Code = result.admin4Code ?: "",
-                                        city = result.city,
-                                        district = result.district ?: "",
-                                        needsGeocodeRefresh = false
-                                    )
-                                } else {
-                                    throw ReverseGeocodingException()
-                                }
-                            }.awaitFirstOrElse {
-                                throw ReverseGeocodingException()
-                            }
-                    }
-                    locationRepository.update(locationWithGeocodeInfo)
-                    locationWithGeocodeInfo
-                } catch (e: Throwable) {
-                    locationRepository.update(currentLocation)
-                    return LocationResult(
-                        currentLocation,
-                        errors = currentErrors + listOf(
-                            RefreshError(
-                                RefreshErrorType.getTypeFromThrowable(
-                                    context,
-                                    e,
-                                    RefreshErrorType.REVERSE_GEOCODING_FAILED
-                                ),
-                                weatherService.name
-                            )
-                        )
-                    )
-                }
-            } else {
-                currentLocation
-            }
-            return LocationResult(locationGeocoded, currentErrors)
-        } else {
+        // Longitude and latitude incorrect? Let’s return earlier
+        if (!currentLocation.isUsable) {
             return LocationResult(currentLocation, currentErrors)
         }
+
+        val locationGeocoded = if (
+            location.longitude != currentLocation.longitude ||
+            location.latitude != currentLocation.latitude ||
+            location.needsGeocodeRefresh
+        ) {
+            val reverseGeocodingService = sourceManager.getReverseGeocodingSourceOrDefault(
+                location.reverseGeocodingSource ?: BuildConfig.DEFAULT_GEOCODING_SOURCE
+            )
+            try {
+                // Getting the address for this
+                requestReverseGeocoding(reverseGeocodingService, currentLocation, context).also {
+                    locationRepository.update(it)
+                }
+            } catch (e: Throwable) {
+                currentErrors.add(
+                    RefreshError(
+                        RefreshErrorType.getTypeFromThrowable(context, e, RefreshErrorType.REVERSE_GEOCODING_FAILED),
+                        reverseGeocodingService.name,
+                        SourceFeature.REVERSE_GEOCODING
+                    )
+                )
+
+                // Fallback to offline reverse geocoding
+                if (reverseGeocodingService.id != BuildConfig.DEFAULT_GEOCODING_SOURCE) {
+                    val defaultReverseGeocodingSource = sourceManager.getReverseGeocodingSourceOrDefault(
+                        BuildConfig.DEFAULT_GEOCODING_SOURCE
+                    )
+                    try {
+                        // Getting the address for this from the fallback reverse geocoding source
+                        requestReverseGeocoding(defaultReverseGeocodingSource, currentLocation, context).also {
+                            locationRepository.update(it)
+                        }
+                    } catch (e: Throwable) {
+                        /**
+                         * Returns the original location
+                         * Previously, we used to return the new coordinates without the reverse geocoding,
+                         * leading to issues when reverse geocoding fails (because the mandatory countryCode
+                         * -for some sources- would be missing)
+                         * However, if both the reverse geocoding source + the offline fallback reverse geocoding source
+                         * are failing, it safes to assume that the longitude and latitude are completely junky and
+                         * should be discarded
+                         */
+                        location
+                    }
+                } else {
+                    /**
+                     * Returns the original location
+                     * Same comment as above
+                     */
+                    location
+                }
+            }
+        } else {
+            // If no need for reverse geocoding, just return the current location which already has the info
+            currentLocation // Same as "location"
+        }
+        return LocationResult(locationGeocoded, currentErrors)
     }
 
     private suspend fun requestCurrentLocation(
@@ -221,20 +218,21 @@ class RefreshHelper @Inject constructor(
         }
 
         return try {
-            val result = if (locationService is ConfigurableSource && !locationService.isConfigured) {
+            if (locationService is ConfigurableSource && !locationService.isConfigured) {
                 throw ApiKeyMissingException()
-            } else {
-                locationService
-                    .requestLocation(context)
-                    .awaitFirstOrElse {
-                        throw LocationException()
-                    }
             }
+            val result = locationService
+                .requestLocation(context)
+                .awaitFirstOrElse {
+                    throw LocationException()
+                }
+            val newLongitude = result.longitude.roundDecimals(6)!!
+            val newLatitude = result.latitude.roundDecimals(6)!!
             return LocationResult(
-                if (result.latitude != location.latitude || result.longitude != location.longitude) {
+                if (newLatitude != location.latitude || newLongitude != location.longitude) {
                     location.copy(
-                        latitude = result.latitude.roundDecimals(6)!!,
-                        longitude = result.longitude.roundDecimals(6)!!,
+                        latitude = newLatitude,
+                        longitude = newLongitude,
                         timeZone = result.timeZone ?: location.timeZone,
                         /*
                          * Don’t keep old data as the user can have changed position
@@ -270,6 +268,45 @@ class RefreshHelper @Inject constructor(
                 )
             )
         }
+    }
+
+    private suspend fun requestReverseGeocoding(
+        reverseGeocodingService: ReverseGeocodingSource,
+        currentLocation: Location,
+        context: Context,
+    ): Location {
+        if (reverseGeocodingService is ConfigurableSource && !reverseGeocodingService.isConfigured) {
+            throw ApiKeyMissingException()
+        }
+
+        return reverseGeocodingService
+            .requestReverseGeocodingLocation(context, currentLocation)
+            .map { locationList ->
+                if (locationList.isNotEmpty()) {
+                    val result = locationList[0]
+                    currentLocation.copy(
+                        cityId = result.cityId,
+                        timeZone = result.timeZone,
+                        country = result.country,
+                        countryCode = result.countryCode ?: "",
+                        admin1 = result.admin1 ?: "",
+                        admin1Code = result.admin1Code ?: "",
+                        admin2 = result.admin2 ?: "",
+                        admin2Code = result.admin2Code ?: "",
+                        admin3 = result.admin3 ?: "",
+                        admin3Code = result.admin3Code ?: "",
+                        admin4 = result.admin4 ?: "",
+                        admin4Code = result.admin4Code ?: "",
+                        city = result.city,
+                        district = result.district ?: "",
+                        needsGeocodeRefresh = false
+                    )
+                } else {
+                    throw ReverseGeocodingException()
+                }
+            }.awaitFirstOrElse {
+                throw ReverseGeocodingException()
+            }
     }
 
     suspend fun updateLocation(location: Location, oldFormattedId: String? = null) {

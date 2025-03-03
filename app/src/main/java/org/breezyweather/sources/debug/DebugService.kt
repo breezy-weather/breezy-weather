@@ -20,10 +20,15 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Minutely
+import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.rx3.rxObservable
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.utils.helpers.LogHelper
+import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
 import kotlin.random.Random
@@ -36,8 +41,17 @@ class DebugService @Inject constructor() : WeatherSource {
 
     private val weatherAttribution = "Debug"
     override val supportedFeatures = mapOf(
+        SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.MINUTELY to weatherAttribution
     )
+
+    override fun isFeatureSupportedForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Boolean {
+        LogHelper.log(msg = "[Debug] Country code: ${location.countryCode}")
+        return true
+    }
 
     override fun requestWeather(
         context: Context,
@@ -47,6 +61,16 @@ class DebugService @Inject constructor() : WeatherSource {
         return rxObservable {
             send(
                 WeatherWrapper(
+                    dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                        getDailyList(location)
+                    } else {
+                        null
+                    },
+                    hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
+                        getHourlyList(location)
+                    } else {
+                        null
+                    },
                     minutelyForecast = if (SourceFeature.MINUTELY in requestedFeatures) {
                         getMinutelyList(location)
                     } else {
@@ -55,6 +79,44 @@ class DebugService @Inject constructor() : WeatherSource {
                 )
             )
         }
+    }
+
+    /**
+     * Always empty
+     *
+     * TODO: Add data for testing
+     */
+    private fun getDailyList(location: Location): List<DailyWrapper> {
+        val calendar = Date().toCalendarWithTimeZone(location.javaTimeZone).apply {
+            add(Calendar.DAY_OF_YEAR, -1)
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+        return buildList {
+            add(DailyWrapper(calendar.time))
+            for (i in 1..5) {
+                calendar.apply {
+                    add(Calendar.DAY_OF_YEAR, 1)
+                    set(Calendar.HOUR_OF_DAY, 0)
+                    set(Calendar.MINUTE, 0)
+                    set(Calendar.SECOND, 0)
+                    set(Calendar.MILLISECOND, 0)
+                }
+                add(DailyWrapper(calendar.time))
+            }
+        }
+    }
+
+    /**
+     * Always empty
+     *
+     * TODO: Add data for testing
+     * TODO: Add data during DST change period
+     */
+    private fun getHourlyList(location: Location): List<HourlyWrapper> {
+        return emptyList()
     }
 
     /**
