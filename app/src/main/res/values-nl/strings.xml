@@ -16,8 +16,8 @@
     <string name="nighttime">’s Nachts</string>
     <string name="temperature_feels_like">Gevoelstemperatuur</string>
     <string name="settings_follow_system">Volg systeem</string>
-    <string name="daily_yesterday_short">Gisteren</string>
-    <string name="daily_tomorrow_short">Morgen</string>
+    <string name="daily_yesterday_short"></string>
+    <string name="daily_tomorrow_short"></string>
     <string name="wind_strength_0">Stil</string>
     <string name="wind_strength_1">Licht lucht</string>
     <string name="wind_strength_2">Licht briesje</string>
@@ -81,7 +81,7 @@
     <string name="settings_color_light">Licht</string>
     <string name="settings_color_grey">Grijs</string>
     <string name="settings_color_dark">Donker</string>
-    <string name="settings_background_updates_refresh_30min">00:30</string>
+    <string name="settings_background_updates_refresh_30min">30 minuten</string>
     <string name="settings_background_updates_refresh_1h">01:00</string>
     <string name="settings_background_updates_refresh_1h_30min">01:30</string>
     <string name="settings_background_updates_refresh_2h">02:00</string>
@@ -594,7 +594,7 @@
     <string name="settings_debug_dump_crash_logs_saved">Crashlogs opgeslagen</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Tik om te openen</string>
     <string name="notification_channel_crash_logs">Crashlogs</string>
-    <string name="temperature_feels_like_short">Voelt als</string>
+    <string name="temperature_feels_like_short">Gevoelstemp</string>
     <string name="dew_point_short">Dauwpunt</string>
     <string name="cloud_cover_short">Bewolking</string>
     <string name="ceiling_short">Plafond</string>
@@ -622,7 +622,7 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">Actuele luchtkwaliteitsindex</string>
     <string name="pollen_carpinus">Haagbeuk</string>
     <string name="pollen_tilia">Linde</string>
-    <string name="humidity_short">vochtigheid</string>
+    <string name="humidity_short">Vochtigheid</string>
     <string name="location_delete_location_dialog_message_no_name">U staat op het punt deze locatie uit uw lijst met opgeslagen locaties te verwijderen.</string>
     <string name="location_search_no_results_advice">Zorg dat je zoekopdracht juist gespeld en niet te specifiek is. Je kan ook proberen een andere locatiezoekbron te gebruiken, die kan andere resultaten genereren.</string>
     <string name="widget_label_hide_header">Verberg kop</string>
@@ -740,4 +740,15 @@
     <string name="pollen_pinus">Den</string>
     <string name="pollen_ulmus">Iep</string>
     <string name="meteoam_weather_text_tornado_watersprout">Wervelwind of waterhoos</string>
+    <string name="wind_direction_W">West</string>
+    <string name="wind_direction_NW">Noordwest</string>
+    <string name="daily_yesterday">Gisteren</string>
+    <string name="daily_today">Vandaag</string>
+    <string name="daily_tomorrow">Morgen</string>
+    <string name="wind_direction_N">Noord</string>
+    <string name="wind_direction_NE">Noordoost</string>
+    <string name="wind_direction_E">Oost</string>
+    <string name="wind_direction_SE">Zuidoost</string>
+    <string name="wind_direction_S">Zuid</string>
+    <string name="wind_direction_SW">Zuidwest</string>
 </resources>
