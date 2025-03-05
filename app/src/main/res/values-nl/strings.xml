@@ -16,8 +16,6 @@
     <string name="nighttime">’s Nachts</string>
     <string name="temperature_feels_like">Gevoelstemperatuur</string>
     <string name="settings_follow_system">Volg systeem</string>
-    <string name="daily_yesterday_short"></string>
-    <string name="daily_tomorrow_short"></string>
     <string name="wind_strength_0">Stil</string>
     <string name="wind_strength_1">Licht lucht</string>
     <string name="wind_strength_2">Licht briesje</string>
