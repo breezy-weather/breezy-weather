@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.breezyweather.ui.common.widgets.slidingItem.SlidingItemContainerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<org.breezyweather.ui.common.widgets.slidingItem.SlidingItemContainerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:apps="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_card_display_container"
@@ -53,5 +52,5 @@
             tools:ignore="RtlHardcoded" />
 
     </RelativeLayout>
-    
+
 </org.breezyweather.ui.common.widgets.slidingItem.SlidingItemContainerLayout>

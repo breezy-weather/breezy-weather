@@ -13,7 +13,7 @@
         <include layout="@layout/notification_base" />
 
     </FrameLayout>
-    
+
     <LinearLayout
         android:id="@+id/notification_multi_city_1"
         android:orientation="horizontal"
@@ -42,7 +42,7 @@
             android:layout_marginStart="@dimen/normal_margin"
             style="@style/notification_title_text"
             tools:text="Wienau, 16°/2°" />
-        
+
     </LinearLayout>
 
     <LinearLayout

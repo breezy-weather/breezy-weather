@@ -3,7 +3,6 @@
     android:shape="rectangle"
     android:visible="true">
 
-    <solid
-        android:color="@android:color/transparent" />
+    <solid android:color="@android:color/transparent" />
 
 </shape>

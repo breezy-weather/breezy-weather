@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android"
-    android:ordering="sequentially" >
+    android:ordering="sequentially">
 
-    <set android:ordering="together" >
+    <set android:ordering="together">
 
         <objectAnimator
             android:propertyName="translationX"
@@ -30,7 +30,7 @@
         android:valueFrom="100"
         android:valueTo="-100" />
 
-    <set android:ordering="together" >
+    <set android:ordering="together">
 
         <objectAnimator
             android:propertyName="alpha"
@@ -52,7 +52,7 @@
 
     </set>
 
-    <set android:ordering="together" >
+    <set android:ordering="together">
 
         <objectAnimator
             android:propertyName="translationX"

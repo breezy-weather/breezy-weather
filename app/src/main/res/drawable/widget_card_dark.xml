@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle"
-    android:visible="true" >
+    android:visible="true">
 
-    <corners
-        android:radius="@dimen/material3_widget_corner_radius" />
+    <corners android:radius="@dimen/material3_widget_corner_radius" />
 
-    <solid
-        android:color="#FF1B1B1B" />
+    <solid android:color="#FF1B1B1B" />
 
 </shape>

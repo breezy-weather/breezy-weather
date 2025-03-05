@@ -2,10 +2,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid
-        android:color="@color/colorWidgetM3Root" />
+    <solid android:color="@color/colorWidgetM3Root" />
 
-    <corners
-        android:radius="28dp" />
+    <corners android:radius="28dp" />
 
 </shape>

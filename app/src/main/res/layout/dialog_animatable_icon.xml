@@ -15,6 +15,6 @@
         android:layout_margin="@dimen/normal_margin"
         android:layout_gravity="center"
         app:inner_margins="@dimen/normal_margin"
-        tools:background="@drawable/weather_clear_day"/>
+        tools:background="@drawable/weather_clear_day" />
 
 </FrameLayout>

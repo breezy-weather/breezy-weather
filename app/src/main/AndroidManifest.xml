@@ -8,7 +8,9 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <!-- request for some location SDKs and reading wallpaper in widget config activities. -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
 
     <!-- background jobs -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -102,6 +104,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.APP_WEATHER" />
             </intent-filter>
@@ -111,6 +114,7 @@
                 <action android:name="${applicationId}.ACTION_SHOW_ALERTS" />
                 <action android:name="${applicationId}.ACTION_SHOW_DAILY_FORECAST" />
                 <action android:name="${applicationId}.ACTION_MANAGEMENT" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

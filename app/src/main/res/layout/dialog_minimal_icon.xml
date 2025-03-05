@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/material_icon_size"
             android:contentDescription="@string/settings_icon_packs_weather_icon_light"
-            tools:background="@drawable/weather_clear_day_mini_light"/>
+            tools:background="@drawable/weather_clear_day_mini_light" />
 
     </org.breezyweather.ui.common.widgets.SquareFrameLayout>
 
@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/material_icon_size"
             android:contentDescription="@string/settings_icon_packs_weather_icon_grey"
-            tools:background="@drawable/weather_clear_day_mini_grey"/>
+            tools:background="@drawable/weather_clear_day_mini_grey" />
 
     </org.breezyweather.ui.common.widgets.SquareFrameLayout>
 
@@ -48,7 +48,7 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/material_icon_size"
             android:contentDescription="@string/settings_icon_packs_weather_icon_dark"
-            tools:background="@drawable/weather_clear_day_mini_dark"/>
+            tools:background="@drawable/weather_clear_day_mini_dark" />
 
     </org.breezyweather.ui.common.widgets.SquareFrameLayout>
 

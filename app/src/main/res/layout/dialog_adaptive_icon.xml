@@ -14,6 +14,6 @@
         android:layout_margin="@dimen/normal_margin"
         android:layout_gravity="center"
         android:contentDescription="@string/settings_icon_packs_weather_adaptive_icon"
-        tools:background="@drawable/shortcuts_clear_day"/>
+        tools:background="@drawable/shortcuts_clear_day" />
 
 </FrameLayout>

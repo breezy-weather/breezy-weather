@@ -52,7 +52,7 @@
         <attr name="checked_background_color" format="color" />
         <attr name="unchecked_background_color" format="color" />
     </declare-styleable>
-    
+
     <!-- Sliding item container layout. -->
     <declare-styleable name="SlidingItemContainerLayout">
         <attr name="iconResStart" format="reference" />

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.breezyweather.ui.common.widgets.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                       xmlns:tools="http://schemas.android.com/tools"
-                                                       android:id="@+id/item_weather_icon"
-                                                       android:layout_width="match_parent"
-                                                       android:layout_height="wrap_content"
-                                                       android:foreground="@drawable/selectable_item_background"
-                                                       tools:ignore="UnusedAttribute">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_weather_icon"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="@drawable/selectable_item_background"
+    tools:ignore="UnusedAttribute">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/item_weather_icon_image"
