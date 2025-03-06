@@ -49,12 +49,6 @@ Both flavors are signed with the same signature, so you can easily try/switch be
 
 [Link to Obtainium page](https://github.com/ImranR98/Obtainium/blob/main/README.md)
 
-#### Getting updates from standard flavor of the Izzy repo
-
-In the “Add App” screen, just add the following URL as App Source URL: https://apt.izzysoft.de/fdroid/index/apk/org.breezyweather
-
-Tap the “Add” button at the very top, and you’re done!
-
 #### Getting updates from GitHub releases
 
 In the “Add App” screen:
@@ -63,9 +57,13 @@ In the “Add App” screen:
 3. (Optional) If you want the flavor with only free network sources, add `freenet` in the “Filter APKs by Regular Expression”
 4. Tap the “Add” button at the very top, and you’re done!
 
-#### Getting updates from F-Droid flavor of the default F-Droid repo
+#### Getting updates from a F-Droid repository
 
-In the “Add App” screen, just add the following URL as App Source URL: https://f-droid.org/packages/org.breezyweather/
+In the “Add App” screen, just add as App Source URL the following URL depending on the repository you want to use:
+   - Standard flavor from Izzy repo: https://apt.izzysoft.de/fdroid/index/apk/org.breezyweather
+   - Standard flavor from Breezy Weather repo: configure Obtainium to use GitHub releases instead (see previous section)
+   - Free-net flavor from Breezy Weather repo: configure Obtainium to use GitHub releases instead (see previous section)
+   - Free-net flavor from default F-Droid repo: https://f-droid.org/packages/org.breezyweather/
 
 Tap the “Add” button at the very top, and you’re done!
 
