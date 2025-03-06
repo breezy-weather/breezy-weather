@@ -49,12 +49,6 @@ Both flavors are signed with the same signature, so you can easily try/switch be
 
 [Link to Obtainium page](https://github.com/ImranR98/Obtainium/blob/main/README.md)
 
-#### Getting updates from standard flavor of the Izzy repo
-
-In the “Add App” screen, just add the following URL as App Source URL: https://apt.izzysoft.de/fdroid/index/apk/org.breezyweather
-
-Tap the “Add” button at the very top, and you’re done!
-
 #### Getting updates from GitHub releases
 
 In the “Add App” screen:
@@ -63,7 +57,33 @@ In the “Add App” screen:
 3. (Optional) If you want the flavor with only free network sources, add `freenet` in the “Filter APKs by Regular Expression”
 4. Tap the “Add” button at the very top, and you’re done!
 
-#### Getting updates from F-Droid flavor of the default F-Droid repo
+#### Getting updates from standard flavor of the Breezy Weather repo
+
+In the “Add App” screen, just add the following URL as App Source URL: https://breezy-weather.github.io/fdroid-repo/fdroid/repo
+
+In the “Override Source” drop-down menu, select “F-Droid Third-Party Repo” instead of “None”.
+
+Enter Breezy Weather in the “App ID or Name” line.
+
+Tap the “Add” button at the very top, and you’re done!
+
+#### Getting updates from Free-net flavor of the Breezy Weather repo
+
+In the “Add App” screen, just add the following URL as App Source URL: https://breezy-weather.github.io/fdroid-repo/fdroid-version/fdroid/repo
+
+In the “Override Source” drop-down menu, select “F-Droid Third-Party Repo” instead of “None”.
+
+Enter Breezy Weather in the “App ID or Name” line.
+
+Tap the “Add” button at the very top, and you’re done!
+
+#### Getting updates from standard flavor of the Izzy repo
+
+In the “Add App” screen, just add the following URL as App Source URL: https://apt.izzysoft.de/fdroid/index/apk/org.breezyweather
+
+Tap the “Add” button at the very top, and you’re done!
+
+#### Getting updates from F-Droid Free-net flavor of the default F-Droid repo
 
 In the “Add App” screen, just add the following URL as App Source URL: https://f-droid.org/packages/org.breezyweather/
 
