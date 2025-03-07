@@ -17,6 +17,7 @@
 package org.breezyweather.sources.bmkg
 
 import android.content.Context
+import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
@@ -167,26 +168,36 @@ internal fun getAlertList(
     // Nowcast warning times are always given in Asia/Jakarta
     // regardless of which time zone the location belongs to.
     formatter.timeZone = TimeZone.getTimeZone("Asia/Jakarta")
-    warningResult.data?.today?.description?.let {
-        alertList.add(
-            Alert(
-                alertId = it.idKode,
-                startDate = if (it.dateStart !== null) {
-                    formatter.parse(it.dateStart)
-                } else {
-                    null
-                },
-                endDate = if (it.expired !== null) {
-                    formatter.parse(it.expired)
-                } else {
-                    null
-                },
-                headline = it.headline?.trim(),
-                description = it.description?.trim(),
-                source = source,
-                color = Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
+    warningResult.data?.today?.let {
+        if (it.description != null) {
+            alertList.add(
+                Alert(
+                    alertId = it.description.idKode,
+                    startDate = if (it.description.dateStart !== null) {
+                        formatter.parse(it.description.dateStart)
+                    } else {
+                        null
+                    },
+                    endDate = if (it.description.expired !== null) {
+                        formatter.parse(it.description.expired)
+                    } else {
+                        null
+                    },
+                    headline = it.description.headline?.trim(),
+                    description = it.description.description?.trim(),
+                    source = source,
+                    color = if (it.tipearea?.contains("Terjadi", ignoreCase = true) == true) {
+                        // TODO: Seems to never be "Terjadi" when coming from our app (works on website)
+                        // Are lon/lat hardcoded server side??
+                        Color.rgb(255, 153, 0) // #ff9900 - Orange
+                    } else if (it.tipearea?.contains("Meluas", ignoreCase = true) == true) {
+                        Color.rgb(255, 255, 0) // #ffff00 - Yellow
+                    } else {
+                        Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
+                    }
+                )
             )
-        )
+        }
     }
 
     // Impact Based Forecast
