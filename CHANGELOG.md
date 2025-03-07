@@ -1,3 +1,12 @@
+# Version 5.4.6 (unreleased)
+
+**Improvements and fixes**
+- When changing an unit, widgets will now update automatically, instead of waiting for the next refresh to apply the new units
+
+**Translations**
+- Translations updated
+
+
 # Version 5.4.5 (2025-03-03)
 
 **Improvements and fixes**

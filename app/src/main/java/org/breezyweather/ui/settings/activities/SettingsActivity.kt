@@ -242,7 +242,17 @@ class SettingsActivity : GeoActivity() {
             composable(SettingsScreenRouter.Unit.route) {
                 UnitSettingsScreen(
                     context = this@SettingsActivity,
-                    onNavigateBack = { onBack() }
+                    onNavigateBack = { onBack() },
+                    updateWidgetIfNecessary = { context: Context ->
+                        scope.launch {
+                            refreshHelper.updateWidgetIfNecessary(context)
+                        }
+                    },
+                    updateNotificationIfNecessary = { context: Context ->
+                        scope.launch {
+                            refreshHelper.updateNotificationIfNecessary(context)
+                        }
+                    },
                 )
             }
             composable(SettingsScreenRouter.MainScreen.route) {

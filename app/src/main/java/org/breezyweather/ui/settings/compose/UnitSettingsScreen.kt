@@ -39,6 +39,8 @@ import org.breezyweather.ui.settings.preference.listPreferenceItem
 fun UnitSettingsScreen(
     context: Context,
     onNavigateBack: () -> Unit,
+    updateWidgetIfNecessary: (Context) -> Unit,
+    updateNotificationIfNecessary: (Context) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
@@ -66,6 +68,10 @@ fun UnitSettingsScreen(
                         SettingsManager
                             .getInstance(context)
                             .temperatureUnit = TemperatureUnit.getInstance(it)
+
+                        // Widgets and notification-widget may use units, update them
+                        updateWidgetIfNecessary(context)
+                        updateNotificationIfNecessary(context)
                     }
                 )
             }
@@ -80,6 +86,10 @@ fun UnitSettingsScreen(
                         SettingsManager
                             .getInstance(context)
                             .precipitationUnit = PrecipitationUnit.getInstance(it)
+
+                        // Widgets and notification-widget may use units, update them
+                        updateWidgetIfNecessary(context)
+                        updateNotificationIfNecessary(context)
                     }
                 )
             }
@@ -94,6 +104,10 @@ fun UnitSettingsScreen(
                         SettingsManager
                             .getInstance(context)
                             .distanceUnit = DistanceUnit.getInstance(it)
+
+                        // Widgets and notification-widget may use units, update them
+                        updateWidgetIfNecessary(context)
+                        updateNotificationIfNecessary(context)
                     }
                 )
             }
@@ -108,6 +122,10 @@ fun UnitSettingsScreen(
                         SettingsManager
                             .getInstance(context)
                             .speedUnit = SpeedUnit.getInstance(it)
+
+                        // Widgets and notification-widget may use units, update them
+                        updateWidgetIfNecessary(context)
+                        updateNotificationIfNecessary(context)
                     }
                 )
             }
@@ -122,6 +140,10 @@ fun UnitSettingsScreen(
                         SettingsManager
                             .getInstance(context)
                             .pressureUnit = PressureUnit.getInstance(it)
+
+                        // Widgets and notification-widget may use units, update them
+                        updateWidgetIfNecessary(context)
+                        updateNotificationIfNecessary(context)
                     }
                 )
             }
