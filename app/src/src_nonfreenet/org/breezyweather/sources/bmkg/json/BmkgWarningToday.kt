@@ -20,5 +20,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class BmkgWarningToday(
+    val tipearea: String?, // One of "Area Terjadi" (orange) or "Area Meluas" (yellow)
     val description: BmkgWarningDescription?,
 )
