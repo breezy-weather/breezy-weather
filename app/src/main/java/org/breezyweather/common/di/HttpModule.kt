@@ -133,4 +133,33 @@ class HttpModule {
             // https://github.com/square/retrofit/blob/master/CHANGELOG.md#version-260-2019-06-05
             .addCallAdapterFactory(callAdapterFactory)
     }
+
+    /*@Provides
+    @Singleton
+    @Named("CsvSerializer")
+    fun provideKotlinxCsvSerializationConverterFactory(): Converter.Factory {
+        val contentType = "text/csv".toMediaType() // RFC 7111
+        val csv = Csv {
+            hasHeaderRecord = true
+            delimiter = ';'
+            recordSeparator = "\r\n"
+            ignoreUnknownColumns = true
+        }
+        return csv.asConverterFactory(contentType)
+    }
+
+    @Provides
+    @Named("CsvClient")
+    fun provideCsvRetrofitBuilder(
+        client: OkHttpClient,
+        @Named("CsvSerializer") csvConverterFactory: Converter.Factory,
+        callAdapterFactory: RxJava3CallAdapterFactory,
+    ): Retrofit.Builder {
+        return Retrofit.Builder()
+            .client(client)
+            .addConverterFactory(csvConverterFactory)
+            // TODO: We should probably migrate to suspend
+            // https://github.com/square/retrofit/blob/master/CHANGELOG.md#version-260-2019-06-05
+            .addCallAdapterFactory(callAdapterFactory)
+    }*/
 }

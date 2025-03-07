@@ -252,7 +252,7 @@ class SettingsActivity : GeoActivity() {
                         scope.launch {
                             refreshHelper.updateNotificationIfNecessary(context)
                         }
-                    },
+                    }
                 )
             }
             composable(SettingsScreenRouter.MainScreen.route) {

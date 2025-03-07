@@ -302,11 +302,12 @@ In general, a weather source can be considered for inclusion in the official rel
 |--------------------|--------------------------------------------------------------------------------------------|--------------|
 | EKUK               | ✅ included from v5.4.0                                                                     | 2024-12-24   |
 | EPD HK             | ✅ included from v5.4.0                                                                     | 2024-12-19   |
-| GeoNames           | ✅ included from v4.5.0                                                                     |              | 
+| GeoNames           | ✅ included from v4.5.0                                                                     |              |
 | HERE               | ✅ included from v4.5.0                                                                     |              |
 | Natural Earth      | ✅ included from v5.0.3                                                                     |              |
 | Pirate Weather     | ✅ included from v5.0.0                                                                     |              |
 | Recosanté          | ✅ included from v5.1.1                                                                     |              |
+| RNSA               | ✅ included from v5.4.6                                                                     |              |
 | WMO Severe Weather | ✅ included from v5.1.4                                                                     |              |
 | Apple WeatherKit   | ❌ no free tier                                                                             |              |
 | AROME PIAF         | [data in `.grid` format](https://github.com/breezy-weather/breezy-weather/issues/847)      | 2024-03-25   |

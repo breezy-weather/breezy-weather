@@ -36,6 +36,7 @@ import org.breezyweather.common.exceptions.NoNetworkException
 import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.exceptions.SourceNotInstalledException
+import org.breezyweather.common.exceptions.UnsupportedFeatureException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getStringByLocale
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -200,6 +201,7 @@ enum class RefreshErrorType(
                 is SourceNotInstalledException -> SOURCE_NOT_INSTALLED
                 is LocationSearchException -> LOCATION_SEARCH_FAILED
                 is InvalidOrIncompleteDataException -> INVALID_INCOMPLETE_DATA
+                is UnsupportedFeatureException -> UNSUPPORTED_FEATURE
                 is WeatherException -> DATA_REFRESH_FAILED
                 else -> {
                     e.printStackTrace()

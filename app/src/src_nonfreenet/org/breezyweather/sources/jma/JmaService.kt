@@ -54,6 +54,7 @@ import kotlin.time.Duration.Companion.hours
 class JmaService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
+    private val okHttpClient: OkHttpClient,
 ) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
     override val id = "jma"
     override val name by lazy {
@@ -78,8 +79,6 @@ class JmaService @Inject constructor(
             .build()
             .create(JmaApi::class.java)
     }
-
-    private val okHttpClient = OkHttpClient()
 
     private val weatherAttribution by lazy {
         if (context.currentLocale.code.startsWith("ja")) {

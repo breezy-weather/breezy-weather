@@ -309,6 +309,7 @@ dependencies {
     // HTTP
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.okhttp)
+    implementation(libs.kotlinx.serialization.csv)
     implementation(libs.kotlinx.serialization.json)
     // Not used in free sources
     "basicImplementation"(libs.kotlinx.serialization.xml.core)

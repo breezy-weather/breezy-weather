@@ -35,6 +35,7 @@ Below, you can find details about the support and implementation status for feat
 | 🇫🇴 Faroe Is.                     | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Address                                                            |
 | 🇫🇷 France                        | [Météo-France](#météo-france)                      | Forecast, Current, Nowcasting, Alerts, Normals, Address                              |
 | 🇫🇷 France                        | [Recosanté](#recosanté)                            | Pollen                                                                               |
+| 🇫🇷 France                        | [RNSA](#rnsa)                                      | Pollen                                                                               |
 | 🇫🇷 France (Auvergne-Rhône-Alpes) | [Atmo Auvergne-Rhône-Alpes](#atmo)                 | Air Quality                                                                          |
 | 🇫🇷 France (Grand Est)            | [ATMO GrandEst](#atmo)                             | Air Quality                                                                          |
 | 🇫🇷 France (Hauts-de-France)      | [Atmo Hauts-de-France](#atmo)                      | Air Quality                                                                          |
@@ -1233,7 +1234,10 @@ These sources can be added as a secondary **Alert** and **Temperature normals** 
 **[GeoNames](https://www.geonames.org/)** provides multilingual search for place names of more than 11 million locations worldwide. This source can be enabled as a **Search** source after adding your API key.
 
 ### Recosanté
-**[Recosanté](https://recosante.beta.gouv.fr/)** can be added as a secondary **Pollen** source for France.
+**[Recosanté](https://recosante.beta.gouv.fr/)** can be added as a secondary **Pollen** source for France. It is sourcing its info from RNSA, so if you can add RNSA directly, it is probably better.
+
+### RNSA
+**[Le Réseau National de Surveillance Aérobiologique](https://www.pollens.fr/)** can be added as a secondary **Pollen** source for France. If it doesn’t show up in the list, try adding your location with a different search source, or if you use current location, use a different “Address lookup”. Technically, this is due to missing department info (administration level 2 code) on the location.
 
 ### WMO Severe Weather
 The **[WMO Severe Weather Information Centre](https://severeweather.wmo.int/)** is World Meteorological Organisation’s central repository of current and upcoming weather warnings from more than 130 countries and territories worldwide. This source can be added as a secondary **Alert** source, which is particularly useful if the selected national source for your location does not provide Alert information.

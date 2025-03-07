@@ -42,6 +42,7 @@ import org.breezyweather.sources.gadgetbridge.GadgetbridgeService
 import org.breezyweather.sources.naturalearth.NaturalEarthService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
 import org.breezyweather.sources.recosante.RecosanteService
+import org.breezyweather.sources.rnsa.RnsaService
 import javax.inject.Inject
 
 class SourceManager @Inject constructor(
@@ -52,6 +53,7 @@ class SourceManager @Inject constructor(
     naturalEarthService: NaturalEarthService,
     openMeteoService: OpenMeteoService,
     recosanteService: RecosanteService,
+    rnsaService: RnsaService,
 ) {
     // TODO: Initialize lazily
 
@@ -73,7 +75,8 @@ class SourceManager @Inject constructor(
     // Region-specific or national weather sources
     private val nationalWeatherSourceList = persistentListOf(
         brightSkyService,
-        recosanteService
+        recosanteService,
+        rnsaService
     )
 
     // Broadcast sources
