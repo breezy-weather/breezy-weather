@@ -86,8 +86,8 @@ fun NotificationsSettingsScreen(
                     }
                 }
             }
-            sectionHeaderItem(R.string.notification_channel_app_updates)
             if (BuildConfig.FLAVOR != "freenet") {
+                sectionHeaderItem(R.string.notification_channel_app_updates)
                 switchPreferenceItem(R.string.settings_notifications_app_updates_check) { id ->
                     SwitchPreferenceView(
                         titleId = id,
