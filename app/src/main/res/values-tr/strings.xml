@@ -574,7 +574,7 @@
     <string name="unit_kph_voice">Saatte kilometre</string>
     <string name="unit_km_voice">Kilometre</string>
     <string name="air_quality_so2_info_origin">Volkanik hareketlerle doğal olarak salınır ve genellikle konut ısıtmalarından, sanayide ve enerji üretiminde fosil yakıtların kullanımından elde edilir.</string>
-    <string name="air_quality_so2_info_consequences">SO₂\'ye maruz kalmak astıma neden olabileceği için hastaneye veya acil servise gitmek gerekebilir.</string>
+    <string name="air_quality_so2_info_consequences">SO₂’ye maruz kalmak astıma neden olabileceği için hastaneye veya acil servise gitmek gerekebilir.</string>
     <string name="notification_update_error">%d güncelleme başarısız oldu</string>
     <string name="notification_updating_weather_data">Hava durumu verisi güncelleniyor (%1$d/%2$d)</string>
     <string name="weather_api_unauthorized_content">Bazı hava durumu kaynakları için kendi API anahtarınızı girmeniz gerekir. Eğer önceden girdiyseniz, API anahtarınızı tekrar kontrol edin.</string>
@@ -603,7 +603,7 @@
     <string name="settings_unavailable_no_background_updates">Kullanılabilir değil, önce arka plan güncellemelerini etkinleştirin</string>
     <string name="notification_precipitation_starting">Yaklaşan yağış</string>
     <string name="notification_precipitation_starting_desc">Beklenen başlama zamanı: %s</string>
-    <string name="notification_precipitation_continuing_desc">En erken %s \'e kadar devam edeceği bekleniyor</string>
+    <string name="notification_precipitation_continuing_desc">En erken %s ’e kadar devam edeceği bekleniyor</string>
     <string name="location_search_source">Konum arama kaynağı</string>
     <string name="location_search_change_source">Konum arama kaynağını değiştir</string>
     <string name="settings_weather_source_none">Yok</string>
