@@ -538,7 +538,7 @@
     <string name="weather_message_invalid_location">Ungültiger Ort, bitte löschen und erneut hinzufügen</string>
     <string name="wind_gusts">Windböen</string>
     <string name="weather_pollen_data_by">Pollendaten von %s</string>
-    <string name="weather_minutely_data_by">Daten für Niederschlagskurzvorhersage von %s</string>
+    <string name="weather_minutely_data_by">Daten für Kurzvorhersagen von Niederschlägen von %s</string>
     <string name="weather_alert_data_by">Warndaten von %s</string>
     <string name="weather_air_quality_data_by">Luftqualitätsdaten von %s</string>
     <string name="action_save">Speichern</string>
