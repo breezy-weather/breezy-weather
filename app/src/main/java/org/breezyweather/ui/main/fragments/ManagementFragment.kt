@@ -85,9 +85,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import com.google.accompanist.permissions.PermissionStatus
-import com.google.accompanist.permissions.rememberPermissionState
+import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import kotlinx.coroutines.launch
 import org.breezyweather.BreezyWeather
+import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.isDarkMode
@@ -102,6 +103,7 @@ import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
+import org.breezyweather.ui.common.composables.AnimatedVisibilitySlideVertically
 import org.breezyweather.ui.common.composables.NotificationCard
 import org.breezyweather.ui.common.composables.SecondarySourcesPreference
 import org.breezyweather.ui.common.decorations.Material3ListItemDecoration
@@ -169,8 +171,12 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         ensureResourceProvider()
 
         val validLocationListState = viewModel.validLocationList.collectAsState()
-        var notificationDismissed by remember { mutableStateOf(false) }
-        var notificationAppUpdateCheckDismissed by remember { mutableStateOf(false) }
+        var notificationDismissed by remember {
+            mutableStateOf(viewModel.statementManager.isPostNotificationDialogAlreadyShown)
+        }
+        var notificationAppUpdateCheckDismissed by remember {
+            mutableStateOf(viewModel.statementManager.isAppUpdateCheckDialogAlreadyShown)
+        }
 
         val dialogChooseWeatherSourcesOpenState = viewModel.dialogChooseWeatherSourcesOpen.collectAsState()
         val selectedLocationState = viewModel.selectedLocation.collectAsState()
@@ -267,66 +273,59 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                             end = dimensionResource(R.dimen.normal_margin)
                         )
                 ) {
-                    if (!viewModel.statementManager.isPostNotificationDialogAlreadyShown &&
-                        Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-                        !notificationDismissed
-                    ) {
-                        val notificationPermissionState =
-                            rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
-                        if (notificationPermissionState.status != PermissionStatus.Granted) {
-                            NotificationCard(
-                                title = stringResource(R.string.dialog_permissions_notification_title),
-                                summary = stringResource(R.string.dialog_permissions_notification_content),
-                                onClick = {
-                                    viewModel.statementManager.setPostNotificationDialogAlreadyShown()
-                                    notificationDismissed = true
-
-                                    PermissionHelper.requestPermissionWithFallback(
-                                        activity = requireActivity(),
-                                        permission = Manifest.permission.POST_NOTIFICATIONS,
-                                        fallback = {
-                                            IntentHelper.startNotificationSettingsActivity(requireActivity())
-                                        }
-                                    )
-                                },
-                                onClose = {
-                                    viewModel.statementManager.setPostNotificationDialogAlreadyShown()
-                                    notificationDismissed = true
-                                    /*
-                                     * We could turn off alert notification from SettingsManager, but
-                                     * it’s best not to, as the user can still enable notification
-                                     * permission again from Android settings, and there is a
-                                     * permission check before sending any notification even if
-                                     * preference is enabled.
-                                     */
-                                }
-                            )
-                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
-                        }
+                    var hasNotificationPermission: Boolean? = null
+                    if (!notificationDismissed || !notificationAppUpdateCheckDismissed) {
+                        val notificationPermissionState = rememberMultiplePermissionsState(
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                                listOf(Manifest.permission.POST_NOTIFICATIONS)
+                            } else {
+                                // permission not needed
+                                emptyList()
+                            }
+                        )
+                        hasNotificationPermission = notificationPermissionState.permissions.isEmpty() ||
+                            notificationPermissionState.permissions[0].status == PermissionStatus.Granted
                     }
-                    if (!viewModel.statementManager.isAppUpdateCheckDialogAlreadyShown &&
-                        !notificationAppUpdateCheckDismissed
-                    ) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                            val notificationPermissionState =
-                                rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
-                            if (notificationPermissionState.status == PermissionStatus.Granted) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        AnimatedVisibilitySlideVertically(
+                            hasNotificationPermission == false && !notificationDismissed
+                        ) {
+                            Column {
                                 NotificationCard(
-                                    title = stringResource(R.string.dialog_app_update_check_title),
-                                    summary = stringResource(R.string.dialog_app_update_check_content),
+                                    title = stringResource(R.string.dialog_permissions_notification_title),
+                                    summary = stringResource(R.string.dialog_permissions_notification_content),
                                     onClick = {
-                                        viewModel.statementManager.setAppUpdateCheckDialogAlreadyShown()
-                                        notificationAppUpdateCheckDismissed = true
-                                        SettingsManager.getInstance(requireContext()).isAppUpdateCheckEnabled = true
+                                        viewModel.statementManager.setPostNotificationDialogAlreadyShown()
+                                        notificationDismissed = true
+
+                                        PermissionHelper.requestPermissionWithFallback(
+                                            activity = requireActivity(),
+                                            permission = Manifest.permission.POST_NOTIFICATIONS,
+                                            fallback = {
+                                                IntentHelper.startNotificationSettingsActivity(requireActivity())
+                                            }
+                                        )
                                     },
                                     onClose = {
-                                        viewModel.statementManager.setAppUpdateCheckDialogAlreadyShown()
-                                        notificationAppUpdateCheckDismissed = true
+                                        viewModel.statementManager.setPostNotificationDialogAlreadyShown()
+                                        notificationDismissed = true
+                                        /*
+                                         * We could turn off alert notification from SettingsManager, but
+                                         * it’s best not to, as the user can still enable notification
+                                         * permission again from Android settings, and there is a
+                                         * permission check before sending any notification even if
+                                         * preference is enabled.
+                                         */
                                     }
                                 )
                                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                             }
-                        } else {
+                        }
+                    }
+                    AnimatedVisibilitySlideVertically(
+                        hasNotificationPermission == true && !notificationAppUpdateCheckDismissed
+                    ) {
+                        Column {
                             NotificationCard(
                                 title = stringResource(R.string.dialog_app_update_check_title),
                                 summary = stringResource(R.string.dialog_app_update_check_content),
