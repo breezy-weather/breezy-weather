@@ -251,4 +251,25 @@
     <string name="weather_current_data_by">Datos meteorolóxicos actuais por %s</string>
     <string name="weather_forecast_data_by">Datos do prognóstico por %s</string>
     <string name="weather_api_key_required_missing_content">Para usar esta fonte, precisas unha clave API.</string>
+    <string name="weather_source_continent_europe">Europa</string>
+    <string name="weather_source_continent_north_america">América do norte</string>
+    <string name="weather_source_continent_oceania">Oceanía</string>
+    <string name="weather_source_continent_south_america">América do sur</string>
+    <string name="setting_weather_source_accu_days">Días</string>
+    <string name="weather_source_accu_preference_days_1">1 día</string>
+    <string name="weather_source_accu_preference_hours_24">24 horas</string>
+    <string name="weather_source_accu_preference_days_15">15 días</string>
+    <string name="weather_source_accu_preference_hours_240">240 horas</string>
+    <string name="location_current">Ubicación actual</string>
+    <string name="location_search_weather_source">Fonte meteorolóxica</string>
+    <string name="setting_weather_source_accu_hours">Horas</string>
+    <string name="location_custom_name">Nome personalizado</string>
+    <string name="settings_weather_source_portal">Portal</string>
+    <string name="weather_source_accu_preference_hours_12">12 horas</string>
+    <string name="weather_source_accu_preference_days_5">5 días</string>
+    <string name="weather_source_accu_preference_days_10">10 días</string>
+    <string name="weather_source_accu_preference_hours_1">1 hora</string>
+    <string name="weather_source_accu_preference_hours_72">72 horas</string>
+    <string name="weather_source_accu_preference_hours_120">120 horas</string>
+    <string name="locations">Ubicacións</string>
 </resources>
