@@ -202,6 +202,18 @@ object Migrations {
                             }
                     }
                 }
+
+                if (oldVersion < 50406) {
+                    try {
+                        if (BuildConfig.FLAVOR == "freenet" &&
+                            SettingsManager.getInstance(context).isAppUpdateCheckEnabled
+                        ) {
+                            SettingsManager.getInstance(context).isAppUpdateCheckEnabled = false
+                        }
+                    } catch (ignored: Throwable) {
+                        // ignored
+                    }
+                }
             }
 
             SettingsManager.getInstance(context).lastVersionCode = BuildConfig.VERSION_CODE
