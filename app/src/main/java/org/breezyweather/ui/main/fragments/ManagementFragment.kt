@@ -322,24 +322,26 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                             }
                         }
                     }
-                    AnimatedVisibilitySlideVertically(
-                        hasNotificationPermission == true && !notificationAppUpdateCheckDismissed
-                    ) {
-                        Column {
-                            NotificationCard(
-                                title = stringResource(R.string.dialog_app_update_check_title),
-                                summary = stringResource(R.string.dialog_app_update_check_content),
-                                onClick = {
-                                    viewModel.statementManager.setAppUpdateCheckDialogAlreadyShown()
-                                    notificationAppUpdateCheckDismissed = true
-                                    SettingsManager.getInstance(requireContext()).isAppUpdateCheckEnabled = true
-                                },
-                                onClose = {
-                                    viewModel.statementManager.setAppUpdateCheckDialogAlreadyShown()
-                                    notificationAppUpdateCheckDismissed = true
-                                }
-                            )
-                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
+                    if (BuildConfig.FLAVOR != "freenet") {
+                        AnimatedVisibilitySlideVertically(
+                            hasNotificationPermission == true && !notificationAppUpdateCheckDismissed
+                        ) {
+                            Column {
+                                NotificationCard(
+                                    title = stringResource(R.string.dialog_app_update_check_title),
+                                    summary = stringResource(R.string.dialog_app_update_check_content),
+                                    onClick = {
+                                        viewModel.statementManager.setAppUpdateCheckDialogAlreadyShown()
+                                        notificationAppUpdateCheckDismissed = true
+                                        SettingsManager.getInstance(requireContext()).isAppUpdateCheckEnabled = true
+                                    },
+                                    onClose = {
+                                        viewModel.statementManager.setAppUpdateCheckDialogAlreadyShown()
+                                        notificationAppUpdateCheckDismissed = true
+                                    }
+                                )
+                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
+                            }
                         }
                     }
                     AndroidView(
