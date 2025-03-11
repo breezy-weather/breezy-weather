@@ -607,7 +607,7 @@
     <string name="dew_point_short">Daggpunkt</string>
     <string name="ceiling_short">Tak</string>
     <string name="wind_short">Vind</string>
-    <string name="uv_index_short">UV-index</string>
+    <string name="uv_index_short">UV</string>
     <string name="visibility_short">Sikt</string>
     <string name="pressure_short">Lufttryck</string>
     <string name="humidity_short">Luftfukt</string>
