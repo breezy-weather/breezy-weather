@@ -50,11 +50,8 @@ class MMCPActivity : Activity() {
         // Handle the intent
         when (intent?.action) {
             ACTION_TOOL_CALL -> handleToolCall()
-            ACTION_TOOL_ADVERTISE -> {
-                // Nothing to do for advertisement, the meta-data in the manifest handles this
-                finish()
-            }
-            else -> finish() // Nothing to do for other actions, activity is just a receiver
+            ACTION_TOOL_ADVERTISE -> finish() // Nothing to do, manifest handles this
+            else -> finish() // Nothing to do for other actions
         }
     }
     
