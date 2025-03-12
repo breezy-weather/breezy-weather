@@ -559,8 +559,7 @@
         <!-- mMCP (Mobile Model Context Protocol) Activity -->
         <activity
             android:name=".mmcp.MMCPActivity"
-            android:exported="true"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            android:exported="true">
             <!-- Intent filter for advertising tools -->
             <intent-filter>
                 <action android:name="com.example.mMCP.ACTION_TOOL_ADVERTISE" />
