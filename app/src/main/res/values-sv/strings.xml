@@ -144,7 +144,7 @@
     <string name="settings_background_updates">Bakgrundsuppdateringar</string>
     <string name="pollen_betula">Björk</string>
     <string name="settings_background_updates_refresh_24h">24 timmar</string>
-    <string name="uv_index_3_5">Medelhögt</string>
+    <string name="uv_index_3_5">Måttligt</string>
     <string name="action_refresh">Uppdatera</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_inph_voice">Tum per timme</string>
@@ -315,10 +315,10 @@
     <string name="air_quality_level_6_description">All exponering mot utomhusluft, även under några få minuter, kan medföra allvarlig hälsopåverkan för alla. Undvik utomhusaktiviteter.</string>
     <string name="temperature_wet_bulb">Våt</string>
     <string name="temperature_normals">Temperaturnormaler</string>
-    <string name="temperature_degree_day_heating">Uppvärmningsgrad dag</string>
-    <string name="temperature_degree_day_cooling">Nedkylningsgrad dag</string>
+    <string name="temperature_degree_day_heating">Uppvärmningsgraddagar</string>
+    <string name="temperature_degree_day_cooling">Nedkylningsgraddagar</string>
     <string name="temperature_apparent">Upplevd</string>
-    <string name="temperature_degree_day">Dagsgrad</string>
+    <string name="temperature_degree_day">Graddagar</string>
     <string name="widget_refreshing">Uppdaterar</string>
     <string name="dialog_permissions_notification_title">Håll dig informerad</string>
     <string name="widget_day_week">Daglig + veckovis</string>
@@ -345,7 +345,7 @@
     <string name="location_swipe_to_delete">Du kan svepa åt vänster för att ta bort detta objekt</string>
     <string name="widget_trend_daily">Dagstrend</string>
     <string name="widget_clock_day_vertical">Klocka + daglig (lodrät stil)</string>
-    <string name="wind_direction_variable">Skiftande</string>
+    <string name="wind_direction_variable">Växlande</string>
     <string name="air_quality_o3_info_consequences">Exponering för alltför höga halter av ozon kan orsaka andningssvårigheter, utlösa astma, försämra lungfunktionen och leda till lungsjukdomar.</string>
     <string name="air_quality_o3_info_introduction">Marknära ozon (O₃) är en viktig komponent i smog. Även om det är samma molekyl så kan marknära ozon vara skadligt för människors hälsa, till skillnad från stratosfäriskt ozon, som skyddar jorden från överdriven UV-strålning.</string>
     <string name="widget_material_you_current">Material You - nuvarande</string>
