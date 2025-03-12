@@ -49,7 +49,7 @@
     <string name="location_message_failed_to_locate">Misslyckades med att hitta nuvarande plats</string>
     <string name="settings_background_updates_refresh_2h">2 timmar</string>
     <string name="settings_section_general">Allmänt</string>
-    <string name="precipitation_nowcasting">Nederbörd minut för minut</string>
+    <string name="precipitation_nowcasting">Korttidsprognos för nederbörd</string>
     <string name="unit_lpsqmph_voice">Liter per kvadratmeter per timme</string>
     <string name="daily_tomorrow_short">Imrn</string>
     <string name="air_quality">Luftkvalitet</string>
@@ -323,7 +323,7 @@
     <string name="dialog_permissions_notification_title">Håll dig informerad</string>
     <string name="widget_day_week">Daglig + veckovis</string>
     <string name="widget_clock_day_horizontal">Klocka + daglig (vågrät stil)</string>
-    <string name="weather_minutely_data_by">Nederbörd direktdata från %s</string>
+    <string name="weather_minutely_data_by">Data till korttidsprognos för nederbörd från %s</string>
     <string name="widget_day">Daglig</string>
     <string name="dialog_permissions_notification_content">Tryck här för att aktivera aviseringar om vädervarningar, eller bestäm dig senare i Inställningar.</string>
     <string name="ceiling">Tak</string>
