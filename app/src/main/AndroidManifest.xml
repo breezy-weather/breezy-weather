@@ -556,6 +556,39 @@
 
         </provider>
 
+        <!-- mMCP (Mobile Model Context Protocol) Activity -->
+        <activity
+            android:name=".mmcp.MMCPActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <!-- Intent filter for advertising tools -->
+            <intent-filter>
+                <action android:name="com.example.mMCP.ACTION_TOOL_ADVERTISE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            
+            <!-- Intent filter for handling tool calls -->
+            <intent-filter>
+                <action android:name="com.example.mMCP.ACTION_TOOL_CALL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            
+            <!-- Meta-data containing the mMCP manifest -->
+            <meta-data
+                android:name="mMCP_manifest"
+                android:value='{"instructions":"Breezy Weather is a weather application that provides weather forecasts, current conditions, and other weather-related information. You can use these tools to interact with Breezy Weather.","tools":[{"name":"say_hi","description":"A simple tool that responds with a greeting message","parameters":{"type":"object","required":["name"],"properties":{"name":{"type":"string","description":"The name of the person to greet"}}}}]}' />
+        </activity>
+        
+        <!-- mMCP Test Activity (for development/testing only) -->
+        <activity
+            android:name=".mmcp.MMCPTestActivity"
+            android:exported="true"
+            android:label="Breezy Weather mMCP Test">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
