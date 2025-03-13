@@ -31,7 +31,7 @@
     <string name="air_quality_pm_info_title">Partiklar (PM2,5 &amp; PM10)</string>
     <string name="common_weather_text_cloudy">Molnigt</string>
     <string name="location_message_reverse_geocoding_failed">Väderkällan misslyckades med att hitta en matchande plats</string>
-    <string name="air_quality_pm_explanations_consequences">Partiklar är den mest hälsovådliga formen av luftföroreningar p.g.a. sin förmåga att tränga djupt in i lungorna och hjärnan via blodomloppet, vilket orsakar hälsoproblem såsom hjärtsjukdom, lungsjukdom och förtida död.</string>
+    <string name="air_quality_pm_explanations_consequences">Partiklar är den mest hälsovådliga formen av luftföroreningar på grund av sin förmåga att tränga djupt in i lungorna och hjärnan via blodomloppet, vilket orsakar hälsoproblem såsom hjärtsjukdom, lungsjukdom och förtida död.</string>
     <string name="unit_hpa">hPa</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
     <string name="temperature">Temperatur</string>
@@ -184,7 +184,7 @@
     <string name="action_undo">Ångra</string>
     <string name="pollen_level_1">Väldigt låg</string>
     <string name="widget_custom_subtitle_keyword_w_description">Vecka</string>
-    <string name="air_quality_pm_explanations_origin">En del partiklar förekommer naturligt och kommer från vulkaner, sandstormar, skogs- och gräsbränder, levande vegetation och havsstänk. Mänskliga aktiviteter genererar också ansenliga mängder partiklar, t.ex. trafik och transporter, industriella verksamheter, kraftverk, byggarbetsplatser, avfallsförbränning och jordbruk.</string>
+    <string name="air_quality_pm_explanations_origin">En del partiklar förekommer naturligt och kommer från vulkaner, sandstormar, skogs- och gräsbränder, levande vegetation och havsstänk. Mänskliga aktiviteter genererar också ansenliga mängder partiklar, till exempel trafik och transporter, industriella verksamheter, kraftverk, byggarbetsplatser, avfallsförbränning och jordbruk.</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="wind_direction_SW_short">SV</string>
     <string name="wind_gusts">Vindbyar</string>
@@ -331,7 +331,7 @@
     <string name="weather_message_invalid_location">Ogiltig plats, vänligen ta bort den och lägg till igen</string>
     <string name="location_current_not_found_yet">Nuvarande plats inte funnen än…</string>
     <string name="ephemeris_moon_phase_first_quarter">Första kvarteret</string>
-    <string name="air_quality_o3_info_origin">Det bildas genom fotokemiska reaktioner med föroreningar som till exempel flyktiga organiska föreningar, kolmonoxid och kväveoxider (NOₓ) från fordon samt industrier. På grund av dess fotokemiska natur är nivåerna av ozon som högst under perioder med soligt väder.</string>
+    <string name="air_quality_o3_info_origin">Det bildas genom fotokemiska reaktioner med föroreningar som till exempel flyktiga organiska föreningar, kolmonoxid och kväveoxider (NOₓ) från fordon och industrier. På grund av dess fotokemiska natur är nivåerna av ozon som högst under perioder med soligt väder.</string>
     <string name="air_quality_no2_info_introduction">Kvävedioxid (NO₂) är en kvävande, giftig, rödbrun gas med en karaktäristisk stickande, frän lukt.</string>
     <string name="location_results_by">Platsresultat från %s</string>
     <string name="widget_ellipsis">…</string>
@@ -347,7 +347,7 @@
     <string name="widget_clock_day_vertical">Klocka + daglig (lodrät stil)</string>
     <string name="wind_direction_variable">Växlande</string>
     <string name="air_quality_o3_info_consequences">Exponering för alltför höga halter av ozon kan orsaka andningssvårigheter, utlösa astma, försämra lungfunktionen och leda till lungsjukdomar.</string>
-    <string name="air_quality_o3_info_introduction">Marknära ozon (O₃) är en viktig komponent i smog. Även om det är samma molekyl så kan marknära ozon vara skadligt för människors hälsa, till skillnad från stratosfäriskt ozon, som skyddar jorden från överdriven UV-strålning.</string>
+    <string name="air_quality_o3_info_introduction">Marknära ozon (O₃) är en viktig komponent i smog. Även om det är samma molekyl så kan marknära ozon vara skadligt för människors hälsa, till skillnad från stratosfäriskt ozon, som skyddar jorden från skadlig UV-strålning.</string>
     <string name="widget_material_you_current">Material You - nuvarande</string>
     <string name="widget_clock_day_details">Klocka + daglig (detaljer)</string>
     <string name="weather_alert_data_by">Varningsdata från %s</string>
