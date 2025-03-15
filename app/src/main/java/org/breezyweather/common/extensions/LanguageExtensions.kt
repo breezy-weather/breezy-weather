@@ -28,6 +28,7 @@ val Context.currentLocale: Locale
             ?: if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 this.resources.configuration.locales[0]
             } else {
+                @Suppress("DEPRECATION")
                 this.resources.configuration.locale
             }
     }
