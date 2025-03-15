@@ -2,6 +2,7 @@
 
 **Improvements and fixes**
 - Background update will no longer execute when VPN is on, but no other Internet-providing transport is enabled
+- Background update errors will now be grouped by location
 - When changing an unit, widgets will now update automatically, instead of waiting for the next refresh to apply the new units
 
 **Weather sources**
