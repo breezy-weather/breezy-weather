@@ -40,7 +40,12 @@ fun Context.isOnline(): Boolean {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> NetworkCapabilities.TRANSPORT_WIFI_AWARE
             else -> NetworkCapabilities.TRANSPORT_VPN
         }
-        return (NetworkCapabilities.TRANSPORT_CELLULAR..maxTransport).any(networkCapabilities::hasTransport)
+        return if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN)) {
+            // If VPN is enabled, but there is no other transport enabled, we are actually offline
+            (NetworkCapabilities.TRANSPORT_CELLULAR..maxTransport).count(networkCapabilities::hasTransport) > 1
+        } else {
+            (NetworkCapabilities.TRANSPORT_CELLULAR..maxTransport).any(networkCapabilities::hasTransport)
+        }
     } else {
         @Suppress("DEPRECATION")
         return connectivityManager.activeNetworkInfo?.isConnected ?: false

@@ -1,6 +1,7 @@
 # Version 5.4.6 (unreleased)
 
 **Improvements and fixes**
+- Background update will no longer execute when VPN is on, but no other Internet-providing transport is enabled
 - When changing an unit, widgets will now update automatically, instead of waiting for the next refresh to apply the new units
 
 **Weather sources**
