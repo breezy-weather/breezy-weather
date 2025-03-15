@@ -16,6 +16,7 @@
 
 package org.breezyweather.common.extensions
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.icu.text.DateTimePatternGenerator
 import android.icu.text.SimpleDateFormat
@@ -37,6 +38,7 @@ import java.util.Locale
 val Context.is12Hour: Boolean
     get() = !DateFormat.is24HourFormat(this)
 
+@SuppressLint("PrivateApi")
 fun Date.getRelativeTime(context: Context): String {
     try {
         // Reflection allows us to specify the locale
@@ -97,6 +99,7 @@ fun Date.getFormattedDate(
             timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it) } ?: TimeZone.getDefault()
         }.format(this)
     } else {
+        @Suppress("DEPRECATION")
         this.getFormattedDate(pattern, location?.javaTimeZone, locale)
     }
 }

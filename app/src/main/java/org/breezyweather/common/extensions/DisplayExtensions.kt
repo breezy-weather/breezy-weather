@@ -29,6 +29,7 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.provider.Settings
 import android.provider.Settings.SettingNotFoundException
+import android.util.TypedValue
 import android.view.View
 import android.view.Window
 import android.view.animation.DecelerateInterpolator
@@ -37,6 +38,7 @@ import android.view.animation.OvershootInterpolator
 import androidx.annotation.Px
 import androidx.annotation.Size
 import androidx.annotation.StyleRes
+import androidx.core.graphics.createBitmap
 import androidx.core.view.WindowInsetsControllerCompat
 import com.google.android.material.resources.TextAppearance
 import kotlin.math.min
@@ -78,9 +80,10 @@ fun Context.dpToPx(dp: Float): Float {
 }
 
 fun Context.spToPx(sp: Int): Float {
-    return sp * this.resources.displayMetrics.scaledDensity
+    return sp * TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 1.0f, this.resources.displayMetrics)
 }
 
+@Suppress("unused")
 fun Context.pxToDp(@Px px: Int): Float {
     return px / (this.resources.displayMetrics.densityDpi / 160f)
 }
@@ -153,11 +156,7 @@ fun Window.setSystemBarStyle(
 }
 
 fun Drawable.toBitmap(): Bitmap {
-    val bitmap = Bitmap.createBitmap(
-        this.intrinsicWidth,
-        this.intrinsicHeight,
-        Bitmap.Config.ARGB_8888
-    )
+    val bitmap = createBitmap(this.intrinsicWidth, this.intrinsicHeight)
     val canvas = Canvas(bitmap)
     this.setBounds(0, 0, this.intrinsicWidth, this.intrinsicHeight)
     this.draw(canvas)
