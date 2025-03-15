@@ -361,7 +361,6 @@
                             android:textColorHighlight="@color/colorTextSubtitle"
                             android:textSize="@dimen/content_text_size"
                             android:textColor="@color/colorTextContent"
-                            android:layout_margin="@dimen/little_margin"
                             android:maxLines="1"
                             tools:ignore="Autofill" />
 
