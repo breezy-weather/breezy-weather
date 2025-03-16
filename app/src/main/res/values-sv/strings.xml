@@ -163,7 +163,7 @@
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_co_info_introduction">Kolmonoxid (CO) är en giftig, brandfarlig gas som är färglös, luktlös, smaklös och icke-irriterande.</string>
     <string name="unit_mugpcum">μg/m³</string>
-    <string name="pollen_olea">Oliv</string>
+    <string name="pollen_olea">Olivträd</string>
     <string name="action_location_list">Platslista</string>
     <string name="action_edit">Redigera</string>
     <string name="action_back">Backa</string>
@@ -421,7 +421,7 @@
     <string name="widget_custom_subtitle_keyword_xnt_description">Temperatur nattetid för i dag, i morgon, …, 4 dagar senare (°C/°F)</string>
     <string name="common_weather_text_drizzle">Duggregn</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Nederbörd dagtid för i dag, i morgon, …, 4 dagar senare (%)</string>
-    <string name="air_quality_no2_info_origin">Omgivande källor till NO₂ är ett resultat av förbränning av bränslen vid höga temperaturer i processer som t.ex. de som används för uppvärmning, transporter, industrier och elproduktion. Hushållskällor till kväveoxider (NOₓ) inkluderar utrustning som förbränner bränsle, såsom värmepannor, eldstäder samt gasspisar och gasugnar.</string>
+    <string name="air_quality_no2_info_origin">Omgivande källor till NO₂ är ett resultat av förbränning av bränslen vid höga temperaturer i processer som till exempel de som används för uppvärmning, transporter, industrier och elproduktion. Hushållskällor till kväveoxider (NOₓ) inkluderar utrustning som förbränner bränsle, såsom värmepannor, eldstäder samt gasspisar och gasugnar.</string>
     <string name="settings_widgets_section_widgets_in_use">Widgetar som används</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Månnedgång för i dag, i morgon, …, 4 dagar senare</string>
     <string name="message_parsing_error_content">Se till att du har uppdaterat till den senaste versionen av appen. Servern kan vara tillfälligt ej tillgänglig, vänligen försök igen senare i så fall. Om problemet kvarstår, vänligen skapa en kraschlogg i felsökningsinställningarna och rapportera ett problem på GitHub.</string>
@@ -512,7 +512,7 @@
     <string name="settings_background_updates_battery_optimization_disabled">Batterioptimering är redan inaktiverad.</string>
     <string name="message_network_unavailable">Nätverk ej tillgängligt</string>
     <string name="settings_main_hourly_trends_title">Timtrender</string>
-    <string name="air_quality_co_info_origin">Den skapas av ofullständig förbränning av kolhaltiga bränslen såsom trä, bensin, kol, naturgas och fotogen i enkla spisar, öppna eldar, oljelampor, ugnar och eldstäder. Den huvudsakliga källan till kolmonoxid (CO) i omgivande luft är från motorfordon.</string>
+    <string name="air_quality_co_info_origin">Den skapas av ofullständig förbränning av kolhaltiga bränslen såsom trä, bensin, kol, naturgas och fotogen i enkla spisar, öppna eldar, oljelampor, ugnar och eldstäder. Den huvudsakliga källan till kolmonoxid (CO) i omgivande luft är motorfordon.</string>
     <string name="notification_channel_background_services">Bakgrundstjänster</string>
     <string name="settings_icon_packs_weather_icon_dark">Mörk ikon</string>
     <string name="settings_icon_packs_weather_icon_grey">Grå ikon</string>
