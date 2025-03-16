@@ -739,4 +739,15 @@
     <string name="location_custom_name">Nome personalizzato</string>
     <string name="location_reverse_geocoding">Ricerca indirizzo</string>
     <string name="location_reverse_geocoding_by">Cerca indirizzo per %s</string>
+    <string name="daily_today">Oggi</string>
+    <string name="wind_direction_NW">Nord-ovest</string>
+    <string name="daily_tomorrow">Domani</string>
+    <string name="wind_direction_S">Sud</string>
+    <string name="wind_direction_SW">Sud-ovest</string>
+    <string name="wind_direction_W">Ovest</string>
+    <string name="daily_yesterday">Ieri</string>
+    <string name="wind_direction_N">Nord</string>
+    <string name="wind_direction_NE">Nord-est</string>
+    <string name="wind_direction_E">Est</string>
+    <string name="wind_direction_SE">Sud-est</string>
 </resources>
