@@ -768,4 +768,6 @@
     <string name="wind_direction_W">Oeste</string>
     <string name="wind_direction_NW">Noroeste</string>
     <string name="wind_direction_SW">Sudoeste</string>
+    <string name="daily_yesterday">Ayer</string>
+    <string name="location_custom_name">Nombre personalizado</string>
 </resources>
