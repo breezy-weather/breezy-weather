@@ -82,7 +82,7 @@
     <string name="widget_clock_font_analog">Analog</string>
     <string name="ephemeris_sunset_at">Solnedgång vid %s</string>
     <string name="widget_live_wallpaper_day_night_type">Tid</string>
-    <string name="pollen_tap_to_see_more">Tryck för att visa mer…</string>
+    <string name="pollen_tap_to_see_more">Tryck för att visa mer …</string>
     <string name="precipitation_intensity_heavy">Kraftig</string>
     <string name="weather_pollen_data_by">Pollendata från %s</string>
     <string name="weather_source_accu_preference_days_10">10 dagar</string>
