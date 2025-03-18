@@ -182,7 +182,7 @@
     <string name="settings_units">Enheter</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="action_undo">Ångra</string>
-    <string name="pollen_level_1">Väldigt låg</string>
+    <string name="pollen_level_1">Mycket låg</string>
     <string name="widget_custom_subtitle_keyword_w_description">Vecka</string>
     <string name="air_quality_pm_explanations_origin">En del partiklar förekommer naturligt och kommer från vulkaner, sandstormar, skogs- och gräsbränder, levande vegetation och havsstänk. Mänskliga aktiviteter genererar också ansenliga mängder partiklar, till exempel trafik och transporter, industriella verksamheter, kraftverk, byggarbetsplatser, avfallsförbränning och jordbruk.</string>
     <string name="unit_mgpcum">mg/m³</string>
@@ -203,7 +203,7 @@
     <string name="location_message_deleted">Plats borttagen</string>
     <string name="weather_kind_wind">Vind</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Kontrollera platsbehörigheterna</string>
-    <string name="pollen_level_3">Medelhög</string>
+    <string name="pollen_level_3">Måttlig</string>
     <string name="weather_data_by">Data från %s</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Nuvarande lufttryck</string>
     <string name="pollen_level_5">Mycket hög</string>
@@ -631,10 +631,10 @@
     <string name="pollen_platanus">Platan</string>
     <string name="pollen_populus">Poppel</string>
     <string name="pollen_quercus">Ek</string>
-    <string name="pollen_rumex">Ängssyra</string>
+    <string name="pollen_rumex">Skräppa</string>
     <string name="pollen_salix">Vide</string>
     <string name="pollen_tilia">Lind</string>
-    <string name="pollen_urticaceae">Nässla/Nysört</string>
+    <string name="pollen_urticaceae">Nässla/grenig väggört</string>
     <string name="message_source_not_installed_error_content_tip_1">Detta kan hända när du har lagt till din plats i standardvarianten av appen och sedan bytt till varianten med endast fria nätverkskällor. Att gå tillbaka till standardvarianten kan lösa detta problem.</string>
     <string name="message_source_not_installed_error_content_tip_2">Ändra antingen väderkällor för denna plats, eller ta bort platsen och lägg till den igen.</string>
     <string name="sunshine">Solsken</string>
