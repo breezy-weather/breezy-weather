@@ -10,7 +10,7 @@
     <string name="pollen_poaeceae">Трава</string>
     <string name="pollen_artemisia">Палын</string>
     <string name="pollen_olea">Аліва</string>
-    <string name="pollen_level_0">Не</string>
+    <string name="pollen_level_0">Няма</string>
     <string name="pollen_level_2">Нізкі</string>
     <string name="pollen_level_3">Сярэдні</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Малады месяц</string>
@@ -33,7 +33,7 @@
     <string name="air_quality_so2_info_origin">Ён вызваляецца натуральнай выявай у выніку вулканічнай дзейнасці і ў асноўным утворыцца ў выніку спальвання выкапнёвага паліва для апалу жылых памяшканняў, прамысловасці і вытворчасці электраэнергіі.</string>
     <string name="air_quality_so2_info_consequences">Уздзеянне SO₂ звязана са шпіталізацыяй з-за астмы і зваротамі ў аддзяленне хуткай дапамогі.</string>
     <string name="air_quality_co_info_introduction">Монааксід вугляроду (угарны газ) (CO) - гэта атрутны лёгкаўзгаральны газ, які не мае колеру, паху, густу і не выклікае раздражнення.</string>
-    <string name="air_quality_co_info_origin">Ён утворыцца пры няпоўным згаранні вугляродзістага паліва, такога як драўніна, бензін, вугаль, прыродны газ і газа, у простых печах, адкрытым агні, кнотных лямпах, печах, камінах. Асноўнай крыніцай угарнага газу (CO) у навакольным паветры з’яўляюцца аўтамабілі.</string>
+    <string name="air_quality_co_info_origin">Ён утвараецца пры няпоўным згаранні вугляродзістага паліва, такога як драўніна, бензін, вугаль, прыродны газ і газа, у простых печах, адкрытым агні, кнотных лямпах, печах, камінах. Асноўнай крыніцай угарнага газу (CO) у навакольным паветры з’яўляюцца аўтамабілі.</string>
     <string name="temperature">Тэмпература</string>
     <string name="temperature_feels_like">Адчуваецца як</string>
     <string name="temperature_real_feel">RealFeel®</string>
@@ -44,7 +44,7 @@
     <string name="wind_strength_5">Свежы</string>
     <string name="wind_strength_9">Шторм</string>
     <string name="wind_strength_6">Моцны</string>
-    <string name="uv_index">УФ-индекс</string>
+    <string name="uv_index">УФ-індэкс</string>
     <string name="uv_index_0_2">Нізкі</string>
     <string name="uv_index_11">Празмерны</string>
     <string name="uv_alert_level">Увага</string>
@@ -152,7 +152,7 @@
     <string name="air_quality_pm_info_title">Цвёрдыя часціцы (PM2.5 &amp; PM10)</string>
     <string name="air_quality_co_voice">Монааксід вугляроду</string>
     <string name="air_quality_pm_explanations_introduction">Цвёрдыя часціцы або атмасферныя цвёрдыя часціцы ўяўляюць сабой мікраскапічныя часціцы цвёрдага ці вадкага рэчыва, узважаныя ў паветры.</string>
-    <string name="air_quality_co_info_title">Вокіс вугляроду (CO)</string>
+    <string name="air_quality_co_info_title">Монааксід вугляроду (CO)</string>
     <string name="pollen_ambrosia">Амброзія</string>
     <string name="pollen_mold">Цвіль</string>
     <string name="pollen_level_4">Высокі</string>
@@ -604,7 +604,7 @@
     <string name="location_message_updated">Месцазнаходжанне абноўлена</string>
     <string name="location_message_already_exists">Месцазнаходжанне з такой жа асноўнай крыніцай надвор’я ўжо існуе.</string>
     <string name="wind_short">Вецер</string>
-    <string name="uv_index_short">УФ-индекс</string>
+    <string name="uv_index_short">УФ-індэкс</string>
     <string name="visibility_short">Бачнасць</string>
     <string name="pressure_short">Ціск</string>
     <string name="temperature_feels_like_short">Адчуваць</string>
@@ -718,7 +718,7 @@
     <string name="settings_weather_source_current_position_disclaimer">Пасля першага абнаўлення для вашага месцазнаходжання могуць стаць даступныя дадатковыя крыніцы надвор’я.</string>
     <string name="pollen_ulmus">Вяз</string>
     <string name="pollen_acer">Клён</string>
-    <string name="pollen_alternaria">Альтернария</string>
+    <string name="pollen_alternaria">Альтэрнарыя</string>
     <string name="pollen_juniperus">Ядловец</string>
     <string name="pollen_picea">Елка</string>
     <string name="pollen_pinus">Хвоя</string>
