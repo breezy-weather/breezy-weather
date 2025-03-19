@@ -736,4 +736,25 @@
     <string name="common_weather_text_glaze">Gheață</string>
     <string name="weather_source_continent_oceania">Oceania</string>
     <string name="common_weather_text_frost">Îngheț</string>
+    <string name="settings_debug_notification_permission">Necesar pentru a trimite notificări referitoare la log-urile de avarie și eșuări ale actualizărilor aplicației. %s</string>
+    <string name="daily_yesterday">Ieri</string>
+    <string name="daily_today">Azi</string>
+    <string name="daily_tomorrow">Mâine</string>
+    <string name="wind_direction_N">Nord</string>
+    <string name="wind_direction_NE">Nord-Est</string>
+    <string name="wind_direction_E">Est</string>
+    <string name="wind_direction_SE">Sud-Est</string>
+    <string name="wind_direction_S">Sud</string>
+    <string name="wind_direction_SW">Sud-Vest</string>
+    <string name="wind_direction_W">Vest</string>
+    <string name="wind_direction_NW">Nord-Vest</string>
+    <string name="location_reverse_geocoding">Căutare adresă</string>
+    <string name="location_has_active_alerts">Alertă activă</string>
+    <string name="action_grant_permission">Apăsați pentru a acorda permisiunea.</string>
+    <string name="settings_notifications_permission">Este necesară permiterea notificărilor</string>
+    <string name="settings_widgets_notification_permission_summary">Necesar pentru a afișa widget-ul notificării. %s</string>
+    <string name="location_last_updated_x">Actualizat ultima dată %s</string>
+    <string name="location_custom_name">Nume personalizat</string>
+    <string name="location_reverse_geocoding_by">Căutare adresă după %s</string>
+    <string name="settings_notifications_permission_summary">Necesar pentru a trimite notificări referitoare la alerte, prognoze meteo și actualizari ale aplicației. %s</string>
 </resources>
