@@ -23,7 +23,7 @@
     <string name="air_quality_pm_explanations_origin">Некаторыя цвёрдыя часціцы ўзнікаюць натуральным чынам з-за вулканаў, пылавых бур, лясных пажараў і падпаленых палёў, жывой расліннасці і марскіх пырсак. Чалавечая дзейнасць таксама прыводзіць да ўтварэння значнай колькасці цвёрдых часціц, напрыклад, дарожны рух і транспарт, прамысловая дзейнасць, электрастанцыі, будаўнічыя пляцоўкі, спальванне адходаў або палёў.</string>
     <string name="air_quality_pm_explanations_consequences">Цвёрдыя часціцы з’яўляюцца найбольш шкоднай формай забруджвання паветра з-за іх здольнасці пранікаць глыбока ў лёгкія і мозг з крывацёку, выклікаючы праблемы са здароўем, такія як хваробы сэрца, хваробы лёгкіх і заўчасную смерць.</string>
     <string name="air_quality_o3_info_introduction">Прыземны азон (O₃) з’яўляецца асноўным кампанентам смогу. Хоць гэта тая ж самая малекула, прыземны азон можа быць шкодным для здароўя чалавека, у адрозненне ад стратасфернага азону, які абараняе зямлю ад залішняга ЎХ-выпраменьвання.</string>
-    <string name="air_quality_o3_info_origin">Ён утвараецца ў выніку фотахімічных рэакцый з такімі забруджвальнымі рэчывамі, як лятучыя арганічныя злучэнні, вокіс вугляроду і аксіды азоту (NOₓ), якія выкідаюцца транспартнымі сродкамі і прамысловасцю. З-за фотахімічнай прыроды самыя высокія ўзроўні азону назіраюцца ў перыяды сонечнага надвор’я.</string>
+    <string name="air_quality_o3_info_origin">Ён утвараецца ў выніку фотахімічных рэакцый з такімі забруджвальнымі рэчывамі, як лятучыя арганічныя злучэнні, монааксід вугляроду і аксіды азоту (NOₓ), якія выкідаюцца транспартнымі сродкамі і прамысловасцю. З-за фотахімічнай прыроды самыя высокія ўзроўні азону назіраюцца ў перыяды сонечнага надвор’я.</string>
     <string name="air_quality_o3_info_consequences">Уздзеянне празмернай колькасці азону можа выклікаць праблемы з дыханнем, выклікаць астму, знізіць функцыянальнасць лёгкіх і прывесці да іх захворвання.</string>
     <string name="air_quality_no2_info_introduction">Двухвокіс азоту (NO₂) — удушлівы атрутны чырванавата-карычневы газ з характэрным рэзкім з’едлівым пахам.</string>
     <string name="air_quality_so2_info_introduction">Дыяксід серы (SO₂) — бясколерны таксічны газ, з-за якога з’яўляецца пах згарэлых запалак.</string>
@@ -33,7 +33,7 @@
     <string name="air_quality_so2_info_origin">Ён вызваляецца натуральнай выявай у выніку вулканічнай дзейнасці і ў асноўным утворыцца ў выніку спальвання выкапнёвага паліва для апалу жылых памяшканняў, прамысловасці і вытворчасці электраэнергіі.</string>
     <string name="air_quality_so2_info_consequences">Уздзеянне SO₂ звязана са шпіталізацыяй з-за астмы і зваротамі ў аддзяленне хуткай дапамогі.</string>
     <string name="air_quality_co_info_introduction">Монааксід вугляроду (угарны газ) (CO) - гэта атрутны лёгкаўзгаральны газ, які не мае колеру, паху, густу і не выклікае раздражнення.</string>
-    <string name="air_quality_co_info_origin">Ён утвараецца пры няпоўным згаранні вугляродзістага паліва, такога як драўніна, бензін, вугаль, прыродны газ і газа, у простых печах, адкрытым агні, кнотных лямпах, печах, камінах. Асноўнай крыніцай угарнага газу (CO) у навакольным паветры з’яўляюцца аўтамабілі.</string>
+    <string name="air_quality_co_info_origin">Ён утвараецца пры няпоўным згаранні вугляродзістага паліва, такога як драўніна, бензін, газа, прыродны газ і вугаль, у простых печах, адкрытым агні, газавых лямпах, катлах, камінах. Асноўнай крыніцай угарнага газу (CO) у навакольным паветры з’яўляюцца аўтамабілі.</string>
     <string name="temperature">Тэмпература</string>
     <string name="temperature_feels_like">Адчуваецца як</string>
     <string name="temperature_real_feel">RealFeel®</string>
@@ -131,7 +131,7 @@
     <string name="precipitation_intensity_heavy">Моцны</string>
     <string name="precipitation_none">Без ападкаў</string>
     <string name="wind_gusts">Парывы ветру</string>
-    <string name="wind_direction_NE_short">Пн. Ус.</string>
+    <string name="wind_direction_NE_short">ПнУ</string>
     <string name="wind_strength_1">Ціхі</string>
     <string name="wind_strength_2">Лёгкі</string>
     <string name="wind_strength_7">Вялікі</string>
@@ -179,7 +179,7 @@
     <string name="weather_normals_data_by">Дадзеныя аб тэмпературных нормах прадастаўлены %s</string>
     <string name="weather_message_invalid_location">Няправільнае месцазнаходжанне, выдаліце яго і дадайце нанова</string>
     <string name="weather_message_unsupported_feature">Крыніца не падтрымлівае адну з запытаных функцый</string>
-    <string name="weather_api_limit_reached_content">Каб абыйсці абмежаванне, выкарыстоўвайце свой API-ключ.</string>
+    <string name="weather_api_limit_reached_content">Каб абысці абмежаванне, дадайце свой API-ключ.</string>
     <string name="weather_api_unauthorized_title">Неаўтарызаваны доступ да API</string>
     <string name="weather_api_key_required_missing_content">Каб скарыстацца гэтай крыніцай, дадайце свой API-ключ.</string>
     <string name="setting_weather_source_accu_days">Дні</string>
@@ -262,15 +262,15 @@
     <string name="precipitation_between_time">Ападкі ад %1$s да %2$s</string>
     <string name="wind">Вецер</string>
     <string name="wind_speed">Хуткасць ветру</string>
-    <string name="wind_direction_NW_short">Пн. Зх.</string>
-    <string name="wind_direction_N_short">Пн.</string>
-    <string name="wind_direction_E_short">Ус.</string>
-    <string name="wind_direction_SE_short">Пд. Ус.</string>
-    <string name="wind_direction_S_short">Пд.</string>
-    <string name="wind_direction">Кірунак ветра</string>
+    <string name="wind_direction_NW_short">ПнЗ</string>
+    <string name="wind_direction_N_short">Пн</string>
+    <string name="wind_direction_E_short">У</string>
+    <string name="wind_direction_SE_short">ПдУ</string>
+    <string name="wind_direction_S_short">Пд</string>
+    <string name="wind_direction">Кірунак ветру</string>
     <string name="wind_direction_variable">Значэнне</string>
-    <string name="wind_direction_SW_short">Пд. Зх.</string>
-    <string name="wind_direction_W_short">Зх.</string>
+    <string name="wind_direction_SW_short">ПдЗ</string>
+    <string name="wind_direction_W_short">З</string>
     <string name="wind_strength_3">Слабы</string>
     <string name="wind_strength_4">Умераны</string>
     <string name="wind_strength_8">Вельмі вялікі</string>
@@ -332,7 +332,7 @@
     <string name="widget_style_vertical">Вертыкальны</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_style_temperature">Тэмпература</string>
-    <string name="widget_week_style_5_days">5 дней</string>
+    <string name="widget_week_style_5_days">5 дзён</string>
     <string name="widget_week_style_3_days">3 дня</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
@@ -658,7 +658,7 @@
     <string name="settings_source_instance_invalid">Павінен быць URL-адрас https, які заканчваецца на /</string>
     <string name="alert_source">Крыніца: %s</string>
     <string name="dialog_time_picker_select_time">Выбраць час</string>
-    <string name="dialog_time_picker_input_time">Ўвесці час</string>
+    <string name="dialog_time_picker_input_time">Увесці час</string>
     <string name="widget_label_hide_alternate_calendar">Схаваць альтэрнатыўны каляндар</string>
     <string name="settings_appearance_calendar_title">Альтэрнатыўны каляндар</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Пераключыцца на сэнсарны ўвод</string>
@@ -683,7 +683,7 @@
     <string name="common_weather_text_smoke">Дым</string>
     <string name="settings_notifications_app_updates_check">Апавяшчаць мяне пра абнаўленне праграмы</string>
     <string name="meteoam_weather_text_tornado_watersprout">Тарнада або водны смерч</string>
-    <string name="settings_unavailable_no_animations">Недаступна, спачатку уключыце анімацыю ў наладах Android</string>
+    <string name="settings_unavailable_no_animations">Недаступна, спачатку ўключыце анімацыю ў наладах Android</string>
     <string name="weather_current_data_by">Дадзеныя аб бягучым надвор\'і прадастаўлены %s</string>
     <string name="current_weather">Бягучая надвор’е</string>
     <string name="common_weather_text_dry">Суха</string>
@@ -741,7 +741,7 @@
     <string name="wind_direction_N">Поўнач</string>
     <string name="wind_direction_NE">Паўночны ўсход</string>
     <string name="wind_direction_E">Усход</string>
-    <string name="wind_direction_SE">Паўднёвы усход</string>
+    <string name="wind_direction_SE">Паўднёвы ўсход</string>
     <string name="wind_direction_S">Поўдзень</string>
     <string name="wind_direction_SW">Паўднёвы захад</string>
     <string name="wind_direction_NW">Паўночны захад</string>
