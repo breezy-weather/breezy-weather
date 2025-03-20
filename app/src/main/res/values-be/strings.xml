@@ -113,7 +113,7 @@
     <string name="weather_kind_hail">Град</string>
     <string name="weather_kind_haze">Дымка</string>
     <string name="null_data_text">Недаступна</string>
-    <string name="hourly_forecast">Пагадзінны прагноз</string>
+    <string name="hourly_forecast">Прагноз па гадзінах</string>
     <string name="app_name">Надвор’е</string>
     <string name="pollen">Пылок</string>
     <string name="pollen_and_mold">Пылок і цвіль</string>
@@ -243,7 +243,7 @@
     <string name="dialog_permissions_notification_title">Заставацца праінфармаваным</string>
     <string name="dialog_permissions_notification_content">Націсніце тут, каб уключыць апавяшчэнні аб надвор’і, або прыміце рашэнне пазней у наладах.</string>
     <string name="dialog_permissions_location_title">Доступ да інфармацыі аб месцазнаходжанні</string>
-    <string name="daily_forecast">Паднеўны прагноз</string>
+    <string name="daily_forecast">Прагноз па днях</string>
     <string name="alerts_to_follow">Для прагляду абвестак пра надвор\'е націсніце тут.</string>
     <string name="precipitation_nowcasting">Хвілінныя ападкі</string>
     <string name="daily_yesterday_short">Учора</string>
@@ -437,8 +437,8 @@
     <string name="about_privacy_policy">Палітыка прыватнасці</string>
     <string name="settings_debug">Адладка</string>
     <string name="settings_debug_summary">Журналы памылак</string>
-    <string name="settings_debug_dump_crash_logs_title">Падзяліцца часопісамі памылак</string>
-    <string name="settings_debug_dump_crash_logs_summary">Захоўвае часопісы з памылкамі ў файл для адпраўкі распрацоўшчыкам</string>
+    <string name="settings_debug_dump_crash_logs_title">Падзяліцца журналам памылак</string>
+    <string name="settings_debug_dump_crash_logs_summary">Захоўвае журналы памылак у файл для адпраўкі распрацоўшчыкам</string>
     <string name="settings_debug_dump_crash_logs_saved">Журналы аварыйных спыненняў захаваны</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Націсніце, каб адкрыць</string>
     <string name="settings_changes_apply_after_restart">Змены набудуць моц пасля перазапуску</string>
@@ -565,7 +565,7 @@
     <string name="common_weather_text_drizzle_freezing_light">Лёгкая шэрань</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Моцная шэрань</string>
     <string name="weather_kind_thunder">Гром</string>
-    <string name="weather_kind_thunderstorm">Штармавая навальніца</string>
+    <string name="weather_kind_thunderstorm">Навальніца</string>
     <string name="weather_kind_wind">Вецер</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Іней з туманам</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Сярэдняя навальніца</string>
@@ -587,7 +587,7 @@
     <string name="widget_clock_day_vertical">Час + Паднеўны (Вертыкальны)</string>
     <string name="widget_clock_day_week">Час + Паднеўны + Панядзелак</string>
     <string name="widget_text">Тэкст</string>
-    <string name="widget_trend_daily">Падняўная дынаміка</string>
+    <string name="widget_trend_daily">Дынаміка па днях</string>
     <string name="widget_trend_hourly">Пагадзінная дынаміка</string>
     <string name="widget_multi_city">Некалькі гарадоў</string>
     <string name="widget_material_you_forecast">Material You - Прагноз</string>
@@ -685,7 +685,7 @@
     <string name="meteoam_weather_text_tornado_watersprout">Тарнада або водны смерч</string>
     <string name="settings_unavailable_no_animations">Недаступна, спачатку ўключыце анімацыю ў наладах Android</string>
     <string name="weather_current_data_by">Даныя аб бягучым надвор\'і прадастаўлены %s</string>
-    <string name="current_weather">Бягучая надвор’е</string>
+    <string name="current_weather">Бягучае надвор\'е</string>
     <string name="common_weather_text_dry">Суха</string>
     <string name="common_weather_text_warm">Цёпла</string>
     <string name="common_weather_text_cool">Халаднавата</string>
