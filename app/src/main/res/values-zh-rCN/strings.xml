@@ -4,7 +4,7 @@
     <string name="app_name">天气</string>
     <!-- keyword. -->
     <string name="location_current">当前位置</string>
-    <string name="daily_today_short">今日</string>
+    <string name="daily_today_short">今天</string>
     <string name="notification_refreshed_at">更新于</string>
     <string name="precipitation">降水量</string>
     <string name="precipitation_probability">降水概率</string>
@@ -31,8 +31,8 @@
     <string name="action_refresh">刷新</string>
     <string name="action_restart">重启</string>
     <string name="action_edit">编辑</string>
-    <string name="daily_yesterday_short">昨日</string>
-    <string name="daily_tomorrow_short">明日</string>
+    <string name="daily_yesterday_short">昨天</string>
+    <string name="daily_tomorrow_short">明天</string>
     <string name="temperature_real_feel">体感温度®</string>
     <string name="temperature_real_feel_shade">阴面体感温度™</string>
     <string name="temperature_apparent">体感温度</string>
@@ -88,7 +88,7 @@
     <string name="daily_forecast">每日预报</string>
     <string name="hourly_forecast">小时预报</string>
     <string name="air_quality">空气质量</string>
-    <string name="pollen">花粉</string>
+    <string name="pollen">花粉浓度</string>
     <string name="details">详细数据</string>
     <string name="ephemeris">日月升落</string>
     <string name="common_weather_text_clear_sky">晴朗</string>
@@ -552,7 +552,7 @@
     <string name="about_dependencies">依赖</string>
     <string name="action_save">保存</string>
     <string name="settings_weather_sources_per_location_summary">自定义用于此位置的天气数据源</string>
-    <string name="precipitation_nowcasting">临近降水预报</string>
+    <string name="precipitation_nowcasting">降水临近预报</string>
     <string name="about_privacy_policy">隐私政策</string>
     <string name="about_contact">联系方式</string>
     <string name="common_weather_text_rain_light">小雨</string>
@@ -596,7 +596,7 @@
     <string name="temperature_normals">气温标准值</string>
     <string name="temperature_normal_short">标准值</string>
     <string name="settings_widgets_broadcast_send_data_title">发送天气数据到 %s</string>
-    <string name="pollen_and_mold">花粉和霉菌</string>
+    <string name="pollen_and_mold">花粉和霉菌浓度</string>
     <string name="settings_color_app">跟随应用设置</string>
     <string name="settings_debug_dump_crash_logs_saved">已保存崩溃日志</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">轻按打开</string>
