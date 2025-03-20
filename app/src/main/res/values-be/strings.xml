@@ -605,7 +605,7 @@
     <string name="uv_index_short">УФ-індэкс</string>
     <string name="visibility_short">Бачнасць</string>
     <string name="pressure_short">Ціск</string>
-    <string name="temperature_feels_like_short">Адчуваць</string>
+    <string name="temperature_feels_like_short">Адчуваецца як</string>
     <string name="humidity_short">Вільготнасць</string>
     <string name="dew_point_short">Пункт расы</string>
     <string name="cloud_cover_short">Воблачнасць</string>
