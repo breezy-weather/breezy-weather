@@ -20,7 +20,7 @@
     <string name="ephemeris_sunrise_at">Усход сонца ў %s</string>
     <string name="ephemeris_moon_phase_last_quarter">Апошняя квадра</string>
     <string name="ephemeris_moon_phase_waning_crescent">Стары месяц</string>
-    <string name="air_quality_pm_explanations_origin">Некаторыя цвёрдыя часціцы ўзнікаюць натуральным чынам з-за вулканаў, пылавых бур, лясных пажараў і падпаленых палёў, жывой расліннасці і марскіх пырсак. Чалавечая дзейнасць таксама прыводзіць да ўтварэння значнай колькасці цвёрдых часціц, напрыклад, дарожны рух і транспарт, прамысловая дзейнасць, электрастанцыі, будаўнічыя пляцоўкі, спальванне адходаў або палёў.</string>
+    <string name="air_quality_pm_explanations_origin">Некаторыя цвёрдыя часціцы ўзнікаюць натуральным чынам з-за вулканаў, пылавых бур, лясных пажараў і падпаленых палёў, жывой расліннасці і марскіх пырскаў. Чалавечая дзейнасць таксама прыводзіць да ўтварэння значнай колькасці цвёрдых часціц, напрыклад, дарожны рух і транспарт, прамысловая дзейнасць, электрастанцыі, будаўнічыя пляцоўкі, спальванне адходаў або палёў.</string>
     <string name="air_quality_pm_explanations_consequences">Цвёрдыя часціцы з’яўляюцца найбольш шкоднай формай забруджвання паветра з-за іх здольнасці пранікаць глыбока ў лёгкія і мозг з крывацёку, выклікаючы праблемы са здароўем, такія як хваробы сэрца, хваробы лёгкіх і заўчасную смерць.</string>
     <string name="air_quality_o3_info_introduction">Прыземны азон (O₃) з’яўляецца асноўным кампанентам смогу. Хоць гэта тая ж самая малекула, прыземны азон можа быць шкодным для здароўя чалавека, у адрозненне ад стратасфернага азону, які абараняе зямлю ад залішняга ЎХ-выпраменьвання.</string>
     <string name="air_quality_o3_info_origin">Ён утвараецца ў выніку фотахімічных рэакцый з такімі забруджвальнымі рэчывамі, як лятучыя арганічныя злучэнні, монааксід вугляроду і аксіды азоту (NOₓ), якія выкідаюцца транспартнымі сродкамі і прамысловасцю. З-за фотахімічнай прыроды самыя высокія ўзроўні азону назіраюцца ў перыяды сонечнага надвор’я.</string>
@@ -244,7 +244,7 @@
     <string name="dialog_permissions_notification_content">Націсніце тут, каб уключыць апавяшчэнні аб надвор’і, або прыміце рашэнне пазней у наладах.</string>
     <string name="dialog_permissions_location_title">Доступ да інфармацыі аб месцазнаходжанні</string>
     <string name="daily_forecast">Паднеўны прагноз</string>
-    <string name="alerts_to_follow">Для прагляду абвестак аб пагоде націсніце тут.</string>
+    <string name="alerts_to_follow">Для прагляду абвестак пра надвор\'е націсніце тут.</string>
     <string name="precipitation_nowcasting">Хвілінныя ападкі</string>
     <string name="daily_yesterday_short">Учора</string>
     <string name="daily_today_short">Сёння</string>
@@ -432,7 +432,7 @@
     <string name="settings_widgets_notification_persistent_switch">Пастаяннае апавяшчэнне</string>
     <string name="settings_widgets_notification_style_title">Стыль</string>
     <string name="settings_widgets_notification_temp_icon_switch">Паказваць тэмпературу ў радку стану</string>
-    <string name="settings_widgets_notification_feels_like_switch">Выкарыстоўваць темперутуру па адчуваннях</string>
+    <string name="settings_widgets_notification_feels_like_switch">Выкарыстоўваць тэмпературу па адчуваннях</string>
     <string name="settings_widgets_broadcast_send_data_title">Адправіць дадзеныя аб надвор’і ў %s</string>
     <string name="about_privacy_policy">Палітыка прыватнасці</string>
     <string name="settings_debug">Адладка</string>
@@ -574,7 +574,7 @@
     <string name="metno_weather_text_andthunder">%s з навальніцай</string>
     <string name="dialog_permissions_location_content">Каб скарыстацца гэтай функцыяй, неабходна даць дазвол на доступ да вашага бягучага месцазнаходжання. Ён будзе даступны толькі выбраным крыніцам дадзеных аб надвор’і. Калі вы перадумалі, можна скасаваць дзеянне і ўручную дадаць фіксаванае месца.</string>
     <string name="dialog_permissions_location_background_title">Доступ да месцазнаходжання ў фонавым рэжыме</string>
-    <string name="dialog_permissions_location_background_content">Каб уключыць абнаўленне надвор’я ў фонавым рэжыме для апошняга бягучага месцазнаходжання, вядомага Android, вам неабходна ўсталяваць дазвол месцазнаходжання на“Дазволіць у любым рэжыме”. Калі вы гэтага не зробіце, надвор’е будзе абноўлена на аснове апошніх атрыманых каардынатаў на пярэднім плане, якія могуць быць старымі.</string>
+    <string name="dialog_permissions_location_background_content">Каб уключыць абнаўленне надвор’я ў фонавым рэжыме для апошняга бягучага месцазнаходжання, вядомага Android, вам неабходна ўсталяваць дазвол месцазнаходжання на «Дазволіць у любым рэжыме». Калі вы гэтага не зробіце, надвор’е будзе абноўлена на аснове апошніх атрыманых каардынат на пярэднім плане, якія могуць быць старымі.</string>
     <string name="message_parsing_error_title">Не ўдалося прааналізаваць дадзеныя аб надвор’і</string>
     <string name="message_parsing_error_content">Пераканайцеся, што вы абнавілі дадатак да апошняй версіі. Сервер можа быць часова недаступны, у гэтым выпадку паспрабуйце пазней. Калі праблема не ўхіленая, стварыце дамп часопіса збояў з налад адладкі і паведаміце аб праблеме на GitHub.</string>
     <string name="message_source_not_installed_error_title">Крыніца больш не даступна</string>
