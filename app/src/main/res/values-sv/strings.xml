@@ -263,7 +263,7 @@
     <string name="wind_direction_SE_short">SO</string>
     <string name="app_name">Väder</string>
     <string name="dew_point">Daggpunkt</string>
-    <string name="sunshine_duration">Soltimmar</string>
+    <string name="sunshine_duration">Solskenstid</string>
     <string name="daytime">Dagtid</string>
     <string name="common_weather_text_drizzle_light">Lätt duggregn</string>
     <string name="weather_source_accu_preference_hours_12">12 timmar</string>
