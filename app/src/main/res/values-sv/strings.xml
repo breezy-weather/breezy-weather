@@ -86,7 +86,7 @@
     <string name="precipitation_intensity_heavy">Kraftig</string>
     <string name="weather_pollen_data_by">Pollendata från %s</string>
     <string name="weather_source_accu_preference_days_10">10 dagar</string>
-    <string name="pollen_level_2">Låg</string>
+    <string name="pollen_level_2">Lågt</string>
     <string name="common_weather_text_rain">Regn</string>
     <string name="precipitation_none">Ingen nederbörd</string>
     <string name="settings_units_temperature">Temperaturenhet</string>
@@ -126,7 +126,7 @@
     <string name="widget_custom_subtitle_keyword_lat_description">Latitud</string>
     <string name="pollen">Pollen</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Välj platstjänst</string>
-    <string name="pollen_level_4">Hög</string>
+    <string name="pollen_level_4">Högt</string>
     <string name="widget_style_temperature">Temperatur</string>
     <string name="widget_custom_subtitle_keyword_at_description">Nuvarande känns som-temperatur (°C/°F)</string>
     <string name="precipitation_intensity_light">Lätt</string>
@@ -182,7 +182,7 @@
     <string name="settings_units">Enheter</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="action_undo">Ångra</string>
-    <string name="pollen_level_1">Mycket låg</string>
+    <string name="pollen_level_1">Mycket lågt</string>
     <string name="widget_custom_subtitle_keyword_w_description">Vecka</string>
     <string name="air_quality_pm_explanations_origin">En del partiklar förekommer naturligt och kommer från vulkaner, sandstormar, skogs- och gräsbränder, levande vegetation och havsstänk. Mänskliga aktiviteter genererar också ansenliga mängder partiklar, till exempel trafik och transporter, industriella verksamheter, kraftverk, byggarbetsplatser, avfallsförbränning och jordbruk.</string>
     <string name="unit_mgpcum">mg/m³</string>
@@ -203,10 +203,10 @@
     <string name="location_message_deleted">Plats borttagen</string>
     <string name="weather_kind_wind">Vind</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Kontrollera platsbehörigheterna</string>
-    <string name="pollen_level_3">Måttlig</string>
+    <string name="pollen_level_3">Måttligt</string>
     <string name="weather_data_by">Data från %s</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Nuvarande lufttryck</string>
-    <string name="pollen_level_5">Mycket hög</string>
+    <string name="pollen_level_5">Mycket högt</string>
     <string name="weather_source_accu_preference_days_1">1 dag</string>
     <string name="alerts_to_follow">Kommande varningar, tryck här för att visa dem.</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Nuvarande temperatur (°)</string>
@@ -257,7 +257,7 @@
     <string name="settings_units_pressure">Tryckenhet</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="action_done">Klar</string>
-    <string name="pollen_level_0">Ingen</string>
+    <string name="pollen_level_0">Inget</string>
     <string name="settings_units_distance">Längdenhet</string>
     <string name="ephemeris_moonrise_at">Månuppgång vid %s</string>
     <string name="wind_direction_SE_short">SO</string>
@@ -376,7 +376,7 @@
     <string name="settings_appearance">Utseende</string>
     <string name="settings_weather_sources">Väderkällor</string>
     <string name="settings_debug">Felsökning</string>
-    <string name="ephemeris_moon_phase_waning_crescent">Avtagande skära</string>
+    <string name="ephemeris_moon_phase_waning_crescent">Avtagande månskära</string>
     <string name="about_dependencies">Beroenden</string>
     <string name="settings_widgets">Widgetar &amp; levande bakgrund</string>
     <string name="about_contribution_WangDaYeeeeee">Utvecklare av det ursprungliga projektet Geometric Weather</string>
@@ -532,7 +532,7 @@
     <string name="common_weather_text_rain_snow_mixed_showers_light">Lätta snöblandade regnskurar</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Tryck för att öppna</string>
     <string name="weather_api_limit_reached_content">För att kringgå begränsningen, används din egen API-nyckel.</string>
-    <string name="null_data_text">Inget</string>
+    <string name="null_data_text">Saknas</string>
     <string name="settings_changes_apply_after_restart">Ändringarna kommer att tillämpas efter omstart</string>
     <string name="settings_location_access_background_summaryOn">Aktiverad. Appen kommer att kunna uppdatera väderdata för din nuvarande plats i bakgrunden.</string>
     <string name="settings_units_summary">Temperatur, nederbörd, avstånd, hastighet, lufttryck</string>
