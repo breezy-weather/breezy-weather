@@ -330,7 +330,7 @@
     <string name="widget_text">Text</string>
     <string name="weather_message_invalid_location">Ogiltig plats, vänligen ta bort den och lägg till igen</string>
     <string name="location_current_not_found_yet">Nuvarande plats inte funnen än…</string>
-    <string name="ephemeris_moon_phase_first_quarter">Första kvarteret</string>
+    <string name="ephemeris_moon_phase_first_quarter">Tilltagande halvmåne</string>
     <string name="air_quality_o3_info_origin">Det bildas genom fotokemiska reaktioner med föroreningar som till exempel flyktiga organiska föreningar, kolmonoxid och kväveoxider (NOₓ) från fordon och industrier. På grund av dess fotokemiska natur är nivåerna av ozon som högst under perioder med soligt väder.</string>
     <string name="air_quality_no2_info_introduction">Kvävedioxid (NO₂) är en kvävande, giftig, rödbrun gas med en karaktäristisk stickande, frän lukt.</string>
     <string name="location_results_by">Platsresultat från %s</string>
@@ -340,8 +340,8 @@
     <string name="widget_week">Veckovis</string>
     <string name="action_show_errors">Tryck för att visa detaljer</string>
     <string name="message_tap_again_to_exit">Tryck igen för att avsluta</string>
-    <string name="ephemeris_moon_phase_waxing_gibbous">Andra kvarteret</string>
-    <string name="ephemeris_moon_phase_waning_gibbous">Tredje kvarteret</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Tilltagande oval måne</string>
+    <string name="ephemeris_moon_phase_waning_gibbous">Avtagande oval måne</string>
     <string name="location_swipe_to_delete">Du kan svepa åt vänster för att ta bort detta objekt</string>
     <string name="widget_trend_daily">Dagstrend</string>
     <string name="widget_clock_day_vertical">Klocka + daglig (lodrät stil)</string>
@@ -353,11 +353,11 @@
     <string name="weather_alert_data_by">Varningsdata från %s</string>
     <string name="weather_api_key_required_missing_content">För att använda denna källan behöver du bidra med en API-nyckel.</string>
     <string name="weather_message_data_refresh_failed">Datauppdatering misslyckades</string>
-    <string name="ephemeris_moon_phase_last_quarter">Fjärde kvarteret</string>
+    <string name="ephemeris_moon_phase_last_quarter">Avtagande halvmåne</string>
     <string name="widget_trend_hourly">Timtrend</string>
     <string name="widget_clock_day_week">Klocka + daglig + veckovis</string>
     <string name="settings_background_updates_refresh_title">Uppdateringsfrekvens</string>
-    <string name="ephemeris_moon_phase_waxing_crescent">Tilltagande skära</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">Tilltagande månskära</string>
     <string name="visibility">Sikt</string>
     <string name="settings_main">Huvudskärm</string>
     <string name="settings_notifications_summary">Aviseringar om vädervarningar, nederbörd eller prognos för den första platsen</string>
