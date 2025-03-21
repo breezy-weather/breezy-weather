@@ -33,8 +33,8 @@
     <string name="action_edit">编辑</string>
     <string name="daily_yesterday_short">昨天</string>
     <string name="daily_tomorrow_short">明天</string>
-    <string name="temperature_real_feel">体感温度®</string>
-    <string name="temperature_real_feel_shade">阴面体感温度™</string>
+    <string name="temperature_real_feel">RealFeel®</string>
+    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">体感温度</string>
     <string name="temperature_wind_chill">风寒指数</string>
     <string name="temperature_wet_bulb">湿球温度</string>
