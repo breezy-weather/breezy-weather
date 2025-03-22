@@ -352,7 +352,7 @@
     <string name="widget_clock_day_details">Klocka + daglig (detaljer)</string>
     <string name="weather_alert_data_by">Varningsdata från %s</string>
     <string name="weather_api_key_required_missing_content">För att använda denna källan behöver du bidra med en API-nyckel.</string>
-    <string name="weather_message_data_refresh_failed">Datauppdatering misslyckades</string>
+    <string name="weather_message_data_refresh_failed">Uppdatering av data misslyckades</string>
     <string name="ephemeris_moon_phase_last_quarter">Avtagande halvmåne</string>
     <string name="widget_trend_hourly">Timtrend</string>
     <string name="widget_clock_day_week">Klocka + daglig + veckovis</string>
@@ -496,7 +496,7 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="action_learn_more">Läs mer</string>
     <string name="dialog_permissions_location_title">Behörighet till platsinformation</string>
-    <string name="weather_normals_data_by">Temperaturnormalerdata från %s</string>
+    <string name="weather_normals_data_by">Data till temperaturnormaler från %s</string>
     <string name="settings_widgets_notification_persistent_switch">Pågående</string>
     <string name="unit_ft">fot</string>
     <string name="settings_main_background_animation_title">Bakgrundsanimation</string>
@@ -615,7 +615,7 @@
     <string name="settings_weather_sources_default_source">Förvald källa för nya platser</string>
     <string name="alert">Varning</string>
     <string name="location_delete_location_dialog_title">Ta bort plats?</string>
-    <string name="weather_message_too_frequent_refreshes">Vänta några sekunder innan du försöker igen…</string>
+    <string name="weather_message_too_frequent_refreshes">Vänligen vänta några sekunder innan du försöker igen …</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Rådande Luftkvalitetsindex</string>
     <string name="message_invalid_incomplete_data">Ogiltig eller ofullständig data mottagen från server</string>
     <string name="location_delete_location_dialog_message">“%s” kommer att tas bort från sparade platser.</string>
