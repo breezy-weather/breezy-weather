@@ -5,9 +5,6 @@
 - Background update errors will now be grouped by location
 - When changing an unit, widgets will now update automatically, instead of waiting for the next refresh to apply the new units
 
-**Weather sources**
-- [RNSA] added as possible Pollen source for France. If it doesn’t show up, try adding your location with a different search source, or if you use current location, use a different “Address lookup”.
-
 **Translations**
 - Translations updated
 
