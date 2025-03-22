@@ -244,7 +244,7 @@
     <string name="dialog_permissions_notification_content">Націсніце тут, каб уключыць апавяшчэнні аб надвор’і, або прыміце рашэнне пазней у наладах.</string>
     <string name="dialog_permissions_location_title">Доступ да інфармацыі аб месцазнаходжанні</string>
     <string name="daily_forecast">Прагноз па днях</string>
-    <string name="alerts_to_follow">Для прагляду абвестак пра надвор\'е націсніце тут.</string>
+    <string name="alerts_to_follow">Для прагляду абвестак пра надвор’е націсніце тут.</string>
     <string name="precipitation_nowcasting">Хвілінныя ападкі</string>
     <string name="daily_yesterday_short">Учора</string>
     <string name="daily_today_short">Сёння</string>
@@ -292,7 +292,7 @@
     <string name="widget_subtitle_data_wind">Вецер</string>
     <string name="widget_subtitle_data_custom">Уласны</string>
     <string name="widget_custom_subtitle_explanation">Вы можаце ўвесці што заўгодна, але звярніце ўвагу на даўжыню тэксту. Калі вы хочаце паказаць даныя аб надвор’і, выкарыстоўвайце $ для спасылкі на адпаведнае ключавое слова. \n \nНапрыклад, “Бягучае надвор’е: $cw$” будзе паказана як “Бягучае надвор’е: Яснае неба”.</string>
-    <string name="widget_custom_subtitle_keyword_cw_description">Бягучае надвор\'е</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">Бягучае надвор’е</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Бягучая тэмпература (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Бягучы УФ-індэкс</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Бягучая вільготнасць</string>
@@ -684,8 +684,8 @@
     <string name="settings_notifications_app_updates_check">Апавяшчаць мяне пра абнаўленне праграмы</string>
     <string name="meteoam_weather_text_tornado_watersprout">Тарнада або водны смерч</string>
     <string name="settings_unavailable_no_animations">Недаступна, спачатку ўключыце анімацыю ў наладах Android</string>
-    <string name="weather_current_data_by">Даныя аб бягучым надвор\'і прадастаўлены %s</string>
-    <string name="current_weather">Бягучае надвор\'е</string>
+    <string name="weather_current_data_by">Даныя аб бягучым надвор’і прадастаўлены %s</string>
+    <string name="current_weather">Бягучае надвор’е</string>
     <string name="common_weather_text_dry">Суха</string>
     <string name="common_weather_text_warm">Цёпла</string>
     <string name="common_weather_text_cool">Халаднавата</string>
