@@ -8,6 +8,9 @@
 **Translations**
 - Translations updated
 
+**Technical**
+- [Android] Improved current location request (@min7-i)
+
 
 # Version 5.4.5 (2025-03-03)
 
