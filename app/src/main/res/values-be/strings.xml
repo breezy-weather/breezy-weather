@@ -112,7 +112,7 @@
     <string name="common_weather_text_snow_showers">Снегапад</string>
     <string name="weather_kind_hail">Град</string>
     <string name="weather_kind_haze">Дымка</string>
-    <string name="null_data_text">Недаступна</string>
+    <string name="null_data_text">Н/Д</string>
     <string name="hourly_forecast">Прагноз па гадзінах</string>
     <string name="app_name">Надвор’е</string>
     <string name="pollen">Пылок</string>
