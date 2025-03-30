@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="@dimen/widget_grid_4"
+    android:minHeight="@dimen/widget_grid_3"
+    android:minResizeWidth="@dimen/widget_grid_3"
+    android:minResizeHeight="@dimen/widget_grid_2"
+    android:updatePeriodMillis="0"
+    android:initialLayout="@layout/widget_clock_day_hour_week"
+    android:previewImage="@drawable/widget_clock_day_week"
+    android:resizeMode="horizontal|vertical"
+    android:configure="org.breezyweather.remoteviews.config.ClockDayHourWeekWidgetConfigActivity"
+    android:widgetFeatures="reconfigurable"
+    android:widgetCategory="home_screen|keyguard" />

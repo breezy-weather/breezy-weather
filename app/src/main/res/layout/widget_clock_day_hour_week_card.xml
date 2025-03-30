@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_clock_day_hour_week"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@android:color/black">
+
+    <!-- Card Background -->
+    <ImageView
+        android:id="@+id/widget_clock_day_hour_week_card"
+        style="@style/widget_background_card"
+        tools:ignore="ContentDescription" />
+
+    <!-- Content LinearLayout (Copied from widget_clock_day_hour_week.xml) -->
+    <LinearLayout
+        android:id="@+id/widget_clock_day_hour_week_weather"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/little_margin"
+        android:paddingBottom="@dimen/little_margin">
+
+        <!-- Clock, Current Weather, Date -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="RtlHardcoded">
+
+            <!-- Clock Containers (Light, Normal, Black) -->
+            <RelativeLayout
+                android:id="@+id/widget_clock_day_hour_week_clock_lightContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true">
+                <TextClock
+                    android:id="@+id/widget_clock_day_hour_week_clock_light"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginEnd="@dimen/little_margin"
+                    style="@style/widget_text_clock"
+                    tools:text="9:10"
+                    tools:ignore="RelativeOverlap,RtlHardcoded" />
+                <TextClock
+                    android:id="@+id/widget_clock_day_hour_week_clock_aa_light"
+                    android:layout_toEndOf="@id/widget_clock_day_hour_week_clock_light"
+                    android:layout_alignBaseline="@id/widget_clock_day_hour_week_clock_light"
+                    style="@style/widget_text_clock_aa"
+                    tools:text="AM"
+                    tools:ignore="RelativeOverlap,RtlHardcoded" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/widget_clock_day_hour_week_clock_normalContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                tools:visibility="visible">
+                <TextClock
+                    android:id="@+id/widget_clock_day_hour_week_clock_normal"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginEnd="@dimen/little_margin"
+                    style="@style/widget_text_clock"
+                    tools:text="9:10"
+                    tools:ignore="RelativeOverlap,RtlHardcoded" />
+                <TextClock
+                    android:id="@+id/widget_clock_day_hour_week_clock_aa_normal"
+                    android:layout_toEndOf="@id/widget_clock_day_hour_week_clock_normal"
+                    android:layout_alignBaseline="@id/widget_clock_day_hour_week_clock_normal"
+                    style="@style/widget_text_clock_aa"
+                    tools:text="AM"
+                    tools:ignore="RelativeOverlap,RtlHardcoded" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/widget_clock_day_hour_week_clock_blackContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                tools:visibility="visible">
+                <TextClock
+                    android:id="@+id/widget_clock_day_hour_week_clock_black"
+                    android:fontFamily="sans-serif-black"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/normal_margin"
+                    android:layout_marginEnd="@dimen/little_margin"
+                    style="@style/widget_text_clock"
+                    tools:text="9:10"
+                    tools:ignore="RelativeOverlap,RtlHardcoded" />
+                <TextClock
+                    android:id="@+id/widget_clock_day_hour_week_clock_aa_black"
+                    android:layout_toEndOf="@id/widget_clock_day_hour_week_clock_black"
+                    android:layout_alignBaseline="@id/widget_clock_day_hour_week_clock_black"
+                    style="@style/widget_text_clock_aa"
+                    tools:text="AM"
+                    tools:ignore="RelativeOverlap,RtlHardcoded" />
+            </RelativeLayout>
+
+            <!-- Current Weather Icon -->
+            <ImageView
+                android:id="@+id/widget_clock_day_hour_week_icon"
+                android:layout_width="@dimen/widget_current_weather_icon_size"
+                android:layout_height="@dimen/widget_current_weather_icon_size"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/little_margin"
+                android:layout_marginEnd="@dimen/normal_margin"
+                android:src="@drawable/weather_cloudy"
+                tools:ignore="ContentDescription,RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <!-- Date, Location, Current Temp -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp">
+
+            <!-- Date -->
+            <TextClock
+                android:id="@+id/widget_clock_day_hour_week_title"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/large_margin"
+                android:textSize="@dimen/widget_content_text_size"
+                android:maxLines="1"
+                style="@style/widget_text_clock"
+                tools:text="Sun 4 Nov"
+                tools:ignore="RtlHardcoded" />
+
+            <!-- Alternate Calendar -->
+            <TextView
+                android:id="@+id/widget_clock_day_hour_week_alternate_calendar"
+                android:layout_toEndOf="@id/widget_clock_day_hour_week_title"
+                android:layout_alignBaseline="@id/widget_clock_day_hour_week_title"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="@dimen/little_margin"
+                android:text=""
+                android:textSize="@dimen/widget_subtitle_text_size"
+                android:maxLines="1"
+                style="@style/widget_content_text"
+                tools:text=" - 九月十八"
+                tools:ignore="RtlHardcoded" />
+
+            <!-- Location + Current Temp -->
+            <TextView
+                android:id="@+id/widget_clock_day_hour_week_subtitle"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/little_margin"
+                android:layout_marginEnd="@dimen/large_margin"
+                android:text="@string/widget_ellipsis"
+                android:textSize="@dimen/widget_content_text_size"
+                android:maxLines="1"
+                style="@style/widget_content_text"
+                tools:text="Surabaya 8 °C"
+                tools:ignore="RtlHardcoded" />
+
+        </RelativeLayout>
+
+        <!-- Hourly Forecast -->
+        <LinearLayout
+            android:id="@+id/widget_clock_day_hour_week_hourly_container"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/little_margin"
+            android:layout_marginBottom="@dimen/little_margin"
+            android:baselineAligned="false"
+            tools:ignore="DisableBaselineAlignment">
+
+            <!-- Hour 1 -->
+            <LinearLayout
+                android:id="@+id/widget_clock_day_hour_week_hour_item_1"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_hour_time_1"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_time_text_size"
+                    tools:text="10:00" />
+                <ImageView
+                    android:id="@+id/widget_clock_day_hour_week_hour_icon_1"
+                    android:layout_width="@dimen/widget_little_weather_icon_size"
+                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:padding="2dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_hour_temp_1"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    tools:text="9°" />
+            </LinearLayout>
+
+            <!-- Hour 2 -->
+            <LinearLayout
+                android:id="@+id/widget_clock_day_hour_week_hour_item_2"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_hour_time_2"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_time_text_size"
+                    tools:text="11:00" />
+                <ImageView
+                    android:id="@+id/widget_clock_day_hour_week_hour_icon_2"
+                    android:layout_width="@dimen/widget_little_weather_icon_size"
+                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:padding="2dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_hour_temp_2"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    tools:text="10°" />
+            </LinearLayout>
+
+            <!-- Hour 3 -->
+            <LinearLayout
+                android:id="@+id/widget_clock_day_hour_week_hour_item_3"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_hour_time_3"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_time_text_size"
+                    tools:text="12:00" />
+                <ImageView
+                    android:id="@+id/widget_clock_day_hour_week_hour_icon_3"
+                    android:layout_width="@dimen/widget_little_weather_icon_size"
+                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:padding="2dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_hour_temp_3"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    tools:text="11°" />
+            </LinearLayout>
+
+            <!-- Hour 4 -->
+            <LinearLayout
+                android:id="@+id/widget_clock_day_hour_week_hour_item_4"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_hour_time_4"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_time_text_size"
+                    tools:text="13:00" />
+                <ImageView
+                    android:id="@+id/widget_clock_day_hour_week_hour_icon_4"
+                    android:layout_width="@dimen/widget_little_weather_icon_size"
+                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:padding="2dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_hour_temp_4"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    tools:text="12°" />
+            </LinearLayout>
+
+            <!-- Hour 5 -->
+            <LinearLayout
+                android:id="@+id/widget_clock_day_hour_week_hour_item_5"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_hour_time_5"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_time_text_size"
+                    tools:text="14:00" />
+                <ImageView
+                    android:id="@+id/widget_clock_day_hour_week_hour_icon_5"
+                    android:layout_width="@dimen/widget_little_weather_icon_size"
+                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:padding="2dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_hour_temp_5"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    tools:text="12°" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Daily Forecast -->
+        <LinearLayout
+            android:id="@+id/widget_clock_day_hour_week_daily_container"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/little_margin"
+            android:baselineAligned="false"
+            tools:ignore="DisableBaselineAlignment">
+
+            <!-- Day 1 -->
+            <LinearLayout
+                android:id="@+id/widget_clock_day_hour_week_day_item_1"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_day_week_1"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_refreshing"
+                    android:textSize="@dimen/widget_time_text_size"
+                    tools:text="Today" />
+                <ImageView
+                    android:id="@+id/widget_clock_day_hour_week_day_icon_1"
+                    android:layout_width="@dimen/widget_little_weather_icon_size"
+                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:padding="2dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_day_temp_1"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    tools:text="9°/4°" />
+            </LinearLayout>
+
+            <!-- Day 2 -->
+            <LinearLayout
+                android:id="@+id/widget_clock_day_hour_week_day_item_2"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_day_week_2"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_time_text_size"
+                    tools:text="Thu" />
+                <ImageView
+                    android:id="@+id/widget_clock_day_hour_week_day_icon_2"
+                    android:layout_width="@dimen/widget_little_weather_icon_size"
+                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:padding="2dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_day_temp_2"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    tools:text="9°/4°" />
+            </LinearLayout>
+
+            <!-- Day 3 -->
+            <LinearLayout
+                android:id="@+id/widget_clock_day_hour_week_day_item_3"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_day_week_3"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_time_text_size"
+                    tools:text="Fri" />
+                <ImageView
+                    android:id="@+id/widget_clock_day_hour_week_day_icon_3"
+                    android:layout_width="@dimen/widget_little_weather_icon_size"
+                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:padding="2dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_day_temp_3"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    tools:text="9°/4°" />
+            </LinearLayout>
+
+            <!-- Day 4 -->
+            <LinearLayout
+                android:id="@+id/widget_clock_day_hour_week_day_item_4"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_day_week_4"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_time_text_size"
+                    tools:text="Sat" />
+                <ImageView
+                    android:id="@+id/widget_clock_day_hour_week_day_icon_4"
+                    android:layout_width="@dimen/widget_little_weather_icon_size"
+                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:padding="2dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:ignore="ContentDescription" />
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_day_temp_4"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    tools:text="9°/4°" />
+            </LinearLayout>
+
+            <!-- Day 5 -->
+            <LinearLayout
+                android:id="@+id/widget_clock_day_hour_week_day_item_5"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_day_week_5"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_time_text_size"
+                    tools:text="Sun" />
+                <ImageView
+                    android:id="@+id/widget_clock_day_hour_week_day_icon_5"
+                    android:layout_width="@dimen/widget_little_weather_icon_size"
+                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:padding="2dp"
+                    android:src="@drawable/weather_cloudy"
+                    tools:src="@drawable/weather_clear_day"
+                    tools:ignore="ContentDescription" />
+                <TextView
+                    android:id="@+id/widget_clock_day_hour_week_day_temp_5"
+                    style="@style/widget_content_text"
+                    android:maxLines="1"
+                    android:text="@string/widget_ellipsis"
+                    android:textSize="@dimen/widget_content_text_size"
+                    tools:text="9°/4°" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

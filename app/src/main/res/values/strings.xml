@@ -421,6 +421,7 @@
     <string name="widget_clock_day_details">Clock + Daily (Details)</string>
     <string name="widget_clock_day_vertical">Clock + Daily (Vertical style)</string>
     <string name="widget_clock_day_week">Clock + Daily + Weekly</string>
+    <string name="widget_clock_day_hour_week">Clock + Day + Hour + Week</string>
     <string name="widget_text">Text</string>
     <string name="widget_trend_daily">Daily trend</string>
     <string name="widget_trend_hourly">Hourly trend</string>
