@@ -49,7 +49,12 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
 </div>
 
 <div align="center">
-    <a href="https://github.com/breezy-weather/breezy-weather/blob/main/INSTALL.md"><strong>All installation methods</strong></a>
+    <p><a href="https://github.com/breezy-weather/breezy-weather/blob/main/INSTALL.md"><strong>All installation methods</strong></a></p>
+</div>
+
+<div align="center">
+  <p><strong>SHA-256 hash of the signing certificate:</strong> 29d435f70aa9aec3c1faff7f7ffa6e15785088d87f06ecfcab9c3cc62dc269d8<br />
+  SHA-256 checksums are also provided per file on the <a href="https://github.com/breezy-weather/breezy-weather/releases">GitHub releases page</a>.</p>
 </div>
 
 <hr />
