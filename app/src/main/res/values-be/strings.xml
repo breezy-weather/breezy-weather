@@ -71,10 +71,10 @@
     <string name="action_continue">Працягнуць</string>
     <string name="message_network_unavailable">Сетка недаступна</string>
     <string name="message_server_timeout">Скончыўся час запыту</string>
-    <string name="widget_subtitle_data_feels_like">Тэмпература па адчуваннях</string>
+    <string name="widget_subtitle_data_feels_like">Адчуванне тэмпературы</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Бягучая тэмпература (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">Бягучая тэмпература па адчуваннях (°C/°F)</string>
-    <string name="widget_custom_subtitle_keyword_atd_description">Бягучая тэмпература па адчуванні (°)</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Бягучая тэмпература па адчуваннях (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Бягучы вецер</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Надвор’е сёння днём, заўтра, …, праз 4 дні</string>
     <string name="widget_custom_subtitle_keyword_xnt_description">Начная тэмпература сёння, заўтра, …, праз 4 дні (°C/°F)</string>
@@ -285,7 +285,7 @@
     <string name="widget_label_subtitle_data">Змест подпісу</string>
     <string name="widget_label_text_color">Колер тэксту</string>
     <string name="widget_label_text_size">Памер тэксту</string>
-    <string name="widget_label_clock_font">Шрыфт гадзін</string>
+    <string name="widget_label_clock_font">Шрыфт гадзінніка</string>
     <string name="widget_label_align_end">Выраўнаваць па правым краі</string>
     <string name="widget_subtitle_data_time">Час абнаўлення</string>
     <string name="widget_subtitle_data_aqi">Якасць паветра</string>
@@ -448,7 +448,7 @@
     <string name="settings_disabled">Выкл</string>
     <string name="settings_unavailable_no_background_updates">Недаступна, спачатку ўключыце фонавае абнаўленне</string>
     <string name="settings_automatic">Аўтаматычна</string>
-    <string name="settings_none">Не</string>
+    <string name="settings_none">Няма</string>
     <string name="settings_color_day_night">Дзень / Ноч</string>
     <string name="settings_color_app">Як у праграме</string>
     <string name="settings_color_day_always">Заўсёды дзень</string>
