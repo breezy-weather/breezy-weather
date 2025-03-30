@@ -165,7 +165,7 @@
     <string name="ephemeris_moonset_at">Захад месяца ў %s</string>
     <string name="daytime">Дзень</string>
     <string name="nighttime">Ноч</string>
-    <string name="sunshine_duration">Сонечны гадзіннік</string>
+    <string name="sunshine_duration">Сонечны час</string>
     <string name="humidity">Вільготнасць</string>
     <string name="pressure">Ціск</string>
     <string name="visibility">Бачнасць</string>
@@ -399,8 +399,8 @@
     <string name="settings_units_pressure">Адзінка вымярэння ціску</string>
     <string name="settings_main">Галоўны экран</string>
     <string name="settings_main_section_displayed_data">Паказ даных</string>
-    <string name="settings_main_daily_trends_title">Паднеўны прагноз</string>
-    <string name="settings_main_hourly_trends_title">Пагадзінны прагноз</string>
+    <string name="settings_main_daily_trends_title">Прагноз па днях</string>
+    <string name="settings_main_hourly_trends_title">Прагноз па гадзінах</string>
     <string name="settings_main_header_details_title">Дэталі ў загалоўку</string>
     <string name="settings_main_section_options">Опцыі</string>
     <string name="settings_main_threshold_lines_on_charts">Парогавыя лініі на графіках</string>
@@ -645,7 +645,7 @@
     <string name="message_source_not_installed_error_content_tip_2">Альбо змяніць пастаўшчык надвор’я для гэтага месца або выдаліць і дадаць гэта месцазнаходжанне зноў.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Індэкс пылку на сёння, заўтра, …, праз 4 дні</string>
     <string name="about_open_link_message">Адкрыць %s?</string>
-    <string name="sunshine">Сонечны</string>
+    <string name="sunshine">Сонечнасць</string>
     <string name="alert">Абвестка</string>
     <string name="settings_source_instance">Прыклад</string>
     <string name="settings_source_instance_geocoding">Сервер геакадавання</string>
@@ -676,7 +676,7 @@
     <string name="dialog_app_update_check_title">Сачыце за абнаўленнямі</string>
     <string name="notification_channel_app_updates">Абнаўленне праграмы</string>
     <string name="notification_app_update_available">Даступна новая версія!</string>
-    <string name="about_check_for_app_updates">Праверце наяўнасць абнаўленняў</string>
+    <string name="about_check_for_app_updates">Праверыць наяўнасць абнаўленняў</string>
     <string name="about_no_new_updates">Новых абнаўленняў няма</string>
     <string name="dialog_app_update_check_content">Націсніце тут, каб уключыць апавяшчэнні пра абнаўленне праграмы.</string>
     <string name="common_weather_text_sand_storm">Пясчаная бура</string>
