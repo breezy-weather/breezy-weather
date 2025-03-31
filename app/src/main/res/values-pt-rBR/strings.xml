@@ -73,7 +73,7 @@
     <string name="pollen_ambrosia">Ambrósia</string>
     <string name="pollen_tree">Árvore</string>
     <string name="daily_forecast">Previsão diária</string>
-    <string name="hourly_forecast">Previsão horária</string>
+    <string name="hourly_forecast">Previsão por hora</string>
     <string name="air_quality">Qualidade do ar</string>
     <string name="pollen">Pólen</string>
     <string name="details">Detalhes</string>
@@ -564,7 +564,7 @@
     <string name="about_contribution_designer">Designer da logo</string>
     <string name="action_save">Salvar</string>
     <string name="settings_weather_sources_per_location_summary">Personalizar fontes de dados meteorológicos usadas para este local</string>
-    <string name="precipitation_nowcasting">Previsão imediata</string>
+    <string name="precipitation_nowcasting">Previsão imediata de precipitação</string>
     <string name="about_privacy_policy">Política de privacidade</string>
     <string name="temperature_normals">Normais de temperatura</string>
     <string name="temperature_normal_short">Normal</string>
