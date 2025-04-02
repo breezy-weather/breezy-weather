@@ -438,7 +438,7 @@
     <string name="weather_data_by">Údaje od %s</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
-    <string name="widget_clock_font_analog">Analog</string>
+    <string name="widget_clock_font_analog">Analogový</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="unit_in">palec</string>
     <string name="unit_mmph">mm/h</string>
@@ -652,7 +652,7 @@
     <string name="pollen_tilia">Lípy</string>
     <string name="pollen_urticaceae">Kopřiva</string>
     <string name="pollen_carpinus">Habr</string>
-    <string name="pollen_plantaginaceae">Plantain</string>
+    <string name="pollen_plantaginaceae">jitrocelovité</string>
     <string name="message_source_not_installed_error_content_tip_1">Toto může nastat, pokud jste přidali své umístění do standardní verze aplikace a poté jste přešli na verzi obsahující pouze svobodné zdroje, která podporuje méně zdrojů počasí. Tento problém nejspíše vyřešíte přechodem zpět na standardní verzi.</string>
     <string name="message_source_not_installed_error_content_tip_2">Změňte zdroje počasí pro toto umístění nebo ji odstraňte a znovu přidejte.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Souhrn indexu pylů pro dnešek, zítřek, …, za 4 dny</string>
