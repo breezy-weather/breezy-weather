@@ -767,4 +767,7 @@
     <string name="settings_background_updates_refresh_never_warning3">Konsideru uzi malpli oftan aktualiga indicon prefere ol malŝalti fonajn ĝisdatigojn, alie frapeti “Daŭri” se vi ankoraŭ deziras procedi.</string>
     <string name="action_grant_permission">Tuŝeti por aprobi la permeson.</string>
     <string name="message_multiple_refresh_errors">Aktualigo finita kun eraroj</string>
+    <string name="daily_yesterday">Hieraŭ</string>
+    <string name="daily_today">Hodiaŭ</string>
+    <string name="daily_tomorrow">Morgaŭ</string>
 </resources>
