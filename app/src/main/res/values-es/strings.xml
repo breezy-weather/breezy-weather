@@ -3,7 +3,7 @@
     <!-- app. -->
     <string name="app_name">El tiempo</string>
     <!-- keyword. -->
-    <string name="location_current">Ubicación actual</string>
+    <string name="location_current">Lugar actual</string>
     <string name="daily_today_short">Hoy</string>
     <string name="notification_refreshed_at">Actualizado a las</string>
     <string name="precipitation">Precipitación</string>
@@ -27,7 +27,7 @@
     <string name="visibility">Visibilidad</string>
     <string name="dew_point">Punto de rocío</string>
     <string name="cloud_cover">Cubierta de nubes</string>
-    <string name="ceiling">Techo</string>
+    <string name="ceiling">Cielo raso</string>
     <string name="settings_icon_packs_get_more">Obtener más</string>
     <string name="action_refresh">Refrescar</string>
     <string name="action_restart">Reiniciar</string>
@@ -88,10 +88,10 @@
     <string name="about_app">Acerca de la app</string>
     <string name="about_translators">Traductores</string>
     <!-- feedback. -->
-    <string name="location_message_failed_to_locate">No se pudo encontrar la ubicación actual</string>
-    <string name="weather_message_data_refresh_failed">La actualización de los datos meteorológicos ha fallado</string>
-    <string name="location_dialog_failed_to_locate_title">¿No pudo obtener la ubicación correctamente\?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Verifica los permisos de ubicación</string>
+    <string name="location_message_failed_to_locate">No se pudo encontrar el lugar actual</string>
+    <string name="weather_message_data_refresh_failed">La actualización de los datos ha fallado</string>
+    <string name="location_dialog_failed_to_locate_title">¿No puede obtener el lugar correctamente?</string>
+    <string name="location_dialog_failed_to_locate_action_check_permission">Verifica los permisos de lugar</string>
     <string name="location_dialog_failed_to_locate_action_enable_information">Habilite la información de la ubicación</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Seleccione un servicio de ubicación</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Agregue la ubicación manualmente y borre “%s”</string>
@@ -104,7 +104,7 @@
     <string name="widget_label_subtitle_data">Datos del subtítulo</string>
     <string name="widget_label_text_color">Color del texto</string>
     <string name="widget_label_text_size">Tamaño del texto</string>
-    <string name="widget_label_clock_font">Fuente del reloj</string>
+    <string name="widget_label_clock_font">Tipografía del reloj</string>
     <string name="widget_custom_subtitle_explanation">Puedes ingresar cualquier cosa, pero presta atención a la longitud del texto. Si deseas citar datos meteorológicos, utiliza $ para hacer referencia a la palabra clave correspondiente.
 \n
 \nPor ejemplo, “El clima actual es: $cw$”. se mostrará como “El clima actual es: Cielo despejado”.</string>
@@ -149,9 +149,9 @@
     <string name="widget_custom_subtitle_keyword_xmp_description">Fase lunar de hoy, mañana,…, 4 días después</string>
     <string name="widget_live_wallpaper_weather_kind">Clima</string>
     <string name="widget_live_wallpaper_day_night_type">Hora</string>
-    <string name="location_message_added">Se agregó la ubicación exitosamente</string>
-    <string name="location_message_deleted">Se eliminó la ubicación exitosamente</string>
-    <string name="location_message_list_cannot_be_empty">La lista de ubicaciones no puede estar vacía</string>
+    <string name="location_message_added">Lugar agregado</string>
+    <string name="location_message_deleted">Se eliminó el lugar correctamente</string>
+    <string name="location_message_list_cannot_be_empty">La lista de lugares no puede estar vacía</string>
     <string name="location_search_placeholder">Busque una ubicación…</string>
     <string name="location_current_not_found_yet">Ubicación actual aún no encontrada…</string>
     <string name="settings_changes_apply_after_restart">Los cambios tomarán efecto después de reiniciar</string>
@@ -182,7 +182,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Fondo de pantalla animado</string>
-    <string name="settings_location_service">Servicio de ubicación</string>
+    <string name="settings_location_service">Servicio de lugar</string>
     <string name="settings_appearance_dark_mode_title">Modo oscuro</string>
     <string name="settings_appearance_icon_pack_title">Paquete de iconos</string>
     <string name="settings_appearance">Apariencia</string>
@@ -320,9 +320,9 @@
     <string name="weather_data_by">Datos por %s</string>
     <string name="message_source_not_installed_error_title">La fuente ya no está disponible</string>
     <string name="action_show_errors">Pulse para ver los detalles</string>
-    <string name="settings_location_access_switch_title">Acceso a la ubicación</string>
-    <string name="settings_location_access_switch_summaryOn">Permitido, Puede añadir su ubicación actual como una ubicación.</string>
-    <string name="location_message_reverse_geocoding_failed">La fuente meteorológica no pudo encontrar una ubicación que coincida</string>
+    <string name="settings_location_access_switch_title">Acceso al lugar</string>
+    <string name="settings_location_access_switch_summaryOn">Permitido, Puede añadir su lugar actual como un lugar.</string>
+    <string name="location_message_reverse_geocoding_failed">La fuente meteorológica no pudo encontrar un lugar que coincida</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instrucciones específicas según fabricante</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Algunos fabricantes tienen restricciones adicionales para las aplicaciones que eliminan los servicios en segundo plano. El sitio web Don’t kill my app! contiene información sobre cómo solucionarlo.</string>
     <string name="weather_api_limit_reached_content">Para evitar este límite, añada su propia clave API.</string>
@@ -352,7 +352,7 @@
     <string name="settings_background_updates_refresh_never">Nunca</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorar cuando la batería esté baja</string>
     <string name="settings_background_updates_worker_info_summary">Última ejecución: %s</string>
-    <string name="message_server_timeout">Solicitud expirada</string>
+    <string name="message_server_timeout">Solicitud caducada</string>
     <string name="settings_background_updates_section_troubleshoot">Solucionar problemas</string>
     <string name="settings_location_access_permission_already_granted">Permiso ya concedido</string>
     <string name="message_parsing_error_title">Error al analizar los datos meteorológicos</string>
@@ -360,7 +360,7 @@
     <string name="weather_air_quality_and_pollen_data_by">Calidad del aire y datos del polen por %s</string>
     <string name="location_results_by">Resultados de ubicación según %s</string>
     <string name="widget_label_align_end">Alinear a la derecha</string>
-    <string name="locations">Ubicaciones</string>
+    <string name="locations">Lugares</string>
     <string name="widget_material_you_forecast">Material You - Pronóstico</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="weather_source_accu_preference_days_1">1 día</string>
@@ -380,10 +380,10 @@
     <string name="settings_background_updates_battery_optimization_summary">Esta es la primera cosa a probar cuando no recibas notificaciones o los widgets no estén actualizando.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">No se pudo abrir la configuración del dispositivo.</string>
     <string name="location_swipe_to_delete">Puede deslizar hacia la izquierda para eliminar este elemento</string>
-    <string name="widget_style_pixel">Pixel</string>
+    <string name="widget_style_pixel">Píxel</string>
     <string name="widget_style_vertical">Vertical</string>
     <string name="dialog_permissions_notification_content">Pulse aquí para activar las notificaciones acerca de alertas meteorológicas o decide luego en la Configuración.</string>
-    <string name="settings_location_access_background_title">Acceso a la ubicación en segundo plano</string>
+    <string name="settings_location_access_background_title">Acceso al lugar en segundo plano</string>
     <string name="air_quality_o3_info_consequences">La exposición excesiva al ozono puede causar problemas respiratorios, desencadenar asma, reducir la capacidad pulmonar y provocar enfermedades pulmonares.</string>
     <string name="air_quality_no2_info_title">Dióxido de nitrógeno (NO₂)</string>
     <string name="air_quality_no2_info_introduction">El dióxido de nitrógeno (NO₂) es un gas tóxico, sofocante, de color marrón rojizo y un olor acre característico.</string>
@@ -391,20 +391,20 @@
     <string name="action_close">Cerrar</string>
     <string name="dialog_permissions_notification_title">Mantenerme informado</string>
     <string name="widget_subtitle_data_aqi">Calidad del aire</string>
-    <string name="location_message_permission_missing">No hay acceso al permiso de ubicación</string>
-    <string name="location_message_permission_background_missing">No hay acceso al permiso de ubicación en el fondo</string>
+    <string name="location_message_permission_missing">No hay acceso al permiso de lugar</string>
+    <string name="location_message_permission_background_missing">No hay acceso al permiso de lugar en el fondo</string>
     <string name="location_service_native">API nativa</string>
     <string name="action_location_list">Lista de ubicaciones</string>
-    <string name="action_add_current_location">Añadir ubicación actual</string>
-    <string name="action_add_new_location">Añadir nueva ubicación</string>
+    <string name="action_add_current_location">Añadir lugar actual</string>
+    <string name="action_add_new_location">Añadir lugar nuevo</string>
     <string name="action_see_more">Ver más</string>
     <string name="action_back">Atrás</string>
     <string name="action_share">Compartir</string>
     <string name="dialog_permissions_location_title">Acceder a la información de la ubicación</string>
     <string name="message_network_unavailable">Red no disponible</string>
     <string name="widget_material_you_current">Material You - Actual</string>
-    <string name="settings_location">Ubicación</string>
-    <string name="settings_location_summary">Configuración de los servicios de ubicación</string>
+    <string name="settings_location">Lugar</string>
+    <string name="settings_location_summary">Parámetros de los servicios de lugar</string>
     <string name="air_quality_so2_info_origin">Se libera naturalmente por la actividad volcánica y se deriva predominantemente de la combustión de combustibles fósiles para calefacción doméstica, industrias y generación de energía.</string>
     <string name="air_quality_co_info_consequences">El monóxido de carbono se difunde a través de los tejidos pulmonares y hacia el torrente sanguíneo, lo que dificulta que el oxígeno entre en contacto con las células del cuerpo. Esta falta de oxígeno daña los tejidos y las células. La exposición al monóxido de carbono puede causar dificultades para respirar, agotamiento, mareos y otros síntomas similares a los de la gripe. La exposición a altos niveles de monóxido de carbono puede ser mortal.</string>
     <string name="temperature_degree_day_heating">Grados día de calefacción</string>
@@ -448,7 +448,7 @@
     <string name="settings_main_background_animation_enabled">Activado</string>
     <string name="settings_notifications_alerts_title">Notificaciones de alertas meteorológicas graves</string>
     <string name="pollen_alnus">Aliso</string>
-    <string name="settings_location_access_background_summaryOn">Activado. La aplicación podrá actualizar los datos meteorológicos de tu ubicación actual en segundo plano.</string>
+    <string name="settings_location_access_background_summaryOn">Activado. La aplicación podrá actualizar los datos meteorológicos de tu lugar actual en segundo plano.</string>
     <string name="settings_location_access_precise_title">Utilizar el GPS del dispositivo</string>
     <string name="settings_location_access_precise_summaryOn">Activado. El operador de la red que usa en el dispositivo, se utilizará principalmente y la mayoría de las veces, pero el GPS también puede utilizarse como alternativa.</string>
     <string name="settings_weather_sources_per_location_summary">Personalizar las fuentes de datos meteorológicos utilizadas para esta ubicación</string>
@@ -487,10 +487,10 @@
     <string name="settings_main_hourly_trends_title">Evolución por hora</string>
     <string name="settings_widgets_monochrome_icons_title">Iconos monocromáticos</string>
     <string name="settings_main_background_animation_disabled">Desactivado</string>
-    <string name="settings_location_access_background_summaryOff">Por favor, activa “Permitir todo el tiempo” para tener las actualizaciones en segundo plano de tu ubicación actual.</string>
+    <string name="settings_location_access_background_summaryOff">Por favor, activa “Permitir todo el tiempo” para tener las actualizaciones en segundo plano de tu lugar actual.</string>
     <string name="settings_widgets_summary">Establecer el fondo de pantalla, configurar los complementos utilizados, complementos de notificaciones</string>
     <string name="dialog_permissions_location_content">Para utilizar esta función, debes conceder permiso a la aplicación para acceder a tu ubicación actual. Sólo se compartirá con las fuentes meteorológicas seleccionadas. Si cambias de opinión, puedes cancelar el proceso y añadir una ubicación fija manualmente.</string>
-    <string name="settings_location_access_switch_summaryOff">Por favor, permite si quieres añadir tu ubicación actual como una ubicación.</string>
+    <string name="settings_location_access_switch_summaryOff">Por favor, permite si quieres añadir tu lugar actual como un lugar.</string>
     <string name="settings_source_default_value">Por defecto (sin modificar)</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notificaciones para la previsión del día siguiente</string>
     <string name="settings_notifications_forecast_time_today_title">Hora para las notificaciones para la previsión del día</string>
@@ -501,7 +501,7 @@
     <string name="settings_debug_dump_crash_logs_title">Compartir registros de fallos</string>
     <string name="settings_widgets_notification_persistent_switch">Persistente</string>
     <string name="settings_main_cards_fade_in_switch">Las cartas se difuminan</string>
-    <string name="settings_debug_summary">Regristro de fallos</string>
+    <string name="settings_debug_summary">Registro de fallos</string>
     <string name="settings_widgets_notification_widget_title">Widget de notificaciones</string>
     <string name="settings_widgets_section_notification_widget">Widget de notificaciones</string>
     <string name="settings_widgets_notification_style_title">Estilo</string>
@@ -581,7 +581,7 @@
     <string name="notification_update_error">%d actualización(es) fallida(s)</string>
     <string name="unit_h">h</string>
     <string name="notification_channel_widget">Widget</string>
-    <string name="common_weather_text_drizzle_light">llovizna</string>
+    <string name="common_weather_text_drizzle_light">Llovizna ligera</string>
     <string name="about_dependencies">Dependencias</string>
     <string name="common_weather_text_rain_showers_moderate">Chubascos moderados</string>
     <string name="notification_channel_crash_logs">Registros de errores</string>
@@ -611,8 +611,8 @@
     <string name="location_search_source">Fuente para encontrar la ubicación</string>
     <string name="location_search_change_source">Cambiar la fuente para la ubicación</string>
     <string name="settings_weather_source_none">Ninguna</string>
-    <string name="location_message_updated">Ubicación actualizada</string>
-    <string name="location_message_already_exists">Ya existe una ubicación con la misma fuente meteorológica.</string>
+    <string name="location_message_updated">Lugar actualizado</string>
+    <string name="location_message_already_exists">Ya existe un lugar con la misma fuente meteorológica.</string>
     <string name="humidity_short">Humedad</string>
     <string name="uv_index_short">Índice UV</string>
     <string name="visibility_short">Visibilidad</string>
@@ -620,7 +620,7 @@
     <string name="temperature_feels_like_short">Sensación térmica</string>
     <string name="dew_point_short">Punto de rocío</string>
     <string name="cloud_cover_short">Nubosidad</string>
-    <string name="ceiling_short">Techo</string>
+    <string name="ceiling_short">Cielo raso</string>
     <string name="settings_weather_sources_default_source">Fuente predeterminada para nuevas ubicaciones</string>
     <string name="pollen_carpinus">Carpe</string>
     <string name="pollen_castanea">Castaño</string>
@@ -635,15 +635,15 @@
     <string name="pollen_salix">Sauce</string>
     <string name="pollen_tilia">Tilo</string>
     <string name="pollen_urticaceae">Ortiga/Parietaria</string>
-    <string name="location_delete_location_dialog_title">¿Borrar la ubicación?</string>
-    <string name="location_delete_location_dialog_message_no_name">Estás a punto de eliminar esta ubicación de tu lista de ubicaciones guardadas.</string>
+    <string name="location_delete_location_dialog_title">¿Borrar el lugar?</string>
+    <string name="location_delete_location_dialog_message_no_name">Estás a punto de eliminar este lugar de tu lista de lugares guardados.</string>
     <string name="action_confirm">Confirmar</string>
     <string name="widget_label_hide_header">Ocultar el encabezado</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Índice de calidad del aire (ICA)</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Índice de calidad del aire actual, mañana, …, 4 días después</string>
     <string name="settings_weather_source_unavailable">%s (no disponible)</string>
     <string name="weather_message_too_frequent_refreshes">Por favor, espere unos segundos antes de volver a intentarlo…</string>
-    <string name="location_delete_location_dialog_message">Estás a punto de borrar “%s” de tu lista de ubicaciones guardadas.</string>
+    <string name="location_delete_location_dialog_message">Estás a punto de borrar “%s” de tu lista de lugares guardados.</string>
     <string name="settings_weather_source_freenet_disclaimer">Hay más fuentes meteorológicas disponibles en otras versiones de la aplicación. Pulse aquí para obtener más información.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Resumen del índice de polen de hoy, mañana, …, 4 días después</string>
     <string name="message_source_not_installed_error_content_tip_1">Esto puede ocurrir si has añadido tu ubicación en la versión estándar de la aplicación y luego has cambiado a la versión con fuentes de red libres. Volver a la versión estándar puede resolver este problema.</string>
@@ -656,7 +656,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Impecable</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combina los mejores modelos meteorológicos para este lugar</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combina todos los modelos meteorológicos de este proveedor para una predicción impecable</string>
-    <string name="sunshine">Luz directa del sol</string>
+    <string name="sunshine">Luz solar</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Servidor de la calidad del aire</string>
     <string name="alert">Alerta</string>
     <string name="settings_source_instance">Servidor</string>
@@ -668,11 +668,11 @@
     <string name="settings_source_instance_invalid">Debe ser una dirección https que acaba en /</string>
     <string name="settings_invalid_syntax">Error de sintaxis</string>
     <string name="alert_source">Fuente: %s</string>
-    <string name="dialog_time_picker_select_time">Elegir una hora</string>
+    <string name="dialog_time_picker_select_time">Seleccione hora y día</string>
     <string name="settings_appearance_calendar_title">Calendario alternativo</string>
-    <string name="dialog_time_picker_input_time">Introducir la hora</string>
+    <string name="dialog_time_picker_input_time">Introducir hora y día</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Cambiar a entrada táctil</string>
-    <string name="dialog_time_picker_toggle_text_input_voice">Cambiar a entrada de texto</string>
+    <string name="dialog_time_picker_toggle_text_input_voice">Cambiar a entrada textual</string>
     <string name="widget_label_hide_alternate_calendar">Ocultar calendario alternativo</string>
     <string name="settings_background_updates_refresh_never_warning1">Al desactivar las actualizaciones en segundo plano, dejarás de recibir notificaciones de alertas o precipitaciones. Los widgets no se actualizarán hasta que abras la aplicación.</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">No se han encontrado paquetes compatibles</string>
@@ -680,7 +680,7 @@
     <string name="settings_background_updates_refresh_never_warning3">Considere la posibilidad de utilizar una frecuencia de actualización menor en lugar de desactivar las actualizaciones en segundo plano; de lo contrario, pulse “Continuar” si aún desea seguir adelante.</string>
     <string name="message_server_unavailable_title">Servidor no disponible</string>
     <string name="message_server_unavailable_content">Normalmente se trata de un error temporal. Si el error persiste, notifique una incidencia en GitHub.</string>
-    <string name="action_edit_location">Editar esta ubicación</string>
+    <string name="action_edit_location">Editar este lugar</string>
     <string name="settings_global">Ajustes globales</string>
     <string name="precipitation_intensity_medium">Media</string>
     <string name="notification_channel_app_updates">Actualizaciones de la aplicación</string>
@@ -736,7 +736,7 @@
     <string name="jma_warning_text_frost_advisory">Advertencia de escarcha/helada</string>
     <string name="jma_warning_text_ice_accretion_advisory">Advertencia de acumulación de hielo (congelación)</string>
     <string name="jma_warning_text_snow_accretion_advisory">Advertencia de acumulación de nieve</string>
-    <string name="location_message_location_access_off">El acceso a la ubicación está desactivado</string>
+    <string name="location_message_location_access_off">El acceso al lugar está desactivado</string>
     <string name="weather_source_continent_worldwide">Mundial</string>
     <string name="weather_source_continent_africa">África</string>
     <string name="weather_source_continent_asia">Asia</string>
@@ -770,4 +770,17 @@
     <string name="wind_direction_SW">Sudoeste</string>
     <string name="daily_yesterday">Ayer</string>
     <string name="location_custom_name">Nombre personalizado</string>
+    <string name="settings_notifications_permission_summary">Necesario para notificar sobre alertas, predicciones meteorológicas y actualizaciones. %s</string>
+    <string name="settings_debug_notification_permission">Necesario para notificar sobre roturas de bitácora y actualizaciones falladas de meteorología. %s</string>
+    <string name="location_reverse_geocoding">Inspeccionar dirección</string>
+    <string name="settings_notifications_permission">Permiso de notificación requerido</string>
+    <string name="common_weather_text_blowing_snow">Nieve ventosa</string>
+    <string name="location_reverse_geocoding_by">Dirección vista por %s</string>
+    <string name="location_has_active_alerts">Alerta activa</string>
+    <string name="location_last_updated_x">Última actualizada %s</string>
+    <string name="pollen_alternaria">Alternaria</string>
+    <string name="pollen_atriplex">Arbusto</string>
+    <string name="pollen_juniperus">Junípero</string>
+    <string name="action_grant_permission">Toque para otorgar el permiso.</string>
+    <string name="settings_widgets_notification_permission_summary">Necesario para mostrar el widget de notificación. %s</string>
 </resources>
