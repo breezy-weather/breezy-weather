@@ -783,4 +783,6 @@
     <string name="pollen_juniperus">Junípero</string>
     <string name="action_grant_permission">Toque para otorgar el permiso.</string>
     <string name="settings_widgets_notification_permission_summary">Necesario para mostrar el widget de notificación. %s</string>
+    <string name="common_weather_text_drifting_snow">Nieve a la deriva</string>
+    <string name="common_weather_text_glaze">Vidriado</string>
 </resources>
