@@ -668,9 +668,9 @@
     <string name="settings_source_instance_invalid">Debe ser una dirección https que acaba en /</string>
     <string name="settings_invalid_syntax">Error de sintaxis</string>
     <string name="alert_source">Fuente: %s</string>
-    <string name="dialog_time_picker_select_time">Seleccione hora y día</string>
+    <string name="dialog_time_picker_select_time">Elegir una hora</string>
     <string name="settings_appearance_calendar_title">Calendario alternativo</string>
-    <string name="dialog_time_picker_input_time">Introducir hora y día</string>
+    <string name="dialog_time_picker_input_time">Introducir la hora</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Cambiar a entrada táctil</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Cambiar a entrada textual</string>
     <string name="widget_label_hide_alternate_calendar">Ocultar calendario alternativo</string>
