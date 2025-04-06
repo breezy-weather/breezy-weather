@@ -201,7 +201,7 @@
     <string name="precipitation_rain">Regn</string>
     <string name="pollen_alnus">Al</string>
     <string name="location_message_deleted">Plats borttagen</string>
-    <string name="weather_kind_wind">Vind</string>
+    <string name="weather_kind_wind">Blåsigt</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Kontrollera platsbehörigheterna</string>
     <string name="pollen_level_3">Måttligt</string>
     <string name="weather_data_by">Data från %s</string>
