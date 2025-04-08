@@ -730,4 +730,24 @@
     <string name="common_weather_text_blowing_snow">Παρασυρόμενο χιόνι</string>
     <string name="common_weather_text_drifting_snow">Περιπλανόμενο χιόνι</string>
     <string name="common_weather_text_glaze">Yαλόπαγος</string>
+    <string name="daily_yesterday">Χθες</string>
+    <string name="daily_tomorrow">Αύριο</string>
+    <string name="wind_direction_N">Βορράς</string>
+    <string name="wind_direction_NE">Βορράς Ανατολή</string>
+    <string name="wind_direction_E">Ανατολή</string>
+    <string name="wind_direction_SE">Νότος Ανατολή</string>
+    <string name="wind_direction_S">Νότος</string>
+    <string name="wind_direction_SW">Νότος Δύση</string>
+    <string name="settings_notifications_permission">Απαιτείται άδεια ειδοποιήσεων</string>
+    <string name="settings_notifications_permission_summary">Απαιτείται για ενημέρωση για προειδοποιήσεις, προβλέψεις και ενημερώσεις εφαρμογής. %s</string>
+    <string name="settings_widgets_notification_permission_summary">Απαιτείται για να εμφανίσει το widget ειδοποίησης. %s</string>
+    <string name="location_last_updated_x">Τελευταία ενημέρωση %s</string>
+    <string name="location_has_active_alerts">Ενεργή προειδοποίηση</string>
+    <string name="location_custom_name">Προσαρμοσμένο όνομα</string>
+    <string name="wind_direction_NW">Βορράς Δύση</string>
+    <string name="location_reverse_geocoding_by">Αναζήτηση διεύθυνσης μέσω %s</string>
+    <string name="location_reverse_geocoding">Αναζήτηση διεύθυνσης</string>
+    <string name="wind_direction_W">Δύση</string>
+    <string name="action_grant_permission">Πάτα για να δώσεις την άδεια.</string>
+    <string name="settings_debug_notification_permission">Απαιτείται για ενημέρωση σχετικά με καταγραφές σφαλμάτων και αποτυχημένες ενημερώσεις καιρού. %s</string>
 </resources>
