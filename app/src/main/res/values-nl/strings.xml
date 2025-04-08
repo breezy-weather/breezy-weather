@@ -325,8 +325,8 @@
     <string name="weather_source_accu_preference_days_10">10 dagen</string>
     <string name="location_message_search_failed">Zoeken naar locatie mislukt</string>
     <string name="location_message_reverse_geocoding_failed">Weerbron heeft geen overeenkomstige locatie gevonden</string>
-    <string name="action_refresh">Ververs</string>
-    <string name="action_delete">Verwijder</string>
+    <string name="action_refresh">Vernieuwen</string>
+    <string name="action_delete">Verwijderen</string>
     <string name="action_undo">Ongedaan maken</string>
     <string name="action_close">Sluiten</string>
     <string name="action_show_errors">Tik om details te zien</string>
@@ -399,8 +399,8 @@
     <string name="locations">Locaties</string>
     <string name="action_add_new_location">Een nieuwe locatie toevoegen</string>
     <string name="action_app_store">App Store</string>
-    <string name="action_restart">Herstart</string>
-    <string name="action_edit">Bewerk</string>
+    <string name="action_restart">Herstarten</string>
+    <string name="action_edit">Bewerken</string>
     <string name="action_set">Instellen</string>
     <string name="action_help">Hulp</string>
     <string name="action_learn_more">Meer informatie</string>
@@ -470,7 +470,7 @@
     <string name="pollen_level_5">Zeer hoog</string>
     <string name="ephemeris_moon_phase_new_moon">Nieuwe maan</string>
     <string name="ephemeris_moon_phase_first_quarter">Eerste kwartaal</string>
-    <string name="ephemeris_moon_phase_waxing_gibbous">Wassende gibber</string>
+    <string name="ephemeris_moon_phase_waxing_gibbous">Wassende maan</string>
     <string name="ceiling">Plafond</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Rijpneerslag</string>
     <string name="settings_units_temperature">Temperatuureenheid</string>
@@ -692,7 +692,7 @@
     <string name="settings_debug_notification_permission">Vereist voor meldingen over crash logs en gefaalde weer updates. %s</string>
     <string name="about_open_link_message">Open %s?</string>
     <string name="common_weather_text_glaze">IJzel</string>
-    <string name="current_weather">Huidige weer</string>
+    <string name="current_weather">Huidig weer</string>
     <string name="weather_current_data_by">Huidige weersverwachtingen van %s</string>
     <string name="message_multiple_refresh_errors">Vernieuwen voltooid met fouten</string>
     <string name="settings_weather_source_current_position_disclaimer">Er kunnen meer weerbronnen beschikbaar komen voor jouw locatie na de eerste refresh.</string>
@@ -749,4 +749,6 @@
     <string name="wind_direction_SE">Zuidoost</string>
     <string name="wind_direction_S">Zuid</string>
     <string name="wind_direction_SW">Zuidwest</string>
+    <string name="daily_yesterday_short">Gister</string>
+    <string name="daily_tomorrow_short">Morgen</string>
 </resources>
