@@ -41,6 +41,8 @@ class AtmoGrandEstService @Inject constructor(
     override val attribution = "ATMO GrandEst (licence ODbL https://opendatacommons.org/licenses/odbl )"
     override val privacyPolicyUrl = "https://www.atmo-grandest.eu/article/politique-de-confidentialite"
 
+    override val isPollenSupported = false
+
     override val context = injectedContext
     override val jsonClient = injectedJsonClient
     override val baseUrl = "https://api.atmo-grandest.eu/airtogo/v1/"
