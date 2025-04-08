@@ -18,8 +18,10 @@ package org.breezyweather.sources.atmo
 
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.atmo.json.AtmoPointResult
+import org.breezyweather.sources.atmo.json.AtmoPollenResult
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -36,4 +38,12 @@ interface AtmoApi {
         @Query("y") latitude: Double,
         @Query("datetime_echeance") datetimeEcheance: String,
     ): Observable<AtmoPointResult>
+
+    @GET("pollen/{cityCode}")
+    fun getPollenForCity(
+        @Header("api_token") headerApiToken: String?,
+        @Header("User-Agent") userAgent: String = "okhttp/3.14.9",
+        @Path("cityCode") cityCode: String, // INSEE
+        @Query("api_token") queryApiToken: String?,
+    ): Observable<AtmoPollenResult>
 }

@@ -44,6 +44,8 @@ class AtmoAuraService @Inject constructor(
     )
     override val privacyPolicyUrl = "https://www.atmo-auvergnerhonealpes.fr/article/politique-de-confidentialite"
 
+    override val isPollenSupported = true
+
     override val context = injectedContext
     override val jsonClient = injectedJsonClient
     override val baseUrl = "https://api.atmo-aura.fr/air2go/v3/"

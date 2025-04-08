@@ -22,18 +22,22 @@ import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
+import breezyweather.domain.weather.wrappers.PollenWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
+import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
+import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.atmo.json.AtmoPointResult
+import org.breezyweather.sources.atmo.json.AtmoPollenResult
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -41,7 +45,7 @@ import java.util.Date
 /**
  * ATMO services
  */
-abstract class AtmoService : HttpSource(), WeatherSource, ConfigurableSource {
+abstract class AtmoService : HttpSource(), WeatherSource, LocationParametersSource, ConfigurableSource {
 
     protected abstract val context: Context
     protected abstract val jsonClient: Retrofit.Builder
@@ -60,6 +64,12 @@ abstract class AtmoService : HttpSource(), WeatherSource, ConfigurableSource {
             .build()
             .create(AtmoApi::class.java)
     }
+    private val mGeoApi by lazy {
+        jsonClient
+            .baseUrl("https://api-adresse.data.gouv.fr")
+            .build()
+            .create(GeoApi::class.java)
+    }
     protected open val isTokenInHeaders = false
 
     /**
@@ -68,16 +78,18 @@ abstract class AtmoService : HttpSource(), WeatherSource, ConfigurableSource {
     protected abstract val apiKeyPreference: Int
     protected abstract val builtInApiKey: String
 
+    protected abstract val isPollenSupported: Boolean
     override val supportedFeatures
         get() = mapOf(
-            SourceFeature.AIR_QUALITY to attribution
+            SourceFeature.AIR_QUALITY to attribution,
+            SourceFeature.POLLEN to "$attribution + data.gouv.fr (Etalab 2.0)"
         )
     protected abstract fun isLocationInRegion(location: Location): Boolean
     override fun isFeatureSupportedForLocation(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        return feature == SourceFeature.AIR_QUALITY &&
+        return (feature == SourceFeature.AIR_QUALITY || feature == SourceFeature.POLLEN && isPollenSupported) &&
             !location.countryCode.isNullOrEmpty() &&
             location.countryCode.equals("FR", ignoreCase = true) &&
             isLocationInRegion(location)
@@ -88,31 +100,68 @@ abstract class AtmoService : HttpSource(), WeatherSource, ConfigurableSource {
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val calendar = Date().toCalendarWithTimeZone(location.javaTimeZone).apply {
-            add(Calendar.DAY_OF_YEAR, 1)
-            set(Calendar.HOUR_OF_DAY, 0)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0)
-            set(Calendar.MILLISECOND, 0)
+        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
+
+        val airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
+            val calendar = Date().toCalendarWithTimeZone(location.javaTimeZone).apply {
+                add(Calendar.DAY_OF_YEAR, 1)
+                set(Calendar.HOUR_OF_DAY, 0)
+                set(Calendar.MINUTE, 0)
+                set(Calendar.SECOND, 0)
+                set(Calendar.MILLISECOND, 0)
+            }
+            mApi.getPointDetails(
+                headerApiToken = if (isTokenInHeaders) getApiKeyOrDefault() else null,
+                queryApiToken = if (isTokenInHeaders) null else getApiKeyOrDefault(),
+                longitude = location.longitude,
+                latitude = location.latitude,
+                // Tomorrow because it gives access to D-1 and D+1
+                datetimeEcheance = calendar.time.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", location)
+            ).onErrorResumeNext {
+                failedFeatures[SourceFeature.AIR_QUALITY] = it
+                Observable.just(AtmoPointResult())
+            }
+        } else {
+            Observable.just(AtmoPointResult())
+        }
+        val pollen = if (SourceFeature.POLLEN in requestedFeatures) {
+            val currentCityCode = location.parameters.getOrElse(id) { null }?.getOrElse("citycode") { null }
+            if (currentCityCode == null) {
+                failedFeatures[SourceFeature.POLLEN] = InvalidLocationException()
+                Observable.just(AtmoPollenResult())
+            } else {
+                mApi.getPollenForCity(
+                    headerApiToken = if (isTokenInHeaders) getApiKeyOrDefault() else null,
+                    queryApiToken = if (isTokenInHeaders) null else getApiKeyOrDefault(),
+                    cityCode = currentCityCode
+                ).onErrorResumeNext {
+                    failedFeatures[SourceFeature.POLLEN] = it
+                    Observable.just(AtmoPollenResult())
+                }
+            }
+        } else {
+            Observable.just(AtmoPollenResult())
         }
 
-        return mApi.getPointDetails(
-            headerApiToken = if (isTokenInHeaders) getApiKeyOrDefault() else null,
-            queryApiToken = if (isTokenInHeaders) null else getApiKeyOrDefault(),
-            longitude = location.longitude,
-            latitude = location.latitude,
-            // Tomorrow because it gives access to D-1 and D+1
-            datetimeEcheance = calendar.time.getFormattedDate("yyyy-MM-dd'T'HH:mm:ss.SSSXXX", location)
-        ).map {
-            val airQualityHourly = mutableMapOf<Date, AirQuality>()
-            it.polluants?.getOrNull(0)?.horaires?.forEach { h ->
-                airQualityHourly[h.datetimeEcheance] = getAirQuality(h.datetimeEcheance, it)
-            }
-
+        return Observable.zip(airQuality, pollen) { airQualityResult: AtmoPointResult, pollenResult: AtmoPollenResult ->
             WeatherWrapper(
-                airQuality = AirQualityWrapper(
-                    hourlyForecast = airQualityHourly
-                )
+                airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
+                    val airQualityHourly = mutableMapOf<Date, AirQuality>()
+                    airQualityResult.polluants?.getOrNull(0)?.horaires?.forEach { h ->
+                        airQualityHourly[h.datetimeEcheance] = getAirQuality(h.datetimeEcheance, airQualityResult)
+                    }
+                    AirQualityWrapper(
+                        hourlyForecast = airQualityHourly
+                    )
+                } else {
+                    null
+                },
+                pollen = if (SourceFeature.POLLEN in requestedFeatures) {
+                    PollenWrapper() // TODO
+                } else {
+                    null
+                },
+                failedFeatures = failedFeatures
             )
         }
     }
@@ -153,6 +202,35 @@ abstract class AtmoService : HttpSource(), WeatherSource, ConfigurableSource {
             nO2 = no2,
             o3 = o3
         )
+    }
+
+    // Location parameters
+    override fun needsLocationParametersRefresh(
+        location: Location,
+        coordinatesChanged: Boolean,
+        features: List<SourceFeature>,
+    ): Boolean {
+        if (!features.contains(SourceFeature.POLLEN)) return false
+
+        if (coordinatesChanged) return true
+
+        val currentCityCode = location.parameters.getOrElse(id) { null }?.getOrElse("citycode") { null }
+
+        return currentCityCode.isNullOrEmpty()
+    }
+
+    override fun requestLocationParameters(
+        context: Context,
+        location: Location,
+    ): Observable<Map<String, String>> {
+        return mGeoApi.getReverseAddress(location.longitude, location.latitude)
+            .map { result ->
+                if (result.features.isNotEmpty()) {
+                    mapOf("citycode" to result.features[0].properties.citycode)
+                } else {
+                    throw InvalidLocationException()
+                }
+            }
     }
 
     // CONFIG

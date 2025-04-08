@@ -44,6 +44,8 @@ class AtmoSudService @Inject constructor(
     )
     override val privacyPolicyUrl = "https://www.atmosud.org/article/politique-de-confidentialite"
 
+    override val isPollenSupported = false
+
     override val context = injectedContext
     override val jsonClient = injectedJsonClient
     override val baseUrl = "https://api.atmosud.org/air2go/v1/cartes/"

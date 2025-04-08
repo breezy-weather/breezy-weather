@@ -46,6 +46,8 @@ class AtmoHdfService @Inject constructor(
     )
     override val privacyPolicyUrl = "https://www.atmo-hdf.fr/article/donnees-personnelles"
 
+    override val isPollenSupported = false
+
     override val context = injectedContext
     override val jsonClient = injectedJsonClient
     override val baseUrl = "https://api.atmo-hdf.fr/airtogo/"
