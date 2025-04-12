@@ -595,7 +595,7 @@
     <string name="settings_color_app">App-Standard</string>
     <string name="settings_unavailable_no_background_updates">Nicht verfügbar, aktivieren Sie zuerst die Hintergrundaktualisierungen</string>
     <string name="notification_precipitation_starting_desc">Voraussichtlicher Beginn um %s</string>
-    <string name="notification_precipitation_starting">Baldiger Niederschlag</string>
+    <string name="notification_precipitation_starting">Niederschlag beginnt in Kürze</string>
     <string name="notification_precipitation_continuing">Niederschlag</string>
     <string name="notification_precipitation_continuing_desc">Voraussichtlich bis mindestens %s andauernd</string>
     <string name="notification_precipitation_stopping">Niederschlag wird bald aufhören</string>
