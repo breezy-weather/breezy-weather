@@ -272,4 +272,18 @@
     <string name="weather_source_accu_preference_hours_72">72 horas</string>
     <string name="weather_source_accu_preference_hours_120">120 horas</string>
     <string name="locations">Ubicacións</string>
+    <string name="weather_kind_thunderstorm">Tronada</string>
+    <string name="widget_custom_subtitle_keyword_cw_description">Clima actual</string>
+    <string name="widget_subtitle_data_custom">Personalizado</string>
+    <string name="widget_subtitle_data_wind">Vento</string>
+    <string name="widget_custom_subtitle_keyword_ct_description">Temperatura actual (ºC/ºF)</string>
+    <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura actual (º)</string>
+    <string name="widget_custom_subtitle_keyword_at_description">"Sensación térmica actual  (°C/°F)"</string>
+    <string name="widget_custom_subtitle_keyword_atd_description">Sensación térmica actual (º)</string>
+    <string name="widget_custom_subtitle_keyword_cwd_description">Vento actual</string>
+    <string name="widget_custom_subtitle_keyword_cuv_description">UV actual</string>
+    <string name="widget_custom_subtitle_keyword_cps_description">Presión actual</string>
+    <string name="widget_custom_subtitle_keyword_cv_description">Visibilidade actual</string>
+    <string name="widget_subtitle_data_aqi">Calidade do aire</string>
+    <string name="widget_subtitle_data_feels_like">Sensación térmica</string>
 </resources>
