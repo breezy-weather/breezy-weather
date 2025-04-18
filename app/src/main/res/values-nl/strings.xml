@@ -626,7 +626,7 @@
     <string name="widget_label_hide_header">Verberg kop</string>
     <string name="settings_weather_source_freenet_disclaimer">Meer weer bronnen zijn beschikbaar in andere smaken van Breezy Weather. Klik om meer te weten te komen.</string>
     <string name="notification_precipitation_starting_desc">Verwacht te beginnen rond %s</string>
-    <string name="notification_precipitation_continuing_desc">Verwacht aan te houden tot in iedergeval %s</string>
+    <string name="notification_precipitation_continuing_desc">Verwacht aan te houden tot in ieder geval %s</string>
     <string name="notification_precipitation_stopping_desc">Verwacht op te houden om %s</string>
     <string name="pollen_salix">Wilg</string>
     <string name="pollen_quercus">Eik</string>
@@ -680,7 +680,7 @@
     <string name="settings_unavailable_no_animations">Niet beschikbaar, activeer animaties in Android instellingen</string>
     <string name="settings_notifications_app_updates_check">Notificaties van app updates</string>
     <string name="about_no_new_updates">Geen nieuwe updates beschikbaar</string>
-    <string name="notification_channel_app_updates">App updates</string>
+    <string name="notification_channel_app_updates">App-updates</string>
     <string name="notification_app_update_available">Nieuwe versie beschikbaar!</string>
     <string name="common_weather_text_sand_storm">Zandstorm</string>
     <string name="common_weather_text_smoke">Rook</string>
@@ -751,4 +751,6 @@
     <string name="wind_direction_SW">Zuidwest</string>
     <string name="daily_yesterday_short">Gister</string>
     <string name="daily_tomorrow_short">Morgen</string>
+    <string name="location_reverse_geocoding_by">Adresgegevens door %s</string>
+    <string name="location_reverse_geocoding">Adresgegevens</string>
 </resources>
