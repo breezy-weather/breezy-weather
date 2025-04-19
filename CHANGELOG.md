@@ -1,4 +1,4 @@
-# Version 5.4.6 (unreleased)
+# Version 5.4.6 (2025-04-19)
 
 **Improvements and fixes**
 - Background update will no longer execute when VPN is on, but no other Internet-providing transport is enabled

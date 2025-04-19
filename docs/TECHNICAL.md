@@ -9,6 +9,7 @@ breezy.accu.key=myapikey
 breezy.accu.days=15
 breezy.accu.hours=120
 breezy.atmoaura.key=myapikey
+breezy.atmofrance.key=myapikey
 breezy.atmograndest.key=myapikey
 breezy.atmohdf.key=myapikey
 breezy.atmosud.key=myapikey
@@ -34,7 +35,7 @@ You can omit any of the following properties to let the user configure their own
 4) Update versionCode and versionName in `app/build.gradle`.
 5) Write changelog in `CHANGELOG.md`.
 6) Commit all changes.
-7) Tag version beginning with a `v` (example: `git tag v5.4.6 -m "Version 5.4.6"`).
+7) Tag version beginning with a `v` (example: `git tag v5.4.7 -m "Version 5.4.7"`).
 8) Push with `git push --tags`
 9) GitHub action will run and sign the release.
 10) Update GitHub release notes draft and publish.
