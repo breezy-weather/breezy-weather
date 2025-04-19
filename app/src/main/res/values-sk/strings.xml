@@ -732,4 +732,17 @@
     <string name="location_custom_name">Vlastný názov</string>
     <string name="location_last_updated_x">Naposledy aktualizované %s</string>
     <string name="location_has_active_alerts">Zapnuté upozornenia</string>
+    <string name="daily_yesterday">Včera</string>
+    <string name="daily_today">Dnes</string>
+    <string name="daily_tomorrow">Zjatra</string>
+    <string name="wind_direction_N">Sever</string>
+    <string name="wind_direction_NE">Severovýchod</string>
+    <string name="wind_direction_E">Východ</string>
+    <string name="wind_direction_SE">Juhovýchod</string>
+    <string name="location_reverse_geocoding_by">Vyhľadávanie adresy podľa %s</string>
+    <string name="location_reverse_geocoding">Vyhľadávanie adresy</string>
+    <string name="wind_direction_NW">Severozápad</string>
+    <string name="wind_direction_SW">Juhozápad</string>
+    <string name="wind_direction_S">Juh</string>
+    <string name="wind_direction_W">Západ</string>
 </resources>
