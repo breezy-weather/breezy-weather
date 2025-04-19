@@ -27,7 +27,9 @@ import retrofit2.http.Path
  */
 interface AtmoFranceApi {
 
-    @GET("data/{api_code}/{\"code_zone\":{\"operator\":\"=\",\"value\":\"{code_insee}\"},\"date_ech\":{\"operator\":\"=\",\"value\":\"{date_ech}\"}}")
+    @GET(
+        "data/{api_code}/{\"code_zone\":{\"operator\":\"=\",\"value\":\"{code_insee}\"},\"date_ech\":{\"operator\":\"=\",\"value\":\"{date_ech}\"}}"
+    )
     fun getPollen(
         @Header("Api-token") apiToken: String,
         @Header("User-Agent") userAgent: String = "okhttp/3.14.9",

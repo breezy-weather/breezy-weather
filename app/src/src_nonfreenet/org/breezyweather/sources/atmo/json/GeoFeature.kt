@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class GeoFeature(
-    val properties: GeoProperties
+    val properties: GeoProperties,
 )

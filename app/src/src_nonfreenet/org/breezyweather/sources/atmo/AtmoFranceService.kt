@@ -143,7 +143,7 @@ class AtmoFranceService @Inject constructor(
         ) {
                 todayPollenResult: AtmoFrancePollenResult,
                 tomorrowPollenResult: AtmoFrancePollenResult,
-                overmorrowPollenResult: AtmoFrancePollenResult
+                overmorrowPollenResult: AtmoFrancePollenResult,
             ->
             val pollenDaily = mutableMapOf<Date, Pollen>()
             todayPollenResult.features?.getOrNull(0)?.properties?.let {
@@ -171,7 +171,7 @@ class AtmoFranceService @Inject constructor(
             grass = pollenResult.concGram?.roundToInt(),
             mugwort = pollenResult.concArm?.roundToInt(),
             olive = pollenResult.concOliv?.roundToInt(),
-            ragweed = pollenResult.concAmbr?.roundToInt(),
+            ragweed = pollenResult.concAmbr?.roundToInt()
         )
     }
 

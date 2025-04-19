@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class GeoProperties(
-    val citycode: String
+    val citycode: String,
 )
