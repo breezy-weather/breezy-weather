@@ -103,6 +103,11 @@ android {
         )
         it.buildConfigField(
             "String",
+            "ATMO_FRANCE_KEY",
+            "\"${properties.getProperty("breezy.atmofrance.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
             "ATMO_GRAND_EST_KEY",
             "\"${properties.getProperty("breezy.atmograndest.key") ?: ""}\""
         )

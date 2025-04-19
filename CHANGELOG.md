@@ -4,6 +4,10 @@
 - Background update will no longer execute when VPN is on, but no other Internet-providing transport is enabled
 - Background update errors will now be grouped by location
 - When changing an unit, widgets will now update automatically, instead of waiting for the next refresh to apply the new units
+- Adjusted thresholds for pollen levels of alder, birch, grass, mugwort, olive and ragweed
+
+**Weather sources**
+- [ATMO France] added as new Pollen source for France (still early, may not work in all regions)
 
 **Translations**
 - Translations updated

@@ -72,6 +72,7 @@ jobs:
           echo "breezy.accu.key=$ACCU_WEATHER_KEY" >> local.properties
           echo "breezy.aemet.key=$AEMET_KEY" >> local.properties
           echo "breezy.atmoaura.key=$ATMO_AURA_KEY" >> local.properties
+          echo "breezy.atmofrance.key=$ATMO_FRANCE_KEY" >> local.properties
           echo "breezy.atmograndest.key=$ATMO_GRAND_EST_KEY" >> local.properties
           echo "breezy.atmohdf.key=$ATMO_HDF_KEY" >> local.properties
           echo "breezy.atmosud.key=$ATMO_SUD_KEY" >> local.properties
@@ -86,6 +87,7 @@ jobs:
           ACCU_WEATHER_KEY: ${{ secrets.ACCU_WEATHER_KEY }}
           AEMET_KEY: ${{ secrets.AEMET_KEY }}
           ATMO_AURA_KEY: ${{ secrets.ATMO_AURA_KEY }}
+          ATMO_FRANCE_KEY: ${{ secrets.ATMO_FRANCE_KEY }}
           ATMO_GRAND_EST_KEY: ${{ secrets.ATMO_GRAND_EST_KEY }}
           ATMO_HDF_KEY: ${{ secrets.ATMO_HDF_KEY }}
           ATMO_SUD_KEY: ${{ secrets.ATMO_SUD_KEY }}
