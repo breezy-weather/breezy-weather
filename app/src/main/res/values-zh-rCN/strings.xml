@@ -326,7 +326,7 @@
     <string name="unit_cm_voice">厘米</string>
     <string name="unit_in">英寸</string>
     <string name="unit_in_voice">英寸</string>
-    <string name="unit_lpsqm">升/米²</string>
+    <string name="unit_lpsqm">升/平方米</string>
     <string name="unit_lpsqm_voice">升每平方米</string>
     <string name="unit_mmph">毫米/时</string>
     <string name="unit_mmph_voice">毫米每小时</string>
@@ -334,7 +334,7 @@
     <string name="unit_cmph_voice">厘米每小时</string>
     <string name="unit_inph">英寸/时</string>
     <string name="unit_inph_voice">英寸每小时</string>
-    <string name="unit_lpsqmph">升/米²/时</string>
+    <string name="unit_lpsqmph">升/平方米/时</string>
     <string name="unit_lpsqmph_voice">升每平方米每小时</string>
     <string name="unit_km">千米</string>
     <string name="unit_km_voice">千米</string>
@@ -360,13 +360,13 @@
     <string name="unit_inhg_voice">英寸汞柱</string>
     <string name="unit_kgfpsqcm">千克力/厘米²</string>
     <string name="unit_kgfpsqcm_voice">千克力每平方厘米</string>
-    <string name="unit_mugpcum">微克/米³</string>
+    <string name="unit_mugpcum">微克/立方米</string>
     <string name="unit_mugpcum_voice">微克每立方米</string>
-    <string name="unit_mgpcum">毫克/米³</string>
+    <string name="unit_mgpcum">毫克/立方米</string>
     <string name="unit_mgpcum_voice">毫克每立方米</string>
     <string name="unit_h">小时</string>
     <string name="unit_h_voice">小时</string>
-    <string name="unit_ppcm">/米³</string>
+    <string name="unit_ppcm">/立方米</string>
     <string name="unit_ppcm_voice">每立方米</string>
     <string name="uv_alert_level">预警水平</string>
     <string name="action_location_list">位置列表</string>
