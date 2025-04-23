@@ -32,14 +32,10 @@ val Context.connectivityManager: ConnectivityManager
     get() = getSystemService()!!
 
 fun Context.isOnline(): Boolean {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
         val activeNetwork = connectivityManager.activeNetwork ?: return false
         val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
-        val maxTransport = when {
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1 -> NetworkCapabilities.TRANSPORT_LOWPAN
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O -> NetworkCapabilities.TRANSPORT_WIFI_AWARE
-            else -> NetworkCapabilities.TRANSPORT_VPN
-        }
+        val maxTransport = NetworkCapabilities.TRANSPORT_LOWPAN
         return if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN)) {
             // If VPN is enabled, but there is no other transport enabled, we are actually offline
             (NetworkCapabilities.TRANSPORT_CELLULAR..maxTransport).count(networkCapabilities::hasTransport) > 1
