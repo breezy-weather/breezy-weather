@@ -25,3 +25,9 @@ deleteAllNonMatchingParameters:
 DELETE FROM location_parameters
 WHERE location_formatted_id = :locationFormattedId
 AND parameter NOT IN :locationParameterNames;
+
+deleteParameters:
+DELETE FROM location_parameters
+WHERE source = :source
+AND parameter = :parameter
+AND value IN :parameterValues;

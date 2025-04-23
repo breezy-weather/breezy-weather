@@ -1,3 +1,12 @@
+# Version 5.4.7 (not yet released)
+
+**Weather sources**
+- [ATMO France] fix for no pollen in Paris, Marseille and Lyon
+
+**Translations**
+- Translations updated
+
+
 # Version 5.4.6 (2025-04-19)
 
 **Improvements and fixes**

@@ -197,11 +197,25 @@ class AtmoFranceService @Inject constructor(
         return mGeoApi.getReverseAddress(location.longitude, location.latitude)
             .map { result ->
                 if (result.features.isNotEmpty()) {
-                    mapOf("citycode" to result.features[0].properties.citycode)
+                    mapOf("citycode" to getInseeCodeWithoutArrondissements(result.features[0].properties.citycode))
                 } else {
                     throw InvalidLocationException()
                 }
             }
+    }
+
+    private fun getInseeCodeWithoutArrondissements(cityCode: String): String {
+        return when (cityCode) {
+            "75101", "75102", "75103", "75104", "75105", "75106", "75107", "75108", "75109", "75110", "75211",
+            "75212", "75213", "75214", "75215", "75216", "75217", "75218", "75219", "75220",
+                -> "75056" // Paris
+            "13201", "13202", "13203", "13204", "13205", "13206", "13207", "13208", "13209", "13210", "13211",
+            "13212", "13213", "13214", "13215", "13216",
+                -> "13055" // Marseille
+            "69381", "69382", "69383", "69384", "69385", "69386", "69387", "69388", "69389",
+                -> "69123" // Lyon
+            else -> cityCode
+        }
     }
 
     // CONFIG

@@ -207,6 +207,20 @@ class LocationRepository(
         }
     }
 
+    suspend fun deleteParameters(
+        source: String,
+        parameter: String,
+        values: List<String>,
+    ) {
+        handler.await {
+            location_parametersQueries.deleteParameters(
+                source,
+                parameter,
+                values
+            )
+        }
+    }
+
     suspend fun update(location: Location, oldFormattedId: String? = null): Boolean {
         return try {
             handler.await(inTransaction = true) {

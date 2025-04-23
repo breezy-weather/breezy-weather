@@ -202,6 +202,24 @@ object Migrations {
                             }
                     }
                 }
+
+                if (oldVersion < 50407) {
+                    // V5.4.7 removes incorrect INSEE code for Paris, Marseille, Lyon with ATMO France
+                    runBlocking {
+                        locationRepository.deleteParameters(
+                            source = "atmofrance",
+                            parameter = "citycode",
+                            values = listOf(
+                                "75101", "75102", "75103", "75104", "75105", "75106", "75107", "75108", "75109",
+                                "75110", "75211", "75212", "75213", "75214", "75215", "75216", "75217", "75218",
+                                "75219", "75220",
+                                "13201", "13202", "13203", "13204", "13205", "13206", "13207", "13208", "13209",
+                                "13210", "13211", "13212", "13213", "13214", "13215", "13216",
+                                "69381", "69382", "69383", "69384", "69385", "69386", "69387", "69388", "69389"
+                            )
+                        )
+                    }
+                }
             }
 
             SettingsManager.getInstance(context).lastVersionCode = BuildConfig.VERSION_CODE
