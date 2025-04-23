@@ -720,7 +720,7 @@
     <string name="common_weather_text_tornado">Ανεμοστρόβιλος</string>
     <string name="settings_weather_source_not_configured">%s (δεν έχει διαμορφωθεί)</string>
     <string name="settings_weather_source_current_position_disclaimer">Περισσότερες πηγές καιρού ενδέχεται να είναι διαθέσιμες για την τοποθεσία σου μετά την πρώτη ανανέωση.</string>
-    <string name="pollen_alternaria">Alternaria</string>
+    <string name="pollen_alternaria">Εναλλακτικές ασθένειες</string>
     <string name="pollen_juniperus">Κέδρο</string>
     <string name="pollen_picea">Έλατο</string>
     <string name="pollen_pinus">Πεύκο</string>
@@ -750,4 +750,5 @@
     <string name="wind_direction_W">Δύση</string>
     <string name="action_grant_permission">Πάτα για να δώσεις την άδεια.</string>
     <string name="settings_debug_notification_permission">Απαιτείται για ενημέρωση σχετικά με καταγραφές σφαλμάτων και αποτυχημένες ενημερώσεις καιρού. %s</string>
+    <string name="daily_today">Σήμερα</string>
 </resources>
