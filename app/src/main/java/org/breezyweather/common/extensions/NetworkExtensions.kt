@@ -20,6 +20,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.util.Log
 import androidx.core.content.getSystemService
 
 /**
@@ -42,6 +43,12 @@ fun Context.isOnline(): Boolean {
         }
         return if (networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN)) {
             // If VPN is enabled, but there is no other transport enabled, we are actually offline
+            (NetworkCapabilities.TRANSPORT_CELLULAR..maxTransport).forEach {
+                Log.d(
+                    "NetworkExtensions",
+                    "hasTransport ${TRANSPORT_NAMES[it]}: ${if (networkCapabilities.hasTransport(it)) "YES" else "NO"}"
+                )
+            }
             (NetworkCapabilities.TRANSPORT_CELLULAR..maxTransport).count(networkCapabilities::hasTransport) > 1
         } else {
             (NetworkCapabilities.TRANSPORT_CELLULAR..maxTransport).any(networkCapabilities::hasTransport)
@@ -51,3 +58,17 @@ fun Context.isOnline(): Boolean {
         return connectivityManager.activeNetworkInfo?.isConnected ?: false
     }
 }
+
+val TRANSPORT_NAMES = arrayOf(
+    "CELLULAR",
+    "WIFI",
+    "BLUETOOTH",
+    "ETHERNET",
+    "VPN",
+    "WIFI_AWARE",
+    "LOWPAN",
+    "TEST",
+    "USB",
+    "THREAD",
+    "SATELLITE"
+)
