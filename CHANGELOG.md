@@ -1,5 +1,8 @@
 # Version 5.4.7 (not yet released)
 
+**Improvements and fixes**
+- Fix for word-break to new line when using a custom system font (Samsung or Motorola devices for example)
+
 **Weather sources**
 - [ATMO France] fix for no pollen in Paris, Marseille and Lyon
 
