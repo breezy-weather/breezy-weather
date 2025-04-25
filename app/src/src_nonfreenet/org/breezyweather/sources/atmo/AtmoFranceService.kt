@@ -97,7 +97,9 @@ class AtmoFranceService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        val calendar = Date().toCalendarWithTimeZone(location.javaTimeZone).apply {
+        val calendar = Date().toCalendarWithTimeZone(location.javaTimeZone)
+        val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
+        calendar.apply {
             set(Calendar.HOUR_OF_DAY, 0)
             set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)
@@ -127,12 +129,17 @@ class AtmoFranceService @Inject constructor(
             Observable.just(AtmoFrancePollenResult())
         }
 
-        val overmorrowCall = mApi.getPollen(
-            apiToken = getApiKeyOrDefault(),
-            apiCode = 122,
-            codeInsee = currentCityCode,
-            dateEch = overmorrow.getFormattedDate("yyyy-MM-dd", location)
-        ).onErrorResumeNext {
+        // Bulletin for today, tomorrow and overmorrow is published at 13:00
+        val overmorrowCall = if (currentHour >= 13) {
+            mApi.getPollen(
+                apiToken = getApiKeyOrDefault(),
+                apiCode = 122,
+                codeInsee = currentCityCode,
+                dateEch = overmorrow.getFormattedDate("yyyy-MM-dd", location)
+            ).onErrorResumeNext {
+                Observable.just(AtmoFrancePollenResult())
+            }
+        } else {
             Observable.just(AtmoFrancePollenResult())
         }
 
