@@ -1,12 +1,12 @@
 [versions]
-aboutlib = "12.0.0"
+aboutlib = "12.0.1"
 accompanist = "0.37.2"
 activity = "1.10.1"
 adaptiveiconview = "v0.0.3"
-agp = "8.9.1"
+agp = "8.9.2"
 appcompat = "1.7.0"
 cardview = "1.0.0"
-compose-bom = "2025.04.00"
+compose-bom = "2025.04.01"
 compose-lint-checks = "1.4.2"
 core-ktx = "1.16.0"
 core-splashscreen = "1.0.1"
@@ -45,7 +45,7 @@ sqlite-android = "2.5.0"
 suncalc = "2.14"
 swiperefreshlayout = "1.1.0"
 vico = "2.1.2"
-work-runtime = "2.10.0"
+work-runtime = "2.10.1"
 
 [libraries]
 aboutLibraries = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutlib" }
