@@ -754,4 +754,5 @@
     <string name="weather_source_continent_north_america">أمريكا الشمالية</string>
     <string name="weather_source_continent_oceania">أوقيانوسيا</string>
     <string name="weather_source_continent_south_america">أمريكا الجنوبية</string>
+    <string name="message_server_insecure_title">فشل الاتصال الآمن</string>
 </resources>
