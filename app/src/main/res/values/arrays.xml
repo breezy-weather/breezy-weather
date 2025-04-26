@@ -269,9 +269,8 @@
     <!-- Open-Meteo models -->
     <string-array name="open_meteo_weather_models">
         <item>Best match</item>
-        <item>ECMWF IFS 0.4°</item>
         <item>ECMWF IFS 0.25°</item>
-        <item>ECMWF AIFS 0.25°</item>
+        <item>ECMWF AIFS 0.25° Single</item>
         <item>CMA GRAPES Global</item>
         <item>BOM ACCESS Global</item>
         <item>NCEP GFS Seamless</item>
@@ -282,6 +281,9 @@
         <item>JMA Seamless</item>
         <item>JMA MSM</item>
         <item>JMA GSM</item>
+        <item>KMA Seamless</item>
+        <item>KMA LDPS</item>
+        <item>KMA GDPS</item>
         <item>DWD ICON Seamless</item>
         <item>DWD ICON Global</item>
         <item>DWD ICON EU</item>
@@ -295,9 +297,7 @@
         <item>Météo-France ARPEGE Europe</item>
         <item>Météo-France AROME France</item>
         <item>Météo-France AROME France HD</item>
-        <item>ARPAE Seamless</item>
-        <item>ARPAE COSMO 2I</item>
-        <item>ARPAE COSMO 5M</item>
+        <item>ItaliaMeteo ARPAE ICON 2I</item>
         <item>MET Norway Nordic (with ECMWF) Seamless</item>
         <item>MET Norway Nordic</item>
         <item>KNMI (with ECMWF) Seamless</item>
@@ -311,9 +311,8 @@
     </string-array>
     <string-array name="open_meteo_weather_models_values">
         <item>best_match</item>
-        <item>ecmwf_ifs04</item>
         <item>ecmwf_ifs025</item>
-        <item>ecmwf_aifs025</item>
+        <item>ecmwf_aifs025_single</item>
         <item>cma_grapes_global</item>
         <item>bom_access_global</item>
         <item>gfs_seamless</item>
@@ -324,6 +323,9 @@
         <item>jma_seamless</item>
         <item>jma_msm</item>
         <item>jma_gsm</item>
+        <item>kma_seamless</item>
+        <item>kma_ldps</item>
+        <item>kma_gdps</item>
         <item>icon_seamless</item>
         <item>icon_global</item>
         <item>icon_eu</item>
@@ -337,9 +339,7 @@
         <item>meteofrance_arpege_europe</item>
         <item>meteofrance_arome_france</item>
         <item>meteofrance_arome_france_hd</item>
-        <item>arpae_cosmo_seamless</item>
-        <item>arpae_cosmo_2i</item>
-        <item>arpae_cosmo_5m</item>
+        <item>italia_meteo_arpae_icon_2i</item>
         <item>metno_seamless</item>
         <item>metno_nordic</item>
         <item>knmi_seamless</item>

@@ -21,6 +21,13 @@ insert:
 INSERT INTO location_parameters(location_formatted_id, source, parameter, value)
 VALUES (:locationFormattedId, :source, :parameter, :value);
 
+updateParameters:
+UPDATE location_parameters
+SET value = :newValue
+WHERE source = :source
+AND parameter = :parameter
+AND value = :oldValue;
+
 deleteAllNonMatchingParameters:
 DELETE FROM location_parameters
 WHERE location_formatted_id = :locationFormattedId

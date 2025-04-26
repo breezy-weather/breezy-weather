@@ -207,6 +207,23 @@ class LocationRepository(
         }
     }
 
+    suspend fun updateParameters(
+        source: String,
+        parameter: String,
+        values: Map<String, String>,
+    ) {
+        handler.await {
+            values.entries.forEach { (oldValue, newValue) ->
+                location_parametersQueries.updateParameters(
+                    source = source,
+                    parameter = parameter,
+                    oldValue = oldValue,
+                    newValue = newValue
+                )
+            }
+        }
+    }
+
     suspend fun deleteParameters(
         source: String,
         parameter: String,

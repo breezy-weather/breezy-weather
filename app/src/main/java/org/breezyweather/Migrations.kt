@@ -204,18 +204,70 @@ object Migrations {
                 }
 
                 if (oldVersion < 50407) {
-                    // V5.4.7 removes incorrect INSEE code for Paris, Marseille, Lyon with ATMO France
                     runBlocking {
-                        locationRepository.deleteParameters(
+                        // V5.4.7 removes incorrect INSEE code for Paris, Marseille, Lyon with ATMO France
+                        locationRepository.updateParameters(
                             source = "atmofrance",
                             parameter = "citycode",
-                            values = listOf(
-                                "75101", "75102", "75103", "75104", "75105", "75106", "75107", "75108", "75109",
-                                "75110", "75111", "75112", "75113", "75114", "75115", "75116", "75117", "75118",
-                                "75119", "75120",
-                                "13201", "13202", "13203", "13204", "13205", "13206", "13207", "13208", "13209",
-                                "13210", "13211", "13212", "13213", "13214", "13215", "13216",
-                                "69381", "69382", "69383", "69384", "69385", "69386", "69387", "69388", "69389"
+                            values = mapOf(
+                                "75101" to "75056", // Paris
+                                "75102" to "75056", // Paris
+                                "75103" to "75056", // Paris
+                                "75104" to "75056", // Paris
+                                "75105" to "75056", // Paris
+                                "75106" to "75056", // Paris
+                                "75107" to "75056", // Paris
+                                "75108" to "75056", // Paris
+                                "75109" to "75056", // Paris
+                                "75110" to "75056", // Paris
+                                "75111" to "75056", // Paris
+                                "75112" to "75056", // Paris
+                                "75113" to "75056", // Paris
+                                "75114" to "75056", // Paris
+                                "75115" to "75056", // Paris
+                                "75116" to "75056", // Paris
+                                "75117" to "75056", // Paris
+                                "75118" to "75056", // Paris
+                                "75119" to "75056", // Paris
+                                "75120" to "75056", // Paris
+                                "13201" to "13055", // Marseille
+                                "13202" to "13055", // Marseille
+                                "13203" to "13055", // Marseille
+                                "13204" to "13055", // Marseille
+                                "13205" to "13055", // Marseille
+                                "13206" to "13055", // Marseille
+                                "13207" to "13055", // Marseille
+                                "13208" to "13055", // Marseille
+                                "13209" to "13055", // Marseille
+                                "13210" to "13055", // Marseille
+                                "13211" to "13055", // Marseille
+                                "13212" to "13055", // Marseille
+                                "13213" to "13055", // Marseille
+                                "13214" to "13055", // Marseille
+                                "13215" to "13055", // Marseille
+                                "13216" to "13055", // Marseille
+                                "69381" to "69123", // Lyon
+                                "69382" to "69123", // Lyon
+                                "69383" to "69123", // Lyon
+                                "69384" to "69123", // Lyon
+                                "69385" to "69123", // Lyon
+                                "69386" to "69123", // Lyon
+                                "69387" to "69123", // Lyon
+                                "69388" to "69123", // Lyon
+                                "69389" to "69123" // Lyon
+                            )
+                        )
+
+                        // V5.4.7 migrates some Open-Meteo weather models
+                        locationRepository.updateParameters(
+                            source = "openmeteo",
+                            parameter = "weatherModels",
+                            values = mapOf(
+                                "ecmwf_ifs04" to "ecmwf_ifs025",
+                                "ecmwf_aifs025" to "ecmwf_aifs025_single",
+                                "arpae_cosmo_seamless" to "italia_meteo_arpae_icon_2i",
+                                "arpae_cosmo_2i" to "italia_meteo_arpae_icon_2i",
+                                "arpae_cosmo_5m" to "italia_meteo_arpae_icon_2i"
                             )
                         )
                     }

@@ -16,9 +16,8 @@ enum class OpenMeteoWeatherModel(
 ) : BaseEnum {
     BEST_MATCH("best_match"),
 
-    ECMWF_IFS04("ecmwf_ifs04"),
     ECMWF_IFS025("ecmwf_ifs025"),
-    ECMWF_AIFS025("ecmwf_aifs025"),
+    ECMWF_AIFS025_SINGLE("ecmwf_aifs025_single"),
     CMA_GRAPES_GLOBAL("cma_grapes_global"),
     BOM_ACCESS_GLOBAL("bom_access_global"),
 
@@ -31,6 +30,10 @@ enum class OpenMeteoWeatherModel(
     JMA_SEAMLESS("jma_seamless"),
     JMA_MSM("jma_msm"),
     JMA_GSM("jma_gsm"),
+
+    KMA_SEAMLESS("kma_seamless"),
+    KMA_MSM("kma_ldps"),
+    KMA_GSM("kma_gdps"),
 
     DWD_ICON_SEAMLESS("icon_seamless"),
     DWD_ICON_GLOBAL("icon_global"),
@@ -48,9 +51,7 @@ enum class OpenMeteoWeatherModel(
     METEO_FRANCE_AROME_FRANCE("meteofrance_arome_france"),
     METEO_FRANCE_AROME_FRANCE_HD("meteofrance_arome_france_hd"),
 
-    ARPAE_COSMO_SEAMLESS("arpae_cosmo_seamless"),
-    ARPAE_COSMO_2I("arpae_cosmo_2i"),
-    ARPAE_COSMO_5M("arpae_cosmo_5m"),
+    ITALIAMETEO_ARPAE_ICON_2I("italia_meteo_arpae_icon_2i"),
 
     MET_NO_SEAMLESS("metno_seamless"),
     MET_NO_NORDIC("metno_nordic"),
