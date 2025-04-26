@@ -188,9 +188,11 @@ android {
     sourceSets {
         getByName("basic") {
             java.srcDirs("src/src_nonfreenet")
+            res.srcDirs("src/res_nonfreenet")
         }
         getByName("freenet") {
             java.srcDirs("src/src_freenet")
+            res.srcDirs("src/res_freenet")
         }
     }
 

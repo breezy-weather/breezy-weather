@@ -6,6 +6,7 @@
 
 **Weather sources**
 - [ATMO France] fix for no pollen in Paris, Marseille and Lyon
+- [CWA] Fix failure to refresh on Android < 14
 
 **Translations**
 - Translations updated

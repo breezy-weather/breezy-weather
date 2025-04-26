@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+
+            <!-- Let’s encrypt, unavailable on Android < 7.1.1 -->
+            <!-- Used by many sources, such as Open-Meteo -->
+            <!-- https://letsencrypt.org/certificates/ -->
+            <certificates src="@raw/isrg_root_x2" />
+            <certificates src="@raw/isrg_root_x1" />
+
+            <!-- HiPKI by Chunghwa Telecom, unavailable on Android < 14 -->
+            <!-- Used by CWA source -->
+            <!-- https://chtca.hinet.net/en/repository.html -->
+            <certificates src="@raw/hipki_root" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>
