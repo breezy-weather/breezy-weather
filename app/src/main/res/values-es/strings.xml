@@ -347,7 +347,7 @@
     <string name="weather_api_limit_reached_title">Límite de solicitudes a la API alcanzado</string>
     <string name="weather_api_unauthorized_title">Acceso API no autorizado</string>
     <string name="weather_api_key_required_missing_title">Falta la clave API requerida</string>
-    <string name="weather_api_unauthorized_content">En algunos servicios meteorológicos, debe proporcionar su propia clave API. Si ya ha proporcionado una, vuelva a comprobar la clave API que proporcionó.</string>
+    <string name="weather_api_unauthorized_content">En algunos servicios meteorológicos, necesita proporcionar su propia clave API. Si ya ha proporcionado una, vuelva a comprobar la clave API que proporcionó.</string>
     <string name="message_parsing_error_content">Asegúrate de haber actualizado a la última versión de la aplicación. Es posible que el servidor no esté disponible temporalmente; en ese caso, inténtalo de nuevo más tarde. Si el problema persiste, vuelca un registro de fallos desde la configuración de depuración e informa de un problema en GitHub.</string>
     <string name="settings_background_updates_refresh_never">Nunca</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorar cuando la batería esté baja</string>
@@ -774,15 +774,16 @@
     <string name="settings_debug_notification_permission">Necesario para notificar sobre roturas de bitácora y actualizaciones falladas de meteorología. %s</string>
     <string name="location_reverse_geocoding">Inspeccionar dirección</string>
     <string name="settings_notifications_permission">Permiso de notificación requerido</string>
-    <string name="common_weather_text_blowing_snow">Nieve ventosa</string>
+    <string name="common_weather_text_blowing_snow">Ventisca</string>
     <string name="location_reverse_geocoding_by">Dirección vista por %s</string>
     <string name="location_has_active_alerts">Alerta activa</string>
     <string name="location_last_updated_x">Última actualizada %s</string>
     <string name="pollen_alternaria">Alternaria</string>
     <string name="pollen_atriplex">Arbusto</string>
-    <string name="pollen_juniperus">Junípero</string>
+    <string name="pollen_juniperus">Enebro</string>
     <string name="action_grant_permission">Toque para otorgar el permiso.</string>
     <string name="settings_widgets_notification_permission_summary">Necesario para mostrar el widget de notificación. %s</string>
     <string name="common_weather_text_drifting_snow">Nieve a la deriva</string>
     <string name="common_weather_text_glaze">Vidriado</string>
+    <string name="message_server_insecure_title">Conexión segura incorrecta</string>
 </resources>
