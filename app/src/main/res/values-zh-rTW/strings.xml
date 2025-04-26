@@ -831,4 +831,5 @@
     <string name="wind_direction_E">東風</string>
     <string name="wind_direction_N">北風</string>
     <string name="wind_direction_S">南風</string>
+    <string name="message_server_insecure_title">無法安全連線</string>
 </resources>
