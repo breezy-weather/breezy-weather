@@ -40,6 +40,18 @@ This error should be reported as soon as possible to GitHub, mentioning the sour
 
 This error may happen when a source is no longer provided by Breezy Weather. In that case, you will need to add a new location with another source, and delete this location. It can also happen when you switch from the standard flavor of Breezy Weather to `freenet` one which has less sources supported.
 
+### “Secure connection failed”
+
+This can mean many things.
+
+If this only happens with one source and not others:
+1) If you are using an Android version lower than Android 14, it is possible the server is using a Certificate Authority that was not trusted by the old Android version back then. On Android 14 and later, an updated trust store should be available to Google Play users. Note that we have our own bundled trust store in the app, where we can add missing Certificate Authorities.
+2) If you have a low Android version, the server may be communicating with a more modern protocol or cipher suites that is supported by your device
+3) The certificate may be expired. In that case, all users are affected, and the source will probably fix it very soon as this means no one can use the source (in any project, not just Breezy Weather)
+
+If this is happening will all sources, and presumably with other apps, in the worst case, you may be a victim of a [man-in-middle attack](https://en.wikipedia.org/wiki/Man-in-the-middle_attack).
+
+If in doubt, [start a discussion to ask for help](https://github.com/breezy-weather/breezy-weather/discussions/new?category=general).
 
 
 

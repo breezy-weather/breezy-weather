@@ -404,6 +404,7 @@
     <string name="message_invalid_incomplete_data">Invalid or incomplete data received from server</string>
     <string name="message_network_unavailable">Network unavailable</string>
     <string name="message_server_timeout">Request timed out</string>
+    <string name="message_server_insecure_title">Secure connection failed</string>
     <string name="message_server_unavailable_title">Server unavailable</string>
     <string name="message_server_unavailable_content">This is usually a temporary error. If the error persists, please report an issue on GitHub.</string>
     <string name="message_parsing_error_title">Failed to parse weather data</string>

@@ -48,6 +48,7 @@ import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import java.text.ParseException
+import javax.net.ssl.SSLHandshakeException
 
 enum class RefreshErrorType(
     @StringRes val shortMessage: Int,
@@ -101,6 +102,7 @@ enum class RefreshErrorType(
             )
         }*/
     ),
+    SERVER_INSECURE(shortMessage = R.string.message_server_insecure_title),
     PARSING_ERROR(
         shortMessage = R.string.message_parsing_error_title
         /*showDialogAction = { TODO
@@ -184,6 +186,7 @@ enum class RefreshErrorType(
                         }
                     }
                 }
+                is SSLHandshakeException -> SERVER_INSECURE
                 is SocketTimeoutException -> SERVER_TIMEOUT
                 is ApiLimitReachedException -> API_LIMIT_REACHED
                 is ApiKeyMissingException -> API_KEY_REQUIRED_MISSING
