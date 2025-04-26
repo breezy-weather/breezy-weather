@@ -762,4 +762,5 @@
     <string name="wind_direction_SE">Südosten</string>
     <string name="wind_direction_N">Norden</string>
     <string name="wind_direction_NW">Nordwesten</string>
+    <string name="message_server_insecure_title">Sichere Verbindung fehlgeschlagen</string>
 </resources>
