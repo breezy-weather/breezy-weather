@@ -1,6 +1,7 @@
 # Version 5.4.7 (not yet released)
 
 **Improvements and fixes**
+- Fix for “Network unavailable” when using VPN on Android < 10
 - Fix for word-break to new line when using a custom system font (Samsung or Motorola devices for example)
 
 **Weather sources**
