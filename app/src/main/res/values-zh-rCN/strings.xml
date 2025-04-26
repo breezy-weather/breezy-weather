@@ -834,4 +834,5 @@
     <string name="wind_direction_NW">西北</string>
     <string name="wind_direction_SW">西南</string>
     <string name="wind_direction_W">西</string>
+    <string name="message_server_insecure_title">安全连接失败</string>
 </resources>
