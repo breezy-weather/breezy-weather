@@ -822,4 +822,5 @@
     <string name="wind_direction_W">西風</string>
     <string name="wind_direction_NW">西北風</string>
     <string name="location_reverse_geocoding">位置查詢</string>
+    <string name="message_server_insecure_title">無法安全連線</string>
 </resources>
