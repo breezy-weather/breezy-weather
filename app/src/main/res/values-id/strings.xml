@@ -822,4 +822,5 @@
     <string name="wind_direction_N">Utara</string>
     <string name="location_reverse_geocoding_by">Pencarian alamat dengan %s</string>
     <string name="location_reverse_geocoding">Pencarian alamat</string>
+    <string name="message_server_insecure_title">Koneksi aman gagal</string>
 </resources>
