@@ -1,4 +1,4 @@
-# Version 5.4.7 (not yet released)
+# Version 5.4.7 (2025-04-28)
 
 **Improvements and fixes**
 - Fix for “Network unavailable” when using VPN on Android < 10
@@ -6,6 +6,7 @@
 
 **Weather sources**
 - [ATMO France] fix for no pollen in Paris, Marseille and Lyon
+- [CWA] Fix failure to refresh due to server side changes on 2025-04-28
 - [CWA] Fix failure to refresh on Android < 14
 - [Open Meteo] Update weather model list (adds KMA, migrate deprecated models)
 
