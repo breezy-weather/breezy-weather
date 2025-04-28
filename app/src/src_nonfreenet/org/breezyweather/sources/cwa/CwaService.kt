@@ -373,7 +373,7 @@ class CwaService @Inject constructor(
                         latitude:${location.latitude}
                     ){
                         station{
-                            stationId
+                            StationId
                         },
                         town{
                             ctyName,
@@ -437,7 +437,7 @@ class CwaService @Inject constructor(
                         latitude:${location.latitude}
                     ){
                         station{
-                            stationId
+                            StationId
                         },
                         town{
                             ctyName,
@@ -457,7 +457,7 @@ class CwaService @Inject constructor(
             body.toRequestBody("application/json".toMediaTypeOrNull())
         ).map {
             if (it.data?.aqi?.getOrNull(0) == null ||
-                it.data.aqi[0].station?.stationId == null ||
+                it.data.aqi[0].station?.StationId == null ||
                 it.data.aqi[0].town?.ctyName == null ||
                 it.data.aqi[0].town?.townName == null ||
                 it.data.aqi[0].town?.townCode == null
@@ -465,7 +465,7 @@ class CwaService @Inject constructor(
                 throw InvalidLocationException()
             }
             mapOf(
-                "stationId" to it.data.aqi[0].station!!.stationId!!,
+                "stationId" to it.data.aqi[0].station!!.StationId!!,
                 "countyName" to it.data.aqi[0].town!!.ctyName!!,
                 "townshipName" to it.data.aqi[0].town!!.townName!!,
                 "townshipCode" to it.data.aqi[0].town!!.townCode!!
