@@ -747,4 +747,5 @@
     <string name="settings_notifications_permission_summary">Behövs för att avisera om varningar, prognoser och appuppdateringar. %s</string>
     <string name="settings_debug_notification_permission">Behövs för att avisera om kraschloggar och misslyckade väderuppdateringar. %s</string>
     <string name="settings_widgets_notification_permission_summary">Behövs för att visa aviseringswidgeten. %s</string>
+    <string name="message_server_insecure_title">Säker anslutning misslyckades</string>
 </resources>
