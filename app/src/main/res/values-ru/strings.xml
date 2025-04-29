@@ -754,4 +754,5 @@
     <string name="wind_direction_SW">Юго-запад</string>
     <string name="wind_direction_W">Запад</string>
     <string name="wind_direction_NW">Северо-запад</string>
+    <string name="message_server_insecure_title">Безопасное соединение не удалось</string>
 </resources>
