@@ -758,4 +758,5 @@
     <string name="daily_tomorrow">Jutro</string>
     <string name="wind_direction_N">Północ</string>
     <string name="wind_direction_NE">Północno-wschodni</string>
+    <string name="message_server_insecure_title">Nie udało się nawiązać bezpiecznego połączenia</string>
 </resources>
