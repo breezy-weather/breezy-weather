@@ -757,4 +757,5 @@
     <string name="location_custom_name">Nume personalizat</string>
     <string name="location_reverse_geocoding_by">Căutare adresă după %s</string>
     <string name="settings_notifications_permission_summary">Necesar pentru a trimite notificări referitoare la alerte, prognoze meteo și actualizari ale aplicației. %s</string>
+    <string name="message_server_insecure_title">Conexiunea sigură a eșuat</string>
 </resources>
