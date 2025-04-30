@@ -602,7 +602,7 @@
     <string name="location_message_updated">Месцазнаходжанне абноўлена</string>
     <string name="location_message_already_exists">Месцазнаходжанне з такой жа асноўнай крыніцай надвор’я ўжо існуе.</string>
     <string name="wind_short">Вецер</string>
-    <string name="uv_index_short">УФ-індэкс</string>
+    <string name="uv_index_short">УФ·індэкс</string>
     <string name="visibility_short">Бачнасць</string>
     <string name="pressure_short">Ціск</string>
     <string name="temperature_feels_like_short">Адчуваць</string>
