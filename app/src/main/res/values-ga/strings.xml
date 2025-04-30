@@ -745,4 +745,5 @@
     <string name="wind_direction_SW">Thiar Theas</string>
     <string name="wind_direction_W">Iarthar</string>
     <string name="wind_direction_NW">Thiar Thuaidh</string>
+    <string name="message_server_insecure_title">Theip ar an nasc slán</string>
 </resources>
