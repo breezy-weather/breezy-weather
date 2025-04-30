@@ -2,7 +2,7 @@
 <resources>
     <string name="air_quality_level_3_description">Повітря має високий рівень забруднення та є небезпечним для чутливих людей. Скоротіть час перебування надворі, якщо ви відчуваєте такі симптоми, як утруднене дихання або подразнення горла.</string>
     <string name="precipitation_intensity_heavy">Важкий</string>
-    <string name="air_quality_level_4_description">Чутливі люди можуть відразу відчути вплив на здоров’я. Здорові люди при тривалому впливі повітря можуть відчувати утруднене дихання та подразнення горла. Обмежте активність надворі.</string>
+    <string name="air_quality_level_4_description">Чутливі люди можуть відразу відчути вплив на здоров’я. Здорові люди при тривалому впливі повітря можуть відчувати утруднене дихання та подразнення горла. Обмежте діяльність надворі.</string>
     <string name="uv_index_6_7">Високий</string>
     <string name="wind">Вітер</string>
     <string name="air_quality_o3_voice">Озон</string>
@@ -12,7 +12,7 @@
     <string name="wind_strength_0">Штиль</string>
     <string name="wind_strength_5">Свіжий</string>
     <string name="uv_alert_level">Попередження</string>
-    <string name="air_quality_level_1">Відмінний</string>
+    <string name="air_quality_level_1">Добрий</string>
     <string name="air_quality_so2_voice">Діоксид сірки</string>
     <string name="air_quality_pm_explanations_introduction">Пил або атмосферний пил – це мікроскопічні частинки твердої або рідкої речовини, зважені в повітрі.</string>
     <string name="air_quality_o3_info_introduction">Приземний озон (O₃) є основним компонентом смогу. Приземний озон може бути шкідливим для здоров’я людини, на відміну від стратосферного озону, який захищає землю від надмірного ультрафіолетового випромінювання.</string>
@@ -45,8 +45,8 @@
     <string name="uv_index">УФ-індекс</string>
     <string name="uv_index_3_5">Помірний</string>
     <string name="air_quality_index">Індекс якості повітря</string>
-    <string name="air_quality_level_3">Поганий</string>
-    <string name="air_quality_level_4">Шкідливий</string>
+    <string name="air_quality_level_3">Задовільний</string>
+    <string name="air_quality_level_4">Незадовільний</string>
     <string name="air_quality_level_6">Небезпечний</string>
     <string name="air_quality_no2_voice">Діоксиду азоту</string>
     <string name="air_quality_pm25">PM2.5</string>
@@ -249,12 +249,12 @@
     <string name="widget_clock_day_details">Годинник + щоденний (подробний)</string>
     <string name="widget_trend_hourly">Погодинна динаміка</string>
     <string name="widget_trend_daily">Подневна динаміка</string>
-    <string name="air_quality_level_5">Дуже шкідливий</string>
-    <string name="air_quality_level_5_description">Чутливі люди миттєво відчують вплив на здоров’я, тому їм краще уникати діяльності на вулиці. Здорові люди, ймовірно, відчують утруднене дихання та подразнення горла; подумайте про те, щоб залишатися у приміщенні та перенести заходи надворі.</string>
+    <string name="air_quality_level_5">Поганий</string>
+    <string name="air_quality_level_5_description">Чутливі люди миттєво відчують вплив на здоров’я, тому їм варто уникати діяльності надворі. Здорові люди, ймовірно, відчують утруднене дихання та подразнення горла; розгляньте можливість залишатися в приміщенні та перенести заходи надворі.</string>
     <string name="air_quality_level_1_description">Якість повітря ідеально підходить для більшості; насолоджуйтеся своїми звичайними заняттями на свіжому повітрі.</string>
-    <string name="air_quality_level_2">Нормальний</string>
+    <string name="air_quality_level_2">Допустимий</string>
     <string name="uv_index_8_10">Дуже високий</string>
-    <string name="air_quality_level_2_description">Якість повітря загалом прийнятна для більшості. Однак чутливі люди можуть відчути незначні або помірні симптоми від тривалого впливу повітря.</string>
+    <string name="air_quality_level_2_description">Якість повітря загалом прийнятна для більшості. Однак чутливі люди можуть відчути від незначних до помірних симптомів при тривалому впливі повітря.</string>
     <string name="air_quality_pm_explanations_consequences">Пил є найшкідливішою формою забруднення повітря через їхню здатність проникати глибоко в легені та мозок через кровоносні судини, викликаючи проблеми зі здоров’ям, такі, як хвороби серця, захворювання легень та передчасну смерть.</string>
     <string name="air_quality_no2_info_origin">Джерелами NO₂ у навколишньому середовищі є результатами високотемпературного згорання палива в таких процесах, як опалення, транспорт, промисловість та виробництво електроенергії. До побутових джерел оксидів азоту (NOₓ) належить обладнання, яке спалює паливо, наприклад, печі, каміни, газові плити та духовки.</string>
     <string name="message_parsing_error_title">Не вдалося отримати погодні дані</string>
