@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="air_quality_level_3_description">Повітря має високий рівень забруднення та є небезпечним для чутливих людей. Скоротіть час перебування надворі, якщо ви відчуваєте такі симптоми, як утруднене дихання або подразнення горла.</string>
-    <string name="precipitation_intensity_heavy">Сильні</string>
+    <string name="precipitation_intensity_heavy">Важкий</string>
     <string name="air_quality_level_4_description">Чутливі люди можуть відразу відчути вплив на здоров’я. Здорові люди при тривалому впливі повітря можуть відчувати утруднене дихання та подразнення горла. Обмежте активність надворі.</string>
     <string name="uv_index_6_7">Високий</string>
     <string name="wind">Вітер</string>
@@ -27,7 +27,7 @@
     <string name="precipitation_total">Усього</string>
     <string name="precipitation_thunderstorm">Гроза</string>
     <string name="precipitation_rain">Дощ</string>
-    <string name="precipitation_intensity_light">Легкі</string>
+    <string name="precipitation_intensity_light">Світло</string>
     <string name="precipitation_none">Без опадів</string>
     <string name="wind_speed">Швидкість вітру</string>
     <string name="wind_gusts">Пориви вітру</string>
@@ -673,7 +673,7 @@
     <string name="message_server_unavailable_content">Зазвичай, це тимчасова помилка. Якщо помилка не зникне, повідомте про проблему GitHub.</string>
     <string name="action_edit_location">Редагувати це розташування</string>
     <string name="settings_global">Глобальні налаштування</string>
-    <string name="precipitation_intensity_medium">Середні</string>
+    <string name="precipitation_intensity_medium">Середній</string>
     <string name="settings_notifications_app_updates_check">Повідомляти мене про оновлення застосунку</string>
     <string name="notification_app_update_available">Доступна нова версія!</string>
     <string name="about_check_for_app_updates">Перевірити наявність оновлень</string>
