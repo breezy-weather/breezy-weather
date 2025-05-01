@@ -430,7 +430,7 @@ fun LazyListScope.dailyPrecipitationDuration(
 @Composable
 fun DailyItem(
     headlineText: String,
-    supportingText: String,
+    supportingText: String?,
     modifier: Modifier = Modifier,
     supportingContentDescription: String? = null,
     @DrawableRes icon: Int? = null,
@@ -452,19 +452,21 @@ fun DailyItem(
                 text = headlineText
             )
         },
-        supportingContent = {
-            Text(
-                text = supportingText,
-                color = DayNightTheme.colors.titleColor,
-                fontWeight = FontWeight.Black,
-                modifier = if (supportingContentDescription != null) {
-                    Modifier.clearAndSetSemantics {
-                        contentDescription = supportingContentDescription
+        supportingContent = supportingText?.let {
+            {
+                Text(
+                    text = it,
+                    color = DayNightTheme.colors.titleColor,
+                    fontWeight = FontWeight.Black,
+                    modifier = if (supportingContentDescription != null) {
+                        Modifier.clearAndSetSemantics {
+                            contentDescription = supportingContentDescription
+                        }
+                    } else {
+                        Modifier
                     }
-                } else {
-                    Modifier
-                }
-            )
+                )
+            }
         },
         modifier = modifier
     )

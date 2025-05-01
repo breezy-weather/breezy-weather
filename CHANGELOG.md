@@ -1,3 +1,9 @@
+# Version 5.4.8 (not yet released)
+
+**Improvements and fixes**
+- Add back alternate calendar to Daily details screen
+
+
 # Version 5.4.7 (2025-04-28)
 
 **Improvements and fixes**

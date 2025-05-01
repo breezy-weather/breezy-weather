@@ -17,6 +17,7 @@
 package org.breezyweather.ui.daily
 
 import androidx.activity.compose.LocalActivity
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -29,6 +30,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsBottomHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -58,10 +60,12 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 import org.breezyweather.R
+import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.extensions.getDayOfMonth
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
+import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.common.extensions.toCalendar
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
@@ -236,6 +240,32 @@ fun DailyPagerContent(
         )
     ) {
         val daily = location.weather!!.dailyForecast[selected]
+
+        if (CalendarHelper.getAlternateCalendarSetting(context) != null) {
+            daily.date.getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)?.let {
+                item {
+                    Box(modifier = Modifier.fillMaxWidth()) {
+                        DailyTitle(
+                            it,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .wrapContentWidth(align = Alignment.CenterHorizontally),
+                            style = MaterialTheme.typography.titleLarge
+                        )
+                    }
+                }
+                item {
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+                }
+                item {
+                    HorizontalDivider()
+                }
+                item {
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+                }
+            }
+        }
+
         daily.day?.let { day ->
             dailyHalfDay(context, day, true, thisDayNormals)
         }
