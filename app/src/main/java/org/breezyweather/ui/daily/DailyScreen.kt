@@ -17,7 +17,6 @@
 package org.breezyweather.ui.daily
 
 import androidx.activity.compose.LocalActivity
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -244,15 +243,13 @@ fun DailyPagerContent(
         if (CalendarHelper.getAlternateCalendarSetting(context) != null) {
             daily.date.getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)?.let {
                 item {
-                    Box(modifier = Modifier.fillMaxWidth()) {
-                        DailyTitle(
-                            it,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .wrapContentWidth(align = Alignment.CenterHorizontally),
-                            style = MaterialTheme.typography.titleLarge
-                        )
-                    }
+                    DailyTitle(
+                        it,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .wrapContentWidth(align = Alignment.CenterHorizontally),
+                        style = MaterialTheme.typography.titleLarge
+                    )
                 }
                 item {
                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
