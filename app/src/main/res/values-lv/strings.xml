@@ -164,7 +164,7 @@
     <string name="settings_appearance_icon_pack_title">Ikonu pakotne</string>
     <string name="settings_icon_packs_title">Ikonu pakotnes</string>
     <string name="settings_appearance_dark_mode_title">Tumšais izskats</string>
-    <string name="settings_main_cards_title">Kartes</string>
+    <string name="settings_main_cards_title">Kartītes</string>
     <string name="settings_main_daily_trends_title">Dienu prognozes</string>
     <string name="settings_widgets_live_wallpaper_summary">Iestatīt laikapstākļu animāciju kā tapeti</string>
     <string name="about_privacy_policy">Privātuma politika</string>
@@ -176,7 +176,7 @@
     <string name="settings_location_summary">Atrašanās vietas pakalpojumu iestatījumi</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Dažiem ražotājiem ir papildu lietotņu ierobežojumi, kas novāc fona pakalpojumus. Don’t kill my app! tīmekļvietnē ir informācija par to, kā to novērst.</string>
     <string name="settings_location_access_background_title">Piekļuve atrašanās vietai fonā</string>
-    <string name="settings_location_access_background_summaryOn">Iespējots. Lietotne fonā varēs atsvaidzināt laikapstākļu datus par pašreizējo atrašanās vietu.</string>
+    <string name="settings_location_access_background_summaryOn">Iespējots. Lietotne varēs fonā atsvaidzināt laikapstākļu datus par pašreizējo atrašanās vietu.</string>
     <string name="settings_location_access_background_summaryOff">Lūgums iespējot “Atļaut visu laiku”, lai iegūtu atsvaidzināšanu fonā pašreizējai atrašanās vietai.</string>
     <string name="settings_location_access_precise_title">Ierīces GPS lietojums</string>
     <string name="settings_source_default_value">Noklusējums (nemainīts)</string>
@@ -212,7 +212,7 @@
     <string name="settings_units_summary">Temperatūra, nokrišņi, attālums, ātrums, spiediens</string>
     <string name="settings_units_temperature">Temperatūras mērvienība</string>
     <string name="settings_units_precipitation">Nokrišņu mērvienība</string>
-    <string name="settings_main_cards_fade_in_switch">Kartes izgaist</string>
+    <string name="settings_main_cards_fade_in_switch">Kartītes izgaist</string>
     <string name="message_tap_again_to_exit">Jāpiesit vēlreiz, lai izietu</string>
     <string name="widget_day">Dienu</string>
     <string name="widget_text">Teksts</string>
@@ -249,7 +249,7 @@
     <string name="settings_icon_packs_weather_icon_light">Gaišā ikona</string>
     <string name="settings_icon_packs_weather_icon_grey">Pelēka ikona</string>
     <string name="settings_icon_packs_get_more">Iegūt vairāk</string>
-    <string name="settings_main_summary">Karšu secība, parādītie vienumi, animācijas</string>
+    <string name="settings_main_summary">Kartīšu secība, attēlotie vienumi, animācijas</string>
     <string name="settings_main_section_displayed_data">Attēlojamie dati</string>
     <string name="settings_main_hourly_trends_title">Stundu prognozes</string>
     <string name="settings_main_header_details_title">Informācija galvenē</string>
