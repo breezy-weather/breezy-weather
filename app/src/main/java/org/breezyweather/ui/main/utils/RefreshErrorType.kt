@@ -33,6 +33,7 @@ import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException
 import org.breezyweather.common.exceptions.MissingPermissionLocationException
 import org.breezyweather.common.exceptions.NoNetworkException
+import org.breezyweather.common.exceptions.OutdatedServerDataException
 import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.exceptions.SourceNotInstalledException
@@ -159,6 +160,9 @@ enum class RefreshErrorType(
     INVALID_INCOMPLETE_DATA(
         shortMessage = R.string.message_invalid_incomplete_data
     ),
+    OUTDATED_SERVER_DATA(
+        shortMessage = R.string.message_outdated_server_data
+    ),
     DATA_REFRESH_FAILED(
         shortMessage = R.string.weather_message_data_refresh_failed
     ),
@@ -204,6 +208,7 @@ enum class RefreshErrorType(
                 is SourceNotInstalledException -> SOURCE_NOT_INSTALLED
                 is LocationSearchException -> LOCATION_SEARCH_FAILED
                 is InvalidOrIncompleteDataException -> INVALID_INCOMPLETE_DATA
+                is OutdatedServerDataException -> OUTDATED_SERVER_DATA
                 is UnsupportedFeatureException -> UNSUPPORTED_FEATURE
                 is WeatherException -> DATA_REFRESH_FAILED
                 else -> {

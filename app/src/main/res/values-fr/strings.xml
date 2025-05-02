@@ -341,6 +341,7 @@
     <string name="notification_updating_weather_data">Actualisation des données météo (%1$d/%2$d)</string>
     <string name="message_multiple_refresh_errors">Mise à jour terminée avec erreurs</string>
     <string name="message_invalid_incomplete_data">Données invalides ou incomplètes reçues du serveur</string>
+    <string name="message_outdated_server_data">Données obsolètes reçues du serveur</string>
     <string name="message_network_unavailable">Réseau non-disponible</string>
     <string name="message_server_insecure_title">Connexion sécurisée impossible</string>
     <string name="message_server_timeout">Délai imparti dépassé</string>

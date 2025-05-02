@@ -3,6 +3,9 @@
 **Improvements and fixes**
 - Add back alternate calendar to Daily details screen
 
+**Weather sources**
+- [NWS] Will now report an error when data from the observation station is outdated, and fallback to current hour forecast data, instead of displaying outdated “current” info
+
 
 # Version 5.4.7 (2025-04-28)
 

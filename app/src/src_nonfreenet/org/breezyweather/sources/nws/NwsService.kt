@@ -25,6 +25,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.exceptions.OutdatedServerDataException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
@@ -36,9 +37,11 @@ import org.breezyweather.sources.nws.json.NwsCurrentResult
 import org.breezyweather.sources.nws.json.NwsDailyResult
 import org.breezyweather.sources.nws.json.NwsGridPointResult
 import retrofit2.Retrofit
+import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
+import kotlin.time.Duration.Companion.hours
 
 class NwsService @Inject constructor(
     @ApplicationContext context: Context,
@@ -170,6 +173,23 @@ class NwsService @Inject constructor(
             nwsCurrentResult,
             nwsAlertsResult
         ) { forecastResult, dailyResult, currentResult, alertResult ->
+            val current = if (SourceFeature.CURRENT in requestedFeatures) {
+                // Unfortunately, some stations report their update time as UTC while it’s actually local time
+                // So we need to subtract the timezone offset just to be safe
+                if (currentResult.properties?.timestamp != null &&
+                    currentResult.properties.timestamp.time < Date().time -
+                    location.javaTimeZone.rawOffset.hours.inWholeMilliseconds -
+                    OUTDATED_HOURS.hours.inWholeMilliseconds
+                ) {
+                    failedFeatures[SourceFeature.CURRENT] = OutdatedServerDataException()
+                    null
+                } else {
+                    getCurrent(currentResult)
+                }
+            } else {
+                null
+            }
+
             WeatherWrapper(
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
                     getDailyForecast(location, dailyResult)
@@ -181,11 +201,7 @@ class NwsService @Inject constructor(
                 } else {
                     null
                 },
-                current = if (SourceFeature.CURRENT in requestedFeatures) {
-                    getCurrent(currentResult)
-                } else {
-                    null
-                },
+                current = current,
                 alertList = if (SourceFeature.ALERT in requestedFeatures) {
                     getAlerts(alertResult.features)
                 } else {
@@ -278,6 +294,10 @@ class NwsService @Inject constructor(
     override val testingLocations: List<Location> = emptyList()
 
     companion object {
+        // Number of hours after which a station data is considered outdated
+        // TODO: Move this to global for all sources
+        private const val OUTDATED_HOURS = 2
+
         private const val NWS_BASE_URL = "https://api.weather.gov/"
         private const val USER_AGENT =
             "(BreezyWeather/${BuildConfig.VERSION_NAME}, github.com/breezy-weather/breezy-weather/issues)"
