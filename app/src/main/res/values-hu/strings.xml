@@ -475,7 +475,7 @@
     <string name="settings_main_background_animation_title">Háttér animálása</string>
     <string name="unit_kph_voice">Kilométer per óra</string>
     <string name="settings_items_drag_to_sort">Tartsa lenyomva és csúsztassa az ujját a listaelemek elrendezéséhez</string>
-    <string name="settings_widgets_configure_widget_summary">Modul konfigurálása</string>
+    <string name="settings_widgets_configure_widget_summary">Modul testreszabása</string>
     <string name="notification_channel_widget">Modul</string>
     <string name="settings_widgets_notification_persistent_switch">Állandó</string>
     <string name="settings_widgets_notification_style_title">Stílus</string>
