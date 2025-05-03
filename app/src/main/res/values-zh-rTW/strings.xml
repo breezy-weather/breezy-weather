@@ -832,4 +832,5 @@
     <string name="wind_direction_N">北風</string>
     <string name="wind_direction_S">南風</string>
     <string name="message_server_insecure_title">無法安全連線</string>
+    <string name="message_outdated_server_data">從伺服器收到過期資料</string>
 </resources>
