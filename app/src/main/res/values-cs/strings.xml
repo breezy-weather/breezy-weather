@@ -764,4 +764,5 @@
     <string name="wind_direction_N">Sever</string>
     <string name="wind_direction_W">Západ</string>
     <string name="message_server_insecure_title">Zabezpečené spojení selhalo</string>
+    <string name="message_outdated_server_data">Ze serveru byla obdržena zastaralá data</string>
 </resources>
