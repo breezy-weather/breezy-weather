@@ -37,7 +37,7 @@
     <string name="temperature_wind_chill">風冷指数</string>
     <string name="temperature_wet_bulb">湿球温度</string>
     <string name="temperature_degree_day">度日</string>
-    <string name="precipitation_total">総計</string>
+    <string name="precipitation_total">合計</string>
     <string name="precipitation_thunderstorm">雷雨</string>
     <string name="precipitation_rain">雨</string>
     <string name="precipitation_snow">雪</string>
@@ -198,7 +198,7 @@
     <string name="settings_color_dark">ダーク</string>
     <string name="settings_background_updates_refresh_30min">30分</string>
     <string name="settings_background_updates_refresh_1h">1時間</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5時間</string>
+    <string name="settings_background_updates_refresh_1h_30min">1時間半</string>
     <string name="settings_background_updates_refresh_2h">2時間</string>
     <string name="settings_background_updates_refresh_3h">3時間</string>
     <string name="settings_background_updates_refresh_6h">6時間</string>
@@ -292,7 +292,7 @@
     <string name="about_matrix">Matrixルーム</string>
     <string name="settings_appearance_summary">言語・ダークモード・アイコンパック・単位</string>
     <string name="settings_main_background_animation_enabled">有効</string>
-    <string name="settings_background_updates_section_troubleshoot">問題の対処</string>
+    <string name="settings_background_updates_section_troubleshoot">トラブルシューティング</string>
     <string name="about_source_code">ソースコード</string>
     <string name="settings_main_cards_fade_in_switch">カードのフェードイン</string>
     <string name="settings_main_daily_trends_title">今日の予報</string>
@@ -633,7 +633,7 @@
     <string name="pollen_urticaceae">イラクサ</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">今日, 明日, …, 4日後の花粉指数まとめ</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">この場所に最適な天気モデルを組み合わせます</string>
-    <string name="settings_per_location">場所設定</string>
+    <string name="settings_per_location">場所に関する設定</string>
     <string name="settings_per_location_summary">この場所に関する追加のカスタマイズ</string>
     <string name="settings_weather_source_open_meteo_weather_models">天気モデル</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">ベストマッチ</string>
@@ -785,4 +785,5 @@
     <string name="wind_direction_NW">北西</string>
     <string name="daily_today">今日</string>
     <string name="message_server_insecure_title">安全な接続に失敗しました</string>
+    <string name="message_outdated_server_data">サーバーから古いデータを受信しました</string>
 </resources>
