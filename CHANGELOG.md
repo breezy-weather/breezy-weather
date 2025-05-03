@@ -15,7 +15,7 @@
 - Fix for word-break to new line when using a custom system font (Samsung or Motorola devices for example)
 
 **Weather sources**
-- [ATMO France] fix for no pollen in Paris, Marseille and Lyon
+- [Atmo France] fix for no pollen in Paris, Marseille and Lyon
 - [CWA] Fix failure to refresh due to server side changes on 2025-04-28
 - [CWA] Fix failure to refresh on Android < 14
 - [Open Meteo] Update weather model list (adds KMA, migrate deprecated models)
@@ -33,7 +33,7 @@
 - Adjusted thresholds for pollen levels of alder, birch, grass, mugwort, olive and ragweed
 
 **Weather sources**
-- [ATMO France] added as new Pollen source for France (still early, may not work in all regions)
+- [Atmo France] added as new Pollen source for France (still early, may not work in all regions)
 
 **Translations**
 - Translations updated

@@ -47,7 +47,7 @@ import javax.inject.Named
 import kotlin.math.roundToInt
 
 /**
- * ATMO France
+ * Atmo France
  */
 class AtmoFranceService @Inject constructor(
     @ApplicationContext context: Context,
@@ -55,7 +55,7 @@ class AtmoFranceService @Inject constructor(
 ) : HttpSource(), WeatherSource, LocationParametersSource, ConfigurableSource {
 
     override val id = "atmofrance"
-    override val name = "ATMO France"
+    override val name = "Atmo France"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.atmo-france.org/article/politique-de-confidentialite"
 
@@ -75,7 +75,7 @@ class AtmoFranceService @Inject constructor(
 
     override val supportedFeatures
         get() = mapOf(
-            SourceFeature.POLLEN to "ATMO France + data.gouv.fr (Etalab 2.0)"
+            SourceFeature.POLLEN to "Atmo France + data.gouv.fr (Etalab 2.0)"
         )
 
     override fun isFeatureSupportedForLocation(

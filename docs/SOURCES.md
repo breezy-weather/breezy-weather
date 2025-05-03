@@ -34,7 +34,7 @@ Below, you can find details about the support and implementation status for feat
 | 🇫🇰 Falkland Is.                  | [Met Office](#met-office) 🔐                       | Forecast, Address                                                                    |
 | 🇫🇴 Faroe Is.                     | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Address                                                            |
 | 🇫🇷 France                        | [Météo-France](#météo-france)                      | Forecast, Current, Nowcasting, Alerts, Normals, Address                              |
-| 🇫🇷 France                        | [ATMO France](#atmo-france)                        | Pollen                                                                               |
+| 🇫🇷 France                        | [Atmo France](#atmo-france)                        | Pollen                                                                               |
 | 🇫🇷 France                        | [Recosanté](#recosanté)                            | Pollen                                                                               |
 | 🇫🇷 France (Auvergne-Rhône-Alpes) | [Atmo Auvergne-Rhône-Alpes](#atmo)                 | Air Quality                                                                          |
 | 🇫🇷 France (Grand Est)            | [ATMO GrandEst](#atmo)                             | Air Quality                                                                          |
@@ -1245,10 +1245,10 @@ These sources can be added as a secondary **Alert** and **Temperature normals** 
 
 **[GeoNames](https://www.geonames.org/)** provides multilingual search for place names of more than 11 million locations worldwide. This source can be enabled as a **Search** source after adding your API key.
 
-### ATMO France
-**[ATMO France](https://www.atmo-france.org/)** can be added as a secondary **Pollen** source for France. Pollen concentration is calculated from Copernicus data.
+### Atmo France
+**[Atmo France](https://www.atmo-france.org/)** can be added as a secondary **Pollen** source for France. Pollen concentration is calculated from Copernicus data.
 
-<details><summary><h4>Details of available pollens from ATMO France</h4></summary>
+<details><summary><h4>Details of available pollens from Atmo France</h4></summary>
 
 | Pollen               | Availability                        |
 |----------------------|-------------------------------------|
@@ -1261,7 +1261,7 @@ These sources can be added as a secondary **Alert** and **Temperature normals** 
 </details>
 
 ### Recosanté
-**[Recosanté](https://recosante.beta.gouv.fr/)** can be added as a secondary **Pollen** source for France. Only a pollen level is available, and not the concentration. Since it is sourcing its info from ATMO France which has concentration available, it’s best to use ATMO France source directly whenever possible.
+**[Recosanté](https://recosante.beta.gouv.fr/)** can be added as a secondary **Pollen** source for France. Only a pollen level is available, and not the concentration. Since it is sourcing its info from Atmo France which has concentration available, it’s best to use Atmo France source directly whenever possible.
 
 **April 2025 update: Recosanté is temporarily not producing any data**
 

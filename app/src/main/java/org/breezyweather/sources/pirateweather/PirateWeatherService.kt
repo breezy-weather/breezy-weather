@@ -17,6 +17,7 @@
 package org.breezyweather.sources.pirateweather
 
 import android.content.Context
+import androidx.compose.ui.text.input.KeyboardType
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -50,7 +51,7 @@ class PirateWeatherService @Inject constructor(
 
     private val mApi by lazy {
         client
-            .baseUrl(if (BreezyWeather.instance.debugMode) PIRATE_WEATHER_DEV_BASE_URL else PIRATE_WEATHER_BASE_URL)
+            .baseUrl(instance!!)
             .build()
             .create(PirateWeatherApi::class.java)
     }
@@ -113,6 +114,14 @@ class PirateWeatherService @Inject constructor(
 
     // CONFIG
     private val config = SourceConfigStore(context, id)
+    private var instance: String?
+        set(value) {
+            value?.let {
+                config.edit().putString("instance", it).apply()
+            } ?: config.edit().remove("instance").apply()
+        }
+        get() = config.getString("instance", null)
+            ?: if (BreezyWeather.instance.debugMode) PIRATE_WEATHER_DEV_BASE_URL else PIRATE_WEATHER_BASE_URL
     private var apikey: String
         set(value) {
             config.edit().putString("apikey", value).apply()
@@ -130,6 +139,44 @@ class PirateWeatherService @Inject constructor(
 
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(
+            EditTextPreference(
+                titleId = R.string.settings_weather_source_pirate_weather_instance,
+                summary = { _, content ->
+                    content.ifEmpty {
+                        if (BreezyWeather.instance.debugMode) PIRATE_WEATHER_DEV_BASE_URL else PIRATE_WEATHER_BASE_URL
+                    }
+                },
+                content = if (instance != if (BreezyWeather.instance.debugMode) {
+                        PIRATE_WEATHER_DEV_BASE_URL
+                    } else {
+                        PIRATE_WEATHER_BASE_URL
+                    }
+                ) {
+                    instance
+                } else {
+                    null
+                },
+                placeholder = if (BreezyWeather.instance.debugMode) {
+                    PIRATE_WEATHER_DEV_BASE_URL
+                } else {
+                    PIRATE_WEATHER_BASE_URL
+                },
+                regex = EditTextPreference.URL_REGEX,
+                regexError = context.getString(R.string.settings_source_instance_invalid),
+                keyboardType = KeyboardType.Uri,
+                onValueChanged = {
+                    instance = if (it == if (BreezyWeather.instance.debugMode) {
+                            PIRATE_WEATHER_DEV_BASE_URL
+                        } else {
+                            PIRATE_WEATHER_BASE_URL
+                        }
+                    ) {
+                        null
+                    } else {
+                        it.ifEmpty { null }
+                    }
+                }
+            ),
             EditTextPreference(
                 titleId = R.string.settings_weather_source_pirate_weather_api_key,
                 summary = { c, content ->

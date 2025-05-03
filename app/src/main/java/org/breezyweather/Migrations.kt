@@ -205,7 +205,7 @@ object Migrations {
 
                 if (oldVersion < 50407) {
                     runBlocking {
-                        // V5.4.7 removes incorrect INSEE code for Paris, Marseille, Lyon with ATMO France
+                        // V5.4.7 removes incorrect INSEE code for Paris, Marseille, Lyon with Atmo France
                         locationRepository.updateParameters(
                             source = "atmofrance",
                             parameter = "citycode",

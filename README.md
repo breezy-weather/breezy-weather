@@ -79,34 +79,34 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
 # Features
 
 - Weather data
-    - Daily and hourly forecasts up to 16 days
-      - Temperature
-      - Air quality
-      - Wind
-      - UV index
-      - Precipitation
-      - Feels like temperature
-    - Hourly forecasts
-      - Humidity / Dew point
-      - Pressure
-      - Cloud cover
-      - Visibility
-    - Precipitation in the next hour
+  - Daily and hourly forecasts up to 16 days
+    - Temperature
     - Air quality
-    - Pollen & Mold
-    - Ephemeris (Sun & Moon)
-    - Severe weather and precipitation alerts
-    - Real-time weather conditions
-      - Temperature
-      - Feels like
-      - Wind
-      - UV index
-      - Humidity
-      - Dew point
-      - Atmospheric pressure
-      - Visibility
-      - Cloud cover
-      - Ceiling
+    - Wind
+    - UV index
+    - Precipitation
+    - Feels like temperature
+  - Hourly forecasts
+    - Humidity / Dew point
+    - Pressure
+    - Cloud cover
+    - Visibility
+  - Precipitation in the next hour
+  - Air quality
+  - Pollen & Mold
+  - Ephemeris (Sun & Moon)
+  - Severe weather and precipitation alerts
+  - Real-time weather conditions
+    - Temperature
+    - Feels like
+    - Wind
+    - UV index
+    - Humidity
+    - Dew point
+    - Atmospheric pressure
+    - Visibility
+    - Cloud cover
+    - Ceiling
 
 - More than 50 weather sources supported (<a href="docs/SOURCES.md">full list</a>)
 - Large selection of home screen widgets for at-a-glance information
