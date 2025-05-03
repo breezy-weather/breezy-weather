@@ -354,7 +354,7 @@
     <string name="widget_label_subtitle_data">Зміст підзаголовку</string>
     <string name="widget_label_clock_font">Шрифт годинника</string>
     <string name="widget_subtitle_data_custom">Власний</string>
-    <string name="widget_custom_subtitle_explanation">Ви можете вводити будь-що, але зверніть увагу на довжину тексту. Якщо ви хочете відобразити погодні дані, використовуйте “$” для покликання на відповідне ключове слово.\n\nНаприклад, “Поточна погода: $cw$.” буде відображено як “Поточна погода: Ясно небо.”.</string>
+    <string name="widget_custom_subtitle_explanation">Ви можете вводити будь-що, але зверніть увагу на довжину тексту. Якщо ви хочете відобразити погодні дані, використовуйте “$” для покликання на відповідне ключове слово.\n\nНаприклад, “Поточна погода: $cw$.” буде відображено як “Поточна погода: Ясне небо.”.</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Поточна температура (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Поточна температура (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">Поточна температура за відчуттями (°C/°F)</string>
@@ -746,5 +746,5 @@
     <string name="wind_direction_N">Північ</string>
     <string name="wind_direction_S">Південь</string>
     <string name="message_server_insecure_title">Помилка безпечного з’єднання</string>
-    <string name="message_outdated_server_data">Застарілі дані, отримані з сервера</string>
+    <string name="message_outdated_server_data">Отримано застарілі дані з сервера</string>
 </resources>
