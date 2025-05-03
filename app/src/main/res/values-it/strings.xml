@@ -754,4 +754,5 @@
     <string name="location_last_updated_x">Último aggiornamento %s</string>
     <string name="message_server_insecure_title">Connessione sicura fallita</string>
     <string name="pollen_atriplex">Atriplex</string>
+    <string name="message_outdated_server_data">Ricevuti dati obsoleti dal server</string>
 </resources>
