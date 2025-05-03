@@ -29,6 +29,9 @@ data class PirateWeatherHourly(
     val precipProbability: Double?,
     val precipIntensityError: Double?,
     val precipAccumulation: Double?,
+    val liquidAccumulation: Double?,
+    val snowAccumulation: Double?,
+    val iceAccumulation: Double?,
 
     val temperature: Double?,
     val apparentTemperature: Double?,

@@ -119,11 +119,12 @@ internal fun getHourlyForecast(
                 temperature = result.temperature,
                 apparentTemperature = result.apparentTemperature
             ),
-            // see https://docs.pirateweather.net/en/latest/API/#preciptype
+            // see https://docs.pirateweather.net/en/latest/API/#precipaccumulation
             precipitation = Precipitation(
-                total = result.precipAccumulation,
-                rain = if (result.precipType.equals("rain")) result.precipIntensity else null,
-                snow = if (result.precipType.equals("snow")) result.precipIntensity else null
+                total = result.precipAccumulation?.times(10),
+                rain = result.liquidAccumulation?.times(10),
+                snow = result.snowAccumulation?.times(10),
+                ice = result.iceAccumulation?.times(10)
             ),
             precipitationProbability = PrecipitationProbability(
                 total = result.precipProbability?.times(100)
