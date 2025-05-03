@@ -5,7 +5,8 @@
 
 **Weather sources**
 - [NWS] Will now report an error when data from the observation station is outdated, and fallback to current hour forecast data, instead of displaying outdated “current” info
-- [PirateWeather] Fix incorrect units for precipitation
+- [Pirate Weather] Now available in the `freenet` flavor (was open sourced a few months ago)
+- [Pirate Weather] Fix incorrect units for precipitation
 
 
 # Version 5.4.7 (2025-04-28)
