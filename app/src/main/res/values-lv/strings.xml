@@ -748,4 +748,5 @@
     <string name="wind_direction_W">Rietumi</string>
     <string name="wind_direction_NW">Ziemeļrietumi</string>
     <string name="message_server_insecure_title">Drošais savienojums neizdevās</string>
+    <string name="message_outdated_server_data">No servera saņemti novecojuši dati</string>
 </resources>
