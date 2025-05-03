@@ -823,4 +823,5 @@
     <string name="location_reverse_geocoding_by">Pencarian alamat dengan %s</string>
     <string name="location_reverse_geocoding">Pencarian alamat</string>
     <string name="message_server_insecure_title">Koneksi aman gagal</string>
+    <string name="message_outdated_server_data">Data kedaluwarsa diterima dari server</string>
 </resources>
