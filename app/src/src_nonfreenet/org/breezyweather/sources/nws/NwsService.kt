@@ -32,6 +32,7 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.sources.nws.json.NwsAlertsResult
 import org.breezyweather.sources.nws.json.NwsCurrentResult
 import org.breezyweather.sources.nws.json.NwsDailyResult
@@ -178,8 +179,8 @@ class NwsService @Inject constructor(
                 // So we need to subtract the timezone offset just to be safe
                 if (currentResult.properties?.timestamp != null &&
                     currentResult.properties.timestamp.time < Date().time -
-                    location.javaTimeZone.rawOffset.hours.inWholeMilliseconds -
-                    OUTDATED_HOURS.hours.inWholeMilliseconds
+                    OUTDATED_HOURS.hours.inWholeMilliseconds + // Offset on next line is negative, don’t subtract here!
+                    location.javaTimeZone.rawOffset // In milliseconds
                 ) {
                     failedFeatures[SourceFeature.CURRENT] = OutdatedServerDataException()
                     null
