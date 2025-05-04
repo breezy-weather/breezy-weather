@@ -32,7 +32,6 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.sources.nws.json.NwsAlertsResult
 import org.breezyweather.sources.nws.json.NwsCurrentResult
 import org.breezyweather.sources.nws.json.NwsDailyResult
