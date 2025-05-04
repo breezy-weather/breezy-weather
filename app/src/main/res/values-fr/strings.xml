@@ -241,13 +241,10 @@
     <string name="weather_message_unsupported_feature">La source ne supporte pas une des fonctionnalités demandées</string>
     <string name="weather_message_invalid_location">Emplacement invalide, veuillez le supprimer et le réajouter</string>
     <string name="weather_message_too_frequent_refreshes">Veuillez patienter quelques secondes avant de réessayer…</string>
-    <string name="location_dialog_failed_to_locate_title">Vous ne parvenez pas à être localisé ?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Vérifiez les permissions de localisation</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Activez les informations de localisation</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Sélectionnez un service de localisation</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Ajoutez manuellement la localisation et supprimez « %s »</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Utiliser un autre service de localisation</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Ajouter manuellement la localisation et supprimer « %s »</string>
     <string name="weather_api_limit_reached_title">Limite de requêtes API atteinte</string>
-    <string name="weather_api_limit_reached_content">Pour contourner la limite, ajoutez votre propre clé API.</string>
+    <string name="weather_api_limit_reached_content">Pour contourner la limite, ajouter votre propre clé API.</string>
     <string name="weather_api_unauthorized_title">Accès API non autorisé</string>
     <string name="weather_api_unauthorized_content">Pour certaines sources météo, vous devez fournir votre propre clé API. Si vous l’avez déjà fait, vérifiez qu’il n’y a pas d’erreur dans la clé fournie.</string>
     <string name="weather_api_key_required_missing_title">Clé API requise manquante</string>
@@ -351,7 +348,7 @@
     <string name="message_parsing_error_content">Assurez-vous d’avoir mis à jour vers la dernière version de l’application. Le serveur peut être temporairement indisponible, dans ce cas, réessayez plus tard. Si le problème persiste, merci de récupérer un journal d’incident à partir des paramètres de débogage, et signaler le problème sur GitHub.</string>
     <string name="message_source_not_installed_error_title">La source n’existe plus</string>
     <string name="message_source_not_installed_error_content_tip_1">Cela peut se produire lorsque vous avez ajouté votre emplacement dans la version Standard de l’application et que vous êtes ensuite passé à la version avec uniquement des sources réseau libres et auto-hébergeables (freenet). Revenir à la version Standard peut permettre de résoudre ce problème.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Modifiez les sources météorologiques pour cet emplacement ou supprimez et ajoutez à nouveau cet emplacement.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Modifiez les sources météorologiques pour cet emplacement, ou supprimez et ajoutez à nouveau cet emplacement.</string>
     <!-- $ = 15 minutes, may be adjusted in the future -->
 
     <!-- Example: Precipitation soon - New York -->
@@ -513,6 +510,8 @@
     <string name="settings_background_updates_refresh_24h">24 heures</string>
     <string name="action_show_errors">Appuyez pour voir les détails</string>
     <string name="action_show">Voir</string>
+    <string name="action_enable">Activer</string>
+    <string name="action_allow">Autoriser</string>
     <string name="action_grant_permission">Appuyez pour accorder la permission.</string>
     <string name="action_help_me_choose">Aidez-moi à choisir</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorer quand la batterie est faible</string>

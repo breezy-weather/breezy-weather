@@ -94,9 +94,6 @@
     <string name="dialog_permissions_location_background_content">Pentru a permite ca actualizarea vremii în fundal să se facă pentru cea mai recentă locație curentă cunoscută de Android, trebuie să setați permisiunea de locație la “Permite tot timpul”. Dacă nu o faceți, vremea va fi actualizată pe baza celor mai recente coordonate recuperate în prim-plan, care pot să nu fie la zi.</string>
     <string name="location_message_failed_to_locate">Localizarea prin GPS a eșuat</string>
     <string name="weather_message_data_refresh_failed">Actualizarea datelor a eșuat</string>
-    <string name="location_dialog_failed_to_locate_title">Nu obții corect locația?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Verifică permisiunea accesului la locație</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Activează informațiile despre locație</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Selectează serviciul de localizare</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adaugă locația manual și șterge “%s”</string>
     <string name="widget_label_view_style">Stil</string>

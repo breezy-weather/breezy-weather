@@ -82,7 +82,6 @@
     <string name="location_message_search_failed">Пошук розташування не вдався</string>
     <string name="location_message_failed_to_locate">Не вдалося знайти поточне розташування</string>
     <string name="location_message_permission_missing">Немає дозволу на доступ до місцезнаходження</string>
-    <string name="location_dialog_failed_to_locate_title">Не вдається правильно визначити місцезнаходження\?</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Оберіть сервіс визначення місцезнаходження</string>
     <string name="location_search_placeholder">Пошук розташувань…</string>
     <string name="location_service_native">Системний API</string>
@@ -217,8 +216,6 @@
     <string name="location_message_permission_background_missing">Немає дозволу на доступ до місцезнаходження у фоновому режимі</string>
     <string name="location_search_no_results">%1$s не може знайти %2$s</string>
     <string name="location_message_reverse_geocoding_failed">Не вдалося знайти відповідне розташування</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Перевірте дозволи на місцезнаходження</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Увімкніть подробиці про місцезнаходження</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Додайте розташування вручну та видаліть “%s”</string>
     <string name="location_search_no_results_advice">Переконайтеся, що пошуковий запит написаний правильно та не надто специфічно. Ви також можете спробувати інше джерело пошуку розташувань, яке може надати інші результати.</string>
     <string name="air_quality_co_info_origin">Він утворюється внаслідок неповного згоряння вуглецевмісного палива, такого як деревина, бензин, вугілля, природний газ і гас у простих плитах, відкритих вогнищах, гасових лампах, печах, камінах. Основним джерелом оксиду вуглецю (CO) у повітрі є транспортні засоби.</string>

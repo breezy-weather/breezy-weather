@@ -181,7 +181,6 @@
     <string name="settings_widgets_notification_feels_like_switch">Koristi temperaturu osjeta</string>
     <string name="dialog_permissions_location_content">Za korištenje ove funkcije, aplikaciji morate dati dopuštenje za pristup vašoj trenutačnoj lokaciji. Dijelit će se samo s odabranim vremenskim izvorima. Ako se predomislite, možete prekinuti postupak i ručno dodati fiksnu lokaciju.</string>
     <string name="settings_notifications_forecast_time_today_title">Vrijeme obavještenja za dnevnu prognozu</string>
-    <string name="location_dialog_failed_to_locate_title">Ne možete naći točnu lokaciju\?</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Noćna temperatura danas, sutra, …, 4 dana kasnije (°)</string>
     <string name="air_quality_no2_info_introduction">Dušikov dioksid (NO₂) je zagušljiv, toksični crveno-smeđi plin sa karakterističnim oporim, oštrim mirisom.</string>
     <string name="location_results_by">Rezultati lokacije: %s</string>
@@ -312,7 +311,6 @@
     <string name="settings_main_hourly_trends_title">Trendovi po satu</string>
     <string name="temperature_degree_day_cooling">Temperatura za hlađenje</string>
     <string name="air_quality_co_info_origin">Nastaje nepotpunim izgaranjem ugljičnih goriva kao što su drvo, benzin, ugljen, prirodni plin i kerozin u jednostavnim štednjacima, otvorenim vatrama, fenjerima, pećima, kaminima. Prevladavajući izvor ugljikovog monoksida (CO) u okolnom zraku su motorna vozila.</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Provjerite dozvole za lokaciju</string>
     <string name="pollen_level_3">Umjereno</string>
     <string name="weather_data_by">Podatci od %s</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Trenutačni tlak</string>
@@ -385,7 +383,6 @@
     <string name="widget_style_nano">Nano</string>
     <string name="air_quality_co_info_title">Ugljikov monoksid (CO)</string>
     <string name="weather_source_accu_preference_hours_240">240 sati</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Omogućite informacije o lokaciji</string>
     <string name="weather_alert_data_by">Podatci o upozorenjima od %s</string>
     <string name="settings_units_pressure">Jedinica za tlak</string>
     <string name="air_quality_pm10">PM10</string>

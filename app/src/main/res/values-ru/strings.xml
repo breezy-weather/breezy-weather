@@ -83,9 +83,6 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Не удалось найти текущее местоположение</string>
     <string name="weather_message_data_refresh_failed">Не удалось обновить данные</string>
-    <string name="location_dialog_failed_to_locate_title">Невозможно правильно определить местоположение\?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Проверка разрешений местоположения</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Включить информацию местоположения</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Выбрать сервис определения местоположения</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Добавить местоположение и удалить “%s”</string>
     <string name="dialog_permissions_location_background_title">Доступ к местоположению в фоновом режиме</string>

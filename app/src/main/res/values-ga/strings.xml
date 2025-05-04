@@ -198,9 +198,6 @@
     <string name="location_message_search_failed">Theip ar chuardach suímh</string>
     <string name="location_message_failed_to_locate">Theip ar aimsiú an tsuímh reatha</string>
     <string name="location_message_reverse_geocoding_failed">Theip ar fhoinse aimsire suíomh meaitseála a aimsiú</string>
-    <string name="location_dialog_failed_to_locate_title">Ní féidir suíomh a fháil i gceart?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Seiceáil ceadanna suímh</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Cumasaigh faisnéis suímh</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Roghnaigh seirbhís suímh</string>
     <string name="location_search_placeholder">Cuardaigh suíomh…</string>
     <string name="location_search_no_results">Ní féidir le %1$s %2$s a aimsiú</string>

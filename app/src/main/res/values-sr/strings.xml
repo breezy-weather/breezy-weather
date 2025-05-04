@@ -193,7 +193,6 @@
     <string name="settings_background_updates_worker_info_summary">Последње покретање: %s</string>
     <string name="settings_notifications_alerts_title">Обавештења о упозорењима о лошем времену</string>
     <string name="unit_km_voice">Километри</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Омогући информације о локацији</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Тренутна „Осећа се као“ температура (°)</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Тренутна влажност</string>
     <string name="widget_custom_subtitle_keyword_al_description">Упозорења</string>
@@ -221,7 +220,6 @@
     <string name="setting_weather_source_accu_days">Дани</string>
     <string name="setting_weather_source_accu_hours">Сати</string>
     <string name="locations">Локације</string>
-    <string name="location_dialog_failed_to_locate_title">Не можете добити исправну локацију\?</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Изабери услугу локације</string>
     <string name="action_add_new_location">Додај нову локацију</string>
     <string name="action_help">Помоћ</string>
@@ -367,7 +365,6 @@
     <string name="common_weather_text_snow_moderate">Умерен снег</string>
     <string name="common_weather_text_snow_heavy">Јак снег</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Олуја са грмљавином са јаким градом</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Провери дозволе за локацију</string>
     <string name="dialog_permissions_location_background_title">Приступ локацији у позадини</string>
     <string name="widget_label_show_widget_card_alpha">Непрозирност</string>
     <string name="widget_label_hide_subtitle">Сакриј поднаслов</string>

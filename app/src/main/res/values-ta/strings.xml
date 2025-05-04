@@ -455,9 +455,6 @@
     <string name="location_message_added">இடம் சேர்க்கப்பட்டது</string>
     <string name="location_delete_location_dialog_title">இருப்பிடத்தை நீக்கவா?</string>
     <string name="location_delete_location_dialog_message">நீங்கள் சேமித்த இடங்களின் பட்டியலிலிருந்து “%s” ஐ நீக்க உள்ளீர்கள்.</string>
-    <string name="location_dialog_failed_to_locate_title">இருப்பிடத்தை சரியாகப் பெற முடியவில்லையா?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">இருப்பிட அனுமதிகளை சரிபார்க்கவும்</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">இருப்பிட தகவல்களை இயக்கவும்</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">இருப்பிடத்தை கைமுறையாகச் சேர்த்து “%s” ஐ நீக்கவும்</string>
     <string name="action_edit_location">இந்த இருப்பிடத்தைத் திருத்தவும்</string>
     <string name="action_preview">முன்னோட்டம்</string>

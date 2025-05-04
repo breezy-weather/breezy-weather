@@ -286,7 +286,6 @@
     <string name="location_delete_location_dialog_message_no_name">Chystáte se odstrániť toto miesto z vášho zoznamu uložených miest.</string>
     <string name="location_message_permission_missing">Chýbajúce oprávnenie na prístup k polohe</string>
     <string name="location_service_native">Nativné API</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Skontrolujte oprávnenia ku polohe</string>
     <string name="location_search_placeholder">Vyhľadať miesto…</string>
     <string name="location_current_not_found_yet">Vaša poloha zatiaľ nenájdená…</string>
     <string name="action_back">Späť</string>
@@ -302,7 +301,6 @@
     <string name="setting_weather_source_accu_hours">Hodiny</string>
     <string name="weather_source_accu_preference_hours_24">24 hodín</string>
     <string name="location_search_weather_source">Zdroj počasia</string>
-    <string name="location_dialog_failed_to_locate_title">Zobrazuje sa nesprávna poloha?</string>
     <string name="action_location_list">Zoznam miest</string>
     <string name="action_search">Hľadať</string>
     <string name="action_add_current_location">Pridať momentálnu polohu</string>
@@ -324,7 +322,6 @@
     <string name="location_message_added">Miesto pridané</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Ručne pridať polohu a odstraniť “%s”</string>
     <string name="location_search_no_results_advice">Uistite sa, že je vaše vyhľadávanie napísané správne a nie je príliš špecifické. Prípadne môžete vyskúšať iný zdroj, ktorý môže poskytnúť iné výsledky.</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Zapnite informácie o polohe</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Vyberte službu na určenie polohy</string>
     <string name="action_undo">Vrátiť späť</string>
     <string name="action_set">Nastaviť</string>

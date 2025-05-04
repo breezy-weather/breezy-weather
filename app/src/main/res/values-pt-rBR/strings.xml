@@ -95,9 +95,6 @@
     <string name="dialog_permissions_location_background_content">Para permitir que a atualização do clima em segundo plano seja feita com base na localização mais recente conhecida pelo Android, você precisa definir a permissão de localização como “Permitir o tempo todo”. Se você não fizer isso, o clima será atualizado com base nas últimas coordenadas recuperadas em primeiro plano, que podem estar desatualizadas.</string>
     <string name="location_message_failed_to_locate">Falha ao encontrar a localização atual</string>
     <string name="weather_message_data_refresh_failed">Falha ao atualizar dados</string>
-    <string name="location_dialog_failed_to_locate_title">Não consegue obter a localização corretamente\?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Verifique as permissões de localização</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Ativar informações de localização</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Selecione o provedor de localização</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adicionar local manualmente e remover “%s”</string>
     <string name="widget_label_view_style">Estilo de exibição</string>

@@ -593,10 +593,8 @@
     <string name="dialog_time_picker_input_time">Skriv inn tidspunkt</string>
     <string name="settings_global">Globale innstillinger</string>
     <string name="location_search_change_source">Endre kilde for lokasjonssøk</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Sjekk posisjonstillatelser</string>
     <string name="settings_background_updates_refresh_never_warning2">Prosessen for bakgrunnsoppdatering er lite krevende: den oppdaterer kun den første lokasjonen din med oppdateringsfrekvensen du har valgt i innstillingene, samt resten av lokasjonene dine en gang i døgnet ved behov. Det er en energi-effektiv prosess, og den vil vanligvis ligge under %d MB i databruk pr måned.</string>
     <string name="location_current_not_found_yet">Nåværende posisjon er ikke funnet enda…</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Tillat posisjonsinformasjon</string>
     <string name="action_edit_location">Rediger lokasjonen</string>
     <string name="ephemeris_moonrise_at">Måne opp %s</string>
     <string name="ephemeris_moonset_at">Måne ned %s</string>
@@ -644,7 +642,6 @@
     <string name="location_message_failed_to_locate">Kunne ikke finne gjeldende plassering</string>
     <string name="location_message_permission_missing">Posisjonstillatelse mangler</string>
     <string name="location_message_permission_background_missing">Tilgangsposisjon i bakgrunnen mangler</string>
-    <string name="location_dialog_failed_to_locate_title">Kan du ikke finne riktig plassering?</string>
     <string name="humidity_dew_point">Fuktighet / Duggpunkt</string>
     <string name="weather_api_unauthorized_content">På enkelte værdatakilder må du oppgi din egen API-nøkkel. Hvis du allerede har oppgitt en, må du dobbeltsjekke API-nøkkelen du oppga.</string>
     <string name="location_message_updated">Plasseringen er oppdatert</string>

@@ -652,9 +652,6 @@
     <string name="air_quality_o3_info_origin">Ĝi estas formita de fotoĥemiaj reakcioj kun malpurigaĵoj kiel ekzemple volatilaj organikaj kombinaĵoj, karbona monooksido kaj nitrogenaj oksidoj (NOₓ) elsenditaj de veturiloj kaj industrio. Pro la fotoĥemia naturo, la plej altaj niveloj de ozono vidiĝas dum periodoj de suna vetero.</string>
     <string name="air_quality_no2_info_consequences">Elmeto al nitrogena dioksido povas iriti aervojojn kaj plimalbonigi spirajn malsanojn. Plie, NO₂ estas grava ozona antaŭulo, malpurigaĵo proksime ligita al astmo kaj aliaj spiraj kondiĉoj.</string>
     <string name="air_quality_so2_info_origin">Ĝi estas produktata nature de vulkana agado, sed ĝi estas plejparte produktata de la brulado de fosiliaj bruligaĵoj por hejma hejtado, industrio kaj elektrogenerado.</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Ŝaltu informadon pri la loko</string>
-    <string name="location_dialog_failed_to_locate_title">Ĉu vi ne povas akiri la lokon ĝuste?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Kontroli permesojn pri lokigo</string>
     <string name="settings_background_updates_worker_info_title">Informoj pri procezoj</string>
     <string name="settings_location_access_background_title">Atingi la nunan lokon fone</string>
     <string name="settings_location_access_precise_title">Uzi GPS</string>

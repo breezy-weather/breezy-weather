@@ -89,9 +89,6 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">A jelenlegi helyszín meghatározása sikertelen</string>
     <string name="weather_message_data_refresh_failed">Nem sikerült frissíteni az adatokat</string>
-    <string name="location_dialog_failed_to_locate_title">Nem találja a megfelelő helyszínt?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Ellenőrizze a helymeghatározási engedélyeket</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Engedélyezze a helymeghatározást</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Helymeghatározó szolgáltatás kiválasztása</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adja hozzá a helyszínt manuálisan és törölje a következőt: „%s”</string>
     <string name="dialog_permissions_location_background_title">Hozzáférés a helymeghatározáshoz a háttérben</string>

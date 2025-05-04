@@ -205,9 +205,6 @@
     <string name="location_message_permission_missing">Няма дазволу на доступ да месцазнаходжання</string>
     <string name="location_message_permission_background_missing">Няма дазволу на доступ да месцазнаходжання ў фонавым рэжыме</string>
     <string name="location_message_reverse_geocoding_failed">Крыніцы надвор’я не ўдалося знайсці прыдатнае месцазнаходжанне</string>
-    <string name="location_dialog_failed_to_locate_title">Не ўдаецца вызначыць правільнае месцазнаходжанне?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Праверка дазволаў месцазнаходжання</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Уключыць інфармацыю месцазнаходжання</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Выбраць сэрвіс вызначэння месцазнаходжання</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Дадаць месцазнаходжанне і выдаліць «%s»</string>
     <string name="location_search_placeholder">Пошук месцазнаходжання…</string>

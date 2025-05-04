@@ -93,9 +93,6 @@
     <string name="dialog_permissions_location_background_content">Ottaaksesi käyttöön säätietojen päivityksen taustalla viimeisimmälle Androidin tietämälle sijainnille, sijainnin käyttöoikeuden tulee olla “Salli aina”. Muuten säätiedot päivitetään viimeisimpien haettujen koordinaattien perusteella kun sovellus oli viimeksi käytössä. Kyseiset koordinaatit voivat olla vanhentuneita.</string>
     <string name="location_message_failed_to_locate">Tämänhetkisen sijainnin haku epäonnistui</string>
     <string name="weather_message_data_refresh_failed">Tietojen haku epäonnistui</string>
-    <string name="location_dialog_failed_to_locate_title">Etkö saa oikeaa sijaintia\?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Tarkista sijaintitietojen käyttöoikeudet</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Ota sijaintitiedot käyttöön</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Valitse sijaintipalvelu</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Lisää sijainti manuaalisesti ja poista “%s”</string>
     <string name="widget_label_view_style">Näytä tyyli</string>

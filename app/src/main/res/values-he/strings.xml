@@ -295,7 +295,6 @@
     <string name="weather_message_too_frequent_refreshes">אנא חכו מספר שניות לפני ניסיון חוזר…</string>
     <string name="weather_api_limit_reached_title">הגעת למגבלת כמות הבקשות של ה-API</string>
     <string name="location_message_reverse_geocoding_failed">מקור נתוני מזג האוויר לא הצליח למצוא מיקום תואם</string>
-    <string name="location_dialog_failed_to_locate_title">לא מצליחים לקבוע את המיקום נכון?</string>
     <string name="location_search_placeholder">חפש מיקום…</string>
     <string name="location_search_source">מקור לחיפוש המיקום</string>
     <string name="location_search_change_source">שנה את מקור חיפוש המיקום</string>
@@ -317,7 +316,6 @@
     <string name="temperature_real_feel_shade">™RealFeel Shade</string>
     <string name="pollen_betula">עץ ליבנה</string>
     <string name="weather_minutely_data_by">מידע על משקעים יורדים על ידי %s</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">בדוק הרשאות מיקום</string>
     <string name="location_dialog_failed_to_locate_action_select_source">בחר שירות מיקום</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">הוסף מיקום ידנית ומחק ”%s“</string>
     <string name="location_search_no_results">%1$s לא יכול למצוא את %2$s</string>
@@ -418,7 +416,6 @@
     <string name="weather_api_key_required_missing_title">מפתח API נדרש חסר</string>
     <string name="weather_api_key_required_missing_content">על מנת להשתמש במקור זה הנך צריך לספק מפתח API.</string>
     <string name="weather_api_unauthorized_content">עבור מספר מקורות מידע, הנך צריך לספק מפתחות API משלך. אם כבר סיפקת אחד, בבקשה בדוק שנית את מפתח ה API שסיפקת.</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">אפשר מידע מיקום</string>
     <string name="air_quality_so2_info_consequences">חשיפה לגופרית דו-חמצנית (SO₂) קשורה לאשפוזים אסתמטיים בבתי חולים ולביקורים בחדר מיון.</string>
     <string name="pollen_carpinus">אלה לבנה</string>
     <string name="pollen_platanus">דולב</string>

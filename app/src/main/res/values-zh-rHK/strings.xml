@@ -264,9 +264,6 @@
     <string name="location_message_permission_missing">缺少位置存取權限</string>
     <string name="location_message_permission_background_missing">缺少背景定位權限</string>
     <string name="location_message_reverse_geocoding_failed">天氣來源無法找到相符的位置</string>
-    <string name="location_dialog_failed_to_locate_title">無法正常進行定位？</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">檢查位置權限</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">啟用位置資訊</string>
     <string name="location_dialog_failed_to_locate_action_select_source">選擇定位服務</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">手動新增位置並刪除「%s」</string>
     <string name="location_search_placeholder">搜尋位置…</string>

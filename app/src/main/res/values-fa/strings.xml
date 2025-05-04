@@ -134,7 +134,6 @@
     <string name="location_results_by">نتایج موقعیت یابی از %s</string>
     <string name="location_message_permission_background_missing">اجازه دسترسی به مکان در پس زمینه داده نشده است</string>
     <string name="location_message_reverse_geocoding_failed">منبع آب و هوا موفق به پیدا کردن یک مکان همخوان نشده است</string>
-    <string name="location_dialog_failed_to_locate_title">نمی توانید به درستی مکان یابی کنید؟</string>
     <string name="location_dialog_failed_to_locate_action_select_source">انتخاب سرویس مکان</string>
     <string name="action_location_list">فهرست مکان ها</string>
     <string name="action_search">جستجو</string>
@@ -177,7 +176,6 @@
     <string name="locations">مکان ها</string>
     <string name="location_message_search_failed">جستجوی مکان انجام نشد</string>
     <string name="location_search_placeholder">جستجو برای یک مکان…</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">فعال کردن اطلاعات مکان</string>
     <string name="location_search_source">منبع جستجو مکان</string>
     <string name="location_search_change_source">تغییر منبع جستجو مکان</string>
     <string name="location_search_no_results">%1$s نمی تواند %2$s را بیابد</string>
@@ -218,7 +216,6 @@
     <string name="location_message_added">موقعیت اضافه شده</string>
     <string name="location_message_failed_to_locate">پیدا کردن مکان فعلی انجام نشد</string>
     <string name="location_message_permission_missing">اجازه دسترسی به مکان داده نشده است</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">بررسی مجوزهای مکان</string>
     <string name="action_add_new_location">افزودن یک مکان نو</string>
     <string name="action_done">انجام شد</string>
     <string name="action_save">ذخیره</string>

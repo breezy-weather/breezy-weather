@@ -89,9 +89,6 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Σφάλμα τοποθεσίας</string>
     <string name="weather_message_data_refresh_failed">Αποτυχία ανανέωσης δεδομένων</string>
-    <string name="location_dialog_failed_to_locate_title">Υπήρξε αδυναμία εντοπισμού τοποθεσίας;</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Έλεγξε τα δικαιώματα τοποθεσίας</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Ενεργοποίηση πληροφοριών τοποθεσίας</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Επέλεξε υπηρεσία τοποθεσίας</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Προσθήκη τοποθεσίας χειροκίνητα και διαγραφή “%s”</string>
     <string name="widget_label_view_style">Στυλ εμφάνισης</string>

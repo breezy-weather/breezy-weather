@@ -130,16 +130,19 @@ enum class RefreshErrorType(
         showDialogAction = { LocationHelpDialog.show(it) }
     ),
     ACCESS_LOCATION_PERMISSION_MISSING(
-        shortMessage = R.string.location_message_permission_missing
-        // showDialogAction = { } // TODO
+        shortMessage = R.string.location_message_permission_missing,
+        showDialogAction = { IntentHelper.startApplicationDetailsActivity(it) },
+        actionButtonMessage = R.string.action_allow
     ),
     ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING(
-        shortMessage = R.string.location_message_permission_background_missing
-        // showDialogAction = { } // TODO
+        shortMessage = R.string.location_message_permission_background_missing,
+        showDialogAction = { IntentHelper.startApplicationDetailsActivity(it) },
+        actionButtonMessage = R.string.action_allow
     ),
     LOCATION_ACCESS_OFF(
         shortMessage = R.string.location_message_location_access_off,
-        showDialogAction = { IntentHelper.startLocationSettingsActivity(it) }
+        showDialogAction = { IntentHelper.startLocationSettingsActivity(it) },
+        actionButtonMessage = R.string.action_enable
     ),
     REVERSE_GEOCODING_FAILED(
         shortMessage = R.string.location_message_reverse_geocoding_failed

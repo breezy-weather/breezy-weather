@@ -123,7 +123,6 @@
     <string name="action_settings">समायोजन</string>
     <string name="weather_source_accu_preference_days_10">१० दिन</string>
     <string name="weather_source_accu_preference_days_15">१५ दिन</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">स्थान की जानकारी सक्षम करें</string>
     <string name="location_dialog_failed_to_locate_action_select_source">स्थान सेवा का चयन करें</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">मैन्युअल रूप से स्थान जोड़ें और “%s” को हटा दें</string>
     <string name="location_search_no_results_advice">सुनिश्चित करें कि आपकी खोज सही ढंग से लिखी गई है और बहुत विशिष्ट नहीं है। वैकल्पिक रूप से, आप किसी अन्य स्थान खोज स्रोत को आज़मा सकते हैं जो भिन्न परिणाम उत्पन्न कर सकता है।</string>
@@ -216,8 +215,6 @@
     <string name="location_delete_location_dialog_message_no_name">आप इस स्थान को अपने सहेजे गए स्थानों की सूची से हटाने वाले हैं।</string>
     <string name="location_message_permission_missing">स्थान की अनुमति अनुपलब्ध है</string>
     <string name="location_message_reverse_geocoding_failed">मौसम स्रोत मेल खाने वाला स्थान ढूंढने में विफल रहा</string>
-    <string name="location_dialog_failed_to_locate_title">सही ढंग से स्थान नहीं मिल सकता?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">स्थान अनुमतियों की जाँच करें</string>
     <string name="settings_background_updates_refresh_12h">12 घंटे</string>
     <string name="settings_background_updates_dont_kill_my_app_title">निर्माता विशिष्ट निर्देश</string>
     <string name="settings_location_access_background_summaryOff">कृपया अपने वर्तमान स्थान की पृष्ठभूमि को ताज़ा करने के लिए “हर समय अनुमति दें” सक्षम करें।</string>

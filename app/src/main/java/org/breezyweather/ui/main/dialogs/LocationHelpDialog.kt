@@ -81,34 +81,13 @@ object LocationHelpDialog {
                         },
                         title = {
                             Text(
-                                stringResource(R.string.location_dialog_failed_to_locate_title)
+                                stringResource(R.string.location_message_failed_to_locate)
                             )
                         },
                         text = {
                             Column(
                                 modifier = Modifier.fillMaxWidth()
                             ) {
-                                // TODO: Check location permission and if location is enabled. Only show items when relevant (permission is not granted / location is disabled).
-                                DialogListItem(
-                                    content = stringResource(
-                                        R.string.location_dialog_failed_to_locate_action_check_permission
-                                    ),
-                                    iconId = R.drawable.ic_android,
-                                    onClick = {
-                                        IntentHelper.startApplicationDetailsActivity(activity)
-                                        dialogOpenState.value = false
-                                    }
-                                )
-                                DialogListItem(
-                                    content = stringResource(
-                                        R.string.location_dialog_failed_to_locate_action_enable_information
-                                    ),
-                                    iconId = R.drawable.ic_location,
-                                    onClick = {
-                                        IntentHelper.startLocationSettingsActivity(activity)
-                                        dialogOpenState.value = false
-                                    }
-                                )
                                 DialogListItem(
                                     content = stringResource(
                                         R.string.location_dialog_failed_to_locate_action_select_source

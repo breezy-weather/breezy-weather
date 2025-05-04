@@ -312,7 +312,6 @@
     <string name="pollen_ambrosia">Ragkruid</string>
     <string name="uv_alert_level">Waarschuwing</string>
     <string name="weather_data_by">Gegevens door %s</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Locatiegegevens inschakelen</string>
     <string name="pollen">Pollen</string>
     <string name="weather_kind_hail">Hagel</string>
     <string name="unit_hpa">hPa</string>
@@ -343,8 +342,6 @@
     <string name="weather_source_accu_preference_hours_72">72 uur</string>
     <string name="weather_source_accu_preference_hours_120">120 uur</string>
     <string name="location_swipe_to_delete">U kunt naar links vegen om dit item te verwijderen</string>
-    <string name="location_dialog_failed_to_locate_title">Kan locatie niet correct krijgen\?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Locatierechten controleren</string>
     <string name="widget_trend_hourly">Trend per uur</string>
     <string name="widget_material_you_forecast">Material You – Voorspelling</string>
     <string name="widget_material_you_current">Material You – Huidig</string>

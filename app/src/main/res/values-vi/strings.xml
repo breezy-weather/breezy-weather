@@ -166,9 +166,6 @@
     <string name="location_message_added">Đã thêm vị trí</string>
     <string name="location_message_permission_missing">Thiếu quyền truy cập vị trí</string>
     <string name="location_message_permission_background_missing">Thiếu quyền truy cập vị trí ngầm</string>
-    <string name="location_dialog_failed_to_locate_title">Không thể lấy được vị trí đúng cách\?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Kiểm tra quyền vị trí</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Bật vị trí</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Chọn dịch vụ cung cấp vị trí</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Thêm vị trí thủ công và xóa “%s”</string>
     <string name="location_search_placeholder">Tìm một vị trí…</string>

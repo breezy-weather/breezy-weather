@@ -124,7 +124,6 @@
     <string name="setting_weather_source_accu_days">Egunak</string>
     <string name="location_search_weather_source">Eguraldi iturria</string>
     <string name="location_message_failed_to_locate">Akatsa egungo kokapena aurkitzen</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Gaitu kokapen informazioa</string>
     <string name="location_current_not_found_yet">Egungo kokapena ez da oraindik aurkitu…</string>
     <string name="location_service_native">API natiboa</string>
     <string name="action_location_list">Kokapen zerrenda</string>
@@ -199,9 +198,7 @@
     <string name="location_message_list_cannot_be_empty">Kokapen zerrenda ezin da hutsik egon</string>
     <string name="location_message_search_failed">Kokapen bilaketak huts egin dut</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Gehitu kokapena eskuz eta ezabatu “%s”</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Egiaztatu kokapen baimenak</string>
     <string name="location_message_reverse_geocoding_failed">Eguraldi iturriak ez du kokaleku egokirik aurkitu</string>
-    <string name="location_dialog_failed_to_locate_title">Ezin da kokapena behar bezala lortu\?</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Aukeratu kokapen zerbitzua</string>
     <string name="location_search_placeholder">Bilatu kokapen bat…</string>
     <string name="location_search_no_results">%1$s ezin du %2$s aurkitu</string>

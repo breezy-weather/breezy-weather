@@ -119,8 +119,6 @@
     <string name="location_message_search_failed">Неуспешно търсене на местоположение</string>
     <string name="location_message_permission_missing">Липсва разрешение за достъп до местоположение</string>
     <string name="location_message_permission_background_missing">Липсва разрешение за достъп до местоположение във фонов режим</string>
-    <string name="location_dialog_failed_to_locate_title">Не можете да получите правилно местоположението\?</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Активиране на информация за местоположение</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Изберете източник на местоположение</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Добавяне на местоположение ръчно и изтриване на “%s”</string>
     <string name="location_search_placeholder">Търсене на местоположение…</string>
@@ -187,7 +185,6 @@
     <string name="location_swipe_to_delete">Можете да плъзнете наляво, за да изтриете този елемент</string>
     <string name="location_message_failed_to_locate">Неуспешно намиране на текущото местоположение</string>
     <string name="location_message_reverse_geocoding_failed">Източникът на прогнозата за времето не успя да намери съответстващо местоположение</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Проверете разрешенията за местоположение</string>
     <string name="location_search_no_results">%1$s не може да намери %2$s</string>
     <string name="location_search_no_results_advice">Уверете се, че заявката за търсене е написана правилно и не е твърде специфична. Можете също да опитате да използвате друг източник за търсене на местоположение, който може да даде различни резултати.</string>
     <string name="dialog_permissions_location_content">За да използвате тази функция, трябва да дадете на приложението разрешение за достъп до текущото ви местоположение. То ще бъде споделено само с избраните метеорологични източници. Ако сте променили решението си, можете да отмените процеса и да добавите фиксирано местоположение ръчно.</string>

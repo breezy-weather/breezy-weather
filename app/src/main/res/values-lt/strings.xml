@@ -131,7 +131,6 @@
     <string name="location_message_permission_missing">Prieiga prie jūsų dabartinės buvimo vietos - nesuteikta</string>
     <string name="location_message_permission_background_missing">Prieiga prie jūsų dabartinės buvimo vietos, kai programa yra fone - nesuteikta</string>
     <string name="location_message_reverse_geocoding_failed">Orų šaltinis nerado atitikmens jūsų vietovei</string>
-    <string name="location_dialog_failed_to_locate_title">Ar jūsų dabartinė vieta nėra teisinga\?</string>
     <string name="app_name">Orai</string>
     <string name="alerts">Perspėjimai</string>
     <string name="daily_forecast">Orai artimiausiomis dienomis</string>
@@ -179,7 +178,6 @@
     <string name="weather_source_accu_preference_hours_24">24 valandos</string>
     <string name="weather_source_accu_preference_hours_1">1 valanda</string>
     <string name="weather_source_accu_preference_hours_72">72 valandos</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Patikrinkite ar programa turi prieigą prie jūsų dabartinės vietos</string>
     <string name="action_preview">Peržiūra</string>
     <string name="action_refresh">Atnaujinti</string>
     <string name="action_restart">Perkrauti</string>
@@ -225,7 +223,6 @@
     <string name="temperature_wind_chill">Šaltas vėjas</string>
     <string name="temperature_wet_bulb">Drėgnasis termometras</string>
     <string name="temperature_degree_day">Laipsnio diena</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Įjungti vietos informaciją</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Pasirinkite vietovės paslaugą</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Pridėti vietą rankiniu būdu ir ištrinti „%s“</string>
     <string name="location_search_placeholder">Ieškoti vietovės…</string>

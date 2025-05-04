@@ -330,10 +330,7 @@
     <string name="location_message_permission_background_missing">Access location in background permission missing</string>
     <string name="location_message_location_access_off">Location access is off</string>
     <string name="location_message_reverse_geocoding_failed">Weather source failed to find a matching location</string>
-    <string name="location_dialog_failed_to_locate_title">Cannot get location correctly?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Check location permissions</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Enable location information</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Select location service</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Use another location service</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Add location manually and delete “%s”</string>
     <string name="location_search_placeholder">Search for a location…</string>
     <string name="location_search_source">Location search source</string>
@@ -380,6 +377,8 @@
     <string name="action_download">Download</string>
     <string name="action_show_errors">Tap to see details</string>
     <string name="action_show">Show</string>
+    <string name="action_enable">Enable</string>
+    <string name="action_allow">Allow</string>
     <string name="action_grant_permission">Tap to grant the permission.</string>
     <!-- Button shown in the weather selection dialog -->
     <string name="action_help_me_choose">Help me choose</string>
@@ -413,7 +412,7 @@
     <string name="message_source_not_installed_error_title">Source no longer available</string>
     <!-- Free as in “libre -->
     <string name="message_source_not_installed_error_content_tip_1">This can happen when you added your location in the Standard flavor of the app and then switched to the flavor with only libre network sources. Going back to the Standard flavor may solve this problem.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Either change the weather sources for this location or delete and re-add this location.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Either change the weather sources for this location, or delete and re-add this location.</string>
     <string name="message_tap_again_to_exit">Tap again to exit</string>
     <!-- Widgets -->
     <string name="widget_day">Daily</string>

@@ -90,9 +90,6 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Ha fallat l’accés a la ubicació</string>
     <string name="weather_message_data_refresh_failed">Ha fallat l’accés a les dades de l’oratge</string>
-    <string name="location_dialog_failed_to_locate_title">No funciona la ubicació\?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Verifica els permisos d’accés a la ubicació</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Habilita la informació d’ubicació</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Selecciona el servei d’ubicació</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Especifica la ubicació manualment i esborra “%s”</string>
     <string name="dialog_permissions_location_background_title">Accés a la ubicació en segon pla</string>

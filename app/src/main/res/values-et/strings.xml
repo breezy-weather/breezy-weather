@@ -341,7 +341,6 @@
     <string name="setting_weather_source_accu_days">Päevad</string>
     <string name="setting_weather_source_accu_hours">Tunnid</string>
     <string name="location_message_failed_to_locate">Praeguse asukoha leidmine ebaõnnestus</string>
-    <string name="location_dialog_failed_to_locate_title">Ei saa õiget asukohta?</string>
     <string name="location_search_placeholder">Otsi asukohta…</string>
     <string name="action_location_list">Asukohtade nimekiri</string>
     <string name="dialog_permissions_location_background_title">Asukoha juurdepääs taustal</string>
@@ -520,8 +519,6 @@
     <string name="metno_weather_text_andthunder">%s ja äike</string>
     <string name="location_message_list_cannot_be_empty">Asukohtade nimekiri ei saa olla tühi</string>
     <string name="location_message_permission_background_missing">Asukohale tagataustal juurdepääsu luba puudub</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Vaata üle asukoha load</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Lülitage sisse Asukohateave</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Valige asukohateenus</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Lisa asukoht käsitsi ja kustuta “%s”</string>
     <string name="location_search_source">Asukoha otsingu allikas</string>

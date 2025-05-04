@@ -59,9 +59,6 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Localização falhou</string>
     <string name="weather_message_data_refresh_failed">Falha ao atualizar dados</string>
-    <string name="location_dialog_failed_to_locate_title">Não consegue localização corretamente\?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Verifique permissões de localização</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Ative dados de localização</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Selecione o provedor de localização</string>
     <string name="widget_label_view_style">Estilo de visão</string>
     <string name="widget_label_show_widget_card">Plano de fundo de cartão</string>

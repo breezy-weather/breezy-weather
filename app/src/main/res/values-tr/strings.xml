@@ -204,8 +204,6 @@
     <string name="settings_widgets_live_wallpaper_summary">Hava durumu animasyonunu duvar kağıdı olarak ayarla</string>
     <string name="settings_widgets_live_wallpaper_title">Canlı duvar kağıdı</string>
     <string name="location_message_search_failed">Konum arama yapılamadı</string>
-    <string name="location_dialog_failed_to_locate_title">Konum doğru bir şekilde bulunamadı mı\?</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Konum bilgilerini etkinleştir</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Şu anki çiy noktası</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Boylam</string>
     <string name="settings_background_updates_refresh_title">Yenileme sıklığı</string>
@@ -281,7 +279,6 @@
     <string name="weather_source_accu_preference_hours_240">240 saatlik</string>
     <string name="weather_source_accu_preference_days_10">10 günlük</string>
     <string name="location_message_reverse_geocoding_failed">Hava durumu kaynağı eşleşen bir konum bulamadı</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Konum izinlerini kontrol edin</string>
     <string name="location_message_permission_background_missing">Arkaplanda konum erişimi izni yok</string>
     <string name="widget_multi_city">Birden fazla şehir</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Şu anki görüş mesafesi</string>

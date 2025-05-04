@@ -95,9 +95,6 @@
     <string name="dialog_permissions_location_background_content">Agar pemuatan ulang data cuaca di latar belakang dapat dilakukan sesuai dengan lokasi terkini yang diketahui oleh perangkat Android, Anda perlu menyetel izin lokasi menjadi “Izinkan sepanjang waktu”. Jika tidak, cuaca akan dimuat ulang berdasarkan koordinat terbaru yang diambil di latar depan yang mungkin datanya sudah tidak akurat.</string>
     <string name="location_message_failed_to_locate">Gagal mencari lokasi saat ini</string>
     <string name="weather_message_data_refresh_failed">Penyegaran data gagal</string>
-    <string name="location_dialog_failed_to_locate_title">Tidak mendapatkan lokasi dengan benar?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Periksa izin lokasi</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Mengaktifkan Informasi Lokasi</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Pilih Layanan Lokasi</string>
     <string name="weather_api_limit_reached_title">Batas permintaan API telah dicapai</string>
     <string name="weather_api_limit_reached_content">Untuk mengatasi limit, tambahkan kunci API Anda sendiri.</string>

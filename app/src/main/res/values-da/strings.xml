@@ -172,7 +172,6 @@
     <string name="air_quality_so2_info_introduction">Svovldioxid (SO₂) er en farveløs giftgas, som er ansvarlig for lugten af brændte tændstikker.</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Tiltagende pukkel</string>
     <string name="weather_source_accu_preference_hours_1">1 time</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Kontrollér placeringstilladelser</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Vælg placeringstjeneste</string>
     <string name="action_add_new_location">Tilføj en ny placering</string>
     <string name="action_edit">Redigér</string>
@@ -441,7 +440,6 @@
     <string name="pollen_salix">Piletræ</string>
     <string name="pollen_tilia">Lindtræ</string>
     <string name="location_message_reverse_geocoding_failed">Vejrkildes forefinding af matchende lokation fejlede</string>
-    <string name="location_dialog_failed_to_locate_title">Kan ikke få placering korrekt?</string>
     <string name="location_message_permission_background_missing">Baggrundsadgang til placering mangler</string>
     <string name="widget_day">Daglig</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Aktuelle vejr</string>
@@ -546,7 +544,6 @@
     <string name="location_swipe_to_delete">Du kan stryge til venstre, for at slette dette element</string>
     <string name="location_message_failed_to_locate">Forefinding af aktuel placering fejlede</string>
     <string name="location_message_permission_missing">Adgang til placering mangler</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Aktivér placeringsoplysninger</string>
     <string name="action_help">Hjælp</string>
     <string name="action_close">Luk</string>
     <string name="widget_clock_day_details">Ur + Daglig (Detaljer)</string>

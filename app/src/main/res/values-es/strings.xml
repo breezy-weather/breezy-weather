@@ -90,9 +90,6 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">No se pudo encontrar el lugar actual</string>
     <string name="weather_message_data_refresh_failed">La actualización de los datos ha fallado</string>
-    <string name="location_dialog_failed_to_locate_title">¿No puede obtener el lugar correctamente?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Verifica los permisos de lugar</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Habilite la información de la ubicación</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Seleccione un servicio de ubicación</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Agregue la ubicación manualmente y borre “%s”</string>
     <string name="dialog_permissions_location_background_title">Acceso a la ubicación en segundo plano</string>

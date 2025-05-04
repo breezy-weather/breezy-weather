@@ -173,8 +173,6 @@
     <string name="location_search_weather_source">Izvor prognoze</string>
     <string name="location_message_list_cannot_be_empty">Lista lokacija ne može biti prazna</string>
     <string name="location_swipe_to_delete">Prevucite lijevo za brisanje stavke</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Omogućite informacije o lokaciji</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Provjerite dozvole za lokaciju</string>
     <string name="location_current_not_found_yet">Trenutna lokacija nije još pronađena…</string>
     <string name="action_add_new_location">Dodajte novu lokaciju</string>
     <string name="action_restart">Ponovo pokreni</string>
@@ -420,7 +418,6 @@
     <string name="location_message_failed_to_locate">Neuspješno pronalaženje trenutne lokacije</string>
     <string name="location_message_permission_missing">Dozvola za pristup lokaciji nije data</string>
     <string name="location_message_reverse_geocoding_failed">Izvor prognoze nije pronašao odgovarajuću lokaciju</string>
-    <string name="location_dialog_failed_to_locate_title">Ne možete dobiti tačnu lokaciju?</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Odaberite lokacijsku uslugu</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Ručno dodaj lokaciju i obriši “%s”</string>
     <string name="location_search_no_results">%1$s ne može pronaći %2$s</string>

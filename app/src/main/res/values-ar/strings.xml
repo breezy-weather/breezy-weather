@@ -88,9 +88,6 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">فشل في العثور على الموقع</string>
     <string name="weather_message_data_refresh_failed">فشل الحصول على البيانات</string>
-    <string name="location_dialog_failed_to_locate_title">غير قادر على تحديد الموقع بشكل صحيح؟</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">قم بفحص أذونات الموقع</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">تمكين نظام تحديد الموقع العالمي (GPS)</string>
     <string name="location_dialog_failed_to_locate_action_select_source">إختيار خدمة الموقع</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">إضافة الموقع يدوياً و حذف ”%s“</string>
     <string name="widget_label_view_style">أسلوب العرض</string>

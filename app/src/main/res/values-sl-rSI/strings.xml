@@ -61,9 +61,6 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Pridobivanje lokacije ni bilo uspešno</string>
     <string name="weather_message_data_refresh_failed">Podatki o vremenu niso na voljo</string>
-    <string name="location_dialog_failed_to_locate_title">Ni moč najti natančne lokacije\?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Preverite dovoljenja lokacije</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Omogočite dovoljenja lokacije</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Izberite način pridobivanja lokacije</string>
     <string name="widget_label_view_style">Način pogleda</string>
     <string name="widget_label_show_widget_card">Barva ozadja</string>

@@ -129,9 +129,6 @@
     <string name="location_message_deleted">Локацијата е избришана</string>
     <string name="location_message_list_cannot_be_empty">Списокот со локации не може да биде празен</string>
     <string name="location_swipe_to_delete">Може да поминете налево за да ја избришете оваа ставка</string>
-    <string name="location_dialog_failed_to_locate_title">Не можете правилно да ја добиете локацијата?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Проверете ги дозволите за локација</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Овозможете информации за локацијата</string>
     <string name="location_search_placeholder">Пребарајте локација…</string>
     <string name="location_current_not_found_yet">Тековната локација сè уште не е пронајдена…</string>
     <string name="action_show_errors">Допрете за да видите детали</string>

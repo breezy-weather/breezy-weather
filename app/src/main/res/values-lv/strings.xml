@@ -341,11 +341,8 @@
     <string name="weather_source_accu_preference_hours_72">72 stundas</string>
     <string name="weather_source_accu_preference_hours_120">120 stundas</string>
     <string name="location_message_permission_background_missing">Trūkst atļaujas piekļūt atrašanās vietai fonā</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Iespējot atrašanās vietas informāciju</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Atrašanās vieta jāpievieno pašrocīgi un jāizdzēš “%s”</string>
-    <string name="location_dialog_failed_to_locate_title">Vai nevar pareizi noteikt atrašanās vietu?</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Atlasīt atrašanās vietas pakalpojumu</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Jāpārbauda atrašanās vietas atļaujas</string>
     <string name="location_current_not_found_yet">Pašreizējā atrašanās vieta vēl nav atrasta…</string>
     <string name="action_restart">Restartēt</string>
     <string name="action_save">Saglabāt</string>
