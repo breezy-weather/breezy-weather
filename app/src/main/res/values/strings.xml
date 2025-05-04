@@ -427,8 +427,8 @@
     <string name="widget_trend_daily">Daily trend</string>
     <string name="widget_trend_hourly">Hourly trend</string>
     <string name="widget_multi_city">Multi city</string>
-    <string name="widget_material_you_forecast">Material You - Forecast</string>
-    <string name="widget_material_you_current">Material You - Current</string>
+    <string name="widget_material_you_forecast">Material You – Forecast</string>
+    <string name="widget_material_you_current">Material You – Current</string>
     <string name="widget_refreshing">Refreshing</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_view_style">View style</string>

@@ -159,7 +159,7 @@
     <string name="about_translators">Oversettere</string>
     <string name="about_contributors">Utviklere</string>
     <string name="notification_style_cities">Byer</string>
-    <string name="widget_material_you_forecast">Material You - Værvarsel</string>
+    <string name="widget_material_you_forecast">Material You – Værvarsel</string>
     <string name="air_quality_co_info_introduction">Karbonmonoksid (CO), også kjent som kullos, er en giftig, antennelig og ikke-irriterende gass uten farge, lukt og smak.</string>
     <string name="pollen_mold">Mugg</string>
     <string name="common_weather_text_snow_light">Lett snø</string>
@@ -509,7 +509,7 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">Nåværende luftkvalitetsindeks</string>
     <string name="widget_label_hide_subtitle">Skjul undertekst</string>
     <string name="widget_refreshing">Oppdaterer</string>
-    <string name="widget_material_you_current">Material You - Nåværende</string>
+    <string name="widget_material_you_current">Material You – Nåværende</string>
     <string name="widget_clock_day_horizontal">Klokke + Daglig (Horisontal stil)</string>
     <string name="pressure_short">Trykk</string>
     <string name="widget_subtitle_data_time">Oppdateringstid</string>

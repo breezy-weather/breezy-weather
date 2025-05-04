@@ -146,7 +146,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setTextViewText(
             R.id.widget_clock_day_week_alternate_calendar,
             if (CalendarHelper.getAlternateCalendarSetting(context) != null && !hideAlternateCalendar) {
-                " - ${Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)}"
+                " – ${Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)}"
             } else {
                 ""
             }

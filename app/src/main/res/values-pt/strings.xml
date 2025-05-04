@@ -339,8 +339,8 @@
     <string name="ceiling">Teto de nuvens</string>
     <string name="weather_kind_wind">Vento</string>
     <string name="widget_multi_city">Várias cidades</string>
-    <string name="widget_material_you_forecast">Material You - Previsão</string>
-    <string name="widget_material_you_current">Material You - Atual</string>
+    <string name="widget_material_you_forecast">Material You – Previsão</string>
+    <string name="widget_material_you_current">Material You – Atual</string>
     <string name="widget_label_align_end">Alinhar à direita</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Temperatura atual (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Temperatura atual (°)</string>

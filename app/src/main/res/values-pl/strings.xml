@@ -410,7 +410,7 @@
     <string name="action_show_errors">Dotknij, aby zobaczyć szczegóły</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignoruj, gdy poziom naładowania baterii jest niski</string>
     <string name="location_message_reverse_geocoding_failed">Źródło danych pogodowych nie znalazło pasującej lokalizacji</string>
-    <string name="widget_material_you_current">Material You - Aktualnie</string>
+    <string name="widget_material_you_current">Material You – Aktualnie</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optymalizacja baterii jest już wyłączona.</string>
     <string name="location_message_search_failed">Wyszukiwanie lokalizacji nie powiodło się</string>
     <string name="location_message_permission_missing">Brak pozwolenia na dostęp do lokalizacji</string>
@@ -422,7 +422,7 @@
     <string name="location_search_no_results">%1$s nie może znaleźć %2$s</string>
     <string name="action_add_current_location">Dodaj bieżącą lokalizację</string>
     <string name="message_source_not_installed_error_title">Źródło nie jest już dostępne</string>
-    <string name="widget_material_you_forecast">Material You - Prognoza</string>
+    <string name="widget_material_you_forecast">Material You – Prognoza</string>
     <string name="settings_background_updates_summary">Częstotliwość odświeżania, rozwiązywanie problemów</string>
     <string name="settings_location_access_switch_summaryOn">Zezwolono. Możesz dodać swoją bieżącą lokalizację jako lokalizację.</string>
     <string name="settings_location_access_switch_summaryOff">Zezwól, jeśli chcesz mieć możliwość dodania swojej bieżącej lokalizacji jako lokalizacji.</string>

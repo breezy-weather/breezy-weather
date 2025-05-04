@@ -273,8 +273,8 @@
     <string name="widget_text">Teksto</string>
     <string name="widget_trend_daily">Ĉiutaga tendenco</string>
     <string name="widget_trend_hourly">Ĉiuhora tendenco</string>
-    <string name="widget_material_you_forecast">Material You - Prognozo</string>
-    <string name="widget_material_you_current">Material You - Nune</string>
+    <string name="widget_material_you_forecast">Material You – Prognozo</string>
+    <string name="widget_material_you_current">Material You – Nune</string>
     <string name="widget_refreshing">Refreŝigante</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_show_widget_card">Fonkoloro</string>

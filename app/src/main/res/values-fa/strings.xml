@@ -239,7 +239,7 @@
     <string name="message_server_timeout">زمان درخواست به پایان رسید</string>
     <string name="message_tap_again_to_exit">لمس دوباره برای خروج</string>
     <string name="widget_trend_daily">روند روزانه</string>
-    <string name="widget_material_you_forecast">Material You - پیش بینی</string>
+    <string name="widget_material_you_forecast">Material You – پیش بینی</string>
     <string name="widget_trend_hourly">روند بر اساس ساعت</string>
     <string name="widget_label_view_style">سبک نمایش</string>
     <string name="widget_subtitle_data_time">زمان تازه سازی</string>
@@ -311,7 +311,7 @@
     <string name="action_app_store">اَپ اِستور</string>
     <string name="action_show_errors">برای دیدن ریزگان لمس کنید</string>
     <string name="message_parsing_error_title">تجزیه و تحلیل داده های آب و هوایی انجام نشد</string>
-    <string name="widget_material_you_current">Material You - اینگاه</string>
+    <string name="widget_material_you_current">Material You – اینگاه</string>
     <string name="widget_label_align_end">راست چین</string>
     <string name="widget_custom_subtitle_keyword_ch_description">رطوبت فعلی</string>
     <string name="widget_custom_subtitle_keyword_cps_description">فشار فعلی</string>

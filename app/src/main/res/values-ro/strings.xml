@@ -323,7 +323,7 @@
     <string name="unit_in">inch</string>
     <string name="unit_mps">m/s</string>
     <string name="widget_style_mini">Mini</string>
-    <string name="widget_material_you_current">Material You - Actual</string>
+    <string name="widget_material_you_current">Material You – Actual</string>
     <string name="unit_mph">mile/h</string>
     <string name="unit_hpa">hPa</string>
     <string name="unit_m">m</string>
@@ -416,7 +416,7 @@
     <string name="location_message_permission_missing">Permisiunea accesului la locație lipsește</string>
     <string name="action_continue">Continuă</string>
     <string name="action_share">Distribuie</string>
-    <string name="widget_material_you_forecast">Material You - Prognoză</string>
+    <string name="widget_material_you_forecast">Material You – Prognoză</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="settings_background_updates_refresh_never">Niciodată</string>

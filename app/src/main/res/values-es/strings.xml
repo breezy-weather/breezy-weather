@@ -361,7 +361,7 @@
     <string name="location_results_by">Resultados de ubicación según %s</string>
     <string name="widget_label_align_end">Alinear a la derecha</string>
     <string name="locations">Lugares</string>
-    <string name="widget_material_you_forecast">Material You - Pronóstico</string>
+    <string name="widget_material_you_forecast">Material You – Pronóstico</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="weather_source_accu_preference_days_1">1 día</string>
     <string name="weather_source_accu_preference_days_5">5 días</string>
@@ -402,7 +402,7 @@
     <string name="action_share">Compartir</string>
     <string name="dialog_permissions_location_title">Acceder a la información de la ubicación</string>
     <string name="message_network_unavailable">Red no disponible</string>
-    <string name="widget_material_you_current">Material You - Actual</string>
+    <string name="widget_material_you_current">Material You – Actual</string>
     <string name="settings_location">Lugar</string>
     <string name="settings_location_summary">Parámetros de los servicios de lugar</string>
     <string name="air_quality_so2_info_origin">Se libera naturalmente por la actividad volcánica y se deriva predominantemente de la combustión de combustibles fósiles para calefacción doméstica, industrias y generación de energía.</string>

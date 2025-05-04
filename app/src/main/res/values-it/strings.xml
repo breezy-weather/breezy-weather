@@ -218,8 +218,8 @@
     <string name="settings_units_precipitation">Unità di precipitazione</string>
     <string name="settings_units_distance">Unità di distanza</string>
     <string name="settings_units_temperature">Unità di temperatura</string>
-    <string name="widget_material_you_current">Materiale You - Attuale</string>
-    <string name="widget_material_you_forecast">Materiale You - Previsioni</string>
+    <string name="widget_material_you_current">Materiale You – Attuale</string>
+    <string name="widget_material_you_forecast">Materiale You – Previsioni</string>
     <string name="widget_multi_city">Multi città</string>
     <string name="settings_icon_packs_weather_icon_grey">Icona grigia</string>
     <string name="settings_icon_packs_weather_icon_dark">Icona scura</string>

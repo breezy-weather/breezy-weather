@@ -215,8 +215,8 @@
     <string name="widget_trend_daily">Tren harian</string>
     <string name="widget_trend_hourly">Tren per jam</string>
     <string name="widget_multi_city">Multi-kota</string>
-    <string name="widget_material_you_forecast">Material You - Prakiraan</string>
-    <string name="widget_material_you_current">Material You - Saat ini</string>
+    <string name="widget_material_you_forecast">Material You – Prakiraan</string>
+    <string name="widget_material_you_current">Material You – Saat ini</string>
     <string name="widget_refreshing">Menunggu</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->

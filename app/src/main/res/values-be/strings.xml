@@ -20,7 +20,7 @@
     <string name="ephemeris_sunrise_at">Усход сонца ў %s</string>
     <string name="ephemeris_moon_phase_last_quarter">Апошняя квадра</string>
     <string name="ephemeris_moon_phase_waning_crescent">Убыванне сярпа</string>
-    <string name="air_quality_pm_explanations_origin">Некаторыя часцінкі з\'яўляюцца натуральным чынам з-за вулканаў, пылавых бур, лясных пажараў і падпаленых палёў, жывой расліннасці і марскіх пырскаў. Чалавечая дзейнасць таксама прыводзіць да ўтварэння значнай колькасці завіслых часцінак, прыкладам можа быць дарожны рух і транспарт, прамысловая дзейнасць, электрастанцыі, будаўнічыя пляцоўкі, спальванне адходаў або палёў.</string>
+    <string name="air_quality_pm_explanations_origin">Некаторыя часцінкі з’яўляюцца натуральным чынам з-за вулканаў, пылавых бур, лясных пажараў і падпаленых палёў, жывой расліннасці і марскіх пырскаў. Чалавечая дзейнасць таксама прыводзіць да ўтварэння значнай колькасці завіслых часцінак, прыкладам можа быць дарожны рух і транспарт, прамысловая дзейнасць, электрастанцыі, будаўнічыя пляцоўкі, спальванне адходаў або палёў.</string>
     <string name="air_quality_pm_explanations_consequences">Завіслыя часцінкі адзін з найбольш шкодных відаў забруджвання паветра з-за іх здольнасці пранікаць глыбока ў лёгкія і з крывацёкам ў мозг, выклікаючы праблемы са здароўем, хваробы сэрца і лёгкіх, заўчасную смерць.</string>
     <string name="air_quality_o3_info_introduction">Прыземны азон (O₃) з’яўляецца асноўным кампанентам смогу. Хоць гэта тая ж самая малекула, прыземны азон можа быць шкодным для здароўя чалавека, у адрозненне ад стратасфернага азону, які абараняе зямлю ад залішняга ўльтрафіялетавага выпраменьвання.</string>
     <string name="air_quality_o3_info_origin">Ён утвараецца ў выніку фотахімічных рэакцый з такімі забруджвальнымі рэчывамі, як лятучыя арганічныя злучэнні, монааксід вугляроду і аксіды азоту (NOₓ), якія выкідаюцца транспартнымі сродкамі і прамысловасцю. З-за фотахімічнай прыроды самыя высокія ўзроўні азону назіраюцца ў перыяды сонечнага надвор’я.</string>
@@ -590,8 +590,8 @@
     <string name="widget_trend_daily">Дынаміка па днях</string>
     <string name="widget_trend_hourly">Пагадзінная дынаміка</string>
     <string name="widget_multi_city">Некалькі гарадоў</string>
-    <string name="widget_material_you_forecast">Material You - Прагноз</string>
-    <string name="widget_material_you_current">Material You - Бягучае</string>
+    <string name="widget_material_you_forecast">Material You – Прагноз</string>
+    <string name="widget_material_you_current">Material You – Бягучае</string>
     <string name="widget_refreshing">Абнаўленне</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_view_style">Стыль выгляду</string>

@@ -8,6 +8,9 @@
 - [Pirate Weather] Now available in the `freenet` flavor (was open sourced a few months ago)
 - [Pirate Weather] Fix incorrect units for precipitation
 
+**Translations**
+- Translations updated
+
 
 # Version 5.4.7 (2025-04-28)
 

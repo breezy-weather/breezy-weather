@@ -149,7 +149,7 @@
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
                 style="@style/widget_content_text"
-                tools:text=" - 九月十八"
+                tools:text=" – 九月十八"
                 tools:ignore="RtlHardcoded" />
 
             <TextView

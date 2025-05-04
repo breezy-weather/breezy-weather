@@ -709,7 +709,7 @@
                 android:gravity="end"
                 android:alpha="0.66"
                 style="@style/widget_subtitle_text"
-                tools:text="Air quality - Fair"
+                tools:text="Air quality – Fair"
                 tools:ignore="RtlHardcoded" />
 
         </LinearLayout>

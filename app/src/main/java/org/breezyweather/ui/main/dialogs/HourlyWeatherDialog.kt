@@ -73,7 +73,7 @@ object HourlyWeatherDialog {
                         title = {
                             Text(
                                 hourly.date.getHour(location, activity) +
-                                    " - " +
+                                    " – " +
                                     hourly.date.getFormattedMediumDayAndMonth(location, activity)
                             )
                         },

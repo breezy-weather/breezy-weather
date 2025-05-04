@@ -394,7 +394,7 @@
     <string name="action_show_errors">タップすると詳細を表示</string>
     <string name="dialog_permissions_notification_content">ここをタップすると気象警報に関する通知を有効にできます。後から設定画面で有効にすることもできます。</string>
     <string name="message_parsing_error_title">気象データを解析できませんでした</string>
-    <string name="widget_material_you_current">Material You - 現在</string>
+    <string name="widget_material_you_current">Material You – 現在</string>
     <string name="widget_custom_subtitle_keyword_als_description">警報（短）</string>
     <string name="widget_week_style_5_days">5日間</string>
     <string name="widget_week_style_3_days">3日間</string>
@@ -575,7 +575,7 @@
     <string name="settings_debug_dump_crash_logs_saved">クラッシュログを保存しました</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">タップすると開きます</string>
     <string name="message_parsing_error_content">アプリのバージョンを確認してください。サーバーが一時的に利用できない状態になっている可能性があります。その場合は、しばらくしてから再度お試しください。問題が解決しない場合は、デバッグ設定からクラッシュログを出力し、GitHubで問題を報告してください。</string>
-    <string name="widget_material_you_forecast">Material You - 予報</string>
+    <string name="widget_material_you_forecast">Material You – 予報</string>
     <string name="widget_clock_font_analog">アナログ</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">デバイス設定を開けませんでした。</string>
     <string name="settings_location_summary">位置情報サービス</string>

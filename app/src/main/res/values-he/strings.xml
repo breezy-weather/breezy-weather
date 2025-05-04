@@ -469,8 +469,8 @@
     <string name="widget_clock_day_horizontal">שעון + יומי (סגנון אופקי)</string>
     <string name="widget_clock_day_details">שעון + יומי (פרטים)</string>
     <string name="widget_clock_day_week">שעון + יומי + שבועי</string>
-    <string name="widget_material_you_forecast">Material You - תחזית</string>
-    <string name="widget_material_you_current">Material You - נוכחי</string>
+    <string name="widget_material_you_forecast">Material You – תחזית</string>
+    <string name="widget_material_you_current">Material You – נוכחי</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">מזג אוויר בשעות היום של היום, מחר, …, 4 ימים אחרי</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">טמפרטורת שעות הלילה של היום, מחר, …, 4 ימים אחרי (°)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">רוחות שעות היום של היום, מחר, …, 4 ימים אחרי</string>

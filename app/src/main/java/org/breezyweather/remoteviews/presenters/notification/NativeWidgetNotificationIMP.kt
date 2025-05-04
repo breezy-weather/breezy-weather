@@ -79,7 +79,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             contentTitle.append(temperatureUnit.getValueText(context, tempFeelsLikeOrAir))
         }
         if (!current.weatherText.isNullOrEmpty()) {
-            if (contentTitle.toString().isNotEmpty()) contentTitle.append(" - ")
+            if (contentTitle.toString().isNotEmpty()) contentTitle.append(" – ")
             contentTitle.append(current.weatherText)
         }
 
@@ -111,10 +111,10 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             setSubText(subtitle.toString())
             setContentTitle(contentTitle.toString())
             if (current.airQuality?.isIndexValid == true) {
-                setContentText(context.getString(R.string.air_quality) + " - " + current.airQuality!!.getName(context))
+                setContentText(context.getString(R.string.air_quality) + " – " + current.airQuality!!.getName(context))
             } else {
                 current.wind?.getStrength(context)?.let { strength ->
-                    setContentText(context.getString(R.string.wind) + " - " + strength)
+                    setContentText(context.getString(R.string.wind) + " – " + strength)
                 }
             }
             setOngoing(persistent)

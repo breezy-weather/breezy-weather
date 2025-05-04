@@ -277,8 +277,8 @@
     <string name="widget_label_align_end">Ailínigh ar dheis</string>
     <string name="widget_subtitle_data_time">Athnuaigh an t-am</string>
     <string name="widget_subtitle_data_aqi">Cáilíocht an aeir</string>
-    <string name="widget_material_you_forecast">Ábhar Tú - Réamhaisnéis</string>
-    <string name="widget_material_you_current">Ábhar Tú - Reatha</string>
+    <string name="widget_material_you_forecast">Ábhar Tú – Réamhaisnéis</string>
+    <string name="widget_material_you_current">Ábhar Tú – Reatha</string>
     <string name="widget_subtitle_data_wind">Gaoth</string>
     <string name="widget_subtitle_data_feels_like">Mothaíonn sé cosúil le teocht</string>
     <string name="widget_custom_subtitle_explanation">Is féidir leat aon rud a ionchur, ach tabhair aird ar fhad an téacs. Más mian leat sonraí aimsire a lua, bain úsáid as $ chun tagairt a dhéanamh don eochairfhocal comhfhreagrach.\n\nMar shampla, taispeánfar “Is í an aimsir reatha: $cw$.” mar “Is í an aimsir reatha: Spéir ghlan”.</string>

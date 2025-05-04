@@ -393,8 +393,8 @@
     <string name="widget_clock_day_week">Kell + Päevane + Nädalane</string>
     <string name="widget_text">Tekst</string>
     <string name="widget_trend_daily">Päevane prognoos</string>
-    <string name="widget_material_you_forecast">Material You - Prognoos</string>
-    <string name="widget_material_you_current">Material You - Praegune</string>
+    <string name="widget_material_you_forecast">Material You – Prognoos</string>
+    <string name="widget_material_you_current">Material You – Praegune</string>
     <string name="widget_label_hide_subtitle">Peida subtiiter</string>
     <string name="widget_label_text_size">Tekstisuurus</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Praegune tuul</string>

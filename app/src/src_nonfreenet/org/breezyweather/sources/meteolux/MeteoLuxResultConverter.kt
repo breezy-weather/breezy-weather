@@ -369,9 +369,9 @@ private fun getAlertHeadline(
     // and therefore not assigned text to go with warning levels
     if (listOf(2, 3, 4, 5, 6, 9, 10).contains(type)) {
         headline += when (level) {
-            2 -> " - " + context.getString(R.string.meteolux_warning_text_level_2)
-            3 -> " - " + context.getString(R.string.meteolux_warning_text_level_3)
-            4 -> " - " + context.getString(R.string.meteolux_warning_text_level_4)
+            2 -> " – " + context.getString(R.string.meteolux_warning_text_level_2)
+            3 -> " – " + context.getString(R.string.meteolux_warning_text_level_3)
+            4 -> " – " + context.getString(R.string.meteolux_warning_text_level_4)
             else -> ""
         }
     }

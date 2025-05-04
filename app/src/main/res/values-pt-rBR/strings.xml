@@ -212,7 +212,7 @@
     <string name="widget_trend_daily">Tendência diária</string>
     <string name="widget_trend_hourly">Tendência horária</string>
     <string name="widget_multi_city">Várias cidades</string>
-    <string name="widget_material_you_forecast">Material You - Previsão</string>
+    <string name="widget_material_you_forecast">Material You – Previsão</string>
     <string name="widget_refreshing">Atualizando</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
@@ -318,7 +318,7 @@
     <string name="weather_api_unauthorized_title">Acesso à API não autorizado</string>
     <string name="weather_api_unauthorized_content">Em algumas fontes de dados meteorológicos, é necessário fornecer sua própria chave de API. Se você já forneceu uma, por favor, verifique novamente a chave de API que você forneceu.</string>
     <string name="notification_channel_alerts">Alertas</string>
-    <string name="widget_material_you_current">Material You - Atual</string>
+    <string name="widget_material_you_current">Material You – Atual</string>
     <string name="weather_air_quality_and_pollen_data_by">Dados de qualidade do ar e de pólen por %s</string>
     <string name="weather_api_limit_reached_content">Para contornar o limite, adicione sua própria chave de API.</string>
     <string name="weather_api_key_required_missing_title">Chave de API necessária ausente</string>

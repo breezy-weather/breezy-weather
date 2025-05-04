@@ -268,8 +268,8 @@
     <string name="settings_background_updates_battery_optimization">Išjungti akumuliatoriaus optimizavimą</string>
     <string name="settings_background_updates_worker_info_summary">Paskutinis paleidimas: %s</string>
     <string name="widget_multi_city">Keli miestai</string>
-    <string name="widget_material_you_forecast">Material You - Prognozė</string>
-    <string name="widget_material_you_current">Material You - Dabartinė</string>
+    <string name="widget_material_you_forecast">Material You – Prognozė</string>
+    <string name="widget_material_you_current">Material You – Dabartinė</string>
     <string name="widget_trend_hourly">Valandinė tendencija</string>
     <string name="widget_label_view_style">Peržiūrėti stilių</string>
     <string name="widget_label_hide_subtitle">Paslėpti subtitrus</string>

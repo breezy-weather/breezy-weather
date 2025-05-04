@@ -167,13 +167,13 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             if (current.airQuality?.isIndexValid == true) {
                 setTextViewText(
                     R.id.notification_base_aqiAndWind,
-                    context.getString(R.string.air_quality) + " - " + current.airQuality!!.getName(context)
+                    context.getString(R.string.air_quality) + " – " + current.airQuality!!.getName(context)
                 )
             } else {
                 current.wind?.getStrength(context)?.let { strength ->
                     setTextViewText(
                         R.id.notification_base_aqiAndWind,
-                        context.getString(R.string.wind) + " - " + strength
+                        context.getString(R.string.wind) + " – " + strength
                     )
                 }
             }

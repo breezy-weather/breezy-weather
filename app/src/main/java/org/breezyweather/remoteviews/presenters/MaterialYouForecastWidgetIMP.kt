@@ -187,11 +187,11 @@ private fun buildRemoteViews(
         R.id.widget_material_you_forecast_aqiOrWind,
         weather.current?.let { current ->
             if (current.airQuality?.isIndexValid == true) {
-                context.getString(R.string.air_quality) + " - " + current.airQuality!!.getName(context)
+                context.getString(R.string.air_quality) + " – " + current.airQuality!!.getName(context)
             } else {
                 current.wind?.let { wind ->
                     wind.getShortDescription(context, speedUnit)?.let {
-                        context.getString(R.string.wind) + " - " + it
+                        context.getString(R.string.wind) + " – " + it
                     }
                 }
             }

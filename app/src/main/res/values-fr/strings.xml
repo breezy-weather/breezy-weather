@@ -692,8 +692,8 @@
     <string name="widget_subtitle_data_custom">Personnalisé</string>
     <string name="action_add_new_location">Ajouter un nouvel emplacement</string>
     <string name="action_edit_location">Modifier cet emplacement</string>
-    <string name="widget_material_you_forecast">Material You - Prévisions</string>
-    <string name="widget_material_you_current">Material You - En ce moment</string>
+    <string name="widget_material_you_forecast">Material You – Prévisions</string>
+    <string name="widget_material_you_current">Material You – En ce moment</string>
     <string name="unit_bf">Bf</string>
     <string name="unit_bf_voice">sur l’échelle de Beaufort</string>
     <string name="unit_mps">m/s</string>

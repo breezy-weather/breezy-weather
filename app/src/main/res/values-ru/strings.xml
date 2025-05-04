@@ -169,8 +169,8 @@
     <string name="widget_trend_daily">Подневная динамика</string>
     <string name="widget_trend_hourly">Почасовая динамика</string>
     <string name="widget_multi_city">Несколько городов</string>
-    <string name="widget_material_you_forecast">Material You - Прогноз</string>
-    <string name="widget_material_you_current">Material You - Текущая</string>
+    <string name="widget_material_you_forecast">Material You – Прогноз</string>
+    <string name="widget_material_you_current">Material You – Текущая</string>
     <string name="widget_refreshing">Обновление</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->

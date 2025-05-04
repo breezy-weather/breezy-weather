@@ -177,7 +177,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 style="@style/widget_content_text"
-                tools:text=" - 九月十八"
+                tools:text=" – 九月十八"
                 tools:ignore="RtlHardcoded" />
 
             <TextView

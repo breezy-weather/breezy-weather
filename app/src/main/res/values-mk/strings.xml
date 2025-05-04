@@ -152,8 +152,8 @@
     <string name="widget_trend_daily">Дневен тренд</string>
     <string name="widget_trend_hourly">Тренд на час</string>
     <string name="widget_multi_city">Мулти Град</string>
-    <string name="widget_material_you_forecast">Материјал Вие - Прогноза</string>
-    <string name="widget_material_you_current">Материјал Вие - Актуелен</string>
+    <string name="widget_material_you_forecast">Материјал Вие – Прогноза</string>
+    <string name="widget_material_you_current">Материјал Вие – Актуелен</string>
     <string name="widget_refreshing">Освежувачки</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_view_style">Погледнете го стилот</string>

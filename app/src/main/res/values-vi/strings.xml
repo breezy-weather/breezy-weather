@@ -199,8 +199,8 @@
     <string name="widget_trend_daily">Xu hướng hàng ngày</string>
     <string name="widget_trend_hourly">Xu hướng hàng giờ</string>
     <string name="widget_multi_city">Đa thành phố</string>
-    <string name="widget_material_you_forecast">Material You - Dự báo</string>
-    <string name="widget_material_you_current">Material You - Hiện tại</string>
+    <string name="widget_material_you_forecast">Material You – Dự báo</string>
+    <string name="widget_material_you_current">Material You – Hiện tại</string>
     <string name="widget_refreshing">Đang làm mới</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_view_style">Kiểu xem</string>

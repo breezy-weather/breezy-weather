@@ -148,7 +148,7 @@
     <string name="widget_trend_daily">Eguneko joera</string>
     <string name="widget_trend_hourly">Orduko joera</string>
     <string name="widget_multi_city">Hiri aunitz</string>
-    <string name="widget_material_you_forecast">Material You - Iragarpena</string>
+    <string name="widget_material_you_forecast">Material You – Iragarpena</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_show_widget_card">Atzeko kolorea</string>
     <string name="widget_text">Testua</string>
@@ -474,7 +474,7 @@
     <string name="common_weather_text_rain_light">Euri arina</string>
     <string name="common_weather_text_rain_moderate">Euri ertaina</string>
     <string name="common_weather_text_rain_heavy">Euri-jasa</string>
-    <string name="widget_material_you_current">Material You - Egungokoa</string>
+    <string name="widget_material_you_current">Material You – Egungokoa</string>
     <string name="widget_label_view_style">Ikusteko modua</string>
     <string name="air_quality_level_6_description">Airearekiko edozein esposiziok, minutu batzuetan bada ere, ondorio larriak eragin ditzake guztion osasunean. Ez egin aire zabaleko jarduerarik.</string>
     <string name="common_weather_text_drizzle_light">Lanbro arina</string>

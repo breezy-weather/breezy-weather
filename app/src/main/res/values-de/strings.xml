@@ -292,7 +292,7 @@
     <string name="unit_ppcm">/m³</string>
     <string name="air_quality_level_4">Ungesund</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Stündliche Beschreibung</string>
-    <string name="widget_material_you_current">Material You - Aktuell</string>
+    <string name="widget_material_you_current">Material You – Aktuell</string>
     <string name="widget_label_align_end">Rechtsbündig</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Aktuelle Luftfeuchtigkeit</string>
     <string name="unit_mps_voice">Meter pro Sekunde</string>
@@ -312,7 +312,7 @@
     <string name="air_quality_co_voice">Kohlenmonoxid</string>
     <string name="weather_api_unauthorized_title">API-Zugang nicht autorisiert</string>
     <string name="action_back">Zurück</string>
-    <string name="widget_material_you_forecast">Material You - Vorhersage</string>
+    <string name="widget_material_you_forecast">Material You – Vorhersage</string>
     <string name="widget_subtitle_data_custom">Benutzerdefiniert</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Aktuelle Temperatur (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">Aktuelle gefühlte Temperatur (°C/°F)</string>

@@ -599,7 +599,7 @@
     <string name="widget_week">Ugentlig</string>
     <string name="widget_clock_day_week">Ur + Daglig + Ugentlig</string>
     <string name="widget_clock_day_horizontal">Ur + Daglig (Vandret stil)</string>
-    <string name="widget_material_you_current">Material You - Aktuelt</string>
+    <string name="widget_material_you_current">Material You – Aktuelt</string>
     <string name="action_refresh">Genopfrisk</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_hide_subtitle">Skjul undertitel</string>
@@ -609,7 +609,7 @@
     <string name="widget_custom_subtitle_keyword_ct_description">Aktuelle temperatur (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Aktuelle Luftkvalitetsindeks</string>
     <string name="widget_custom_subtitle_keyword_al_description">Varsler</string>
-    <string name="widget_material_you_forecast">Material You - Vejrudsigt</string>
+    <string name="widget_material_you_forecast">Material You – Vejrudsigt</string>
     <string name="message_server_unavailable_title">Server utilgængelig</string>
     <string name="message_source_not_installed_error_content_tip_1">Dette kan ske, når du tilføjede din placering i standardudgaven af Breezy Weather og så skiftede til den udgave, med kun frie netværkskilder. En retur til standardudgaven kan løse dette problem.</string>
     <string name="message_source_not_installed_error_content_tip_2">Enten skift vejrkilde for denne placering, eller slet og tilføj atter denne placering.</string>

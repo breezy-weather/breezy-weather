@@ -346,8 +346,8 @@
     <string name="location_dialog_failed_to_locate_title">Kan locatie niet correct krijgen\?</string>
     <string name="location_dialog_failed_to_locate_action_check_permission">Locatierechten controleren</string>
     <string name="widget_trend_hourly">Trend per uur</string>
-    <string name="widget_material_you_forecast">Material You - Voorspelling</string>
-    <string name="widget_material_you_current">Material You - Huidig</string>
+    <string name="widget_material_you_forecast">Material You – Voorspelling</string>
+    <string name="widget_material_you_current">Material You – Huidig</string>
     <string name="widget_label_text_size">Tekstgrootte</string>
     <string name="widget_subtitle_data_custom">Aangepast</string>
     <string name="widget_custom_subtitle_explanation">U kunt alles invoeren, maar let wel op de lengte van de tekst. Als je weergegevens wilt citeren, gebruik dan $ om naar het overeenkomstige sleutelwoord te verwijzen.

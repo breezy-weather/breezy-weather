@@ -24,7 +24,7 @@
     <string name="weather_source_accu_preference_days_1">1 日</string>
     <string name="action_continue">繼續</string>
     <string name="dialog_permissions_location_title">取得位置資訊</string>
-    <string name="widget_material_you_current">Material You - 實時</string>
+    <string name="widget_material_you_current">Material You – 實時</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">目前紫外線</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">今日、明日、…、4 天後的空氣質素指數</string>
     <string name="widget_live_wallpaper_day_night_type">時間</string>
@@ -337,7 +337,7 @@
     <string name="widget_trend_daily">每日趨勢</string>
     <string name="widget_trend_hourly">每小時趨勢</string>
     <string name="widget_multi_city">多個城市</string>
-    <string name="widget_material_you_forecast">Material You - 預報</string>
+    <string name="widget_material_you_forecast">Material You – 預報</string>
     <string name="widget_refreshing">重新整理中</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_view_style">檢視樣式</string>

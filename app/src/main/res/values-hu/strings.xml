@@ -196,7 +196,7 @@
     <string name="air_quality_pm_info_title">Részecskék (PM2,5 és PM10)</string>
     <string name="air_quality_no2_info_title">Nitrogén-dioxid (NO₂)</string>
     <string name="air_quality_so2_info_title">Kén-dioxid (SO₂)</string>
-    <string name="widget_material_you_forecast">Material You - Előrejelzés</string>
+    <string name="widget_material_you_forecast">Material You – Előrejelzés</string>
     <string name="widget_style_temperature">Hőmérséklet</string>
     <string name="widget_style_symmetry">Szimmetrikus</string>
     <string name="location_search_no_results">A(z) %1$s nem találja a következőt: %2$s</string>
@@ -306,7 +306,7 @@
     <string name="action_location_list">Helyszínlista</string>
     <string name="action_add_current_location">Jelenlegi helyszín hozzáadása</string>
     <string name="message_parsing_error_title">Az időjárásadatok elemzése sikertelen</string>
-    <string name="widget_material_you_current">Material You - Jelenlegi</string>
+    <string name="widget_material_you_current">Material You – Jelenlegi</string>
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_vertical">Függőleges</string>
     <string name="settings_location_access_switch_title">Hozzáférés a tartózkodási helyszínhez</string>

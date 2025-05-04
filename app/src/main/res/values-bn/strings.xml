@@ -261,7 +261,7 @@
     <string name="location_search_weather_source">আবহাওয়ার উৎস</string>
     <string name="location_message_updated">অবস্থান আপডেট করা হয়েছে</string>
     <string name="location_delete_location_dialog_title">অবস্থান মুছে ফেলবেন?</string>
-    <string name="widget_material_you_current">Material You - বর্তমান</string>
+    <string name="widget_material_you_current">Material You – বর্তমান</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_custom_subtitle_keyword_cps_description">বর্তমান বায়ুচাপ</string>
     <string name="location_message_deleted">অবস্থান মুছে ফেলা হয়েছে</string>

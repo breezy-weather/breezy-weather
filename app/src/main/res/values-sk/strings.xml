@@ -479,7 +479,7 @@
     <string name="settings_weather_source_none">Žiadny</string>
     <string name="unit_atm_voice">Atmosféry</string>
     <string name="settings_per_location_theme">Motív</string>
-    <string name="widget_material_you_forecast">Material You - Predpoveď</string>
+    <string name="widget_material_you_forecast">Material You – Predpoveď</string>
     <string name="dialog_permissions_location_title">Prístup k informáciám o polohe</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_location_access_switch_title">Prístup k polohe</string>
@@ -544,7 +544,7 @@
     <string name="widget_custom_subtitle_keyword_xdp_description">Zrážky cez deň dnes, zajtra, …, 4 dni neskôr (%)</string>
     <string name="settings_source_instance_invalid">Musí byť https URL ukončená znakom /</string>
     <string name="settings_source_instance_geocoding">API pre Geocoding server</string>
-    <string name="widget_material_you_current">Material You - Aktuálny</string>
+    <string name="widget_material_you_current">Material You – Aktuálny</string>
     <string name="widget_label_hide_subtitle">Skryť popisok</string>
     <string name="widget_multi_city">Viac miest</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Aktuálna vlhkosť vzduchu</string>

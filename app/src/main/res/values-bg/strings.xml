@@ -154,7 +154,7 @@
     <string name="widget_clock_day_week">Часовник + Ежедневно + Ежеседмично</string>
     <string name="widget_text">Текст</string>
     <string name="widget_trend_hourly">Почасова тенденция</string>
-    <string name="widget_material_you_current">Material You - Текущ</string>
+    <string name="widget_material_you_current">Material You – Текущ</string>
     <string name="widget_refreshing">Опресняване</string>
     <string name="widget_label_show_widget_card">Цвят на фона</string>
     <string name="widget_label_show_widget_card_alpha">Прозрачност</string>
@@ -194,7 +194,7 @@
     <string name="dialog_permissions_location_background_content">За да разрешите опресняването на времето във фонов режим за най-новото текущо местоположение, известно от Android, трябва да зададете разрешение за местоположение на „Разрешаване през цялото време“. Ако не го направите, времето ще се опреснява въз основа на най-новите извлечени координати на преден план, които може да са остарели.</string>
     <string name="widget_clock_day_horizontal">Часовник + Ежедневно (хоризонтален стил)</string>
     <string name="widget_clock_day_vertical">Часовник + Ежедневно (вертикален стил)</string>
-    <string name="widget_material_you_forecast">Material You - Прогноза</string>
+    <string name="widget_material_you_forecast">Material You – Прогноза</string>
     <string name="widget_trend_daily">Ежедневна тенденция</string>
     <string name="widget_multi_city">Мулти град</string>
     <string name="widget_ellipsis">…</string>

@@ -421,7 +421,7 @@
     <string name="common_weather_text_rain_snow_mixed_light">Aiguaneu dèbil</string>
     <string name="settings_notifications_precipitations_title">Notificacions de precipitacions</string>
     <string name="message_source_not_installed_error_title">La font ja no està disponible</string>
-    <string name="widget_material_you_forecast">Material You - Pronòstic</string>
+    <string name="widget_material_you_forecast">Material You – Pronòstic</string>
     <string name="settings_location_access_background_summaryOff">Activeu «Permet tot el temps» per tenir actualitzacions en sego pla per a la vostra ubicació actual.</string>
     <string name="pollen_level_4">Alt</string>
     <string name="settings_source_default_value">Per defecte (sense canvis)</string>
@@ -541,7 +541,7 @@
     <string name="null_data_text">n.p.</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Plugim gelada intensa</string>
     <string name="air_quality_o3_info_introduction">L’ozó a nivell del sòl (O₃) és un component important del boirum. Encara que és la mateixa molècula, l’ozó a nivell del sòl pot ser perjudicial per a la salut humana, a diferència de l’ozó estratosfèric que protegeix la terra de l’excés de radiació UV.</string>
-    <string name="widget_material_you_current">Material You - Actual</string>
+    <string name="widget_material_you_current">Material You – Actual</string>
     <string name="settings_location_access_background_summaryOn">Activat. L’aplicació podrà actualitzar les dades meteorològiques per a la ubicació actual en segon pla.</string>
     <string name="unit_celsius">°C</string>
     <string name="settings_units_summary">Temperatura, precipitació, distància, velocitat, pressió</string>

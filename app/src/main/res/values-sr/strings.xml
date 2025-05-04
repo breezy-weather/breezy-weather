@@ -270,7 +270,7 @@
     <string name="message_tap_again_to_exit">Додирните поново да бисте изашли</string>
     <string name="widget_trend_hourly">Тренд по сатима</string>
     <string name="widget_multi_city">Више градова</string>
-    <string name="widget_material_you_forecast">Material You - Прогноза</string>
+    <string name="widget_material_you_forecast">Material You – Прогноза</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="weather_message_unsupported_feature">Извор не подржава једну од тражених функција</string>
     <string name="dialog_permissions_notification_title">Будите информисани</string>
@@ -289,7 +289,7 @@
     <string name="pollen_level_5">Веома високо</string>
     <string name="ephemeris_moon_phase_new_moon">Млад месец</string>
     <string name="message_network_unavailable">Мрежа није доступна</string>
-    <string name="widget_material_you_current">Material You - Тренутно</string>
+    <string name="widget_material_you_current">Material You – Тренутно</string>
     <string name="widget_clock_day_details">Сат + Дневно (Детаљи)</string>
     <string name="unit_kpa">kPa</string>
     <string name="unit_kgfpsqcm_voice">Килограм-сила по квадратном центиметру</string>

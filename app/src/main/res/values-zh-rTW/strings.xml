@@ -200,8 +200,8 @@
     <string name="widget_trend_daily">逐日趨勢</string>
     <string name="widget_trend_hourly">逐時趨勢</string>
     <string name="widget_multi_city">多個城市</string>
-    <string name="widget_material_you_forecast">Material You - 預報</string>
-    <string name="widget_material_you_current">Material You - 目前</string>
+    <string name="widget_material_you_forecast">Material You – 預報</string>
+    <string name="widget_material_you_current">Material You – 目前</string>
     <string name="widget_refreshing">重新整理中</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->

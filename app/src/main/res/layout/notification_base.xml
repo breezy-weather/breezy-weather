@@ -59,7 +59,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             style="@style/notification_content_text"
-            tools:text="Air quality - Fair" />
+            tools:text="Air quality – Fair" />
 
         <TextView
             android:id="@+id/notification_base_time"

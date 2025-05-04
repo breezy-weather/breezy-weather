@@ -212,7 +212,7 @@
     <string name="widget_trend_daily">Denní graf</string>
     <string name="widget_trend_hourly">Hodinový graf</string>
     <string name="widget_multi_city">Více měst</string>
-    <string name="widget_material_you_forecast">Material You - předpověď</string>
+    <string name="widget_material_you_forecast">Material You – předpověď</string>
     <string name="widget_refreshing">čekám</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
@@ -484,7 +484,7 @@
     <string name="air_quality_level_1_description">Kvalita ovzduší je vhodná pro většinu jedinců; užívejte si své normální venkovní aktivity.</string>
     <string name="weather_api_limit_reached_content">Pro obejití limitu zadejte svůj vlastní klíč API.</string>
     <string name="weather_api_unauthorized_title">Neautorizovaný přístup k API</string>
-    <string name="widget_material_you_current">Material You - Aktuální</string>
+    <string name="widget_material_you_current">Material You – Aktuální</string>
     <string name="air_quality_pm_explanations_origin">Některé částice se vyskytují přirozeně, pocházejí ze sopek, prachových bouří, lesních a travnatých požárů, živé vegetace a mořské mlhy. Významné množství částic vytváří také lidská činnost, například doprava a přeprava, průmyslová činnost, elektrárny, staveniště, spalování odpadů nebo pole.</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_no2">NO₂</string>

@@ -211,7 +211,7 @@
     <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (°C°/F)</string>
     <string name="action_undo">تراجع</string>
     <string name="message_network_unavailable">الشبكة غير متوفرة</string>
-    <string name="widget_material_you_current">”Material You“ - الحالي</string>
+    <string name="widget_material_you_current">”Material You“ – الحالي</string>
     <string name="widget_multi_city">مدينة متعددة</string>
     <string name="widget_custom_subtitle_explanation">يمكنك إدخال أي شيء، ولكن يرجى الانتباه إلى طول النص. إذا كنت تريد اقتباس بيانات الطقس، فيرجى استخدام $ للإشارة إلى الكلمة الرئيسية المقابلة.
 \n
@@ -308,7 +308,7 @@
     <string name="ephemeris_sunset_at">غروب الشمس في %s</string>
     <string name="widget_custom_subtitle_keyword_cw_description">الطقس الحالي</string>
     <string name="action_back">رجوع</string>
-    <string name="widget_material_you_forecast">”Material You“- التوقعات</string>
+    <string name="widget_material_you_forecast">”Material You“ – التوقعات</string>
     <string name="air_quality_so2_voice">ثاني أكسيد الكبريت</string>
     <string name="widget_custom_subtitle_keyword_enter_description">خط جديد</string>
     <string name="settings_item_delete">حذف هذا العنصر</string>

@@ -370,9 +370,9 @@
     <string name="widget_day_week">Ikdienu + iknedēļu</string>
     <string name="widget_week">Iknedēļas</string>
     <string name="widget_trend_daily">Dienu prognoze</string>
-    <string name="widget_material_you_forecast">Material You - Prognoze</string>
+    <string name="widget_material_you_forecast">Material You – Prognoze</string>
     <string name="widget_multi_city">Vairākas pilsētas</string>
-    <string name="widget_material_you_current">Material You — pašreizējais</string>
+    <string name="widget_material_you_current">Material You – pašreizējais</string>
     <string name="widget_refreshing">Atsvaidzina</string>
     <string name="widget_label_clock_font">Pulksteņa fonts</string>
     <string name="widget_label_align_end">Pielīdzināt labajai malai</string>

@@ -347,7 +347,7 @@
     <string name="dialog_permissions_location_content">Για να χρησιμοποιήσεις αυτή τη δυνατότητα, παραχώρησε άδεια πρόσβασης για τη τρέχουσα τοποθεσία σου. Θα κοινοποιούνται μόνο σε πηγές καιρού. Αν αλλάξεις γνώμη, μπορείς να ακυρώσεις τη διαδικασία και να ρυθμίζεις τη θέση σου χειροκίνητα.</string>
     <string name="message_parsing_error_content">Βεβαιώσου ότι είσαι στη τελευταία έκδοση της εφαρμογής. Ο διακομιστής μπορεί να είναι προσωρινά μη διαθέσιμος, σε αυτή τη περίπτωση, δοκίμασε ξανά αργότερα. Αν το πρόβλημα συνεχίζεται, παρακαλώ ανάκτησε το αρχείο σφαλμάτων από τις ρυθμίσεις αποσφαλμάτωσης και ανέφερε το πρόβλημα στο GitHub.</string>
     <string name="message_tap_again_to_exit">Πάτα ξανά για έξοδο</string>
-    <string name="widget_material_you_current">Material You - Τρέχουσα</string>
+    <string name="widget_material_you_current">Material You – Τρέχουσα</string>
     <string name="widget_clock_font_analog">Αναλογικό</string>
     <string name="settings_background_updates_worker_info_title">Πληροφορίες διεργασίας</string>
     <string name="location_results_by">Αποτελέσματα τοποθεσίας από %s</string>
@@ -377,7 +377,7 @@
     <string name="settings_background_updates_refresh_title">Ρυθμός ανανέωσης</string>
     <string name="settings_background_updates_refresh_never">Ποτέ</string>
     <string name="setting_weather_source_accu_days">Ημέρες</string>
-    <string name="widget_material_you_forecast">Material You - Πρόγνωση</string>
+    <string name="widget_material_you_forecast">Material You – Πρόγνωση</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Συγκεκριμένες οδηγίες ανά κατασκευαστή</string>
     <string name="settings_background_updates_battery_optimization">Απενεργοποίηση βελτιστοποίησης μπαταρίας</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Δεν είναι δυνατό το άνοιγμα των ρυθμίσεων της συσκευής.</string>

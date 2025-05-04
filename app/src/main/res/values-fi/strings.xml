@@ -564,7 +564,7 @@
     <string name="settings_weather_sources_summary">Oletuslähde uusille sijainneille, mukautetut API-avaimet, muut lähdeasetukset</string>
     <string name="common_weather_text_drizzle_freezing">Jäätävää tihkusadetta</string>
     <string name="common_weather_text_rain_snow_mixed_light">Kevyttä vesisateen ja lumen sekoitusta</string>
-    <string name="widget_material_you_forecast">Material You - Ennuste</string>
+    <string name="widget_material_you_forecast">Material You – Ennuste</string>
     <string name="settings_location_access_background_summaryOff">Ota käyttöön “Salli koko ajan”, jos haluat taustapäivityksiä nykyisen sijaintisi osalta.</string>
     <string name="settings_color_app">Seuraa sovellusta</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Kuurottaista vesisateen ja lumen sekoitusta</string>
@@ -584,7 +584,7 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Ukkosmyrsky ja rajuja raekuuroja</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Kuurottaista kevyttä vesisateen ja lumen sekoitusta</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Rankkaa jäätävää tihkusadetta</string>
-    <string name="widget_material_you_current">Material You - Tämänhetkinen</string>
+    <string name="widget_material_you_current">Material You – Tämänhetkinen</string>
     <string name="settings_main_header_details_title">Tiedot otsikossa</string>
     <string name="common_weather_text_drizzle_heavy">Rankkaa tihkusadetta</string>
     <string name="common_weather_text_rain_moderate">Kohtalaista sadetta</string>
