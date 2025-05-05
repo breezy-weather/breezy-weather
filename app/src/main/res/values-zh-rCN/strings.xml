@@ -116,7 +116,7 @@
     <string name="dialog_permissions_location_background_content">要允许后台刷新 Android 系统所知的当前最新位置的天气数据，你需要将位置权限设为“始终允许”。如果不这样设置，应用将基于前台获取的最新坐标刷新天气数据，而前台坐标表明的位置可能和当前实际位置有时间差。</string>
     <string name="location_message_failed_to_locate">无法定位当前位置</string>
     <string name="weather_message_data_refresh_failed">数据刷新失败</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">选择位置服务源</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">使用别的位置服务</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">手动添加位置并删除“%s”</string>
     <string name="weather_api_limit_reached_title">达到 API 请求次数上限</string>
     <string name="weather_api_limit_reached_content">要绕过此限制，请添加您自己的 API 密钥。</string>
@@ -648,7 +648,7 @@
     <string name="about_open_link_message">打开 %s？</string>
     <string name="sunshine">日照</string>
     <string name="message_source_not_installed_error_content_tip_1">当您在 Standard 版本的 Breezy Weather 中添加了位置，然后切换到支持的天气源较少的 libre 版本的应用时可能会发生此问题。切回到 Standard 版本可能会解决这个问题。</string>
-    <string name="message_source_not_installed_error_content_tip_2">要么更改此位置的天气源，要么删除并重新添加此位置。</string>
+    <string name="message_source_not_installed_error_content_tip_2">更改此位置的天气数据源，或删除并重新添加此位置。</string>
     <string name="settings_per_location">位置选项</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">最佳匹配</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">混合此位置的最佳天气模型的预报结果</string>
@@ -833,4 +833,6 @@
     <string name="wind_direction_W">西</string>
     <string name="message_server_insecure_title">安全连接失败</string>
     <string name="message_outdated_server_data">从服务器收到了过时数据</string>
+    <string name="action_enable">启用</string>
+    <string name="action_allow">允许</string>
 </resources>
