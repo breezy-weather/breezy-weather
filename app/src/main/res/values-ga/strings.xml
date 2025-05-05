@@ -198,7 +198,7 @@
     <string name="location_message_search_failed">Theip ar chuardach suímh</string>
     <string name="location_message_failed_to_locate">Theip ar aimsiú an tsuímh reatha</string>
     <string name="location_message_reverse_geocoding_failed">Theip ar fhoinse aimsire suíomh meaitseála a aimsiú</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Roghnaigh seirbhís suímh</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Úsáid seirbhís suímh eile</string>
     <string name="location_search_placeholder">Cuardaigh suíomh…</string>
     <string name="location_search_no_results">Ní féidir le %1$s %2$s a aimsiú</string>
     <string name="location_search_no_results_advice">Cinntigh go bhfuil do chuardach litrithe i gceart agus nach bhfuil sé ró-shonrach. De rogha air sin, is féidir leat triail a bhaint as foinse chuardaigh suímh eile a d’fhéadfadh torthaí éagsúla a tháirgeadh.</string>
@@ -253,7 +253,7 @@
     <string name="message_server_unavailable_content">Is earráid shealadach é seo de ghnáth. Má leanann an earráid ar aghaidh, tuairiscigh saincheist ar GitHub.</string>
     <string name="message_parsing_error_title">Theip ar pharsáil sonraí aimsire</string>
     <string name="message_source_not_installed_error_content_tip_1">D’fhéadfadh sé seo tarlú nuair a chuir tú do shuíomh i mblas Caighdeánach an fheidhmchláir agus ansin aistrigh tú go dtí an blas gan ach foinsí líonra Libre. D’fhéadfadh dul ar ais go dtí an blas Caighdeánach an fhadhb seo a réiteach.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Athraigh na foinsí aimsire don suíomh seo nó scrios agus cuir an suíomh seo leis arís.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Athraigh na foinsí aimsire don suíomh seo, nó scrios agus cuir an suíomh seo leis arís.</string>
     <string name="message_tap_again_to_exit">Tapáil arís chun scoir</string>
     <string name="widget_day">Gach lá</string>
     <string name="widget_week">Seachtainiúil</string>
@@ -743,4 +743,7 @@
     <string name="wind_direction_W">Iarthar</string>
     <string name="wind_direction_NW">Thiar Thuaidh</string>
     <string name="message_server_insecure_title">Theip ar an nasc slán</string>
+    <string name="message_outdated_server_data">Sonraí atá as dáta faighte ón bhfreastalaí</string>
+    <string name="action_enable">Cumasaigh</string>
+    <string name="action_allow">Ceadaigh</string>
 </resources>
