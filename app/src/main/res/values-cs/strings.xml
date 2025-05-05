@@ -95,7 +95,7 @@
     <string name="dialog_permissions_location_background_content">Chcete-li povolit obnovení počasí na pozadí pro nejnovější aktuální polohu známou systému Android, musíte nastavit oprávnění k poloze na hodnotu „Povolit vždy“. Pokud tak neučiníte, bude se počasí v popředí obnovovat na základě posledních načtených souřadnic, které mohou být zastaralé.</string>
     <string name="location_message_failed_to_locate">Nepodařilo se zjistit aktuální polohu</string>
     <string name="weather_message_data_refresh_failed">Nepodařilo se načíst data</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Vyberte službu určení polohy</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Použít jinou službu určení polohy</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Ručně přidat polohu a odstranit “%s”</string>
     <string name="widget_label_view_style">Zobrazit styl</string>
     <string name="widget_label_show_widget_card">Barva pozadí</string>
@@ -651,7 +651,7 @@
     <string name="pollen_carpinus">Habr</string>
     <string name="pollen_plantaginaceae">jitrocelovité</string>
     <string name="message_source_not_installed_error_content_tip_1">Toto může nastat, pokud jste přidali své umístění do standardní verze aplikace a poté jste přešli na verzi obsahující pouze svobodné zdroje, která podporuje méně zdrojů počasí. Tento problém nejspíše vyřešíte přechodem zpět na standardní verzi.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Změňte zdroje počasí pro toto umístění nebo ji odstraňte a znovu přidejte.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Změňte zdroje počasí pro toto umístění nebo jej odstraňte a znovu přidejte.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Souhrn indexu pylů pro dnešek, zítřek, …, za 4 dny</string>
     <string name="about_open_link_message">Otevřít %s?</string>
     <string name="sunshine">Slunce</string>
@@ -762,4 +762,6 @@
     <string name="wind_direction_W">Západ</string>
     <string name="message_server_insecure_title">Zabezpečené spojení selhalo</string>
     <string name="message_outdated_server_data">Ze serveru byla obdržena zastaralá data</string>
+    <string name="action_enable">Zapnout</string>
+    <string name="action_allow">Povolit</string>
 </resources>
