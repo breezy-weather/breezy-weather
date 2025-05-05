@@ -125,7 +125,7 @@
     <string name="air_quality_no2_info_title">Kvävedioxid (NO₂)</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Latitud</string>
     <string name="pollen">Pollen</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Välj platstjänst</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Använd en annan platstjänst</string>
     <string name="pollen_level_4">Högt</string>
     <string name="widget_style_temperature">Temperatur</string>
     <string name="widget_custom_subtitle_keyword_at_description">Nuvarande känns som-temperatur (°C/°F)</string>
@@ -614,7 +614,7 @@
     <string name="location_delete_location_dialog_title">Ta bort plats?</string>
     <string name="weather_message_too_frequent_refreshes">Vänligen vänta några sekunder innan du försöker igen …</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Rådande Luftkvalitetsindex</string>
-    <string name="message_invalid_incomplete_data">Ogiltig eller ofullständig data mottagen från server</string>
+    <string name="message_invalid_incomplete_data">Ogiltiga eller ofullständiga data mottagna från server</string>
     <string name="location_delete_location_dialog_message">“%s” kommer att tas bort från sparade platser.</string>
     <string name="location_delete_location_dialog_message_no_name">Den här platsen kommer tas bort från dina sparade platser.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Luftkvalitetsindex för i dag, i morgon, …, 4 dagar senare</string>
@@ -633,7 +633,7 @@
     <string name="pollen_tilia">Lind</string>
     <string name="pollen_urticaceae">Nässla/grenig väggört</string>
     <string name="message_source_not_installed_error_content_tip_1">Detta kan hända när du har lagt till din plats i standardvarianten av appen och sedan bytt till varianten med endast fria nätverkskällor. Att gå tillbaka till standardvarianten kan lösa detta problem.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Ändra antingen väderkällor för denna plats, eller ta bort platsen och lägg till den igen.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Ändra väderkällorna för denna plats, eller ta bort denna plats och lägg till den igen.</string>
     <string name="sunshine">Solsken</string>
     <string name="action_confirm">Bekräfta</string>
     <string name="alert_source">Källa: %s</string>
@@ -745,4 +745,7 @@
     <string name="settings_debug_notification_permission">Behövs för att avisera om kraschloggar och misslyckade väderuppdateringar. %s</string>
     <string name="settings_widgets_notification_permission_summary">Behövs för att visa aviseringswidgeten. %s</string>
     <string name="message_server_insecure_title">Säker anslutning misslyckades</string>
+    <string name="message_outdated_server_data">Föråldrade data mottagna från server</string>
+    <string name="action_allow">Tillåt</string>
+    <string name="action_enable">Aktivera</string>
 </resources>
