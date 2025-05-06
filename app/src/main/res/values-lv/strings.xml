@@ -303,7 +303,7 @@
     <string name="air_quality_no2_info_introduction">Slāpekļa dioksīds (NO₂) ir smacējoša, indīga sarkanbrūna gāze ar raksturīgi asu, rūgtu smaržu.</string>
     <string name="air_quality_no2_info_origin">Apkārtējie NO₂ avoti rodas no kurināmā sadedzināšanas augstā temperatūrā tādos procesos kā izmantošana apkurei, pārvadāšanai, rūpniecībai un elektroenerģijas ražošanai. Mājsaimniecības slāpekļa oksīdu (NOₓ) avoti ietver iekārtas, kas sadedzina kurināmo, piemēram, krāsnis, kamīnus un gāzes plītis.</string>
     <string name="air_quality_no2_info_consequences">Slāpekļa dioksīda iedarbība var kairināt elpceļus un saasināt elpceļu slimības. Turklāt NO₂ ir svarīgs ozona prekursors, piesārņotājs, kas ir cieši saistīts ar astmu un citiem elpošanas traucējumiem.</string>
-    <string name="air_quality_so2_info_origin">Tas dabiski izdalās vulkāniskās aktivitātes rezultātā, un to galvenokārt iegūst, sadedzinot fosilo kurināmo mājsaimniecības apkurei, rūpniecībai un elektroenerģijas ražošanai.</string>
+    <string name="air_quality_so2_info_origin">To dabiski izdala vulkāniskā darbība, un tas galvenokārt rodas no fosilo kurināmo sadedzināšanas apkurei, rūpniecībai un elektroenerģijas ražošanai.</string>
     <string name="air_quality_so2_info_consequences">SO₂ iedarbība ir saistīta ar astmas slimnīcu uzņemšanu un neatliekamās palīdzības apmeklējumiem.</string>
     <string name="air_quality_co_info_title">Oglekļa monoksīds (CO)</string>
     <string name="air_quality_co_info_introduction">Oglekļa monoksīds (CO) ir indīga, uzliesmojoša gāze, kas ir bezkrāsaina, bez smaržas, garšas un nav kairinoša.</string>
@@ -342,7 +342,7 @@
     <string name="weather_source_accu_preference_hours_120">120 stundas</string>
     <string name="location_message_permission_background_missing">Trūkst atļaujas piekļūt atrašanās vietai fonā</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Atrašanās vieta jāpievieno pašrocīgi un jāizdzēš “%s”</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Atlasīt atrašanās vietas pakalpojumu</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Izmantot citu atrašanās vietas pakalpojumu</string>
     <string name="location_current_not_found_yet">Pašreizējā atrašanās vieta vēl nav atrasta…</string>
     <string name="action_restart">Restartēt</string>
     <string name="action_save">Saglabāt</string>
@@ -746,4 +746,6 @@
     <string name="wind_direction_NW">Ziemeļrietumi</string>
     <string name="message_server_insecure_title">Drošais savienojums neizdevās</string>
     <string name="message_outdated_server_data">No servera saņemti novecojuši dati</string>
+    <string name="action_enable">Iespējot</string>
+    <string name="action_allow">Atļaut</string>
 </resources>
