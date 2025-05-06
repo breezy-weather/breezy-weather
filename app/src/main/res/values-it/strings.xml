@@ -95,7 +95,7 @@
     <string name="dialog_permissions_location_background_content">Per consentire l’aggiornamento del meteo in background sulla base delle posizioni più recenti memorizzate da Android, devi settare i permessi di geolocalizzazione su “Concedi sempre”. Se non lo fai, il meteo verrà aggiornato sulla base delle ultime coordinate registrate, per cui i dati potrebbero essere obsoleti.</string>
     <string name="location_message_failed_to_locate">Localizzazione fallita</string>
     <string name="weather_message_data_refresh_failed">Aggiornamento dati fallito</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Seleziona il servizio di localizzazione</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Utilizza un altro servizio di localizzazione</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Aggiungi manualmente la posizione e cancella “%s”</string>
     <string name="widget_label_text_size">Dimensione del testo</string>
     <string name="widget_label_align_end">Allinea a destra</string>
@@ -647,7 +647,7 @@
     <string name="location_search_change_source">Cambia la fonte di ricerca della posizione</string>
     <string name="location_search_no_results_advice">Assicurati che la ricerca sia scritta correttamente e non sia troppo specifica. Altrimenti, è possibile provare un’altra fonte di ricerca della posizione che potrebbe dare risultati diversi.</string>
     <string name="message_source_not_installed_error_content_tip_1">Questo può accadere se hai aggiunto la tua posizione nella versione standard di Breezy Weather e sei poi passato a quella con fonti meteorologiche libere. Il ritorno alla versione standard potrebbe risolvere il problema.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Modifica le fonti meteo per questa posizione o elimina e aggiungi nuovamente questa posizione.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Modifica le fonti meteo per questa posizione, o elimina e aggiungi nuovamente questa posizione.</string>
     <string name="sunshine">Sole</string>
     <string name="message_invalid_incomplete_data">Dati non validi o incompleti ricevuti dal server</string>
     <string name="dialog_time_picker_input_time">Inserisci ora</string>
@@ -752,4 +752,8 @@
     <string name="message_server_insecure_title">Connessione sicura fallita</string>
     <string name="pollen_atriplex">Atriplex</string>
     <string name="message_outdated_server_data">Ricevuti dati obsoleti dal server</string>
+    <string name="action_enable">Abilita</string>
+    <string name="common_weather_text_drifting_snow">Neve che si accumula</string>
+    <string name="action_allow">Permetti</string>
+    <string name="common_weather_text_blowing_snow">Neve soffiata</string>
 </resources>
