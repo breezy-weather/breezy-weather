@@ -82,7 +82,7 @@
     <string name="location_message_search_failed">Пошук розташування не вдався</string>
     <string name="location_message_failed_to_locate">Не вдалося знайти поточне розташування</string>
     <string name="location_message_permission_missing">Немає дозволу на доступ до місцезнаходження</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Використати інший сервіс визначення місцезнаходження</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Використайте інший сервіс визначення місцезнаходження</string>
     <string name="location_search_placeholder">Пошук розташувань…</string>
     <string name="location_service_native">Системний API</string>
     <string name="action_location_list">Список розташувань</string>
@@ -640,7 +640,7 @@
     <string name="about_open_link_message">Відкрити %s?</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Поєднує всі моделі погоди від цього постачальника в безшовний прогноз</string>
     <string name="message_source_not_installed_error_content_tip_1">Це може трапитися, якщо ви додали своє розташування в стандартній версії застосунку, а потім перейшли на версію лише з вільними джералами погоди. Повернення до стандартної версії може вирішити цю проблему.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Або змініть джерела погоди для цього місця розташування, або видаліть і знову додайте це місце розташування.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Або змініть джерела погодних даних для цього розташування, або видаліть та знову додайте його.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Зведення індексу пилку сьогодні, завтра, …, через 4 дні</string>
     <string name="sunshine">Годин сонця</string>
     <string name="alert">Попередження</string>
