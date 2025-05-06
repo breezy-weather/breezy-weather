@@ -748,7 +748,7 @@
     <string name="wind_direction_E">Est</string>
     <string name="wind_direction_SE">Sud-est</string>
     <string name="location_has_active_alerts">Avvisi attivi</string>
-    <string name="location_last_updated_x">Último aggiornamento %s</string>
+    <string name="location_last_updated_x">Ultimo aggiornamento %s</string>
     <string name="message_server_insecure_title">Connessione sicura fallita</string>
     <string name="pollen_atriplex">Atriplex</string>
     <string name="message_outdated_server_data">Ricevuti dati obsoleti dal server</string>
