@@ -60,14 +60,14 @@
     <string name="uv_index_11">Extrémny</string>
     <string name="uv_alert_level">Výstraha</string>
     <string name="air_quality_index">Index kvality vzduchu</string>
-    <string name="air_quality_level_1_description">Kvalita vzduchu je vhodná pre väčšinu jednotlivcov; užívajte si bežné aktivity vonku.</string>
+    <string name="air_quality_level_1_description">Kvalita vzduchu je vhodná pre väčšinu jednotlivcov; užívajte si bežné vonkajšie aktivity.</string>
     <string name="air_quality_level_2">Priaznivá</string>
     <string name="air_quality_level_3">Zlá</string>
     <string name="air_quality_level_3_description">Vzduch dosiahol vysokú úroveň znečistenia a je nezdravý pre citlivé skupiny. Ak pociťujete príznaky, ako sú ťažkosti s dýchaním alebo podráždenie hrdla, skráťte čas strávený vonku.</string>
     <string name="air_quality_level_4">Nezdravá</string>
     <string name="air_quality_level_5">Veľmi nezdravá</string>
     <string name="air_quality_level_6">Nebezpečná</string>
-    <string name="air_quality_level_6_description">Akékoľvek vystavenie vzduchu, aj niekoľkominútové, môže mať pre každého vážne zdravotné následky. Vyhýbajte sa aktivitám na otvorenom priestranstve.</string>
+    <string name="air_quality_level_6_description">Akékoľvek vystavenie vzduchu, hoci len na niekoľko minút, môže mať pre každého vážne zdravotné následky. Vyhýbajte sa aktivitám na otvorenom priestranstve.</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm25_voice">PM dva celá päť</string>
     <string name="air_quality_pm10">PM10</string>
@@ -89,8 +89,8 @@
     <string name="wind_strength_9">Víchrica</string>
     <string name="air_quality_level_1">Výborná</string>
     <string name="uv_index_6_7">Vysoký</string>
-    <string name="air_quality_level_2_description">Kvalita vzduchu je všeobecne prijateľná pre väčšinu jednotlivcov. Avšak, citlivé skupiny môžu zažiť menšie až mierne príznaky pri dlhodobom pôsobení.</string>
-    <string name="air_quality_level_4_description">Vplyv na zdravie môžu citlivé skupiny pocítiť okamžite. Zdraví jedinci môžu pri dlhodobom pôsobení pociťovať ťažkosti s dýchaním a podráždenie hrdla. Obmedzte aktivity vonku.</string>
+    <string name="air_quality_level_2_description">Kvalita vzduchu je všeobecne prijateľná pre väčšinu jednotlivcov, avšak citlivé skupiny môžu zažiť menšie až mierne príznaky pri dlhodobom pôsobení.</string>
+    <string name="air_quality_level_4_description">Vplyv na zdravie môžu citlivé skupiny pocítiť okamžite. Zdraví jednotlivci môžu pri dlhodobom pôsobení pociťovať ťažkosti s dýchaním a podráždenie hrdla. Obmedzte vonkajšie aktivity.</string>
     <string name="air_quality_pm_explanations_introduction">Prachové častice alebo atmosférické častice sú mikroskopické častice pevných alebo kvapalných látok rozptýlené vo vzduchu.</string>
     <string name="air_quality_level_5_description">Zdravotné účinky okamžite pocítia citlivé skupiny a mali by sa vyhýbať vonkajším aktivitám. Zdravé osoby pravdepodobne pocítia ťažkosti s dýchaním a podráždenie hrdla; preferujte pobyt v uzavretých priestoroch a odložte vonkajšie aktivity.</string>
     <string name="daily_yesterday_short">Včr</string>
@@ -322,7 +322,7 @@
     <string name="location_message_added">Miesto pridané</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Ručne pridať polohu a odstraniť “%s”</string>
     <string name="location_search_no_results_advice">Uistite sa, že je vaše vyhľadávanie napísané správne a nie je príliš špecifické. Prípadne môžete vyskúšať iný zdroj, ktorý môže poskytnúť iné výsledky.</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Vyberte službu na určenie polohy</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Použiť inú službu na určenie polohy</string>
     <string name="action_undo">Vrátiť späť</string>
     <string name="action_set">Nastaviť</string>
     <string name="action_help">Nápoveda</string>
@@ -507,7 +507,7 @@
     <string name="widget_custom_subtitle_keyword_cv_description">Aktuálna viditeľnosť</string>
     <string name="message_server_unavailable_content">Toto je zvyčajne iba dočasná chyba. Ak však pretrváva dlhšie, nahláste ju prosím v platforme GitHub.</string>
     <string name="message_parsing_error_content">Uistite sa, že máte nainštalovanú najnovšiu verziu aplikácie. Server môže byť dočasne nedostupný, v tom prípade to skúste neskôr. Ak problém aj naďalej pretrváva, prosím uložte záznam o chybe v sekcii “Ladenie” v nastaveniach a nahláste chybu na platforme GitHub.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Skúste zmeniť zdroj informácii o počasí alebo odstráňte a znovu pridajte toto miesto.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Skúste zmeniť zdroj informácii o počasí pre toto miesto alebo ho odstráňte a znovu pridajte.</string>
     <string name="widget_day">Denný</string>
     <string name="widget_day_week">Denný + Týždenný</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Stačením otvoríte</string>
@@ -742,4 +742,8 @@
     <string name="wind_direction_SW">Juhozápad</string>
     <string name="wind_direction_S">Juh</string>
     <string name="wind_direction_W">Západ</string>
+    <string name="message_server_insecure_title">Zabezpečené pripojenie zlyhalo</string>
+    <string name="message_outdated_server_data">Zo serveru boli obdržané zastaralé dáta</string>
+    <string name="action_allow">Povoliť</string>
+    <string name="action_enable">Zapnúť</string>
 </resources>
