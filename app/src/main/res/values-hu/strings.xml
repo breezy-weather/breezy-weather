@@ -89,7 +89,7 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">A jelenlegi helyszín meghatározása sikertelen</string>
     <string name="weather_message_data_refresh_failed">Nem sikerült frissíteni az adatokat</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Helymeghatározó szolgáltatás kiválasztása</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Másik helymeghatározó szolgáltatás használata</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adja hozzá a helyszínt manuálisan és törölje a következőt: „%s”</string>
     <string name="dialog_permissions_location_background_title">Hozzáférés a helymeghatározáshoz a háttérben</string>
     <string name="dialog_permissions_location_background_content">Ahhoz, hogy a háttérben az Android rendszer által ismert legfrissebb jelenlegi helyszínhez lehessen frissíteni az időjárásadatokat, a helyszínmeghatározási engedélyt „Mindig engedélyezett” értékre kell állítani. Ellenkező esetben az időjárás az előtérben a legfrissebb lekérdezett koordináták alapján frissül, ami elavult lehet.</string>
@@ -643,7 +643,7 @@
     <string name="widget_custom_subtitle_keyword_xpis_description">Pollenindex összefoglalása ma, holnap, …, 4 nap múlva</string>
     <string name="about_open_link_message">%s oldal megnyitása?</string>
     <string name="message_source_not_installed_error_content_tip_1">Ez akkor fordulhat elő, ha az alkalmazás normál változatában adta hozzá a helyszínt, majd átváltott a csak nyílt forráskódot tartalmazó változatra. A probléma megoldódhat, ha visszatér a normál verzióra.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Vagy változtassa meg a helyszínhez tartozó időjárási forrást, esetleg törölje és adja hozzá újra a helyszínt.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Vagy változtassa meg a helyszínhez tartozó időjárási forrást, vagy törölje és adja hozzá újra a helyszínt.</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Zökkenőmentes</string>
     <string name="settings_per_location">Helyszínbeállítások</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kombinálja az összes időjárási modellt ettől a szolgáltatótól egy zökkenőmentes előrejelzéshez</string>
@@ -752,4 +752,6 @@
     <string name="wind_direction_NW">Északnyugat</string>
     <string name="message_server_insecure_title">Nem sikerült biztonságos kapcsolatot létrehozni</string>
     <string name="message_outdated_server_data">Elavult adatok lettek fogadva a kiszolgálótól</string>
+    <string name="action_enable">Engedélyezés</string>
+    <string name="action_allow">Engedélyezés</string>
 </resources>

@@ -744,4 +744,8 @@
     <string name="common_weather_text_dry">Kuiv</string>
     <string name="common_weather_text_warm">Soe</string>
     <string name="common_weather_text_cold">Külm</string>
+    <string name="message_outdated_server_data">Serverilt saadi aegunud andmed</string>
+    <string name="message_server_insecure_title">Turvaline ühendumine nurjus</string>
+    <string name="action_enable">Lülita sisse</string>
+    <string name="action_allow">Luba</string>
 </resources>

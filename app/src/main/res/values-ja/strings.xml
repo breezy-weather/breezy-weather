@@ -87,7 +87,7 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">現在地が見つかりませんでした</string>
     <string name="weather_message_data_refresh_failed">データを更新できませんでした</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">位置情報サービスを選択</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">別の位置情報サービスを使う</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">手動で場所を追加し、「%s」を削除してください</string>
     <string name="widget_label_view_style">UIスタイル</string>
     <string name="widget_label_show_widget_card">背景色</string>
@@ -783,4 +783,6 @@
     <string name="daily_today">今日</string>
     <string name="message_server_insecure_title">安全な接続に失敗しました</string>
     <string name="message_outdated_server_data">サーバーから古いデータを受信しました</string>
+    <string name="action_enable">有効にする</string>
+    <string name="action_allow">許可</string>
 </resources>

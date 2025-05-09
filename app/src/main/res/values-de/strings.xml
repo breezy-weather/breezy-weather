@@ -37,7 +37,7 @@
     <string name="settings_changes_apply_after_restart">Änderungen werden bei Neustart übernommen</string>
     <string name="notification_running_in_background">Hintergrundaktualisierung</string>
     <string name="location_search_placeholder">Ort suchen…</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Standortdienst auswählen</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Einen anderen Standortdienst benutzen</string>
     <string name="widget_label_show_widget_card">Hintergrundfarbe</string>
     <string name="widget_label_show_widget_card_alpha">Deckkraft</string>
     <string name="widget_label_subtitle_data">Untertiteldaten</string>
@@ -761,4 +761,6 @@
     <string name="wind_direction_NW">Nordwesten</string>
     <string name="message_server_insecure_title">Sichere Verbindung fehlgeschlagen</string>
     <string name="message_outdated_server_data">Veraltete Daten vom Server empfangen</string>
+    <string name="action_enable">Aktivieren</string>
+    <string name="action_allow">Erlauben</string>
 </resources>
