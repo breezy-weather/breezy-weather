@@ -220,7 +220,7 @@
     <string name="setting_weather_source_accu_days">Дани</string>
     <string name="setting_weather_source_accu_hours">Сати</string>
     <string name="locations">Локације</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Изабери услугу локације</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Изабери другу услугу локације</string>
     <string name="action_add_new_location">Додај нову локацију</string>
     <string name="action_help">Помоћ</string>
     <string name="uv_index_0_2">Ниско</string>
@@ -623,7 +623,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Најбоље подударање</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Комбинује најбоље моделе времена за ову локацију</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Беспрекорно</string>
-    <string name="message_source_not_installed_error_content_tip_2">Или промените изворе времена за ову локацију или избришите и поново додајте ову локацију.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Или промените изворе времена за ову локацију, или избришите и поново додајте ову локацију.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Индекс квалитета ваздуха данас, сутра, …, 4 дана касније</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Резиме индекса полена за данас, сутра, …, 4 дана касније</string>
     <string name="settings_per_location">Преференце за локацију</string>
@@ -752,4 +752,6 @@
     <string name="wind_direction_NW">Северозапад</string>
     <string name="message_server_insecure_title">Безбедна веза није успела</string>
     <string name="message_outdated_server_data">Застарели подаци примљени са сервера</string>
+    <string name="action_enable">Омогући</string>
+    <string name="action_allow">Дозволи</string>
 </resources>
