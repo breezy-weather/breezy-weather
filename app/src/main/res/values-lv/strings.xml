@@ -166,7 +166,7 @@
     <string name="settings_appearance_dark_mode_title">Tumšais izskats</string>
     <string name="settings_main_cards_title">Kartītes</string>
     <string name="settings_main_daily_trends_title">Dienu prognozes</string>
-    <string name="settings_widgets_live_wallpaper_summary">Iestatīt laikapstākļu animāciju kā tapeti</string>
+    <string name="settings_widgets_live_wallpaper_summary">Iestatīt laikapstākļu animāciju kā ekrāntapeti</string>
     <string name="about_privacy_policy">Privātuma politika</string>
     <string name="settings_debug">Atkļūdošana</string>
     <string name="weather_message_unsupported_feature">Avots nenodrošina vienu no pieprasītajām iespējām</string>
@@ -176,10 +176,10 @@
     <string name="settings_location_summary">Atrašanās vietas pakalpojumu iestatījumi</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Dažiem ražotājiem ir papildu lietotņu ierobežojumi, kas novāc fona pakalpojumus. Don’t kill my app! tīmekļvietnē ir informācija par to, kā to novērst.</string>
     <string name="settings_location_access_background_title">Piekļuve atrašanās vietai fonā</string>
-    <string name="settings_location_access_background_summaryOn">Iespējots. Lietotne varēs fonā atsvaidzināt laikapstākļu datus par pašreizējo atrašanās vietu.</string>
+    <string name="settings_location_access_background_summaryOn">Iespējota. Lietotne varēs fonā atsvaidzināt laikapstākļu datus par pašreizējo atrašanās vietu.</string>
     <string name="settings_location_access_background_summaryOff">Lūgums iespējot “Atļaut visu laiku”, lai iegūtu atsvaidzināšanu fonā pašreizējai atrašanās vietai.</string>
     <string name="settings_location_access_precise_title">Ierīces GPS lietojums</string>
-    <string name="settings_source_default_value">Noklusējums (nemainīts)</string>
+    <string name="settings_source_default_value">Noklusējuma (nemainīta)</string>
     <string name="settings_main_cards_other_element_animations_switch">Citu elementu animācijas</string>
     <string name="settings_notifications">Paziņojumi</string>
     <string name="settings_notifications_precipitations_title">Paziņojumi par nokrišņiem</string>
@@ -261,7 +261,7 @@
     <string name="settings_main_background_animation_enabled">Iespējots</string>
     <string name="settings_main_background_animation_disabled">Atspējots</string>
     <string name="settings_notifications_summary">Paziņojumi par laikapstākļu brīdinājumiem, nokrišņiem vai pirmās atrašanās vietas prognozi</string>
-    <string name="settings_widgets_live_wallpaper_error">Nevarēja palaist tapetes atlasītāju. Joprojām var iespējot %s tapeti, sākuma ekrāna tapetes atlasītājā izvēloties Live Wallpaper.</string>
+    <string name="settings_widgets_live_wallpaper_error">Nevarēja palaist ekrāntapetes atlasītāju. Joprojām var iespējot %s ekrāntapeti, sākuma ekrāna tapetes atlasītājā izvēloties \"Dzīvā ekrāntapete\".</string>
     <string name="settings_widgets_week_icon_mode_title">Ikona, ko attēlot nedēļas skatos</string>
     <string name="settings_widgets_monochrome_icons_title">Vienkrāsainas ikonas</string>
     <string name="settings_widgets_notification_feels_like_switch">Izmantot šķietamo temperatūru</string>
@@ -405,7 +405,7 @@
     <string name="settings_background_updates_refresh_24h">24 stundas</string>
     <string name="settings_background_updates_battery_optimization_summary">Šī ir pirmā lieta, ko izmēģināt, ja netiek saņemti paziņojumi vai logrīki netiek atsvaidzināti.</string>
     <string name="settings_location_access_switch_summaryOff">Lūgums atļaut, ja ir vēlme savu pašreizējo atrašanās vietu pievienot kā atrašanās vietu.</string>
-    <string name="settings_location_access_switch_summaryOn">Atļauts. Savu pašreizējo atrašanās vietu var pievienot kā atrašanās vietu.</string>
+    <string name="settings_location_access_switch_summaryOn">Atļauta. Savu pašreizējo atrašanās vietu var pievienot kā atrašanās vietu.</string>
     <string name="settings_location_access_switch_title">Piekļuve atrašanās vietai</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Laikapstākļu ikona</string>
     <string name="settings_icon_packs_check_details">Jāpārbauda informācija</string>
@@ -415,13 +415,13 @@
     <string name="settings_units_pressure">Spiediena mērvienība</string>
     <string name="settings_main">Galvenais ekrāns</string>
     <string name="settings_notifications_section_forecast">Prognoze</string>
-    <string name="settings_widgets_summary">Iestatīt tapeti, konfigurēt izmantotos logrīkus, paziņojumu logrīks</string>
+    <string name="settings_widgets_summary">Ekrāntapetes iestatīšana, izmantotos logrīku konfigurēšana, paziņojumu logrīks</string>
     <string name="settings_notifications_forecast_today_title">Paziņojums par dienas prognozi</string>
     <string name="settings_notifications_alerts_title">Paziņojumi par bīstamu laikapstākļu brīdinājumiem</string>
-    <string name="settings_widgets">Logrīki un reāllaika fona tapetes</string>
+    <string name="settings_widgets">Logrīki un dzīvās ekrāntapetes</string>
     <string name="settings_notifications_forecast_time_today_title">Dienas prognozes paziņojuma laiks</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Nākamās dienas prognozes paziņojuma laiks</string>
-    <string name="settings_widgets_live_wallpaper_title">Dzīvās tapetes</string>
+    <string name="settings_widgets_live_wallpaper_title">Dzīvās ekrāntapetes</string>
     <string name="settings_widgets_configure_widget_summary">Konfigurēt šo logrīku</string>
     <string name="settings_widgets_section_notification_widget">Paziņojumu logrīks</string>
     <string name="settings_widgets_section_widgets_in_use">Tiek izmantoti logrīki</string>
@@ -677,8 +677,8 @@
     <string name="settings_notifications_app_updates_check">Paziņojumi par lietotnes atjauninājumiem</string>
     <string name="notification_channel_app_updates">Lietotnes atjauninājumi</string>
     <string name="notification_app_update_available">Jauna versija pieejama!</string>
-    <string name="about_check_for_app_updates">Pārbaudīt, vai ir atjauninājumu</string>
-    <string name="about_no_new_updates">Nav jaunu atjauninājumu</string>
+    <string name="about_check_for_app_updates">Pārbaudīt lietotnes atjauninājumus</string>
+    <string name="about_no_new_updates">Nav pieejami jauni atjauninājumi</string>
     <string name="common_weather_text_sand_storm">Smilšu vētra</string>
     <string name="common_weather_text_smoke">Dūmi</string>
     <string name="meteoam_weather_text_tornado_watersprout">Virpuļvētra vai smerčs</string>
