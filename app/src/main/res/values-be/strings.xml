@@ -399,7 +399,7 @@
     <string name="settings_main_daily_trends_title">Прагноз па днях</string>
     <string name="settings_main_hourly_trends_title">Прагноз па гадзінах</string>
     <string name="settings_main_header_details_title">Звесткі ў загалоўку</string>
-    <string name="settings_main_section_options">Опцыі</string>
+    <string name="settings_main_section_options">Дадатковыя функцыі</string>
     <string name="settings_main_threshold_lines_on_charts">Парогавыя лініі на графіках</string>
     <string name="settings_main_section_animations">Анімацыі</string>
     <string name="settings_main_background_animation_title">Анімацыя фону</string>
@@ -688,7 +688,7 @@
     <string name="common_weather_text_cool">Халаднавата</string>
     <string name="common_weather_text_cold">Холадна</string>
     <string name="common_weather_text_humid">Вільготна</string>
-    <string name="common_weather_text_mist">Імгла</string>
+    <string name="common_weather_text_mist">Лёгкі туман</string>
     <string name="common_weather_text_hot">Горача</string>
     <string name="common_weather_text_frost">Мароз</string>
     <string name="common_weather_text_dust">Пыл</string>
