@@ -95,7 +95,7 @@
     <string name="dialog_permissions_location_background_content">Agar pemuatan ulang data cuaca di latar belakang dapat dilakukan sesuai dengan lokasi terkini yang diketahui oleh perangkat Android, Anda perlu menyetel izin lokasi menjadi “Izinkan sepanjang waktu”. Jika tidak, cuaca akan dimuat ulang berdasarkan koordinat terbaru yang diambil di latar depan yang mungkin datanya sudah tidak akurat.</string>
     <string name="location_message_failed_to_locate">Gagal mencari lokasi saat ini</string>
     <string name="weather_message_data_refresh_failed">Penyegaran data gagal</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Pilih Layanan Lokasi</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Gunakan layanan lokasi lain</string>
     <string name="weather_api_limit_reached_title">Batas permintaan API telah dicapai</string>
     <string name="weather_api_limit_reached_content">Untuk mengatasi limit, tambahkan kunci API Anda sendiri.</string>
     <string name="weather_api_unauthorized_title">Akses API tidak memiliki izin</string>
@@ -655,7 +655,7 @@
     <string name="widget_custom_subtitle_keyword_xpis_description">Ikhtisar indeks serbuk sari hari ini, besok, …, tubin</string>
     <string name="about_open_link_message">Buka %s?</string>
     <string name="message_source_not_installed_error_content_tip_1">Hal ini dapat terjadi ketika Anda menambahkan lokasi Anda dalam aplikasi varian Standar, kemudian beralih ke varian lain yang hanya menggunakan sumber jaringan bebas. Untung mengatasi masalah ini, Anda dapat kembali ke varian Standar.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Ubah sumber cuaca lokasi ini atau hapus dan tambahkan lokasi ini lagi.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Ubah sumber cuaca lokasi ini, atau hapus dan tambahkan lokasi ini lagi.</string>
     <string name="settings_per_location">Preferensi lokasi</string>
     <string name="settings_per_location_summary">Kustomisasi tambahan untuk lokasi ini</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Pencocokan terbaik</string>
@@ -821,4 +821,6 @@
     <string name="location_reverse_geocoding">Pencarian alamat</string>
     <string name="message_server_insecure_title">Koneksi aman gagal</string>
     <string name="message_outdated_server_data">Data kedaluwarsa diterima dari server</string>
+    <string name="action_enable">Aktifkan</string>
+    <string name="action_allow">Perbolehkan</string>
 </resources>
