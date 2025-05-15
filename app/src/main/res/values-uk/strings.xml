@@ -213,7 +213,7 @@
     <string name="location_message_added">Розташування додано</string>
     <string name="air_quality_co_info_introduction">Монооксид вуглецю (CO) – це отруйний, легкозаймистий газ, який немає кольору, запаху, смаку та не викликає подразнень.</string>
     <string name="location_swipe_to_delete">Щоби видалити цей елемент, проведіть ліворуч</string>
-    <string name="location_message_permission_background_missing">Немає дозволу на доступ до місцезнаходження у фоновому режимі</string>
+    <string name="location_message_permission_background_missing">Немає дозволу на доступ до місцеперебування у фоновому режимі</string>
     <string name="location_search_no_results">%1$s не може знайти %2$s</string>
     <string name="location_message_reverse_geocoding_failed">Не вдалося знайти відповідне розташування</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Додайте розташування вручну та видаліть “%s”</string>
@@ -316,13 +316,13 @@
     <string name="widget_style_nano">Дуже малий</string>
     <string name="widget_style_vertical">Вертикальний</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_pixel">Піксель</string>
+    <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_temperature">Температура</string>
     <string name="widget_week_style_3_days">3 дні</string>
-    <string name="widget_clock_font_sans_serif_light">Беззасічковий світлий</string>
-    <string name="widget_clock_font_sans_serif">Без засічок</string>
-    <string name="widget_clock_font_sans_serif_black">Беззасічковий чорний</string>
-    <string name="widget_clock_font_analog">Аналоговий</string>
+    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
+    <string name="widget_clock_font_sans_serif">Sans Serif</string>
+    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
+    <string name="widget_clock_font_analog">Analog</string>
     <string name="widget_live_wallpaper_weather_kind">Погода</string>
     <string name="widget_live_wallpaper_day_night_type">Час</string>
     <string name="settings_section_general">Основні</string>
@@ -359,8 +359,8 @@
     <string name="settings_location">Місцеперебування</string>
     <string name="settings_location_service">Сервіс визначення місцеперебування</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Поточний вітер</string>
-    <string name="settings_location_access_background_summaryOn">Увімкнено. Додаток зможе оновлювати дані про погоду для вашого поточного місцезнаходження у фоновому режимі.</string>
-    <string name="settings_location_access_background_title">Доступ до місцезнаходження у фоновому режимі</string>
+    <string name="settings_location_access_background_summaryOn">Увімкнено. Застосунок зможе оновлювати погодні дані для вашого поточного розташування у фоновому режимі.</string>
+    <string name="settings_location_access_background_title">Доступ до місцеперебування у фоновому режимі</string>
     <string name="settings_weather_sources">Джерела погоди</string>
     <string name="settings_weather_sources_summary">Типове джерело погодних даних для нових розташувань, ключі API та інші налаштування джерел</string>
     <string name="settings_appearance_summary">Мова, тема, набори значків та одиниці вимірювання</string>
@@ -376,7 +376,7 @@
     <string name="settings_main_summary">Порядок карток, відображення елементів та анімації</string>
     <string name="settings_main_section_displayed_data">Відображувані дані</string>
     <string name="settings_main_cards_title">Картки</string>
-    <string name="settings_main_daily_trends_title">Щоденна динаміках</string>
+    <string name="settings_main_daily_trends_title">Щоденна динаміка</string>
     <string name="settings_main_header_details_title">Подробиці в заголовку</string>
     <string name="settings_main_section_options">Опції</string>
     <string name="settings_main_section_animations">Анімації</string>
@@ -420,7 +420,7 @@
     <string name="settings_main">Головний екран</string>
     <string name="settings_notifications_section_forecast">Прогноз погоди</string>
     <string name="settings_main_background_animation_disabled">Вимкнено</string>
-    <string name="settings_location_access_background_summaryOff">Будь ласка, увімкніть опцію «Дозволяти завжди», щоб увімкнути фонове оновлення для вашого поточного місцезнаходження.</string>
+    <string name="settings_location_access_background_summaryOff">Увімкніть “Дозволити в фоні”, щоби мати можливість оновлювати погодні дані для вашого поточного розташування у фоні.</string>
     <string name="settings_location_access_precise_summaryOff">Увімкніть “Використовувати точне місцеперебування”, якщо у вас виникають проблеми з його визначенням.</string>
     <string name="settings_notifications_alerts_title">Сповіщення про екстрені погодні попередження</string>
     <string name="settings_notifications_precipitations_title">Сповіщення про опади</string>
