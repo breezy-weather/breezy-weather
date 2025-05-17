@@ -83,7 +83,7 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Не удалось найти текущее местоположение</string>
     <string name="weather_message_data_refresh_failed">Не удалось обновить данные</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Выбрать сервис определения местоположения</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Используйте другой сервис определения местоположения</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Добавить местоположение и удалить “%s”</string>
     <string name="dialog_permissions_location_background_title">Доступ к местоположению в фоновом режиме</string>
     <string name="dialog_permissions_location_background_content">Чтобы разрешить обновление погоды в фоновом режиме для последнего текущего местоположения, известного Android, вам необходимо установить разрешение местоположения на «Разрешить в любом режиме». Если вы этого не сделаете, погода будет обновляться на основе последних полученных координат на переднем плане, которые могут быть устаревшими.</string>
@@ -616,7 +616,7 @@
     <string name="dew_point_short">Точка росы</string>
     <string name="settings_weather_sources_default_source">Источник по умолчанию для новых местоположений</string>
     <string name="ceiling_short">Предел</string>
-    <string name="temperature_feels_like_short">По ощущениям</string>
+    <string name="temperature_feels_like_short">Ощущается</string>
     <string name="weather_message_too_frequent_refreshes">Пожалуйста, подождите несколько секунд, прежде чем повторить попытку…</string>
     <string name="action_confirm">Подтвердить</string>
     <string name="widget_label_hide_header">Скрыть заголовок</string>
@@ -649,7 +649,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Объединяет в себе лучшие модели погоды для этого местоположения</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Объединяет все модели погоды из этого источника в единый прогноз</string>
     <string name="message_source_not_installed_error_content_tip_1">Это может произойти, если вы добавили свое местоположение в стандартную версию Breezy Weather, а затем переключились на версию только с libre-networks, в которой поддерживается меньше источников данных о погоде. Возврат к стандартной версии может решить эту проблему.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Либо измените источник данных о погоде для этого местоположения, либо удалите и снова добавьте это местоположение.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Либо измените источники погоды для этого местоположения, либо удалите и добавьте это местоположение заново.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Сводка пыльцевого индекса на сегодня, завтра, …, 4 дня спустя</string>
     <string name="sunshine">Солнечно</string>
     <string name="alert">Оповещение</string>
@@ -752,4 +752,7 @@
     <string name="wind_direction_W">Запад</string>
     <string name="wind_direction_NW">Северо-запад</string>
     <string name="message_server_insecure_title">Безопасное соединение не удалось</string>
+    <string name="message_outdated_server_data">С сервера получены устаревшие данные</string>
+    <string name="action_enable">Включить</string>
+    <string name="action_allow">Разрешить</string>
 </resources>
