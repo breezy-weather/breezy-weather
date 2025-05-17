@@ -60,8 +60,8 @@
     <string name="precipitation_intensity_medium">Medium</string>
     <string name="precipitation_intensity_heavy">Heavy</string>
     <string name="precipitation_none">No precipitation</string>
-    <!-- Precipitation between 09:02 and 09:34 -->
-    <string name="precipitation_between_time">Precipitation between %1$s and %2$s</string>
+    <!-- Precipitation from 09:02 to 09:34 -->
+    <string name="precipitation_between_time">Precipitation from %1$s to %2$s</string>
     <!-- Wind -->
     <string name="wind">Wind</string>
     <!-- 10 characters max version of wind to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
