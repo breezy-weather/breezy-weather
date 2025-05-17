@@ -444,7 +444,7 @@
     <string name="ephemeris_moonrise_at">Lever de lune à %s</string> <!-- $ = time. -->
     <string name="ephemeris_moonset_at">Coucher de lune à %s</string> <!-- $ = time. -->
     <string name="precipitation_none">Pas de précipitations</string>
-    <string name="precipitation_between_time">Précipitations entre %1$s et %2$s</string> <!-- $1 = start time, $2 = end time. -->
+    <string name="precipitation_between_time">Précipitations de %1$s à %2$s</string> <!-- $1 = start time, $2 = end time. -->
     <string name="action_add_current_location">Ajouter ma position actuelle</string>
     <string name="settings_items_drag_to_sort">Maintenez puis déplacez les éléments de la liste pour les ordonner</string>
     <string name="settings_item_delete">Supprimer cet élément</string>
