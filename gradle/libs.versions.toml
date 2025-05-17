@@ -23,7 +23,7 @@ kotlin = "2.1.10"
 kotlinx-coroutines = "1.10.2"
 kotlinx-serialization-csv = "2.1.0"
 kotlinx-serialization-json = "1.8.1"
-kotlinx-serialization-xml = "0.90.2"
+kotlinx-serialization-xml = "0.91.1"
 ktlint = "1.5.0"
 #leakcanary = "2.14"
 lifecycle = "2.9.0"
@@ -90,7 +90,7 @@ kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin",
 kotlinx-serialization-csv = { group = "de.brudaswen.kotlinx.serialization", name = "kotlinx-serialization-csv", version.ref = "kotlinx-serialization-csv" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 kotlinx-serialization-xml-core = { group = "io.github.pdvrieze.xmlutil", name = "core-android", version.ref = "kotlinx-serialization-xml" }
-kotlinx-serialization-xml = { group = "io.github.pdvrieze.xmlutil", name = "serialization-android", version.ref = "kotlinx-serialization-xml" }
+kotlinx-serialization-xml = { group = "io.github.pdvrieze.xmlutil", name = "serialization", version.ref = "kotlinx-serialization-xml" }
 #leakcanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakcanary" }
 lifecycle-common-java8 = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycle" }
 lifecycle-extensions = { group = "androidx.lifecycle", name = "lifecycle-extensions", version.ref = "lifecycle-extensions" }
