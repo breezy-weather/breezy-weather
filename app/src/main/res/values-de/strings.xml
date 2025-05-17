@@ -183,7 +183,7 @@
     <string name="uv_index_8_10">Sehr hoch</string>
     <string name="common_weather_text_rain">Regen</string>
     <string name="weather_kind_haze">Dunst</string>
-    <string name="precipitation_between_time">Niederschlag zwischen %1$s und %2$s</string>
+    <string name="precipitation_between_time">Niederschlag von %1$s bis %2$s</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_kn">kn</string>
     <string name="unit_mm">mm</string>
