@@ -20,7 +20,7 @@
     <string name="notification_channel_forecast">Прогноз</string>
     <string name="daytime">День</string>
     <string name="nighttime">Ночь</string>
-    <string name="temperature_feels_like">По ощущениям</string>
+    <string name="temperature_feels_like">Ощущается как</string>
     <string name="settings_follow_system">Как в системе</string>
     <string name="pressure">Давление</string>
     <string name="visibility">Видимость</string>
@@ -33,8 +33,8 @@
     <string name="action_edit">Редактировать</string>
     <string name="daily_yesterday_short">Вчера</string>
     <string name="daily_tomorrow_short">Завтра</string>
-    <string name="temperature_apparent">По ощущениям</string>
-    <string name="temperature_wind_chill">Ощущается при ветре</string>
+    <string name="temperature_apparent">Ощущается как</string>
+    <string name="temperature_wind_chill">Влияние ветра</string>
     <string name="temperature_wet_bulb">Влажный термометр</string>
     <string name="temperature_degree_day">Градусо-день</string>
     <string name="precipitation_total">Всего</string>
@@ -265,7 +265,7 @@
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="precipitation_none">Без осадков</string>
-    <string name="precipitation_between_time">Осадки от %1$s до %2$s</string>
+    <string name="precipitation_between_time">Осадки с %1$s до %2$s</string>
     <string name="wind_direction_N_short">С</string>
     <string name="wind_direction_NE_short">СВ</string>
     <string name="wind_direction_E_short">В</string>
@@ -402,7 +402,7 @@
     <string name="common_weather_text_overcast">Пасмурно</string>
     <string name="common_weather_text_clear_sky">Ясно</string>
     <string name="unit_cmph_voice">Сантиметров в час</string>
-    <string name="alerts_to_follow">Для просмотра оповещений о погоде нажмите здесь.</string>
+    <string name="alerts_to_follow">Надвигающиеся предупреждения – нажмите здесь для просмотра.</string>
     <string name="wind_direction_variable">Значение</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Иконка погоды</string>
     <string name="unit_m_voice">Метры</string>
@@ -584,7 +584,7 @@
     <string name="settings_appearance_dark_mode_locations_title">Светлая / Тёмная тема для местоположения</string>
     <string name="weather_message_unsupported_feature">Источник не поддерживает одну из запрошенных функций</string>
     <string name="about_contribution_designer">Дизайнер логотипа</string>
-    <string name="temperature_average_short">Средняя</string>
+    <string name="temperature_average_short">Сред</string>
     <string name="temperature_normals">Температурные нормы</string>
     <string name="temperature_normal_short">Норма</string>
     <string name="settings_main_threshold_lines_on_charts">Пороговые линии на графиках</string>
