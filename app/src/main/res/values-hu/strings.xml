@@ -248,7 +248,7 @@
     <string name="temperature_normals">Hőmérsékleti normák</string>
     <string name="air_quality_level_4_description">Az egészségügyi hatások az érzékeny csoportok számára azonnal érezhetők. Az egészséges egyének légzési nehézséget és torokirritációt tapasztalhatnak hosszabb kitettség esetén. Korlátozza a szabadtéri tevékenységeit.</string>
     <string name="precipitation_none">Nincs csapadék</string>
-    <string name="precipitation_between_time">Csapadék %1$s és %2$s között</string>
+    <string name="precipitation_between_time">Várhatóan %1$s és %2$s között esni fog</string>
     <string name="wind_gusts">Széllökések</string>
     <string name="wind_direction_variable">Változó</string>
     <string name="wind_direction_N_short">É</string>
