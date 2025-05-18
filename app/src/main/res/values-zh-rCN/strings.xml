@@ -198,7 +198,7 @@
     <string name="ephemeris_moonrise_at">%s月出</string>
     <string name="ephemeris_moonset_at">%s月落</string>
     <string name="precipitation_none">无降水</string>
-    <string name="precipitation_between_time">%1$s至%2$s的降水状况</string>
+    <string name="precipitation_between_time">降水时间段 %1$s 到 %2$s</string>
     <string name="action_add_current_location">添加当前位置</string>
     <string name="settings_items_drag_to_sort">轻触并拖拽以对列表项排序</string>
     <string name="settings_item_delete">删除此项</string>
