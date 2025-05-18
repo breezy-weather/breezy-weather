@@ -30,7 +30,7 @@
     <string name="precipitation_probability">Dóchúlacht frasaíochta</string>
     <string name="precipitation_intensity_heavy">Trom</string>
     <string name="precipitation_none">Gan frasaíocht</string>
-    <string name="precipitation_between_time">Frasaíocht idir %1$s agus %2$s</string>
+    <string name="precipitation_between_time">Deascadh ó %1$s go %2$s</string>
     <string name="wind">Gaoth</string>
     <string name="wind_short">Gaoth</string>
     <string name="wind_direction">Treo na gaoithe</string>
