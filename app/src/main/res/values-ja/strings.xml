@@ -241,7 +241,7 @@
     <string name="uv_index_0_2">弱</string>
     <string name="uv_index_3_5">中程度</string>
     <string name="uv_index_6_7">強</string>
-    <string name="precipitation_between_time">%1$s～%2$sの降水状況</string>
+    <string name="precipitation_between_time">%1$sから%2$sまで降水</string>
     <string name="uv_alert_level">警報</string>
     <string name="uv_index_8_10">非常に強い</string>
     <string name="air_quality_level_5_description">敏感な人々は直ちに健康への影響を受けるため、屋外活動を避ける必要があります。健康な人々は呼吸困難やのどの痛みを感じる可能性が高くなります。屋内に留まり、屋外活動の予定を変更することを検討してください。</string>
