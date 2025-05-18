@@ -180,7 +180,7 @@
     <string name="ephemeris_moonset_at">Západ měsíce v %s</string>
     <!-- $ = time. -->
     <string name="precipitation_none">Žádné srážky</string>
-    <string name="precipitation_between_time">Srážky mezi %1$s a %2$s</string>
+    <string name="precipitation_between_time">Srážky od %1$s do %2$s</string>
     <!-- $1 = start time, $2 = end time. -->
     <string name="action_add_current_location">Přidat současnou polohu</string>
     <string name="settings_items_drag_to_sort">Klepněte pro tažení položkami v seznamu pro seřazení</string>
