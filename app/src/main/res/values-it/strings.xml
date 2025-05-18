@@ -205,7 +205,7 @@
     <string name="ephemeris_moonrise_at">Alba lunare alle %s</string>
     <string name="ephemeris_moonset_at">Tramonto lunare alle %s</string>
     <string name="precipitation_none">Nessuna precipitazione</string>
-    <string name="precipitation_between_time">Precipitazioni tra le %1$s e le %2$s</string>
+    <string name="precipitation_between_time">Precipitazioni dalle %1$s alle %2$s</string>
     <string name="action_add_current_location">Aggiungi posizione attuale</string>
     <string name="settings_items_drag_to_sort">Tocca per trascinare gli elementi dell’elenco da ordinare</string>
     <string name="settings_item_delete">Cancella questa voce</string>
