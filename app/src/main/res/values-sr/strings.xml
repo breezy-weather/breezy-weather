@@ -101,7 +101,7 @@
     <string name="common_weather_text_drizzle_freezing_light">Слаба ледена росуља</string>
     <string name="weather_kind_thunderstorm">Олуја са грмљавином</string>
     <string name="temperature_degree_day_heating">Степен дан грејања</string>
-    <string name="precipitation_between_time">Падавине између %1$s и %2$s</string>
+    <string name="precipitation_between_time">Падавине од %1$s до %2$s</string>
     <string name="precipitation_intensity_light">Слабо</string>
     <string name="wind_speed">Брзина ветра</string>
     <string name="wind_direction">Правац ветра</string>
