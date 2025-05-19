@@ -13,7 +13,7 @@ After adding your first location, you will be asked if you want to be notified o
 
 The recommended flavor of **Breezy Weather** is the standard version. It is fully open source and contains no proprietary components.
 
-For specific needs, we also offer a flavor with only free-network sources (libre and self-hostable): Open-Meteo, Bright Sky (DWD) and Recosanté.
+For specific needs, we also offer a flavor with only free-network sources (libre and self-hostable): Open-Meteo, Pirate Weather, Bright Sky (DWD), Recosanté and ClimWeb (used by many African countries).
 
 Both flavors are signed with the same signature, so you can easily try/switch between both.
 
@@ -52,7 +52,7 @@ Both flavors are signed with the same signature, so you can easily try/switch be
 #### Getting updates from GitHub releases
 
 In the “Add App” screen:
-1. Add the following URL: https://github.com/breezy-weather/breezy-weather
+1. Add the following URL: `https://github.com/breezy-weather/breezy-weather`
 2. To receive updates for prereleases, enable “Include prereleases”
 3. (Optional) If you want the flavor with only free network sources, add `freenet` in the “Filter APKs by Regular Expression”
 4. Tap the “Add” button at the very top, and you’re done!
@@ -60,10 +60,10 @@ In the “Add App” screen:
 #### Getting updates from a F-Droid repository
 
 In the “Add App” screen, just add as App Source URL the following URL depending on the repository you want to use:
-   - Standard flavor from Izzy repo: https://apt.izzysoft.de/fdroid/index/apk/org.breezyweather
+   - Standard flavor from Izzy repo: `https://apt.izzysoft.de/fdroid/index/apk/org.breezyweather`
    - Standard flavor from Breezy Weather repo: configure Obtainium to use GitHub releases instead (see previous section)
    - Free-net flavor from Breezy Weather repo: configure Obtainium to use GitHub releases instead (see previous section)
-   - Free-net flavor from default F-Droid repo: https://f-droid.org/packages/org.breezyweather/
+   - Free-net flavor from default F-Droid repo: `https://f-droid.org/packages/org.breezyweather/`
 
 Tap the “Add” button at the very top, and you’re done!
 
@@ -71,10 +71,10 @@ Tap the “Add” button at the very top, and you’re done!
 ### F-Droid client
 
 1) Look for the Repositories option from your F-Droid client and add a new repository depending on the source you want to use:
-   - Standard flavor from Izzy repo: https://apt.izzysoft.de/fdroid/repo
-   - Standard flavor from Breezy Weather repo: https://breezy-weather.github.io/fdroid-repo/fdroid/repo
-   - Free-net flavor from Breezy Weather repo: https://breezy-weather.github.io/fdroid-repo/fdroid-version/fdroid/repo
+   - Standard flavor from Izzy repo: `https://apt.izzysoft.de/fdroid/repo`
+   - Standard flavor from Breezy Weather repo: `https://breezy-weather.github.io/fdroid-repo/fdroid/repo`
+   - Free-net flavor from Breezy Weather repo: `https://breezy-weather.github.io/fdroid-repo/fdroid-version/fdroid/repo`
    - Free-net flavor from default F-Droid repo: should already be enabled by default on your F-Droid client
 
-2) After adding the app, go to the app details and make sure to select which repo you want to get updates from to avoid cross-updates between flavors and repos. On version 1.20.0 and later, this is how you do it:
+2) After adding the app, go to the app details and make sure to select which repo you want to get updates from to avoid cross-updates between flavors and repos. This is how you do it:
 ![F-Droid preferred repo feature](docs/fdroid_client_config.png)

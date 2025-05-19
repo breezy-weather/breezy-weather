@@ -1,6 +1,16 @@
 # Contributions
 
-## Rules
+## Rules for contributions
+
+While we welcome pull requests, before implementing any new feature/improvement, we ask you to come talk to us, to be sure it goes in the right direction. We don’t want you to spend time implementing something we don’t want (see “Rules for new features/improvements requests” section below) or implementing it the wrong way.
+
+You can also contribute to [existing issues tagged “Open to contributions”](https://github.com/breezy-weather/breezy-weather/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Open%20to%20contributions%22), or [existing ideas tagged “Open to contributions”](https://github.com/breezy-weather/breezy-weather/discussions?discussions_q=is%3Aopen+label%3A%22Open+to+contributions%22).
+
+Prerequisites for pull requests contributions:
+1. You are contributing to an issue/idea tagged “Open to contributions”, or an [org member](https://github.com/orgs/breezy-weather/people) gave you permission to work on it.
+
+
+## Rules for new features/improvements requests
 
 ### General direction
 
@@ -8,8 +18,6 @@ Breezy Weather wants to be:
 - a general weather app covering most of what you can expect from a weather app, but not *all* of what you can expect. For advanced usage, some specialized apps will always cover it better
 - usable without having to be an expert to find anything in the app
 - mainly target small displays, so we don’t want to fit too many things, as we also want to let the design breathe a bit
-
-While we welcome pull requests, before implementing any new feature, we ask you to come talk to us, to be sure it goes in the right direction. We don’t want you to spend time implementing something we don’t want or implementing it the wrong way.
 
 
 ### New preference

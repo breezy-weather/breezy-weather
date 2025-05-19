@@ -72,7 +72,7 @@ Certain manufacturers implement non-standard Android behaviors, which prevents t
 
 The first thing to try is to whitelist Breezy Weather from battery optimization. From the app, go to Settings > Background updates and tap on “Disable battery optimization” (don’t worry, our background update job is optimized to be very battery-friendly, and you can change “Refresh rate” to “Never” at any time!).
 
-If it still doesn’t work, you can find ways to circumvent aggressive manufacturer behaviors on this website: https://dontkillmyapp.com/
+If it still doesn’t work, you can find ways to circumvent aggressive manufacturer behaviors on the [Don’t kill my app! website](https://dontkillmyapp.com/).
 
 
 ### I used Geometric Weather before, and the “persistent notification” method worked fine for me, can you bring it back?
