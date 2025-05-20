@@ -27,7 +27,7 @@
     <string name="precipitation_intensity_light">Slabé</string>
     <string name="precipitation_intensity_heavy">Silné</string>
     <string name="precipitation_none">Bez zrážok</string>
-    <string name="precipitation_between_time">Zrážky medzi %1$s a %2$s</string>
+    <string name="precipitation_between_time">Zrážky od %1$s do %2$s</string>
     <string name="wind">Vietor</string>
     <string name="wind_gusts">Nárazový vietor</string>
     <string name="wind_direction">Smer vetra</string>
