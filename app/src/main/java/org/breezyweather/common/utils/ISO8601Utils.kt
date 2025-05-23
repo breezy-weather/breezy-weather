@@ -55,6 +55,7 @@ object ISO8601Utils {
     / * Formatting
     / **********************************************************
      */
+
     /**
      * Format date into yyyy-MM-ddThh:mm:ss[.sss][Z|[+-]hh:mm]
      *
