@@ -36,7 +36,7 @@
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Hőérzet</string>
-    <string name="temperature_wind_chill">Szél hűtés</string>
+    <string name="temperature_wind_chill">Szélhűtés</string>
     <string name="temperature_wet_bulb">Nedves hőmérséklet</string>
     <string name="temperature_degree_day">Foknap</string>
     <string name="precipitation_total">Összes</string>
