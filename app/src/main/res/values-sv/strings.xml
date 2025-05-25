@@ -281,7 +281,7 @@
     <string name="temperature_average_short">Med</string>
     <string name="unit_mm_voice">Millimeter</string>
     <string name="widget_live_wallpaper_weather_kind">Väder</string>
-    <string name="precipitation_between_time">Nederbörd mellan %1$s och %2$s</string>
+    <string name="precipitation_between_time">Nederbörd från %1$s till %2$s</string>
     <string name="wind">Vind</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="temperature_real_feel">RealFeel®</string>
@@ -349,7 +349,7 @@
     <string name="widget_material_you_current">Material You – nuvarande</string>
     <string name="widget_clock_day_details">Klocka + daglig (detaljer)</string>
     <string name="weather_alert_data_by">Varningsdata från %s</string>
-    <string name="weather_api_key_required_missing_content">För att använda denna källan behöver du bidra med en API-nyckel.</string>
+    <string name="weather_api_key_required_missing_content">För att använda denna källa måste du ange en API-nyckel.</string>
     <string name="weather_message_data_refresh_failed">Uppdatering av data misslyckades</string>
     <string name="ephemeris_moon_phase_last_quarter">Avtagande halvmåne</string>
     <string name="widget_trend_hourly">Timtrend</string>
@@ -406,7 +406,7 @@
     <string name="common_weather_text_rain_heavy">Kraftigt regn</string>
     <string name="settings_color_day_always">Alltid dag</string>
     <string name="settings_color_night_always">Alltid natt</string>
-    <string name="weather_api_key_required_missing_title">Krävd API-nyckel saknas</string>
+    <string name="weather_api_key_required_missing_title">Nödvändig API-nyckel saknas</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Månuppgång för i dag, i morgon, …, 4 dagar senare</string>
     <string name="unit_mph_voice">Miles per timme</string>
     <string name="settings_icon_packs_title">Ikonpaket</string>
@@ -440,7 +440,7 @@
     <string name="settings_appearance_icon_pack_title">Ikonpaket</string>
     <string name="settings_widgets_live_wallpaper_summary">Ange en väderanimation som bakgrund</string>
     <string name="message_parsing_error_title">Misslyckades med att tolka väderdata</string>
-    <string name="weather_api_limit_reached_title">Max antal API-förfrågningar begärda</string>
+    <string name="weather_api_limit_reached_title">Gränsen för API-förfrågningar har nåtts</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Vecka (kort)</string>
     <string name="settings_weather_source_portal">Portal</string>
     <string name="settings_color_grey">Grå</string>
@@ -470,7 +470,7 @@
     <string name="widget_subtitle_data_feels_like">Känns som-temperatur</string>
     <string name="settings_icon_packs_weather_icon_light">Ljus ikon</string>
     <string name="dialog_permissions_location_background_title">Behörighet till plats i bakgrunden</string>
-    <string name="weather_api_unauthorized_content">För vissa väderkällor så behöver du ange din egen API-nyckel. Om du redan har angett en så dubbelkolla din API-nyckel.</string>
+    <string name="weather_api_unauthorized_content">För vissa väderdatakällor måste du ange din egen API-nyckel. Om du redan har angett en, vänligen dubbelkolla den API-nyckel som du har angett.</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Snöblandade regnskurar</string>
     <string name="settings_color_dark">Mörk</string>
     <string name="common_weather_text_overcast">Mulet</string>
@@ -528,7 +528,7 @@
     <string name="settings_debug_dump_crash_logs_saved">Krashloggar sparade</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Lätta snöblandade regnskurar</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Tryck för att öppna</string>
-    <string name="weather_api_limit_reached_content">För att kringgå begränsningen, används din egen API-nyckel.</string>
+    <string name="weather_api_limit_reached_content">För att kringgå begränsningen, lägg till din egen API-nyckel.</string>
     <string name="null_data_text">Saknas</string>
     <string name="settings_changes_apply_after_restart">Ändringarna kommer att tillämpas efter omstart</string>
     <string name="settings_location_access_background_summaryOn">Aktiverad. Appen kommer att kunna uppdatera väderdata för din nuvarande plats i bakgrunden.</string>
@@ -545,7 +545,7 @@
     <string name="settings_location_access_permission_already_granted">Behörighet redan beviljad</string>
     <string name="notification_update_error">%d uppdatering(ar) misslyckades</string>
     <string name="settings_location_access_switch_title">Platsåtkomst</string>
-    <string name="weather_api_unauthorized_title">Obehörig API-tillgång</string>
+    <string name="weather_api_unauthorized_title">Obehörig API-åtkomst</string>
     <string name="unit_h">h</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="settings_location_access_precise_summaryOn">Aktiverad. Enhetens nätoperatör kommer att användas i första hand och för det mesta, men gps kan också användas som reserv.</string>
@@ -596,7 +596,7 @@
     <string name="notification_precipitation_continuing_desc">Förväntas fortsätta till åtminstone %s</string>
     <string name="notification_precipitation_stopping_desc">Förväntas upphöra vid %s</string>
     <string name="location_message_updated">Plats uppdaterad</string>
-    <string name="location_message_already_exists">En plats med samma huvudväderkälla finns redan.</string>
+    <string name="location_message_already_exists">En plats med samma huvudsakliga väderkälla finns redan.</string>
     <string name="settings_weather_source_none">Ingen</string>
     <string name="location_search_source">Platssök källa</string>
     <string name="location_search_change_source">Ändra platssök källa</string>
