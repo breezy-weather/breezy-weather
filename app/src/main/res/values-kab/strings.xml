@@ -14,7 +14,7 @@
     <string name="wind">Aḍu</string>
     <string name="weather_kind_thunder">Rrɛud</string>
     <string name="weather_kind_wind">Aḍu</string>
-    <string name="action_about">Γef</string>
+    <string name="action_about">Ɣef</string>
     <string name="daily_forecast">Aswir n wass</string>
     <string name="action_share">Bḍu</string>
     <string name="action_see_more">sken-d ugar</string>
@@ -73,7 +73,7 @@
     <string name="widget_live_wallpaper_day_night_type">Akud</string>
     <string name="settings_section_general">Amatu</string>
     <string name="settings_background_updates_refresh_never">Weṛǧin</string>
-    <string name="settings_background_updates_section_troubleshoot">Aqeεεed</string>
+    <string name="settings_background_updates_section_troubleshoot">Aqeɛɛed</string>
     <string name="settings_location">Adig</string>
     <string name="settings_appearance">Udem</string>
     <string name="settings_main_section_options">Iɣewwaṛen</string>
