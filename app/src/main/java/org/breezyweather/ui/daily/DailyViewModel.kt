@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.sources.SourceManager
 import javax.inject.Inject
@@ -59,7 +60,7 @@ class DailyViewModel @Inject constructor(
             val weather = weatherRepository.getWeatherByLocationId(
                 locationC.formattedId,
                 withDaily = true,
-                withHourly = false, // Will be needed once we make 24-hour graphs
+                withHourly = true, // 24-hour charts
                 withMinutely = false,
                 withAlerts = false
             )
@@ -73,5 +74,11 @@ class DailyViewModel @Inject constructor(
                 initialIndex = dailyIndex
             )
         }
+    }
+
+    fun setSelectedChart(chartDisplay: ChartDisplay) {
+        _uiState.value = _uiState.value.copy(
+            selectedChart = chartDisplay
+        )
     }
 }
