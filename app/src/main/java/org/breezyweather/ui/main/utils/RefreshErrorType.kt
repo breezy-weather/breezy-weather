@@ -193,7 +193,10 @@ enum class RefreshErrorType(
                         }
                     }
                 }
-                is SSLHandshakeException -> SERVER_INSECURE
+                is SSLHandshakeException -> {
+                    e.printStackTrace()
+                    SERVER_INSECURE
+                }
                 is SocketTimeoutException -> SERVER_TIMEOUT
                 is ApiLimitReachedException -> API_LIMIT_REACHED
                 is ApiKeyMissingException -> API_KEY_REQUIRED_MISSING
