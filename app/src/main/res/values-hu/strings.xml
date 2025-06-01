@@ -512,7 +512,7 @@
     <string name="settings_main_header_details_title">Fejlécben megjelenő részletek</string>
     <string name="settings_notifications_precipitations_title">Értesítések csapadékról</string>
     <string name="settings_notifications_forecast_time_today_title">Értesítés ideje a napi előrejelzéshez</string>
-    <string name="settings_notifications_summary">Értesítések az első helyszínre vonatkozó időjárási riasztásokról, csapadékról vagy előrejelzésekről</string>
+    <string name="settings_notifications_summary">Értesítések az időjárási riasztásokról, csapadékról vagy az előrejelzésekről az első helyszínhez</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Értesítés ideje a másnapi előrejelzéshez</string>
     <string name="settings_debug_dump_crash_logs_summary">A hibanaplót fájlba menti, hogy megoszthassa a fejlesztőkkel</string>
     <string name="unit_celsius_short">°</string>
@@ -671,7 +671,7 @@
     <string name="settings_background_updates_refresh_never_warning2">A háttérben zajló frissítési folyamat ritkán fut: csak az első helyszínt frissíti az Ön által kiválasztott ütemben, a másodlagos helyszíneket pedig csak akkor, ha szüksége van rájuk, naponta egyszer. Az akkumulátorral takarékos, és nem haladhatja meg az %d MB adatforgalmat havonta.</string>
     <string name="settings_background_updates_refresh_never_warning3">Fontolja meg, hogy a háttérfrissítések kikapcsolása helyett ritkább frissítési gyakoriságot használjon, ellenkező esetben koppintson a „Folytatás” gombra, ha továbbra is folytatni szeretné.</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Nem találhatók kompatibilis csomagok</string>
-    <string name="settings_background_updates_refresh_never_warning1">A háttérfrissítések kikapcsolásával többé nem kap értesítést a riasztásokról vagy a csapadék előrejelzésről. A modulok nem frissülnek, amíg meg nem nyitja az alkalmazást.</string>
+    <string name="settings_background_updates_refresh_never_warning1">A háttérfrissítések kikapcsolásával többé nem kap értesítést a riasztásokról vagy a csapadék-előrejelzésről. A modulok nem frissülnek, amíg meg nem nyitja az alkalmazást.</string>
     <string name="message_server_unavailable_title">A kiszolgáló nem érhető el</string>
     <string name="message_server_unavailable_content">Ez általában egy átmeneti hiba. Ha a hiba továbbra is fennáll, akkor jelentse a problémát a GitHubon.</string>
     <string name="action_edit_location">Helyszín szerkesztése</string>
@@ -734,7 +734,7 @@
     <string name="action_grant_permission">Koppintson ide az engedély megadásához.</string>
     <string name="settings_notifications_permission">Értesítési engedély szükséges</string>
     <string name="settings_widgets_notification_permission_summary">Szükséges az értesítésmodul megjelenítéséhez. %s</string>
-    <string name="settings_notifications_permission_summary">Szükséges a riasztások, előrejelzések és az alkalmazás-frissítések értesítéseihez. %s</string>
+    <string name="settings_notifications_permission_summary">Szükséges a riasztások, előrejelzések és az alkalmazásfrissítések értesítéseihez. %s</string>
     <string name="location_custom_name">Egyéni név</string>
     <string name="settings_debug_notification_permission">Szükséges az összeomlási naplók és a sikertelen időjárás-frissítések értesítéseihez. %s</string>
     <string name="location_reverse_geocoding">Címkeresés</string>
