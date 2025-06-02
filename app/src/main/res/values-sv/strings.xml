@@ -615,8 +615,8 @@
     <string name="weather_message_too_frequent_refreshes">Vänligen vänta några sekunder innan du försöker igen …</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Rådande Luftkvalitetsindex</string>
     <string name="message_invalid_incomplete_data">Ogiltiga eller ofullständiga data mottagna från server</string>
-    <string name="location_delete_location_dialog_message">“%s” kommer att tas bort från sparade platser.</string>
-    <string name="location_delete_location_dialog_message_no_name">Den här platsen kommer tas bort från dina sparade platser.</string>
+    <string name="location_delete_location_dialog_message">Du håller på att ta bort “%s” från din lista över sparade platser.</string>
+    <string name="location_delete_location_dialog_message_no_name">Du håller på att ta bort denna plats från din lista över sparade platser.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Luftkvalitetsindex för i dag, i morgon, …, 4 dagar senare</string>
     <string name="widget_label_hide_header">Göm rubrik</string>
     <string name="pollen_carpinus">Avenbok</string>
