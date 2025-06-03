@@ -93,7 +93,7 @@
     <string name="dialog_permissions_location_background_content">Ottaaksesi käyttöön säätietojen päivityksen taustalla viimeisimmälle Androidin tietämälle sijainnille, sijainnin käyttöoikeuden tulee olla “Salli aina”. Muuten säätiedot päivitetään viimeisimpien haettujen koordinaattien perusteella kun sovellus oli viimeksi käytössä. Kyseiset koordinaatit voivat olla vanhentuneita.</string>
     <string name="location_message_failed_to_locate">Tämänhetkisen sijainnin haku epäonnistui</string>
     <string name="weather_message_data_refresh_failed">Tietojen haku epäonnistui</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Valitse sijaintipalvelu</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Vaihda sijaintipalvelu</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Lisää sijainti manuaalisesti ja poista “%s”</string>
     <string name="widget_label_view_style">Näytä tyyli</string>
     <string name="widget_label_show_widget_card">Taustaväri</string>
@@ -676,7 +676,7 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">Tämänhetkinen ilmanlaatuindeksi</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Ilmanlaatuindeksi tänään, huomenna, …, 4:n päivän päästä</string>
     <string name="settings_weather_source_none">Ei määritelty</string>
-    <string name="message_source_not_installed_error_content_tip_2">Joko muuta tämän sijainnin säälähdettä tai poista ja lisää se uudelleen.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Joko muuta tämän sijainnin säälähdettä, tai poista ja lisää se uudelleen.</string>
     <string name="widget_label_hide_header">Piilota otsikko</string>
     <string name="message_source_not_installed_error_content_tip_1">Tämä voi tapahtua, jos olet lisännyt sijainnin sovelluksen vakioversiossa ja sen jälkeen siirtynyt only libre network sources -versioon. Palaaminen takaisin vakioversioon voi korjata ongelman.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Siitepölyindeksin yhteenveto tänään, huomenna, …, 4:n päivän päästä</string>
@@ -749,4 +749,19 @@
     <string name="settings_notifications_permission">Ilmoituslupa vaaditaan</string>
     <string name="settings_widgets_notification_permission_summary">Tarvitaan ilmoitus-vimpaimen näyttämiseen. %s</string>
     <string name="settings_debug_notification_permission">Tarvitaan ilmoittamaan kaatumislokeista ja epäonnistuneista sääpäivityksistä. %s</string>
+    <string name="action_enable">Salli</string>
+    <string name="action_allow">Myönnä</string>
+    <string name="message_outdated_server_data">Palvelin lähettänyt vanhentunutta dataa</string>
+    <string name="message_server_insecure_title">Suojattu yhteys epäonnistui</string>
+    <string name="daily_yesterday">Eilen</string>
+    <string name="daily_today">Tänään</string>
+    <string name="daily_tomorrow">Huomenna</string>
+    <string name="wind_direction_N">Pohjoinen</string>
+    <string name="wind_direction_NE">Koillinen</string>
+    <string name="wind_direction_E">Itä</string>
+    <string name="wind_direction_SE">Kaakko</string>
+    <string name="wind_direction_S">Etelä</string>
+    <string name="wind_direction_SW">Lounas</string>
+    <string name="wind_direction_W">Länsi</string>
+    <string name="wind_direction_NW">Luode</string>
 </resources>
