@@ -28,14 +28,14 @@ import android.view.View
 import androidx.annotation.FloatRange
 import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
-import org.breezyweather.ui.theme.weatherView.WeatherView.WeatherKindRule
-import kotlin.math.abs
-import kotlin.math.acos
-import kotlin.math.sqrt
 import androidx.core.graphics.withTranslation
+import org.breezyweather.ui.theme.weatherView.WeatherView.WeatherKindRule
 import org.breezyweather.ui.theme.weatherView.getTabletListAdaptiveWidth
 import org.breezyweather.ui.theme.weatherView.isLandscape
 import org.breezyweather.ui.theme.weatherView.sensorManager
+import kotlin.math.abs
+import kotlin.math.acos
+import kotlin.math.sqrt
 
 @SuppressLint("ViewConstructor")
 class MaterialPainterView(
