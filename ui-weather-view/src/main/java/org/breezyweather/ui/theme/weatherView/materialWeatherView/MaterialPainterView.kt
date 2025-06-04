@@ -28,13 +28,14 @@ import android.view.View
 import androidx.annotation.FloatRange
 import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
-import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
-import org.breezyweather.common.extensions.isLandscape
-import org.breezyweather.common.extensions.sensorManager
 import org.breezyweather.ui.theme.weatherView.WeatherView.WeatherKindRule
 import kotlin.math.abs
 import kotlin.math.acos
 import kotlin.math.sqrt
+import androidx.core.graphics.withTranslation
+import org.breezyweather.ui.theme.weatherView.getTabletListAdaptiveWidth
+import org.breezyweather.ui.theme.weatherView.isLandscape
+import org.breezyweather.ui.theme.weatherView.sensorManager
 
 @SuppressLint("ViewConstructor")
 class MaterialPainterView(
@@ -277,19 +278,18 @@ class MaterialPainterView(
         )
 
         if (impl != null && rotators != null) {
-            canvas.save()
-            canvas.translate(
+            canvas.withTranslation(
                 (measuredWidth - canvasSize[0]) / 2f,
                 (measuredHeight - canvasSize[1]) / 2f
-            )
-            impl!!.draw(
-                canvasSize,
-                canvas,
-                scrollRate,
-                rotators!![0].rotation.toFloat(),
-                rotators!![1].rotation.toFloat()
-            )
-            canvas.restore()
+            ) {
+                impl!!.draw(
+                    canvasSize,
+                    this,
+                    scrollRate,
+                    rotators!![0].rotation.toFloat(),
+                    rotators!![1].rotation.toFloat()
+                )
+            }
         }
 
         if (!drawable) {

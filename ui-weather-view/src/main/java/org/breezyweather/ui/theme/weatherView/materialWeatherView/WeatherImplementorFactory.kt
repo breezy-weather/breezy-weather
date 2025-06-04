@@ -18,7 +18,7 @@ package org.breezyweather.ui.theme.weatherView.materialWeatherView
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.Size
-import org.breezyweather.R
+import org.breezyweather.ui.theme.weatherView.R
 import org.breezyweather.ui.theme.weatherView.WeatherView
 import org.breezyweather.ui.theme.weatherView.WeatherView.WeatherKindRule
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.MaterialWeatherView.WeatherAnimationImplementor

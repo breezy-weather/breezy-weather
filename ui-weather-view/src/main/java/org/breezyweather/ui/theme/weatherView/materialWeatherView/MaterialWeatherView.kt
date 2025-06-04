@@ -24,7 +24,6 @@ import android.graphics.Canvas
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.Size
-import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherView
 import org.breezyweather.ui.theme.weatherView.WeatherView.WeatherKindRule
 import kotlin.math.min
@@ -72,7 +71,7 @@ class MaterialWeatherView(
     }
 
     init {
-        setWeather(WeatherView.WEATHER_KIND_NULL, true, null)
+        setWeather(WeatherView.WEATHER_KIND_NULL, true)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -107,7 +106,6 @@ class MaterialWeatherView(
     override fun setWeather(
         @WeatherKindRule weatherKind: Int,
         daytime: Boolean,
-        provider: ResourceProvider?,
     ) {
         // do nothing if weather not change.
         if (this.weatherKind == weatherKind && mDaytime == daytime) {

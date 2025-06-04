@@ -16,7 +16,6 @@
 
 package org.breezyweather.ui.theme.weatherView.materialWeatherView.implementor
 
-import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -24,8 +23,6 @@ import android.graphics.RectF
 import androidx.annotation.ColorInt
 import androidx.annotation.IntDef
 import androidx.annotation.Size
-import androidx.core.content.ContextCompat
-import org.breezyweather.R
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.MaterialWeatherView.WeatherAnimationImplementor
 import java.util.Random
 import kotlin.math.cos
@@ -296,13 +293,13 @@ class RainImplementor(
         private const val SLEET_COUNT = 45
 
         @ColorInt
-        fun getThemeColor(context: Context, @TypeRule type: Int, daylight: Boolean): Int {
-            when (type) {
-                TYPE_RAIN -> return if (daylight) -0xbd6819 else -0xd9b171
-                TYPE_SLEET -> return if (daylight) -0x974501 else -0xe5a46e
-                TYPE_THUNDERSTORM -> return if (daylight) -0x4d6943 else -0xdce8c7
+        fun getThemeColor(@TypeRule type: Int, daylight: Boolean): Int {
+            return when (type) {
+                TYPE_SLEET -> if (daylight) -0x974501 else -0xe5a46e
+                TYPE_THUNDERSTORM -> if (daylight) -0x4d6943 else -0xdce8c7
+                // TYPE_RAIN:
+                else -> if (daylight) -0xbd6819 else -0xd9b171
             }
-            return ContextCompat.getColor(context, R.color.md_theme_primary)
         }
     }
 }

@@ -17,15 +17,12 @@
 package org.breezyweather.ui.theme.weatherView.materialWeatherView.implementor
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import androidx.annotation.ColorInt
 import androidx.annotation.IntDef
 import androidx.annotation.Size
-import androidx.core.content.ContextCompat
-import org.breezyweather.R
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.MaterialWeatherView.WeatherAnimationImplementor
 import java.util.Random
 import kotlin.math.pow
@@ -581,15 +578,15 @@ class CloudImplementor(
         const val TYPE_HAZE = 7
 
         @ColorInt
-        fun getThemeColor(context: Context, @TypeRule type: Int, daylight: Boolean): Int {
-            when (type) {
-                TYPE_CLOUDY -> return if (daylight) -0x62503f else -0xd9cdc8
-                TYPE_CLOUD -> return if (daylight) -0xff5a27 else -0xddd2bd
-                TYPE_THUNDER -> return if (daylight) -0x4d6943 else -0xdce8c7
-                TYPE_FOG -> return if (daylight) -0x5c513e else -0xb0a298
-                TYPE_HAZE -> return if (daylight) -0x1e3767 else -0x93a3b7
+        fun getThemeColor(@TypeRule type: Int, daylight: Boolean): Int {
+            return when (type) {
+                TYPE_CLOUDY -> if (daylight) -0x62503f else -0xd9cdc8
+                TYPE_THUNDER -> if (daylight) -0x4d6943 else -0xdce8c7
+                TYPE_FOG -> if (daylight) -0x5c513e else -0xb0a298
+                TYPE_HAZE -> if (daylight) -0x1e3767 else -0x93a3b7
+                // TYPE_CLOUD:
+                else -> if (daylight) -0xff5a27 else -0xddd2bd
             }
-            return ContextCompat.getColor(context, R.color.md_theme_primary)
         }
     }
 }

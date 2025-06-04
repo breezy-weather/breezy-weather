@@ -409,11 +409,7 @@ class HomeFragment : MainModuleFragment() {
             binding.refreshTimeText.visibility = View.GONE
         }
 
-        weatherView.setWeather(
-            weatherKind,
-            daylight,
-            resourceProvider!!
-        )
+        weatherView.setWeather(weatherKind, daylight)
         binding.refreshLayout.setColorSchemeColors(
             ThemeManager
                 .getInstance(requireContext())

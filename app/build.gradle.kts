@@ -269,6 +269,7 @@ dependencies {
     implementation(projects.data)
     implementation(projects.domain)
     implementation(projects.mapsUtils)
+    implementation(projects.uiWeatherView)
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)

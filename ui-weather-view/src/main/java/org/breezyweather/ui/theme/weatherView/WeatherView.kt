@@ -17,7 +17,6 @@
 package org.breezyweather.ui.theme.weatherView
 
 import androidx.annotation.IntDef
-import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
 /**
  * Weather view.
@@ -42,7 +41,7 @@ interface WeatherView {
     )
     annotation class WeatherKindRule
 
-    fun setWeather(@WeatherKindRule weatherKind: Int, daytime: Boolean, provider: ResourceProvider?)
+    fun setWeather(@WeatherKindRule weatherKind: Int, daytime: Boolean)
 
     fun onScroll(scrollY: Int)
 

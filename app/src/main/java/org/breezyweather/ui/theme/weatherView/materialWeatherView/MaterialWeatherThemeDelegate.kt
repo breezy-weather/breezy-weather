@@ -47,7 +47,6 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
         }
 
         private fun innerGetBackgroundColor(
-            context: Context,
             @WeatherKindRule weatherKind: Int,
             daytime: Boolean,
         ): Int = when (weatherKind) {
@@ -58,34 +57,34 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
             }
 
             WeatherView.WEATHER_KIND_CLOUDY ->
-                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUDY, daytime)
+                CloudImplementor.getThemeColor(CloudImplementor.TYPE_CLOUDY, daytime)
 
             WeatherView.WEATHER_KIND_CLOUD ->
-                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_CLOUD, daytime)
+                CloudImplementor.getThemeColor(CloudImplementor.TYPE_CLOUD, daytime)
 
             WeatherView.WEATHER_KIND_FOG ->
-                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_FOG, daytime)
+                CloudImplementor.getThemeColor(CloudImplementor.TYPE_FOG, daytime)
 
             WeatherView.WEATHER_KIND_HAIL ->
                 HailImplementor.getThemeColor(daytime)
 
             WeatherView.WEATHER_KIND_HAZE ->
-                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_HAZE, daytime)
+                CloudImplementor.getThemeColor(CloudImplementor.TYPE_HAZE, daytime)
 
             WeatherView.WEATHER_KIND_RAINY ->
-                RainImplementor.getThemeColor(context, RainImplementor.TYPE_RAIN, daytime)
+                RainImplementor.getThemeColor(RainImplementor.TYPE_RAIN, daytime)
 
             WeatherView.WEATHER_KIND_SLEET ->
-                RainImplementor.getThemeColor(context, RainImplementor.TYPE_SLEET, daytime)
+                RainImplementor.getThemeColor(RainImplementor.TYPE_SLEET, daytime)
 
             WeatherView.WEATHER_KIND_SNOW ->
                 SnowImplementor.getThemeColor(daytime)
 
             WeatherView.WEATHER_KIND_THUNDERSTORM ->
-                RainImplementor.getThemeColor(context, RainImplementor.TYPE_THUNDERSTORM, daytime)
+                RainImplementor.getThemeColor(RainImplementor.TYPE_THUNDERSTORM, daytime)
 
             WeatherView.WEATHER_KIND_THUNDER ->
-                CloudImplementor.getThemeColor(context, CloudImplementor.TYPE_THUNDER, daytime)
+                CloudImplementor.getThemeColor(CloudImplementor.TYPE_THUNDER, daytime)
 
             WeatherView.WEATHER_KIND_WIND ->
                 WindImplementor.getThemeColor(daytime)
@@ -101,7 +100,7 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
         weatherKind: Int,
         daylight: Boolean,
     ): IntArray {
-        var color = innerGetBackgroundColor(context, weatherKind, daylight)
+        var color = innerGetBackgroundColor(weatherKind, daylight)
         if (!daylight) {
             color = getBrighterColor(color)
         }
@@ -117,7 +116,7 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
         weatherKind: Int,
         daylight: Boolean,
     ): Int {
-        return innerGetBackgroundColor(context, weatherKind, daylight)
+        return innerGetBackgroundColor(weatherKind, daylight)
     }
 
     override fun getHeaderTopMargin(context: Context): Int =
