@@ -9,11 +9,6 @@
             <!-- https://letsencrypt.org/certificates/ -->
             <certificates src="@raw/isrg_root_x2" />
             <certificates src="@raw/isrg_root_x1" />
-
-            <!-- HiPKI by Chunghwa Telecom, unavailable on Android < 14 -->
-            <!-- Used by CWA source -->
-            <!-- https://chtca.hinet.net/en/repository.html -->
-            <certificates src="@raw/hipki_root" />
         </trust-anchors>
     </base-config>
 </network-security-config>
