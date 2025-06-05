@@ -173,7 +173,7 @@
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Живые обои</string>
     <string name="settings_location_service">Источник местоположения</string>
-    <string name="settings_appearance_dark_mode_title">Тема</string>
+    <string name="settings_appearance_dark_mode_title">Тёмная тема</string>
     <string name="settings_appearance_icon_pack_title">Набор иконок</string>
     <string name="settings_appearance">Вид</string>
     <string name="settings_main_gravity_sensor_switch">Датчик гравитации</string>
