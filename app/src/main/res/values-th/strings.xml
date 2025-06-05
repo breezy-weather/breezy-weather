@@ -1,2 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="precipitation_nowcasting">การคาดการณ์ปริมาณน้ำฝนในปัจจุบัน</string>
+    <string name="alerts_to_follow">การแจ้งเตือนที่กำลังจะมีขึ้น แตะที่นี่เพื่อดู</string>
+    <string name="temperature">อุณหภูมิ</string>
+    <string name="pollen">ละออง</string>
+    <string name="details">รายละเอียด</string>
+    <string name="temperature_feels_like_short">รู้สึกเหมือน</string>
+    <string name="alert_source">ที่มา : %s</string>
+    <string name="app_name">สภาพอากาศ</string>
+    <string name="forecast">พยากรณ์</string>
+    <string name="daily_forecast">พยากรณ์รายวัน</string>
+    <string name="hourly_forecast">พยากรณ์อากาศรายชั่วโมง</string>
+    <string name="current_weather">สภาพอากาศปัจจุบัน</string>
+    <string name="air_quality">คุณภาพอากาศ</string>
+    <string name="pollen_and_mold">ละอองและฝุ่น</string>
+    <string name="ephemeris">ดวงอาทิตย์และดวงจันทร์</string>
+    <string name="alert">เตือน</string>
+    <string name="alerts">เตือน</string>
+    <string name="daily_yesterday">เมื่อวาน</string>
+    <string name="daily_tomorrow">พรุ่งนี้</string>
+    <string name="daily_today_short">วันนี้</string>
+    <string name="daily_tomorrow_short">พรุ่งนี้</string>
+    <string name="temperature_feels_like">รู้สึกเหมือน</string>
+    <string name="daily_today">วันนี้</string>
+</resources>
