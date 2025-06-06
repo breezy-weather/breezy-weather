@@ -91,7 +91,7 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Nie udało się znaleźć bieżącej lokalizacji</string>
     <string name="weather_message_data_refresh_failed">Odświeżanie danych nie powiodło się</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Wybierz usługę lokalizacji</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Użyj innej usługi lokalizacji</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Dodaj lokalizację ręcznie i usuń „%s”</string>
     <string name="widget_label_view_style">Wybierz styl</string>
     <string name="widget_label_show_widget_card">Kolor tła</string>
@@ -398,7 +398,7 @@
     <string name="wind_strength">Siła wiatru</string>
     <string name="air_quality_level_2">Umiarkowana</string>
     <string name="air_quality_level_2_description">Jakość powietrza jest akceptowalna dla większości osób. Jednak osoby wrażliwe mogą odczuwać niewielkie lub umiarkowane objawy po dłuższym przebywaniu na zewnątrz.</string>
-    <string name="precipitation_between_time">Opady między %1$s a %2$s</string>
+    <string name="precipitation_between_time">Opady od %1$s do %2$s</string>
     <string name="wind_gusts">Porywy wiatru</string>
     <string name="air_quality_level_3_description">Powietrze osiągnęło wysoki poziom zanieczyszczenia i jest niezdrowe dla osób wrażliwych. Jeśli odczuwasz takie objawy jak trudności w oddychaniu czy drapanie w gardle, skróć przebywanie na zewnątrz.</string>
     <string name="air_quality_pm_info_title">Cząstki stałe (PM2.5 i PM10)</string>
@@ -757,4 +757,6 @@
     <string name="wind_direction_NE">Północno-wschodni</string>
     <string name="message_server_insecure_title">Nie udało się nawiązać bezpiecznego połączenia</string>
     <string name="message_outdated_server_data">Nieaktualne dane otrzymane z serwera</string>
+    <string name="action_enable">Włącz</string>
+    <string name="action_allow">Zezwól</string>
 </resources>
