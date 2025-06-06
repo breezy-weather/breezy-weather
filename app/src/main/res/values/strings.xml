@@ -29,6 +29,7 @@
     <string name="daily_yesterday_short">Yda</string>
     <string name="daily_today_short">Today</string>
     <string name="daily_tomorrow_short">Tmw</string>
+    <string name="other_details">Other details</string>
     <!-- Temperature -->
     <string name="temperature">Temperature</string>
     <string name="temperature_feels_like">Feels like</string>

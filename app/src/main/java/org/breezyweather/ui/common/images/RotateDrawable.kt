@@ -21,6 +21,7 @@ import android.graphics.ColorFilter
 import android.graphics.PixelFormat
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
+import androidx.core.graphics.withRotation
 
 class RotateDrawable(
     private val mDrawable: Drawable?,
@@ -31,10 +32,9 @@ class RotateDrawable(
         val innerBounds = mDrawable.bounds
         val cx = (innerBounds.right - innerBounds.left) / 2f
         val cy = (innerBounds.bottom - innerBounds.top) / 2f
-        val saveCount = canvas.save()
-        canvas.rotate(mDegree, cx + innerBounds.left, cy + innerBounds.top)
-        mDrawable.draw(canvas)
-        canvas.restoreToCount(saveCount)
+        canvas.withRotation(mDegree, cx + innerBounds.left, cy + innerBounds.top) {
+            mDrawable.draw(canvas)
+        }
     }
 
     override fun setAlpha(alpha: Int) {
@@ -45,7 +45,10 @@ class RotateDrawable(
         mDrawable?.colorFilter = colorFilter
     }
 
-    @Deprecated("Deprecated in Java")
+    @Deprecated(
+        "Deprecated in Java",
+        ReplaceWith("PixelFormat.OPAQUE", "android.graphics.PixelFormat")
+    )
     override fun getOpacity(): Int {
         return PixelFormat.OPAQUE
     }
