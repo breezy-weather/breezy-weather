@@ -2,6 +2,7 @@
 
 **Improvements and fixes**
 - Add back alternate calendar to Daily details screen
+- Fix wrong valid time indication for the Air quality card
 
 **Weather sources**
 - [CWA] Revert “Fix failure to refresh on Android < 14” due to [Chrome Root Program Policy change to no longer trust HiPKI by Chunghwa Telecom](https://security.googleblog.com/2025/05/sustaining-digital-certificate-security-chrome-root-store-changes.html)
