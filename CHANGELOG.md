@@ -12,6 +12,7 @@
 
 **Translations**
 - Translations updated
+- Initial translation added for Thai (@achn-syps)
 
 
 # Version 5.4.7 (2025-04-28)

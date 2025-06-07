@@ -315,7 +315,7 @@
     <string name="precipitation_intensity_light">Nhẹ</string>
     <string name="precipitation_intensity_heavy">Nặng</string>
     <string name="precipitation_none">Không có mưa</string>
-    <string name="precipitation_between_time">"Mưa từ  %1$s đến %2$s"</string>
+    <string name="precipitation_between_time">Mưa từ %1$s đến %2$s</string>
     <string name="wind">Gió</string>
     <string name="wind_speed">Vận tốc gió</string>
     <string name="wind_direction">Hướng gió</string>
