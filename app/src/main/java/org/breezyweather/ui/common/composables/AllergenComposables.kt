@@ -108,7 +108,7 @@ private fun PollenItem(
 ) {
     Icon(
         modifier = Modifier
-            .padding(dimensionResource(R.dimen.normal_margin))
+            .padding(dimensionResource(R.dimen.little_margin))
             .size(dimensionResource(R.dimen.material_icon_size)),
         painter = painterResource(R.drawable.ic_circle_medium),
         contentDescription = null,
@@ -116,7 +116,7 @@ private fun PollenItem(
     )
     Column(
         Modifier.padding(
-            end = dimensionResource(R.dimen.normal_margin),
+            end = dimensionResource(R.dimen.little_margin),
             top = dimensionResource(R.dimen.normal_margin),
             bottom = dimensionResource(R.dimen.normal_margin)
         )

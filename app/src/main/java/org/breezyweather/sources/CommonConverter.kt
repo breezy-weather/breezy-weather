@@ -1165,10 +1165,21 @@ private fun getHalfDayPrecipitationProbabilityFromHourlyList(
 private fun getHalfDayWindFromHourlyList(
     halfDayHourlyList: List<HourlyWrapper>,
 ): Wind? {
-    return halfDayHourlyList
+    val maxWind = halfDayHourlyList
         .filter { it.wind?.speed != null }
         .maxByOrNull { it.wind!!.speed!! }
         ?.wind
+    val maxWindGusts = halfDayHourlyList
+        .filter { it.wind?.gusts != null }
+        .maxByOrNull { it.wind!!.gusts!! }
+        ?.wind?.gusts
+    return if (maxWindGusts == null || maxWindGusts == maxWind?.gusts) {
+        maxWind
+    } else {
+        maxWind?.copy(
+            gusts = maxWindGusts
+        )
+    }
 }
 
 private fun getHalfDayCloudCoverFromHourlyList(

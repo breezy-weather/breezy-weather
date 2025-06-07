@@ -53,6 +53,8 @@
     <string name="daily_today_short">Auj.</string>
     <string name="daily_tomorrow_short">Dem.</string>
 
+    <string name="other_details">Autres détails</string>
+
     <string name="temperature">Température</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>

@@ -24,11 +24,14 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import kotlinx.collections.immutable.ImmutableSet
 import org.breezyweather.R
+import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
 import org.breezyweather.common.extensions.capitalize
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getLongWeekdayDayMonth
 import org.breezyweather.common.source.PollenIndexSource
+import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.databinding.ItemPollenDailyBinding
 import org.breezyweather.domain.weather.index.PollenIndex
 import org.breezyweather.domain.weather.model.isIndexValid
@@ -93,6 +96,13 @@ class HomePollenViewHolder internal constructor(
             }
         }
 
-        itemView.setOnClickListener { }
+        itemView.setOnClickListener {
+            IntentHelper.startDailyWeatherActivity(
+                context as GeoActivity,
+                location.formattedId,
+                location.weather!!.dailyForecast.indexOf(daily),
+                ChartDisplay.TAG_POLLEN
+            )
+        }
     }
 }
