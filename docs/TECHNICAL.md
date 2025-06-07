@@ -72,7 +72,7 @@ When translations are updated from Weblate, if there are new contributors, add t
 
 Gradle must always be updated that way (replace with new version number):
 ```
-./gradlew wrapper --gradle-version=8.14.1 --gradle-distribution-sha256-sum=845952a9d6afa783db70bb3b0effaae45ae5542ca2bb7929619e8af49cb634cf
+./gradlew wrapper --gradle-version=8.14.2 --gradle-distribution-sha256-sum=7197a12f450794931532469d4ff21a59ea2c1cd59a3ec3f89c035c3c420a6999
 ```
 
 You can find the newer checksum of the binary-only (-bin) ZIP on https://gradle.org/release-checksums/
