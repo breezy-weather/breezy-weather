@@ -280,7 +280,7 @@
     <string name="unit_lpsqmph_voice">لتر لكل متر مربع في الساعة</string>
     <string name="uv_index_11">الأقصى</string>
     <string name="unit_mgpcum_voice">ملليغرام لكل متر مكعب</string>
-    <string name="precipitation_between_time">هطول الأمطار بين %1$s و %2$s</string>
+    <string name="precipitation_between_time">هطول الأمطار من %1$s إلى %2$s</string>
     <string name="widget_style_temperature">الحرارة</string>
     <string name="widget_style_rectangle">مستطيل</string>
     <string name="widget_style_pixel">بكسل</string>
