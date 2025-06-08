@@ -6,6 +6,7 @@
 
 **Weather sources**
 - [CWA] Revert “Fix failure to refresh on Android < 14” due to [Chrome Root Program Policy change to no longer trust HiPKI by Chunghwa Telecom](https://security.googleblog.com/2025/05/sustaining-digital-certificate-security-chrome-root-store-changes.html)
+- [Nominatim] Fix not showing up in the `freenet` flavor
 - [NWS] Will now report an error when data from the observation station is outdated, and fallback to current hour forecast data, instead of displaying outdated “current” info
 - [Pirate Weather] Now available in the `freenet` flavor (was open sourced a few months ago)
 - [Pirate Weather] Fix incorrect units for precipitation

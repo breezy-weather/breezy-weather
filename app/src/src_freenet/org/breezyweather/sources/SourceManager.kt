@@ -40,6 +40,7 @@ import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.debug.DebugService
 import org.breezyweather.sources.gadgetbridge.GadgetbridgeService
 import org.breezyweather.sources.naturalearth.NaturalEarthService
+import org.breezyweather.sources.nominatim.NominatimService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
 import org.breezyweather.sources.recosante.RecosanteService
 import javax.inject.Inject
@@ -50,6 +51,7 @@ class SourceManager @Inject constructor(
     debugService: DebugService,
     gadgetbridgeService: GadgetbridgeService,
     naturalEarthService: NaturalEarthService,
+    nominatimService: NominatimService,
     openMeteoService: OpenMeteoService,
     recosanteService: RecosanteService,
 ) {
@@ -62,7 +64,8 @@ class SourceManager @Inject constructor(
 
     // Reverse geocoding sources
     private val reverseGeocodingSourceList = persistentListOf(
-        naturalEarthService
+        naturalEarthService,
+        nominatimService
     )
 
     // Worldwide weather sources, excluding national sources with worldwide support
