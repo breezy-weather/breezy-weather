@@ -19,9 +19,11 @@ package org.breezyweather.sources.nominatim
 import android.content.Context
 import android.os.Build
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceContinent
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -35,11 +37,13 @@ import javax.inject.Named
  */
 class NominatimService @Inject constructor(
     @Named("JsonClient") client: Retrofit.Builder,
-) : ReverseGeocodingSource {
+) : HttpSource(), ReverseGeocodingSource {
 
     override val id = "nominatim"
     override val name = "Nominatim"
     override val reverseGeocodingAttribution = "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright"
+    override val privacyPolicyUrl = "https://osmfoundation.org/wiki/Privacy_Policy"
+    override val continent = SourceContinent.WORLDWIDE
 
     private val mApi by lazy {
         client
