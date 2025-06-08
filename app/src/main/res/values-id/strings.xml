@@ -183,7 +183,7 @@
     <string name="ephemeris_moonset_at">Bulan tenggelam di %s</string>
     <!-- $ = time. -->
     <string name="precipitation_none">Tidak ada curah hujan</string>
-    <string name="precipitation_between_time">Curah hujan antara %1$s dan %2$s</string>
+    <string name="precipitation_between_time">Curah hujan dari %1$s sampai %2$s</string>
     <!-- $1 = start time, $2 = end time. -->
     <string name="action_add_current_location">Tambah lokasi saat ini</string>
     <string name="settings_items_drag_to_sort">Ketuk untuk menyeret item daftar untuk mengurutkan</string>
