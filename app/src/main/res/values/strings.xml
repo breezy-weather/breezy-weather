@@ -29,8 +29,14 @@
     <string name="daily_yesterday_short">Yda</string>
     <string name="daily_today_short">Today</string>
     <string name="daily_tomorrow_short">Tmw</string>
+    <!-- Charts -->
+    <string name="chart_no_daily_data">No data available for this day.</string>
+    <string name="chart_no_hourly_data">No hourly data available.</string>
+    <string name="chart_not_enough_hourly_data">Not enough hourly data available to display a chart for this day.</string>
     <!-- Temperature -->
+    <string name="conditions_temperature">Conditions / Temperature</string>
     <string name="temperature">Temperature</string>
+    <string name="temperature_real">Real</string>
     <string name="temperature_feels_like">Feels like</string>
     <!-- 10 characters max version of temperature_feels_like to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
     <string name="temperature_feels_like_short">Feels like</string>
@@ -68,6 +74,7 @@
     <string name="wind_short">Wind</string>
     <string name="wind_speed">Wind speed</string>
     <string name="wind_gusts">Wind gusts</string>
+    <string name="wind_gusts_short">Gusts</string>
     <string name="wind_direction">Wind direction</string>
     <string name="wind_direction_variable">Variable</string>
     <string name="wind_direction_N">North</string>
@@ -242,6 +249,7 @@
     <!-- Other weather details vocabulary -->
     <string name="daytime">Daytime</string>
     <string name="nighttime">Nighttime</string>
+    <string name="nighttime_details">Begins in the evening and lasts until dawn</string>
     <string name="sunshine">Sunshine</string>
     <string name="sunshine_duration">Sunshine duration</string>
     <string name="humidity">Humidity</string>
@@ -252,6 +260,15 @@
     <string name="pressure_short">Pressure</string>
     <string name="visibility">Visibility</string>
     <string name="visibility_short">Visibility</string>
+    <!-- 10 to 20 km, %1$s = 10, %2$s = 20 km -->
+    <string name="visibility_from_to_number">%1$s to %2$s</string>
+    <!-- Clear to Perfectly clear, %1$s = Clear, %2$s = Perfectly clear -->
+    <string name="visibility_from_to_description">%1$s to %2$s</string>
+    <string name="visibility_poor">Poor</string>
+    <string name="visibility_moderate">Moderate</string>
+    <string name="visibility_good">Good</string>
+    <string name="visibility_clear">Clear</string>
+    <string name="visibility_perfectly_clear">Perfectly clear</string>
     <string name="dew_point">Dew point</string>
     <!-- 10 characters max version of dew_point to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
     <string name="dew_point_short">Dew point</string>

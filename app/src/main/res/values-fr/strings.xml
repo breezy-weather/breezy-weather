@@ -22,6 +22,7 @@
     <string name="notification_channel_forecast">Prévisions</string>
     <string name="daytime">Journée</string>
     <string name="nighttime">Nuit</string>
+    <string name="temperature_real">Réel</string>
     <string name="temperature_feels_like">Ressenti</string>
     <string name="temperature_feels_like_short">Ressenti</string>
     <string name="settings_follow_system">Préférence système</string><!-- Littéralement "suivre les préférences système" -->
@@ -33,6 +34,15 @@
     <string name="pressure_short">Pression</string>
     <string name="visibility">Visibilité</string>
     <string name="visibility_short">Visibilité</string>
+    <!-- 10 to 20 km, %1$s = 10, %2$s = 20 km -->
+    <string name="visibility_from_to_number">%1$s à %2$s</string>
+    <!-- Clear to Perfectly clear, %1$s = Clear, %2$s = Perfectly clear -->
+    <string name="visibility_from_to_description">%1$s à %2$s</string>
+    <string name="visibility_poor">Mauvaise</string>
+    <string name="visibility_moderate">Modérée</string>
+    <string name="visibility_good">Bonne</string>
+    <string name="visibility_clear">Dégagé</string>
+    <string name="visibility_perfectly_clear">Complètement dégagé</string>
     <string name="dew_point">Point de rosée</string>
     <string name="dew_point_short">P. de rosée</string>
     <string name="cloud_cover">Couverture nuageuse</string>
@@ -53,6 +63,12 @@
     <string name="daily_today_short">Auj.</string>
     <string name="daily_tomorrow_short">Dem.</string>
 
+    <!-- Charts -->
+    <string name="chart_no_daily_data">Aucune donnée disponible pour ce jour.</string>
+    <string name="chart_no_hourly_data">Aucune donnée horaire disponible.</string>
+    <string name="chart_not_enough_hourly_data">Pas assez de données horaires disponibles pour afficher un graphique pour ce jour.</string>
+
+    <string name="conditions_temperature">Conditions / Température</string>
     <string name="temperature">Température</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
@@ -77,6 +93,7 @@
     <string name="wind_direction">Direction du vent</string>
     <string name="wind_speed">Vitesse du vent</string>
     <string name="wind_gusts">Rafales de vent</string>
+    <string name="wind_gusts_short">Rafales</string>
     <string name="wind_strength">Force du vent</string>
     <string name="wind_strength_0">Calme</string>
     <string name="wind_strength_1">Très légère brise</string>
