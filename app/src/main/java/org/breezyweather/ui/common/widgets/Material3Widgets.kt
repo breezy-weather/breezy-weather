@@ -191,6 +191,7 @@ fun getCardListItemMarginDp(context: Context) = context
     .resources
     .getDimension(R.dimen.little_margin)
 
+// TODO: Check usages before removing the mandatory padding
 @Composable
 fun Material3CardListItem(
     modifier: Modifier = Modifier,

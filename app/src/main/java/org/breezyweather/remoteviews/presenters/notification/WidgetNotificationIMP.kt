@@ -40,7 +40,6 @@ import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getStrength
 import org.breezyweather.domain.weather.model.getTrendTemperature
 import org.breezyweather.domain.weather.model.getWeek
-import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter

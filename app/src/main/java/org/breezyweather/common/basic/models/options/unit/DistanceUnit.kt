@@ -43,6 +43,28 @@ enum class DistanceUnit(
         ) = DistanceUnit.entries.firstOrNull {
             it.id == value
         } ?: M
+
+        const val VISIBILITY_POOR = 3000.0
+        const val VISIBILITY_MODERATE = 8000.0
+        const val VISIBILITY_GOOD = 16000.0
+        const val VISIBILITY_CLEAR = 24000.0
+
+        /**
+         * @param context
+         * @param visibility in meters (default [DistanceUnit] unit)
+         * TODO: Translation
+         */
+        fun getVisibilityDescription(context: Context, visibility: Double?): String? {
+            if (visibility == null) return null
+            return when (visibility) {
+                in 0.0..<VISIBILITY_POOR -> context.getString(R.string.visibility_poor)
+                in VISIBILITY_POOR..<VISIBILITY_MODERATE -> context.getString(R.string.visibility_moderate)
+                in VISIBILITY_MODERATE..<VISIBILITY_GOOD -> context.getString(R.string.visibility_good)
+                in VISIBILITY_GOOD..<VISIBILITY_CLEAR -> context.getString(R.string.visibility_clear)
+                in VISIBILITY_CLEAR..Double.MAX_VALUE -> context.getString(R.string.visibility_perfectly_clear)
+                else -> null
+            }
+        }
     }
 
     override val valueArrayId = R.array.distance_unit_values
