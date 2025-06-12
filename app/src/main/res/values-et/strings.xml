@@ -62,7 +62,7 @@
     <string name="precipitation_ice">Jää</string>
     <string name="precipitation_intensity_light">Nõrk</string>
     <string name="precipitation_none">Sademed puuduvad</string>
-    <string name="precipitation_between_time">Sademed vahemikus %1$s ja %2$s</string>
+    <string name="precipitation_between_time">Sademed %1$s-st %2$s-ni</string>
     <string name="precipitation_intensity_heavy">Tugev</string>
     <string name="uv_index">UV-indeks</string>
     <string name="uv_index_short">UV-indeks</string>
@@ -221,7 +221,7 @@
     <string name="settings_main_threshold_lines_on_charts">Piirjooned graafikutel</string>
     <string name="settings_main_background_animation_enabled">Sees</string>
     <string name="settings_main_cards_title">Kaardid</string>
-    <string name="settings_main_section_options">Sätted</string>
+    <string name="settings_main_section_options">Valikud</string>
     <string name="settings_main_background_animation_disabled">Väljas</string>
     <string name="settings_main_gravity_sensor_switch">Güroskoop</string>
     <string name="settings_main_cards_other_element_animations_switch">Teiste elementide animatsioonid</string>
@@ -405,7 +405,7 @@
     <string name="widget_custom_subtitle_keyword_ws_description">Nädal (lühike)</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Päevane kirjeldus</string>
     <string name="widget_style_tile">Paan</string>
-    <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
+    <string name="widget_clock_font_sans_serif_light">Sans Serif Hele</string>
     <string name="widget_week_style_3_days">3 päeva</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_background_updates_battery_optimization">Lülita välja akukasutuse optimeerimine</string>
@@ -519,7 +519,7 @@
     <string name="metno_weather_text_andthunder">%s ja äike</string>
     <string name="location_message_list_cannot_be_empty">Asukohtade nimekiri ei saa olla tühi</string>
     <string name="location_message_permission_background_missing">Asukohale tagataustal juurdepääsu luba puudub</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Valige asukohateenus</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Kasutage teist asukohateenust</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Lisa asukoht käsitsi ja kustuta “%s”</string>
     <string name="location_search_source">Asukoha otsingu allikas</string>
     <string name="location_search_change_source">Vaheta asukoha otsingu allikat</string>
@@ -577,7 +577,7 @@
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_temperature">Temperatuur</string>
     <string name="widget_week_style_5_days">5 päeva</string>
-    <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
+    <string name="widget_clock_font_sans_serif_black">Sans Serif Tume</string>
     <string name="settings_background_updates_refresh_title">Värskendussagedus</string>
     <string name="settings_background_updates_refresh_never">Mitte kunagi</string>
     <string name="settings_background_updates_refresh_never_warning3">Kaaluge tagataustauuenduste väljalülitamise asemel harvemat värskendussagedust, vastasel juhul vajutage valikut “Jätka”, kui soovite siiski jätkata.</string>
