@@ -58,7 +58,7 @@
     <string name="wind_strength_10">Tempestade</string>
     <string name="wind_strength_11">Tempestade violenta</string>
     <string name="wind_strength_12">Furacão</string>
-    <string name="precipitation_intensity_light">Leve</string>
+    <string name="precipitation_intensity_light">Fraca</string>
     <string name="precipitation_intensity_heavy">Forte</string>
     <string name="ephemeris_moon_phase_new_moon">Lua nova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Lua crescente</string>
@@ -95,7 +95,7 @@
     <string name="dialog_permissions_location_background_content">Para permitir que a atualização do clima em segundo plano seja feita com base na localização mais recente conhecida pelo Android, você precisa definir a permissão de localização como “Permitir o tempo todo”. Se você não fizer isso, o clima será atualizado com base nas últimas coordenadas recuperadas em primeiro plano, que podem estar desatualizadas.</string>
     <string name="location_message_failed_to_locate">Falha ao encontrar a localização atual</string>
     <string name="weather_message_data_refresh_failed">Falha ao atualizar dados</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Selecione o provedor de localização</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Utilize outro serviço de localização</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adicionar local manualmente e remover “%s”</string>
     <string name="widget_label_view_style">Estilo de exibição</string>
     <string name="widget_label_show_widget_card">Cor de fundo</string>
@@ -419,7 +419,7 @@
     <string name="weather_source_accu_preference_hours_120">120 horas</string>
     <string name="weather_source_accu_preference_hours_240">240 horas</string>
     <string name="location_search_weather_source">Fonte meteorológica</string>
-    <string name="settings_location_summary">Configurações dos provedores de localização</string>
+    <string name="settings_location_summary">Configurações dos serviços de localização</string>
     <string name="settings_location">Localização</string>
     <string name="settings_location_access_precise_title">Uso do GPS do dispositivo</string>
     <string name="settings_section_general">Geral</string>
@@ -580,26 +580,26 @@
     <string name="common_weather_text_snow_heavy">Neve forte</string>
     <string name="common_weather_text_rain_freezing_heavy">Chuva congelante forte</string>
     <string name="common_weather_text_snow_light">Neve fraca</string>
-    <string name="common_weather_text_rain_showers_heavy">Pancadas de chuva forte</string>
+    <string name="common_weather_text_rain_showers_heavy">Pancadas fortes de chuva</string>
     <string name="common_weather_text_rain_snow_mixed">Chuva com neve</string>
     <string name="common_weather_text_drizzle_freezing">Garoa congelante</string>
     <string name="common_weather_text_rain_freezing">Chuva congelante</string>
     <string name="common_weather_text_rain_snow_mixed_light">Chuva leve com neve</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Pancadas de chuva com neve</string>
     <string name="common_weather_text_rain_light">Chuva leve</string>
-    <string name="common_weather_text_snow_showers_heavy">Nevasca forte</string>
-    <string name="common_weather_text_snow_showers">Nevasca</string>
-    <string name="common_weather_text_rain_snow_mixed_showers_light">Pancadas de chuva leve com neve</string>
+    <string name="common_weather_text_snow_showers_heavy">Neve intermitente forte</string>
+    <string name="common_weather_text_snow_showers">Neve intermitente</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_light">Pancadas leves de chuva com neve</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Garoa congelante forte</string>
     <string name="common_weather_text_drizzle_heavy">Garoa forte</string>
     <string name="common_weather_text_rain_moderate">Chuva moderada</string>
-    <string name="common_weather_text_rain_snow_mixed_showers_heavy">Pancadas de chuva forte com neve</string>
+    <string name="common_weather_text_rain_snow_mixed_showers_heavy">Pancadas fortes de chuva com neve</string>
     <string name="common_weather_text_rain_showers">Pancadas de chuva</string>
     <string name="common_weather_text_drizzle_light">Garoa leve</string>
     <string name="common_weather_text_rain_showers_moderate">Pancadas de chuva moderada</string>
     <string name="common_weather_text_rain_freezing_light">Chuva congelante leve</string>
     <string name="common_weather_text_snow_moderate">Neve moderada</string>
-    <string name="common_weather_text_snow_showers_light">Nevasca fraca</string>
+    <string name="common_weather_text_snow_showers_light">Neve intermitente leve</string>
     <string name="settings_color_app">Siga o app</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Toque para abrir</string>
     <string name="notification_channel_crash_logs">Registro de falhas</string>
@@ -657,7 +657,7 @@
     <string name="pollen_tilia">Tília</string>
     <string name="pollen_urticaceae">Urtiga</string>
     <string name="message_source_not_installed_error_content_tip_1">Isso pode acontecer quando você adicionou sua localização na versão padrão (standard) do app e e depois mudou para a versão com apenas fontes de rede livre (freenet). Voltar para a versão padrão pode resolver esse problema.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Ou alterar as fontes meteorológicas para este local ou excluir e readicionar o mesmo.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Altere as fontes meteorológicas para esta localização ou exclua e readicione a localização.</string>
     <string name="sunshine">Luz do sol</string>
     <string name="weather_message_too_frequent_refreshes">Por favor, aguarde alguns segundos antes de tentar novamente…</string>
     <string name="action_confirm">Confirmar</string>
@@ -809,4 +809,8 @@
     <string name="common_weather_text_cold">Frio</string>
     <string name="common_weather_text_drifting_snow">Neve á deriva</string>
     <string name="common_weather_text_glaze">Camada de gelo</string>
+    <string name="message_server_insecure_title">Falha ao utilizar conexão segura</string>
+    <string name="action_allow">Permitir</string>
+    <string name="action_enable">Ativar</string>
+    <string name="message_outdated_server_data">Dados desatualizados recebidos do servidor</string>
 </resources>
