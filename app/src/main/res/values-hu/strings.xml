@@ -604,7 +604,7 @@
     <string name="location_search_source">Helyszín keresés forrása</string>
     <string name="location_search_change_source">Helyszínkeresés forrásának megváltoztatása</string>
     <string name="settings_weather_source_none">Semmi</string>
-    <string name="location_message_already_exists">Már létezik egy olyan helyszín, ahol ugyanez a fő időjárási forrás található.</string>
+    <string name="location_message_already_exists">A helyszín-lista már tartalmazza ezt a helyszínt ezzel az előrejelzési forrással.</string>
     <string name="location_message_updated">Helyszín frissítve</string>
     <string name="temperature_feels_like_short">Hőérzet</string>
     <string name="dew_point_short">Harmatpont</string>
@@ -754,4 +754,6 @@
     <string name="message_outdated_server_data">Elavult adatok lettek fogadva a kiszolgálótól</string>
     <string name="action_enable">Engedélyezés</string>
     <string name="action_allow">Engedélyezés</string>
+    <string name="action_open_in_other_app">Megnyitás másik alkalmazásban</string>
+    <string name="action_open_in_other_app_description">Ezen helyszín megnyitása egy másik alkalmazásban</string>
 </resources>
