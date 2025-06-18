@@ -94,7 +94,7 @@
     <string name="dialog_permissions_location_background_content">Pentru a permite ca actualizarea vremii în fundal să se facă pentru cea mai recentă locație curentă cunoscută de Android, trebuie să setați permisiunea de locație la “Permite tot timpul”. Dacă nu o faceți, vremea va fi actualizată pe baza celor mai recente coordonate recuperate în prim-plan, care pot să nu fie la zi.</string>
     <string name="location_message_failed_to_locate">Localizarea prin GPS a eșuat</string>
     <string name="weather_message_data_refresh_failed">Actualizarea datelor a eșuat</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Selectează serviciul de localizare</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Utilizează un alt serviciu de localizare</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Adaugă locația manual și șterge “%s”</string>
     <string name="widget_label_view_style">Stil</string>
     <string name="widget_label_show_widget_card">Culoare de fundal</string>
@@ -326,7 +326,7 @@
     <string name="unit_m">m</string>
     <string name="common_weather_text_clear_sky">Senin</string>
     <string name="precipitation_none">Fără precipitații</string>
-    <string name="precipitation_between_time">Precipitații între %1$s și %2$s</string>
+    <string name="precipitation_between_time">Precipitații de la %1$s până la %2$s</string>
     <string name="wind_direction_variable">Variabilă</string>
     <string name="wind_direction_N_short">N</string>
     <string name="wind_direction_NE_short">NE</string>
@@ -755,4 +755,7 @@
     <string name="location_reverse_geocoding_by">Căutare adresă după %s</string>
     <string name="settings_notifications_permission_summary">Necesar pentru a trimite notificări referitoare la alerte, prognoze meteo și actualizari ale aplicației. %s</string>
     <string name="message_server_insecure_title">Conexiunea sigură a eșuat</string>
+    <string name="message_outdated_server_data">Date învechite primite de la server</string>
+    <string name="action_allow">Permite</string>
+    <string name="action_enable">Activează</string>
 </resources>
