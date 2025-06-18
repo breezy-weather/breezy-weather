@@ -104,3 +104,16 @@ If you still want shorter refreshes:
 - models are refreshed at best once an hour. Although there might be some little exceptions for some particular data, it’s mostly useless to refresh at intervals less than 30 minutes. Additionally, some providers send header instructions to not contact server again before X (datetime) so you would be served the same cached data anyway.
 - we ask for fair usage of API and resources. This app and these API are provided for free and shared by all users of Breezy Weather. Due to noticed abuse, we even had to implement additional caching methods to prevent these abuses and ensure API can still be used by everyone.
 - you can still force refresh from main screen by “swiping to refresh”.
+
+
+### Why is the app not called “Breezy Weather” on my launcher?
+
+The app name is “Breezy Weather”, however in the launcher we use the translated word for “weather”.
+
+The rationale behind this is to offer a better user experience:
+- You don’t have to recall what was the app name to find it in the list. You just have to remind you want to access the weather.
+- It better adapts to other languages, as we use the translated word for “weather” and you don’t have to recall a non-native word (Breezy).
+
+This choice is aligned with Breezy Weather principles to make it easy to use as a new user. Many other apps make the same decision.
+
+For users with advanced needs not happy with this choice, we recommend using a launcher that allows customisation of app names.
