@@ -174,4 +174,5 @@
     <string name="common_weather_text_blowing_snow">มีหิมะฟุ้ง</string>
     <string name="common_weather_text_drifting_snow">มีพริ้วหิมะ</string>
     <string name="common_weather_text_glaze">มีน้ำแข็งเคลือบ</string>
+    <string name="air_quality_pm_explanations_introduction">ฝุ่นละออง คือของแข็งขนาดเล็กที่ลอยอยู่ในอากาศหรือน้ำ</string>
 </resources>
