@@ -169,7 +169,7 @@
     <string name="ephemeris_moonrise_at">月出時刻為 %s</string>
     <string name="ephemeris_moonset_at">月沒時刻為 %s</string>
     <string name="precipitation_none">無降水</string>
-    <string name="precipitation_between_time">在 %1$s 至 %2$s 之間的降水情況</string>
+    <string name="precipitation_between_time">%1$s 至 %2$s 的降水情況</string>
     <string name="action_add_current_location">新增目前位置</string>
     <string name="settings_items_drag_to_sort">點選並拖曳以對清單進行排序</string>
     <string name="settings_item_delete">刪除這個項目</string>
