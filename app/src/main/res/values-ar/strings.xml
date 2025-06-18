@@ -604,7 +604,7 @@
     <string name="humidity_dew_point">الرطوبة / نقطة الندى</string>
     <string name="location_message_updated">تم تحديث الموقع</string>
     <string name="settings_weather_source_none">لاشيء</string>
-    <string name="location_message_already_exists">توجد بالفعل منطقة بنفس مصدر الطقس الرئيسي.</string>
+    <string name="location_message_already_exists">تحتوي قائمة المواقع بالفعل على هذا الموقع مع مصدر التنبؤ هذا.</string>
     <string name="location_search_source">مزود خدمة البحث الجغرافي</string>
     <string name="location_search_change_source">تغيير مزود خدمة البحث الجغرافي</string>
     <string name="temperature_feels_like_short">تبدو وكأنها</string>
@@ -755,4 +755,6 @@
     <string name="message_outdated_server_data">استُلم بيانات قديمة من الخادم</string>
     <string name="action_enable">فعِّل</string>
     <string name="action_allow">اسمح</string>
+    <string name="action_open_in_other_app">افتح في تطبيق آخر</string>
+    <string name="action_open_in_other_app_description">فتح هذا الموقع في تطبيق آخر</string>
 </resources>
