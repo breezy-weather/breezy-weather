@@ -94,7 +94,7 @@
     <string name="dialog_permissions_location_background_content">為了能按照 Android 所知的目前位置，在背景重新整理天氣資訊，請將位置權限設定為「始終允許」。否則，只能按照本裝置最近一次在前景存取的位置來重新整理天氣資料，而該位置到時可能已經過時。</string>
     <string name="location_message_failed_to_locate">無法找到目前位置</string>
     <string name="weather_message_data_refresh_failed">無法更新資料</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">選擇定位服務</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">使用另一個定位服務</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">手動新增位置並刪除「%s」</string>
     <string name="widget_label_view_style">檢視樣式</string>
     <string name="widget_label_show_widget_card">背景色彩</string>
@@ -830,4 +830,6 @@
     <string name="wind_direction_S">南風</string>
     <string name="message_server_insecure_title">無法安全連線</string>
     <string name="message_outdated_server_data">從伺服器收到過期資料</string>
+    <string name="action_enable">啟用</string>
+    <string name="action_allow">允許</string>
 </resources>
