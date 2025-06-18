@@ -563,7 +563,7 @@ fun SecondarySourcesPreference(
                         text = stringResource(R.string.location_message_already_exists),
                         color = MaterialTheme.colorScheme.error,
                         style = MaterialTheme.typography.bodySmall,
-                        modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin))
+                        modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.normal_margin))
                     )
                 }
                 SourceViewWithContinents(
