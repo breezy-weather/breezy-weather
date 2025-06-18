@@ -93,7 +93,7 @@
     <string name="precipitation_intensity_medium">中等</string>
     <string name="precipitation_intensity_heavy">大雨</string>
     <string name="precipitation_none">無降水</string>
-    <string name="precipitation_between_time">在 %1$s 至 %2$s 之間的降水情況</string>
+    <string name="precipitation_between_time">%1$s 至 %2$s 的降水情況</string>
     <string name="wind">風勢</string>
     <string name="wind_direction">風向</string>
     <string name="wind_short">風勢</string>
@@ -264,7 +264,7 @@
     <string name="location_message_permission_missing">缺少位置存取權限</string>
     <string name="location_message_permission_background_missing">缺少背景定位權限</string>
     <string name="location_message_reverse_geocoding_failed">天氣來源無法找到相符的位置</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">選擇定位服務</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">選擇另一個定位服務</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">手動新增位置並刪除「%s」</string>
     <string name="location_search_placeholder">搜尋位置…</string>
     <string name="location_search_source">位置搜尋來源</string>
@@ -821,4 +821,6 @@
     <string name="location_reverse_geocoding">位置查詢</string>
     <string name="message_server_insecure_title">無法安全連線</string>
     <string name="message_outdated_server_data">從伺服器收到過期資料</string>
+    <string name="action_enable">啟用</string>
+    <string name="action_allow">允許</string>
 </resources>
