@@ -24,6 +24,7 @@ import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import androidx.annotation.RequiresApi
+import androidx.core.net.toUri
 import breezyweather.domain.location.model.Location
 import org.breezyweather.ui.about.AboutActivity
 import org.breezyweather.ui.alert.AlertActivity
@@ -222,6 +223,15 @@ object IntentHelper {
 
     fun startLocationSettingsActivity(context: Context) {
         context.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+    }
+
+    fun startGeoActivity(activity: Activity, location: Location) {
+        activity.startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                "geo:${location.latitude},${location.longitude}".toUri()
+            )
+        )
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

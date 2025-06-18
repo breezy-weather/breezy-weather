@@ -1,6 +1,7 @@
 # Version 5.4.8 (not yet released)
 
 **Improvements and fixes**
+- Add “Open in another app” in home screen action bar, to allow viewing the exact coordinates of the location in a maps application.
 - Add back alternate calendar to Daily details screen
 - Fix wrong valid time indication for the Air quality card
 - Show an error message when trying to add twice the same location with the same forecast source

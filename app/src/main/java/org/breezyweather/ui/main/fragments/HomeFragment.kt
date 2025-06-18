@@ -77,6 +77,7 @@ class HomeFragment : MainModuleFragment() {
     interface Callback {
         fun onEditIconClicked()
         fun onManageIconClicked()
+        fun onOpenInOtherAppIconClicked()
         fun onSettingsIconClicked()
     }
 
@@ -188,6 +189,7 @@ class HomeFragment : MainModuleFragment() {
             when (menuItem.itemId) {
                 R.id.action_edit -> callback?.onEditIconClicked()
                 R.id.action_manage -> callback?.onManageIconClicked()
+                R.id.action_open_in_other_app -> callback?.onOpenInOtherAppIconClicked()
                 R.id.action_settings -> callback?.onSettingsIconClicked()
             }
             true

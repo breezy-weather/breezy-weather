@@ -352,6 +352,8 @@
     <string name="action_add_new_location">Add a new location</string>
     <string name="action_add_debug_location" translatable="false">Add debug location</string>
     <string name="action_edit_location">Edit this location</string>
+    <string name="action_open_in_other_app">Open in another app</string>
+    <string name="action_open_in_other_app_description">Open this location in another app</string>
     <string name="action_settings">Settings</string>
     <string name="action_preview">Preview</string>
     <string name="action_about">About</string>
