@@ -601,7 +601,7 @@
     <string name="location_search_change_source">Quelle für die Ortssuche ändern</string>
     <string name="settings_weather_source_none">Keine</string>
     <string name="location_message_updated">Ort wurde aktualisiert</string>
-    <string name="location_message_already_exists">Ein Ort mit derselben Wetterquelle existiert bereits.</string>
+    <string name="location_message_already_exists">Die Ortsliste enthält bereits diesen Ort mit dieser Vorhersagequelle.</string>
     <string name="temperature_feels_like_short">Gefühlt</string>
     <string name="dew_point_short">Taupunkt</string>
     <string name="cloud_cover_short">Bewölkung</string>
@@ -763,4 +763,6 @@
     <string name="message_outdated_server_data">Veraltete Daten vom Server empfangen</string>
     <string name="action_enable">Aktivieren</string>
     <string name="action_allow">Erlauben</string>
+    <string name="action_open_in_other_app">In einer anderen App öffnen</string>
+    <string name="action_open_in_other_app_description">Diesen Ort in einer anderen Anwendung öffnen</string>
 </resources>
