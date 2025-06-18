@@ -323,7 +323,7 @@
     <string name="weather_current_data_by">Trenutni vremenski podatki do %s</string>
     <string name="unit_celsius">°C</string>
     <string name="notification_channel_app_updates">Posodobitve aplikacije</string>
-    <string name="location_delete_location_dialog_message">Izbrisali boste \"%s\" iz svojega seznama shrani lokacij.</string>
+    <string name="location_delete_location_dialog_message">Izbrisali boste “%s” iz svojega seznama shrani lokacij.</string>
     <string name="unit_h_voice">ure</string>
     <string name="location_message_location_access_off">Lokacijske storitve so izključene</string>
     <string name="unit_km">km</string>
