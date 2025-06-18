@@ -174,5 +174,9 @@
     <string name="common_weather_text_blowing_snow">มีหิมะฟุ้ง</string>
     <string name="common_weather_text_drifting_snow">มีพริ้วหิมะ</string>
     <string name="common_weather_text_glaze">มีน้ำแข็งเคลือบ</string>
-    <string name="air_quality_pm_explanations_introduction">ฝุ่นละออง คือของแข็งขนาดเล็กที่ลอยอยู่ในอากาศหรือน้ำ</string>
+    <string name="air_quality_pm_explanations_introduction">ฝุ่นละออง คืออนุภาคขนาดเล็กของสสารของแข็งหรือสสารของเหลวที่แขวนลอยอยู่ในอากาศ</string>
+    <string name="air_quality_pm_explanations_consequences">ฝุ่นละอองเป็นมลพิษทางอากาศที่อันตรายที่สุด เนื่องจากฝุ่นละอองสามารถถูกสูดหายใจลึกเข้าไปในปอดและถูกดูดซึมเข้าสู่กระแสเลือดไปยังสมอง ทำให้เกิดปัญหาทางสุขภาพ เช่น โรคหัวใจ โรคปอด และการเสียชีวิตก่อนวัยอันควร</string>
+    <string name="air_quality_pm_explanations_origin">ฝุ่นละอองบางชนิดเกิดขึ้นจากแหล่งธรรมชาติ เช่น ภูเขาไฟ พายุฝุ่น ไฟป่า พืชพรรณ และไอเกลือทะเล หรือจากการกระทำของมนุษย์ เช่น การจราจรและการคมนาคม อุตสาหกรรม โรงไฟฟ้า สถานที่ก่อสร้าง การเผาขยะ หรือแหล่งขยะ</string>
+    <string name="air_quality_o3_info_title">โอโซนระดับพื้นดิน (O₃)</string>
+    <string name="air_quality_o3_info_introduction">โอโซนระดับพื้นดิน (O₃) เป็นส่วนประกอบสำคัญของหมอกปนควัน โอโซนระดับพื้นดินอาจเป็นอันตรายต่อสุขภาพ แม้ว่าจะมีโมเลกุลเดียวกันกับโอโซนในชั้นบรรยากาศที่ปกป้องโลกจากรังสี UV บางส่วนก็ตาม</string>
 </resources>
