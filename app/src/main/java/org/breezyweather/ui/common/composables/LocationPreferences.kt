@@ -71,6 +71,7 @@ fun LocationPreference(
     activity: MainActivity,
     location: Location,
     onClose: ((location: Location?) -> Unit),
+    locationExists: ((location: Location) -> Boolean),
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -128,9 +129,8 @@ fun LocationPreference(
                 onClose = { newLocation ->
                     if (newLocation != null) {
                         if (location.forecastSource != newLocation.forecastSource) {
-                            // TODO: Don't save if match an existing location/main weather source
-                            val locationExists = false
-                            if (locationExists) {
+                            // Don't save if matches an existing location/forecast source
+                            if (locationExists(newLocation)) {
                                 SnackbarHelper.showSnackbar(
                                     activity.getString(R.string.location_message_already_exists)
                                 )
@@ -147,7 +147,8 @@ fun LocationPreference(
                     } else {
                         dialogWeatherSourcesOpenState.value = false
                     }
-                }
+                },
+                locationExists = locationExists
             )
         }
 
@@ -311,6 +312,7 @@ fun SecondarySourcesPreference(
     location: Location,
     onClose: ((location: Location?) -> Unit),
     modifier: Modifier = Modifier,
+    locationExists: ((location: Location) -> Boolean)? = null,
 ) {
     val context = LocalContext.current
     val continentComparator = Comparator<SourceContinent?> { va1, va2 ->
@@ -339,6 +341,7 @@ fun SecondarySourcesPreference(
     val hasChangedReverseGeocodingSource = remember { mutableStateOf(false) }
     val hasChangedASource = remember { mutableStateOf(false) }
     val forecastSource = remember { mutableStateOf(location.forecastSource) }
+    val isLocationDuplicate = remember { mutableStateOf(false) }
     val currentSource = remember { mutableStateOf(location.currentSource ?: "") }
     val airQualitySource = remember { mutableStateOf(location.airQualitySource ?: "") }
     val pollenSource = remember { mutableStateOf(location.pollenSource ?: "") }
@@ -541,8 +544,27 @@ fun SecondarySourcesPreference(
                     }.toImmutableMap(),
                     withState = false
                 ) { sourceId ->
+                    if (locationExists != null) {
+                        if (sourceId != location.forecastSource) {
+                            isLocationDuplicate.value = locationExists(
+                                location.copy(
+                                    forecastSource = sourceId
+                                )
+                            )
+                        } else {
+                            isLocationDuplicate.value = false
+                        }
+                    }
                     forecastSource.value = sourceId
                     hasChangedASource.value = true
+                }
+                if (isLocationDuplicate.value) {
+                    Text(
+                        text = stringResource(R.string.location_message_already_exists),
+                        color = MaterialTheme.colorScheme.error,
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin))
+                    )
                 }
                 SourceViewWithContinents(
                     title = stringResource(SourceFeature.CURRENT.resourceName!!),
@@ -823,6 +845,7 @@ fun SecondarySourcesPreference(
         },
         confirmButton = {
             TextButton(
+                enabled = !isLocationDuplicate.value,
                 onClick = {
                     if (hasChangedReverseGeocodingSource.value || hasChangedASource.value) {
                         val newLocation = location.copy(
@@ -862,7 +885,11 @@ fun SecondarySourcesPreference(
             ) {
                 Text(
                     text = stringResource(R.string.action_save),
-                    color = MaterialTheme.colorScheme.primary,
+                    color = if (!isLocationDuplicate.value) {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.primary.copy(alpha = 0.5f)
+                    },
                     style = MaterialTheme.typography.labelLarge
                 )
             }

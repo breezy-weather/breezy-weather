@@ -148,8 +148,12 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                     Location::class.java
                 )
                 if (location != null) {
-                    viewModel.addLocation(location, null)
-                    SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
+                    if (viewModel.locationExists(location)) {
+                        SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
+                    } else {
+                        viewModel.addLocation(location, null)
+                        SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
+                    }
                 }
             }
         }
@@ -500,6 +504,9 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                                     updateLocation(newLocation)
                                 }
                                 _dialogPerLocationSettingsOpen.value = false
+                            },
+                            locationExists = { loc: Location ->
+                                viewModel.locationExists(loc)
                             }
                         )
                     },

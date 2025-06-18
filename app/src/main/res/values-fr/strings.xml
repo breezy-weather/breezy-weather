@@ -316,7 +316,7 @@
 
     <string name="location_message_added">Emplacement ajouté</string>
     <string name="location_message_updated">Emplacement mis à jour</string>
-    <string name="location_message_already_exists">Un emplacement avec la même source météo principale existe déjà.</string>
+    <string name="location_message_already_exists">La liste d’emplacements contient déjà cet emplacement avec cette source de prévisions.</string>
     <string name="location_message_deleted">Emplacement supprimé</string>
     <string name="location_delete_location_dialog_title">Supprimer l’emplacement ?</string>
     <string name="location_delete_location_dialog_message">Vous vous apprêtez à supprimer “%s” de votre liste d’emplacements enregistrés.</string>
@@ -677,7 +677,7 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_vertical">Vertical</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_temperature">Temperature</string>
+    <string name="widget_style_temperature">Température</string>
     <string name="widget_week_style_5_days">5 jours</string>
     <string name="widget_week_style_3_days">3 jours</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>

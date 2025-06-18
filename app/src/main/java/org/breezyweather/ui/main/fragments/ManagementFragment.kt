@@ -443,10 +443,17 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                 SnackbarHelper.showSnackbar(getString(R.string.location_message_updated))
                             }
                         } else {
-                            viewModel.addLocation(newLocation, null)
-                            SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
+                            if (viewModel.locationExists(newLocation)) {
+                                SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
+                            } else {
+                                viewModel.addLocation(newLocation, null)
+                                SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
+                            }
                         }
                     }
+                },
+                locationExists = { loc: Location ->
+                    viewModel.locationExists(loc)
                 }
             )
         }
