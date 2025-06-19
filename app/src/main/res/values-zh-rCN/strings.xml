@@ -609,7 +609,7 @@
     <string name="location_search_change_source">更改位置搜索源</string>
     <string name="settings_weather_source_none">无</string>
     <string name="location_message_updated">位置已更新</string>
-    <string name="location_message_already_exists">已存在主天气源相同的位置。</string>
+    <string name="location_message_already_exists">位置列表仲已存在使用相同预报源的同一位置。</string>
     <string name="temperature_feels_like_short">体感温度</string>
     <string name="dew_point_short">露点</string>
     <string name="cloud_cover_short">云量</string>
@@ -835,4 +835,6 @@
     <string name="message_outdated_server_data">从服务器收到了过时数据</string>
     <string name="action_enable">启用</string>
     <string name="action_allow">允许</string>
+    <string name="action_open_in_other_app_description">在另一应用中打开该位置</string>
+    <string name="action_open_in_other_app">在另一应用中打开</string>
 </resources>
