@@ -596,7 +596,7 @@
     <string name="pressure_short">Spiediens</string>
     <string name="action_confirm">Apstiprināt</string>
     <string name="location_message_updated">Atrašanās vieta atjaunināta</string>
-    <string name="location_message_already_exists">Atrašanās vieta ar tādu pašu galveno laikapstākļu avotu jau pastāv.</string>
+    <string name="location_message_already_exists">Atrašanās vietu sarakstā jau ir šī vieta ar šādu laikapstākļu avotu.</string>
     <string name="dew_point_short">Rasas punkts</string>
     <string name="pollen_carpinus">Carpinus</string>
     <string name="pollen_castanea">Kastaņkoks</string>
@@ -748,4 +748,6 @@
     <string name="message_outdated_server_data">No servera saņemti novecojuši dati</string>
     <string name="action_enable">Iespējot</string>
     <string name="action_allow">Atļaut</string>
+    <string name="action_open_in_other_app">Atvērt citā lietotnē</string>
+    <string name="action_open_in_other_app_description">Atvērt šo atrašanās vietu citā lietotnē</string>
 </resources>
