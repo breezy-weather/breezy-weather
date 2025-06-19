@@ -764,5 +764,5 @@
     <string name="action_enable">Aktivieren</string>
     <string name="action_allow">Erlauben</string>
     <string name="action_open_in_other_app">In einer anderen App öffnen</string>
-    <string name="action_open_in_other_app_description">Diesen Ort in einer anderen Anwendung öffnen</string>
+    <string name="action_open_in_other_app_description">Diesen Ort in einer anderen App öffnen</string>
 </resources>
