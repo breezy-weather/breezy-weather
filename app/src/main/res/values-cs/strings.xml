@@ -616,7 +616,7 @@
     <string name="location_search_change_source">Změnit zdroj vyhledávání lokace</string>
     <string name="settings_weather_source_none">Žádný</string>
     <string name="location_message_updated">Lokalita aktualizována</string>
-    <string name="location_message_already_exists">Poloha se stejným hlavním zdrojem počasí již existuje.</string>
+    <string name="location_message_already_exists">Seznam lokalit již obsahuje tuto lokalitu s tímto zdrojem předpovědi.</string>
     <string name="dew_point_short">Rosný bod</string>
     <string name="cloud_cover_short">Oblačnost</string>
     <string name="humidity_short">Vlhkost</string>
@@ -764,4 +764,6 @@
     <string name="message_outdated_server_data">Ze serveru byla obdržena zastaralá data</string>
     <string name="action_enable">Zapnout</string>
     <string name="action_allow">Povolit</string>
+    <string name="action_open_in_other_app_description">Otevřít tuto lokalitu v jiné aplikaci</string>
+    <string name="action_open_in_other_app">Otevřít v jiné aplikaci</string>
 </resources>
