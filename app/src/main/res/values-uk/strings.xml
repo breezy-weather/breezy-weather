@@ -596,7 +596,7 @@
     <string name="location_search_source">Джерело пошуку</string>
     <string name="settings_weather_source_none">Немає</string>
     <string name="location_search_change_source">Змінити джерело пошуку</string>
-    <string name="location_message_already_exists">Розташування з таким же основним джерелом погоди вже є.</string>
+    <string name="location_message_already_exists">Список місцезнаходжень вже містить це місце з цим джерелом прогнозу.</string>
     <string name="location_message_updated">Розташування оновлено</string>
     <string name="cloud_cover_short">Хмарність</string>
     <string name="humidity_short">Вологість</string>
@@ -746,4 +746,6 @@
     <string name="message_outdated_server_data">Отримано застарілі дані з сервера</string>
     <string name="action_allow">Дозволити</string>
     <string name="action_enable">Увімкнути</string>
+    <string name="action_open_in_other_app">Відкрити в іншій програмі</string>
+    <string name="action_open_in_other_app_description">Відкрити це місце в іншій програмі</string>
 </resources>
