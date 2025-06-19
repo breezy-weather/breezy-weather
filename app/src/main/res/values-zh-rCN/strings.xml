@@ -296,7 +296,7 @@
     <!-- Air quality -->
     <string name="air_quality_level_1">极好</string>
     <string name="air_quality_level_1_description">空气质量对大多数人来说是理想的；可正常户外活动。</string>
-    <string name="air_quality_level_2">有利</string>
+    <string name="air_quality_level_2">一般</string>
     <string name="air_quality_level_2_description">空气质量对大多数人来说是可接受的。然而，敏感人群长期暴露可能会出现轻微或中度症状。</string>
     <string name="air_quality_level_3">差</string>
     <string name="air_quality_level_3_description">空气污染已经达到了很高水平，对敏感人群是不健康的。如果您感到呼吸困难或喉咙刺激等症状，应减少户外活动时间。</string>
