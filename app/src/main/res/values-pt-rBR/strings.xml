@@ -813,4 +813,6 @@
     <string name="action_allow">Permitir</string>
     <string name="action_enable">Ativar</string>
     <string name="message_outdated_server_data">Dados desatualizados recebidos do servidor</string>
+    <string name="action_open_in_other_app">Abrir em outro app</string>
+    <string name="action_open_in_other_app_description">Abrir esta localização em outro app</string>
 </resources>
