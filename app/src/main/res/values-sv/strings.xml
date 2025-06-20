@@ -130,9 +130,9 @@
     <string name="widget_style_temperature">Temperatur</string>
     <string name="widget_custom_subtitle_keyword_at_description">Nuvarande känns som-temperatur (°C/°F)</string>
     <string name="precipitation_intensity_light">Lätt</string>
-    <string name="location_search_placeholder">Sök efter en plats…</string>
+    <string name="location_search_placeholder">Sök efter en plats …</string>
     <string name="action_preview">Förhandsvisning</string>
-    <string name="location_search_no_results_advice">Se till att din sökning är rättstavad och inte för specifik. Alternativt kan du prova en annan platssökningskälla som kan ge andra resultat.</string>
+    <string name="location_search_no_results_advice">Kontrollera att din sökning är rättstavad och inte alltför specifik. Alternativt kan du prova en annan platssökningskälla, som kan ge andra resultat.</string>
     <string name="nighttime">Nattetid</string>
     <string name="precipitation">Nederbörd</string>
     <string name="location_message_permission_background_missing">Behörighet till platsåtkomst i bakgrunden saknas</string>
@@ -327,7 +327,7 @@
     <string name="ceiling">Tak</string>
     <string name="widget_text">Text</string>
     <string name="weather_message_invalid_location">Ogiltig plats, vänligen ta bort den och lägg till igen</string>
-    <string name="location_current_not_found_yet">Nuvarande plats inte funnen än…</string>
+    <string name="location_current_not_found_yet">Nuvarande plats har ännu inte hittats …</string>
     <string name="ephemeris_moon_phase_first_quarter">Tilltagande halvmåne</string>
     <string name="air_quality_o3_info_origin">Det bildas genom fotokemiska reaktioner med föroreningar som till exempel flyktiga organiska föreningar, kolmonoxid och kväveoxider (NOₓ) från fordon och industrier. På grund av dess fotokemiska natur är nivåerna av ozon som högst under perioder med soligt väder.</string>
     <string name="air_quality_no2_info_introduction">Kvävedioxid (NO₂) är en kvävande, giftig, rödbrun gas med en karaktäristisk stickande, frän lukt.</string>
@@ -596,10 +596,10 @@
     <string name="notification_precipitation_continuing_desc">Förväntas fortsätta till åtminstone %s</string>
     <string name="notification_precipitation_stopping_desc">Förväntas upphöra vid %s</string>
     <string name="location_message_updated">Plats uppdaterad</string>
-    <string name="location_message_already_exists">En plats med samma huvudsakliga väderkälla finns redan.</string>
+    <string name="location_message_already_exists">Platslistan innehåller redan denna plats med denna prognoskälla.</string>
     <string name="settings_weather_source_none">Ingen</string>
-    <string name="location_search_source">Platssök källa</string>
-    <string name="location_search_change_source">Ändra platssök källa</string>
+    <string name="location_search_source">Platssökningskälla</string>
+    <string name="location_search_change_source">Ändra platssökningskälla</string>
     <string name="temperature_feels_like_short">Känns som</string>
     <string name="dew_point_short">Daggpunkt</string>
     <string name="ceiling_short">Tak</string>
@@ -748,4 +748,6 @@
     <string name="message_outdated_server_data">Föråldrade data mottagna från server</string>
     <string name="action_allow">Tillåt</string>
     <string name="action_enable">Aktivera</string>
+    <string name="action_open_in_other_app">Öppna i en annan app</string>
+    <string name="action_open_in_other_app_description">Öppna denna plats i en annan app</string>
 </resources>
