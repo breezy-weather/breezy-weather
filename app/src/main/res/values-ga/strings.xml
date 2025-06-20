@@ -630,7 +630,7 @@
     <string name="location_current">Suíomh reatha</string>
     <string name="location_search_weather_source">Foinse aimsire</string>
     <string name="location_results_by">Torthaí suímh de réir %s</string>
-    <string name="location_message_already_exists">Tá suíomh leis an bpríomhfhoinse aimsire céanna ann cheana féin.</string>
+    <string name="location_message_already_exists">Tá an suíomh seo leis an bhfoinse réamhaisnéise seo sa liosta suíomhanna cheana féin.</string>
     <string name="location_message_deleted">Scriosadh an suíomh</string>
     <string name="location_delete_location_dialog_title">Scrios suíomh?</string>
     <string name="location_delete_location_dialog_message">Tá tú ar tí “%s” a scriosadh ó do liosta suíomhanna sábháilte.</string>
@@ -746,4 +746,6 @@
     <string name="message_outdated_server_data">Sonraí atá as dáta faighte ón bhfreastalaí</string>
     <string name="action_enable">Cumasaigh</string>
     <string name="action_allow">Ceadaigh</string>
+    <string name="action_open_in_other_app">Oscail in aip eile</string>
+    <string name="action_open_in_other_app_description">Oscail an suíomh seo in aip eile</string>
 </resources>
