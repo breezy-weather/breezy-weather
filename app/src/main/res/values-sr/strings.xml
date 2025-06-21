@@ -602,7 +602,7 @@
     <string name="notification_precipitation_continuing">Падавине</string>
     <string name="notification_precipitation_stopping">Ускоро престанак падавина</string>
     <string name="location_message_updated">Локација је ажурирана</string>
-    <string name="location_message_already_exists">Локација са истим главним извором времена већ постоји.</string>
+    <string name="location_message_already_exists">Листа локација већ садржи ову локацију са овим извором прогнозе.</string>
     <string name="settings_weather_source_none">Ниједан</string>
     <string name="location_search_source">Извор претраге локације</string>
     <string name="location_search_change_source">Промените извор претраге локације</string>
@@ -754,4 +754,6 @@
     <string name="message_outdated_server_data">Застарели подаци примљени са сервера</string>
     <string name="action_enable">Омогући</string>
     <string name="action_allow">Дозволи</string>
+    <string name="action_open_in_other_app">Отвори у другој апликацији</string>
+    <string name="action_open_in_other_app_description">Отворите ову локацију у другој апликацији</string>
 </resources>
