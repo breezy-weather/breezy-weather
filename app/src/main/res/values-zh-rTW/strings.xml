@@ -832,4 +832,6 @@
     <string name="message_outdated_server_data">從伺服器收到過期資料</string>
     <string name="action_enable">啟用</string>
     <string name="action_allow">允許</string>
+    <string name="action_open_in_other_app">在其他應用程式中開啟</string>
+    <string name="action_open_in_other_app_description">在其他應用程式中開啟此位置</string>
 </resources>
