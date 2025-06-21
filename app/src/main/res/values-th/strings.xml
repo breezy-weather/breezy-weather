@@ -511,7 +511,7 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">ไม่สามารถเปิดการตั้งค่าของอุปกรณ์ได้</string>
     <string name="settings_background_updates_battery_optimization_disabled">การเพิ่มประสิทธิภาพแบตเตอรี่ถูกปิดใช้งานอยู่แล้ว</string>
     <string name="settings_background_updates_dont_kill_my_app_title">วิธีตั้งค่าสำหรับอุปกรณ์ของผู้ผลิตเจ้าต่างๆ</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">ผู้ผลิตอุปกรณ์บางเจ้าได้สร้างข้อจำกัดของแอปเพิ่มเติมเพื่อปิดการทำงานของบริการในพื้นหลัง คุณสามารถตรวจสอบข้อมูลการแก้ไขปัญหานี้ได้ที่เว็บไซต์ Don\'t kill my app!</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">ผู้ผลิตอุปกรณ์บางเจ้าได้สร้างข้อจำกัดของแอปเพิ่มเติมเพื่อปิดการทำงานของบริการในพื้นหลัง คุณสามารถตรวจสอบข้อมูลการแก้ไขปัญหานี้ได้ที่เว็บไซต์ Don’t kill my app!</string>
     <string name="settings_location">ตำแหน่ง</string>
     <string name="settings_location_access_switch_title">การเข้าถึงตำแหน่ง</string>
     <string name="settings_location_access_background_summaryOn">เปิดใช้งานไว้แล้ว แอปจะสามารถรีเฟรชข้อมูลสภาพอากาศสำหรับตำแหน่งปัจจุบันของคุณในพื้นหลังได้</string>
