@@ -150,7 +150,7 @@
     <string name="widget_label_text_color">Colore testo</string>
     <string name="widget_label_clock_font">Font orologio</string>
     <string name="location_message_added">Località registrata con successo</string>
-    <string name="location_message_deleted">Località rimossa con successo</string>
+    <string name="location_message_deleted">Posizione rimossa</string>
     <string name="location_message_list_cannot_be_empty">La lista di località non può essere vuota</string>
     <string name="location_search_placeholder">Cerca una località…</string>
     <string name="location_current_not_found_yet">Nessuna località…</string>
@@ -616,10 +616,10 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">Istanza qualità dell’aria</string>
     <string name="alert_source">Fonte: %s</string>
     <string name="dew_point_short">Punto di rugiada</string>
-    <string name="location_delete_location_dialog_message_no_name">Stai per cancellare questa posizione dall’elenco delle posizioni salvate.</string>
+    <string name="location_delete_location_dialog_message_no_name">Stai per cancellare questa posizione dall\'elenco delle posizioni salvate.</string>
     <string name="weather_message_too_frequent_refreshes">Attendi qualche secondo prima di riprovare…</string>
     <string name="location_delete_location_dialog_title">Cancella posizione?</string>
-    <string name="location_delete_location_dialog_message">Stai per cancellare “%s” dall’elenco delle posizioni salvate.</string>
+    <string name="location_delete_location_dialog_message">Stai per cancellare “%s” dall\'elenco delle posizioni salvate.</string>
     <string name="settings_per_location">Preferenze posizione</string>
     <string name="settings_per_location_theme">Tema</string>
     <string name="settings_weather_source_open_meteo_weather_models">Modelli meteo</string>
@@ -627,7 +627,7 @@
     <string name="settings_weather_source_unavailable">%s (non disponibile)</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Indice Qualità dell’Aria attuale</string>
     <string name="location_message_updated">Posizione aggiornata</string>
-    <string name="location_message_already_exists">Esiste già una posizione con la stessa fonte meteo principale.</string>
+    <string name="location_message_already_exists">La lista dei luoghi contiene già questa posizione con questa fonte per le previsioni.</string>
     <string name="settings_weather_source_none">Nessuna</string>
     <string name="pollen_carpinus">Carpino</string>
     <string name="pollen_castanea">Castano</string>
@@ -756,4 +756,6 @@
     <string name="common_weather_text_drifting_snow">Neve che si accumula</string>
     <string name="action_allow">Permetti</string>
     <string name="common_weather_text_blowing_snow">Neve soffiata</string>
+    <string name="action_open_in_other_app_description">Apri questa posizione in un\'altra app</string>
+    <string name="action_open_in_other_app">Apri in un\'altra app</string>
 </resources>
