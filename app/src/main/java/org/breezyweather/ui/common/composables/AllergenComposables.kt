@@ -16,6 +16,7 @@
 
 package org.breezyweather.ui.common.composables
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
@@ -62,7 +63,9 @@ fun PollenGrid(
     val unit = PollenUnit.PPCM
     FlowRow(
         maxItemsInEachRow = 2,
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.normal_margin)),
         modifier = modifier
+            .padding(dimensionResource(R.dimen.normal_margin))
     ) {
         specificPollens.ifEmpty { pollen.validPollens }
             .sortedWith { va1, va2 ->
@@ -90,7 +93,8 @@ fun PollenGrid(
                             pollen.getColor(context, validPollen)
                         }
                     ),
-                    modifier = Modifier.fillMaxWidth(0.5f)
+                    modifier = Modifier
+                        .fillMaxWidth(0.5f)
                 )
             }
     }
@@ -104,23 +108,17 @@ private fun PollenItem(
     modifier: Modifier = Modifier,
 ) = Row(
     modifier = modifier,
-    verticalAlignment = Alignment.CenterVertically
+    verticalAlignment = Alignment.CenterVertically,
+    horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin))
 ) {
     Icon(
         modifier = Modifier
-            .padding(dimensionResource(R.dimen.normal_margin))
             .size(dimensionResource(R.dimen.material_icon_size)),
-        painter = painterResource(R.drawable.ic_circle_medium),
+        painter = painterResource(R.drawable.ic_circle),
         contentDescription = null,
         tint = tintColor
     )
-    Column(
-        Modifier.padding(
-            end = dimensionResource(R.dimen.normal_margin),
-            top = dimensionResource(R.dimen.normal_margin),
-            bottom = dimensionResource(R.dimen.normal_margin)
-        )
-    ) {
+    Column {
         Text(
             text = title,
             color = DayNightTheme.colors.titleColor,

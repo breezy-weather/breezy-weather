@@ -386,10 +386,10 @@
     <string name="air_quality_pm25_voice">PM dwa i pół</string>
     <string name="air_quality_pm_explanations_origin">Niektóre cząstki stałe występują naturalnie i pochodzą z wulkanów, burz pyłowych, pożarów lasów i łąk, żywej roślinności i aerozolu morskiego. Działalność człowieka taka jak ruch drogowy i transport, działalność przemysłowa, elektrownie, place budowy, spalanie odpadów, również generuje znaczne ilości cząstek stałych.</string>
     <string name="air_quality_pm_explanations_introduction">Cząstki stałe lub pył atmosferyczny to mikroskopijne cząstki materii stałej lub ciekłej zawieszone w powietrzu.</string>
-    <string name="air_quality_no2_info_title">Dwutlenek azotu (NO₂)</string>
+    <string name="air_quality_no2_full">Dwutlenek azotu (NO₂)</string>
     <string name="air_quality_o3_info_introduction">Ozon w warstwie przyziemnej (O₃) jest głównym składnikiem smogu. Mimo że jest to ta sama cząsteczka, ozon w warstwie przyziemnej może być szkodliwy dla zdrowia ludzkiego, w przeciwieństwie do ozonu stratosferycznego, który chroni Ziemię przed nadmiarem promieniowania UV.</string>
-    <string name="air_quality_so2_info_title">Dwutlenek siarki (SO₂)</string>
-    <string name="air_quality_co_info_title">Tlenek węgla II (CO)</string>
+    <string name="air_quality_so2_full">Dwutlenek siarki (SO₂)</string>
+    <string name="air_quality_co_full">Tlenek węgla II (CO)</string>
     <string name="air_quality_level_6_description">Każdy pobyt na zewnątrz, nawet przez kilka minut, może u każdego wywołać poważne skutki zdrowotne. Unikaj aktywności na zewnątrz.</string>
     <string name="air_quality_level_1_description">Jakość powietrza jest idealna dla większości osób. Można śmiało spędzać czas na zewnątrz.</string>
     <string name="air_quality_level_4_description">Osoby wrażliwe mogą od razu odczuć skutki zdrowotne. Po dłuższym przebywaniu na zewnątrz osoby zdrowe mogą mieć trudności z oddychaniem i odczuwać drapanie w gardle. Ogranicz aktywność na zewnątrz.</string>
@@ -542,7 +542,7 @@
     <string name="settings_widgets">Widżety i animowana tapeta</string>
     <string name="precipitation_nowcasting">Opady z minuty na minutę</string>
     <string name="alerts_to_follow">Dotknij tutaj, aby zobaczyć nadchodzące alerty.</string>
-    <string name="air_quality_o3_info_title">Ozon na poziomie gruntu (O₃)</string>
+    <string name="air_quality_o3_full">Ozon na poziomie gruntu (O₃)</string>
     <string name="settings_widgets_section_widgets_in_use">Widżety w użyciu</string>
     <string name="unit_lpsqmph_voice">Litrów na metr kwadratowy na godzinę</string>
     <string name="unit_mmhg_voice">Milimetrów słupa rtęci</string>

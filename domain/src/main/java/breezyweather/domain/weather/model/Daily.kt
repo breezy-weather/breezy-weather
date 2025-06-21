@@ -32,6 +32,7 @@ data class Daily(
     val night: HalfDay? = null,
     val degreeDay: DegreeDay? = null,
     val sun: Astro? = null,
+    // val twilight: Astro? = null, // TODO: Dawn and dusk
     val moon: Astro? = null,
     val moonPhase: MoonPhase? = null,
     val airQuality: AirQuality? = null,

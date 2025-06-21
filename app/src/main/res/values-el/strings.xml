@@ -243,7 +243,7 @@
     <string name="uv_alert_level">Προειδοποίηση</string>
     <string name="wind_direction_W_short">Δ</string>
     <string name="air_quality_co_voice">Μονοξείδιο του άνθρακα</string>
-    <string name="air_quality_o3_info_title">Επίγειο όζον (O₃)</string>
+    <string name="air_quality_o3_full">Επίγειο όζον (O₃)</string>
     <string name="precipitation_none">Χωρίς υετό</string>
     <string name="air_quality_pm_explanations_introduction">Τα Σωματίδια ή ατμοσφαιρική σωματιδιακή ύλη είναι μικροσκοπικά σωματίδια στερεάς ή υγρής ύλης που αιωρούνται στον αέρα.</string>
     <string name="air_quality_co">CO</string>
@@ -307,8 +307,8 @@
     <string name="ephemeris_moonset_at">Δύση σελήνης στις %s</string>
     <string name="weather_message_unsupported_feature">Η πηγή δεν υποστηρίζει ένα από τα αιτούμενα χαρακτηριστικά</string>
     <string name="weather_message_invalid_location">Μη έγκυρη τοποθεσία, παρακαλώ σβήσε και πρόσθεσε ξανά</string>
-    <string name="air_quality_no2_info_title">Διοξείδιο αζώτου (NO₂)</string>
-    <string name="air_quality_so2_info_title">Διοξείδιο του θείου (SO₂)</string>
+    <string name="air_quality_no2_full">Διοξείδιο αζώτου (NO₂)</string>
+    <string name="air_quality_so2_full">Διοξείδιο του θείου (SO₂)</string>
     <string name="air_quality_so2_info_introduction">Το διοξείδιο του θείου (SO₂) είναι ένα άχρωμο τοξικό αέριο υπεύθυνο για την μυρωδιά των καμένων σπίρτων.</string>
     <string name="ephemeris_sunset_at">Δύση στις %s</string>
     <string name="weather_air_quality_data_by">Δεδομένα ποιότητας αέρα από %s</string>
@@ -326,7 +326,7 @@
     <string name="air_quality_no2_info_consequences">Η έκθεση στο διοξείδιο του αζώτου μπορεί να ερεθίσει τους αεραγωγούς και να επιδεινώσει τις αναπνευστικές παθήσεις. Επιπλέον, το NO₂ είναι ένας σημαντικός πρόδρομος του όζοντος, ένας ρύπος που συνδέεται στενά με το άσθμα και άλλες αναπνευστικές παθήσεις.</string>
     <string name="air_quality_so2_info_origin">Εκλύεται φυσικά από ηφαιστειακή δραστηριότητα και προέρχεται κυρίως από την καύση ορυκτών καυσίμων για οικιακή θέρμανση, εργοστάσια και παραγωγή ενέργειας.</string>
     <string name="air_quality_so2_info_consequences">Η έκθεση στο SO₂ σχετίζεται με εισαγωγή στο νοσοκομείο λόγω άσθματος και επίσκεψη στα επείγοντα.</string>
-    <string name="air_quality_co_info_title">Μονοξείδιο του άνθρακα (CO)</string>
+    <string name="air_quality_co_full">Μονοξείδιο του άνθρακα (CO)</string>
     <string name="air_quality_co_info_consequences">Το μονοξείδιο του άνθρακα διαχέεται στους ιστούς των πνευμόνων και στην κυκλοφορία του αίματος, καθιστώντας δύσκολη τη σύνδεση των κυττάρων του σώματος με το οξυγόνο. Αυτή η έλλειψη οξυγόνου βλάπτει τους ιστούς και τα κύτταρα. Η έκθεση στο μονοξείδιο του άνθρακα μπορεί να προκαλέσει δυσκολία στην αναπνοή, εξάντληση, ζάλη και άλλα συμπτώματα που μοιάζουν με γρίπη. Η έκθεση σε υψηλά επίπεδα μονοξειδίου του άνθρακα μπορεί να είναι θανατηφόρα.</string>
     <string name="weather_api_limit_reached_content">Για να παρακάμψεις το όριο, πρόσθεσε το δικό σου κλειδί API.</string>
     <string name="pollen_level_4">Υψηλή</string>

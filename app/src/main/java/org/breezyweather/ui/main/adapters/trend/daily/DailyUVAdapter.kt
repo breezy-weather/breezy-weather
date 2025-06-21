@@ -26,6 +26,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.UV
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
 import org.breezyweather.common.extensions.format
 import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.domain.weather.model.getContentDescription
@@ -93,6 +94,9 @@ class DailyUVAdapter(
             )
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 1f else 0.5f)
             dailyItem.contentDescription = talkBackBuilder.toString()
+            dailyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, ChartDisplay.TAG_UV_INDEX)
+            }
         }
     }
 
@@ -119,8 +123,8 @@ class DailyUVAdapter(
         val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                UV.UV_INDEX_HIGH.toFloat(),
-                UV.UV_INDEX_HIGH.format(0),
+                UV.UV_INDEX_MIDDLE.toFloat(),
+                UV.UV_INDEX_MIDDLE.format(0),
                 activity.getString(R.string.uv_alert_level),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

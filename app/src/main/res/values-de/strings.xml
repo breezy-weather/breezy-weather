@@ -483,12 +483,12 @@
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_pm_info_title">Feinstaub (PM2.5 &amp; PM10)</string>
-    <string name="air_quality_no2_info_title">Stickstoffdioxid (NO₂)</string>
-    <string name="air_quality_so2_info_title">Schwefeldioxid (SO₂)</string>
-    <string name="air_quality_co_info_title">Kohlenstoffmonoxid (CO)</string>
+    <string name="air_quality_no2_full">Stickstoffdioxid (NO₂)</string>
+    <string name="air_quality_so2_full">Schwefeldioxid (SO₂)</string>
+    <string name="air_quality_co_full">Kohlenstoffmonoxid (CO)</string>
     <string name="action_close">Schließen</string>
     <string name="air_quality_pm25">PM2.5</string>
-    <string name="air_quality_o3_info_title">Bodennahes Ozon (O₃)</string>
+    <string name="air_quality_o3_full">Bodennahes Ozon (O₃)</string>
     <string name="air_quality_pm_explanations_introduction">Feinstaub besteht aus in der Umgebungsluft schwebenden, festen oder flüssigen Partikeln.</string>
     <string name="air_quality_pm_explanations_origin">Manche Partikel treten natürlicherweise auf und haben ihren Ursprung in Vulkanen, Sandstürmen, Wald- und Flächenbränden, lebenden Organismen sowie Meeresgischt. Menschliche Aktivitäten erzeugen ebenfalls signifikante Mengen an Feinstaub, wie durch Verkehr, Industrie, Kraftwerke, Bauwirtschaft, Müllverbrennung oder Landwirtschaft.</string>
     <string name="air_quality_pm_explanations_consequences">Feinstaub ist durch seine Fähigkeit, bis tief ins Lungen- und über die Blutgefäße ins Hirngewebe vorzudringen die gefährlichste Art der Luftbelastung, was Gesundheitsschäden wie Herz-und Lungenkrankheiten sowie einen vorzeitigen Tod verursachen kann.</string>

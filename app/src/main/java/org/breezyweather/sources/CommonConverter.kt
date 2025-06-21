@@ -564,7 +564,13 @@ internal fun completeDailyListFromHourlyList(
             // We check that the sunrise is indeed between 00:00 and 23:59 that day
             // (many sources unfortunately return next day!)
             if (daily.sun!!.riseDate!! in daily.date..<nextDayAtMidnight) {
-                daily.sun!!
+                if (daily.sun!!.riseDate!! == daily.sun!!.setDate) {
+                    // Some sources return rising and setting at 00:00 when the sun doesn’t rise
+                    // Fixing to return the expected format
+                    Astro(null, null)
+                } else {
+                    daily.sun
+                }
             } else {
                 getCalculatedAstroSun(daily.date, location.longitude, location.latitude)
             }
@@ -588,7 +594,13 @@ internal fun completeDailyListFromHourlyList(
                 // We check that the moonrise is indeed between 00:00 and 23:59 that day
                 // (many sources unfortunately return next day!)
                 if (daily.moon!!.riseDate!! in daily.date..<nextDayAtMidnight) {
-                    daily.moon
+                    if (daily.sun!!.riseDate!! == daily.sun!!.setDate) {
+                        // Some sources return rising and setting at 00:00 when the moon doesn’t rise
+                        // Fixing to return the expected format
+                        Astro(null, null)
+                    } else {
+                        daily.moon
+                    }
                 } else {
                     getCalculatedAstroMoon(daily.date, location.longitude, location.latitude)
                 }
@@ -1165,10 +1177,21 @@ private fun getHalfDayPrecipitationProbabilityFromHourlyList(
 private fun getHalfDayWindFromHourlyList(
     halfDayHourlyList: List<HourlyWrapper>,
 ): Wind? {
-    return halfDayHourlyList
+    val maxWind = halfDayHourlyList
         .filter { it.wind?.speed != null }
         .maxByOrNull { it.wind!!.speed!! }
         ?.wind
+    val maxWindGusts = halfDayHourlyList
+        .filter { it.wind?.gusts != null }
+        .maxByOrNull { it.wind!!.gusts!! }
+        ?.wind?.gusts
+    return if (maxWindGusts == null || maxWindGusts == maxWind?.gusts) {
+        maxWind
+    } else {
+        maxWind?.copy(
+            gusts = maxWindGusts
+        )
+    }
 }
 
 private fun getHalfDayCloudCoverFromHourlyList(

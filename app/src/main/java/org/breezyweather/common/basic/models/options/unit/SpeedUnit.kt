@@ -17,6 +17,8 @@
 package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
+import android.graphics.Color
+import androidx.annotation.ColorInt
 import breezyweather.domain.weather.model.Wind
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitEnum
@@ -55,6 +57,51 @@ enum class SpeedUnit(
     ;
 
     companion object {
+        val beaufortScaleThresholds = listOf(
+            0.0,
+            Wind.WIND_SPEED_0,
+            Wind.WIND_SPEED_1,
+            Wind.WIND_SPEED_2,
+            Wind.WIND_SPEED_3,
+            Wind.WIND_SPEED_4,
+            Wind.WIND_SPEED_5,
+            Wind.WIND_SPEED_6,
+            Wind.WIND_SPEED_7,
+            Wind.WIND_SPEED_8,
+            Wind.WIND_SPEED_9,
+            Wind.WIND_SPEED_10,
+            Wind.WIND_SPEED_11
+        )
+
+        fun getBeaufortScaleStrength(
+            context: Context,
+            windSpeedInDefaultUnit: Double?,
+        ): String? {
+            if (windSpeedInDefaultUnit == null) return null
+            return when (windSpeedInDefaultUnit) {
+                in 0.0..Wind.WIND_SPEED_0 -> context.getString(R.string.wind_strength_0)
+                in Wind.WIND_SPEED_0..Wind.WIND_SPEED_1 -> context.getString(R.string.wind_strength_1)
+                in Wind.WIND_SPEED_1..Wind.WIND_SPEED_2 -> context.getString(R.string.wind_strength_2)
+                in Wind.WIND_SPEED_2..Wind.WIND_SPEED_3 -> context.getString(R.string.wind_strength_3)
+                in Wind.WIND_SPEED_3..Wind.WIND_SPEED_4 -> context.getString(R.string.wind_strength_4)
+                in Wind.WIND_SPEED_4..Wind.WIND_SPEED_5 -> context.getString(R.string.wind_strength_5)
+                in Wind.WIND_SPEED_5..Wind.WIND_SPEED_6 -> context.getString(R.string.wind_strength_6)
+                in Wind.WIND_SPEED_6..Wind.WIND_SPEED_7 -> context.getString(R.string.wind_strength_7)
+                in Wind.WIND_SPEED_7..Wind.WIND_SPEED_8 -> context.getString(R.string.wind_strength_8)
+                in Wind.WIND_SPEED_8..Wind.WIND_SPEED_9 -> context.getString(R.string.wind_strength_9)
+                in Wind.WIND_SPEED_9..Wind.WIND_SPEED_10 -> context.getString(R.string.wind_strength_10)
+                in Wind.WIND_SPEED_10..Wind.WIND_SPEED_11 -> context.getString(R.string.wind_strength_11)
+                in Wind.WIND_SPEED_11..Double.MAX_VALUE -> context.getString(R.string.wind_strength_12)
+                else -> null
+            }
+        }
+
+        val colorsArrayId = R.array.wind_strength_colors
+
+        @ColorInt
+        fun getBeaufortScaleColor(context: Context, bf: Int): Int {
+            return context.resources.getIntArray(colorsArrayId).getOrNull(bf) ?: Color.TRANSPARENT
+        }
 
         fun getInstance(
             value: String,

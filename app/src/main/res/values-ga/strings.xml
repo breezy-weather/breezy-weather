@@ -89,7 +89,7 @@
     <string name="air_quality_o3_info_introduction">Is cuid mhór den smog é ózón ar leibhéal na talún (O₃). Cé go bhfuil an móilín céanna, is féidir le ózón ar leibhéal na talún a bheith díobhálach do shláinte an duine, murab ionann agus ózón strataisféarach a chosnaíonn an domhan ó radaíocht UV iomarcach.</string>
     <string name="air_quality_o3_info_origin">Cruthaítear é ó imoibrithe fótaiceimiceacha le truailleáin ar nós comhdhúile so-ghalaithe orgánacha, aonocsaíd charbóin agus ocsaídí nítrigine (NOₓ) a astaítear ó fheithiclí, agus ón tionscal. Mar gheall ar an nádúr fótaiceimiceach, feictear na leibhéil is airde ózóin le linn tréimhsí aimsire grianmhara.</string>
     <string name="air_quality_o3_info_consequences">Is féidir le nochtadh d’ózón iomarcach fadhbanna análaithe a chruthú, plúchadh a spreagadh, feidhm scamhóg a laghdú agus galar scamhóg a bheith mar thoradh air.</string>
-    <string name="air_quality_no2_info_title">Dé-ocsaíd nítrigine (NO₂)</string>
+    <string name="air_quality_no2_full">Dé-ocsaíd nítrigine (NO₂)</string>
     <string name="air_quality_no2_info_introduction">Dé-ocsaíd nítrigine (NO₂) Is gás suffocating, tocsaineach reddish-donn le pungent tréith, boladh acrid.</string>
     <string name="air_quality_no2_info_origin">Foinsí comhthimpeallacha NÍL ₂ torthaí ó dhó teocht ard breoslaí i bpróisis ar nós iad siúd a úsáidtear le haghaidh téimh, iompar, tionscal agus giniúint cumhachta. I measc na bhfoinsí tí ocsaídí nítrigine (NOₓ) tá trealamh a dhónn breoslaí amhail foirnéisí, teallaigh agus soirn gáis agus oighinn.</string>
     <string name="air_quality_no2_info_consequences">Is féidir le nochtadh do dhé-ocsaíd nítrigine greim a fháil ar aerbhealaí agus galair riospráide a ghéarú. Ina theannta sin, is réamhtheachtaí ózóin tábhachtach é NO₂, truailleán a bhfuil dlúthbhaint aige le plúchadh agus le dálaí riospráide eile.</string>
@@ -619,9 +619,9 @@
     <string name="uv_index_8_10">An-ard</string>
     <string name="air_quality_level_6">Contúirteach</string>
     <string name="air_quality_pm_info_title">Cáithníní (PM2.5 &amp; PM10)</string>
-    <string name="air_quality_o3_info_title">Ózón ar leibhéal na talún (O₃)</string>
-    <string name="air_quality_so2_info_title">Dé-ocsaíd sulfair (SO₂)</string>
-    <string name="air_quality_co_info_title">Aonocsaíd charbóin (CO)</string>
+    <string name="air_quality_o3_full">Ózón ar leibhéal na talún (O₃)</string>
+    <string name="air_quality_so2_full">Dé-ocsaíd sulfair (SO₂)</string>
+    <string name="air_quality_co_full">Aonocsaíd charbóin (CO)</string>
     <string name="pollen_quercus">Darach</string>
     <string name="pollen_rumex">Samhadh</string>
     <string name="pollen_salix">Saileach</string>

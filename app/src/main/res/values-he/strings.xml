@@ -96,7 +96,7 @@
     <string name="air_quality_pm_explanations_introduction">חלקיקי חומר הם שברים קטנים של חומר נוזלי או מוצק הנמצאים באוויר.</string>
     <string name="air_quality_so2_voice">גופרית דו-חמצנית</string>
     <string name="air_quality_pm_explanations_consequences">חומר חלקיקי הוא מזהם האוויר המסוכן ביותר משום שהוא חודר עמוק לתוך הריאות ואף למוח דרך מחזור הדם, וגורם לבעיות בריאותיות כגון מחלות לב, ריאה ומוות מוקדם.</string>
-    <string name="air_quality_o3_info_title">אוזון בגובה הקרקע (O₃)</string>
+    <string name="air_quality_o3_full">אוזון בגובה הקרקע (O₃)</string>
     <string name="air_quality_no2_info_introduction">חנקן דו-חמצני (NO₂) הוא גז חום-אדמדם מחניק ורעיל בעל ריח אופייני חריף וחזק.</string>
     <string name="air_quality_level_4">לא בריא</string>
     <string name="air_quality_level_5">מאוד לא בריא</string>
@@ -109,8 +109,8 @@
     <string name="air_quality_o3_info_introduction">אוזון בגובה הקרקע (O₃) הוא מרכיב עיקרי בערפיך. למרות שמדובר באותו מולקולה, אוזון בגובה הקרקע עלול להזיק לבריאות האדם, בניגוד לאוזון הסטרטוספרי המגן על כדור הארץ מעודף קרינת UV.</string>
     <string name="air_quality_o3_info_origin">הוא נוצר מתגובות פוטוכימיות עם מזהמים כמו תרכובות אורגניות נדיפות, פחמן חד-חמצני ותחמוצות חנקן (NOₓ) הנפלטים מכלי רכב ותעשייה. בשל אופיו הפוטוכימי, רמות האוזון הגבוהות ביותר נצפות בתקופות של מזג אוויר שמשי.</string>
     <string name="air_quality_o3_info_consequences">חשיפה לאוזון בכמות גבוהה עלולה לגרום לבעיות נשימה, להחמיר אסטמה, להפחית את תפקודי הריאות ולהוביל למחלות ריאה.</string>
-    <string name="air_quality_no2_info_title">חנקן דו-חמצני (NO₂)</string>
-    <string name="air_quality_so2_info_title">גופרית דו-חמצנית (SO₂)</string>
+    <string name="air_quality_no2_full">חנקן דו-חמצני (NO₂)</string>
+    <string name="air_quality_so2_full">גופרית דו-חמצנית (SO₂)</string>
     <string name="pollen_tree">עץ</string>
     <string name="pollen_alnus">אלמון</string>
     <string name="settings_background_updates_section_troubleshoot">איתור תקלות</string>
@@ -137,7 +137,7 @@
     <string name="settings_background_updates_refresh_skip_when_battery_low">התעלם כאשר הסוללה חלשה</string>
     <string name="widget_week_style_5_days">5 ימים</string>
     <string name="widget_week_style_3_days">3 ימים</string>
-    <string name="air_quality_co_info_title">פחמן חד-חמצני (CO)</string>
+    <string name="air_quality_co_full">פחמן חד-חמצני (CO)</string>
     <string name="pollen_mold">עובש</string>
     <string name="pollen_quercus">אלון</string>
     <string name="pollen_castanea">עץ ערמונים</string>

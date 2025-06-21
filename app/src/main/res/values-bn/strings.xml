@@ -110,11 +110,11 @@
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_co">CO</string>
-    <string name="air_quality_no2_info_title">নাইট্রোজেন ডাইঅক্সাইড (NO₂)</string>
+    <string name="air_quality_no2_full">নাইট্রোজেন ডাইঅক্সাইড (NO₂)</string>
     <string name="air_quality_no2_info_introduction">নাইট্রোজেন ডাইঅক্সাইড (NO₂) হলো একটি সংকোচনশীল, বিষাক্ত, লাল-বাদামী গ্যাস যা একটি চরিত্রসংযুক্ত তীব্র দুর্গন্ধযুক্ত, তীব্র গন্ধ থাকে।</string>
-    <string name="air_quality_so2_info_title">সালফার ডাইঅক্সাইড (SO₂)</string>
+    <string name="air_quality_so2_full">সালফার ডাইঅক্সাইড (SO₂)</string>
     <string name="air_quality_so2_info_origin">এটি প্রাকৃতিকভাবে উত্পন্ন হয় যা আপেক্ষিকভাবে জ্বলন্ত জীবাশ্ম প্রদান করে এবং বাস্তুসংস্থানের জন্য প্রাণিসংস্কার, শিল্প এবং বিদ্যুৎ উৎপাদনের জন্য প্রাকৃতিক গ্যাস ব্যবহার করা হয়।</string>
-    <string name="air_quality_co_info_title">কার্বন মনোক্সাইড (CO)</string>
+    <string name="air_quality_co_full">কার্বন মনোক্সাইড (CO)</string>
     <string name="air_quality_co_info_introduction">কার্বন মনোক্সাইড (CO) একটি বিষাক্ত, দাহ্য গ্যাস যা বর্ণহীন, অদৃশ্য, অস্বাদী এবং অসহনীয়।</string>
     <string name="pollen_tree">পরাগ গাছ</string>
     <string name="pollen_alnus">ভূর্জজাতীয় বৃক্ষবিশেষ</string>
@@ -174,7 +174,7 @@
     <string name="weather_source_accu_preference_days_1">১ দিন</string>
     <string name="air_quality_pm10">পা. প. ১০</string>
     <string name="air_quality_pm25">পা. প. ২.৫</string>
-    <string name="air_quality_o3_info_title">ভূমি স্তরে ওজোন</string>
+    <string name="air_quality_o3_full">ভূমি স্তরে ওজোন</string>
     <string name="air_quality_o3_info_origin">এটি ছবিবিজ্ঞানিক প্রতিক্রিয়ার মাধ্যমে গঠিত হয় যেমন বায়ুমণ্ডলে থাকা প্রদূষণকারী উদ্ভিদ্যুত যৌগ, কার্বন মনোক্সাইড এবং নাইট্রোজেন অক্সাইড (NOₓ) যা যানবাহন এবং শিল্প থেকে বিস্ফোরণ করে। ছবিবিজ্ঞানিক প্রকৃতির কারণে, সবচেয়ে উচ্চ মাত্রার ওজোন সূর্যময় আবহাওয়ার সময়ে দেখা যায়।</string>
     <string name="air_quality_no2_info_consequences">নাইট্রোজেন ডাইঅক্সাইডের সম্পর্কে অভিজ্ঞতা শ্বাসযন্ত্রগুলি উত্তেজনা করতে পারে এবং শ্বাসযন্ত্র রোগের অবস্থা খারাপ করতে পারে। উত্তেজনা করতে পারে এবং অন্যান্য শ্বাসযন্ত্র অবস্থার সঙ্গে ঘনিষ্ঠভাবে সংযুক্ত একটি দূষণ হিসাবে এনও২ অতি গুরুত্বপূর্ণ ওজন পূর্বক।</string>
     <string name="air_quality_so2_info_consequences">এসও২ এর প্রতিভাবে পরিচিতি হলে হাসপাতালে ভর্তি এবং জরুরি কক্ষে ভিজিটের সম্ভাবনা বেড়ে যায়।</string>

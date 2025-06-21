@@ -210,10 +210,10 @@
     <string name="wind_strength">Moč vetra</string>
     <string name="air_quality_pm25_voice">Prašni delci dva cela pet</string>
     <string name="air_quality_pm10">PM10</string>
-    <string name="air_quality_o3_info_title">Prizemni ozon (O₃)</string>
-    <string name="air_quality_no2_info_title">Dušikov dioksid (NO₂)</string>
+    <string name="air_quality_o3_full">Prizemni ozon (O₃)</string>
+    <string name="air_quality_no2_full">Dušikov dioksid (NO₂)</string>
     <string name="air_quality_no2_info_origin">Viri NO₂ v okolju nastajajo pri visokotemperaturnem izgorevanju goriv v procesih, ki se uporabljajo za ogrevanje, prevoz, industrijo in proizvodnjo električne energije. Viri dušikovih oksidov (NOₓ) v gospodinjstvih vključujejo opremo, ki kuri goriva, kot so peči, kamini ter plinski štedilniki in pečice.</string>
-    <string name="air_quality_so2_info_title">Žveplov dioksid (SO₂)</string>
+    <string name="air_quality_so2_full">Žveplov dioksid (SO₂)</string>
     <string name="air_quality_so2_info_origin">V naravi se sprošča pri vulkanski dejavnosti, večinoma pa nastaja pri zgorevanju fosilnih goriv za ogrevanje gospodinjstev, v industriji in pri proizvodnji električne energije.</string>
     <string name="cloud_cover">Oblačnost</string>
     <string name="precipitation_snow">Sneg</string>
@@ -247,7 +247,7 @@
     <string name="air_quality_so2_info_introduction">Žveplov dioksid (SO₂) je brezbarvni strupeni plin, ki ima vonj po zažganih vžigalicah.</string>
     <string name="air_quality_index">Indeks kakovosti zraka</string>
     <string name="air_quality_pm25">PM2.5</string>
-    <string name="air_quality_co_info_title">Ogljikov monoksid (CO)</string>
+    <string name="air_quality_co_full">Ogljikov monoksid (CO)</string>
     <string name="air_quality_co_info_introduction">Ogljikov monoksid (CO) je strupen, vnetljiv plin, ki je brez barve, vonja in okusa ter ni dražeč.</string>
     <string name="alerts_to_follow">Če si želite ogledati prihajajoča opozorila, se dotaknite tukaj.</string>
     <string name="wind_direction_SW_short">JZ</string>
