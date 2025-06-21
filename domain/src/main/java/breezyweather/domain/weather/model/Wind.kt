@@ -70,5 +70,13 @@ data class Wind(
         const val WIND_SPEED_9 = 24.4
         const val WIND_SPEED_10 = 28.4
         const val WIND_SPEED_11 = 32.6
+
+        // Extended scale, not official but may be used in the daily chart in the future, just in case
+        const val WIND_SPEED_12 = 36.9
+        const val WIND_SPEED_13 = 41.4
+        const val WIND_SPEED_14 = 46.1
+        const val WIND_SPEED_15 = 50.9
+        const val WIND_SPEED_16 = 56.0
+        const val WIND_SPEED_17 = 61.2
     }
 }

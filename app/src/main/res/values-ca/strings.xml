@@ -317,7 +317,7 @@
     <string name="settings_widgets_notification_style_title">Estil</string>
     <string name="settings_background_updates_refresh_title">Freqüència de refresc</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
-    <string name="air_quality_so2_info_title">Diòxid de sofre (SO₂)</string>
+    <string name="air_quality_so2_full">Diòxid de sofre (SO₂)</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorar quan la bateria està baixa</string>
     <string name="air_quality_pm_info_title">Partícules (PM2,5 i PM10)</string>
     <string name="location_message_reverse_geocoding_failed">La font meteorològica no ha trobat una ubicació coincident</string>
@@ -363,7 +363,7 @@
     <string name="common_weather_text_snow_heavy">Neu intensa</string>
     <string name="settings_main">Pantalla principal</string>
     <string name="settings_debug_dump_crash_logs_summary">Desa registres d’error en un fitxer per compartir-los amb els desenvolupadors</string>
-    <string name="air_quality_o3_info_title">Ozó a nivell del sòl (O₃)</string>
+    <string name="air_quality_o3_full">Ozó a nivell del sòl (O₃)</string>
     <string name="settings_notifications_summary">Notificacions d’alertes meteorològiques, precipitacions i pronòstic de la primera ubicació</string>
     <string name="common_weather_text_rain_freezing_heavy">Pluja gelada intensa</string>
     <string name="widget_clock_font_analog">Analog</string>
@@ -414,7 +414,7 @@
     <string name="common_weather_text_rain_freezing">Pluja gelada</string>
     <string name="air_quality_no2_info_introduction">El diòxid de nitrogen (NO₂) és un gas asfixiant i tòxic de color marró vermellós amb una olor punxent i acre característica.</string>
     <string name="location_results_by">Resultats d’ubicació per %s</string>
-    <string name="air_quality_no2_info_title">Diòxid de nitrogen (NO₂)</string>
+    <string name="air_quality_no2_full">Diòxid de nitrogen (NO₂)</string>
     <string name="common_weather_text_rain_snow_mixed_light">Aiguaneu dèbil</string>
     <string name="settings_notifications_precipitations_title">Notificacions de precipitacions</string>
     <string name="message_source_not_installed_error_title">La font ja no està disponible</string>
@@ -554,7 +554,7 @@
     <string name="ephemeris_moonset_at">Posta de la lluna a les %s</string>
     <string name="air_quality_level_4_description">Els grups sensibles poden sentir immediatament els efectes sobre la salut. Les persones sanes poden experimentar dificultat per respirar i irritació de gola amb una exposició prolongada. Limitar l’activitat a l’aire lliure.</string>
     <string name="widget_style_nano">Nano</string>
-    <string name="air_quality_co_info_title">Monòxid de carboni (CO)</string>
+    <string name="air_quality_co_full">Monòxid de carboni (CO)</string>
     <string name="weather_source_accu_preference_hours_240">240 hores</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Ruixats mixtes de pluja intensa i neu</string>
     <string name="weather_alert_data_by">Dades d’alerta per %s</string>

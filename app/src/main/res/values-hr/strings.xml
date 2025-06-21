@@ -35,7 +35,7 @@
     <string name="pollen_tree">Stablo</string>
     <string name="wind_direction_S_short">J</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Geografska dužina</string>
-    <string name="air_quality_so2_info_title">Sumporov dioksid (SO₂)</string>
+    <string name="air_quality_so2_full">Sumporov dioksid (SO₂)</string>
     <string name="widget_label_text_size">Veličina teksta</string>
     <string name="uv_index">UV indeks</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Dnevni vjetar danas, sutra, …, 4 dana kasnije</string>
@@ -109,7 +109,7 @@
     <string name="widget_subtitle_data_time">Vrijeme osvježavanja</string>
     <string name="settings_main">Glavni ekran</string>
     <string name="settings_debug_dump_crash_logs_summary">Sprema zapisnike grešaka u datoteku za dijeljenje sa programerima</string>
-    <string name="air_quality_o3_info_title">Prizemni ozon (O₃)</string>
+    <string name="air_quality_o3_full">Prizemni ozon (O₃)</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Dnevna temperatura danas, sutra, …, 4 dana kasnije (°C/°F)</string>
     <string name="air_quality_level_1_description">Kvaliteta zraka savršena je za većinu osoba. Uživajte u uobičajenim aktivnostima na otvorenom.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Trenutačna vlaga</string>
@@ -184,7 +184,7 @@
     <string name="widget_custom_subtitle_keyword_xntd_description">Noćna temperatura danas, sutra, …, 4 dana kasnije (°)</string>
     <string name="air_quality_no2_info_introduction">Dušikov dioksid (NO₂) je zagušljiv, toksični crveno-smeđi plin sa karakterističnim oporim, oštrim mirisom.</string>
     <string name="location_results_by">Rezultati lokacije: %s</string>
-    <string name="air_quality_no2_info_title">Dušikov dioksid (NO₂)</string>
+    <string name="air_quality_no2_full">Dušikov dioksid (NO₂)</string>
     <string name="wind_strength_0">Tišina</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Geografska širina</string>
@@ -381,7 +381,7 @@
     <string name="ephemeris_moonset_at">Zalazak mjeseca u %s</string>
     <string name="air_quality_level_4_description">Osjetljive skupine mogu odmah osjetiti zdravstvene učinke. Zdrave osobe možda će otežano disati i osjetiti iritaciju grla ako budu dulje izložene. Ograničite aktivnosti na otvorenom.</string>
     <string name="widget_style_nano">Nano</string>
-    <string name="air_quality_co_info_title">Ugljikov monoksid (CO)</string>
+    <string name="air_quality_co_full">Ugljikov monoksid (CO)</string>
     <string name="weather_source_accu_preference_hours_240">240 sati</string>
     <string name="weather_alert_data_by">Podatci o upozorenjima od %s</string>
     <string name="settings_units_pressure">Jedinica za tlak</string>

@@ -26,7 +26,7 @@ enum class HourlyTrendDisplay(
     @StringRes val nameId: Int,
 ) : BaseEnum {
 
-    TAG_TEMPERATURE("temperature", R.string.temperature),
+    TAG_TEMPERATURE("temperature", R.string.conditions),
     TAG_AIR_QUALITY("air_quality", R.string.air_quality),
     TAG_WIND("wind", R.string.wind),
     TAG_UV_INDEX("uv_index", R.string.uv_index),

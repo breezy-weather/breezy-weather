@@ -96,7 +96,7 @@
     <string name="air_quality_no2_info_origin">Амбиенталните извори на NO2 произлегуваат од високотемпературното согорување на горивата во процеси како што се оние што се користат за греење, транспорт, индустрија и производство на електрична енергија. Домаќинските извори на азотни оксиди (NOₓ) вклучуваат опрема што согорува горива како што се печки, камини и шпорети и печки на гас.</string>
     <string name="air_quality_no2_info_consequences">Изложеноста на азот диоксид може да ги иритира дишните патишта и да ги влоши респираторните заболувања. Дополнително, NO2 е важен претходник на озонот, загадувач тесно поврзан со астма и други респираторни состојби.</string>
     <string name="air_quality_so2_info_origin">Се ослободува природно од вулканска активност и претежно се добива од согорувањето на фосилни горива за домашно греење, индустрии и производство на електрична енергија.</string>
-    <string name="air_quality_co_info_title">Јаглерод моноксид (CO)</string>
+    <string name="air_quality_co_full">Јаглерод моноксид (CO)</string>
     <string name="air_quality_co_info_consequences">Јаглерод моноксидот дифузира низ белодробните ткива и во крвотокот, што го отежнува поврзувањето на клетките на телото со кислородот. Овој недостаток на кислород ги оштетува ткивата и клетките. Изложеноста на јаглерод моноксид може да предизвика тешкотии при дишењето, исцрпеност, вртоглавица и други симптоми слични на грип. Изложеноста на високо ниво на јаглерод моноксид може да биде смртоносна.</string>
     <string name="pollen_ambrosia">ајдучка трева</string>
     <string name="pollen_mold">Мувла</string>
@@ -396,11 +396,11 @@
     <string name="precipitation_duration">Времетраење на врнежите</string>
     <string name="precipitation_none">Нема врнежи</string>
     <string name="precipitation_between_time">Врнежи помеѓу %1$s и %2$s</string>
-    <string name="air_quality_o3_info_title">Приземен озон (O3)</string>
+    <string name="air_quality_o3_full">Приземен озон (O3)</string>
     <string name="air_quality_o3_info_consequences">Изложеноста на прекумерен озон може да предизвика проблеми со дишењето, да предизвика астма, да ја намали функцијата на белите дробови и да доведе до белодробни заболувања.</string>
-    <string name="air_quality_no2_info_title">Азот диоксид (NO2)</string>
+    <string name="air_quality_no2_full">Азот диоксид (NO2)</string>
     <string name="air_quality_no2_info_introduction">Азот диоксид (NO2) е задушувачки, токсичен црвено-кафеав гас со карактеристичен остар, остар мирис.</string>
-    <string name="air_quality_so2_info_title">Сулфур диоксид (SO2)</string>
+    <string name="air_quality_so2_full">Сулфур диоксид (SO2)</string>
     <string name="air_quality_so2_info_introduction">Сулфур диоксид (SO2) е безбоен токсичен гас одговорен за мирисот на изгорените кибритчиња.</string>
     <string name="air_quality_so2_info_consequences">Изложеноста на SO2 е поврзана со приеми во болница за астма и со посети на итната медицинска помош.</string>
     <string name="air_quality_co_info_introduction">Јаглерод моноксид (CO) е отровен, запалив гас кој е безбоен, без мирис, без вкус и не иритирачки.</string>

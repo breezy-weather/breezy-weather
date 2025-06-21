@@ -78,9 +78,9 @@
     <string name="air_quality_pm_info_title">Partikulak (PM2.5 &amp; PM10)</string>
     <string name="air_quality_pm_explanations_introduction">Partikulak edo material partikulatu atmosferikoa airean esekitako materia solidoko edo likidoko partikula mikroskopikoak dira.</string>
     <string name="air_quality_pm_explanations_origin">Partikula batzuk modu naturalean sortzen dira, sumendiek, hauts-ekaitzek, baso- eta belardi-suteek, landaredi biziak eta itsas ihintzak eraginda. Giza jarduerek ere partikula kopuru esanguratsuak sortzen dituzte, hala nola trafikoa eta garraioa, industria-jarduerak, zentral elektrikoak, eraikuntza-obrak, hondakinen erreketa edo laborantza-eremuak.</string>
-    <string name="air_quality_no2_info_title">Nitrogeno dioxidoa (NO₂)</string>
-    <string name="air_quality_so2_info_title">Sulfur dioxidoa (SO₂)</string>
-    <string name="air_quality_co_info_title">Karbono monoxidoa (CO)</string>
+    <string name="air_quality_no2_full">Nitrogeno dioxidoa (NO₂)</string>
+    <string name="air_quality_so2_full">Sulfur dioxidoa (SO₂)</string>
+    <string name="air_quality_co_full">Karbono monoxidoa (CO)</string>
     <string name="pollen_tree">Zuhaitza</string>
     <string name="pollen_alnus">Haltza</string>
     <string name="pollen_betula">Urkia</string>
@@ -363,7 +363,7 @@
     <string name="air_quality_level_3_description">Airea kutsadura-maila handira iritsi da, eta osasungaitza da talde sentikorrentzat. Murriztu aire zabalean igarotzen duzun denbora, arnasa hartzeko zailtasun edo eztarriko narritadura gisako sintomak sentitzen badituzu.</string>
     <string name="air_quality_level_4_description">Talde sentikorrek ondorio kaltegarriak senti ditzakete berehala beren osasunean. Pertsona osasuntsuek zailtasunak izan ditzakete arnasa hartzeko eta eztarria narritatzeko esposizio luze baten aurrean. Mugatu aire zabaleko jarduera.</string>
     <string name="air_quality_level_5_description">Talde sentikorrek ondorio kaltegarriak izango dituzte berehala beren osasunean. Litekeena da pertsona osasuntsuek arnasa hartzeko zailtasunak eta eztarriko narritadura izatea; barrualdean geratzea eta aire zabaleko jarduerak birprogramatzea baloratu.</string>
-    <string name="air_quality_o3_info_title">Ozono troposferiko (O₃)</string>
+    <string name="air_quality_o3_full">Ozono troposferiko (O₃)</string>
     <string name="air_quality_o3_info_introduction">Lurzoru-mailako ozono troposferikoa (O₃) smogaren osagai nagusietako bat da. Molekula bera izan arren, ozono troposferikoa kaltegarria izan daiteke gizakien osasunerako, ozono estratosferikoa ez bezala, Lurra UV gehiegitik babesten baitu.</string>
     <string name="air_quality_o3_info_consequences">Ozonoarekiko gehiegizko esposizioak arnasketa-arazoak eragin ditzake, asma eragin, biriketako gaitasuna murriztu eta biriketako gaixotasunak eragin.</string>
     <string name="air_quality_so2_info_origin">Naturan, jarduera bolkanikoaren bidez askatzen da, eta, batez ere, etxeko berokuntzarako, industriarako eta energia sortzeko erregai fosilak erretzearen ondorioz sortzen da.</string>

@@ -381,8 +381,8 @@
     <string name="unit_h">h</string>
     <string name="notification_channel_alerts">Výstrahy</string>
     <string name="common_weather_text_clear_sky">Jasno</string>
-    <string name="air_quality_o3_info_title">Přízemní (troposférický) ozon (O₃)</string>
-    <string name="air_quality_so2_info_title">Oxid siřičitý (SO₂)</string>
+    <string name="air_quality_o3_full">Přízemní (troposférický) ozon (O₃)</string>
+    <string name="air_quality_so2_full">Oxid siřičitý (SO₂)</string>
     <string name="air_quality_o3_info_introduction">Přízemní ozon (O₃) je hlavní složkou smogu. Ačkoli se jedná o stejnou molekulu, přízemní ozon může být škodlivý pro lidské zdraví, na rozdíl od stratosférického ozonu, který chrání Zemi před nadměrným UV zářením.</string>
     <string name="air_quality_pm_explanations_consequences">Pevné částice jsou nejškodlivější formou znečištění ovzduší, protože mají schopnost pronikat z krevních toků hluboko do plic a mozku a způsobovat zdravotní problémy, jako jsou srdeční a plicní choroby a předčasná úmrtí.</string>
     <string name="air_quality_no2_info_origin">Okolní zdroje NO₂ vznikají při vysokoteplotním spalování paliv v procesech, jako je vytápění, doprava, průmysl a výroba energie. Mezi domácí zdroje oxidů dusíku (NOₓ) patří zařízení, která spalují paliva, jako jsou pece, krby a plynové sporáky a trouby.</string>
@@ -492,8 +492,8 @@
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_pm_info_title">Pevné částice (PM2.5 &amp; PM10)</string>
-    <string name="air_quality_no2_info_title">Oxid dusičitý (NO₂)</string>
-    <string name="air_quality_co_info_title">Oxid uhelnatý (CO)</string>
+    <string name="air_quality_no2_full">Oxid dusičitý (NO₂)</string>
+    <string name="air_quality_co_full">Oxid uhelnatý (CO)</string>
     <string name="air_quality_o3_info_origin">Vzniká fotochemickými reakcemi se znečišťujícími látkami, jako jsou těkavé organické sloučeniny, oxid uhelnatý a oxidy dusíku (NOₓ) emitované z vozidel a průmyslu. Vzhledem k fotochemické povaze jsou nejvyšší hodnoty ozonu pozorovány v obdobích slunečného počasí.</string>
     <string name="air_quality_o3_info_consequences">Vystavení nadměrnému množství ozonu může způsobit problémy s dýcháním, vyvolat astma, snížit funkci plic a vést k plicním onemocněním.</string>
     <string name="air_quality_no2_info_consequences">Vystavení oxidu dusičitému může dráždit dýchací cesty a zhoršovat onemocnění dýchacích cest. Kromě toho je NO₂ důležitým prekurzorem ozonu, znečišťující látky úzce spojené s astmatem a dalšími respiračními onemocněními.</string>

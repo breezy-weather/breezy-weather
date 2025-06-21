@@ -24,15 +24,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.PointerEventPass
-import androidx.compose.ui.input.pointer.PointerEventType
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
@@ -69,8 +65,8 @@ import com.patrykandpatrick.vico.core.common.shape.CorneredShape
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.handleNestedHorizontalDragGesture
 import org.breezyweather.common.extensions.is12Hour
-import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getContentDescription
@@ -82,7 +78,6 @@ import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 import java.util.Date
-import kotlin.math.absoluteValue
 import kotlin.math.max
 import kotlin.time.Duration.Companion.minutes
 
@@ -183,7 +178,11 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
         val modelProducer = remember { CartesianChartModelProducer() }
 
         val isTrendHorizontalLinesEnabled = SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
-        val thresholdLineColor = if (context.isDarkMode) R.color.colorTextGrey else R.color.colorTextGrey2nd
+        val thresholdLineColor = if (MainThemeColorProvider.isLightTheme(context, location)) {
+            R.color.colorTextGrey2nd
+        } else {
+            R.color.colorTextGrey
+        }
 
         val cartesianLayerRangeProvider = CartesianLayerRangeProvider.fixed(maxY = maxY)
         val marker = rememberDefaultCartesianMarker(
@@ -205,6 +204,11 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                 ),
                 textAlignment = Layout.Alignment.ALIGN_CENTER,
                 minWidth = TextComponent.MinWidth.fixed(40f)
+            ),
+            guideline = rememberLineComponent(
+                fill = fill(
+                    colorResource(thresholdLineColor)
+                )
             ),
             valueFormatter = MarkerLabelFormatterMinutelyDecorator(minutely, location, context, hasOnlyThresholdsValues)
         )
@@ -256,7 +260,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                      * - Above 2 * heavy level: keep heavy line only
                      */
                     (maxY < Precipitation.PRECIPITATION_HOURLY_HEAVY * 2.0f).let {
-                        if (it && SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled) {
+                        if (it && isTrendHorizontalLinesEnabled) {
                             HorizontalLine(
                                 y = { Precipitation.PRECIPITATION_HOURLY_LIGHT },
                                 verticalLabelPosition = Position.Vertical.Bottom,
@@ -289,7 +293,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                             null
                         }
                     },
-                    if (SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled) {
+                    if (isTrendHorizontalLinesEnabled) {
                         HorizontalLine(
                             y = { Precipitation.PRECIPITATION_HOURLY_HEAVY },
                             verticalLabelPosition = Position.Vertical.Bottom,
@@ -313,41 +317,6 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
             scrollState = rememberVicoScrollState(scrollEnabled = false),
             modifier = Modifier.handleNestedHorizontalDragGesture(view)
         )
-    }
-}
-
-// Simplified version of https://stackoverflow.com/a/77321467
-private fun Modifier.handleNestedHorizontalDragGesture(
-    view: View,
-) = this.pointerInput(Unit) {
-    var initialX = 0f
-    var initialY = 0f
-
-    awaitEachGesture {
-        do {
-            val event = awaitPointerEvent(PointerEventPass.Initial)
-            when (event.type) {
-                PointerEventType.Press -> {
-                    view.parent.requestDisallowInterceptTouchEvent(true)
-                    event.changes.firstOrNull()?.let {
-                        initialX = it.position.x
-                        initialY = it.position.y
-                    }
-                }
-                PointerEventType.Move -> {
-                    event.changes.firstOrNull()?.let {
-                        val changedX = it.previousPosition.x - initialX
-                        val changedY = it.previousPosition.y - initialY
-
-                        if (changedY.absoluteValue > changedX.absoluteValue) {
-                            view.parent.requestDisallowInterceptTouchEvent(false)
-                        } else {
-                            view.parent.requestDisallowInterceptTouchEvent(true)
-                        }
-                    }
-                }
-            }
-        } while (event.changes.any { it.pressed })
     }
 }
 

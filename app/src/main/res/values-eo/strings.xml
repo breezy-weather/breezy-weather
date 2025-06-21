@@ -120,10 +120,10 @@
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Karbona monooksido</string>
     <string name="air_quality_pm_info_title">Partikloj (PM2,5 &amp; PM10)</string>
-    <string name="air_quality_o3_info_title">Grundnivela ozono (O₃)</string>
-    <string name="air_quality_no2_info_title">Nitrogena dioksido (NO₂)</string>
-    <string name="air_quality_so2_info_title">Sulfura dioksido (SO₂)</string>
-    <string name="air_quality_co_info_title">Karbona monooksido (CO)</string>
+    <string name="air_quality_o3_full">Grundnivela ozono (O₃)</string>
+    <string name="air_quality_no2_full">Nitrogena dioksido (NO₂)</string>
+    <string name="air_quality_so2_full">Sulfura dioksido (SO₂)</string>
+    <string name="air_quality_co_full">Karbona monooksido (CO)</string>
     <!-- Pollen -->
     <string name="pollen_alnus">Alno</string>
     <string name="pollen_ambrosia">Ambrozio</string>

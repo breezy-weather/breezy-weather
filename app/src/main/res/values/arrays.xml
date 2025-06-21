@@ -352,6 +352,23 @@
         <item>ukmo_uk_deterministic_2km</item>
     </string-array>
 
+    <!-- Beaufort scale levels -->
+    <integer-array name="wind_strength_colors">
+        <item>@color/windStrength_bf0</item>
+        <item>@color/windStrength_bf1</item>
+        <item>@color/windStrength_bf2</item>
+        <item>@color/windStrength_bf3</item>
+        <item>@color/windStrength_bf4</item>
+        <item>@color/windStrength_bf5</item>
+        <item>@color/windStrength_bf6</item>
+        <item>@color/windStrength_bf7</item>
+        <item>@color/windStrength_bf8</item>
+        <item>@color/windStrength_bf9</item>
+        <item>@color/windStrength_bf10</item>
+        <item>@color/windStrength_bf11</item>
+        <item>@color/windStrength_bf12</item>
+    </integer-array>
+
     <!-- air quality levels -->
     <string-array name="air_quality_levels">
         <item>@string/air_quality_level_1</item>
@@ -368,6 +385,14 @@
         <item>@string/air_quality_level_4_description</item>
         <item>@string/air_quality_level_5_description</item>
         <item>@string/air_quality_level_6_description</item>
+    </string-array>
+    <string-array name="air_quality_level_harmless_exposures">
+        <item>@string/air_quality_level_1_harmless_exposure</item>
+        <item>@string/air_quality_level_2_harmless_exposure</item>
+        <item>@string/air_quality_level_3_harmless_exposure</item>
+        <item>@string/air_quality_level_4_harmless_exposure</item>
+        <item>@string/air_quality_level_5_harmless_exposure</item>
+        <item>@string/air_quality_level_6_harmless_exposure</item>
     </string-array>
     <integer-array name="air_quality_level_colors">
         <item>@color/aqiLevel_1</item>

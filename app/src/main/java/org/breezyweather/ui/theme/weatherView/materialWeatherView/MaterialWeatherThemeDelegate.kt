@@ -38,7 +38,7 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
 
     companion object {
 
-        private fun getBrighterColor(color: Int): Int {
+        fun getBrighterColor(color: Int): Int {
             val hsv = FloatArray(3)
             Color.colorToHSV(color, hsv)
             hsv[1] = hsv[1] - 0.25f

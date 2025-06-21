@@ -29,6 +29,7 @@ import kotlinx.collections.immutable.persistentSetOf
 import kotlinx.collections.immutable.toImmutableSet
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.index.PollenIndex
@@ -38,7 +39,6 @@ import org.breezyweather.domain.weather.model.pollensWithConcentration
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.main.adapters.HomePollenAdapter
 import org.breezyweather.ui.main.adapters.HomePollenViewHolder
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
@@ -47,7 +47,6 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_pollen, parent, false)
 ) {
     private val mTitle: TextView = itemView.findViewById(R.id.container_main_pollen_title)
-    private val mSubtitle: TextView = itemView.findViewById(R.id.container_main_pollen_subtitle)
     private val mIndicator: TextView = itemView.findViewById(R.id.container_main_pollen_indicator)
     private val mPager: ViewPager2 = itemView.findViewById(R.id.container_main_pollen_pager)
     private var mCallback: DailyPollenPageChangeCallback? = null
@@ -111,7 +110,6 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                     WeatherViewController.isDaylight(location)
                 )[0]
         )
-        mSubtitle.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorCaptionText))
         mPager.adapter = DailyPollenPagerAdapter(
             location,
             (activity as MainActivity).sourceManager.getPollenIndexSource(
@@ -129,7 +127,14 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         mCallback = DailyPollenPageChangeCallback(activity, location)
         mPager.registerOnPageChangeCallback(mCallback!!)
         itemView.contentDescription = mTitle.text
-        itemView.setOnClickListener { IntentHelper.startPollenActivity(context as GeoActivity, location) }
+        itemView.setOnClickListener {
+            IntentHelper.startDailyWeatherActivity(
+                context as GeoActivity,
+                location.formattedId,
+                mPager.currentItem + (location.weather!!.todayIndex ?: 0),
+                ChartDisplay.TAG_POLLEN
+            )
+        }
     }
 
     override fun onRecycleView() {
