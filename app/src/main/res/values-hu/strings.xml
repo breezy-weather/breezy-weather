@@ -84,7 +84,7 @@
     <string name="action_set">Beállítás</string>
     <string name="action_help">Segítség</string>
     <string name="action_learn_more">Tudjon meg többet</string>
-    <string name="about_app">Alkalmazás névjegye</string>
+    <string name="about_app">További információk az alkalmazásról</string>
     <string name="about_translators">Fordítók</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">A jelenlegi helyszín meghatározása sikertelen</string>
@@ -147,7 +147,7 @@
     <string name="notification_running_in_background">Az alkalmazás a háttérben fut a folyamatos frissítés érdekében</string>
     <string name="notification_updating_weather_data">Időjárásadatok frissítése (%1$d/%2$d)</string>
     <string name="pollen_tap_to_see_more">Koppintson a további részletekért…</string>
-    <string name="message_tap_again_to_exit">Koppintson újra a kilépéshez</string>
+    <string name="message_tap_again_to_exit">A kilépéshez koppintson ismét</string>
     <!-- action -->
     <string name="alerts">Riasztások</string>
     <string name="action_search">Keresés</string>
@@ -352,7 +352,7 @@
     <string name="widget_week_style_3_days">3 nap</string>
     <string name="location_results_by">Helyszíntalálatok a(z) %s által</string>
     <string name="action_delete">Törlés</string>
-    <string name="dialog_permissions_notification_content">Koppintson ide a riasztásokkal kapcsolatos értesítések engedélyezéséhez, ez bármikor módosítható a beállításokban.</string>
+    <string name="dialog_permissions_notification_content">A riasztásokkal kapcsolatos értesítések engedélyezéséhez koppintson ide, ez bármikor módosítható a beállításokban.</string>
     <string name="settings_weather_sources_summary">Alapértelmezett időjárásforrások az új helyszínekhez, egyéni API-kulcsok, egyéb forrásbeállítások</string>
     <string name="settings_source_api_key">API-kulcs</string>
     <string name="action_continue">Folytatás</string>
@@ -485,7 +485,7 @@
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_kgfpsqcm_voice">Kilogramm erő per négyzetcentiméter</string>
     <string name="unit_mb">mb</string>
-    <string name="about_contact">Elérhetőség</string>
+    <string name="about_contact">Kapcsolat</string>
     <string name="common_weather_text_partly_cloudy">Részben felhős</string>
     <string name="common_weather_text_snow">Havazás</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Záporos havas eső</string>
@@ -506,13 +506,13 @@
     <string name="common_weather_text_rain_showers_heavy">Heves zápor</string>
     <string name="unit_mmph">mm/h</string>
     <string name="unit_h_voice">óra</string>
-    <string name="about_contributors">Hozzájárulók</string>
+    <string name="about_contributors">Közreműködők</string>
     <string name="settings_main_summary">Kártyák sorrendje, megjelenített elemek, animációk</string>
     <string name="settings_main_hourly_trends_title">Óránkénti trendek</string>
     <string name="settings_main_header_details_title">Fejlécben megjelenő részletek</string>
-    <string name="settings_notifications_precipitations_title">Értesítések csapadékról</string>
+    <string name="settings_notifications_precipitations_title">Értesítések a csapadékokról</string>
     <string name="settings_notifications_forecast_time_today_title">Értesítés ideje a napi előrejelzéshez</string>
-    <string name="settings_notifications_summary">Értesítések az időjárási riasztásokról, csapadékról vagy az előrejelzésekről az első helyszínhez</string>
+    <string name="settings_notifications_summary">Értesítések az időjárási riasztásokról, csapadékokról vagy az előrejelzésekről az első helyszínhez</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Értesítés ideje a másnapi előrejelzéshez</string>
     <string name="settings_debug_dump_crash_logs_summary">A hibanaplót fájlba menti, hogy megoszthassa a fejlesztőkkel</string>
     <string name="unit_celsius_short">°</string>
@@ -555,7 +555,7 @@
     <string name="unit_ppcm">/m³</string>
     <string name="about_source_code">Forráskód</string>
     <string name="about_matrix">Matrix szoba</string>
-    <string name="alerts_to_follow">Közelgő riasztások, koppintson ide, ha látni szeretné őket.</string>
+    <string name="alerts_to_follow">A közelgő riasztások megtekintéséhez koppintson ide.</string>
     <string name="settings_color_light">Világos</string>
     <string name="unit_mph">mph</string>
     <string name="unit_cm_voice">Centiméter</string>
@@ -686,7 +686,7 @@
     <string name="common_weather_text_sand_storm">Homokvihar</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornádó vagy víztölcsér</string>
     <string name="common_weather_text_smoke">Füst</string>
-    <string name="dialog_app_update_check_content">Koppintson ide az alkalmazás-frissítésekkel kapcsolatos értesítések engedélyezéséhez.</string>
+    <string name="dialog_app_update_check_content">Az alkalmazás-frissítésekkel kapcsolatos értesítések engedélyezéséhez koppintson ide.</string>
     <string name="dialog_app_update_check_title">Legyen naprakész</string>
     <string name="settings_unavailable_no_animations">Nem érhető el, először engedélyezze az animációkat az Android beállításaiban</string>
     <string name="current_weather">Jelenlegi időjárás</string>
@@ -731,7 +731,7 @@
     <string name="common_weather_text_glaze">Ónos jégréteg</string>
     <string name="location_last_updated_x">Utoljára frissítve: %s</string>
     <string name="location_has_active_alerts">Aktív riasztás</string>
-    <string name="action_grant_permission">Koppintson ide az engedély megadásához.</string>
+    <string name="action_grant_permission">Az engedély megadásához koppinson ide.</string>
     <string name="settings_notifications_permission">Értesítési engedély szükséges</string>
     <string name="settings_widgets_notification_permission_summary">Szükséges az értesítésmodul megjelenítéséhez. %s</string>
     <string name="settings_notifications_permission_summary">Szükséges a riasztások, előrejelzések és az alkalmazásfrissítések értesítéseihez. %s</string>
