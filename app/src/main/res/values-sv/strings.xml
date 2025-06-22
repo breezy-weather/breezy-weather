@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="unit_celsius_short">°</string>
-    <string name="daily_yesterday_short">Igår</string>
+    <string name="daily_yesterday_short">I går</string>
     <string name="about_app">Om appen</string>
     <string name="uv_index_6_7">Högt</string>
     <string name="precipitation_thunderstorm">Åskväder</string>
@@ -51,7 +51,7 @@
     <string name="settings_section_general">Allmänt</string>
     <string name="precipitation_nowcasting">Korttidsprognos för nederbörd</string>
     <string name="unit_lpsqmph_voice">Liter per kvadratmeter per timme</string>
-    <string name="daily_tomorrow_short">Imrn</string>
+    <string name="daily_tomorrow_short">I morgon</string>
     <string name="air_quality">Luftkvalitet</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_cm_voice">Centimeter</string>
@@ -242,7 +242,7 @@
     <string name="wind_direction_NW_short">NV</string>
     <string name="action_settings">Inställningar</string>
     <string name="unit_kn">kn</string>
-    <string name="daily_today_short">Idag</string>
+    <string name="daily_today_short">I dag</string>
     <string name="humidity">Luftfuktighet</string>
     <string name="humidity_dew_point">Luftfuktighet / daggpunkt</string>
     <string name="precipitation_snow">Snö</string>
@@ -311,7 +311,7 @@
     <string name="air_quality_level_5_description">Känsliga personer kan omedelbart uppleva hälsopåverkan och bör undvika utomhusaktiviteter. Även friska personer kan uppleva andningssvårigheter och irritation i halsen och bör överväga att stanna inomhus och planera om utomhusaktiviteter.</string>
     <string name="air_quality_level_6">Fara</string>
     <string name="air_quality_level_6_description">All exponering mot utomhusluft, även under några få minuter, kan medföra allvarlig hälsopåverkan för alla. Undvik utomhusaktiviteter.</string>
-    <string name="temperature_wet_bulb">Våt</string>
+    <string name="temperature_wet_bulb">Våttemperatur</string>
     <string name="temperature_normals">Temperaturnormaler</string>
     <string name="temperature_degree_day_heating">Uppvärmningsgraddagar</string>
     <string name="temperature_degree_day_cooling">Nedkylningsgraddagar</string>
