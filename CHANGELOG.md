@@ -1,4 +1,4 @@
-# Version 5.4.8 (not yet released)
+# Version 5.4.8 (2025-06-22)
 
 **Improvements and fixes**
 - Add “Open in another app” in home screen action bar, to allow viewing the exact coordinates of the location in a maps application.
@@ -7,7 +7,7 @@
 - Show an error message when trying to add twice the same location with the same forecast source
 
 **Weather sources**
-- [CWA] Revert “Fix failure to refresh on Android < 14” due to [Chrome Root Program Policy change to no longer trust HiPKI by Chunghwa Telecom](https://security.googleblog.com/2025/05/sustaining-digital-certificate-security-chrome-root-store-changes.html)
+- [CWA] Removed trust in HiPKI by Chunghwa Telecom Certificate Authority, following upstream change of CA
 - [Nominatim] Fix not showing up in the `freenet` flavor
 - [NWS] Will now report an error when data from the observation station is outdated, and fallback to current hour forecast data, instead of displaying outdated “current” info
 - [Pirate Weather] Now available in the `freenet` flavor (was open sourced a few months ago)
