@@ -42,7 +42,7 @@
     <string name="about_translators">Vertalers</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Huidige locatie niet gevonden</string>
-    <string name="weather_message_data_refresh_failed">Vernieuwen van weergegevens mislukt</string>
+    <string name="weather_message_data_refresh_failed">Verversen van weergegevens mislukt</string>
     <string name="widget_label_view_style">Weergavestijl</string>
     <string name="widget_label_show_widget_card">Achtergrondkleur</string>
     <string name="widget_label_hide_subtitle">Ondertitel verbergen</string>
@@ -121,7 +121,7 @@
     <string name="temperature_degree_day_cooling">Koeldag</string>
     <string name="precipitation_snow">Sneeuw</string>
     <string name="precipitation_ice">IJs</string>
-    <string name="precipitation_between_time">Neerslag tussen %1$s en %2$s</string>
+    <string name="precipitation_between_time">Neerslag van %1$s tot %2$s</string>
     <string name="wind_direction_S_short">Z</string>
     <string name="wind_direction_SW_short">ZW</string>
     <string name="air_quality_o3">O₃</string>
@@ -201,10 +201,10 @@
     <string name="notification_channel_widget">Widget</string>
     <string name="ephemeris_moon_phase_full_moon">Volle maan</string>
     <string name="settings_weather_source_portal">Portaal</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Selecteer locatieservice</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Gebruik een andere locatieservice</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="settings_weather_sources">Weerbronnen</string>
-    <string name="settings_weather_sources_summary">Instellingen weergegevensbronnen</string>
+    <string name="settings_weather_sources_summary">Standaard weerbron voor nieuwe locaties, aangepaste API-sleutels, andere broninstellingen</string>
     <string name="settings_source_api_key">API-sleutel</string>
     <string name="settings_appearance">Uiterlijk</string>
     <string name="settings_icon_packs_title">Pictogrammenpakketten</string>
@@ -301,10 +301,10 @@
     <string name="settings_background_updates_worker_info_summary">Laatste keer: %s</string>
     <string name="settings_location_service">Locatieservice</string>
     <string name="settings_notifications">Meldingen</string>
-    <string name="settings_notifications_summary">Weerwaarschuwingen, neerslag, voorspelling</string>
+    <string name="settings_notifications_summary">Meldingen van weeralarmen, neerslag of voorspellingen voor de eerste locatie</string>
     <string name="settings_widgets">Widgets en live achtergronden</string>
     <string name="settings_widgets_summary">Achtergrond instellen, gebruikte widgets configureren, meldingswidget</string>
-    <string name="settings_widgets_notification_feels_like_switch">Gebruik voelt als temperatuur</string>
+    <string name="settings_widgets_notification_feels_like_switch">Gevoelstemperatuur gebruiken</string>
     <string name="unit_cmph_voice">Centimeters per uur</string>
     <string name="unit_inph">inch/u</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lichte tot matige onweersbui</string>
@@ -375,7 +375,7 @@
     <string name="settings_background_updates_section_troubleshoot">Problemen oplossen</string>
     <string name="settings_background_updates_battery_optimization">Batterijoptimalisatie uitschakelen</string>
     <string name="precipitation_intensity_heavy">Hevig</string>
-    <string name="precipitation_intensity_light">Licht</string>
+    <string name="precipitation_intensity_light">Motregen</string>
     <string name="precipitation_none">Geen neerslag</string>
     <string name="wind_speed">Windsnelheid</string>
     <string name="wind_direction">Windrichting</string>
@@ -499,7 +499,7 @@
     <string name="settings_location_access_switch_summaryOff">Geef toestemming als je je huidige locatie wilt kunnen toevoegen als locatie.</string>
     <string name="settings_location_access_background_summaryOn">Ingeschakeld. De app kan de weergegevens voor je huidige locatie op de achtergrond verversen.</string>
     <string name="settings_location_access_background_summaryOff">Schakel “Altijd toestaan” in als je op de achtergrond ververst wilt worden voor je huidige locatie.</string>
-    <string name="settings_location_access_precise_summaryOn">Ingeschakeld. Het netwerk van het apparaat en de GPS-providers worden beide gebruikt.</string>
+    <string name="settings_location_access_precise_summaryOn">Ingeschakeld. De netwerkprovider van het apparaat krijgt prioriteit en wordt meestal gebruikt, maar GPS kan ook als terugvaloptie worden ingezet.</string>
     <string name="settings_location_access_precise_summaryOff">Schakel “Precieze locatie gebruiken” in als je problemen hebt met het vinden van een locatie.</string>
     <string name="settings_source_default_value">Standaard (ongewijzigd)</string>
     <string name="settings_appearance_summary">Taal, donkere modus, icoonpakket, eenheden</string>
@@ -552,7 +552,7 @@
     <string name="air_quality_co_voice">Koolstofmonoxide</string>
     <string name="air_quality_pm_info_title">Deeltjes (PM2,5 &amp; PM10)</string>
     <string name="air_quality_o3_info_consequences">Blootstelling aan te veel ozon kan ademhalingsproblemen veroorzaken, astma uitlokken, de longfunctie verminderen en leiden tot longaandoeningen.</string>
-    <string name="settings_notifications_alerts_title">Meldingen van weeralarmen</string>
+    <string name="settings_notifications_alerts_title">Meldingen van ernstige weeralarmen</string>
     <string name="settings_notifications_precipitations_title">Meldingen van neerslag</string>
     <string name="settings_debug_summary">Crashlogs</string>
     <string name="weather_message_invalid_location">Ongeldige locatie, verwijderen en opnieuw toevoegen</string>
@@ -561,7 +561,7 @@
     <string name="widget_custom_subtitle_keyword_xnw_description">Nachtweer van vandaag, morgen, …, 4 dagen later</string>
     <string name="widget_style_tile">Tegel</string>
     <string name="widget_style_mini">Mini</string>
-    <string name="settings_weather_sources_per_location_summary">Weergegevensbronnen voor deze locatie aanpassen</string>
+    <string name="settings_weather_sources_per_location_summary">Weergegevensbronnen gebruikt voor deze locatie aanpassen</string>
     <string name="settings_background_updates">Achtergrondupdates</string>
     <string name="settings_background_updates_summary">Vernieuwingsfrequentie, problemen oplossen</string>
     <string name="settings_background_updates_battery_optimization_summary">Dit is het eerste wat je moet proberen als je geen meldingen ontvangt of als widgets niet worden vernieuwd.</string>
@@ -617,12 +617,12 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">Actuele luchtkwaliteitsindex</string>
     <string name="pollen_carpinus">Haagbeuk</string>
     <string name="pollen_tilia">Linde</string>
-    <string name="humidity_short">Vochtigheid</string>
+    <string name="humidity_short">Luchtvochtigheid</string>
     <string name="location_delete_location_dialog_message_no_name">U staat op het punt deze locatie uit uw lijst met opgeslagen locaties te verwijderen.</string>
     <string name="location_search_no_results_advice">Zorg dat je zoekopdracht juist gespeld en niet te specifiek is. Je kan ook proberen een andere locatiezoekbron te gebruiken, die kan andere resultaten genereren.</string>
     <string name="widget_label_hide_header">Verberg kop</string>
-    <string name="settings_weather_source_freenet_disclaimer">Meer weer bronnen zijn beschikbaar in andere smaken van Breezy Weather. Klik om meer te weten te komen.</string>
-    <string name="notification_precipitation_starting_desc">Verwacht te beginnen rond %s</string>
+    <string name="settings_weather_source_freenet_disclaimer">Meer weer bronnen zijn beschikbaar in andere smaken van de app. Klik om meer te weten te komen.</string>
+    <string name="notification_precipitation_starting_desc">Verwacht te beginnen om %s</string>
     <string name="notification_precipitation_continuing_desc">Verwacht aan te houden tot in ieder geval %s</string>
     <string name="notification_precipitation_stopping_desc">Verwacht op te houden om %s</string>
     <string name="pollen_salix">Wilg</string>
@@ -630,14 +630,14 @@
     <string name="location_search_source">Locatiezoekbron</string>
     <string name="location_search_change_source">Verander de locatiezoekbron</string>
     <string name="sunshine">Zonneschijn</string>
-    <string name="weather_message_too_frequent_refreshes">Gelieve een paar seconden te wachten voor u het opnieuw probeert…</string>
+    <string name="weather_message_too_frequent_refreshes">Gelieve een paar seconden te wachten voor het opnieuw te proberen</string>
     <string name="location_message_updated">Locatie bijgewerkt</string>
     <string name="location_delete_location_dialog_title">Verwijder locatie?</string>
     <string name="action_edit_location">Wijzig deze locatie</string>
     <string name="action_confirm">Bevestig</string>
     <string name="message_server_unavailable_title">Server is onbereikbaar</string>
-    <string name="message_source_not_installed_error_content_tip_2">Wijzig of de weer bron voor deze locatie of verwijder en voeg deze locatie opnieuw toe.</string>
-    <string name="location_message_already_exists">Een locatie met de zelfde hoofdweerbron bestaat al.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Wijzig de weerbronnen voor deze locatie of verwijder en voeg de locatie opnieuw toe.</string>
+    <string name="location_message_already_exists">Locatielijst bevat deze locatie met deze weersvoorspellingsbron al.</string>
     <string name="settings_weather_source_none">Geen</string>
     <string name="settings_weather_sources_default_source">Standaard bron voor nieuwe locaties</string>
     <string name="settings_weather_source_unavailable">%s (niet beschikbaar)</string>
@@ -750,4 +750,10 @@
     <string name="daily_tomorrow_short">Morgen</string>
     <string name="location_reverse_geocoding_by">Adresgegevens door %s</string>
     <string name="location_reverse_geocoding">Adresgegevens</string>
+    <string name="message_outdated_server_data">Verouderde gegevens ontvangen van de server</string>
+    <string name="action_allow">Toestaan</string>
+    <string name="message_server_insecure_title">Beveiligde verbinding mislukt</string>
+    <string name="action_open_in_other_app">Openen in andere app</string>
+    <string name="action_open_in_other_app_description">Open deze locatie in een andere app</string>
+    <string name="action_enable">Inschakelen</string>
 </resources>
