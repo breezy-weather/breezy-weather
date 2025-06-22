@@ -1,3 +1,9 @@
+# Next version (not yet released)
+
+**Improvements and fixes**
+- Fix crash when using “Open in another app” when no app on the phone is able to open it
+
+
 # Version 5.4.8 (2025-06-22)
 
 **Improvements and fixes**

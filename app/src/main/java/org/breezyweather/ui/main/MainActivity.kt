@@ -875,7 +875,12 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
 
     override fun onOpenInOtherAppIconClicked() {
         viewModel.currentLocation.value?.location?.let {
-            IntentHelper.startGeoActivity(this@MainActivity, it)
+            try {
+                IntentHelper.startGeoActivity(this@MainActivity, it)
+            } catch (ignored: Exception) {
+                // TODO: Use a dedicated string
+                SnackbarHelper.showSnackbar(getString(R.string.settings_widgets_broadcast_send_data_summary_empty))
+            }
         }
     }
 
