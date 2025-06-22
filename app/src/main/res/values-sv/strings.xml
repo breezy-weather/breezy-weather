@@ -64,7 +64,7 @@
     <string name="unit_kelvin">K</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="uv_index_8_10">Mycket högt</string>
-    <string name="daily_forecast">Dygnsprognos</string>
+    <string name="daily_forecast">Daglig prognos</string>
     <string name="action_share">Dela</string>
     <string name="weather_kind_hail">Hagel</string>
     <string name="unit_m">m</string>
@@ -278,7 +278,7 @@
     <string name="wind_direction_E_short">O</string>
     <string name="about_source_code">Källkod</string>
     <string name="location_current">Nuvarande plats</string>
-    <string name="temperature_average_short">Med</string>
+    <string name="temperature_average_short">Medel</string>
     <string name="unit_mm_voice">Millimeter</string>
     <string name="widget_live_wallpaper_weather_kind">Väder</string>
     <string name="precipitation_between_time">Nederbörd från %1$s till %2$s</string>
@@ -529,7 +529,7 @@
     <string name="common_weather_text_rain_snow_mixed_showers_light">Lätta snöblandade regnskurar</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Tryck för att öppna</string>
     <string name="weather_api_limit_reached_content">För att kringgå begränsningen, lägg till din egen API-nyckel.</string>
-    <string name="null_data_text">Saknas</string>
+    <string name="null_data_text">Ej tillgänglig</string>
     <string name="settings_changes_apply_after_restart">Ändringarna kommer att tillämpas efter omstart</string>
     <string name="settings_location_access_background_summaryOn">Aktiverad. Appen kommer att kunna uppdatera väderdata för din nuvarande plats i bakgrunden.</string>
     <string name="settings_units_summary">Temperatur, nederbörd, avstånd, hastighet, lufttryck</string>
