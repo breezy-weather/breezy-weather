@@ -199,7 +199,7 @@
     <string name="location_message_added">Месцазнаходжанне дададзена</string>
     <string name="location_message_deleted">Месцазнаходжанне выдалена</string>
     <string name="location_message_list_cannot_be_empty">Спіс месцазнаходжанняў не можа быць пустым</string>
-    <string name="location_swipe_to_delete">Вы можаце змахнуць налева, каб выдаліць гэты элемент</string>
+    <string name="location_swipe_to_delete">Каб выдаліць элемент, можна змахнуць яго ўлева</string>
     <string name="location_message_failed_to_locate">Не ўдалося знайсці бягучае месцазнаходжанне</string>
     <string name="location_message_search_failed">Не ўдалося знайсці месцазнаходжанне</string>
     <string name="location_message_permission_missing">Няма дазволу на доступ да месцазнаходжання</string>
@@ -241,7 +241,7 @@
     <string name="dialog_permissions_notification_content">Націсніце тут, каб уключыць апавяшчэнні пра надвор’е, або прыміце рашэнне пазней у наладах.</string>
     <string name="dialog_permissions_location_title">Доступ да інфармацыі пра месцазнаходжанне</string>
     <string name="daily_forecast">Прагноз па днях</string>
-    <string name="alerts_to_follow">Для прагляду абвестак пра надвор’е націсніце тут.</string>
+    <string name="alerts_to_follow">Каб праглядзець абвесткі, націсніце тут.</string>
     <string name="precipitation_nowcasting">Кароткатэрміновыя ападкі</string>
     <string name="daily_yesterday_short">Учора</string>
     <string name="daily_today_short">Сёння</string>
@@ -597,7 +597,7 @@
     <string name="settings_weather_source_none">Няма</string>
     <string name="location_search_change_source">Змяніць крыніцу пошуку</string>
     <string name="location_message_updated">Месцазнаходжанне абноўлена</string>
-    <string name="location_message_already_exists">Месцазнаходжанне з такой жа асноўнай крыніцай надвор’я ўжо існуе.</string>
+    <string name="location_message_already_exists">Спіс месцазнаходжанняў ужо змяшчае гэта месца і з гэтай жа крыніцай прагнозаў.</string>
     <string name="wind_short">Вецер</string>
     <string name="uv_index_short">УФ·індэкс</string>
     <string name="visibility_short">Бачнасць</string>
@@ -666,7 +666,7 @@
     <string name="settings_background_updates_refresh_never_warning2">Працэс фонавага абнаўлення вельмі легкаважны: з выбранай вамі частатой абнаўляецца толькі першае месцазнаходжанне, дадатковыя абнаўляюцца толькі пры неабходнасці, адзін раз на дзень. Працэс эканомна расходуе зарад батарэі, а колькасць перададзеных даных не павінна перавышаць %d МБ за месяц.</string>
     <string name="message_server_unavailable_title">Сервер недаступны</string>
     <string name="message_server_unavailable_content">Звычайна гэта часовая памылка. Калі памылка не знікне, паведаміце аб праблеме на GitHub.</string>
-    <string name="action_edit_location">Змяніць гэтае месцазнаходжанне</string>
+    <string name="action_edit_location">Рэдагаваць месцазнаходжанне</string>
     <string name="settings_global">Глабальныя налады</string>
     <string name="precipitation_intensity_medium">Умераныя</string>
     <string name="action_download">Спампаваць</string>
@@ -746,4 +746,6 @@
     <string name="message_outdated_server_data">Ад сервера атрыманы састарэлыя даныя</string>
     <string name="action_enable">Уключыць</string>
     <string name="action_allow">Дазволіць</string>
+    <string name="action_open_in_other_app">Адкрыць у іншай праграме</string>
+    <string name="action_open_in_other_app_description">Адкрыць месцазнаходжанне ў іншай праграме</string>
 </resources>
