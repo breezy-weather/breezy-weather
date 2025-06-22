@@ -497,8 +497,8 @@
     <string name="air_quality_co_info_origin">一酸化炭素は、木材、ガソリン、石炭、天然ガス、灯油などの炭素質燃料が、簡易ストーブ、焚き火、芯ランプ、炉、暖炉で不完全燃焼することによって生じます。周囲空気中の主な一酸化炭素の発生源は自動車です。</string>
     <string name="action_help_me_choose">ヘルプ</string>
     <string name="weather_normals_data_by">標準温度のデータ提供：%s</string>
-    <string name="weather_api_unauthorized_content">一部の情報源には、あなた自身のAPIキーを使用する必要があります。既に使用している場合は、キーを再確認してください。</string>
-    <string name="weather_api_key_required_missing_content">この情報源を利用するには、APIキーを使用する必要があります。</string>
+    <string name="weather_api_unauthorized_content">一部の情報源には、あなた自身のAPIキーを設定する必要があります。既に設定している場合は、キーを再確認してください。</string>
+    <string name="weather_api_key_required_missing_content">この情報源を利用するには、APIキーを設定する必要があります。</string>
     <string name="air_quality_co_info_consequences">一酸化炭素は肺組織を通って血流に拡散し、体の細胞が酸素と結合するのを困難にします。この酸素不足は組織や細胞にダメージを与えます。一酸化炭素にさらされると、呼吸困難、疲労感、めまい、その他のインフルエンザのような症状が引き起こされることがあります。高レベルの一酸化炭素にさらされると、死に至る可能性があります。</string>
     <string name="location_results_by">位置情報：%s</string>
     <string name="location_message_permission_missing">位置情報へのアクセス権限がありません</string>
@@ -566,7 +566,7 @@
     <string name="air_quality_co_info_introduction">一酸化炭素（CO）は、無色、無臭、無味、非刺激性の有毒な可燃性ガスです。</string>
     <string name="weather_api_limit_reached_title">APIリクエスト数の制限に達しました</string>
     <string name="weather_api_limit_reached_content">この制限を回避するには、あなた自身のAPIキーを追加してください。</string>
-    <string name="weather_api_unauthorized_title">APIアクセスが許可されていません</string>
+    <string name="weather_api_unauthorized_title">APIへのアクセスが許可されていません</string>
     <string name="about_contact">連絡</string>
     <string name="settings_widgets_monochrome_icons_title">モノクロアイコン</string>
     <string name="settings_debug_dump_crash_logs_saved">クラッシュログを保存しました</string>
@@ -574,7 +574,7 @@
     <string name="message_parsing_error_content">アプリのバージョンを確認してください。サーバーが一時的に利用できない状態になっている可能性があります。その場合は、しばらくしてから再度お試しください。問題が解決しない場合は、デバッグ設定からクラッシュログを出力し、GitHubで問題を報告してください。</string>
     <string name="widget_material_you_forecast">Material You – 予報</string>
     <string name="widget_clock_font_analog">アナログ</string>
-    <string name="settings_background_updates_battery_optimization_activity_not_found">デバイス設定を開けませんでした。</string>
+    <string name="settings_background_updates_battery_optimization_activity_not_found">端末の設定を開けませんでした。</string>
     <string name="settings_location_summary">位置情報サービス</string>
     <string name="settings_location_access_switch_title">位置情報へのアクセス</string>
     <string name="settings_location_access_background_summaryOff">現在地の気象データをバックグラウンドで更新するには、「常に許可」を有効にしてください。</string>
@@ -599,7 +599,7 @@
     <string name="notification_precipitation_continuing">雨が降っています</string>
     <string name="common_weather_text_rain_snow_mixed_light">弱いみぞれ</string>
     <string name="dialog_permissions_location_content">この機能を使用するには、現在の位置情報へのアクセスの権限をアプリに付与する必要があります。位置情報は、選択した情報源とのみ共有されます。後から位置情報へのアクセスを取り消して、手動で位置情報を設定することもできます。</string>
-    <string name="message_server_timeout">リクエストはタイムアウトになりました</string>
+    <string name="message_server_timeout">リクエストが時間内に完了しませんでした</string>
     <string name="temperature_feels_like_short">体感温度</string>
     <string name="dew_point_short">露点</string>
     <string name="cloud_cover_short">雲量</string>
@@ -611,7 +611,7 @@
     <string name="pressure_short">気圧</string>
     <string name="comma_separator">、</string>
     <string name="location_message_updated">場所を更新しました</string>
-    <string name="location_message_already_exists">同一の情報源の場所が既に存在しています。</string>
+    <string name="location_message_already_exists">この予報の情報源を設定した場所が、場所の一覧にすでに存在しています。</string>
     <string name="location_search_no_results_advice">場所が正しく入力されているか、または詳細すぎないかご確認ください。もしくは他の検索情報源で検索してみてください。</string>
     <string name="settings_weather_source_none">なし</string>
     <string name="location_search_source">場所の検索源</string>
@@ -687,7 +687,7 @@
     <string name="settings_notifications_app_updates_check">アプリのアップデートの通知</string>
     <string name="common_weather_text_sand_storm">砂あらし</string>
     <string name="common_weather_text_smoke">煙</string>
-    <string name="settings_unavailable_no_animations">利用できません。最初にAndroidの設定でアニメーションを有効にしてください</string>
+    <string name="settings_unavailable_no_animations">利用できません。Androidの設定でアニメーションを有効にしてください</string>
     <string name="meteoam_weather_text_tornado_watersprout">竜巻または水上竜巻</string>
     <string name="dialog_app_update_check_title">アップデートを通知</string>
     <string name="notification_app_update_available">新しいバージョンが利用できます！</string>
@@ -785,4 +785,6 @@
     <string name="message_outdated_server_data">サーバーから古いデータを受信しました</string>
     <string name="action_enable">有効にする</string>
     <string name="action_allow">許可</string>
+    <string name="action_open_in_other_app">別のアプリケーションで開く</string>
+    <string name="action_open_in_other_app_description">この場所を別のアプリケーションで開く</string>
 </resources>
