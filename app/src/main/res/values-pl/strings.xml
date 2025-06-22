@@ -619,7 +619,7 @@
     <string name="ceiling_short">Granica</string>
     <string name="settings_weather_sources_default_source">Domyślne źródło dla nowych lokalizacji</string>
     <string name="location_message_updated">Lokalizacja zaktualizowana</string>
-    <string name="location_message_already_exists">Lokalizacja z tym samym głównym źródłem pogody już istnieje.</string>
+    <string name="location_message_already_exists">Lista lokalizacji zawiera już tę lokalizację z tym źródłem prognozy.</string>
     <string name="location_search_no_results_advice">Upewnij się, że wyszukiwane hasło jest poprawnie napisane i niezbyt szczegółowe. Możesz także spróbować użyć innego źródła wyszukiwania lokalizacji, które może dać inne wyniki.</string>
     <string name="alert">Alert</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Obecny Indeks Jakości Powietrza</string>
@@ -759,4 +759,6 @@
     <string name="message_outdated_server_data">Nieaktualne dane otrzymane z serwera</string>
     <string name="action_enable">Włącz</string>
     <string name="action_allow">Zezwól</string>
+    <string name="action_open_in_other_app">Otwórz w innej aplikacji</string>
+    <string name="action_open_in_other_app_description">Otwórz tę lokalizację w innej aplikacji</string>
 </resources>
