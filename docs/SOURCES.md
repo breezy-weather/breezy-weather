@@ -535,7 +535,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | Data                      | Available   | Data              | Available   |
 |---------------------------|-------------|-------------------|-------------|
 | Weather Condition         | ✅           | Pressure          | ✅ (Current) |
-| Temperature               | ✅           | UV Index          | ❌           |
+| Temperature               | ✅           | UV Index          | ✅           |
 | Precipitation             | ❌           | Sunshine Duration | ✅           |
 | Precipitation Probability | ✅           | Sun &amp; Moon    | ✅           |
 | Precipitation Duration    | ❌           | Moon Phase        | ❌           |
@@ -606,7 +606,6 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 </details>
 
 ### Ilmateenistus
-> Available starting from v5.4.0
 
 **[Ilmateeniustus](https://www.ilmateenistus.ee/)** is the official meteorological service of Estonia.
 
@@ -1231,12 +1230,10 @@ ATMO sources can be added as a secondary **Air Quality** source for some regions
 These sources can be added as a secondary **Alert** and **Temperature normals** source for their respective countries.
 
 ### EKUK
-> Available starting from v5.4.0
 
 **[Eesti Keskkonnauuringute Keskus](https://www.ohuseire.ee/)** (EKUK) can be added as a secondary **Air quality** and **Pollen** (later this year) source for Estonia.
 
 ### Environmental Protection Department
-> Available starting from v5.4.0
 
 **[Environmental Protection Department](https://www.aqhi.gov.hk/)** can be added as a secondary **Air quality** source for Hong Kong.
 

@@ -56,6 +56,7 @@ import java.util.TimeZone
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
+import androidx.core.graphics.toColorInt
 
 internal fun convert(location: Location, result: MfForecastResult): Location {
     return if (result.properties == null) {
@@ -331,7 +332,7 @@ internal fun getOverseasWarningsList(
                     source = "Météo-France",
                     severity = AlertSeverity.EXTREME, // Let’s put it on top
                     color = warningsDictionaryResult.colors?.firstOrNull { c -> c.id == warningsResult.colorMax }
-                        ?.hexaCode?.let { h -> Color.parseColor(h) }
+                        ?.hexaCode?.toColorInt()
                         ?: Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
                 )
             )
@@ -392,7 +393,7 @@ internal fun getOverseasWarningsList(
                                 }
                             } ?: AlertSeverity.UNKNOWN,
                         color = warningsDictionaryResult.colors?.firstOrNull { c -> c.id == timelapsItem.colorId }
-                            ?.hexaCode?.let { h -> Color.parseColor(h) }
+                            ?.hexaCode?.toColorInt()
                             ?: Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
                     )
                 )

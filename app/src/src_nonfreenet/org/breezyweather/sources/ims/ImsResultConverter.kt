@@ -39,6 +39,7 @@ import org.breezyweather.sources.ims.json.ImsWeatherData
 import java.util.Calendar
 import java.util.Date
 import kotlin.text.startsWith
+import androidx.core.graphics.toColorInt
 
 internal fun convert(
     location: Location,
@@ -183,9 +184,7 @@ internal fun getAlerts(
             },
             severity = severity,
             color = warningEntry.value.severityId?.let { severityId ->
-                data.warningsMetadata?.warningSeverity?.getOrElse(severityId) { null }?.color?.let {
-                    Color.parseColor(it)
-                }
+                data.warningsMetadata?.warningSeverity?.getOrElse(severityId) { null }?.color?.toColorInt()
             } ?: Alert.colorFromSeverity(severity)
         )
     }

@@ -45,6 +45,8 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Objects
 import kotlin.time.Duration.Companion.seconds
+import androidx.core.graphics.toColorInt
+import breezyweather.domain.weather.model.UV
 
 internal fun convert(
     location: Location,
@@ -199,7 +201,12 @@ internal fun getHourlyForecast(
                 degree = getWindDegree(result.windDir),
                 speed = getNonEmptyMetric(result.windSpeed)?.div(3.6),
                 gusts = getNonEmptyMetric(result.windGust)?.div(3.6)
-            )
+            ),
+            uV = if (!result.uv?.index.isNullOrEmpty()) {
+                UV(index = result.uv!!.index!!.toDoubleOrNull())
+            } else {
+                null
+            }
         )
     }
 }
@@ -224,7 +231,7 @@ internal fun getAlertList(alertList: List<EcccAlert>?): List<Alert>? {
             description = alert.text,
             source = alert.specialText?.firstOrNull { it.type == "email" }?.link,
             severity = severity,
-            color = (if (alert.bannerColour?.startsWith("#") == true) Color.parseColor(alert.bannerColour) else null)
+            color = (if (alert.bannerColour?.startsWith("#") == true) alert.bannerColour.toColorInt() else null)
                 ?: Alert.colorFromSeverity(severity)
         )
     }
