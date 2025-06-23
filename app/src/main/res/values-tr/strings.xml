@@ -754,4 +754,6 @@
     <string name="message_server_insecure_title">Güvenli bağlantı başarısız</string>
     <string name="action_allow">İzin ver</string>
     <string name="action_enable">Etkinleştir</string>
+    <string name="action_open_in_other_app">Başka bir uygulamada aç</string>
+    <string name="action_open_in_other_app_description">Bu konumu başka bir uygulamada aç</string>
 </resources>
