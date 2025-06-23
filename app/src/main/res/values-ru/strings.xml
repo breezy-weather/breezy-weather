@@ -606,7 +606,7 @@
     <string name="location_search_change_source">Изменить источник поиска</string>
     <string name="settings_weather_source_none">Нет</string>
     <string name="location_message_updated">Местоположение обновлено</string>
-    <string name="location_message_already_exists">Местоположение с таким же основным источником погоды уже существует.</string>
+    <string name="location_message_already_exists">Список местоположений уже содержит это местоположение с теми же поставщиками.</string>
     <string name="humidity_short">Влажность</string>
     <string name="wind_short">Ветер</string>
     <string name="uv_index_short">УФ-индекс</string>
@@ -755,4 +755,6 @@
     <string name="message_outdated_server_data">С сервера получены устаревшие данные</string>
     <string name="action_enable">Включить</string>
     <string name="action_allow">Разрешить</string>
+    <string name="action_open_in_other_app">Открыть в другом приложении</string>
+    <string name="action_open_in_other_app_description">Открыть это местоположение в другом приложении</string>
 </resources>
