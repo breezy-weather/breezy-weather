@@ -617,7 +617,7 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">Actuele luchtkwaliteitsindex</string>
     <string name="pollen_carpinus">Haagbeuk</string>
     <string name="pollen_tilia">Linde</string>
-    <string name="humidity_short">Luchtvochtigheid</string>
+    <string name="humidity_short">Vochtigheid</string>
     <string name="location_delete_location_dialog_message_no_name">U staat op het punt deze locatie uit uw lijst met opgeslagen locaties te verwijderen.</string>
     <string name="location_search_no_results_advice">Zorg dat je zoekopdracht juist gespeld en niet te specifiek is. Je kan ook proberen een andere locatiezoekbron te gebruiken, die kan andere resultaten genereren.</string>
     <string name="widget_label_hide_header">Verberg kop</string>
