@@ -17,7 +17,7 @@
 package org.breezyweather.sources.ims
 
 import android.content.Context
-import android.graphics.Color
+import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -39,7 +39,6 @@ import org.breezyweather.sources.ims.json.ImsWeatherData
 import java.util.Calendar
 import java.util.Date
 import kotlin.text.startsWith
-import androidx.core.graphics.toColorInt
 
 internal fun convert(
     location: Location,

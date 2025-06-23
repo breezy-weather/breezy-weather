@@ -18,6 +18,7 @@ package org.breezyweather.sources.mf
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
+import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -56,7 +57,6 @@ import java.util.TimeZone
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
-import androidx.core.graphics.toColorInt
 
 internal fun convert(location: Location, result: MfForecastResult): Location {
     return if (result.properties == null) {

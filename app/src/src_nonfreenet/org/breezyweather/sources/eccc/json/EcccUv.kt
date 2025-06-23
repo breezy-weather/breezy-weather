@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class EcccUv(
-    val index: String?
+    val index: String?,
 )

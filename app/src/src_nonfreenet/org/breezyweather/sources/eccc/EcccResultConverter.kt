@@ -16,8 +16,8 @@
 
 package org.breezyweather.sources.eccc
 
-import android.graphics.Color
 import android.os.Build
+import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -25,6 +25,7 @@ import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
+import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
@@ -45,8 +46,6 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Objects
 import kotlin.time.Duration.Companion.seconds
-import androidx.core.graphics.toColorInt
-import breezyweather.domain.weather.model.UV
 
 internal fun convert(
     location: Location,
