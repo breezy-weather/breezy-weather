@@ -610,7 +610,7 @@
     <string name="notification_precipitation_continuing_desc">Se espera continuar até pelo menos %s</string>
     <string name="notification_precipitation_stopping">Precipitação para breve</string>
     <string name="location_message_updated">Local atualizado</string>
-    <string name="location_message_already_exists">Uma local com a mesma fonte meteorológica principal já existe.</string>
+    <string name="location_message_already_exists">A lista de locais já contém esse local com essa fonte de previsão.</string>
     <string name="settings_weather_source_none">Nenhuma</string>
     <string name="settings_unavailable_no_background_updates">Indisponível, ative a atualizações em segundo plano primeiro</string>
     <string name="notification_precipitation_stopping_desc">Se espera parar em %s</string>
