@@ -17,13 +17,19 @@
     <string name="humidity">Humidité</string>
     <string name="humidity_short">Humidité</string>
     <string name="humidity_dew_point">Humidité / Point de rosée</string>
+    <string name="humidity_about">À propos de l’humidité relative</string>
+    <string name="humidity_about_description">L’humidité relative, plus couramment appelée simplement humidité, correspond au pourcentage de vapeur d’eau présent dans l’air par rapport à la quantité maximale que l’air peut contenir à une température donnée.</string>
+    <string name="dew_point">Point de rosée</string>
+    <string name="dew_point_short">P. de rosée</string>
+    <string name="dew_point_about">À propos du point de rosée</string>
+    <!-- %s = 100 % -->
+    <string name="dew_point_about_description">Le point de rosée est la température à laquelle il faudrait refroidir l’air pour atteindre une humidité relative de %s.</string>
     <string name="sunshine">Ensoleillement</string>
     <string name="sunshine_duration">Durée d’ensoleillement</string>
     <string name="notification_channel_forecast">Prévisions</string>
     <string name="daytime">Journée</string>
     <string name="nighttime">Nuit</string>
-    <string name="temperature_feels_like">Ressenti</string>
-    <string name="temperature_feels_like_short">Ressenti</string>
+    <string name="nighttime_details">Commence dans la soirée et se termine à l’aube du lendemain</string>
     <string name="settings_follow_system">Préférence système</string><!-- Littéralement "suivre les préférences système" -->
     <string name="notification_channel_widget">Widget</string>
     <string name="notification_channel_background_services">Services en arrière-plan</string>
@@ -31,12 +37,29 @@
     <string name="notification_channel_app_updates">Mises à jour de l’appli</string>
     <string name="pressure">Pression</string>
     <string name="pressure_short">Pression</string>
+    <string name="pressure_rising">En hausse</string>
+    <string name="pressure_steady">Stable</string>
+    <string name="pressure_falling">En baisse</string>
+    <string name="pressure_about">À propos de la pression</string>
+    <string name="pressure_about_description1">La pression atmosphérique est la pression exercée par l’atmosphère terrestre. Cette appli utilise la pression moyenne au niveau de la mer pour faciliter la comparaison de pression d’emplacements situés à des altitudes différentes.</string>
+    <string name="pressure_about_description2">Les variations importantes et rapides de la pression sont utilisées pour prévoir les changements météorologiques. Par exemple, une baisse de pression peut signifier que de la pluie ou de la neige se prépare, et une hausse de pression peut signifier que le temps va s’améliorer. Une pression atmosphérique anormale peut provoquer, entre autres, des maux de tête, des douleurs articulaires et de la fatigue.</string>
     <string name="visibility">Visibilité</string>
     <string name="visibility_short">Visibilité</string>
-    <string name="dew_point">Point de rosée</string>
-    <string name="dew_point_short">P. de rosée</string>
+    <string name="visibility_about">À propos de la visibilité</string>
+    <string name="visibility_about_description">La visibilité indique la distance à laquelle des objets tels que des bâtiments et des collines peuvent être clairement distingués. Elle peut être affectée par les précipitations, le brouillard, la poussière, la fumée ou la brume.</string>
+    <!-- 10 to 20 km, %1$s = 10, %2$s = 20 km -->
+    <string name="visibility_from_to_number">%1$s à %2$s</string>
+    <!-- Clear to Perfectly clear, %1$s = Clear, %2$s = Perfectly clear -->
+    <string name="visibility_from_to_description">%1$s à %2$s</string>
+    <string name="visibility_poor">Mauvaise</string>
+    <string name="visibility_moderate">Modérée</string>
+    <string name="visibility_good">Bonne</string>
+    <string name="visibility_clear">Dégagé</string>
+    <string name="visibility_perfectly_clear">Complètement dégagé</string>
     <string name="cloud_cover">Couverture nuageuse</string>
     <string name="cloud_cover_short">Couverture</string>
+    <string name="cloud_cover_about">À propos de la couverture nuageuse</string>
+    <string name="cloud_cover_about_description">La couverture nuageuse désigne le pourcentage du ciel obscurci par les nuages, en moyenne. La couverture nuageuse est corrélée à la durée d’ensoleillement.</string>
     <string name="ceiling">Plafond nuageux</string>
     <string name="ceiling_short">Plafond</string>
     <string name="settings_icon_packs_get_more">Voir plus</string>
@@ -52,8 +75,22 @@
     <string name="daily_yesterday_short">Hier</string>
     <string name="daily_today_short">Auj.</string>
     <string name="daily_tomorrow_short">Dem.</string>
+    <string name="daily_summary">Synthèse quotidienne</string>
 
+    <!-- Charts -->
+    <string name="chart_no_daily_data">Aucune donnée disponible pour ce jour.</string>
+    <string name="chart_no_hourly_data">Aucune donnée horaire disponible.</string>
+    <string name="chart_not_enough_hourly_data">Pas assez de données horaires disponibles pour afficher un graphique pour ce jour.</string>
+    <string name="chart_average">Moyenne</string>
+    <string name="chart_maximum_value">Valeur maximale</string>
+
+    <string name="conditions">Conditions</string>
     <string name="temperature">Température</string>
+    <string name="temperature_real">Réel</string>
+    <string name="temperature_real_details">La température réelle.</string>
+    <string name="temperature_feels_like">Ressenti</string>
+    <string name="temperature_feels_like_short">Ressenti</string>
+    <string name="temperature_feels_like_details">La température telle qu’elle est perçue sous l’effet de l’humidité, du vent et/ou du soleil.</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Ressentie</string>
@@ -61,7 +98,9 @@
     <string name="temperature_wet_bulb">Thermomètre-globe mouillé</string>
     <string name="temperature_degree_day">Degré jour unifié</string>
     <string name="temperature_degree_day_heating">Degré-jour de chauffe</string>
+    <string name="temperature_degree_day_heating_explanation">Différence entre la température extérieure et une température de confort de référence utilisée pour estimer les besoins en énergie de chauffage</string>
     <string name="temperature_degree_day_cooling">Degré-jour froid</string>
+    <string name="temperature_degree_day_cooling_explanation">Différence entre la température extérieure et une température de confort de référence utilisée pour estimer les besoins en énergie de réfrigération</string>
     <string name="temperature_average_short">Moy.</string>
     <string name="temperature_normal_short">Normale</string>
     <string name="temperature_normals">Normales de température</string>
@@ -76,8 +115,12 @@
     <string name="wind_short">Vent</string>
     <string name="wind_direction">Direction du vent</string>
     <string name="wind_speed">Vitesse du vent</string>
+    <string name="wind_speed_about">À propos de la vitesse du vent et des rafales</string>
+    <string name="wind_speed_about_description">La vitesse du vent est mesurée en effectuant la moyenne des vitesses de vent sur une période donnée. Les rafales sont des coups de vent soudains qui durent généralement moins de 20 secondes.</string>
     <string name="wind_gusts">Rafales de vent</string>
+    <string name="wind_gusts_short">Rafales</string>
     <string name="wind_strength">Force du vent</string>
+    <string name="wind_strength_scale">Échelle de Beaufort</string>
     <string name="wind_strength_0">Calme</string>
     <string name="wind_strength_1">Très légère brise</string>
     <string name="wind_strength_2">Légère brise</string>
@@ -90,7 +133,7 @@
     <string name="wind_strength_9">Fort coup de vent</string>
     <string name="wind_strength_10">Tempête</string>
     <string name="wind_strength_11">Violente tempête</string>
-    <string name="wind_strength_12">Ouragan</string>
+    <string name="wind_strength_12">Vent d’ouragan</string>
 
     <string name="wind_direction_variable">Variable</string>
     <string name="wind_direction_N">Nord</string>
@@ -123,6 +166,8 @@
     <string name="ephemeris_moon_phase_last_quarter">Dernier quartier</string>
     <string name="ephemeris_moon_phase_waning_crescent">Dernier croissant</string>
 
+    <string name="pollen_primary">Pollen principal</string>
+    <string name="pollen_details">Détails des pollens</string>
     <string name="pollen_tree">Arbres</string>
     <string name="pollen_acer">Érable</string>
     <string name="pollen_alnus">Aulne</string>
@@ -167,6 +212,11 @@
     <string name="uv_index_6_7">Élevé</string>
     <string name="uv_index_8_10">Très élevé</string>
     <string name="uv_index_11">Extrême</string>
+    <string name="uv_index_about">À propos de l’indice UV</string>
+    <string name="uv_index_about_description">L’indice UV mesure l’intensité du rayonnement ultraviolet émis par le soleil. Plus elle est élevée, plus elle risque de provoquer rapidement des coups de soleil, des cancers de la peau et des lésions oculaires.</string>
+    <string name="uv_index_scale">Échelle de l’indice UV</string>
+    <string name="uv_index_time_to_burn">Temps avant brûlure</string>
+    <string name="uv_index_time_to_burn_explanations">Le temps exact avant brûlure dépend de l’altitude, de la présence de surfaces réfléchissantes comme l’eau ou la neige, du type de peau et de l’utilisation de crème solaire.</string>
 
     <string name="forecast">Prévisions</string>
     <string name="daily_forecast">Prévisions quotidiennes</string>
@@ -178,6 +228,9 @@
     <string name="pollen_and_mold">Pollen &amp; moisissure</string>
     <string name="details">Détails</string>
     <string name="ephemeris">Soleil &amp; lune</string>
+    <string name="ephemeris_about">À propos des heures de lever et coucher</string>
+    <string name="ephemeris_about_rise">L’heure de lever est le moment où le soleil ou la lune apparaît entièrement au-dessus de l’horizon.</string>
+    <string name="ephemeris_about_set">L’heure de coucher est le moment où le soleil ou la lune disparaît complètement sous l’horizon.</string>
 
     <!-- Weather texts -->
     <string name="common_weather_text_clear_sky">Ciel dégagé</string>
@@ -275,7 +328,7 @@
     <string name="widget_custom_subtitle_keyword_at_description">Température ressentie actuelle (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Température ressentie actuelle (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Vent actuel</string>
-    <string name="widget_custom_subtitle_keyword_caqi_description">Indice de Qualité de l’Air actuel</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Indice de qualité de l’air actuel</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">UV actuel</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Humidité actuelle</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Pression actuelle</string>
@@ -303,7 +356,7 @@
     <string name="widget_custom_subtitle_keyword_xnp_description">Précipitations de nuit d’aujourd’hui, demain, …, dans 4 jours (%)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Vent de jour d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Vent de nuit d’aujourd’hui, demain, …, dans 4 jours</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Indice de Qualité de l’Air d’aujourd’hui, demain, …, dans 4 jours</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Indice de qualité de l’air d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Résumé des indices de pollen d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Lever du soleil d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Coucher du soleil d’aujourd’hui, demain, …, dans 4 jours</string>
@@ -406,39 +459,32 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Homogène</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combine tous les modèles météo de ce fournisseur en une prévision homogène</string>
     <string name="settings_icon_packs_check_details">Plus de détails</string>
-    <!-- $ = alert count. -->
+    <string name="air_quality_pollutant_primary">Polluant principal</string>
+    <string name="air_quality_pollutant_details">Détails des polluants</string>
+    <string name="air_quality_health_information">Informations sanitaires</string>
     <string name="air_quality_pm25">PM2,5</string>
     <string name="air_quality_pm25_voice">PM deux point cinq</string>
+    <string name="air_quality_pm25_full">Particules respirables (&lt; %s)</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_pm10_voice">PM dix</string>
+    <string name="air_quality_pm10_full">Particules inhalables (&lt; %s)</string>
+    <string name="air_quality_pm_sources">Les principales sources sont les processus de combustion (centrales électriques, chauffage intérieur, gaz d’échappement des voitures, feux de forêt), les processus mécaniques (construction, poussière minérale, agriculture) et les particules biologiques (pollen, moisissures, bactéries, virus).</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_so2_voice">Dioxyde de soufre</string>
+    <string name="air_quality_so2_full">Dioxyde de soufre (SO₂)</string>
+    <string name="air_quality_so2_sources">Les principales sources sont les processus de combustion de combustibles contenant du soufre dans l’industrie, les transports et les centrales électriques.</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Dioxyde d’azote</string>
+    <string name="air_quality_no2_full">Dioxyde d’azote (NO₂)</string>
+    <string name="air_quality_no2_sources">Les principales sources sont les processus de combustion de combustibles, tels que ceux utilisés dans l’industrie et les transports.</string>
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Ozone</string>
+    <string name="air_quality_o3_full">Ozone troposphérique (O₃)</string>
+    <string name="air_quality_o3_sources">L’ozone est créé par réaction chimique entre l’oxygène atmosphérique, les oxydes d’azote, le monoxyde de carbone et les composés organiques, en présence de la lumière du soleil.</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Monoxyde de carbone</string>
-    <string name="air_quality_pm_info_title">Particules (PM2,5 &amp; PM10)</string>
-    <string name="air_quality_pm_explanations_introduction">Les particules ou matières particulaires atmosphériques sont des particules microscopiques de matière solide ou liquide en suspension dans l’air.</string>
-    <string name="air_quality_pm_explanations_origin">Certaines particules sont d’origine naturelle et proviennent des volcans, des tempêtes de poussière, des incendies de forêts et de prairies, de la végétation vivante et des embruns. Les activités humaines génèrent également des quantités importantes de particules, comme la circulation et les transports, les activités industrielles, les centrales électriques, les chantiers de construction, la combustion de déchets ou les exploitations agricoles.</string>
-    <string name="air_quality_pm_explanations_consequences">Les particules sont la forme la plus nocive de pollution atmosphérique en raison de leur capacité à pénétrer profondément dans les poumons et le cerveau à partir des flux sanguins, causant des problèmes de santé tels que des maladies cardiaques, des maladies pulmonaires et des décès prématurés.</string>
-    <string name="air_quality_o3_info_title">Ozone troposphérique (O₃)</string>
-    <string name="air_quality_o3_info_introduction">L’ozone troposphérique (O₃) est un composant majeur du smog. Bien qu’il s’agisse de la même molécule, l’ozone troposphérique peut être nocif pour la santé humaine, alors que l’ozone stratosphérique protège la terre de l’excès de rayonnement UV. </string>
-    <string name="air_quality_o3_info_origin">Il se forme à partir de réactions photochimiques avec des polluants tels que les composés organiques volatils, le monoxyde de carbone et les oxydes d’azote (NOx) émis par les véhicules et l’industrie. En raison de la nature photochimique de l’ozone, les niveaux les plus élevés d’ozone sont observés pendant les périodes ensoleillées.</string>
-    <string name="air_quality_o3_info_consequences">L’exposition à une quantité excessive d’ozone peut entraîner des problèmes respiratoires, déclencher de l’asthme, réduire la fonction pulmonaire et provoquer des maladies pulmonaires.</string>
-    <string name="air_quality_no2_info_title">Dioxyde d’azote (NO₂)</string>
-    <string name="air_quality_no2_info_introduction">Le dioxyde d’azote (NO₂) est un gaz brun-rouge toxique suffocant à l’odeur âcre et piquante caractéristique.</string>
-    <string name="air_quality_no2_info_origin">Les sources ambiantes de NO₂ résultent de la combustion à haute température de combustibles dans des processus tels que ceux utilisés pour le chauffage, le transport, l’industrie et la production d’électricité. Les sources domestiques d’oxydes d’azote (NOx) comprennent les équipements qui brûlent des combustibles tels que les fours, les cheminées et les cuisinières et fours à gaz.</string>
-    <string name="air_quality_no2_info_consequences">L’exposition au dioxyde d’azote peut irriter les voies respiratoires et aggraver les maladies respiratoires. En outre, le NO₂ est un important précurseur de l’ozone, un polluant étroitement lié à l’asthme et à d’autres affections respiratoires.</string>
-    <string name="air_quality_so2_info_title">Dioxyde de soufre (SO₂)</string>
-    <string name="air_quality_so2_info_introduction">Le dioxyde de soufre (SO₂) est un gaz toxique incolore qui donne son odeur aux allumettes brûlées.</string>
-    <string name="air_quality_so2_info_origin">Il est libéré naturellement par l’activité volcanique et provient principalement de la combustion de combustibles fossiles pour le chauffage domestique, l’industrie et la production d’électricité.</string>
-    <string name="air_quality_so2_info_consequences">L’exposition au SO₂ est associée à des hospitalisations pour asthme et à des visites aux urgences.</string>
-    <string name="air_quality_co_info_title">Monoxyde de carbone (CO)</string>
-    <string name="air_quality_co_info_introduction">Le monoxyde de carbone (CO) est un gaz toxique et inflammable, incolore, inodore, insipide et non irritant.</string>
-    <string name="air_quality_co_info_origin">Il est produit par la combustion incomplète de combustibles carbonés tels que le bois, l’essence, le charbon, le gaz naturel et le kérosène dans des poêles simples, des feux ouverts, des lampes à mèche, des fours et des cheminées. La principale source de monoxyde de carbone (CO) dans l’air ambiant provient des véhicules à moteur.</string>
-    <string name="air_quality_co_info_consequences">Le monoxyde de carbone se diffuse à travers les tissus pulmonaires et dans la circulation sanguine, empêchant les cellules de l’organisme de se lier à l’oxygène. Ce manque d’oxygène endommage les tissus et les cellules. L’exposition au monoxyde de carbone peut entraîner des difficultés respiratoires, de l’épuisement, des vertiges et d’autres symptômes semblables à ceux de la grippe. L’exposition à des niveaux élevés de monoxyde de carbone peut être mortelle.</string>
+    <string name="air_quality_co_full">Monoxyde de carbone (CO)</string>
+    <string name="air_quality_co_sources">Provient généralement de la combustion incomplète de combustibles carbonés, comme celle qui se produit dans les moteurs de voiture et les centrales électriques.</string>
     <string name="ephemeris_sunrise_at">Lever de soleil à %s</string> <!-- $ = time. -->
     <string name="ephemeris_sunset_at">Coucher de soleil à %s</string> <!-- $ = time. -->
     <string name="ephemeris_moonrise_at">Lever de lune à %s</string> <!-- $ = time. -->
@@ -514,6 +560,8 @@
     <string name="action_allow">Autoriser</string>
     <string name="action_grant_permission">Appuyez pour accorder la permission.</string>
     <string name="action_help_me_choose">Aidez-moi à choisir</string>
+    <!-- Libellés -->
+    <string name="label_description">Description</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorer quand la batterie est faible</string>
     <string name="settings_notifications_app_updates_check">Notifications des mises à jour de l’appli</string>
     <string name="settings_notifications_permission">Permission de notification requise</string>
@@ -605,19 +653,31 @@
     <string name="settings_source_default_value">Par défaut (inchangé)</string>
 
     <!-- Air quality -->
-    <string name="air_quality_index">Indice de Qualité de l’Air</string>
+    <string name="air_quality_index">Indice de qualité de l’air</string>
+    <string name="air_quality_index_short">IQA</string>
+    <string name="air_quality_index_about">À propos de l’indice de qualité de l’air</string>
+    <string name="air_quality_index_about_description_1">L’indice de la qualité de l’air (IQA) est une échelle conçue pour vous aider à comprendre le degré de pollution de l’air dans une zone spécifique et les risques potentiels pour votre santé.</string>
+    <string name="air_quality_index_about_description_2">L’échelle utilisée dans cette appli est basée sur les recommandations de l’Organisation Mondiale de la Santé, plutôt que sur les réglementations locales, pour avoir des catégories représentatives et permettre de comparer plus facilement les niveaux de pollution entre pays.</string>
+    <string name="air_quality_index_scale">Échelle de l’indice de qualité de l’air</string>
+    <string name="air_quality_index_harmless_exposure">Exposition sans danger</string>
     <string name="air_quality_level_1">Excellent</string>
     <string name="air_quality_level_1_description">La qualité d’air est idéale pour la plupart des individus ; profitez de vos activités en extérieur habituelles.</string>
+    <string name="air_quality_level_1_harmless_exposure">&gt; 1 an</string>
     <string name="air_quality_level_2">Correct</string>
     <string name="air_quality_level_2_description">La qualité d’air est généralement acceptable pour la plupart des individus. Cependant, les personnes sensibles risquent de faire l’expérience de symptômes légers à modérés en cas d’exposition à long terme.</string>
+    <string name="air_quality_level_2_harmless_exposure">&lt; 1 an</string>
     <string name="air_quality_level_3">Mauvais</string>
     <string name="air_quality_level_3_description">L’air a atteint un degré élevé de pollution et n’est pas sain pour les personnes sensibles. Réduisez le temps passé en extérieur si vous ressentez des symptômes, tels que des difficultés respiratoires ou des irritations de la gorge.</string>
+    <string name="air_quality_level_3_harmless_exposure">&lt; 1 jour</string>
     <string name="air_quality_level_4">Risque de santé</string>
     <string name="air_quality_level_4_description">Les effets sur la santé peuvent être ressentis immédiatement par les personnes sensibles. Les individus en bonne santé peuvent éprouver des gênes respiratoires et des irritations de la gorge en cas d’exposition prolongée. Limitez les activités en extérieur.</string>
+    <string name="air_quality_level_4_harmless_exposure">&lt; 1 heure</string>
     <string name="air_quality_level_5">Risque marqué de santé</string>
     <string name="air_quality_level_5_description">Les effets sur la santé risquent d’être ressentis immédiatement par les personnes sensibles et ces dernières doivent éviter les activités en extérieur. Les individus en bonne santé risquent d’éprouver des difficultés respiratoires et des irritations de la gorge ; envisagez de rester à l’intérieur et de repousser les activités en extérieur.</string>
+    <string name="air_quality_level_5_harmless_exposure">&lt; quelques minutes</string>
     <string name="air_quality_level_6">Dangereux</string>
     <string name="air_quality_level_6_description">Toute exposition à l’air, y compris pendant quelques minutes, risque de déboucher sur des problèmes de santé graves pour tous. Évitez les activités en extérieur.</string>
+    <string name="air_quality_level_6_harmless_exposure">&lt; 1 minute</string>
 
     <!-- Weather kind -->
     <string name="common_weather_text_partly_cloudy">Partiellement couvert</string>
@@ -761,6 +821,8 @@
     <string name="unit_h_voice">heures</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Par mètre cube</string>
+    <string name="unit_mum">µm</string>
+    <string name="unit_mum_voice">Micromètres</string>
     <string name="notification_channel_alerts">Vigilances</string>
     <string name="about_matrix">Salon Matrix</string>
 

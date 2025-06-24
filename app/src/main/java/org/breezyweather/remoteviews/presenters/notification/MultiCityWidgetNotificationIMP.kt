@@ -37,7 +37,6 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getStrength
 import org.breezyweather.domain.weather.model.getTrendTemperature
-import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
 import org.breezyweather.ui.theme.resource.ResourceHelper

@@ -34,7 +34,6 @@ import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getStrength
-import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
 import org.breezyweather.ui.theme.resource.ResourceHelper
@@ -76,7 +75,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         val contentTitle = StringBuilder()
         if (!tempIcon && tempFeelsLikeOrAir != null) {
             val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
-            contentTitle.append(temperatureUnit.getValueText(context, tempFeelsLikeOrAir))
+            contentTitle.append(temperatureUnit.getValueText(context, value = tempFeelsLikeOrAir))
         }
         if (!current.weatherText.isNullOrEmpty()) {
             if (contentTitle.toString().isNotEmpty()) contentTitle.append(" – ")

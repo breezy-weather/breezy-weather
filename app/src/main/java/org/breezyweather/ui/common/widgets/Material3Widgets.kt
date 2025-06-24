@@ -197,14 +197,14 @@ fun Material3CardListItem(
     elevation: Dp = defaultCardListItemElevation,
     surface: Color = MaterialTheme.colorScheme.surface,
     onSurface: Color = MaterialTheme.colorScheme.onSurface,
+    withPadding: Boolean = true, // TODO: To be deprecated
     content: @Composable ColumnScope.() -> Unit,
 ) = Card(
     modifier = modifier
         .padding(
-            start = dimensionResource(R.dimen.little_margin),
-            end = dimensionResource(R.dimen.little_margin),
-            top = dimensionResource(R.dimen.little_margin),
-            bottom = 0.dp
+            start = if (withPadding) dimensionResource(R.dimen.little_margin) else 0.dp,
+            end = if (withPadding) dimensionResource(R.dimen.little_margin) else 0.dp,
+            top = if (withPadding) dimensionResource(R.dimen.little_margin) else 0.dp
         ),
     shape = RoundedCornerShape(
         size = dimensionResource(R.dimen.material3_card_list_item_corner_radius)

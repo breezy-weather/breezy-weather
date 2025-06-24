@@ -306,7 +306,7 @@
     <string name="air_quality_pm_info_title">Partículas (PM2.5 y PM10)</string>
     <string name="air_quality_pm_explanations_introduction">Las partículas o material particulado atmosférico son partículas microscópicas de materia sólida o líquida suspendidas en el aire.</string>
     <string name="air_quality_pm_explanations_consequences">Las partículas son la forma más nociva de contaminación atmosférica debido a su capacidad para penetrar profundamente los pulmones y el cerebro desde el torrente sanguíneo, causando problemas de salud como cardiopatías, enfermedades pulmonares y muerte prematura.</string>
-    <string name="air_quality_o3_info_title">Ozono troposférico (O₃)</string>
+    <string name="air_quality_o3_full">Ozono troposférico (O₃)</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_pm_explanations_origin">Algunas partículas se producen de forma natural, originadas por volcanes, tormentas de polvo, incendios forestales y de praderas, vegetación viva y rocío marino. Las actividades humanas también generan cantidades significativas de partículas, como el tráfico y el transporte, las actividades industriales, las centrales eléctricas, las obras de construcción, la quema de residuos o los campos de cultivo.</string>
     <string name="air_quality_o3_info_introduction">El ozono troposférico a nivel del suelo (O₃) es uno de los principales componentes de la niebla tóxica. Aunque se trate de la misma molécula, el ozono troposférico puede ser perjudicial para la salud humana a diferencia del ozono estratosférico que protege la Tierra del exceso de radiación ultravioleta.</string>
@@ -337,10 +337,10 @@
     <string name="settings_background_updates_refresh_title">Frecuencia de actualización</string>
     <string name="settings_weather_source_portal">Portal</string>
     <string name="location_search_no_results_advice">Asegúrese de que el término de búsqueda esté escrito correctamente y no sea demasiado específico. Alternativamente, puede probar con otra fuente de búsqueda de ubicación que puede arrojar resultados diferentes.</string>
-    <string name="air_quality_so2_info_title">Dióxido de azufre (SO₂)</string>
+    <string name="air_quality_so2_full">Dióxido de azufre (SO₂)</string>
     <string name="air_quality_so2_info_introduction">El dióxido de azufre (SO₂) es un gas tóxico incoloro responsable del olor de los fósforos quemados.</string>
     <string name="air_quality_so2_info_consequences">La exposición al SO₂ se asocia con ingresos hospitalarios por asma y visitas a urgencias.</string>
-    <string name="air_quality_co_info_title">Monóxido de carbono (CO)</string>
+    <string name="air_quality_co_full">Monóxido de carbono (CO)</string>
     <string name="weather_api_limit_reached_title">Límite de solicitudes a la API alcanzado</string>
     <string name="weather_api_unauthorized_title">Acceso API no autorizado</string>
     <string name="weather_api_key_required_missing_title">Falta la clave API requerida</string>
@@ -382,7 +382,7 @@
     <string name="dialog_permissions_notification_content">Pulse aquí para activar las notificaciones acerca de alertas meteorológicas o decide luego en la Configuración.</string>
     <string name="settings_location_access_background_title">Acceso al lugar en segundo plano</string>
     <string name="air_quality_o3_info_consequences">La exposición excesiva al ozono puede causar problemas respiratorios, desencadenar asma, reducir la capacidad pulmonar y provocar enfermedades pulmonares.</string>
-    <string name="air_quality_no2_info_title">Dióxido de nitrógeno (NO₂)</string>
+    <string name="air_quality_no2_full">Dióxido de nitrógeno (NO₂)</string>
     <string name="air_quality_no2_info_introduction">El dióxido de nitróxeno (NO₂) es un gas tóxico, sofocante, de color marrón rojizo y un olor acre característico.</string>
     <string name="action_continue">Continuar</string>
     <string name="action_close">Cerrar</string>

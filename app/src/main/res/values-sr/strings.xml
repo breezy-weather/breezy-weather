@@ -110,7 +110,7 @@
     <string name="uv_index_6_7">Високо</string>
     <string name="uv_index_8_10">Веома високо</string>
     <string name="air_quality_pm_explanations_introduction">Честице или атмосферске честице су микроскопске честице чврсте или течне материје суспендоване у ваздуху.</string>
-    <string name="air_quality_no2_info_title">Азот-диоксид (NO₂)</string>
+    <string name="air_quality_no2_full">Азот-диоксид (NO₂)</string>
     <string name="air_quality_no2_info_consequences">Излагање азот-диоксиду може иритирати дисајне путеве и погоршати респираторне болести. Поред тога, NO₂ је важна претеча озона, загађивача који је уско повезан са астмом и другим респираторним стањима.</string>
     <string name="air_quality_co_info_introduction">Угљен-моноксид (CO) је отрован, запаљив гас који је безбојан, без мириса, укуса и не изазива иритацију.</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Растући месечев срп</string>
@@ -471,7 +471,7 @@
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_so2">SO₂</string>
-    <string name="air_quality_co_info_title">Угљен-моноксид (CO)</string>
+    <string name="air_quality_co_full">Угљен-моноксид (CO)</string>
     <string name="action_close">Затвори</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_background_updates_refresh_24h">24 сата</string>
@@ -488,10 +488,10 @@
     <string name="air_quality_level_6_description">Свако излагање ваздуху, чак и на неколико минута, може довести до озбиљних здравствених последица. Избегавајте активности на отвореном простору.</string>
     <string name="air_quality_pm_explanations_origin">Неке честице се јављају природно, потичу од вулкана, прашних олуја, шумских и травних пожара, живе вегетације и морског прскања. Људске активности такође стварају значајне количине честица, као што су саобраћај и транспорт, индустријске активности, електране, градилишта, спаљивање отпада или поља.</string>
     <string name="air_quality_pm_explanations_consequences">Честице су најштетнији облик загађења ваздуха због своје способности да из крвотока продру дубоко у плућа и мозак, узрокујући здравствене проблеме као што су болести срца, плућне болести и превремена смрт.</string>
-    <string name="air_quality_o3_info_title">Приземни озон (O₃)</string>
+    <string name="air_quality_o3_full">Приземни озон (O₃)</string>
     <string name="air_quality_o3_info_consequences">Изложеност прекомерном озону може изазвати проблеме са дисањем, покренути астму, смањити функцију плућа и довести до болести плућа.</string>
     <string name="air_quality_no2_info_introduction">Азот-диоксид (NO₂) је загушљив, токсичан црвенкасто-браон гас са карактеристичним опорним, оштрим мирисом.</string>
-    <string name="air_quality_so2_info_title">Сумпор-диоксид (SO₂)</string>
+    <string name="air_quality_so2_full">Сумпор-диоксид (SO₂)</string>
     <string name="air_quality_so2_info_introduction">Сумпор-диоксид (SO₂) је безбојни отровни гас одговоран за мирис спаљених шибица.</string>
     <string name="air_quality_so2_info_origin">Ослобађа се природно, вулканском активношћу и претежно потиче од сагоревања фосилних горива за грејање у домаћинствима, индустрија и производње електричне енергије.</string>
     <string name="air_quality_so2_info_consequences">Изложеност SO₂ повезана је са пријемом у болницу за астму и посетама хитној помоћи.</string>

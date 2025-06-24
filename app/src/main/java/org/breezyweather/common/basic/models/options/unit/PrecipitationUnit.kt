@@ -26,13 +26,14 @@ import org.breezyweather.common.extensions.isRtl
 enum class PrecipitationUnit(
     override val id: String,
     override val convertUnit: (Double) -> Double,
+    val chartStep: Double,
     val decimals: Int = 1,
 ) : UnitEnum<Double> {
 
-    MM("mm", { valueInDefaultUnit -> valueInDefaultUnit }),
-    CM("cm", { valueInDefaultUnit -> valueInDefaultUnit.div(10f) }),
-    IN("in", { valueInDefaultUnit -> valueInDefaultUnit.div(25.4f) }, 2),
-    LPSQM("lpsqm", { valueInDefaultUnit -> valueInDefaultUnit }),
+    MM("mm", { valueInDefaultUnit -> valueInDefaultUnit }, chartStep = 5.0),
+    CM("cm", { valueInDefaultUnit -> valueInDefaultUnit.div(10f) }, chartStep = 0.5),
+    IN("in", { valueInDefaultUnit -> valueInDefaultUnit.div(25.4f) }, chartStep = 0.2, decimals = 2),
+    LPSQM("lpsqm", { valueInDefaultUnit -> valueInDefaultUnit }, chartStep = 5.0),
     ;
 
     companion object {
@@ -60,19 +61,22 @@ enum class PrecipitationUnit(
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Double,
-    ) = getValueText(context, valueInDefaultUnit, context.isRtl)
+        value: Double,
+        isValueInDefaultUnit: Boolean,
+    ) = getValueText(context, value, context.isRtl, isValueInDefaultUnit)
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Double,
+        value: Double,
         rtl: Boolean,
+        isValueInDefaultUnit: Boolean,
     ) = Utils.getValueText(
         context = context,
         enum = this,
-        valueInDefaultUnit = valueInDefaultUnit,
+        value = value,
         decimalNumber = decimals,
-        rtl = rtl
+        rtl = rtl,
+        isValueInDefaultUnit = isValueInDefaultUnit
     )
 
     override fun getValueVoice(
@@ -131,17 +135,19 @@ enum class PrecipitationIntensityUnit(
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Double,
-    ) = getValueText(context, valueInDefaultUnit, context.isRtl)
+        value: Double,
+        isValueInDefaultUnit: Boolean,
+    ) = getValueText(context, value, context.isRtl, isValueInDefaultUnit)
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Double,
+        value: Double,
         rtl: Boolean,
+        isValueInDefaultUnit: Boolean,
     ) = Utils.getValueText(
         context = context,
         enum = this,
-        valueInDefaultUnit = valueInDefaultUnit,
+        value = value,
         decimalNumber = decimals,
         rtl = rtl
     )

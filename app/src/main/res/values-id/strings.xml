@@ -295,7 +295,7 @@
     <string name="settings_widgets_notification_style_title">Gaya</string>
     <string name="settings_background_updates_refresh_title">Kecepatan penyegaran</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Hitam</string>
-    <string name="air_quality_so2_info_title">Sulfur dioksida (SO₂)</string>
+    <string name="air_quality_so2_full">Sulfur dioksida (SO₂)</string>
     <string name="common_weather_text_snow">Salju</string>
     <string name="pollen_and_mold">Serbuk sari &amp; jamur</string>
     <string name="air_quality_pm_info_title">Partikulat (PM2.5 &amp; PM10)</string>
@@ -335,7 +335,7 @@
     <string name="widget_week_style_3_days">3 hari</string>
     <string name="widget_subtitle_data_time">Waktu pemuatan ulang</string>
     <string name="settings_main">Layar utama</string>
-    <string name="air_quality_o3_info_title">Ozon permukaan tanah (O₃)</string>
+    <string name="air_quality_o3_full">Ozon permukaan tanah (O₃)</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="location_service_native">API Asli</string>
     <string name="common_weather_text_snow_light">Salju ringan</string>
@@ -372,7 +372,7 @@
     <string name="unit_km_voice">Kilometer</string>
     <string name="common_weather_text_rain_freezing">Hujan beku</string>
     <string name="air_quality_no2_info_introduction">Nitrogen dioksida (NO₂) adalah gas cokelat kemerahan yang bersifat beracun, menyesakkan, serta berbau menyengat dan tajam.</string>
-    <string name="air_quality_no2_info_title">Nitrogen dioksida (NO₂)</string>
+    <string name="air_quality_no2_full">Nitrogen dioksida (NO₂)</string>
     <string name="pollen_level_4">Tinggi</string>
     <string name="widget_style_temperature">Suhu</string>
     <string name="settings_automatic">Otomatis</string>
@@ -475,7 +475,7 @@
     <string name="settings_debug">Awakutu</string>
     <string name="air_quality_level_4_description">Dampak kesehatan dapat dirasakan secara lamgsung oleh kelompok yang sensitif. Orang yang sehat dapat mengalami kesulitan bernapas dan radang tenggorokan jika terpapar dalam waktu lama. Batasi aktivitas di luar ruangan.</string>
     <string name="widget_style_nano">Nano</string>
-    <string name="air_quality_co_info_title">Karbon monoksida (CO)</string>
+    <string name="air_quality_co_full">Karbon monoksida (CO)</string>
     <string name="weather_source_accu_preference_hours_240">240 jam</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="air_quality_pm10">PM10</string>

@@ -15,6 +15,9 @@
     <string name="pollen">Pollen</string>
     <string name="pollen_and_mold">Pollen &amp; mold</string>
     <string name="ephemeris">Sun &amp; moon</string>
+    <string name="ephemeris_about">About rise and set times</string>
+    <string name="ephemeris_about_rise">The rise time is when the sun or moon fully appears above the horizon.</string>
+    <string name="ephemeris_about_set">The set time is when the sun or moon completely disappears below the horizon.</string>
     <string name="details">Details</string>
     <!-- Alerts -->
     <string name="alert">Alert</string>
@@ -29,20 +32,33 @@
     <string name="daily_yesterday_short">Yda</string>
     <string name="daily_today_short">Today</string>
     <string name="daily_tomorrow_short">Tmw</string>
+    <string name="daily_summary">Daily summary</string>
+    <!-- Charts -->
+    <string name="chart_no_daily_data">No data available for this day.</string>
+    <string name="chart_no_hourly_data">No hourly data available.</string>
+    <string name="chart_not_enough_hourly_data">Not enough hourly data available to display a chart for this day.</string>
+    <string name="chart_average">Average</string>
+    <string name="chart_maximum_value">Maximum value</string>
+    <!-- Conditions -->
+    <string name="conditions">Conditions</string>
     <!-- Temperature -->
     <string name="temperature">Temperature</string>
+    <string name="temperature_real">Actual</string>
+    <string name="temperature_real_details">The actual temperature.</string>
     <string name="temperature_feels_like">Feels like</string>
     <!-- 10 characters max version of temperature_feels_like to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
     <string name="temperature_feels_like_short">Feels like</string>
+    <string name="temperature_feels_like_details">What the temperature feels like, as a result of humidity, wind and/or sunlight.</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Apparent</string>
     <string name="temperature_wind_chill">Wind chill</string>
     <string name="temperature_wet_bulb">Wet bulb</string>
-    <!-- You might want to read https://en.wikipedia.org/wiki/Heating_degree_day -->
     <string name="temperature_degree_day">Degree day</string>
     <string name="temperature_degree_day_heating">Heating degree day</string>
+    <string name="temperature_degree_day_heating_explanation">Difference between the outside temperature and a reference comfortable temperature used to estimate heating energy requirements</string>
     <string name="temperature_degree_day_cooling">Cooling degree day</string>
+    <string name="temperature_degree_day_cooling_explanation">Difference between the outside temperature and a reference comfortable temperature used to estimate cooling energy requirements</string>
     <!-- It’s actually a median, but the word “Average” is probably easier to understand -->
     <string name="temperature_average_short">Avg</string>
     <string name="temperature_normal_short">Normal</string>
@@ -67,7 +83,10 @@
     <!-- 10 characters max version of wind to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
     <string name="wind_short">Wind</string>
     <string name="wind_speed">Wind speed</string>
+    <string name="wind_speed_about">About wind speed and gusts</string>
+    <string name="wind_speed_about_description">Wind speed is measured by averaging wind speeds over a period of time. Gusts are sudden bursts of wind typically lasting under 20 seconds.</string>
     <string name="wind_gusts">Wind gusts</string>
+    <string name="wind_gusts_short">Gusts</string>
     <string name="wind_direction">Wind direction</string>
     <string name="wind_direction_variable">Variable</string>
     <string name="wind_direction_N">North</string>
@@ -87,6 +106,8 @@
     <string name="wind_direction_W_short">W</string>
     <string name="wind_direction_NW_short">NW</string>
     <string name="wind_strength">Wind strength</string>
+    <string name="wind_strength_scale_description" translatable="false">@string/label_description</string>
+    <string name="wind_strength_scale">Beaufort scale</string>
     <string name="wind_strength_0">Calm</string>
     <string name="wind_strength_1">Light air</string>
     <string name="wind_strength_2">Light breeze</string>
@@ -99,7 +120,7 @@
     <string name="wind_strength_9">Strong gale</string>
     <string name="wind_strength_10">Storm</string>
     <string name="wind_strength_11">Violent storm</string>
-    <string name="wind_strength_12">Hurricane</string>
+    <string name="wind_strength_12">Hurricane-force</string>
     <!-- UV -->
     <string name="uv_index">UV index</string>
     <!-- 10 characters max version of uv_index to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
@@ -109,57 +130,94 @@
     <string name="uv_index_6_7">High</string>
     <string name="uv_index_8_10">Very high</string>
     <string name="uv_index_11">Extreme</string>
+    <string name="uv_index_maximum_value" translatable="false">@string/chart_maximum_value</string>
+    <string name="uv_index_about">About UV index</string>
+    <string name="uv_index_about_description">The UV index measures the strength of the sun’s ultraviolet radiation. The higher it is, the greater and faster it can cause sunburn, skin cancer and eye damage.</string>
+    <string name="uv_index_scale">UV index scale</string>
+    <string name="uv_index_description" translatable="false">@string/label_description</string>
+    <string name="uv_index_time_to_burn">Time to burn</string>
+    <!-- %s = 1000 meters converted -->
+    <string name="uv_index_time_to_burn_explanations">The exact time to burn depends on the altitude, the presence of reflective ground like water or snow, your skin type, and the use of sunscreen.</string>
     <string name="uv_alert_level">Alert</string>
     <!-- Air quality -->
-    <string name="air_quality_index">Air Quality Index</string>
+    <string name="air_quality_index">Air quality index</string>
+    <string name="air_quality_index_short">AQI</string>
+    <string name="air_quality_index_about">About air quality index</string>
+    <string name="air_quality_index_about_description_1">Air quality index (AQI) is a scale designed to help you understand how polluted the air is in a particular area, and the potential risks to your health.</string>
+    <string name="air_quality_index_about_description_2">The scale used in this app is based on World Health Organization recommendations, rather than local regulations, to have meaningful categories, and make it easier to compare pollution levels between countries.</string>
+    <string name="air_quality_index_scale">Air quality index scale</string>
+    <string name="air_quality_index_description" translatable="false">@string/label_description</string>
+    <string name="air_quality_index_harmless_exposure">Harmless exposure</string>
     <string name="air_quality_level_1">Excellent</string>
     <string name="air_quality_level_1_description">The air quality is ideal for most individuals; enjoy your normal outdoor activities.</string>
+    <string name="air_quality_level_1_harmless_exposure">&gt; 1 year</string>
     <string name="air_quality_level_2">Fair</string>
     <string name="air_quality_level_2_description">The air quality is generally acceptable for most individuals. However, sensitive groups may experience minor to moderate symptoms from long-term exposure.</string>
+    <string name="air_quality_level_2_harmless_exposure">&lt; 1 year</string>
     <string name="air_quality_level_3">Poor</string>
     <string name="air_quality_level_3_description">The air has reached a high level of pollution and is unhealthy for sensitive groups. Reduce time spent outside if you are feeling symptoms such as difficulty breathing or throat irritation.</string>
+    <string name="air_quality_level_3_harmless_exposure">&lt; 1 day</string>
     <string name="air_quality_level_4">Unhealthy</string>
     <string name="air_quality_level_4_description">Health effects can be immediately felt by sensitive groups. Healthy individuals may experience difficulty breathing and throat irritation with prolonged exposure. Limit outdoor activity.</string>
+    <string name="air_quality_level_4_harmless_exposure">&lt; 1 hour</string>
     <string name="air_quality_level_5">Very unhealthy</string>
     <string name="air_quality_level_5_description">Health effects will be immediately felt by sensitive groups and should avoid outdoor activity. Healthy individuals are likely to experience difficulty breathing and throat irritation; consider staying indoors and rescheduling outdoor activities.</string>
+    <string name="air_quality_level_5_harmless_exposure">&lt; a few minutes</string>
     <string name="air_quality_level_6">Dangerous</string>
     <string name="air_quality_level_6_description">Any exposure to the air, even for a few minutes, can lead to serious health effects on everybody. Avoid outdoor activities.</string>
+    <string name="air_quality_level_6_harmless_exposure">&lt; 1 minute</string>
+    <string name="air_quality_average" translatable="false">@string/chart_average</string>
+    <string name="air_quality_pollutant_primary">Primary pollutant</string>
+    <string name="air_quality_pollutant_details">Pollutant details</string>
+    <string name="air_quality_health_information">Health information</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm25_voice">PM two point five</string>
+    <!-- %s = 2.5 µm -->
+    <string name="air_quality_pm25_full">Fine particulate matter (&lt; %s)</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_pm10_voice">PM ten</string>
+    <!-- %s = 10 µm -->
+    <string name="air_quality_pm10_full">Inhalable particulate matter (&lt; %s)</string>
+    <string name="air_quality_pm_sources">Main sources are combustion processes (e.g. power plants, indoor heating, car exhausts, wildfires), mechanical processes (e.g. construction, mineral dust, agriculture) and biological particles (e.g. pollen, mold, bacteria, viruses).</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_so2_voice">Sulfur dioxide</string>
+    <!-- Please keep the 2 in SO₂ written this way -->
+    <string name="air_quality_so2_full">Sulfur dioxide (SO₂)</string>
+    <string name="air_quality_so2_sources">Main sources are burning processes of sulfur-containing fuel in industry, transportation and power plants.</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Nitrogen dioxide</string>
+    <!-- Please keep the 2 in NO₂ written this way -->
+    <string name="air_quality_no2_full">Nitrogen dioxide (NO₂)</string>
+    <string name="air_quality_no2_sources">Main sources are fuel burning processes, such as those used in industry and transportation.</string>
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Ozone</string>
+    <!-- Please keep the 3 in O₃ written this way -->
+    <string name="air_quality_o3_full">Ground-level ozone (O₃)</string>
+    <string name="air_quality_o3_sources">Ozone is created in a chemical reaction between atmospheric oxygen, nitrogen oxides, carbon monoxide and organic compounds, in the presence of sunlight.</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Carbon monoxide</string>
-    <string name="air_quality_pm_info_title">Particulates (PM2.5 &amp; PM10)</string>
-    <string name="air_quality_pm_explanations_introduction">Particulates or atmospheric particulate matter are microscopic particles of solid or liquid matter suspended in the air.</string>
-    <string name="air_quality_pm_explanations_origin">Some particulates occur naturally, originating from volcanoes, dust storms, forest and grassland fires, living vegetation and sea spray. Human activities also generate significant amounts of particulates, such as traffic and transportation, industrial activities, power plants, construction sites, waste burning or fields.</string>
-    <string name="air_quality_pm_explanations_consequences">Particulates are the most harmful form of air pollution due to their ability to penetrate deep into the lungs and brain from blood streams, causing health problems such as heart disease, lung disease, and premature death.</string>
-    <!-- Please keep the 3 in O₃ written this way -->
-    <string name="air_quality_o3_info_title">Ground-level ozone (O₃)</string>
-    <string name="air_quality_o3_info_introduction">Ground-level ozone (O₃) is a major component of smog. Although the same molecule, ground-level ozone can be harmful to human health, unlike stratospheric ozone that protects the earth from excess UV radiation.</string>
-    <string name="air_quality_o3_info_origin">It is formed from photochemical reactions with pollutants such as volatile organic compounds, carbon monoxide and nitrogen oxides (NOₓ) emitted from vehicles, and industry. Due to the photochemical nature, the highest levels of ozone are seen during periods of sunny weather.</string>
-    <string name="air_quality_o3_info_consequences">Exposure to excessive ozone can cause problems breathing, trigger asthma, reduce lung function and lead to lung disease.</string>
-    <!-- Please keep the 2 in NO₂ written this way -->
-    <string name="air_quality_no2_info_title">Nitrogen dioxide (NO₂)</string>
-    <string name="air_quality_no2_info_introduction">Nitrogen dioxide (NO₂) is a suffocating, toxic reddish-brown gas with a characteristic pungent, acrid odor.</string>
-    <string name="air_quality_no2_info_origin">Ambient sources of NO₂ results from high temperature combustion of fuels in processes such as those used for heating, transportation, industry and power generation. Household sources of nitrogen oxides (NOₓ) include equipment that burn fuels such as furnaces, fireplaces and gas stoves and ovens.</string>
-    <string name="air_quality_no2_info_consequences">Exposure to nitrogen dioxide can irritate airways and aggravate respiratory diseases. Additionally, NO₂ is an important ozone precursor, a pollutant closely linked to asthma and other respiratory conditions.</string>
-    <!-- Please keep the 2 in SO₂ written this way -->
-    <string name="air_quality_so2_info_title">Sulfur dioxide (SO₂)</string>
-    <string name="air_quality_so2_info_introduction">Sulfur dioxide (SO₂) is a colourless toxic gas responsible for the odor of burnt matches.</string>
-    <string name="air_quality_so2_info_origin">It is released naturally by volcanic activity and predominantly derived from the combustion of fossil fuels for domestic heating, industries and power generation.</string>
-    <string name="air_quality_so2_info_consequences">Exposure to SO₂ is associated with asthma hospital admissions and emergency room visits.</string>
-    <string name="air_quality_co_info_title">Carbon monoxide (CO)</string>
-    <string name="air_quality_co_info_introduction">Carbon monoxide (CO) is a poisonous, flammable gas that is colorless, odorless, tasteless, and non irritant.</string>
-    <string name="air_quality_co_info_origin">It is produced by the incomplete combustion of carbonaceous fuels such as wood, petrol, coal, natural gas and kerosene in simple stoves, open fires, wick lamps, furnaces, fireplaces. The predominant source of carbon monoxide (CO) in ambient air is from motor vehicles.</string>
-    <string name="air_quality_co_info_consequences">Carbon monoxide diffuses across the lung tissues and into the bloodstream, making it difficult for the body’s cells to bind to oxygen. This lack of oxygen damages tissues and cells. Exposure to carbon monoxide can cause difficulties breathing, exhaustion, dizziness, and other flu-like symptoms. Exposure to high levels of carbon monoxide can be deadly.</string>
+    <string name="air_quality_co_full">Carbon monoxide (CO)</string>
+    <string name="air_quality_co_sources">Typically originates from incomplete combustion of carbon fuels, such as that which occurs in car engines and power plants.</string>
+    <!-- Deprecated, turning off translations before deleting them all -->
+    <string name="air_quality_pm_info_title" translatable="false">Particulates (PM2.5 &amp; PM10)</string>
+    <string name="air_quality_pm_explanations_introduction" translatable="false">Particulates or atmospheric particulate matter are microscopic particles of solid or liquid matter suspended in the air.</string>
+    <string name="air_quality_pm_explanations_origin" translatable="false">Some particulates occur naturally, originating from volcanoes, dust storms, forest and grassland fires, living vegetation and sea spray. Human activities also generate significant amounts of particulates, such as traffic and transportation, industrial activities, power plants, construction sites, waste burning or fields.</string>
+    <string name="air_quality_pm_explanations_consequences" translatable="false">Particulates are the most harmful form of air pollution due to their ability to penetrate deep into the lungs and brain from blood streams, causing health problems such as heart disease, lung disease, and premature death.</string>
+    <string name="air_quality_o3_info_introduction" translatable="false">Ground-level ozone (O₃) is a major component of smog. Although the same molecule, ground-level ozone can be harmful to human health, unlike stratospheric ozone that protects the earth from excess UV radiation.</string>
+    <string name="air_quality_o3_info_origin" translatable="false">It is formed from photochemical reactions with pollutants such as volatile organic compounds, carbon monoxide and nitrogen oxides (NOₓ) emitted from vehicles, and industry. Due to the photochemical nature, the highest levels of ozone are seen during periods of sunny weather.</string>
+    <string name="air_quality_o3_info_consequences" translatable="false">Exposure to excessive ozone can cause problems breathing, trigger asthma, reduce lung function and lead to lung disease.</string>
+    <string name="air_quality_no2_info_introduction" translatable="false">Nitrogen dioxide (NO₂) is a suffocating, toxic reddish-brown gas with a characteristic pungent, acrid odor.</string>
+    <string name="air_quality_no2_info_origin" translatable="false">Ambient sources of NO₂ results from high temperature combustion of fuels in processes such as those used for heating, transportation, industry and power generation. Household sources of nitrogen oxides (NOₓ) include equipment that burn fuels such as furnaces, fireplaces and gas stoves and ovens.</string>
+    <string name="air_quality_no2_info_consequences" translatable="false">Exposure to nitrogen dioxide can irritate airways and aggravate respiratory diseases. Additionally, NO₂ is an important ozone precursor, a pollutant closely linked to asthma and other respiratory conditions.</string>
+    <string name="air_quality_so2_info_introduction" translatable="false">Sulfur dioxide (SO₂) is a colourless toxic gas responsible for the odor of burnt matches.</string>
+    <string name="air_quality_so2_info_origin" translatable="false">It is released naturally by volcanic activity and predominantly derived from the combustion of fossil fuels for domestic heating, industries and power generation.</string>
+    <string name="air_quality_so2_info_consequences" translatable="false">Exposure to SO₂ is associated with asthma hospital admissions and emergency room visits.</string>
+    <string name="air_quality_co_info_introduction" translatable="false">Carbon monoxide (CO) is a poisonous, flammable gas that is colorless, odorless, tasteless, and non irritant.</string>
+    <string name="air_quality_co_info_origin" translatable="false">It is produced by the incomplete combustion of carbonaceous fuels such as wood, petrol, coal, natural gas and kerosene in simple stoves, open fires, wick lamps, furnaces, fireplaces. The predominant source of carbon monoxide (CO) in ambient air is from motor vehicles.</string>
+    <string name="air_quality_co_info_consequences" translatable="false">Carbon monoxide diffuses across the lung tissues and into the bloodstream, making it difficult for the body’s cells to bind to oxygen. This lack of oxygen damages tissues and cells. Exposure to carbon monoxide can cause difficulties breathing, exhaustion, dizziness, and other flu-like symptoms. Exposure to high levels of carbon monoxide can be deadly.</string>
     <!-- Pollen -->
+    <string name="pollen_primary">Primary pollen</string>
+    <string name="pollen_details">Pollen details</string>
     <string name="pollen_tree">Tree</string>
     <string name="pollen_mold">Mold</string>
     <!-- Latin name: Acer. Use latin (not English!) if no matching translation -->
@@ -221,7 +279,7 @@
     <string name="pollen_level_3">Moderate</string>
     <string name="pollen_level_4">High</string>
     <string name="pollen_level_5">Very high</string>
-    <string name="pollen_tap_to_see_more">Tap to see more…</string>
+    <string name="pollen_tap_to_see_more" translatable="false">Tap to see more…</string>
     <!-- Ephemeris -->
     <string name="ephemeris_moon_phase_new_moon">New moon</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Waxing crescent</string>
@@ -242,22 +300,48 @@
     <!-- Other weather details vocabulary -->
     <string name="daytime">Daytime</string>
     <string name="nighttime">Nighttime</string>
+    <string name="nighttime_details">Begins in the evening and lasts until dawn next day</string>
     <string name="sunshine">Sunshine</string>
     <string name="sunshine_duration">Sunshine duration</string>
     <string name="humidity">Humidity</string>
     <!-- 10 characters max version of humidity to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
     <string name="humidity_short">Humidity</string>
     <string name="humidity_dew_point">Humidity / Dew point</string>
-    <string name="pressure">Pressure</string>
-    <string name="pressure_short">Pressure</string>
-    <string name="visibility">Visibility</string>
-    <string name="visibility_short">Visibility</string>
+    <string name="humidity_about">About relative humidity</string>
+    <string name="humidity_about_description">Relative humidity, more commonly known just as humidity, is the percentage of water vapour present in the air compared to the maximum amount that the air can hold at a given temperature.</string>
     <string name="dew_point">Dew point</string>
     <!-- 10 characters max version of dew_point to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
     <string name="dew_point_short">Dew point</string>
+    <string name="dew_point_about">About dew point</string>
+    <!-- %s = 100 % -->
+    <string name="dew_point_about_description">Dew point is what the temperature would need to be cooled to in order to achieve a relative humidity of %s.</string>
+    <string name="pressure">Pressure</string>
+    <string name="pressure_short">Pressure</string>
+    <string name="pressure_average" translatable="false">@string/chart_average</string>
+    <string name="pressure_rising">Rising</string>
+    <string name="pressure_steady">Steady</string>
+    <string name="pressure_falling">Falling</string>
+    <string name="pressure_about">About pressure</string>
+    <string name="pressure_about_description1">Atmospheric pressure is the downward pressure exerted by the earth’s atmosphere. This app uses mean sea level pressure (MSLP) to allow easier comparison of pressure from places with different altitudes.</string>
+    <string name="pressure_about_description2">Significant, rapid changes in pressure are used to predict changes in the weather. For example, a drop in pressure can mean that rain or snow is on the way, and rising pressure can mean that weather will improve. Abnormal atmospheric pressure may cause headaches, joint pain, fatigue and other effects.</string>
+    <string name="visibility">Visibility</string>
+    <string name="visibility_short">Visibility</string>
+    <string name="visibility_about">About visibility</string>
+    <string name="visibility_about_description">Visibility tells you how far away you can clearly see objects like buildings and hills. Visibility can be affected by precipitation, fog, dust, smoke or haze.</string>
+    <!-- 10 to 20 km, %1$s = 10, %2$s = 20 km -->
+    <string name="visibility_from_to_number">%1$s to %2$s</string>
+    <!-- Clear to Perfectly clear, %1$s = Clear, %2$s = Perfectly clear -->
+    <string name="visibility_from_to_description">%1$s to %2$s</string>
+    <string name="visibility_poor">Poor</string>
+    <string name="visibility_moderate">Moderate</string>
+    <string name="visibility_good">Good</string>
+    <string name="visibility_clear">Clear</string>
+    <string name="visibility_perfectly_clear">Perfectly clear</string>
     <string name="cloud_cover">Cloud cover</string>
     <!-- 10 characters max version of cloud_cover to be used in current details header. Don’t copy English! If you can fit “Cloud cover” fully, do it! -->
     <string name="cloud_cover_short">Cover</string>
+    <string name="cloud_cover_about">About cloud cover</string>
+    <string name="cloud_cover_about_description">Cloud cover refers to the percentage of the sky obscured by clouds on average. The cloud cover is correlated to the sunshine duration.</string>
     <string name="ceiling">Ceiling</string>
     <!-- 10 characters max version of ceiling to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
     <string name="ceiling_short">Ceiling</string>
@@ -384,6 +468,8 @@
     <string name="action_grant_permission">Tap to grant the permission.</string>
     <!-- Button shown in the weather selection dialog -->
     <string name="action_help_me_choose">Help me choose</string>
+    <!-- Labels -->
+    <string name="label_description">Description</string>
     <!-- Dialogs -->
     <string name="dialog_app_update_check_title">Stay up-to-date</string>
     <string name="dialog_app_update_check_content">Tap here to enable notifications about app updates.</string>
@@ -458,7 +544,7 @@
     <string name="widget_custom_subtitle_keyword_at_description">Current feels like temperature (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Current feels like temperature (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Current wind</string>
-    <string name="widget_custom_subtitle_keyword_caqi_description">Current Air Quality Index</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Current air quality index</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Current UV</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Current humidity</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Current pressure</string>
@@ -487,7 +573,7 @@
     <string name="widget_custom_subtitle_keyword_xnp_description">Nighttime precipitation of today, tomorrow, …, 4 days later (%)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Daytime wind of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Nighttime wind of today, tomorrow, …, 4 days later</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Air Quality Index of today, tomorrow, …, 4 days later</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Air quality index of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Pollen index summary of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Sunrise of today, tomorrow, …, 4 days later</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Sunset of today, tomorrow, …, 4 days later</string>
@@ -808,6 +894,8 @@
     <string name="unit_h_voice">hours</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Per cubic meter</string>
+    <string name="unit_mum">µm</string>
+    <string name="unit_mum_voice">Micrometers</string>
     <!-- Notifications -->
     <string name="notification_refreshed_at">Refreshed at</string>
     <string name="notification_channel_alerts">Alerts</string>
@@ -1190,7 +1278,7 @@
     <string name="widget_custom_subtitle_keyword_xms" translatable="false">$0ms$, $1ms$, …, $4ms$</string>
     <string name="widget_custom_subtitle_keyword_xmp" translatable="false">$0mp$, $1mp$, …, $4mp$</string>
     <!-- Tags -->
-    <string name="tag_temperature" translatable="false">@string/temperature</string>
+    <string name="tag_temperature" translatable="false">@string/conditions</string>
     <string name="tag_wind" translatable="false">@string/wind</string>
     <string name="tag_precipitation" translatable="false">@string/precipitation</string>
     <string name="tag_aqi" translatable="false">@string/air_quality</string>

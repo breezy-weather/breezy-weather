@@ -26,56 +26,12 @@ import org.breezyweather.domain.weather.index.PollenIndex
 
 val Pollen.validPollens: List<PollenIndex>
     get() {
-        return listOf(
-            PollenIndex.ALDER,
-            PollenIndex.ASH,
-            PollenIndex.BIRCH,
-            PollenIndex.CHESTNUT,
-            PollenIndex.CYPRESS,
-            PollenIndex.GRASS,
-            PollenIndex.HAZEL,
-            PollenIndex.HORNBEAM,
-            PollenIndex.LINDEN,
-            PollenIndex.MOLD,
-            PollenIndex.MUGWORT,
-            PollenIndex.OAK,
-            PollenIndex.OLIVE,
-            PollenIndex.PLANE,
-            PollenIndex.PLANTAIN,
-            PollenIndex.POPLAR,
-            PollenIndex.RAGWEED,
-            PollenIndex.SORREL,
-            PollenIndex.TREE,
-            PollenIndex.URTICACEAE,
-            PollenIndex.WILLOW
-        ).filter { getConcentration(it) != null }
+        return PollenIndex.entries.filter { getConcentration(it) != null }
     }
 
 val Pollen.pollensWithConcentration: List<PollenIndex>
     get() {
-        return listOf(
-            PollenIndex.ALDER,
-            PollenIndex.ASH,
-            PollenIndex.BIRCH,
-            PollenIndex.CHESTNUT,
-            PollenIndex.CYPRESS,
-            PollenIndex.GRASS,
-            PollenIndex.HAZEL,
-            PollenIndex.HORNBEAM,
-            PollenIndex.LINDEN,
-            PollenIndex.MOLD,
-            PollenIndex.MUGWORT,
-            PollenIndex.OAK,
-            PollenIndex.OLIVE,
-            PollenIndex.PLANE,
-            PollenIndex.PLANTAIN,
-            PollenIndex.POPLAR,
-            PollenIndex.RAGWEED,
-            PollenIndex.SORREL,
-            PollenIndex.TREE,
-            PollenIndex.URTICACEAE,
-            PollenIndex.WILLOW
-        ).filter { pollenIndex ->
+        return PollenIndex.entries.filter { pollenIndex ->
             val concentration = getConcentration(pollenIndex)
             concentration != null && concentration > 0
         }
@@ -83,38 +39,31 @@ val Pollen.pollensWithConcentration: List<PollenIndex>
 
 fun Pollen.getIndex(pollen: PollenIndex? = null): Int? {
     return if (pollen == null) { // Global pollen index
-        val pollensIndex: List<Int> = listOfNotNull(
-            getIndex(PollenIndex.ALDER),
-            getIndex(PollenIndex.ASH),
-            getIndex(PollenIndex.BIRCH),
-            getIndex(PollenIndex.CHESTNUT),
-            getIndex(PollenIndex.CYPRESS),
-            getIndex(PollenIndex.GRASS),
-            getIndex(PollenIndex.HAZEL),
-            getIndex(PollenIndex.HORNBEAM),
-            getIndex(PollenIndex.LINDEN),
-            getIndex(PollenIndex.MOLD),
-            getIndex(PollenIndex.MUGWORT),
-            getIndex(PollenIndex.OAK),
-            getIndex(PollenIndex.OLIVE),
-            getIndex(PollenIndex.PLANE),
-            getIndex(PollenIndex.PLANTAIN),
-            getIndex(PollenIndex.POPLAR),
-            getIndex(PollenIndex.RAGWEED),
-            getIndex(PollenIndex.SORREL),
-            getIndex(PollenIndex.TREE),
-            getIndex(PollenIndex.URTICACEAE),
-            getIndex(PollenIndex.WILLOW)
-        )
+        val pollensIndex: List<Int> = PollenIndex.entries.mapNotNull { getIndex(it) }
         if (pollensIndex.isNotEmpty()) pollensIndex.max() else null
     } else { // Specific pollen
         pollen.getIndex(getConcentration(pollen)?.toDouble())
     }
 }
 
+fun Pollen.getPollenWithMaxIndex(): PollenIndex? {
+    val pollensIndex: Map<PollenIndex, Int> = PollenIndex.entries
+        .filter { it != PollenIndex.MOLD }
+        .mapNotNull { pollenIndex ->
+            getIndex(pollenIndex)?.let {
+                if (it > 0) pollenIndex to it else null
+            }
+        }.toMap()
+    return if (pollensIndex.isNotEmpty()) {
+        pollensIndex.maxBy { it.value }.key
+    } else {
+        null
+    }
+}
+
 fun Pollen.getConcentration(pollen: PollenIndex) = when (pollen) {
-    PollenIndex.ASH -> ash
     PollenIndex.ALDER -> alder
+    PollenIndex.ASH -> ash
     PollenIndex.BIRCH -> birch
     PollenIndex.CHESTNUT -> chestnut
     PollenIndex.CYPRESS -> cypress

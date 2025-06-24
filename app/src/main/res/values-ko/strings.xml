@@ -463,7 +463,7 @@
     <string name="air_quality_so2_info_origin">화산 활동에 의해 자연적으로 방출되며 주로 국내 난방, 산업 및 발전을 위한 화석 연료의 연소에서 파생됩니다.</string>
     <string name="air_quality_so2_info_consequences">SO ₂ 노출은 천식 병원 입원 및 응급실 방문과 관련이 있습니다.</string>
     <string name="air_quality_co_info_introduction">일산화탄소(CO)는 무색, 무취, 무미, 자극적이지 않은 유독하고 가연성 가스입니다.</string>
-    <string name="air_quality_co_info_title">일산화탄소 (CO)</string>
+    <string name="air_quality_co_full">일산화탄소 (CO)</string>
     <string name="air_quality_co_info_origin">나무, 휘발유, 석탄, 천연 가스 및 등유와 같은 탄소질 연료가 단순 난로, 오픈 파이어, 심지 램프, 용광로, 벽난로에서 불완전 연소되어 생성됩니다. 주변 공기 중 일산화탄소(CO)의 주요 공급원은 자동차입니다.</string>
     <string name="pollen_artemisia">쑥</string>
     <string name="pollen_betula">자작나무</string>
@@ -475,14 +475,14 @@
     <string name="pollen_platanus">올리브 나무</string>
     <string name="temperature_average_short">평균</string>
     <string name="temperature_normals">온도평년값</string>
-    <string name="air_quality_so2_info_title">이산화황(SO₂)</string>
+    <string name="air_quality_so2_full">이산화황(SO₂)</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="precipitation_nowcasting">강수 예보</string>
     <string name="temperature_normal_short">보통</string>
     <string name="air_quality_pm_explanations_consequences">미립자는 혈류로부터 폐와 뇌 깊숙이 침투하여 심장질환, 폐질환, 조기사망 등의 건강문제를 일으키는 능력으로 인해 가장 유해한 대기오염의 형태입니다.</string>
-    <string name="air_quality_no2_info_title">이산화질소(NO ₂)</string>
+    <string name="air_quality_no2_full">이산화질소(NO ₂)</string>
     <string name="air_quality_index">대기질지수</string>
-    <string name="air_quality_o3_info_title">지상 오존(O ₃)</string>
+    <string name="air_quality_o3_full">지상 오존(O ₃)</string>
     <string name="air_quality_pm_explanations_origin">일부 미립자는 화산, 먼지 폭풍, 산림 및 초지 화재, 살아있는 식물 및 바다 스프레이에서 비롯되며 자연적으로 발생합니다. 인간의 활동은 또한 교통 및 운송, 산업 활동, 발전소, 건설 현장, 폐기물 연소 또는 들판과 같은 상당한 양의 미립자를 생성합니다.</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_so2_info_introduction">이산화황(SO ₂)은 불에 탄 성냥 냄새의 원인이 되는 무색 유독 가스입니다.</string>

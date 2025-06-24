@@ -42,8 +42,8 @@ interface UnitEnum<T : Number> : VoiceEnum {
     val convertUnit: (T) -> Double
     fun getValueWithoutUnit(valueInDefaultUnit: T): T
     fun getValueTextWithoutUnit(valueInDefaultUnit: T): String
-    fun getValueText(context: Context, valueInDefaultUnit: T): String
-    fun getValueText(context: Context, valueInDefaultUnit: T, rtl: Boolean): String
+    fun getValueText(context: Context, value: T, isValueInDefaultUnit: Boolean = true): String
+    fun getValueText(context: Context, value: T, rtl: Boolean, isValueInDefaultUnit: Boolean = true): String
     fun getValueVoice(context: Context, valueInDefaultUnit: T): String
     fun getValueVoice(context: Context, valueInDefaultUnit: T, rtl: Boolean): String
 

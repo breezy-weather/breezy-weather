@@ -323,7 +323,7 @@
     <string name="temperature_degree_day_heating">加熱度日數</string>
     <string name="temperature_degree_day_cooling">降溫度日數</string>
     <string name="air_quality_pm_explanations_introduction">細懸浮微粒，即大氣中懸浮的微小固體或液體顆粒。</string>
-    <string name="air_quality_o3_info_title">地表臭氧（O₃）</string>
+    <string name="air_quality_o3_full">地表臭氧（O₃）</string>
     <string name="air_quality_pm_explanations_consequences">細懸浮微粒因能深入肺部和血液，進而影響心臟和肺部健康，甚至導致過早死亡，是最有害的空氣污染物。</string>
     <string name="air_quality_o3_info_origin">臭氧的形成源於光化學反應，與諸如揮發性有機化合物、一氧化碳及由車輛和工業排放的氮氧化物（NOₓ）等污染物相互作用。由於其光化學特性，臭氧濃度在晴朗天氣期間最高。</string>
     <string name="air_quality_no2_info_origin">主要來自高溫燃燒燃料的過程，包括供暖、運輸、工業和發電。家庭燃料設備如暖爐、壁爐和瓦斯爐也是來源之一。</string>
@@ -462,7 +462,7 @@
     <string name="uv_index_3_5">中</string>
     <string name="air_quality_level_6_description">只要暴露在空氣中，即使幾分鐘也可能對每個人都會造成嚴重的健康影響。避免戶外活動。</string>
     <string name="air_quality_o3_info_consequences">過量接觸臭氧會導致呼吸困難，引發哮喘，降低肺功能，並可能引發肺病。</string>
-    <string name="air_quality_no2_info_title">二氧化氮（NO₂）</string>
+    <string name="air_quality_no2_full">二氧化氮（NO₂）</string>
     <string name="air_quality_no2_info_introduction">二氧化氮（NO₂）是一種帶有特殊刺激氣味的濃烈、有毒的紅棕色氣體。</string>
     <string name="pollen_level_2">低</string>
     <string name="pollen_level_3">中</string>
@@ -501,12 +501,12 @@
     <string name="air_quality_so2_info_introduction">二氧化硫（SO₂）是一種無色有毒氣體，是燃燒火柴時所產生的臭味的主因。</string>
     <string name="air_quality_so2_info_origin">主要來源於火山活動與化石燃料的燃燒，如家庭取暖、工業生產和發電。</string>
     <string name="air_quality_so2_info_consequences">暴露於二氧化硫（SO₂）環境中，可能會導致哮喘引起的急診就醫。</string>
-    <string name="air_quality_co_info_title">一氧化碳（CO）</string>
+    <string name="air_quality_co_full">一氧化碳（CO）</string>
     <string name="air_quality_co_info_introduction">一氧化碳（CO）是一種無色、無味、無刺激性並且有毒可燃的氣體。</string>
     <string name="air_quality_co_info_origin">主要產生於木頭、汽油、煤炭、天然氣和煤油等碳質燃料不完全燃燒的過程中，如簡單的灶具、開放式火源、燈芯燈、熔爐和壁爐。在室外空氣中，最主要的一氧化碳（CO）來源是汽車排放。</string>
     <string name="air_quality_co_info_consequences">一氧化碳（CO）會進入肺部組織並進入血液，導致身體細胞難以與氧氣結合。這種缺氧狀況會傷害組織和細胞。暴露於一氧化碳環境中會造成呼吸困難、疲憊、頭暈以及類似流感的症狀。高濃度的一氧化碳暴露可能會致命。</string>
     <string name="air_quality_no2_info_consequences">接觸二氧化氮會刺激氣道，加重呼吸系統疾病。它也是臭氧的重要前體物，與哮喘和其他呼吸疾病有密切關係。</string>
-    <string name="air_quality_so2_info_title">二氧化硫（SO₂）</string>
+    <string name="air_quality_so2_full">二氧化硫（SO₂）</string>
     <string name="location_message_permission_missing">缺少位置存取權限</string>
     <string name="location_message_permission_background_missing">缺少背景定位權限</string>
     <string name="action_add_new_location">新增新位置</string>

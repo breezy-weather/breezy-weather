@@ -94,11 +94,11 @@
     <string name="air_quality_co_voice">کربن مونواکسید</string>
     <string name="air_quality_pm_info_title">ذرات (PM2.5 و PM10)</string>
     <string name="air_quality_pm_explanations_introduction">گردها یا ذرات جویی، ریزه هایی میکروسکوپی جامد یا مایع معلق در هوا هستند.</string>
-    <string name="air_quality_o3_info_title">اوزون سطح زمین (O₃)</string>
-    <string name="air_quality_no2_info_title">نیتروژن دی اکسید (NO₂)</string>
-    <string name="air_quality_so2_info_title">گوگرد دی اکسید (SO₂)</string>
+    <string name="air_quality_o3_full">اوزون سطح زمین (O₃)</string>
+    <string name="air_quality_no2_full">نیتروژن دی اکسید (NO₂)</string>
+    <string name="air_quality_so2_full">گوگرد دی اکسید (SO₂)</string>
     <string name="air_quality_so2_info_introduction">گوگرد دی اکسید (SO₂) گازی است بی رنگ و سمی که بوی کبریت سوخته ازبرای آن است.</string>
-    <string name="air_quality_co_info_title">کربن مونواکسید (CO)</string>
+    <string name="air_quality_co_full">کربن مونواکسید (CO)</string>
     <string name="pollen_olea">زیتون</string>
     <string name="pollen_ambrosia">کهنه‌واش</string>
     <string name="pollen_artemisia">دِرمَنه‌</string>

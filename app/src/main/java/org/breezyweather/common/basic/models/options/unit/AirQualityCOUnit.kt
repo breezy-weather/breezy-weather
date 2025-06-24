@@ -47,19 +47,22 @@ enum class AirQualityCOUnit(
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Double,
-    ) = getValueText(context, valueInDefaultUnit, context.isRtl)
+        value: Double,
+        isValueInDefaultUnit: Boolean,
+    ) = getValueText(context, value, context.isRtl, isValueInDefaultUnit)
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Double,
+        value: Double,
         rtl: Boolean,
+        isValueInDefaultUnit: Boolean,
     ) = Utils.getValueText(
         context = context,
         enum = this,
-        valueInDefaultUnit = valueInDefaultUnit,
+        value = value,
         decimalNumber = 1,
-        rtl = rtl
+        rtl = rtl,
+        isValueInDefaultUnit
     )
 
     override fun getValueVoice(

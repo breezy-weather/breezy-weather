@@ -29,6 +29,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Wind
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getContentDescription
@@ -102,6 +103,9 @@ class HourlyWindAdapter(
             )
             mPolylineAndHistogramView.setHistogramAlpha(1f)
             hourlyItem.contentDescription = talkBackBuilder.toString()
+            hourlyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, ChartDisplay.TAG_WIND)
+            }
         }
     }
 

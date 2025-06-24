@@ -57,9 +57,9 @@
     <string name="air_quality_pm_info_title">Тверді частинки (PM2.5 та PM10)</string>
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_co">CO</string>
-    <string name="air_quality_o3_info_title">Приземний озон (O₃)</string>
-    <string name="air_quality_no2_info_title">Діоксид азоту (NO₂)</string>
-    <string name="air_quality_so2_info_title">Діоксид сірки (SO₂)</string>
+    <string name="air_quality_o3_full">Приземний озон (O₃)</string>
+    <string name="air_quality_no2_full">Діоксид азоту (NO₂)</string>
+    <string name="air_quality_so2_full">Діоксид сірки (SO₂)</string>
     <string name="ephemeris_moon_phase_waning_gibbous">Спадний місяць</string>
     <string name="humidity">Вологість</string>
     <string name="humidity_dew_point">Вологість / Точка роси</string>
@@ -175,7 +175,7 @@
     <string name="dew_point">Точка роси</string>
     <string name="cloud_cover">Хмарність</string>
     <string name="ceiling">Висота хмар</string>
-    <string name="air_quality_co_info_title">Монооксид вуглецю (CO)</string>
+    <string name="air_quality_co_full">Монооксид вуглецю (CO)</string>
     <string name="wind_direction_SW_short">Пд. зх.</string>
     <string name="wind_direction_W_short">Зх.</string>
     <string name="common_weather_text_partly_cloudy">Мінлива хмарність</string>

@@ -111,7 +111,7 @@ class TileService : TileService(), CoroutineScope {
                     tile.label = current.temperature?.temperature?.let {
                         SettingsManager.getInstance(context).temperatureUnit.getValueText(
                             context,
-                            it
+                            value = it
                         )
                     }
                     state = Tile.STATE_INACTIVE

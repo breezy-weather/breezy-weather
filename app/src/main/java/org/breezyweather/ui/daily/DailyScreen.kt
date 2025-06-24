@@ -17,25 +17,24 @@
 package org.breezyweather.ui.daily
 
 import androidx.activity.compose.LocalActivity
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.windowInsetsBottomHeight
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ScrollableTabRow
+import androidx.compose.material3.PrimaryScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -43,24 +42,29 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import breezyweather.domain.location.model.Location
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
-import org.breezyweather.common.basic.models.options.unit.DurationUnit
+import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
 import org.breezyweather.common.extensions.getDayOfMonth
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
@@ -68,12 +72,21 @@ import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditi
 import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.common.extensions.toCalendar
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
+import org.breezyweather.common.extensions.toTimezoneSpecificHour
 import org.breezyweather.common.source.PollenIndexSource
-import org.breezyweather.domain.settings.SettingsManager
-import org.breezyweather.domain.weather.model.isIndexValid
-import org.breezyweather.ui.common.composables.PollenGrid
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.insets.BWCenterAlignedTopAppBar
+import org.breezyweather.ui.daily.components.DailyAirQuality
+import org.breezyweather.ui.daily.components.DailyCloudCover
+import org.breezyweather.ui.daily.components.DailyConditions
+import org.breezyweather.ui.daily.components.DailyHumidity
+import org.breezyweather.ui.daily.components.DailyPollen
+import org.breezyweather.ui.daily.components.DailyPrecipitation
+import org.breezyweather.ui.daily.components.DailyPressure
+import org.breezyweather.ui.daily.components.DailySunMoon
+import org.breezyweather.ui.daily.components.DailyUV
+import org.breezyweather.ui.daily.components.DailyVisibility
+import org.breezyweather.ui.daily.components.DailyWind
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
@@ -150,6 +163,8 @@ internal fun DailyWeatherScreen(
                         DailyPagerContent(
                             location = loc,
                             selected = page,
+                            selectedChart = dailyUiState.selectedChart,
+                            setSelectedChart = { chart -> dailyViewModel.setSelectedChart(chart) },
                             pollenIndexSource = dailyViewModel.getPollenIndexSource(loc)
                         )
                     }
@@ -169,7 +184,7 @@ fun DailyPagerIndicator(
     todayIndex: Int? = null,
 ) {
     val context = LocalContext.current
-    ScrollableTabRow(
+    PrimaryScrollableTabRow(
         selectedTabIndex = selected,
         modifier = modifier.fillMaxWidth()
     ) {
@@ -219,175 +234,149 @@ fun DailyPagerIndicator(
 }
 
 @Composable
+fun DailyDropdownMenu(
+    location: Location,
+    selectedChart: ChartDisplay,
+    setSelectedChart: (ChartDisplay) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val context = LocalContext.current
+    var expanded by remember { mutableStateOf(false) }
+    val chartDisplayEntries = remember(location) {
+        ChartDisplay.toChartDisplayList(location)
+    }
+
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+    ) {
+        DropdownMenuItem(
+            leadingIcon = {
+                Icon(
+                    painterResource(selectedChart.iconId),
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
+                )
+            },
+            text = {
+                Text(
+                    selectedChart.getName(context),
+                    style = MaterialTheme.typography.titleLarge
+                )
+            },
+            trailingIcon = {
+                Icon(
+                    Icons.Filled.KeyboardArrowDown,
+                    contentDescription = null
+                )
+            },
+            onClick = {
+                expanded = !expanded
+            }
+        )
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            chartDisplayEntries
+                .forEach { option ->
+                    DropdownMenuItem(
+                        leadingIcon = {
+                            Icon(
+                                painterResource(option.iconId),
+                                contentDescription = null,
+                                modifier = Modifier.size(24.dp)
+                            )
+                        },
+                        text = { Text(option.getName(context)) },
+                        onClick = {
+                            setSelectedChart(option)
+                            expanded = false
+                        }
+                    )
+                }
+        }
+    }
+}
+
+@Composable
 fun DailyPagerContent(
     location: Location,
     selected: Int,
+    selectedChart: ChartDisplay,
+    setSelectedChart: (ChartDisplay) -> Unit,
     pollenIndexSource: PollenIndexSource?,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val cal = location.weather!!.dailyForecast[selected].date.toCalendarWithTimeZone(location.javaTimeZone)
-    val thisDayNormals = if (location.weather?.normals?.month == cal[Calendar.MONTH]) {
-        location.weather!!.normals
-    } else {
-        null
+    val daily = remember(selected) {
+        location.weather!!.dailyForecast[selected]
     }
-    LazyColumn(
-        modifier = modifier.fillMaxSize(),
-        contentPadding = PaddingValues(
-            dimensionResource(R.dimen.normal_margin)
-        )
-    ) {
-        val daily = location.weather!!.dailyForecast[selected]
+    val yesterday = remember(selected) {
+        if (selected > 0) {
+            location.weather!!.dailyForecast[selected - 1]
+        } else {
+            null
+        }
+    }
+    val hourlyList = remember(selected) {
+        val startingDate = daily.date.toTimezoneSpecificHour(location.javaTimeZone, 0)
+        val endingDate = daily.date.toCalendarWithTimeZone(location.javaTimeZone).apply {
+            add(Calendar.DAY_OF_MONTH, 1)
+        }.time.toTimezoneSpecificHour(location.javaTimeZone, 0)
 
+        val firstHourlyIndex = location.weather!!.hourlyForecast.indexOfFirst {
+            it.date >= startingDate
+        }.let {
+            if (it > 0 && location.weather!!.hourlyForecast[it].date > startingDate) it - 1 else it
+        }
+        if (firstHourlyIndex == -1) return@remember persistentListOf()
+
+        val lastHourlyIndex = location.weather!!.hourlyForecast.indexOfFirst {
+            it.date >= endingDate
+        }.let { if (it == -1) location.weather!!.hourlyForecast.size - 1 else it }
+
+        // We are doing a subList to take into account 3-hourly/6-hourly
+        // For example, a complete chart can be from 02:00 to 02:00 the next day
+        location.weather!!.hourlyForecast.subList(firstHourlyIndex, lastHourlyIndex + 1).toImmutableList()
+    }
+
+    Column(
+        modifier = modifier
+    ) {
         if (CalendarHelper.getAlternateCalendarSetting(context) != null) {
             daily.date.getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)?.let {
-                item {
-                    DailyTitle(
-                        it,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentWidth(align = Alignment.CenterHorizontally),
-                        style = MaterialTheme.typography.titleLarge
-                    )
-                }
-                item {
-                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
-                }
-                item {
-                    HorizontalDivider()
-                }
-                item {
-                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
-                }
-            }
-        }
-
-        daily.day?.let { day ->
-            dailyHalfDay(context, day, true, thisDayNormals)
-        }
-        daily.night?.let { night ->
-            item {
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
-            }
-            dailyHalfDay(context, night, false, thisDayNormals)
-        }
-        daily.airQuality?.let { airQuality ->
-            if (airQuality.isIndexValid) {
-                item {
-                    DailyTitle(
-                        icon = R.drawable.weather_haze_mini_xml,
-                        text = stringResource(R.string.air_quality)
-                    )
-                }
-                item {
-                    DailyAirQuality(airQuality)
-                }
-            }
-        }
-        daily.pollen?.let { pollen ->
-            if (pollen.isIndexValid) {
-                item {
-                    DailyTitle(
-                        icon = R.drawable.ic_allergy,
-                        text = stringResource(if (pollen.isMoldValid) R.string.pollen_and_mold else R.string.pollen)
-                    )
-                }
-                item {
-                    PollenGrid(
-                        pollen = pollen,
-                        pollenIndexSource = pollenIndexSource
-                    )
-                }
-            }
-        }
-        daily.uV?.let { uV ->
-            if (uV.isValid) {
-                item {
-                    DailyTitle(
-                        icon = R.drawable.ic_uv,
-                        text = stringResource(R.string.uv_index)
-                    )
-                }
-                item {
-                    DailyUV(uV)
-                }
-            }
-        }
-        if (daily.sun?.isValid == true || daily.moon?.isValid == true || daily.moonPhase?.isValid == true) {
-            item {
-                DailyTitle(
-                    text = stringResource(R.string.ephemeris),
-                    style = MaterialTheme.typography.titleMedium
+                Text(
+                    text = it,
+                    style = MaterialTheme.typography.titleMedium,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentWidth(align = Alignment.CenterHorizontally)
+                        .padding(dimensionResource(R.dimen.little_margin))
                 )
             }
-            if (daily.sun != null && daily.sun!!.isValid) {
-                item {
-                    DailySun(location, daily.sun!!)
-                }
-            }
-            if (daily.moon != null && daily.moon!!.isValid) {
-                item {
-                    DailyMoon(location, daily.moon!!)
-                }
-            }
-            if (daily.moonPhase != null && daily.moonPhase!!.isValid) {
-                item {
-                    DailyMoonPhase(daily.moonPhase!!)
-                }
-            }
         }
-        if (daily.degreeDay?.isValid == true || daily.sunshineDuration != null) {
-            item {
-                HorizontalDivider()
-            }
-            item {
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
-            }
-            item {
-                DailyTitle(
-                    text = stringResource(R.string.details),
-                    style = MaterialTheme.typography.titleMedium
-                )
-            }
-            daily.degreeDay?.let { degreeDay ->
-                if (degreeDay.isValid) {
-                    val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
-                    if ((degreeDay.heating ?: 0.0) > 0) {
-                        item {
-                            DailyItem(
-                                headlineText = stringResource(R.string.temperature_degree_day_heating),
-                                supportingText = temperatureUnit.getDegreeDayValueText(context, degreeDay.heating!!),
-                                supportingContentDescription = temperatureUnit
-                                    .getDegreeDayValueVoice(context, degreeDay.heating!!),
-                                icon = R.drawable.ic_mode_heat
-                            )
-                        }
-                    } else if ((degreeDay.cooling ?: 0.0) > 0) {
-                        item {
-                            DailyItem(
-                                headlineText = stringResource(R.string.temperature_degree_day_cooling),
-                                supportingText = temperatureUnit.getDegreeDayValueText(context, degreeDay.cooling!!),
-                                supportingContentDescription = temperatureUnit
-                                    .getDegreeDayValueVoice(context, degreeDay.cooling!!),
-                                icon = R.drawable.ic_mode_cool
-                            )
-                        }
-                    }
+        DailyDropdownMenu(location, selectedChart, setSelectedChart)
+        when (selectedChart) {
+            ChartDisplay.TAG_CONDITIONS -> {
+                val cal = daily.date.toCalendarWithTimeZone(location.javaTimeZone)
+                val thisDayNormals = if (location.weather?.normals?.month == cal[Calendar.MONTH]) {
+                    location.weather!!.normals
+                } else {
+                    null
                 }
+                DailyConditions(location, hourlyList, daily, thisDayNormals)
             }
-            daily.sunshineDuration?.let { sunshineDuration ->
-                item {
-                    DailyItem(
-                        headlineText = stringResource(R.string.sunshine_duration),
-                        supportingText = DurationUnit.H.getValueText(context, sunshineDuration),
-                        icon = R.drawable.ic_sunshine_duration
-                    )
-                }
-            }
-        }
-        item {
-            Spacer(modifier = Modifier.windowInsetsBottomHeight(WindowInsets.navigationBars))
+            ChartDisplay.TAG_PRECIPITATION -> DailyPrecipitation(location, hourlyList, daily)
+            ChartDisplay.TAG_WIND -> DailyWind(location, hourlyList, daily)
+            ChartDisplay.TAG_AIR_QUALITY -> DailyAirQuality(location, hourlyList, daily)
+            ChartDisplay.TAG_POLLEN -> DailyPollen(daily.pollen, pollenIndexSource)
+            ChartDisplay.TAG_UV_INDEX -> DailyUV(location, hourlyList, daily)
+            ChartDisplay.TAG_HUMIDITY -> DailyHumidity(location, hourlyList, daily.date)
+            ChartDisplay.TAG_PRESSURE -> DailyPressure(location, hourlyList, daily.date)
+            ChartDisplay.TAG_CLOUD_COVER -> DailyCloudCover(location, hourlyList, daily)
+            ChartDisplay.TAG_VISIBILITY -> DailyVisibility(location, hourlyList, daily.date)
+            ChartDisplay.TAG_SUN_MOON -> DailySunMoon(location, daily, yesterday)
         }
     }
 }

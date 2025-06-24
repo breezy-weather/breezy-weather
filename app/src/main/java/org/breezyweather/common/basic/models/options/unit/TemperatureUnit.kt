@@ -31,13 +31,14 @@ enum class TemperatureUnit(
     override val id: String,
     override val convertUnit: (Double) -> Double,
     val convertDegreeDayUnit: (Double) -> Double,
+    val chartStep: Double,
 ) : UnitEnum<Double> {
 
-    C("c", { valueInDefaultUnit -> valueInDefaultUnit }, { valueInDefaultUnit -> valueInDefaultUnit }),
+    C("c", { valueInDefaultUnit -> valueInDefaultUnit }, { valueInDefaultUnit -> valueInDefaultUnit }, 5.0),
     F("f", { valueInDefaultUnit ->
         32 + valueInDefaultUnit.times(1.8)
-    }, { valueInDefaultUnit -> valueInDefaultUnit.times(1.8) }),
-    K("k", { valueInDefaultUnit -> 273.15 + valueInDefaultUnit }, { valueInDefaultUnit -> valueInDefaultUnit }),
+    }, { valueInDefaultUnit -> valueInDefaultUnit.times(1.8) }, 10.0),
+    K("k", { valueInDefaultUnit -> 273.15 + valueInDefaultUnit }, { valueInDefaultUnit -> valueInDefaultUnit }, 5.0),
     ;
 
     companion object {
@@ -76,8 +77,9 @@ enum class TemperatureUnit(
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Double,
-    ) = getValueText(context, valueInDefaultUnit, context.isRtl)
+        value: Double,
+        isValueInDefaultUnit: Boolean,
+    ) = getValueText(context, value, context.isRtl, isValueInDefaultUnit)
 
     fun getValueText(
         context: Context,
@@ -86,21 +88,23 @@ enum class TemperatureUnit(
     ) = Utils.getValueText(
         context = context,
         enum = this,
-        valueInDefaultUnit = valueInDefaultUnit,
+        value = valueInDefaultUnit,
         decimalNumber = decimalNumber,
         rtl = context.isRtl
     )
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Double,
+        value: Double,
         rtl: Boolean,
+        isValueInDefaultUnit: Boolean,
     ) = Utils.getValueText(
         context = context,
         enum = this,
-        valueInDefaultUnit = valueInDefaultUnit,
+        value = value,
         decimalNumber = 1,
-        rtl = rtl
+        rtl = rtl,
+        isValueInDefaultUnit
     )
 
     fun getDegreeDayValueText(
@@ -126,7 +130,7 @@ enum class TemperatureUnit(
     ) = Utils.getValueText(
         context = context,
         enum = this,
-        valueInDefaultUnit = valueInDefaultUnit,
+        value = valueInDefaultUnit,
         decimalNumber = 1,
         rtl = rtl
     )
@@ -151,26 +155,28 @@ enum class TemperatureUnit(
 
     fun getShortValueText(
         context: Context,
-        valueInDefaultUnit: Double,
-    ) = getShortValueText(context, valueInDefaultUnit, 0, context.isRtl)
+        value: Double,
+        isValueInDefaultUnit: Boolean = true,
+    ) = getShortValueText(context, value, 0, context.isRtl, isValueInDefaultUnit)
 
     fun getShortValueText(
         context: Context,
-        valueInDefaultUnit: Double,
+        value: Double,
         decimalNumber: Int,
         rtl: Boolean,
+        isValueInDefaultUnit: Boolean = true,
     ) = if (rtl) {
         BidiFormatter
             .getInstance()
             .unicodeWrap(
                 Utils.formatDouble(
-                    getValueWithoutUnit(valueInDefaultUnit),
+                    if (isValueInDefaultUnit) getValueWithoutUnit(value) else value,
                     decimalNumber
                 )
             ) + getShortName(context)
     } else {
         Utils.formatDouble(
-            getValueWithoutUnit(valueInDefaultUnit),
+            if (isValueInDefaultUnit) getValueWithoutUnit(value) else value,
             decimalNumber
         ) + getShortName(context)
     }

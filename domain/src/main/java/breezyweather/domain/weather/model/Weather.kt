@@ -45,15 +45,15 @@ data class Weather(
 
     val todayIndex = dailyForecast.indexOfFirst {
         it.date.time > Date().time - 1.days.inWholeMilliseconds
-    }
+    }.let { if (it == -1) null else it }
     val today
-        get() = dailyForecast.getOrNull(todayIndex)
+        get() = todayIndex?.let { dailyForecast.getOrNull(it) }
     val tomorrow
         get() = dailyForecast.firstOrNull {
             it.date.time > Date().time
         }
 
-    val dailyForecastStartingToday = if (todayIndex >= 0) {
+    val dailyForecastStartingToday = if (todayIndex != null) {
         dailyForecast.subList(todayIndex, dailyForecast.size)
     } else {
         emptyList()

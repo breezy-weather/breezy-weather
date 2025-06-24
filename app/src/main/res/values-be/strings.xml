@@ -29,7 +29,7 @@
     <string name="air_quality_so2_info_introduction">Дыяксід серы (SO₂) — бясколерны таксічны газ, з-за якога з’яўляецца пах гарэлых запалак.</string>
     <string name="air_quality_no2_info_origin">Крыніцы NO₂ у навакольным асяроддзі ўзнікаюць пры высокатэмпературным гарэнні паліва ў працэсах, якія выкарыстоўваюцца для ацяплення, транспарту, прамысловасці, вытворчасці электраэнергіі. Да бытавых крыніц аксідаў азоту (NOₓ) належыць абсталяванне, у якім згарае паліва, напрыклад, печы, каміны, катлы і газавыя пліты.</string>
     <string name="air_quality_no2_info_consequences">Уздзеянне дыяксіду азоту можа раздражняць дыхальныя шляхі і пагаршаць рэспіраторныя захворванні. Акрамя таго, NO₂ з’яўляецца важным папярэднікам азону, забруджвальным рэчывам, цесна звязаным з астмай і іншымі рэспіраторнымі захворваннямі.</string>
-    <string name="air_quality_so2_info_title">Дыяксід серы (SO₂)</string>
+    <string name="air_quality_so2_full">Дыяксід серы (SO₂)</string>
     <string name="air_quality_so2_info_origin">Натуральным чынам выдзяляецца ў выніку вулканічнай дзейнасці. Утвараецца пераважна пры спальвання выкапнёвага паліва ў прамысловасці, для вытворчасці электраэнергіі і ацяплення жылых памяшканняў.</string>
     <string name="air_quality_so2_info_consequences">З уздзеяннем SO₂ звязваюць выпадкі шпіталізацыі і звароты ў хуткую дапамогу з астмай.</string>
     <string name="air_quality_co_info_introduction">Монааксід вугляроду (CO, угарны газ) - гэта атрутны лёгкаўзгаральны газ, які не мае паху, колеру, смаку і не выклікае раздражнення.</string>
@@ -52,8 +52,8 @@
     <string name="air_quality_level_1">Выдатнае</string>
     <string name="air_quality_level_2">Нармальнае</string>
     <string name="air_quality_o3">O₃</string>
-    <string name="air_quality_o3_info_title">Прыземны азон(O₃)</string>
-    <string name="air_quality_no2_info_title">Дыяксід азоту (NO₂)</string>
+    <string name="air_quality_o3_full">Прыземны азон(O₃)</string>
+    <string name="air_quality_no2_full">Дыяксід азоту (NO₂)</string>
     <string name="pollen_tree">Дрэвы</string>
     <string name="pollen_alnus">Алешына</string>
     <string name="pollen_betula">Бяроза</string>
@@ -152,7 +152,7 @@
     <string name="air_quality_pm_info_title">Мікрачасцінкі (PM2.5 і PM10)</string>
     <string name="air_quality_co_voice">Монааксід вугляроду</string>
     <string name="air_quality_pm_explanations_introduction">Завіслыя часцінкі або атмасферны аэразоль — гэта мікраскапічныя завіслыя ў паветры часцінкі цвёрдага або вадкага рэчыва.</string>
-    <string name="air_quality_co_info_title">Монааксід вугляроду (CO)</string>
+    <string name="air_quality_co_full">Монааксід вугляроду (CO)</string>
     <string name="pollen_ambrosia">Амброзія</string>
     <string name="pollen_mold">Цвіль</string>
     <string name="pollen_level_4">Высокі</string>

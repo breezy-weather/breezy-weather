@@ -30,9 +30,4 @@
         style="@style/content_text"
         tools:text="126 μg/m³" />
 
-    <androidx.compose.ui.platform.ComposeView
-        android:id="@+id/item_aqi_dialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
 </LinearLayout>

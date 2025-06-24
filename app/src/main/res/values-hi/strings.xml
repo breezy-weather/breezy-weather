@@ -90,11 +90,11 @@
     <string name="temperature_wet_bulb">गीला बल्ब</string>
     <string name="temperature_degree_day">डिग्री दिवस</string>
     <string name="wind_gusts">हवा के झोके</string>
-    <string name="air_quality_o3_info_title">जमीनी स्तर ओजोन (ओ₃)</string>
+    <string name="air_quality_o3_full">जमीनी स्तर ओजोन (ओ₃)</string>
     <string name="air_quality_o3_info_consequences">अत्यधिक ओजोन के संपर्क में आने से सांस लेने में समस्या हो सकती है, अस्थमा हो सकता है, फेफड़ों की कार्यक्षमता कम हो सकती है और फेफड़ों की बीमारी हो सकती है।</string>
     <string name="air_quality_pm10">पीएम10</string>
     <string name="air_quality_pm10_voice">पीएम दस</string>
-    <string name="air_quality_no2_info_title">नाइट्रोजन डाइऑक्साइड (एनओ₂)</string>
+    <string name="air_quality_no2_full">नाइट्रोजन डाइऑक्साइड (एनओ₂)</string>
     <string name="air_quality_o3_info_origin">यह वाहनों और उद्योग से उत्सर्जित वाष्पशील कार्बनिक यौगिकों, कार्बन मोनोऑक्साइड और नाइट्रोजन ऑक्साइड (एनओₓ) जैसे प्रदूषकों के साथ फोटोकैमिकल प्रतिक्रियाओं से बनता है। फोटोकैमिकल प्रकृति के कारण, ओजोन का उच्चतम स्तर धूप वाले मौसम के दौरान देखा जाता है।</string>
     <string name="air_quality_pm_info_title">कण (पीएम 2.5 और पीएम 10)</string>
     <string name="air_quality_pm_explanations_consequences">कण वायु प्रदूषण का सबसे हानिकारक रूप हैं क्योंकि उनकी रक्त धाराओं से फेफड़ों और मस्तिष्क में गहराई तक प्रवेश करने की क्षमता होती है, जिससे हृदय रोग, फेफड़ों की बीमारी जैसी स्वास्थ्य समस्याएं पैदा होती हैं।</string>
@@ -614,9 +614,9 @@
     <string name="common_weather_text_rain_freezing">हिमीकरण बारिश</string>
     <string name="common_weather_text_rain_freezing_light">हल्की बर्फ़ीली बारिश</string>
     <string name="alert">चेतावनी</string>
-    <string name="air_quality_co_info_title">कार्बन मोनोऑक्साइड (सीओ)</string>
+    <string name="air_quality_co_full">कार्बन मोनोऑक्साइड (सीओ)</string>
     <string name="alert_source">स्रोतः %s</string>
-    <string name="air_quality_so2_info_title">सल्फर डाइऑक्साइड (एसओ₂)</string>
+    <string name="air_quality_so2_full">सल्फर डाइऑक्साइड (एसओ₂)</string>
     <string name="temperature_degree_day_heating">तापन डिग्री दिन</string>
     <string name="temperature_degree_day_cooling">शीतलन डिग्री दिन</string>
     <string name="pollen_alnus">अल्डर</string>

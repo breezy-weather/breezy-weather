@@ -26,11 +26,11 @@ import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.core.net.toUri
 import breezyweather.domain.location.model.Location
+import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
 import org.breezyweather.ui.about.AboutActivity
 import org.breezyweather.ui.alert.AlertActivity
 import org.breezyweather.ui.daily.DailyActivity
 import org.breezyweather.ui.main.MainActivity
-import org.breezyweather.ui.pollen.PollenActivity
 import org.breezyweather.ui.search.SearchActivity
 import org.breezyweather.ui.settings.activities.CardDisplayManageActivity
 import org.breezyweather.ui.settings.activities.DailyTrendDisplayManageActivity
@@ -101,12 +101,18 @@ object IntentHelper {
     fun startDailyWeatherActivity(
         activity: Activity,
         formattedId: String?,
-        index: Int,
+        index: Int? = null,
+        chart: ChartDisplay? = null,
     ) {
         activity.startActivity(
             Intent(activity, DailyActivity::class.java).apply {
                 putExtra(DailyActivity.KEY_FORMATTED_LOCATION_ID, formattedId)
-                putExtra(DailyActivity.KEY_CURRENT_DAILY_INDEX, index)
+                if (index != null) {
+                    putExtra(DailyActivity.KEY_CURRENT_DAILY_INDEX, index)
+                }
+                if (chart != null) {
+                    putExtra(DailyActivity.KEY_CURRENT_PAGE, chart.id)
+                }
             }
         )
     }
@@ -118,17 +124,6 @@ object IntentHelper {
                 if (alertId != null) {
                     putExtra(AlertActivity.KEY_ALERT_ID, alertId)
                 }
-            }
-        )
-    }
-
-    fun startPollenActivity(activity: Activity, location: Location) {
-        activity.startActivity(
-            Intent(activity, PollenActivity::class.java).apply {
-                putExtra(
-                    PollenActivity.KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID,
-                    location.formattedId
-                )
             }
         )
     }

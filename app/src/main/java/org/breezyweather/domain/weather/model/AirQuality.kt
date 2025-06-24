@@ -68,6 +68,3 @@ fun AirQuality.getColor(context: Context, pollutant: PollutantIndex? = null): In
         pollutant.getColor(context, getConcentration(pollutant))
     }
 }
-
-val AirQuality.isIndexValid: Boolean
-    get() = getIndex() != null

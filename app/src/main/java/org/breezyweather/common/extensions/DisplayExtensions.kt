@@ -75,6 +75,16 @@ val Context.isMotionReduced: Boolean
         }
     }
 
+val Context.windowHeightInDp: Float
+    get() {
+        return pxToDp(resources.displayMetrics.heightPixels)
+    }
+
+val Context.windowWidthInDp: Float
+    get() {
+        return pxToDp(resources.displayMetrics.widthPixels)
+    }
+
 fun Context.dpToPx(dp: Float): Float {
     return dp * (this.resources.displayMetrics.densityDpi / 160f)
 }
