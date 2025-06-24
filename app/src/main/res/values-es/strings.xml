@@ -90,7 +90,7 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">No se pudo encontrar el lugar actual</string>
     <string name="weather_message_data_refresh_failed">La actualización de los datos ha fallado</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Seleccione un servicio de ubicación</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Utilizar otro servicio de localización</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Agregue la ubicación manualmente y borre “%s”</string>
     <string name="dialog_permissions_location_background_title">Acceso a la ubicación en segundo plano</string>
     <string name="dialog_permissions_location_background_content">Para permitir que la actualización del tiempo en segundo plano se realice para la ubicación actual más reciente conocida por Android, debe establecer el permiso de ubicación en “Permitir todo el tiempo”. Si no lo haces, el tiempo se actualizará en función de las últimas coordenadas recuperadas en primer plano, que pueden estar desfasadas.</string>
@@ -267,7 +267,7 @@
     <string name="wind_direction_variable">Variable</string>
     <string name="uv_index_6_7">Alto</string>
     <string name="alerts_to_follow">Próximas alertas, pulsa aquí para verlas.</string>
-    <string name="precipitation_between_time">Precipitaciones entre %1$s y %2$s</string>
+    <string name="precipitation_between_time">Precipitaciones de %1$s a %2$s</string>
     <string name="wind_direction_N_short">N</string>
     <string name="wind_direction_NE_short">NE</string>
     <string name="wind_direction_E_short">E</string>
@@ -609,7 +609,7 @@
     <string name="location_search_change_source">Cambiar la fuente para la ubicación</string>
     <string name="settings_weather_source_none">Ninguna</string>
     <string name="location_message_updated">Lugar actualizado</string>
-    <string name="location_message_already_exists">Ya existe un lugar con la misma fuente meteorológica.</string>
+    <string name="location_message_already_exists">La lista de ubicaciones ya contiene esta ubicación con esta fuente de previsión.</string>
     <string name="humidity_short">Humedad</string>
     <string name="uv_index_short">Índice UV</string>
     <string name="visibility_short">Visibilidad</string>
@@ -644,7 +644,7 @@
     <string name="settings_weather_source_freenet_disclaimer">Hay más fuentes meteorológicas disponibles en otras versiones de la aplicación. Pulse aquí para obtener más información.</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Resumen del índice de polen de hoy, mañana, …, 4 días después</string>
     <string name="message_source_not_installed_error_content_tip_1">Esto puede ocurrir si has añadido tu ubicación en la versión estándar de la aplicación y luego has cambiado a la versión con fuentes de red libres. Volver a la versión estándar puede resolver este problema.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Cambie las fuentes meteorológicas de esta ubicación o elimínelas y vuelva a añadirlas.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Cambie la fuente meteorológica de esta ubicación o elimínela y vuelva a añadirla.</string>
     <string name="about_open_link_message">¿Abrir %s?</string>
     <string name="settings_per_location">Ajustes de la ubicación</string>
     <string name="settings_per_location_summary">Ajustes adicionales para esta ubicación</string>
@@ -783,4 +783,9 @@
     <string name="common_weather_text_drifting_snow">Nieve a la deriva</string>
     <string name="common_weather_text_glaze">Vidriado</string>
     <string name="message_server_insecure_title">Conexión segura incorrecta</string>
+    <string name="message_outdated_server_data">Recibir datos obsoletos del servidor</string>
+    <string name="action_enable">Activar</string>
+    <string name="action_allow">Permitir</string>
+    <string name="action_open_in_other_app">Abrir en otra aplicación</string>
+    <string name="action_open_in_other_app_description">Abrir esta ubicación en otra aplicación</string>
 </resources>
