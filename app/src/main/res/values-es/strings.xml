@@ -383,7 +383,7 @@
     <string name="settings_location_access_background_title">Acceso al lugar en segundo plano</string>
     <string name="air_quality_o3_info_consequences">La exposición excesiva al ozono puede causar problemas respiratorios, desencadenar asma, reducir la capacidad pulmonar y provocar enfermedades pulmonares.</string>
     <string name="air_quality_no2_info_title">Dióxido de nitrógeno (NO₂)</string>
-    <string name="air_quality_no2_info_introduction">El dióxido de nitrógeno (NO₂) es un gas tóxico, sofocante, de color marrón rojizo y un olor acre característico.</string>
+    <string name="air_quality_no2_info_introduction">El dióxido de nitróxeno (NO₂) es un gas tóxico, sofocante, de color marrón rojizo y un olor acre característico.</string>
     <string name="action_continue">Continuar</string>
     <string name="action_close">Cerrar</string>
     <string name="dialog_permissions_notification_title">Mantenerme informado</string>
