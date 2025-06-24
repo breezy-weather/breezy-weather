@@ -27,6 +27,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.sources.SourceManager
 import javax.inject.Inject
@@ -39,7 +40,10 @@ class DailyViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
     private val formattedId: String? = savedStateHandle.get<String>(DailyActivity.KEY_FORMATTED_LOCATION_ID)
-    private val dailyIndex: Int = savedStateHandle.get<Int>(DailyActivity.KEY_CURRENT_DAILY_INDEX) ?: 0
+    private val dailyIndex: Int? = savedStateHandle.get<Int>(DailyActivity.KEY_CURRENT_DAILY_INDEX)
+    private val selectedChart: ChartDisplay = ChartDisplay.entries.firstOrNull {
+        it.id == savedStateHandle.get<String>(DailyActivity.KEY_CURRENT_PAGE)
+    } ?: ChartDisplay.TAG_CONDITIONS
 
     private val _uiState = MutableStateFlow(DailyUiState())
     val uiState: StateFlow<DailyUiState> = _uiState.asStateFlow()
@@ -75,7 +79,7 @@ class DailyViewModel @Inject constructor(
             val weather = weatherRepository.getWeatherByLocationId(
                 locationC.formattedId,
                 withDaily = true,
-                withHourly = false, // Will be needed once we make 24-hour graphs
+                withHourly = true, // 24-hour charts
                 withMinutely = false,
                 withAlerts = false
             )
@@ -86,8 +90,21 @@ class DailyViewModel @Inject constructor(
 
             _uiState.value = DailyUiState(
                 location = locationC.copy(weather = weather),
-                initialIndex = dailyIndex
+                selectedChart = selectedChart,
+                initialIndex = dailyIndex.let {
+                    if (it == null || it == -1 || it >= weather!!.dailyForecast.size) {
+                        weather!!.todayIndex ?: 0
+                    } else {
+                        it
+                    }
+                }
             )
         }
+    }
+
+    fun setSelectedChart(chartDisplay: ChartDisplay) {
+        _uiState.value = _uiState.value.copy(
+            selectedChart = chartDisplay
+        )
     }
 }

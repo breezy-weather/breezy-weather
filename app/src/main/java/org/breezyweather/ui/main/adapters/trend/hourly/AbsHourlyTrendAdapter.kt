@@ -22,15 +22,17 @@ import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
 import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.extensions.getHour
 import org.breezyweather.common.extensions.getHourIn24Format
+import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerViewAdapter
 import org.breezyweather.ui.common.widgets.trend.item.HourlyTrendItemView
-import org.breezyweather.ui.main.dialogs.HourlyWeatherDialog
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import kotlin.time.Duration.Companion.days
 
 abstract class AbsHourlyTrendAdapter(
     val activity: GeoActivity,
@@ -64,8 +66,21 @@ abstract class AbsHourlyTrendAdapter(
                     if (useAccentColorForDate) R.attr.colorBodyText else R.attr.colorCaptionText
                 )
             )
-            hourlyItem.setOnClickListener {
-                onItemClicked(activity, location, bindingAdapterPosition)
+        }
+
+        protected fun onItemClicked(
+            activity: GeoActivity,
+            location: Location,
+            adapterPosition: Int,
+            chartDisplay: ChartDisplay,
+        ) {
+            if (activity.isActivityResumed) {
+                val hourlyDate = location.weather!!.nextHourlyForecast[adapterPosition].date
+                // Might not work with sources like AccuWeather not starting the day at 00:00
+                val dailyIndex = location.weather!!.dailyForecast.indexOfFirst {
+                    it.date.time > hourlyDate.time - 1.days.inWholeMilliseconds
+                }.let { if (it == -1) null else it }
+                IntentHelper.startDailyWeatherActivity(activity, location.formattedId, dailyIndex, chartDisplay)
             }
         }
     }
@@ -73,20 +88,4 @@ abstract class AbsHourlyTrendAdapter(
     abstract fun isValid(location: Location): Boolean
     abstract fun getDisplayName(context: Context): String
     abstract fun bindBackgroundForHost(host: TrendRecyclerView)
-
-    companion object {
-        protected fun onItemClicked(
-            activity: GeoActivity,
-            location: Location,
-            adapterPosition: Int,
-        ) {
-            if (activity.isActivityResumed) {
-                HourlyWeatherDialog.show(
-                    activity,
-                    location,
-                    location.weather!!.nextHourlyForecast[adapterPosition]
-                )
-            }
-        }
-    }
 }

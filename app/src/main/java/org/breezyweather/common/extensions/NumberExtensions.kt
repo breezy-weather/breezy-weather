@@ -25,6 +25,8 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormat
+import kotlin.math.ceil
+import kotlin.math.floor
 
 operator fun Int?.plus(other: Int?): Int? = if (this != null || other != null) {
     (this ?: 0) + (other ?: 0)
@@ -42,6 +44,14 @@ operator fun Double?.minus(other: Double?): Double? = if (this != null || other 
     (this ?: 0.0) - (other ?: 0.0)
 } else {
     null
+}
+
+fun Double.roundUpToNearestMultiplier(multiplier: Double): Double {
+    return ceil(this.div(multiplier)).times(multiplier)
+}
+
+fun Double.roundDownToNearestMultiplier(multiplier: Double): Double {
+    return floor(this.div(multiplier)).times(multiplier)
 }
 
 fun Double.roundDecimals(decimals: Int): Double? {

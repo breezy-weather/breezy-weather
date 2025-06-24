@@ -55,7 +55,6 @@ import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getSummary
 import org.breezyweather.domain.weather.model.getSummaryFromSource
-import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.pollensWithConcentration
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import java.text.NumberFormat

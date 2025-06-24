@@ -24,17 +24,6 @@
                 style="@style/title_text" />
 
             <TextView
-                android:id="@+id/container_main_pollen_subtitle"
-                android:text="@string/pollen_tap_to_see_more"
-                android:layout_below="@id/container_main_pollen_title"
-                android:layout_marginTop="2dp"
-                android:layout_marginStart="@dimen/normal_margin"
-                android:layout_marginEnd="@dimen/normal_margin"
-                android:layout_marginBottom="@dimen/normal_margin"
-                style="@style/subtitle_text"
-                tools:ignore="RtlHardcoded" />
-
-            <TextView
                 android:id="@+id/container_main_pollen_indicator"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"

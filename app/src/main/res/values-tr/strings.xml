@@ -137,10 +137,10 @@
     <string name="air_quality_no2_voice">Nitrojen dioksit</string>
     <string name="wind_gusts">Rüzgar esintileri</string>
     <string name="air_quality_o3_info_consequences">Aşırı ozona maruz kalmak solunum problemlerine, astıma, akciğer fonksiyonunu azalmasına ve akciğer hastalığına yol açabilir.</string>
-    <string name="air_quality_no2_info_title">Nitrojen dioksit (NO₂)</string>
+    <string name="air_quality_no2_full">Nitrojen dioksit (NO₂)</string>
     <string name="air_quality_no2_info_introduction">Nitrojen dioksit (NO₂); karakteristik keskin kokusu olan boğucu, zehirli, kırmızımsı kahverengi bir gazdır.</string>
     <string name="air_quality_pm_explanations_consequences">Partiküller; kan akışından akciğerlere ve beyne derinlemesine nüfuz etme, kalp hastalığı, akciğer hastalığı ve erken ölüm gibi sağlık sorunlarına neden olmasından ötürü hava kirliliğinin en zararlı şeklidir.</string>
-    <string name="air_quality_o3_info_title">Yer seviyesinde ozon (O₃)</string>
+    <string name="air_quality_o3_full">Yer seviyesinde ozon (O₃)</string>
     <string name="air_quality_o3_info_introduction">Yer seviyesindeki ozon (O₃), sisin ana bileşenidir. Aynı molekül olmasına rağmen yer seviyesindeki ozon, dünyayı aşırı UV radyasyonundan koruyan stratosferik ozonun aksine insan sağlığına zararlı olabilir.</string>
     <string name="air_quality_o3_info_origin">Araçlardan ve endüstriden yayılan uçucu organik bileşikler, karbonmonoksit ve azot oksitler (NOₓ) gibi kirleticilerle fotokimyasal tepkimelerden oluşur. Fotokimyasal doğası gereği, en yüksek ozon seviyeleri güneşli havalarda görülür.</string>
     <string name="precipitation_nowcasting">Dakika dakika yağışlar</string>
@@ -323,7 +323,7 @@
     <string name="weather_message_invalid_location">Geçersiz konum, lütfen silin ve tekrar ekleyin</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Enlem</string>
     <string name="widget_live_wallpaper_day_night_type">Zaman</string>
-    <string name="air_quality_so2_info_title">Sülfür dioksit (SO₂)</string>
+    <string name="air_quality_so2_full">Sülfür dioksit (SO₂)</string>
     <string name="air_quality_so2_info_introduction">Kükürt dioksit (SO₂), yanmış kibrit kokusu veren renksiz, zehirli bir gazdır.</string>
     <string name="pollen_level_0">Yok</string>
     <string name="pollen_poaeceae">Çimen</string>
@@ -360,7 +360,7 @@
     <string name="pollen_level_1">Çok düşük</string>
     <string name="pollen_level_2">Düşük</string>
     <string name="pollen_level_3">Orta</string>
-    <string name="air_quality_co_info_title">Karbon monoksit(CO)</string>
+    <string name="air_quality_co_full">Karbon monoksit(CO)</string>
     <string name="action_save">Kaydet</string>
     <string name="message_network_unavailable">Ağ erişimi yok</string>
     <string name="action_preview">Ön izleme</string>

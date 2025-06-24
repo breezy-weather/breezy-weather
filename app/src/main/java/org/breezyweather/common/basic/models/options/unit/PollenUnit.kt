@@ -49,18 +49,21 @@ enum class PollenUnit(
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Int,
-    ) = getValueText(context, valueInDefaultUnit, context.isRtl)
+        value: Int,
+        isValueInDefaultUnit: Boolean,
+    ) = getValueText(context, value, context.isRtl, isValueInDefaultUnit)
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Int,
+        value: Int,
         rtl: Boolean,
+        isValueInDefaultUnit: Boolean,
     ) = Utils.getValueText(
         context = context,
         enum = this,
-        valueInDefaultUnit = valueInDefaultUnit,
-        rtl = rtl
+        value = value,
+        rtl = rtl,
+        isValueInDefaultUnit = isValueInDefaultUnit
     )
 
     override fun getValueVoice(

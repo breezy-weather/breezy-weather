@@ -36,8 +36,10 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.ui.common.widgets.astro.MoonPhaseView
 import org.breezyweather.ui.common.widgets.astro.SunMoonView
@@ -201,6 +203,14 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             mMoonContainer.visibility = View.GONE
         }
         itemView.contentDescription = talkBackBuilder.toString()
+        itemView.setOnClickListener {
+            IntentHelper.startDailyWeatherActivity(
+                context as GeoActivity,
+                location.formattedId,
+                location.weather!!.todayIndex,
+                ChartDisplay.TAG_SUN_MOON
+            )
+        }
     }
 
     private class LongEvaluator : TypeEvaluator<Long> {

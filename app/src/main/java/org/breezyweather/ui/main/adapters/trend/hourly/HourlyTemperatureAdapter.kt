@@ -24,6 +24,7 @@ import androidx.annotation.Size
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.domain.settings.SettingsManager
@@ -140,6 +141,9 @@ class HourlyTemperatureAdapter(
             )
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 0.2f else 0.5f)
             hourlyItem.contentDescription = talkBackBuilder.toString()
+            hourlyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, ChartDisplay.TAG_CONDITIONS)
+            }
         }
 
         @Size(3)

@@ -145,8 +145,8 @@ class DailyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             trendRecyclerView.setKeyLineVisibility(
                 SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
             )
-            if (weather.todayIndex >= 0) {
-                trendRecyclerView.scrollToPosition(weather.todayIndex)
+            weather.todayIndex?.let { todayIndex ->
+                trendRecyclerView.scrollToPosition(todayIndex)
             }
             scrollBar.resetColor(location)
         }

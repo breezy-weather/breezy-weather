@@ -25,6 +25,7 @@ import androidx.annotation.Size
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.domain.settings.SettingsManager
@@ -181,6 +182,9 @@ class DailyTemperatureAdapter(
                 missingIconVisibility = View.INVISIBLE
             )
             dailyItem.contentDescription = talkBackBuilder.toString()
+            dailyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, ChartDisplay.TAG_CONDITIONS)
+            }
         }
 
         @Size(3)

@@ -487,12 +487,12 @@
     <string name="temperature_degree_day_cooling">Gradul de răcire a zilei</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_pm_explanations_consequences">Particulele sunt cea mai dăunătoare formă de poluare a aerului datorită capacității lor de a pătrunde adânc în plămâni și în creier din fluxul sanguin, cauzând probleme de sănătate, cum ar fi boli de inimă, boli pulmonare și moarte prematură.</string>
-    <string name="air_quality_no2_info_title">Dioxid de azot (NO₂)</string>
+    <string name="air_quality_no2_full">Dioxid de azot (NO₂)</string>
     <string name="air_quality_o3_info_origin">Se formează în urma reacțiilor fotochimice cu poluanți precum compușii organici volatili, monoxidul de carbon și oxizii de azot (NOₓ) emiși de vehicule și de industrie. Datorită naturii fotochimice, cele mai ridicate niveluri de ozon sunt observate în timpul perioadelor cu vreme însorită.</string>
     <string name="air_quality_o3_info_consequences">Expunerea la ozon în exces poate cauza probleme de respirație, poate declanșa astm, poate reduce funcția pulmonară și poate duce la boli pulmonare.</string>
     <string name="air_quality_so2_info_consequences">Expunerea la SO₂ este asociată cu internări în spital și vizite la urgențe pentru astm.</string>
-    <string name="air_quality_co_info_title">Monoxid de carbon (CO)</string>
-    <string name="air_quality_so2_info_title">Dioxid de sulf (SO₂)</string>
+    <string name="air_quality_co_full">Monoxid de carbon (CO)</string>
+    <string name="air_quality_so2_full">Dioxid de sulf (SO₂)</string>
     <string name="air_quality_so2_info_introduction">Dioxidul de sulf (SO₂) este un gaz toxic incolor, responsabil pentru mirosul de chibrituri arse.</string>
     <string name="air_quality_so2_info_origin">Acesta este eliberat în mod natural de activitatea vulcanică și provine în principal din arderea combustibililor fosili pentru încălzirea casnică, industrie și producerea de energie electrică.</string>
     <string name="air_quality_co_info_consequences">Monoxidul de carbon se difuzează prin țesuturile pulmonare și ajunge în fluxul sanguin, îngreunând legătura dintre celulele organismului și oxigen. Această lipsă de oxigen deteriorează țesuturile și celulele. Expunerea la monoxid de carbon poate provoca dificultăți de respirație, epuizare, amețeli și alte simptome asemănătoare gripei. Expunerea la niveluri ridicate de monoxid de carbon poate fi mortală.</string>
@@ -516,7 +516,7 @@
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_o3">O₃</string>
-    <string name="air_quality_o3_info_title">Ozonul la sol(O₃)</string>
+    <string name="air_quality_o3_full">Ozonul la sol(O₃)</string>
     <string name="air_quality_o3_info_introduction">Ozonul la sol(O₃) este o componentă majoră a smogului. Deși este aceeași moleculă, ozonul de la nivelul solului poate fi dăunător pentru sănătatea umană, spre deosebire de ozonul stratosferic, care protejează Pământul de excesul de radiații UV.</string>
     <string name="air_quality_no2_info_introduction">Dioxidul de azot (NO₂) este un gaz roșu-maroniu, toxic și sufocant, cu un miros înțepător și acru.</string>
     <string name="air_quality_co_info_introduction">Monoxidul de carbon (CO) este un gaz otrăvitor, inflamabil, incolor, inodor, insipid și neiritant.</string>

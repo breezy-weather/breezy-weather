@@ -26,51 +26,27 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.model.AirQuality
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
-import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
-import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.validAirQuality
 import org.breezyweather.ui.common.widgets.ArcProgress
 import org.breezyweather.ui.main.adapters.AqiAdapter
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
-import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 
@@ -81,14 +57,10 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     private val mTime: TextView = itemView.findViewById(R.id.container_main_aqi_time)
     private val mProgress: ArcProgress = itemView.findViewById(R.id.container_main_aqi_progress)
     private val mRecyclerView: RecyclerView = itemView.findViewById(R.id.container_main_aqi_recyclerView)
-    private val mDialog: ComposeView = itemView.findViewById(R.id.container_main_aqi_dialog)
     private var mAdapter: AqiAdapter? = null
     private var mAqiIndex = 0
     private var mEnable = false
     private var mAttachAnimatorSet: AnimatorSet? = null
-
-    private val _dialogState: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    val dialogState = _dialogState.asStateFlow()
 
     @SuppressLint("DefaultLocale")
     override fun onBindView(
@@ -155,77 +127,18 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 contentDescription = mAqiIndex.toString() + ", " + airQuality.getName(context)
                 max = PollutantIndex.indexExcessivePollution.toFloat()
             }
-            mDialog.setContent {
-                BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
-                    AirQualityDialogView(airQuality)
-                }
-            }
             itemView.setOnClickListener {
-                _dialogState.value = true
+                IntentHelper.startDailyWeatherActivity(
+                    context as GeoActivity,
+                    location.formattedId,
+                    location.weather!!.todayIndex,
+                    ChartDisplay.TAG_AIR_QUALITY
+                )
             }
         }
         mAdapter = AqiAdapter(context, location, itemAnimationEnabled)
         mRecyclerView.adapter = mAdapter
         mRecyclerView.layoutManager = LinearLayoutManager(context)
-    }
-
-    @Composable
-    private fun AirQualityDialogView(airQuality: AirQuality) {
-        val dialogOpenState by dialogState.collectAsState()
-
-        if (dialogOpenState) {
-            AlertDialog(
-                onDismissRequest = { _dialogState.value = false },
-                title = {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Column(
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            Text(
-                                text = stringResource(R.string.air_quality_index),
-                                color = MaterialTheme.colorScheme.onSurface,
-                                style = MaterialTheme.typography.headlineSmall
-                            )
-                        }
-                        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
-                        Text(
-                            text = mAqiIndex.toString(),
-                            color = Color(airQuality.getColor(mProgress.context)),
-                            style = MaterialTheme.typography.displaySmall
-                        )
-                    }
-                },
-                text = {
-                    Column {
-                        Text(
-                            text = airQuality.getName(context) ?: "",
-                            fontWeight = FontWeight.Bold
-                        )
-                        Text(
-                            text = airQuality.getDescription(context) ?: "",
-                            color = DayNightTheme.colors.bodyColor
-                        )
-                    }
-                },
-                confirmButton = {
-                    TextButton(
-                        onClick = {
-                            _dialogState.value = false
-                        }
-                    ) {
-                        Text(
-                            text = stringResource(R.string.action_close),
-                            color = MaterialTheme.colorScheme.primary,
-                            style = MaterialTheme.typography.labelLarge
-                        )
-                    }
-                }
-            )
-        }
     }
 
     @SuppressLint("DefaultLocale")

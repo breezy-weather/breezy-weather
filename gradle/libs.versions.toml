@@ -7,6 +7,7 @@ agp = "8.10.1"
 appcompat = "1.7.1"
 cardview = "1.0.0"
 compose-bom = "2025.06.01"
+compose-material3 = "1.4.0-alpha16"
 compose-lint-checks = "1.4.2"
 core-ktx = "1.16.0"
 core-splashscreen = "1.0.1"
@@ -64,7 +65,7 @@ compose-foundation = { group = "androidx.compose.foundation", name = "foundation
 compose-lint-checks = { group = "com.slack.lint.compose", name = "compose-lint-checks", version.ref = "compose-lint-checks" }
 compose-material-ripple = { group = "androidx.compose.material", name = "material-ripple" }
 compose-material-icons = { group = "androidx.compose.material", name = "material-icons-extended" }
-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "compose-material3" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-util = { group = "androidx.compose.ui", name = "ui-util" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }

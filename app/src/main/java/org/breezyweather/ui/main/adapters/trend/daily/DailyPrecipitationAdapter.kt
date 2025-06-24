@@ -26,6 +26,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Precipitation
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getHalfDayPrecipitationColor
@@ -116,6 +117,9 @@ class DailyPrecipitationAdapter(
                 missingIconVisibility = View.INVISIBLE
             )
             dailyItem.contentDescription = talkBackBuilder.toString()
+            dailyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, ChartDisplay.TAG_PRECIPITATION)
+            }
         }
     }
 

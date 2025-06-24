@@ -71,11 +71,6 @@
                 android:paddingBottom="@dimen/little_margin"
                 tools:ignore="UnusedAttribute" />
 
-            <androidx.compose.ui.platform.ComposeView
-                android:id="@+id/container_main_aqi_dialog"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
         </RelativeLayout>
 
     </LinearLayout>

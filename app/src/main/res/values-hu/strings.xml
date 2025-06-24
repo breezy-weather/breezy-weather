@@ -191,8 +191,8 @@
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Szén monoxid</string>
     <string name="air_quality_pm_info_title">Részecskék (PM2,5 és PM10)</string>
-    <string name="air_quality_no2_info_title">Nitrogén-dioxid (NO₂)</string>
-    <string name="air_quality_so2_info_title">Kén-dioxid (SO₂)</string>
+    <string name="air_quality_no2_full">Nitrogén-dioxid (NO₂)</string>
+    <string name="air_quality_so2_full">Kén-dioxid (SO₂)</string>
     <string name="widget_material_you_forecast">Material You – Előrejelzés</string>
     <string name="widget_style_temperature">Hőmérséklet</string>
     <string name="widget_style_symmetry">Szimmetrikus</string>
@@ -260,7 +260,7 @@
     <string name="air_quality_level_2_description">A légszennyezettség a legtöbb ember számára általában elfogadható. Az érzékeny csoportok azonban a hosszú távú kitettség következtében kisebb vagy közepes mértékű tüneteket tapasztalhatnak.</string>
     <string name="air_quality_level_5_description">Az érzékeny csoportok azonnal érzik az egészségügyi hatásokat, és kerülniük kell a szabadtéri tevékenységeket. Az egészséges egyének valószínűleg légzési nehézségeket és torokirritációt tapasztalnak; fontolja meg a beltérben maradást és a szabadtéri tevékenységek átütemezését.</string>
     <string name="air_quality_pm_explanations_consequences">A részecskék a légszennyezés legkárosabb formái, mivel képesek a véráramból mélyen behatolni a tüdőbe és az agyba, és olyan egészségügyi problémákat okoznak, mint a szív- és tüdőbetegségek, valamint a korai halálozás.</string>
-    <string name="air_quality_o3_info_title">Földfelszíni ózon (O₃)</string>
+    <string name="air_quality_o3_full">Földfelszíni ózon (O₃)</string>
     <string name="air_quality_o3_info_introduction">A földfelszíni ózon (O₃) a szmog egyik fő összetevője. Bár ugyanarról a molekuláról van szó, a földfelszíni ózon káros lehet az emberi egészségre, ellentétben a sztratoszférikus ózonnal, amely megvédi a Földet a túlzott UV-sugárzástól.</string>
     <string name="air_quality_o3_info_origin">Olyan szennyező anyagokkal, mint az illékony szerves vegyületek, a szén-monoxid és a nitrogén-oxidok (NOₓ) fotokémiai reakcióiból keletkezik, amelyeket a járművek és az ipar bocsát ki. Fotokémiai jellege miatt az ózon legmagasabb szintje a napos időjárás idején tapasztalható.</string>
     <string name="air_quality_o3_info_consequences">A túlzott ózonnak való kitettség légzési problémákat okozhat, asztmát válthat ki, csökkentheti a tüdőfunkciót és tüdőbetegséghez vezethet.</string>
@@ -399,7 +399,7 @@
     <string name="pollen_level_4">Magas</string>
     <string name="air_quality_no2_info_introduction">A nitrogén-dioxid (NO₂) fojtogató, mérgező, vörösesbarna színű, jellegzetes, szúrós, fanyar szagú gáz.</string>
     <string name="air_quality_no2_info_origin">A NO₂ környezeti forrásai a tüzelőanyagok magas hőmérsékleten történő elégetéséből származnak, például a fűtési, közlekedési, ipari és energiatermelési folyamatokban. A nitrogén-oxidok (NOₓ) háztartási forrásai közé tartoznak a tüzelőanyagokat égető berendezések, például a kemencék, kandallók, gáztűzhelyek és sütők.</string>
-    <string name="air_quality_co_info_title">Szén-monoxid (CO)</string>
+    <string name="air_quality_co_full">Szén-monoxid (CO)</string>
     <string name="air_quality_co_info_introduction">A szén-monoxid (CO) mérgező, gyúlékony gáz, amely színtelen, szagtalan, íztelen és nem vált ki irritációt.</string>
     <string name="pollen_level_2">Alacsony</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Jelenlegi látótávolság</string>

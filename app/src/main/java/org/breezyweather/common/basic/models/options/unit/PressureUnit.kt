@@ -26,16 +26,17 @@ import org.breezyweather.common.extensions.isRtl
 enum class PressureUnit(
     override val id: String,
     override val convertUnit: (Double) -> Double,
+    val chartStep: Double,
     val decimalNumbers: Int = 0,
 ) : UnitEnum<Double> {
 
-    MB("mb", { valueInDefaultUnit -> valueInDefaultUnit }),
-    KPA("kpa", { valueInDefaultUnit -> valueInDefaultUnit.div(10) }, 1),
-    HPA("hpa", { valueInDefaultUnit -> valueInDefaultUnit }),
-    ATM("atm", { valueInDefaultUnit -> valueInDefaultUnit.div(1013) }, 3),
-    MMHG("mmhg", { valueInDefaultUnit -> valueInDefaultUnit.div(1.333) }),
-    INHG("inhg", { valueInDefaultUnit -> valueInDefaultUnit.div(33.864) }, 2),
-    KGFPSQCM("kgfpsqcm", { valueInDefaultUnit -> valueInDefaultUnit.div(980.7) }, 3),
+    MB("mb", { valueInDefaultUnit -> valueInDefaultUnit }, chartStep = 15.0),
+    KPA("kpa", { valueInDefaultUnit -> valueInDefaultUnit.div(10) }, chartStep = 1.5, 1),
+    HPA("hpa", { valueInDefaultUnit -> valueInDefaultUnit }, chartStep = 15.0),
+    ATM("atm", { valueInDefaultUnit -> valueInDefaultUnit.div(1013) }, chartStep = 0.015, 3),
+    MMHG("mmhg", { valueInDefaultUnit -> valueInDefaultUnit.div(1.333) }, chartStep = 10.0),
+    INHG("inhg", { valueInDefaultUnit -> valueInDefaultUnit.div(33.864) }, chartStep = 0.5, 2),
+    KGFPSQCM("kgfpsqcm", { valueInDefaultUnit -> valueInDefaultUnit.div(980.7) }, chartStep = 0.015, 3),
     ;
 
     companion object {
@@ -65,19 +66,22 @@ enum class PressureUnit(
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Double,
-    ) = getValueText(context, valueInDefaultUnit, context.isRtl)
+        value: Double,
+        isValueInDefaultUnit: Boolean,
+    ) = getValueText(context, value, context.isRtl, isValueInDefaultUnit)
 
     override fun getValueText(
         context: Context,
-        valueInDefaultUnit: Double,
+        value: Double,
         rtl: Boolean,
+        isValueInDefaultUnit: Boolean,
     ) = Utils.getValueText(
         context = context,
         enum = this,
-        valueInDefaultUnit = valueInDefaultUnit,
+        value = value,
         decimalNumber = decimalNumbers,
-        rtl = rtl
+        rtl = rtl,
+        isValueInDefaultUnit = isValueInDefaultUnit
     )
 
     override fun getValueVoice(

@@ -84,32 +84,38 @@ object Utils {
     fun getValueText(
         context: Context,
         enum: UnitEnum<Double>,
-        valueInDefaultUnit: Double,
+        value: Double,
         decimalNumber: Int,
         rtl: Boolean,
+        isValueInDefaultUnit: Boolean = true,
     ) = if (rtl) {
         BidiFormatter
             .getInstance()
             .unicodeWrap(
-                formatDouble(enum.getValueWithoutUnit(valueInDefaultUnit), decimalNumber)
+                formatDouble(if (isValueInDefaultUnit) enum.getValueWithoutUnit(value) else value, decimalNumber)
             ) + "\u202f" + getName(context, enum)
     } else {
-        formatDouble(enum.getValueWithoutUnit(valueInDefaultUnit), decimalNumber) + "\u202f" + getName(context, enum)
+        formatDouble(
+            if (isValueInDefaultUnit) enum.getValueWithoutUnit(value) else value,
+            decimalNumber
+        ) + "\u202f" + getName(context, enum)
     }
 
     fun getValueText(
         context: Context,
         enum: UnitEnum<Int>,
-        valueInDefaultUnit: Int,
+        value: Int,
         rtl: Boolean,
+        isValueInDefaultUnit: Boolean = true,
     ) = if (rtl) {
         BidiFormatter
             .getInstance()
             .unicodeWrap(
-                formatInt(enum.getValueWithoutUnit(valueInDefaultUnit))
+                formatInt(if (isValueInDefaultUnit) enum.getValueWithoutUnit(value) else value)
             ) + "\u202f" + getName(context, enum)
     } else {
-        formatInt(enum.getValueWithoutUnit(valueInDefaultUnit)) + "\u202f" + getName(context, enum)
+        formatInt(if (isValueInDefaultUnit) enum.getValueWithoutUnit(value) else value) +
+            "\u202f" + getName(context, enum)
     }
 
     fun getVoiceText(

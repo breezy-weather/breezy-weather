@@ -19,7 +19,7 @@
     <string name="pollen_tree">Träd</string>
     <string name="wind_direction_S_short">S</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Longitud</string>
-    <string name="air_quality_so2_info_title">Svaveldioxid (SO₂)</string>
+    <string name="air_quality_so2_full">Svaveldioxid (SO₂)</string>
     <string name="uv_index">UV-index</string>
     <string name="common_weather_text_snow">Snö</string>
     <string name="settings_units_precipitation">Nederbördsenhet</string>
@@ -77,7 +77,7 @@
     <string name="about_contribution_designer">Logotypdesigner</string>
     <string name="widget_week_style_3_days">3 dagar</string>
     <string name="widget_subtitle_data_time">Uppdateringstid</string>
-    <string name="air_quality_o3_info_title">Marknära ozon (O₃)</string>
+    <string name="air_quality_o3_full">Marknära ozon (O₃)</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Nuvarande luftfuktighet</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="ephemeris_sunset_at">Solnedgång vid %s</string>
@@ -122,7 +122,7 @@
     <string name="air_quality_index">Luftkvalitetsindex</string>
     <string name="unit_kn_voice">Knop</string>
     <string name="unit_km_voice">Kilometer</string>
-    <string name="air_quality_no2_info_title">Kvävedioxid (NO₂)</string>
+    <string name="air_quality_no2_full">Kvävedioxid (NO₂)</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Latitud</string>
     <string name="pollen">Pollen</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Använd en annan platstjänst</string>
@@ -249,7 +249,7 @@
     <string name="unit_kph">km/h</string>
     <string name="ephemeris_moonset_at">Månnedgång vid %s</string>
     <string name="widget_style_nano">Nano</string>
-    <string name="air_quality_co_info_title">Kolmonoxid (CO)</string>
+    <string name="air_quality_co_full">Kolmonoxid (CO)</string>
     <string name="weather_source_accu_preference_hours_240">240 timmar</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="settings_units_pressure">Tryckenhet</string>

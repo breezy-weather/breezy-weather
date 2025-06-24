@@ -19,18 +19,56 @@ package org.breezyweather.domain.weather.index
 import android.content.Context
 import android.graphics.Color
 import androidx.annotation.ColorInt
+import androidx.annotation.StringRes
 import org.breezyweather.R
+import org.breezyweather.common.basic.models.options.basic.Utils.formatDouble
 import kotlin.math.roundToInt
 
 enum class PollutantIndex(
     val id: String,
     val thresholds: List<Int>,
     val molecularMass: Double?,
+    @StringRes val shortName: Int,
+    @StringRes val voicedName: Int,
+    @StringRes val fullName: Int,
+    @StringRes val sources: Int,
 ) {
-    O3("o3", listOf(0, 50, 100, 160, 240, 480), 48.0), // Plume 2023
-    NO2("no2", listOf(0, 10, 25, 200, 400, 1000), 46.0055), // Plume 2023
-    PM10("pm10", listOf(0, 15, 45, 80, 160, 400), null), // Plume 2023
-    PM25("pm25", listOf(0, 5, 15, 30, 60, 150), null), // Plume 2023
+    O3(
+        "o3",
+        listOf(0, 50, 100, 160, 240, 480), // Plume 2023
+        48.0,
+        R.string.air_quality_o3,
+        R.string.air_quality_o3_voice,
+        R.string.air_quality_o3_full,
+        R.string.air_quality_o3_sources
+    ),
+    NO2(
+        "no2",
+        listOf(0, 10, 25, 200, 400, 1000), // Plume 2023
+        46.0055,
+        R.string.air_quality_no2,
+        R.string.air_quality_no2_voice,
+        R.string.air_quality_no2_full,
+        R.string.air_quality_no2_sources
+    ),
+    PM10(
+        "pm10",
+        listOf(0, 15, 45, 80, 160, 400), // Plume 2023
+        null,
+        R.string.air_quality_pm10,
+        R.string.air_quality_pm10_voice,
+        R.string.air_quality_pm10_full,
+        R.string.air_quality_pm_sources
+    ),
+    PM25(
+        "pm25",
+        listOf(0, 5, 15, 30, 60, 150), // Plume 2023
+        null,
+        R.string.air_quality_pm25,
+        R.string.air_quality_pm25_voice,
+        R.string.air_quality_pm25_full,
+        R.string.air_quality_pm_sources
+    ),
     SO2(
         "so2",
         listOf(
@@ -40,9 +78,13 @@ enum class PollutantIndex(
             270,
             500, // 10 min
             960 // linear prolongation
-        ),
-        64.066
-    ), // WHO 2021
+        ), // WHO 2021
+        64.066,
+        R.string.air_quality_so2,
+        R.string.air_quality_so2_voice,
+        R.string.air_quality_so2_full,
+        R.string.air_quality_so2_sources
+    ),
     CO(
         "co",
         listOf(
@@ -52,16 +94,21 @@ enum class PollutantIndex(
             35, // hourly
             100, // 15 min
             230 // linear prolongation
-        ),
-        28.01
+        ), // WHO 2021
+        28.01,
+        R.string.air_quality_co,
+        R.string.air_quality_co_voice,
+        R.string.air_quality_co_full,
+        R.string.air_quality_co_sources
     ),
-    ; // WHO 2021
+    ;
 
     companion object {
         // Plume 2023
         val aqiThresholds = listOf(0, 20, 50, 100, 150, 250)
         val namesArrayId = R.array.air_quality_levels
         val descriptionsArrayId = R.array.air_quality_level_descriptions
+        val harmlessExposuresArrayId = R.array.air_quality_level_harmless_exposures
         val colorsArrayId = R.array.air_quality_level_colors
 
         val indexFreshAir = aqiThresholds[1]
@@ -96,6 +143,16 @@ enum class PollutantIndex(
             val level = getAqiToLevel(aqi)
             return if (level != null) context.resources.getStringArray(descriptionsArrayId).getOrNull(level) else null
         }
+
+        fun getAqiToHarmlessExposure(context: Context, aqi: Int?): String? {
+            if (aqi == null) return null
+            val level = getAqiToLevel(aqi)
+            return if (level != null) {
+                context.resources.getStringArray(harmlessExposuresArrayId).getOrNull(level)
+            } else {
+                null
+            }
+        }
     }
 
     private fun getIndex(cp: Double, bpLo: Int, bpHi: Int, inLo: Int, inHi: Int): Int {
@@ -118,6 +175,19 @@ enum class PollutantIndex(
         } else {
             // Continue producing a linear index above lastIndex
             ((cp * aqiThresholds.last()) / thresholds.last()).roundToInt()
+        }
+    }
+
+    fun getFullName(context: Context): String {
+        return if (this == PM10 || this == PM25) {
+            context.getString(
+                fullName,
+                formatDouble(if (this == PM10) 10.0 else 2.5, 1) +
+                    "\u202f" +
+                    context.getString(R.string.unit_mum)
+            )
+        } else {
+            context.getString(fullName)
         }
     }
 

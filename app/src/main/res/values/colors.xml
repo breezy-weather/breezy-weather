@@ -25,6 +25,20 @@
     <color name="colorLevel_5">#99004c</color>
     <color name="colorLevel_6">#7e0023</color>
 
+    <color name="windStrength_bf0">#6271B7</color>
+    <color name="windStrength_bf1">#39619F</color>
+    <color name="windStrength_bf2">#4A94A9</color>
+    <color name="windStrength_bf3">#4D8D7B</color>
+    <color name="windStrength_bf4">#53A553</color>
+    <color name="windStrength_bf5">#359F35</color>
+    <color name="windStrength_bf6">#A79D51</color>
+    <color name="windStrength_bf7">#A1645C</color>
+    <color name="windStrength_bf8">#AF5088</color>
+    <color name="windStrength_bf9">#754A93</color>
+    <color name="windStrength_bf10">#44698D</color>
+    <color name="windStrength_bf11">#5C9098</color>
+    <color name="windStrength_bf12">#7D44A5</color>
+
     <color name="aqiLevel_1">#00e59b</color>
     <color name="aqiLevel_2">#ffc302</color>
     <color name="aqiLevel_3">#ff712b</color>

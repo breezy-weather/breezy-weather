@@ -16,7 +16,13 @@
 
 package org.breezyweather.common.extensions
 
+import android.view.View
+import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.input.pointer.pointerInput
+import kotlin.math.absoluteValue
 
 /**
  * Source: ProAndroidDev
@@ -30,4 +36,40 @@ inline fun Modifier.conditional(
     then(ifTrue(Modifier))
 } else {
     then(ifFalse(Modifier))
+}
+
+// Simplified version of https://stackoverflow.com/a/77321467
+fun Modifier.handleNestedHorizontalDragGesture(
+    view: View,
+) = this.pointerInput(Unit) {
+    var initialX = 0f
+    var initialY = 0f
+
+    awaitEachGesture {
+        do {
+            val event = awaitPointerEvent(PointerEventPass.Initial)
+            when (event.type) {
+                PointerEventType.Press -> {
+                    view.parent.requestDisallowInterceptTouchEvent(true)
+                    event.changes.firstOrNull()?.let {
+                        initialX = it.position.x
+                        initialY = it.position.y
+                    }
+                }
+                PointerEventType.Move -> {
+                    event.changes.firstOrNull()?.let {
+                        val changedX = it.previousPosition.x - initialX
+                        val changedY = it.previousPosition.y - initialY
+
+                        if (changedY.absoluteValue > changedX.absoluteValue) {
+                            view.parent.requestDisallowInterceptTouchEvent(false)
+                        } else {
+                            view.parent.requestDisallowInterceptTouchEvent(true)
+                            it.consume()
+                        }
+                    }
+                }
+            }
+        } while (event.changes.any { it.pressed })
+    }
 }

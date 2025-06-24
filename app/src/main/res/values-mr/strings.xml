@@ -106,13 +106,13 @@
     <string name="air_quality_pm_info_title">कण (पीएम२.५ आणि पीएम१०)</string>
     <string name="air_quality_pm_explanations_introduction">कण किंवा वायुमंडलीय कण हे हवेत लटकलेले घन किंवा द्रव पदार्थाचे सूक्ष्म कण असतात.</string>
     <string name="air_quality_pm_explanations_consequences">रक्तप्रवाहातून फुफ्फुसात आणि मेंदूमध्ये खोलवर जाण्याच्या क्षमतेमुळे वायू प्रदूषणाचा कण हा सर्वात घातक आहे, ज्यामुळे हृदयरोग, फुफ्फुसाचे आजार, आणि अकाली मृत्यू यांसारख्या आरोग्य समस्या उद्भवतात.</string>
-    <string name="air_quality_o3_info_title">भू-स्तरीय ओझोन (ओ₃)</string>
+    <string name="air_quality_o3_full">भू-स्तरीय ओझोन (ओ₃)</string>
     <string name="air_quality_o3_info_origin">वाष्पशील सेंद्रिय संयुगे, कार्बन मोनोऑक्साइड आणि वाहने आणि उद्योगांमधून उत्सर्जित होणारे नायट्रोजन ऑक्साइड (NOₓ) यांसारख्या प्रदूषकांसह फोटोकेमिकल अभिक्रियांपासून ते तयार होते.फोटोकेमिकल निसर्गामुळे, ओझोनची उच्च पातळी उन्हाच्या हवामानाच्या काळात दिसून येते.</string>
-    <string name="air_quality_no2_info_title">नायट्रोजन डायऑक्साइड (नाओ ₂)</string>
+    <string name="air_quality_no2_full">नायट्रोजन डायऑक्साइड (नाओ ₂)</string>
     <string name="air_quality_no2_info_introduction">नायट्रोजन डायऑक्साइड (NO₂) हा गुदमरणारा, विषारी तांबूस-तपकिरी वायू आहे ज्यामध्ये वैशिष्ट्यपूर्ण तीक्ष्ण, तीव्र गंध आहे.</string>
-    <string name="air_quality_so2_info_title">सल्फर डायऑक्साइड (एसओ₂)</string>
+    <string name="air_quality_so2_full">सल्फर डायऑक्साइड (एसओ₂)</string>
     <string name="air_quality_so2_info_introduction">सल्फर डायऑक्साइड (एसओ₂) हा रंगहीन विषारी वायू आहे जो जळलेल्या माचीसच्या वासासाठी जबाबदार आहे.</string>
-    <string name="air_quality_co_info_title">कार्बन मोनोऑक्साइड (CO)</string>
+    <string name="air_quality_co_full">कार्बन मोनोऑक्साइड (CO)</string>
     <string name="alert">इशारा</string>
     <string name="air_quality_no2_info_origin">एनओ₂ चे वातावरणीय स्त्रोत गरम, वाहतूक, उद्योग आणि वीज निर्मितीसाठी वापरल्या जाणाऱ्या प्रक्रियांमध्ये इंधनाच्या उच्च तापमानाच्या ज्वलनामुळे उद्भवतात. नायट्रोजन ऑक्साईड्स (एनओₓ) च्या घरगुती स्त्रोतांमध्ये भट्टी, शेकोटी आणि गॅस स्टोव्ह आणि भट्टी यांसारखी इंधन जाळणारी उपकरणे समाविष्ट आहेत.</string>
     <string name="air_quality_no2_info_consequences">नायट्रोजन डायऑक्साइडच्या संपर्कात आल्याने वायुमार्गाला त्रास होऊ शकतो आणि श्वसनाचे आजार वाढू शकतात. याव्यतिरिक्त, एनओ₂ हा एक महत्त्वाचा ओझोन पूर्ववर्ती आहे, एक प्रदूषक दमा आणि इतर श्वसन रोगांशी जवळून संबंधित आहे.</string>
