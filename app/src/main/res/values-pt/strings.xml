@@ -59,7 +59,7 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Localização falhou</string>
     <string name="weather_message_data_refresh_failed">Falha ao atualizar dados</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Selecione o provedor de localização</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Utilizar um serviço de localização diferente</string>
     <string name="widget_label_view_style">Estilo de visão</string>
     <string name="widget_label_show_widget_card">Plano de fundo de cartão</string>
     <string name="widget_label_hide_subtitle">Ocultar Subtítulo</string>
@@ -610,7 +610,7 @@
     <string name="settings_weather_source_none">Nenhum</string>
     <string name="notification_precipitation_starting_desc">Início previsto para %s</string>
     <string name="location_message_updated">Localização atualizada</string>
-    <string name="location_message_already_exists">Já existe um local com a mesma fonte meteorológica principal.</string>
+    <string name="location_message_already_exists">A lista de localizações já contém esta localização com esta fonte de previsão.</string>
     <string name="cloud_cover_short">Nuvem</string>
     <string name="ceiling_short">Teto</string>
     <string name="location_search_source">Fonte para pesquisa de localização</string>
@@ -655,7 +655,7 @@
     <string name="pollen_platanus">Plátano</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Índice de Qualidade do Ar atual</string>
     <string name="message_source_not_installed_error_content_tip_1">Isto pode acontecer quando adicionou a sua localização na versão padrão (standard) do app e e depois mudou para a versão com apenas fontes de rede livre (freenet). Voltar para a versão padrão pode resolver este problema.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Ou alterar as fontes meteorológicas para este local ou apagar e readicionar o mesmo.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Altere a fonte meteorológica para este local ou remova-a e adicione-a novamente.</string>
     <string name="widget_label_hide_header">Ocultar cabeçalho</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Resumo do índice de Pollen de hoje, amanhã, …, 4 dias depois</string>
     <string name="sunshine">Sol</string>
@@ -796,4 +796,12 @@
     <string name="weather_source_continent_africa">África</string>
     <string name="weather_source_continent_north_america">America do norte</string>
     <string name="notification_app_update_available">Nova versão disponível!</string>
+    <string name="action_enable">Ativar</string>
+    <string name="message_outdated_server_data">Receber dados desactualizados do servidor</string>
+    <string name="message_server_insecure_title">Falha na ligação segura</string>
+    <string name="common_weather_text_mist">Neblina fina</string>
+    <string name="action_open_in_other_app">Abrir noutra aplicação</string>
+    <string name="action_open_in_other_app_description">Abrir esta localização noutra aplicação</string>
+    <string name="action_allow">Permitir</string>
+    <string name="pollen_alternaria">Alternaria</string>
 </resources>
