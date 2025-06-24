@@ -747,5 +747,5 @@
     <string name="action_enable">Уключыць</string>
     <string name="action_allow">Дазволіць</string>
     <string name="action_open_in_other_app">Адкрыць у іншай праграме</string>
-    <string name="action_open_in_other_app_description">Адкрыць месцазнаходжанне ў іншай праграме</string>
+    <string name="action_open_in_other_app_description">Адкрыць месца ў іншай праграме</string>
 </resources>
