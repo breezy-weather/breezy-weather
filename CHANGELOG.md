@@ -1,10 +1,16 @@
-# Next version (not yet released)
+# Version 6.0.0 (not yet released)
+
+**New features**
+- Complete overhaul of the daily details page to offer a better visualization of the data, and more explanations about the different types of weather data
 
 **Improvements and fixes**
 - Fix crash when using “Open in another app” when no app on the phone is able to open it
 
 **Weather sources**
 - [ECCC] Added UV index
+
+**Translations**
+- Translations updated
 
 
 # Version 5.4.8 (2025-06-22)
