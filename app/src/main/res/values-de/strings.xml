@@ -583,7 +583,7 @@
     <string name="temperature_normal_short">Normalwert</string>
     <string name="settings_main_threshold_lines_on_charts">Grenzlinien in Diagrammen</string>
     <string name="weather_normals_data_by">Daten für Temperaturnormalwerte von %s</string>
-    <string name="temperature_average_short">Durchschnittlich</string>
+    <string name="temperature_average_short">Ø</string>
     <string name="settings_widgets_broadcast_send_data_title">Wetterdaten an %s senden</string>
     <string name="pollen_and_mold">Pollen &amp; Schimmel</string>
     <string name="settings_debug_dump_crash_logs_saved">Absturzprotokolle gespeichert</string>
@@ -609,7 +609,7 @@
     <string name="uv_index_short">UV Index</string>
     <string name="visibility_short">Sicht</string>
     <string name="pressure_short">Druck</string>
-    <string name="humidity_short">Luftfeuchtigkeit</string>
+    <string name="humidity_short">Luftfeuchte</string>
     <string name="ceiling_short">Wolkendecke</string>
     <string name="settings_weather_sources_default_source">Standardquelle für neue Orte</string>
     <string name="settings_weather_source_unavailable">%s (nicht verfügbar)</string>
