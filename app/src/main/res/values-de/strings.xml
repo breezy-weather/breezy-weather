@@ -23,7 +23,7 @@
     <string name="widget_ellipsis">…</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Standort manuell hinzufügen und „%s“ löschen</string>
     <string name="widget_label_text_color">Schriftfarbe</string>
-    <string name="pollen_tap_to_see_more">Mehr…</string>
+    <string name="pollen_tap_to_see_more">Tippen Sie, um mehr zu sehen…</string>
     <string name="widget_label_clock_font">Font der Uhr</string>
     <string name="location_message_added">Ort hinzugefügt</string>
     <string name="location_message_deleted">Ort gelöscht</string>
@@ -53,8 +53,8 @@
     <string name="action_help">Hilfe</string>
     <string name="hourly_forecast">Stündliche Vorhersage</string>
     <string name="sunshine_duration">Sonnenstunden</string>
-    <string name="humidity">Luftfeuchte</string>
-    <string name="humidity_dew_point">Luftfeuchte / Taupunkt</string>
+    <string name="humidity">Luftfeuchtigkeit</string>
+    <string name="humidity_dew_point">Luftfeuchtigkeit / Taupunkt</string>
     <string name="precipitation_ice">Eis</string>
     <string name="action_learn_more">Mehr erfahren</string>
     <string name="details">Details</string>
@@ -211,8 +211,8 @@
     <string name="common_weather_text_mainly_clear">Überwiegend klar</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Raueis mit Nebel</string>
     <string name="common_weather_text_snow_grains">Schneegriesel</string>
-    <string name="air_quality_level_1_description">Für die meisten Menschen ist die Luftqualität bei Unternehmungen im Freien optimal.</string>
-    <string name="air_quality_level_2_description">Für die meisten Menschen ist die Luftqualität im Allgemeinen akzeptabel. Bei empfindlichen Personengruppen können sich jedoch bei längeren Aufenthalten an der frischen Luft leichte bis mäßige Symptome bemerkbar machen.</string>
+    <string name="air_quality_level_1_description">Die Luftqualität ist für die meisten Menschen ideal; genießen Sie Ihre normalen Aktivitäten im Freien.</string>
+    <string name="air_quality_level_2_description">Die Luftqualität ist im Allgemeinen für die meisten Menschen akzeptabel. Bei empfindlichen Personengruppen können jedoch bei langfristiger Exposition leichte bis mittlere Symptome auftreten.</string>
     <string name="air_quality_level_3_description">Die Luft ist stark verschmutzt und für empfindliche Personengruppen gesundheitsschädlich. Verbringen Sie weniger Zeit im Freien, falls bei Ihnen Symptome wie Atembeschwerden oder Hustenreiz auftreten.</string>
     <string name="air_quality_level_5">Sehr ungesund</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Wetter nachts heute, morgen, …, in 4 Tagen</string>
@@ -524,7 +524,7 @@
     <string name="pollen_artemisia">Beifuß</string>
     <string name="pollen_alnus">Erle</string>
     <string name="pollen_betula">Birke</string>
-    <string name="pollen_olea">Ölbaum</string>
+    <string name="pollen_olea">Olivenbaum</string>
     <string name="pollen_level_1">Sehr niedrig</string>
     <string name="pollen_level_2">Niedrig</string>
     <string name="pollen_level_3">Mäßig</string>
@@ -583,7 +583,7 @@
     <string name="temperature_normal_short">Normalwert</string>
     <string name="settings_main_threshold_lines_on_charts">Grenzlinien in Diagrammen</string>
     <string name="weather_normals_data_by">Daten für Temperaturnormalwerte von %s</string>
-    <string name="temperature_average_short">Mittel</string>
+    <string name="temperature_average_short">durchschnittlich</string>
     <string name="settings_widgets_broadcast_send_data_title">Wetterdaten an %s senden</string>
     <string name="pollen_and_mold">Pollen &amp; Schimmel</string>
     <string name="settings_debug_dump_crash_logs_saved">Absturzprotokolle gespeichert</string>
@@ -609,7 +609,7 @@
     <string name="uv_index_short">UV Index</string>
     <string name="visibility_short">Sicht</string>
     <string name="pressure_short">Druck</string>
-    <string name="humidity_short">Luftfeuchte</string>
+    <string name="humidity_short">Luftfeuchtigkeit</string>
     <string name="ceiling_short">Wolkendecke</string>
     <string name="settings_weather_sources_default_source">Standardquelle für neue Orte</string>
     <string name="settings_weather_source_unavailable">%s (nicht verfügbar)</string>
@@ -631,7 +631,7 @@
     <string name="pollen_platanus">Platane</string>
     <string name="pollen_populus">Pappel</string>
     <string name="pollen_quercus">Eiche</string>
-    <string name="pollen_rumex">Ampfer</string>
+    <string name="pollen_rumex">Sauerampfer</string>
     <string name="pollen_salix">Weide</string>
     <string name="pollen_tilia">Linde</string>
     <string name="pollen_urticaceae">Brennnessel/Glaskraut</string>
@@ -722,7 +722,7 @@
     <string name="action_show">Anzeigen</string>
     <string name="dialog_refresh_error_details_content">Tippen Sie auf Fehlermeldungen mit einem Fragezeichen, um weitere Hilfe zu erhalten.</string>
     <string name="dialog_refresh_error_details_title">Aktualisierungsfehler</string>
-    <string name="message_multiple_refresh_errors">Mehrere Fehler beim Aktualisieren</string>
+    <string name="message_multiple_refresh_errors">Aktualisierung mit Fehlern abgeschlossen</string>
     <string name="common_weather_text_tornado">Tornado</string>
     <string name="settings_weather_source_not_configured">%s (nicht konfiguriert)</string>
     <string name="forecast">Vorhersage</string>
