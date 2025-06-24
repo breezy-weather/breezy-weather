@@ -3,6 +3,9 @@
 **Improvements and fixes**
 - Fix crash when using “Open in another app” when no app on the phone is able to open it
 
+**Weather sources**
+- [ECCC] Added UV index
+
 
 # Version 5.4.8 (2025-06-22)
 
