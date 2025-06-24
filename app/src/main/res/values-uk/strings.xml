@@ -748,4 +748,23 @@
     <string name="action_enable">Увімкнути</string>
     <string name="action_open_in_other_app">Відкрити в іншій програмі</string>
     <string name="action_open_in_other_app_description">Відкрити це місце в іншій програмі</string>
+    <string name="ephemeris_about">Про час підйому та застигання</string>
+    <string name="daily_summary">Щоденний зведення</string>
+    <string name="chart_no_daily_data">Дані за цей день недоступні.</string>
+    <string name="chart_no_hourly_data">Немає погодинних даних.</string>
+    <string name="chart_average">Середній</string>
+    <string name="chart_maximum_value">Максимальне значення</string>
+    <string name="conditions">Умови</string>
+    <string name="temperature_real">Фактичний</string>
+    <string name="temperature_real_details">Фактична температура.</string>
+    <string name="temperature_degree_day_cooling_explanation">Різниця між зовнішньою температурою та еталонною комфортною температурою, яка використовується для оцінки потреб в енергії для охолодження</string>
+    <string name="wind_speed_about">Про швидкість та пориви вітру</string>
+    <string name="wind_gusts_short">Пориви вітру</string>
+    <string name="wind_strength_scale">Шкала Бофорта</string>
+    <string name="temperature_feels_like_details">Яка відчувається температура внаслідок вологості, вітру та/або сонячного світла.</string>
+    <string name="chart_not_enough_hourly_data">Недостатньо погодинних даних для відображення графіка за цей день.</string>
+    <string name="ephemeris_about_set">Встановлений час – це коли сонце або місяць повністю зникають за горизонтом.</string>
+    <string name="ephemeris_about_rise">Час сходу сонця - це коли сонце або місяць повністю з\'являються над горизонтом.</string>
+    <string name="temperature_degree_day_heating_explanation">Різниця між зовнішньою температурою та еталонною комфортною температурою, яка використовується для оцінки потреб в енергії на опалення</string>
+    <string name="wind_speed_about_description">Швидкість вітру вимірюється шляхом усереднення швидкості вітру протягом певного періоду часу. Пориви вітру – це раптові сплески вітру, які зазвичай тривають менше 20 секунд.</string>
 </resources>
