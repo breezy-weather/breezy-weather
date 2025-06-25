@@ -823,4 +823,7 @@
     <string name="message_outdated_server_data">從伺服器收到過期資料</string>
     <string name="action_enable">啟用</string>
     <string name="action_allow">允許</string>
+    <string name="ephemeris_about_rise">日出及月出時間是指太陽或月亮完全出現在地平線上方的時間。</string>
+    <string name="ephemeris_about_set">日落及月落時間是指太陽或月亮完全消失於地平線以下的時間。</string>
+    <string name="daily_summary">每日概況</string>
 </resources>
