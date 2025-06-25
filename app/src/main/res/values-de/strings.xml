@@ -783,9 +783,9 @@
     <string name="uv_index_about">Über den UV-Index</string>
     <string name="uv_index_scale">UV-Index-Skala</string>
     <string name="uv_index_time_to_burn">Verbrennungszeit</string>
-    <string name="air_quality_index_short">LQI</string>
+    <string name="air_quality_index_short">AQI</string>
     <string name="air_quality_index_about">Über den Luftqualitätsindex</string>
-    <string name="air_quality_index_about_description_1">Der Luftqualitätsindex (LQI) ist eine Skala, die Ihnen helfen soll, zu verstehen, wie verschmutzt die Luft in einem bestimmten Gebiet ist und welche potenziellen Risiken für Ihre Gesundheit bestehen.</string>
+    <string name="air_quality_index_about_description_1">Der Luftqualitätsindex (AQI) ist eine Skala, die zu verstehen hilft, wie verschmutzt die Luft in einem bestimmten Gebiet ist und welche potenziellen Gesundheitsrisiken bestehen.</string>
     <string name="air_quality_index_scale">Skala für den Luftqualitätsindex</string>
     <string name="air_quality_index_harmless_exposure">Ungefährliche Exposition</string>
     <string name="air_quality_level_1_harmless_exposure">&gt; 1 Jahr</string>
@@ -811,7 +811,7 @@
     <string name="pressure_steady">Gleichbleibend</string>
     <string name="pressure_falling">Fallend</string>
     <string name="pressure_about">Über Druck</string>
-    <string name="visibility_about">Über die Sicht</string>
+    <string name="visibility_about">Über die Sichtweite</string>
     <string name="visibility_about_description">Die Sichtweite gibt an, wie weit entfernt Sie Objekte wie Gebäude und Hügel deutlich sehen können. Die Sichtweite kann durch Niederschlag, Nebel, Staub, Rauch oder Dunst beeinträchtigt werden.</string>
     <string name="visibility_from_to_number">%1$s bis %2$s</string>
     <string name="visibility_from_to_description">%1$s bis %2$s</string>
@@ -821,12 +821,12 @@
     <string name="visibility_clear">Klar</string>
     <string name="visibility_perfectly_clear">Vollkommen klar</string>
     <string name="cloud_cover_about">Über die Wolkendecke</string>
-    <string name="cloud_cover_about_description">Die Wolkenbedeckung bezieht sich auf den Prozentsatz des Himmels, der im Durchschnitt von Wolken verdeckt wird. Die Wolkenbedeckung ist mit der Sonnenscheindauer korreliert.</string>
+    <string name="cloud_cover_about_description">Die Wolkenbedeckung bezieht sich auf den Prozentsatz des Himmels, der im Durchschnitt von Wolken verdeckt wird. Die Wolkenbedeckung korreliert mit der Sonnenscheindauer.</string>
     <string name="label_description">Beschreibung</string>
     <string name="unit_mum">µm</string>
     <string name="ephemeris_about_rise">Die Aufgangszeit ist der Zeitpunkt, an dem die Sonne oder der Mond vollständig über dem Horizont erscheint.</string>
     <string name="temperature_degree_day_heating_explanation">Differenz zwischen der Außentemperatur und einer komfortablen Referenztemperatur, die zur Schätzung des Heizenergiebedarfs verwendet wird</string>
-    <string name="air_quality_index_about_description_2">Die in dieser App verwendete Skala basiert auf den Empfehlungen der Weltgesundheitsorganisation und nicht auf lokalen Vorschriften, um aussagekräftige Kategorien zu erhalten und den Vergleich der Schadstoffwerte zwischen den Ländern zu erleichtern.</string>
+    <string name="air_quality_index_about_description_2">Die in dieser App verwendete Skala basiert auf den Empfehlungen der Weltgesundheitsorganisation (WHO) statt auf lokalen Vorschriften, um aussagekräftige Kategorien zu erhalten und den Vergleich der Schadstoffwerte zwischen den Ländern zu erleichtern.</string>
     <string name="nighttime_details">Beginnt am Abend und dauert bis zum Morgengrauen des nächsten Tages</string>
     <string name="pressure_about_description1">Der atmosphärische Druck ist der Druck, den die Erdatmosphäre nach unten ausübt. Diese App verwendet den mittleren Luftdruck auf Meereshöhe, um den Vergleich des Drucks an Orten mit unterschiedlichen Höhen zu erleichtern.</string>
     <string name="unit_mum_voice">Mikrometer</string>
