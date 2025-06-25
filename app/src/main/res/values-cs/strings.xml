@@ -802,7 +802,7 @@
     <string name="pressure_steady">Stabilní</string>
     <string name="pressure_falling">Klesající</string>
     <string name="pressure_about">O tlaku</string>
-    <string name="pressure_about_description1">Atmosférický tlak je sestupný tlak, který vyvíjí zemská atmosféra. Tato aplikace používá střední tlak na úrovni hladiny moře (MSLP), aby bylo možné snadněji porovnávat tlak z míst s různou nadmořskou výškou.</string>
+    <string name="pressure_about_description1">Atmosférický tlak je sestupný tlak, který vyvíjí zemská atmosféra. Tato aplikace používá střední tlak na úrovni hladiny moře, aby bylo možné snadněji porovnávat tlak z míst s různou nadmořskou výškou.</string>
     <string name="visibility_from_to_number">%1$s do %2$s</string>
     <string name="visibility_from_to_description">%1$s do %2$s</string>
     <string name="visibility_poor">Špatná</string>

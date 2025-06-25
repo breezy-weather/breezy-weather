@@ -828,7 +828,7 @@
     <string name="temperature_degree_day_heating_explanation">Differenz zwischen der Außentemperatur und einer komfortablen Referenztemperatur, die zur Schätzung des Heizenergiebedarfs verwendet wird</string>
     <string name="air_quality_index_about_description_2">Die in dieser App verwendete Skala basiert auf den Empfehlungen der Weltgesundheitsorganisation und nicht auf lokalen Vorschriften, um aussagekräftige Kategorien zu erhalten und den Vergleich der Schadstoffwerte zwischen den Ländern zu erleichtern.</string>
     <string name="nighttime_details">Beginnt am Abend und dauert bis zum Morgengrauen des nächsten Tages</string>
-    <string name="pressure_about_description1">Der atmosphärische Druck ist der Druck, den die Erdatmosphäre nach unten ausübt. Diese App verwendet den mittleren Luftdruck auf Meereshöhe (MSLP), um den Vergleich des Drucks an Orten mit unterschiedlichen Höhen zu erleichtern.</string>
+    <string name="pressure_about_description1">Der atmosphärische Druck ist der Druck, den die Erdatmosphäre nach unten ausübt. Diese App verwendet den mittleren Luftdruck auf Meereshöhe, um den Vergleich des Drucks an Orten mit unterschiedlichen Höhen zu erleichtern.</string>
     <string name="unit_mum_voice">Mikrometer</string>
     <string name="wind_speed_about_description">Die Windgeschwindigkeit wird gemessen, indem die Windgeschwindigkeiten über einen bestimmten Zeitraum gemittelt werden. Böen sind plötzliche Windstöße, die in der Regel weniger als 20 Sekunden dauern.</string>
     <string name="uv_index_about_description">Der UV-Index misst die Stärke der ultravioletten Strahlung der Sonne. Je höher er ist, desto stärker und schneller kann sie Sonnenbrand, Hautkrebs und Augenschäden verursachen.</string>

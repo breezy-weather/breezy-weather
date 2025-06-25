@@ -899,5 +899,5 @@
     <string name="air_quality_level_4_harmless_exposure">&lt; 1 小時</string>
     <string name="air_quality_health_information">健康資訊</string>
     <string name="air_quality_no2_sources">主要來自工業和運輸業等燃料的燃燒過程。</string>
-    <string name="pressure_about_description1">氣壓是地球大氣層往下施加的壓力。本應用程式採用平均海平面氣壓 (MSLP)，以便比較位於不同海拔位置的氣壓。</string>
+    <string name="pressure_about_description1">氣壓是地球大氣層往下施加的壓力。本應用程式採用平均海平面氣壓，以便比較位於不同海拔位置的氣壓。</string>
 </resources>

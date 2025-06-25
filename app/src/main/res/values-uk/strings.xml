@@ -770,7 +770,7 @@
     <string name="air_quality_pm25_full">Дрібні тверді частинки (&lt; %s)</string>
     <string name="uv_index_about_description">УФ-індекс вимірює силу ультрафіолетового випромінювання сонця. Чим він вищий, тим сильніше та швидше воно може спричинити сонячні опіки, рак шкіри та пошкодження очей.</string>
     <string name="uv_index_time_to_burn">Час горіти</string>
-    <string name="pressure_about_description1">Атмосферний тиск – це тиск, спрямований вниз, який чинить земна атмосфера. Цей додаток використовує середній тиск на рівні моря (MSLP), щоб полегшити порівняння тиску в місцях з різною висотою.</string>
+    <string name="pressure_about_description1">Атмосферний тиск – це тиск, спрямований вниз, який чинить земна атмосфера. Цей додаток використовує середній тиск на рівні моря, щоб полегшити порівняння тиску в місцях з різною висотою.</string>
     <string name="humidity_about_description">Відносна вологість, більш відома просто як вологість повітря, — це відсоток водяної пари, присутньої в повітрі, порівняно з максимальною кількістю, яку повітря може утримувати за заданої температури.</string>
     <string name="uv_index_about">Про УФ-індекс</string>
     <string name="air_quality_pollutant_details">Деталі забруднюючих речовин</string>
@@ -810,7 +810,7 @@
     <string name="label_description">Опис</string>
     <string name="air_quality_index_about_description_1">Індекс якості повітря (ІЯП) – це шкала, розроблена, щоб допомогти вам зрозуміти, наскільки забруднене повітря в певній місцевості, а також потенційні ризики для вашого здоров\'я.</string>
     <string name="uv_index_scale">Шкала УФ-індексу</string>
-    <string name="air_quality_index_short">AQI</string>
+    <string name="air_quality_index_short">ІЯП</string>
     <string name="air_quality_index_harmless_exposure">Нешкідливий вплив</string>
     <string name="air_quality_no2_sources">Основними джерелами є процеси спалювання палива, такі як ті, що використовуються в промисловості та транспорті.</string>
     <string name="unit_mum">µm</string>

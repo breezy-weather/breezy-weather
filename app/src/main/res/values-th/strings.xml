@@ -294,7 +294,7 @@
     <string name="weather_alert_data_by">ข้อมูลการเตือนภัยจาก %s</string>
     <string name="weather_message_unsupported_feature">แหล่งข้อมูลไม่รองรับบางฟีเจอร์ที่ขอ</string>
     <string name="weather_message_invalid_location">สถานที่ไม่ถูกต้อง กรุณาลบและเพิ่มสถานที่ใหม่</string>
-    <string name="weather_message_too_frequent_refreshes">กรุณารอ 2 - 3 วินาทีก่อนลองอีกครั้ง…</string>
+    <string name="weather_message_too_frequent_refreshes">กรุณารอ 2 – 3 วินาทีก่อนลองอีกครั้ง…</string>
     <string name="weather_api_limit_reached_title">ส่งคำขอ API เต็มขีดจำกัดแล้ว</string>
     <string name="weather_message_data_refresh_failed">รีเฟรชข้อมูลไม่สำเร็จ</string>
     <string name="weather_api_limit_reached_content">หากต้องการเลี่ยงขีดจำกัด กรุณาเพิ่ม API key ของคุณเอง</string>
@@ -792,9 +792,9 @@
     <string name="pressure_rising">สูงขึ้น</string>
     <string name="pressure_steady">คงที่</string>
     <string name="pressure_about">เกี่ยวกับความกดอากาศ</string>
-    <string name="air_quality_level_5_harmless_exposure">ไม่เกิน 2 - 3 นาที</string>
+    <string name="air_quality_level_5_harmless_exposure">ไม่เกิน 2 – 3 นาที</string>
     <string name="air_quality_pm_sources">แหล่งที่มาหลักคือกระบวนการเผาไหม้ต่างๆ (เช่น โรงไฟฟ้า การทำความร้อนภายในอาคาร ไอเสียจากรถยนต์ ไฟป่า) ระบบเครื่องกล (เช่น การก่อสร้าง ฝุ่นแร่ เกษตรกรรม) และอนุภาคทางชีวภาพต่างๆ (เช่น ละอองเรณู รา แบคทีเรีย ไวรัส)</string>
-    <string name="pressure_about_description1">ความกดอากาศคือความดันจากบรรยากาศของโลกที่กดลงสู่พื้นโลกด้านล่าง แอปนี้ใช้ความกดอากาศมาตรฐานที่ระดับน้ำทะเลปานกลาง (MSLP) เพื่อให้สามารถเปรียบเทียบความกดอากาศระหว่างสถานที่มีระดับความสูงต่างกันได้อย่างง่ายขึ้น</string>
+    <string name="pressure_about_description1">ความกดอากาศคือความดันจากบรรยากาศของโลกที่กดลงสู่พื้นโลกด้านล่าง แอปนี้ใช้ความกดอากาศมาตรฐานที่ระดับน้ำทะเลปานกลาง เพื่อให้สามารถเปรียบเทียบความกดอากาศระหว่างสถานที่มีระดับความสูงต่างกันได้อย่างง่ายขึ้น</string>
     <string name="air_quality_level_6_harmless_exposure">ไม่เกิน 1 นาที</string>
     <string name="air_quality_so2_sources">แหล่งที่มาหลักคือกระบวนการเผาไหม้ของเชื้อเพลิงที่มีซัลเฟอร์เป็นส่วนประกอบในระบบอุตสาหกรรม ระบบขนส่ง และโรงไฟฟ้า</string>
     <string name="pollen_details">รายละเอียดละอองเรณู</string>
