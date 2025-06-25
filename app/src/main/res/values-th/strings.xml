@@ -771,4 +771,5 @@
     <string name="wind_gusts_short">ลมกระโชก</string>
     <string name="wind_strength_scale">มาตราโบฟอร์ต</string>
     <string name="uv_index_about">เกี่ยวกับดัชนี UV</string>
+    <string name="air_quality_index_about_description_1">ดัชนีคุณภาพอากาศ (AQI) คือระดับคุณภาพอากาศที่ช่วยชี้วัดว่ามีมลภาวะทางอากาศในบริเวณหนึ่งมากน้อยเพียงใด และมีความเสี่ยงเท่าใดต่อสุขภาพของคุณ</string>
 </resources>
