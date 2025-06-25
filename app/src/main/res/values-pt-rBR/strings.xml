@@ -815,4 +815,17 @@
     <string name="message_outdated_server_data">Dados desatualizados recebidos do servidor</string>
     <string name="action_open_in_other_app">Abrir em outro app</string>
     <string name="action_open_in_other_app_description">Abrir esta localização em outro app</string>
+    <string name="ephemeris_about">Sobre tempo de nascer e pôr do sol</string>
+    <string name="ephemeris_about_rise">O tempo de nascer do sol ou lua quando aparece totalmente no horizonte.</string>
+    <string name="ephemeris_about_set">O tempo de pôr do sol ou da lua quando desaparece totalmente do horizonte.</string>
+    <string name="daily_summary">Resumo diário</string>
+    <string name="chart_no_hourly_data">Nenhum dado de hora em hora disponível.</string>
+    <string name="chart_average">Média</string>
+    <string name="chart_maximum_value">Valor máximo</string>
+    <string name="conditions">Condições</string>
+    <string name="temperature_real_details">A temperatura atual.</string>
+    <string name="temperature_real">Atual</string>
+    <string name="temperature_feels_like_details">Qual é a sensação da temperatura, como resultado da umidade, vento e /ou luz do sol.</string>
+    <string name="chart_no_daily_data">Nenhum dado disponível para este dia.</string>
+    <string name="chart_not_enough_hourly_data">Dados de hora em hora não suficientes para apresentar no gráfico do dia.</string>
 </resources>
