@@ -48,6 +48,9 @@ class GeoNamesService @Inject constructor(
     override val privacyPolicyUrl = ""
 
     override val locationSearchAttribution = "GeoNames (CC BY 4.0)"
+    override val attributionLinks = mapOf(
+        name to "https://www.geonames.org/"
+    )
 
     private val mApi by lazy {
         client

@@ -22,12 +22,10 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import androidx.annotation.ColorInt
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
-import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.ui.common.widgets.trend.item.AbsTrendItemView
 
 /**
@@ -45,6 +43,7 @@ class TrendRecyclerView @JvmOverloads constructor(
 
     @ColorInt
     private var mLineColor = 0
+    private var mTextColor = 0
     private var mDrawingBoundaryTop: Int
     private var mDrawingBoundaryBottom: Int
     private var mKeyLineList: List<KeyLine>? = null
@@ -76,6 +75,7 @@ class TrendRecyclerView @JvmOverloads constructor(
         mDrawingBoundaryTop = -1
         mDrawingBoundaryBottom = -1
         setLineColor(Color.GRAY)
+        setTextColor(Color.GRAY)
         mKeyLineList = mutableListOf()
     }
 
@@ -116,11 +116,7 @@ class TrendRecyclerView @JvmOverloads constructor(
             mPaint.apply {
                 style = Paint.Style.FILL
                 textSize = mTextSize.toFloat()
-                color = if (context.isDarkMode) {
-                    ContextCompat.getColor(context, R.color.colorTextGrey)
-                } else {
-                    ContextCompat.getColor(context, R.color.colorTextGrey2nd)
-                }
+                color = mTextColor
             }
             when (line.contentPosition) {
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE -> {
@@ -183,6 +179,11 @@ class TrendRecyclerView @JvmOverloads constructor(
 
     fun setLineColor(@ColorInt lineColor: Int) {
         mLineColor = lineColor
+        invalidate()
+    }
+
+    fun setTextColor(@ColorInt textColor: Int) {
+        mTextColor = textColor
         invalidate()
     }
 

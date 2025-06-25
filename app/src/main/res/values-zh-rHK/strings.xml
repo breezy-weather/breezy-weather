@@ -284,7 +284,7 @@
     <string name="action_app_store">應用程式商店</string>
     <string name="action_refresh">重新整理</string>
     <string name="action_restart">重新啟動</string>
-    <string name="action_see_more">查看更多</string>
+    <string name="action_more">查看更多</string>
     <string name="action_edit">編輯</string>
     <string name="action_delete">刪除</string>
     <string name="action_back">返回</string>

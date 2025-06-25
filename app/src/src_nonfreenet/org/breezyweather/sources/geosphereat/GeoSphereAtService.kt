@@ -76,6 +76,9 @@ class GeoSphereAtService @Inject constructor(
         SourceFeature.MINUTELY to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        "GeoSphere Austria" to "https://www.geosphere.at/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

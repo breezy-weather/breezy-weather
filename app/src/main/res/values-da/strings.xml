@@ -180,7 +180,7 @@
     <string name="settings_weather_sources">Vejrkilder</string>
     <string name="settings_notifications_precipitations_title">Notifikationer for nedbør</string>
     <string name="common_weather_text_rain">Nogen regn</string>
-    <string name="action_see_more">Se mere</string>
+    <string name="action_more">Se mere</string>
     <string name="widget_subtitle_data_aqi">Luftkvalitet</string>
     <string name="settings_background_updates_refresh_1h_30min">1,5 timer</string>
     <string name="settings_background_updates_refresh_2h">2 timer</string>

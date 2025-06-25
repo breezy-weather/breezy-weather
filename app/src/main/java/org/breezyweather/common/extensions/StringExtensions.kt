@@ -1,4 +1,4 @@
-/*
+/**
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -14,19 +14,16 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.domain.source
+package org.breezyweather.common.extensions
 
-import breezyweather.domain.source.SourceFeature
-import org.breezyweather.R
+fun String.splitKeeping(str: String): List<String> {
+    return this.split(str).flatMap { listOf(it, str) }.dropLast(1).filterNot { it.isEmpty() }
+}
 
-val SourceFeature.resourceName: Int
-    get() = when (this) {
-        SourceFeature.FORECAST -> R.string.forecast
-        SourceFeature.CURRENT -> R.string.current_weather
-        SourceFeature.AIR_QUALITY -> R.string.air_quality
-        SourceFeature.POLLEN -> R.string.pollen
-        SourceFeature.MINUTELY -> R.string.precipitation_nowcasting
-        SourceFeature.ALERT -> R.string.alerts
-        SourceFeature.NORMALS -> R.string.temperature_normals
-        SourceFeature.REVERSE_GEOCODING -> R.string.location_reverse_geocoding
+fun String.splitKeeping(vararg strs: String): List<String> {
+    var res = listOf(this)
+    strs.forEach { str ->
+        res = res.flatMap { it.splitKeeping(str) }
     }
+    return res
+}

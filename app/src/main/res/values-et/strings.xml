@@ -376,7 +376,7 @@
     <string name="location_current_not_found_yet">Praegune asukoht ei ole veel leitud…</string>
     <string name="action_preview">Eelvaade</string>
     <string name="action_about">Teave</string>
-    <string name="action_see_more">Vaata rohkem</string>
+    <string name="action_more">Vaata rohkem</string>
     <string name="action_edit">Muuda</string>
     <string name="action_set">Sea</string>
     <string name="action_help">Abi</string>

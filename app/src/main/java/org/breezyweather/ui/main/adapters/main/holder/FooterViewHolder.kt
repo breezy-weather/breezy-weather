@@ -21,34 +21,54 @@ import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import androidx.annotation.CallSuper
-import androidx.compose.animation.core.spring
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.AlertDialogDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.LinkAnnotation
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withLink
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceFeature
-import io.github.giangpham96.expandable_text_compose.ExpandableText
 import org.breezyweather.R
+import org.breezyweather.common.extensions.splitKeeping
+import org.breezyweather.common.source.HttpSource
+import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.domain.source.resourceName
+import org.breezyweather.ui.common.composables.AlertDialogLink
+import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
-import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
+import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
 class FooterViewHolder(
@@ -66,209 +86,229 @@ class FooterViewHolder(
     ) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
-        val cardMarginsVertical = ThemeManager.getInstance(context)
-            .weatherThemeDelegate
-            .getHomeCardMargins(context).toFloat()
-
-        val distinctSources = mutableMapOf<String, WeatherSource?>()
-        listOf(
-            location.forecastSource,
-            location.currentSource,
-            location.airQualitySource,
-            location.pollenSource,
-            location.minutelySource,
-            location.alertSource,
-            location.normalsSource
-        ).filter { !it.isNullOrEmpty() }.distinct().forEach {
-            distinctSources[it!!] = (context as MainActivity).sourceManager.getWeatherSource(it)
-        }
-
-        val credits = mutableMapOf<String, String?>()
-        credits["weather"] = if (location.forecastSource.isNotEmpty()) {
-            distinctSources[location.forecastSource]?.supportedFeatures
-                ?.getOrElse(SourceFeature.FORECAST) { null }
-        } else {
-            null
-        }
-        credits["current"] = if (!location.currentSource.isNullOrEmpty()) {
-            distinctSources[location.currentSource]?.supportedFeatures
-                ?.getOrElse(SourceFeature.CURRENT) { null }
-        } else {
-            null
-        }
-        credits["minutely"] = if (!location.minutelySource.isNullOrEmpty()) {
-            distinctSources[location.minutelySource]?.supportedFeatures
-                ?.getOrElse(SourceFeature.MINUTELY) { null }
-        } else {
-            null
-        }
-        credits["alert"] = if (!location.alertSource.isNullOrEmpty()) {
-            distinctSources[location.alertSource]?.supportedFeatures
-                ?.getOrElse(SourceFeature.ALERT) { null }
-        } else {
-            null
-        }
-        credits["airQuality"] = if (!location.airQualitySource.isNullOrEmpty()) {
-            distinctSources[location.airQualitySource]?.supportedFeatures
-                ?.getOrElse(SourceFeature.AIR_QUALITY) { null }
-        } else {
-            null
-        }
-        credits["pollen"] = if (!location.pollenSource.isNullOrEmpty()) {
-            distinctSources[location.pollenSource]?.supportedFeatures
-                ?.getOrElse(SourceFeature.POLLEN) { null }
-        } else {
-            null
-        }
-        credits["normals"] = if (!location.normalsSource.isNullOrEmpty()) {
-            distinctSources[location.normalsSource]?.supportedFeatures
-                ?.getOrElse(SourceFeature.NORMALS) { null }
-        } else {
-            null
-        }
-        credits["reverseGeocoding"] = if (!location.reverseGeocodingSource.isNullOrEmpty()) {
-            (context as MainActivity).sourceManager.getReverseGeocodingSource(location.reverseGeocodingSource!!)
-                ?.reverseGeocodingAttribution
-        } else {
-            null
-        }
-
-        val creditsText = StringBuilder()
-        var hasForecastCredits = false
-        location.weather?.let { weather ->
-            if (weather.dailyForecast.isNotEmpty() || weather.hourlyForecast.isNotEmpty()) {
-                creditsText.append(
-                    context.getString(
-                        R.string.weather_data_by,
-                        credits["weather"] ?: context.getString(R.string.null_data_text)
-                    )
-                )
-                hasForecastCredits = true
-            }
-            if (weather.current?.temperature?.temperature != null) {
-                if (!credits["current"].isNullOrEmpty() &&
-                    (credits["current"] != credits["weather"] || !hasForecastCredits)
-                ) {
-                    creditsText.append(
-                        "\n" + context.getString(R.string.weather_current_data_by, credits["current"]!!)
-                    )
-                }
-            }
-            if (weather.minutelyForecast.isNotEmpty() &&
-                !credits["minutely"].isNullOrEmpty() &&
-                (credits["minutely"] != credits["weather"] || !hasForecastCredits)
-            ) {
-                creditsText.append(
-                    "\n" + context.getString(R.string.weather_minutely_data_by, credits["minutely"]!!)
-                )
-            }
-            if (weather.alertList.isNotEmpty() &&
-                !credits["alert"].isNullOrEmpty() &&
-                (credits["alert"] != credits["weather"] || !hasForecastCredits)
-            ) {
-                creditsText.append(
-                    "\n" + context.getString(R.string.weather_alert_data_by, credits["alert"]!!)
-                )
-            }
-            // Open-Meteo has a lengthy credits so we merge air quality and pollen identical credit in that case
-            if (!credits["airQuality"].isNullOrEmpty() &&
-                (credits["airQuality"] != credits["weather"] || !hasForecastCredits)
-            ) {
-                if (!credits["pollen"].isNullOrEmpty() &&
-                    (credits["pollen"] != credits["weather"] || !hasForecastCredits)
-                ) {
-                    if (credits["airQuality"] == credits["pollen"]) {
-                        creditsText.append(
-                            "\n" + context.getString(
-                                R.string.weather_air_quality_and_pollen_data_by,
-                                credits["airQuality"]!!
-                            )
-                        )
-                    } else {
-                        creditsText.append(
-                            "\n" + context.getString(R.string.weather_air_quality_data_by, credits["airQuality"]!!) +
-                                "\n" + context.getString(R.string.weather_pollen_data_by, credits["pollen"]!!)
-                        )
-                    }
-                } else {
-                    creditsText.append(
-                        "\n" + context.getString(R.string.weather_air_quality_data_by, credits["airQuality"]!!)
-                    )
-                }
-            } else {
-                if (!credits["pollen"].isNullOrEmpty() &&
-                    (credits["pollen"] != credits["weather"] || !hasForecastCredits)
-                ) {
-                    creditsText.append(
-                        "\n" + context.getString(R.string.weather_pollen_data_by, credits["pollen"]!!)
-                    )
-                }
-            }
-            if (weather.normals?.month != null &&
-                !credits["normals"].isNullOrEmpty() &&
-                (credits["normals"] != credits["weather"] || !hasForecastCredits)
-            ) {
-                creditsText.append(
-                    "\n" + context.getString(R.string.weather_normals_data_by, credits["normals"]!!)
-                )
-            }
-        }
-
-        if (location.city.isNotEmpty() &&
-            !credits["reverseGeocoding"].isNullOrEmpty() &&
-            (credits["reverseGeocoding"] != credits["weather"] || !hasForecastCredits)
-        ) {
-            creditsText.append(
-                "\n" + context.getString(
-                    R.string.location_reverse_geocoding_by,
-                    credits["reverseGeocoding"] ?: context.getString(R.string.null_data_text)
-                )
-            )
-        }
-
         composeView.setContent {
             BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
-                ComposeView(
-                    creditsText.toString(),
-                    cardMarginsVertical.toInt()
-                )
+                ComposeView(location)
             }
         }
     }
 
     @Composable
     fun ComposeView(
-        creditsText: String,
-        cardMarginsVertical: Int,
+        location: Location,
         modifier: Modifier = Modifier,
     ) {
-        var expand by remember { mutableStateOf(false) }
+        val dialogOpenState = remember { mutableStateOf(false) }
+        val dialogLinkOpenState = remember { mutableStateOf(false) }
+        val linkToOpen = rememberSaveable { mutableStateOf("") }
+        val forecastSource = remember(location) {
+            (context as MainActivity).sourceManager.getWeatherSource(location.forecastSource)
+        }
+        val moreClickableLinkAnnotation = remember {
+            LinkAnnotation.Clickable(
+                tag = context.getString(R.string.data_sources),
+                styles = TextLinkStyles(style = SpanStyle(textDecoration = TextDecoration.Underline)),
+                linkInteractionListener = {
+                    dialogOpenState.value = true
+                }
+            )
+        }
 
-        val paddingTop = dimensionResource(R.dimen.little_margin) - cardMarginsVertical.dp
         Row(
             modifier = modifier
-                .padding(
-                    PaddingValues(
-                        start = dimensionResource(R.dimen.normal_margin),
-                        top = if (paddingTop > 0.dp) paddingTop else 0.dp,
-                        end = dimensionResource(R.dimen.normal_margin),
-                        bottom = dimensionResource(R.dimen.little_margin)
-                    )
-                )
+                .padding(dimensionResource(R.dimen.normal_margin))
                 .fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
         ) {
-            ExpandableText(
-                originalText = creditsText,
-                expandAction = stringResource(R.string.action_see_more),
-                expand = expand,
+            Text(
+                text = buildAnnotatedString {
+                    forecastSource?.supportedFeatures?.getOrElse(SourceFeature.FORECAST) { null }?.let {
+                        if (forecastSource is HttpSource && forecastSource.attributionLinks.isNotEmpty()) {
+                            val splits = it.splitKeeping(*forecastSource.attributionLinks.keys.toTypedArray())
+                            splits.forEach { split ->
+                                forecastSource.attributionLinks.getOrElse(split) { null }?.let { link ->
+                                    withLink(
+                                        LinkAnnotation.Clickable(
+                                            tag = split,
+                                            styles = TextLinkStyles(
+                                                style = SpanStyle(textDecoration = TextDecoration.Underline)
+                                            ),
+                                            linkInteractionListener = {
+                                                linkToOpen.value = link
+                                                dialogLinkOpenState.value = true
+                                            }
+                                        )
+                                    ) {
+                                        append(split)
+                                    }
+                                } ?: append(split)
+                            }
+                        } else {
+                            append(it)
+                        }
+                        append(" · ")
+                        withLink(moreClickableLinkAnnotation) { append(stringResource(R.string.action_more)) }
+                    } ?: withLink(moreClickableLinkAnnotation) { append(stringResource(R.string.data_sources)) }
+                },
                 color = Color.White,
-                expandActionColor = Color.White,
-                limitedMaxLines = 3,
-                animationSpec = spring(),
-                modifier = Modifier
-                    .weight(1f)
-                    .clickable { expand = !expand }
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold
+            )
+        }
+
+        if (dialogOpenState.value) {
+            val sources = mapOf(
+                SourceFeature.FORECAST to location.forecastSource,
+                SourceFeature.CURRENT to location.currentSource,
+                SourceFeature.AIR_QUALITY to location.airQualitySource,
+                SourceFeature.POLLEN to location.pollenSource,
+                SourceFeature.MINUTELY to location.minutelySource,
+                SourceFeature.ALERT to location.alertSource,
+                SourceFeature.NORMALS to location.normalsSource,
+                SourceFeature.REVERSE_GEOCODING to location.reverseGeocodingSource
+            ).filter { !it.value.isNullOrEmpty() }.mapNotNull {
+                if (it.key == SourceFeature.REVERSE_GEOCODING) {
+                    (context as MainActivity).sourceManager.getReverseGeocodingSource(it.value!!)?.let { source ->
+                        it.key to source
+                    }
+                } else {
+                    (context as MainActivity).sourceManager.getWeatherSource(it.value!!)?.let { source ->
+                        if (source.supportedFeatures.containsKey(it.key)) {
+                            it.key to source
+                        } else {
+                            null
+                        }
+                    }
+                }
+            }.toMap()
+
+            AlertDialogNoPadding(
+                onDismissRequest = {
+                    dialogOpenState.value = false
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = {
+                            dialogOpenState.value = false
+                        }
+                    ) {
+                        Text(stringResource(R.string.action_close))
+                    }
+                },
+                title = {
+                    Text(
+                        text = stringResource(R.string.data_sources),
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.headlineSmall
+                    )
+                },
+                text = {
+                    LazyColumn {
+                        sources.forEach { (sourceFeature, source) ->
+                            item {
+                                ListItem(
+                                    colors = ListItemDefaults.colors(
+                                        containerColor = AlertDialogDefaults.containerColor
+                                    ),
+                                    leadingContent = if (source is WeatherSource) {
+                                        source.getAttributionIcon(
+                                            !MainThemeColorProvider.isLightTheme(context, location)
+                                        )?.let {
+                                            {
+                                                Icon(
+                                                    painterResource(it),
+                                                    contentDescription = null,
+                                                    tint = Color.Unspecified,
+                                                    modifier = Modifier
+                                                        .size(dimensionResource(R.dimen.material_icon_size))
+                                                )
+                                            }
+                                        }
+                                    } else {
+                                        null
+                                    },
+                                    headlineContent = {
+                                        Text(
+                                            stringResource(sourceFeature.resourceName),
+                                            color = DayNightTheme.colors.titleColor
+                                        )
+                                    },
+                                    supportingContent = {
+                                        Text(
+                                            text = buildAnnotatedString {
+                                                if (sourceFeature == SourceFeature.REVERSE_GEOCODING) {
+                                                    (source as ReverseGeocodingSource).reverseGeocodingAttribution
+                                                } else {
+                                                    (source as WeatherSource).supportedFeatures[sourceFeature]!!
+                                                }.let {
+                                                    if (source is HttpSource &&
+                                                        source.attributionLinks.isNotEmpty()
+                                                    ) {
+                                                        val splits = it.splitKeeping(
+                                                            *source.attributionLinks.keys.toTypedArray()
+                                                        )
+                                                        splits.forEach { split ->
+                                                            source.attributionLinks.getOrElse(split) { null }
+                                                                ?.let { link ->
+                                                                    withLink(
+                                                                        LinkAnnotation.Clickable(
+                                                                            tag = split,
+                                                                            styles = TextLinkStyles(
+                                                                                style = SpanStyle(
+                                                                                    textDecoration = TextDecoration
+                                                                                        .Underline
+                                                                                )
+                                                                            ),
+                                                                            linkInteractionListener = {
+                                                                                linkToOpen.value = link
+                                                                                dialogLinkOpenState.value = true
+                                                                            }
+                                                                        )
+                                                                    ) {
+                                                                        append(split)
+                                                                    }
+                                                                } ?: append(split)
+                                                        }
+                                                    } else {
+                                                        append(it)
+                                                    }
+                                                }
+                                            }
+                                        )
+                                    },
+                                    trailingContent = if (source is HttpSource &&
+                                        source.privacyPolicyUrl.isNotEmpty()
+                                    ) {
+                                        {
+                                            IconButton(
+                                                onClick = {
+                                                    linkToOpen.value = source.privacyPolicyUrl
+                                                    dialogLinkOpenState.value = true
+                                                }
+                                            ) {
+                                                Icon(
+                                                    painterResource(R.drawable.ic_shield_lock),
+                                                    contentDescription = stringResource(R.string.about_privacy_policy),
+                                                    tint = MaterialTheme.colorScheme.onSurface
+                                                )
+                                            }
+                                        }
+                                    } else {
+                                        null
+                                    }
+                                )
+                            }
+                        }
+                    }
+                }
+            )
+        }
+
+        if (dialogLinkOpenState.value) {
+            AlertDialogLink(
+                onClose = { dialogLinkOpenState.value = false },
+                linkToOpen = linkToOpen.value
             )
         }
     }

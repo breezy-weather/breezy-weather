@@ -81,6 +81,9 @@ class MetNoService @Inject constructor(
         SourceFeature.AIR_QUALITY to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        "MET Norway" to "https://www.met.no/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

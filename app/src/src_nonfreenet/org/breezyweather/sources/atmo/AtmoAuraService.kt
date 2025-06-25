@@ -39,6 +39,9 @@ class AtmoAuraService @Inject constructor(
     override val id = "atmoaura"
     override val name = "Atmo Auvergne-Rhône-Alpes (${Locale(injectedContext.currentLocale.code, "FR").displayCountry})"
     override val attribution = "Atmo Auvergne-Rhône-Alpes"
+    override val attributionLinks = mapOf(
+        attribution to "https://www.atmo-auvergnerhonealpes.fr/"
+    )
     override val privacyPolicyUrl = "https://www.atmo-auvergnerhonealpes.fr/article/politique-de-confidentialite"
 
     override val context = injectedContext

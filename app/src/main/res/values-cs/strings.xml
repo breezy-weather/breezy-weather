@@ -512,7 +512,7 @@
     <string name="settings_location_access_switch_title">Přístup k poloze</string>
     <string name="settings_debug_summary">Protokoly o pádu</string>
     <string name="null_data_text">N/A</string>
-    <string name="action_see_more">Zobrazit více</string>
+    <string name="action_more">Zobrazit více</string>
     <string name="settings_main_background_animation_disabled">Zakázano</string>
     <string name="settings_notifications_summary">Upozornění na výstrahy, srážky nebo předpověď počasí pro první lokalitu</string>
     <string name="settings_notifications_alerts_title">Upozornění na důležité meteorologické výstrahy</string>

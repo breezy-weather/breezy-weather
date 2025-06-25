@@ -417,7 +417,7 @@
     <string name="setting_weather_source_accu_days">天数</string>
     <string name="weather_api_key_required_missing_content">要使用此数据源，您需要提供一个 API 密钥。</string>
     <string name="weather_source_accu_preference_days_1">1 天</string>
-    <string name="action_see_more">查看更多</string>
+    <string name="action_more">查看更多</string>
     <string name="message_network_unavailable">网络不可用</string>
     <string name="weather_api_key_required_missing_title">缺少必要的 API 密钥</string>
     <string name="settings_background_updates_summary">刷新频率，故障排除</string>

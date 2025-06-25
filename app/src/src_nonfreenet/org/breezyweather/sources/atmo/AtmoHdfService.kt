@@ -41,6 +41,9 @@ class AtmoHdfService @Inject constructor(
     override val id = "atmohdf"
     override val name = "Atmo Hauts-de-France (${Locale(injectedContext.currentLocale.code, "FR").displayCountry})"
     override val attribution = "Atmo Hauts-de-France"
+    override val attributionLinks = mapOf(
+        attribution to "https://www.atmo-hdf.fr/"
+    )
     override val privacyPolicyUrl = "https://www.atmo-hdf.fr/article/donnees-personnelles"
 
     override val context = injectedContext

@@ -20,11 +20,17 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import breezyweather.domain.location.model.Location
 import com.patrykandpatrick.vico.compose.cartesian.CartesianChartHost
+import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisGuidelineComponent
+import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisLabelComponent
+import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisLineComponent
+import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisTickComponent
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberBottom
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberEnd
 import com.patrykandpatrick.vico.compose.cartesian.layer.continuous
@@ -32,6 +38,7 @@ import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLine
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLineCartesianLayer
 import com.patrykandpatrick.vico.compose.cartesian.rememberCartesianChart
 import com.patrykandpatrick.vico.compose.cartesian.rememberVicoScrollState
+import com.patrykandpatrick.vico.compose.common.fill
 import com.patrykandpatrick.vico.core.cartesian.axis.HorizontalAxis
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
@@ -40,11 +47,13 @@ import com.patrykandpatrick.vico.core.cartesian.data.CartesianValueFormatter
 import com.patrykandpatrick.vico.core.cartesian.layer.LineCartesianLayer
 import com.patrykandpatrick.vico.core.common.Fill
 import kotlinx.collections.immutable.ImmutableList
+import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.handleNestedHorizontalDragGesture
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.windowHeightInDp
+import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import java.util.Date
 import kotlin.math.max
 
@@ -80,6 +89,17 @@ fun EphemerisChart(
         Date(value.toLong()).getFormattedTime(location, context, context.is12Hour)
     }
 
+    val lineColor = Color(
+        MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+    )
+    val labelColor = colorResource(
+        if (MainThemeColorProvider.isLightTheme(context, location)) {
+            R.color.colorTextGrey
+        } else {
+            R.color.colorTextGrey2nd
+        }
+    )
+
     CartesianChartHost(
         rememberCartesianChart(
             rememberLineCartesianLayer(
@@ -95,13 +115,21 @@ fun EphemerisChart(
                 rangeProvider = cartesianLayerRangeProvider
             ),
             endAxis = VerticalAxis.rememberEnd(
+                line = rememberAxisLineComponent(fill = fill(lineColor)),
+                label = rememberAxisLabelComponent(color = labelColor),
                 valueFormatter = endAxisValueFormatter,
+                tick = rememberAxisTickComponent(fill = fill(lineColor)),
+                guideline = rememberAxisGuidelineComponent(fill = fill(lineColor)),
                 itemPlacer = remember {
                     SpecificVerticalAxisItemPlacer(listOf(0.0, 90.0))
                 }
             ),
             bottomAxis = HorizontalAxis.rememberBottom(
+                line = rememberAxisLineComponent(fill = fill(lineColor)),
+                label = rememberAxisLabelComponent(color = labelColor),
                 valueFormatter = timeValueFormatter,
+                tick = rememberAxisTickComponent(fill = fill(lineColor)),
+                guideline = rememberAxisGuidelineComponent(fill = fill(lineColor)),
                 itemPlacer = remember {
                     TimeHorizontalAxisItemPlacer(location, startingDate.toDate())
                 }

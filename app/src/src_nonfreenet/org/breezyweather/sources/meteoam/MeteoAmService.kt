@@ -63,6 +63,10 @@ class MeteoAmService @Inject constructor(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        "Servizio Meteorologico dell’Aeronautica Militare" to "https://www.meteoam.it/",
+        "www.meteoam.it" to "https://www.meteoam.it/"
+    )
 
     @SuppressLint("CheckResult")
     override fun requestWeather(

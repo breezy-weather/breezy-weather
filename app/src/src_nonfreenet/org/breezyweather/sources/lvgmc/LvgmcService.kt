@@ -68,6 +68,9 @@ class LvgmcService @Inject constructor(
         SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.AIR_QUALITY to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to LVGMC_BASE_URL
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

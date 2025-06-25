@@ -78,6 +78,9 @@ class HereService @Inject constructor(
         SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.here.com/"
+    )
 
     /**
      * Returns weather

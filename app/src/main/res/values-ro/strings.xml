@@ -269,7 +269,7 @@
     <string name="unit_mugpcum">μg/m³</string>
     <string name="weather_air_quality_and_pollen_data_by">Polen și calitatea aerului furnizate de %s</string>
     <string name="location_message_search_failed">Căutarea locației a eșuat</string>
-    <string name="action_see_more">Vezi mai mult</string>
+    <string name="action_more">Vezi mai mult</string>
     <string name="message_network_unavailable">Rețea indisponibilă</string>
     <string name="widget_style_nano">Nano</string>
     <string name="widget_style_vertical">Vertical</string>

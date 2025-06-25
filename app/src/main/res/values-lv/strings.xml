@@ -347,7 +347,7 @@
     <string name="action_restart">Restartēt</string>
     <string name="action_save">Saglabāt</string>
     <string name="action_set">Iestatīt</string>
-    <string name="action_see_more">Apskatīt vairāk</string>
+    <string name="action_more">Apskatīt vairāk</string>
     <string name="action_edit">Labot</string>
     <string name="action_undo">Atsaukt</string>
     <string name="action_help">Palīdzība</string>

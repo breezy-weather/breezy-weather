@@ -39,6 +39,9 @@ class AtmoSudService @Inject constructor(
     override val id = "atmosud"
     override val name = "AtmoSud (${Locale(injectedContext.currentLocale.code, "FR").displayCountry})"
     override val attribution = "AtmoSud"
+    override val attributionLinks = mapOf(
+        attribution to "https://www.atmosud.org/"
+    )
     override val privacyPolicyUrl = "https://www.atmosud.org/article/politique-de-confidentialite"
 
     override val context = injectedContext

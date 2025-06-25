@@ -354,7 +354,7 @@
     <string name="location_has_active_alerts">การเตือนภัยปัจจุบัน</string>
     <string name="action_add_current_location">เพิ่มตำแหน่งปัจจุบัน</string>
     <string name="action_restart">รีสตาร์ต</string>
-    <string name="action_see_more">ดูเพิ่ม</string>
+    <string name="action_more">ดูเพิ่ม</string>
     <string name="action_preview">แสดงตัวอย่าง</string>
     <string name="action_about">เกี่ยวกับ</string>
     <string name="action_app_store">แอปสโตร์</string>

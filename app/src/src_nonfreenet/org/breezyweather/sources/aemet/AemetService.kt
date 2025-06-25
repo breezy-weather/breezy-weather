@@ -73,6 +73,9 @@ class AemetService @Inject constructor(
         SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.NORMALS to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.aemet.es/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

@@ -640,7 +640,7 @@
     <string name="location_search_source">Foinse cuardaigh suímh</string>
     <string name="location_search_change_source">Athraigh foinse chuardaigh suímh</string>
     <string name="location_service_native">API Dúchasach</string>
-    <string name="action_see_more">Féach níos mó</string>
+    <string name="action_more">Féach níos mó</string>
     <string name="action_edit">Cuir in eagar</string>
     <string name="dialog_permissions_location_background_title">Suíomh rochtana sa chúlra</string>
     <string name="message_source_not_installed_error_title">Níl an fhoinse ar fáil a thuilleadh</string>

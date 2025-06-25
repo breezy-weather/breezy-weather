@@ -66,6 +66,9 @@ class LhmtService @Inject constructor(
         SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to LHMT_WWW_BASE_URL
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

@@ -346,17 +346,21 @@
     <!-- 10 characters max version of ceiling to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
     <string name="ceiling_short">Ceiling</string>
     <!-- Weather sources -->
-    <string name="weather_data_by">Data by %s</string>
-    <string name="weather_forecast_data_by">Forecast data by %s</string>
-    <string name="weather_current_data_by">Current weather data by %s</string>
-    <string name="weather_air_quality_data_by">Air quality data by %s</string>
-    <string name="weather_pollen_data_by">Pollen data by %s</string>
-    <string name="weather_air_quality_and_pollen_data_by">Air quality and pollen data by %s</string>
-    <string name="weather_minutely_data_by">Precipitation nowcasting data by %s</string>
-    <string name="weather_alert_data_by">Alert data by %s</string>
-    <string name="weather_normals_data_by">Temperature normals data by %s</string>
+    <string name="data_sources">Data sources</string>
+    <!-- %s = Breezy Weather -->
+    <string name="data_modified">This material has been modified from the original by %s mainly to compute or extrapolate missing data.</string>
+    <!-- Deprecated -->
+    <string name="weather_data_by" translatable="false">Data by %s</string>
+    <string name="weather_forecast_data_by" translatable="false">Forecast data by %s</string>
+    <string name="weather_current_data_by" translatable="false">Current weather data by %s</string>
+    <string name="weather_air_quality_data_by" translatable="false">Air quality data by %s</string>
+    <string name="weather_pollen_data_by" translatable="false">Pollen data by %s</string>
+    <string name="weather_air_quality_and_pollen_data_by" translatable="false">Air quality and pollen data by %s</string>
+    <string name="weather_minutely_data_by" translatable="false">Precipitation nowcasting data by %s</string>
+    <string name="weather_alert_data_by" translatable="false">Alert data by %s</string>
+    <string name="weather_normals_data_by" translatable="false">Temperature normals data by %s</string>
     <!-- Address is singular -->
-    <string name="location_reverse_geocoding_by">Address lookup by %s</string>
+    <string name="location_reverse_geocoding_by" translatable="false">Address lookup by %s</string>
     <string name="weather_message_data_refresh_failed">Data refresh failed</string>
     <string name="weather_message_unsupported_feature">Source doesn’t support one of requested features</string>
     <string name="weather_message_invalid_location">Invalid location, please delete it and re-add</string>
@@ -445,7 +449,7 @@
     <string name="action_app_store">App Store</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_restart">Restart</string>
-    <string name="action_see_more">See more</string>
+    <string name="action_more">More</string>
     <string name="action_edit">Edit</string>
     <string name="action_delete">Delete</string>
     <string name="action_back">Back</string>

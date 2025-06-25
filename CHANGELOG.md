@@ -4,12 +4,13 @@
 - Complete overhaul of the daily details page to offer a better visualization of the data, and more explanations about the different types of weather data
 
 **Removed features**
-- Homescreen hourly forecast card will now only show the next 24 hours, as the rest of the forecast can now be seen with more readability in the daily details page.
+- Homepage hourly forecast card will now only show the next 24 hours, as the rest of the forecast can now be seen with more readability in the daily details page.
 - The dedicated pollen page accessed when tapping on the pollen card now no longer exists, and was replaced by the pollen page in daily details.
-- Tapping on the homescreen air quality card no longer show more details, but open the air quality page in daily details instead.
-- Tapping on an hourly item in the homescreen hourly forecast no longer opens a dialog, but now opens the day details page of the currently selected type of data
+- Tapping on the homepage air quality card no longer show more details, but open the air quality page in daily details instead.
+- Tapping on an hourly item in the homepage hourly forecast no longer opens a dialog, but now opens the day details page of the currently selected type of data
 
 **Improvements and fixes**
+- Redesigned homepage footer to support links to the sources, a link to the privacy policy, and icons for the sources for which it is mandatory
 - Fix crash when using “Open in another app” when no app on the phone is able to open it
 
 **Weather sources**

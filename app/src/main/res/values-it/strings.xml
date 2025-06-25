@@ -385,7 +385,7 @@
     <string name="settings_background_updates">Aggiornamenti in background</string>
     <string name="action_location_list">Elenco località</string>
     <string name="action_add_new_location">Aggiungi una nuova località</string>
-    <string name="action_see_more">Vedi altro</string>
+    <string name="action_more">Vedi altro</string>
     <string name="settings_widgets_monochrome_icons_title">Icone monocromatiche</string>
     <string name="unit_hpa">hPa</string>
     <string name="unit_atm">atm</string>

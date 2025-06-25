@@ -90,6 +90,9 @@ class MfService @Inject constructor(
         SourceFeature.ALERT to weatherAttribution,
         SourceFeature.NORMALS to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        "Météo-France" to "https://meteofrance.com/"
+    )
     override fun isFeatureSupportedForLocation(
         location: Location,
         feature: SourceFeature,

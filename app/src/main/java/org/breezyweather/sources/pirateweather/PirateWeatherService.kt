@@ -62,6 +62,9 @@ class PirateWeatherService @Inject constructor(
         SourceFeature.MINUTELY to name,
         SourceFeature.ALERT to name
     )
+    override val attributionLinks = mapOf(
+        name to "https://pirateweather.net/"
+    )
 
     override fun requestWeather(
         context: Context,

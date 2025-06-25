@@ -104,6 +104,10 @@ class SmgService @Inject constructor(
         SourceFeature.ALERT to weatherAttribution,
         SourceFeature.NORMALS to weatherAttribution
     )
+    override val attributionLinks
+        get() = mapOf(
+            weatherAttribution to "https://www.smg.gov.mo/"
+        )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

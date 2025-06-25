@@ -76,6 +76,10 @@ class ChinaService @Inject constructor(
         SourceFeature.MINUTELY to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        "彩云天气" to "https://caiyunapp.com/",
+        "中国环境监测总站" to "https://www.cnemc.cn/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

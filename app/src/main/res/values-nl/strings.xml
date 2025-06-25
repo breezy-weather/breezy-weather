@@ -279,7 +279,7 @@
     <string name="weather_air_quality_data_by">Luchtkwaliteitsgegevens door %s</string>
     <string name="location_search_weather_source">Weerbron</string>
     <string name="settings_units_summary">Temperatuur, neerslag, afstand, snelheid, druk</string>
-    <string name="action_see_more">Bekijk meer</string>
+    <string name="action_more">Bekijk meer</string>
     <string name="action_preview">Voorbeeld</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Huidig weer</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Huidige temperatuur (°C/°F)</string>

@@ -548,7 +548,7 @@
     <string name="pollen_level_3">Умерено</string>
     <string name="weather_data_by">Подаци од %s</string>
     <string name="weather_message_invalid_location">Неважећа локација, избришите је и поново додајте</string>
-    <string name="action_see_more">Види више</string>
+    <string name="action_more">Види више</string>
     <string name="action_delete">Избриши</string>
     <string name="action_back">Назад</string>
     <string name="action_save">Сачувај</string>

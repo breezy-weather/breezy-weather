@@ -17,6 +17,7 @@
 package org.breezyweather.sources.accu
 
 import android.content.Context
+import androidx.annotation.DrawableRes
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -99,6 +100,14 @@ class AccuService @Inject constructor(
         SourceFeature.ALERT to weatherAttribution,
         SourceFeature.NORMALS to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.accuweather.com/"
+    )
+
+    @DrawableRes
+    override fun getAttributionIcon(isDarkMode: Boolean): Int {
+        return if (isDarkMode) R.drawable.accu_icon_dark else R.drawable.accu_icon_light
+    }
 
     override fun isFeatureSupportedForLocation(
         location: Location,

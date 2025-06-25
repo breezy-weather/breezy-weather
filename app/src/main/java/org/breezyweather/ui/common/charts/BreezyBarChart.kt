@@ -29,6 +29,10 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import breezyweather.domain.location.model.Location
 import com.patrykandpatrick.vico.compose.cartesian.CartesianChartHost
+import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisGuidelineComponent
+import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisLabelComponent
+import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisLineComponent
+import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisTickComponent
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberBottom
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberEnd
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberColumnCartesianLayer
@@ -109,6 +113,17 @@ fun BreezyBarChart(
         }.time.toTimezoneSpecificHour(location.javaTimeZone, 0).time.toDouble(),
         maxY = maxY
     )
+
+    val lineColor = Color(
+        MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+    )
+    val labelColor = colorResource(
+        if (MainThemeColorProvider.isLightTheme(context, location)) {
+            R.color.colorTextGrey
+        } else {
+            R.color.colorTextGrey2nd
+        }
+    )
     val marker = rememberDefaultCartesianMarker(
         label = if (markerFormatter == null) {
             // TODO: Report upstream to have a way to hide it
@@ -136,11 +151,7 @@ fun BreezyBarChart(
                 minWidth = TextComponent.MinWidth.fixed(40f)
             )
         },
-        guideline = rememberLineComponent(
-            fill = fill(
-                colorResource(R.color.colorTextContent)
-            )
-        ),
+        guideline = rememberLineComponent(fill = fill(labelColor)),
         valueFormatter = markerFormatter ?: remember {
             DefaultCartesianMarker.ValueFormatter.default(colorCode = false)
         }
@@ -163,11 +174,19 @@ fun BreezyBarChart(
                 rangeProvider = cartesianLayerRangeProvider
             ),
             endAxis = VerticalAxis.rememberEnd(
+                line = rememberAxisLineComponent(fill = fill(lineColor)),
+                label = rememberAxisLabelComponent(color = labelColor),
                 valueFormatter = endAxisValueFormatter,
+                tick = rememberAxisTickComponent(fill = fill(lineColor)),
+                guideline = rememberAxisGuidelineComponent(fill = fill(lineColor)),
                 itemPlacer = endAxisItemPlacer
             ),
             bottomAxis = HorizontalAxis.rememberBottom(
+                line = rememberAxisLineComponent(fill = fill(lineColor)),
+                label = rememberAxisLabelComponent(color = labelColor),
                 valueFormatter = timeValueFormatter,
+                tick = rememberAxisTickComponent(fill = fill(lineColor)),
+                guideline = rememberAxisGuidelineComponent(fill = fill(lineColor)),
                 itemPlacer = remember {
                     TimeHorizontalAxisItemPlacer(location, startingDate)
                 }
@@ -177,20 +196,8 @@ fun BreezyBarChart(
                     HorizontalLine(
                         y = { line.key },
                         verticalLabelPosition = Position.Vertical.Bottom,
-                        line = rememberLineComponent(
-                            fill = fill(
-                                colorResource(
-                                    if (MainThemeColorProvider.isLightTheme(context, location)) {
-                                        R.color.colorTextGrey2nd
-                                    } else {
-                                        R.color.colorTextGrey
-                                    }
-                                )
-                            )
-                        ),
-                        labelComponent = rememberTextComponent(
-                            color = colorResource(R.color.colorTextContent)
-                        ),
+                        line = rememberLineComponent(fill = fill(lineColor)),
+                        labelComponent = rememberTextComponent(color = labelColor),
                         label = { line.value }
                     )
                 }

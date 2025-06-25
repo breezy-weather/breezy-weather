@@ -367,7 +367,7 @@
     <string name="action_app_store">Uygulama Mağazası</string>
     <string name="action_refresh">Yenile</string>
     <string name="action_restart">Yeniden başlat</string>
-    <string name="action_see_more">Daha fazla</string>
+    <string name="action_more">Daha fazla</string>
     <string name="action_edit">Düzenle</string>
     <string name="action_back">Geri</string>
     <string name="settings_appearance">Görünüm</string>

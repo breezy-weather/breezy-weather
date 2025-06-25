@@ -177,7 +177,7 @@
     <string name="settings_location_access_switch_title">Acesso à localização</string>
     <string name="settings_location_access_precise_summaryOff">Ative a opção “Usar localização precisa” se tiver problemas a obter uma localização.</string>
     <string name="action_preview">Visualização</string>
-    <string name="action_see_more">Ver mais</string>
+    <string name="action_more">Ver mais</string>
     <string name="message_network_unavailable">Rede indisponível</string>
     <string name="message_tap_again_to_exit">Clique novamente para sair</string>
     <string name="widget_live_wallpaper_weather_kind">Clima</string>

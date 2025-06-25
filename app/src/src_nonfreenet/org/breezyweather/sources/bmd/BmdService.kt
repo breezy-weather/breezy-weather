@@ -68,6 +68,9 @@ class BmdService @Inject constructor(
     } else {
         "Bangladesh Meteorological Department"
     }
+    override val attributionLinks = mapOf(
+        reverseGeocodingAttribution to "https://www.bmd.gov.bd/"
+    )
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to reverseGeocodingAttribution
     )

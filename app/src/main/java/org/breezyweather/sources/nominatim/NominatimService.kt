@@ -41,10 +41,16 @@ class NominatimService @Inject constructor(
 
     override val id = "nominatim"
     override val name = "Nominatim"
-    override val reverseGeocodingAttribution = "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright"
+    override val reverseGeocodingAttribution =
+        "Nominatim · Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright"
     override val privacyPolicyUrl = "https://osmfoundation.org/wiki/Privacy_Policy"
     override val continent = SourceContinent.WORLDWIDE
 
+    override val attributionLinks = mapOf(
+        name to NOMINATIM_BASE_URL,
+        "OpenStreetMap" to "https://osm.org/",
+        "https://osm.org/copyright" to "https://osm.org/copyright"
+    )
     private val mApi by lazy {
         client
             .baseUrl(NOMINATIM_BASE_URL)

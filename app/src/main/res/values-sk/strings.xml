@@ -350,7 +350,7 @@
     <string name="location_search_source">Zdroj pre vyhľadávanie miesta</string>
     <string name="location_search_change_source">Zmeniť zdroj vyhledávánia miest</string>
     <string name="action_about">O aplikácii</string>
-    <string name="action_see_more">Zobraziť viac</string>
+    <string name="action_more">Zobraziť viac</string>
     <string name="sunshine">Slnečný svit</string>
     <string name="visibility_short">Viditeľnosť</string>
     <string name="ceiling_short">V. mrakov</string>

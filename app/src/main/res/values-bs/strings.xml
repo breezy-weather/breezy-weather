@@ -176,7 +176,7 @@
     <string name="location_current_not_found_yet">Trenutna lokacija nije još pronađena…</string>
     <string name="action_add_new_location">Dodajte novu lokaciju</string>
     <string name="action_restart">Ponovo pokreni</string>
-    <string name="action_see_more">Vidi više</string>
+    <string name="action_more">Vidi više</string>
     <string name="action_app_store">Prodavnica aplikacija</string>
     <string name="action_refresh">Osvježi</string>
     <string name="action_edit">Uredi</string>

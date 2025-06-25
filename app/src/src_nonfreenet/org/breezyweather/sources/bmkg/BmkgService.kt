@@ -79,6 +79,9 @@ class BmkgService @Inject constructor(
         SourceFeature.AIR_QUALITY to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.bmkg.go.id/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

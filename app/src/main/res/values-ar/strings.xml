@@ -436,7 +436,7 @@
     <string name="settings_location_access_background_title">الوصول إلى الموقع في الخلفية</string>
     <string name="settings_location_access_precise_summaryOn">مفعل. سيتم الاعتماد على شبكة الجهاز كأولوية وفي معظم الوقت، ولكن من الممكن أيضا أن يستخدم GPS كبديل.</string>
     <string name="settings_widgets_live_wallpaper_error">تعذر تشغيل منتقي الخلفيات. لا يزال بإمكانك تمكين خلفية %s عن طريق اختيار ”Live Wallpaper“ في منتقي خلفيات الشاشة الرئيسية.</string>
-    <string name="action_see_more">انظر أكثر</string>
+    <string name="action_more">انظر أكثر</string>
     <string name="location_service_native">API الافتراضي</string>
     <string name="action_location_list">لائحة المناطق</string>
     <string name="action_add_current_location">إضافة المنطقة الحالية</string>

@@ -348,7 +348,6 @@ dependencies {
     implementation(libs.vico.compose.m3)
     implementation(libs.adaptiveiconview)
     implementation(libs.activity)
-    implementation(libs.expandabletextcompose)
 
     // utils.
     implementation(libs.suncalc)

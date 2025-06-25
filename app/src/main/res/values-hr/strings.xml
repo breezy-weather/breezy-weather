@@ -172,7 +172,7 @@
     <string name="air_quality_level_6_description">Izloženost zraku, čak i na nekoliko minuta, može imati ozbiljne zdravstvene posljedice za sve. Izbjegavajte aktivnosti na otvorenom.</string>
     <string name="settings_main_background_animation_enabled">Omogućeno</string>
     <string name="widget_custom_subtitle_keyword_al_description">Upozorenja</string>
-    <string name="action_see_more">Vidi više</string>
+    <string name="action_more">Vidi više</string>
     <string name="widget_label_clock_font">Font sata</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Upute proizvođača</string>
     <string name="settings_main_cards_title">Kartice</string>

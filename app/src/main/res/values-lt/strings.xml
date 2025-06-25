@@ -205,7 +205,7 @@
     <string name="action_location_list">Vietovių sąrašas</string>
     <string name="action_settings">Nustatymai</string>
     <string name="action_add_new_location">Pridėti naują vietovę</string>
-    <string name="action_see_more">Žiūrėti daugiau</string>
+    <string name="action_more">Žiūrėti daugiau</string>
     <string name="action_learn_more">SuŽinoti daugiau</string>
     <string name="dialog_permissions_notification_content">Bakstelėkite čia, kad įjungtumėte pranešimus apie orų perspėjimus, arba nuspręskite vėliau Nustatymuose.</string>
     <string name="dialog_permissions_location_title">Prieiga prie vietos informacijos</string>

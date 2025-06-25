@@ -21,6 +21,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
@@ -139,6 +140,16 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             )
         trendRecyclerView.setLineColor(
             MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+        )
+        trendRecyclerView.setTextColor(
+            ContextCompat.getColor(
+                context,
+                if (MainThemeColorProvider.isLightTheme(context, location)) {
+                    R.color.colorTextGrey
+                } else {
+                    R.color.colorTextGrey2nd
+                }
+            )
         )
         trendRecyclerView.adapter = trendAdapter
         trendRecyclerView.setKeyLineVisibility(

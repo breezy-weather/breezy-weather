@@ -79,6 +79,9 @@ class EpdHkService @Inject constructor(
             }
         }
     }
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.aqhi.gov.hk/"
+    )
     override val supportedFeatures = mapOf(
         SourceFeature.AIR_QUALITY to weatherAttribution
     )

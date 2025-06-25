@@ -405,7 +405,7 @@
     <string name="air_quality_o3_info_origin">Es forma a partir de reaccions fotoquímiques amb contaminants com compostos orgànics volàtils, monòxid de carboni i òxids de nitrogen (NOₓ) emesos pels vehicles, i la indústria. A causa de la naturalesa fotoquímica, els nivells més alts d’ozó s’observen durant els períodes de temps assolellat.</string>
     <string name="air_quality_level_6_description">Qualsevol exposició a l’aire, fins i tot durant uns minuts, pot provocar greus efectes per a la salut de totes les persones. Eviteu les activitats a l’aire lliure.</string>
     <string name="settings_main_background_animation_enabled">Activat</string>
-    <string name="action_see_more">Veure més</string>
+    <string name="action_more">Veure més</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instruccions específiques del fabricant</string>
     <string name="settings_main_cards_title">Targetes</string>
     <string name="settings_widgets_notification_feels_like_switch">Utilitza la sensació tèrmica</string>

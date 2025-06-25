@@ -67,6 +67,9 @@ class NwsService @Inject constructor(
         SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.weather.gov/"
+    )
 
     private val supportedCountries = setOf(
         "US",

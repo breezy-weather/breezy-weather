@@ -75,7 +75,7 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">Thời gian mặt trăng mọc của hôm nay, ngày mai, …, 4 ngày sau</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Thời gian mặt trăng lặn của hôm nay, ngày mai, …, 4 ngày sau</string>
     <string name="action_app_store">Cửa hàng ứng dụng</string>
-    <string name="action_see_more">Xem thêm</string>
+    <string name="action_more">Xem thêm</string>
     <string name="settings_background_updates_refresh_3h">3 tiếng</string>
     <string name="settings_background_updates_refresh_6h">6 tiếng</string>
     <string name="settings_background_updates_battery_optimization_disabled">Tối ưu hóa pin đã bị tắt.</string>

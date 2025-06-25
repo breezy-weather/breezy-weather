@@ -21,9 +21,9 @@ import android.os.Build
 import android.text.Layout
 import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -35,9 +35,10 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Precipitation
 import com.patrykandpatrick.vico.compose.cartesian.CartesianChartHost
+import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisLabelComponent
+import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisTickComponent
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberBottom
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberColumnCartesianLayer
 import com.patrykandpatrick.vico.compose.cartesian.marker.rememberDefaultCartesianMarker
@@ -52,6 +53,7 @@ import com.patrykandpatrick.vico.core.cartesian.CartesianDrawingContext
 import com.patrykandpatrick.vico.core.cartesian.axis.HorizontalAxis
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianLayerRangeProvider
+import com.patrykandpatrick.vico.core.cartesian.data.CartesianValueFormatter
 import com.patrykandpatrick.vico.core.cartesian.data.columnSeries
 import com.patrykandpatrick.vico.core.cartesian.decoration.HorizontalLine
 import com.patrykandpatrick.vico.core.cartesian.layer.ColumnCartesianLayer
@@ -62,6 +64,9 @@ import com.patrykandpatrick.vico.core.common.Position
 import com.patrykandpatrick.vico.core.common.component.Shadow
 import com.patrykandpatrick.vico.core.common.component.TextComponent
 import com.patrykandpatrick.vico.core.common.shape.CorneredShape
+import kotlinx.collections.immutable.ImmutableMap
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.getFormattedTime
@@ -72,6 +77,7 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getMinutelyDescription
 import org.breezyweather.domain.weather.model.getMinutelyTitle
+import org.breezyweather.ui.common.charts.SpecificHorizontalAxisItemPlacer
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
@@ -81,22 +87,12 @@ import java.util.Date
 import kotlin.math.max
 import kotlin.time.Duration.Companion.minutes
 
-/**
- * TODO:
- * - Improve marker: make always showing, initialize the marker on "current time"
- * - Check what's the best way to make thick bars (currently we just put a very high random value)
- */
 class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_precipitation_nowcast_card, parent, false)
 ) {
     private val title = itemView.findViewById<TextView>(R.id.container_main_minutely_card_title)
     private val subtitle = itemView.findViewById<TextView>(R.id.container_main_minutely_card_subtitle)
     private val chartComposeView = itemView.findViewById<ComposeView>(R.id.container_main_minutely_chart_composeView)
-    private val startText = itemView.findViewById<TextView>(R.id.container_main_minutely_card_minutelyStartText)
-    private val centerText = itemView.findViewById<TextView>(R.id.container_main_minutely_card_minutelyCenterText)
-    private val endText = itemView.findViewById<TextView>(R.id.container_main_minutely_card_minutelyEndText)
-    private val startLine = itemView.findViewById<View>(R.id.container_main_minutely_card_minutelyStartLine)
-    private val endLine = itemView.findViewById<View>(R.id.container_main_minutely_card_minutelyEndLine)
 
     override fun onBindView(
         activity: GeoActivity,
@@ -121,52 +117,69 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             title.isAccessibilityHeading = true
         }
-        val minutelyList = weather.minutelyForecast
         title.setTextColor(colors[0])
         title.text = weather.getMinutelyTitle(context)
         subtitle.text = weather.getMinutelyDescription(context, location)
+
+        val minutelyList = weather.minutelyForecast
+        val firstTime = minutelyList.first().date.time
+        val lastTime = minutelyList.last().date.time + minutelyList.last().minuteInterval.minutes.inWholeMilliseconds
 
         chartComposeView.setContent {
             BreezyWeatherTheme(
                 lightTheme = MainThemeColorProvider.isLightTheme(context, location)
             ) {
-                ContentView(location)
+                ContentView(location, firstTime, lastTime)
             }
         }
         chartComposeView.contentDescription = minutelyList.getContentDescription(context, location)
-
-        val firstTime = minutelyList.first().date
-        val lastTime = Date(
-            minutelyList.last().date.time + minutelyList.last().minuteInterval.minutes.inWholeMilliseconds
-        )
-        startText.text = firstTime.getFormattedTime(location, context, context.is12Hour)
-        centerText.text = Date(firstTime.time + (lastTime.time - firstTime.time) / 2)
-            .getFormattedTime(location, context, context.is12Hour)
-        endText.text = lastTime.getFormattedTime(location, context, context.is12Hour)
-        startText.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
-        centerText.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
-        endText.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
-
-        startLine.setBackgroundColor(
-            MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-        )
-        endLine.setBackgroundColor(
-            MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-        )
     }
 
     @Composable
     private fun ContentView(
         location: Location,
+        minX: Long,
+        maxX: Long,
     ) {
         val view = LocalView.current
         val minutely = location.weather!!.minutelyForecastBy5Minutes
+            .associate { it.date.time to (it.precipitationIntensity ?: 0.0) }
+            .toImmutableMap()
+        val timeWithTicks = remember(minX, maxX) {
+            persistentListOf(minX.toDouble(), (minX + (maxX - minX) / 2).toDouble(), maxX.toDouble())
+        }
         val maxY = max(
             Precipitation.PRECIPITATION_HOURLY_HEAVY,
-            minutely.maxOfOrNull { it.precipitationIntensity ?: 0.0 } ?: 0.0
+            minutely.values.max()
         )
-        val hasOnlyThresholdsValues = !minutely.any {
-            it.precipitationIntensity !in arrayOf(
+        val trendHorizontalLines: ImmutableMap<Double, String> = remember(maxY) {
+            buildMap {
+                /**
+                 * Don’t show some thresholds when max precipitation is very high
+                 * - Below heavy level: keep all 3 lines
+                 * - Between heavy level and 2 * heavy level: keep light and heavy lines
+                 * - Above 2 * heavy level: keep heavy line only
+                 */
+                if (maxY < Precipitation.PRECIPITATION_HOURLY_HEAVY * 2.0f) {
+                    put(
+                        Precipitation.PRECIPITATION_HOURLY_LIGHT,
+                        context.getString(R.string.precipitation_intensity_light)
+                    )
+                }
+                if (maxY <= Precipitation.PRECIPITATION_HOURLY_HEAVY) {
+                    put(
+                        Precipitation.PRECIPITATION_HOURLY_MEDIUM,
+                        context.getString(R.string.precipitation_intensity_medium)
+                    )
+                }
+                put(
+                    Precipitation.PRECIPITATION_HOURLY_HEAVY,
+                    context.getString(R.string.precipitation_intensity_heavy)
+                )
+            }.toImmutableMap()
+        }
+        val hasOnlyThresholdsValues = !minutely.values.any {
+            it !in arrayOf(
                 null,
                 0.0,
                 Precipitation.PRECIPITATION_HOURLY_LIGHT,
@@ -178,13 +191,21 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
         val modelProducer = remember { CartesianChartModelProducer() }
 
         val isTrendHorizontalLinesEnabled = SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
-        val thresholdLineColor = if (MainThemeColorProvider.isLightTheme(context, location)) {
-            R.color.colorTextGrey2nd
-        } else {
-            R.color.colorTextGrey
-        }
+        val lineColor =
+            Color(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
+        val labelColor = colorResource(
+            if (MainThemeColorProvider.isLightTheme(context, location)) {
+                R.color.colorTextGrey
+            } else {
+                R.color.colorTextGrey2nd
+            }
+        )
 
-        val cartesianLayerRangeProvider = CartesianLayerRangeProvider.fixed(maxY = maxY)
+        val cartesianLayerRangeProvider = CartesianLayerRangeProvider.fixed(
+            minX = minX.toDouble(),
+            maxX = maxX.toDouble(),
+            maxY = maxY
+        )
         val marker = rememberDefaultCartesianMarker(
             label = rememberTextComponent(
                 color = Color(
@@ -205,11 +226,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                 textAlignment = Layout.Alignment.ALIGN_CENTER,
                 minWidth = TextComponent.MinWidth.fixed(40f)
             ),
-            guideline = rememberLineComponent(
-                fill = fill(
-                    colorResource(thresholdLineColor)
-                )
-            ),
+            guideline = rememberLineComponent(fill = fill(labelColor)),
             valueFormatter = MarkerLabelFormatterMinutelyDecorator(minutely, location, context, hasOnlyThresholdsValues)
         )
 
@@ -217,13 +234,15 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
             modelProducer.runTransaction {
                 columnSeries {
                     series(
-                        x = minutely.indices.toList(),
-                        y = minutely.map {
-                            it.precipitationIntensity ?: 0
-                        }
+                        x = minutely.keys,
+                        y = minutely.values
                     )
                 }
             }
+        }
+
+        val timeValueFormatter = CartesianValueFormatter { _, value, _ ->
+            Date(value.toLong()).getFormattedTime(location, context, context.is12Hour)
         }
 
         CartesianChartHost(
@@ -248,80 +267,41 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                     rangeProvider = cartesianLayerRangeProvider
                 ),
                 bottomAxis = HorizontalAxis.rememberBottom(
+                    line = rememberLineComponent(fill = fill(lineColor)),
+                    label = rememberAxisLabelComponent(color = labelColor),
+                    valueFormatter = timeValueFormatter,
+                    tick = rememberAxisTickComponent(fill = fill(lineColor)),
                     guideline = null,
-                    tick = null, // Workaround: no custom ticks
-                    label = null // Workaround: no custom ticks
-                ),
-                decorations = listOfNotNull(
-                    /**
-                     * Don’t show some thresholds when max precipitation is very high
-                     * - Below heavy level: keep all 3 lines
-                     * - Between heavy level and 2 * heavy level: keep light and heavy lines
-                     * - Above 2 * heavy level: keep heavy line only
-                     */
-                    (maxY < Precipitation.PRECIPITATION_HOURLY_HEAVY * 2.0f).let {
-                        if (it && isTrendHorizontalLinesEnabled) {
-                            HorizontalLine(
-                                y = { Precipitation.PRECIPITATION_HOURLY_LIGHT },
-                                verticalLabelPosition = Position.Vertical.Bottom,
-                                line = rememberLineComponent(
-                                    fill = fill(colorResource(thresholdLineColor))
-                                ),
-                                labelComponent = rememberTextComponent(
-                                    color = colorResource(thresholdLineColor)
-                                ),
-                                label = { context.getString(R.string.precipitation_intensity_light) }
-                            )
-                        } else {
-                            null
-                        }
-                    },
-                    (maxY <= Precipitation.PRECIPITATION_HOURLY_HEAVY).let {
-                        if (it && isTrendHorizontalLinesEnabled) {
-                            HorizontalLine(
-                                y = { Precipitation.PRECIPITATION_HOURLY_MEDIUM },
-                                verticalLabelPosition = Position.Vertical.Bottom,
-                                line = rememberLineComponent(
-                                    fill = fill(colorResource(thresholdLineColor))
-                                ),
-                                labelComponent = rememberTextComponent(
-                                    color = colorResource(thresholdLineColor)
-                                ),
-                                label = { context.getString(R.string.precipitation_intensity_medium) }
-                            )
-                        } else {
-                            null
-                        }
-                    },
-                    if (isTrendHorizontalLinesEnabled) {
-                        HorizontalLine(
-                            y = { Precipitation.PRECIPITATION_HOURLY_HEAVY },
-                            verticalLabelPosition = Position.Vertical.Bottom,
-                            line = rememberLineComponent(
-                                fill = fill(colorResource(thresholdLineColor))
-                            ),
-                            labelComponent = rememberTextComponent(
-                                color = colorResource(thresholdLineColor)
-                            ),
-                            label = { context.getString(R.string.precipitation_intensity_heavy) }
-                        )
-                    } else {
-                        null
+                    itemPlacer = remember {
+                        SpecificHorizontalAxisItemPlacer(timeWithTicks)
                     }
                 ),
-                // TODO: Makes two markers instead of fading away when tapped somewhere else
-                // persistentMarkers = mapOf(minutely.indexOfLast { it.date < Date() }.toFloat() to marker),
+                decorations = if (isTrendHorizontalLinesEnabled) {
+                    trendHorizontalLines.entries.map { line ->
+                        HorizontalLine(
+                            y = { line.key },
+                            verticalLabelPosition = Position.Vertical.Bottom,
+                            line = rememberLineComponent(fill = fill(lineColor)),
+                            labelComponent = rememberTextComponent(color = labelColor),
+                            label = { line.value }
+                        )
+                    }
+                } else {
+                    emptyList()
+                },
                 marker = marker
             ),
             modelProducer = modelProducer,
             scrollState = rememberVicoScrollState(scrollEnabled = false),
-            modifier = Modifier.handleNestedHorizontalDragGesture(view)
+            modifier = Modifier
+                .handleNestedHorizontalDragGesture(view)
+                .height(150.dp)
         )
     }
 }
 
 private class MarkerLabelFormatterMinutelyDecorator(
-    private val minutely: List<Minutely>,
+    private val mappedValues: Map<Long, Double>,
     private val location: Location,
     private val aContext: Context,
     private val hasOnlyThresholdValues: Boolean,
@@ -332,27 +312,27 @@ private class MarkerLabelFormatterMinutelyDecorator(
         targets: List<CartesianMarker.Target>,
     ): CharSequence {
         val model = targets.first()
-        val startTime = minutely[model.x.toInt()].date
+        val precipitationIntensityUnit = SettingsManager.getInstance(aContext).precipitationIntensityUnit
+        val startTime = model.x.toLong().toDate()
             .getFormattedTime(location, aContext, aContext.is12Hour)
-        val endTime = (minutely[model.x.toInt()].date.time + 5.minutes.inWholeMilliseconds).toDate()
+        val endTime = (model.x.toLong() + 5.minutes.inWholeMilliseconds).toDate()
             .getFormattedTime(location, aContext, aContext.is12Hour)
         val quantityFormatted = if (hasOnlyThresholdValues) {
-            when (minutely[model.x.toInt()].precipitationIntensity ?: 0.0) {
+            when (mappedValues.getOrElse(model.x.toLong()) { null } ?: 0.0) {
                 0.0 -> aContext.getString(R.string.precipitation_none)
                 Precipitation.PRECIPITATION_HOURLY_LIGHT -> aContext.getString(R.string.precipitation_intensity_light)
                 Precipitation.PRECIPITATION_HOURLY_MEDIUM -> aContext.getString(R.string.precipitation_intensity_medium)
                 Precipitation.PRECIPITATION_HOURLY_HEAVY -> aContext.getString(R.string.precipitation_intensity_heavy)
-                else ->
-                    SettingsManager
-                        .getInstance(aContext)
-                        .precipitationIntensityUnit
-                        .getValueText(aContext, minutely[model.x.toInt()].precipitationIntensity ?: 0.0)
+                else -> precipitationIntensityUnit.getValueText(
+                    aContext,
+                    mappedValues.getOrElse(model.x.toLong()) { null } ?: 0.0
+                )
             }
         } else {
-            SettingsManager
-                .getInstance(aContext)
-                .precipitationIntensityUnit
-                .getValueText(aContext, minutely[model.x.toInt()].precipitationIntensity ?: 0.0)
+            precipitationIntensityUnit.getValueText(
+                aContext,
+                mappedValues.getOrElse(model.x.toLong()) { null } ?: 0.0
+            )
         }
 
         return SpannableStringBuilder().append(

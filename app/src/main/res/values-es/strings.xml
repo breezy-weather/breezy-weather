@@ -394,7 +394,7 @@
     <string name="action_location_list">Lista de ubicaciones</string>
     <string name="action_add_current_location">Añadir lugar actual</string>
     <string name="action_add_new_location">Añadir lugar nuevo</string>
-    <string name="action_see_more">Ver más</string>
+    <string name="action_more">Ver más</string>
     <string name="action_back">Atrás</string>
     <string name="action_share">Compartir</string>
     <string name="dialog_permissions_location_title">Acceder a la información de la ubicación</string>

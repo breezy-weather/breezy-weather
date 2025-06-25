@@ -337,7 +337,7 @@
     <string name="location_message_search_failed">Η αναζήτηση τοποθεσίας απέτυχε</string>
     <string name="location_search_no_results">Το %1$s δεν μπορεί να βρει το %2$s</string>
     <string name="action_share">Κοινοποίηση</string>
-    <string name="action_see_more">Δες περισσότερα</string>
+    <string name="action_more">Δες περισσότερα</string>
     <string name="action_undo">Αναίρεση</string>
     <string name="action_continue">Συνέχεια</string>
     <string name="message_server_timeout">Το αίτημα έληξε</string>

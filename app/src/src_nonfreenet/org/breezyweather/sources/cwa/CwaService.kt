@@ -97,6 +97,10 @@ class CwaService @Inject constructor(
         SourceFeature.ALERT to weatherAttribution,
         SourceFeature.NORMALS to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.cwa.gov.tw/",
+        "環境部" to "https://airtw.moenv.gov.tw/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

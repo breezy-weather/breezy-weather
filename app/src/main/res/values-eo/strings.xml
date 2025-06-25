@@ -243,7 +243,7 @@
     <string name="action_app_store">Aplikaĵejo</string>
     <string name="action_refresh">Aktualigi</string>
     <string name="action_restart">Restarti</string>
-    <string name="action_see_more">Vidi pli</string>
+    <string name="action_more">Pli</string>
     <string name="action_edit">Modifi</string>
     <string name="action_delete">Forigi</string>
     <string name="action_back">Reen</string>

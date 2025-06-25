@@ -206,7 +206,7 @@
     <string name="action_add_new_location">Gehitu kokapen berria</string>
     <string name="action_about">Honi buruz</string>
     <string name="action_restart">Berrabiarazi</string>
-    <string name="action_see_more">Ikusi gehiago</string>
+    <string name="action_more">Ikusi gehiago</string>
     <string name="action_help">Laguntza</string>
     <string name="action_undo">Desegin</string>
     <string name="action_continue">Jarraitu</string>

@@ -401,7 +401,7 @@
     <string name="weather_source_accu_preference_hours_1">1시간</string>
     <string name="action_add_current_location">현재 위치 추가</string>
     <string name="action_add_new_location">새 위치 추가</string>
-    <string name="action_see_more">더 보기</string>
+    <string name="action_more">더 보기</string>
     <string name="action_back">뒤로</string>
     <string name="action_continue">계속</string>
     <string name="action_share">공유</string>

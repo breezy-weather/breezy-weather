@@ -321,7 +321,7 @@
     <string name="weather_api_key_required_missing_title">Chave de API necessária ausente</string>
     <string name="weather_api_key_required_missing_content">Para usar essa fonte, você precisa fornecer uma chave de API.</string>
     <string name="location_message_permission_background_missing">Permissão de acesso à localização em segundo plano ausente</string>
-    <string name="action_see_more">Ver mais</string>
+    <string name="action_more">Ver mais</string>
     <string name="widget_subtitle_data_aqi">Qualidade do ar</string>
     <string name="common_weather_text_clear_sky">Limpo</string>
     <string name="common_weather_text_mainly_clear">Pouco nublado</string>

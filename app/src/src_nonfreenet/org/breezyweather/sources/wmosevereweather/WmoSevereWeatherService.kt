@@ -89,8 +89,12 @@ class WmoSevereWeatherService @Inject constructor(
     }
 
     override val supportedFeatures = mapOf(
-        SourceFeature.ALERT to "Hong Kong Observatory on behalf of WMO + 137 issuing organizations " +
-            "https://severeweather.wmo.int/sources.html"
+        SourceFeature.ALERT to "Hong Kong Observatory on behalf of WMO + 141 issuing organizations"
+    )
+    override val attributionLinks = mapOf(
+        "Hong Kong Observatory" to "https://www.hko.gov.hk/",
+        "WMO" to "https://wmo.int/",
+        "141 issuing organizations" to "https://severeweather.wmo.int/sources.html"
     )
 
     override fun requestWeather(

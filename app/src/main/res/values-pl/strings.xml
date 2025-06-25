@@ -341,7 +341,7 @@
     <string name="settings_debug_summary">Dzienniki awarii</string>
     <string name="notification_channel_alerts">Alerty</string>
     <string name="notification_channel_widget">Widżet</string>
-    <string name="action_see_more">Zobacz więcej</string>
+    <string name="action_more">Zobacz więcej</string>
     <string name="settings_background_updates_worker_info_title">Informacje o procesie</string>
     <string name="settings_main_background_animation_enabled">Włączone</string>
     <string name="settings_main_background_animation_disabled">Wyłączone</string>

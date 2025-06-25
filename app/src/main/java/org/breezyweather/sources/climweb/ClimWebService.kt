@@ -101,6 +101,10 @@ abstract class ClimWebService : HttpSource(), WeatherSource, ConfigurableSource,
             SourceFeature.ALERT to alertAttribution,
             SourceFeature.NORMALS to normalsAttribution
         )
+    override val attributionLinks
+        get() = mapOf(
+            weatherAttribution to baseUrl
+        )
     override fun isFeatureSupportedForLocation(
         location: Location,
         feature: SourceFeature,

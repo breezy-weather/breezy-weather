@@ -665,7 +665,7 @@
     <string name="location_service_native">சொந்த பநிஇ</string>
     <string name="action_location_list">இருப்பிட பட்டியல்</string>
     <string name="action_search">தேடல்</string>
-    <string name="action_see_more">மேலும் காண்க</string>
+    <string name="action_more">மேலும் காண்க</string>
     <string name="action_continue">தொடரவும்</string>
     <string name="action_confirm">உறுதிப்படுத்தவும்</string>
     <string name="action_close">மூடு</string>

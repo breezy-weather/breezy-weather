@@ -108,6 +108,9 @@ class HkoService @Inject constructor(
         SourceFeature.ALERT to weatherAttribution,
         SourceFeature.NORMALS to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.hko.gov.hk/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

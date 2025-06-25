@@ -523,7 +523,7 @@
     <string name="settings_notifications_forecast_today_title">當日天氣預報通知</string>
     <string name="settings_notifications_precipitations_title">降水通知</string>
     <string name="action_location_list">位置清單</string>
-    <string name="action_see_more">查看更多</string>
+    <string name="action_more">查看更多</string>
     <string name="settings_main_cards_title">卡片</string>
     <string name="settings_main_daily_trends_title">逐日趨勢</string>
     <string name="settings_background_updates_battery_optimization_summary">當您未收到通知或小工具未重新整理時，首先嘗試這個選項。</string>

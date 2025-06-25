@@ -373,7 +373,7 @@
     <string name="settings_background_updates_battery_optimization">Akkuoptimierung deaktivieren</string>
     <string name="settings_background_updates_refresh_title">Aktualisierungsrate</string>
     <string name="settings_main_cards_fade_in_switch">Kacheln werden animiert eingeblendet</string>
-    <string name="action_see_more">Mehr anzeigen</string>
+    <string name="action_more">Mehr anzeigen</string>
     <string name="settings_units_summary">Temperatur, Niederschlag, Entfernung, Geschwindigkeit, Druck</string>
     <string name="settings_main">Hauptbildschirm</string>
     <string name="settings_widgets">Widgets &amp; Live-Hintergrund</string>

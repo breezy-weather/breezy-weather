@@ -228,7 +228,7 @@
     <string name="action_settings">הגדרות</string>
     <string name="action_preview">תצוגה מקדימה</string>
     <string name="action_about">אודות</string>
-    <string name="action_see_more">ראה עוד</string>
+    <string name="action_more">ראה עוד</string>
     <string name="action_restart">אתחל מחדש</string>
     <string name="action_edit">ערוך</string>
     <string name="action_delete">מחק</string>

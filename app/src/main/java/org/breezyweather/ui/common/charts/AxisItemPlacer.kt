@@ -55,6 +55,21 @@ class TimeHorizontalAxisItemPlacer(
 }
 
 /**
+ * @param measuredValues the values you would like to see on the X-axis
+ */
+class SpecificHorizontalAxisItemPlacer(
+    private val measuredValues: List<Double>,
+) : HorizontalAxis.ItemPlacer by HorizontalAxis.ItemPlacer.aligned() {
+
+    override fun getLabelValues(
+        context: CartesianDrawingContext,
+        visibleXRange: ClosedFloatingPointRange<Double>,
+        fullXRange: ClosedFloatingPointRange<Double>,
+        maxLabelWidth: Float,
+    ): List<Double> = measuredValues
+}
+
+/**
  * @param measuredValues the values you would like to see on the Y-axis
  */
 class SpecificVerticalAxisItemPlacer(

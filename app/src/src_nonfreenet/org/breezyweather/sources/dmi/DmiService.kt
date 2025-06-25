@@ -60,6 +60,9 @@ class DmiService @Inject constructor(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        "DMI" to "https://www.dmi.dk/"
+    )
     override fun isFeatureSupportedForLocation(
         location: Location,
         feature: SourceFeature,

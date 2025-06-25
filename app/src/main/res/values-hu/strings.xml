@@ -322,7 +322,7 @@
     <string name="weather_source_accu_preference_hours_72">72 óra</string>
     <string name="location_message_permission_background_missing">A helyadatokhoz való háttérhozzáférés nincs engedélyezve</string>
     <string name="action_add_new_location">Új helyszín hozzáadása</string>
-    <string name="action_see_more">További részletek</string>
+    <string name="action_more">További részletek</string>
     <string name="message_network_unavailable">Hálózat nem elérhető</string>
     <string name="widget_label_align_end">Jobbra igazítás</string>
     <string name="widget_subtitle_data_time">Frissítési idő</string>

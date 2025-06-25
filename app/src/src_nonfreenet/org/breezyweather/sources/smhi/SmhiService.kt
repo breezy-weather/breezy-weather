@@ -54,6 +54,9 @@ class SmhiService @Inject constructor(
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to "SMHI (Creative commons Erkännande 4.0 SE)"
     )
+    override val attributionLinks = mapOf(
+        "SMHI" to "https://www.smhi.se/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

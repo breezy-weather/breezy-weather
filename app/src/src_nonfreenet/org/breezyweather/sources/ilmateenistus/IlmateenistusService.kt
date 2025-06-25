@@ -69,6 +69,9 @@ class IlmateenistusService @Inject constructor(
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.ilmateenistus.ee/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

@@ -381,7 +381,7 @@
     <string name="location_swipe_to_delete">Вы можете смахнуть влево, чтобы удалить этот элемент</string>
     <string name="location_message_permission_missing">Отсутствует разрешение на доступ к местоположению</string>
     <string name="action_add_current_location">Добавить текущее местоположение</string>
-    <string name="action_see_more">Развернуть</string>
+    <string name="action_more">Развернуть</string>
     <string name="message_network_unavailable">Сеть недоступна</string>
     <string name="widget_label_align_end">Выровнять по правому краю</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Новая строка</string>

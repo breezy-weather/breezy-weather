@@ -366,7 +366,7 @@
     <string name="air_quality_o3_info_origin">Ozon terbentuk dari reaksi fotokimia dengan polutan: senyawa organik yang mudah menguap (volatil), karbon monoksida, dan nitrogen oksida (NOₓ) yang dikeluarkan dari kendaraan dan industri. Karena sifat fotokimianya, kadar tertinggi ozon tercapai selama periode cuaca cerah.</string>
     <string name="air_quality_level_6_description">Paparan dalam bentuk apa pun terhadap udara, bahkan hanya selama beberapa menit, dapat menimbulkan dampak kesehatan yang serius pada semua orang. Hindari aktivitas di luar ruangan.</string>
     <string name="settings_main_background_animation_enabled">Diaktifkan</string>
-    <string name="action_see_more">Lihat lebih banyak</string>
+    <string name="action_more">Lihat lebih banyak</string>
     <string name="settings_main_cards_title">Kartu</string>
     <string name="unit_kn_voice">Knot</string>
     <string name="unit_km_voice">Kilometer</string>

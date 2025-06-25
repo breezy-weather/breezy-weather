@@ -65,7 +65,7 @@
     <string name="settings_icon_packs_get_more">Voir plus</string>
     <string name="action_refresh">Actualiser</string>
     <string name="action_restart">Redémarrer</string>
-    <string name="action_see_more">Voir plus</string>
+    <string name="action_more">Plus</string>
     <string name="action_edit">Modifier</string>
 
     <string name="daily_yesterday">Hier</string>
@@ -495,6 +495,8 @@
     <string name="settings_items_drag_to_sort">Maintenez puis déplacez les éléments de la liste pour les ordonner</string>
     <string name="settings_item_delete">Supprimer cet élément</string>
     <string name="location_swipe_to_delete">Vous pouvez balayer vers la gauche pour supprimer cet élément</string>
+    <string name="data_sources">Sources des données</string>
+    <string name="data_modified">Ce contenu a été modifié par %s par rapport à l’original, principalement pour calculer ou extrapoler des données manquantes.</string>
     <string name="weather_data_by">Données par %s</string> <!-- $ = weather source. -->
     <string name="weather_forecast_data_by">Données de prévision par %s</string>
     <string name="weather_current_data_by">Données de météo actuelle par %s</string> <!-- $ = weather source. -->

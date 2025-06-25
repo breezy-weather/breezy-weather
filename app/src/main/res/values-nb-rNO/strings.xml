@@ -558,7 +558,7 @@
     <string name="location_message_list_cannot_be_empty">Lokasjonsliste kan ikke være tom</string>
     <string name="location_current">Nåværende posisjon</string>
     <string name="settings_background_updates_refresh_never_warning1">Du vil ikke kunne motta varslinger om farevarsler eller nedbør hvis du skrur av bakgrunnsoppdateringer. Moduler vil ikke bli oppdatert før neste gang du åpner appen.</string>
-    <string name="action_see_more">Se mer</string>
+    <string name="action_more">Se mer</string>
     <string name="weather_message_data_refresh_failed">Oppdatering av værdata feilet</string>
     <string name="weather_api_limit_reached_content">Legg til en API-nøkkel for å unngå denne begrensningen.</string>
     <string name="action_learn_more">Lær mer</string>

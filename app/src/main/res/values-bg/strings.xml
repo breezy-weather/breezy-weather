@@ -130,7 +130,7 @@
     <string name="action_about">Относно</string>
     <string name="action_refresh">Опресни</string>
     <string name="action_restart">Рестартиране</string>
-    <string name="action_see_more">Виж повече</string>
+    <string name="action_more">Виж повече</string>
     <string name="action_edit">Редактиране</string>
     <string name="action_next">Следващ</string>
     <string name="action_done">Готово</string>

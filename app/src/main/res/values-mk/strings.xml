@@ -289,7 +289,7 @@
     <string name="action_location_list">Список на локации</string>
     <string name="action_app_store">Продавница за Апликации</string>
     <string name="action_restart">Рестарт</string>
-    <string name="action_see_more">Види повеќе</string>
+    <string name="action_more">Види повеќе</string>
     <string name="action_save">Зачувај</string>
     <string name="action_undo">Врати</string>
     <string name="action_set">Поставете</string>

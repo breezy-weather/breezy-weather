@@ -92,7 +92,7 @@
     <string name="action_preview">Переглянути</string>
     <string name="action_about">Про нас</string>
     <string name="action_refresh">Оновити</string>
-    <string name="action_see_more">Дізнатися більше</string>
+    <string name="action_more">Дізнатися більше</string>
     <string name="action_edit">Редагувати</string>
     <string name="action_delete">Видалити</string>
     <string name="action_next">Далі</string>

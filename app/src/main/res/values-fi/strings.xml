@@ -529,7 +529,7 @@
     <string name="dialog_permissions_notification_title">Pysy ajantasalla</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_subtitle_data_aqi">Ilmanlaatu</string>
-    <string name="action_see_more">Katso lisää</string>
+    <string name="action_more">Katso lisää</string>
     <string name="location_results_by">Sijaintitulokset tarjoaa %s</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
