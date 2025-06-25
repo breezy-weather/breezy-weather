@@ -16,6 +16,9 @@
 
 package org.breezyweather.common.extensions
 
+/**
+ * Allow to split a string while keeping delimiters
+ */
 fun String.splitKeeping(str: String): List<String> {
     return this.split(str).flatMap { listOf(it, str) }.dropLast(1).filterNot { it.isEmpty() }
 }

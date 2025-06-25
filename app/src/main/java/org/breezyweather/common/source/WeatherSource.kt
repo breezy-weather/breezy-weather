@@ -34,7 +34,7 @@ interface WeatherSource : Source {
      * we don’t have the right to use!
      * @param isDarkMode May be used to display a different icon depending on light/dark mode. If true, the background
      * is dark.
-     * Example: R.drawable.accu_icon_dark or R.drawable_icon_light
+     * Example: return either R.drawable.accu_icon_dark or R.drawable.accu_icon_light
      */
     @DrawableRes
     fun getAttributionIcon(isDarkMode: Boolean): Int? {

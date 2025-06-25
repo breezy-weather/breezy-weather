@@ -56,8 +56,8 @@ class BrightSkyService @Inject constructor(
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://brightsky.dev/"
 
-    private val weatherAttribution = "Bright Sky, Data basis: Deutscher Wetterdienst, reproduced graphically and " +
-        "with missing data computed or extrapolated by ${context.getString(R.string.app_name)}"
+    private val weatherAttribution = "Bright Sky, Data basis: Deutscher Wetterdienst. " +
+        context.getString(R.string.data_modified, context.getString(R.string.breezy_weather))
 
     private val mApi: BrightSkyApi
         get() {
