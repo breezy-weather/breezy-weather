@@ -821,4 +821,7 @@
     <string name="air_quality_level_1_harmless_exposure">&gt; 1 рік</string>
     <string name="pressure_about_description2">Значні, швидкі зміни тиску використовуються для прогнозування змін погоди. Наприклад, падіння тиску може означати, що скоро піде дощ або сніг, а підвищення тиску може означати покращення погоди. Аномальний атмосферний тиск може спричинити головний біль, біль у суглобах, втому та інші наслідки.</string>
     <string name="unit_mum_voice">Мікрометри</string>
+    <string name="data_sources">Джерела даних</string>
+    <string name="visibility_very_poor">Дуже погано</string>
+    <string name="data_modified">Цей матеріал було змінено порівняно з оригіналом користувачем %s, головним чином для обчислення або екстраполяції відсутніх даних.</string>
 </resources>
