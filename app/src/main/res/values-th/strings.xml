@@ -803,4 +803,24 @@
     <string name="humidity_about">เกี่ยวกับความชื้นสัมพัทธ์</string>
     <string name="air_quality_o3_sources">โอโซนถูกสร้างขึ้นจากปฏิกิริยาทางเคมีระหว่างออกซิเจน ออกไซด์ต่างๆของไนโตรเจน คาร์บอนมอนอกไซด์และสารประกอบอินทรีย์ต่างๆกับแสงอาทิตย์</string>
     <string name="humidity_about_description">ความชื้นสัมพัทธ์ หรือที่เรียกกันโดยทั่วไปว่าความชื้น คืออัตราร้อยละของไอน้ำในอากาศ เทียบกับปริมาณไอน้ำสูงสุดที่อากาศสามารถจุได้ ณ อุณหภูมิที่กำหนด</string>
+    <string name="uv_index_time_to_burn_explanations">ระยะเวลาที่แท้จริงขึ้นอยู่กับระดับความสูงของสถานที่ สิ่งที่สะท้อนแสงได้บนผิวดิน (เช่น น้ำ หรือ หิมะ) ชนิดของผิวหนังของคุณ และการใช้ครีมกันแดด</string>
+    <string name="air_quality_index_short">AQI</string>
+    <string name="air_quality_index_about">เกี่ยวกับดัชนีคุณภาพอากาศ</string>
+    <string name="pressure_about_description2">การเปลี่ยนแปลงของความกดอากาศอย่างรวดเร็วและมีนัยสำคัญถูกใช้ในการคาดคะเนการเปลี่ยนแปลงของสภาพอากาศ เช่น ความกดอากาศที่ต่ำลงอาจเป็นตัวบอกว่ากำลังจะมีฝนหรือหิมะ และความกดอากาศที่สูงขึ้นอาจเป็นตัวบอกว่าสภาพอากาศกำลังจะดีขึ้น ความกดอากาศที่ผิดปกติอาจทำให้เกิดอาการปวดศีรษะ ปวดข้อ เมื่อยล้าและอาการอื่นๆ</string>
+    <string name="visibility_about">เกี่ยวกับทัศนวิสัย</string>
+    <string name="visibility_about_description">ทัศนวิสัย คือระยะทางที่คุณสามารถมองเห็นสิ่งต่างๆ เช่น อาคาร หรือ เนินเขา ได้อย่างชัดเจน ทัศนวิสัยอาจเปลี่ยนแปลงได้จาก หยาดน้ำฟ้า หมอก ฝุ่น ควัน หรือหมอกแดด</string>
+    <string name="visibility_poor">เลวร้าย</string>
+    <string name="visibility_moderate">ปานกลาง</string>
+    <string name="visibility_good">ดี</string>
+    <string name="visibility_clear">ชัดเจน</string>
+    <string name="visibility_perfectly_clear">ชัดเจนมาก</string>
+    <string name="cloud_cover_about">เกี่ยวกับส่วนเมฆบัง</string>
+    <string name="unit_mum">มค.ม.</string>
+    <string name="unit_mum_voice">ไมโครเมตร</string>
+    <string name="data_modified">ข้อมูลนี้ได้รับการแก้ไขจากต้นฉบับโดย %s เพื่อการคำนวณหรือการประมาณข้อมูลที่ขาดหายไปเป็นหลัก</string>
+    <string name="data_sources">แหล่งที่มาของข้อมูล</string>
+    <string name="label_description">รายละเอียด</string>
+    <string name="visibility_from_to_number">%1$s ถึง %2$s</string>
+    <string name="cloud_cover_about_description">ส่วนเมฆบัง คืออัตราร้อยละของท้องฟ้าที่ถูกเมฆบดบังโดยเฉลี่ย ส่วนเมฆบังมีความเกี่ยวข้องกับระยะเวลาแสงอาทิตย์ส่อง</string>
+    <string name="visibility_from_to_description">%1$s เป็น %2$s</string>
 </resources>
