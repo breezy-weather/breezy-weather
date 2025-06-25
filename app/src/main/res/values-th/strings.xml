@@ -748,4 +748,27 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">มีพายุฝนฟ้าคะนองเล็กน้อยถึงปานกลาง</string>
     <string name="metno_weather_text_andthunder">%sและมีท้องฟ้าคำราม</string>
     <string name="null_data_text">N/A</string>
+    <string name="ephemeris_about_set">เวลาตก คือเวลาที่ดวงอาทิตย์หรือดวงจันทร์หายไปจากขอบฟ้าโดยสมบูรณ์</string>
+    <string name="daily_summary">สรุปประจำวัน</string>
+    <string name="chart_not_enough_hourly_data">มีข้อมูลรายชั่วโมงไม่เพียงพอที่จะแสดงแผนภูมิสำหรับวันนี้</string>
+    <string name="conditions">ภูมิอากาศ</string>
+    <string name="temperature_real">อุณหภูมิจริง</string>
+    <string name="temperature_real_details">อุณหภูมิที่แท้จริง</string>
+    <string name="temperature_feels_like_details">อุณหภูมิที่รู้สึกได้ เนื่องจากความชื้น ลม และ/หรือ แสงอาทิตย์</string>
+    <string name="uv_index_scale">ระดับค่าดัชนี UV</string>
+    <string name="uv_index_time_to_burn">ระยะเวลาไหม้ผิว</string>
+    <string name="ephemeris_about">เกี่ยวกับเวลาขึ้น-ตก</string>
+    <string name="chart_no_hourly_data">ไม่มีข้อมูลรายชั่วโมงที่ใช้งานได้</string>
+    <string name="chart_maximum_value">ค่าสูงสุด</string>
+    <string name="ephemeris_about_rise">เวลาขึ้น คือเวลาที่ดวงอาทิตย์หรือดวงจันทร์ปรากฏขึ้นเหนือขอบฟ้าโดยสมบูรณ์</string>
+    <string name="temperature_degree_day_cooling_explanation">ค่าความต่างระหว่างอุณหภูมินอกอาคารและอุณหภูมิอ้างอิง ใช้สำหรับการประมาณปริมาณพลังงานที่ต้องใช้ในการทำความเย็น</string>
+    <string name="wind_speed_about">เกี่ยวกับความเร็วลมและลมกระโชก</string>
+    <string name="wind_speed_about_description">ความเร็วลมวัดได้จากการหาค่าเฉลี่ยของความเร็วลมในช่วงเวลาหนึ่ง ลมกระโชกคือลมแรงที่เกิดขึ้นในทันทีทันใดซึ่งมักจะมีระยะเวลาไม่เกิน 20 วินาที</string>
+    <string name="chart_no_daily_data">ไม่มีข้อมูลที่ใช้งานได้สำหรับวันนี้</string>
+    <string name="chart_average">ค่าเฉลี่ย</string>
+    <string name="temperature_degree_day_heating_explanation">ค่าความต่างระหว่างอุณหภูมินอกอาคารและอุณหภูมิอ้างอิง ใช้สำหรับการประมาณปริมาณพลังงานที่ต้องใช้ในการทำความร้อน</string>
+    <string name="uv_index_about_description">ดัชนี UV ใช้วัดความแรงของการแผ่รังสีอัลตราไวโอเลต ค่าดัชนียิ่งสูงขึ้นมากเท่าใด ก็ทำให้มีความเสี่ยงต่ออาการผิวไหม้แดด มะเร็งผิวหนัง และผลกระทบต่อตาได้อย่างรวดเร็วและรุนแรงมากขึ้นเท่านั้น</string>
+    <string name="wind_gusts_short">ลมกระโชก</string>
+    <string name="wind_strength_scale">มาตราโบฟอร์ต</string>
+    <string name="uv_index_about">เกี่ยวกับดัชนี UV</string>
 </resources>
