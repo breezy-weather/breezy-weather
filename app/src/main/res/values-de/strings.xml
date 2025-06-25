@@ -838,4 +838,7 @@
     <string name="chart_not_enough_hourly_data">Es sind nicht genügend stündliche Daten verfügbar, um ein Diagramm für diesen Tag anzuzeigen.</string>
     <string name="air_quality_no2_sources">Die Hauptquellen sind Brennstoffverbrennungsprozesse, wie sie in der Industrie und im Verkehrswesen eingesetzt werden.</string>
     <string name="humidity_about_description">Die relative Luftfeuchtigkeit, besser bekannt als Luftfeuchtigkeit, ist der prozentuale Anteil des in der Luft vorhandenen Wasserdampfs im Vergleich zu der maximalen Menge, die die Luft bei einer bestimmten Temperatur aufnehmen kann.</string>
+    <string name="visibility_very_poor">Sehr gering</string>
+    <string name="data_modified">Dieses Material wurde von %s gegenüber dem Original verändert, hauptsächlich um fehlende Daten zu berechnen oder zu extrapolieren.</string>
+    <string name="data_sources">Datenquellen</string>
 </resources>
