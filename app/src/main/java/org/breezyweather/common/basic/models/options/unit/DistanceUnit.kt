@@ -84,11 +84,14 @@ enum class DistanceUnit(
             it.id == value
         } ?: M
 
-        const val VISIBILITY_VERY_POOR = 2000.0
+        /**
+         * Source: https://weather.metoffice.gov.uk/guides/what-does-this-forecast-mean
+         */
+        const val VISIBILITY_VERY_POOR = 1000.0
         const val VISIBILITY_POOR = 4000.0
         const val VISIBILITY_MODERATE = 10000.0
         const val VISIBILITY_GOOD = 20000.0
-        const val VISIBILITY_CLEAR = 50000.0
+        const val VISIBILITY_CLEAR = 40000.0
 
         /**
          * @param context
