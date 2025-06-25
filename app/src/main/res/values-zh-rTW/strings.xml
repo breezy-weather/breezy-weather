@@ -839,7 +839,7 @@
     <string name="chart_no_daily_data">當日無資料。</string>
     <string name="chart_no_hourly_data">無逐時資料。</string>
     <string name="ephemeris_about_rise">日出及月出時刻是指太陽或月亮完全出現在地平線上方的時刻。</string>
-    <string name="ephemeris_about_set">日沒及月末時刻是指太陽或月亮完全消失於地平線以下的時刻。</string>
+    <string name="ephemeris_about_set">日沒及月沒時刻是指太陽或月亮完全消失於地平線以下的時刻。</string>
     <string name="chart_average">平均</string>
     <string name="chart_maximum_value">最大值</string>
     <string name="conditions">天氣概況</string>
@@ -883,7 +883,7 @@
     <string name="pressure_about">關於氣壓</string>
     <string name="pressure_about_description1">氣壓是地球大氣層往下施加的壓力。本應用程式採用平均海平面氣壓 (MSLP)，以便比較位於不同海拔位置的氣壓。</string>
     <string name="visibility_about">關於能見度</string>
-    <string name="visibility_about_description">能見度是指能看到如建築物、山峰等遠方景物的距離。能見部能受降水、霧、浮塵、煙或霾影響。</string>
+    <string name="visibility_about_description">能見度是指能看到如建築物、山峰等遠方景物的距離。能見度能受降水、霧、浮塵、煙或霾影響。</string>
     <string name="visibility_from_to_number">%1$s 至 %2$s</string>
     <string name="visibility_from_to_description">%1$s 至 %2$s</string>
     <string name="cloud_cover_about">關於雲量</string>
@@ -907,4 +907,6 @@
     <string name="wind_strength_scale">蒲福風級</string>
     <string name="air_quality_level_2_harmless_exposure">&lt; 1 年</string>
     <string name="air_quality_pm_sources">主要來自燃燒過程（如：發電廠、室內加熱、汽車排氣、野火）、機械過程（如：營造、礦物粉塵、農業）和生物微粒（如：花粉、黴菌、細菌、病毒）。</string>
+    <string name="data_modified">本內容是由 %s 從原始資料修改而成，修改內容主要為計算或推斷遺漏資料。</string>
+    <string name="data_sources">資料來源</string>
 </resources>
