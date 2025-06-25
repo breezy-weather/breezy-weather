@@ -21,7 +21,10 @@ import android.graphics.Color
 import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import org.breezyweather.R
+import org.breezyweather.common.basic.models.options.basic.UnitEnum
 import org.breezyweather.common.basic.models.options.basic.Utils.formatDouble
+import org.breezyweather.common.basic.models.options.unit.AirQualityCOUnit
+import org.breezyweather.common.basic.models.options.unit.AirQualityUnit
 import kotlin.math.roundToInt
 
 enum class PollutantIndex(
@@ -151,6 +154,14 @@ enum class PollutantIndex(
                 context.resources.getStringArray(harmlessExposuresArrayId).getOrNull(level)
             } else {
                 null
+            }
+        }
+
+        fun getUnit(pollutantIndex: PollutantIndex): UnitEnum<Double> {
+            return if (pollutantIndex == CO) {
+                AirQualityCOUnit.MGPCUM
+            } else {
+                AirQualityUnit.MUGPCUM
             }
         }
     }

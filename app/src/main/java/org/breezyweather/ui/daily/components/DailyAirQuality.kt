@@ -70,13 +70,12 @@ import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
-import org.breezyweather.common.basic.models.options.unit.AirQualityCOUnit
-import org.breezyweather.common.basic.models.options.unit.AirQualityUnit
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
+import org.breezyweather.domain.weather.model.getConcentration
 import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
@@ -108,103 +107,46 @@ fun DailyAirQuality(
         buildList {
             daily.airQuality?.let { airQuality ->
                 // We use air quality index for the progress bar instead of concentration for more realistic bar
-                // TODO: Lot of redundancy
-                airQuality.pM25?.let {
-                    add(
-                        AqiItem(
-                            PollutantIndex.PM25,
-                            airQuality.getColor(context, PollutantIndex.PM25),
-                            airQuality.getIndex(PollutantIndex.PM25)!!.toFloat(),
-                            PollutantIndex.indexExcessivePollution.toFloat(),
-                            context.getString(PollutantIndex.PM25.shortName),
-                            AirQualityUnit.MUGPCUM.getValueText(context, it),
-                            context.getString(PollutantIndex.PM25.voicedName) +
-                                context.getString(R.string.colon_separator) +
-                                AirQualityUnit.MUGPCUM.getValueVoice(context, it),
-                            false
-                        )
-                    )
-                }
-                airQuality.pM10?.let {
-                    add(
-                        AqiItem(
-                            PollutantIndex.PM10,
-                            airQuality.getColor(context, PollutantIndex.PM10),
-                            airQuality.getIndex(PollutantIndex.PM10)!!.toFloat(),
-                            PollutantIndex.indexExcessivePollution.toFloat(),
-                            context.getString(PollutantIndex.PM10.shortName),
-                            AirQualityUnit.MUGPCUM.getValueText(context, it),
-                            context.getString(PollutantIndex.PM10.voicedName) +
-                                context.getString(R.string.colon_separator) +
-                                AirQualityUnit.MUGPCUM.getValueVoice(context, it),
-                            false
-                        )
-                    )
-                }
-                airQuality.o3?.let {
-                    add(
-                        AqiItem(
-                            PollutantIndex.O3,
-                            airQuality.getColor(context, PollutantIndex.O3),
-                            airQuality.getIndex(PollutantIndex.O3)!!.toFloat(),
-                            PollutantIndex.indexExcessivePollution.toFloat(),
-                            context.getString(PollutantIndex.O3.shortName),
-                            AirQualityUnit.MUGPCUM.getValueText(context, it),
-                            context.getString(PollutantIndex.O3.voicedName) +
-                                context.getString(R.string.colon_separator) +
-                                AirQualityUnit.MUGPCUM.getValueVoice(context, it),
-                            false
-                        )
-                    )
-                }
-                airQuality.nO2?.let {
-                    add(
-                        AqiItem(
-                            PollutantIndex.NO2,
-                            airQuality.getColor(context, PollutantIndex.NO2),
-                            airQuality.getIndex(PollutantIndex.NO2)!!.toFloat(),
-                            PollutantIndex.indexExcessivePollution.toFloat(),
-                            context.getString(PollutantIndex.NO2.shortName),
-                            AirQualityUnit.MUGPCUM.getValueText(context, it),
-                            context.getString(PollutantIndex.NO2.voicedName) +
-                                context.getString(R.string.colon_separator) +
-                                AirQualityUnit.MUGPCUM.getValueVoice(context, it),
-                            false
-                        )
-                    )
-                }
-                if ((airQuality.sO2 ?: 0.0) > 0) {
-                    add(
-                        AqiItem(
-                            PollutantIndex.SO2,
-                            airQuality.getColor(context, PollutantIndex.SO2),
-                            airQuality.getIndex(PollutantIndex.SO2)!!.toFloat(),
-                            PollutantIndex.indexExcessivePollution.toFloat(),
-                            context.getString(PollutantIndex.SO2.shortName),
-                            AirQualityUnit.MUGPCUM.getValueText(context, airQuality.sO2!!),
-                            context.getString(PollutantIndex.SO2.voicedName) +
-                                context.getString(R.string.colon_separator) +
-                                AirQualityUnit.MUGPCUM.getValueVoice(context, airQuality.sO2!!),
-                            false
-                        )
-                    )
-                }
-                if ((airQuality.cO ?: 0.0) > 0) {
-                    add(
-                        AqiItem(
-                            PollutantIndex.CO,
-                            airQuality.getColor(context, PollutantIndex.CO),
-                            airQuality.getIndex(PollutantIndex.CO)!!.toFloat(),
-                            PollutantIndex.indexExcessivePollution.toFloat(),
-                            context.getString(PollutantIndex.CO.shortName),
-                            AirQualityCOUnit.MGPCUM.getValueText(context, airQuality.cO!!),
-                            context.getString(PollutantIndex.CO.voicedName) +
-                                context.getString(R.string.colon_separator) +
-                                AirQualityCOUnit.MGPCUM.getValueVoice(context, airQuality.cO!!),
-                            false
-                        )
-                    )
-                }
+                listOf(PollutantIndex.PM25, PollutantIndex.PM10, PollutantIndex.O3, PollutantIndex.NO2)
+                    .forEach { pollutantIndex ->
+                        airQuality.getConcentration(pollutantIndex)?.let {
+                            add(
+                                AqiItem(
+                                    pollutantIndex,
+                                    airQuality.getColor(context, pollutantIndex),
+                                    airQuality.getIndex(pollutantIndex)!!.toFloat(),
+                                    PollutantIndex.indexExcessivePollution.toFloat(),
+                                    context.getString(pollutantIndex.shortName),
+                                    PollutantIndex.getUnit(pollutantIndex).getValueText(context, it),
+                                    context.getString(pollutantIndex.voicedName) +
+                                        context.getString(R.string.colon_separator) +
+                                        PollutantIndex.getUnit(pollutantIndex).getValueVoice(context, it),
+                                    false
+                                )
+                            )
+                        }
+                    }
+                listOf(PollutantIndex.SO2, PollutantIndex.CO)
+                    .forEach { pollutantIndex ->
+                        (airQuality.getConcentration(pollutantIndex) ?: 0.0).let {
+                            if (it > 0) {
+                                add(
+                                    AqiItem(
+                                        pollutantIndex,
+                                        airQuality.getColor(context, pollutantIndex),
+                                        airQuality.getIndex(pollutantIndex)!!.toFloat(),
+                                        PollutantIndex.indexExcessivePollution.toFloat(),
+                                        context.getString(pollutantIndex.shortName),
+                                        PollutantIndex.getUnit(pollutantIndex).getValueText(context, it),
+                                        context.getString(pollutantIndex.voicedName) +
+                                            context.getString(R.string.colon_separator) +
+                                            PollutantIndex.getUnit(pollutantIndex).getValueVoice(context, it),
+                                        false
+                                    )
+                                )
+                            }
+                        }
+                    }
             }
         }.toImmutableList()
     }
