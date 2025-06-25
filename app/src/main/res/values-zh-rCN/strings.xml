@@ -857,7 +857,7 @@
     <string name="wind_gusts_short">强风</string>
     <string name="wind_strength_scale">蒲福风级</string>
     <string name="uv_index_about">关于 UV 指数</string>
-    <string name="uv_index_scale">UV 指数标度</string>
+    <string name="uv_index_scale">UV 指数等级</string>
     <string name="uv_index_time_to_burn">晒伤时间</string>
     <string name="uv_index_time_to_burn_explanations">晒伤的确切时间取决于海拔、是否存在水或雪等反射地表，皮肤类型、是否使用防晒用品。</string>
     <string name="air_quality_index_short">AQI</string>
