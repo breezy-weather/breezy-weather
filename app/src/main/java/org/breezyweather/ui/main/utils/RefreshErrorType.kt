@@ -46,6 +46,7 @@ import org.breezyweather.ui.main.dialogs.ApiHelpDialog
 import org.breezyweather.ui.main.dialogs.LocationHelpDialog
 import org.breezyweather.ui.main.dialogs.SourceNoLongerAvailableHelpDialog
 import retrofit2.HttpException
+import java.net.SocketException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import java.text.ParseException
@@ -181,6 +182,7 @@ enum class RefreshErrorType(
                 is NoNetworkException -> NETWORK_UNAVAILABLE
                 // Can mean different things but most of the time, it’s a network issue:
                 is UnknownHostException -> NETWORK_UNAVAILABLE
+                is SocketException -> SERVER_UNAVAILABLE
                 is HttpException -> {
                     LogHelper.log(msg = "HttpException ${e.code()}")
                     when (e.code()) {
