@@ -333,6 +333,7 @@
     <string name="visibility_from_to_number">%1$s to %2$s</string>
     <!-- Clear to Perfectly clear, %1$s = Clear, %2$s = Perfectly clear -->
     <string name="visibility_from_to_description">%1$s to %2$s</string>
+    <string name="visibility_very_poor">Very poor</string>
     <string name="visibility_poor">Poor</string>
     <string name="visibility_moderate">Moderate</string>
     <string name="visibility_good">Good</string>

@@ -51,6 +51,7 @@
     <string name="visibility_from_to_number">%1$s à %2$s</string>
     <!-- Clear to Perfectly clear, %1$s = Clear, %2$s = Perfectly clear -->
     <string name="visibility_from_to_description">%1$s à %2$s</string>
+    <string name="visibility_very_poor">Très mauvaise</string>
     <string name="visibility_poor">Mauvaise</string>
     <string name="visibility_moderate">Modérée</string>
     <string name="visibility_good">Bonne</string>
