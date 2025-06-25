@@ -23,6 +23,7 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.os.Build
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
@@ -138,6 +139,22 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         }
         mAdapter = AqiAdapter(context, location, itemAnimationEnabled)
         mRecyclerView.adapter = mAdapter
+        // Without this, the click event is not performed
+        mRecyclerView.setOnTouchListener { view, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_UP) {
+                view.performClick()
+            } else {
+                false
+            }
+        }
+        mRecyclerView.setOnClickListener {
+            IntentHelper.startDailyWeatherActivity(
+                context as GeoActivity,
+                location.formattedId,
+                location.weather!!.todayIndex,
+                ChartDisplay.TAG_AIR_QUALITY
+            )
+        }
         mRecyclerView.layoutManager = LinearLayoutManager(context)
     }
 

@@ -83,15 +83,7 @@ class AqiAdapter(
             mTitle.setTextColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorTitleText))
             mContent.text = item.content
             mContent.setTextColor(MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText))
-            itemView.setOnClickListener {
-                // TODO: Open daily details activity on air quality page
-                /*IntentHelper.startDailyWeatherActivity(
-                    context as GeoActivity,
-                    location.formattedId,
-                    location.weather!!.todayIndex,
-                    ChartDisplay.TAG_AIR_QUALITY
-                )*/
-            }
+            itemView.isClickable = false // Let the click propagate to the RecyclerView parent
             if (mExecuteAnimation) {
                 mProgress.apply {
                     progress = 0f
