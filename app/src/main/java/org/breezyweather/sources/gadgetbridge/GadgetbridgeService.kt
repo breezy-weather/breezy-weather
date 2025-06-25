@@ -110,7 +110,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
             airQuality = getAirQuality(current?.airQuality),
 
             forecasts = getDailyForecasts(location.weather?.dailyForecastStartingToday),
-            hourly = getHourlyForecasts(location.weather?.nextHourlyForecast)
+            hourly = getHourlyForecasts(location.weather?.fullNextHourlyForecast)
         )
     }
 

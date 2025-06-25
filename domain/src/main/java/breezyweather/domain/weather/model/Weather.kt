@@ -37,8 +37,15 @@ data class Weather(
     val alertList: List<Alert> = emptyList(),
 ) : Serializable {
 
-    // Only hourly in the future, starting from current hour
+    // Only hourly in the future, starting from current hour until the next 24 hours
     val nextHourlyForecast = hourlyForecast.filter {
+        // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00
+        it.date.time >= System.currentTimeMillis() - 1.hours.inWholeMilliseconds &&
+            it.date.time < System.currentTimeMillis() + 24.hours.inWholeMilliseconds
+    }
+
+    // Only hourly in the future, starting from current hour until the end
+    val fullNextHourlyForecast = hourlyForecast.filter {
         // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00
         it.date.time >= System.currentTimeMillis() - 1.hours.inWholeMilliseconds
     }

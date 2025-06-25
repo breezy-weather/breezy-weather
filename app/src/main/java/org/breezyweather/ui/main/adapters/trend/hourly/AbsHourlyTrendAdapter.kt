@@ -23,8 +23,6 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
-import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
-import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.extensions.getHour
 import org.breezyweather.common.extensions.getHourIn24Format
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -51,19 +49,15 @@ abstract class AbsHourlyTrendAdapter(
             val context = itemView.context
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
-            hourlyItem.setDayText(hourly.date.getFormattedShortDayAndMonth(location, context))
             talkBackBuilder
-                .append(context.getString(R.string.comma_separator))
-                .append(hourly.date.getFormattedFullDayAndMonth(location, context))
                 .append(context.getString(R.string.comma_separator))
                 .append(hourly.date.getHour(location, activity))
             hourlyItem.setHourText(hourly.date.getHour(location, activity))
             val useAccentColorForDate = position == 0 || hourly.date.getHourIn24Format(location) == "0"
             hourlyItem.setTextColor(
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
                 MainThemeColorProvider.getColor(
                     location,
-                    if (useAccentColorForDate) R.attr.colorBodyText else R.attr.colorCaptionText
+                    if (useAccentColorForDate) R.attr.colorTitleText else R.attr.colorBodyText
                 )
             )
         }

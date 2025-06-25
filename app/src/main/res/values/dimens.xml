@@ -27,7 +27,7 @@
     <dimen name="progress_view_size">36dp</dimen>
     <dimen name="trend_item_width">56dp</dimen>
     <dimen name="daily_trend_item_height">298dp</dimen>
-    <dimen name="hourly_trend_item_height">256dp</dimen>
+    <dimen name="hourly_trend_item_height">206dp</dimen>
     <dimen name="action_bar_height">64dp</dimen>
 
     <!-- text. -->
