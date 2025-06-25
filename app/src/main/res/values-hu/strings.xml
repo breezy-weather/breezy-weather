@@ -829,4 +829,6 @@
     <string name="cloud_cover_about_description">A felhőborítottság az égbolt felhőkkel eltakart százalékos arányát jelenti átlagosan. A felhőborítottság összefügg a napsütéses órák számával.</string>
     <string name="label_description">Leírás</string>
     <string name="unit_mum_voice">Mikrométer</string>
+    <string name="data_sources">Adatforrások</string>
+    <string name="data_modified">Ezt az anyagot a %s az eredetihez képest módosította, elsősorban a hiányzó adatok kiszámítása vagy extrapolálása céljából.</string>
 </resources>
