@@ -300,6 +300,7 @@ dependencies {
     implementation(libs.accompanist.permissions)
 
     testImplementation(libs.bundles.test)
+    testRuntimeOnly(libs.junit.platform)
 
     // preference.
     implementation(libs.preference.ktx)
