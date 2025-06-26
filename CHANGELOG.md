@@ -1,7 +1,8 @@
-# Version 6.0.0 (not yet released)
+# Version 6.0.0-alpha (2025-06-26)
 
 **New features**
 - Complete overhaul of the daily details page to offer a better visualization of the data, and more explanations about the different types of weather data
+- Past hourly forecast can now be viewed in the details page
 
 **Removed features**
 - Homepage hourly forecast card will now only show the next 24 hours, as the rest of the forecast can now be seen with more readability in the daily details page.
