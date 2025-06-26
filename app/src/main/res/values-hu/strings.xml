@@ -832,4 +832,8 @@
     <string name="data_sources">Adatforrások</string>
     <string name="data_modified">Ezt az anyagot a %s az eredetihez képest módosította, elsősorban a hiányzó adatok kiszámítása vagy extrapolálása céljából.</string>
     <string name="visibility_very_poor">Nagyon rossz</string>
+    <string name="action_toggle_data_type_menu">Adattípus-kiválasztási menü be/ki</string>
+    <string name="label_expanded">Kibontva</string>
+    <string name="label_collapsed">Összecsukva</string>
+    <string name="action_close_menu">Menü bezárása</string>
 </resources>
