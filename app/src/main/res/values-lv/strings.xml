@@ -347,7 +347,7 @@
     <string name="action_restart">Restartēt</string>
     <string name="action_save">Saglabāt</string>
     <string name="action_set">Iestatīt</string>
-    <string name="action_more">Apskatīt vairāk</string>
+    <string name="action_more">Vairāk</string>
     <string name="action_edit">Labot</string>
     <string name="action_undo">Atsaukt</string>
     <string name="action_help">Palīdzība</string>
@@ -750,4 +750,22 @@
     <string name="action_allow">Atļaut</string>
     <string name="action_open_in_other_app">Atvērt citā lietotnē</string>
     <string name="action_open_in_other_app_description">Atvērt šo atrašanās vietu citā lietotnē</string>
+    <string name="daily_summary">Ikdienas kopsavilkums</string>
+    <string name="conditions">Apstākļi</string>
+    <string name="visibility_poor">Slikta</string>
+    <string name="visibility_moderate">Mērena</string>
+    <string name="visibility_good">Laba</string>
+    <string name="visibility_clear">Skaidra</string>
+    <string name="visibility_perfectly_clear">Pilnīgi skaidra</string>
+    <string name="visibility_very_poor">Ļoti slikta</string>
+    <string name="data_sources">Datu avoti</string>
+    <string name="ephemeris_about_set">Rieta laiks ir tad, kad saule vai mēness pilnībā pazūd zem apvāršņa.</string>
+    <string name="ephemeris_about_rise">Lēkta laiks ir tad, kad saule vai mēness pilnībā parādās virs apvāršņa.</string>
+    <string name="chart_no_daily_data">Par šo dienu nav pieejami dati.</string>
+    <string name="chart_not_enough_hourly_data">Nav pieejami pietiekami daudz datu, lai attēlotu šīs dienas diagrammu.</string>
+    <string name="chart_maximum_value">Lielākā vērtība</string>
+    <string name="chart_no_hourly_data">Ik stundas dati nav pieejami.</string>
+    <string name="data_modified">%s pielāgoja sākotnējo informāciju, galvenokārt lai aprēķinātu vai noteiktu trūkstošos datus.</string>
+    <string name="ephemeris_about">Par lēkta un rieta laikiem</string>
+    <string name="chart_average">Vidēji</string>
 </resources>
