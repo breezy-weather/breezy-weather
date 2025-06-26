@@ -25,6 +25,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.ColorUtils
 import breezyweather.domain.location.model.Location
 import com.patrykandpatrick.vico.compose.cartesian.CartesianChartHost
 import com.patrykandpatrick.vico.compose.cartesian.axis.rememberAxisGuidelineComponent
@@ -45,7 +46,6 @@ import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianLayerRangeProvider
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianValueFormatter
 import com.patrykandpatrick.vico.core.cartesian.layer.LineCartesianLayer
-import com.patrykandpatrick.vico.core.common.Fill
 import kotlinx.collections.immutable.ImmutableList
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedTime
@@ -56,6 +56,7 @@ import org.breezyweather.common.extensions.windowHeightInDp
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import java.util.Date
 import kotlin.math.max
+import kotlin.math.roundToInt
 
 /**
  * A line chart with time as X-Axis and a formatted value on Y-Axis
@@ -69,7 +70,7 @@ fun EphemerisChart(
     location: Location,
     modelProducer: CartesianChartModelProducer,
     endAxisValueFormatter: CartesianValueFormatter,
-    lineColors: ImmutableList<Fill>,
+    lineColors: ImmutableList<Int>,
     startingDate: Long,
     endingDate: Long,
     modifier: Modifier = Modifier,
@@ -106,8 +107,21 @@ fun EphemerisChart(
                 LineCartesianLayer.LineProvider.series(
                     lineColors.map { fillColor ->
                         LineCartesianLayer.rememberLine(
-                            fill = LineCartesianLayer.LineFill.single(fillColor),
+                            fill = ScaleLineFill(
+                                mapOf(
+                                    0.1f to Color(fillColor),
+                                    -0.1f to Color(
+                                        ColorUtils.setAlphaComponent(fillColor, (255 * 0.5).roundToInt())
+                                    )
+                                )
+                            ),
                             stroke = LineCartesianLayer.LineStroke.continuous(LINE_THICKNESS_DP.dp),
+                            areaFill = ScaleAreaFill(
+                                mapOf(
+                                    0.1f to Color(fillColor),
+                                    -0.1f to Color.Transparent
+                                )
+                            ),
                             pointConnector = LineCartesianLayer.PointConnector.cubic(curvature = 0.3f)
                         )
                     }

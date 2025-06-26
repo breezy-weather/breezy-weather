@@ -47,7 +47,6 @@ import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.MoonPhase
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.core.cartesian.data.lineSeries
-import com.patrykandpatrick.vico.core.common.Fill
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableMap
@@ -198,12 +197,12 @@ fun EphemerisChart(
         { _, value, _ -> TemperatureUnit.C.getShortValueText(context, value) }, // Hack
         lineColors = if (mappedMoonValues.isNotEmpty()) {
             persistentListOf(
-                Fill(MaterialWeatherThemeDelegate.getBrighterColor(MeteorShowerImplementor.themeColor)), // Moon
-                Fill(SunImplementor.themeColor) // Sun
+                MaterialWeatherThemeDelegate.getBrighterColor(MeteorShowerImplementor.themeColor), // Moon
+                SunImplementor.themeColor // Sun
             )
         } else {
             persistentListOf(
-                Fill(SunImplementor.themeColor) // Sun
+                SunImplementor.themeColor // Sun
             )
         },
         startingDate = startingDate.time,

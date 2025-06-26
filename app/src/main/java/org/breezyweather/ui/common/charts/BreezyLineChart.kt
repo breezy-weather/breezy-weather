@@ -245,7 +245,7 @@ fun BreezyLineChart(
 /**
  * Author: Gowsky
  */
-private data class ScaleLineFill(val colors: Map<Float, Color>) : LineCartesianLayer.LineFill {
+internal data class ScaleLineFill(val colors: Map<Float, Color>) : LineCartesianLayer.LineFill {
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     override fun draw(
@@ -268,7 +268,7 @@ private data class ScaleLineFill(val colors: Map<Float, Color>) : LineCartesianL
 /**
  * Author: Gowsky
  */
-private data class ScaleAreaFill(val colors: Map<Float, Color>) : LineCartesianLayer.AreaFill {
+internal data class ScaleAreaFill(val colors: Map<Float, Color>) : LineCartesianLayer.AreaFill {
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val areaPath = Path()
     private val areaBounds = RectF()
