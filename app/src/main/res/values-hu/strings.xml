@@ -816,7 +816,7 @@
     <string name="pressure_steady">Állandó</string>
     <string name="pressure_falling">Csökkenő</string>
     <string name="pressure_about">Légnyomással kapcsolatos információk</string>
-    <string name="pressure_about_description1">A légnyomás a Föld légkörének lefelé ható nyomása. Ez az alkalmazás a tengerszinten mért nyomást használja, hogy könnyebb legyen a különböző magasságú helyek nyomásának összehasonlítása.</string>
+    <string name="pressure_about_description1">A légnyomás a Föld légkörének lefelé ható nyomása. Ez az alkalmazás a tengerszinten mért nyomást (MSLP) használja, hogy könnyebb legyen a különböző magasságú helyek nyomásának összehasonlítása.</string>
     <string name="pressure_about_description2">A jelentős, gyors nyomásváltozások az időjárás változásának előrejelzésére szolgálnak. Például a nyomáscsökkenés eső vagy hó érkezését jelezheti, a nyomásemelkedés pedig az időjárás javulását. Rendellenes légnyomás fejfájást, ízületi fájdalmat, fáradtságot és egyéb hatásokat okozhat.</string>
     <string name="visibility_about">Látótávolsággal kapcsolatos információk</string>
     <string name="visibility_about_description">A látótávolság megmutatja, milyen messzire láthatóak tisztán az épületek és dombok. A látótávolságot befolyásolhatja a csapadék, köd, por, füst vagy a száraz légköri homály.</string>
@@ -831,4 +831,5 @@
     <string name="unit_mum_voice">Mikrométer</string>
     <string name="data_sources">Adatforrások</string>
     <string name="data_modified">Ezt az anyagot a %s az eredetihez képest módosította, elsősorban a hiányzó adatok kiszámítása vagy extrapolálása céljából.</string>
+    <string name="visibility_very_poor">Nagyon rossz</string>
 </resources>
