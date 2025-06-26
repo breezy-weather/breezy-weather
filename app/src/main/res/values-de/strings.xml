@@ -841,4 +841,8 @@
     <string name="visibility_very_poor">Sehr gering</string>
     <string name="data_modified">Dieses Material wurde von %s gegenüber dem Original verändert, hauptsächlich um fehlende Daten zu berechnen oder zu extrapolieren.</string>
     <string name="data_sources">Datenquellen</string>
+    <string name="action_close_menu">Menü schließen</string>
+    <string name="label_expanded">Ausgeklappt</string>
+    <string name="label_collapsed">Eingeklappt</string>
+    <string name="action_toggle_data_type_menu">Umschalten des Datentyp-Auswahlmenüs</string>
 </resources>
