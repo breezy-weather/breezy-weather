@@ -465,6 +465,8 @@
     <string name="action_continue">Continue</string>
     <string name="action_confirm">Confirm</string>
     <string name="action_close">Close</string>
+    <string name="action_close_menu">Close menu</string>
+    <string name="action_toggle_data_type_menu">Toggle the data type selection menu</string>
     <string name="action_share">Share</string>
     <string name="action_download">Download</string>
     <string name="action_show_errors">Tap to see details</string>
@@ -476,6 +478,8 @@
     <string name="action_help_me_choose">Help me choose</string>
     <!-- Labels -->
     <string name="label_description">Description</string>
+    <string name="label_expanded">Expanded</string>
+    <string name="label_collapsed">Collapsed</string>
     <!-- Dialogs -->
     <string name="dialog_app_update_check_title">Stay up-to-date</string>
     <string name="dialog_app_update_check_content">Tap here to enable notifications about app updates.</string>

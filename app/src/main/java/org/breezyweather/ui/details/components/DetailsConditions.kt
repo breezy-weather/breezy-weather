@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily.components
+package org.breezyweather.ui.details.components
 
 import android.text.Spannable
 import android.text.SpannableString
@@ -86,7 +86,7 @@ import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import kotlinx.coroutines.launch
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isLandscape
@@ -105,7 +105,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 @Composable
-fun DailyConditions(
+fun DetailsConditions(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
@@ -192,7 +192,7 @@ fun DailyConditions(
                         },
                         state = tooltipState
                     ) {
-                        DailyItem(
+                        DetailsItem(
                             headlineText = stringResource(R.string.temperature_degree_day_heating),
                             supportingText = temperatureUnit.getDegreeDayValueText(
                                 context,
@@ -226,7 +226,7 @@ fun DailyConditions(
                         },
                         state = tooltipState
                     ) {
-                        DailyItem(
+                        DetailsItem(
                             headlineText = stringResource(R.string.temperature_degree_day_cooling),
                             supportingText = temperatureUnit.getDegreeDayValueText(
                                 context,
@@ -252,10 +252,10 @@ fun DailyConditions(
             }
         }
         item {
-            DailySectionDivider()
+            DetailsSectionDivider()
         }
         item {
-            DailySectionHeader(stringResource(R.string.precipitation_probability))
+            DetailsSectionHeader(stringResource(R.string.precipitation_probability))
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
@@ -536,7 +536,7 @@ private fun TemperatureChart(
     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
 
     val hasEnoughValues = remember(mappedValues) {
-        mappedValues.size >= ChartDisplay.CHART_MIN_COUNT
+        mappedValues.size >= DetailScreen.CHART_MIN_COUNT
     }
 
     if (hasEnoughValues) {
@@ -741,7 +741,7 @@ fun DailyFeelsLikeTemperatureDetails(
         }
     }
     temperatureItems.forEach { item ->
-        DailyItem(
+        DetailsItem(
             headlineText = stringResource(item.first),
             supportingText = temperatureUnit.getValueText(context, value = item.second),
             modifier = Modifier

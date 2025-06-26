@@ -25,7 +25,7 @@ import android.view.ViewGroup
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getIndex
@@ -99,7 +99,7 @@ class HourlyAirQualityAdapter(
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 1f else 0.5f)
             hourlyItem.contentDescription = talkBackBuilder.toString()
             hourlyItem.setOnClickListener {
-                onItemClicked(activity, location, bindingAdapterPosition, ChartDisplay.TAG_AIR_QUALITY)
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_AIR_QUALITY)
             }
         }
     }

@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily.components
+package org.breezyweather.ui.details.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -69,7 +69,7 @@ import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
@@ -89,7 +89,7 @@ import kotlin.math.max
 import kotlin.math.roundToInt
 
 @Composable
-fun DailyAirQuality(
+fun DetailsAirQuality(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
@@ -169,30 +169,30 @@ fun DailyAirQuality(
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
             }
             item {
-                DailySectionHeader(stringResource(R.string.air_quality_health_information))
+                DetailsSectionHeader(stringResource(R.string.air_quality_health_information))
             }
             item {
-                DailyCardText(daily.airQuality!!.getDescription(context) ?: "")
+                DetailsCardText(daily.airQuality!!.getDescription(context) ?: "")
             }
             primaryPollutant?.let {
                 item {
                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
                 }
                 item {
-                    DailySectionHeader(
+                    DetailsSectionHeader(
                         stringResource(R.string.air_quality_pollutant_primary),
                         it.pollutantType.getFullName(context)
                     )
                 }
                 item {
-                    DailyCardText(stringResource(it.pollutantType.sources))
+                    DetailsCardText(stringResource(it.pollutantType.sources))
                 }
             }
             item {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
             }
             item {
-                DailySectionHeader(stringResource(R.string.air_quality_pollutant_details))
+                DetailsSectionHeader(stringResource(R.string.air_quality_pollutant_details))
             }
             item {
                 AirQualityDetails(detailedPollutants)
@@ -202,10 +202,10 @@ fun DailyAirQuality(
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
         }
         item {
-            DailySectionHeader(stringResource(R.string.air_quality_index_about))
+            DetailsSectionHeader(stringResource(R.string.air_quality_index_about))
         }
         item {
-            DailyCardText(
+            DetailsCardText(
                 stringResource(R.string.air_quality_index_about_description_1),
                 stringResource(R.string.air_quality_index_about_description_2)
             )
@@ -214,7 +214,7 @@ fun DailyAirQuality(
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
         }
         item {
-            DailySectionHeader(stringResource(R.string.air_quality_index_scale))
+            DetailsSectionHeader(stringResource(R.string.air_quality_index_scale))
         }
         item {
             AirQualityScale()
@@ -318,7 +318,7 @@ private fun AirQualityChart(
 
     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
 
-    if (mappedValues.size >= ChartDisplay.CHART_MIN_COUNT) {
+    if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
         val maxY = remember(mappedValues) {
             max(
                 PollutantIndex.aqiThresholds[4],
@@ -392,7 +392,7 @@ fun AirQualityDetails(
                 .padding(dimensionResource(R.dimen.little_margin))
         ) {
             detailedPollutants.forEach {
-                DailyAirQualityItem(
+                DetailsAirQualityItem(
                     it,
                     Modifier
                         .fillMaxWidth(0.5f)
@@ -404,7 +404,7 @@ fun AirQualityDetails(
 }
 
 @Composable
-fun DailyAirQualityItem(
+fun DetailsAirQualityItem(
     aqiItem: AqiItem,
     modifier: Modifier = Modifier,
 ) {

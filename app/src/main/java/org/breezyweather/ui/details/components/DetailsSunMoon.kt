@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily.components
+package org.breezyweather.ui.details.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.PaddingValues
@@ -79,7 +79,7 @@ import java.util.Date
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
-fun DailySunMoon(
+fun DetailsSunMoon(
     location: Location,
     today: Daily,
     yesterday: Daily? = null,
@@ -94,7 +94,7 @@ fun DailySunMoon(
     ) {
         if (today.sun?.isValid == true || today.moon?.isValid == true) {
             item {
-                DailyChart(location, today, yesterday)
+                EphemerisChart(location, today, yesterday)
             }
         }
         item {
@@ -126,10 +126,10 @@ fun DailySunMoon(
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
         }
         item {
-            DailySectionHeader(stringResource(R.string.ephemeris_about))
+            DetailsSectionHeader(stringResource(R.string.ephemeris_about))
         }
         item {
-            DailyCardText(
+            DetailsCardText(
                 stringResource(R.string.ephemeris_about_rise) +
                     " " +
                     stringResource(R.string.ephemeris_about_set)
@@ -140,7 +140,7 @@ fun DailySunMoon(
 }
 
 @Composable
-fun DailyChart(
+fun EphemerisChart(
     location: Location,
     today: Daily,
     yesterday: Daily?,

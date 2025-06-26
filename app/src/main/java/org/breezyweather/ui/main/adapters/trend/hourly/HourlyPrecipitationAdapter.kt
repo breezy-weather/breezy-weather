@@ -25,7 +25,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Precipitation
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getHourlyPrecipitationColor
@@ -115,7 +115,7 @@ class HourlyPrecipitationAdapter(
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 1f else 0.5f)
             hourlyItem.contentDescription = talkBackBuilder.toString()
             hourlyItem.setOnClickListener {
-                onItemClicked(activity, location, bindingAdapterPosition, ChartDisplay.TAG_PRECIPITATION)
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_PRECIPITATION)
             }
         }
     }

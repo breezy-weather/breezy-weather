@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily.components
+package org.breezyweather.ui.details.components
 
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
@@ -51,7 +51,7 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.PressureUnit
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -66,7 +66,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 @Composable
-fun DailyPressure(
+fun DetailsPressure(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     theDay: Date,
@@ -86,7 +86,7 @@ fun DailyPressure(
             vertical = dimensionResource(R.dimen.little_margin)
         )
     ) {
-        if (mappedValues.size >= ChartDisplay.CHART_MIN_COUNT) {
+        if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
             item {
                 PressureChart(location, mappedValues, theDay)
             }
@@ -100,10 +100,10 @@ fun DailyPressure(
         }
         // TODO: Daily summary
         item {
-            DailySectionHeader(stringResource(R.string.pressure_about))
+            DetailsSectionHeader(stringResource(R.string.pressure_about))
         }
         item {
-            DailyCardText(
+            DetailsCardText(
                 stringResource(R.string.pressure_about_description1),
                 stringResource(R.string.pressure_about_description2)
             )

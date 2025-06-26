@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily.components
+package org.breezyweather.ui.details.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -54,7 +54,7 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedTime
@@ -66,7 +66,7 @@ import java.text.NumberFormat
 import java.util.Date
 
 @Composable
-fun DailyCloudCover(
+fun DetailsCloudCover(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
@@ -87,7 +87,7 @@ fun DailyCloudCover(
             vertical = dimensionResource(R.dimen.little_margin)
         )
     ) {
-        if (mappedValues.size >= ChartDisplay.CHART_MIN_COUNT) {
+        if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
             item {
                 CloudCoverChart(location, mappedValues, daily.date)
             }
@@ -101,7 +101,7 @@ fun DailyCloudCover(
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
             }
             item {
-                DailyItem(
+                DetailsItem(
                     headlineText = stringResource(R.string.sunshine_duration),
                     supportingText = DurationUnit.H.getValueText(context, sunshineDuration),
                     icon = R.drawable.ic_sunshine_duration,
@@ -120,10 +120,10 @@ fun DailyCloudCover(
         }
         // TODO: Daily summary
         item {
-            DailySectionHeader(stringResource(R.string.cloud_cover_about))
+            DetailsSectionHeader(stringResource(R.string.cloud_cover_about))
         }
         item {
-            DailyCardText(stringResource(R.string.cloud_cover_about_description))
+            DetailsCardText(stringResource(R.string.cloud_cover_about_description))
         }
         bottomInsetItem()
     }

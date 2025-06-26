@@ -29,7 +29,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Wind
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getColor
@@ -125,7 +125,7 @@ class DailyWindAdapter(
 
             dailyItem.contentDescription = talkBackBuilder.toString()
             dailyItem.setOnClickListener {
-                onItemClicked(activity, location, bindingAdapterPosition, ChartDisplay.TAG_WIND)
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_WIND)
             }
         }
     }

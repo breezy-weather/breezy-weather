@@ -257,6 +257,8 @@
     <string name="action_continue">Continuer</string>
     <string name="action_confirm">Confirmer</string>
     <string name="action_close">Fermer</string>
+    <string name="action_close_menu">Fermer le menu</string>
+    <string name="action_toggle_data_type_menu">Ouvrir le menu de choix du type de données</string>
     <string name="action_share">Partager</string>
     <string name="action_download">Télécharger</string>
 
@@ -565,6 +567,8 @@
     <string name="action_help_me_choose">Aidez-moi à choisir</string>
     <!-- Libellés -->
     <string name="label_description">Description</string>
+    <string name="label_expanded">Développé</string>
+    <string name="label_collapsed">Réduit</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorer quand la batterie est faible</string>
     <string name="settings_notifications_app_updates_check">Notifications des mises à jour de l’appli</string>
     <string name="settings_notifications_permission">Permission de notification requise</string>

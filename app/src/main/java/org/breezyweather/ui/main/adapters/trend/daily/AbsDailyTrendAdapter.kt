@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -90,10 +90,10 @@ abstract class AbsDailyTrendAdapter(
             activity: GeoActivity,
             location: Location,
             adapterPosition: Int,
-            chartDisplay: ChartDisplay,
+            detailScreen: DetailScreen,
         ) {
             if (activity.isActivityResumed) {
-                IntentHelper.startDailyWeatherActivity(activity, location.formattedId, adapterPosition, chartDisplay)
+                IntentHelper.startDailyWeatherActivity(activity, location.formattedId, adapterPosition, detailScreen)
             }
         }
     }

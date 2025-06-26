@@ -34,7 +34,7 @@ import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -133,7 +133,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                     context as GeoActivity,
                     location.formattedId,
                     location.weather!!.todayIndex,
-                    ChartDisplay.TAG_AIR_QUALITY
+                    DetailScreen.TAG_AIR_QUALITY
                 )
             }
         }
@@ -152,7 +152,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 context as GeoActivity,
                 location.formattedId,
                 location.weather!!.todayIndex,
-                ChartDisplay.TAG_AIR_QUALITY
+                DetailScreen.TAG_AIR_QUALITY
             )
         }
         mRecyclerView.layoutManager = LinearLayoutManager(context)

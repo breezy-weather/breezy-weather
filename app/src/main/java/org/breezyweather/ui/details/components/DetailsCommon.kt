@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily.components
+package org.breezyweather.ui.details.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -57,7 +57,7 @@ import org.breezyweather.ui.theme.compose.DayNightTheme
 import kotlin.math.roundToInt
 
 @Composable
-fun DailyItem(
+fun DetailsItem(
     headlineText: String,
     supportingText: String?,
     modifier: Modifier = Modifier,
@@ -192,7 +192,7 @@ fun NighttimeWithInfo(
 }
 
 @Composable
-fun DailySectionHeader(
+fun DetailsSectionHeader(
     sectionName: String,
     subtitle: String? = null,
     modifier: Modifier = Modifier,
@@ -223,7 +223,7 @@ fun DailySectionHeader(
 }
 
 @Composable
-fun DailySectionDivider(
+fun DetailsSectionDivider(
     modifier: Modifier = Modifier,
 ) {
     HorizontalDivider(
@@ -233,7 +233,7 @@ fun DailySectionDivider(
 }
 
 @Composable
-fun DailyCardText(
+fun DetailsCardText(
     text1: String,
     text2: String? = null,
     modifier: Modifier = Modifier,

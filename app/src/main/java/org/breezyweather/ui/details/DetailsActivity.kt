@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily
+package org.breezyweather.ui.details
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -24,7 +24,7 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 
 @AndroidEntryPoint
-class DailyActivity : GeoActivity() {
+class DetailsActivity : GeoActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

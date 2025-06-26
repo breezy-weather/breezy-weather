@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily.components
+package org.breezyweather.ui.details.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -64,7 +64,7 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedTime
@@ -79,7 +79,7 @@ import java.text.NumberFormat
 import kotlin.math.max
 
 @Composable
-fun DailyPrecipitation(
+fun DetailsPrecipitation(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
@@ -116,10 +116,10 @@ fun DailyPrecipitation(
             PrecipitationDetails(daily.day?.precipitation, daily.night?.precipitation)
         }
         item {
-            DailySectionDivider()
+            DetailsSectionDivider()
         }
         item {
-            DailySectionHeader(stringResource(R.string.precipitation_probability))
+            DetailsSectionHeader(stringResource(R.string.precipitation_probability))
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
@@ -142,10 +142,10 @@ fun DailyPrecipitation(
             (daily.night?.precipitationDuration?.total ?: 0.0) > 0.0
         ) {
             item {
-                DailySectionDivider()
+                DetailsSectionDivider()
             }
             item {
-                DailySectionHeader(stringResource(R.string.precipitation_duration))
+                DetailsSectionHeader(stringResource(R.string.precipitation_duration))
             }
             item {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
@@ -270,7 +270,7 @@ internal fun PrecipitationChart(
 
     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
 
-    if (mappedValues.size >= ChartDisplay.CHART_MIN_COUNT) {
+    if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
         val precipitationUnit = SettingsManager.getInstance(context).precipitationUnit
         val step = precipitationUnit.chartStep
         val maxY = remember(mappedValues) {
@@ -403,7 +403,7 @@ fun DailyPrecipitationDetails(
         }
     }
     precipitationItems.forEach { item ->
-        DailyItem(
+        DetailsItem(
             headlineText = stringResource(item.first),
             supportingText = precipitationUnit.getValueText(context, item.second),
             modifier = Modifier
@@ -524,7 +524,7 @@ internal fun PrecipitationProbabilityChart(
 
     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
 
-    if (mappedValues.size >= ChartDisplay.CHART_MIN_COUNT) {
+    if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
         val maxY = 100.0
 
         val endAxisValueFormatter = CartesianValueFormatter { _, value, _ ->
@@ -641,7 +641,7 @@ internal fun DailyPrecipitationProbabilityDetails(
         }
     }
     precipitationProbabilityItems.forEach { item ->
-        DailyItem(
+        DetailsItem(
             headlineText = stringResource(item.first),
             supportingText = percentUnit.format(item.second.div(100.0)),
             modifier = Modifier
@@ -739,7 +739,7 @@ fun DailyPrecipitationDurationDetails(
         }
     }
     precipitationDurationItems.forEach { item ->
-        DailyItem(
+        DetailsItem(
             headlineText = stringResource(item.first),
             supportingText = durationUnit.getValueText(context, item.second),
             modifier = Modifier

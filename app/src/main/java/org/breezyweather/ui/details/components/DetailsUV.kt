@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily.components
+package org.breezyweather.ui.details.components
 
 import android.text.BidiFormatter
 import androidx.compose.foundation.layout.Arrangement
@@ -60,7 +60,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay.Companion.CHART_MIN_COUNT
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen.Companion.CHART_MIN_COUNT
 import org.breezyweather.common.basic.models.options.basic.Utils.formatDouble
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -75,7 +75,7 @@ import kotlin.math.max
 import kotlin.math.roundToInt
 
 @Composable
-fun DailyUV(
+fun DetailsUV(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
@@ -116,16 +116,16 @@ fun DailyUV(
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
         }
         item {
-            DailySectionHeader(stringResource(R.string.uv_index_about))
+            DetailsSectionHeader(stringResource(R.string.uv_index_about))
         }
         item {
-            DailyCardText(stringResource(R.string.uv_index_about_description))
+            DetailsCardText(stringResource(R.string.uv_index_about_description))
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
         }
         item {
-            DailySectionHeader(stringResource(R.string.uv_index_scale))
+            DetailsSectionHeader(stringResource(R.string.uv_index_scale))
         }
         item {
             UVScale()

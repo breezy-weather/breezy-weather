@@ -125,7 +125,7 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".ui.daily.DailyActivity"
+            android:name=".ui.details.DetailsActivity"
             android:label="@string/daily_forecast"
             android:theme="@style/BreezyWeatherTheme" />
 

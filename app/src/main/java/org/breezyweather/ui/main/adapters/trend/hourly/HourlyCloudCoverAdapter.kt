@@ -24,7 +24,7 @@ import android.view.ViewGroup
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.domain.weather.model.CLOUD_COVER_CLEAR
 import org.breezyweather.domain.weather.model.CLOUD_COVER_PARTLY
@@ -109,7 +109,7 @@ class HourlyCloudCoverAdapter(
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 1f else 0.5f)
             hourlyItem.contentDescription = talkBackBuilder.toString()
             hourlyItem.setOnClickListener {
-                onItemClicked(activity, location, bindingAdapterPosition, ChartDisplay.TAG_CLOUD_COVER)
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_CLOUD_COVER)
             }
         }
     }

@@ -29,7 +29,7 @@ import kotlinx.collections.immutable.persistentSetOf
 import kotlinx.collections.immutable.toImmutableSet
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.index.PollenIndex
@@ -132,7 +132,7 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 context as GeoActivity,
                 location.formattedId,
                 mPager.currentItem + (location.weather!!.todayIndex ?: 0),
-                ChartDisplay.TAG_POLLEN
+                DetailScreen.TAG_POLLEN
             )
         }
     }

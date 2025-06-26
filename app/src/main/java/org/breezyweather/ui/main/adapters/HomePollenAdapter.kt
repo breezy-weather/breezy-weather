@@ -25,7 +25,7 @@ import breezyweather.domain.weather.model.Daily
 import kotlinx.collections.immutable.ImmutableSet
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.capitalize
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
@@ -101,7 +101,7 @@ class HomePollenViewHolder internal constructor(
                 context as GeoActivity,
                 location.formattedId,
                 location.weather!!.dailyForecast.indexOf(daily),
-                ChartDisplay.TAG_POLLEN
+                DetailScreen.TAG_POLLEN
             )
         }
     }

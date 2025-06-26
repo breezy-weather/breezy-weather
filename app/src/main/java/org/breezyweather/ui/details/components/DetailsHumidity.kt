@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily.components
+package org.breezyweather.ui.details.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -51,7 +51,7 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -63,10 +63,9 @@ import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 import java.text.NumberFormat
 import java.util.Date
-import kotlin.math.max
 
 @Composable
-fun DailyHumidity(
+fun DetailsHumidity(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     theDay: Date,
@@ -93,7 +92,7 @@ fun DailyHumidity(
             vertical = dimensionResource(R.dimen.little_margin)
         )
     ) {
-        if (mappedHumidityValues.size >= ChartDisplay.CHART_MIN_COUNT) {
+        if (mappedHumidityValues.size >= DetailScreen.CHART_MIN_COUNT) {
             item {
                 HumidityChart(location, mappedHumidityValues, theDay)
             }
@@ -107,21 +106,21 @@ fun DailyHumidity(
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
         }
         item {
-            DailySectionHeader(stringResource(R.string.humidity_about))
+            DetailsSectionHeader(stringResource(R.string.humidity_about))
         }
         item {
-            DailyCardText(stringResource(R.string.humidity_about_description))
+            DetailsCardText(stringResource(R.string.humidity_about_description))
         }
         item {
-            DailySectionDivider()
+            DetailsSectionDivider()
         }
         item {
-            DailySectionHeader(stringResource(R.string.dew_point))
+            DetailsSectionHeader(stringResource(R.string.dew_point))
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
         }
-        if (mappedDewPointValues.size >= ChartDisplay.CHART_MIN_COUNT) {
+        if (mappedDewPointValues.size >= DetailScreen.CHART_MIN_COUNT) {
             item {
                 DewPointChart(location, mappedDewPointValues, theDay)
             }
@@ -134,10 +133,10 @@ fun DailyHumidity(
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
         }
         item {
-            DailySectionHeader(stringResource(R.string.dew_point_about))
+            DetailsSectionHeader(stringResource(R.string.dew_point_about))
         }
         item {
-            DailyCardText(
+            DetailsCardText(
                 stringResource(
                     R.string.dew_point_about_description,
                     NumberFormat.getPercentInstance(context.currentLocale).apply {

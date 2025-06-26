@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily.components
+package org.breezyweather.ui.details.components
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -41,7 +41,7 @@ import org.breezyweather.ui.settings.preference.bottomInsetItem
  * TODO: Save pollen hourly data, and display a hourly index chart of the pollen with the maximum index on that day
  */
 @Composable
-fun DailyPollen(
+fun DetailsPollen(
     pollen: Pollen?,
     pollenIndexSource: PollenIndexSource?,
     modifier: Modifier = Modifier,
@@ -56,7 +56,7 @@ fun DailyPollen(
         if (pollen?.isIndexValid == true) {
             pollen.getPollenWithMaxIndex()?.let {
                 item {
-                    DailySectionHeader(
+                    DetailsSectionHeader(
                         stringResource(R.string.pollen_primary),
                         stringResource(it.pollenName)
                     )
@@ -66,7 +66,7 @@ fun DailyPollen(
                 }
             }
             item {
-                DailySectionHeader(stringResource(R.string.pollen_details))
+                DetailsSectionHeader(stringResource(R.string.pollen_details))
             }
             item {
                 Material3CardListItem(withPadding = false) {

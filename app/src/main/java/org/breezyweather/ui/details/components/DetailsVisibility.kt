@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily.components
+package org.breezyweather.ui.details.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -51,7 +51,7 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -64,7 +64,7 @@ import java.util.Date
 import kotlin.math.max
 
 @Composable
-fun DailyVisibility(
+fun DetailsVisibility(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     theDay: Date,
@@ -84,7 +84,7 @@ fun DailyVisibility(
             vertical = dimensionResource(R.dimen.little_margin)
         )
     ) {
-        if (mappedValues.size >= ChartDisplay.CHART_MIN_COUNT) {
+        if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
             item {
                 VisibilityChart(location, mappedValues, theDay)
             }
@@ -98,10 +98,10 @@ fun DailyVisibility(
         }
         // TODO: Daily summary
         item {
-            DailySectionHeader(stringResource(R.string.visibility_about))
+            DetailsSectionHeader(stringResource(R.string.visibility_about))
         }
         item {
-            DailyCardText(stringResource(R.string.visibility_about_description))
+            DetailsCardText(stringResource(R.string.visibility_about_description))
         }
         bottomInsetItem()
     }

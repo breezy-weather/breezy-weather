@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily.components
+package org.breezyweather.ui.details.components
 
 import android.text.BidiFormatter
 import android.text.SpannableString
@@ -68,7 +68,7 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.Utils.formatDouble
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.extensions.getFormattedTime
@@ -84,7 +84,7 @@ import org.breezyweather.ui.theme.compose.DayNightTheme
 import kotlin.math.max
 
 @Composable
-fun DailyWind(
+fun DetailsWind(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
@@ -112,16 +112,16 @@ fun DailyWind(
         }
         // TODO: Daily summary
         item {
-            DailySectionHeader(stringResource(R.string.wind_speed_about))
+            DetailsSectionHeader(stringResource(R.string.wind_speed_about))
         }
         item {
-            DailyCardText(stringResource(R.string.wind_speed_about_description))
+            DetailsCardText(stringResource(R.string.wind_speed_about_description))
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
         }
         item {
-            DailySectionHeader(stringResource(R.string.wind_strength_scale))
+            DetailsSectionHeader(stringResource(R.string.wind_strength_scale))
         }
         item {
             WindScale()
@@ -279,7 +279,7 @@ private fun WindChart(
 
     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
 
-    if (mappedValues.size >= ChartDisplay.CHART_MIN_COUNT) {
+    if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
         val speedUnit = SettingsManager.getInstance(context).speedUnit
         val step = speedUnit.chartStep
         val maxY = remember(mappedValues) {

@@ -25,7 +25,7 @@ import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.BaseEnum
 
-enum class ChartDisplay(
+enum class DetailScreen(
     override val id: String,
     @StringRes val nameId: Int,
     @DrawableRes val iconId: Int,
@@ -48,12 +48,12 @@ enum class ChartDisplay(
 
         const val CHART_MIN_COUNT = 2
 
-        fun toChartDisplayList(
+        fun toDetailScreenList(
             location: Location,
-        ): ImmutableList<ChartDisplay> {
-            return ChartDisplay.entries
-                .filter { chartDisplay ->
-                    when (chartDisplay) {
+        ): ImmutableList<DetailScreen> {
+            return DetailScreen.entries
+                .filter { detailScreen ->
+                    when (detailScreen) {
                         TAG_CONDITIONS -> true // Always displayed
                         TAG_PRECIPITATION -> true // Too many conditions
                         TAG_WIND -> location.weather?.dailyForecast?.any {
@@ -87,7 +87,7 @@ enum class ChartDisplay(
                 }.toImmutableList()
         }
 
-        fun toValue(list: List<ChartDisplay>): String {
+        fun toValue(list: List<DetailScreen>): String {
             val builder = StringBuilder()
             for (v in list) {
                 builder.append("&").append(v.id)
@@ -98,7 +98,7 @@ enum class ChartDisplay(
             return builder.toString()
         }
 
-        fun getSummary(context: Context, list: List<ChartDisplay>): String {
+        fun getSummary(context: Context, list: List<DetailScreen>): String {
             val builder = StringBuilder()
             for (item in list) {
                 builder.append(",").append(item.getName(context))

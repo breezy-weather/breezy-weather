@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.getHour
 import org.breezyweather.common.extensions.getHourIn24Format
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -66,7 +66,7 @@ abstract class AbsHourlyTrendAdapter(
             activity: GeoActivity,
             location: Location,
             adapterPosition: Int,
-            chartDisplay: ChartDisplay,
+            detailScreen: DetailScreen,
         ) {
             if (activity.isActivityResumed) {
                 val hourlyDate = location.weather!!.nextHourlyForecast[adapterPosition].date
@@ -74,7 +74,7 @@ abstract class AbsHourlyTrendAdapter(
                 val dailyIndex = location.weather!!.dailyForecast.indexOfFirst {
                     it.date.time > hourlyDate.time - 1.days.inWholeMilliseconds
                 }.let { if (it == -1) null else it }
-                IntentHelper.startDailyWeatherActivity(activity, location.formattedId, dailyIndex, chartDisplay)
+                IntentHelper.startDailyWeatherActivity(activity, location.formattedId, dailyIndex, detailScreen)
             }
         }
     }

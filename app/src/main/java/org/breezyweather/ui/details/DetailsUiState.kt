@@ -14,13 +14,13 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily
+package org.breezyweather.ui.details
 
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 
-data class DailyUiState(
+data class DetailsUiState(
     val location: Location? = null,
-    val selectedChart: ChartDisplay = ChartDisplay.TAG_CONDITIONS,
+    val selectedChart: DetailScreen = DetailScreen.TAG_CONDITIONS,
     val initialIndex: Int = 0,
 )

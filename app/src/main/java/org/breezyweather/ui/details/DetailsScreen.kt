@@ -14,8 +14,9 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily
+package org.breezyweather.ui.details
 
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,19 +25,21 @@ import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButtonMenu
+import androidx.compose.material3.FloatingActionButtonMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.PrimaryScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
+import androidx.compose.material3.ToggleFloatingActionButton
+import androidx.compose.material3.ToggleFloatingActionButtonDefaults.animateIcon
+import androidx.compose.material3.animateFloatingActionButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -45,6 +48,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -53,9 +57,14 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.semantics.customActions
+import androidx.compose.ui.semantics.isTraversalGroup
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.semantics.traversalIndex
 import androidx.lifecycle.viewmodel.compose.viewModel
 import breezyweather.domain.location.model.Location
 import kotlinx.collections.immutable.ImmutableList
@@ -64,7 +73,7 @@ import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.getDayOfMonth
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
@@ -76,17 +85,17 @@ import org.breezyweather.common.extensions.toTimezoneSpecificHour
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.insets.BWCenterAlignedTopAppBar
-import org.breezyweather.ui.daily.components.DailyAirQuality
-import org.breezyweather.ui.daily.components.DailyCloudCover
-import org.breezyweather.ui.daily.components.DailyConditions
-import org.breezyweather.ui.daily.components.DailyHumidity
-import org.breezyweather.ui.daily.components.DailyPollen
-import org.breezyweather.ui.daily.components.DailyPrecipitation
-import org.breezyweather.ui.daily.components.DailyPressure
-import org.breezyweather.ui.daily.components.DailySunMoon
-import org.breezyweather.ui.daily.components.DailyUV
-import org.breezyweather.ui.daily.components.DailyVisibility
-import org.breezyweather.ui.daily.components.DailyWind
+import org.breezyweather.ui.details.components.DetailsAirQuality
+import org.breezyweather.ui.details.components.DetailsCloudCover
+import org.breezyweather.ui.details.components.DetailsConditions
+import org.breezyweather.ui.details.components.DetailsHumidity
+import org.breezyweather.ui.details.components.DetailsPollen
+import org.breezyweather.ui.details.components.DetailsPrecipitation
+import org.breezyweather.ui.details.components.DetailsPressure
+import org.breezyweather.ui.details.components.DetailsSunMoon
+import org.breezyweather.ui.details.components.DetailsUV
+import org.breezyweather.ui.details.components.DetailsVisibility
+import org.breezyweather.ui.details.components.DetailsWind
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
@@ -96,17 +105,17 @@ import java.util.Date
 @Composable
 internal fun DailyWeatherScreen(
     onBackPressed: () -> Unit,
-    dailyViewModel: DailyViewModel = viewModel(),
+    detailsViewModel: DetailsViewModel = viewModel(),
 ) {
-    val dailyUiState by dailyViewModel.uiState.collectAsState()
+    val detailsUiState by detailsViewModel.uiState.collectAsState()
 
     val context = LocalContext.current
     val activity = LocalActivity.current
 
-    val isLightTheme = MainThemeColorProvider.isLightTheme(context, dailyUiState.location)
-    LaunchedEffect(dailyUiState.location) {
+    val isLightTheme = MainThemeColorProvider.isLightTheme(context, detailsUiState.location)
+    LaunchedEffect(detailsUiState.location) {
         // re-setting the status bar color once the location is fetched
-        if (dailyUiState.location != null && activity != null) {
+        if (detailsUiState.location != null && activity != null) {
             ThemeManager
                 .getInstance(context)
                 .weatherThemeDelegate
@@ -123,17 +132,27 @@ internal fun DailyWeatherScreen(
         Material3Scaffold(
             topBar = {
                 BWCenterAlignedTopAppBar(
-                    title = stringResource(R.string.daily_forecast),
+                    title = detailsUiState.selectedChart.getName(context),
                     onBackPressed = onBackPressed
                 )
-            }
+            },
+            floatingActionButton = {
+                detailsUiState.location?.let { loc ->
+                    DetailsDropdownMenu(
+                        location = loc,
+                        selectedChart = detailsUiState.selectedChart,
+                        setSelectedChart = { chart -> detailsViewModel.setSelectedChart(chart) }
+                    )
+                }
+            },
+            floatingActionButtonPosition = FabPosition.End
         ) { paddings ->
-            dailyUiState.location?.let { loc ->
+            detailsUiState.location?.let { loc ->
                 val scope = rememberCoroutineScope()
                 val pages = remember(loc.weather!!.dailyForecast) {
                     loc.weather!!.dailyForecast.map { it.date }.toImmutableList()
                 }
-                val pagerState = rememberPagerState(initialPage = dailyUiState.initialIndex) {
+                val pagerState = rememberPagerState(initialPage = detailsUiState.initialIndex) {
                     loc.weather!!.dailyForecast.size
                 }
                 val pagerPage by remember {
@@ -163,9 +182,8 @@ internal fun DailyWeatherScreen(
                         DailyPagerContent(
                             location = loc,
                             selected = page,
-                            selectedChart = dailyUiState.selectedChart,
-                            setSelectedChart = { chart -> dailyViewModel.setSelectedChart(chart) },
-                            pollenIndexSource = dailyViewModel.getPollenIndexSource(loc)
+                            selectedChart = detailsUiState.selectedChart,
+                            pollenIndexSource = detailsViewModel.getPollenIndexSource(loc)
                         )
                     }
                 }
@@ -234,67 +252,93 @@ fun DailyPagerIndicator(
 }
 
 @Composable
-fun DailyDropdownMenu(
+fun DetailsDropdownMenu(
     location: Location,
-    selectedChart: ChartDisplay,
-    setSelectedChart: (ChartDisplay) -> Unit,
+    selectedChart: DetailScreen,
+    setSelectedChart: (DetailScreen) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    var expanded by remember { mutableStateOf(false) }
-    val chartDisplayEntries = remember(location) {
-        ChartDisplay.toChartDisplayList(location)
+    val detailScreenEntries = remember(location) {
+        DetailScreen.toDetailScreenList(location)
     }
+
+    val listState = rememberLazyListState()
+    val fabVisible by remember { derivedStateOf { listState.firstVisibleItemIndex == 0 } }
 
     Box(
         modifier = modifier
-            .fillMaxWidth()
     ) {
-        DropdownMenuItem(
-            leadingIcon = {
-                Icon(
-                    painterResource(selectedChart.iconId),
-                    contentDescription = null,
-                    modifier = Modifier.size(24.dp)
-                )
-            },
-            text = {
-                Text(
-                    selectedChart.getName(context),
-                    style = MaterialTheme.typography.titleLarge
-                )
-            },
-            trailingIcon = {
-                Icon(
-                    Icons.Filled.KeyboardArrowDown,
-                    contentDescription = null
-                )
-            },
-            onClick = {
-                expanded = !expanded
-            }
-        )
-        DropdownMenu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false }
-        ) {
-            chartDisplayEntries
-                .forEach { option ->
-                    DropdownMenuItem(
-                        leadingIcon = {
-                            Icon(
-                                painterResource(option.iconId),
-                                contentDescription = null,
-                                modifier = Modifier.size(24.dp)
+        var fabMenuExpanded by rememberSaveable { mutableStateOf(false) }
+
+        BackHandler(fabMenuExpanded) { fabMenuExpanded = false }
+
+        FloatingActionButtonMenu(
+            modifier = Modifier.align(Alignment.BottomEnd),
+            expanded = fabMenuExpanded,
+            button = {
+                ToggleFloatingActionButton(
+                    modifier = Modifier
+                        .semantics {
+                            traversalIndex = -1f
+                            stateDescription = context.getString(
+                                if (fabMenuExpanded) R.string.label_expanded else R.string.label_collapsed
                             )
-                        },
-                        text = { Text(option.getName(context)) },
-                        onClick = {
-                            setSelectedChart(option)
-                            expanded = false
+                            contentDescription = context.getString(R.string.action_toggle_data_type_menu)
+                        }.animateFloatingActionButton(
+                            visible = fabVisible || fabMenuExpanded,
+                            alignment = Alignment.BottomEnd
+                        ),
+                    checked = fabMenuExpanded,
+                    onCheckedChange = { fabMenuExpanded = !fabMenuExpanded }
+                ) {
+                    val imageVector by remember {
+                        derivedStateOf {
+                            if (checkedProgress > 0.5f) {
+                                R.drawable.ic_close
+                            } else {
+                                // FIXME: Does not apply immediately
+                                selectedChart.iconId
+                            }
                         }
+                    }
+                    Icon(
+                        painter = painterResource(imageVector),
+                        contentDescription = null,
+                        modifier = Modifier.animateIcon({ checkedProgress })
                     )
                 }
+            }
+        ) {
+            detailScreenEntries.forEachIndexed { i, item ->
+                FloatingActionButtonMenuItem(
+                    modifier = Modifier
+                        .semantics {
+                            isTraversalGroup = true
+                            // Add a custom a11y action to allow closing the menu when focusing
+                            // the last menu item, since the close button comes before the first
+                            // menu item in the traversal order.
+                            if (i == detailScreenEntries.size - 1) {
+                                customActions =
+                                    listOf(
+                                        CustomAccessibilityAction(
+                                            label = context.getString(R.string.action_close_menu),
+                                            action = {
+                                                fabMenuExpanded = false
+                                                true
+                                            }
+                                        )
+                                    )
+                            }
+                        },
+                    onClick = {
+                        setSelectedChart(item)
+                        fabMenuExpanded = false
+                    },
+                    icon = { Icon(painterResource(item.iconId), contentDescription = null) },
+                    text = { Text(text = item.getName(context)) }
+                )
+            }
         }
     }
 }
@@ -303,8 +347,7 @@ fun DailyDropdownMenu(
 fun DailyPagerContent(
     location: Location,
     selected: Int,
-    selectedChart: ChartDisplay,
-    setSelectedChart: (ChartDisplay) -> Unit,
+    selectedChart: DetailScreen,
     pollenIndexSource: PollenIndexSource?,
     modifier: Modifier = Modifier,
 ) {
@@ -356,27 +399,27 @@ fun DailyPagerContent(
                 )
             }
         }
-        DailyDropdownMenu(location, selectedChart, setSelectedChart)
+
         when (selectedChart) {
-            ChartDisplay.TAG_CONDITIONS -> {
+            DetailScreen.TAG_CONDITIONS -> {
                 val cal = daily.date.toCalendarWithTimeZone(location.javaTimeZone)
                 val thisDayNormals = if (location.weather?.normals?.month == cal[Calendar.MONTH]) {
                     location.weather!!.normals
                 } else {
                     null
                 }
-                DailyConditions(location, hourlyList, daily, thisDayNormals)
+                DetailsConditions(location, hourlyList, daily, thisDayNormals)
             }
-            ChartDisplay.TAG_PRECIPITATION -> DailyPrecipitation(location, hourlyList, daily)
-            ChartDisplay.TAG_WIND -> DailyWind(location, hourlyList, daily)
-            ChartDisplay.TAG_AIR_QUALITY -> DailyAirQuality(location, hourlyList, daily)
-            ChartDisplay.TAG_POLLEN -> DailyPollen(daily.pollen, pollenIndexSource)
-            ChartDisplay.TAG_UV_INDEX -> DailyUV(location, hourlyList, daily)
-            ChartDisplay.TAG_HUMIDITY -> DailyHumidity(location, hourlyList, daily.date)
-            ChartDisplay.TAG_PRESSURE -> DailyPressure(location, hourlyList, daily.date)
-            ChartDisplay.TAG_CLOUD_COVER -> DailyCloudCover(location, hourlyList, daily)
-            ChartDisplay.TAG_VISIBILITY -> DailyVisibility(location, hourlyList, daily.date)
-            ChartDisplay.TAG_SUN_MOON -> DailySunMoon(location, daily, yesterday)
+            DetailScreen.TAG_PRECIPITATION -> DetailsPrecipitation(location, hourlyList, daily)
+            DetailScreen.TAG_WIND -> DetailsWind(location, hourlyList, daily)
+            DetailScreen.TAG_AIR_QUALITY -> DetailsAirQuality(location, hourlyList, daily)
+            DetailScreen.TAG_POLLEN -> DetailsPollen(daily.pollen, pollenIndexSource)
+            DetailScreen.TAG_UV_INDEX -> DetailsUV(location, hourlyList, daily)
+            DetailScreen.TAG_HUMIDITY -> DetailsHumidity(location, hourlyList, daily.date)
+            DetailScreen.TAG_PRESSURE -> DetailsPressure(location, hourlyList, daily.date)
+            DetailScreen.TAG_CLOUD_COVER -> DetailsCloudCover(location, hourlyList, daily)
+            DetailScreen.TAG_VISIBILITY -> DetailsVisibility(location, hourlyList, daily.date)
+            DetailScreen.TAG_SUN_MOON -> DetailsSunMoon(location, daily, yesterday)
         }
     }
 }

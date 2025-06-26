@@ -26,10 +26,10 @@ import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.core.net.toUri
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.ui.about.AboutActivity
 import org.breezyweather.ui.alert.AlertActivity
-import org.breezyweather.ui.daily.DailyActivity
+import org.breezyweather.ui.details.DetailsActivity
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.search.SearchActivity
 import org.breezyweather.ui.settings.activities.CardDisplayManageActivity
@@ -102,16 +102,16 @@ object IntentHelper {
         activity: Activity,
         formattedId: String?,
         index: Int? = null,
-        chart: ChartDisplay? = null,
+        chart: DetailScreen? = null,
     ) {
         activity.startActivity(
-            Intent(activity, DailyActivity::class.java).apply {
-                putExtra(DailyActivity.KEY_FORMATTED_LOCATION_ID, formattedId)
+            Intent(activity, DetailsActivity::class.java).apply {
+                putExtra(DetailsActivity.KEY_FORMATTED_LOCATION_ID, formattedId)
                 if (index != null) {
-                    putExtra(DailyActivity.KEY_CURRENT_DAILY_INDEX, index)
+                    putExtra(DetailsActivity.KEY_CURRENT_DAILY_INDEX, index)
                 }
                 if (chart != null) {
-                    putExtra(DailyActivity.KEY_CURRENT_PAGE, chart.id)
+                    putExtra(DetailsActivity.KEY_CURRENT_PAGE, chart.id)
                 }
             }
         )

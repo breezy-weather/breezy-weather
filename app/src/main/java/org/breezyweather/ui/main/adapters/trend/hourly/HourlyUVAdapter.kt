@@ -26,7 +26,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.UV
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.format
 import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.domain.weather.model.getContentDescription
@@ -98,7 +98,7 @@ class HourlyUVAdapter(
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 1f else 0.5f)
             hourlyItem.contentDescription = talkBackBuilder.toString()
             hourlyItem.setOnClickListener {
-                onItemClicked(activity, location, bindingAdapterPosition, ChartDisplay.TAG_UV_INDEX)
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_UV_INDEX)
             }
         }
     }

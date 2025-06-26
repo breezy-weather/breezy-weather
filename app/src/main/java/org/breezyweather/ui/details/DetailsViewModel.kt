@@ -14,7 +14,7 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.daily
+package org.breezyweather.ui.details
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -27,26 +27,26 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.breezyweather.common.basic.models.options.appearance.ChartDisplay
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.sources.SourceManager
 import javax.inject.Inject
 
 @HiltViewModel
-class DailyViewModel @Inject constructor(
+class DetailsViewModel @Inject constructor(
     private val locationRepository: LocationRepository,
     private val weatherRepository: WeatherRepository,
     private val sourceManager: SourceManager,
     savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
-    private val formattedId: String? = savedStateHandle.get<String>(DailyActivity.KEY_FORMATTED_LOCATION_ID)
-    private val dailyIndex: Int? = savedStateHandle.get<Int>(DailyActivity.KEY_CURRENT_DAILY_INDEX)
-    private val selectedChart: ChartDisplay = ChartDisplay.entries.firstOrNull {
-        it.id == savedStateHandle.get<String>(DailyActivity.KEY_CURRENT_PAGE)
-    } ?: ChartDisplay.TAG_CONDITIONS
+    private val formattedId: String? = savedStateHandle.get<String>(DetailsActivity.KEY_FORMATTED_LOCATION_ID)
+    private val dailyIndex: Int? = savedStateHandle.get<Int>(DetailsActivity.KEY_CURRENT_DAILY_INDEX)
+    private val selectedChart: DetailScreen = DetailScreen.entries.firstOrNull {
+        it.id == savedStateHandle.get<String>(DetailsActivity.KEY_CURRENT_PAGE)
+    } ?: DetailScreen.TAG_CONDITIONS
 
-    private val _uiState = MutableStateFlow(DailyUiState())
-    val uiState: StateFlow<DailyUiState> = _uiState.asStateFlow()
+    private val _uiState = MutableStateFlow(DetailsUiState())
+    val uiState: StateFlow<DetailsUiState> = _uiState.asStateFlow()
 
     init {
         reloadLocation()
@@ -88,7 +88,7 @@ class DailyViewModel @Inject constructor(
                 return@launch
             }
 
-            _uiState.value = DailyUiState(
+            _uiState.value = DetailsUiState(
                 location = locationC.copy(weather = weather),
                 selectedChart = selectedChart,
                 initialIndex = dailyIndex.let {
@@ -102,9 +102,9 @@ class DailyViewModel @Inject constructor(
         }
     }
 
-    fun setSelectedChart(chartDisplay: ChartDisplay) {
+    fun setSelectedChart(detailScreen: DetailScreen) {
         _uiState.value = _uiState.value.copy(
-            selectedChart = chartDisplay
+            selectedChart = detailScreen
         )
     }
 }
