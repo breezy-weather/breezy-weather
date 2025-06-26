@@ -258,7 +258,7 @@
     <string name="weather_kind_hail">雹</string>
     <string name="common_weather_text_fog">霧</string>
     <string name="weather_kind_haze">霾</string>
-    <string name="weather_kind_thunder">閃電</string>
+    <string name="weather_kind_thunder">雷</string>
     <string name="weather_kind_thunderstorm">雷雨</string>
     <string name="weather_kind_wind">風</string>
     <!-- Units -->
@@ -323,7 +323,7 @@
     <string name="temperature_degree_day_heating">加熱度日數</string>
     <string name="temperature_degree_day_cooling">降溫度日數</string>
     <string name="air_quality_pm_explanations_introduction">細懸浮微粒，即大氣中懸浮的微小固體或液體顆粒。</string>
-    <string name="air_quality_o3_full">地表臭氧（O₃）</string>
+    <string name="air_quality_o3_full">地表臭氧 (O₃)</string>
     <string name="air_quality_pm_explanations_consequences">細懸浮微粒因能深入肺部和血液，進而影響心臟和肺部健康，甚至導致過早死亡，是最有害的空氣污染物。</string>
     <string name="air_quality_o3_info_origin">臭氧的形成源於光化學反應，與諸如揮發性有機化合物、一氧化碳及由車輛和工業排放的氮氧化物（NOₓ）等污染物相互作用。由於其光化學特性，臭氧濃度在晴朗天氣期間最高。</string>
     <string name="air_quality_no2_info_origin">主要來自高溫燃燒燃料的過程，包括供暖、運輸、工業和發電。家庭燃料設備如暖爐、壁爐和瓦斯爐也是來源之一。</string>
@@ -462,7 +462,7 @@
     <string name="uv_index_3_5">中</string>
     <string name="air_quality_level_6_description">只要暴露在空氣中，即使幾分鐘也可能對每個人都會造成嚴重的健康影響。避免戶外活動。</string>
     <string name="air_quality_o3_info_consequences">過量接觸臭氧會導致呼吸困難，引發哮喘，降低肺功能，並可能引發肺病。</string>
-    <string name="air_quality_no2_full">二氧化氮（NO₂）</string>
+    <string name="air_quality_no2_full">二氧化氮 (NO₂)</string>
     <string name="air_quality_no2_info_introduction">二氧化氮（NO₂）是一種帶有特殊刺激氣味的濃烈、有毒的紅棕色氣體。</string>
     <string name="pollen_level_2">低</string>
     <string name="pollen_level_3">中</string>
@@ -501,12 +501,12 @@
     <string name="air_quality_so2_info_introduction">二氧化硫（SO₂）是一種無色有毒氣體，是燃燒火柴時所產生的臭味的主因。</string>
     <string name="air_quality_so2_info_origin">主要來源於火山活動與化石燃料的燃燒，如家庭取暖、工業生產和發電。</string>
     <string name="air_quality_so2_info_consequences">暴露於二氧化硫（SO₂）環境中，可能會導致哮喘引起的急診就醫。</string>
-    <string name="air_quality_co_full">一氧化碳（CO）</string>
+    <string name="air_quality_co_full">一氧化碳 (CO)</string>
     <string name="air_quality_co_info_introduction">一氧化碳（CO）是一種無色、無味、無刺激性並且有毒可燃的氣體。</string>
     <string name="air_quality_co_info_origin">主要產生於木頭、汽油、煤炭、天然氣和煤油等碳質燃料不完全燃燒的過程中，如簡單的灶具、開放式火源、燈芯燈、熔爐和壁爐。在室外空氣中，最主要的一氧化碳（CO）來源是汽車排放。</string>
     <string name="air_quality_co_info_consequences">一氧化碳（CO）會進入肺部組織並進入血液，導致身體細胞難以與氧氣結合。這種缺氧狀況會傷害組織和細胞。暴露於一氧化碳環境中會造成呼吸困難、疲憊、頭暈以及類似流感的症狀。高濃度的一氧化碳暴露可能會致命。</string>
     <string name="air_quality_no2_info_consequences">接觸二氧化氮會刺激氣道，加重呼吸系統疾病。它也是臭氧的重要前體物，與哮喘和其他呼吸疾病有密切關係。</string>
-    <string name="air_quality_so2_full">二氧化硫（SO₂）</string>
+    <string name="air_quality_so2_full">二氧化硫 (SO₂)</string>
     <string name="location_message_permission_missing">缺少位置存取權限</string>
     <string name="location_message_permission_background_missing">缺少背景定位權限</string>
     <string name="action_add_new_location">新增新位置</string>
@@ -572,7 +572,7 @@
     <string name="common_weather_text_drizzle_freezing_heavy">大凍毛雨</string>
     <string name="common_weather_text_rain_showers_heavy">大陣雨</string>
     <string name="common_weather_text_rain_freezing_heavy">大凍雨</string>
-    <string name="metno_weather_text_andthunder">%s伴有閃電</string>
+    <string name="metno_weather_text_andthunder">%s伴有雷</string>
     <string name="common_weather_text_rain_light">小雨</string>
     <string name="common_weather_text_rain_moderate">中雨</string>
     <string name="common_weather_text_rain_heavy">大雨</string>
@@ -604,13 +604,13 @@
     <string name="location_search_change_source">變更位置搜尋來源</string>
     <string name="location_search_source">位置搜尋來源</string>
     <string name="settings_weather_source_none">無</string>
-    <string name="temperature_feels_like_short">體感溫度</string>
+    <string name="temperature_feels_like_short">體感</string>
     <string name="dew_point_short">露點</string>
     <string name="cloud_cover_short">雲量</string>
     <string name="ceiling_short">雲高</string>
-    <string name="humidity_short">相對溼度</string>
+    <string name="humidity_short">溼度</string>
     <string name="wind_short">風勢</string>
-    <string name="uv_index_short">紫外線指數</string>
+    <string name="uv_index_short">紫外線</string>
     <string name="visibility_short">能見度</string>
     <string name="pressure_short">氣壓</string>
     <string name="comma_separator">、</string>
@@ -909,4 +909,5 @@
     <string name="air_quality_pm_sources">主要來自燃燒過程（如：發電廠、室內加熱、汽車排氣、野火）、機械過程（如：營造、礦物粉塵、農業）和生物微粒（如：花粉、黴菌、細菌、病毒）。</string>
     <string name="data_modified">本內容是由 %s 從原始資料修改而成，修改內容主要為計算或推斷遺漏資料。</string>
     <string name="data_sources">資料來源</string>
+    <string name="visibility_very_poor">非常差</string>
 </resources>
