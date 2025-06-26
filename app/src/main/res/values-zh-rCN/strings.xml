@@ -910,4 +910,7 @@
     <string name="pressure_about_description2">气压剧烈快速的变化用于预测天气的变化。比如，气压下降可能意味着即将下雨或下雪，而气压升高可能表示天气会转好。不正常的气压可能导致头痛、关节痛、疲倦和其他影响。</string>
     <string name="visibility_good">好</string>
     <string name="cloud_cover_about_description">云量指平均被云层遮蔽的天空百分比。云量和日光持续时长相关。</string>
+    <string name="visibility_very_poor">非常差</string>
+    <string name="data_sources">数据源</string>
+    <string name="data_modified">%s 更改了原始数据形成了此数据，主要是为了计算或推断缺失的数据。</string>
 </resources>
