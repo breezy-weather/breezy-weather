@@ -888,7 +888,7 @@
     <string name="pressure_steady">平稳</string>
     <string name="pressure_falling">下降</string>
     <string name="pressure_about">关于气压</string>
-    <string name="pressure_about_description1">气压是地球大气施加的向下压力。本应用采用平均海平面气压（MSLP）以便更容易比较不同海拔地方的气压。</string>
+    <string name="pressure_about_description1">气压是地球大气施加的向下压力。本应用采用平均海平面气压以便更容易比较不同海拔地方的气压。</string>
     <string name="visibility_about">关于能见度</string>
     <string name="visibility_about_description">能见度告诉你你能看清多远的物体，比如建筑和山。能见度可以被降水、雾、沙尘、烟雾或霾影响。</string>
     <string name="visibility_from_to_number">%1$s 到 %2$s</string>

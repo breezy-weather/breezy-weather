@@ -791,7 +791,7 @@
     <string name="wind_strength_scale">Scála Beaufort</string>
     <string name="air_quality_pollutant_details">Sonraí truailleáin</string>
     <string name="pressure_about">Maidir le brú</string>
-    <string name="pressure_about_description1">Is é brú atmaisféarach an brú anuas a chuireann atmaisféar an domhain i bhfeidhm. Úsáideann an aip seo brú meánleibhéal na farraige (MSLP) chun comparáid níos éasca a dhéanamh idir brú ó áiteanna le hairdeanna difriúla.</string>
+    <string name="pressure_about_description1">Is é brú atmaisféarach an brú anuas a chuireann atmaisféar an domhain i bhfeidhm. Úsáideann an aip seo brú meánleibhéal na farraige chun comparáid níos éasca a dhéanamh idir brú ó áiteanna le hairdeanna difriúla.</string>
     <string name="air_quality_pm25_full">Ábhar cáithníneach mín (&lt; %s)</string>
     <string name="pollen_details">Sonraí pailine</string>
     <string name="air_quality_level_4_harmless_exposure">&lt; 1 uair an chloig</string>
