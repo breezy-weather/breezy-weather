@@ -114,7 +114,7 @@ fun DailyConditions(
 ) {
     val context = LocalContext.current
     val showRealTemp = rememberSaveable { mutableStateOf(true) }
-    val mappedValues = remember(hourlyList, showRealTemp) {
+    val mappedValues = remember(hourlyList, showRealTemp.value) {
         hourlyList
             .filter {
                 it.temperature?.temperature != null &&
@@ -535,7 +535,11 @@ private fun TemperatureChart(
 
     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
 
-    if (mappedValues.size >= ChartDisplay.CHART_MIN_COUNT) {
+    val hasEnoughValues = remember(mappedValues) {
+        mappedValues.size >= ChartDisplay.CHART_MIN_COUNT
+    }
+
+    if (hasEnoughValues) {
         val provider = ResourcesProviderFactory.newInstance
         val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
         val step = temperatureUnit.chartStep
