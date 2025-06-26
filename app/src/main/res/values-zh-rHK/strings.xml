@@ -6,14 +6,14 @@
     <string name="temperature_normals">正常溫度範圍</string>
     <string name="precipitation">降水量</string>
     <string name="wind_strength_8">烈風</string>
-    <string name="uv_index_short">紫外線指數</string>
+    <string name="uv_index_short">紫外線</string>
     <string name="air_quality_level_4">不健康</string>
     <string name="air_quality_level_5">很不健康</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm25_voice">微細懸浮粒子</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">一氧化碳</string>
-    <string name="air_quality_co_full">一氧化碳（CO）</string>
+    <string name="air_quality_co_full">一氧化碳 (CO)</string>
     <string name="pollen_olea">橄欖樹</string>
     <string name="visibility_short">能見度</string>
     <string name="dew_point">露點</string>
@@ -24,7 +24,7 @@
     <string name="weather_source_accu_preference_days_1">1 日</string>
     <string name="action_continue">繼續</string>
     <string name="dialog_permissions_location_title">取得位置資訊</string>
-    <string name="widget_material_you_current">Material You – 實時</string>
+    <string name="widget_material_you_current">Material You – 目前</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">目前紫外線</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">今日、明日、…、4 天後的空氣質素指數</string>
     <string name="widget_live_wallpaper_day_night_type">時間</string>
@@ -72,7 +72,7 @@
     <string name="daily_tomorrow_short">明日</string>
     <string name="temperature">氣溫</string>
     <string name="temperature_feels_like">體感溫度</string>
-    <string name="temperature_feels_like_short">體感溫度</string>
+    <string name="temperature_feels_like_short">體感</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_apparent">體感溫度</string>
     <string name="temperature_wind_chill">風寒指數</string>
@@ -151,15 +151,15 @@
     <string name="air_quality_pm_explanations_introduction">懸浮粒子，即大氣中懸浮的微小固體或液體顆粒。</string>
     <string name="air_quality_pm_explanations_origin">自然來源包括火山、沙塵暴、森林和草地火災，以及海浪噴霧。人為活動，例如交通運輸、工業活動、發電廠、建築工地和垃圾焚燒，也會產生大量懸浮粒子。</string>
     <string name="air_quality_pm_explanations_consequences">懸浮粒子因能深入肺部和血液，進而影響心臟和肺部健康，甚至導致過早死亡，是最有害的空氣污染物。</string>
-    <string name="air_quality_o3_full">地表臭氧（O₃）</string>
+    <string name="air_quality_o3_full">地表臭氧 (O₃)</string>
     <string name="air_quality_o3_info_origin">臭氧的形成源於光化學反應，與諸如揮發性有機化合物、一氧化碳及由車輛和工業排放的氮氧化物（NOₓ）等污染物相互作用。由於其光化學特性，臭氧濃度在晴朗天氣期間最高。</string>
     <string name="air_quality_o3_info_introduction">地表臭氧（O₃）是煙霧的主要成分，與保護地球免受過多紫外線的同一分子不同，對人體有害。</string>
     <string name="air_quality_o3_info_consequences">過量接觸臭氧會導致呼吸困難，引發哮喘，降低肺功能，並可能引發肺病。</string>
-    <string name="air_quality_no2_full">二氧化氮（NO₂）</string>
+    <string name="air_quality_no2_full">二氧化氮 (NO₂)</string>
     <string name="air_quality_no2_info_introduction">二氧化氮（NO₂）是一種帶有特殊刺激氣味的濃烈、有毒的紅棕色氣體。</string>
     <string name="air_quality_no2_info_origin">主要來自高溫燃燒燃料的過程，包括供暖、運輸、工業和發電。家庭燃料設備如暖爐、壁爐和瓦斯爐也是來源之一。</string>
     <string name="air_quality_no2_info_consequences">接觸二氧化氮會刺激氣道，加重呼吸系統疾病。它也是臭氧的重要前體物，與哮喘和其他呼吸疾病有密切關係。</string>
-    <string name="air_quality_so2_full">二氧化硫（SO₂）</string>
+    <string name="air_quality_so2_full">二氧化硫 (SO₂)</string>
     <string name="air_quality_so2_info_introduction">二氧化硫（SO₂）是一種無色有毒氣體，是燃燒火柴時所產生的臭味的主因。</string>
     <string name="air_quality_so2_info_origin">主要來源於火山活動與化石燃料的燃燒，如家庭取暖、工業生產和發電。</string>
     <string name="air_quality_so2_info_consequences">暴露於二氧化硫（SO₂）環境中，可能會導致哮喘引起的急診就醫。</string>
@@ -210,7 +210,7 @@
     <string name="sunshine">日照</string>
     <string name="sunshine_duration">日照時間</string>
     <string name="humidity">相對濕度</string>
-    <string name="humidity_short">相對濕度</string>
+    <string name="humidity_short">濕度</string>
     <string name="humidity_dew_point">相對濕度 / 露點</string>
     <string name="pressure">氣壓</string>
     <string name="pressure_short">氣壓</string>
@@ -673,7 +673,7 @@
     <string name="common_weather_text_sand_storm">沙塵暴</string>
     <string name="weather_kind_hail">冰雹</string>
     <string name="weather_kind_haze">煙霞</string>
-    <string name="weather_kind_thunder">閃電</string>
+    <string name="weather_kind_thunder">雷</string>
     <string name="weather_kind_thunderstorm">雷暴</string>
     <string name="weather_kind_wind">風</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">沉積霧凇</string>
@@ -682,7 +682,7 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">雷暴伴有大冰雹</string>
     <string name="meteoam_weather_text_tornado_watersprout">龍捲風或水龍捲</string>
     <string name="common_weather_text_smoke">濃煙</string>
-    <string name="metno_weather_text_andthunder">%s伴有閃電</string>
+    <string name="metno_weather_text_andthunder">%s伴有雷</string>
     <string name="common_weather_text_mist">薄霧</string>
     <string name="common_weather_text_dry">乾燥</string>
     <string name="common_weather_text_humid">潮濕</string>
@@ -900,4 +900,5 @@
     <string name="air_quality_health_information">健康資訊</string>
     <string name="air_quality_no2_sources">主要來自工業和運輸業等燃料的燃燒過程。</string>
     <string name="pressure_about_description1">氣壓是地球大氣層往下施加的壓力。本應用程式採用平均海平面氣壓，以便比較位於不同海拔位置的氣壓。</string>
+    <string name="visibility_very_poor">非常差</string>
 </resources>
