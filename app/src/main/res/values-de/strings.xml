@@ -803,7 +803,7 @@
     <string name="air_quality_so2_sources">Hauptquellen sind Verbrennungsprozesse von schwefelhaltigen Brennstoffen in Industrie, Verkehr und Kraftwerken.</string>
     <string name="air_quality_co_sources">Es entsteht in der Regel bei der unvollständigen Verbrennung von kohlenstoffhaltigen Brennstoffen, wie sie in Automotoren und Kraftwerken stattfindet.</string>
     <string name="pollen_primary">Primäre Pollen</string>
-    <string name="pollen_details">Pollen Details</string>
+    <string name="pollen_details">Pollendetails</string>
     <string name="humidity_about">Über die relative Luftfeuchtigkeit</string>
     <string name="dew_point_about">Über Taupunkt</string>
     <string name="dew_point_about_description">Der Taupunkt ist der Wert, auf den die Temperatur abgekühlt werden müsste, um eine relative Luftfeuchtigkeit von %s zu erreichen.</string>
