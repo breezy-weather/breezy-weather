@@ -30,7 +30,7 @@
     <string name="wind_strength_9">Kuvvetli fırtına</string>
     <string name="wind_strength_10">Tam fırtına</string>
     <string name="wind_strength_11">Çok şiddetli fırtına</string>
-    <string name="wind_strength_12">Kasırga/Tayfun</string>
+    <string name="wind_strength_12">Kasırga/Tayfun-gücü</string>
     <string name="daily_forecast">Günlük tahmin</string>
     <string name="hourly_forecast">Saatlik tahmin</string>
     <string name="air_quality">Hava kalitesi</string>
@@ -123,7 +123,7 @@
     <string name="air_quality_level_3">Kötü</string>
     <string name="air_quality_level_2_description">Hava kalitesi genel olarak birçok insan için kabul edilebilir düzeyde. Ancak uzun süreli maruz kalma durumunda hassas gruplarda küçük-orta düzeyde belirtiler görülebilir.</string>
     <string name="air_quality_level_5">Sağlık Açısından Çok Sakıncalı</string>
-    <string name="air_quality_index">Hava Kalitesi Göstergesi</string>
+    <string name="air_quality_index">Hava Kalitesi Endeksi</string>
     <string name="air_quality_level_5_description">Sağlık üzerindeki etkileri risk altındaki bireyler tarafından anında hissedilebilir. Açık hava aktivitelerinden kaçınılmalıdır. Sağlıklı kişiler nefes alma güçlüğü ve boğazda tahriş hissedebilir. Evde kalmayı ve açık hava aktivitelerinizi başka bir zaman için yeniden planlamayı değerlendirin.</string>
     <string name="air_quality_level_6">Tehlikeli</string>
     <string name="air_quality_level_6_description">Birkaç dakika bile olsa bu havaya maruz kalma herkes için ciddi sağlık sorunlarına yol açabilir. Açık hava aktivitelerinden kaçının.</string>
@@ -768,5 +768,12 @@
     <string name="conditions">Koşullar</string>
     <string name="temperature_real_details">Gerçek sıcaklık.</string>
     <string name="temperature_feels_like_details">Nemin, rüzgarin ve/veya günışığının bir sonucu olarak, sıcaklığın nasıl hissedildiği.</string>
-    <string name="wind_speed_about">Rüzgar hızı ve kuvvetli rüzgarlar</string>
+    <string name="wind_speed_about">Rüzgar hızı ve ani rüzgarlar</string>
+    <string name="wind_speed_about_description">Rüzgar hızı, rüzgar hızlarının belli bir zaman aralığındaki ortalaması alınarak ölçülür. Ani rüzgarlar genellikle 20 saniyenin altında süren ani rüzgar çıkışlarıdır.</string>
+    <string name="wind_gusts_short">Ani rüzgarlar</string>
+    <string name="wind_strength_scale">Beaufort ölçütü</string>
+    <string name="uv_index_about">UV endeksi hakkında</string>
+    <string name="uv_index_about_description">UV endeksi güneşin ultraviyole radyasyonunun gücünü ölçer. Ne kadar yüksekse, o kadar büyük ve hızlı bir şekilde güneş yanığına, cilt kanserine ve göz hasarına sebep olur.</string>
+    <string name="uv_index_scale">UV endeksi ölçütü</string>
+    <string name="uv_index_time_to_burn">Yanma vakti</string>
 </resources>
