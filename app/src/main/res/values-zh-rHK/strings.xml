@@ -845,8 +845,8 @@
     <string name="uv_index_scale">紫外線指數級別</string>
     <string name="uv_index_time_to_burn">曬傷時間</string>
     <string name="air_quality_index_short">AQI</string>
-    <string name="air_quality_index_about">關於空氣質數指數</string>
-    <string name="air_quality_index_about_description_1">空氣質數指數 (AQI) 有助您理解特定地區的空氣污染程度，以及對您健康的潛在風險。</string>
+    <string name="air_quality_index_about">關於空氣質素指數</string>
+    <string name="air_quality_index_about_description_1">空氣質素指數 (AQI) 有助您理解特定地區的空氣污染程度，以及對您健康的潛在風險。</string>
     <string name="air_quality_index_about_description_2">本應用程式採用的等級是根據世界衛生組織的建議，而非本地法規，並建立有意義的分類，以便比較各國之間的污染程度。</string>
     <string name="air_quality_index_scale">空氣質素指數級別</string>
     <string name="air_quality_index_harmless_exposure">無害曝露</string>
@@ -901,4 +901,8 @@
     <string name="air_quality_no2_sources">主要來自工業和運輸業等燃料的燃燒過程。</string>
     <string name="pressure_about_description1">氣壓是地球大氣層往下施加的壓力。本應用程式採用平均海平面氣壓，以便比較位於不同海拔位置的氣壓。</string>
     <string name="visibility_very_poor">非常差</string>
+    <string name="action_close_menu">關閉功能表</string>
+    <string name="action_toggle_data_type_menu">切換資料類型功能表</string>
+    <string name="label_expanded">已展開</string>
+    <string name="label_collapsed">已收合</string>
 </resources>
