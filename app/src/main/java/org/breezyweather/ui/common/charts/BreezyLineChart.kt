@@ -76,6 +76,7 @@ import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.handleNestedHorizontalDragGesture
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toTimezoneSpecificHour
 import org.breezyweather.common.extensions.windowHeightInDp
@@ -182,7 +183,7 @@ fun BreezyLineChart(
                     colors.mapIndexed { index, colorList ->
                         LineCartesianLayer.rememberLine(
                             fill = ScaleLineFill(colorList),
-                            areaFill = if (index == 0) ScaleAreaFill(colorList) else null,
+                            areaFill = if (index == 0) ScaleAreaFill(colorList, context.isRtl) else null,
                             stroke = LineCartesianLayer.LineStroke.continuous(LINE_THICKNESS_DP.dp)
                         )
                     }
@@ -268,7 +269,10 @@ internal data class ScaleLineFill(val colors: Map<Float, Color>) : LineCartesian
 /**
  * Author: Gowsky
  */
-internal data class ScaleAreaFill(val colors: Map<Float, Color>) : LineCartesianLayer.AreaFill {
+internal data class ScaleAreaFill(
+    val colors: Map<Float, Color>,
+    val rtl: Boolean = false,
+) : LineCartesianLayer.AreaFill {
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val areaPath = Path()
     private val areaBounds = RectF()
@@ -289,8 +293,13 @@ internal data class ScaleAreaFill(val colors: Map<Float, Color>) : LineCartesian
 
         with(areaPath) {
             set(linePath)
-            lineTo(areaBounds.right, context.layerBounds.bottom)
-            lineTo(areaBounds.left, context.layerBounds.bottom)
+            if (rtl) {
+                lineTo(areaBounds.left, context.layerBounds.bottom)
+                lineTo(areaBounds.right, context.layerBounds.bottom)
+            } else {
+                lineTo(areaBounds.right, context.layerBounds.bottom)
+                lineTo(areaBounds.left, context.layerBounds.bottom)
+            }
             close()
         }
 
