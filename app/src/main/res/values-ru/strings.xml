@@ -794,5 +794,16 @@
     <string name="air_quality_level_5_harmless_exposure">&lt; несколько минут</string>
     <string name="air_quality_level_6_harmless_exposure">&lt; 1 минута</string>
     <string name="air_quality_pollutant_primary">Основной загрязнитель</string>
-    <string name="air_quality_pollutant_details">Информация о загрязняющих веществах</string>
+    <string name="air_quality_pollutant_details">Информация о загрязняющем веществе</string>
+    <string name="air_quality_health_information">Информация о здоровье</string>
+    <string name="air_quality_pm25_full">Мелкие твердые частицы (&lt; %s)</string>
+    <string name="air_quality_pm10_full">Вдыхаемые твердые частицы (&lt; %s)</string>
+    <string name="air_quality_pm_sources">Основными источниками являются процессы горения (например, электростанции, отопление помещений, выхлопные газы автомобилей, лесные пожары), механические процессы (например, строительство, минеральная пыль, сельское хозяйство) и биологические частицы (например, пыльца, плесень, бактерии, вирусы).</string>
+    <string name="air_quality_so2_sources">Основными источниками являются процессы сжигания серосодержащего топлива в промышленности, на транспорте и электростанциях.</string>
+    <string name="air_quality_no2_sources">Основными источниками являются процессы сжигания топлива, например, в промышленности и на транспорте.</string>
+    <string name="air_quality_o3_sources">Озон образуется в результате химической реакции между атмосферным кислородом, оксидами азота, оксидом углерода и органическими соединениями под действием солнечного света.</string>
+    <string name="air_quality_co_sources">Обычно возникает в результате неполного сгорания углеродного топлива, например, в автомобильных двигателях и электростанциях.</string>
+    <string name="pollen_primary">Основаная пыльца</string>
+    <string name="pollen_details">Подробности о пыльце</string>
+    <string name="nighttime_details">Начинается вечером и продолжается до рассвета следующего дня.</string>
 </resources>
