@@ -913,4 +913,8 @@
     <string name="visibility_very_poor">非常差</string>
     <string name="data_sources">数据源</string>
     <string name="data_modified">%s 更改了原始数据形成了此数据，主要是为了计算或推断缺失的数据。</string>
+    <string name="action_close_menu">关闭菜单</string>
+    <string name="label_collapsed">已折叠</string>
+    <string name="label_expanded">已展开</string>
+    <string name="action_toggle_data_type_menu">开/关数据类型选择菜单</string>
 </resources>
