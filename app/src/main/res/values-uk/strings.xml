@@ -824,4 +824,8 @@
     <string name="data_sources">Джерела даних</string>
     <string name="visibility_very_poor">Дуже погано</string>
     <string name="data_modified">Цей матеріал було змінено порівняно з оригіналом користувачем %s, головним чином для обчислення або екстраполяції відсутніх даних.</string>
+    <string name="action_close_menu">Закрити меню</string>
+    <string name="action_toggle_data_type_menu">Перемикання меню вибору типу даних</string>
+    <string name="label_expanded">Розгорнуто</string>
+    <string name="label_collapsed">Згорнуто</string>
 </resources>
