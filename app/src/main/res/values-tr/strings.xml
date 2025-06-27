@@ -756,5 +756,10 @@
     <string name="action_enable">Etkinleştir</string>
     <string name="action_open_in_other_app">Başka bir uygulamada aç</string>
     <string name="action_open_in_other_app_description">Bu konumu başka bir uygulamada aç</string>
-    <string name="ephemeris_about">Doğum ve batı vakitleri hakkında</string>
+    <string name="ephemeris_about">Doğum ve batım vakitleri hakkında</string>
+    <string name="ephemeris_about_rise">Doğum vakti, güneşin ya da ayın, ufuğun tamamiyle üstünde belirdiği zamana denir.</string>
+    <string name="ephemeris_about_set">Batım vakti, güneşin ya da ayın, ufuğun tamamiyle altına kaybolduğu zamana denir.</string>
+    <string name="daily_summary">Günlük özet</string>
+    <string name="chart_no_daily_data">Bu gün için mevcut veri yok.</string>
+    <string name="chart_no_hourly_data">Mevcut saatlik veri yok.</string>
 </resources>
