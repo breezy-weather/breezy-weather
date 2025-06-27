@@ -607,10 +607,10 @@
     <string name="settings_color_app">Podle aplikace</string>
     <string name="settings_unavailable_no_background_updates">Nedostupné, nejprve povolte aktualizace na pozadí</string>
     <string name="notification_precipitation_starting_desc">Začátek očekáván v %s</string>
-    <string name="notification_precipitation_starting">Očekávány srážky</string>
+    <string name="notification_precipitation_starting">Srážky v blízké době</string>
     <string name="notification_precipitation_continuing_desc">Konec očekáván nejdříve v %s</string>
     <string name="notification_precipitation_continuing">Srážky</string>
-    <string name="notification_precipitation_stopping">Očekáván konec srážek</string>
+    <string name="notification_precipitation_stopping">Srážky brzy ustanou</string>
     <string name="notification_precipitation_stopping_desc">Konec očekáván v %s</string>
     <string name="location_search_source">Zdroj vyhledávání lokace</string>
     <string name="location_search_change_source">Změnit zdroj vyhledávání lokace</string>
