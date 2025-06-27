@@ -839,4 +839,11 @@
     <string name="visibility_about">O viditelnosti</string>
     <string name="cloud_cover_about">O oblačnosti</string>
     <string name="label_description">Popis</string>
+    <string name="action_close_menu">Zavřít nabídku</string>
+    <string name="action_toggle_data_type_menu">Přepnout nabídku výběru typu dat</string>
+    <string name="label_expanded">Rozbaleno</string>
+    <string name="label_collapsed">Sbaleno</string>
+    <string name="visibility_very_poor">Velmi špatná</string>
+    <string name="data_sources">Zdroje dat</string>
+    <string name="data_modified">Tento materiál byl upraven z originálu aplikací %s, převážně za účelem výpočtu nebo doplnění chybějících údajů.</string>
 </resources>
