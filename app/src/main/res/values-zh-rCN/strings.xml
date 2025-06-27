@@ -49,14 +49,14 @@
     <string name="wind_strength_2">轻风</string>
     <string name="wind_strength_3">微风</string>
     <string name="wind_strength_4">和风</string>
-    <string name="wind_strength_5">清劲风</string>
+    <string name="wind_strength_5">劲风</string>
     <string name="wind_strength_6">强风</string>
     <string name="wind_strength_7">疾风</string>
     <string name="wind_strength_8">大风</string>
     <string name="wind_strength_9">烈风</string>
     <string name="wind_strength_10">狂风</string>
     <string name="wind_strength_11">暴风</string>
-    <string name="wind_strength_12">飓风强度</string>
+    <string name="wind_strength_12">飓风</string>
     <string name="wind_direction_variable">风向不定</string>
     <string name="wind_direction_N_short">北风</string>
     <string name="wind_direction_NE_short">东北风</string>
