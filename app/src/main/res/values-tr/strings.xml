@@ -761,5 +761,12 @@
     <string name="ephemeris_about_set">Batım vakti, güneşin ya da ayın, ufuğun tamamiyle altına kaybolduğu zamana denir.</string>
     <string name="daily_summary">Günlük özet</string>
     <string name="chart_no_daily_data">Bu gün için mevcut veri yok.</string>
-    <string name="chart_no_hourly_data">Mevcut saatlik veri yok.</string>
+    <string name="chart_no_hourly_data">Saatlik veri mevcut değil.</string>
+    <string name="chart_not_enough_hourly_data">Bu gün için bir çizelge görüntüleyecek kadar yeterli saatlik veri mevcut değil.</string>
+    <string name="chart_average">Ortalama</string>
+    <string name="chart_maximum_value">Azami değer</string>
+    <string name="conditions">Koşullar</string>
+    <string name="temperature_real_details">Gerçek sıcaklık.</string>
+    <string name="temperature_feels_like_details">Nemin, rüzgarin ve/veya günışığının bir sonucu olarak, sıcaklığın nasıl hissedildiği.</string>
+    <string name="wind_speed_about">Rüzgar hızı ve kuvvetli rüzgarlar</string>
 </resources>
