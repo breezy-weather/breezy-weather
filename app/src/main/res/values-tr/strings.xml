@@ -756,4 +756,5 @@
     <string name="action_enable">Etkinleştir</string>
     <string name="action_open_in_other_app">Başka bir uygulamada aç</string>
     <string name="action_open_in_other_app_description">Bu konumu başka bir uygulamada aç</string>
+    <string name="ephemeris_about">Doğum ve batı vakitleri hakkında</string>
 </resources>
