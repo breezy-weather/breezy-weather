@@ -51,6 +51,7 @@ import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.handleNestedHorizontalDragGesture
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.windowHeightInDp
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
@@ -120,7 +121,8 @@ fun EphemerisChart(
                                 mapOf(
                                     0.1f to Color(fillColor),
                                     -0.1f to Color.Transparent
-                                )
+                                ),
+                                context.isRtl
                             ),
                             pointConnector = LineCartesianLayer.PointConnector.cubic(curvature = 0.3f)
                         )
