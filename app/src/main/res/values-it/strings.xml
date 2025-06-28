@@ -760,5 +760,14 @@
     <string name="action_open_in_other_app">Apri in un’altra app</string>
     <string name="ephemeris_about">Informazioni su alba e tramonto</string>
     <string name="ephemeris_about_rise">L\'alba è quando il sole o la luna appaiono completamente sopra l\'orizzonte.</string>
-    <string name="ephemeris_about_set">Il tramonto è quando il sole o la luna scompariono completamente sotto l\'orizzonte.</string>
+    <string name="ephemeris_about_set">Il tramonto è quando il sole o la luna scompaiono completamente sotto l\'orizzonte.</string>
+    <string name="daily_summary">Riepilogo giornaliero</string>
+    <string name="chart_no_daily_data">Nessun dato disponibile per questo giorno.</string>
+    <string name="chart_no_hourly_data">Nessun dato orario disponibile.</string>
+    <string name="chart_not_enough_hourly_data">Non abbastanza dati orali disponibili per visualizzare un grafico per questo giorno.</string>
+    <string name="chart_average">Media</string>
+    <string name="chart_maximum_value">Valore massimo</string>
+    <string name="conditions">Condizioni</string>
+    <string name="temperature_real">Attuale</string>
+    <string name="temperature_real_details">La temperatura effettiva.</string>
 </resources>
