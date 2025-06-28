@@ -758,4 +758,7 @@
     <string name="common_weather_text_blowing_snow">Neve soffiata</string>
     <string name="action_open_in_other_app_description">Apri questa posizione in un’altra app</string>
     <string name="action_open_in_other_app">Apri in un’altra app</string>
+    <string name="ephemeris_about">Informazioni su alba e tramonto</string>
+    <string name="ephemeris_about_rise">L\'alba è quando il sole o la luna appaiono completamente sopra l\'orizzonte.</string>
+    <string name="ephemeris_about_set">Il tramonto è quando il sole o la luna scompariono completamente sotto l\'orizzonte.</string>
 </resources>
