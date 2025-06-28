@@ -768,6 +768,10 @@
     <string name="chart_average">Media</string>
     <string name="chart_maximum_value">Valore massimo</string>
     <string name="conditions">Condizioni</string>
-    <string name="temperature_real">Attuale</string>
+    <string name="temperature_real">Effettiva</string>
     <string name="temperature_real_details">La temperatura effettiva.</string>
+    <string name="temperature_feels_like_details">Quanto alta sembra la temperatura, a causa dell\'umidità, del vento e/o della luce solare.</string>
+    <string name="temperature_degree_day_heating_explanation">Differenza tra la temperatura esterna e una temperatura comoda di riferimento utilizzata per stimare i requisiti energetici di riscaldamento</string>
+    <string name="temperature_degree_day_cooling_explanation">Differenza tra la temperatura esterna e una temperatura comoda di riferimento utilizzata per valutare i requisiti energetici di raffreddamento</string>
+    <string name="wind_speed_about">A proposito di velocità del vento e raffiche</string>
 </resources>
