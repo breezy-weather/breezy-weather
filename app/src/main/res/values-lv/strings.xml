@@ -352,7 +352,7 @@
     <string name="action_undo">Atsaukt</string>
     <string name="action_help">Palīdzība</string>
     <string name="action_learn_more">Uzzināt vairāk</string>
-    <string name="action_share">Dalīties</string>
+    <string name="action_share">Kopīgot</string>
     <string name="action_show_errors">Piesist, lai redzētu izvērstu informāciju</string>
     <string name="location_service_native">Vietējais API</string>
     <string name="action_help_me_choose">Palīdziet man izvēlēties</string>
@@ -768,4 +768,22 @@
     <string name="data_modified">%s pielāgoja sākotnējo informāciju, galvenokārt lai aprēķinātu vai noteiktu trūkstošos datus.</string>
     <string name="ephemeris_about">Par lēkta un rieta laikiem</string>
     <string name="chart_average">Vidēji</string>
+    <string name="action_close_menu">Aizvērt izvēlni</string>
+    <string name="label_collapsed">Sakļauts</string>
+    <string name="label_expanded">Izvērsts</string>
+    <string name="action_toggle_data_type_menu">Pārslēgt datu veida atlasīšanas izvēlni</string>
+    <string name="air_quality_index_about_description_1">Gaisa kvalitātes indekss (GKI) ir skala, kas ir izstrādāta, lai palīdzētu saprast, cik piesārņots gaiss ir kādā noteiktā vietā, un iespējamos veselības apdraudējumus.</string>
+    <string name="temperature_feels_like_details">Kā temperatūra ir sajūtama mitruma, vēja un/vai saules ietekmes dēļ.</string>
+    <string name="temperature_real">Īstā</string>
+    <string name="temperature_real_details">Īstā temperatūra.</string>
+    <string name="temperature_degree_day_heating_explanation">Atšķirība starp āra temperatūru un atskaites ērtuma temperatūru, ko izmanto, lai novērtētu apkurei nepieciešamo enerģiju</string>
+    <string name="temperature_degree_day_cooling_explanation">Atšķirība starp āra temperatūru un atskaites ērtuma temperatūru, ko izmanto, lai noteiktu dzesēšanai nepieciešamo enerģiju</string>
+    <string name="wind_speed_about">Par vēja ātrumu un brāzmām</string>
+    <string name="uv_index_about">Par UV indeksu</string>
+    <string name="uv_index_about_description">UV indekss norāda saules ultravioletā starojuma stiprumu. Jo tas ir augstāks, jo ātrāk un lielāku var iegūt saules apdegumu, ādas vēzi un acu bojājumus.</string>
+    <string name="uv_index_scale">UV indeksa skala</string>
+    <string name="uv_index_time_to_burn">Laiks līdz apdegumam</string>
+    <string name="uv_index_time_to_burn_explanations">Laiks līdz apdegumam ir atkarīgs no augstuma, atstarojošas virsmas klātesamība, piemēram, ūdens vai sniegs, ādas veida un saules aizsarglīdzekļa izmantošana.</string>
+    <string name="air_quality_index_short">GKI</string>
+    <string name="air_quality_index_about">Par gaisa kvalitātes indeksu</string>
 </resources>

@@ -910,4 +910,8 @@
     <string name="data_modified">本內容是由 %s 從原始資料修改而成，修改內容主要為計算或推斷遺漏資料。</string>
     <string name="data_sources">資料來源</string>
     <string name="visibility_very_poor">非常差</string>
+    <string name="action_close_menu">關閉功能表</string>
+    <string name="action_toggle_data_type_menu">切換資料類型功能表</string>
+    <string name="label_expanded">已展開</string>
+    <string name="label_collapsed">已收合</string>
 </resources>

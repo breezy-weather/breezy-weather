@@ -827,4 +827,9 @@
     <string name="air_quality_level_2_harmless_exposure">1年未満</string>
     <string name="data_sources">データ提供元</string>
     <string name="air_quality_level_1_harmless_exposure">1年以上</string>
+    <string name="air_quality_index_about_description_1">大気汚染指数（AQI）は、各地域における大気汚染の状況と、健康への潜在的な影響を測るために用いられる基準です。</string>
+    <string name="label_collapsed">折りたたむ</string>
+    <string name="action_close_menu">メニューを閉じる</string>
+    <string name="chart_not_enough_hourly_data">この日のグラフを表示するのに必要な時間別のデータがありません。</string>
+    <string name="temperature_feels_like_details">湿度、風、日光の影響で感じられる気温。</string>
 </resources>
