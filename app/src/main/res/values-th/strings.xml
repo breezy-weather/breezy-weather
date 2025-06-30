@@ -823,4 +823,9 @@
     <string name="visibility_from_to_number">%1$s ถึง %2$s</string>
     <string name="cloud_cover_about_description">ส่วนเมฆบัง คืออัตราร้อยละของท้องฟ้าที่ถูกเมฆบดบังโดยเฉลี่ย ส่วนเมฆบังมีความเกี่ยวข้องกับระยะเวลาแสงอาทิตย์ส่อง</string>
     <string name="visibility_from_to_description">%1$s เป็น %2$s</string>
+    <string name="visibility_very_poor">เลวร้ายมาก</string>
+    <string name="action_close_menu">ปิดเมนู</string>
+    <string name="action_toggle_data_type_menu">เปิดหรือปิดเมนูเลือกชนิดข้อมูล</string>
+    <string name="label_expanded">เปิดออก</string>
+    <string name="label_collapsed">หุบเข้า</string>
 </resources>
