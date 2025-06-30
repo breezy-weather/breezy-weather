@@ -258,7 +258,7 @@
     <string name="action_confirm">Confirmer</string>
     <string name="action_close">Fermer</string>
     <string name="action_close_menu">Fermer le menu</string>
-    <string name="action_toggle_data_type_menu">Ouvrir le menu de choix du type de données</string>
+    <string name="action_toggle_data_type_menu">Menu de sélection du type de données</string>
     <string name="action_share">Partager</string>
     <string name="action_download">Télécharger</string>
 
