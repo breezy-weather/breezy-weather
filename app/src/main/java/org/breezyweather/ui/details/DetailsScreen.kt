@@ -292,14 +292,9 @@ fun DetailsDropdownMenu(
                     checked = fabMenuExpanded,
                     onCheckedChange = { fabMenuExpanded = !fabMenuExpanded }
                 ) {
-                    val imageVector by remember(selectedChart.iconId) {
+                    val imageVector by remember(selectedChart.iconId, checkedProgress) {
                         derivedStateOf {
-                            if (checkedProgress > 0.5f) {
-                                R.drawable.ic_close
-                            } else {
-                                // FIXME: Does not apply immediately
-                                selectedChart.iconId
-                            }
+                            if (checkedProgress > 0.5f) R.drawable.ic_close else selectedChart.iconId
                         }
                     }
                     Icon(

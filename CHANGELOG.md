@@ -1,3 +1,13 @@
+# Version 6.0.1 (not yet released)
+
+**Improvements and fixes**
+- Details page - Fix floating action button not updating in real time (@min7-i)
+- Details page - Charts - Fix area fill in Right to Left languages (@chunshek)
+
+**Translations**
+- Translations updated
+
+
 # Version 6.0.0-alpha (2025-06-26)
 
 **New features**
