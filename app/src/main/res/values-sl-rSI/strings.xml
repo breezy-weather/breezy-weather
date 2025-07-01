@@ -449,5 +449,10 @@
     <string name="location_message_reverse_geocoding_failed">Vremenski viri ne najdejo iskane lokacije</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Ročno dodajte lokacijo in izbrišite “%s”</string>
     <string name="location_search_source">Vir iskanja lokacij</string>
-    <string name="location_search_change_source">Zamenjaj ponudnika lokacij</string>
+    <string name="location_search_change_source">Zamenjaj vir iskanja lokacij</string>
+    <string name="location_search_no_results">%1$s ne more najti %2$s</string>
+    <string name="action_location_list">Seznam lokacij</string>
+    <string name="action_add_current_location">Dodaj trenutno lokacijo</string>
+    <string name="action_add_new_location">Dodaj novo lokacijo</string>
+    <string name="action_edit_location">Uredi lokacijo</string>
 </resources>
