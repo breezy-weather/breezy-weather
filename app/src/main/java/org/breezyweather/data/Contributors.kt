@@ -289,6 +289,7 @@ val appTranslators = arrayOf(
     TranslatorItem(arrayOf("sl_rSI"), "Gregor", mail = "glakner@gmail.com"),
     TranslatorItem(arrayOf("sl_rSI"), "Kristijan Tkalec", github = "lapor-kris"),
     TranslatorItem(arrayOf("sl_rSI"), "Marko", weblate = "horvat.marko1993"),
+    TranslatorItem(arrayOf("sl_rSI"), "BorKajin", github = "BorKajin"),
     TranslatorItem(arrayOf("sr"), "NEXI", github = "nexiRS"),
     TranslatorItem(arrayOf("sr"), "Milan Andrejić", mail = "amikia@hotmail.com"),
     TranslatorItem(arrayOf("sv"), "P.O", weblate = "mxvWhxCebxjnmLQxcIr"),
