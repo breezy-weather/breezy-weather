@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import androidx.core.view.isNotEmpty
 
 class TrendRecyclerViewScrollBar : ItemDecoration() {
     private val mPaint = Paint().apply {
@@ -61,7 +62,7 @@ class TrendRecyclerViewScrollBar : ItemDecoration() {
         parent: RecyclerView,
         state: RecyclerView.State,
     ) {
-        if (parent.childCount > 0) {
+        if (parent.isNotEmpty()) {
             if (mScrollBarWidth == 0) mScrollBarWidth = parent.getChildAt(0).measuredWidth
             if (mScrollBarHeight == 0) mScrollBarHeight = parent.getChildAt(0).measuredHeight
         }

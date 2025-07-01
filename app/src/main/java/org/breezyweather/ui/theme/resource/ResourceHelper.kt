@@ -37,6 +37,7 @@ import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.theme.resource.providers.DefaultResourceProvider
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import androidx.core.graphics.createBitmap
 
 object ResourceHelper {
     fun getWeatherIcon(
@@ -177,7 +178,7 @@ object ResourceHelper {
 
         // Consider leading whitespace and descenders to properly center the text.
         // Thanks to https://stackoverflow.com/a/32081250.
-        val bitmap = Bitmap.createBitmap(bounds.right, iconSize, Bitmap.Config.ARGB_8888)
+        val bitmap = createBitmap(bounds.right, iconSize)
         val canvas = Canvas(bitmap)
         canvas.drawText(
             temperatureFormatted,

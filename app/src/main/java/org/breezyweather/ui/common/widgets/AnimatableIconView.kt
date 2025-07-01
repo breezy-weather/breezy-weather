@@ -26,6 +26,7 @@ import android.widget.FrameLayout
 import androidx.annotation.Size
 import androidx.appcompat.widget.AppCompatImageView
 import org.breezyweather.R
+import androidx.core.view.isVisible
 
 class AnimatableIconView @JvmOverloads constructor(
     context: Context,
@@ -76,7 +77,7 @@ class AnimatableIconView @JvmOverloads constructor(
             }
         }
         for (i in mIconAnimators.indices) {
-            if (mIconImageViews[i].visibility == VISIBLE) {
+            if (mIconImageViews[i].isVisible) {
                 mIconAnimators[i]?.start()
             }
         }

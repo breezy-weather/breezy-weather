@@ -32,6 +32,7 @@ import org.breezyweather.common.extensions.isRtl
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
+import androidx.core.view.isNotEmpty
 
 class DrawerLayout @JvmOverloads constructor(
     context: Context,
@@ -64,7 +65,7 @@ class DrawerLayout @JvmOverloads constructor(
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        if (childCount > 0) {
+        if (isNotEmpty()) {
             mDrawer = getChildAt(0)
         }
         if (childCount > 1) {
@@ -108,7 +109,7 @@ class DrawerLayout @JvmOverloads constructor(
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        if (childCount > 0) {
+        if (isNotEmpty()) {
             mDrawer = getChildAt(0)
         }
         if (childCount > 1) {

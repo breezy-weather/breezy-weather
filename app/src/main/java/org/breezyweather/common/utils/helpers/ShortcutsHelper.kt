@@ -25,6 +25,7 @@ import androidx.annotation.RequiresApi
 import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import androidx.core.graphics.createBitmap
 
 /**
  * Shortcuts manager.
@@ -33,11 +34,7 @@ import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 object ShortcutsHelper {
 
     private fun drawableToBitmap(drawable: Drawable): Bitmap {
-        val bitmap = Bitmap.createBitmap(
-            drawable.intrinsicWidth,
-            drawable.intrinsicHeight,
-            Bitmap.Config.ARGB_8888
-        )
+        val bitmap = createBitmap(drawable.intrinsicWidth, drawable.intrinsicHeight)
         val canvas = Canvas(bitmap)
         drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
         drawable.draw(canvas)

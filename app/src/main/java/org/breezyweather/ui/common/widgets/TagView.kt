@@ -32,6 +32,7 @@ import androidx.core.view.AccessibilityDelegateCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import org.breezyweather.R
+import androidx.core.content.withStyledAttributes
 
 class TagView @JvmOverloads constructor(
     context: Context,
@@ -52,13 +53,13 @@ class TagView @JvmOverloads constructor(
     private var mUncheckedBackgroundColor = 0
 
     init {
-        val a = context.obtainStyledAttributes(attrs, R.styleable.TagView, defStyleAttr, 0)
-        mChecked = a.getBoolean(R.styleable.TagView_checked, false)
-        mCheckedBackgroundColor =
-            a.getColor(R.styleable.TagView_checked_background_color, Color.WHITE)
-        mUncheckedBackgroundColor =
-            a.getColor(R.styleable.TagView_unchecked_background_color, Color.LTGRAY)
-        a.recycle()
+        context.withStyledAttributes(attrs, R.styleable.TagView, defStyleAttr, 0) {
+            mChecked = getBoolean(R.styleable.TagView_checked, false)
+            mCheckedBackgroundColor =
+                getColor(R.styleable.TagView_checked_background_color, Color.WHITE)
+            mUncheckedBackgroundColor =
+                getColor(R.styleable.TagView_unchecked_background_color, Color.LTGRAY)
+        }
 
         ViewCompat.setAccessibilityDelegate(
             this,

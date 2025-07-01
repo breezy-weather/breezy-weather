@@ -36,6 +36,7 @@ import kotlin.math.log10
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
+import androidx.core.view.isNotEmpty
 
 class SwipeSwitchLayout @JvmOverloads constructor(
     context: Context,
@@ -87,7 +88,7 @@ class SwipeSwitchLayout @JvmOverloads constructor(
         if (!isEnabled || ev.action != MotionEvent.ACTION_DOWN && mIsBeingNestedScrolling) {
             return false
         }
-        if (mTarget == null && childCount > 0) {
+        if (mTarget == null && isNotEmpty()) {
             mTarget = getChildAt(0)
         }
         if (mTarget == null) return false
@@ -132,7 +133,7 @@ class SwipeSwitchLayout @JvmOverloads constructor(
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(ev: MotionEvent): Boolean {
         if (!isEnabled || mIsBeingNestedScrolling) return false
-        if (mTarget == null && childCount > 0) {
+        if (mTarget == null && isNotEmpty()) {
             mTarget = getChildAt(0)
         }
         if (mTarget == null) return false
@@ -268,7 +269,7 @@ class SwipeSwitchLayout @JvmOverloads constructor(
 
     // nested scrolling parent.
     override fun onStartNestedScroll(child: View, target: View, axes: Int, type: Int): Boolean {
-        if (mTarget == null && childCount > 0) {
+        if (mTarget == null && isNotEmpty()) {
             mTarget = getChildAt(0)
         }
         return axes and ViewCompat.SCROLL_AXIS_HORIZONTAL != 0 &&

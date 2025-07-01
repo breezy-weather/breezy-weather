@@ -44,6 +44,8 @@ import androidx.core.view.updatePadding
 import com.google.android.material.behavior.SwipeDismissBehavior
 import org.breezyweather.R
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
+import androidx.core.content.withStyledAttributes
+import androidx.core.view.isVisible
 
 class Snackbar private constructor(
     private val mParent: ViewGroup,
@@ -327,12 +329,10 @@ class Snackbar private constructor(
         private var mOnAttachStateChangeListener: OnAttachStateChangeListener? = null
 
         init {
-            val a = context.obtainStyledAttributes(
+            context.withStyledAttributes(
                 attrs,
                 com.google.android.material.R.styleable.SnackbarLayout
-            )
-
-            a.recycle()
+            ) {}
             isClickable = true
             fitsSystemWindows = false
             LayoutInflater.from(context).inflate(layoutId, this)
@@ -435,7 +435,7 @@ class Snackbar private constructor(
                     .start()
 
                 actionView?.let { aView ->
-                    if (aView.visibility == VISIBLE) {
+                    if (aView.isVisible) {
                         aView.alpha = 0f
                         aView.animate()
                             .alpha(1f)
@@ -457,7 +457,7 @@ class Snackbar private constructor(
                     .start()
 
                 actionView?.let { aView ->
-                    if (aView.visibility == VISIBLE) {
+                    if (aView.isVisible) {
                         aView.alpha = 1f
                         mView.animate()
                             .alpha(0f)

@@ -30,6 +30,7 @@ import org.breezyweather.R
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import java.util.Random
+import androidx.core.graphics.drawable.toDrawable
 
 object AdaptiveIconDialog {
     fun show(
@@ -58,7 +59,7 @@ object AdaptiveIconDialog {
         val iconView = view.findViewById<AdaptiveIconView>(R.id.dialog_adaptive_icon_icon)
         iconView.icon = AdaptiveIcon(
             ResourceHelper.getShortcutsForegroundIcon(provider, code, daytime),
-            ColorDrawable(Color.TRANSPARENT),
+            Color.TRANSPARENT.toDrawable(),
             0.5
         )
         iconView.setPath(Random().nextInt(AdaptiveIconView.PATH_TEARDROP + 1))

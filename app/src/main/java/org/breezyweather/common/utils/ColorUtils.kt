@@ -22,12 +22,13 @@ import android.media.ThumbnailUtils
 import androidx.annotation.ColorInt
 import androidx.core.graphics.ColorUtils
 import kotlin.math.ln
+import androidx.core.graphics.get
 
 object ColorUtils {
 
     @ColorInt
     fun bitmapToColorInt(bitmap: Bitmap): Int {
-        return ThumbnailUtils.extractThumbnail(bitmap, 1, 1).getPixel(0, 0)
+        return ThumbnailUtils.extractThumbnail(bitmap, 1, 1)[0, 0]
     }
 
     fun isLightColor(@ColorInt color: Int): Boolean {

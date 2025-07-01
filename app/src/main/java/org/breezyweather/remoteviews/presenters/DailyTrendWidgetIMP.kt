@@ -51,6 +51,7 @@ import org.breezyweather.ui.theme.weatherView.WeatherViewController
 import java.text.NumberFormat
 import kotlin.math.max
 import kotlin.math.min
+import androidx.core.graphics.createBitmap
 
 object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
 
@@ -321,11 +322,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             drawableView.measuredWidth,
             drawableView.measuredHeight
         )
-        val cache = Bitmap.createBitmap(
-            drawableView.measuredWidth,
-            drawableView.measuredHeight,
-            Bitmap.Config.ARGB_8888
-        )
+        val cache = createBitmap(drawableView.measuredWidth, drawableView.measuredHeight)
         val canvas = Canvas(cache)
         drawableView.draw(canvas)
         views.setImageViewBitmap(R.id.widget_remote_drawable, cache)

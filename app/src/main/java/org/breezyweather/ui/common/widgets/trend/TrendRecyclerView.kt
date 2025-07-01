@@ -27,6 +27,7 @@ import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 import org.breezyweather.ui.common.widgets.trend.item.AbsTrendItemView
+import androidx.core.view.isNotEmpty
 
 /**
  * Trend recycler view.
@@ -93,7 +94,7 @@ class TrendRecyclerView @JvmOverloads constructor(
         ) {
             return
         }
-        if (childCount > 0) {
+        if (isNotEmpty()) {
             mDrawingBoundaryTop = (getChildAt(0) as AbsTrendItemView).chartTop
             mDrawingBoundaryBottom = (getChildAt(0) as AbsTrendItemView).chartBottom
         }
