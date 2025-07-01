@@ -104,7 +104,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Živo ozadje</string>
-    <string name="settings_location_service">Dejavnost lokacija</string>
+    <string name="settings_location_service">Lokacijske storitve</string>
     <string name="settings_appearance_dark_mode_title">Temen način</string>
     <string name="settings_appearance_icon_pack_title">Paket ikon</string>
     <string name="settings_appearance">Izgled</string>
@@ -389,4 +389,7 @@
     <string name="common_weather_text_snow_light">Rahlo sneženje</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Rahel dež z snegom</string>
     <string name="notification_app_update_available">Na voljo je nova verzija</string>
+    <string name="ephemeris_about">O časih vzhodov in zahodov</string>
+    <string name="ephemeris_about_rise">Čas vzhoda je takrat, ko se sonce ali luna v celoti pojavi nad obzorjem.</string>
+    <string name="ephemeris_about_set">Čas zahoda je takrat, ko sonce ali luna v celoti izgine pod obzorjem.</string>
 </resources>
