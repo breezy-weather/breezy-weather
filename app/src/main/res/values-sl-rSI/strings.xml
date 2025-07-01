@@ -376,7 +376,7 @@
     <string name="pollen_pinus">Smreka</string>
     <string name="pollen_ulmus">Brest</string>
     <string name="weather_source_continent_south_america">Južna Amerika</string>
-    <string name="location_delete_location_dialog_message_no_name">Lokacijo boste izbrisali iz seznama shranjenih lokacij.</string>
+    <string name="location_delete_location_dialog_message_no_name">To lokacijo boste izbrisali iz seznama shranjenih lokacij.</string>
     <string name="unit_km_voice">Kilometer</string>
     <string name="common_weather_text_tornado">Tornado</string>
     <string name="unit_kelvin_short">K</string>
@@ -444,4 +444,5 @@
     <string name="visibility_good">Dobra</string>
     <string name="ceiling">Višina oblakov</string>
     <string name="ceiling_short">Višina oblakov</string>
+    <string name="location_message_search_failed">Napaka pri iskanju lokacije</string>
 </resources>
