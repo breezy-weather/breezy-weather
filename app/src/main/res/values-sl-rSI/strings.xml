@@ -480,5 +480,13 @@
     <string name="settings_weather_source_none">Brez</string>
     <string name="settings_source_default_value">Privzeto (nespremenjeno)</string>
     <string name="settings_source_api_key">API ključ</string>
-    <string name="settings_source_instance_invalid">Mora biti https URL naslov ki se konča z poševnico (/)</string>
+    <string name="settings_source_instance_invalid">Mora biti https URL naslov ki se konča s poševnico (/)</string>
+    <string name="settings_appearance_summary">Jezik, temni način, paket ikon, merske enote</string>
+    <string name="settings_appearance_dark_mode_locations_title">Način dan / noč za lokacije</string>
+    <string name="settings_icon_packs_title">Paketi ikon</string>
+    <string name="settings_icon_packs_weather_adaptive_icon">Ikona vremena</string>
+    <string name="settings_icon_packs_weather_icon_light">Svetla ikona</string>
+    <string name="settings_icon_packs_weather_icon_grey">Siva ikona</string>
+    <string name="settings_icon_packs_weather_icon_dark">Temna ikona</string>
+    <string name="settings_units_summary">Temperatura, padavine, razdalja, hitrost, zračni tlak</string>
 </resources>
