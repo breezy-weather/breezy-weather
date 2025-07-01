@@ -791,5 +791,6 @@
     <string name="air_quality_pollutant_primary">Inquinante primario</string>
     <string name="air_quality_pollutant_details">Dettagli degli inquinanti</string>
     <string name="air_quality_health_information">Informazioni sulla salute</string>
-    <string name="air_quality_pm25_full">Materia di particolato fine (± %s)</string>
+    <string name="air_quality_pm25_full">Materia di particolato fine (&lt; %s)</string>
+    <string name="air_quality_pm10_full">Materiale particolato inalabile (&lt; %s)</string>
 </resources>
