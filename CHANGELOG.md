@@ -3,6 +3,7 @@
 **Improvements and fixes**
 - Details page - Fix floating action button not updating in real time (@min7-i)
 - Details page - Charts - Fix area fill in Right to Left languages (@chunshek)
+- Fix tint of “Open in another app” icon in landscape mode
 
 **Translations**
 - Translations updated
