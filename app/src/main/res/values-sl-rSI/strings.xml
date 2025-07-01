@@ -21,8 +21,8 @@
     <string name="dew_point">Točka rose</string>
     <string name="settings_icon_packs_get_more">Več</string>
     <string name="action_refresh">Osveži</string>
-    <string name="daily_yesterday_short">Včr</string>
-    <string name="daily_tomorrow_short">Jtr</string>
+    <string name="daily_yesterday_short">Včeraj</string>
+    <string name="daily_tomorrow_short">Jutri</string>
     <string name="wind_strength_0">Mirno</string>
     <string name="wind_strength_1">Lahen zrak</string>
     <string name="wind_strength_2">Lahen vetrič</string>
@@ -50,12 +50,12 @@
     <string name="details">Podrobnosti</string>
     <string name="ephemeris">Sonce &amp; luna</string>
     <string name="action_next">Naslednji</string>
-    <string name="action_done">Končanano</string>
+    <string name="action_done">Končano</string>
     <string name="settings_enabled">Omogočeno</string>
     <string name="settings_disabled">Onemogočeno</string>
     <string name="action_set">Nastavi</string>
-    <string name="action_help">PomoČ</string>
-    <string name="action_learn_more">NauČi se veČ</string>
+    <string name="action_help">Pomoč</string>
+    <string name="action_learn_more">Nauči se več</string>
     <string name="about_app">O applikaciji</string>
     <string name="about_translators">Prevajalci</string>
     <!-- feedback. -->
@@ -392,4 +392,20 @@
     <string name="ephemeris_about">O časih vzhodov in zahodov</string>
     <string name="ephemeris_about_rise">Čas vzhoda je takrat, ko se sonce ali luna v celoti pojavi nad obzorjem.</string>
     <string name="ephemeris_about_set">Čas zahoda je takrat, ko sonce ali luna v celoti izgine pod obzorjem.</string>
+    <string name="action_save">Shrani</string>
+    <string name="action_continue">Nadaljuj</string>
+    <string name="action_confirm">Potrdi</string>
+    <string name="action_close">Zapri</string>
+    <string name="action_undo">Razveljavi</string>
+    <string name="action_close_menu">Zapri meni</string>
+    <string name="action_share">Deli</string>
+    <string name="action_download">Prenesi</string>
+    <string name="action_show_errors">Pritisni za podrobnosti</string>
+    <string name="action_show">Prikaži</string>
+    <string name="action_enable">Omogoči</string>
+    <string name="action_allow">Dovoli</string>
+    <string name="action_help_me_choose">Pomagaj mi izbrati</string>
+    <string name="label_description">Opis</string>
+    <string name="daily_summary">Dnevni povzetek</string>
+    <string name="chart_no_daily_data">Za ta dan ni na voljo nobenih podatkov.</string>
 </resources>
