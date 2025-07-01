@@ -60,7 +60,7 @@
     <string name="about_translators">Prevajalci</string>
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">Pridobivanje lokacije ni bilo uspešno</string>
-    <string name="weather_message_data_refresh_failed">Podatki o vremenu niso na voljo</string>
+    <string name="weather_message_data_refresh_failed">Podatki niso na voljo</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Izberite drug način pridobivanja lokacije</string>
     <string name="widget_label_view_style">Način pogleda</string>
     <string name="widget_label_show_widget_card">Barva ozadja</string>
@@ -317,7 +317,7 @@
     <string name="weather_source_accu_preference_days_10">10 dni</string>
     <string name="location_results_by">Rezultati lokacije iz vira: %s</string>
     <string name="location_message_updated">Lokacija je bila uspešno posodobljena</string>
-    <string name="location_message_already_exists">Lokacija z istim glavnim virom vremena že obstaja.</string>
+    <string name="location_message_already_exists">Seznam lokacij že vsebuje to lokacijo z istim glavnim virom vremena.</string>
     <string name="weather_source_accu_preference_days_5">5 dni</string>
     <string name="current_weather">Trenutno vreme</string>
     <string name="weather_current_data_by">Trenutni vremenski podatki do %s</string>
@@ -373,7 +373,7 @@
     <string name="wind_direction_SE">Jugovzhod</string>
     <string name="wind_direction_S">Jug</string>
     <string name="wind_direction_SW">Jugozahod</string>
-    <string name="pollen_pinus">Smreka</string>
+    <string name="pollen_pinus">Bor</string>
     <string name="pollen_ulmus">Brest</string>
     <string name="weather_source_continent_south_america">Južna Amerika</string>
     <string name="location_delete_location_dialog_message_no_name">To lokacijo boste izbrisali iz seznama shranjenih lokacij.</string>
@@ -388,7 +388,7 @@
     <string name="notification_channel_background_services">Storitve v ozadju</string>
     <string name="common_weather_text_snow_light">Rahlo sneženje</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Rahel dež z snegom</string>
-    <string name="notification_app_update_available">Na voljo je nova verzija</string>
+    <string name="notification_app_update_available">Na voljo je nova verzija!</string>
     <string name="ephemeris_about">O časih vzhodov in zahodov</string>
     <string name="ephemeris_about_rise">Čas vzhoda je takrat, ko se sonce ali luna v celoti pojavi nad obzorjem.</string>
     <string name="ephemeris_about_set">Čas zahoda je takrat, ko sonce ali luna v celoti izgine pod obzorjem.</string>
@@ -488,5 +488,18 @@
     <string name="settings_icon_packs_weather_icon_light">Svetla ikona</string>
     <string name="settings_icon_packs_weather_icon_grey">Siva ikona</string>
     <string name="settings_icon_packs_weather_icon_dark">Temna ikona</string>
-    <string name="settings_units_summary">Temperatura, padavine, razdalja, hitrost, zračni tlak</string>
+    <string name="settings_units_summary">Temperatura, padavine, razdalja, hitrost, tlak</string>
+    <string name="settings_units_temperature">Enota za temperaturo</string>
+    <string name="settings_units_precipitation">Enota za padavine</string>
+    <string name="settings_units_distance">Enota za razdaljo</string>
+    <string name="settings_units_speed">Enota za hitrost</string>
+    <string name="settings_units_pressure">Enota za tlak</string>
+    <string name="settings_main">Glavni zaslon</string>
+    <string name="settings_main_background_animation_enabled">Omogočeno</string>
+    <string name="settings_main_background_animation_disabled">Onemogočeno</string>
+    <string name="settings_main_cards_other_element_animations_switch">Animacije drugih elementov</string>
+    <string name="settings_notifications">Obvestila</string>
+    <string name="settings_widgets">Widgeti &amp; Živo ozadje</string>
+    <string name="settings_debug">Odpravljanje napak</string>
+    <string name="widget_label_show_widget_card_alpha">Neprosojnost</string>
 </resources>
