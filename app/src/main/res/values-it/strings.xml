@@ -713,7 +713,7 @@
     <string name="dialog_refresh_error_details_content">Tocca i messaggi di errore con un punto interrogativo per ottenere ulteriore aiuto.</string>
     <string name="message_multiple_refresh_errors">Aggiornamento completato con errori</string>
     <string name="common_weather_text_dust">Polvere</string>
-    <string name="common_weather_text_squall">Raffiche</string>
+    <string name="common_weather_text_squall">Burrasca</string>
     <string name="common_weather_text_hot">Molto caldo</string>
     <string name="common_weather_text_dust_storm">Tempesta di polvere</string>
     <string name="common_weather_text_frost">Gelo</string>
@@ -774,4 +774,22 @@
     <string name="temperature_degree_day_heating_explanation">Differenza tra la temperatura esterna e una temperatura comoda di riferimento utilizzata per stimare i requisiti energetici di riscaldamento</string>
     <string name="temperature_degree_day_cooling_explanation">Differenza tra la temperatura esterna e una temperatura comoda di riferimento utilizzata per valutare i requisiti energetici di raffreddamento</string>
     <string name="wind_speed_about">A proposito di velocità del vento e raffiche</string>
+    <string name="wind_speed_about_description">La velocità del vento è misurata mediando la velocità del vento per un periodo di tempo. Le raffiche sono improvvise esplosioni di vento che durano tipicamente sotto 20 secondi.</string>
+    <string name="wind_gusts_short">Raffiche</string>
+    <string name="wind_strength_scale">Scala Beaufort</string>
+    <string name="uv_index_about">Informazioni sull\'indice UV</string>
+    <string name="uv_index_about_description">L’indice UV misura la forza della radiazione ultravioletta del sole. Più alto è, più grande e più veloce può causare scottature, cancro della pelle e danni agli occhi.</string>
+    <string name="uv_index_scale">Scala dell\'indice UV</string>
+    <string name="air_quality_index_scale">Scala dell\'indice di qualità dell\'aria</string>
+    <string name="air_quality_index_harmless_exposure">Esposizione senza danni</string>
+    <string name="air_quality_level_1_harmless_exposure">&gt; 1 anno</string>
+    <string name="air_quality_level_2_harmless_exposure">&lt; 1 anno</string>
+    <string name="air_quality_level_3_harmless_exposure">&lt; 1 giorno</string>
+    <string name="air_quality_level_4_harmless_exposure">&lt; 1 ora</string>
+    <string name="air_quality_level_5_harmless_exposure">&lt; pochi minuti</string>
+    <string name="air_quality_level_6_harmless_exposure">&lt; 1 minuto</string>
+    <string name="air_quality_pollutant_primary">Inquinante primario</string>
+    <string name="air_quality_pollutant_details">Dettagli degli inquinanti</string>
+    <string name="air_quality_health_information">Informazioni sulla salute</string>
+    <string name="air_quality_pm25_full">Materia di particolato fine (± %s)</string>
 </resources>
