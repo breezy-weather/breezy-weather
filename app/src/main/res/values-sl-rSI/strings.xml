@@ -466,6 +466,10 @@
     <string name="dialog_permissions_notification_title">Ostani osveščen</string>
     <string name="dialog_time_picker_select_time">Izberi čas</string>
     <string name="dialog_time_picker_input_time">Vnesi čas</string>
-    <string name="message_network_unavailable">Omrežje ni na voljo</string>
+    <string name="message_network_unavailable">Omrežje ni dostopno</string>
     <string name="message_server_unavailable_title">Strežnik ni dostopen</string>
+    <string name="widget_label_align_end">Poravnaj desno</string>
+    <string name="widget_week_style_3_days">3 dni</string>
+    <string name="settings_section_general">Splošno</string>
+    <string name="settings_background_updates">Ažuriranje v ozadju</string>
 </resources>
