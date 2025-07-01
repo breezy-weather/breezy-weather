@@ -445,5 +445,6 @@
     <string name="ceiling">Višina oblakov</string>
     <string name="ceiling_short">Višina oblakov</string>
     <string name="location_message_search_failed">Iskanje lokacije neuspešno</string>
-    <string name="location_message_permission_background_missing">Dostop do lokacije v odzadju je onemogočen</string>
+    <string name="location_message_permission_background_missing">Manjka dovoljenje za dostop do lokacije v ozadju</string>
+    <string name="location_message_reverse_geocoding_failed">"Vremenski  viri ne najdejo iskane lokacije"</string>
 </resources>
