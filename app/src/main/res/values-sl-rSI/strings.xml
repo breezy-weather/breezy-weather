@@ -218,7 +218,7 @@
     <string name="cloud_cover">Oblačnost</string>
     <string name="precipitation_snow">Sneg</string>
     <string name="precipitation_intensity_light">Sodra</string>
-    <string name="precipitation_between_time">Padavine med%1$s in %2$s</string>
+    <string name="precipitation_between_time">Padavine od %1$s do %2$s</string>
     <string name="wind_direction_SE_short">JV</string>
     <string name="uv_index_0_2">Nizek</string>
     <string name="air_quality_no2_voice">Dušikov dioksid</string>
@@ -407,5 +407,12 @@
     <string name="action_help_me_choose">Pomagaj mi izbrati</string>
     <string name="label_description">Opis</string>
     <string name="daily_summary">Dnevni povzetek</string>
-    <string name="chart_no_daily_data">Za ta dan ni na voljo nobenih podatkov.</string>
+    <string name="chart_no_daily_data">Za ta dan podatki niso na voljo.</string>
+    <string name="chart_no_hourly_data">Urni podatki niso na voljo.</string>
+    <string name="chart_not_enough_hourly_data">Za prikaz grafa ni na voljo dovolj urnih podatkov.</string>
+    <string name="chart_average">Povprečje</string>
+    <string name="chart_maximum_value">Maksimalna vrednost</string>
+    <string name="conditions">Pogoji</string>
+    <string name="temperature_wet_bulb">Moker termometer</string>
+    <string name="wind_speed_about">O sunkih in hitrosti vetra</string>
 </resources>
