@@ -198,7 +198,7 @@
     <string name="alert">Opozorilo</string>
     <string name="precipitation_total">Skupno</string>
     <string name="precipitation_rain">Dež</string>
-    <string name="precipitation_intensity_heavy">Obilno deževje</string>
+    <string name="precipitation_intensity_heavy">Obilno</string>
     <string name="precipitation_none">Brez padavin</string>
     <string name="wind_speed">Hitrost vetra</string>
     <string name="wind_gusts">Sunki vetra</string>
@@ -217,7 +217,7 @@
     <string name="air_quality_so2_info_origin">V naravi se sprošča pri vulkanski dejavnosti, večinoma pa nastaja pri zgorevanju fosilnih goriv za ogrevanje gospodinjstev, v industriji in pri proizvodnji električne energije.</string>
     <string name="cloud_cover">Oblačnost</string>
     <string name="precipitation_snow">Sneg</string>
-    <string name="precipitation_intensity_light">Sodra</string>
+    <string name="precipitation_intensity_light">Rahlo</string>
     <string name="precipitation_between_time">Padavine od %1$s do %2$s</string>
     <string name="wind_direction_SE_short">JV</string>
     <string name="uv_index_0_2">Nizek</string>
@@ -444,5 +444,6 @@
     <string name="visibility_good">Dobra</string>
     <string name="ceiling">Višina oblakov</string>
     <string name="ceiling_short">Višina oblakov</string>
-    <string name="location_message_search_failed">Napaka pri iskanju lokacije</string>
+    <string name="location_message_search_failed">Iskanje lokacije neuspešno</string>
+    <string name="location_message_permission_background_missing">Dostop do lokacije v odzadju je onemogočen</string>
 </resources>
