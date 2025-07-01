@@ -448,5 +448,6 @@
     <string name="location_message_permission_background_missing">Manjka dovoljenje za dostop do lokacije v ozadju</string>
     <string name="location_message_reverse_geocoding_failed">Vremenski viri ne najdejo iskane lokacije</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Ročno dodajte lokacijo in izbrišite “%s”</string>
-    <string name="location_search_source">Ponudnik lokacij</string>
+    <string name="location_search_source">Vir iskanja lokacij</string>
+    <string name="location_search_change_source">Zamenjaj ponudnika lokacij</string>
 </resources>
