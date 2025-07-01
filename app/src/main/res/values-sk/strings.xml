@@ -746,4 +746,17 @@
     <string name="message_outdated_server_data">Zo serveru boli obdržané zastaralé dáta</string>
     <string name="action_allow">Povoliť</string>
     <string name="action_enable">Zapnúť</string>
+    <string name="chart_no_daily_data">Žiadne dáta nie sú pre tento deň k dispozícii.</string>
+    <string name="chart_average">Priemer</string>
+    <string name="chart_maximum_value">Maximálna hodnota</string>
+    <string name="conditions">Podmienky</string>
+    <string name="temperature_real_details">Aktuálna teplota.</string>
+    <string name="wind_strength_scale">Beaufortova stupnica</string>
+    <string name="air_quality_index_short">IKV</string>
+    <string name="air_quality_level_1_harmless_exposure">&gt; 1 rok</string>
+    <string name="air_quality_level_2_harmless_exposure">&lt; 1 rok</string>
+    <string name="air_quality_level_3_harmless_exposure">&lt; 1 deň</string>
+    <string name="air_quality_level_4_harmless_exposure">&lt; 1 hodina</string>
+    <string name="air_quality_level_5_harmless_exposure">&lt; pár minút</string>
+    <string name="air_quality_level_6_harmless_exposure">&lt; 1 minúta</string>
 </resources>
