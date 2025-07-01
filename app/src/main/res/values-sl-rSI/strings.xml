@@ -454,5 +454,18 @@
     <string name="action_location_list">Seznam lokacij</string>
     <string name="action_add_current_location">Dodaj trenutno lokacijo</string>
     <string name="action_add_new_location">Dodaj novo lokacijo</string>
-    <string name="action_edit_location">Uredi lokacijo</string>
+    <string name="action_edit_location">Uredi to lokacijo</string>
+    <string name="action_open_in_other_app">Odpri v drugi aplikaciji</string>
+    <string name="action_open_in_other_app_description">Odpri to lokacijo v drugi aplikaciji</string>
+    <string name="action_restart">Ponovono zaženi</string>
+    <string name="action_edit">Uredi</string>
+    <string name="action_delete">Ižbriši</string>
+    <string name="action_back">Nazaj</string>
+    <string name="label_expanded">Razširjeno</string>
+    <string name="label_collapsed">Skrčeno</string>
+    <string name="dialog_permissions_notification_title">Ostani osveščen</string>
+    <string name="dialog_time_picker_select_time">Izberi čas</string>
+    <string name="dialog_time_picker_input_time">Vnesi čas</string>
+    <string name="message_network_unavailable">Omrežje ni na voljo</string>
+    <string name="message_server_unavailable_title">Strežnik ni dostopen</string>
 </resources>
