@@ -122,7 +122,7 @@
     <string name="settings_color_light">Svetel</string>
     <string name="settings_color_grey">Siv</string>
     <string name="settings_color_dark">Temen</string>
-    <string name="settings_background_updates_refresh_30min">00:30</string>
+    <string name="settings_background_updates_refresh_30min">30 minut</string>
     <string name="settings_background_updates_refresh_1h">01:00</string>
     <string name="settings_background_updates_refresh_1h_30min">01:30</string>
     <string name="settings_background_updates_refresh_2h">02:00</string>
@@ -471,5 +471,14 @@
     <string name="widget_label_align_end">Poravnaj desno</string>
     <string name="widget_week_style_3_days">3 dni</string>
     <string name="settings_section_general">Splošno</string>
-    <string name="settings_background_updates">Ažuriranje v ozadju</string>
+    <string name="settings_background_updates">Posodobitev v ozadju</string>
+    <string name="settings_background_updates_refresh_never">Nikoli</string>
+    <string name="settings_global">Globalne nastavitve</string>
+    <string name="settings_per_location_theme">Tema</string>
+    <string name="settings_weather_source_unavailable">%s (ni na voljo)</string>
+    <string name="settings_weather_source_not_configured">%s (ni nastavljeno)</string>
+    <string name="settings_weather_source_none">Brez</string>
+    <string name="settings_source_default_value">Privzeto (nespremenjeno)</string>
+    <string name="settings_source_api_key">API ključ</string>
+    <string name="settings_source_instance_invalid">Mora biti https URL naslov ki se konča z poševnico (/)</string>
 </resources>
