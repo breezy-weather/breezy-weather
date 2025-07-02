@@ -31,13 +31,13 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.createBitmap
 import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.theme.resource.providers.DefaultResourceProvider
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
-import androidx.core.graphics.createBitmap
 
 object ResourceHelper {
     fun getWeatherIcon(

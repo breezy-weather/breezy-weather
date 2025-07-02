@@ -22,12 +22,12 @@ import android.graphics.Paint
 import android.graphics.Shader
 import androidx.annotation.ColorInt
 import androidx.core.graphics.ColorUtils
+import androidx.core.view.isNotEmpty
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
-import androidx.core.view.isNotEmpty
 
 class TrendRecyclerViewScrollBar : ItemDecoration() {
     private val mPaint = Paint().apply {

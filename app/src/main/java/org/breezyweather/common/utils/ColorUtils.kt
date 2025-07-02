@@ -21,8 +21,8 @@ import android.graphics.Color
 import android.media.ThumbnailUtils
 import androidx.annotation.ColorInt
 import androidx.core.graphics.ColorUtils
-import kotlin.math.ln
 import androidx.core.graphics.get
+import kotlin.math.ln
 
 object ColorUtils {
 

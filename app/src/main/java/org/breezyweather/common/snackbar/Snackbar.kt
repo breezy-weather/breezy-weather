@@ -38,14 +38,14 @@ import androidx.annotation.IntDef
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.withStyledAttributes
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
 import com.google.android.material.behavior.SwipeDismissBehavior
 import org.breezyweather.R
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
-import androidx.core.content.withStyledAttributes
-import androidx.core.view.isVisible
 
 class Snackbar private constructor(
     private val mParent: ViewGroup,

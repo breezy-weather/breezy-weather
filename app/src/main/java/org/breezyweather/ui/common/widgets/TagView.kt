@@ -28,11 +28,11 @@ import android.view.ViewOutlineProvider
 import android.view.accessibility.AccessibilityNodeInfo
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.content.withStyledAttributes
 import androidx.core.view.AccessibilityDelegateCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat
 import org.breezyweather.R
-import androidx.core.content.withStyledAttributes
 
 class TagView @JvmOverloads constructor(
     context: Context,

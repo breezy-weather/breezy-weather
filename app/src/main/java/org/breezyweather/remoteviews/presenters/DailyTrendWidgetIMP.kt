@@ -20,7 +20,6 @@ import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.os.Looper
@@ -30,6 +29,7 @@ import android.widget.RemoteViews
 import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.core.graphics.createBitmap
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendDailyProvider
@@ -51,7 +51,6 @@ import org.breezyweather.ui.theme.weatherView.WeatherViewController
 import java.text.NumberFormat
 import kotlin.math.max
 import kotlin.math.min
-import androidx.core.graphics.createBitmap
 
 object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
 

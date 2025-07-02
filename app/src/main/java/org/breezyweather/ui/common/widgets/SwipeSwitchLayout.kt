@@ -27,6 +27,7 @@ import android.widget.FrameLayout
 import androidx.core.view.NestedScrollingParent2
 import androidx.core.view.NestedScrollingParent3
 import androidx.core.view.ViewCompat
+import androidx.core.view.isNotEmpty
 import androidx.dynamicanimation.animation.DynamicAnimation
 import androidx.dynamicanimation.animation.FloatValueHolder
 import androidx.dynamicanimation.animation.SpringAnimation
@@ -36,7 +37,6 @@ import kotlin.math.log10
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
-import androidx.core.view.isNotEmpty
 
 class SwipeSwitchLayout @JvmOverloads constructor(
     context: Context,

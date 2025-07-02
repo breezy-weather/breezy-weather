@@ -26,13 +26,13 @@ import android.widget.FrameLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.withStyledAttributes
 import androidx.core.widget.ImageViewCompat
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.isRtl
 import kotlin.math.abs
 import kotlin.math.pow
-import androidx.core.content.withStyledAttributes
 
 class SlidingItemContainerLayout @JvmOverloads constructor(
     context: Context,

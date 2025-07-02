@@ -22,10 +22,10 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.Icon
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.core.graphics.createBitmap
 import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
-import androidx.core.graphics.createBitmap
 
 /**
  * Shortcuts manager.

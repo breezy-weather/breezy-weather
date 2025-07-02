@@ -25,8 +25,8 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.Size
 import androidx.appcompat.widget.AppCompatImageView
-import org.breezyweather.R
 import androidx.core.view.isVisible
+import org.breezyweather.R
 
 class AnimatableIconView @JvmOverloads constructor(
     context: Context,

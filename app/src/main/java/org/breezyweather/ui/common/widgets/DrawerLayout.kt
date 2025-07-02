@@ -24,6 +24,7 @@ import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import androidx.annotation.FloatRange
+import androidx.core.view.isNotEmpty
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
@@ -32,7 +33,6 @@ import org.breezyweather.common.extensions.isRtl
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
-import androidx.core.view.isNotEmpty
 
 class DrawerLayout @JvmOverloads constructor(
     context: Context,

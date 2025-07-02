@@ -19,9 +19,9 @@ package org.breezyweather.ui.settings.dialogs
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
+import androidx.core.graphics.drawable.toDrawable
 import breezyweather.domain.weather.model.WeatherCode
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import james.adaptiveicon.AdaptiveIcon
@@ -30,7 +30,6 @@ import org.breezyweather.R
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import java.util.Random
-import androidx.core.graphics.drawable.toDrawable
 
 object AdaptiveIconDialog {
     fun show(
