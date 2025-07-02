@@ -135,11 +135,6 @@
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
-            android:name=".ui.pollen.PollenActivity"
-            android:label="@string/pollen"
-            android:theme="@style/BreezyWeatherTheme" />
-
-        <activity
             android:name=".ui.settings.activities.SettingsActivity"
             android:exported="true"
             android:label="@string/action_settings"
