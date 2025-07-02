@@ -805,5 +805,5 @@
     <string name="unit_mum">мкм</string>
     <string name="unit_mum_voice">Мікраметры</string>
     <string name="air_quality_index_short">ІЯП</string>
-    <string name="temperature_degree_day_heating_explanation">Розніца паміж тэмпературай на дварэ і еталонною комфортною температурою, яка використовується для оцінки потреб в енергії на опалення</string>
+    <string name="temperature_degree_day_heating_explanation">Розніца паміж тэмпературай на дварэ і нармальнай тэмпературай камфорта, якая выкарыстоўваецца для ацэнкі патрэб в енергії на опалення</string>
 </resources>
