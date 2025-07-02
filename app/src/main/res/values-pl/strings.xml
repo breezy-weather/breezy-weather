@@ -804,4 +804,16 @@
     <string name="air_quality_pm10_full">Wdychalne cząsteczki stałe (&lt; %s)</string>
     <string name="air_quality_pm_sources">Główne źródła to procesy spalania (np. elektrownie, ogrzewanie domowe, spaliny samochodowe, pożary lasów), procesy mechaniczne (np. budownictwo, pył mineralny, rolnictwo) oraz cząstki biologiczne (np. pyłki, pleśń, bakterie, wirusy).</string>
     <string name="air_quality_so2_sources">Główne źródła to procesy spalania paliw zawierających siarkę w przemyśle, transporcie i elektrowniach.</string>
+    <string name="air_quality_no2_sources">Główne źródła to procesy spalania paliw, takie jak te wykorzystywane w przemyśle i transporcie.</string>
+    <string name="air_quality_o3_sources">Ozon powstaje w reakcji chemicznej między tlenem atmosferycznym, tlenkami azotu, tlenkiem węgla i związkami organicznymi, w obecności światła słonecznego.</string>
+    <string name="air_quality_co_sources">Zazwyczaj pochodzi z niecałkowitego spalania paliw węglowych, na przykład w silnikach samochodowych i elektrowniach.</string>
+    <string name="pollen_primary">Główny pyłek</string>
+    <string name="pollen_details">Szczegóły pyłków</string>
+    <string name="nighttime_details">Zaczyna się wieczorem i trwa do świtu następnego dnia</string>
+    <string name="humidity_about">O wilgotności względnej</string>
+    <string name="humidity_about_description">Wilgotność względna, częściej nazywana po prostu wilgotnością, to procentowa zawartość pary wodnej w powietrzu w porównaniu do maksymalnej ilości, jaką powietrze może pomieścić w danej temperaturze.</string>
+    <string name="dew_point_about">O punkcie rosy</string>
+    <string name="dew_point_about_description">Punkt rosy to temperatura, do której powietrze musiałoby zostać schłodzone, aby osiągnąć wilgotność względną wynoszącą %s.</string>
+    <string name="pressure_rising">Wzrastający</string>
+    <string name="pressure_steady">Stabilne</string>
 </resources>
