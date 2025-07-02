@@ -791,5 +791,17 @@
     <string name="air_quality_index_about_description_2">Skala używana w tej aplikacji opiera się na zaleceniach Światowej Organizacji Zdrowia, a nie na lokalnych przepisach, aby zapewnić sensowne kategorie i ułatwić porównywanie poziomów zanieczyszczeń między krajami.</string>
     <string name="air_quality_index_scale">Skala indeksu jakości powietrza</string>
     <string name="air_quality_index_harmless_exposure">Bezpieczna ekspozycja</string>
-    <string name="air_quality_level_1_harmless_exposure">&gt;1 rok</string>
+    <string name="air_quality_level_1_harmless_exposure">&gt; 1 rok</string>
+    <string name="air_quality_level_2_harmless_exposure">&lt; 1 rok</string>
+    <string name="air_quality_level_3_harmless_exposure">&lt; 1 dzień</string>
+    <string name="air_quality_level_4_harmless_exposure">&lt; 1 godzina</string>
+    <string name="air_quality_level_5_harmless_exposure">&lt; kilka minut</string>
+    <string name="air_quality_level_6_harmless_exposure">&lt; 1 minuta</string>
+    <string name="air_quality_pollutant_primary">Główny czynnik zanieczyszczający</string>
+    <string name="air_quality_pollutant_details">Szczegóły zanieczyszczeń</string>
+    <string name="air_quality_health_information">Informacje zdrowotne</string>
+    <string name="air_quality_pm25_full">Drobne cząsteczki stałe (&lt; %s)</string>
+    <string name="air_quality_pm10_full">Wdychalne cząsteczki stałe (&lt; %s)</string>
+    <string name="air_quality_pm_sources">Główne źródła to procesy spalania (np. elektrownie, ogrzewanie domowe, spaliny samochodowe, pożary lasów), procesy mechaniczne (np. budownictwo, pył mineralny, rolnictwo) oraz cząstki biologiczne (np. pyłki, pleśń, bakterie, wirusy).</string>
+    <string name="air_quality_so2_sources">Główne źródła to procesy spalania paliw zawierających siarkę w przemyśle, transporcie i elektrowniach.</string>
 </resources>
