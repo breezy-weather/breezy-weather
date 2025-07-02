@@ -46,7 +46,7 @@
     <string name="wind_strength_6">Моцны</string>
     <string name="uv_index">УФ-індэкс</string>
     <string name="uv_index_0_2">Нізкі</string>
-    <string name="uv_index_11">Празмерны</string>
+    <string name="uv_index_11">Экстрэмальны</string>
     <string name="uv_alert_level">Увага</string>
     <string name="air_quality_index">Індэкс якасці паветра</string>
     <string name="air_quality_level_1">Выдатнае</string>
@@ -748,4 +748,7 @@
     <string name="action_allow">Дазволіць</string>
     <string name="action_open_in_other_app">Адкрыць у іншай праграме</string>
     <string name="action_open_in_other_app_description">Адкрыць месца ў іншай праграме</string>
+    <string name="uv_index_about">Пра УФ-індэкс</string>
+    <string name="uv_index_about_description">УФ-індэкс вымярае сілу ультрафіялетавага выпраменьвання сонца. Чым вышэй паказальнік, тым мацней ўздзеянне і хутчэй могуць ўзнікаць сонечныя апёкі, рак скуры і пашкоджанне вачэй.</string>
+    <string name="uv_index_scale">Шкала УФ- індэкса</string>
 </resources>
