@@ -779,5 +779,9 @@
     <string name="visibility_poor">Scăzută</string>
     <string name="visibility_from_to_description">De la %1$s la %2$s</string>
     <string name="visibility_from_to_number">%1$s–%2$s</string>
-    <string name="visibility_about_description">Vizibilitatea indică distanța de la care puteți vedea clar obiecte precum clădiri și dealuri. Vizibilitatea poate fi afectată de precipitații, ceață, praf, fum sau atele.</string>
+    <string name="visibility_about_description">Vizibilitatea indică distanța de la care puteți vedea clar obiecte precum clădiri și dealuri. Vizibilitatea poate fi afectată de precipitații, ceață, praf, fum sau altele.</string>
+    <string name="visibility_about">Despre vizibilitate</string>
+    <string name="pressure_about_description2">Modificările semnificative și rapide ale presiunii sunt utilizate pentru a prezice schimbările meteorologice. De exemplu, o scădere a presiunii poate însemna că urmează să plouă sau să ningă, iar o creștere a presiunii poate însemna că vremea se va îmbunătăți. Presiunea atmosferică anormală poate provoca dureri de cap, dureri articulare, oboseală și alte efecte.</string>
+    <string name="pressure_about_description1">Presiunea atmosferică este presiunea descendentă exercitată de atmosfera Pământului. Această aplicație utilizează presiunea medie la nivelul mării pentru a permite compararea mai ușoară a presiunii din locuri cu altitudini diferite.</string>
+    <string name="pressure_about">Despre presiune</string>
 </resources>
