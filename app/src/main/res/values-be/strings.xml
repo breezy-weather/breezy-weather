@@ -766,6 +766,18 @@
     <string name="dew_point_about">Пра пункт расы</string>
     <string name="daily_summary">Штодзённая зводка</string>
     <string name="chart_no_daily_data">Для гэтага дня няма даных.</string>
-    <string name="chart_no_hourly_data">Няма даных па гадзінах.</string>
+    <string name="chart_no_hourly_data">Няма даных прагнозу па гадзінах.</string>
     <string name="chart_not_enough_hourly_data">Няма даных прагнозу па гадзінах, каб вывесці графік для гэтага дня.</string>
+    <string name="chart_average">Сярэдняе</string>
+    <string name="air_quality_index_about">Пра індэкс якасці паветра</string>
+    <string name="air_quality_index_about_description_1">Індэкс якасці паветра (ІЯП) – гэта шкала, каб дапамагчы вам зразумець, наколькі забруджана паветра ў пэўнай вобласці, а таксама патэнцыйную рызыку для вашага здароўя.</string>
+    <string name="air_quality_index_scale">Шкала індэкса якасці паветра</string>
+    <string name="air_quality_level_1_harmless_exposure">&gt; 1 год</string>
+    <string name="air_quality_level_3_harmless_exposure">&lt; 1 дзень</string>
+    <string name="air_quality_level_4_harmless_exposure">&lt; 1 гадзіна</string>
+    <string name="air_quality_level_6_harmless_exposure">&lt; 1 хвіліна</string>
+    <string name="visibility_from_to_number">%1$s to %2$s</string>
+    <string name="visibility_moderate">Умераная</string>
+    <string name="visibility_good">Добрая</string>
+    <string name="visibility_from_to_description">%1$s to %2$s</string>
 </resources>
