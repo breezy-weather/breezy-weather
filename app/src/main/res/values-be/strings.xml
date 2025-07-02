@@ -750,5 +750,13 @@
     <string name="action_open_in_other_app_description">Адкрыць месца ў іншай праграме</string>
     <string name="uv_index_about">Пра УФ-індэкс</string>
     <string name="uv_index_about_description">УФ-індэкс вымярае сілу ультрафіялетавага выпраменьвання сонца. Чым вышэй паказальнік, тым мацней ўздзеянне і хутчэй могуць ўзнікаць сонечныя апёкі, рак скуры і пашкоджанне вачэй.</string>
-    <string name="uv_index_scale">Шкала УФ- індэкса</string>
+    <string name="uv_index_scale">Шкала УФ-індэкса</string>
+    <string name="wind_strength_scale">Шкала Бофарта</string>
+    <string name="wind_speed_about">Пра хуткасць і парывы ветру</string>
+    <string name="wind_speed_about_description">Хуткасць ветру вызначаецца як сярэдняя хуткасць за пэўны прамежак часу. Парывы – гэта раптоўныя і рэзкія ўзмацненні ветру, якія звычайна працягваюцца не больш за 20 секунд.</string>
+    <string name="wind_gusts_short">Парывы</string>
+    <string name="ephemeris_about">Пра час усходу і захаду</string>
+    <string name="ephemeris_about_rise">Час усходу — гэта момант, калі сонца або месяц цалкам з\'яўляюцца над гарызонтам.</string>
+    <string name="ephemeris_about_set">Час захаду — гэта момант, калі сонца або месяц цалкам хаваюцца за гарызонт.</string>
+    <string name="temperature_real">Фвктычная</string>
 </resources>
