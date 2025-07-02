@@ -80,12 +80,12 @@
     <string name="widget_custom_subtitle_keyword_xnt_description">Начная тэмпература сёння, заўтра, …, праз 4 дні (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Ападкі ноччу, заўтра, …, праз 4 дні (%)</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="settings_section_general">Асноўнае</string>
+    <string name="settings_section_general">Агульныя</string>
     <string name="settings_background_updates_refresh_never">Ніколі</string>
     <string name="settings_icon_packs_get_more">Яшчэ</string>
     <string name="settings_main_summary">Парадак картак, паказ элементаў, анімацыі</string>
     <string name="settings_main_cards_title">Карткі</string>
-    <string name="settings_main_gravity_sensor_switch">Датчык гравітацыі</string>
+    <string name="settings_main_gravity_sensor_switch">Датчык змянення становішча</string>
     <string name="settings_notifications">Апавяшчэнні</string>
     <string name="settings_follow_system">Як у сістэме</string>
     <string name="unit_lpsqm_voice">Літраў на квадратны метр</string>
@@ -405,8 +405,8 @@
     <string name="settings_main_background_animation_title">Анімацыя фону</string>
     <string name="settings_main_background_animation_enabled">Уключана</string>
     <string name="settings_main_background_animation_disabled">Выключана</string>
-    <string name="settings_main_cards_fade_in_switch">З’яўленне картак</string>
-    <string name="settings_main_cards_other_element_animations_switch">Іншыя элементы анімацый</string>
+    <string name="settings_main_cards_fade_in_switch">Паступовае з’яўленне картак</string>
+    <string name="settings_main_cards_other_element_animations_switch">Анімацыя іншых элементаў</string>
     <string name="settings_notifications_summary">Апавяшчэнні пра надвор’е, ападкі або прагноз для першага месцазнаходжання</string>
     <string name="settings_notifications_alerts_title">Апавяшчэнні пра суровыя ўмовы надвор’я</string>
     <string name="settings_notifications_precipitations_title">Апавяшчэнні пра ападкі</string>
@@ -632,7 +632,7 @@
     <string name="pollen_salix">Іва</string>
     <string name="pollen_tilia">Ліпа</string>
     <string name="settings_per_location_summary">Дадатковыя налады для гэтага месца</string>
-    <string name="settings_weather_source_open_meteo_weather_models_best_match">Лепшае супадзенне</string>
+    <string name="settings_weather_source_open_meteo_weather_models_best_match">Лепшы адпаведнік</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Комплексны</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Аб’ядноўвае лепшыя мадэлі надвор’я для гэтага месцазнаходжання</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Аб’ядноўвае ўсе мадэлі надвор’я ад гэтага пастаўшчыка ў адзіны прагноз</string>
@@ -758,5 +758,14 @@
     <string name="ephemeris_about">Пра час усходу і захаду</string>
     <string name="ephemeris_about_rise">Час усходу — гэта момант, калі сонца або месяц цалкам з\'яўляюцца над гарызонтам.</string>
     <string name="ephemeris_about_set">Час захаду — гэта момант, калі сонца або месяц цалкам хаваюцца за гарызонт.</string>
-    <string name="temperature_real">Фвктычная</string>
+    <string name="temperature_real">Фактычная</string>
+    <string name="temperature_real_details">Фактычная тэмпература.</string>
+    <string name="chart_maximum_value">Максімальнае значэнне</string>
+    <string name="conditions">Умовы</string>
+    <string name="temperature_feels_like_details">Як тэмпература адчуваецца ў залежнасці вільготнасці паветра, хуткасці ветру і(або) сонечнага святла.</string>
+    <string name="dew_point_about">Пра пункт расы</string>
+    <string name="daily_summary">Штодзённая зводка</string>
+    <string name="chart_no_daily_data">Для гэтага дня няма даных.</string>
+    <string name="chart_no_hourly_data">Няма даных па гадзінах.</string>
+    <string name="chart_not_enough_hourly_data">Няма даных прагнозу па гадзінах, каб вывесці графік для гэтага дня.</string>
 </resources>
