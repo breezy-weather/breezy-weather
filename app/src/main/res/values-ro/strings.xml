@@ -778,5 +778,6 @@
     <string name="visibility_moderate">Moderată</string>
     <string name="visibility_poor">Scăzută</string>
     <string name="visibility_from_to_description">De la %1$s la %2$s</string>
-    <string name="visibility_from_to_number">%1$s – %2$s</string>
+    <string name="visibility_from_to_number">%1$s–%2$s</string>
+    <string name="visibility_about_description">Vizibilitatea indică distanța de la care puteți vedea clar obiecte precum clădiri și dealuri. Vizibilitatea poate fi afectată de precipitații, ceață, praf, fum sau atele.</string>
 </resources>
