@@ -93,7 +93,7 @@
     <string name="unit_inph_voice">Цаляў за гадзіну</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
-    <string name="unit_inhg">цалі рт. ст.</string>
+    <string name="unit_inhg">цалі рт. сл.</string>
     <string name="unit_mugpcum_voice">Мікраграмы на кубічны метр</string>
     <string name="unit_mgpcum">мг/м³</string>
     <string name="unit_mgpcum_voice">Міліграмы на кубічны метр</string>
@@ -371,9 +371,9 @@
     <string name="settings_location_access_precise_summaryOn">Уключана. Большую частку часу і з большым прыярытэтам будуць выкарыстоўвацца сеткавыя крыніцы і вышкі сотавай сувязі, але GPS таксама можа выкарыстоўвацца, як альтэрнатыўны рэжым.</string>
     <string name="settings_location_access_precise_summaryOff">Уключыце «Выкарыстоўваць дакладнае месцазнаходжанне», калі ў вас узніклі праблемы з вызначэннем месцазнаходжання.</string>
     <string name="settings_weather_sources">Крыніцы надвор’я</string>
-    <string name="settings_weather_sources_summary">Празвызначаныя крыніцы даных пра надвор’е для новых месцаў, уласныя ключы API і іншыя налады крыніц</string>
+    <string name="settings_weather_sources_summary">Прадвызначаныя крыніцы даных пра надвор’е для новых месцаў, уласныя ключы API і іншыя налады крыніц</string>
     <string name="settings_weather_sources_per_location_summary">Наладзьце крыніцы даных пра надвор’е для гэтага месца</string>
-    <string name="settings_source_default_value">Празвызначаная (без змен)</string>
+    <string name="settings_source_default_value">Прадвызначаная (без змен)</string>
     <string name="settings_source_api_key">Ключ API</string>
     <string name="settings_appearance">Выгляд</string>
     <string name="settings_appearance_summary">Мова, цёмная тэма, набор значкоў, адзінкі вымярэння</string>
@@ -500,7 +500,7 @@
     <string name="unit_hpa_voice">Гектапаскалі</string>
     <string name="unit_atm">атм</string>
     <string name="unit_atm_voice">Атмасферы</string>
-    <string name="unit_mmhg">мм рт. сл.</string>
+    <string name="unit_mmhg">мм рт. сл.</string>
     <string name="unit_mmhg_voice">Міліметраў ртутнага слупа</string>
     <string name="unit_inhg_voice">Цаляў ртутнага слупа</string>
     <string name="unit_kgfpsqcm">кгс/cм²</string>
@@ -607,7 +607,7 @@
     <string name="dew_point_short">Пункт расы</string>
     <string name="cloud_cover_short">Воблачнасць</string>
     <string name="ceiling_short">Мяжа аблокаў</string>
-    <string name="settings_weather_sources_default_source">Празвызначаная крыніца для новых месцаў</string>
+    <string name="settings_weather_sources_default_source">Прадвызначаная крыніца для новых месцаў</string>
     <string name="settings_weather_source_unavailable">%s (недаступна)</string>
     <string name="action_confirm">Пацвердзіць</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Бягучы індэкс якасці паветра</string>
@@ -697,7 +697,7 @@
     <string name="weather_source_continent_north_america">Паўночная Амерыка</string>
     <string name="weather_source_continent_oceania">Акіянія</string>
     <string name="weather_source_continent_asia">Азія</string>
-    <string name="weather_source_continent_worldwide">Па ўсім свеце</string>
+    <string name="weather_source_continent_worldwide">Увесь свет</string>
     <string name="weather_source_continent_africa">Афрыка</string>
     <string name="weather_source_continent_europe">Еўропа</string>
     <string name="weather_source_continent_south_america">Паўднёвая Амерыка</string>
@@ -819,4 +819,7 @@
     <string name="nighttime_details">Пачынаецца ўвечары і працягваецца да світання наступнага дня</string>
     <string name="pressure_about_description1">Атмасферны ціск — гэта ціск паветра на паверхню Зямлі і ўсе прадметы ў атмасферы. Праграма выкарыстоўвае ціск на сярэднім ўзроўні мора (MSLP), каб палегчыць параўнанне ціску ў месцах на рознай вышыні.</string>
     <string name="cloud_cover_about">Пра воблачнасць</string>
+    <string name="cloud_cover_about_description">Воблачнасць азначае сярэдні працэнт неба, закрытага аблокамі. Воблачнасць звязана з працягласцю сонечнага ззяння.</string>
+    <string name="data_sources">Крыніцы даных</string>
+    <string name="data_modified">Гэты матэрыял зменены адносна арыгінала ў %s, галоўным чынам для экстрапаляцыі або вылічэння адсутных даных.</string>
 </resources>
