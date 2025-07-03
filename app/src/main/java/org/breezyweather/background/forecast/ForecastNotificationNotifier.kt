@@ -108,7 +108,7 @@ class ForecastNotificationNotifier(
             setStyle(
                 NotificationCompat.BigTextStyle()
                     .bigText(
-                        getDayString(daily, temperatureUnit) + "\n" +
+                        getDayString(daily, temperatureUnit) + "\n\n" +
                             getNightString(daily, temperatureUnit)
                     )
                     // do not show any title when expanding the notification
@@ -153,16 +153,14 @@ class ForecastNotificationNotifier(
     }
 
     private fun getDayString(daily: Daily, temperatureUnit: TemperatureUnit) =
-        context.getString(R.string.daytime) +
-            " " + daily.day?.weatherText +
-            " " + daily.day?.temperature?.temperature?.let {
+        context.getString(R.string.daytime) + context.getString(R.string.colon_separator) +
+            daily.day?.temperature?.temperature?.let {
                 temperatureUnit.getValueText(context, it, 0)
-            }
+            } + " · " + daily.day?.weatherText
 
     private fun getNightString(daily: Daily, temperatureUnit: TemperatureUnit) =
-        context.getString(R.string.nighttime) +
-            " " + daily.night?.weatherText +
-            " " + daily.night?.temperature?.temperature?.let {
+        context.getString(R.string.nighttime) + context.getString(R.string.colon_separator) +
+            daily.night?.temperature?.temperature?.let {
                 temperatureUnit.getValueText(context, it, 0)
-            }
+            } + " · " + daily.night?.weatherText
 }
