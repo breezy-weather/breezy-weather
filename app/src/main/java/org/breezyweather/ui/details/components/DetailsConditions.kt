@@ -165,6 +165,37 @@ fun DetailsConditions(
             )
         }
         // TODO: Short explanation
+        if ((daily.day?.weatherText != null && daily.day!!.weatherText != daily.day!!.weatherPhase) ||
+            (daily.night?.weatherText != null && daily.night!!.weatherText != daily.night!!.weatherPhase)
+        ) {
+            item {
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+            }
+            item {
+                DetailsSectionHeader(stringResource(R.string.daily_summary))
+            }
+            item {
+                DetailsCardText(
+                    (
+                        daily.day?.weatherText?.let {
+                            stringResource(R.string.daytime) +
+                                stringResource(R.string.colon_separator) +
+                                it
+                        } ?: ""
+                        ) + (
+                        daily.night?.weatherText?.let {
+                            (daily.day?.weatherText?.let { "\n" } ?: "") +
+                                stringResource(R.string.nighttime) +
+                                stringResource(R.string.colon_separator) +
+                                it
+                        } ?: ""
+                        )
+                )
+            }
+            item {
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+            }
+        }
         // Detailed feels like temperatures
         if (normals != null || !showRealTemp.value) {
             item {
@@ -346,7 +377,7 @@ private fun WeatherConditionSummary(
                     showRealTemp = showRealTemp,
                     temperature = day.temperature,
                     weatherCode = day.weatherCode,
-                    weatherText = day.weatherText,
+                    weatherText = day.weatherPhase,
                     isDaytime = true,
                     animated = true
                 )
@@ -366,7 +397,7 @@ private fun WeatherConditionSummary(
                     showRealTemp = showRealTemp,
                     temperature = night.temperature,
                     weatherCode = night.weatherCode,
-                    weatherText = night.weatherText,
+                    weatherText = night.weatherPhase,
                     isDaytime = false,
                     animated = true
                 )

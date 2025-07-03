@@ -4,6 +4,8 @@
 - Details page - Fix floating action button not updating in real time (@min7-i)
 - Details page - Charts - Fix area fill in Right to Left languages (@chunshek)
 - Fix tint of “Open in another app” icon in landscape mode
+- Improve the formatting of today/tomorrow notification
+- Conditions screen: move long weather condition description to a dedicated Daily summary card (especially noticeable with AccuWeather source)
 
 **Translations**
 - Translations updated
