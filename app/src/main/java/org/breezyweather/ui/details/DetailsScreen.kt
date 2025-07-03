@@ -25,7 +25,6 @@ import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -54,7 +53,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.CustomAccessibilityAction
@@ -202,6 +200,10 @@ fun DailyPagerIndicator(
     todayIndex: Int? = null,
 ) {
     val context = LocalContext.current
+    val alternateCalendar = remember {
+        CalendarHelper.getAlternateCalendarSetting(context)
+    }
+
     PrimaryScrollableTabRow(
         selectedTabIndex = selected,
         modifier = modifier.fillMaxWidth()
@@ -242,7 +244,9 @@ fun DailyPagerIndicator(
                             style = MaterialTheme.typography.headlineMedium
                         )
                         Text(
-                            text = date.getFormattedDate("MMM", location, context, withBestPattern = true)
+                            text = alternateCalendar?.let {
+                                date.getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
+                            } ?: date.getFormattedDate("MMM", location, context, withBestPattern = true)
                         )
                     }
                 }
@@ -382,19 +386,6 @@ fun DailyPagerContent(
     Column(
         modifier = modifier
     ) {
-        if (CalendarHelper.getAlternateCalendarSetting(context) != null) {
-            daily.date.getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)?.let {
-                Text(
-                    text = it,
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentWidth(align = Alignment.CenterHorizontally)
-                        .padding(dimensionResource(R.dimen.little_margin))
-                )
-            }
-        }
-
         when (selectedChart) {
             DetailScreen.TAG_CONDITIONS -> {
                 val cal = daily.date.toCalendarWithTimeZone(location.javaTimeZone)
