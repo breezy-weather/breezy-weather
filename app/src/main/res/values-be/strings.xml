@@ -47,7 +47,7 @@
     <string name="uv_index">УФ-індэкс</string>
     <string name="uv_index_0_2">Нізкі</string>
     <string name="uv_index_11">Экстрэмальны</string>
-    <string name="uv_alert_level">Увага</string>
+    <string name="uv_alert_level">Небяспека</string>
     <string name="air_quality_index">Індэкс якасці паветра</string>
     <string name="air_quality_level_1">Выдатнае</string>
     <string name="air_quality_level_2">Нармальнае</string>
@@ -810,6 +810,8 @@
     <string name="pollen_primary">Асноўны пылок</string>
     <string name="uv_index_time_to_burn_explanations">Дакладны час да з\'яўлення апёку залежыць ад вышыні над узроўнем мора, наяўнасці адбівальнай паверхні накшталт вады або снегу, тыпу скуры і выкарыстання сонцаахоўнага крэму.</string>
     <string name="air_quality_index_about_description_2">Шкала, якая выкарыстоўваецца ў гэтай праграме, заснавана на рэкамендацыях Сусветнай арганізацыі аховы здароўя, а не на мясцовых нарматывах. Так зроблена, каб мець значныя катэгорыі і палегчыць параўнанне ўзроўню забруджвання паміж краінамі.</string>
-    <string name="air_quality_pm25_full">Колькасць мікрачасцінак (&lt; %s)</string>
+    <string name="air_quality_pm25_full">Завіслыя мікрачасцінкі (&lt; %s)</string>
     <string name="air_quality_pm10_full">Удыхальныя завіслыя часцінкі (&lt; %s)</string>
+    <string name="air_quality_so2_sources">Асноўнымі крыніцамі з\'яўляюцца працэсы, звязаныя з гарэннем серазмяшчальнага паліва, якія выкарыстоўваюцца ў прамысловасці, транспарце і вытворчасці электраэнергіі.</string>
+    <string name="air_quality_no2_sources">Асноўныя крыніцы — згаранне паліва ў працэсах, якія выкарыстоўваюцца ў прамысловасці і транспарце.</string>
 </resources>
