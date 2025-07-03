@@ -818,7 +818,7 @@
     <string name="pressure_steady">Stabilne</string>
     <string name="pressure_falling">Spadające</string>
     <string name="pressure_about">O ciśnieniu</string>
-    <string name="pressure_about_description1">Ciśnienie atmosferyczne to nacisk wywierany ku dołowi przez atmosferę ziemską. Ta aplikacja wykorzystuje średnie ciśnienie na poziomie morza (MSLP), co ułatwia porównywanie ciśnienia w miejscach o różnej wysokości nad poziomem morza.</string>
+    <string name="pressure_about_description1">Ciśnienie atmosferyczne to nacisk wywierany ku dołowi przez atmosferę ziemską. Ta aplikacja wykorzystuje średnie ciśnienie na poziomie morza, co ułatwia porównywanie ciśnienia w miejscach o różnej wysokości nad poziomem morza.</string>
     <string name="pressure_about_description2">Znaczące, szybkie zmiany ciśnienia są wykorzystywane do przewidywania zmian pogody. Na przykład spadek ciśnienia może oznaczać nadejście deszczu lub śniegu, a wzrost ciśnienia – poprawę pogody. Nieprawidłowe ciśnienie atmosferyczne może powodować bóle głowy, bóle stawów, zmęczenie i inne dolegliwości.</string>
     <string name="visibility_about">O widoczności</string>
     <string name="visibility_about_description">Widoczność informuje, jak daleko możesz wyraźnie dostrzec obiekty, takie jak budynki czy wzgórza. Na widoczność mogą wpływać opady, mgła, pył, dym lub zamglenie.</string>

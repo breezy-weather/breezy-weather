@@ -89,6 +89,7 @@ val appTranslators = arrayOf(
     TranslatorItem(arrayOf("ar"), "jonnysemon", weblate = "jonnysemon"),
     TranslatorItem(arrayOf("be"), "Yauhen", weblate = "Bugomol"),
     TranslatorItem(arrayOf("be"), "Drugi Sapog", weblate = "DinDrugi"),
+    TranslatorItem(arrayOf("be"), "Ding User", weblate = "DeNGus"),
     TranslatorItem(arrayOf("bg"), "elgratea", weblate = "flantito"),
     TranslatorItem(arrayOf("bg"), "StoyanDimitrov", github = "StoyanDimitrov"),
     TranslatorItem(arrayOf("bg"), "srmihnev", github = "srmihnev"),
