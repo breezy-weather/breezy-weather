@@ -775,6 +775,17 @@
     <string name="wind_speed_about_description">Брзина ветра се мери усредњавањем брзине ветра током одређеног временског периода. Удари ветра су изненадни налети ветра који обично трају мање од 20 секунди.</string>
     <string name="wind_gusts_short">Удари ветра</string>
     <string name="wind_strength_scale">Бофортова скала</string>
-    <string name="uv_index_about">О UV индексу</string>
+    <string name="uv_index_about">О УВ индексу</string>
     <string name="uv_index_about_description">УВ индекс мери јачину сунчевог ултраљубичастог зрачења. Што је виши, јаче и брже може изазвати опекотине од сунца, рак коже и оштећење ока.</string>
+    <string name="uv_index_scale">Скала УВ индекса</string>
+    <string name="uv_index_time_to_burn">Време до опекотина</string>
+    <string name="uv_index_time_to_burn_explanations">Тачно време до опекотина зависи од надморске висине, присуства рефлектујућег тла попут воде или снега, типа коже и употребе креме за сунчање.</string>
+    <string name="air_quality_index_short">ИКВ</string>
+    <string name="air_quality_index_about">О индексу квалитета ваздуха</string>
+    <string name="air_quality_index_about_description_1">Индекс квалитета ваздуха (ИКВ) је скала осмишљена да вам помогне да разумете колико је ваздух загађен у одређеном подручју и потенцијалне ризике по ваше здравље.</string>
+    <string name="air_quality_index_about_description_2">Скала која се користи у овој апликацији заснована је на препорукама Светске здравствене организације, а не на локалним прописима, како би се имале смислене категорије и олакшало поређење нивоа загађења између земаља.</string>
+    <string name="air_quality_index_scale">Скала индекса квалитета ваздуха</string>
+    <string name="air_quality_index_harmless_exposure">Безопасна изложеност</string>
+    <string name="air_quality_level_1_harmless_exposure">&gt; 1 година</string>
+    <string name="air_quality_level_2_harmless_exposure">&lt; 1 године</string>
 </resources>
