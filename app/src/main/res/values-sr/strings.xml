@@ -780,9 +780,9 @@
     <string name="uv_index_scale">Скала УВ индекса</string>
     <string name="uv_index_time_to_burn">Време до опекотина</string>
     <string name="uv_index_time_to_burn_explanations">Тачно време до опекотина зависи од надморске висине, присуства рефлектујућег тла попут воде или снега, типа коже и употребе креме за сунчање.</string>
-    <string name="air_quality_index_short">ИКВ</string>
+    <string name="air_quality_index_short">AQI</string>
     <string name="air_quality_index_about">О индексу квалитета ваздуха</string>
-    <string name="air_quality_index_about_description_1">Индекс квалитета ваздуха (ИКВ) је скала осмишљена да вам помогне да разумете колико је ваздух загађен у одређеном подручју и потенцијалне ризике по ваше здравље.</string>
+    <string name="air_quality_index_about_description_1">Индекс квалитета ваздуха (AQI) је скала осмишљена да вам помогне да разумете колико је ваздух загађен у одређеном подручју и потенцијалне ризике по ваше здравље.</string>
     <string name="air_quality_index_about_description_2">Скала која се користи у овој апликацији заснована је на препорукама Светске здравствене организације, а не на локалним прописима, како би се имале смислене категорије и олакшало поређење нивоа загађења између земаља.</string>
     <string name="air_quality_index_scale">Скала индекса квалитета ваздуха</string>
     <string name="air_quality_index_harmless_exposure">Безопасна изложеност</string>
@@ -797,7 +797,7 @@
     <string name="air_quality_health_information">Здравствене информације</string>
     <string name="air_quality_pm25_full">Фине честице (&lt; %s)</string>
     <string name="air_quality_pm10_full">Удисане честице (&lt; %s)</string>
-    <string name="air_quality_pm_sources">Главни извори су процеси сагоревања (нпр. електране, грејање у затвореном простору, издувни гасови аутомобила, шумски пожари), механички процеси (нпр. грађевинарство, минерална прашина, пољопривреда) и биолошке честице (нпр. полен, буђ, бактерије, вируси)</string>
+    <string name="air_quality_pm_sources">Главни извори су процеси сагоревања (нпр. електране, грејање у затвореном простору, издувни гасови аутомобила, шумски пожари), механички процеси (нпр. грађевинарство, минерална прашина, пољопривреда) и биолошке честице (нпр. полен, буђ, бактерије, вируси).</string>
     <string name="air_quality_so2_sources">Главни извори су процеси сагоревања горива која садрже сумпор у индустрији, транспорту и електранама.</string>
     <string name="air_quality_no2_sources">Главни извори су процеси сагоревања горива, као што су они који се користе у индустрији и транспорту.</string>
     <string name="air_quality_o3_sources">Озон настаје у хемијској реакцији између атмосферског кисеоника, азотних оксида, угљен-моноксида и органских једињења, у присуству сунчеве светлости.</string>
@@ -826,5 +826,14 @@
     <string name="visibility_clear">Чисто</string>
     <string name="visibility_perfectly_clear">Савршено чисто</string>
     <string name="cloud_cover_about">О облачности</string>
-    <string name="cloud_cover_about_description">Облачност се односи на проценат неба који је у просеку прекривен облацима. Облачност је у корелацији са трајањем сунчаног сијања.</string>
+    <string name="cloud_cover_about_description">Облачност се односи на проценат неба који је у просеку прекривен облацима. Облачност је у корелацији са трајањем сунчане сијања.</string>
+    <string name="data_sources">Извори података</string>
+    <string name="data_modified">Овај материјал је измењен у односу на изворни од стране %s углавном да би се израчунали или екстраполирали недостајући подаци.</string>
+    <string name="action_close_menu">Затвори мени</string>
+    <string name="action_toggle_data_type_menu">Укључи/искључи мени за избор типа података</string>
+    <string name="label_description">Опис</string>
+    <string name="label_expanded">Проширено</string>
+    <string name="label_collapsed">Склопљено</string>
+    <string name="unit_mum">µm</string>
+    <string name="unit_mum_voice">Микрометри</string>
 </resources>
