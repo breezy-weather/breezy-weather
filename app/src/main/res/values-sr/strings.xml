@@ -756,4 +756,13 @@
     <string name="action_allow">Дозволи</string>
     <string name="action_open_in_other_app">Отвори у другој апликацији</string>
     <string name="action_open_in_other_app_description">Отворите ову локацију у другој апликацији</string>
+    <string name="ephemeris_about">О временима изласка и заласка</string>
+    <string name="ephemeris_about_rise">Време изласка је када се сунце или месец потпуно појаве изнад хоризонта.</string>
+    <string name="ephemeris_about_set">Време заласка је када сунце или месец потпуно нестану испод хоризонта.</string>
+    <string name="daily_summary">Дневни сажетак</string>
+    <string name="chart_no_daily_data">Нема доступних података за овај дан.</string>
+    <string name="chart_no_hourly_data">Нема доступних података по сатима.</string>
+    <string name="chart_not_enough_hourly_data">Нема довољно података по сатима за приказивање графикона за овај дан.</string>
+    <string name="chart_average">Просечно</string>
+    <string name="chart_maximum_value">Највиша вредност</string>
 </resources>
