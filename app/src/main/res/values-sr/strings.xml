@@ -809,7 +809,21 @@
     <string name="humidity_about_description">Релативна влажност, чешће позната само као влажност, је проценат водене паре присутне у ваздуху у поређењу са максималном количином коју ваздух може да задржи на датој температури.</string>
     <string name="dew_point_about">О тачки росе</string>
     <string name="dew_point_about_description">Тачка росе је температура на коју би требало да се охлади да би се постигла релативна влажност од %s.</string>
-    <string name="pressure_rising">Излази</string>
+    <string name="pressure_rising">Излажење</string>
     <string name="pressure_steady">Стабилно</string>
     <string name="pressure_falling">Падање</string>
+    <string name="pressure_about">О притиску</string>
+    <string name="pressure_about_description1">Атмосферски притисак је притисак који Земљина атмосфера врши надоле. Ова апликација користи средњи притисак на нивоу мора (MSLP) како би омогућила лакше поређење притиска са места са различитом надморском висином.</string>
+    <string name="pressure_about_description2">Значајне, брзе промене притиска користе се за предвиђање промена времена. На пример, пад притиска може значити да долази киша или снег, а пораст притиска може значити да ће се време побољшати. Ненормалан атмосферски притисак може изазвати главобоље, болове у зглобовима, умор и друге последице.</string>
+    <string name="visibility_about">О видљивости</string>
+    <string name="visibility_about_description">Видљивост вам говори колико далеко можете јасно видети објекте попут зграда и брда. На видљивост могу утицати падавине, магла, прашина, дим или измаглица.</string>
+    <string name="visibility_from_to_number">%1$s до %2$s</string>
+    <string name="visibility_from_to_description">%1$s до %2$s</string>
+    <string name="visibility_very_poor">Веома лоше</string>
+    <string name="visibility_poor">Лоше</string>
+    <string name="visibility_moderate">Умерено</string>
+    <string name="visibility_good">Добро</string>
+    <string name="visibility_clear">Чисто</string>
+    <string name="visibility_perfectly_clear">Савршено чисто</string>
+    <string name="cloud_cover_about">О облачном покривачу</string>
 </resources>
