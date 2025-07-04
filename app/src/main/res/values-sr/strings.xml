@@ -30,7 +30,7 @@
     <string name="wind_strength_9">Јак олујни ветар</string>
     <string name="wind_strength_10">Оркански ветар</string>
     <string name="wind_strength_11">Јак оркански ветар</string>
-    <string name="wind_strength_12">Оркан</string>
+    <string name="wind_strength_12">Орканска сила</string>
     <string name="daily_forecast">Дневна прогноза</string>
     <string name="hourly_forecast">Прогноза по сатима</string>
     <string name="air_quality">Квалитет ваздуха</string>
@@ -764,5 +764,17 @@
     <string name="chart_no_hourly_data">Нема доступних података по сатима.</string>
     <string name="chart_not_enough_hourly_data">Нема довољно података по сатима за приказивање графикона за овај дан.</string>
     <string name="chart_average">Просечно</string>
-    <string name="chart_maximum_value">Највиша вредност</string>
+    <string name="chart_maximum_value">Максимална вредност</string>
+    <string name="conditions">Услови</string>
+    <string name="temperature_real">Стварно</string>
+    <string name="temperature_real_details">Стварна температура.</string>
+    <string name="temperature_feels_like_details">Какав је осећај температуре, као резултат влажности, ветра и/или сунчеве светлости.</string>
+    <string name="temperature_degree_day_heating_explanation">Разлика између спољашње температуре и референтне удобне температуре која се користи за процену потреба за енергијом за грејање</string>
+    <string name="temperature_degree_day_cooling_explanation">Разлика између спољашње температуре и референтне удобне температуре која се користи за процену потреба за енергијом за хлађење</string>
+    <string name="wind_speed_about">О брзини и ударима ветра</string>
+    <string name="wind_speed_about_description">Брзина ветра се мери усредњавањем брзине ветра током одређеног временског периода. Удари ветра су изненадни налети ветра који обично трају мање од 20 секунди.</string>
+    <string name="wind_gusts_short">Удари ветра</string>
+    <string name="wind_strength_scale">Бофортова скала</string>
+    <string name="uv_index_about">О UV индексу</string>
+    <string name="uv_index_about_description">УВ индекс мери јачину сунчевог ултраљубичастог зрачења. Што је виши, јаче и брже може изазвати опекотине од сунца, рак коже и оштећење ока.</string>
 </resources>
