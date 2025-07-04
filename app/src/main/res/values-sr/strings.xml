@@ -825,5 +825,6 @@
     <string name="visibility_good">Добро</string>
     <string name="visibility_clear">Чисто</string>
     <string name="visibility_perfectly_clear">Савршено чисто</string>
-    <string name="cloud_cover_about">О облачном покривачу</string>
+    <string name="cloud_cover_about">О облачности</string>
+    <string name="cloud_cover_about_description">Облачност се односи на проценат неба који је у просеку прекривен облацима. Облачност је у корелацији са трајањем сунчаног сијања.</string>
 </resources>
