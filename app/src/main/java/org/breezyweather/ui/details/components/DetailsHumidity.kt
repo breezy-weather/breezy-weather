@@ -37,6 +37,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Hourly
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
@@ -55,6 +56,7 @@ import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.extensions.roundDownToNearestMultiplier
 import org.breezyweather.common.extensions.roundUpToNearestMultiplier
 import org.breezyweather.common.extensions.toDate
@@ -308,6 +310,7 @@ private fun DewPointItem(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
 
     Column(
         modifier = modifier.fillMaxWidth()
@@ -315,9 +318,15 @@ private fun DewPointItem(
         header()
         Text(
             text = dewPoint?.let {
-                SettingsManager.getInstance(context).temperatureUnit.getValueText(context, value = it)
+                temperatureUnit.getShortValueText(context, value = it, 1, context.isRtl)
             } ?: "",
-            style = MaterialTheme.typography.displaySmall
+            style = MaterialTheme.typography.displaySmall,
+            modifier = Modifier
+                .clearAndSetSemantics {
+                    dewPoint?.let {
+                        contentDescription = temperatureUnit.getValueVoice(context, it)
+                    }
+                }
         )
     }
 }

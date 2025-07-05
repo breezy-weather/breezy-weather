@@ -51,8 +51,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
@@ -70,6 +73,7 @@ import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
@@ -260,21 +264,25 @@ private fun AirQualityItem(
         )
         Column {
             header()
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin))
-            ) {
-                Text(
-                    text = airQuality.getIndex()?.toString() ?: "",
-                    style = MaterialTheme.typography.displaySmall,
-                    modifier = Modifier.alignByBaseline()
-                )
-                Text(
-                    text = airQuality.getName(context) ?: "",
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = DayNightTheme.colors.captionColor,
-                    modifier = Modifier.alignByBaseline()
-                )
-            }
+            Text(
+                text = buildAnnotatedString {
+                    airQuality.getIndex()?.let {
+                        append(Utils.formatInt(it))
+                        append(" ")
+                    }
+                    airQuality.getName(context)?.let {
+                        withStyle(
+                            style = SpanStyle(
+                                fontSize = MaterialTheme.typography.headlineSmall.fontSize,
+                                color = DayNightTheme.colors.captionColor
+                            )
+                        ) {
+                            append(it)
+                        }
+                    }
+                },
+                style = MaterialTheme.typography.displaySmall
+            )
         }
     }
 }

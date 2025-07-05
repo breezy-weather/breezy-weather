@@ -38,6 +38,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Hourly
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
@@ -115,7 +118,6 @@ private fun VisibilityItem(
     val context = LocalContext.current
     val distanceUnit = SettingsManager.getInstance(context).distanceUnit
     val visibilityDescription = DistanceUnit.getVisibilityDescription(context, visibility)
-    val visibilityFormatted = distanceUnit.getValueText(context, visibility)
     val visibilityContentDescription = distanceUnit.getValueVoice(context, visibility)
 
     Column(
@@ -124,7 +126,13 @@ private fun VisibilityItem(
     ) {
         header()
         Text(
-            text = visibilityFormatted,
+            text = buildAnnotatedString {
+                val visibilityValueFormatted = distanceUnit.getValueTextWithoutUnit(visibility)
+                append(visibilityValueFormatted)
+                withStyle(style = SpanStyle(fontSize = MaterialTheme.typography.headlineSmall.fontSize)) {
+                    append(distanceUnit.getValueText(context, visibility).substring(visibilityValueFormatted.length))
+                }
+            },
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier
                 .clearAndSetSemantics {

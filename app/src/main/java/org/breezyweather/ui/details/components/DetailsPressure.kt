@@ -38,6 +38,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Hourly
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
@@ -134,16 +139,30 @@ private fun PressureItem(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    val pressureUnit = SettingsManager.getInstance(context).pressureUnit
 
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
         header()
         Text(
-            text = pressure?.let {
-                SettingsManager.getInstance(context).pressureUnit.getValueText(context, it)
-            } ?: "",
-            style = MaterialTheme.typography.displaySmall
+            text = buildAnnotatedString {
+                pressure?.let {
+                    val pressureValueFormatted = pressureUnit.getValueTextWithoutUnit(it)
+                    append(pressureValueFormatted)
+                    withStyle(style = SpanStyle(fontSize = MaterialTheme.typography.headlineSmall.fontSize)) {
+                        append(pressureUnit.getValueText(context, it).substring(pressureValueFormatted.length))
+                    }
+                    pressureUnit.getValueText(context, it)
+                }
+            },
+            style = MaterialTheme.typography.displaySmall,
+            modifier = Modifier
+                .clearAndSetSemantics {
+                    pressure?.let {
+                        contentDescription = pressureUnit.getValueVoice(context, it)
+                    }
+                }
         )
     }
 }

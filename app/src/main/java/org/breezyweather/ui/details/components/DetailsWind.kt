@@ -51,8 +51,11 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
@@ -188,27 +191,30 @@ private fun WindItem(
     ) {
         header()
         wind.speed?.let { speed ->
-            Row {
-                Text(
-                    text = speedUnit.getValueText(context, speed),
-                    style = MaterialTheme.typography.headlineSmall,
-                    modifier = Modifier
-                        .clearAndSetSemantics {
-                            contentDescription = speedUnit.getValueVoice(context, speed)
-                        }
-                )
-                wind.arrow?.let {
-                    Text(
-                        text = it,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        style = MaterialTheme.typography.headlineSmall,
-                        modifier = Modifier
-                            .clearAndSetSemantics {
-                                contentDescription = wind.getDirection(context, short = false)!!
-                            }
-                    )
-                }
-            }
+            Text(
+                text = buildAnnotatedString {
+                    val speedValueFormatted = speedUnit.getValueTextWithoutUnit(speed)
+                    append(speedValueFormatted)
+                    withStyle(style = SpanStyle(fontSize = MaterialTheme.typography.headlineSmall.fontSize)) {
+                        append(speedUnit.getValueText(context, speed).substring(speedValueFormatted.length))
+                    }
+                    wind.arrow?.let {
+                        append(" ")
+                        append(it)
+                    }
+                },
+                style = MaterialTheme.typography.displaySmall,
+                modifier = Modifier
+                    .clearAndSetSemantics {
+                        contentDescription = speedUnit.getValueVoice(context, speed) +
+                            (
+                                wind.arrow?.let {
+                                    context.getString(R.string.comma_separator) +
+                                        wind.getDirection(context, short = false)!!
+                                } ?: ""
+                                )
+                    }
+            )
             wind.gusts?.let { gusts ->
                 if (gusts > speed) {
                     Text(

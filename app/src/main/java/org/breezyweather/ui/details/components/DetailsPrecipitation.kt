@@ -44,6 +44,9 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
@@ -174,16 +177,24 @@ private fun PrecipitationItem(
         modifier = modifier.fillMaxWidth()
     ) {
         header()
-        precipitation?.let { prec ->
-            Text(
-                text = precipitationUnit.getValueText(context, prec),
-                style = MaterialTheme.typography.displaySmall,
-                modifier = Modifier
-                    .clearAndSetSemantics {
+        Text(
+            text = buildAnnotatedString {
+                precipitation?.let { prec ->
+                    val precValueFormatted = precipitationUnit.getValueTextWithoutUnit(prec)
+                    append(precValueFormatted)
+                    withStyle(style = SpanStyle(fontSize = MaterialTheme.typography.headlineSmall.fontSize)) {
+                        append(precipitationUnit.getValueText(context, prec).substring(precValueFormatted.length))
+                    }
+                }
+            },
+            style = MaterialTheme.typography.displaySmall,
+            modifier = Modifier
+                .clearAndSetSemantics {
+                    precipitation?.let { prec ->
                         contentDescription = precipitationUnit.getValueVoice(context, prec)
                     }
-            )
-        }
+                }
+        )
     }
 }
 

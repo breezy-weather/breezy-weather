@@ -16,7 +16,6 @@
 
 package org.breezyweather.ui.details.components
 
-import android.text.BidiFormatter
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -45,8 +44,11 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
@@ -61,7 +63,7 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen.Companion.CHART_MIN_COUNT
-import org.breezyweather.common.basic.models.options.basic.Utils.formatDouble
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
@@ -156,27 +158,25 @@ private fun UVItem(
         )
         Column {
             header()
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin))
-            ) {
-                Text(
-                    text = uv.index?.let {
-                        BidiFormatter
-                            .getInstance()
-                            .unicodeWrap(
-                                formatDouble(it, 1)
+            Text(
+                text = buildAnnotatedString {
+                    uv.index?.let {
+                        append(Utils.formatDouble(it, 1))
+                        append(" ")
+                    }
+                    uv.getLevel(context)?.let {
+                        withStyle(
+                            style = SpanStyle(
+                                fontSize = MaterialTheme.typography.headlineSmall.fontSize,
+                                color = DayNightTheme.colors.captionColor
                             )
-                    } ?: "",
-                    style = MaterialTheme.typography.displaySmall,
-                    modifier = Modifier.alignByBaseline()
-                )
-                Text(
-                    text = uv.getLevel(context) ?: "",
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = DayNightTheme.colors.captionColor,
-                    modifier = Modifier.alignByBaseline()
-                )
-            }
+                        ) {
+                            append(it)
+                        }
+                    }
+                },
+                style = MaterialTheme.typography.displaySmall
+            )
         }
     }
 }
