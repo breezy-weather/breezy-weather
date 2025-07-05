@@ -1275,6 +1275,6 @@
     <!-- Keyword shown when data is missing, for example requesting humidity in widgets but data doesn’t exist -->
     <string name="null_data_text">N/A</string>
     <string name="colon_separator" translatable="false">:\u0020</string>
-    <string name="parenthesis" translatable="false">(%s)</string>
+    <string name="parenthesis" translatable="false">%1$s (%2$s)</string>
     <string name="comma_separator" translatable="false">,\u0020</string>
 </resources>
