@@ -774,5 +774,6 @@
     <string name="ephemeris_about_set">La subiro tempo estas kiam la suno aŭ luno plene malaperas sub la horizonto.</string>
     <string name="daily_summary">Ĉiutaga resumo</string>
     <string name="chart_no_daily_data">Neniu datumo havebla por ĉi tiu tago.</string>
-    <string name="chart_no_hourly_data">Neniu hora datumo havebla</string>
+    <string name="chart_no_hourly_data">Neniu hora datumo havebla.</string>
+    <string name="chart_not_enough_hourly_data">Ne sufiĉe da horaj datumoj haveblas elmontri diagramon por ĉi tiu tago.</string>
 </resources>
