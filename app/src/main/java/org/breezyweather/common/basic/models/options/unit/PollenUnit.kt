@@ -44,8 +44,9 @@ enum class PollenUnit(
     ) = convertUnit(valueInDefaultUnit).roundToInt()
 
     override fun getValueTextWithoutUnit(
+        context: Context,
         valueInDefaultUnit: Int,
-    ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit)!!
+    ) = Utils.getValueTextWithoutUnit(context, this, valueInDefaultUnit)!!
 
     override fun getValueText(
         context: Context,

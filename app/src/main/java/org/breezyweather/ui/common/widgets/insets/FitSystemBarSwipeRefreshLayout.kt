@@ -19,7 +19,6 @@ package org.breezyweather.ui.common.widgets.insets
 import android.content.Context
 import android.util.AttributeSet
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import org.breezyweather.R
 
 class FitSystemBarSwipeRefreshLayout @JvmOverloads constructor(
     context: Context,
@@ -30,7 +29,7 @@ class FitSystemBarSwipeRefreshLayout @JvmOverloads constructor(
      * Positions the refresh indicator below the TopAppBar.
      */
     fun fitSystemBar(topInset: Int) {
-        val startPosition = topInset + resources.getDimensionPixelSize(R.dimen.normal_margin)
+        val startPosition = 0 // topInset + resources.getDimensionPixelSize(R.dimen.normal_margin)
         val endPosition = (startPosition + 64 * resources.displayMetrics.density).toInt()
         if (startPosition != progressViewStartOffset || endPosition != progressViewEndOffset) {
             setProgressViewOffset(false, startPosition, endPosition)

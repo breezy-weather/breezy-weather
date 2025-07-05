@@ -169,7 +169,7 @@ private fun VisibilitySummary(
             } else {
                 stringResource(
                     R.string.visibility_from_to_number,
-                    distanceUnit.getValueTextWithoutUnit(minVisibility),
+                    distanceUnit.getValueTextWithoutUnit(context, minVisibility),
                     maxVisibilityFormatted
                 )
             },
@@ -179,7 +179,7 @@ private fun VisibilitySummary(
                     contentDescription = if (minVisibility == maxVisibility) {
                         maxVisibilityContentDescription
                     } else {
-                        distanceUnit.getValueTextWithoutUnit(minVisibility).let {
+                        distanceUnit.getValueTextWithoutUnit(context, minVisibility).let {
                             context.getString(
                                 R.string.visibility_from_to_number,
                                 it,
@@ -295,7 +295,7 @@ private fun VisibilityChart(
         ),
         topAxisValueFormatter = { _, value, _ ->
             mappedValues.getOrElse(value.toLong()) { null }?.let {
-                SettingsManager.getInstance(context).distanceUnit.getValueTextWithoutUnit(it)
+                SettingsManager.getInstance(context).distanceUnit.getValueTextWithoutUnit(context, it)
             } ?: "-"
         },
         endAxisItemPlacer = remember {

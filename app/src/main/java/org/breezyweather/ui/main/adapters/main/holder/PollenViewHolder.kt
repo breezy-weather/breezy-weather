@@ -90,9 +90,8 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
         itemAnimationEnabled: Boolean,
-        firstCard: Boolean,
     ) {
-        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             mTitle.isAccessibilityHeading = true
         }

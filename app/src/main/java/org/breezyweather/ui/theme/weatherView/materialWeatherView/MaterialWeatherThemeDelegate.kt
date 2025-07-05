@@ -22,6 +22,7 @@ import android.view.Window
 import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
+import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.ui.theme.weatherView.WeatherThemeDelegate
 import org.breezyweather.ui.theme.weatherView.WeatherView
@@ -119,11 +120,28 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
         return innerGetBackgroundColor(weatherKind, daylight)
     }
 
-    override fun getHeaderTopMargin(context: Context): Int =
-        (context.resources.displayMetrics.heightPixels * 0.25).toInt()
+    override fun getHeaderTopMargin(context: Context): Int = 0
 
-    override fun getHeaderTextColor(context: Context): Int {
-        return Color.WHITE
+    override fun getOnBackgroundColor(
+        context: Context,
+        weatherKind: Int,
+        daylight: Boolean,
+    ): Int {
+        return when (weatherKind) {
+            WeatherView.WEATHER_KIND_CLEAR -> if (daylight && !context.isDarkMode) Color.BLACK else Color.WHITE
+            WeatherView.WEATHER_KIND_CLOUDY -> Color.WHITE
+            WeatherView.WEATHER_KIND_CLOUD -> Color.WHITE
+            WeatherView.WEATHER_KIND_FOG -> if (daylight) Color.BLACK else Color.WHITE
+            WeatherView.WEATHER_KIND_HAIL -> Color.WHITE
+            WeatherView.WEATHER_KIND_HAZE -> Color.WHITE
+            WeatherView.WEATHER_KIND_RAINY -> Color.WHITE
+            WeatherView.WEATHER_KIND_SLEET -> Color.WHITE
+            WeatherView.WEATHER_KIND_SNOW -> Color.WHITE
+            WeatherView.WEATHER_KIND_THUNDERSTORM -> Color.WHITE
+            WeatherView.WEATHER_KIND_THUNDER -> Color.WHITE
+            WeatherView.WEATHER_KIND_WIND -> Color.WHITE
+            else -> Color.TRANSPARENT
+        }
     }
 
     override fun setSystemBarStyle(
@@ -148,5 +166,5 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
 
     override fun getHomeCardMargins(context: Context): Int = context
         .resources
-        .getDimensionPixelSize(R.dimen.little_margin)
+        .getDimensionPixelSize(R.dimen.normal_margin)
 }

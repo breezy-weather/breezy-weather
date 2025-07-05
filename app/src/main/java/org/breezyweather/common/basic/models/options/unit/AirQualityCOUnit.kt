@@ -42,8 +42,9 @@ enum class AirQualityCOUnit(
     override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
+        context: Context,
         valueInDefaultUnit: Double,
-    ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, 1)!!
+    ) = Utils.getValueTextWithoutUnit(context, this, valueInDefaultUnit, 1)!!
 
     override fun getValueText(
         context: Context,
@@ -60,7 +61,7 @@ enum class AirQualityCOUnit(
         context = context,
         enum = this,
         value = value,
-        decimalNumber = 1,
+        precision = 1,
         rtl = rtl,
         isValueInDefaultUnit
     )

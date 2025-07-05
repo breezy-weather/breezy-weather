@@ -1,43 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container_main_pollen"
     android:layout_margin="0dp"
-    style="@style/material_card">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraLarge"
+    app:strokeWidth="0dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/large_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/container_main_pollen_title"
-                android:text="@string/pollen"
-                android:textStyle="bold"
-                android:layout_marginTop="@dimen/normal_margin"
-                android:layout_marginStart="@dimen/normal_margin"
-                android:layout_marginEnd="@dimen/normal_margin"
-                style="@style/title_text" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/container_main_pollen_indicator"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="@dimen/normal_margin"
-                style="@style/subtitle_text"
-                tools:text="3/15" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        </RelativeLayout>
+                    <TextView
+                        android:id="@+id/container_main_pollen_title"
+                        android:text="@string/pollen"
+                        android:textStyle="bold"
+                        style="@style/title_text" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/container_main_pollen_pager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/container_main_pollen_indicator"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        style="@style/subtitle_text"
+                        tools:text="3/15" />
 
-    </LinearLayout>
+                </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/container_main_pollen_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

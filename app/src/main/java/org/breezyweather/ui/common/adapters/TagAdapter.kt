@@ -19,25 +19,19 @@ package org.breezyweather.ui.common.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
 import org.breezyweather.R
-import org.breezyweather.ui.common.widgets.TagView
 
 class TagAdapter @JvmOverloads constructor(
     private val mTagList: MutableList<Tag>,
-    @field:ColorInt @param:ColorInt private val mCheckedTitleColor: Int,
-    @field:ColorInt @param:ColorInt private val mUncheckedTitleColor: Int,
-    @field:ColorInt @param:ColorInt private val mCheckedBackgroundColor: Int,
-    @field:ColorInt @param:ColorInt private val mUncheckedBackgroundColor: Int,
     private val mListener: ((checked: Boolean, oldPosition: Int, newPosition: Int) -> Boolean)? = null,
     private var mCheckedIndex: Int = UNCHECKABLE_INDEX,
 ) : RecyclerView.Adapter<TagAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val mTagView: TagView
+        private val mTagView: Chip = itemView.findViewById(R.id.item_tag)
 
         init {
-            mTagView = itemView.findViewById(R.id.item_tag)
             mTagView.setOnClickListener {
                 var consumed = false
                 if (mListener != null) {
@@ -59,15 +53,12 @@ class TagAdapter @JvmOverloads constructor(
         fun onBindView(tag: Tag, checked: Boolean) {
             mTagView.apply {
                 text = tag.name
-                checkedBackgroundColor = mCheckedBackgroundColor
-                uncheckedBackgroundColor = mUncheckedBackgroundColor
             }
             setChecked(checked)
         }
 
         fun setChecked(checked: Boolean) {
             mTagView.apply {
-                setTextColor(if (checked) mCheckedTitleColor else mUncheckedTitleColor)
                 isChecked = checked
             }
         }

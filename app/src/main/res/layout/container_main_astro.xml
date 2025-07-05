@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container_main_sun"
+    android:layout_margin="0dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraLarge"
+    app:strokeWidth="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/block_solar_events"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:id="@+id/display_area_top_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.08" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="vertical"
+                android:id="@+id/display_area_start_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.08" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:id="@+id/display_area_bottom_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.89" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="vertical"
+                android:id="@+id/display_area_end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.92" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:id="@+id/sunset_bottom_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.89" />
+
+            <org.breezyweather.ui.common.widgets.astro.SunMoonView
+                android:id="@+id/container_main_sun_moon_controlView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/display_area_start_guideline"
+                app:layout_constraintEnd_toEndOf="@+id/display_area_end_guideline"
+                app:layout_constraintTop_toBottomOf="@id/title" />
+
+            <ImageView
+                android:id="@+id/title_icon"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:importantForAccessibility="no"
+                android:gravity="start"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="@+id/display_area_start_guideline"
+                app:layout_constraintTop_toTopOf="@+id/title" />
+
+            <TextView
+                android:id="@+id/title"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textSize="@dimen/title_text_size"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textAlignment="viewStart"
+                android:layout_marginStart="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/display_area_end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/title_icon"
+                app:layout_constraintTop_toTopOf="@+id/display_area_top_guideline" />
+
+            <TextView
+                android:id="@+id/rise_time"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorOnSurface"
+                android:ellipsize="end"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:maxLines="1"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintTop_toBottomOf="@+id/container_main_sun_moon_controlView"
+                app:layout_constraintStart_toStartOf="@+id/display_area_start_guideline" />
+
+            <TextView
+                android:id="@+id/set_time"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorOnSurface"
+                android:ellipsize="end"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:maxLines="1"
+                app:layout_constraintBottom_toTopOf="@+id/sunset_bottom_guideline"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintTop_toBottomOf="@+id/container_main_sun_moon_controlView"
+                app:layout_constraintEnd_toEndOf="@+id/display_area_end_guideline" />
+
+            <org.breezyweather.ui.common.widgets.astro.MoonPhaseView
+                android:id="@+id/description_icon"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:importantForAccessibility="no"
+                app:layout_constraintBottom_toBottomOf="@+id/description"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@+id/description"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/display_area_start_guideline"
+                app:layout_constraintTop_toTopOf="@+id/description" />
+
+            <TextView
+                android:id="@+id/description"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorOnSurface"
+                android:ellipsize="end"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:maxLines="1"
+                android:layout_marginStart="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/display_area_bottom_guideline"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/description_icon"
+                app:layout_constraintEnd_toEndOf="@+id/display_area_end_guideline" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -299,4 +299,11 @@
         <item name="android:indeterminateTintMode" tools:ignore="NewApi">src_atop</item>
         <item name="android:indeterminateTint" tools:ignore="NewApi">@color/lightPrimary_5</item>
     </style>
+
+    <style name="Weather.TextAppearance.MainBlock.NumberDigit" parent="@style/TextAppearance.Material3.DisplaySmall">
+        <item name="android:textSize">48sp</item>
+    </style>
+    <style name="Weather.TextAppearance.MainBlock.NumberUnit" parent="@style/TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textSize">24sp</item>
+    </style>
 </resources>

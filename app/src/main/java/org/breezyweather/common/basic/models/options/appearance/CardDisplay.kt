@@ -29,10 +29,16 @@ enum class CardDisplay(
     CARD_PRECIPITATION_NOWCAST("precipitation_nowcast", R.string.precipitation_nowcasting),
     CARD_DAILY_OVERVIEW("daily_overview", R.string.daily_forecast),
     CARD_HOURLY_OVERVIEW("hourly_overview", R.string.hourly_forecast),
+    CARD_PRECIPITATION("precipitation", R.string.precipitation),
+    CARD_WIND("wind", R.string.wind),
     CARD_AIR_QUALITY("air_quality", R.string.air_quality),
     CARD_POLLEN("pollen", R.string.pollen),
-    CARD_SUNRISE_SUNSET("sunrise_sunset", R.string.ephemeris),
-    CARD_LIVE("live", R.string.details),
+    CARD_HUMIDITY("humidity", R.string.humidity),
+    CARD_UV("uv", R.string.uv_index),
+    CARD_VISIBILITY("visibility", R.string.visibility),
+    CARD_PRESSURE("pressure", R.string.pressure),
+    CARD_SUN("sun", R.string.ephemeris_sun),
+    CARD_MOON("moon", R.string.ephemeris_moon),
     ;
 
     companion object {
@@ -50,10 +56,16 @@ enum class CardDisplay(
                         "precipitation_nowcast" -> list.add(CARD_PRECIPITATION_NOWCAST)
                         "daily_overview" -> list.add(CARD_DAILY_OVERVIEW)
                         "hourly_overview" -> list.add(CARD_HOURLY_OVERVIEW)
+                        "precipitation" -> list.add(CARD_PRECIPITATION)
+                        "wind" -> list.add(CARD_WIND)
                         "air_quality" -> list.add(CARD_AIR_QUALITY)
                         "allergen", "pollen" -> list.add(CARD_POLLEN)
-                        "sunrise_sunset" -> list.add(CARD_SUNRISE_SUNSET)
-                        "live" -> list.add(CARD_LIVE)
+                        "humidity" -> list.add(CARD_HUMIDITY)
+                        "uv" -> list.add(CARD_UV)
+                        "visibility" -> list.add(CARD_VISIBILITY)
+                        "pressure" -> list.add(CARD_PRESSURE)
+                        "sunrise_sunset", "sun" -> list.add(CARD_SUN)
+                        "moon" -> list.add(CARD_MOON)
                     }
                 }
 

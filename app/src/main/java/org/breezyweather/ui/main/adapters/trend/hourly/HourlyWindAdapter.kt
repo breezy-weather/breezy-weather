@@ -87,7 +87,7 @@ class HourlyWindAdapter(
                 null, null,
                 null, null,
                 hourly.wind?.speed?.toFloat(),
-                hourly.wind?.speed?.let { mSpeedUnit.getValueTextWithoutUnit(it) },
+                hourly.wind?.speed?.let { mSpeedUnit.getValueTextWithoutUnit(activity, it) },
                 mHighestWindSpeed, 0f
             )
             mPolylineAndHistogramView.setLineColors(
@@ -141,7 +141,7 @@ class HourlyWindAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 Wind.WIND_SPEED_3.toFloat(),
-                mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
+                mSpeedUnit.getValueTextWithoutUnit(activity, Wind.WIND_SPEED_3),
                 activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -149,7 +149,7 @@ class HourlyWindAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 Wind.WIND_SPEED_7.toFloat(),
-                mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
+                mSpeedUnit.getValueTextWithoutUnit(activity, Wind.WIND_SPEED_7),
                 activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -157,7 +157,7 @@ class HourlyWindAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 -Wind.WIND_SPEED_3.toFloat(),
-                mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
+                mSpeedUnit.getValueTextWithoutUnit(activity, Wind.WIND_SPEED_3),
                 activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
@@ -165,7 +165,7 @@ class HourlyWindAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 -Wind.WIND_SPEED_7.toFloat(),
-                mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
+                mSpeedUnit.getValueTextWithoutUnit(activity, Wind.WIND_SPEED_7),
                 activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )

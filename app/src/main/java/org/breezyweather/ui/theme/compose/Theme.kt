@@ -63,10 +63,6 @@ class BreezyWeatherColors {
         val Level5 = Color(0xff99004c)
         val Level6 = Color(0xff7e0023)
 
-        val WeatherSourceACCU = Color(0xffef5823)
-        val WeatherSourceCN = Color(0xff033566)
-        val WeatherSourceCaiYun = Color(0xff5ebb8e)
-
         val LightTitleText = DarkText
         val DarkTitleText = LightText
 

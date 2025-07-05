@@ -90,8 +90,8 @@ class DailyWindAdapter(
             mDoubleHistogramView.setData(
                 daily.day?.wind?.speed?.toFloat() ?: 0f,
                 daily.night?.wind?.speed?.toFloat() ?: 0f,
-                daily.day?.wind?.speed?.let { mSpeedUnit.getValueTextWithoutUnit(it) },
-                daily.night?.wind?.speed?.let { mSpeedUnit.getValueTextWithoutUnit(it) },
+                daily.day?.wind?.speed?.let { mSpeedUnit.getValueTextWithoutUnit(activity, it) },
+                daily.night?.wind?.speed?.let { mSpeedUnit.getValueTextWithoutUnit(activity, it) },
                 mHighestWindSpeed
             )
             mDoubleHistogramView.setLineColors(
@@ -162,7 +162,7 @@ class DailyWindAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 Wind.WIND_SPEED_3.toFloat(),
-                unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
+                unit.getValueTextWithoutUnit(activity, Wind.WIND_SPEED_3),
                 activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -170,7 +170,7 @@ class DailyWindAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 Wind.WIND_SPEED_7.toFloat(),
-                unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
+                unit.getValueTextWithoutUnit(activity, Wind.WIND_SPEED_7),
                 activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -178,7 +178,7 @@ class DailyWindAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 -Wind.WIND_SPEED_3.toFloat(),
-                unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
+                unit.getValueTextWithoutUnit(activity, Wind.WIND_SPEED_3),
                 activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
@@ -186,7 +186,7 @@ class DailyWindAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 -Wind.WIND_SPEED_7.toFloat(),
-                unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
+                unit.getValueTextWithoutUnit(activity, Wind.WIND_SPEED_7),
                 activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )

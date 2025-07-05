@@ -1,78 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container_main_aqi"
     android:layout_margin="0dp"
-    style="@style/material_card">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
+    app:strokeWidth="0dp">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/normal_margin">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/container_main_aqi_title"
-                android:text="@string/air_quality"
-                android:textSize="@dimen/title_text_size"
-                android:textStyle="bold"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true"
-                android:maxLines="1"
-                android:ellipsize="end"
-                style="@style/title_text" />
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:id="@+id/display_area_top_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.21" />
 
-            <TextView
-                android:id="@+id/container_main_aqi_time"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="2dp"
-                android:layout_alignParentEnd="true"
-                style="@style/content_text"
-                tools:text="10:10"
-                tools:ignore="RtlHardcoded" />
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:id="@+id/display_area_bottom_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.81" />
 
-        </RelativeLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="vertical"
+                android:id="@+id/display_area_start_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.18" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="vertical"
+                android:id="@+id/display_area_end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.82" />
 
             <org.breezyweather.ui.common.widgets.ArcProgress
-                android:id="@+id/container_main_aqi_progress"
-                android:layout_width="172dp"
-                android:layout_height="172dp"
-                android:layout_margin="@dimen/large_margin"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
+                android:id="@+id/aqi_progress"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="5dp"
+                android:layout_gravity="center_horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:max="400"
                 app:background_color="?colorOutline"
-                app:text_color="?colorTitleText"
-                app:text_size="56dp"
-                app:bottom_text_color="?attr/colorCaptionText"
                 app:arc_angle="270"
-                app:progress_width="14dp"
                 tools:progress="126"
-                tools:progress_color="@color/colorLevel_3"
-                tools:text="126"
-                tools:bottom_text="@string/high_pollution" />
+                tools:progress_color="@color/colorLevel_3" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/container_main_aqi_recyclerView"
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/title_icon"
+                android:gravity="start"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:importantForAccessibility="no"
+                android:backgroundTint="?attr/colorSurfaceInverse"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@+id/title"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/display_area_start_guideline"
+                app:layout_constraintTop_toTopOf="@+id/title" />
+
+            <TextView
+                android:id="@+id/title"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorSurfaceInverse"
+                android:textSize="@dimen/title_text_size"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/container_main_aqi_progress"
-                android:layout_centerVertical="true"
-                android:nestedScrollingEnabled="false"
-                android:paddingBottom="@dimen/little_margin"
-                tools:ignore="UnusedAttribute" />
+                android:maxLines="1"
+                android:layout_marginStart="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/display_area_end_guideline"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/title_icon"
+                app:layout_constraintTop_toTopOf="@+id/display_area_top_guideline" />
 
-        </RelativeLayout>
+            <TextView
+                android:textAppearance="?attr/textAppearanceDisplayMedium"
+                android:textColor="?attr/colorSurfaceInverse"
+                android:ellipsize="end"
+                android:id="@+id/aqi_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                app:layout_constraintBottom_toTopOf="@+id/aqi_level"
+                app:layout_constraintEnd_toEndOf="@+id/display_area_end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/display_area_start_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
 
-    </LinearLayout>
+            <TextView
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorSurfaceInverse"
+                android:ellipsize="end"
+                android:id="@+id/aqi_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="@+id/display_area_bottom_guideline"
+                app:layout_constraintEnd_toEndOf="@+id/display_area_end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/display_area_start_guideline" />
 
-</androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

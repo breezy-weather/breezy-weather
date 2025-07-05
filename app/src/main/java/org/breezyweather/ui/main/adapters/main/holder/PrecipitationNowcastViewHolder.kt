@@ -22,7 +22,9 @@ import android.text.Layout
 import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -90,8 +92,9 @@ import kotlin.time.Duration.Companion.minutes
 class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_precipitation_nowcast_card, parent, false)
 ) {
-    private val title = itemView.findViewById<TextView>(R.id.container_main_minutely_card_title)
-    private val subtitle = itemView.findViewById<TextView>(R.id.container_main_minutely_card_subtitle)
+    private val titleView: TextView = itemView.findViewById(R.id.nowcasting_block_title)
+    private val titleIconView: ImageView = itemView.findViewById(R.id.nowcasting_block_title_icon)
+    private val subtitle: TextView = itemView.findViewById(R.id.nowcasting_block_subtitle)
     private val chartComposeView = itemView.findViewById<ComposeView>(R.id.container_main_minutely_chart_composeView)
 
     override fun onBindView(
@@ -100,25 +103,19 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
         itemAnimationEnabled: Boolean,
-        firstCard: Boolean,
     ) {
-        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
+
+        val color = MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            titleView.isAccessibilityHeading = true
+        }
 
         val weather = location.weather ?: return
-        val colors = ThemeManager
-            .getInstance(context)
-            .weatherThemeDelegate
-            .getThemeColors(
-                context,
-                WeatherViewController.getWeatherKind(location),
-                WeatherViewController.isDaylight(location)
-            )
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            title.isAccessibilityHeading = true
-        }
-        title.setTextColor(colors[0])
-        title.text = weather.getMinutelyTitle(context)
+        titleView.text = weather.getMinutelyTitle(context)
+        titleView.setTextColor(color)
+        titleIconView.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.ic_umbrella))
+        titleIconView.setColorFilter(color)
         subtitle.text = weather.getMinutelyDescription(context, location)
 
         val minutelyList = weather.minutelyForecast

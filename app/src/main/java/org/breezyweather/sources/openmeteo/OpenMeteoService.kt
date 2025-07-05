@@ -74,7 +74,7 @@ class OpenMeteoService @Inject constructor(
     override val continent = SourceContinent.WORLDWIDE
     override val privacyPolicyUrl = "https://open-meteo.com/en/terms#privacy"
 
-    override val locationSearchAttribution = "Open-Meteo (CC BY 4.0) · GeoNames"
+    override val locationSearchAttribution = "Open-Meteo (CC BY 4.0) • GeoNames"
 
     private val mForecastApi: OpenMeteoForecastApi
         get() {
@@ -99,7 +99,7 @@ class OpenMeteoService @Inject constructor(
         }
 
     private val weatherAttribution = "Open-Meteo (CC BY 4.0)"
-    private val airQualityAttribution = "Open-Meteo (CC BY 4.0) · CAMS ENSEMBLE data provider"
+    private val airQualityAttribution = "Open-Meteo (CC BY 4.0) • CAMS ENSEMBLE data provider"
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,

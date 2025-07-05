@@ -28,7 +28,9 @@
     <string name="sunshine_duration">Durée d’ensoleillement</string>
     <string name="notification_channel_forecast">Prévisions</string>
     <string name="daytime">Journée</string>
+    <string name="daytime_short">Jour</string>
     <string name="nighttime">Nuit</string>
+    <string name="nighttime_short">Nuit</string>
     <string name="nighttime_details">Commence dans la soirée et se termine à l’aube du lendemain</string>
     <string name="settings_follow_system">Préférence système</string><!-- Littéralement "suivre les préférences système" -->
     <string name="notification_channel_widget">Widget</string>
@@ -114,6 +116,7 @@
 
     <string name="wind">Vent</string>
     <string name="wind_short">Vent</string>
+    <string name="wind_origin">Origine</string>
     <string name="wind_direction">Direction du vent</string>
     <string name="wind_speed">Vitesse du vent</string>
     <string name="wind_speed_about">À propos de la vitesse du vent et des rafales</string>
@@ -229,6 +232,8 @@
     <string name="pollen_and_mold">Pollen &amp; moisissure</string>
     <string name="details">Détails</string>
     <string name="ephemeris">Soleil &amp; lune</string>
+    <string name="ephemeris_sun">Soleil</string>
+    <string name="ephemeris_moon">Lune</string>
     <string name="ephemeris_about">À propos des heures de lever et coucher</string>
     <string name="ephemeris_about_rise">L’heure de lever est le moment où le soleil ou la lune apparaît entièrement au-dessus de l’horizon.</string>
     <string name="ephemeris_about_set">L’heure de coucher est le moment où le soleil ou la lune disparaît complètement sous l’horizon.</string>
@@ -594,9 +599,9 @@
     <string name="settings_appearance_icon_pack_title">Pack d’icônes</string>
     <string name="settings_icon_packs_title">Packs d’icônes</string>
     <string name="settings_main">Écran principal</string>
-    <string name="settings_main_summary">Ordre des cartes, éléments affichés, animations</string>
+    <string name="settings_main_summary">Ordre des blocs, éléments affichés, animations</string>
     <string name="settings_main_section_displayed_data">Données affichées</string>
-    <string name="settings_main_cards_title">Cartes</string>
+    <string name="settings_main_cards_title">Blocs</string>
     <string name="settings_main_daily_trends_title">Tendances quotidiennes</string>
     <string name="settings_main_hourly_trends_title">Tendances heure par heure</string>
     <string name="settings_main_header_details_title">Détails en entête</string>
@@ -607,7 +612,7 @@
     <string name="settings_main_background_animation_enabled">Activée</string>
     <string name="settings_main_background_animation_disabled">Désactivée</string>
     <string name="settings_main_gravity_sensor_switch">Accéléromètre</string>
-    <string name="settings_main_cards_fade_in_switch">Apparition des cartes en fondu</string>
+    <string name="settings_main_cards_fade_in_switch">Apparition des blocs en fondu</string>
     <!-- Elements = temperature in header, AQI, sun &amp; moon arc, etc -->
     <string name="settings_main_cards_other_element_animations_switch">Autres animations d’éléments</string>
     <string name="settings_units">Unités</string>
