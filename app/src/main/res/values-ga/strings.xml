@@ -824,4 +824,8 @@
     <string name="visibility_about">Maidir le hinfheictheacht</string>
     <string name="air_quality_index_about_description_1">Is scála é innéacs cáilíochta aeir (ICA) atá deartha chun cabhrú leat tuiscint a fháil ar cé chomh truaillithe is atá an t-aer i gceantar ar leith, agus na rioscaí féideartha le do shláinte.</string>
     <string name="air_quality_no2_sources">Is iad na príomhfhoinsí próisis dhóite breosla, amhail iad siúd a úsáidtear sa tionscal agus san iompar.</string>
+    <string name="action_close_menu">Dún an roghchlár</string>
+    <string name="action_toggle_data_type_menu">Scoraigh an roghchlár roghnúcháin cineál sonraí</string>
+    <string name="label_expanded">Leathnaithe</string>
+    <string name="label_collapsed">Tite</string>
 </resources>
