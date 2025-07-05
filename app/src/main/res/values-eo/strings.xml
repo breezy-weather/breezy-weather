@@ -232,7 +232,7 @@
     <string name="location_delete_location_dialog_title">Forigi la lokon?</string>
     <string name="location_search_placeholder">Serĉi lokon…</string>
     <!-- Actions -->
-    <string name="action_location_list">Listo de lokoj</string>
+    <string name="action_location_list">Loka listo</string>
     <string name="action_search">Serĉi</string>
     <string name="action_add_current_location">Aldoni nunan lokon</string>
     <string name="action_add_new_location">Aldoni novan lokon</string>
@@ -595,8 +595,8 @@
     <string name="about_contribution_WangDaYeeeeee">Aŭtoro de la originala projekto Geometric Weather</string>
     <string name="air_quality_so2_info_introduction">Sulfura dioksido (SO₂) estas senkolora toksa gaso kaŭzanta la odoron de brulintaj alumetoj.</string>
     <string name="air_quality_so2_info_consequences">Elmeto al SO₂ estas asociita kun vizitoj al astmaj malsanulejoj kaj urĝejoj.</string>
-    <string name="location_message_list_cannot_be_empty">Listo de lokoj ne povas esti malplena</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Elektu lokigan servon</string>
+    <string name="location_message_list_cannot_be_empty">Loka listo ne povas esti malplena</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Uzu alian lokservon</string>
     <string name="location_search_no_results">%1$s ne povas trovi %2$s</string>
     <string name="location_current_not_found_yet">Nuna loko ankoraŭ ne troviĝis…</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Lunfazo hodiaŭa, morgaŭa, …, postpostpostmorgaŭa</string>
@@ -620,7 +620,7 @@
     <string name="location_message_permission_missing">Mankas permeso uzi la nunan lokon</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Ĉiutaga priskribo</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Fulmotondro eta aŭ modera</string>
-    <string name="location_search_change_source">Ŝanĝi fonton de serĉado de loko</string>
+    <string name="location_search_change_source">Ŝanĝi loko serĉa fonto</string>
     <string name="dialog_permissions_notification_title">Restu informata</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Ĉiuhora priskribo</string>
     <string name="settings_widgets_broadcast_title">Kunhavigo de datenoj</string>
@@ -637,7 +637,7 @@
     <string name="message_invalid_incomplete_data">Ricevis de servilo nevalidajn aŭ nekompletajn datenojn</string>
     <string name="air_quality_level_2_description">La aera kvalito estas ĝenerale akceptebla por normalaj homoj. Tamen, riskaj grupoj povas sperti negravajn aŭ moderajn simptomojn pro daŭra elmeto.</string>
     <string name="weather_message_too_frequent_refreshes">Bonvolu atendi kelkajn sekundojn antaŭ ol reprovi…</string>
-    <string name="location_message_search_failed">Serĉado de loko malsukcesis</string>
+    <string name="location_message_search_failed">Loka serĉo malsukcesis</string>
     <string name="air_quality_level_1_description">La aera kvalito estas ideala por normalaj homoj; ĝuu viajn ordinarajn subĉielajn aktivecojn.</string>
     <string name="air_quality_level_4_description">Riskaj grupoj povas tuj senti efikojn pri sano. Sanaj homoj povas sperti malfacilecon spiri kaj gorĝan iriton pro longedaŭra elmeto. Limigu eksterdoman aktivecon.</string>
     <string name="air_quality_level_3_description">La aero atingis altan nivelon de poluo kaj estas malsaniga por riskaj grupoj. Malpliigu eksterdoman tempon, se vi sentas simptomojn kiel ekzemple malfacilecon spiri aŭ gorĝan iriton.</string>
@@ -670,7 +670,7 @@
     <string name="weather_message_data_refresh_failed">Malsukcesis aktualigi veterajn datenojn</string>
     <string name="weather_message_invalid_location">Nevalida loko, bonvolu forigi ĝin kaj realdoni</string>
     <string name="weather_api_limit_reached_title">Troo da API-petoj</string>
-    <string name="location_search_source">Fonto de serĉado de loko</string>
+    <string name="location_search_source">Loka serĉo fonto</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Nokta vento hodiaŭa, morgaŭa, …, postpostpostmorgaŭa</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperaturo kiel statobreta piktogramo</string>
     <string name="notification_refreshed_at">Ĝisdatigita je</string>
@@ -701,7 +701,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombini la plej bonajn vetermodelojn por tiu loko</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kombini ĉiujn vetermodelojn de tiu provizanto en unu prognozon</string>
     <string name="location_message_reverse_geocoding_failed">Veterfonto malsukcesis trovi kongruan lokon</string>
-    <string name="location_message_already_exists">Jam ekzistas loko kun la sama ĉefa veterfonto.</string>
+    <string name="location_message_already_exists">Loka listo jam enhavas ĉi tiun lokon kun ĉi tiu prognozofonto.</string>
     <string name="widget_label_subtitle_data">Subtitolaj datenoj</string>
     <string name="widget_subtitle_data_time">Tempo de aktualigo</string>
     <string name="settings_location_access_switch_summaryOn">Permesata. Vi povas aldoni vian nunan lokon en la liston de lokoj.</string>
@@ -751,7 +751,7 @@
     <string name="location_has_active_alerts">Aktivaj atentigoj</string>
     <string name="pollen_acer">Acer</string>
     <string name="settings_background_updates_refresh_never_warning1">Malŝalti fonaj ĝisdatigoj, vi jam ne ricevos sciigojn de atentigoj aŭ precipitaĵo. Fenestraĵoj ne estos refreŝigita ĝis vi malfermas la aplikaĵo.</string>
-    <string name="location_search_no_results_advice">Certigi vian serĉon estas literumita ĝuste kaj ne tro preciza. Alternative, vi povas provi alian lokon serĉfonton kiu povas produkti malsamajn rezultojn.</string>
+    <string name="location_search_no_results_advice">Certigi vian serĉon estas literumita ĝuste kaj ne tro preciza. Alternative, vi povas provi alian lokan serĉfonton kiu povas produkti malsamajn rezultojn.</string>
     <string name="widget_custom_subtitle_explanation">Vi povas enmeti ion ajn, sed bonvolu atenti la longon de la teksto. Se vi volas citi vetera datumojn, bonvolu uzi $ por referenco la ekvivalenta ŝlosilvorto.\n\nEkzemple, “Nuna vetero estas: $cw$.” estos montrita kiel “Nuna vetero estas: Klara ĉielo.”.</string>
     <string name="pollen_alternaria">Alternario</string>
     <string name="pollen_atriplex">Atriplekso</string>
@@ -767,4 +767,12 @@
     <string name="daily_yesterday">Hieraŭ</string>
     <string name="daily_today">Hodiaŭ</string>
     <string name="daily_tomorrow">Morgaŭ</string>
+    <string name="action_open_in_other_app">Malfermi en alia aplikaĵo</string>
+    <string name="action_open_in_other_app_description">Malfermu ĉi tiun lokon en alia aplikaĵo</string>
+    <string name="ephemeris_about">Pri leviĝo kaj subirotempoj</string>
+    <string name="ephemeris_about_rise">La leviĝtempo estas kiam la suno aŭ la luno plene aperas sur la horizonto.</string>
+    <string name="ephemeris_about_set">La subiro tempo estas kiam la suno aŭ luno plene malaperas sub la horizonto.</string>
+    <string name="daily_summary">Ĉiutaga resumo</string>
+    <string name="chart_no_daily_data">Neniu datumo havebla por ĉi tiu tago.</string>
+    <string name="chart_no_hourly_data">Neniu hora datumo havebla</string>
 </resources>
