@@ -322,7 +322,8 @@
     <string name="pressure_steady">Steady</string>
     <string name="pressure_falling">Falling</string>
     <string name="pressure_about">About pressure</string>
-    <string name="pressure_about_description1" description="If there is no acronym MSLP in your language, remove the parenthesis from your translation">Atmospheric pressure is the downward pressure exerted by the earth’s atmosphere. This app uses mean sea level pressure (MSLP) to allow easier comparison of pressure from places with different altitudes.</string>
+    <!-- If there is no acronym MSLP in your language, just skip the parenthesis in the translation -->
+    <string name="pressure_about_description1">Atmospheric pressure is the downward pressure exerted by the earth’s atmosphere. This app uses mean sea level pressure (MSLP) to allow easier comparison of pressure from places with different altitudes.</string>
     <string name="pressure_about_description2">Significant, rapid changes in pressure are used to predict changes in the weather. For example, a drop in pressure can mean that rain or snow is on the way, and rising pressure can mean that weather will improve. Abnormal atmospheric pressure may cause headaches, joint pain, fatigue and other effects.</string>
     <string name="visibility">Visibility</string>
     <string name="visibility_short">Visibility</string>
