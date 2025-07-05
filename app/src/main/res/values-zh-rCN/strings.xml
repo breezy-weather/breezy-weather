@@ -182,7 +182,6 @@
     <string name="settings_changes_apply_after_restart">修改将在重启后生效</string>
     <string name="notification_running_in_background">正在后台运行以保持更新</string>
     <string name="notification_updating_weather_data">正在更新天气数据（%1$d/%2$d）</string>
-    <string name="pollen_tap_to_see_more">点击查看更多…</string>
     <!-- content description -->
     <string name="message_tap_again_to_exit">再次点击以退出</string>
     <string name="action_back">返回</string>
@@ -375,7 +374,6 @@
     <string name="notification_channel_alerts">预警</string>
     <string name="about_matrix">Matrix 聊天室</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="weather_data_by">数据来自 %s</string>
     <string name="locations">位置</string>
     <string name="location_results_by">位置结果来自 %s</string>
     <string name="widget_clock_font_sans_serif">无衬线体</string>
@@ -408,7 +406,6 @@
     <string name="weather_source_accu_preference_hours_72">72 小时</string>
     <string name="settings_background_updates">后台更新</string>
     <string name="settings_background_updates_dont_kill_my_app_title">与品牌相关的操作步骤</string>
-    <string name="weather_air_quality_and_pollen_data_by">空气质量和花粉数据来自 %s</string>
     <string name="location_message_search_failed">搜索位置失败</string>
     <string name="location_message_permission_background_missing">缺少在后台访问位置的权限</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">某些品牌的设备对应用施加了额外的限制，并且会终止后台服务。Don’t kill my app! 网站有关于如何修复此问题的信息。</string>
@@ -489,30 +486,14 @@
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_co">CO</string>
-    <string name="air_quality_pm_info_title">颗粒物（PM2.5 和 PM10）</string>
-    <string name="air_quality_pm_explanations_origin">有些颗粒物是自然产生的，源自火山、沙尘暴、森林和草原火灾、植被和海浪。人类活动也会产生大量颗粒物，例如交通和运输、工业活动、发电厂、建筑工地、垃圾焚烧或农田。</string>
     <string name="air_quality_o3_full">地面臭氧（O₃）</string>
-    <string name="air_quality_o3_info_introduction">地面臭氧（O₃）是烟雾的主要成分。尽管是相同的分子，但与保护地球免受过量紫外线辐射的平流层臭氧不同，地面臭氧可能会危害人类健康。</string>
-    <string name="air_quality_o3_info_consequences">接触过量的臭氧会导致呼吸问题、引发哮喘、降低肺功能并导致肺部疾病。</string>
     <string name="air_quality_no2_full">二氧化氮（NO₂）</string>
-    <string name="air_quality_no2_info_introduction">二氧化氮（NO₂）是一种令人窒息的有毒红棕色气体，具有特有的刺激性气味。</string>
-    <string name="air_quality_no2_info_consequences">接触二氧化氮会刺激呼吸道并加重呼吸道疾病。此外，二氧化氮是一种重要的臭氧前体，是一种与哮喘和其他呼吸系统疾病密切相关的污染物。</string>
     <string name="air_quality_so2_full">二氧化硫（SO₂）</string>
-    <string name="air_quality_so2_info_introduction">二氧化硫（SO₂）是一种无色有毒气体，会产生烧焦火柴的气味。</string>
     <string name="air_quality_co_full">一氧化碳（CO）</string>
-    <string name="air_quality_co_info_introduction">一氧化碳（CO）是一种无色、无臭、无味、无刺激性的有毒易燃气体。</string>
-    <string name="air_quality_co_info_origin">一氧化碳是由木柴、汽油、煤炭、天然气和煤油等碳质燃料在简易炉灶、明火、灯芯、火炉和壁炉中不完全燃烧产生的。在环境空气中，一氧化碳的主要来源是机动车辆。</string>
-    <string name="air_quality_co_info_consequences">一氧化碳扩散到肺组织并进入血液，使红细胞难以与氧气结合。缺氧会损害组织和细胞。接触一氧化碳会导致呼吸困难、疲惫、头晕和其他流感样症状。暴露于高浓度的一氧化碳可能致命。</string>
     <string name="action_close">关闭</string>
     <string name="dialog_permissions_notification_content">点击此处启用有关天气预警的通知，或稍后在设置中决定。</string>
     <string name="dialog_permissions_notification_title">随时获取信息</string>
     <string name="null_data_text">无数据</string>
-    <string name="air_quality_pm_explanations_introduction">颗粒物或大气颗粒物是悬浮在空气中的固体或液体物质的微小颗粒。</string>
-    <string name="air_quality_pm_explanations_consequences">颗粒物是危害最大的大气污染形式，因为它们能够从血液深入肺部和大脑，导致诸如心脏病、肺病和过早死亡等健康问题。</string>
-    <string name="air_quality_o3_info_origin">它是由车辆和工业排放的挥发性有机化合物、一氧化碳和氮氧化物（NOₓ）等污染物发生光化学反应而形成的。由于其光化学性质，臭氧含量在晴天达到最高水平。</string>
-    <string name="air_quality_no2_info_origin">环境中的二氧化氮来源于供暖、运输、工业和发电等过程中燃料的高温燃烧。家庭氮氧化物（NOₓ）来源包括燃烧燃料的设备，如火炉、壁炉、煤气炉和烤箱。</string>
-    <string name="air_quality_so2_info_consequences">接触二氧化硫与哮喘患者住院和急诊就诊有关。</string>
-    <string name="air_quality_so2_info_origin">它由火山活动自然释放，以及主要来自用于家庭供暖、工业和发电的化石燃料燃烧。</string>
     <string name="location_search_no_results_advice">确保您的搜索拼写正确并且不要太具体。或者您可以尝试其他位置搜索源，这可能会产生不同的结果。</string>
     <string name="location_search_no_results">%1$s 找不到 %2$s</string>
     <string name="action_show_errors">点击以查看详情</string>
@@ -540,10 +521,6 @@
     <string name="pollen_level_5">非常高</string>
     <string name="pollen_level_3">中</string>
     <string name="action_delete">删除</string>
-    <string name="weather_air_quality_data_by">空气质量数据来自 %s</string>
-    <string name="weather_minutely_data_by">临近降水预报数据来自 %s</string>
-    <string name="weather_pollen_data_by">花粉数据来自 %s</string>
-    <string name="weather_alert_data_by">预警数据来自 %s</string>
     <string name="weather_message_invalid_location">无效的位置，请删除并重新添加</string>
     <string name="wind_gusts">阵风</string>
     <string name="about_dependencies">依赖</string>
@@ -587,7 +564,6 @@
     <string name="settings_appearance_dark_mode_locations_title">位置的白天/夜间模式</string>
     <string name="weather_message_unsupported_feature">数据源不支持所请求功能中的一个</string>
     <string name="about_contribution_designer">Logo 设计者</string>
-    <string name="weather_normals_data_by">气温标准值数据来自 %s</string>
     <string name="settings_main_threshold_lines_on_charts">图表中的阈值线</string>
     <string name="temperature_average_short">平均</string>
     <string name="temperature_normals">气温标准值</string>
@@ -694,7 +670,6 @@
     <string name="common_weather_text_smoke">烟尘</string>
     <string name="common_weather_text_sand_storm">沙尘暴</string>
     <string name="settings_unavailable_no_animations">不可用，请先在安卓系统设置中启用动画</string>
-    <string name="weather_current_data_by">当前天气数据提供方 %s</string>
     <string name="current_weather">当前天气</string>
     <string name="common_weather_text_mist">薄雾</string>
     <string name="common_weather_text_dry">干燥</string>
@@ -797,7 +772,6 @@
     <string name="message_multiple_refresh_errors">刷新完毕但有错误</string>
     <string name="common_weather_text_tornado">龙卷风</string>
     <string name="forecast">预报</string>
-    <string name="weather_forecast_data_by">%s 的预报数据</string>
     <string name="settings_weather_source_not_configured">%s （未配置）</string>
     <string name="settings_weather_source_current_position_disclaimer">首次刷新后你的位置可能会有更多天气数据源可用。</string>
     <string name="pollen_alternaria">链格孢属</string>
@@ -818,7 +792,6 @@
     <string name="action_grant_permission">轻按授予权限。</string>
     <string name="settings_notifications_permission_summary">需要该权限来发出警报、预报和应用更新的提醒。%s</string>
     <string name="settings_debug_notification_permission">需要该权限来发出崩溃记录和天气更新失败的提醒。%s</string>
-    <string name="location_reverse_geocoding_by">通过 %s 查询位置</string>
     <string name="location_reverse_geocoding">位置查询</string>
     <string name="daily_yesterday">昨天</string>
     <string name="daily_today">今天</string>

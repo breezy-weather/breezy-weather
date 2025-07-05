@@ -150,7 +150,6 @@
     <string name="settings_changes_apply_after_restart">Zmiany zaczną obowiązywać po ponownym uruchomieniu</string>
     <string name="notification_running_in_background">Działnie w tle, aby kontynuować aktualizację</string>
     <string name="notification_updating_weather_data">Aktualizacja danych pogodowych (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">Kliknij, aby zobaczyć więcej…</string>
     <!-- action -->
     <string name="alerts">Alerty</string>
     <string name="action_search">Szukaj</string>
@@ -384,10 +383,7 @@
     <string name="settings_location">Lokalizacja</string>
     <string name="unit_h">h</string>
     <string name="air_quality_pm25_voice">PM dwa i pół</string>
-    <string name="air_quality_pm_explanations_origin">Niektóre cząstki stałe występują naturalnie i pochodzą z wulkanów, burz pyłowych, pożarów lasów i łąk, żywej roślinności i aerozolu morskiego. Działalność człowieka taka jak ruch drogowy i transport, działalność przemysłowa, elektrownie, place budowy, spalanie odpadów, również generuje znaczne ilości cząstek stałych.</string>
-    <string name="air_quality_pm_explanations_introduction">Cząstki stałe lub pył atmosferyczny to mikroskopijne cząstki materii stałej lub ciekłej zawieszone w powietrzu.</string>
     <string name="air_quality_no2_full">Dwutlenek azotu (NO₂)</string>
-    <string name="air_quality_o3_info_introduction">Ozon w warstwie przyziemnej (O₃) jest głównym składnikiem smogu. Mimo że jest to ta sama cząsteczka, ozon w warstwie przyziemnej może być szkodliwy dla zdrowia ludzkiego, w przeciwieństwie do ozonu stratosferycznego, który chroni Ziemię przed nadmiarem promieniowania UV.</string>
     <string name="air_quality_so2_full">Dwutlenek siarki (SO₂)</string>
     <string name="air_quality_co_full">Tlenek węgla II (CO)</string>
     <string name="air_quality_level_6_description">Każdy pobyt na zewnątrz, nawet przez kilka minut, może u każdego wywołać poważne skutki zdrowotne. Unikaj aktywności na zewnątrz.</string>
@@ -401,9 +397,6 @@
     <string name="precipitation_between_time">Opady od %1$s do %2$s</string>
     <string name="wind_gusts">Porywy wiatru</string>
     <string name="air_quality_level_3_description">Powietrze osiągnęło wysoki poziom zanieczyszczenia i jest niezdrowe dla osób wrażliwych. Jeśli odczuwasz takie objawy jak trudności w oddychaniu czy drapanie w gardle, skróć przebywanie na zewnątrz.</string>
-    <string name="air_quality_pm_info_title">Cząstki stałe (PM2.5 i PM10)</string>
-    <string name="air_quality_pm_explanations_consequences">Cząstki stałe są najbardziej szkodliwą formą zanieczyszczenia powietrza ze względu na ich zdolność do przenikania głęboko do płuc i mózgu z krwiobiegu, powodując problemy zdrowotne, takie jak choroby serca, choroby płuc i przedwczesną śmierć.</string>
-    <string name="weather_data_by">Dane według %s</string>
     <string name="action_show_errors">Dotknij, aby zobaczyć szczegóły</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignoruj, gdy poziom naładowania baterii jest niski</string>
     <string name="location_message_reverse_geocoding_failed">Źródło danych pogodowych nie znalazło pasującej lokalizacji</string>
@@ -445,21 +438,12 @@
     <string name="ephemeris_moonset_at">Zachód księżyca o %s</string>
     <string name="dialog_permissions_location_background_title">Dostęp do lokalizacji w tle</string>
     <string name="message_tap_again_to_exit">Dotknij ponownie, aby wyjść</string>
-    <string name="air_quality_o3_info_consequences">Narażenie na nadmiar ozonu może powodować problemy z oddychaniem, wywoływać astmę, pogarszać funkcjonowanie płuc i prowadzić do chorób płuc.</string>
-    <string name="air_quality_no2_info_introduction">Dwutlenek azotu (NO₂) to duszący, toksyczny czerwono-brązowy gaz o charakterystycznym ostrym, gryzącym zapachu.</string>
-    <string name="air_quality_no2_info_consequences">Narażenie na dwutlenek azotu może podrażniać drogi oddechowe i nasilać choroby układu oddechowego. Ponadto NO₂ jest ważnym prekursorem ozonu, zanieczyszczeniem ściśle związanym z astmą i innymi chorobami układu oddechowego.</string>
-    <string name="air_quality_so2_info_introduction">Dwutlenek siarki (SO₂) to bezbarwny, toksyczny gaz odpowiedzialny za zapach spalonych zapałek.</string>
     <string name="pollen_level_0">Brak</string>
     <string name="pollen_level_1">Bardzo niski</string>
     <string name="pollen_level_2">Niski</string>
     <string name="pollen_level_3">Umiarkowany</string>
     <string name="pollen_level_4">Wysoki</string>
     <string name="pollen_level_5">Bardzo wysoki</string>
-    <string name="weather_air_quality_data_by">Dane dotyczące jakości powietrza według %s</string>
-    <string name="weather_pollen_data_by">Dane dotyczące alergenów według %s</string>
-    <string name="weather_air_quality_and_pollen_data_by">Dane dotyczące jakości powietrza i alergenów według %s</string>
-    <string name="weather_minutely_data_by">Dane dotyczące opadów z minuty na minutę dostarczone przez %s</string>
-    <string name="weather_alert_data_by">Dane alertów według %s</string>
     <string name="weather_api_limit_reached_content">Aby obejść ten limit, dodaj własny klucz API.</string>
     <string name="action_add_new_location">Dodaj nową lokalizację</string>
     <string name="weather_api_limit_reached_title">Osiągnięto limit żądań API</string>
@@ -474,8 +458,6 @@
     <string name="settings_location_summary">Ustawienia usług lokalizacji</string>
     <string name="temperature_degree_day_heating">Stopień ogrzewania</string>
     <string name="temperature_degree_day_cooling">Stopień chłodzenia</string>
-    <string name="air_quality_o3_info_origin">Powstaje w wyniku reakcji fotochemicznych z zanieczyszczeniami, takimi jak lotne związki organiczne, tlenek węgla i tlenki azotu (NOₓ) emitowane przez pojazdy i przemysł. Ze względu na charakter fotochemiczny najwyższe poziomy ozonu obserwuje się w okresach słonecznej pogody.</string>
-    <string name="air_quality_no2_info_origin">Źródła NO₂ w otoczeniu powstają w wyniku spalania paliw w wysokich temperaturach w procesach stosowanych m.in. w ciepłownictwie, transporcie, przemyśle i energetyce. Domowymi źródłami tlenków azotu (NOₓ) są urządzenia spalające paliwa, takie jak piece, kominki oraz piekarniki i kuchenki gazowe.</string>
     <string name="settings_location_access_precise_title">Użycie GPS urządzenia</string>
     <string name="settings_widgets_live_wallpaper_error">Nie można uruchomić selektora tapet. Nadal możesz włączyć tapetę %s, wybierając „Animowane tapety” w selektorze tapet na ekranie głównym.</string>
     <string name="unit_inph_voice">Cali na godzinę</string>
@@ -533,12 +515,7 @@
     <string name="settings_debug">Debugowanie</string>
     <string name="unit_kph_voice">Kilometrów na godzinę</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Lekka lub umiarkowana burza z gradem</string>
-    <string name="air_quality_so2_info_consequences">Narażenie na SO₂ wiąże się z przyjęciami do szpitala z astmą i wizytami na izbie przyjęć.</string>
-    <string name="air_quality_so2_info_origin">Jest uwalniany naturalnie w wyniku aktywności wulkanicznej i pochodzi głównie ze spalania paliw kopalnych do ogrzewania domów, przemysłu i wytwarzania energii.</string>
-    <string name="air_quality_co_info_consequences">Tlenek węgla przenika przez tkanki płuc do krwiobiegu, utrudniając komórkom organizmu wiązanie się z tlenem. Ten brak tlenu uszkadza tkanki i komórki. Narażenie na tlenek węgla może powodować trudności w oddychaniu, wyczerpanie, zawroty głowy i inne objawy grypopodobne. Narażenie na wysokie poziomy tlenku węgla może być śmiertelne.</string>
     <string name="about_dependencies">Zależności</string>
-    <string name="air_quality_co_info_origin">Powstaje w wyniku niecałkowitego spalania paliw zawierających węgiel, takich jak drewno, benzyna, węgiel, gaz ziemny i nafta w prostych piecach, kominkach, lampach knotowych, piecach, kominkach. Głównym źródłem tlenku węgla (CO) w otaczającym powietrzu są pojazdy silnikowe.</string>
-    <string name="air_quality_co_info_introduction">Tlenek węgla (CO) to trujący, łatwopalny gaz, który jest bezbarwny, bezwonny, niedrażniący i nie ma smaku.</string>
     <string name="settings_widgets">Widżety i animowana tapeta</string>
     <string name="precipitation_nowcasting">Opady z minuty na minutę</string>
     <string name="alerts_to_follow">Dotknij tutaj, aby zobaczyć nadchodzące alerty.</string>
@@ -562,7 +539,6 @@
     <string name="temperature_average_short">Śr</string>
     <string name="temperature_normal_short">Norma</string>
     <string name="temperature_normals">Normy temperaturowe</string>
-    <string name="weather_normals_data_by">Dane dotyczące norm temperaturowych podane przez %s</string>
     <string name="settings_appearance_dark_mode_locations_title">Jasny / ciemny motyw dla lokalizacji</string>
     <string name="settings_main_threshold_lines_on_charts">Linie progów na wykresach</string>
     <string name="about_contribution_designer">Projektant logo</string>
@@ -695,7 +671,6 @@
     <string name="common_weather_text_smoke">Dym</string>
     <string name="settings_unavailable_no_animations">Niedostępne, najpierw włącz animacje w ustawieniach Androida</string>
     <string name="current_weather">Aktualna pogoda</string>
-    <string name="weather_current_data_by">Aktualne dane pogodowe dostarczone przez %s</string>
     <string name="common_weather_text_mist">Mgła</string>
     <string name="common_weather_text_dry">Suchy</string>
     <string name="common_weather_text_humid">Wilgotny</string>
@@ -722,7 +697,6 @@
     <string name="message_multiple_refresh_errors">Odświeżanie zakończone z błędami</string>
     <string name="settings_weather_source_not_configured">%s (nie skonfigurowano)</string>
     <string name="forecast">Prognoza</string>
-    <string name="weather_forecast_data_by">Dane prognozy z %s</string>
     <string name="settings_weather_source_current_position_disclaimer">Po pierwszym odświeżeniu danych dla Twojej lokalizacji mogą być dostępne dodatkowe źródła informacji o pogodzie.</string>
     <string name="pollen_acer">Klon</string>
     <string name="pollen_alternaria">Alternaria</string>
@@ -742,7 +716,6 @@
     <string name="location_custom_name">Nazwa niestandardowa</string>
     <string name="location_last_updated_x">Ostatnia aktualizacja %s</string>
     <string name="location_has_active_alerts">Aktywny alert</string>
-    <string name="location_reverse_geocoding_by">Wyszukiwanie adresu według %s</string>
     <string name="location_reverse_geocoding">Wyszukiwanie adresu</string>
     <string name="daily_yesterday">Wczoraj</string>
     <string name="daily_today">Dzisiaj</string>

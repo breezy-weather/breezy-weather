@@ -7,7 +7,6 @@
     <string name="widget_label_text_color">Boja teksta</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Mjesečeva mijena danas, sutra, …, 4 dana kasnije</string>
     <string name="wind_strength_6">Jak vjetar</string>
-    <string name="air_quality_so2_info_consequences">Izloženost SO₂ je povezana sa bolničkim liječenjima i posjetima hitnom prijemu zbog astme.</string>
     <string name="dialog_permissions_notification_title">Ostanite informirani</string>
     <string name="uv_index_6_7">Visoko</string>
     <string name="precipitation_thunderstorm">Grmljavina</string>
@@ -45,9 +44,7 @@
     <string name="wind_speed">Brzina vjetra</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignoriraj kada je baterija slaba</string>
     <string name="ephemeris_moon_phase_full_moon">Puni mjesec</string>
-    <string name="air_quality_pm_info_title">Čestice (PM2.5 i PM10)</string>
     <string name="location_message_reverse_geocoding_failed">Izvor vremena nije uspio pronaći jednu odgovarajuću lokaciju</string>
-    <string name="air_quality_pm_explanations_consequences">Čestice su najštetniji oblik zagađenja zraka zbog njihove mogućnosti probijanja duboko u pluća i mozak iz krvotoka, stvarajući zdravstvene probleme kao što su bolesti srca, bolesti pluća i prijevremena smrt.</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
     <string name="wind_strength_10">Orkanski vjetar</string>
     <string name="temperature">Temperatura</string>
@@ -56,7 +53,6 @@
     <string name="setting_weather_source_accu_days">Dani</string>
     <string name="air_quality_level_4">Nezdravo</string>
     <string name="action_about">O</string>
-    <string name="weather_minutely_data_by">Podatci o aktualnim oborinama od %s</string>
     <string name="weather_source_accu_preference_days_5">5 dana</string>
     <string name="air_quality_level_1">Izvrsno</string>
     <string name="widget_label_show_widget_card_alpha">Neprozirnost</string>
@@ -100,7 +96,6 @@
     <string name="dialog_permissions_notification_content">Dodirnite ovdje da omogućite obavijesti o vremenskim upozorenjima ili odlučite kasnije u postavkama.</string>
     <string name="location_message_added">Lokacija dodana</string>
     <string name="settings_background_updates_refresh_1h">1 sat</string>
-    <string name="air_quality_no2_info_origin">Okolni izvori NO₂ nastaju zbog visoko-temperaturnim izgaranjem goriva u procesima kao što su grijanje, transport, industrija i generiranje električne energije. Kućanski izvori dušikovih oksida (NOₓ) uključuju opremu za izgaranje goriva kao što su peći, kamini, plinski štednjaci i pećnice.</string>
     <string name="air_quality_co_voice">Ugljikov monoksid</string>
     <string name="settings_widgets_section_widgets_in_use">Korišteni widgeti</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Zalazak Mjeseca danas, sutra, …, 4 dana kasnije</string>
@@ -118,11 +113,9 @@
     <string name="widget_custom_subtitle_keyword_xdtd_description">Dnevna temperatura danas, sutra, …, 4 dana kasnije (°)</string>
     <string name="ephemeris_sunset_at">Zalazak sunca u %s</string>
     <string name="widget_live_wallpaper_day_night_type">Vrijeme</string>
-    <string name="pollen_tap_to_see_more">Dodirnite za više…</string>
     <string name="location_service_native">Izvorni API</string>
     <string name="precipitation_intensity_heavy">Jaka</string>
     <string name="settings_location_summary">Postavke lokacijskih usluga</string>
-    <string name="weather_pollen_data_by">Podatci o peludi od %s</string>
     <string name="weather_source_accu_preference_days_10">10 dana</string>
     <string name="settings_background_updates_battery_optimization_summary">Ovo je prva stvar koju trebate pokušati kada ne primate obavijesti ili se widgeti ne osvježavaju.</string>
     <string name="pollen_level_2">Nisko</string>
@@ -130,8 +123,6 @@
     <string name="precipitation_none">Nema oborina</string>
     <string name="settings_units_temperature">Jedinica za temperaturu</string>
     <string name="widget_subtitle_data_custom">Prilagođeno</string>
-    <string name="air_quality_pm_explanations_introduction">Čestice ili atmosferske čestice su mikroskopske čestice čvrstih ili tekućih tvari zadržane u zraku.</string>
-    <string name="air_quality_so2_info_origin">Prirodno je ispušten uslijed vulkanske aktivnosti i pretežno izveden izgaranjem fosilnih goriva za domaćinsko grijanje, industrije i generiranje električne energije.</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_custom_subtitle_keyword_l_description">Lokacija</string>
     <string name="precipitation_total">Ukupno</string>
@@ -163,12 +154,10 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Nova linija</string>
     <string name="wind_strength">Snaga vjetra</string>
     <string name="ephemeris_moon_phase_first_quarter">Prva četvrt</string>
-    <string name="weather_air_quality_and_pollen_data_by">Podatci o kvaliteti zraka i peludi od %s</string>
     <string name="hourly_forecast">Prognoza po satu</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Vrijeme aktualiziranja</string>
     <string name="dialog_permissions_location_background_content">Da biste dozvolili aplikaciji da pristupi lokaciji u pozadini kako bismo dobili uvid u promjene lokacije i pružali ispravne vremenske podatke, postavite postavku za pristup lokaciji na „Dozvoli uvijek”.</string>
     <string name="air_quality_so2_voice">Sumporov dioksid</string>
-    <string name="air_quality_o3_info_origin">Stvara se iz fotokemijskih reakcija sa zagađivačima kao što su hlapljive organske tvari, ugljikov monoksid i dušikovi oksidi (NOₓ) emitirane iz vozila i industrije. Zbog fotokemijske prirode, najviše razine ozona se pojavljuju tijekom sunčanog vremena.</string>
     <string name="air_quality_level_6_description">Izloženost zraku, čak i na nekoliko minuta, može imati ozbiljne zdravstvene posljedice za sve. Izbjegavajte aktivnosti na otvorenom.</string>
     <string name="settings_main_background_animation_enabled">Omogućeno</string>
     <string name="widget_custom_subtitle_keyword_al_description">Upozorenja</string>
@@ -182,7 +171,6 @@
     <string name="dialog_permissions_location_content">Za korištenje ove funkcije, aplikaciji morate dati dopuštenje za pristup vašoj trenutačnoj lokaciji. Dijelit će se samo s odabranim vremenskim izvorima. Ako se predomislite, možete prekinuti postupak i ručno dodati fiksnu lokaciju.</string>
     <string name="settings_notifications_forecast_time_today_title">Vrijeme obavještenja za dnevnu prognozu</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Noćna temperatura danas, sutra, …, 4 dana kasnije (°)</string>
-    <string name="air_quality_no2_info_introduction">Dušikov dioksid (NO₂) je zagušljiv, toksični crveno-smeđi plin sa karakterističnim oporim, oštrim mirisom.</string>
     <string name="location_results_by">Rezultati lokacije: %s</string>
     <string name="air_quality_no2_full">Dušikov dioksid (NO₂)</string>
     <string name="wind_strength_0">Tišina</string>
@@ -247,15 +235,12 @@
     <string name="settings_main_section_options">Opcije</string>
     <string name="settings_location_access_precise_summaryOff">Omogućite „Koristi točnu lokaciju” ako imate probleme s dobivanjem lokacije.</string>
     <string name="settings_main_section_animations">Animacije</string>
-    <string name="air_quality_no2_info_consequences">Izloženost dušikovom dioksidu može iritirati dišne puteve i pogoršati respiratorne bolesti. Dodatno, NO₂ je ključan prethodnik ozona, zagađivač blisko povezan sa astmom i drugim respiratornim bolestima.</string>
     <string name="widget_custom_subtitle_keyword_w_description">Tjedan</string>
-    <string name="air_quality_pm_explanations_origin">Neke čestice nastaju prirodno, nastaju iz vulkana, pješčanih oluja, šuma i šumskih požara, žive vegetacije i morskog špricanja. Ljudske aktivnosti također stvaraju značajne količine čestica, kao što su promet i prijevoz, industrijske aktivnosti, elektrane, gradilišta, spalionice otpada ili polja.</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="settings_widgets_summary">Postavi pozadinu, podesi korištene widgete, widget u obavijestima</string>
     <string name="widget_multi_city">Više gradova</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="action_show_errors">Dodirnite za detalje</string>
-    <string name="air_quality_co_info_introduction">Ugljikov monoksid (CO) je otrovan, zapaljiv plin koji je bezbojan, nema mirisa, okusa i nije nadražljiv.</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Zalazak Sunca danas, sutra, …, 4 dana kasnije</string>
     <string name="pollen_olea">Maslina</string>
     <string name="action_location_list">Lista lokacija</string>
@@ -266,8 +251,6 @@
     <string name="settings_widgets_broadcast_send_data_title">Pošaljite podatke za %s</string>
     <string name="pressure">Tlak</string>
     <string name="temperature_normal_short">Normalno</string>
-    <string name="weather_air_quality_data_by">Podatci o kvaliteti zraka od %s</string>
-    <string name="air_quality_so2_info_introduction">Sumporov dioksid (SO₂) je bezbojni toksični plin odgovoran za smrad izgorenih šibica.</string>
     <string name="details">Detalji</string>
     <string name="settings_appearance_dark_mode_locations_title">Način Dan / Noć za lokacije</string>
     <string name="settings_main_daily_trends_title">Dnevni trendovi</string>
@@ -278,7 +261,6 @@
     <string name="action_learn_more">Nauči više</string>
     <string name="settings_background_updates_section_troubleshoot">Rješavanje problema</string>
     <string name="dialog_permissions_location_title">Informacije o pristupu lokaciji</string>
-    <string name="weather_normals_data_by">Podatci o normalnoj temperaturi od %s</string>
     <string name="settings_units">Mjerne jedinice</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_widgets_notification_persistent_switch">Stalni</string>
@@ -291,7 +273,6 @@
     <string name="wind_direction_SW_short">JZ</string>
     <string name="wind_gusts">Naleti vjetra</string>
     <string name="precipitation_duration">Trajanje oborina</string>
-    <string name="air_quality_co_info_consequences">Ugljikov monoksid se raspršuje kroz plućna tkiva u krvotok te otežava povezivanje kisika na tjelesne stanice. Manjak kisika oštećuje tkiva i stanice. Izloženost ugljikovom dioksidu može stvoriti poteškoće disanja, umor, vrtoglavicu te druge simptome slične gripi.</string>
     <string name="settings_notifications_forecast_tomorrow_title">Obavijest za prognozu za sljedeći dan</string>
     <string name="widget_trend_daily">Trend po danima</string>
     <string name="settings_main_section_displayed_data">Prikazani podatci</string>
@@ -310,9 +291,7 @@
     <string name="widget_clock_day_vertical">Sat + Dnevno (Okomiti stil)</string>
     <string name="settings_main_hourly_trends_title">Trendovi po satu</string>
     <string name="temperature_degree_day_cooling">Temperatura za hlađenje</string>
-    <string name="air_quality_co_info_origin">Nastaje nepotpunim izgaranjem ugljičnih goriva kao što su drvo, benzin, ugljen, prirodni plin i kerozin u jednostavnim štednjacima, otvorenim vatrama, fenjerima, pećima, kaminima. Prevladavajući izvor ugljikovog monoksida (CO) u okolnom zraku su motorna vozila.</string>
     <string name="pollen_level_3">Umjereno</string>
-    <string name="weather_data_by">Podatci od %s</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Trenutačni tlak</string>
     <string name="pollen_level_5">Jako visoko</string>
     <string name="weather_source_accu_preference_days_1">1 dan</string>
@@ -351,9 +330,7 @@
     <string name="settings_debug_dump_crash_logs_tap_to_open">Dodirnite za otvaranje</string>
     <string name="action_save">Spremi</string>
     <string name="weather_api_limit_reached_content">Kako biste zaobišli ograničenje, dodajte svoj API ključ.</string>
-    <string name="air_quality_o3_info_consequences">Prevelika izloženost ozonu može stvoriti poteškoće disanja, potaknuti astmu, smanjiti plućne funkcije i dovesti do plućnih bolesti.</string>
     <string name="wind_direction">Smjer vjetra</string>
-    <string name="air_quality_o3_info_introduction">Prizemni ozon (O₃) je važna komponenta smoga. Iako su iste molekule, prizemni ozon može biti štetan za ljudsko zdravlje, za razliku od stratosferskog ozona koji štiti Zemlju od viška UV zračenja.</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Trenutni UV</string>
     <string name="settings_background_updates_refresh_3h">3 sata</string>
     <string name="settings_changes_apply_after_restart">Promijene će se primijeniti nakon ponovnog pokretanja</string>
@@ -383,7 +360,6 @@
     <string name="widget_style_nano">Nano</string>
     <string name="air_quality_co_full">Ugljikov monoksid (CO)</string>
     <string name="weather_source_accu_preference_hours_240">240 sati</string>
-    <string name="weather_alert_data_by">Podatci o upozorenjima od %s</string>
     <string name="settings_units_pressure">Jedinica za tlak</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="weather_api_key_required_missing_content">Kako biste koristili ovaj izvor, morate priložiti API ključ.</string>
@@ -704,12 +680,10 @@
     <string name="common_weather_text_hot">Vruće</string>
     <string name="common_weather_text_mist">Sumaglica</string>
     <string name="common_weather_text_warm">Toplo</string>
-    <string name="weather_current_data_by">Trenutačni vremenski podaci od %s</string>
     <string name="common_weather_text_dust_storm">Oluja s prašinom</string>
     <string name="common_weather_text_dust">Prašina</string>
     <string name="common_weather_text_tornado">Tornado</string>
     <string name="forecast">Prognoza</string>
-    <string name="weather_forecast_data_by">Podaci prognoze od %s</string>
     <string name="settings_weather_source_not_configured">%s (nije konfigurirano)</string>
     <string name="pollen_acer">Javor</string>
     <string name="pollen_alternaria">Crna trulež</string>

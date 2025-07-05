@@ -162,7 +162,6 @@
     <string name="settings_changes_apply_after_restart">Perubahan akan berlaku setelah memulai ulang</string>
     <string name="notification_running_in_background">Jalankan di latar untuk terus memperbarui</string>
     <string name="notification_updating_weather_data">Memperbarui data cuaca (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">Ketuk untuk melihat lebih banyak…</string>
     <string name="message_tap_again_to_exit">Ketuk lagi untuk keluar</string>
     <!-- content description -->
     <string name="action_back">Kembali</string>
@@ -298,9 +297,7 @@
     <string name="air_quality_so2_full">Sulfur dioksida (SO₂)</string>
     <string name="common_weather_text_snow">Salju</string>
     <string name="pollen_and_mold">Serbuk sari &amp; jamur</string>
-    <string name="air_quality_pm_info_title">Partikulat (PM2.5 &amp; PM10)</string>
     <string name="common_weather_text_cloudy">Berawan</string>
-    <string name="air_quality_pm_explanations_consequences">Partikulat adalah bentuk polusi udara yang paling berbahaya karena kemampuannya menembus jauh ke dalam paru-paru dan otak melalui aliran darah, sehingga menyebabkan masalah kesehatan seperti penyakit jantung, penyakit paru-paru, dan kematian dini.</string>
     <string name="unit_hpa">hPa</string>
     <string name="unit_m_voice">Meter</string>
     <string name="setting_weather_source_accu_days">Hari</string>
@@ -327,7 +324,6 @@
     <string name="action_share">Bagikan</string>
     <string name="weather_kind_hail">Hujan es</string>
     <string name="unit_m">m</string>
-    <string name="air_quality_no2_info_origin">Sumber NO₂ di lingkungan berasal dari pembakaran bahan bakar bersuhu tinggi seperti proses-proses pemanasan, transportasi, industri, dan pembangkitan listrik. Sumber nitrogen oksida (NOₓ) rumah tangga mencakup peralatan bahan bakar seperti tungku, perapian, serta kompor dan oven gas.</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="about_contribution_designer">Perancang logo</string>
@@ -344,7 +340,6 @@
     <string name="pollen_level_2">Rendah</string>
     <string name="common_weather_text_rain">Hujan</string>
     <string name="widget_subtitle_data_custom">Kustom</string>
-    <string name="air_quality_pm_explanations_introduction">Partikulat atau bahan partikulat atmosfer adalah partikel mikroskopis dari bahan padat atau cair yang tersuspensi di udara.</string>
     <string name="unit_mb">mbar</string>
     <string name="unit_in">inci</string>
     <string name="widget_style_oreo">Oreo</string>
@@ -363,7 +358,6 @@
     <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/d</string>
     <string name="common_weather_text_drizzle_freezing">Gerimis beku</string>
-    <string name="air_quality_o3_info_origin">Ozon terbentuk dari reaksi fotokimia dengan polutan: senyawa organik yang mudah menguap (volatil), karbon monoksida, dan nitrogen oksida (NOₓ) yang dikeluarkan dari kendaraan dan industri. Karena sifat fotokimianya, kadar tertinggi ozon tercapai selama periode cuaca cerah.</string>
     <string name="air_quality_level_6_description">Paparan dalam bentuk apa pun terhadap udara, bahkan hanya selama beberapa menit, dapat menimbulkan dampak kesehatan yang serius pada semua orang. Hindari aktivitas di luar ruangan.</string>
     <string name="settings_main_background_animation_enabled">Diaktifkan</string>
     <string name="action_more">Lihat lebih banyak</string>
@@ -371,7 +365,6 @@
     <string name="unit_kn_voice">Knot</string>
     <string name="unit_km_voice">Kilometer</string>
     <string name="common_weather_text_rain_freezing">Hujan beku</string>
-    <string name="air_quality_no2_info_introduction">Nitrogen dioksida (NO₂) adalah gas cokelat kemerahan yang bersifat beracun, menyesakkan, serta berbau menyengat dan tajam.</string>
     <string name="air_quality_no2_full">Nitrogen dioksida (NO₂)</string>
     <string name="pollen_level_4">Tinggi</string>
     <string name="widget_style_temperature">Suhu</string>
@@ -392,7 +385,6 @@
     <string name="settings_main_section_options">Pilihan</string>
     <string name="weather_kind_haze">Berkabut asap</string>
     <string name="settings_main_section_animations">Animasi</string>
-    <string name="air_quality_pm_explanations_origin">Beberapa jenis partikulat terbentuk secara alami. Beberapa berasal dari gunung berapi, badai debu, kebakaran hutan dan padang rumput, tumbuh-tumbuhan hidup, dan semprotan air laut (sea spray). Aktivitas manusia juga menghasilkan partikulat dalam jumlah besar, seperti lalu lintas dan transportasi, aktivitas industri, pembangkit listrik, kegiatan konstruksi, pembakaran limbah, atau pembakaran ladang.</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="unit_mmph_voice">Milimeter per jam</string>
     <string name="air_quality_so2">SO₂</string>
@@ -402,7 +394,6 @@
     <string name="pollen_olea">Pohon zaitun</string>
     <string name="action_location_list">Daftar lokasi</string>
     <string name="common_weather_text_fog">Berkabut</string>
-    <string name="weather_air_quality_data_by">Data kualitas udara diambil dari %s</string>
     <string name="unit_lpsqmph">L/m²/j</string>
     <string name="common_weather_text_clear_sky">Langit cerah</string>
     <string name="settings_main_daily_trends_title">Tren harian</string>
@@ -438,7 +429,6 @@
     <string name="weather_kind_wind">Berangin</string>
     <string name="settings_main_hourly_trends_title">Tren tiap jam</string>
     <string name="pollen_level_3">Sedang</string>
-    <string name="weather_data_by">Data diambil dari %s</string>
     <string name="pollen_level_5">Sangat tinggi</string>
     <string name="weather_source_accu_preference_days_1">1 hari</string>
     <string name="notification_channel_background_services">Layanan latar belakang</string>
@@ -458,10 +448,8 @@
     <string name="widget_style_symmetry">Simetri</string>
     <string name="action_delete">Hapus</string>
     <string name="action_save">Simpan</string>
-    <string name="air_quality_o3_info_consequences">Paparan ozon yang berlebihan dapat menyebabkan gangguan pernapasan, memicu asma, menurunkan fungsi paru-paru, dan berujung pada penyakit paru-paru.</string>
     <string name="null_data_text">N/A</string>
     <string name="unit_mps_voice">Meter per detik</string>
-    <string name="air_quality_o3_info_introduction">Ozon permukaan tanah (O₃) merupakan komponen utama asbut (asap kabut). Meski molekulnya sama, ozon di permukaan tanah dapat berbahaya bagi kesehatan manusia, tidak seperti ozon stratosfer yang melindungi bumi dari radiasi UV berlebih.</string>
     <string name="unit_ft_voice">Kaki</string>
     <string name="unit_celsius">°C</string>
     <string name="widget_style_tile">Ubin</string>
@@ -500,15 +488,6 @@
     <string name="widget_clock_font_sans_serif_light">Sans Serif Tipis</string>
     <string name="notification_channel_alerts">Peringatan</string>
     <string name="air_quality_level_5_description">Dampak kesehatan akan langsung dirasakan oleh kelompok sensitif, sehingga aktivitas di luar ruangan harus dihindari. Orang yang sehat mungkin mengalami kesulitan bernapas dan radang tenggorokan; pertimbangkan agar tetap berada di dalam ruangan dan jadwalkan ulang aktivitas di luar ruangan.</string>
-    <string name="air_quality_so2_info_consequences">Paparan terhadap SO₂ berkaitan dengan kunjungan rumah sakit dan kunjungan IGD karena asma.</string>
-    <string name="weather_minutely_data_by">Data prakiraan-langsung diambil dari %s</string>
-    <string name="weather_pollen_data_by">Data serbuk sari diambil dari %s</string>
-    <string name="air_quality_so2_info_origin">Terbentuk secara alami dari aktivitas volkanik dan sebagian besar berasal dari pembakaran bahan bakar fosil untuk bahan bakar pemanasan rumah tangga, industri, dan pembangkitan listrik.</string>
-    <string name="weather_air_quality_and_pollen_data_by">Data kualitas udara dan serbuk sari diambil dari %s</string>
-    <string name="air_quality_no2_info_consequences">Paparan terhadap nitrogen dioksida dapat mengiritasi jalan napas dan memperburuk penyakit pernapasan. Selain itu, NO₂ adalah prekursor penting ozon, sebuah polutan yang berkaitan erat dengan asma dan penyakit pernapasan lainnya.</string>
-    <string name="air_quality_co_info_introduction">Karbon monoksida (CO) adalah gas beracun dan mudah terbakar yang tak berwarna, tak berbau, tak berasa, dan tak mengiritasi saluran napas.</string>
-    <string name="air_quality_so2_info_introduction">Sulfur dioksida (SO2) adalah gas beracun tak berwarna yang memberikan bau korek api terbakar.</string>
-    <string name="weather_alert_data_by">Data peringatan diambil dari %s</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Tidak dapat membuka pengaturan perangkat.</string>
     <string name="common_weather_text_rain_showers_light">Hujan ringan</string>
     <string name="action_add_new_location">Tambahkan lokasi baru</string>
@@ -563,15 +542,12 @@
     <string name="settings_appearance_dark_mode_locations_title">Mode pagi/malam untuk lokasi</string>
     <string name="common_weather_text_snow_showers_heavy">Hujan salju berat</string>
     <string name="settings_background_updates_worker_info_summary">Terakhir dijalankan: %s</string>
-    <string name="weather_normals_data_by">Suhu normal cuaca diambil dari %s</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Badai petir ringan atau sedang</string>
     <string name="settings_background_updates_summary">Kecepatan penyegaran, pemecahan masalah</string>
     <string name="settings_location_access_precise_title">Penggunaan GPS perangkat</string>
-    <string name="air_quality_co_info_consequences">Karbon monoksida berdifusi melintasi jaringan paru-paru dan masuk ke aliran darah, sehingga menyulitkan sel-sel tubuh untuk mengikat oksigen. Kurangnya oksigen dapat merusak jaringan dan sel. Paparan karbon monoksida dapat menyebabkan kesulitan bernapas, kelelahan, pusing, dan gejala mirip flu lainnya. Paparan karbon monoksida dalam kadar yang tinggi dapat berakibat fatal.</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notifikasi prakiraan hari berikutnya</string>
     <string name="settings_appearance_summary">Bahasa, mode gelap, paket ikon, satuan</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optimasi baterai sudah dinonaktifkan.</string>
-    <string name="air_quality_co_info_origin">Karbon monoksida dihasilkan oleh pembakaran tidak sempurna bahan bakar berkarbon seperti kayu, bensin, batu bara, gas alam, dan minyak tanah dalam kompor sederhana, api terbuka, lampu sumbu, tungku, dan perapian. Sumber utama karbon monoksida (CO) di udara lingkungan berasal dari kendaraan bermotor.</string>
     <string name="weather_message_unsupported_feature">Sumber tidak mendukung salah satu fitur yang diminta</string>
     <string name="settings_debug_dump_crash_logs_title">Bagikan catatan kemogokan</string>
     <string name="settings_widgets_live_wallpaper_error">Tidak dapat meluncurkan pemilih latar belakang. Anda masih dapat mengaktifkan latar belakang %s dengan memilih “Latar Belakang Bergerak” dalam pemilih latar belakang layar beranda Anda.</string>
@@ -702,7 +678,6 @@
     <string name="common_weather_text_smoke">Asap</string>
     <string name="settings_unavailable_no_animations">Tidak tersedia. Mohon nyalakan animasi pada setelan Android terlebih dahulu</string>
     <string name="current_weather">Cuaca saat ini</string>
-    <string name="weather_current_data_by">Data cuaca saat ini oleh %s</string>
     <string name="common_weather_text_mist">Kabut tipis</string>
     <string name="common_weather_text_dry">Kering</string>
     <string name="common_weather_text_humid">Lembap</string>
@@ -785,7 +760,6 @@
     <string name="message_multiple_refresh_errors">Penyegaran selesai dgn kesalahan</string>
     <string name="common_weather_text_tornado">Tornado</string>
     <string name="forecast">Prakiraan</string>
-    <string name="weather_forecast_data_by">Data prakiraan oleh %s</string>
     <string name="settings_weather_source_not_configured">%s (tidak diatur)</string>
     <string name="settings_weather_source_current_position_disclaimer">Lebih banyak sumber cuaca dapat tersedia untuk lokasi Anda setelah penyegaran pertama.</string>
     <string name="common_weather_text_drifting_snow">Salju melayang</string>
@@ -817,7 +791,6 @@
     <string name="wind_direction_SW">Barat Daya</string>
     <string name="wind_direction_W">Barat</string>
     <string name="wind_direction_N">Utara</string>
-    <string name="location_reverse_geocoding_by">Pencarian alamat dengan %s</string>
     <string name="location_reverse_geocoding">Pencarian alamat</string>
     <string name="message_server_insecure_title">Koneksi aman gagal</string>
     <string name="message_outdated_server_data">Data kedaluwarsa diterima dari server</string>

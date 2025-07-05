@@ -159,7 +159,6 @@
     <string name="settings_changes_apply_after_restart">Změny se projeví až po restartu</string>
     <string name="notification_running_in_background">Aplikace běží na pozadí pro zajištění aktualizace údajů</string>
     <string name="notification_updating_weather_data">Aktualizace údajů o počasí (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">Klepněte pro více informací…</string>
     <string name="message_tap_again_to_exit">Klepněte znovu pro opuštění</string>
     <!-- content description -->
     <string name="action_back">Zpět</string>
@@ -365,7 +364,6 @@
     <string name="location_results_by">Výsledky polohy podle %s</string>
     <string name="air_quality_level_1">Vynikající</string>
     <string name="air_quality_level_2_description">Kvalita ovzduší je obecně přijatelná pro většinu jedinců. Citlivé skupiny lidí ovšem mohou pociťovat mírné až střední symptomy při dlouhodobé expozici.</string>
-    <string name="air_quality_no2_info_introduction">Oxid dusičitý (NO₂) je dusivý, jedovatý červenohnědý plyn s charakteristickým štiplavým, ostrým zápachem.</string>
     <string name="action_share">Sdílet</string>
     <string name="settings_main_cards_fade_in_switch">Karty se ztratí</string>
     <string name="settings_main_cards_other_element_animations_switch">Další animace prvků</string>
@@ -383,11 +381,6 @@
     <string name="common_weather_text_clear_sky">Jasno</string>
     <string name="air_quality_o3_full">Přízemní (troposférický) ozon (O₃)</string>
     <string name="air_quality_so2_full">Oxid siřičitý (SO₂)</string>
-    <string name="air_quality_o3_info_introduction">Přízemní ozon (O₃) je hlavní složkou smogu. Ačkoli se jedná o stejnou molekulu, přízemní ozon může být škodlivý pro lidské zdraví, na rozdíl od stratosférického ozonu, který chrání Zemi před nadměrným UV zářením.</string>
-    <string name="air_quality_pm_explanations_consequences">Pevné částice jsou nejškodlivější formou znečištění ovzduší, protože mají schopnost pronikat z krevních toků hluboko do plic a mozku a způsobovat zdravotní problémy, jako jsou srdeční a plicní choroby a předčasná úmrtí.</string>
-    <string name="air_quality_no2_info_origin">Okolní zdroje NO₂ vznikají při vysokoteplotním spalování paliv v procesech, jako je vytápění, doprava, průmysl a výroba energie. Mezi domácí zdroje oxidů dusíku (NOₓ) patří zařízení, která spalují paliva, jako jsou pece, krby a plynové sporáky a trouby.</string>
-    <string name="air_quality_co_info_origin">Vzniká nedokonalým spalováním uhlíkatých paliv, jako je dřevo, benzín, uhlí, zemní plyn a petrolej, v jednoduchých kamnech, otevřených ohništích, knotových lampách, pecích a krbech. Převažujícím zdrojem oxidu uhelnatého (CO) v ovzduší jsou motorová vozidla.</string>
-    <string name="air_quality_co_info_consequences">Oxid uhelnatý proniká přes plicní tkáně do krevního oběhu a ztěžuje tělesným buňkám vazbu kyslíku. Tento nedostatek kyslíku poškozuje tkáně a buňky. Vystavení oxidu uhelnatému může způsobit potíže s dýcháním, vyčerpání, závratě a další příznaky podobné chřipce. Vystavení vysokým hladinám oxidu uhelnatého může být smrtelné.</string>
     <string name="location_search_no_results_advice">Ujistěte se, že vaše vyhledávání je napsáno správně a není příliš konkrétní. Případně můžete vyzkoušet jiný zdroj vyhledávání polohy, který může poskytnout jiné výsledky.</string>
     <string name="message_parsing_error_content">Ujistěte se, že jste aktualizovali nejnovější verzi aplikace. Server může být dočasně nedostupný, v takovém případě to zkuste později. Pokud problém přetrvává, vypište prosím protokol o pádu z nastavení ladění a nahlaste problém na GitHub.</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorovat, když je baterie vybitá</string>
@@ -432,7 +425,6 @@
     <string name="air_quality_level_5">Velmi nezdravá</string>
     <string name="air_quality_level_5_description">Zdravotní účinky pocítí citlivé skupiny okamžitě a měly by se vyhnout venkovním aktivitám. Zdraví jedinci pravděpodobně pocítí potíže s dýcháním a podráždění hrdla; zvažte pobyt v uzavřených prostorách a přeložte venkovní aktivity.</string>
     <string name="air_quality_level_4_description">Zdravotní účinky mohou citlivé skupiny pocítit okamžitě. Zdraví jedinci mohou při dlouhodobé expozici pociťovat potíže s dýcháním a podráždění hrdla. Omezte venkovní aktivity.</string>
-    <string name="weather_data_by">Údaje od %s</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">Analogový</string>
@@ -482,26 +474,15 @@
     <string name="weather_api_limit_reached_content">Pro obejití limitu zadejte svůj vlastní klíč API.</string>
     <string name="weather_api_unauthorized_title">Neautorizovaný přístup k API</string>
     <string name="widget_material_you_current">Material You – Aktuální</string>
-    <string name="air_quality_pm_explanations_origin">Některé částice se vyskytují přirozeně, pocházejí ze sopek, prachových bouří, lesních a travnatých požárů, živé vegetace a mořské mlhy. Významné množství částic vytváří také lidská činnost, například doprava a přeprava, průmyslová činnost, elektrárny, staveniště, spalování odpadů nebo pole.</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_index">Index kvality ovzduší</string>
-    <string name="air_quality_pm_explanations_introduction">Pevné částice neboli atmosférické hmotné částice jsou mikroskopické částice pevných nebo kapalných látek suspendované v ovzduší.</string>
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>
-    <string name="air_quality_pm_info_title">Pevné částice (PM2.5 &amp; PM10)</string>
     <string name="air_quality_no2_full">Oxid dusičitý (NO₂)</string>
     <string name="air_quality_co_full">Oxid uhelnatý (CO)</string>
-    <string name="air_quality_o3_info_origin">Vzniká fotochemickými reakcemi se znečišťujícími látkami, jako jsou těkavé organické sloučeniny, oxid uhelnatý a oxidy dusíku (NOₓ) emitované z vozidel a průmyslu. Vzhledem k fotochemické povaze jsou nejvyšší hodnoty ozonu pozorovány v obdobích slunečného počasí.</string>
-    <string name="air_quality_o3_info_consequences">Vystavení nadměrnému množství ozonu může způsobit problémy s dýcháním, vyvolat astma, snížit funkci plic a vést k plicním onemocněním.</string>
-    <string name="air_quality_no2_info_consequences">Vystavení oxidu dusičitému může dráždit dýchací cesty a zhoršovat onemocnění dýchacích cest. Kromě toho je NO₂ důležitým prekurzorem ozonu, znečišťující látky úzce spojené s astmatem a dalšími respiračními onemocněními.</string>
-    <string name="air_quality_so2_info_introduction">Oxid siřičitý (SO₂) je bezbarvý jedovatý plyn, který způsobuje zápach spálených zápalek.</string>
-    <string name="air_quality_so2_info_origin">Uvolňuje se přirozeně vulkanickou činností a převážně vzniká spalováním fosilních paliv pro vytápění domácností, průmyslu a výroby energie.</string>
-    <string name="air_quality_so2_info_consequences">Vystavení SO₂ je spojeno s hospitalizacemi kvůli astmatu a návštěvami pohotovostí.</string>
-    <string name="air_quality_co_info_introduction">Oxid uhelnatý (CO) je jedovatý hořlavý plyn, který je bezbarvý, bez zápachu a chuti a není dráždivý.</string>
-    <string name="weather_air_quality_and_pollen_data_by">Údaje o kvalitě ovzduší a pylu od %s</string>
     <string name="weather_api_limit_reached_title">Dosažen limit požadavků API</string>
     <string name="weather_api_key_required_missing_title">Chybí potřebný klíč API</string>
     <string name="dialog_permissions_notification_title">Zůstaňte informováni</string>
@@ -534,9 +515,6 @@
     <string name="pollen_alnus">Olše</string>
     <string name="pollen_level_5">Velmi vysoké</string>
     <string name="pollen_level_4">Vysoké</string>
-    <string name="weather_air_quality_data_by">Údaje o kvalitě ovzduší od %s</string>
-    <string name="weather_pollen_data_by">Údaje o alergenech od %s</string>
-    <string name="weather_minutely_data_by">Krátkodobá předpověď srážek od služby %s</string>
     <string name="precipitation_nowcasting">Minutové srážky</string>
     <string name="pollen_betula">Bříza</string>
     <string name="pollen_artemisia">Pelyněk</string>
@@ -575,8 +553,6 @@
     <string name="common_weather_text_drizzle">Mrholení</string>
     <string name="temperature_normal_short">Normální</string>
     <string name="temperature_normals">Teplotní normy</string>
-    <string name="weather_alert_data_by">Údaje o varováních podle %s</string>
-    <string name="weather_normals_data_by">Údaje o teplotních normách podle %s</string>
     <string name="message_source_not_installed_error_title">Zdroj již není k dispozici</string>
     <string name="about_contribution_designer">Designer loga</string>
     <string name="common_weather_text_rain_showers">Dešťové přeháňky</string>
@@ -700,7 +676,6 @@
     <string name="common_weather_text_smoke">Kouř</string>
     <string name="settings_unavailable_no_animations">Nedostupné, nejprve povolte animace v nastavení systému Android</string>
     <string name="current_weather">Aktuální počasí</string>
-    <string name="weather_current_data_by">Aktuální data o počasí od %s</string>
     <string name="common_weather_text_humid">Vlhko</string>
     <string name="common_weather_text_hot">Horko</string>
     <string name="common_weather_text_warm">Teplo</string>
@@ -726,7 +701,6 @@
     <string name="message_multiple_refresh_errors">Obnovit dokončené s chybami</string>
     <string name="common_weather_text_tornado">Tornádo</string>
     <string name="forecast">Předpověď</string>
-    <string name="weather_forecast_data_by">Předpověď od %s</string>
     <string name="settings_weather_source_not_configured">%s (nenastaveno)</string>
     <string name="settings_weather_source_current_position_disclaimer">Po první aktualizaci mohou být pro vaši lokalitu k dispozici další zdroje počasí.</string>
     <string name="pollen_acer">Javor</string>
@@ -747,7 +721,6 @@
     <string name="settings_notifications_permission_summary">Potřeba k oznamování výstrah, předpovědí a aktualizací aplikace. %s</string>
     <string name="settings_widgets_notification_permission_summary">Potřeba ke zobrazení widgetu oznámení. %s</string>
     <string name="action_grant_permission">Klepněte pro udělení oprávnění.</string>
-    <string name="location_reverse_geocoding_by">Hledání adres od %s</string>
     <string name="location_reverse_geocoding">Hledání adres</string>
     <string name="daily_today">Dnes</string>
     <string name="wind_direction_NE">Severovýchod</string>

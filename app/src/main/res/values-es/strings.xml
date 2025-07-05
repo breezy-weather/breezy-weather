@@ -154,7 +154,6 @@
     <string name="settings_changes_apply_after_restart">Los cambios tomarán efecto después de reiniciar</string>
     <string name="notification_running_in_background">Corriendo en segundo plano para seguir actualizándose</string>
     <string name="notification_updating_weather_data">Actualizando datos del clima (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">Toca para obtener más…</string>
     <string name="message_tap_again_to_exit">Toca de nuevo para salir</string>
     <!-- action -->
     <string name="alerts">Alertas</string>
@@ -303,18 +302,12 @@
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Ozono</string>
     <string name="air_quality_co_voice">Monóxido de carbono</string>
-    <string name="air_quality_pm_info_title">Partículas (PM2.5 y PM10)</string>
-    <string name="air_quality_pm_explanations_introduction">Las partículas o material particulado atmosférico son partículas microscópicas de materia sólida o líquida suspendidas en el aire.</string>
-    <string name="air_quality_pm_explanations_consequences">Las partículas son la forma más nociva de contaminación atmosférica debido a su capacidad para penetrar profundamente los pulmones y el cerebro desde el torrente sanguíneo, causando problemas de salud como cardiopatías, enfermedades pulmonares y muerte prematura.</string>
     <string name="air_quality_o3_full">Ozono troposférico (O₃)</string>
     <string name="air_quality_co">CO</string>
-    <string name="air_quality_pm_explanations_origin">Algunas partículas se producen de forma natural, originadas por volcanes, tormentas de polvo, incendios forestales y de praderas, vegetación viva y rocío marino. Las actividades humanas también generan cantidades significativas de partículas, como el tráfico y el transporte, las actividades industriales, las centrales eléctricas, las obras de construcción, la quema de residuos o los campos de cultivo.</string>
-    <string name="air_quality_o3_info_introduction">El ozono troposférico a nivel del suelo (O₃) es uno de los principales componentes de la niebla tóxica. Aunque se trate de la misma molécula, el ozono troposférico puede ser perjudicial para la salud humana a diferencia del ozono estratosférico que protege la Tierra del exceso de radiación ultravioleta.</string>
     <string name="wind_strength">Fuerza del viento</string>
     <string name="location_search_no_results">%1$s no puede encontrar %2$s</string>
     <string name="weather_source_accu_preference_days_15">15 días</string>
     <string name="weather_source_accu_preference_hours_120">120 horas</string>
-    <string name="weather_data_by">Datos por %s</string>
     <string name="message_source_not_installed_error_title">La fuente ya no está disponible</string>
     <string name="action_show_errors">Pulse para ver los detalles</string>
     <string name="settings_location_access_switch_title">Acceso al lugar</string>
@@ -338,8 +331,6 @@
     <string name="settings_weather_source_portal">Portal</string>
     <string name="location_search_no_results_advice">Asegúrese de que el término de búsqueda esté escrito correctamente y no sea demasiado específico. Alternativamente, puede probar con otra fuente de búsqueda de ubicación que puede arrojar resultados diferentes.</string>
     <string name="air_quality_so2_full">Dióxido de azufre (SO₂)</string>
-    <string name="air_quality_so2_info_introduction">El dióxido de azufre (SO₂) es un gas tóxico incoloro responsable del olor de los fósforos quemados.</string>
-    <string name="air_quality_so2_info_consequences">La exposición al SO₂ se asocia con ingresos hospitalarios por asma y visitas a urgencias.</string>
     <string name="air_quality_co_full">Monóxido de carbono (CO)</string>
     <string name="weather_api_limit_reached_title">Límite de solicitudes a la API alcanzado</string>
     <string name="weather_api_unauthorized_title">Acceso API no autorizado</string>
@@ -354,7 +345,6 @@
     <string name="settings_location_access_permission_already_granted">Permiso ya concedido</string>
     <string name="message_parsing_error_title">Error al analizar los datos meteorológicos</string>
     <string name="settings_background_updates_battery_optimization_disabled">La optimización de batería ya está deshabilitada.</string>
-    <string name="weather_air_quality_and_pollen_data_by">Calidad del aire y datos del polen por %s</string>
     <string name="location_results_by">Resultados de ubicación según %s</string>
     <string name="widget_label_align_end">Alinear a la derecha</string>
     <string name="locations">Lugares</string>
@@ -381,9 +371,7 @@
     <string name="widget_style_vertical">Vertical</string>
     <string name="dialog_permissions_notification_content">Pulse aquí para activar las notificaciones acerca de alertas meteorológicas o decide luego en la Configuración.</string>
     <string name="settings_location_access_background_title">Acceso al lugar en segundo plano</string>
-    <string name="air_quality_o3_info_consequences">La exposición excesiva al ozono puede causar problemas respiratorios, desencadenar asma, reducir la capacidad pulmonar y provocar enfermedades pulmonares.</string>
     <string name="air_quality_no2_full">Dióxido de nitrógeno (NO₂)</string>
-    <string name="air_quality_no2_info_introduction">El dióxido de nitróxeno (NO₂) es un gas tóxico, sofocante, de color marrón rojizo y un olor acre característico.</string>
     <string name="action_continue">Continuar</string>
     <string name="action_close">Cerrar</string>
     <string name="dialog_permissions_notification_title">Mantenerme informado</string>
@@ -402,13 +390,9 @@
     <string name="widget_material_you_current">Material You – Actual</string>
     <string name="settings_location">Lugar</string>
     <string name="settings_location_summary">Parámetros de los servicios de lugar</string>
-    <string name="air_quality_so2_info_origin">Se libera naturalmente por la actividad volcánica y se deriva predominantemente de la combustión de combustibles fósiles para calefacción doméstica, industrias y generación de energía.</string>
-    <string name="air_quality_co_info_consequences">El monóxido de carbono se difunde a través de los tejidos pulmonares y hacia el torrente sanguíneo, lo que dificulta que el oxígeno entre en contacto con las células del cuerpo. Esta falta de oxígeno daña los tejidos y las células. La exposición al monóxido de carbono puede causar dificultades para respirar, agotamiento, mareos y otros síntomas similares a los de la gripe. La exposición a altos niveles de monóxido de carbono puede ser mortal.</string>
     <string name="temperature_degree_day_heating">Grados día de calefacción</string>
     <string name="temperature_degree_day_cooling">Grado día frío</string>
     <string name="wind_gusts">Ráfagas de viento</string>
-    <string name="air_quality_no2_info_consequences">La exposición al dióxido de nitrógeno puede irritar las vías respiratorias y agravar las enfermedades respiratorias. Además, el NO₂ es un importante precursor del ozono, un contaminante estrechamente relacionado con el asma y otras afecciones respiratorias.</string>
-    <string name="air_quality_co_info_introduction">El monóxido de carbono (CO) es un gas venenoso, inflamable, incoloro, inoloro, insípido y no irritante.</string>
     <string name="pollen_betula">Abedul</string>
     <string name="pollen_artemisia">Artemisia</string>
     <string name="pollen_olea">Olivo</string>
@@ -418,24 +402,16 @@
     <string name="pollen_level_3">Moderado</string>
     <string name="pollen_level_4">Alto</string>
     <string name="ephemeris_sunrise_at">Amanecer a las %s</string>
-    <string name="weather_normals_data_by">Datos de la temperatura por %s</string>
     <string name="temperature_average_short">Promedio</string>
     <string name="temperature_normal_short">Normal</string>
     <string name="weather_message_unsupported_feature">La fuente no admite una de las funciones solicitadas</string>
     <string name="weather_message_invalid_location">Ubicación no válida, elimínala y vuelve a añadirla</string>
     <string name="pollen_and_mold">Polen y moho</string>
     <string name="temperature_normals">Temperaturas normales</string>
-    <string name="air_quality_no2_info_origin">Las fuentes ambientales de NO₂ resultan de la combustión de combustibles a alta temperatura en procesos como los utilizados para calefacción, transporte, industria y generación de energía. Las fuentes domésticas de óxidos de nitrógeno (NOₓ) incluyen equipos que queman combustibles como hornos, chimeneas y estufas y hornos de gas.</string>
-    <string name="air_quality_co_info_origin">Se produce por la combustión incompleta de combustibles carbonosos como madera, gasolina, carbón, gas natural y queroseno en estufas simples, hogueras, lámparas de mecha, hornos y chimeneas. La fuente predominante de monóxido de carbono (CO) en el aire ambiente proviene de los vehículos de motor.</string>
     <string name="pollen_level_5">Muy alto</string>
     <string name="ephemeris_moonset_at">Puesta de la luna a las %s</string>
-    <string name="weather_pollen_data_by">Datos del polen por %s</string>
-    <string name="weather_air_quality_data_by">Datos de la calidad del aire por %s</string>
-    <string name="weather_minutely_data_by">Previsión de las precipitaciones por %s</string>
-    <string name="weather_alert_data_by">Información de la alerta por %s</string>
     <string name="ephemeris_sunset_at">Atardecer a las %s</string>
     <string name="ephemeris_moonrise_at">Anochece a las %s</string>
-    <string name="air_quality_o3_info_origin">Se forma a partir de reacciones fotoquímicas con contaminantes como los compuestos orgánicos volátiles, el monóxido de carbono y los óxidos de nitrógeno (NOₓ) emitidos por los vehículos y la industria. Debido a su naturaleza fotoquímica, los niveles más altos de ozono se observan durante los periodos de tiempo soleado.</string>
     <string name="precipitation_nowcasting">Predicción inmediata</string>
     <string name="settings_main_section_animations">Animaciones</string>
     <string name="settings_notifications">Notificaciones</string>
@@ -693,7 +669,6 @@
     <string name="dialog_app_update_check_content">Pulsa aquí para habilitar notificaciones sobre actualizaciones de la aplicación.</string>
     <string name="settings_unavailable_no_animations">No disponible, activa primero las animaciones en los ajustes de Android</string>
     <string name="current_weather">Clima actual</string>
-    <string name="weather_current_data_by">Información meteorológica actual por %s</string>
     <string name="common_weather_text_dry">Seco</string>
     <string name="common_weather_text_humid">Húmedo</string>
     <string name="common_weather_text_hot">Caliente</string>
@@ -749,7 +724,6 @@
     <string name="common_weather_text_tornado">Tornado</string>
     <string name="settings_weather_source_current_position_disclaimer">Es posible que haya más fuentes meteorológicas disponibles para su ubicación después de la primera actualización.</string>
     <string name="forecast">Pronóstico</string>
-    <string name="weather_forecast_data_by">Datos del pronóstico por %s</string>
     <string name="settings_weather_source_not_configured">%s (no configurado)</string>
     <string name="pollen_acer">Arce</string>
     <string name="pollen_picea">Pícea</string>
@@ -772,7 +746,6 @@
     <string name="location_reverse_geocoding">Inspeccionar dirección</string>
     <string name="settings_notifications_permission">Permiso de notificación requerido</string>
     <string name="common_weather_text_blowing_snow">Ventisca</string>
-    <string name="location_reverse_geocoding_by">Dirección vista por %s</string>
     <string name="location_has_active_alerts">Alerta activa</string>
     <string name="location_last_updated_x">Última actualizada %s</string>
     <string name="pollen_alternaria">Alternaria</string>

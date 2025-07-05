@@ -28,10 +28,8 @@
     <string name="wind_speed">Vindhastighet</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorera när batterinivån är låg</string>
     <string name="ephemeris_moon_phase_full_moon">Fullmåne</string>
-    <string name="air_quality_pm_info_title">Partiklar (PM2,5 &amp; PM10)</string>
     <string name="common_weather_text_cloudy">Molnigt</string>
     <string name="location_message_reverse_geocoding_failed">Väderkällan misslyckades med att hitta en matchande plats</string>
-    <string name="air_quality_pm_explanations_consequences">Partiklar är den mest hälsovådliga formen av luftföroreningar på grund av sin förmåga att tränga djupt in i lungorna och hjärnan via blodomloppet, vilket orsakar hälsoproblem såsom hjärtsjukdom, lungsjukdom och förtida död.</string>
     <string name="unit_hpa">hPa</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
     <string name="temperature">Temperatur</string>
@@ -82,15 +80,12 @@
     <string name="widget_clock_font_analog">Analog</string>
     <string name="ephemeris_sunset_at">Solnedgång vid %s</string>
     <string name="widget_live_wallpaper_day_night_type">Tid</string>
-    <string name="pollen_tap_to_see_more">Tryck för att visa mer …</string>
     <string name="precipitation_intensity_heavy">Kraftig</string>
-    <string name="weather_pollen_data_by">Pollendata från %s</string>
     <string name="weather_source_accu_preference_days_10">10 dagar</string>
     <string name="pollen_level_2">Lågt</string>
     <string name="common_weather_text_rain">Regn</string>
     <string name="precipitation_none">Ingen nederbörd</string>
     <string name="settings_units_temperature">Temperaturenhet</string>
-    <string name="air_quality_pm_explanations_introduction">Mikroskopiska partiklar av fast eller flytande materia som svävar i luften.</string>
     <string name="unit_mb">mb</string>
     <string name="unit_in">tum</string>
     <string name="widget_style_oreo">Oreo</string>
@@ -113,7 +108,6 @@
     <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/s</string>
     <string name="wind_strength">Vindstyrka</string>
-    <string name="weather_air_quality_and_pollen_data_by">Luftkvalitets- och pollendata från %s</string>
     <string name="hourly_forecast">Timprognos</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Uppdateringstid</string>
     <string name="air_quality_so2_voice">Svaveldioxid</string>
@@ -161,7 +155,6 @@
     <string name="air_quality_pm25">PM2,5</string>
     <string name="unit_mmph_voice">Millimeter per timme</string>
     <string name="air_quality_so2">SO₂</string>
-    <string name="air_quality_co_info_introduction">Kolmonoxid (CO) är en giftig, brandfarlig gas som är färglös, luktlös, smaklös och icke-irriterande.</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="pollen_olea">Olivträd</string>
     <string name="action_location_list">Platslista</string>
@@ -170,8 +163,6 @@
     <string name="pressure">Lufttryck</string>
     <string name="common_weather_text_fog">Dimma</string>
     <string name="temperature_normal_short">Normal</string>
-    <string name="weather_air_quality_data_by">Luftkvalitetsdata från %s</string>
-    <string name="air_quality_so2_info_introduction">Svaveldioxid (SO₂) är en färglös giftig gas som luktar brända tändstickor.</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="details">Detaljer</string>
     <string name="air_quality_o3">O₃</string>
@@ -184,7 +175,6 @@
     <string name="action_undo">Ångra</string>
     <string name="pollen_level_1">Mycket lågt</string>
     <string name="widget_custom_subtitle_keyword_w_description">Vecka</string>
-    <string name="air_quality_pm_explanations_origin">En del partiklar förekommer naturligt och kommer från vulkaner, sandstormar, skogs- och gräsbränder, levande vegetation och havsstänk. Mänskliga aktiviteter genererar också ansenliga mängder partiklar, till exempel trafik och transporter, industriella verksamheter, kraftverk, byggarbetsplatser, avfallsförbränning och jordbruk.</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="wind_direction_SW_short">SV</string>
     <string name="wind_gusts">Vindbyar</string>
@@ -203,7 +193,6 @@
     <string name="location_message_deleted">Plats borttagen</string>
     <string name="weather_kind_wind">Blåsigt</string>
     <string name="pollen_level_3">Måttligt</string>
-    <string name="weather_data_by">Data från %s</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Nuvarande lufttryck</string>
     <string name="pollen_level_5">Mycket högt</string>
     <string name="weather_source_accu_preference_days_1">1 dag</string>
@@ -321,7 +310,6 @@
     <string name="dialog_permissions_notification_title">Håll dig informerad</string>
     <string name="widget_day_week">Daglig + veckovis</string>
     <string name="widget_clock_day_horizontal">Klocka + daglig (vågrät stil)</string>
-    <string name="weather_minutely_data_by">Data till korttidsprognos för nederbörd från %s</string>
     <string name="widget_day">Daglig</string>
     <string name="dialog_permissions_notification_content">Tryck här för att aktivera aviseringar om vädervarningar, eller bestäm dig senare i Inställningar.</string>
     <string name="ceiling">Tak</string>
@@ -329,8 +317,6 @@
     <string name="weather_message_invalid_location">Ogiltig plats, vänligen ta bort den och lägg till igen</string>
     <string name="location_current_not_found_yet">Nuvarande plats har ännu inte hittats …</string>
     <string name="ephemeris_moon_phase_first_quarter">Tilltagande halvmåne</string>
-    <string name="air_quality_o3_info_origin">Det bildas genom fotokemiska reaktioner med föroreningar som till exempel flyktiga organiska föreningar, kolmonoxid och kväveoxider (NOₓ) från fordon och industrier. På grund av dess fotokemiska natur är nivåerna av ozon som högst under perioder med soligt väder.</string>
-    <string name="air_quality_no2_info_introduction">Kvävedioxid (NO₂) är en kvävande, giftig, rödbrun gas med en karaktäristisk stickande, frän lukt.</string>
     <string name="location_results_by">Platsresultat från %s</string>
     <string name="widget_ellipsis">…</string>
     <string name="message_source_not_installed_error_title">Källa inte längre tillgänglig</string>
@@ -344,11 +330,8 @@
     <string name="widget_trend_daily">Dagstrend</string>
     <string name="widget_clock_day_vertical">Klocka + daglig (lodrät stil)</string>
     <string name="wind_direction_variable">Växlande</string>
-    <string name="air_quality_o3_info_consequences">Exponering för alltför höga halter av ozon kan orsaka andningssvårigheter, utlösa astma, försämra lungfunktionen och leda till lungsjukdomar.</string>
-    <string name="air_quality_o3_info_introduction">Marknära ozon (O₃) är en viktig komponent i smog. Även om det är samma molekyl så kan marknära ozon vara skadligt för människors hälsa, till skillnad från stratosfäriskt ozon, som skyddar jorden från skadlig UV-strålning.</string>
     <string name="widget_material_you_current">Material You – nuvarande</string>
     <string name="widget_clock_day_details">Klocka + daglig (detaljer)</string>
-    <string name="weather_alert_data_by">Varningsdata från %s</string>
     <string name="weather_api_key_required_missing_content">För att använda denna källa måste du ange en API-nyckel.</string>
     <string name="weather_message_data_refresh_failed">Uppdatering av data misslyckades</string>
     <string name="ephemeris_moon_phase_last_quarter">Avtagande halvmåne</string>
@@ -383,7 +366,6 @@
     <string name="widget_label_text_color">Textfärg</string>
     <string name="common_weather_text_rain_showers_light">Lätta regnskurar</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Månfas för i dag, i morgon, …, 4 dagar senare</string>
-    <string name="air_quality_so2_info_consequences">Exponering för SO₂ är förknippad med sjukhusvistelse och akutmottagningsbesök för astmatiker.</string>
     <string name="widget_label_show_widget_card">Bakgrundsfärg</string>
     <string name="unit_nmi">sjömil</string>
     <string name="widget_label_hide_subtitle">Dölj undertext</string>
@@ -419,7 +401,6 @@
     <string name="widget_custom_subtitle_keyword_xnt_description">Temperatur nattetid för i dag, i morgon, …, 4 dagar senare (°C/°F)</string>
     <string name="common_weather_text_drizzle">Duggregn</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Nederbörd dagtid för i dag, i morgon, …, 4 dagar senare (%)</string>
-    <string name="air_quality_no2_info_origin">Omgivande källor till NO₂ är ett resultat av förbränning av bränslen vid höga temperaturer i processer som till exempel de som används för uppvärmning, transporter, industrier och elproduktion. Hushållskällor till kväveoxider (NOₓ) inkluderar utrustning som förbränner bränsle, såsom värmepannor, eldstäder samt gasspisar och gasugnar.</string>
     <string name="settings_widgets_section_widgets_in_use">Widgetar som används</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Månnedgång för i dag, i morgon, …, 4 dagar senare</string>
     <string name="message_parsing_error_content">Se till att du har uppdaterat till den senaste versionen av appen. Servern kan vara tillfälligt ej tillgänglig, vänligen försök igen senare i så fall. Om problemet kvarstår, vänligen skapa en kraschlogg i felsökningsinställningarna och rapportera ett problem på GitHub.</string>
@@ -434,7 +415,6 @@
     <string name="common_weather_text_rain_snow_mixed">Snöblandat regn</string>
     <string name="settings_background_updates_battery_optimization_summary">Detta är den första åtgärden att vidta när du inte får aviseringar eller widgetar inte uppdateras.</string>
     <string name="widget_subtitle_data_custom">Anpassad</string>
-    <string name="air_quality_so2_info_origin">Den frigörs naturligt genom vulkanisk aktivitet och härrör huvudsakligen från förbränning av fossila bränslen för uppvärmning av bostäder, industrier och elproduktion.</string>
     <string name="settings_follow_system">Följ systemet</string>
     <string name="settings_color_day_night">Dag/natt</string>
     <string name="settings_appearance_icon_pack_title">Ikonpaket</string>
@@ -478,7 +458,6 @@
     <string name="settings_main_section_options">Alternativ</string>
     <string name="weather_kind_haze">Torrdis</string>
     <string name="settings_main_section_animations">Animationer</string>
-    <string name="air_quality_no2_info_consequences">Exponering för kvävedioxid kan irritera luftvägarna och förvärra luftvägssjukdomar. Vidare är NO₂ ett viktigt förstadium till ozon, en förorening som är starkt kopplad till astma och andra luftvägsbesvär.</string>
     <string name="widget_multi_city">Flera orter</string>
     <string name="weather_kind_thunderstorm">Åskstorm</string>
     <string name="common_weather_text_rain_light">Lätt regn</string>
@@ -493,14 +472,12 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="action_learn_more">Läs mer</string>
     <string name="dialog_permissions_location_title">Behörighet till platsinformation</string>
-    <string name="weather_normals_data_by">Data till temperaturnormaler från %s</string>
     <string name="settings_widgets_notification_persistent_switch">Pågående</string>
     <string name="unit_ft">fot</string>
     <string name="settings_main_background_animation_title">Bakgrundsanimation</string>
     <string name="unit_inhg">inHg</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lätt eller medelkraftig åskstorm</string>
     <string name="settings_location_access_precise_title">Enhetens gps-användning</string>
-    <string name="air_quality_co_info_consequences">Kolmonoxid sprids i lungvävnaden och in i blodomloppet, vilket gör det svårt för kroppens celler att binda till sig syre. Denna syrebrist skadar vävnader och celler. Exponering för kolmonoxid kan orsaka andningssvårigheter, utmattning, yrsel och andra influensaliknande symtom. Exponering för höga halter av kolmonoxid kan vara dödlig.</string>
     <string name="settings_notifications_forecast_tomorrow_title">Avisering om nästa dags prognos</string>
     <string name="settings_main_section_displayed_data">Visade data</string>
     <string name="unit_bf">Bf</string>
@@ -509,7 +486,6 @@
     <string name="settings_background_updates_battery_optimization_disabled">Batterioptimering är redan inaktiverad.</string>
     <string name="message_network_unavailable">Nätverk ej tillgängligt</string>
     <string name="settings_main_hourly_trends_title">Timtrender</string>
-    <string name="air_quality_co_info_origin">Den skapas av ofullständig förbränning av kolhaltiga bränslen såsom trä, bensin, kol, naturgas och fotogen i enkla spisar, öppna eldar, oljelampor, ugnar och eldstäder. Den huvudsakliga källan till kolmonoxid (CO) i omgivande luft är motorfordon.</string>
     <string name="notification_channel_background_services">Bakgrundstjänster</string>
     <string name="settings_icon_packs_weather_icon_dark">Mörk ikon</string>
     <string name="settings_icon_packs_weather_icon_grey">Grå ikon</string>
@@ -672,7 +648,6 @@
     <string name="precipitation_intensity_medium">Måttlig</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Inga kompatibla paket hittades</string>
     <string name="settings_notifications_app_updates_check">Aviseringar om appuppdateringar</string>
-    <string name="weather_current_data_by">Nuvarande väder-data från %s</string>
     <string name="dialog_time_picker_input_time">Ange tid</string>
     <string name="action_edit_location">Redigera denna plats</string>
     <string name="dialog_app_update_check_title">Håll dig uppdaterad</string>
@@ -712,7 +687,6 @@
     <string name="settings_weather_source_not_configured">%s (ej konfigurerad)</string>
     <string name="settings_weather_source_current_position_disclaimer">Fler väderkällor kan bli tillgängliga för din plats efter den första uppdateringen.</string>
     <string name="forecast">Prognos</string>
-    <string name="weather_forecast_data_by">Prognosdata från %s</string>
     <string name="pollen_alternaria">Alternaria</string>
     <string name="pollen_atriplex">Fetmållor</string>
     <string name="pollen_juniperus">En</string>
@@ -735,7 +709,6 @@
     <string name="wind_direction_SW">Sydväst</string>
     <string name="wind_direction_W">Väst</string>
     <string name="wind_direction_NW">Nordväst</string>
-    <string name="location_reverse_geocoding_by">Adressuppslagning via %s</string>
     <string name="location_reverse_geocoding">Adressuppslagning</string>
     <string name="location_has_active_alerts">Aktiv varning</string>
     <string name="location_custom_name">Anpassat namn</string>

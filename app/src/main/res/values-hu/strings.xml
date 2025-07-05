@@ -144,7 +144,6 @@
     <string name="settings_changes_apply_after_restart">A módosítások az alkalmazás újraindítása után lépnek életbe</string>
     <string name="notification_running_in_background">Az alkalmazás a háttérben fut a folyamatos frissítés érdekében</string>
     <string name="notification_updating_weather_data">Időjárásadatok frissítése (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">Koppintson a további részletekért…</string>
     <string name="message_tap_again_to_exit">A kilépéshez koppintson ismét</string>
     <!-- action -->
     <string name="alerts">Riasztások</string>
@@ -188,7 +187,6 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Szén monoxid</string>
-    <string name="air_quality_pm_info_title">Részecskék (PM2,5 és PM10)</string>
     <string name="air_quality_no2_full">Nitrogén-dioxid (NO₂)</string>
     <string name="air_quality_so2_full">Kén-dioxid (SO₂)</string>
     <string name="widget_material_you_forecast">Material You – Előrejelzés</string>
@@ -257,15 +255,7 @@
     <string name="wind_strength">Szélerősség</string>
     <string name="air_quality_level_2_description">A légszennyezettség a legtöbb ember számára általában elfogadható. Az érzékeny csoportok azonban a hosszú távú kitettség következtében kisebb vagy mérsékelt mértékű tüneteket tapasztalhatnak.</string>
     <string name="air_quality_level_5_description">Az érzékeny csoportok azonnal érzik az egészségügyi hatásokat, és kerülniük kell a szabadtéri tevékenységeket. Az egészséges egyének valószínűleg légzési nehézségeket és torokirritációt tapasztalnak; fontolja meg a beltérben maradást és a szabadtéri tevékenységek átütemezését.</string>
-    <string name="air_quality_pm_explanations_consequences">A részecskék a légszennyezés legkárosabb formái, mivel képesek a véráramból mélyen behatolni a tüdőbe és az agyba, és olyan egészségügyi problémákat okoznak, mint a szív- és tüdőbetegségek, valamint a korai halálozás.</string>
     <string name="air_quality_o3_full">Földfelszíni ózon (O₃)</string>
-    <string name="air_quality_o3_info_introduction">A földfelszíni ózon (O₃) a szmog egyik fő összetevője. Bár ugyanarról a molekuláról van szó, a földfelszíni ózon káros lehet az emberi egészségre, ellentétben a sztratoszférikus ózonnal, amely megvédi a Földet a túlzott UV-sugárzástól.</string>
-    <string name="air_quality_o3_info_origin">Olyan szennyező anyagokkal, mint az illékony szerves vegyületek, a szén-monoxid és a nitrogén-oxidok (NOₓ) fotokémiai reakcióiból keletkezik, amelyeket a járművek és az ipar bocsát ki. Fotokémiai jellege miatt az ózon legmagasabb szintje a napos időjárás idején tapasztalható.</string>
-    <string name="air_quality_o3_info_consequences">A túlzott ózonnak való kitettség légzési problémákat okozhat, asztmát válthat ki, csökkentheti a tüdőfunkciót és tüdőbetegséghez vezethet.</string>
-    <string name="air_quality_no2_info_consequences">A nitrogén-dioxidnak való kitettség irritálhatja a légutakat és súlyosbíthatja a légzőszervi megbetegedéseket. Ezenkívül a NO₂ fontos ózon prekurzor, egy olyan szennyezőanyag, amely szorosan kapcsolódik az asztmához és más légzőszervi megbetegedésekhez.</string>
-    <string name="air_quality_so2_info_origin">Természetes módon vulkáni tevékenység során szabadul fel, és főként a háztartások fűtésére, az iparban és az energiatermelésben használt fosszilis tüzelőanyagok elégetéséből származik.</string>
-    <string name="air_quality_co_info_origin">Széntartalmú tüzelőanyagok, például fa, benzin, szén, földgáz és kerozin nem teljes elégetésekor keletkezik kályhákban, nyílt tüzekben, kanóclámpákban, kandallókban. A szén-monoxid (CO) elsődleges forrása a környezeti levegőben a gépjárművekből származik.</string>
-    <string name="air_quality_so2_info_consequences">A SO₂-nek való kitettség összefüggésbe hozható az asztma miatti kórházi beutalásokkal és sürgősségi osztályok látogatásával.</string>
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_pm25_voice">PM kettő egész öt</string>
     <string name="air_quality_pm10_voice">PM tíz</string>
@@ -274,9 +264,7 @@
     <string name="air_quality_no2_voice">Nitrogén dioxid</string>
     <string name="air_quality_o3_voice">Ózon</string>
     <string name="air_quality_level_6_description">Bármilyen, akár csak néhány perces kitettség is súlyos egészségkárosodást okozhat mindenkinél. Kerülje a szabadtéri tevékenységeket.</string>
-    <string name="air_quality_pm_explanations_introduction">A részecskék vagy légköri részecskék a levegőben lévő szilárd vagy folyékony anyagok mikroszkopikus részecskéi.</string>
     <string name="pollen_alnus">Éger</string>
-    <string name="weather_data_by">Adatszolgáltató: %s</string>
     <string name="weather_source_accu_preference_hours_240">240 óra</string>
     <string name="dialog_permissions_notification_title">Informálódjon</string>
     <string name="settings_location_access_switch_summaryOn">Engedélyezve. Most már hozzáadhatja a jelenlegi tartózkodási helyszínét az alkalmazáshoz.</string>
@@ -291,8 +279,6 @@
     <string name="uv_index_6_7">Magas</string>
     <string name="uv_index_3_5">Mérsékelt</string>
     <string name="uv_index_11">Extrém</string>
-    <string name="weather_alert_data_by">Riasztásadatok: %s</string>
-    <string name="weather_normals_data_by">Hőmérsékletnorma-adatok: %s</string>
     <string name="weather_api_unauthorized_content">Egyes időjárási adatforrások esetében saját API-kulcsot kell megadnia. Ha már megadott egyet, ellenőrizze kétszer is a megadott API-kulcsot.</string>
     <string name="weather_source_accu_preference_days_1">1 nap</string>
     <string name="weather_source_accu_preference_days_5">5 nap</string>
@@ -306,9 +292,7 @@
     <string name="widget_style_vertical">Függőleges</string>
     <string name="settings_location_access_switch_title">Hozzáférés a tartózkodási helyszínhez</string>
     <string name="settings_icon_packs_check_details">Részletek megtekintése</string>
-    <string name="air_quality_pm_explanations_origin">Egyes részecskék természetes úton keletkeznek, vulkánokból, porviharokból, erdő- és gyeptüzekből, élő növényzetből és tengeri permetből származnak. Az emberi tevékenységek is jelentős mennyiségű részecskét termelnek, például a közlekedés és a szállítás, az ipari tevékenységek, az erőművek, az építkezések, a hulladékégetés vagy a szántóföldek.</string>
     <string name="pollen_betula">Nyírfa</string>
-    <string name="air_quality_co_info_consequences">A szén-monoxid a tüdő szövetein keresztül a véráramba diffundál, megnehezítve a szervezet sejtjeinek az oxigén megkötését. Ez az oxigénhiány károsítja a szöveteket és a sejteket. A szén-monoxidnak való kitettség légzési nehézségeket, kimerültséget, szédülést és egyéb influenzaszerű tüneteket okozhat. A szén-monoxid magas szintjének való kitettség halálos lehet.</string>
     <string name="pollen_artemisia">Fekete üröm</string>
     <string name="pollen_olea">Olíva</string>
     <string name="pollen_level_0">Semennyi</string>
@@ -369,14 +353,9 @@
     <string name="widget_custom_subtitle_keyword_ch_description">Jelenlegi páratartalom</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Jelenlegi légnyomás</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="weather_air_quality_data_by">Légszennyezettségi adatok: %s</string>
-    <string name="weather_pollen_data_by">Pollenadatok: %s</string>
-    <string name="weather_air_quality_and_pollen_data_by">Légszennyezettség- és pollenadatok: %s</string>
-    <string name="weather_minutely_data_by">Csapadék percről percre adatok: %s</string>
     <string name="settings_background_updates_section_troubleshoot">Hibaelhárítás</string>
     <string name="settings_section_general">Általános</string>
     <string name="settings_background_updates_refresh_24h">24 óra</string>
-    <string name="air_quality_so2_info_introduction">A kén-dioxid (SO₂) színtelen, mérgező gáz, amely az égett gyufa szagáért felelős.</string>
     <string name="pollen_level_5">Nagyon magas</string>
     <string name="weather_source_accu_preference_hours_24">24 óra</string>
     <string name="location_message_search_failed">A helyszínkeresés sikertelen</string>
@@ -395,10 +374,7 @@
     <string name="weather_api_key_required_missing_title">A szükséges API-kulcs hiányzik</string>
     <string name="pollen_level_3">Mérsékelt</string>
     <string name="pollen_level_4">Magas</string>
-    <string name="air_quality_no2_info_introduction">A nitrogén-dioxid (NO₂) fojtogató, mérgező, vörösesbarna színű, jellegzetes, szúrós, fanyar szagú gáz.</string>
-    <string name="air_quality_no2_info_origin">A NO₂ környezeti forrásai a tüzelőanyagok magas hőmérsékleten történő elégetéséből származnak, például a fűtési, közlekedési, ipari és energiatermelési folyamatokban. A nitrogén-oxidok (NOₓ) háztartási forrásai közé tartoznak a tüzelőanyagokat égető berendezések, például a kemencék, kandallók, gáztűzhelyek és sütők.</string>
     <string name="air_quality_co_full">Szén-monoxid (CO)</string>
-    <string name="air_quality_co_info_introduction">A szén-monoxid (CO) mérgező, gyúlékony gáz, amely színtelen, szagtalan, íztelen és nem vált ki irritációt.</string>
     <string name="pollen_level_2">Alacsony</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Jelenlegi látótávolság</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Jelenlegi harmatpont</string>
@@ -688,7 +664,6 @@
     <string name="dialog_app_update_check_title">Legyen naprakész</string>
     <string name="settings_unavailable_no_animations">Nem érhető el, először engedélyezze az animációkat az Android beállításaiban</string>
     <string name="current_weather">Jelenlegi időjárás</string>
-    <string name="weather_current_data_by">A jelenlegi időjárás adatainak forrása: %s</string>
     <string name="common_weather_text_mist">Fátyolköd</string>
     <string name="common_weather_text_humid">Pára</string>
     <string name="common_weather_text_hot">Forró</string>
@@ -716,7 +691,6 @@
     <string name="settings_weather_source_not_configured">%s (nincs beállítva)</string>
     <string name="settings_weather_source_current_position_disclaimer">Az első frissítés után további időjárási adatforrások válhatnak elérhetővé az Ön tartózkodási helyszínére vonatkozóan.</string>
     <string name="forecast">Előrejelzés</string>
-    <string name="weather_forecast_data_by">Az előrejelzési adatok forrása: %s</string>
     <string name="pollen_acer">Juhar</string>
     <string name="pollen_alternaria">Alternária</string>
     <string name="pollen_atriplex">Kerti laboda</string>
@@ -736,7 +710,6 @@
     <string name="location_custom_name">Egyéni név</string>
     <string name="settings_debug_notification_permission">Szükséges az összeomlási naplók és a sikertelen időjárás-frissítések értesítéseihez. %s</string>
     <string name="location_reverse_geocoding">Címkeresés</string>
-    <string name="location_reverse_geocoding_by">Címkeresés a(z) %s segítségével</string>
     <string name="wind_direction_N">Észak</string>
     <string name="daily_today">Ma</string>
     <string name="wind_direction_E">Kelet</string>

@@ -129,20 +129,13 @@
     <string name="air_quality_level_6_description">Birkaç dakika bile olsa bu havaya maruz kalma herkes için ciddi sağlık sorunlarına yol açabilir. Açık hava aktivitelerinden kaçının.</string>
     <string name="temperature_degree_day_heating">Günlük ısıtma derecesi</string>
     <string name="temperature_degree_day_cooling">Günlük soğutma derecesi</string>
-    <string name="air_quality_pm_info_title">Partiküller (PM2.5 &amp; PM10)</string>
-    <string name="air_quality_pm_explanations_introduction">Partiküller ya da atmosferik partikül madde, havada asılı duran mikroskobik katı veya sıvı madde parçacıklarıdır.</string>
     <string name="temperature_degree_day">Günlük derece</string>
     <string name="air_quality_pm10_voice">On PM</string>
     <string name="air_quality_so2_voice">Sülfür dioksit</string>
     <string name="air_quality_no2_voice">Nitrojen dioksit</string>
     <string name="wind_gusts">Rüzgar esintileri</string>
-    <string name="air_quality_o3_info_consequences">Aşırı ozona maruz kalmak solunum problemlerine, astıma, akciğer fonksiyonunu azalmasına ve akciğer hastalığına yol açabilir.</string>
     <string name="air_quality_no2_full">Nitrojen dioksit (NO₂)</string>
-    <string name="air_quality_no2_info_introduction">Nitrojen dioksit (NO₂); karakteristik keskin kokusu olan boğucu, zehirli, kırmızımsı kahverengi bir gazdır.</string>
-    <string name="air_quality_pm_explanations_consequences">Partiküller; kan akışından akciğerlere ve beyne derinlemesine nüfuz etme, kalp hastalığı, akciğer hastalığı ve erken ölüm gibi sağlık sorunlarına neden olmasından ötürü hava kirliliğinin en zararlı şeklidir.</string>
     <string name="air_quality_o3_full">Yer seviyesinde ozon (O₃)</string>
-    <string name="air_quality_o3_info_introduction">Yer seviyesindeki ozon (O₃), sisin ana bileşenidir. Aynı molekül olmasına rağmen yer seviyesindeki ozon, dünyayı aşırı UV radyasyonundan koruyan stratosferik ozonun aksine insan sağlığına zararlı olabilir.</string>
-    <string name="air_quality_o3_info_origin">Araçlardan ve endüstriden yayılan uçucu organik bileşikler, karbonmonoksit ve azot oksitler (NOₓ) gibi kirleticilerle fotokimyasal tepkimelerden oluşur. Fotokimyasal doğası gereği, en yüksek ozon seviyeleri güneşli havalarda görülür.</string>
     <string name="precipitation_nowcasting">Dakika dakika yağışlar</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm25_voice">İki nokta beş PM</string>
@@ -153,7 +146,6 @@
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Karbon monoksit</string>
-    <string name="air_quality_pm_explanations_origin">Bazı partiküller volkanlar, toz fırtınaları, orman ve otlak yangınları, canlı bitki örtüsü ya da deniz serpintilerinden dolayı doğal olarak oluşur. Trafik ve ulaşım, endüstriyel faaliyetler, enerji santralleri, şantiyeler, atık yakma veya tarlalar gibi insan etkinlikleri de önemli miktarda partikül üretir.</string>
     <string name="dialog_permissions_location_title">Konum bilgilerine erişim</string>
     <string name="message_parsing_error_content">Uygulamayı en son sürümüne güncellediğinizden emin olun. Sunucu geçici olarak kullanılamıyor olabilir, bu durumda lütfen daha sonra tekrar deneyin. Sorun devam ederse lütfen hata ayıklama ayarlarından bir çökme kaydı dökümü alın ve GitHub’dan sorunu bildirin.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Şu anki nem</string>
@@ -242,8 +234,6 @@
     <string name="action_share">Paylaş</string>
     <string name="settings_background_updates_refresh_1h">1 saat</string>
     <string name="settings_widgets">Widget’lar &amp; Canlı duvar kağıdı</string>
-    <string name="air_quality_co_info_introduction">Karbon monoksit (CO), renksiz, kokusuz, tatsız ve tahriş edici olmayan zehirli, yanıcı bir gazdır.</string>
-    <string name="air_quality_co_info_origin">Odun, petrol, kömür, doğal gaz ve kerosen gibi karbonlu yakıtların basit sobalarda, açık ateşlerde, fitilli kandillerde, fırınlarda, şöminelerde tam yanmamasıyla üretilir. Ortam havasındaki baskın karbon monoksit (CO) kaynağı motorlu araçlardır.</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Başka bir konum hizmeti seçin</string>
     <string name="location_search_no_results_advice">Aramanızın doğru yazıldığından ve çok ayrıntılı olmadığından emin olun. Ayrıca, farklı sonuçlar verebilecek başka bir konum arama kaynağını da deneyebilirsiniz.</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Şu anki sıcaklık (°)</string>
@@ -270,7 +260,6 @@
     <string name="common_weather_text_rain_freezing_light">Dondurucu hafif yağmur</string>
     <string name="common_weather_text_rain_moderate">Orta şiddetli yağmur</string>
     <string name="about_contribution_designer">Logo tasarımcısı</string>
-    <string name="pollen_tap_to_see_more">Daha fazla görmek için dokunun…</string>
     <string name="ephemeris_moon_phase_new_moon">Yeni Ay</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Büyüyen hilal</string>
     <string name="visibility">Görüş mesafesi</string>
@@ -324,7 +313,6 @@
     <string name="widget_custom_subtitle_keyword_lat_description">Enlem</string>
     <string name="widget_live_wallpaper_day_night_type">Zaman</string>
     <string name="air_quality_so2_full">Sülfür dioksit (SO₂)</string>
-    <string name="air_quality_so2_info_introduction">Kükürt dioksit (SO₂), yanmış kibrit kokusu veren renksiz, zehirli bir gazdır.</string>
     <string name="pollen_level_0">Yok</string>
     <string name="pollen_poaeceae">Çimen</string>
     <string name="pollen_alnus">Kızılağaç</string>
@@ -339,14 +327,12 @@
     <string name="widget_label_show_widget_card_alpha">Matlık</string>
     <string name="widget_subtitle_data_time">Yenileme süresi</string>
     <string name="ceiling">Tavan</string>
-    <string name="weather_data_by">Hava durumu bilgisi %s tarafından sağlanıyor</string>
     <string name="dialog_permissions_notification_content">Hava durumu uyarılarıyla ilgili bildirimleri etkinleştirmek için buraya dokunun veya daha sonra Ayarlar’dan değiştirin.</string>
     <string name="dialog_permissions_location_content">Bu özelliği kullanmak için uygulamaya mevcut konumunuza erişim izni vermeniz gerekir. Konumunuz yalnızca seçilen hava durumu kaynakları ile paylaşılacaktır. Fikrinizi değiştirirseniz, işlemi iptal edebilir ve manuel olarak sabit bir konum ekleyebilirsiniz.</string>
     <string name="widget_custom_subtitle_keyword_als_description">Uyarılar (kısa)</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="settings_main_cards_other_element_animations_switch">Diğer öge animasyonları</string>
     <string name="settings_widgets_live_wallpaper_error">Duvar kağıdı seçici başlatılamadı. Yine de ana ekran duvar kağıdı seçicinizde “Canlı Duvar Kağıdı” nı seçerek %s duvar kağıdını etkinleştirebilirsiniz.</string>
-    <string name="weather_air_quality_and_pollen_data_by">Hava kalitesi ve polen verisi %s tarafından sağlanıyor</string>
     <string name="pollen_level_4">Yüksek</string>
     <string name="pollen_level_5">Çok yüksek</string>
     <string name="pressure">Basınç</string>
@@ -355,8 +341,6 @@
     <string name="ephemeris_moon_phase_waxing_gibbous">Büyüyen şişkin ay</string>
     <string name="ephemeris_moon_phase_full_moon">Dolunay</string>
     <string name="ephemeris_moon_phase_last_quarter">Son dördün</string>
-    <string name="weather_air_quality_data_by">Hava kalitesi bilgisi %s tarafından sağlanıyor</string>
-    <string name="weather_pollen_data_by">Polen verisi %s tarafından sağlanıyor</string>
     <string name="pollen_level_1">Çok düşük</string>
     <string name="pollen_level_2">Düşük</string>
     <string name="pollen_level_3">Orta</string>
@@ -399,8 +383,6 @@
     <string name="pollen_and_mold">Polen &amp; küf</string>
     <string name="temperature_average_short">Ort</string>
     <string name="temperature_normals">Sıcaklık normalleri</string>
-    <string name="air_quality_no2_info_consequences">Nitrojen dioksite maruz kalmak solunum yollarını tahriş edip solunum yolu hastalıklarını ağırlaştırabilir. Ayrıca NO₂ astım gibi solunum rahatsızlıklarıyla yakından ilişkili bir kirletici olan önemli bir ozon öncüsüdür.</string>
-    <string name="weather_minutely_data_by">%s tarafından bugünlük yağış verileri</string>
     <string name="weather_api_limit_reached_title">API sorgu limitine ulaşıldı</string>
     <string name="weather_api_unauthorized_title">API erişimi reddedildi</string>
     <string name="location_results_by">%s tarafından konum sonuçları</string>
@@ -502,7 +484,6 @@
     <string name="unit_m">m</string>
     <string name="unit_mm">mm</string>
     <string name="unit_h_voice">saat</string>
-    <string name="weather_normals_data_by">%s tarafından sağlanan sıcaklık normalleri verisi</string>
     <string name="weather_message_unsupported_feature">Kaynak istenilen özelliklerin birini desteklemiyor</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Saatlik açıklama</string>
     <string name="widget_week_style_3_days">3 günlük</string>
@@ -557,9 +538,6 @@
     <string name="unit_kelvin_short">K</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="settings_weather_sources_summary">Yeni konumlar için varsayılan hava durumu kaynağı, özel API anahtarları, diğer kaynak ayarları</string>
-    <string name="weather_alert_data_by">%s tarafından sağlanan uyarı verileri</string>
-    <string name="air_quality_no2_info_origin">Ortamdaki NO₂ ısıtma, ulaşım, endüstri ve güç üretimi sırasında yakılan yakıtların yüksek sıcaklıkta yanmasıyla oluşur. Evlerdeki nitrojen oksit (NOₓ) kaynakları arasında fırınlar, şömineler, gaz sobaları ve fırınları gibi yakıtla çalışan ekipmanlar yer alır.</string>
-    <string name="air_quality_co_info_consequences">Karbon monoksit akciğer dokuları ve kan dolaşımına yayılarak vücut hücrelerinin oksijene bağlanmasını zorlaştırır ve bu da dokulara ve hücrelere zarar verir. Karbon monoksite maruz kalmak solunum zorluğuna, bitkinliğe, baş dönmelerine ve diğer grip benzeri belirtilere neden olabilirken yüksek düzeyde karbon monoksite maruz kalmak ölümcül olabilir.</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Hafif dolu ve gök gürültülü sağanak</string>
     <string name="about_dependencies">Bağımlılıklar</string>
     <string name="weather_api_limit_reached_content">Bu limite takılmamak için kendi API anahtarınızı ekleyin.</string>
@@ -570,8 +548,6 @@
     <string name="settings_notifications_forecast_time_tomorrow_title">Sonraki gün tahmin bildirimi zamanı</string>
     <string name="unit_kph_voice">Saatte kilometre</string>
     <string name="unit_km_voice">Kilometre</string>
-    <string name="air_quality_so2_info_origin">Volkanik hareketlerle doğal olarak salınır ve genellikle konut ısıtmalarından, sanayide ve enerji üretiminde fosil yakıtların kullanımından elde edilir.</string>
-    <string name="air_quality_so2_info_consequences">SO₂’ye maruz kalmak astıma neden olabileceği için hastaneye veya acil servise gitmek gerekebilir.</string>
     <string name="notification_update_error">%d güncelleme başarısız oldu</string>
     <string name="notification_updating_weather_data">Hava durumu verisi güncelleniyor (%1$d/%2$d)</string>
     <string name="weather_api_unauthorized_content">Bazı hava durumu kaynakları için kendi API anahtarınızı girmeniz gerekir. Eğer önceden girdiyseniz, API anahtarınızı tekrar kontrol edin.</string>
@@ -693,7 +669,6 @@
     <string name="common_weather_text_hot">Sıcak</string>
     <string name="common_weather_text_cold">Soğuk</string>
     <string name="current_weather">Güncel hava durumu</string>
-    <string name="weather_current_data_by">%s tarafından güncel hava durumu verisi</string>
     <string name="location_message_location_access_off">Konum erişimi kapalı</string>
     <string name="common_weather_text_dry">Kuru</string>
     <string name="common_weather_text_humid">Nemli</string>
@@ -719,7 +694,6 @@
     <string name="settings_weather_source_not_configured">%s (ayarlanmadı)</string>
     <string name="common_weather_text_drifting_snow">Savrulan kar</string>
     <string name="common_weather_text_glaze">Şeffaf buzlanma</string>
-    <string name="location_reverse_geocoding_by">%s tarafından adres sorgusu</string>
     <string name="location_reverse_geocoding">Adres sorgusu</string>
     <string name="settings_notifications_permission">Bildirim izni gerekli</string>
     <string name="settings_notifications_permission_summary">Uyarılar, hava tahmini ve uygulama güncellemelerini bildirmek için gerekli. %s</string>
@@ -738,7 +712,6 @@
     <string name="pollen_picea">Ladin</string>
     <string name="pollen_pinus">Çam</string>
     <string name="pollen_ulmus">Karaağaç</string>
-    <string name="weather_forecast_data_by">%s tarafından hava tahmini verisi</string>
     <string name="daily_yesterday">Dün</string>
     <string name="daily_today">Bugün</string>
     <string name="daily_tomorrow">Yarın</string>

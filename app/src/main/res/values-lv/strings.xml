@@ -67,7 +67,6 @@
     <string name="uv_index_8_10">Ļoti augsts</string>
     <string name="air_quality_level_2_description">Gaisa kvalitāte ir pieņemama lielākajai daļai cilvēku. Tomēr jutīgām grupām ilgstošas iedarbības rezultātā var rasties nelieli vai vidēji simptomi.</string>
     <string name="air_quality_level_3">Slikta</string>
-    <string name="air_quality_o3_info_consequences">Pārmērīga ozona iedarbība var izraisīt elpošanas sarežģījumus, izraisīt astmu, samazināt plaušu darbību un izraisīt plaušu slimības.</string>
     <string name="air_quality_so2_full">Sēra dioksīds (SO₂)</string>
     <string name="pollen_alnus">Alksnis</string>
     <string name="pollen_betula">Bērzs</string>
@@ -188,7 +187,6 @@
     <string name="air_quality_level_3_description">Gaiss ir sasniedzis augstu piesārņojuma līmeni un ir neveselīgs jutīgiem cilvēkiem. Jāsamazina ārā pavadītais laiks, ja ir jūtamas tādas izpausmes kā apgrūtināta elpošana vai rīkles kairinājums.</string>
     <string name="air_quality_level_4">Neveselīga</string>
     <string name="air_quality_o3_full">Piezemes ozons (O₃)</string>
-    <string name="air_quality_so2_info_introduction">Sēra dioksīds (SO₂) ir bezkrāsaina toksiska gāze, kas rada piedegušu sērkociņu smaku.</string>
     <string name="pollen_artemisia">Vībotne</string>
     <string name="pollen_olea">Olīva</string>
     <string name="pollen_ambrosia">Ambrozija</string>
@@ -285,7 +283,6 @@
     <string name="air_quality_so2_voice">Sēra dioksīds</string>
     <string name="air_quality_pm10_voice">PM desmit</string>
     <string name="air_quality_no2">NO₂</string>
-    <string name="air_quality_pm_explanations_introduction">Daļiņas jeb atmosfēras daļiņas ir mikroskopiskas cietu vai šķidru vielu daļiņas, kas atrodas gaisā.</string>
     <string name="air_quality_pm25_voice">PM divi komats pieci</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_so2">SO₂</string>
@@ -294,21 +291,8 @@
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Ozons</string>
     <string name="air_quality_co_voice">Oglekļa monoksīds</string>
-    <string name="air_quality_pm_info_title">Daļiņas (PM2,5 un PM10)</string>
-    <string name="air_quality_pm_explanations_origin">Dažas daļiņas rodas dabiski, tās rada vulkāni, putekļu vētras, mežu un zālāju ugunsgrēki, dzīvais augājs un jūras daļiņas. Cilvēku darbības arī rada ievērojamu daudzumu daļiņu, piemēram, satiksme un pārvadāšana, rūpnieciskās darbības, spēkstacijas, būvlaukumi, atkritumu dedzināšana vai lauki.</string>
-    <string name="air_quality_pm_explanations_consequences">Daļiņas ir viskaitīgākais gaisa piesārņojuma veids, jo tās spēj no asinsrites iekļūt dziļi plaušās un smadzenēs, izraisot tādus veselības sarežģījumus kā sirds slimības, plaušu slimības un priekšlaicīgu nāvi.</string>
-    <string name="air_quality_o3_info_introduction">Piezemes ozons (O₃) ir galvenā smoga sastāvdaļa. Lai gan tā pati molekula, piezemes ozons var būt kaitīgs cilvēku veselībai, atšķirībā no stratosfēras ozona, kas aizsargā zemi no pārmērīga UV starojuma.</string>
-    <string name="air_quality_o3_info_origin">Tas veidojas fotoķīmiskās reakcijās ar tādiem piesārņotājiem kā gaistošiem organiskajiem savienojumiem, oglekļa monoksīdu un slāpekļa oksīdiem (NOₓ), ko izdala transportlīdzekļi un rūpniecība. Fotoķīmiskās dabas dēļ visaugstākais ozona līmenis tiek novērots saulainā laikā.</string>
     <string name="air_quality_no2_full">Slāpekļa dioksīds (NO₂)</string>
-    <string name="air_quality_no2_info_introduction">Slāpekļa dioksīds (NO₂) ir smacējoša, indīga sarkanbrūna gāze ar raksturīgi asu, rūgtu smaržu.</string>
-    <string name="air_quality_no2_info_origin">Apkārtējie NO₂ avoti rodas no kurināmā sadedzināšanas augstā temperatūrā tādos procesos kā izmantošana apkurei, pārvadāšanai, rūpniecībai un elektroenerģijas ražošanai. Mājsaimniecības slāpekļa oksīdu (NOₓ) avoti ietver iekārtas, kas sadedzina kurināmo, piemēram, krāsnis, kamīnus un gāzes plītis.</string>
-    <string name="air_quality_no2_info_consequences">Slāpekļa dioksīda iedarbība var kairināt elpceļus un saasināt elpceļu slimības. Turklāt NO₂ ir svarīgs ozona prekursors, piesārņotājs, kas ir cieši saistīts ar astmu un citiem elpošanas traucējumiem.</string>
-    <string name="air_quality_so2_info_origin">To dabiski izdala vulkāniskā darbība, un tas galvenokārt rodas no fosilo kurināmo sadedzināšanas apkurei, rūpniecībai un elektroenerģijas ražošanai.</string>
-    <string name="air_quality_so2_info_consequences">SO₂ iedarbība ir saistīta ar astmas slimnīcu uzņemšanu un neatliekamās palīdzības apmeklējumiem.</string>
     <string name="air_quality_co_full">Oglekļa monoksīds (CO)</string>
-    <string name="air_quality_co_info_introduction">Oglekļa monoksīds (CO) ir indīga, uzliesmojoša gāze, kas ir bezkrāsaina, bez smaržas, garšas un nav kairinoša.</string>
-    <string name="air_quality_co_info_origin">Tas rodas no nepilnīgas oglekli saturoša kurināmā sadedzināšanas, piemēram, malkas, benzīna, ogļu, dabasgāzes un petrolejas vienkāršās krāsnīs, atklātā ugunī, dakts lampās, kamīnos. Galvenais oglekļa monoksīda (CO) avots apkārtējā gaisā ir no mehāniskajiem transportlīdzekļiem.</string>
-    <string name="air_quality_co_info_consequences">Oglekļa monoksīds izkliedējas pa plaušu audiem un nonāk asinsritē, apgrūtinot ķermeņa šūnu saistīšanos ar skābekli. Šis skābekļa trūkums bojā audus un šūnas. Oglekļa monoksīda iedarbība var izraisīt apgrūtinātu elpošanu, izsīkumu, reiboni un citus gripai līdzīgus simptomus. Pakļaušana augsta līmeņa oglekļa monoksīda iedarbībai var būt nāvējoša.</string>
     <string name="pollen_mold">Pelējums</string>
     <string name="pollen_level_0">Nav</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Augošs mēness</string>
@@ -323,17 +307,9 @@
     <string name="cloud_cover">Mākoņainums</string>
     <string name="pollen_level_5">Ļoti augstu</string>
     <string name="ceiling">Griesti</string>
-    <string name="pollen_tap_to_see_more">Piesist, lai redzētu vairāk…</string>
     <string name="ephemeris_moon_phase_new_moon">Jauns mēness</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Augošs pusmēness</string>
     <string name="ephemeris_moon_phase_first_quarter">Pirmais ceturksnis</string>
-    <string name="weather_air_quality_data_by">Gaisa kvalitātes dati no %s</string>
-    <string name="weather_data_by">Dati no %s</string>
-    <string name="weather_alert_data_by">Brīdinājumu dati no %s</string>
-    <string name="weather_normals_data_by">Temperatūras normas dati no %s</string>
-    <string name="weather_pollen_data_by">Ziedputekšņu dati no %s</string>
-    <string name="weather_air_quality_and_pollen_data_by">Gaisa kvalitātes un ziedputekšņi dati no %s</string>
-    <string name="weather_minutely_data_by">Tūlītējas nokrišņu prognozes dati no %s</string>
     <string name="weather_source_accu_preference_hours_240">240 stundas</string>
     <string name="location_swipe_to_delete">Var pavilkt pa kreisi, lai izdzēstu šo vienumu</string>
     <string name="weather_source_accu_preference_hours_24">24 stundas</string>
@@ -684,7 +660,6 @@
     <string name="meteoam_weather_text_tornado_watersprout">Virpuļvētra vai smerčs</string>
     <string name="settings_unavailable_no_animations">Nav pieejamas, vispirms jāiespējo animācijas Android iestatījumos</string>
     <string name="current_weather">Pašreizējie laikapstākļi</string>
-    <string name="weather_current_data_by">Pašreizējie laikapstākļu dati no %s</string>
     <string name="common_weather_text_mist">Migla</string>
     <string name="common_weather_text_dry">Sauss</string>
     <string name="common_weather_text_humid">Mitrs</string>
@@ -712,7 +687,6 @@
     <string name="forecast">Prognoze</string>
     <string name="settings_weather_source_not_configured">%s (nav konfigurēts)</string>
     <string name="settings_weather_source_current_position_disclaimer">Vairāk laikapstākļu avotu pašreizējai atrašanās vietai var būt pieejami pēc pirmās atsvaidzināšanas.</string>
-    <string name="weather_forecast_data_by">Prognožu dati no %s</string>
     <string name="pollen_alternaria">Alternaria</string>
     <string name="pollen_acer">Kļava</string>
     <string name="pollen_atriplex">Balodenes</string>
@@ -725,7 +699,6 @@
     <string name="common_weather_text_glaze">Apledojums</string>
     <string name="settings_debug_notification_permission">Nepieciešama, lai paziņotu par avāriju žurnāliem un laikapstākļu atjauninājumiem, kas nav izdevušies. %s</string>
     <string name="location_has_active_alerts">Spēkā esoša trauksme</string>
-    <string name="location_reverse_geocoding_by">Adreses uzmeklēšana ar %s</string>
     <string name="location_custom_name">Pielāgots nosaukums</string>
     <string name="location_reverse_geocoding">Adreses uzmeklēšana</string>
     <string name="location_last_updated_x">Pēdējoreiz atjaunināta %s</string>

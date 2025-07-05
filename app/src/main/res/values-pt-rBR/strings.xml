@@ -159,7 +159,6 @@
     <string name="settings_changes_apply_after_restart">As alterações terão efeito após reiniciar</string>
     <string name="notification_running_in_background">Executando em segundo plano para continuar atualizando</string>
     <string name="notification_updating_weather_data">Atualizando dados meteorológicos (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">Clique para ver mais…</string>
     <string name="message_tap_again_to_exit">Clique novamente para sair</string>
     <!-- content description -->
     <string name="action_back">Voltar</string>
@@ -316,7 +315,6 @@
     <string name="weather_api_unauthorized_content">Em algumas fontes de dados meteorológicos, é necessário fornecer sua própria chave de API. Se você já forneceu uma, por favor, verifique novamente a chave de API que você forneceu.</string>
     <string name="notification_channel_alerts">Alertas</string>
     <string name="widget_material_you_current">Material You – Atual</string>
-    <string name="weather_air_quality_and_pollen_data_by">Dados de qualidade do ar e de pólen por %s</string>
     <string name="weather_api_limit_reached_content">Para contornar o limite, adicione sua própria chave de API.</string>
     <string name="weather_api_key_required_missing_title">Chave de API necessária ausente</string>
     <string name="weather_api_key_required_missing_content">Para usar essa fonte, você precisa fornecer uma chave de API.</string>
@@ -334,7 +332,6 @@
     <string name="action_add_new_location">Adicionar um novo local</string>
     <string name="widget_clock_font_analog">Analógico</string>
     <string name="air_quality_level_1">Excelente</string>
-    <string name="weather_data_by">Dados fornecidos por %s</string>
     <string name="unit_in">Polegada</string>
     <string name="about_matrix">Servidor Matrix</string>
     <string name="alerts_to_follow">Próximos alertas, toque aqui para vê-los.</string>
@@ -494,26 +491,10 @@
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Tempestade com granizo leve</string>
     <string name="air_quality_index">Índice de qualidade do ar</string>
     <string name="location_search_no_results">%1$s não encontrou %2$s</string>
-    <string name="air_quality_pm_explanations_introduction">Os particulados ou material particulado atmosférico são partículas microscópicas de matéria sólida ou líquida suspensas no ar.</string>
-    <string name="air_quality_pm_explanations_origin">Alguns particulados ocorrem naturalmente, originados de vulcões, tempestades de poeira, incêndios em florestas e pastagens, vegetação viva e borrifos do mar. As atividades humanas também geram quantidades significativas de particulados, como tráfego e transporte, atividades industriais, usinas de energia, canteiros de obras, queima de resíduos ou campos.</string>
-    <string name="air_quality_pm_explanations_consequences">Os particulados são a forma mais prejudicial de poluição do ar devido à sua capacidade de penetrar profundamente nos pulmões e no cérebro a partir das correntes sanguíneas, causando problemas de saúde como doenças cardíacas, pulmonares e morte prematura.</string>
     <string name="air_quality_o3_full">Ozônio no nível do solo (O₃)</string>
-    <string name="air_quality_o3_info_introduction">O ozônio no nível do solo (O₃) é um dos principais componentes da fumaça. Embora seja a mesma molécula, o ozônio no nível do solo pode ser prejudicial à saúde humana, ao contrário do ozônio estratosférico que protege a Terra do excesso de radiação UV.</string>
-    <string name="air_quality_pm_info_title">Particulados (MP2,5 e MP10)</string>
-    <string name="air_quality_o3_info_origin">Ele é formado a partir de reações fotoquímicas com poluentes como compostos orgânicos voláteis, monóxido de carbono e óxidos de nitrogênio (NOₓ) emitidos por veículos e pela indústria. Devido à natureza fotoquímica, os níveis mais altos de ozônio são observados durante períodos de tempo ensolarado.</string>
-    <string name="air_quality_o3_info_consequences">A exposição ao excesso de ozônio pode causar problemas respiratórios, desencadear asma, reduzir a função pulmonar e levar a doenças pulmonares.</string>
     <string name="air_quality_no2_full">Dióxido de nitrogênio (NO₂)</string>
-    <string name="air_quality_no2_info_introduction">O dióxido de nitrogênio (NO₂) é um gás tóxico e sufocante, de cor marrom-avermelhada, com um odor pungente característico.</string>
-    <string name="air_quality_no2_info_consequences">A exposição ao dióxido de nitrogênio pode irritar as vias aéreas e agravar doenças respiratórias. Além disso, o NO₂ é um importante precursor do ozônio, um poluente intimamente ligado à asma e a outras doenças respiratórias.</string>
-    <string name="air_quality_co_info_introduction">O monóxido de carbono (CO) é um gás venenoso e inflamável que é incolor, inodoro, insípido e não irritante.</string>
-    <string name="air_quality_co_info_consequences">O monóxido de carbono se difunde pelos tecidos pulmonares e entra na corrente sanguínea, dificultando a ligação das células do corpo ao oxigênio. Essa falta de oxigênio danifica os tecidos e as células. A exposição ao monóxido de carbono pode causar dificuldades para respirar, exaustão, tontura e outros sintomas semelhantes aos da gripe. A exposição a altos níveis de monóxido de carbono pode ser fatal.</string>
-    <string name="air_quality_no2_info_origin">As fontes ambientais de NO₂ resultam da combustão em alta temperatura de combustíveis em processos como aquecimento, transporte, indústria e geração de energia. As fontes domésticas de óxidos de nitrogênio (NOₓ) incluem equipamentos que queimam combustíveis, como fornos, lareiras, fogões a gás e fornos.</string>
     <string name="air_quality_so2_full">Dióxido de enxofre (SO₂)</string>
-    <string name="air_quality_so2_info_introduction">O dióxido de enxofre (SO₂) é um gás tóxico incolor responsável pelo odor dos fósforos queimados.</string>
-    <string name="air_quality_so2_info_origin">Ele é liberado naturalmente pela atividade vulcânica e é predominantemente derivado da combustão de combustíveis fósseis para aquecimento doméstico, indústrias e geração de energia.</string>
-    <string name="air_quality_so2_info_consequences">A exposição ao SO₂ está associada a internações hospitalares por asma e visitas ao pronto-socorro.</string>
     <string name="air_quality_co_full">Monóxido de carbono (CO)</string>
-    <string name="air_quality_co_info_origin">Ele é produzido pela combustão incompleta de combustíveis carbonáceos, como madeira, gasolina, carvão, gás natural e querosene em fogões simples, fogueiras, lâmpadas de pavio, fornos e lareiras. A fonte predominante de monóxido de carbono (CO) no ar ambiente é proveniente de veículos automotores.</string>
     <string name="dialog_permissions_notification_content">Toque aqui para ativar as notificações sobre alertas meteorológicos ou decida mais tarde em Configurações.</string>
     <string name="dialog_permissions_notification_title">Mantenha-se informado</string>
     <string name="settings_widgets_live_wallpaper_error">Não foi possível iniciar o seletor de papéis de parede. Você ainda pode ativar o papel de parede %s escolhendo “Live Wallpaper” no seletor de papéis de parede da tela inicial.</string>
@@ -546,10 +527,6 @@
     <string name="pollen_level_4">Alto</string>
     <string name="pollen_level_5">Muito alto</string>
     <string name="action_delete">Excluir</string>
-    <string name="weather_air_quality_data_by">Dados de qualidade do ar por %s</string>
-    <string name="weather_pollen_data_by">Dados de pólen por %s</string>
-    <string name="weather_minutely_data_by">Dados de previsão imediata por %s</string>
-    <string name="weather_alert_data_by">Dados de alerta por %s</string>
     <string name="weather_message_invalid_location">Local inválido, por favor remova e readicione</string>
     <string name="wind_gusts">Rajadas de vento</string>
     <string name="about_dependencies">Dependências</string>
@@ -566,7 +543,6 @@
     <string name="temperature_normals">Normais de temperatura</string>
     <string name="temperature_normal_short">Normal</string>
     <string name="temperature_average_short">Média</string>
-    <string name="weather_normals_data_by">Normais de temperatura por %s</string>
     <string name="settings_main_threshold_lines_on_charts">Linhas de limite em gráficos</string>
     <string name="pollen_and_mold">Pólen e mofo</string>
     <string name="settings_widgets_broadcast_send_data_title">Enviar dados meteorológicos para %s</string>
@@ -701,7 +677,6 @@
     <string name="common_weather_text_smoke">Fumaça</string>
     <string name="settings_unavailable_no_animations">Indisponível. Ative primeiro as animações nas configurações do Android</string>
     <string name="current_weather">Clima atual</string>
-    <string name="weather_current_data_by">Dados meteorológicos atuais por %s</string>
     <string name="common_weather_text_dust">Poeira</string>
     <string name="common_weather_text_dust_storm">Tempestade de poeira</string>
     <string name="smg_warning_text_tropical_cyclone_1">Sinal nº1</string>
@@ -760,7 +735,6 @@
     <string name="dialog_refresh_error_details_content">Toque nas mensagem de erro com ponto de interrogação para receber ajuda adicional.</string>
     <string name="dialog_refresh_error_details_title">Erro de atualização</string>
     <string name="forecast">Previsão do tempo</string>
-    <string name="weather_forecast_data_by">Dados de previsão do tempo pelo %s</string>
     <string name="weather_source_continent_oceania">Oceania</string>
     <string name="weather_source_continent_south_america">America do sul</string>
     <string name="weather_source_continent_africa">África</string>
@@ -788,7 +762,6 @@
     <string name="pollen_atriplex">Arbusto de sal</string>
     <string name="pollen_pinus">Pinheiro</string>
     <string name="pollen_ulmus">Olmo</string>
-    <string name="location_reverse_geocoding_by">Pesquisa de endereço por %s</string>
     <string name="location_last_updated_x">Última atualização %s</string>
     <string name="location_has_active_alerts">Alerta ativo</string>
     <string name="settings_widgets_notification_permission_summary">Necessário para mostrar notificações de widget. %s</string>

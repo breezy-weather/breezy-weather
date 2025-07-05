@@ -420,7 +420,6 @@
     <!-- Example: Expected to stop at 09:00 AM -->
     <string name="notification_precipitation_stopping_desc">Fin prévue à %s</string>
 
-    <string name="pollen_tap_to_see_more">Appuyez pour en voir plus…</string>
     <string name="message_tap_again_to_exit">Appuyez à nouveau pour quitter</string>
 
     <!-- content description -->
@@ -500,16 +499,8 @@
     <string name="location_swipe_to_delete">Vous pouvez balayer vers la gauche pour supprimer cet élément</string>
     <string name="data_sources">Sources des données</string>
     <string name="data_modified">Ce contenu a été modifié par %s par rapport à l’original, principalement pour calculer ou extrapoler des données manquantes.</string>
-    <string name="weather_data_by">Données par %s</string> <!-- $ = weather source. -->
-    <string name="weather_forecast_data_by">Données de prévision par %s</string>
-    <string name="weather_current_data_by">Données de météo actuelle par %s</string> <!-- $ = weather source. -->
-    <string name="weather_air_quality_data_by">Données de qualité de l’air par %s</string>
-    <string name="weather_pollen_data_by">Données de pollen par %s</string>
-    <string name="weather_air_quality_and_pollen_data_by">Données de qualité de l’air et de pollen par %s</string>
-    <string name="weather_minutely_data_by">Données de prévisions immédiates de précipitations par %s</string>
-    <string name="weather_alert_data_by">Données d’alertes par %s</string>
-    <string name="weather_normals_data_by">Données des normales de température par %s</string>
-    <string name="location_reverse_geocoding_by">Recherche d’adresse par %s</string>
+    <!-- $ = weather source. -->
+    <!-- $ = weather source. -->
     <string name="location_results_by">Résultats d’emplacement par %s</string> <!-- $ = location source -->
     <string name="settings_icon_packs_weather_adaptive_icon">Icône météo</string>
     <string name="settings_icon_packs_weather_icon_light">Icône claire</string>

@@ -199,22 +199,6 @@
     <string name="air_quality_co_full">Carbon monoxide (CO)</string>
     <string name="air_quality_co_sources">Typically originates from incomplete combustion of carbon fuels, such as that which occurs in car engines and power plants.</string>
     <!-- Deprecated, turning off translations before deleting them all -->
-    <string name="air_quality_pm_info_title" translatable="false">Particulates (PM2.5 &amp; PM10)</string>
-    <string name="air_quality_pm_explanations_introduction" translatable="false">Particulates or atmospheric particulate matter are microscopic particles of solid or liquid matter suspended in the air.</string>
-    <string name="air_quality_pm_explanations_origin" translatable="false">Some particulates occur naturally, originating from volcanoes, dust storms, forest and grassland fires, living vegetation and sea spray. Human activities also generate significant amounts of particulates, such as traffic and transportation, industrial activities, power plants, construction sites, waste burning or fields.</string>
-    <string name="air_quality_pm_explanations_consequences" translatable="false">Particulates are the most harmful form of air pollution due to their ability to penetrate deep into the lungs and brain from blood streams, causing health problems such as heart disease, lung disease, and premature death.</string>
-    <string name="air_quality_o3_info_introduction" translatable="false">Ground-level ozone (O₃) is a major component of smog. Although the same molecule, ground-level ozone can be harmful to human health, unlike stratospheric ozone that protects the earth from excess UV radiation.</string>
-    <string name="air_quality_o3_info_origin" translatable="false">It is formed from photochemical reactions with pollutants such as volatile organic compounds, carbon monoxide and nitrogen oxides (NOₓ) emitted from vehicles, and industry. Due to the photochemical nature, the highest levels of ozone are seen during periods of sunny weather.</string>
-    <string name="air_quality_o3_info_consequences" translatable="false">Exposure to excessive ozone can cause problems breathing, trigger asthma, reduce lung function and lead to lung disease.</string>
-    <string name="air_quality_no2_info_introduction" translatable="false">Nitrogen dioxide (NO₂) is a suffocating, toxic reddish-brown gas with a characteristic pungent, acrid odor.</string>
-    <string name="air_quality_no2_info_origin" translatable="false">Ambient sources of NO₂ results from high temperature combustion of fuels in processes such as those used for heating, transportation, industry and power generation. Household sources of nitrogen oxides (NOₓ) include equipment that burn fuels such as furnaces, fireplaces and gas stoves and ovens.</string>
-    <string name="air_quality_no2_info_consequences" translatable="false">Exposure to nitrogen dioxide can irritate airways and aggravate respiratory diseases. Additionally, NO₂ is an important ozone precursor, a pollutant closely linked to asthma and other respiratory conditions.</string>
-    <string name="air_quality_so2_info_introduction" translatable="false">Sulfur dioxide (SO₂) is a colourless toxic gas responsible for the odor of burnt matches.</string>
-    <string name="air_quality_so2_info_origin" translatable="false">It is released naturally by volcanic activity and predominantly derived from the combustion of fossil fuels for domestic heating, industries and power generation.</string>
-    <string name="air_quality_so2_info_consequences" translatable="false">Exposure to SO₂ is associated with asthma hospital admissions and emergency room visits.</string>
-    <string name="air_quality_co_info_introduction" translatable="false">Carbon monoxide (CO) is a poisonous, flammable gas that is colorless, odorless, tasteless, and non irritant.</string>
-    <string name="air_quality_co_info_origin" translatable="false">It is produced by the incomplete combustion of carbonaceous fuels such as wood, petrol, coal, natural gas and kerosene in simple stoves, open fires, wick lamps, furnaces, fireplaces. The predominant source of carbon monoxide (CO) in ambient air is from motor vehicles.</string>
-    <string name="air_quality_co_info_consequences" translatable="false">Carbon monoxide diffuses across the lung tissues and into the bloodstream, making it difficult for the body’s cells to bind to oxygen. This lack of oxygen damages tissues and cells. Exposure to carbon monoxide can cause difficulties breathing, exhaustion, dizziness, and other flu-like symptoms. Exposure to high levels of carbon monoxide can be deadly.</string>
     <!-- Pollen -->
     <string name="pollen_primary">Primary pollen</string>
     <string name="pollen_details">Pollen details</string>
@@ -279,7 +263,6 @@
     <string name="pollen_level_3">Moderate</string>
     <string name="pollen_level_4">High</string>
     <string name="pollen_level_5">Very high</string>
-    <string name="pollen_tap_to_see_more" translatable="false">Tap to see more…</string>
     <!-- Ephemeris -->
     <string name="ephemeris_moon_phase_new_moon">New moon</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Waxing crescent</string>
@@ -352,17 +335,7 @@
     <!-- %s = Breezy Weather -->
     <string name="data_modified">This material has been modified from the original by %s mainly to compute or extrapolate missing data.</string>
     <!-- Deprecated -->
-    <string name="weather_data_by" translatable="false">Data by %s</string>
-    <string name="weather_forecast_data_by" translatable="false">Forecast data by %s</string>
-    <string name="weather_current_data_by" translatable="false">Current weather data by %s</string>
-    <string name="weather_air_quality_data_by" translatable="false">Air quality data by %s</string>
-    <string name="weather_pollen_data_by" translatable="false">Pollen data by %s</string>
-    <string name="weather_air_quality_and_pollen_data_by" translatable="false">Air quality and pollen data by %s</string>
-    <string name="weather_minutely_data_by" translatable="false">Precipitation nowcasting data by %s</string>
-    <string name="weather_alert_data_by" translatable="false">Alert data by %s</string>
-    <string name="weather_normals_data_by" translatable="false">Temperature normals data by %s</string>
     <!-- Address is singular -->
-    <string name="location_reverse_geocoding_by" translatable="false">Address lookup by %s</string>
     <string name="weather_message_data_refresh_failed">Data refresh failed</string>
     <string name="weather_message_unsupported_feature">Source doesn’t support one of requested features</string>
     <string name="weather_message_invalid_location">Invalid location, please delete it and re-add</string>

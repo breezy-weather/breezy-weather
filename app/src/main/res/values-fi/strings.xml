@@ -156,7 +156,6 @@
     <string name="settings_changes_apply_after_restart">Muutokset vaativat uudelleenkäynnistyksen</string>
     <string name="notification_running_in_background">Suoritetaan taustalla jotta saat päivitykset</string>
     <string name="notification_updating_weather_data">Päivitetään säätietoja (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">Napauta nähdäksesi lisää…</string>
     <string name="message_tap_again_to_exit">Napauta uudelleen poistuaksesi</string>
     <!-- content description -->
     <string name="action_back">Takaisin</string>
@@ -276,7 +275,6 @@
     <string name="air_quality_so2_full">Rikkidioksidi (SO₂)</string>
     <string name="pollen_and_mold">Siitepöly &amp; home</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Jätä huomiotta, kun akku on vähissä</string>
-    <string name="air_quality_pm_info_title">Hiukkaset (PM2.5 &amp; PM10)</string>
     <string name="unit_hpa">hPa</string>
     <string name="settings_background_updates_battery_optimization">Poista akun käytön optimointi käytöstä</string>
     <string name="unit_m_voice">Metriä</string>
@@ -348,7 +346,6 @@
     <string name="air_quality_so2">SO₂</string>
     <string name="action_show_errors">Katso lisätietoja</string>
     <string name="pollen_olea">Oliivi</string>
-    <string name="weather_air_quality_data_by">Ilmanlaatutiedot tarjoaa %s</string>
     <string name="air_quality_o3">O₃</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="settings_background_updates_section_troubleshoot">Vianmääritys</string>
@@ -379,7 +376,6 @@
     <string name="pollen_alnus">Leppä</string>
     <string name="temperature_degree_day_cooling">Jäähdytystarveluku</string>
     <string name="pollen_level_3">Kohtalaisesti</string>
-    <string name="weather_data_by">Tiedot tarjoaa %s</string>
     <string name="pollen_level_5">Erittäin runsaasti</string>
     <string name="weather_source_accu_preference_days_1">1 päivä</string>
     <string name="alerts_to_follow">Tulevia hälytyksiä, paina nähdäksesi.</string>
@@ -504,27 +500,7 @@
     <string name="temperature_average_short">Keskim.</string>
     <string name="common_weather_text_drizzle">Tihkusadetta</string>
     <string name="common_weather_text_drizzle_light">Kevyttä tihkusadetta</string>
-    <string name="air_quality_so2_info_consequences">Altistuminen SO₂:lle on yhteydessä astman aiheuttamiin sairaalahoitoihin ja päivystyskäynteihin.</string>
-    <string name="air_quality_pm_explanations_consequences">Hiukkaset ovat ilman epäpuhtauksien haitallisin muoto, koska ne pystyvät tunkeutumaan syvälle keuhkoihin ja aivoihin verenkierrosta aiheuttaen terveysongelmia, kuten sydän- ja keuhkosairauksia sekä ennenaikaisia kuolemia.</string>
-    <string name="weather_minutely_data_by">Sademäärän nowcast-ennusteen tiedot tarjoaa %s</string>
-    <string name="air_quality_no2_info_origin">NO₂:n lähteet ympäristössä ovat peräisin polttoaineiden poltosta korkeissa lämpötiloissa esimerkiksi lämmityksessä, liikenteessä, teollisuudessa ja sähköntuotannossa käytetyissä prosesseissa. Kotitalouksien typen oksidien (NOₓ) lähteisiin kuuluvat laitteet, jotka polttavat polttoaineita, kuten uunit, takat ja kaasuliedet ja -uunit.</string>
     <string name="air_quality_o3_full">Maanpinnan otsoni (O₃)</string>
-    <string name="weather_pollen_data_by">Allergeenitiedot tarjoaa %s</string>
-    <string name="air_quality_pm_explanations_introduction">Hiukkaset tai ilmakehän hiukkaset ovat ilmassa leijuvia mikroskooppisen pieniä kiinteän tai nestemäisen aineen hiukkasia.</string>
-    <string name="air_quality_so2_info_origin">Sitä vapautuu luonnostaan tulivuoritoiminnasta ja pääasiassa kotitalouksien lämmityksessä, teollisuudessa ja sähköntuotannossa käytettävien fossiilisten polttoaineiden poltosta.</string>
-    <string name="weather_air_quality_and_pollen_data_by">Ilmanlaatu ja allergeenitiedot tarjoaa %s</string>
-    <string name="air_quality_o3_info_origin">Se muodostuu valokemiallisista reaktioista ajoneuvoista ja teollisuudesta peräisin olevien epäpuhtauksien, kuten haihtuvien orgaanisten yhdisteiden, hiilimonoksidin ja typen oksidien (NOₓ) kanssa. Fotokemiallisen luonteensa vuoksi otsonia esiintyy eniten aurinkoisella säällä.</string>
-    <string name="air_quality_no2_info_introduction">Typpidioksidi (NO₂) on tukahduttava, myrkyllinen punaruskea kaasu, jolla on ominainen pistävä haju.</string>
-    <string name="air_quality_no2_info_consequences">Typpidioksidille altistuminen voi ärsyttää hengitysteitä ja pahentaa hengityselinsairauksia. Lisäksi NO₂ on tärkeä otsonin esiaste, joka liittyy läheisesti astmaan ja muihin hengitystiesairauksiin.</string>
-    <string name="air_quality_pm_explanations_origin">Joitakin hiukkasia esiintyy luonnossa, ja ne ovat peräisin tulivuorista, pölymyrskyistä, metsä- ja ruohikkopaloista, elävästä kasvillisuudesta ja merivedestä. Myös ihmisen toiminta tuottaa merkittäviä määriä hiukkasia, kuten liikenne ja kuljetukset, teollinen toiminta, voimalaitokset, rakennustyömaat, jätteiden poltto tai pellot.</string>
-    <string name="air_quality_co_info_introduction">Hiilimonoksidi (CO) on myrkyllinen, syttyvä kaasu, joka on väritön, hajuton, mauton ja ärsyttämätön.</string>
-    <string name="air_quality_so2_info_introduction">Rikkidioksidi (SO₂) on väritön myrkyllinen kaasu, joka aiheuttaa palaneiden tulitikkujen hajua.</string>
-    <string name="weather_normals_data_by">Normaalilämpötilojen tiedot tarjoaa %s</string>
-    <string name="air_quality_co_info_consequences">Hiilimonoksidi diffundoituu keuhkokudoksen läpi verenkiertoon ja vaikeuttaa elimistön solujen hapen sitoutumista. Tämä hapenpuute vahingoittaa kudoksia ja soluja. Altistuminen hiilimonoksidille voi aiheuttaa hengitysvaikeuksia, uupumusta, huimausta ja muita flunssan kaltaisia oireita. Korkeille hiilimonoksidipitoisuuksille altistuminen voi olla tappavaa.</string>
-    <string name="air_quality_co_info_origin">Sitä syntyy hiilipitoisten polttoaineiden, kuten puun, bensiinin, kivihiilen, maakaasun ja petrolin epätäydellisestä palamisesta yksinkertaisissa uuneissa, avotulissa, lampuissa, uuneissa ja takoissa. Hiilimonoksidin (CO) pääasiallinen lähde ilmassa on moottoriajoneuvoista peräisin oleva hiilimonoksidi.</string>
-    <string name="air_quality_o3_info_consequences">Altistuminen liialliselle otsonille voi aiheuttaa hengitysvaikeuksia, laukaista astman, heikentää keuhkojen toimintaa ja johtaa keuhkosairauksiin.</string>
-    <string name="air_quality_o3_info_introduction">Maanpinnan otsoni (O₃) on savusumun pääkomponentti. Vaikka kyseessä on sama molekyyli, alailmakehän otsoni voi olla haitallista ihmisten terveydelle, toisin kuin stratosfäärin otsoni, joka suojaa maapalloa liialliselta UV-säteilyltä.</string>
-    <string name="weather_alert_data_by">Hälytystiedot tarjoaa %s</string>
     <string name="weather_api_unauthorized_title">API-käyttöoikeus luvaton</string>
     <string name="dialog_permissions_notification_title">Pysy ajantasalla</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
@@ -717,7 +693,6 @@
     <string name="message_multiple_refresh_errors">Päivitys onnistui virheiden kera</string>
     <string name="common_weather_text_squall">Myrskytuuli</string>
     <string name="action_show">Näytä</string>
-    <string name="weather_current_data_by">Tämänhetkinen säätieto: %s</string>
     <string name="common_weather_text_smoke">Savu</string>
     <string name="notification_app_update_available">Uusi versio saatavilla!</string>
     <string name="about_check_for_app_updates">Hae sovelluspäivityksiä</string>
@@ -738,9 +713,7 @@
     <string name="pollen_ulmus">Jalava</string>
     <string name="common_weather_text_drifting_snow">Lennehtelevä lumi</string>
     <string name="common_weather_text_glaze">Lasite</string>
-    <string name="weather_forecast_data_by">Ennustetiedot tuonut %s</string>
     <string name="location_has_active_alerts">Aktiivinen hälytys</string>
-    <string name="location_reverse_geocoding_by">Osoitehaun suoritti %s</string>
     <string name="location_custom_name">Mukautettu nimi</string>
     <string name="location_reverse_geocoding">Osoitehaku</string>
     <string name="location_last_updated_x">Viimeksi päivitetty %s</string>

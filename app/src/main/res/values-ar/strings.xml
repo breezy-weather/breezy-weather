@@ -108,7 +108,6 @@
     <string name="settings_changes_apply_after_restart">سيتم تطبيق التغييرات عند إعادة تشغيل الطبيق</string>
     <string name="notification_running_in_background">التشغيل في الخلفية لإبقاء التطبيق محدثاً</string>
     <string name="notification_updating_weather_data">جارٍ تحديث بيانات الطقس (%1$d من %2$d)</string>
-    <string name="pollen_tap_to_see_more">أنقر للمزيد…</string>
     <!-- action -->
     <string name="alerts">تنبيهات</string>
     <string name="action_search">بحث</string>
@@ -340,7 +339,6 @@
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="widget_clock_font_analog">التناظريه</string>
     <string name="settings_background_updates_section_troubleshoot">استكشاف الاخطاء</string>
-    <string name="weather_data_by">البيانات بواسطة %s</string>
     <string name="widget_custom_subtitle_keyword_atd_description">درجة حرارة تبدو وكأنها الحالية (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">درجة حرارة تبدو وكأنها الحالية (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">الرياح الحالية</string>
@@ -375,17 +373,10 @@
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_o3_full">الأوزون الأرضي (O₃)</string>
-    <string name="air_quality_o3_info_introduction">الأوزون الأرضي (O₃) هو مكون رئيسي للضباب الدخاني. على الرغم من أنه هو و الأوزون الستراتوسفيري نفس الجزيء، إلا أنه يمكن أن يكون ضارا بصحة الإنسان، على عكس الآخر الذي يحمي الأرض من الأشعة فوق البنفسجية الزائدة.</string>
-    <string name="air_quality_o3_info_origin">ينشئ الأوزون الأرضي من تفاعلات ضوئية-كيميائية مع الملوثات مثل المركبات العضوية المتطايرة، أول أكسيد الكربون وأكاسيد النيتروجين (NOₓ) المنبعثة من السيارات و المصانع. بسبب الطبيعة الكيميائية الضوئية، تظهر أعلى مستويات الأوزون خلال فترات الطقس المشمس.</string>
-    <string name="air_quality_o3_info_consequences">يمكن أن يسبب التعرض المفرط للأوزون الأرضي مشاكل في التنفس، وقد يؤدي إلى الربو، أو يضعف عمل الرئة مما قد يؤدي إلى أمراض رئوية.</string>
     <string name="air_quality_no2_full">ثاني أكسيد النيتروجين (NO₂)</string>
-    <string name="air_quality_no2_info_introduction">ثاني أكسيد النيتروجين (NO₂) هو غاز خانق وسام بني محمر ذو رائحة نفاذة مميزة.</string>
     <string name="air_quality_so2_full">ثاني أكسيد الكبريت (SO₂)</string>
-    <string name="air_quality_so2_info_consequences">يرتبط التعرض لـ SO₂ بدخول اصحاب الربو للمستشفى وزيارات غرفة الطوارئ.</string>
     <string name="air_quality_co_full">أول أكسيد الكربون (CO)</string>
-    <string name="air_quality_co_info_introduction">أول أكسيد الكربون (CO) هو غاز سام قابل للاشتعال عديم اللون والرائحة والطعم وغير مهيج.</string>
     <string name="ephemeris_moonset_at">غروب القمر في %s</string>
-    <string name="weather_air_quality_and_pollen_data_by">جودة الهواء وبيانات حبوب اللقاح بواسطة %s</string>
     <string name="weather_api_limit_reached_title">تم الوصول للحد الأقصى لطلبات API</string>
     <string name="weather_api_limit_reached_content">لتجاوز الحد الأقصى، أضف مفتاح API الخاص بك.</string>
     <string name="weather_api_unauthorized_title">غير مصرح بالوصول الى API</string>
@@ -406,22 +397,12 @@
     <string name="settings_weather_sources_summary">مصدر الطقس الافتراضي للمواقع الجديدة ومفاتيح API المخصصة وإعدادات المصدر الأخرى</string>
     <string name="settings_widgets_live_wallpaper_summary">تعيين حركة الطقس كخلفية</string>
     <string name="unit_lpsqm_voice">لتر لكل متر مربع</string>
-    <string name="air_quality_pm_info_title">الجسيمات (PM2.5 و PM10)</string>
     <string name="wind_direction_W_short">غ</string>
     <string name="uv_index_0_2">منخفض</string>
     <string name="wind_direction_SW_short">ج غ</string>
     <string name="uv_index_3_5">معتدل</string>
     <string name="air_quality_level_5_description">سيشعر الأشخاص الحساسون بآثار صحية على الفور ويجب تجنب النشاط في الهواء الطلق. من المرجح أن يعاني الأفراد الأصحاء من صعوبة في التنفس وتهيج الحلق. ضع في اعتبارك البقاء في الداخل وإعادة جدولة الأنشطة الخارجية.</string>
     <string name="air_quality_no2_voice">ثاني أكسيد النيتروجين</string>
-    <string name="air_quality_no2_info_origin">يدخل NO₂ الى البيئة عند حرق الوقود في درجات حرارة عالية ضمن عمليات مثل تلك المستخدمة للتدفئة والنقل والصناعة وتوليد الطاقة. تشمل المصادر المنزلية لأكاسيد النيتروجين (NOₓ) المعدات التي تحرق الوقود مثل السخانات والمدافئ ومواقد الغاز والأفران.</string>
-    <string name="air_quality_no2_info_consequences">التعرض لثاني أكسيد النيتروجين يمكن أن يهيج الشعب الهوائية ويؤدي إلى تفاقم أمراض الجهاز التنفسي. بالإضافة إلى ذلك، يعد NO₂ مكونا أساسيا للأوزون الأرضي، وهو ملوث يرتبط ارتباطا وثيقا بالربو وأمراض الجهاز التنفسي الأخرى.</string>
-    <string name="air_quality_pm_explanations_introduction">الجسيمات أو الجسيمات الجوية هي جزيئات مجهرية من مادة صلبة أو سائلة معلقة في الهواء وتقاس بالـميكروغرام على المتر مكعب (مكغ\\م³).</string>
-    <string name="air_quality_pm_explanations_origin">تنتج بعض الجسيمات بشكل طبيعي، تنشأ من البراكين والعواصف الترابية وحرائق الغابات والمراعي والنباتات الحية ورذاذ البحر. تولد الأنشطة البشرية أيضا كميات كبيرة من الجسيمات، مثل حركة المرور والنقل والأنشطة الصناعية ومحطات الطاقة ومواقع البناء وحرق النفايات أو الحقول.</string>
-    <string name="air_quality_pm_explanations_consequences">الجسيمات هي أكثر أشكال تلوث الهواء ضررا بسبب قدرتها على الدخول في مجرى الدم وبالتالي اختراق عمق الرئتين والدماغ، مما يسبب مشاكل صحية مثل أمراض القلب وأمراض الرئة والوفاة المبكرة.</string>
-    <string name="air_quality_so2_info_introduction">ثاني أكسيد الكبريت (SO₂) هو غاز سام عديم اللون مسؤول عن رائحة أعواد الثقاب المحترقة.</string>
-    <string name="air_quality_so2_info_origin">يتم إطلاقه بشكل طبيعي عن طريق النشاط البركاني ومشتق في الغالب من احتراق الوقود الأحفوري للتدفئة المنزلية والصناعات وتوليد الطاقة.</string>
-    <string name="air_quality_co_info_consequences">ينتشر أول أكسيد الكربون عبر أنسجة الرئة وفي مجرى الدم ، مما يجعل من الصعب على خلايا الجسم الارتباط بالأكسجين. هذا النقص في الأكسجين يضر الأنسجة والخلايا. يمكن أن يسبب التعرض لأول أكسيد الكربون صعوبات في التنفس والإرهاق والدوخة وأعراض أخرى تشبه أعراض الأنفلونزا. التعرض لمستويات عالية من أول أكسيد الكربون يمكن أن يكون مميتا.</string>
-    <string name="air_quality_co_info_origin">يتم إنتاجه عن طريق الاحتراق غير الكامل للوقود الكربوني مثل الخشب والبنزين والفحم والغاز الطبيعي والكيروسين في المواقد البسيطة والحرائق المفتوحة ومصابيح الفتيل والأفران والمدافئ. المصدر السائد لأول أكسيد الكربون (CO) في الهواء المحيط هو من السيارات.</string>
     <string name="weather_api_unauthorized_content">في بعض مصادر الطقس، تحتاج إلى استعمال مفتاح API الخاص بك. إذا كنت قد استعملت واحدا بالفعل، فيرجى التحقق مرة أخرى من مفتاح API الذي استعملته.</string>
     <string name="location_search_no_results">%1$s لا يستطيع العثور على %2$s</string>
     <string name="location_search_no_results_advice">تأكد من كتابة بحثك بشكل صحيح وليس محددًا للغاية. أو بدلاً من ذلك، يمكنك البحث باستخدام مزود بحث جغرافي آخر والذي قد يؤدي إلى نتائج مختلفة.</string>
@@ -536,11 +517,7 @@
     <string name="pollen_level_0">لاشيء</string>
     <string name="pollen_level_2">منخفض</string>
     <string name="action_delete">حذف</string>
-    <string name="weather_air_quality_data_by">بيانات جودة الهواء بواسطة %s</string>
-    <string name="weather_pollen_data_by">بيانات مسببات الحساسية بواسطة %s</string>
-    <string name="weather_minutely_data_by">بيانات التنبؤ بهطول الأمطار بواسطة %s</string>
     <string name="weather_message_invalid_location">الموقع غير صالح، يرجى حذفه وإعادة إضافته</string>
-    <string name="weather_alert_data_by">بيانات التنبيه حسب %s</string>
     <string name="wind_gusts">هبوب الرياح</string>
     <string name="about_dependencies">التبعيات</string>
     <string name="precipitation_nowcasting">التساقطات دقيقة بدقيقة</string>
@@ -586,7 +563,6 @@
     <string name="temperature_average_short">المتوسط</string>
     <string name="temperature_normal_short">عادي</string>
     <string name="temperature_normals">معايير درجة الحرارة</string>
-    <string name="weather_normals_data_by">بيانات درجة الحرارة العادية بواسطة %s</string>
     <string name="settings_main_threshold_lines_on_charts">خطوط العتبة على الرسوم البيانية</string>
     <string name="settings_widgets_broadcast_send_data_title">إرسال بيانات الطقس إلى %s</string>
     <string name="pollen_and_mold">حبوب اللقاح والعفن</string>
@@ -690,7 +666,6 @@
     <string name="dialog_app_update_check_title">البقاء على احدث إصدار</string>
     <string name="dialog_app_update_check_content">اضغط هنا لتمكين الإشعارات حول تحديثات التطبيق.</string>
     <string name="settings_unavailable_no_animations">غير متاح، قم بتمكين الرسوم المتحركة في إعدادات الجهاز أولاً</string>
-    <string name="weather_current_data_by">بيانات الطقس الحالية بواسطة %s</string>
     <string name="current_weather">الطقس الحالي</string>
     <string name="common_weather_text_mist">سَدِيم</string>
     <string name="common_weather_text_dry">جاف</string>
@@ -718,8 +693,6 @@
     <string name="wind_direction_W">غربا</string>
     <string name="wind_direction_NW">الشمال الغربي</string>
     <string name="pollen_picea">شجرة التنوب</string>
-    <string name="weather_forecast_data_by">بيانات التنبؤ مقدمة من %s</string>
-    <string name="location_reverse_geocoding_by">البحث عن العنوان بواسطة %s</string>
     <string name="weather_source_continent_europe">أوروبا</string>
     <string name="location_custom_name">اسم مخصص</string>
     <string name="location_reverse_geocoding">البحث عن العنوان</string>

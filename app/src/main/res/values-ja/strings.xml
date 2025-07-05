@@ -146,7 +146,6 @@
     <string name="settings_changes_apply_after_restart">変更は再起動後に有効になります</string>
     <string name="notification_running_in_background">バックグラウンドで更新しています</string>
     <string name="notification_updating_weather_data">気象データを更新しています（%1$d/%2$d）</string>
-    <string name="pollen_tap_to_see_more">タップすると詳細を表示します…</string>
     <!-- action -->
     <string name="alerts">警報</string>
     <string name="action_search">検索</string>
@@ -361,11 +360,8 @@
     <string name="notification_channel_crash_logs">クラッシュログ</string>
     <string name="unit_ppcm_voice">毎立方メートル</string>
     <string name="pollen_and_mold">花粉とカビ</string>
-    <string name="air_quality_pm_explanations_introduction">微粒子または大気粒子状物質は、空気中に浮遊する固体または液体の微細な粒子です。</string>
     <string name="air_quality_o3_full">地表オゾン（O₃）</string>
     <string name="air_quality_no2_full">二酸化窒素（NO₂）</string>
-    <string name="air_quality_no2_info_consequences">二酸化窒素にさらされると、気道を刺激し、呼吸器疾患を悪化させる可能性があります。さらに、NO₂ は重要なオゾン前駆体であり、喘息やその他の呼吸器疾患と密接に関係する汚染物質です。</string>
-    <string name="air_quality_so2_info_consequences">二酸化硫黄にさらされると、喘息による入院や救急外来への受診が必要になる場合があります。</string>
     <string name="pollen_alnus">ハンノキ</string>
     <string name="pollen_betula">カバノキ</string>
     <string name="pollen_artemisia">ヨモギ</string>
@@ -379,8 +375,6 @@
     <string name="ephemeris_sunset_at">日の入り %s</string>
     <string name="ephemeris_moonrise_at">月の出 %s</string>
     <string name="ephemeris_moonset_at">月の入り %s</string>
-    <string name="weather_pollen_data_by">花粉のデータ提供：%s</string>
-    <string name="weather_air_quality_and_pollen_data_by">大気の質と花粉のデータ提供：%s</string>
     <string name="settings_weather_source_portal">ポータル</string>
     <string name="location_message_reverse_geocoding_failed">情報源が一致する場所を見つけられませんでした</string>
     <string name="action_location_list">場所の一覧</string>
@@ -464,9 +458,6 @@
     <string name="settings_icon_packs_weather_adaptive_icon">天気アイコン</string>
     <string name="temperature_normal_short">標準温度</string>
     <string name="temperature_normals">温度標準値</string>
-    <string name="air_quality_pm_info_title">微粒子（PM2.5 &amp; PM10）</string>
-    <string name="air_quality_o3_info_consequences">過剰なオゾンにさらされると、呼吸困難を引き起こし、喘息を引き起こし、肺機能を低下させ、肺疾患を引き起こす可能性があります。</string>
-    <string name="air_quality_no2_info_introduction">二酸化窒素（NO₂）は、特有の刺激的な臭気をもつ、窒息性の有毒な赤茶色のガスです。</string>
     <string name="air_quality_co_full">一酸化炭素（CO）</string>
     <string name="location_search_no_results">%1$s が %2$s を見つけられません</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
@@ -487,19 +478,9 @@
     <string name="unit_mph_voice">マイル毎時</string>
     <string name="unit_km">km</string>
     <string name="unit_km_voice">キロメートル</string>
-    <string name="air_quality_pm_explanations_consequences">微粒子は血流から肺や脳の奥深くに浸透する能力があるため、大気汚染の中で最も有害な形態であり、心臓病、肺疾患、早期死亡などの健康上の問題を引き起こします。</string>
-    <string name="air_quality_o3_info_introduction">地表オゾン（O₃）はスモッグの主成分です。過剰な紫外線から地球を守る成層圏のオゾンと同じ分子ですが、地表のオゾンは人間の健康に有害な可能性があります。</string>
-    <string name="air_quality_o3_info_origin">O₃は、車両や工場から排出される揮発性有機化合物、一酸化炭素、窒素酸化物（NOₓ）など汚染物質との光化学反応により生じます。光化学上の性質により、オゾンの濃度は天気が晴れている間、最高の水準となります。</string>
-    <string name="air_quality_no2_info_origin">NO₂ の周囲発生源は、暖房、輸送、工業、発電などのプロセスにおける燃料の高温燃焼によって生じます。家庭での窒素酸化物（NOₓ）の発生源には、炉、暖炉、ガスストーブやオーブンなどの燃料を燃やす機器が含まれます。</string>
-    <string name="air_quality_pm_explanations_origin">一部の微粒子は、火山、砂嵐、森林火災、草原火災、生きた植物、波飛沫などに由来して自然に発生します。交通や輸送、産業活動、発電所、建設現場、廃棄物の焼却や畑などの人間の活動によっても、大量の微粒子が発生します。</string>
-    <string name="air_quality_so2_info_introduction">二酸化硫黄（SO₂）は、マッチの燃えた臭いの原因となる無色の有毒ガスです。</string>
-    <string name="air_quality_so2_info_origin">SO₂は自然の火山活動により放出され、また、主に家庭の暖房、工業、発電用の化石燃料の燃焼によって生じます。</string>
-    <string name="air_quality_co_info_origin">一酸化炭素は、木材、ガソリン、石炭、天然ガス、灯油などの炭素質燃料が、簡易ストーブ、焚き火、芯ランプ、炉、暖炉で不完全燃焼することによって生じます。周囲空気中の主な一酸化炭素の発生源は自動車です。</string>
     <string name="action_help_me_choose">ヘルプ</string>
-    <string name="weather_normals_data_by">標準温度のデータ提供：%s</string>
     <string name="weather_api_unauthorized_content">一部の情報源には、あなた自身のAPIキーを設定する必要があります。既に設定している場合は、キーを再確認してください。</string>
     <string name="weather_api_key_required_missing_content">この情報源を利用するには、APIキーを設定する必要があります。</string>
-    <string name="air_quality_co_info_consequences">一酸化炭素は肺組織を通って血流に拡散し、体の細胞が酸素と結合するのを困難にします。この酸素不足は組織や細胞にダメージを与えます。一酸化炭素にさらされると、呼吸困難、疲労感、めまい、その他のインフルエンザのような症状が引き起こされることがあります。高レベルの一酸化炭素にさらされると、死に至る可能性があります。</string>
     <string name="location_results_by">位置情報：%s</string>
     <string name="location_message_permission_missing">位置情報へのアクセス権限がありません</string>
     <string name="action_save">保存</string>
@@ -521,10 +502,6 @@
     <string name="unit_hpa">hPa</string>
     <string name="unit_mmhg_voice">水銀柱ミリメートル</string>
     <string name="wind_gusts">突風</string>
-    <string name="weather_data_by">データ提供： %s</string>
-    <string name="weather_air_quality_data_by">大気の質のデータ提供：%s</string>
-    <string name="weather_minutely_data_by">降水量の予報データ提供：%s</string>
-    <string name="weather_alert_data_by">警報のデータ提供：%s</string>
     <string name="ephemeris_sunrise_at">日の出 %s</string>
     <string name="unit_cmph">cm/h</string>
     <string name="setting_weather_source_accu_hours">時間</string>
@@ -563,7 +540,6 @@
     <string name="common_weather_text_drizzle_freezing_light">弱い着氷性霧雨</string>
     <string name="common_weather_text_drizzle_freezing_heavy">強い着氷性霧雨</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">わずかまたは中程度の雷雨</string>
-    <string name="air_quality_co_info_introduction">一酸化炭素（CO）は、無色、無臭、無味、非刺激性の有毒な可燃性ガスです。</string>
     <string name="weather_api_limit_reached_title">APIリクエスト数の制限に達しました</string>
     <string name="weather_api_limit_reached_content">この制限を回避するには、あなた自身のAPIキーを追加してください。</string>
     <string name="weather_api_unauthorized_title">APIへのアクセスが許可されていません</string>
@@ -727,7 +703,6 @@
     <string name="common_weather_text_cold">寒</string>
     <string name="common_weather_text_tornado">竜巻</string>
     <string name="current_weather">現在の天気</string>
-    <string name="weather_current_data_by">現在の天気のデータ提供：%s</string>
     <string name="common_weather_text_mist">霧</string>
     <string name="common_weather_text_hot">熱</string>
     <string name="common_weather_text_dry">乾燥</string>
@@ -741,7 +716,6 @@
     <string name="dialog_refresh_error_details_title">更新エラー</string>
     <string name="dialog_refresh_error_details_content">エラーメッセージをタップすると、さらに詳しいヘルプが表示されます。</string>
     <string name="forecast">予報</string>
-    <string name="weather_forecast_data_by">予報のデータ提供：%s</string>
     <string name="common_weather_text_frost">霜</string>
     <string name="weather_source_continent_oceania">オセアニア</string>
     <string name="weather_source_continent_south_america">南アメリカ</string>
@@ -768,7 +742,6 @@
     <string name="location_custom_name">任意の名称</string>
     <string name="location_last_updated_x">最終更新時間：%s</string>
     <string name="settings_notifications_permission">通知の権限が必要です</string>
-    <string name="location_reverse_geocoding_by">%sで位置を検索</string>
     <string name="location_reverse_geocoding">位置を検索</string>
     <string name="daily_yesterday">昨日</string>
     <string name="daily_tomorrow">明日</string>

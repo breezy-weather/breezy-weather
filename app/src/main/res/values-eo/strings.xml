@@ -119,7 +119,6 @@
     <string name="air_quality_o3_voice">Ozono</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Karbona monooksido</string>
-    <string name="air_quality_pm_info_title">Partikloj (PM2,5 &amp; PM10)</string>
     <string name="air_quality_o3_full">Grundnivela ozono (O₃)</string>
     <string name="air_quality_no2_full">Nitrogena dioksido (NO₂)</string>
     <string name="air_quality_so2_full">Sulfura dioksido (SO₂)</string>
@@ -153,7 +152,6 @@
     <string name="pollen_level_3">Modesta</string>
     <string name="pollen_level_4">Alta</string>
     <string name="pollen_level_5">Tre alta</string>
-    <string name="pollen_tap_to_see_more">Tuŝeti ĉi tie por vidi pli…</string>
     <!-- Ephemeris -->
     <string name="ephemeris_moon_phase_new_moon">Novo</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Unua arko</string>
@@ -190,15 +188,7 @@
     <string name="ceiling">Nubplafono</string>
     <string name="ceiling_short">Nubplafono</string>
     <!-- Weather sources -->
-    <string name="weather_data_by">Datumoj de %s</string>
     <string name="current_weather">Nuna vetero</string>
-    <string name="weather_current_data_by">Nuna vetero datumoj de %s</string>
-    <string name="weather_air_quality_data_by">Aerkvalito datumoj de %s</string>
-    <string name="weather_pollen_data_by">Poleno datumoj de %s</string>
-    <string name="weather_air_quality_and_pollen_data_by">Aerkvalito kaj poleno datumoj de %s</string>
-    <string name="weather_minutely_data_by">Ĉiuminutaj precipitaĵoj datumoj de %s</string>
-    <string name="weather_alert_data_by">Atentigo datumoj de %s</string>
-    <string name="weather_normals_data_by">Normalaj temperaturoj datumoj de %s</string>
     <string name="weather_source_continent_worldwide">Tutmonda</string>
     <string name="weather_source_continent_africa">Afriko</string>
     <string name="weather_source_continent_asia">Azio</string>
@@ -572,8 +562,6 @@
     <string name="weather_kind_wind">Vento</string>
     <string name="metno_weather_text_andthunder">%s kaj tondro</string>
     <string name="null_data_text">N/A</string>
-    <string name="air_quality_no2_info_introduction">Nitrogena dioksido (NO₂) estas sufokanta, toksa ruĝeta-bruna gaso kun karakteriza akra, pika odoro.</string>
-    <string name="air_quality_co_info_introduction">Karbona monooksido (CO) estas venena, brulema gaso senkolora, senodora, sengusta kaj neiritanta.</string>
     <string name="dialog_permissions_location_background_title">Atingi lokon fone</string>
     <string name="message_source_not_installed_error_title">Fonto ne plu haveblas</string>
     <string name="settings_per_location">Preferoj pri loko</string>
@@ -586,15 +574,12 @@
     <string name="settings_widgets_broadcast_send_data_title">Sendi datenojn pri %s</string>
     <string name="settings_per_location_theme">Etoso</string>
     <string name="settings_global">Ĝeneralaj agordoj</string>
-    <string name="air_quality_o3_info_introduction">Grundnivela ozono (O₃) estas grava komponanto de fumnebulo. Kvankam la sama molekulo kiel stratosfera ozono ŝirmanta Teron kontraŭ troa ultraviola radiado, grundnivela ozono povas esti danĝera al homa sano.</string>
     <string name="dialog_time_picker_input_time">Tajpi tempon</string>
     <string name="widget_label_hide_alternate_calendar">Kaŝi alternativan kalendaron</string>
     <string name="settings_source_instance_invalid">Devas esti retadreso komenciĝanta per “https://” kaj finiĝanta per “/”</string>
     <string name="precipitation_intensity_medium">Mezgranda</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Nuna aerkvalita indico</string>
     <string name="about_contribution_WangDaYeeeeee">Aŭtoro de la originala projekto Geometric Weather</string>
-    <string name="air_quality_so2_info_introduction">Sulfura dioksido (SO₂) estas senkolora toksa gaso kaŭzanta la odoron de brulintaj alumetoj.</string>
-    <string name="air_quality_so2_info_consequences">Elmeto al SO₂ estas asociita kun vizitoj al astmaj malsanulejoj kaj urĝejoj.</string>
     <string name="location_message_list_cannot_be_empty">Loka listo ne povas esti malplena</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Uzu alian lokservon</string>
     <string name="location_search_no_results">%1$s ne povas trovi %2$s</string>
@@ -648,10 +633,6 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Fulmotondro kun ega hajlo</string>
     <string name="air_quality_level_5_description">Sanefikoj tuj estos sentitaj fare de sentemaj grupoj kaj devus eviti subĉielan agadon. Sanaj individuoj estas verŝajnaj travivi malfacilecon spirantan kaj gorĝon iritiĝon; pripensi resti endome kaj planante subĉielajn agadojn.</string>
     <string name="air_quality_level_6_description">Iom ajn da elmeto al la aero, eĉ dum kelkaj minutoj, povas kaŭzi gravajn efikojn pri la sano de ĉia homo. Evitu subĉielajn aktivecojn.</string>
-    <string name="air_quality_o3_info_consequences">Elmeto al troa ozono povas kaŭzi problemojn pri spirado, astmon, redukton de pulma funkcio kaj pulman malsanon.</string>
-    <string name="air_quality_o3_info_origin">Ĝi estas formita de fotoĥemiaj reakcioj kun malpurigaĵoj kiel ekzemple volatilaj organikaj kombinaĵoj, karbona monooksido kaj nitrogenaj oksidoj (NOₓ) elsenditaj de veturiloj kaj industrio. Pro la fotoĥemia naturo, la plej altaj niveloj de ozono vidiĝas dum periodoj de suna vetero.</string>
-    <string name="air_quality_no2_info_consequences">Elmeto al nitrogena dioksido povas iriti aervojojn kaj plimalbonigi spirajn malsanojn. Plie, NO₂ estas grava ozona antaŭulo, malpurigaĵo proksime ligita al astmo kaj aliaj spiraj kondiĉoj.</string>
-    <string name="air_quality_so2_info_origin">Ĝi estas produktata nature de vulkana agado, sed ĝi estas plejparte produktata de la brulado de fosiliaj bruligaĵoj por hejma hejtado, industrio kaj elektrogenerado.</string>
     <string name="settings_background_updates_worker_info_title">Informoj pri procezoj</string>
     <string name="settings_location_access_background_title">Atingi la nunan lokon fone</string>
     <string name="settings_location_access_precise_title">Uzi GPS</string>
@@ -663,8 +644,6 @@
     <string name="notification_precipitation_continuing_desc">Verŝajne daŭros ĝis almenaŭ %s</string>
     <string name="widget_clock_day_details">Horloĝo + taga vetero (detala)</string>
     <string name="widget_clock_day_vertical">Horloĝo + taga vetero (vertikala)</string>
-    <string name="air_quality_co_info_consequences">Karbona monooksido difuziĝas tra la pulmaj histoj kaj en la sangon, malhelpante la ligadon de korpaj ĉeloj al oksigeno. Tiu manko de oksigeno difektas histojn kaj ĉelojn. Elmeto al karbona monooksido povas kaŭzi malfacilecon pri spirado, lacecon, kapturnon kaj aliajn gripecajn simptomojn. Elmeto al altaj niveloj de karbona monooksido povas mortigi.</string>
-    <string name="air_quality_co_info_origin">Ĝi estas produktita de la nekompleta brulado de karbonaj bruligaĵoj kiel ligno, benzino, karbo, natura gaso kaj keroseno en simplaj fornoj, subĉielaj fajroj, wick lampoj, fornoj, kamenoj. La superrega fonto de karbona monooksido (CO) en la aero estas de motoraj veturiloj.</string>
     <string name="notification_precipitation_starting_desc">Verŝajne komenciĝos je %s</string>
     <string name="dialog_permissions_location_background_content">Por permesi al la programo atingi lokinformojn fone, tiel ke ni povas percepti ŝanĝojn en loko kaj provizi vin per validaj veterdatenoj, bonvolu meti lokaliron kiel “Allow ĉia la tempo”.</string>
     <string name="weather_message_data_refresh_failed">Malsukcesis aktualigi veterajn datenojn</string>
@@ -696,7 +675,6 @@
     <string name="settings_widgets_notification_widget_title">Sciiga fenestraĵo</string>
     <string name="dialog_permissions_location_content">Breezy Weather devas kolekti viajn lokinformojn en malfono aŭ fono por disponigi la veterdatenojn de via nuna loko. Por tio ni petos iujn permesojn. Via retejo informo nur estos uzata por akiri veterdatenojn ĉe via nuna loko. Se vi ne volas dividi vian retejon informo, vi povas nei tiujn postulojn kaj mane meti vian lokon en la administra paĝo.</string>
     <string name="dialog_permissions_location_title">Atingi informojn pri la nuna loko</string>
-    <string name="air_quality_no2_info_origin">Atmosfera NO₂ rezultas el alt-temperatura brulado de bruligaĵoj en procezoj kiel ekzemple tiuj uzitaj por hejtado, transportado, industrio kaj elektrogenerado. Hejmaj fontoj de nitrogenaj oksidoj (NOₓ) inkluzivas bruligajn ekipaĵojn, ekzemple gasajn fornojn kaj kamenojn.</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Unuigita</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombini la plej bonajn vetermodelojn por tiu loko</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kombini ĉiujn vetermodelojn de tiu provizanto en unu prognozon</string>
@@ -738,14 +716,12 @@
     <string name="forecast">Prognozoj</string>
     <string name="dialog_refresh_error_details_title">Aktualigi eraroj</string>
     <string name="dialog_refresh_error_details_content">Altuŝi erarmesaĝo kun demandosigno por ricevi pluan helpon.</string>
-    <string name="weather_forecast_data_by">Prognozo datumoj de %s</string>
     <string name="location_swipe_to_delete">Vi povas ŝovi maldekstren por forigi ĉi tiun objekton</string>
     <string name="location_last_updated_x">Laste ĝisdatigita %s</string>
     <string name="action_show">Montri</string>
     <string name="message_source_not_installed_error_content_tip_1">Tio povas okazi kiam vi aldonis vian lokon en la Norma versio de la aplikaĵo kaj poste ŝanĝis al la versio kun nur liberaj retfontoj. Reveno al Norma versio povas solvi tiun problemon.</string>
     <string name="location_custom_name">Propra nomo</string>
     <string name="message_parsing_error_content">Certigu, ke vi ĝisdatigis al la lasta versio de la aplikaĵo. Servilo povas esti dumtempe neatingebla, en tiu kazo, bonvolu provi denove poste. Se la problemo daŭras, bonvolu forĵeti kraŝregistron de sencimiga agordoj kaj raporti problemon en GitHub.</string>
-    <string name="location_reverse_geocoding_by">Adreso serĉo de %s</string>
     <string name="location_reverse_geocoding">Adreso serĉo</string>
     <string name="location_message_location_access_off">Malŝalta loko aliro</string>
     <string name="location_has_active_alerts">Aktivaj atentigoj</string>

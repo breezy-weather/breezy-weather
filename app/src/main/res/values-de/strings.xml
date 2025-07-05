@@ -23,7 +23,6 @@
     <string name="widget_ellipsis">…</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Standort manuell hinzufügen und „%s“ löschen</string>
     <string name="widget_label_text_color">Schriftfarbe</string>
-    <string name="pollen_tap_to_see_more">Tippen Sie, um mehr zu sehen…</string>
     <string name="widget_label_clock_font">Font der Uhr</string>
     <string name="location_message_added">Ort hinzugefügt</string>
     <string name="location_message_deleted">Ort gelöscht</string>
@@ -239,7 +238,6 @@
     <string name="widget_custom_subtitle_keyword_xmp_description">Mondphase heute, morgen, …, in 4 Tagen</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Niederschlag nachts heute, morgen, …, in 4 Tagen (%)</string>
     <string name="dialog_permissions_location_content">Um diese Funktion zu benutzen, müssen Sie der App erlauben, auf Ihren aktuellen Standort zuzugreifen. Dieser wird nur mit den ausgewählten Wetterquellen geteilt. Wenn Sie sich anders entscheiden, können Sie den Vorgang abbrechen und einen festen Ort hinzufügen.</string>
-    <string name="weather_data_by">Daten von %s</string>
     <string name="location_results_by">Standortergebnisse von %s</string>
     <string name="action_add_current_location">Aktuellen Standort hinzufügen</string>
     <string name="action_add_new_location">Neuen Ort hinzufügen</string>
@@ -385,7 +383,6 @@
     <string name="settings_main_background_animation_enabled">Ein</string>
     <string name="settings_widgets_configure_widget_summary">Widget konfigurieren</string>
     <string name="settings_widgets_section_widgets_in_use">Verwendete Widgets</string>
-    <string name="weather_air_quality_and_pollen_data_by">Luftqualitäts- und Pollendaten von %s</string>
     <string name="action_continue">Weiter</string>
     <string name="settings_icon_packs_title">Symbolpakete</string>
     <string name="settings_main_cards_title">Kacheln</string>
@@ -482,30 +479,14 @@
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_co">CO</string>
-    <string name="air_quality_pm_info_title">Feinstaub (PM2.5 &amp; PM10)</string>
     <string name="air_quality_no2_full">Stickstoffdioxid (NO₂)</string>
     <string name="air_quality_so2_full">Schwefeldioxid (SO₂)</string>
     <string name="air_quality_co_full">Kohlenstoffmonoxid (CO)</string>
     <string name="action_close">Schließen</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_o3_full">Bodennahes Ozon (O₃)</string>
-    <string name="air_quality_pm_explanations_introduction">Feinstaub besteht aus in der Umgebungsluft schwebenden, festen oder flüssigen Partikeln.</string>
-    <string name="air_quality_pm_explanations_origin">Manche Partikel treten natürlicherweise auf und haben ihren Ursprung in Vulkanen, Sandstürmen, Wald- und Flächenbränden, lebenden Organismen sowie Meeresgischt. Menschliche Aktivitäten erzeugen ebenfalls signifikante Mengen an Feinstaub, wie durch Verkehr, Industrie, Kraftwerke, Bauwirtschaft, Müllverbrennung oder Landwirtschaft.</string>
-    <string name="air_quality_pm_explanations_consequences">Feinstaub ist durch seine Fähigkeit, bis tief ins Lungen- und über die Blutgefäße ins Hirngewebe vorzudringen die gefährlichste Art der Luftbelastung, was Gesundheitsschäden wie Herz-und Lungenkrankheiten sowie einen vorzeitigen Tod verursachen kann.</string>
-    <string name="air_quality_o3_info_introduction">Bodennahes Ozon (O₃) stellt einen großen Anteil am Smog dar. Trotz identischer molekularer Zusammensetzung wie das Ozon der Stratosphäre, das die Erde vor aggressiver UV-Strahlung schützt, kann bodennahes Ozon gesundheitsschädlich sein.</string>
-    <string name="air_quality_o3_info_consequences">Übermäßige Ozon-Belastung kann Atembeschwerden hervorrufen, Asthma auslösen, die Lungenfunktion einschränken und Lungenkrankheiten verursachen.</string>
-    <string name="air_quality_no2_info_introduction">Stickstoffdioxid (NO₂) ist ein erstickendes, giftiges, rötlich braunes Gas mit einem charakteristischen stechenden, beißenden Geruch.</string>
-    <string name="air_quality_no2_info_origin">NO₂ gelangt über die Verbrennung von Kraftstoffen bei hohen Temperaturen in die Umwelt, wie sie in der Strom-und Wärmeerzeugung sowie in Kraftfahrzeugen und der Industrie geschieht. Im Haushalt entstehen Stickoxide (NOₓ) bei der Verbrennung fossiler Energieträger in Öfen, Kaminen, Gasherden und -Backöfen.</string>
-    <string name="air_quality_so2_info_introduction">Schwefeldioxid (SO₂) ist ein farbloses, giftiges Gas, das für den Geruch entzündeter Streichhölzer verantwortlich ist.</string>
-    <string name="air_quality_so2_info_origin">In der Natur entsteht es bei vulkanischer Aktivität, durch menschliche Aktivität bei der Verbrennung fossiler Energieträger zur Wärme-und Stromerzeugung sowie in der Industrie.</string>
-    <string name="air_quality_so2_info_consequences">SO₂-Exposition wird mit klinischer und ambulanter Behandlung asthmatischer Beschwerden in Verbindung gebracht.</string>
     <string name="dialog_permissions_notification_content">Hier tippen, um Benachrichtigungen über Wetterwarnungen zu aktivieren. Alternativ können Sie dies später in den Einstellungen entscheiden.</string>
     <string name="dialog_permissions_notification_title">Informiert bleiben</string>
-    <string name="air_quality_o3_info_origin">Es wird bei photochemischen Reaktionen von organischen Stoffen, Kohlenmonoxid und Stickoxiden (NOₓ) freigesetzt, die von Fahrzeugen und der Industrie ausgestoßen werden. Bedingt durch den photochemischen Prozess entstehen die höchsten Ozon-Konzentrationen bei sonnigem Wetter.</string>
-    <string name="air_quality_no2_info_consequences">Stickstoffdioxid-Exposition kann die Atemwege reizen und Atemwegserkrankungen verschlimmern. Zudem ist NO₂ ein bedeutender Ausgangsbestandteil von Ozon, einem Schadstoff im Zusammenhang mit Asthma und Atembeschwerden.</string>
-    <string name="air_quality_co_info_origin">Es entsteht bei unvollständiger Verbrennung kohlenstoffhaltiger Energieträger wie Holz, Benzin, Kohle, Erdgas und Kerosin im einfachen Öfen, offenem Feuer, Lampen und Feuerstellen. Die überwiegende Quelle von Kohlenmonoxid (CO) in der Umgebungsluft sind Kraftfahrzeuge.</string>
-    <string name="air_quality_co_info_introduction">Kohlenmonoxid (CO) ist ein giftiges, brennbares Gas, das farblos, geruchlos und nicht reizend ist.</string>
-    <string name="air_quality_co_info_consequences">Kohlenmonoxid gelangt über die Lungenbläschen in den Blutkreislauf und erschwert es den Zellen, Sauerstoff zu binden. Dieser Sauerstoffmangel schädigt Gewebe und Zellen. Der Kontakt mit Kohlenmonoxid kann Atembeschwerden, Erschöpfung, Schwindel und grippeähnliche Symptome hervorrufen. Hohe Kohlenmonoxid-Konzentrationen können tödlich sein.</string>
     <string name="location_search_no_results">%1$s kann %2$s nicht finden</string>
     <string name="location_search_no_results_advice">Achten Sie darauf, dass Ihr Suchbegriff richtig geschrieben und nicht zu spezifisch ist. Alternativ können Sie eine andere Quelle für die Ortssuche ausprobieren, die möglicherweise andere Ergebnisse liefert.</string>
     <string name="message_source_not_installed_error_title">Quelle nicht mehr verfügbar</string>
@@ -534,10 +515,6 @@
     <string name="pollen_level_0">Keine</string>
     <string name="weather_message_invalid_location">Ungültiger Ort, bitte löschen und erneut hinzufügen</string>
     <string name="wind_gusts">Windböen</string>
-    <string name="weather_pollen_data_by">Pollendaten von %s</string>
-    <string name="weather_minutely_data_by">Daten für Kurzvorhersagen von Niederschlägen von %s</string>
-    <string name="weather_alert_data_by">Warndaten von %s</string>
-    <string name="weather_air_quality_data_by">Luftqualitätsdaten von %s</string>
     <string name="action_save">Speichern</string>
     <string name="settings_weather_sources_per_location_summary">Wetterdatenquellen für diesen Ort anpassen</string>
     <string name="precipitation_nowcasting">Kurzvorhersage von Niederschlägen</string>
@@ -582,7 +559,6 @@
     <string name="temperature_normals">Temperatur-Normalwerte</string>
     <string name="temperature_normal_short">Normalwert</string>
     <string name="settings_main_threshold_lines_on_charts">Grenzlinien in Diagrammen</string>
-    <string name="weather_normals_data_by">Daten für Temperaturnormalwerte von %s</string>
     <string name="temperature_average_short">Ø</string>
     <string name="settings_widgets_broadcast_send_data_title">Wetterdaten an %s senden</string>
     <string name="pollen_and_mold">Pollen &amp; Schimmel</string>
@@ -686,7 +662,6 @@
     <string name="meteoam_weather_text_tornado_watersprout">Wind- oder Wasserhose</string>
     <string name="settings_unavailable_no_animations">Nicht verfügbar, aktivieren Sie Animationen zuerst in den Android-Einstellungen</string>
     <string name="current_weather">Aktuelles Wetter</string>
-    <string name="weather_current_data_by">Daten für aktuelles Wetter von %s</string>
     <string name="common_weather_text_humid">Feucht</string>
     <string name="common_weather_text_warm">Warm</string>
     <string name="common_weather_text_cold">Kalt</string>
@@ -726,7 +701,6 @@
     <string name="common_weather_text_tornado">Tornado</string>
     <string name="settings_weather_source_not_configured">%s (nicht konfiguriert)</string>
     <string name="forecast">Vorhersage</string>
-    <string name="weather_forecast_data_by">Vorhersagedaten von %s</string>
     <string name="settings_weather_source_current_position_disclaimer">Weitere Wetterquellen für Ihren Ort können nach der ersten Aktualisierung verfügbar werden.</string>
     <string name="pollen_acer">Ahorn</string>
     <string name="pollen_atriplex">Melde</string>
@@ -746,7 +720,6 @@
     <string name="settings_notifications_permission">Berechtigung für Benachrichtigungen erforderlich</string>
     <string name="settings_widgets_notification_permission_summary">Benötigt, um das Benachrichtigungs-Widget anzuzeigen. %s</string>
     <string name="settings_debug_notification_permission">Benötigt, um über Absturzprotokolle und fehlgeschlagene Wetteraktualisierungen zu informieren. %s</string>
-    <string name="location_reverse_geocoding_by">Adressermittlung durch %s</string>
     <string name="location_reverse_geocoding">Adresssuche</string>
     <string name="daily_yesterday">Gestern</string>
     <string name="daily_today">Heute</string>

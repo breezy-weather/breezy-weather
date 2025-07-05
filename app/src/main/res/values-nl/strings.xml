@@ -101,8 +101,6 @@
     <string name="temperature_degree_day">Daggraad dag</string>
     <string name="precipitation_nowcasting">Toekomstige neerslag</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Regen- en sneeuwbuien</string>
-    <string name="weather_pollen_data_by">Allergenengegevens door %s</string>
-    <string name="weather_alert_data_by">Waarschuwingsgegevens door %s</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Negeren als batterij bijna leeg is</string>
@@ -128,8 +126,6 @@
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="pollen_tree">Bomen</string>
     <string name="pollen_poaeceae">Gras</string>
-    <string name="air_quality_co_info_origin">Het wordt geproduceerd door de onvolledige verbranding van koolstofhoudende brandstoffen zoals hout, benzine, kolen, aardgas en kerosine in eenvoudige kachels, open haarden, pitlampen, ovens en open haarden. De belangrijkste bron van koolmonoxide (CO) in de lucht is afkomstig van motorvoertuigen.</string>
-    <string name="air_quality_co_info_consequences">Koolmonoxide diffundeert door de longweefsels en in de bloedbaan, waardoor de lichaamscellen moeilijk zuurstof kunnen binden. Dit gebrek aan zuurstof beschadigt weefsels en cellen. Blootstelling aan koolmonoxide kan ademhalingsmoeilijkheden, uitputting, duizeligheid en andere griepachtige symptomen veroorzaken. Blootstelling aan hoge concentraties koolmonoxide kan dodelijk zijn.</string>
     <string name="pollen_mold">Schimmel</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Wassende halve maan</string>
     <string name="weather_api_key_required_missing_content">Om deze bron te gebruiken, moet je een API-sleutel opgeven.</string>
@@ -158,7 +154,6 @@
     <string name="common_weather_text_drizzle_freezing">Ijzelende motregen</string>
     <string name="unit_mi">mi</string>
     <string name="common_weather_text_rain">Regen</string>
-    <string name="weather_minutely_data_by">Toekomstige neerslagsdata door %s</string>
     <string name="unit_mps_voice">Meters per seconde</string>
     <string name="settings_location_access_background_title">Locatietoegang op de achtergrond</string>
     <string name="settings_main">Hoofdscherm</string>
@@ -225,8 +220,6 @@
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Dagelijkse beschrijving</string>
     <string name="message_parsing_error_title">Weergegevens zijn niet verwerkt</string>
-    <string name="weather_air_quality_and_pollen_data_by">Gegevens over luchtkwaliteit en allergenen door %s</string>
-    <string name="weather_normals_data_by">Normgegevens temperatuur door %s</string>
     <string name="weather_message_unsupported_feature">De bron ondersteunt een van de gevraagde functies niet</string>
     <string name="setting_weather_source_accu_days">Dagen</string>
     <string name="weather_api_key_required_missing_title">Vereiste API-sleutel ontbreekt</string>
@@ -268,15 +261,12 @@
     <string name="uv_index_11">Extreem</string>
     <string name="air_quality_level_4">Ongezond</string>
     <string name="air_quality_so2">SO₂</string>
-    <string name="air_quality_no2_info_origin">Omgevingsbronnen van NO₂ zijn afkomstig van de verbranding bij hoge temperatuur van brandstoffen in processen zoals die voor verwarming, transport, industrie en energieopwekking. Huishoudelijke bronnen van stikstofoxiden (NOₓ) zijn onder andere apparaten die brandstoffen verbranden, zoals ovens, open haarden en gasfornuizen en ovens.</string>
     <string name="air_quality_so2_full">Zwaveldioxide (SO₂)</string>
-    <string name="air_quality_so2_info_consequences">Blootstelling aan SO₂ wordt in verband gebracht met ziekenhuisopnames voor astma en bezoeken aan de spoedafdeling.</string>
     <string name="pollen_alnus">Els</string>
     <string name="pollen_olea">Olijf</string>
     <string name="ephemeris_sunrise_at">Zonsopgang bij %s</string>
     <string name="ephemeris_sunset_at">Zonsondergang bij %s</string>
     <string name="cloud_cover">Bewolking</string>
-    <string name="weather_air_quality_data_by">Luchtkwaliteitsgegevens door %s</string>
     <string name="location_search_weather_source">Weerbron</string>
     <string name="settings_units_summary">Temperatuur, neerslag, afstand, snelheid, druk</string>
     <string name="action_more">Bekijk meer</string>
@@ -311,7 +301,6 @@
     <string name="metno_weather_text_andthunder">%s en onweer</string>
     <string name="pollen_ambrosia">Ragkruid</string>
     <string name="uv_alert_level">Waarschuwing</string>
-    <string name="weather_data_by">Gegevens door %s</string>
     <string name="pollen">Pollen</string>
     <string name="weather_kind_hail">Hagel</string>
     <string name="unit_hpa">hPa</string>
@@ -391,7 +380,6 @@
     <string name="air_quality_level_2_description">De luchtkwaliteit is voor de meeste mensen acceptabel. Bij langdurige blootstelling kunnen personen met overgevoeligheid echter lichte tot matige symptomen ervaren.</string>
     <string name="air_quality_pm25_voice">PM twee punt vijf</string>
     <string name="air_quality_pm10_voice">PM tien</string>
-    <string name="pollen_tap_to_see_more">Tik om meer te zien…</string>
     <string name="ephemeris_moon_phase_waning_crescent">Afnemende halve maan</string>
     <string name="locations">Locaties</string>
     <string name="action_add_new_location">Een nieuwe locatie toevoegen</string>
@@ -474,11 +462,6 @@
     <string name="settings_units_precipitation">Neerslageenheid</string>
     <string name="settings_main_summary">Kaartvolgorde, weergegeven items, animaties</string>
     <string name="settings_main_daily_trends_title">Dagelijkse trends</string>
-    <string name="air_quality_pm_explanations_introduction">Zwevende deeltjes of atmosferische zwevende deeltjes zijn microscopisch kleine vaste of vloeibare deeltjes die in de lucht zweven.</string>
-    <string name="air_quality_pm_explanations_origin">Sommige deeltjes komen van nature voor en zijn afkomstig van vulkanen, stofstormen, bos- en graslandbranden, levende vegetatie en stuifwater van de zee. Menselijke activiteiten genereren ook aanzienlijke hoeveelheden stofdeeltjes, zoals verkeer en vervoer, industriële activiteiten, elektriciteitscentrales, bouwplaatsen, afvalverbranding of akkers.</string>
-    <string name="air_quality_pm_explanations_consequences">Deeltjes zijn de schadelijkste vorm van luchtvervuiling omdat ze vanuit de bloedbanen diep in de longen en hersenen kunnen doordringen en daar gezondheidsproblemen veroorzaken zoals hartaandoeningen, longaandoeningen en vroegtijdige sterfte.</string>
-    <string name="air_quality_o3_info_introduction">Ozon op grondniveau (O₃) is een belangrijk bestanddeel van smog. Hoewel het dezelfde molecule is, kan ozon op grondniveau schadelijk zijn voor de menselijke gezondheid, in tegenstelling tot stratosferisch ozon dat de aarde beschermt tegen een teveel aan UV-straling.</string>
-    <string name="air_quality_o3_info_origin">Het wordt gevormd door fotochemische reacties met vervuilende stoffen zoals vluchtige organische stoffen, koolmonoxide en stikstofoxiden (NOₓ) die worden uitgestoten door voertuigen en de industrie. Door het fotochemische karakter worden de hoogste ozonniveaus waargenomen tijdens perioden met zonnig weer.</string>
     <string name="message_network_unavailable">Netwerk niet beschikbaar</string>
     <string name="message_parsing_error_content">Zorg ervoor dat je de laatste versie van de app hebt geïnstalleerd. De server kan tijdelijk niet beschikbaar zijn, probeer het in dat geval later nog eens. Als het probleem aanhoudt, dump dan een crash log van debug instellingen, en rapporteer een probleem op GitHub.</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Huidige UV</string>
@@ -533,11 +516,6 @@
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mmhg_voice">Millimeters kwik</string>
     <string name="unit_kgfpsqcm_voice">Kilogram kracht per vierkante centimeter</string>
-    <string name="air_quality_no2_info_introduction">Stikstofdioxide (NO₂) is een verstikkend, giftig roodbruin gas met een kenmerkende scherpe, bijtende geur.</string>
-    <string name="air_quality_no2_info_consequences">Blootstelling aan stikstofdioxide kan de luchtwegen irriteren en luchtwegaandoeningen verergeren. Bovendien is NO₂ een belangrijke ozonprecursor, een vervuilende stof die nauw verbonden is met astma en andere aandoeningen van de luchtwegen.</string>
-    <string name="air_quality_so2_info_introduction">Zwaveldioxide (SO₂) is een kleurloos giftig gas dat verantwoordelijk is voor de geur van verbrande lucifers.</string>
-    <string name="air_quality_so2_info_origin">Het komt van nature vrij door vulkanische activiteit en is voornamelijk afkomstig van de verbranding van fossiele brandstoffen voor huishoudelijke verwarming, industrie en elektriciteitsopwekking.</string>
-    <string name="air_quality_co_info_introduction">Koolmonoxide (CO) is een giftig, brandbaar gas dat kleurloos, reukloos en smaakloos is en niet irriteert.</string>
     <string name="about_source_code">Broncode</string>
     <string name="about_contributors">Bijdragers</string>
     <string name="common_weather_text_mainly_clear">Overwegend helder</string>
@@ -550,8 +528,6 @@
     <string name="air_quality_no2_voice">Stikstofdioxide</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Koolstofmonoxide</string>
-    <string name="air_quality_pm_info_title">Deeltjes (PM2,5 &amp; PM10)</string>
-    <string name="air_quality_o3_info_consequences">Blootstelling aan te veel ozon kan ademhalingsproblemen veroorzaken, astma uitlokken, de longfunctie verminderen en leiden tot longaandoeningen.</string>
     <string name="settings_notifications_alerts_title">Meldingen van ernstige weeralarmen</string>
     <string name="settings_notifications_precipitations_title">Meldingen van neerslag</string>
     <string name="settings_debug_summary">Crashlogs</string>
@@ -690,7 +666,6 @@
     <string name="about_open_link_message">Open %s?</string>
     <string name="common_weather_text_glaze">IJzel</string>
     <string name="current_weather">Huidig weer</string>
-    <string name="weather_current_data_by">Huidige weersverwachtingen van %s</string>
     <string name="message_multiple_refresh_errors">Vernieuwen voltooid met fouten</string>
     <string name="settings_weather_source_current_position_disclaimer">Er kunnen meer weerbronnen beschikbaar komen voor jouw locatie na de eerste refresh.</string>
     <string name="common_weather_text_mist">Mist</string>
@@ -728,7 +703,6 @@
     <string name="settings_weather_source_not_configured">%s (niet ingesteld)</string>
     <string name="location_custom_name">Aangepaste naam</string>
     <string name="forecast">Verwachting</string>
-    <string name="weather_forecast_data_by">Weersverwachtingen van %s</string>
     <string name="pollen_acer">Esdoorn</string>
     <string name="pollen_alternaria">Alternaria</string>
     <string name="pollen_picea">Spar</string>
@@ -748,7 +722,6 @@
     <string name="wind_direction_SW">Zuidwest</string>
     <string name="daily_yesterday_short">Gister</string>
     <string name="daily_tomorrow_short">Morgen</string>
-    <string name="location_reverse_geocoding_by">Adresgegevens door %s</string>
     <string name="location_reverse_geocoding">Adresgegevens</string>
     <string name="message_outdated_server_data">Verouderde gegevens ontvangen van de server</string>
     <string name="action_allow">Toestaan</string>

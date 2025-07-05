@@ -21,9 +21,6 @@
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Karbonmonoksid</string>
-    <string name="air_quality_pm_info_title">Svevestøv (PM2,5 og PM10)</string>
-    <string name="air_quality_pm_explanations_introduction">Svevestøv er mikroskopiske partikler av fast eller flytende materiale suspendert i luften.</string>
-    <string name="air_quality_pm_explanations_origin">Noe svevestøv forekommer naturlig, og stammer fra vulkaner, støvstormer, skog- og gressbranner, levende vegetasjon og sjøsprøyt. Menneskelige aktiviteter genererer også betydelige mengder svevestøv, som trafikk og transport, industrielle aktiviteter, kraftverk, byggeplasser, avfallsbrenning eller åkere.</string>
     <string name="daily_forecast">Daglig værvarsel</string>
     <string name="alerts">Farevarsler</string>
     <string name="hourly_forecast">Værvarsel time for time</string>
@@ -97,11 +94,9 @@
     <string name="air_quality_pm10_voice">PM ti</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_pm25">PM2,5</string>
-    <string name="air_quality_pm_explanations_consequences">Svevestøv er den mest skadelige formen for luftforurensning på grunn av dets evne til å trenge dypt inn i lungene og hjernen gjennom blodstrømmen, og forårsake helseproblemer som hjertesykdom, lungesykdom og tidlig død.</string>
     <string name="air_quality_o3_full">Bakkenær ozon (O₃)</string>
     <string name="air_quality_pm25_voice">PM to komma fem</string>
     <string name="air_quality_pm10">PM10</string>
-    <string name="air_quality_o3_info_introduction">Bakkenær ozon (O₃) er en viktig komponent i smog. Selv om det er det samme molekylet, kan bakkenær ozon være skadelig for menneskers helse, i motsetning til stratosfærisk ozon som beskytter jorden mot overflødig UV-stråling.</string>
     <string name="temperature_feels_like_short">Føles som</string>
     <string name="wind_short">Vind</string>
     <string name="uv_index_short">UV</string>
@@ -132,7 +127,6 @@
     <string name="common_weather_text_rain_snow_mixed">Sludd</string>
     <string name="common_weather_text_rain_freezing">Underkjølt regn</string>
     <string name="alert_source">Kilde: %s</string>
-    <string name="air_quality_no2_info_introduction">Nitrogendioksid (NO₂) er en kvelende og giftig rødbrun gass med en stinkende og bitter lukt.</string>
     <string name="settings_color_light">Lyst</string>
     <string name="settings_notifications_forecast_tomorrow_title">Varsling for morgendagens værmelding</string>
     <string name="settings_notifications_section_forecast">Værvarsel</string>
@@ -160,7 +154,6 @@
     <string name="about_contributors">Utviklere</string>
     <string name="notification_style_cities">Byer</string>
     <string name="widget_material_you_forecast">Material You – Værvarsel</string>
-    <string name="air_quality_co_info_introduction">Karbonmonoksid (CO), også kjent som kullos, er en giftig, antennelig og ikke-irriterende gass uten farge, lukt og smak.</string>
     <string name="pollen_mold">Mugg</string>
     <string name="common_weather_text_snow_light">Lett snø</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Kraftige sluddbyger</string>
@@ -294,13 +287,9 @@
     <string name="unit_mph_voice">Engelske mil i timen</string>
     <string name="unit_kn_voice">Knop</string>
     <string name="unit_kn">knop</string>
-    <string name="weather_data_by">Data fra %s</string>
-    <string name="weather_air_quality_data_by">Luftkvalitetsdata fra %s</string>
     <string name="settings_appearance_language_title">Språk</string>
     <string name="settings_units_precipitation">Nedbørsenhet</string>
     <string name="settings_main_background_animation_title">Bakgrunnsanimasjon</string>
-    <string name="weather_pollen_data_by">Pollendata fra %s</string>
-    <string name="weather_air_quality_and_pollen_data_by">Luftkvalitets- og pollendata fra %s</string>
     <string name="widget_trend_daily">Daglig utvikling</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatur som indikatorikon</string>
     <string name="settings_main_header_details_title">Detaljer i oppsummeringen</string>
@@ -334,9 +323,6 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Sømløs</string>
     <string name="common_weather_text_drizzle">Yr</string>
     <string name="unit_lpsqm_voice">Liter per kvadratmeter</string>
-    <string name="weather_minutely_data_by">Nedbørs direktedata fra %s</string>
-    <string name="weather_alert_data_by">Farevarseldata fra %s</string>
-    <string name="weather_normals_data_by">Temperaturnormaldata fra %s</string>
     <string name="settings_weather_sources_summary">Standard værkilde for nye lokasjoner, egne API-nøkler, andre kildeinnstillinger</string>
     <string name="settings_notifications">Varsler</string>
     <string name="settings_main_gravity_sensor_switch">Tyngdekraft sensor</string>
@@ -603,18 +589,13 @@
     <string name="ephemeris_moon_phase_waxing_crescent">Voksende halvmåne</string>
     <string name="settings_notifications_app_updates_check">Varsler om app oppdateringer</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornado eller vannsprut</string>
-    <string name="air_quality_o3_info_origin">Det dannes fra fotokjemiske reaksjoner med forurensninger som flyktige organiske forbindelser, karbonmonoksid og nitrogenoksider (NOₓ) som slippes ut fra kjøretøy og industri. På grunn av den fotokjemiske naturen ses de høyeste nivåene av ozon i perioder med sol.</string>
-    <string name="air_quality_co_info_consequences">Karbonmonoksid diffunderer over lungevevet og inn i blodet, noe som gjør det vanskelig for kroppens celler å binde seg til oksygen. Denne mangelen på oksygen skader vev og celler. Eksponering for karbonmonoksid kan forårsake pustevansker, utmattelse, svimmelhet og andre influensalignende symptomer. Eksponering for høye nivåer av karbonmonoksid kan være dødelig.</string>
     <string name="location_message_search_failed">Posisjonssøk mislyktes</string>
-    <string name="air_quality_so2_info_introduction">Svoveldioksid (SO₂) er en fargeløs giftig gass som er ansvarlig for lukten av brente fyrstikker.</string>
     <string name="pollen_level_1">Veldig Lav</string>
     <string name="daytime">Dagtid</string>
     <string name="nighttime">Natttid</string>
     <string name="humidity">Fuktighet</string>
     <string name="precipitation_intensity_medium">Medium</string>
     <string name="pollen_tree">Tre</string>
-    <string name="air_quality_no2_info_consequences">Eksponering for nitrogendioksid kan irritere luftveiene og forverre luftveissykdommer. I tillegg er NO₂ en viktig ozonforløper, en forurensning som er nært knyttet til astma og andre luftveissykdommer.</string>
-    <string name="air_quality_so2_info_origin">Det frigjøres naturlig ved vulkansk aktivitet og hovedsakelig avledet fra forbrenning av fossilt brensel til husholdningsoppvarming, industri og kraftproduksjon.</string>
     <string name="pollen_artemisia">Burot</string>
     <string name="pollen_betula">Bjørk</string>
     <string name="pollen_fraxinus">Ask</string>
@@ -626,7 +607,6 @@
     <string name="pollen_olea">Oliven tre</string>
     <string name="pollen_platanus">Platanlønn</string>
     <string name="pollen_level_3">Moderat</string>
-    <string name="pollen_tap_to_see_more">Trykk for å se mer…</string>
     <string name="ephemeris_sunrise_at">Soloppgang %s</string>
     <string name="pollen_poaeceae">Gress</string>
     <string name="pollen_level_2">Lav</string>
@@ -635,7 +615,6 @@
     <string name="weather_message_unsupported_feature">Kilden støtter ikke en av de forespurte funksjonene</string>
     <string name="weather_api_limit_reached_title">Grensen for API-forespørsler er nådd</string>
     <string name="location_search_no_results_advice">Sørg for at søket er stavet riktig og ikke for spesifikt. Alternativt kan du prøve en annen stedssøkekilde som kan gi andre resultater.</string>
-    <string name="air_quality_o3_info_consequences">Eksponering for overdreven ozon kan forårsake pusteproblemer, utløse astma, redusere lungefunksjonen og føre til lungesykdom.</string>
     <string name="location_results_by">Sted resultater av %s</string>
     <string name="location_message_reverse_geocoding_failed">Værkilden klarte ikke å finne et samsvarende sted</string>
     <string name="weather_api_unauthorized_title">API-tilgang uautorisert</string>
@@ -645,7 +624,6 @@
     <string name="humidity_dew_point">Fuktighet / Duggpunkt</string>
     <string name="weather_api_unauthorized_content">På enkelte værdatakilder må du oppgi din egen API-nøkkel. Hvis du allerede har oppgitt en, må du dobbeltsjekke API-nøkkelen du oppga.</string>
     <string name="location_message_updated">Plasseringen er oppdatert</string>
-    <string name="air_quality_no2_info_origin">Omgivelseskilder til NO₂ er et resultat av høytemperaturforbrenning av brensel i prosesser som brukes til oppvarming, transport, industri og kraftproduksjon. Husholdningskilder til nitrogenoksider (NOₓ) inkluderer utstyr som brenner drivstoff som ovner, peiser og gasskomfyrer og ovner.</string>
     <string name="cloud_cover">Skydekke</string>
     <string name="action_download">Last ned</string>
     <string name="dialog_permissions_location_title">Få tilgang til stedsinformasjon</string>
@@ -674,8 +652,6 @@
     <string name="ephemeris_moon_phase_new_moon">Nymåne</string>
     <string name="ephemeris_moon_phase_last_quarter">Siste kvarter</string>
     <string name="pollen_rumex">Engsyre</string>
-    <string name="air_quality_so2_info_consequences">Eksponering for SO₂ er assosiert med astma sykehusinnleggelser og legevaktbesøk.</string>
-    <string name="air_quality_co_info_origin">Det produseres ved ufullstendig forbrenning av karbonholdig brensel som ved, bensin, kull, naturgass og parafin i enkle ovner, åpne ilder, vekelamper, ovner, peiser. Den dominerende kilden til karbonmonoksid (CO) i luften er fra motorkjøretøyer.</string>
     <string name="pollen_urticaceae">Brennesle</string>
     <string name="pollen_level_5">Veldig Høyt</string>
     <string name="pollen_tilia">Lindetre</string>

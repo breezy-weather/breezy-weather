@@ -145,7 +145,6 @@
     <string name="settings_changes_apply_after_restart">Изменения вступят в силу после перезапуска</string>
     <string name="notification_running_in_background">Запущено в фоне для постоянного обновления</string>
     <string name="notification_updating_weather_data">Обновление погодных данных (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">Нажмите, чтобы увидеть больше…</string>
     <string name="message_tap_again_to_exit">Нажмите ещё раз для выхода</string>
     <!-- action -->
     <string name="alerts">Оповещения</string>
@@ -255,7 +254,6 @@
     <string name="unit_h">ч</string>
     <string name="unit_ppcm">/м³</string>
     <string name="location_search_weather_source">Источник погоды</string>
-    <string name="weather_air_quality_and_pollen_data_by">Данные о качестве воздуха предоставлены %s</string>
     <string name="locations">Местоположения</string>
     <string name="air_quality_level_5">Очень вредно</string>
     <string name="uv_index_3_5">Умеренный</string>
@@ -292,7 +290,6 @@
     <string name="ephemeris_moonrise_at">Восход луны в %s</string>
     <string name="ephemeris_moonset_at">Заход луны в %s</string>
     <string name="ephemeris_sunset_at">Закат солнца в %s</string>
-    <string name="weather_data_by">Данные предоставлены %s</string>
     <string name="uv_index_0_2">Низкий</string>
     <string name="pollen_ambrosia">Амброзия</string>
     <string name="ephemeris_sunrise_at">Восход солнца в %s</string>
@@ -427,17 +424,9 @@
     <string name="common_weather_text_snow_grains">Снежная крупа</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Средняя гроза</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="air_quality_pm_explanations_introduction">Твёрдые частицы или атмосферные твёрдые частицы представляют собой микроскопические частицы твердого или жидкого вещества, взвешенные в воздухе.</string>
-    <string name="air_quality_pm_explanations_consequences">Твёрдые частицы являются наиболее вредной формой загрязнения воздуха из-за их способности проникать глубоко в легкие и мозг из кровотока, вызывая проблемы со здоровьем, такие как болезни сердца, болезни легких и преждевременную смерть.</string>
     <string name="air_quality_o3_full">Приземный озон(O₃)</string>
-    <string name="air_quality_o3_info_introduction">Приземный озон (O₃) является основным компонентом смога. Хотя это та же самая молекула, приземный озон может быть вредным для здоровья человека, в отличие от стратосферного озона, который защищает землю от избыточного УФ-излучения.</string>
-    <string name="air_quality_o3_info_consequences">Воздействие чрезмерного количества озона может вызвать проблемы с дыханием, вызвать астму, снизить функциональность легких и привести к их заболеванию.</string>
     <string name="air_quality_no2_full">Двуокись азота (NO₂)</string>
-    <string name="air_quality_no2_info_introduction">Двуокись азота (NO₂) — удушливый ядовитый красновато-коричневый газ с характерным резким едким запахом.</string>
     <string name="air_quality_so2_full">Диоксид серы (SO₂)</string>
-    <string name="air_quality_so2_info_introduction">Диоксид серы (SO₂) — бесцветный токсичный газ, из-за которого появляется запах сгоревших спичек.</string>
-    <string name="air_quality_so2_info_origin">Он высвобождается естественным образом в результате вулканической деятельности и в основном образуется в результате сжигания ископаемого топлива для отопления жилых помещений, промышленности и производства электроэнергии.</string>
-    <string name="air_quality_so2_info_consequences">Воздействие SO₂ связано с госпитализацией из-за астмы и обращениями в отделение скорой помощи.</string>
     <string name="air_quality_co_full">Окись углерода (СО)</string>
     <string name="location_message_search_failed">Не удалось найти местоположение</string>
     <string name="location_message_permission_background_missing">Доступ к местоположению в фоновом режиме отсутствует</string>
@@ -467,14 +456,6 @@
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_no2">NO₂</string>
-    <string name="air_quality_pm_info_title">Твёрдые частицы (PM2.5 &amp; PM10)</string>
-    <string name="air_quality_pm_explanations_origin">Некоторые твёрдые частицы возникают естественным образом из-за вулканов, пылевых бурь, лесных пожаров и горящих полей, живой растительности и морских брызг. Человеческая деятельность также приводит к образованию значительного количества твердых частиц, например, дорожное движение и транспорт, промышленная деятельность, электростанции, строительные площадки, сжигание отходов или полей.</string>
-    <string name="air_quality_o3_info_origin">Он образуется в результате фотохимических реакций с такими загрязняющими веществами, как летучие органические соединения, окись углерода и оксиды азота (NOₓ), выбрасываемыми транспортными средствами и промышленностью. Из-за фотохимической природы самые высокие уровни озона наблюдаются в периоды солнечной погоды.</string>
-    <string name="air_quality_no2_info_origin">Окружающие источники NO₂ возникают в результате высокотемпературного сжигания топлива в таких процессах, как те, которые используются для отопления, транспорта, промышленности и производства электроэнергии. Бытовые источники оксидов азота (NOₓ) включают оборудование, сжигающее топливо, такое как печи, камины, газовые плиты и духовки.</string>
-    <string name="air_quality_no2_info_consequences">Воздействие диоксида азота может раздражать дыхательные пути и усугублять респираторные заболевания. Кроме того, NO₂ является важным предшественником озона, загрязняющим веществом, тесно связанным с астмой и другими респираторными заболеваниями.</string>
-    <string name="air_quality_co_info_introduction">Угарный газ (СО) — это ядовитый легковоспламеняющийся газ, который не имеет цвета, запаха, вкуса и не вызывает раздражения.</string>
-    <string name="air_quality_co_info_origin">Он образуется при неполном сгорании углеродистого топлива, такого как древесина, бензин, уголь, природный газ и керосин, в простых печах, открытом огне, фитильных лампах, печах, каминах. Основным источником угарного газа (СО) в окружающем воздухе являются автомобили.</string>
-    <string name="air_quality_co_info_consequences">Угарный газ диффундирует через ткани легких и попадает в кровоток, что затрудняет связывание клеток организма с кислородом. Недостаток кислорода повреждает ткани и клетки. Воздействие угарного газа может вызвать затрудненное дыхание, истощение, головокружение и другие симптомы гриппа. Воздействие высоких уровней угарного газа может быть смертельным.</string>
     <string name="location_search_no_results_advice">Убедитесь, что поисковый запрос написан правильно и не слишком специфичен. Вы также можете попробовать использовать другой источник поиска местоположения, который может дать другие результаты.</string>
     <string name="location_search_no_results">%1$s не может найти %2$s</string>
     <string name="settings_background_updates_refresh_title">Частота обновления</string>
@@ -537,11 +518,7 @@
     <string name="pollen_betula">Берёза</string>
     <string name="pollen_level_3">Средний</string>
     <string name="action_delete">Удалить</string>
-    <string name="weather_pollen_data_by">Информация об аллергенах предоставлена %s</string>
-    <string name="weather_alert_data_by">Оповещения о погоде предоставлены %s</string>
     <string name="weather_message_invalid_location">Неверное местоположение, удалите его и добавьте заново</string>
-    <string name="weather_air_quality_data_by">Информация о качестве воздуха предоставлена %s</string>
-    <string name="weather_minutely_data_by">Данные прогноза осадков предоставлены %s</string>
     <string name="wind_gusts">Порывы ветра</string>
     <string name="about_dependencies">Зависимости</string>
     <string name="precipitation_nowcasting">Поминутные осадки</string>
@@ -588,7 +565,6 @@
     <string name="temperature_normals">Температурные нормы</string>
     <string name="temperature_normal_short">Норма</string>
     <string name="settings_main_threshold_lines_on_charts">Пороговые линии на графиках</string>
-    <string name="weather_normals_data_by">Данные о температурных нормах предоставлены %s</string>
     <string name="settings_widgets_broadcast_send_data_title">Отправить данные о погоде в %s</string>
     <string name="pollen_and_mold">Пыльца и плесень</string>
     <string name="settings_color_app">Как в приложении</string>
@@ -691,7 +667,6 @@
     <string name="common_weather_text_smoke">Дым</string>
     <string name="settings_unavailable_no_animations">Недоступно, сначала включите анимацию в настройках Android</string>
     <string name="current_weather">Текущая погода</string>
-    <string name="weather_current_data_by">Данные о текущей погоде предоставлены %s</string>
     <string name="common_weather_text_humid">Влажно</string>
     <string name="common_weather_text_mist">Мгла</string>
     <string name="common_weather_text_dry">Сухо</string>
@@ -718,7 +693,6 @@
     <string name="common_weather_text_tornado">Торнадо</string>
     <string name="forecast">Прогноз</string>
     <string name="settings_weather_source_current_position_disclaimer">После первого обновления для вашего местоположения могут стать доступны дополнительные источники погоды.</string>
-    <string name="weather_forecast_data_by">Прогноз предоставлен %s</string>
     <string name="settings_weather_source_not_configured">%s (не настроено)</string>
     <string name="common_weather_text_blowing_snow">Валящий снег</string>
     <string name="common_weather_text_drifting_snow">Позёмка</string>
@@ -732,7 +706,6 @@
     <string name="pollen_atriplex">Лебеда</string>
     <string name="location_custom_name">Пользовательское название</string>
     <string name="location_last_updated_x">Последнее обновление %s</string>
-    <string name="location_reverse_geocoding_by">Поиск адреса %s</string>
     <string name="location_reverse_geocoding">Поиск адреса</string>
     <string name="location_has_active_alerts">Активное уведомление</string>
     <string name="action_grant_permission">Нажмите, чтобы предоставить разрешение.</string>

@@ -63,23 +63,11 @@
     <string name="air_quality_pm25">KD2,5</string>
     <string name="air_quality_pm10">KD10</string>
     <string name="air_quality_pm10_voice">Kietosios dalelės dešimt mikronų</string>
-    <string name="air_quality_pm_info_title">Kietosios dalelės (KD2,5 ir KD10)</string>
-    <string name="air_quality_pm_explanations_introduction">Kietosios dalelės yra mikroskopinės kietos dalelės ir skysčio lašeliai kybantys ore.</string>
     <string name="air_quality_o3_full">Pažemio ozonas (O₃)</string>
-    <string name="air_quality_o3_info_introduction">Pažemio ozonas (O₃) yra sudaro didėlę dalį smogo. Nors jo molekulė visiškai nesiskiria nuo ozono kuris yra žemės stratosferoje, pažemio ozonas gali būti kenksmingas žmonių sveikatai, skirtingai nei stratosferos ozonas, kuris randasi daug aukščiau nuo žemės paviršiaus ir apsaugo žemę nuo perteklinės UV spinduliuotės.</string>
-    <string name="air_quality_o3_info_origin">Pažemio ozonas susidaro fotocheminių reakcijų metu tarp teršalų tokių kaip: anglies monoksidas, azoto oksidai (NOₓ), kurie yra išmetami transporto priemonių ir įvairių pramonės šakų. Dėl fotocheminės prigimties didžiausias ozono kiekis matomas saulėtų orų laikotarpiais.</string>
-    <string name="air_quality_o3_info_consequences">Didelis ozono kiekis gali sukelti kvėpavimo sutrikimus, astmą ir kitas plaučių ligas.</string>
     <string name="air_quality_no2_full">Azoto dioksidas (NO₂)</string>
-    <string name="air_quality_no2_info_introduction">Azoto dioksidas (NO₂) yra dusinančios, toksiškos rausvai rudos spalvos dujos, pasižyminčios aštriu ir aitriu kvapu.</string>
-    <string name="air_quality_no2_info_consequences">Ilgas kvėpavimas azoto dioksido dujų gali sudirginti kvėpavimo takus, bei pabloginti esamas kvėpavimo takų ligas. Be to, NO₂ vaidina svarbų vaidmenį troposferinio ozono susidaryme, šis teršalas, glaudžiai susijęs su astma ir kitomis kvėpavimo takų ligomis.</string>
-    <string name="air_quality_so2_info_introduction">Sieros dioksidas (SO₂) yra bespalvės nuodingos dujos, duodančios sudegusiems degtukams jų kvapą.</string>
-    <string name="air_quality_so2_info_consequences">SO₂ dujos dažnai siejamos su astmos išsivystymu, ligoninių vizitais ir apsilankymais skubiosios pagalbos skyriuje.</string>
     <string name="air_quality_co_full">Anglies monoksidas (CO)</string>
-    <string name="air_quality_co_info_introduction">Anglies monoksidas (CO) yra nuodingos, degios dujos, kurios yra bespalvės, bekvapės, beskonės ir nedirginančios.</string>
-    <string name="air_quality_co_info_origin">Jos išgaunamas nepilnai deginant anglinį kurą, pvz., medieną, benziną, anglį, gamtines dujas ir žibalą paprastose krosnyse, atvirose laužuose, žibalinėse lempose su dagčiu, krosnyse, židiniuose. Pagrindinis anglies monoksido (CO) šaltinis aplinkoje yra motorinės transporto priemonės.</string>
     <string name="pollen_ambrosia">Ambrozijos</string>
     <string name="pollen_tree">Medžių</string>
-    <string name="pollen_tap_to_see_more">Norėdami daugiau pamatyti spauskite čia…</string>
     <string name="ephemeris_moon_phase_new_moon">Jaunatis</string>
     <string name="ephemeris_moon_phase_first_quarter">Priešpilnis</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Augantis pusmėnulis</string>
@@ -107,8 +95,6 @@
     <string name="weather_kind_thunder">Žaibai</string>
     <string name="weather_kind_thunderstorm">Perkūnija</string>
     <string name="weather_kind_wind">Vėjas</string>
-    <string name="weather_data_by">Duomenys iš %s</string>
-    <string name="weather_air_quality_and_pollen_data_by">Oro kokybės ir žiedadulkių duomenys iš %s</string>
     <string name="weather_message_data_refresh_failed">Duomenų atnaujinimas nepavyko</string>
     <string name="weather_api_limit_reached_title">Pasiektas API prašymų limitas</string>
     <string name="weather_api_unauthorized_title">Prieiga prie API neleista</string>
@@ -154,12 +140,7 @@
     <string name="air_quality_o3_voice">Ozonas</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Anglies monoksidas</string>
-    <string name="air_quality_pm_explanations_origin">Kietosios dalelės išsiskiria natūraliai iš ugnikalnių, dykumų, miškų ir žolės gaisrų, augalijos ir jūros purslų. Žmogaus veikla, pvz., iškastinio kuro deginimas vidaus degimo varikliuose, kuro deginimas elektrinėse, įvairūs pramonės procesai, generuoja didžiulius kietųjų dalelių kiekius.</string>
-    <string name="air_quality_pm_explanations_consequences">Kietosios dalelės daro didžiausią neigiamą poveikį žmogaus sveikatai iš visų oro taršos tipų. Jos gali prasiskverbti giliai į plaučius ir sukelti kvėpavimo takų ligas, bei didinti riziką susirgti plaučių vėžiu.</string>
-    <string name="air_quality_no2_info_origin">Pagrindinis NO₂ šaltinis yra aukštoje temperatūroje deginamas kuras naudojamas: šildymo, transporto, pramonės ir elektros energijos gamybos tikslais. Buitiniai azoto oksidų (NOₓ) šaltiniai yra krosnys, židiniai, dujinės viryklės ir orkaitės.</string>
     <string name="air_quality_so2_full">Sieros dioksidas (SO₂)</string>
-    <string name="air_quality_so2_info_origin">Jis natūraliai išsiskiria dėl vulkaninės veiklos ir daugiausia gaunamas deginant iškastinį kurą namų šildymui, pramonei ir elektros energijos gamybai.</string>
-    <string name="air_quality_co_info_consequences">Anglies monoksidas per plaučių audinius patenka į kraują ir trukdo deguonies įsisavinimui, todėl organizmo ląstelėms sunku prisijungti deguonį. Šis deguonies trūkumas pažeidžia audinius ir ląsteles. Anglies monoksido poveikis gali sukelti kvėpavimo sutrikimus, išsekimą, galvos svaigimą ir kitus į gripą panašius simptomus. Didelis anglies monoksido kiekis kraujyje gali būti mirtinas.</string>
     <string name="pollen_poaeceae">Žolių</string>
     <string name="pollen_mold">Grybeliniai</string>
     <string name="ephemeris_moon_phase_full_moon">Pilnatis</string>
@@ -453,10 +434,6 @@
     <string name="settings_weather_sources_summary">Numatytas orų šaltinis naujoms vietovėms, pasirinktiniai API raktai, kiti šaltinio nustatymai</string>
     <string name="weather_message_invalid_location">Netinkama vieta, ištrinkite ją ir pridėkite iš naujo</string>
     <string name="wind_gusts">Vėjo gūsiai</string>
-    <string name="weather_air_quality_data_by">Oro kokybės duomenys pagal %s</string>
-    <string name="weather_pollen_data_by">Duomenys apie alergenus pagal %s</string>
-    <string name="weather_minutely_data_by">Kritulių prognozės duomenys pagal %s</string>
-    <string name="weather_alert_data_by">Įspėjimo duomenys pagal %s</string>
     <string name="settings_source_default_value">Numatytoji reikšmė (nepakeista)</string>
     <string name="settings_main_cards_other_element_animations_switch">Kitų elementų animacija</string>
     <string name="temperature_degree_day_heating">Šildymo laipsnių diena</string>
@@ -495,7 +472,6 @@
     <string name="temperature_average_short">Vid.</string>
     <string name="temperature_normal_short">Normalus</string>
     <string name="temperature_normals">Temperatūros normos</string>
-    <string name="weather_normals_data_by">Temperatūros normų duomenys pagal %s</string>
     <string name="settings_units_speed">Greičio vienetas</string>
     <string name="settings_main_background_animation_disabled">Išjungta</string>
     <string name="settings_notifications_forecast_tomorrow_title">Kitos dienos prognozės pranešimas</string>
@@ -689,7 +665,6 @@
     <string name="message_outdated_server_data">Pasenę duomenys, gauti iš serverio</string>
     <string name="message_server_insecure_title">Nepavyko užmegzti saugaus ryšio</string>
     <string name="current_weather">Dabartiniai orai</string>
-    <string name="weather_current_data_by">Dabartiniai orų duomenys pagal %s</string>
     <string name="common_weather_text_mist">Migla</string>
     <string name="common_weather_text_cool">Vėsu</string>
     <string name="common_weather_text_glaze">Plikledis</string>
@@ -716,7 +691,6 @@
     <string name="wind_direction_NW">Šiaurės vakarų</string>
     <string name="pollen_picea">Eglė</string>
     <string name="pollen_ulmus">Guoba</string>
-    <string name="location_reverse_geocoding_by">Adresų paieška pagal %s</string>
     <string name="weather_source_continent_north_america">Šiaurės Amerika</string>
     <string name="location_custom_name">Pasirinktinis vardas</string>
     <string name="location_reverse_geocoding">Adreso paieška</string>
@@ -747,7 +721,6 @@
     <string name="pollen_acer">Klevas</string>
     <string name="pollen_alternaria">Sausgrybis</string>
     <string name="pollen_pinus">Pušis</string>
-    <string name="weather_forecast_data_by">Prognozės duomenys pagal %s</string>
     <string name="common_weather_text_dust">Dulkės</string>
     <string name="location_message_location_access_off">Vietos prieiga išjungta</string>
 </resources>

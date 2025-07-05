@@ -66,10 +66,6 @@
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_pm10_voice">PM dez</string>
     <string name="air_quality_so2">SO₂</string>
-    <string name="air_quality_pm_info_title">Partículas (PM2.5 &amp; PM10)</string>
-    <string name="air_quality_pm_explanations_consequences">As partículas son a forma máis nociva de contaminación atmosférica debido á súa capacidade de penetrar profundamente nos pulmóns e no cerebro desde a corrente sanguínea, causando problemas de saúde como enfermidades cardíacas, pulmonares e morte prematura.</string>
-    <string name="air_quality_o3_info_origin">Fórmase a partir de reaccións fotoquímicas con contaminantes como os compostos orgánicos volátiles, o monóxido de carbono e os óxidos de nitróxeno (NOx) emitidos polos vehículos e a industria. Debido á súa natureza fotoquímica, os niveis máis altos de ozono obsérvanse durante os períodos de tempo soleado.</string>
-    <string name="air_quality_o3_info_consequences">A exposición excesiva ao ozono pode causar problemas respiratorios, provocar asma, reducir a capacidade pulmonar e provocar enfermidades pulmonares.</string>
     <string name="air_quality_no2_full">Dióxido de nitróxeno (NO₂)</string>
     <string name="dialog_time_picker_select_time">Elixir unha hora</string>
     <string name="dialog_time_picker_input_time">Introducir unha hora</string>
@@ -134,16 +130,12 @@
     <string name="air_quality_co_voice">Monóxido de carbono</string>
     <string name="air_quality_level_6_description">A exposición ao aire, aínda que sexa por uns poucos minutos, pode provocar graves efectos na saúde de todos. Evite as actividades ao aire libre.</string>
     <string name="air_quality_o3_voice">Ozono</string>
-    <string name="air_quality_pm_explanations_introduction">As partículas ou material particulado atmosférico son partículas microscópicas de materia sólida ou líquida suspendidas no aire.</string>
-    <string name="air_quality_pm_explanations_origin">Algunhas partículas prodúcense de forma natural, orixinadas por volcáns, tormentas de po, incendios forestais e de prados, vexetación viva e rocío mariño. As actividades humanas tamén xeran cantidades significativas de partículas, como o tráfico e o transporte, as actividades industriais, as centrais eléctricas, as obras de construción, a queima de residuos ou os campos de cultivo.</string>
     <string name="daily_today_short">Hoxe</string>
     <string name="daily_tomorrow_short">Mña</string>
     <string name="daily_yesterday_short">Onte</string>
     <string name="temperature_apparent">Aparente</string>
     <string name="alert_source">Fonte: %s</string>
     <string name="air_quality_o3_full">Ozono troposférico (O₃)</string>
-    <string name="air_quality_o3_info_introduction">O ozono troposférico/a nivel do chan (O₃) é un dos compoñentes principais do smog. Aínda que se trate da mesma molécula, o ozono troposférico pode ser nocivo para a saúde humana, a diferenza do ozono estratosférico, que protexe a Terra do exceso de radiación ultravioleta.</string>
-    <string name="air_quality_no2_info_origin">As fontes ambientais de NO2 resultan da combustión de combustibles a alta temperatura en procesos como os utilizados para a calefacción, o transporte, a industria e a xeración de enerxía. As fontes domésticas de óxidos de nitróxeno (NOx) inclúen equipos que queiman combustibles como fornos, chemineas e estufas e fornos de gas.</string>
     <string name="dialog_permissions_location_background_title">Acceso á localización en segundo plano</string>
     <string name="dialog_permissions_location_background_content">Para permitirlle á aplicación o acceso á localización en segundo plano, por favor seleccione o acceso á localización “Todo o tempo”.</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Cambiar á entrada de texto</string>
@@ -191,7 +183,6 @@
     <string name="pollen_level_3">Moderado</string>
     <string name="pollen_level_4">Alto</string>
     <string name="pollen_level_5">Moi alto</string>
-    <string name="pollen_tap_to_see_more">Preme para ver máis…</string>
     <string name="ephemeris_moon_phase_new_moon">Lúa nova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Crecente</string>
     <string name="ephemeris_moon_phase_first_quarter">Cuarto crecente</string>
@@ -209,10 +200,6 @@
     <string name="visibility_short">Visibilidade</string>
     <string name="dew_point">Punto de resío</string>
     <string name="daytime">Día</string>
-    <string name="weather_data_by">Datos por %s</string>
-    <string name="weather_air_quality_and_pollen_data_by">Datos da calidade do aire e pole por %s</string>
-    <string name="weather_alert_data_by">Datos da alerta por %s</string>
-    <string name="weather_normals_data_by">Datos da temperatura por %s</string>
     <string name="weather_message_data_refresh_failed">Fallo ao actualizar os datos</string>
     <string name="sunshine_duration">Horas de sol</string>
     <string name="dew_point_short">Punto de resío</string>
@@ -246,10 +233,6 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Xibosa minguante</string>
     <string name="ephemeris_sunrise_at">Amencer ás %s</string>
     <string name="ephemeris_sunset_at">Posta de sol ás %s</string>
-    <string name="weather_air_quality_data_by">Datos da calidade do aire por %s</string>
-    <string name="weather_pollen_data_by">Datos do pole por %s</string>
-    <string name="weather_current_data_by">Datos meteorolóxicos actuais por %s</string>
-    <string name="weather_forecast_data_by">Datos do prognóstico por %s</string>
     <string name="weather_api_key_required_missing_content">Para usar esta fonte, precisas unha clave API.</string>
     <string name="weather_source_continent_europe">Europa</string>
     <string name="weather_source_continent_north_america">América do norte</string>
