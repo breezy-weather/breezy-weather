@@ -101,9 +101,7 @@
     <string name="widget_label_text_color">Szövegszín</string>
     <string name="widget_label_text_size">Szövegméret</string>
     <string name="widget_label_clock_font">Óra betűtípusa</string>
-    <string name="widget_custom_subtitle_explanation">Akármit beírhat, de figyeljen oda a szöveg hosszúságára. Ha szeretne időjárásadatokat megjeleníteni, használja a $ jelet a kulcsszóra való hivatkozáshoz.
-\n
-\nPéldául, „Jelenlegi időjárás: $cw$” így fog megjelenni: „Jelenlegi időjárás: Tiszta égbolt”.</string>
+    <string name="widget_custom_subtitle_explanation">Akármit beírhat, de figyeljen oda a szöveg hosszúságára. Ha szeretne időjárásadatokat megjeleníteni, használja a $ jelet a kulcsszóra való hivatkozáshoz. \n \nPéldául a „Jelenlegi időjárás: $cw$” így fog megjelenni: „Jelenlegi időjárás: Tiszta égbolt”.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Jelenlegi időjárás</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Jelenlegi hőmérséklet (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Jelenlegi hőmérséklet (°)</string>
@@ -235,7 +233,7 @@
     <string name="settings_icon_packs_weather_icon_light">Világos ikon</string>
     <string name="settings_location_access_permission_already_granted">Az engedély már meg van adva</string>
     <string name="widget_subtitle_data_aqi">Légszennyezettség</string>
-    <string name="widget_subtitle_data_custom">Egyedi</string>
+    <string name="widget_subtitle_data_custom">Egyéni</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="weather_message_unsupported_feature">A forrás nem támogatja a kért funkciók valamelyikét</string>
