@@ -75,7 +75,7 @@ class HourlyPressureAdapter(
             mPolylineAndHistogramView.setData(
                 buildPressureArrayForItem(mPressures, position),
                 null,
-                hourly.pressure?.let { mPressureUnit.getValueTextWithoutUnit(it) },
+                hourly.pressure?.let { mPressureUnit.getValueTextWithoutUnit(activity, it) },
                 null,
                 mHighestPressure,
                 mLowestPressure,
@@ -193,7 +193,7 @@ class HourlyPressureAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 PressureUnit.NORMAL.toFloat(),
-                mPressureUnit.getValueTextWithoutUnit(PressureUnit.NORMAL),
+                mPressureUnit.getValueTextWithoutUnit(activity, PressureUnit.NORMAL),
                 activity.getString(R.string.temperature_normal_short),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

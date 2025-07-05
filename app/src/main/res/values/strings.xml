@@ -3,7 +3,7 @@
     <!-- App -->
     <string name="app_name">Weather</string>
     <string name="breezy_weather" translatable="false">Breezy Weather</string>
-    <!-- Card names -->
+    <!-- Block names -->
     <string name="forecast">Forecast</string>
     <string name="daily_forecast">Daily forecast</string>
     <string name="hourly_forecast">Hourly forecast</string>
@@ -15,6 +15,8 @@
     <string name="pollen">Pollen</string>
     <string name="pollen_and_mold">Pollen &amp; mold</string>
     <string name="ephemeris">Sun &amp; moon</string>
+    <string name="ephemeris_sun">Sun</string>
+    <string name="ephemeris_moon">Moon</string>
     <string name="ephemeris_about">About rise and set times</string>
     <string name="ephemeris_about_rise">The rise time is when the sun or moon fully appears above the horizon.</string>
     <string name="ephemeris_about_set">The set time is when the sun or moon completely disappears below the horizon.</string>
@@ -87,6 +89,7 @@
     <string name="wind_speed_about_description">Wind speed is measured by averaging wind speeds over a period of time. Gusts are sudden bursts of wind typically lasting under 20 seconds.</string>
     <string name="wind_gusts">Wind gusts</string>
     <string name="wind_gusts_short">Gusts</string>
+    <string name="wind_origin">Origin</string>
     <string name="wind_direction">Wind direction</string>
     <string name="wind_direction_variable">Variable</string>
     <string name="wind_direction_N">North</string>
@@ -299,7 +302,9 @@
     <string name="ephemeris_moonset_at">Moonset at %s</string>
     <!-- Other weather details vocabulary -->
     <string name="daytime">Daytime</string>
+    <string name="daytime_short">Day</string>
     <string name="nighttime">Nighttime</string>
+    <string name="nighttime_short">Night</string>
     <string name="nighttime_details">Begins in the evening and lasts until dawn next day</string>
     <string name="sunshine">Sunshine</string>
     <string name="sunshine_duration">Sunshine duration</string>
@@ -751,13 +756,14 @@
     <string name="settings_units_speed">Speed unit</string>
     <string name="settings_units_pressure">Pressure unit</string>
     <string name="settings_main">Main screen</string>
-    <string name="settings_main_summary">Cards order, items displayed, animations</string>
+    <string name="settings_main_summary">Blocks order, items displayed, animations</string>
     <!-- Data is plural here -->
     <string name="settings_main_section_displayed_data">Displayed data</string>
-    <string name="settings_main_cards_title">Cards</string>
+    <string name="settings_main_cards_title">Blocks</string>
     <string name="settings_main_daily_trends_title">Daily trends</string>
     <string name="settings_main_hourly_trends_title">Hourly trends</string>
-    <string name="settings_main_header_details_title">Details in header</string>
+    <!-- TODO: Obsolete -->
+    <string name="settings_main_header_details_title" translatable="false">Details in header</string>
     <string name="settings_main_section_options">Options</string>
     <string name="settings_main_threshold_lines_on_charts">Threshold lines on charts</string>
     <string name="settings_main_section_animations">Animations</string>
@@ -765,7 +771,7 @@
     <string name="settings_main_background_animation_enabled">Enabled</string>
     <string name="settings_main_background_animation_disabled">Disabled</string>
     <string name="settings_main_gravity_sensor_switch">Gravity sensor</string>
-    <string name="settings_main_cards_fade_in_switch">Cards fade in</string>
+    <string name="settings_main_cards_fade_in_switch">Blocks fade in</string>
     <!-- Elements = temperature in header, AQI, sun &amp; moon arc, etc -->
     <string name="settings_main_cards_other_element_animations_switch">Other element animations</string>
     <string name="settings_notifications">Notifications</string>
@@ -1302,6 +1308,7 @@
     <!-- Keyword shown when data is missing, for example requesting humidity in widgets but data doesn’t exist -->
     <string name="null_data_text">N/A</string>
     <string name="colon_separator" translatable="false">:\u0020</string>
+    <string name="dot_separator" translatable="false">\u0020•\u0020</string>
     <string name="parenthesis" translatable="false">(%s)</string>
     <string name="comma_separator" translatable="false">,\u0020</string>
 </resources>

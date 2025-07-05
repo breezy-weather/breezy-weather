@@ -16,13 +16,18 @@
 
 package org.breezyweather.ui.main.layouts
 
-import android.view.ViewGroup
-import android.view.ViewGroup.MarginLayoutParams
-import androidx.annotation.Px
+import android.content.Context
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
 
-class MainLayoutManager : RecyclerView.LayoutManager() {
+/**
+ * TODO: What's the point of this class?
+ *  Why can't we use GridLayoutManager directly?
+ */
+class MainLayoutManager(
+    context: Context,
+) : GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
+/* ) : LinearLayoutManager(context, RecyclerView.VERTICAL, false) {
     @get:Px
     @Px
     var scrollOffset = 0
@@ -121,4 +126,4 @@ class MainLayoutManager : RecyclerView.LayoutManager() {
     override fun computeVerticalScrollRange(state: RecyclerView.State) = mMeasuredHeight
 
     override fun computeVerticalScrollExtent(state: RecyclerView.State) = height
-}
+}*/

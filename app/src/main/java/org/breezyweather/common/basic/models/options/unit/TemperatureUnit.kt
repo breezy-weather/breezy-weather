@@ -66,8 +66,9 @@ enum class TemperatureUnit(
     )!!
 
     override fun getValueTextWithoutUnit(
+        context: Context,
         valueInDefaultUnit: Double,
-    ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, 0)!!
+    ) = Utils.getValueTextWithoutUnit(context, this, valueInDefaultUnit, 0)!!
 
     override fun getVoice(context: Context) = Utils.getVoice(context, this)
 
@@ -89,7 +90,7 @@ enum class TemperatureUnit(
         context = context,
         enum = this,
         value = valueInDefaultUnit,
-        decimalNumber = decimalNumber,
+        precision = decimalNumber,
         rtl = context.isRtl
     )
 
@@ -102,7 +103,7 @@ enum class TemperatureUnit(
         context = context,
         enum = this,
         value = value,
-        decimalNumber = 1,
+        precision = 1,
         rtl = rtl,
         isValueInDefaultUnit
     )
@@ -114,10 +115,11 @@ enum class TemperatureUnit(
         BidiFormatter
             .getInstance()
             .unicodeWrap(
-                Utils.formatDouble(getDegreeDayValueWithoutUnit(valueInDefaultUnit), 1)
+                Utils.formatDouble(context, getDegreeDayValueWithoutUnit(valueInDefaultUnit), 1)
             ) + "\u202f" + Utils.getName(context, this)
     } else {
         Utils.formatDouble(
+            context,
             getDegreeDayValueWithoutUnit(valueInDefaultUnit),
             1
         ) + "\u202f" + Utils.getName(context, this)
@@ -131,7 +133,7 @@ enum class TemperatureUnit(
         context = context,
         enum = this,
         value = valueInDefaultUnit,
-        decimalNumber = 1,
+        precision = 1,
         rtl = rtl
     )
 
@@ -170,12 +172,14 @@ enum class TemperatureUnit(
             .getInstance()
             .unicodeWrap(
                 Utils.formatDouble(
+                    context,
                     if (isValueInDefaultUnit) getValueWithoutUnit(value) else value,
                     decimalNumber
                 )
             ) + getShortName(context)
     } else {
         Utils.formatDouble(
+            context,
             if (isValueInDefaultUnit) getValueWithoutUnit(value) else value,
             decimalNumber
         ) + getShortName(context)

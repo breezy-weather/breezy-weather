@@ -873,7 +873,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
         initPerLocationSettingsView()
     }
 
-    override fun onOpenInOtherAppIconClicked() {
+    fun onOpenInOtherAppIconClicked() {
         viewModel.currentLocation.value?.location?.let {
             try {
                 IntentHelper.startGeoActivity(this@MainActivity, it)
@@ -886,10 +886,6 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
 
     override fun onManageIconClicked() {
         setManagementFragmentVisibility(!isOrWillManagementFragmentVisible)
-    }
-
-    override fun onSettingsIconClicked() {
-        IntentHelper.startSettingsActivity(this)
     }
 
     // management fragment callback.

@@ -28,7 +28,6 @@ import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
-import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
@@ -63,10 +62,15 @@ class SettingsManager private constructor(
         const val DEFAULT_CARD_DISPLAY = "precipitation_nowcast" +
             "&daily_overview" +
             "&hourly_overview" +
+            "&precipitation" +
+            "&wind" +
             "&air_quality" +
             "&pollen" +
-            "&sunrise_sunset" +
-            "&live"
+            "&humidity" +
+            "&uv" +
+            "&visibility" +
+            "&pressure" +
+            "&sunrise_sunset"
         const val DEFAULT_DAILY_TREND_DISPLAY = "temperature" +
             "&air_quality" +
             "&wind" +
@@ -319,27 +323,6 @@ class SettingsManager private constructor(
         get() = HourlyTrendDisplay
             .toHourlyTrendDisplayList(
                 config.getString("hourly_trend_display", DEFAULT_HOURLY_TREND_DISPLAY)
-            )
-            .toMutableList()
-
-    var detailDisplayList: List<DetailDisplay>
-        set(value) {
-            config
-                .edit()
-                .putString("details_display", DetailDisplay.toValue(value))
-                .apply()
-            notifySettingsChanged()
-        }
-        get() = DetailDisplay
-            .toDetailDisplayList(
-                config.getString("details_display", DEFAULT_DETAILS_DISPLAY)
-            )
-            .toMutableList()
-
-    val detailDisplayUnlisted: List<DetailDisplay>
-        get() = DetailDisplay
-            .toDetailDisplayUnlisted(
-                config.getString("details_display", DEFAULT_DETAILS_DISPLAY)
             )
             .toMutableList()
 

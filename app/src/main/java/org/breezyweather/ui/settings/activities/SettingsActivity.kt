@@ -87,9 +87,6 @@ class SettingsActivity : GeoActivity() {
     private val hourlyTrendDisplayState = mutableStateOf(
         SettingsManager.getInstance(this).hourlyTrendDisplayList
     )
-    private val detailsDisplayState = mutableStateOf(
-        SettingsManager.getInstance(this).detailDisplayList
-    )
     private val notificationEnabledState = mutableStateOf(
         SettingsManager.getInstance(this).isWidgetNotificationEnabled
     )
@@ -133,11 +130,6 @@ class SettingsActivity : GeoActivity() {
             val hourlyTrendDisplayList = SettingsManager.getInstance(this).hourlyTrendDisplayList
             if (hourlyTrendDisplayState.value != hourlyTrendDisplayList) {
                 hourlyTrendDisplayState.value = hourlyTrendDisplayList
-            }
-
-            val detailsDisplayList = SettingsManager.getInstance(this).detailDisplayList
-            if (detailsDisplayState.value != detailsDisplayList) {
-                detailsDisplayState.value = detailsDisplayList
             }
 
             val notificationEnabled = SettingsManager.getInstance(this).isWidgetNotificationEnabled
@@ -262,7 +254,6 @@ class SettingsActivity : GeoActivity() {
                     cardDisplayList = remember { cardDisplayState }.value.toImmutableList(),
                     dailyTrendDisplayList = remember { dailyTrendDisplayState }.value.toImmutableList(),
                     hourlyTrendDisplayList = remember { hourlyTrendDisplayState }.value.toImmutableList(),
-                    detailDisplayList = remember { detailsDisplayState }.value.toImmutableList(),
                     updateWidgetIfNecessary = { context: Context ->
                         scope.launch {
                             refreshHelper.updateWidgetIfNecessary(context)

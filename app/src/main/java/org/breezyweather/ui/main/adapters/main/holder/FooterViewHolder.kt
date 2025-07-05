@@ -62,14 +62,17 @@ import org.breezyweather.common.extensions.splitKeeping
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.source.resourceName
 import org.breezyweather.ui.common.composables.AlertDialogLink
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import org.breezyweather.ui.theme.weatherView.WeatherViewController
 
 class FooterViewHolder(
     private val composeView: ComposeView,
@@ -98,6 +101,7 @@ class FooterViewHolder(
         location: Location,
         modifier: Modifier = Modifier,
     ) {
+        val delegate = ThemeManager.getInstance(context).weatherThemeDelegate
         val dialogOpenState = remember { mutableStateOf(false) }
         val dialogLinkOpenState = remember { mutableStateOf(false) }
         val linkToOpen = rememberSaveable { mutableStateOf("") }
@@ -116,7 +120,7 @@ class FooterViewHolder(
 
         Row(
             modifier = modifier
-                .padding(dimensionResource(R.dimen.normal_margin))
+                .padding(dimensionResource(R.dimen.normal_margin).div(2))
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
@@ -147,11 +151,17 @@ class FooterViewHolder(
                         } else {
                             append(it)
                         }
-                        append(" · ")
+                        append(context.getString(R.string.dot_separator))
                         withLink(moreClickableLinkAnnotation) { append(stringResource(R.string.action_more)) }
                     } ?: withLink(moreClickableLinkAnnotation) { append(stringResource(R.string.data_sources)) }
                 },
-                color = Color.White,
+                color = Color(
+                    delegate.getOnBackgroundColor(
+                        context,
+                        WeatherViewController.getWeatherKind(location),
+                        WeatherViewController.isDaylight(location)
+                    )
+                ),
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold
             )

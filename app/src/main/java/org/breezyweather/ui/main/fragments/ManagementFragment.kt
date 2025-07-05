@@ -24,6 +24,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -51,6 +52,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
@@ -71,6 +73,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -180,6 +183,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     private fun ContentView() {
         ensureResourceProvider()
 
+        val activity = LocalActivity.current
         val validLocationListState = viewModel.validLocationList.collectAsState()
         var notificationDismissed by remember { mutableStateOf(false) }
         var notificationAppUpdateCheckDismissed by remember { mutableStateOf(false) }
@@ -199,8 +203,18 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             topBar = {
                 BWCenterAlignedTopAppBar(
                     title = stringResource(R.string.locations),
-                    onBackPressed = {
-                        (requireActivity() as MainActivity).setManagementFragmentVisibility(false)
+                    actions = {
+                        IconButton(
+                            onClick = {
+                                activity?.let { IntentHelper.startSettingsActivity(it) }
+                            }
+                        ) {
+                            Icon(
+                                painterResource(R.drawable.ic_settings),
+                                contentDescription = stringResource(R.string.action_settings),
+                                tint = MaterialTheme.colorScheme.onSurface
+                            )
+                        }
                     },
                     windowInsets = WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
                 )

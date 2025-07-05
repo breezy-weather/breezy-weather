@@ -16,7 +16,6 @@
 
 package org.breezyweather.ui.details.components
 
-import android.text.BidiFormatter
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -61,7 +60,7 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen.Companion.CHART_MIN_COUNT
-import org.breezyweather.common.basic.models.options.basic.Utils.formatDouble
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
@@ -161,11 +160,7 @@ private fun UVItem(
             ) {
                 Text(
                     text = uv.index?.let {
-                        BidiFormatter
-                            .getInstance()
-                            .unicodeWrap(
-                                formatDouble(it, 1)
-                            )
+                        Utils.formatDouble(context, it, 1)
                     } ?: "",
                     style = MaterialTheme.typography.displaySmall,
                     modifier = Modifier.alignByBaseline()
@@ -265,7 +260,7 @@ private fun UVChart(
         modelProducer,
         daily.date,
         maxY,
-        { _, value, _ -> value.roundToInt().toString() },
+        { _, value, _ -> Utils.formatInt(context, value.roundToInt()) },
         persistentListOf(
             persistentMapOf(
                 19f to Color(255, 255, 255),
@@ -278,7 +273,9 @@ private fun UVChart(
             )
         ),
         topAxisValueFormatter = { _, value, _ ->
-            hourlyList.firstOrNull { it.date.time == value.toLong() }?.uV?.index?.roundToInt()?.toString() ?: "-"
+            hourlyList.firstOrNull { it.date.time == value.toLong() }?.uV?.index?.roundToInt()
+                ?.let { Utils.formatInt(context, it) }
+                ?: "-"
         },
         trendHorizontalLines = persistentMapOf(
             UV.UV_INDEX_MIDDLE to context.getString(R.string.uv_alert_level)

@@ -22,7 +22,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
-import org.breezyweather.domain.location.model.isDaylight
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.hasMinutelyPrecipitation
 import org.breezyweather.domain.weather.model.isIndexValid
@@ -31,16 +31,25 @@ import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.main.adapters.main.holder.AbstractMainCardViewHolder
 import org.breezyweather.ui.main.adapters.main.holder.AbstractMainViewHolder
 import org.breezyweather.ui.main.adapters.main.holder.AirQualityViewHolder
-import org.breezyweather.ui.main.adapters.main.holder.AstroViewHolder
+import org.breezyweather.ui.main.adapters.main.holder.AlertViewHolder
 import org.breezyweather.ui.main.adapters.main.holder.DailyViewHolder
-import org.breezyweather.ui.main.adapters.main.holder.DetailsViewHolder
 import org.breezyweather.ui.main.adapters.main.holder.FooterViewHolder
 import org.breezyweather.ui.main.adapters.main.holder.HeaderViewHolder
 import org.breezyweather.ui.main.adapters.main.holder.HourlyViewHolder
+import org.breezyweather.ui.main.adapters.main.holder.HumidityViewHolder
+import org.breezyweather.ui.main.adapters.main.holder.MoonViewHolder
 import org.breezyweather.ui.main.adapters.main.holder.PollenViewHolder
 import org.breezyweather.ui.main.adapters.main.holder.PrecipitationNowcastViewHolder
+import org.breezyweather.ui.main.adapters.main.holder.PrecipitationViewHolder
+import org.breezyweather.ui.main.adapters.main.holder.PressureViewHolder
+import org.breezyweather.ui.main.adapters.main.holder.SunViewHolder
+import org.breezyweather.ui.main.adapters.main.holder.UvViewHolder
+import org.breezyweather.ui.main.adapters.main.holder.VisibilityViewHolder
+import org.breezyweather.ui.main.adapters.main.holder.WindViewHolder
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherView
+import java.util.Calendar
+import java.util.Date
 
 class MainAdapter(
     activity: MainActivity,
@@ -57,7 +66,6 @@ class MainAdapter(
     private var mLocation: Location? = null
     private var mProvider: ResourceProvider? = null
     private val mViewTypeList: MutableList<Int> = mutableListOf()
-    private var mFirstCardPosition: Int? = null
     private var mPendingAnimatorList: MutableList<Animator>? = null
     private var mHeaderCurrentTemperatureTextHeight = 0
     private var mListAnimationEnabled = false
@@ -82,7 +90,6 @@ class MainAdapter(
         mLocation = location
         mProvider = provider
         mViewTypeList.clear()
-        mFirstCardPosition = null
         mPendingAnimatorList = mutableListOf()
         mHeaderCurrentTemperatureTextHeight = -1
         mListAnimationEnabled = listAnimationEnabled
@@ -90,6 +97,9 @@ class MainAdapter(
         location?.weather?.let { weather ->
             val cardDisplayList = SettingsManager.getInstance(activity).cardDisplayList
             mViewTypeList.add(ViewType.HEADER)
+            if (location.weather?.alertList?.any { it.endDate == null || it.endDate!!.time > Date().time } == true) {
+                mViewTypeList.add(ViewType.ALERT)
+            }
             for (c in cardDisplayList) {
                 if (c === CardDisplay.CARD_PRECIPITATION_NOWCAST &&
                     (!weather.hasMinutelyPrecipitation || weather.minutelyForecast.size < 3)
@@ -102,6 +112,23 @@ class MainAdapter(
                 if (c === CardDisplay.CARD_HOURLY_OVERVIEW && weather.nextHourlyForecast.isEmpty()) {
                     continue
                 }
+                if (c === CardDisplay.CARD_PRECIPITATION) {
+                    val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
+                    val currentHour = cal[Calendar.HOUR_OF_DAY]
+                    val precipitation = if (currentHour < 5) {
+                        weather.dailyForecast.getOrElse(weather.todayIndex!!.minus(1)) { null }?.night?.precipitation
+                    } else if (currentHour < 17) {
+                        weather.today?.day?.precipitation
+                    } else {
+                        weather.today?.night?.precipitation
+                    }
+                    if (precipitation?.total == null) {
+                        continue
+                    }
+                }
+                if (c === CardDisplay.CARD_WIND && weather.current?.wind?.isValid != true) {
+                    continue
+                }
                 if (c === CardDisplay.CARD_AIR_QUALITY && weather.validAirQuality == null) {
                     continue
                 }
@@ -110,48 +137,54 @@ class MainAdapter(
                 ) {
                     continue
                 }
-                if (c === CardDisplay.CARD_SUNRISE_SUNSET &&
+                if (c === CardDisplay.CARD_SUN &&
                     (weather.dailyForecast.isEmpty() || weather.today?.sun?.isValid != true)
                 ) {
                     continue
                 }
-                if (c === CardDisplay.CARD_LIVE &&
-                    (
-                        weather.current == null ||
-                            (
-                                DetailsViewHolder.availableDetails(
-                                    activity,
-                                    SettingsManager.getInstance(activity).detailDisplayList,
-                                    SettingsManager.getInstance(activity).detailDisplayUnlisted,
-                                    weather.current!!,
-                                    location.isDaylight
-                                )
-                                ).isEmpty()
-                        )
+                if (c === CardDisplay.CARD_MOON &&
+                    (weather.dailyForecast.isEmpty() || weather.today?.moon?.isValid != true)
                 ) {
+                    continue
+                }
+                if (c === CardDisplay.CARD_HUMIDITY && weather.current?.relativeHumidity == null) {
+                    continue
+                }
+                if (c === CardDisplay.CARD_UV && weather.current?.uV?.index == null) {
+                    continue
+                }
+                if (c === CardDisplay.CARD_VISIBILITY && weather.current?.visibility == null) {
+                    continue
+                }
+                if (c === CardDisplay.CARD_PRESSURE && weather.current?.pressure == null) {
                     continue
                 }
                 mViewTypeList.add(getViewType(c))
             }
             mViewTypeList.add(ViewType.FOOTER)
-            ensureFirstCard()
         }
     }
 
     fun setNullWeather() {
         mViewTypeList.clear()
-        ensureFirstCard()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractMainViewHolder = when (viewType) {
         ViewType.HEADER -> HeaderViewHolder(parent)
+        ViewType.ALERT -> AlertViewHolder(parent)
         ViewType.PRECIPITATION_NOWCAST -> PrecipitationNowcastViewHolder(parent)
         ViewType.DAILY -> DailyViewHolder(parent)
         ViewType.HOURLY -> HourlyViewHolder(parent)
+        ViewType.PRECIPITATION -> PrecipitationViewHolder(parent)
+        ViewType.WIND -> WindViewHolder(parent)
+        ViewType.HUMIDITY -> HumidityViewHolder(parent)
+        ViewType.UV -> UvViewHolder(parent)
         ViewType.AIR_QUALITY -> AirQualityViewHolder(parent)
         ViewType.POLLEN -> PollenViewHolder(parent)
-        ViewType.ASTRO -> AstroViewHolder(parent)
-        ViewType.LIVE -> DetailsViewHolder(parent)
+        ViewType.VISIBILITY -> VisibilityViewHolder(parent)
+        ViewType.PRESSURE -> PressureViewHolder(parent)
+        ViewType.SUN -> SunViewHolder(parent)
+        ViewType.MOON -> MoonViewHolder(parent)
         ViewType.FOOTER -> FooterViewHolder(ComposeView(parent.context))
         else -> FooterViewHolder(ComposeView(parent.context))
     }
@@ -164,8 +197,7 @@ class MainAdapter(
                     mLocation!!,
                     mProvider!!,
                     mListAnimationEnabled,
-                    mItemAnimationEnabled,
-                    mFirstCardPosition != null && mFirstCardPosition == position
+                    mItemAnimationEnabled
                 )
             } else {
                 holder.onBindView(mActivity, mLocation!!, mProvider!!, mListAnimationEnabled, mItemAnimationEnabled)
@@ -188,37 +220,6 @@ class MainAdapter(
 
     override fun getItemViewType(position: Int) = mViewTypeList[position]
 
-    private fun ensureFirstCard() {
-        mFirstCardPosition = null
-        for (i in 0 until itemCount) {
-            val type = getItemViewType(i)
-            if (setOf(
-                    ViewType.PRECIPITATION_NOWCAST,
-                    ViewType.DAILY,
-                    ViewType.HOURLY,
-                    ViewType.AIR_QUALITY,
-                    ViewType.POLLEN,
-                    ViewType.ASTRO,
-                    ViewType.LIVE
-                ).contains(type)
-            ) {
-                mFirstCardPosition = i
-                return
-            }
-        }
-    }
-
-    val headerTop: Int
-        get() {
-            if (mHeaderCurrentTemperatureTextHeight <= 0 && itemCount > 0) {
-                val holder = mHost!!.findViewHolderForAdapterPosition(0) as AbstractMainViewHolder?
-                if (holder is HeaderViewHolder) {
-                    mHeaderCurrentTemperatureTextHeight = holder.headerTop
-                }
-            }
-            return mHeaderCurrentTemperatureTextHeight
-        }
-
     fun onScroll() {
         var holder: AbstractMainViewHolder?
         for (i in 0 until itemCount) {
@@ -232,10 +233,16 @@ class MainAdapter(
             CardDisplay.CARD_PRECIPITATION_NOWCAST -> ViewType.PRECIPITATION_NOWCAST
             CardDisplay.CARD_DAILY_OVERVIEW -> ViewType.DAILY
             CardDisplay.CARD_HOURLY_OVERVIEW -> ViewType.HOURLY
+            CardDisplay.CARD_PRECIPITATION -> ViewType.PRECIPITATION
+            CardDisplay.CARD_WIND -> ViewType.WIND
             CardDisplay.CARD_AIR_QUALITY -> ViewType.AIR_QUALITY
             CardDisplay.CARD_POLLEN -> ViewType.POLLEN
-            CardDisplay.CARD_SUNRISE_SUNSET -> ViewType.ASTRO
-            else -> ViewType.LIVE
+            CardDisplay.CARD_HUMIDITY -> ViewType.HUMIDITY
+            CardDisplay.CARD_UV -> ViewType.UV
+            CardDisplay.CARD_VISIBILITY -> ViewType.VISIBILITY
+            CardDisplay.CARD_PRESSURE -> ViewType.PRESSURE
+            CardDisplay.CARD_SUN -> ViewType.SUN
+            CardDisplay.CARD_MOON -> ViewType.MOON
         }
     }
 }

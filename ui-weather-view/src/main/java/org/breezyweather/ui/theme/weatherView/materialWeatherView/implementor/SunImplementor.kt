@@ -35,7 +35,7 @@ class SunImplementor(
     private val mPaint = Paint().apply {
         style = Paint.Style.FILL
         isAntiAlias = true
-        color = Color.rgb(253, 84, 17)
+        color = Color.WHITE
     }
     private val mAngles = FloatArray(3)
     private val mUnitSizes: FloatArray = floatArrayOf(

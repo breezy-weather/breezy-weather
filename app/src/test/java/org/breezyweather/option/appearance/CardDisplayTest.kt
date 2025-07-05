@@ -29,15 +29,14 @@ class CardDisplayTest {
 
     @Test
     fun toCardDisplayList() = runTest {
-        val value = "precipitation_nowcast&daily_overview&hourly_overview&air_quality&pollen&sunrise_sunset&live"
+        val value = "precipitation_nowcast&daily_overview&hourly_overview&air_quality&pollen&sun"
         val list = CardDisplay.toCardDisplayList(value)
         list[0] shouldBe CardDisplay.CARD_PRECIPITATION_NOWCAST
         list[1] shouldBe CardDisplay.CARD_DAILY_OVERVIEW
         list[2] shouldBe CardDisplay.CARD_HOURLY_OVERVIEW
         list[3] shouldBe CardDisplay.CARD_AIR_QUALITY
         list[4] shouldBe CardDisplay.CARD_POLLEN
-        list[5] shouldBe CardDisplay.CARD_SUNRISE_SUNSET
-        list[6] shouldBe CardDisplay.CARD_LIVE
+        list[5] shouldBe CardDisplay.CARD_SUN
     }
 
     @Test
@@ -48,10 +47,9 @@ class CardDisplayTest {
             CardDisplay.CARD_HOURLY_OVERVIEW,
             CardDisplay.CARD_AIR_QUALITY,
             CardDisplay.CARD_POLLEN,
-            CardDisplay.CARD_SUNRISE_SUNSET,
-            CardDisplay.CARD_LIVE
+            CardDisplay.CARD_SUN
         )
-        val value = "precipitation_nowcast&daily_overview&hourly_overview&air_quality&pollen&sunrise_sunset&live"
+        val value = "precipitation_nowcast&daily_overview&hourly_overview&air_quality&pollen&sun"
         CardDisplay.toValue(list) shouldBe value
     }
 
@@ -65,10 +63,9 @@ class CardDisplayTest {
             CardDisplay.CARD_HOURLY_OVERVIEW,
             CardDisplay.CARD_AIR_QUALITY,
             CardDisplay.CARD_POLLEN,
-            CardDisplay.CARD_SUNRISE_SUNSET,
-            CardDisplay.CARD_LIVE
+            CardDisplay.CARD_SUN
         )
-        val value = "Name, Name, Name, Name, Name, Name"
+        val value = "Name, Name, Name, Name, Name"
         CardDisplay.getSummary(context, list) shouldBe value
     }
 }

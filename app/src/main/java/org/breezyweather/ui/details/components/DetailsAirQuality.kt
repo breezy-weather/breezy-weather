@@ -16,6 +16,7 @@
 
 package org.breezyweather.ui.details.components
 
+import androidx.annotation.ColorInt
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -70,6 +71,7 @@ import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
@@ -82,11 +84,20 @@ import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.charts.SpecificVerticalAxisItemPlacer
 import org.breezyweather.ui.common.widgets.Material3CardListItem
-import org.breezyweather.ui.main.adapters.AqiAdapter.AqiItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.theme.compose.DayNightTheme
 import kotlin.math.max
 import kotlin.math.roundToInt
+
+class AqiItem(
+    val pollutantType: PollutantIndex,
+    @field:ColorInt val color: Int,
+    val progress: Float,
+    val max: Float,
+    val title: String,
+    val content: String,
+    val talkBack: String,
+)
 
 @Composable
 fun DetailsAirQuality(
@@ -120,8 +131,7 @@ fun DetailsAirQuality(
                                     PollutantIndex.getUnit(pollutantIndex).getValueText(context, it),
                                     context.getString(pollutantIndex.voicedName) +
                                         context.getString(R.string.colon_separator) +
-                                        PollutantIndex.getUnit(pollutantIndex).getValueVoice(context, it),
-                                    false
+                                        PollutantIndex.getUnit(pollutantIndex).getValueVoice(context, it)
                                 )
                             )
                         }
@@ -140,8 +150,7 @@ fun DetailsAirQuality(
                                         PollutantIndex.getUnit(pollutantIndex).getValueText(context, it),
                                         context.getString(pollutantIndex.voicedName) +
                                             context.getString(R.string.colon_separator) +
-                                            PollutantIndex.getUnit(pollutantIndex).getValueVoice(context, it),
-                                        false
+                                            PollutantIndex.getUnit(pollutantIndex).getValueVoice(context, it)
                                     )
                                 )
                             }
@@ -264,7 +273,7 @@ private fun AirQualityItem(
                 horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin))
             ) {
                 Text(
-                    text = airQuality.getIndex()?.toString() ?: "",
+                    text = airQuality.getIndex()?.let { Utils.formatInt(context, it) } ?: "",
                     style = MaterialTheme.typography.displaySmall,
                     modifier = Modifier.alignByBaseline()
                 )
@@ -344,7 +353,7 @@ private fun AirQualityChart(
             modelProducer,
             daily.date,
             maxY.toDouble(),
-            { _, value, _ -> value.roundToInt().toString() },
+            { _, value, _ -> Utils.formatInt(context, value.roundToInt()) },
             persistentListOf(
                 (PollutantIndex.aqiThresholds.reversed().map { it.toFloat() }).zip(
                     context.resources.getIntArray(PollutantIndex.colorsArrayId).reversed().map { Color(it) }
@@ -355,7 +364,7 @@ private fun AirQualityChart(
                     context.resources.getStringArray(R.array.air_quality_levels)[3]
             ),
             topAxisValueFormatter = { _, value, _ ->
-                mappedValues.getOrElse(value.toLong()) { null }?.getIndex()?.toString() ?: "-"
+                mappedValues.getOrElse(value.toLong()) { null }?.getIndex()?.let { Utils.formatInt(context, it) } ?: "-"
             },
             endAxisItemPlacer = remember {
                 SpecificVerticalAxisItemPlacer(

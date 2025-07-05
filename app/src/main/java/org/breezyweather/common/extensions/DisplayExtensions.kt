@@ -75,6 +75,18 @@ val Context.isMotionReduced: Boolean
         }
     }
 
+val Context.fontScale: Float
+    get() {
+        return resources.configuration.fontScale * (
+            resources.displayMetrics.densityDpi /
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    android.util.DisplayMetrics.DENSITY_DEVICE_STABLE
+                } else {
+                    160
+                }
+            )
+    }
+
 val Context.windowHeightInDp: Float
     get() {
         return pxToDp(resources.displayMetrics.heightPixels)

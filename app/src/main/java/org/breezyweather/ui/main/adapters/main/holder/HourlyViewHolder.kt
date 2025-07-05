@@ -20,36 +20,34 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
+import androidx.core.view.children
 import breezyweather.domain.location.model.Location
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.button.MaterialButtonGroup
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.extensions.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP
 import org.breezyweather.common.extensions.isLandscape
-import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.adapters.TagAdapter
-import org.breezyweather.ui.common.decorations.GridMarginsDecoration
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.main.adapters.trend.HourlyTrendAdapter
 import org.breezyweather.ui.main.layouts.TrendHorizontalLinearLayoutManager
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.main.widgets.TrendRecyclerViewScrollBar
-import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
-import org.breezyweather.ui.theme.weatherView.WeatherViewController
 
 class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_hourly_trend_card, parent, false)
 ) {
-    private val title: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_title)
-    private val subtitle: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_subtitle)
-    private val tagView: RecyclerView = itemView.findViewById(R.id.container_main_hourly_trend_card_tagView)
-    private val trendRecyclerView: TrendRecyclerView = itemView.findViewById(
-        R.id.container_main_hourly_trend_card_trendRecyclerView
-    )
+    private val titleView: TextView = itemView.findViewById(R.id.hourly_block_title)
+    private val titleIconView: ImageView = itemView.findViewById(R.id.hourly_block_title_icon)
+    private val subtitle: TextView = itemView.findViewById(R.id.hourly_block_subtitle)
+    private val tagView: MaterialButtonGroup = itemView.findViewById(R.id.hourly_block_button_group)
+    private val trendRecyclerView: TrendRecyclerView = itemView.findViewById(R.id.hourly_block_trendRecyclerView)
     private val scrollBar: TrendRecyclerViewScrollBar = TrendRecyclerViewScrollBar()
 
     init {
@@ -63,24 +61,19 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
         itemAnimationEnabled: Boolean,
-        firstCard: Boolean,
     ) {
-        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
+
+        val color = MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            titleView.isAccessibilityHeading = true
+        }
+        titleView.setText(R.string.hourly_forecast)
+        titleView.setTextColor(color)
+        titleIconView.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.ic_schedule))
+        titleIconView.setColorFilter(color)
 
         val weather = location.weather ?: return
-        val colors = ThemeManager
-            .getInstance(context)
-            .weatherThemeDelegate
-            .getThemeColors(
-                context,
-                WeatherViewController.getWeatherKind(location),
-                WeatherViewController.isDaylight(location)
-            )
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            title.isAccessibilityHeading = true
-        }
-        title.setTextColor(colors[0])
 
         if (weather.current?.hourlyForecast.isNullOrEmpty()) {
             subtitle.visibility = View.GONE
@@ -102,35 +95,26 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             tagView.visibility = View.GONE
         } else {
             tagView.visibility = View.VISIBLE
-            val decorCount = tagView.itemDecorationCount
-            for (i in 0 until decorCount) {
-                tagView.removeItemDecorationAt(0)
+            val buttons = tagView.children.filter { it is MaterialButton }
+            buttons.forEachIndexed { index, button ->
+                tagList.getOrElse(index) { null }?.let { tag ->
+                    if (button.tag != MaterialButtonGroup.OVERFLOW_BUTTON_TAG) {
+                        (button as MaterialButton).apply {
+                            visibility = View.VISIBLE
+                            text = tag.name
+                            isCheckable = true
+                            isChecked = index == 0
+                            setOnClickListener {
+                                trendAdapter.selectedIndex = index
+                                buttons.forEach { button -> (button as MaterialButton).isChecked = false }
+                                isChecked = true
+                            }
+                        }
+                    }
+                } ?: run {
+                    button.visibility = View.GONE
+                }
             }
-            tagView.addItemDecoration(
-                GridMarginsDecoration(
-                    context.resources.getDimension(R.dimen.little_margin),
-                    context.resources.getDimension(R.dimen.normal_margin),
-                    tagView
-                )
-            )
-            tagView.layoutManager =
-                TrendHorizontalLinearLayoutManager(context)
-            tagView.adapter = TagAdapter(
-                tagList,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnPrimary),
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnSurface),
-                MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
-                ColorUtils.getWidgetSurfaceColor(
-                    DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
-                    MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
-                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorSurface)
-                ),
-                { _, _, newPosition: Int ->
-                    trendAdapter.selectedIndex = newPosition
-                    return@TagAdapter false
-                },
-                0
-            )
         }
 
         trendRecyclerView.layoutManager =
