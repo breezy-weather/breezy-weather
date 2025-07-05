@@ -26,7 +26,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -123,7 +122,7 @@ private fun PressureSummary(
 ) {
     PressureItem(
         header = {
-            Text(
+            TextFixedHeight(
                 text = stringResource(R.string.pressure_average),
                 style = MaterialTheme.typography.labelMedium
             )
@@ -145,7 +144,7 @@ private fun PressureItem(
         modifier = modifier.fillMaxWidth()
     ) {
         header()
-        Text(
+        TextFixedHeight(
             text = buildAnnotatedString {
                 pressure?.let {
                     val pressureValueFormatted = pressureUnit.getValueTextWithoutUnit(it)
@@ -224,7 +223,7 @@ private fun PressureChart(
         mappedValues.getOrElse(it.x.toLong()) { null }?.let { pressure ->
             PressureItem(
                 header = {
-                    Text(
+                    TextFixedHeight(
                         text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
                         style = MaterialTheme.typography.labelMedium
                     )

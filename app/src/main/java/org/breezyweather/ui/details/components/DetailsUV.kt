@@ -158,7 +158,7 @@ private fun UVItem(
         )
         Column {
             header()
-            Text(
+            TextFixedHeight(
                 text = buildAnnotatedString {
                     uv.index?.let {
                         append(Utils.formatDouble(it, 1))
@@ -188,7 +188,7 @@ private fun UVSummary(
     UVItem(
         uv = dayUV,
         header = {
-            Text(
+            TextFixedHeight(
                 text = stringResource(R.string.uv_index_maximum_value),
                 style = MaterialTheme.typography.labelMedium
             )
@@ -223,7 +223,7 @@ private fun UVChart(
         hourlyList.firstOrNull { h -> h.date.time == it.x.toLong() }?.uV?.let { uv ->
             UVItem(
                 header = {
-                    Text(
+                    TextFixedHeight(
                         text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
                         style = MaterialTheme.typography.labelMedium
                     )

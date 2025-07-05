@@ -234,7 +234,7 @@ private fun AirQualitySummary(
     AirQualityItem(
         airQuality = dayAirQuality,
         header = {
-            Text(
+            TextFixedHeight(
                 text = stringResource(R.string.air_quality_average),
                 style = MaterialTheme.typography.labelMedium
             )
@@ -264,7 +264,7 @@ private fun AirQualityItem(
         )
         Column {
             header()
-            Text(
+            TextFixedHeight(
                 text = buildAnnotatedString {
                     airQuality.getIndex()?.let {
                         append(Utils.formatInt(it))
@@ -314,7 +314,7 @@ private fun AirQualityChart(
         mappedValues.getOrElse(it.x.toLong()) { null }?.let { airQuality ->
             AirQualityItem(
                 header = {
-                    Text(
+                    TextFixedHeight(
                         text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
                         style = MaterialTheme.typography.labelMedium
                     )

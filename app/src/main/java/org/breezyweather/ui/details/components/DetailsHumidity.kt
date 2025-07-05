@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -157,7 +156,7 @@ private fun HumiditySummary(
 ) {
     HumidityItem(
         header = {
-            Text(
+            TextFixedHeight(
                 text = "",
                 style = MaterialTheme.typography.labelMedium,
                 modifier = Modifier.clearAndSetSemantics {}
@@ -179,7 +178,7 @@ private fun HumidityItem(
         modifier = modifier.fillMaxWidth()
     ) {
         header()
-        Text(
+        TextFixedHeight(
             text = relativeHumidity?.let {
                 NumberFormat.getPercentInstance(context.currentLocale).apply {
                     maximumFractionDigits = 0
@@ -237,7 +236,7 @@ private fun HumidityChart(
         mappedValues.getOrElse(it.x.toLong()) { null }?.let { relativeHumidity ->
             HumidityItem(
                 header = {
-                    Text(
+                    TextFixedHeight(
                         text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
                         style = MaterialTheme.typography.labelMedium
                     )
@@ -293,7 +292,7 @@ private fun DewPointSummary(
 ) {
     DewPointItem(
         header = {
-            Text(
+            TextFixedHeight(
                 text = "",
                 style = MaterialTheme.typography.labelMedium,
                 modifier = Modifier.clearAndSetSemantics {}
@@ -316,7 +315,7 @@ private fun DewPointItem(
         modifier = modifier.fillMaxWidth()
     ) {
         header()
-        Text(
+        TextFixedHeight(
             text = dewPoint?.let {
                 temperatureUnit.getShortValueText(context, value = it, 1, context.isRtl)
             } ?: "",
@@ -379,7 +378,7 @@ private fun DewPointChart(
         mappedValues.getOrElse(it.x.toLong()) { null }?.let { dewPoint ->
             DewPointItem(
                 header = {
-                    Text(
+                    TextFixedHeight(
                         text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
                         style = MaterialTheme.typography.labelMedium
                     )

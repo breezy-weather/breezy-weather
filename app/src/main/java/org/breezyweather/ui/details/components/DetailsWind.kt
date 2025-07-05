@@ -55,6 +55,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
@@ -151,12 +152,7 @@ private fun WindSummary(
         ) {
             daytimeWind?.let {
                 WindItem(
-                    {
-                        Text(
-                            text = stringResource(R.string.daytime),
-                            style = MaterialTheme.typography.labelMedium
-                        )
-                    },
+                    { DaytimeLabel() },
                     it
                 )
             }
@@ -169,7 +165,7 @@ private fun WindSummary(
         ) {
             nighttimeWind?.let {
                 WindItem(
-                    { NighttimeWithInfo() },
+                    { NighttimeLabelWithInfo() },
                     it
                 )
             }
@@ -191,7 +187,7 @@ private fun WindItem(
     ) {
         header()
         wind.speed?.let { speed ->
-            Text(
+            TextFixedHeight(
                 text = buildAnnotatedString {
                     val speedValueFormatted = speedUnit.getValueTextWithoutUnit(speed)
                     append(speedValueFormatted)
@@ -217,12 +213,13 @@ private fun WindItem(
             )
             wind.gusts?.let { gusts ->
                 if (gusts > speed) {
-                    Text(
+                    TextFixedHeight(
                         text = stringResource(R.string.wind_gusts_short) +
                             stringResource(R.string.colon_separator) +
                             speedUnit.getValueText(context, gusts),
                         style = MaterialTheme.typography.labelLarge,
                         color = DayNightTheme.colors.captionColor,
+                        overflow = TextOverflow.StartEllipsis,
                         modifier = Modifier
                             .clearAndSetSemantics {
                                 contentDescription = context.getString(R.string.wind_gusts_short) +
@@ -231,13 +228,13 @@ private fun WindItem(
                             }
                     )
                 } else {
-                    Text(
+                    TextFixedHeight(
                         text = "",
                         style = MaterialTheme.typography.labelLarge,
                         modifier = Modifier.clearAndSetSemantics {}
                     )
                 }
-            } ?: Text(
+            } ?: TextFixedHeight(
                 text = "",
                 style = MaterialTheme.typography.labelLarge,
                 modifier = Modifier.clearAndSetSemantics {}
@@ -273,7 +270,7 @@ private fun WindChart(
         mappedValues.getOrElse(it.x.toLong()) { null }?.let { wind ->
             WindItem(
                 {
-                    Text(
+                    TextFixedHeight(
                         text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
                         style = MaterialTheme.typography.labelMedium
                     )

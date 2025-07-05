@@ -369,12 +369,7 @@ private fun WeatherConditionSummary(
         ) {
             daily.day?.let { day ->
                 WeatherConditionItem(
-                    header = {
-                        Text(
-                            text = stringResource(R.string.daytime),
-                            style = MaterialTheme.typography.labelMedium
-                        )
-                    },
+                    header = { DaytimeLabel() },
                     showRealTemp = showRealTemp,
                     temperature = day.temperature,
                     weatherCode = day.weatherCode,
@@ -392,9 +387,7 @@ private fun WeatherConditionSummary(
         ) {
             daily.night?.let { night ->
                 WeatherConditionItem(
-                    header = {
-                        NighttimeWithInfo()
-                    },
+                    header = { NighttimeLabelWithInfo() },
                     showRealTemp = showRealTemp,
                     temperature = night.temperature,
                     weatherCode = night.weatherCode,
@@ -427,18 +420,22 @@ private fun WeatherConditionItem(
         header()
         Row {
             Column {
-                (if (showRealTemp) temperature?.temperature else temperature?.feelsLikeTemperature)?.let {
-                    Text(
-                        text = temperatureUnit.getShortValueText(context, value = it, 1, context.isRtl),
+                (if (showRealTemp) temperature?.temperature else temperature?.feelsLikeTemperature).let { temp ->
+                    TextFixedHeight(
+                        text = temp?.let {
+                            temperatureUnit.getShortValueText(context, value = it, 1, context.isRtl)
+                        } ?: "",
                         style = MaterialTheme.typography.displaySmall,
                         modifier = Modifier
                             .clearAndSetSemantics {
-                                contentDescription = temperatureUnit.getValueVoice(context, it)
+                                temp?.let {
+                                    contentDescription = temperatureUnit.getValueVoice(context, it)
+                                }
                             }
                     )
                 }
                 if (!showRealTemp) {
-                    Text(
+                    TextFixedHeight(
                         text = temperature?.temperature?.let {
                             stringResource(R.string.temperature_real) +
                                 stringResource(R.string.colon_separator) +
@@ -511,13 +508,12 @@ fun WeatherCondition(
                 )
             }
         }
-        if (!weatherText.isNullOrEmpty()) {
-            Text(
-                text = weatherText,
-                color = DayNightTheme.colors.titleColor,
-                fontWeight = FontWeight.Bold
-            )
-        }
+        TextFixedHeight(
+            text = weatherText ?: "",
+            color = DayNightTheme.colors.titleColor,
+            fontWeight = FontWeight.Bold,
+            maxLines = 2
+        )
     }
 }
 
@@ -550,7 +546,7 @@ private fun TemperatureChart(
         mappedValues.getOrElse(it.x.toLong()) { null }?.let { hourly ->
             WeatherConditionItem(
                 header = {
-                    Text(
+                    TextFixedHeight(
                         text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
                         style = MaterialTheme.typography.labelMedium
                     )
@@ -725,10 +721,7 @@ private fun TemperatureDetails(
                 .weight(1f)
                 .semantics { isTraversalGroup = true }
         ) {
-            Text(
-                text = stringResource(R.string.daytime),
-                style = MaterialTheme.typography.labelMedium
-            )
+            DaytimeLabel()
             DailyFeelsLikeTemperatureDetails(daytimeTemperature, normals?.daytimeTemperature)
         }
         Column(
@@ -737,7 +730,7 @@ private fun TemperatureDetails(
                 .weight(1f)
                 .semantics { isTraversalGroup = true }
         ) {
-            NighttimeWithInfo()
+            NighttimeLabelWithInfo()
             DailyFeelsLikeTemperatureDetails(nighttimeTemperature, normals?.nighttimeTemperature)
         }
     }

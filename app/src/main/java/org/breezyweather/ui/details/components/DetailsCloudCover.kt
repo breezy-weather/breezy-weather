@@ -135,7 +135,7 @@ private fun CloudCoverSummary(
 ) {
     CloudCoverItem(
         header = {
-            Text(
+            TextFixedHeight(
                 text = "",
                 style = MaterialTheme.typography.labelMedium,
                 modifier = Modifier.clearAndSetSemantics {}
@@ -157,7 +157,7 @@ private fun CloudCoverItem(
         modifier = modifier.fillMaxWidth()
     ) {
         header()
-        Text(
+        TextFixedHeight(
             text = cloudCover?.let {
                 NumberFormat.getPercentInstance(context.currentLocale).apply {
                     maximumFractionDigits = 0

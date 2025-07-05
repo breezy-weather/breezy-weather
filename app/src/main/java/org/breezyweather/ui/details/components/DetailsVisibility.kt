@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -125,7 +124,7 @@ private fun VisibilityItem(
             .fillMaxWidth()
     ) {
         header()
-        Text(
+        TextFixedHeight(
             text = buildAnnotatedString {
                 val visibilityValueFormatted = distanceUnit.getValueTextWithoutUnit(visibility)
                 append(visibilityValueFormatted)
@@ -139,12 +138,10 @@ private fun VisibilityItem(
                     contentDescription = visibilityContentDescription
                 }
         )
-        if (!visibilityDescription.isNullOrEmpty()) {
-            Text(
-                text = visibilityDescription,
-                style = MaterialTheme.typography.labelMedium
-            )
-        }
+        TextFixedHeight(
+            text = visibilityDescription ?: "",
+            style = MaterialTheme.typography.labelMedium
+        )
     }
 }
 
@@ -166,12 +163,12 @@ private fun VisibilitySummary(
             .fillMaxWidth()
     ) {
         // Make room for time when switching to the marker
-        Text(
+        TextFixedHeight(
             text = "",
             style = MaterialTheme.typography.labelMedium,
             modifier = Modifier.clearAndSetSemantics {}
         )
-        Text(
+        TextFixedHeight(
             text = if (minVisibility == maxVisibility) {
                 maxVisibilityFormatted
             } else {
@@ -197,20 +194,20 @@ private fun VisibilitySummary(
                     }
                 }
         )
-        if (!maxVisibilityDescription.isNullOrEmpty()) {
-            Text(
-                text = if (minVisibilityDescription == maxVisibilityDescription) {
+        TextFixedHeight(
+            text = if (maxVisibilityDescription.isNullOrEmpty()) {
+                ""
+            } else if (minVisibilityDescription == maxVisibilityDescription) {
+                maxVisibilityDescription
+            } else {
+                stringResource(
+                    R.string.visibility_from_to_description,
+                    minVisibilityDescription!!,
                     maxVisibilityDescription
-                } else {
-                    stringResource(
-                        R.string.visibility_from_to_description,
-                        minVisibilityDescription!!,
-                        maxVisibilityDescription
-                    )
-                },
-                style = MaterialTheme.typography.labelMedium
-            )
-        }
+                )
+            },
+            style = MaterialTheme.typography.labelMedium
+        )
     }
 }
 
@@ -270,7 +267,7 @@ private fun VisibilityChart(
         mappedValues.getOrElse(it.x.toLong()) { null }?.let { visibility ->
             VisibilityItem(
                 header = {
-                    Text(
+                    TextFixedHeight(
                         text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
                         style = MaterialTheme.typography.labelMedium
                     )

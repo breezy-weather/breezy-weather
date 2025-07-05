@@ -177,7 +177,7 @@ private fun PrecipitationItem(
         modifier = modifier.fillMaxWidth()
     ) {
         header()
-        Text(
+        TextFixedHeight(
             text = buildAnnotatedString {
                 precipitation?.let { prec ->
                     val precValueFormatted = precipitationUnit.getValueTextWithoutUnit(prec)
@@ -216,12 +216,7 @@ private fun PrecipitationSummary(
         ) {
             daytimePrecipitation?.total?.let {
                 PrecipitationItem(
-                    header = {
-                        Text(
-                            text = stringResource(R.string.daytime),
-                            style = MaterialTheme.typography.labelMedium
-                        )
-                    },
+                    header = { DaytimeLabel() },
                     precipitation = it
                 )
             }
@@ -234,7 +229,7 @@ private fun PrecipitationSummary(
         ) {
             nighttimePrecipitation?.total?.let {
                 PrecipitationItem(
-                    header = { NighttimeWithInfo() },
+                    header = { NighttimeLabelWithInfo() },
                     precipitation = it
                 )
             }
@@ -269,7 +264,7 @@ internal fun PrecipitationChart(
         mappedValues.getOrElse(it.x.toLong()) { null }?.let { precipitation ->
             PrecipitationItem(
                 header = {
-                    Text(
+                    TextFixedHeight(
                         text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
                         style = MaterialTheme.typography.labelMedium
                     )
@@ -405,12 +400,9 @@ fun DailyPrecipitationDetails(
     }
     if (precipitationItems.isNotEmpty()) {
         if (isDaytime) {
-            Text(
-                text = stringResource(R.string.daytime),
-                style = MaterialTheme.typography.labelMedium
-            )
+            DaytimeLabel()
         } else {
-            NighttimeWithInfo()
+            NighttimeLabelWithInfo()
         }
     }
     precipitationItems.forEach { item ->
@@ -442,7 +434,7 @@ private fun PrecipitationProbabilityItem(
     ) {
         header()
         precipitationProbability?.let { pp ->
-            Text(
+            TextFixedHeight(
                 text = NumberFormat.getPercentInstance(context.currentLocale).apply {
                     maximumFractionDigits = 0
                 }.format(pp.div(100.0)),
@@ -470,12 +462,7 @@ private fun PrecipitationProbabilitySummary(
         ) {
             daytimePrecipitationProbability?.total?.let {
                 PrecipitationProbabilityItem(
-                    {
-                        Text(
-                            text = stringResource(R.string.daytime),
-                            style = MaterialTheme.typography.labelMedium
-                        )
-                    },
+                    { DaytimeLabel() },
                     it
                 )
             }
@@ -488,7 +475,7 @@ private fun PrecipitationProbabilitySummary(
         ) {
             nighttimePrecipitationProbability?.total?.let {
                 PrecipitationProbabilityItem(
-                    { NighttimeWithInfo() },
+                    { NighttimeLabelWithInfo() },
                     it
                 )
             }
@@ -523,7 +510,7 @@ internal fun PrecipitationProbabilityChart(
         mappedValues.getOrElse(it.x.toLong()) { null }?.let { precipitationProbability ->
             PrecipitationProbabilityItem(
                 header = {
-                    Text(
+                    TextFixedHeight(
                         text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
                         style = MaterialTheme.typography.labelMedium
                     )
@@ -643,12 +630,9 @@ internal fun DailyPrecipitationProbabilityDetails(
     }
     if (precipitationProbabilityItems.isNotEmpty()) {
         if (isDaytime) {
-            Text(
-                text = stringResource(R.string.daytime),
-                style = MaterialTheme.typography.labelMedium
-            )
+            DaytimeLabel()
         } else {
-            NighttimeWithInfo()
+            NighttimeLabelWithInfo()
         }
     }
     precipitationProbabilityItems.forEach { item ->
@@ -687,10 +671,7 @@ private fun PrecipitationDurationSummary(
         ) {
             daytimePrecipitationDuration?.let { precDur ->
                 precDur.total?.let {
-                    Text(
-                        text = stringResource(R.string.daytime),
-                        style = MaterialTheme.typography.labelMedium
-                    )
+                    DaytimeLabel()
                     Text(
                         text = DurationUnit.H.getValueText(context, it),
                         style = MaterialTheme.typography.displaySmall,
@@ -711,7 +692,7 @@ private fun PrecipitationDurationSummary(
         ) {
             nighttimePrecipitationDuration?.let { precDur ->
                 precDur.total?.let {
-                    NighttimeWithInfo()
+                    NighttimeLabelWithInfo()
                     Text(
                         text = DurationUnit.H.getValueText(context, it),
                         style = MaterialTheme.typography.displaySmall,
