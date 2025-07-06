@@ -722,5 +722,21 @@
     <string name="temperature_feels_like_details">Osjećaj temperature kao posljedica vlage, vjetra i/ili sunčeve svjetlosti.</string>
     <string name="temperature_degree_day_heating_explanation">Razlika između vanjske temperature i referentne temperature ugode koja se koristi za procjenu potreba za energijom za grijanje</string>
     <string name="temperature_degree_day_cooling_explanation">Razlika između vanjske temperature i referentne temperature ugode koja se koristi za procjenu potreba za energijom za hlađenje</string>
-    <string name="wind_speed_about">O brzini i udarima vjetra</string>
+    <string name="wind_speed_about">Više o brzini i udarima vjetra</string>
+    <string name="wind_speed_about_description">Brzina vjetra mjeri se usrednjavanjem brzine vjetra tijekom određenog vremenskog razdoblja. Udari vjetra su iznenadni naleti vjetra koji obično traju manje od 20 sekundi.</string>
+    <string name="wind_gusts_short">Udari vjetra</string>
+    <string name="wind_direction_N">Sjever</string>
+    <string name="wind_direction_NE">Sjeveroistok</string>
+    <string name="wind_direction_E">Istok</string>
+    <string name="wind_direction_SE">Jugoistok</string>
+    <string name="wind_direction_S">Jug</string>
+    <string name="wind_direction_SW">Jugozapad</string>
+    <string name="wind_direction_W">Zapad</string>
+    <string name="wind_direction_NW">Sjeverozapad</string>
+    <string name="wind_strength_scale">Beaufortova skala</string>
+    <string name="uv_index_about">Više o UV indeksu</string>
+    <string name="uv_index_about_description">UV indeks mjeri jačinu ultraljubičastog zračenja sunca. Što je veći, to jače i brže može uzrokovati opekline od sunca, rak kože te oštećenje oka.</string>
+    <string name="uv_index_scale">Skala UV indeksa</string>
+    <string name="uv_index_time_to_burn">Vrijeme do opeklina</string>
+    <string name="air_quality_index_short">AQI</string>
 </resources>
