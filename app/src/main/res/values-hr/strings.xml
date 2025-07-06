@@ -706,5 +706,11 @@
     <string name="location_last_updated_x">Zadnje aktualiziranje %s</string>
     <string name="ephemeris_about">Više o vremenu izlaska i zalaska</string>
     <string name="ephemeris_about_rise">Vrijeme izlaska je kada se sunce ili mjesec potpuno pojave iznad horizonta.</string>
-    <string name="ephemeris_about_set">Vrijeme zalaska je kada sunce ili mjesec potpuno nestane ispod horizonta.</string>
+    <string name="ephemeris_about_set">Vrijeme zalaska je kada sunce ili mjesec potpuno nestanu ispod horizonta.</string>
+    <string name="daily_yesterday">Jučer</string>
+    <string name="daily_today">Danas</string>
+    <string name="daily_tomorrow">Sutra</string>
+    <string name="daily_summary">Dnevni sažetak</string>
+    <string name="chart_no_daily_data">Nema dostupnih podataka za traženi dan</string>
+    <string name="chart_no_hourly_data">Nema dostupnih podataka po satima</string>
 </resources>
