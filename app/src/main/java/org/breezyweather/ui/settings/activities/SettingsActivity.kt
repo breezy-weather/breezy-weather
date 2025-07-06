@@ -114,7 +114,7 @@ class SettingsActivity : GeoActivity() {
             }
         }
 
-        EventBus.instance.with(SettingsChangedMessage::class.java).observe(this) {
+        EventBus.instance.with(SettingsChangedMessage::class.java).observeAutoRemove(this) {
             val updateInterval = SettingsManager.getInstance(this).updateInterval
             if (updateIntervalState.value != updateInterval) {
                 updateIntervalState.value = updateInterval
@@ -178,6 +178,11 @@ class SettingsActivity : GeoActivity() {
             }
             return
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.instance.remove(SettingsChangedMessage::class.java)
     }
 
     @Composable
