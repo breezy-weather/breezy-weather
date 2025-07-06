@@ -714,5 +714,13 @@
     <string name="chart_no_daily_data">Nema dostupnih podataka za traženi datum.</string>
     <string name="chart_no_hourly_data">Nema dostupnih podataka po satu.</string>
     <string name="chart_not_enough_hourly_data">Nema dovoljno podataka po satu za prikaz grafikona za ovaj dan.</string>
-    <string name="chart_average">prosj.</string>
+    <string name="chart_average">Prosjek</string>
+    <string name="chart_maximum_value">Najviša vrijednost</string>
+    <string name="conditions">Prognoza</string>
+    <string name="temperature_real">Stvarna temperatura</string>
+    <string name="temperature_real_details">Stvarna temperatura</string>
+    <string name="temperature_feels_like_details">Osjećaj temperature kao posljedica vlage, vjetra i/ili sunčeve svjetlosti.</string>
+    <string name="temperature_degree_day_heating_explanation">Razlika između vanjske temperature i referentne temperature ugode koja se koristi za procjenu potreba za energijom za grijanje</string>
+    <string name="temperature_degree_day_cooling_explanation">Razlika između vanjske temperature i referentne temperature ugode koja se koristi za procjenu potreba za energijom za hlađenje</string>
+    <string name="wind_speed_about">O brzini i udarima vjetra</string>
 </resources>
