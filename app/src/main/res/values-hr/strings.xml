@@ -740,5 +740,6 @@
     <string name="uv_index_time_to_burn">Vrijeme do opeklina</string>
     <string name="air_quality_index_short">IKZ</string>
     <string name="air_quality_index_about">Indeks kvalitete zraka</string>
-    <string name="air_quality_index_about_description_1">Indeks kvalitete zraka (IKZ) predstavlja ljestvica koja pomaže u razumijevanju količine zagađenja zraka u određenom području i mogući ugroz za zdravlje.</string>
+    <string name="air_quality_index_about_description_1">Indeks kvalitete zraka (IKZ) predstavlja skala osmišljena da pomaže u razumijevanju količine zagađenja zraka u određenom području i mogući ugroz za zdravlje.</string>
+    <string name="pressure_about_description1">Atmosferski tlak je tlak Zemljine atmosfere prema dolje. Ova aplikacija upotrebljava srednji tlak na razini mora radi olakšavanja usporedbe tlaka sa mjestima s različitim nadmorskim visinama</string>
 </resources>
