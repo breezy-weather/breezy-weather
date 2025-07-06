@@ -55,7 +55,7 @@
     <string name="action_continue">Працягнуць</string>
     <string name="message_network_unavailable">Сетка недаступна</string>
     <string name="message_server_timeout">Скончыўся час запыту</string>
-    <string name="widget_subtitle_data_feels_like">Тэмпература па адчуваннях</string>
+    <string name="widget_subtitle_data_feels_like">Адчуванне тэмпературы</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Бягучая тэмпература (°)</string>
     <string name="widget_custom_subtitle_keyword_at_description">Бягучая тэмпература па адчуванні (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Бягучая тэмпература па адчуванні (°)</string>
