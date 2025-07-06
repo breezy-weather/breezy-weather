@@ -747,5 +747,10 @@
     <string name="action_open_in_other_app_description">Otvori lokaciju u drugoj aplikaciji</string>
     <string name="action_close_menu">Zatvaranje izbornika</string>
     <string name="action_enable">Omogući</string>
-    <string name="action_allow">Dopusti</string>
+    <string name="action_allow">Dozvoli</string>
+    <string name="label_description">Opis</string>
+    <string name="message_outdated_server_data">Zastarjeli podaci primljeni s poslužitelja</string>
+    <string name="message_server_insecure_title">Neuspjelo sigurno povezivanje</string>
+    <string name="unit_mum">µm</string>
+    <string name="unit_mum_voice">Mikrometri</string>
 </resources>
