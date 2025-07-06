@@ -712,5 +712,5 @@
     <string name="daily_tomorrow">Sutra</string>
     <string name="daily_summary">Dnevni sažetak</string>
     <string name="chart_no_daily_data">Nema dostupnih podataka za traženi dan</string>
-    <string name="chart_no_hourly_data">Nema dostupnih podataka po satima</string>
+    <string name="chart_no_hourly_data">Nema dostupnih podataka po satima.</string>
 </resources>
