@@ -738,5 +738,7 @@
     <string name="uv_index_about_description">UV indeks mjeri jačinu ultraljubičastog zračenja sunca. Što je veći, to jače i brže može uzrokovati opekline od sunca, rak kože te oštećenje oka.</string>
     <string name="uv_index_scale">Skala UV indeksa</string>
     <string name="uv_index_time_to_burn">Vrijeme do opeklina</string>
-    <string name="air_quality_index_short">AQI</string>
+    <string name="air_quality_index_short">IKZ</string>
+    <string name="air_quality_index_about">Indeks kvalitete zraka</string>
+    <string name="air_quality_index_about_description_1">Indeks kvalitete zraka (IKZ) predstavlja ljestvica koja pomaže u razumijevanju količine zagađenja zraka u određenom području i mogući ugroz za zdravlje.</string>
 </resources>
