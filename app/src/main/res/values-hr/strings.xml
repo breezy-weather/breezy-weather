@@ -704,4 +704,7 @@
     <string name="settings_widgets_notification_permission_summary">Potrebno za prikaz widgeta za obavijest. %s</string>
     <string name="settings_debug_notification_permission">Potrebno za obavještavanje o zapisima prekida rada aplikacije i neuspjelim aktualiziranjima vremena. %s</string>
     <string name="location_last_updated_x">Zadnje aktualiziranje %s</string>
+    <string name="ephemeris_about">Više o vremenu izlaska i zalaska</string>
+    <string name="ephemeris_about_rise">Vrijeme izlaska je kada se sunce ili mjesec potpuno pojave iznad horizonta.</string>
+    <string name="ephemeris_about_set">Vrijeme zalaska je kada sunce ili mjesec potpuno nestane ispod horizonta.</string>
 </resources>
