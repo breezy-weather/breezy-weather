@@ -746,4 +746,6 @@
     <string name="action_open_in_other_app">Otvaranje u drugoj aplikaciji</string>
     <string name="action_open_in_other_app_description">Otvori lokaciju u drugoj aplikaciji</string>
     <string name="action_close_menu">Zatvaranje izbornika</string>
+    <string name="action_enable">Omogući</string>
+    <string name="action_allow">Dopusti</string>
 </resources>
