@@ -129,7 +129,6 @@ internal fun getDailyList(
                 date = calendar.time,
                 day = HalfDay(
                     weatherText = getWeatherText(weather.from),
-                    weatherPhase = getWeatherText(weather.from),
                     weatherCode = getWeatherCode(weather.from),
                     temperature = Temperature(
                         temperature = dailyForecast.temperature?.value?.getOrNull(index)?.from?.toDoubleOrNull()
@@ -149,7 +148,6 @@ internal fun getDailyList(
                 ),
                 night = HalfDay(
                     weatherText = getWeatherText(weather.to),
-                    weatherPhase = getWeatherText(weather.to),
                     weatherCode = getWeatherCode(weather.to),
                     temperature = Temperature(
                         temperature = dailyForecast.temperature?.value?.getOrNull(index)?.to?.toDoubleOrNull()

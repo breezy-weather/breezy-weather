@@ -117,8 +117,8 @@ internal fun getDailyList(
         DailyWrapper(
             date = forecasts.EpochDate.seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.javaTimeZone)!!,
             day = HalfDay(
-                weatherText = forecasts.Day?.LongPhrase,
-                weatherPhase = forecasts.Day?.ShortPhrase,
+                weatherText = forecasts.Day?.ShortPhrase,
+                weatherPhase = forecasts.Day?.LongPhrase,
                 weatherCode = getWeatherCode(forecasts.Day?.Icon),
                 temperature = Temperature(
                     temperature = getTemperatureInCelsius(forecasts.Temperature?.Maximum),
@@ -152,8 +152,8 @@ internal fun getDailyList(
                 cloudCover = forecasts.Day?.CloudCover
             ),
             night = HalfDay(
-                weatherText = forecasts.Night?.LongPhrase,
-                weatherPhase = forecasts.Night?.ShortPhrase,
+                weatherText = forecasts.Night?.ShortPhrase,
+                weatherPhase = forecasts.Night?.LongPhrase,
                 weatherCode = getWeatherCode(forecasts.Night?.Icon),
                 temperature = Temperature(
                     temperature = getTemperatureInCelsius(forecasts.Temperature?.Minimum),

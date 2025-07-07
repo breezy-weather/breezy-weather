@@ -118,13 +118,11 @@ internal fun getDailyList(
                 day = HalfDay(
                     // Too complicated to get weather from hourly, so let's just use daily info for both day and night
                     weatherText = dailyForecast.dailyWeatherDescription,
-                    weatherPhase = dailyForecast.dailyWeatherDescription,
                     weatherCode = getWeatherCode(dailyForecast.dailyWeatherIcon),
                     temperature = Temperature(temperature = dailyForecast.tMax)
                 ),
                 night = HalfDay(
                     weatherText = dailyForecast.dailyWeatherDescription,
-                    weatherPhase = dailyForecast.dailyWeatherDescription,
                     weatherCode = getWeatherCode(dailyForecast.dailyWeatherIcon),
                     // tMin is for current day, so it actually takes the previous night,
                     // so we try to get tMin from next day if available

@@ -166,8 +166,8 @@ fun DetailsConditions(
             )
         }
         // TODO: Short explanation
-        if ((daily.day?.weatherText != null && daily.day!!.weatherText != daily.day!!.weatherPhase) ||
-            (daily.night?.weatherText != null && daily.night!!.weatherText != daily.night!!.weatherPhase)
+        if ((daily.day?.weatherPhase != null && daily.day!!.weatherText != daily.day!!.weatherPhase) ||
+            (daily.night?.weatherPhase != null && daily.night!!.weatherText != daily.night!!.weatherPhase)
         ) {
             item {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
@@ -177,20 +177,23 @@ fun DetailsConditions(
             }
             item {
                 DetailsCardText(
-                    (
-                        daily.day?.weatherText?.let {
-                            stringResource(R.string.daytime) +
-                                stringResource(R.string.colon_separator) +
-                                it
-                        } ?: ""
-                        ) + (
-                        daily.night?.weatherText?.let {
-                            (daily.day?.weatherText?.let { "\n" } ?: "") +
-                                stringResource(R.string.nighttime) +
-                                stringResource(R.string.colon_separator) +
-                                it
-                        } ?: ""
-                        )
+                    buildString {
+                        if (daily.day?.weatherPhase == daily.night?.weatherPhase) {
+                            append(daily.day!!.weatherPhase!!)
+                        } else {
+                            daily.day?.weatherPhase?.let {
+                                append(stringResource(R.string.daytime))
+                                append(stringResource(R.string.colon_separator))
+                                append(it)
+                            }
+                            daily.night?.weatherPhase?.let {
+                                if (it.isNotEmpty()) append("\n")
+                                append(stringResource(R.string.nighttime))
+                                append(stringResource(R.string.colon_separator))
+                                append(it)
+                            }
+                        }
+                    }
                 )
             }
             item {
@@ -373,7 +376,7 @@ private fun WeatherConditionSummary(
                     showRealTemp = showRealTemp,
                     temperature = day.temperature,
                     weatherCode = day.weatherCode,
-                    weatherText = day.weatherPhase,
+                    weatherText = day.weatherText,
                     isDaytime = true,
                     animated = true
                 )
@@ -391,7 +394,7 @@ private fun WeatherConditionSummary(
                     showRealTemp = showRealTemp,
                     temperature = night.temperature,
                     weatherCode = night.weatherCode,
-                    weatherText = night.weatherPhase,
+                    weatherText = night.weatherText,
                     isDaytime = false,
                     animated = true
                 )

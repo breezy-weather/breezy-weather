@@ -22,7 +22,14 @@ import java.io.Serializable
  * Half day.
  */
 data class HalfDay(
+    /**
+     * A short description of the weather condition
+     */
     val weatherText: String? = null,
+
+    /**
+     * A long description of the weather condition. Used as a half-day summary
+     */
     val weatherPhase: String? = null,
     val weatherCode: WeatherCode? = null,
     val temperature: Temperature? = null,

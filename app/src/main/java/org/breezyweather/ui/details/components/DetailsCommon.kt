@@ -268,6 +268,7 @@ fun DetailsCardText(
     Material3CardListItem(
         withPadding = false,
         modifier = modifier
+            .fillMaxWidth()
     ) {
         Column(
             modifier = Modifier.padding(
