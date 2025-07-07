@@ -723,4 +723,9 @@
     <string name="action_enable">Aktivera</string>
     <string name="action_open_in_other_app">Öppna i en annan app</string>
     <string name="action_open_in_other_app_description">Öppna denna plats i en annan app</string>
+    <string name="ephemeris_about">Om uppgångs- och nedgångstider</string>
+    <string name="ephemeris_about_rise">Uppgångstiden är när solen eller månen helt och hållet syns över horisonten.</string>
+    <string name="ephemeris_about_set">Nedgångstiden är när solen eller månen helt och hållet försvinner under horisonten.</string>
+    <string name="ephemeris_about_dawn">Gryningen är när dagens första synliga ljus framträder före soluppgången.</string>
+    <string name="daily_summary">Dagsöversikt</string>
 </resources>
