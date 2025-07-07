@@ -18,7 +18,6 @@ package org.breezyweather.sources.aemet
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Precipitation
@@ -138,7 +137,6 @@ internal fun getDailyForecast(
     context: Context,
     location: Location,
     dailyResult: List<AemetDailyResult>,
-    sunMap: Map<Long, Astro>,
 ): List<DailyWrapper> {
     val dailyList = mutableListOf<DailyWrapper>()
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
@@ -225,7 +223,6 @@ internal fun getDailyForecast(
                         gusts = wgMap.getOrElse(key) { null }
                     )
                 ),
-                sun = sunMap.getOrElse(key) { null },
                 uV = UV(
                     index = uviMap.getOrElse(key) { null }
                 )
@@ -365,29 +362,6 @@ internal fun getHourlyForecast(
         )
     }
     return hourlyList
-}
-
-internal fun getSunMap(
-    location: Location,
-    hourlyResult: List<AemetHourlyResult>,
-): Map<Long, Astro> {
-    val sunMap = mutableMapOf<Long, Astro>()
-    val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.ENGLISH)
-    formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
-    var date: String
-    var time: Long
-
-    hourlyResult.forEach { result ->
-        result.prediccion?.dia?.forEach { day ->
-            date = day.fecha.substringBefore('T')
-            time = formatter.parse("${date}T00:00")!!.time
-            sunMap[time] = Astro(
-                riseDate = formatter.parse("${date}T${day.orto}"),
-                setDate = formatter.parse("${date}T${day.ocaso}")
-            )
-        }
-    }
-    return sunMap
 }
 
 // Source: https://www.aemet.es/es/eltiempo/prediccion/espana/ayuda

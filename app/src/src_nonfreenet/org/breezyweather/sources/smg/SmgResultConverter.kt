@@ -21,7 +21,6 @@ import android.graphics.Color
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Temperature
@@ -35,7 +34,6 @@ import org.breezyweather.R
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.sources.smg.json.SmgAirQualityResult
-import org.breezyweather.sources.smg.json.SmgAstroResult
 import org.breezyweather.sources.smg.json.SmgBulletinResult
 import org.breezyweather.sources.smg.json.SmgCurrentResult
 import org.breezyweather.sources.smg.json.SmgForecastResult
@@ -91,7 +89,6 @@ internal fun getCurrent(
 internal fun getDailyForecast(
     context: Context,
     dailyResult: SmgForecastResult,
-    astroResult: SmgAstroResult,
 ): List<DailyWrapper> {
     val dailyList = mutableListOf<DailyWrapper>()
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
@@ -101,31 +98,6 @@ internal fun getDailyForecast(
 
     var maxTemp: Double?
     var minTemp: Double?
-    var date: Date
-    val sunriseMap = mutableMapOf<String, Date>()
-    val sunsetMap = mutableMapOf<String, Date>()
-    val moonriseMap = mutableMapOf<String, Date>()
-    val moonsetMap = mutableMapOf<String, Date>()
-    astroResult.let {
-        if (it.displayDate?.en != null) {
-            if (!it.sunrise.isNullOrBlank()) {
-                date = dateTimeFormatter.parse("${it.displayDate.en} ${it.sunrise}")!!
-                sunriseMap[formatter.format(date.time)] = date
-            }
-            if (!it.sunset.isNullOrBlank()) {
-                date = dateTimeFormatter.parse("${it.displayDate.en} ${it.sunset}")!!
-                sunsetMap[formatter.format(date.time)] = date
-            }
-            if (!it.moonrise.isNullOrBlank()) {
-                date = dateTimeFormatter.parse("${it.displayDate.en} ${it.moonrise}")!!
-                moonriseMap[formatter.format(date.time)] = date
-            }
-            if (!it.moonset.isNullOrBlank()) {
-                date = dateTimeFormatter.parse("${it.displayDate.en} ${it.moonset}")!!
-                moonsetMap[formatter.format(date.time)] = date
-            }
-        }
-    }
 
     dailyResult.forecast?.Custom?.getOrNull(0)?.WeatherForecast?.forEach {
         if (it.ValidFor?.getOrNull(0) !== null) {
@@ -153,14 +125,6 @@ internal fun getDailyForecast(
                         temperature = Temperature(
                             temperature = minTemp
                         )
-                    ),
-                    sun = Astro(
-                        riseDate = sunriseMap.getOrElse(it.ValidFor[0]) { null },
-                        setDate = sunsetMap.getOrElse(it.ValidFor[0]) { null }
-                    ),
-                    moon = Astro(
-                        riseDate = moonriseMap.getOrElse(it.ValidFor[0]) { null },
-                        setDate = moonsetMap.getOrElse(it.ValidFor[0]) { null }
                     )
                 )
             )

@@ -21,7 +21,6 @@ import androidx.annotation.ColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -167,10 +166,6 @@ internal fun getDailyList(
                     } else {
                         null
                     }
-                ),
-                sun = Astro(
-                    riseDate = dailyForecast.sunRiseSet?.value?.getOrNull(index)?.from,
-                    setDate = dailyForecast.sunRiseSet?.value?.getOrNull(index)?.to
                 )
             )
         )

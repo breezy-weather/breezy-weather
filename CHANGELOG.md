@@ -1,4 +1,10 @@
-# Version 6.0.1 (not yet released)
+# Version 6.0.1-alpha (not yet released)
+
+**New features**
+- Twilight dates (dawn and dusk)
+
+**Removed features**
+- Sun & Moon data from sources. Will now always be computed by Breezy Weather for consistency
 
 **Improvements and fixes**
 - Details page - Fix floating action button not updating in real time (@min7-i)

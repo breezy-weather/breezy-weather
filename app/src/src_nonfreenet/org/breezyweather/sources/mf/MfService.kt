@@ -39,7 +39,6 @@ import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.mf.json.MfCurrentResult
-import org.breezyweather.sources.mf.json.MfEphemerisResult
 import org.breezyweather.sources.mf.json.MfForecastResult
 import org.breezyweather.sources.mf.json.MfNormalsResult
 import org.breezyweather.sources.mf.json.MfRainResult
@@ -120,6 +119,7 @@ class MfService @Inject constructor(
         val languageCode = context.currentLocale.code
         val token = getToken()
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
+
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(
                 USER_AGENT,
@@ -135,6 +135,7 @@ class MfService @Inject constructor(
         } else {
             Observable.just(MfCurrentResult())
         }
+
         val forecast = if (SourceFeature.FORECAST in requestedFeatures) {
             mApi.getForecast(
                 USER_AGENT,
@@ -149,23 +150,7 @@ class MfService @Inject constructor(
         } else {
             Observable.just(MfForecastResult())
         }
-        val ephemeris = if (SourceFeature.FORECAST in requestedFeatures) {
-            mApi.getEphemeris(
-                USER_AGENT,
-                location.latitude,
-                location.longitude,
-                "en", // English required to convert moon phase
-                "iso",
-                token
-            ).onErrorResumeNext {
-                /*if (BreezyWeather.instance.debugMode) {
-                    failedFeatures.add(SourceFeature.OTHER)
-                }*/
-                Observable.just(MfEphemerisResult())
-            }
-        } else {
-            Observable.just(MfEphemerisResult())
-        }
+
         val rain = if (SourceFeature.MINUTELY in requestedFeatures) {
             mApi.getRain(
                 USER_AGENT,
@@ -284,7 +269,6 @@ class MfService @Inject constructor(
         return Observable.zip(
             current,
             forecast,
-            ephemeris,
             rain,
             warningsJ0,
             warningsJ1,
@@ -294,7 +278,6 @@ class MfService @Inject constructor(
         ) {
                 currentResult: MfCurrentResult,
                 forecastResult: MfForecastResult,
-                ephemerisResult: MfEphemerisResult,
                 rainResult: MfRainResult,
                 warningsJ0Result: MfWarningsResult,
                 warningsJ1Result: MfWarningsResult,
@@ -309,8 +292,7 @@ class MfService @Inject constructor(
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
                     getDailyList(
                         location,
-                        forecastResult.properties?.dailyForecast,
-                        ephemerisResult.properties?.ephemeris
+                        forecastResult.properties?.dailyForecast
                     )
                 } else {
                     null

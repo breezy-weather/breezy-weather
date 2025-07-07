@@ -200,10 +200,9 @@ class AemetService @Inject constructor(
                 hourlyResult: List<AemetHourlyResult>,
                 normalsResult: List<AemetNormalsResult>,
             ->
-            val sunMap = getSunMap(location, hourlyResult)
             WeatherWrapper(
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
-                    getDailyForecast(context, location, dailyResult, sunMap)
+                    getDailyForecast(context, location, dailyResult)
                 } else {
                     null
                 },

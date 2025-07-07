@@ -18,10 +18,8 @@ package org.breezyweather.sources.pirateweather
 
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Minutely
-import breezyweather.domain.weather.model.MoonPhase
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
@@ -90,14 +88,6 @@ internal fun getDailyForecast(
                     temperature = result.temperatureLow,
                     apparentTemperature = result.apparentTemperatureLow
                 )
-            ),
-            sun = Astro(
-                riseDate = result.sunrise?.seconds?.inWholeMilliseconds?.toDate(),
-                setDate = result.sunset?.seconds?.inWholeMilliseconds?.toDate()
-            ),
-            moon = Astro(),
-            moonPhase = MoonPhase(
-                angle = result.moonPhase?.times(360)?.roundToInt() // Seems correct
             ),
             uV = UV(index = result.uvIndex)
         )

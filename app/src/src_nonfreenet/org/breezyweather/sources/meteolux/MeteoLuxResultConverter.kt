@@ -20,7 +20,6 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Temperature
@@ -129,46 +128,6 @@ internal fun getDailyForecast(
                         gusts = getRangeMax(it.wind?.gusts)?.div(3.6) // convert km/h to m/s
                     )
                 ),
-                sun = if (weatherResult.ephemeris?.date != null && it.date.startsWith(weatherResult.ephemeris.date)) {
-                    Astro(
-                        riseDate = weatherResult.ephemeris.sunrise?.let { sunrise ->
-                            if (timeRegex.matches(sunrise)) {
-                                formatter.parse(it.date.substringBefore("T") + "T" + sunrise + ":00")
-                            } else {
-                                null
-                            }
-                        },
-                        setDate = weatherResult.ephemeris.sunset?.let { sunset ->
-                            if (timeRegex.matches(sunset)) {
-                                formatter.parse(it.date.substringBefore("T") + "T" + sunset + ":00")
-                            } else {
-                                null
-                            }
-                        }
-                    )
-                } else {
-                    null
-                },
-                moon = if (weatherResult.ephemeris?.date != null && it.date.startsWith(weatherResult.ephemeris.date)) {
-                    Astro(
-                        riseDate = weatherResult.ephemeris.moonrise?.let { moonrise ->
-                            if (timeRegex.matches(moonrise)) {
-                                formatter.parse(it.date.substringBefore("T") + "T" + moonrise + ":00")
-                            } else {
-                                null
-                            }
-                        },
-                        setDate = weatherResult.ephemeris.moonset?.let { moonset ->
-                            if (timeRegex.matches(moonset)) {
-                                formatter.parse(it.date.substringBefore("T") + "T" + moonset + ":00")
-                            } else {
-                                null
-                            }
-                        }
-                    )
-                } else {
-                    null
-                },
                 uV = UV(
                     index = it.uvIndex
                 ),

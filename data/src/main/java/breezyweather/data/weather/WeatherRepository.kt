@@ -239,15 +239,19 @@ class WeatherRepository(
                     degreeDayHeating = daily.degreeDay?.heating,
                     degreeDayCooling = daily.degreeDay?.cooling,
 
-                    // sun.
+                    // sun
                     sunRiseDate = daily.sun?.riseDate?.time,
                     sunSetDate = daily.sun?.setDate?.time,
 
-                    // moon.
+                    // twilight
+                    twilightRiseDate = daily.twilight?.riseDate?.time,
+                    twilightSetDate = daily.twilight?.setDate?.time,
+
+                    // moon
                     moonRiseDate = daily.moon?.riseDate?.time,
                     moonSetDate = daily.moon?.setDate?.time,
 
-                    // moon phase.
+                    // moon phase
                     moonPhaseAngle = daily.moonPhase?.angle?.toLong(),
 
                     // aqi.

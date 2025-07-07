@@ -232,6 +232,8 @@
     <string name="ephemeris_about">À propos des heures de lever et coucher</string>
     <string name="ephemeris_about_rise">L’heure de lever est le moment où le soleil ou la lune apparaît entièrement au-dessus de l’horizon.</string>
     <string name="ephemeris_about_set">L’heure de coucher est le moment où le soleil ou la lune disparaît complètement sous l’horizon.</string>
+    <string name="ephemeris_about_dawn">L’aube est le moment où la première lumière du jour apparaît avant le lever du soleil.</string>
+    <string name="ephemeris_about_dusk">Le crépuscule est la phase la plus sombre de la tombée de la nuit, avant que la dernière lumière visible disparaisse.</string>
 
     <!-- Weather texts -->
     <string name="common_weather_text_clear_sky">Ciel dégagé</string>
@@ -487,10 +489,12 @@
     <string name="air_quality_co_voice">Monoxyde de carbone</string>
     <string name="air_quality_co_full">Monoxyde de carbone (CO)</string>
     <string name="air_quality_co_sources">Provient généralement de la combustion incomplète de combustibles carbonés, comme celle qui se produit dans les moteurs de voiture et les centrales électriques.</string>
-    <string name="ephemeris_sunrise_at">Lever de soleil à %s</string> <!-- $ = time. -->
-    <string name="ephemeris_sunset_at">Coucher de soleil à %s</string> <!-- $ = time. -->
-    <string name="ephemeris_moonrise_at">Lever de lune à %s</string> <!-- $ = time. -->
-    <string name="ephemeris_moonset_at">Coucher de lune à %s</string> <!-- $ = time. -->
+    <string name="ephemeris_sunrise_at">Lever de soleil à %s</string>
+    <string name="ephemeris_sunset_at">Coucher de soleil à %s</string>
+    <string name="ephemeris_dawn_at">Aube à %s</string>
+    <string name="ephemeris_dusk_at">Crépuscule à %s</string>
+    <string name="ephemeris_moonrise_at">Lever de lune à %s</string>
+    <string name="ephemeris_moonset_at">Coucher de lune à %s</string>
     <string name="precipitation_none">Pas de précipitations</string>
     <string name="precipitation_between_time">Précipitations de %1$s à %2$s</string> <!-- $1 = start time, $2 = end time. -->
     <string name="action_add_current_location">Ajouter ma position actuelle</string>

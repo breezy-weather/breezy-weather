@@ -20,7 +20,6 @@ import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -35,7 +34,6 @@ import org.breezyweather.R
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.sources.getWindDegree
-import org.breezyweather.sources.hko.json.HkoAstroResult
 import org.breezyweather.sources.hko.json.HkoCurrentRegionalWeather
 import org.breezyweather.sources.hko.json.HkoDailyForecast
 import org.breezyweather.sources.hko.json.HkoHourlyWeatherForecast
@@ -121,17 +119,10 @@ internal fun getNormals(
 internal fun getDailyForecast(
     context: Context,
     dailyForecast: List<HkoDailyForecast>?,
-    sun1: HkoAstroResult,
-    sun2: HkoAstroResult,
-    moon1: HkoAstroResult,
-    moon2: HkoAstroResult,
     oneJson: HkoOneJsonResult,
 ): List<DailyWrapper> {
     val formatter = SimpleDateFormat("yyyyMMdd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Hong_Kong")
-
-    val sunMap = getAstroMap(listOf(sun1, sun2))
-    val moonMap = getAstroMap(listOf(moon1, moon2))
 
     // City-wide forecast in case the grid forecast fails to return forecast weather conditions
     val iconRegex = Regex("""^pic\d{2}\.png$""")
@@ -179,9 +170,7 @@ internal fun getDailyForecast(
                     precipitationProbability = PrecipitationProbability(
                         total = getPrecipitationProbability(it.ForecastChanceOfRain)
                     )
-                ),
-                sun = sunMap.getOrElse(it.ForecastDate) { null },
-                moon = moonMap.getOrElse(it.ForecastDate) { null }
+                )
             )
         )
     }
@@ -719,40 +708,4 @@ private fun getAlertColor(
         "WTMW" -> Color.rgb(0, 124, 188)
         else -> Alert.colorFromSeverity(severity)
     }
-}
-
-private fun getAstroMap(
-    astro: List<HkoAstroResult>,
-): MutableMap<String, Astro> {
-    val dateTimeFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH)
-    dateTimeFormatter.timeZone = TimeZone.getTimeZone("Asia/Hong_Kong")
-    val dateRegex = Regex("""^\d{4}-\d{2}-\d{2}$""")
-    val timeRegex = Regex("""^\d{2}:\d{2}$""")
-    var key: String
-    var value: Astro
-
-    val astroMap = mutableMapOf<String, Astro>()
-    astro.forEach { a ->
-        a.data?.forEach {
-            if (it.size == 4) {
-                if (dateRegex.matches(it[0])) {
-                    key = it[0].replace("-", "")
-                    value = Astro(
-                        riseDate = if (timeRegex.matches(it[1])) {
-                            dateTimeFormatter.parse(it[0] + " " + it[1])
-                        } else {
-                            null
-                        },
-                        setDate = if (timeRegex.matches(it[3])) {
-                            dateTimeFormatter.parse(it[0] + " " + it[3])
-                        } else {
-                            null
-                        }
-                    )
-                    astroMap[key] = value
-                }
-            }
-        }
-    }
-    return astroMap
 }

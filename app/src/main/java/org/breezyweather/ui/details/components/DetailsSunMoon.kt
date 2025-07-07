@@ -106,6 +106,9 @@ fun DetailsSunMoon(
                     if (today.sun?.isValid == true) {
                         DailySun(location, today.sun!!)
                     }
+                    if (today.twilight?.isValid == true) {
+                        DailyTwilight(location, today.twilight!!)
+                    }
                     if (today.moon?.isValid == true) {
                         DailyMoon(location, today.moon!!)
                     }
@@ -131,7 +134,11 @@ fun DetailsSunMoon(
             DetailsCardText(
                 stringResource(R.string.ephemeris_about_rise) +
                     " " +
-                    stringResource(R.string.ephemeris_about_set)
+                    stringResource(R.string.ephemeris_about_set) +
+                    "\n\n" +
+                    stringResource(R.string.ephemeris_about_dawn) +
+                    " " +
+                    stringResource(R.string.ephemeris_about_dusk)
             )
         }
         bottomInsetItem()
@@ -398,6 +405,67 @@ fun DailySun(
                     }
                     talkBackBuilder.append(context.getString(R.string.sunshine_duration))
                     talkBackBuilder.append(DurationUnit.H.getValueVoice(context, it))
+                }
+                contentDescription = talkBackBuilder.toString()
+            }
+    )
+}
+
+@Composable
+fun DailyTwilight(
+    location: Location,
+    twilight: Astro,
+    modifier: Modifier = Modifier,
+) {
+    val context = LocalContext.current
+    val dawn = twilight.riseDate?.getFormattedTime(location, context, context.is12Hour)
+    val dusk = twilight.setDate?.getFormattedTime(location, context, context.is12Hour)
+    ListItem(
+        leadingContent = {
+            Image(
+                painter = painterResource(R.drawable.ic_twilight),
+                contentDescription = null,
+                colorFilter = ColorFilter.tint(colorResource(R.color.colorTextContent))
+            )
+        },
+        headlineContent = {
+            Text(
+                text = if (BreezyWeather.instance.debugMode) {
+                    (
+                        twilight.riseDate?.getFormattedDate("yyyy-MM-dd HH:mm", location, context)
+                            ?: context.getString(R.string.null_data_text)
+                        ) +
+                        "↑ / " +
+                        (
+                            twilight.setDate?.getFormattedDate("yyyy-MM-dd HH:mm", location, context)
+                                ?: context.getString(R.string.null_data_text)
+                            ) +
+                        "↓"
+                } else {
+                    (
+                        dawn ?: context.getString(R.string.null_data_text)
+                        ) +
+                        "↑ / " +
+                        (
+                            dusk ?: context.getString(R.string.null_data_text)
+                            ) +
+                        "↓"
+                },
+                color = DayNightTheme.colors.titleColor
+            )
+        },
+        tonalElevation = defaultCardListItemElevation,
+        modifier = modifier
+            .clearAndSetSemantics {
+                val talkBackBuilder = StringBuilder()
+                if (dawn != null) {
+                    talkBackBuilder.append(context.getString(R.string.ephemeris_dawn_at, dawn))
+                }
+                if (dusk != null) {
+                    if (talkBackBuilder.toString().isNotEmpty()) {
+                        talkBackBuilder.append(context.getString(R.string.comma_separator))
+                    }
+                    talkBackBuilder.append(context.getString(R.string.ephemeris_dusk_at, dusk))
                 }
                 contentDescription = talkBackBuilder.toString()
             }

@@ -1,0 +1,5 @@
+ALTER TABLE dailys
+ADD COLUMN twilight_rise_date INTEGER;
+
+ALTER TABLE dailys
+ADD COLUMN twilight_set_date INTEGER;

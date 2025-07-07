@@ -129,8 +129,6 @@ class OpenMeteoService @Inject constructor(
                 "temperature_2m_min",
                 "apparent_temperature_max",
                 "apparent_temperature_min",
-                "sunrise",
-                "sunset",
                 "sunshine_duration",
                 "uv_index_max"
             )

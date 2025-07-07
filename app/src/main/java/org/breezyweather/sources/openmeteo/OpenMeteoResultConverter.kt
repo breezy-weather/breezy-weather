@@ -19,7 +19,6 @@ package org.breezyweather.sources.openmeteo
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
-import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Pollen
@@ -130,10 +129,6 @@ internal fun getDailyList(
                     temperature = dailyResult.temperatureMin?.getOrNull(i + 1),
                     apparentTemperature = dailyResult.apparentTemperatureMin?.getOrNull(i + 1)
                 )
-            ),
-            sun = Astro(
-                riseDate = dailyResult.sunrise?.getOrNull(i)?.seconds?.inWholeMilliseconds?.toDate(),
-                setDate = dailyResult.sunset?.getOrNull(i)?.seconds?.inWholeMilliseconds?.toDate()
             ),
             uV = UV(index = dailyResult.uvIndexMax?.getOrNull(i)),
             sunshineDuration = dailyResult.sunshineDuration?.getOrNull(i)?.div(3600)

@@ -17,11 +17,9 @@
 package breezyweather.domain.weather.wrappers
 
 import breezyweather.domain.weather.model.AirQuality
-import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.DegreeDay
 import breezyweather.domain.weather.model.HalfDay
-import breezyweather.domain.weather.model.MoonPhase
 import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.model.UV
 import java.util.Date
@@ -34,9 +32,6 @@ data class DailyWrapper(
     val day: HalfDay? = null,
     val night: HalfDay? = null,
     val degreeDay: DegreeDay? = null,
-    val sun: Astro? = null,
-    val moon: Astro? = null,
-    val moonPhase: MoonPhase? = null,
     val uV: UV? = null,
     /**
      * Sunshine duration in hours (ex: 0.5 means 30 min)
@@ -51,9 +46,6 @@ data class DailyWrapper(
         day = this.day,
         night = this.night,
         degreeDay = this.degreeDay,
-        sun = this.sun,
-        moon = this.moon,
-        moonPhase = this.moonPhase,
         airQuality = airQuality,
         pollen = pollen,
         uV = this.uV,

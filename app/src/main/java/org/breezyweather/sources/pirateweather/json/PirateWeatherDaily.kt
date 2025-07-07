@@ -16,7 +16,6 @@
 
 package org.breezyweather.sources.pirateweather.json
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -24,10 +23,6 @@ data class PirateWeatherDaily(
     val time: Long,
     val icon: String?,
     val summary: String?,
-
-    @SerialName("sunriseTime") val sunrise: Long?,
-    @SerialName("sunsetTime") val sunset: Long?,
-    val moonPhase: Double?,
 
     val precipType: String?,
     val precipIntensity: Double?,

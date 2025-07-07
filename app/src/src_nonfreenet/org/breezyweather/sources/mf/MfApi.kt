@@ -18,7 +18,6 @@ package org.breezyweather.sources.mf
 
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.mf.json.MfCurrentResult
-import org.breezyweather.sources.mf.json.MfEphemerisResult
 import org.breezyweather.sources.mf.json.MfForecastResult
 import org.breezyweather.sources.mf.json.MfNormalsResult
 import org.breezyweather.sources.mf.json.MfRainResult
@@ -62,16 +61,6 @@ interface MfApi {
         @Query("formatDate") formatDate: String,
         @Query("token") token: String,
     ): Observable<MfRainResult>
-
-    @GET("ephemeris")
-    fun getEphemeris(
-        @Header("User-Agent") userAgent: String,
-        @Query("lat") lat: Double,
-        @Query("lon") lon: Double,
-        @Query("lang") lang: String,
-        @Query("formatDate") formatDate: String,
-        @Query("token") token: String,
-    ): Observable<MfEphemerisResult>
 
     @GET("v2/normals")
     fun getNormals(

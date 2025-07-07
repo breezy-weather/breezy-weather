@@ -34,6 +34,7 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -45,15 +46,13 @@ import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.cwa.json.CwaAirQualityResult
 import org.breezyweather.sources.cwa.json.CwaAlertResult
 import org.breezyweather.sources.cwa.json.CwaAssistantResult
-import org.breezyweather.sources.cwa.json.CwaAstroResult
 import org.breezyweather.sources.cwa.json.CwaCurrentResult
 import org.breezyweather.sources.cwa.json.CwaForecastResult
 import org.breezyweather.sources.cwa.json.CwaNormalsResult
 import retrofit2.Retrofit
-import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
-import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -229,61 +228,17 @@ class CwaService @Inject constructor(
             Observable.just(CwaAirQualityResult())
         }
 
-        // The sunrise/sunset, moonrise/moonset API calls require start and end dates.
-        // We will cover 8 days including "today" in the calls.
-        val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
-        formatter.timeZone = TimeZone.getTimeZone("Asia/Taipei")
-        val now = Calendar.getInstance(TimeZone.getTimeZone("Asia/Taipei"), Locale.ENGLISH)
-        val timeFrom = formatter.format(now.time)
-        now.add(Calendar.DATE, 8)
-        val timeTo = formatter.format(now.time)
-        now.add(Calendar.DATE, -8)
-
-        val sun = if (SourceFeature.FORECAST in requestedFeatures) {
-            mApi.getAstro(
-                endpoint = SUN_ENDPOINT,
-                apiKey = apiKey,
-                countyName = countyName,
-                parameter = SUN_PARAMETERS,
-                timeFrom = timeFrom,
-                timeTo = timeTo
-            ).onErrorResumeNext {
-                /*if (BreezyWeather.instance.debugMode) {
-                    failedFeatures.add(SourceFeature.OTHER)
-                }*/
-                Observable.just(CwaAstroResult())
-            }
-        } else {
-            Observable.just(CwaAstroResult())
-        }
-        val moon = if (SourceFeature.FORECAST in requestedFeatures) {
-            mApi.getAstro(
-                endpoint = MOON_ENDPOINT,
-                apiKey = apiKey,
-                countyName = countyName,
-                parameter = MOON_PARAMETERS,
-                timeFrom = timeFrom,
-                timeTo = timeTo
-            ).onErrorResumeNext {
-                /*if (BreezyWeather.instance.debugMode) {
-                    failedFeatures.add(SourceFeature.OTHER)
-                }*/
-                Observable.just(CwaAstroResult())
-            }
-        } else {
-            Observable.just(CwaAstroResult())
-        }
-
         // Temperature normals are only available at 27 stations (out of 700+),
         // and not available in the main weather API call.
         // Therefore we will call a different endpoint,
         // but we must specify the station ID rather than using lat/lon.
+        val currentMonth = Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.MONTH] + 1
         val station = LatLng(location.latitude, location.longitude).getNearestLocation(CWA_NORMALS_STATIONS)
         val normals = if (SourceFeature.NORMALS in requestedFeatures && station != null) {
             mApi.getNormals(
                 apiKey = apiKey,
                 stationId = station,
-                month = (now.get(Calendar.MONTH) + 1).toString()
+                month = currentMonth.toString()
             ).onErrorResumeNext {
                 failedFeatures[SourceFeature.NORMALS] = it
                 Observable.just(CwaNormalsResult())
@@ -303,15 +258,13 @@ class CwaService @Inject constructor(
             Observable.just(CwaAlertResult())
         }
 
-        return Observable.zip(current, airQuality, daily, hourly, normals, alerts, sun, moon, assistant) {
+        return Observable.zip(current, airQuality, daily, hourly, normals, alerts, assistant) {
                 currentResult: CwaCurrentResult,
                 airQualityResult: CwaAirQualityResult,
                 dailyResult: CwaForecastResult,
                 hourlyResult: CwaForecastResult,
                 normalsResult: CwaNormalsResult,
                 alertResult: CwaAlertResult,
-                sunResult: CwaAstroResult,
-                moonResult: CwaAstroResult,
                 assistantResult: CwaAssistantResult,
             ->
             val currentWrapper = if (SourceFeature.CURRENT in requestedFeatures) {
@@ -322,7 +275,7 @@ class CwaService @Inject constructor(
 
             WeatherWrapper(
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
-                    getDailyForecast(dailyResult, sunResult, moonResult)
+                    getDailyForecast(dailyResult)
                 } else {
                     null
                 },

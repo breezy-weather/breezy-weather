@@ -20,9 +20,7 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Minutely
-import breezyweather.domain.weather.model.MoonPhase
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
@@ -37,9 +35,7 @@ import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.metno.json.MetNoAlertResult
 import org.breezyweather.sources.metno.json.MetNoForecastTimeseries
-import org.breezyweather.sources.metno.json.MetNoMoonProperties
 import org.breezyweather.sources.metno.json.MetNoNowcastResult
-import org.breezyweather.sources.metno.json.MetNoSunProperties
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.minutes
 
@@ -115,8 +111,6 @@ internal fun getHourlyList(
 
 internal fun getDailyList(
     location: Location,
-    sunResult: MetNoSunProperties?,
-    moonResult: MetNoMoonProperties?,
     forecastTimeseries: List<MetNoForecastTimeseries>?,
 ): List<DailyWrapper> {
     if (forecastTimeseries.isNullOrEmpty()) return emptyList()
@@ -125,35 +119,9 @@ internal fun getDailyList(
         it.time.getIsoFormattedDate(location)
     }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
-        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
-        if (dayDate != null) {
+        hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)?.let { dayDate ->
             dailyList.add(
-                DailyWrapper(
-                    date = dayDate,
-                    sun = if (i == 0) {
-                        Astro(
-                            riseDate = sunResult?.sunrise?.time,
-                            setDate = sunResult?.sunset?.time
-                        )
-                    } else {
-                        null
-                    },
-                    moon = if (i == 0) {
-                        Astro(
-                            riseDate = moonResult?.moonrise?.time,
-                            setDate = moonResult?.moonset?.time
-                        )
-                    } else {
-                        null
-                    },
-                    moonPhase = if (i == 0) {
-                        MoonPhase(
-                            angle = moonResult?.moonphase?.roundToInt()
-                        )
-                    } else {
-                        null
-                    }
-                )
+                DailyWrapper(date = dayDate)
             )
         }
     }

@@ -18,6 +18,8 @@
     <string name="ephemeris_about">About rise and set times</string>
     <string name="ephemeris_about_rise">The rise time is when the sun or moon fully appears above the horizon.</string>
     <string name="ephemeris_about_set">The set time is when the sun or moon completely disappears below the horizon.</string>
+    <string name="ephemeris_about_dawn">The dawn is when the first visible light of the day appears before sunrise.</string>
+    <string name="ephemeris_about_dusk">The dusk is the darkest stage of twilight before the last visible light disappears.</string>
     <string name="details">Details</string>
     <!-- Alerts -->
     <string name="alert">Alert</string>
@@ -276,6 +278,10 @@
     <string name="ephemeris_sunrise_at">Sunrise at %s</string>
     <!-- Sunset at 17:54 -->
     <string name="ephemeris_sunset_at">Sunset at %s</string>
+    <!-- Dawn at 05:54 -->
+    <string name="ephemeris_dawn_at">Dawn at %s</string>
+    <!-- Dusk at 17:54 -->
+    <string name="ephemeris_dusk_at">Dusk at %s</string>
     <!-- Moonrise at 05:54 -->
     <string name="ephemeris_moonrise_at">Moonrise at %s</string>
     <!-- Moonset at 17:54 -->

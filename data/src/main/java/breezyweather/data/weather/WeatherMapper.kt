@@ -194,6 +194,8 @@ object WeatherMapper {
         degreeDayCooling: Double?,
         sunRiseDate: Long?,
         sunSetDate: Long?,
+        twilightRiseDate: Long?,
+        twilightSetDate: Long?,
         moonRiseDate: Long?,
         moonSetDate: Long?,
         moonPhaseAngle: Long?,
@@ -308,6 +310,7 @@ object WeatherMapper {
         ),
         DegreeDay(degreeDayHeating, degreeDayCooling),
         Astro(sunRiseDate?.let { Date(it) }, sunSetDate?.let { Date(it) }),
+        Astro(twilightRiseDate?.let { Date(it) }, twilightSetDate?.let { Date(it) }),
         Astro(moonRiseDate?.let { Date(it) }, moonSetDate?.let { Date(it) }),
         MoonPhase(moonPhaseAngle?.toInt()),
         AirQuality(

@@ -28,15 +28,12 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.metno.json.MetNoAirQualityResult
 import org.breezyweather.sources.metno.json.MetNoAlertResult
 import org.breezyweather.sources.metno.json.MetNoForecastResult
-import org.breezyweather.sources.metno.json.MetNoMoonResult
 import org.breezyweather.sources.metno.json.MetNoNowcastResult
-import org.breezyweather.sources.metno.json.MetNoSunResult
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -133,38 +130,6 @@ class MetNoService @Inject constructor(
             Observable.just(MetNoForecastResult())
         }
 
-        val formattedDate = Date().getIsoFormattedDate(location)
-        val sun = if (SourceFeature.FORECAST in requestedFeatures) {
-            mApi.getSun(
-                USER_AGENT,
-                location.latitude,
-                location.longitude,
-                formattedDate
-            ).onErrorResumeNext {
-                /*if (BreezyWeather.instance.debugMode) {
-                    failedFeatures.add(SourceFeature.OTHER)
-                }*/
-                Observable.just(MetNoSunResult())
-            }
-        } else {
-            Observable.just(MetNoSunResult())
-        }
-        val moon = if (SourceFeature.FORECAST in requestedFeatures) {
-            mApi.getMoon(
-                USER_AGENT,
-                location.latitude,
-                location.longitude,
-                formattedDate
-            ).onErrorResumeNext {
-                /*if (BreezyWeather.instance.debugMode) {
-                    failedFeatures.add(SourceFeature.OTHER)
-                }*/
-                Observable.just(MetNoMoonResult())
-            }
-        } else {
-            Observable.just(MetNoMoonResult())
-        }
-
         val nowcast = if (SourceFeature.CURRENT in requestedFeatures ||
             SourceFeature.MINUTELY in requestedFeatures
         ) {
@@ -212,24 +177,16 @@ class MetNoService @Inject constructor(
             Observable.just(MetNoAlertResult())
         }
 
-        return Observable.zip(forecast, sun, moon, nowcast, airQuality, alerts) {
+        return Observable.zip(forecast, nowcast, airQuality, alerts) {
                 forecastResult: MetNoForecastResult,
-                sunResult: MetNoSunResult,
-                moonResult: MetNoMoonResult,
                 nowcastResult: MetNoNowcastResult,
                 airQualityResult: MetNoAirQualityResult,
                 metNoAlerts: MetNoAlertResult,
             ->
             WeatherWrapper(
-                /*base = Base(
-                    // TODO: Use nowcast updatedAt if available
-                    publishDate = forecastResult.properties.meta?.updatedAt ?: Date()
-                ),*/
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
                     getDailyList(
                         location,
-                        sunResult.properties,
-                        moonResult.properties,
                         forecastResult.properties?.timeseries
                     )
                 } else {

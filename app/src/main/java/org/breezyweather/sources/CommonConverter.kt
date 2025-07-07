@@ -40,7 +40,6 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.median
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.common.extensions.toDate
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 import org.shredzone.commons.suncalc.MoonIllumination
@@ -514,7 +513,7 @@ internal fun computePollutantInPpbFromUgm3(
  * Completes daily data from hourly data:
  * - HalfDay (day and night)
  * - Degree day
- * - Sunrise/set (recomputes it if data is inconsistent)
+ * - Sunrise/set
  * - Air quality
  * - Pollen
  * - UV
@@ -553,30 +552,7 @@ internal fun completeDailyListFromHourlyList(
             isDay = false
         )
 
-        /**
-         * Most sources will return null data both on midnight sun and polar night
-         * because the sun never rises in both cases
-         * So we recalculate even in that case, and if it’s always up, we set up fake dates for
-         * the whole 24-hour period to avoid having nighttime all the time
-         */
-        val nextDayAtMidnight = (daily.date.time + 1.days.inWholeMilliseconds).toDate()
-        val newSun = if (daily.sun?.isValid == true) {
-            // We check that the sunrise is indeed between 00:00 and 23:59 that day
-            // (many sources unfortunately return next day!)
-            if (daily.sun!!.riseDate!! in daily.date..<nextDayAtMidnight) {
-                if (daily.sun!!.riseDate!! == daily.sun!!.setDate) {
-                    // Some sources return rising and setting at 00:00 when the sun doesn’t rise
-                    // Fixing to return the expected format
-                    Astro(null, null)
-                } else {
-                    daily.sun
-                }
-            } else {
-                getCalculatedAstroSun(daily.date, location.longitude, location.latitude)
-            }
-        } else {
-            getCalculatedAstroSun(daily.date, location.longitude, location.latitude)
-        }
+        val newSun = getCalculatedAstroSun(daily.date, location.longitude, location.latitude)
 
         daily.copy(
             day = newDay,
@@ -590,24 +566,14 @@ internal fun completeDailyListFromHourlyList(
                 daily.degreeDay
             },
             sun = newSun,
-            moon = if (daily.moon?.isValid == true) {
-                // We check that the moonrise is indeed between 00:00 and 23:59 that day
-                // (many sources unfortunately return next day!)
-                if (daily.moon!!.riseDate!! in daily.date..<nextDayAtMidnight) {
-                    if (daily.sun!!.riseDate!! == daily.sun!!.setDate) {
-                        // Some sources return rising and setting at 00:00 when the moon doesn’t rise
-                        // Fixing to return the expected format
-                        Astro(null, null)
-                    } else {
-                        daily.moon
-                    }
-                } else {
-                    getCalculatedAstroMoon(daily.date, location.longitude, location.latitude)
-                }
-            } else {
-                getCalculatedAstroMoon(daily.date, location.longitude, location.latitude)
-            },
-            moonPhase = if (daily.moonPhase?.angle != null) daily.moonPhase else getCalculatedMoonPhase(daily.date),
+            twilight = getCalculatedAstroSun(
+                daily.date,
+                location.longitude,
+                location.latitude,
+                SunTimes.Twilight.CIVIL
+            ),
+            moon = getCalculatedAstroMoon(daily.date, location.longitude, location.latitude),
+            moonPhase = getCalculatedMoonPhase(daily.date),
             airQuality = daily.airQuality ?: getDailyAirQualityFromHourlyList(
                 hourlyAirQuality.filter { it.key.getIsoFormattedDate(location) == theDayFormatted }.values
             ),
@@ -662,14 +628,14 @@ private fun getDegreeDay(
  * Return 00:00:00.00 to 23:59:59.999 if sun is always up (assuming date parameter is at 00:00)
  * Takes 5 to 40 ms to execute on my device
  * Means that for a 15-day forecast, take between 0.1 and 0.6 sec
- * Given it is only called on missing data, it’s efficiently-safe
  */
 private fun getCalculatedAstroSun(
     date: Date,
     longitude: Double,
     latitude: Double,
+    twilight: SunTimes.Twilight = SunTimes.Twilight.VISUAL,
 ): Astro {
-    val riseTimes = SunTimes.compute().on(date).at(latitude, longitude).execute()
+    val riseTimes = SunTimes.compute().twilight(twilight).on(date).at(latitude, longitude).execute()
 
     if (riseTimes.isAlwaysUp) {
         return Astro(
@@ -687,7 +653,7 @@ private fun getCalculatedAstroSun(
     }
 
     if (riseTimes.rise != null && riseTimes.set != null && riseTimes.set!! < riseTimes.rise) {
-        val setTimes = SunTimes.compute().on(riseTimes.rise).at(latitude, longitude).execute()
+        val setTimes = SunTimes.compute().twilight(twilight).on(riseTimes.rise).at(latitude, longitude).execute()
         if (setTimes.set != null) {
             return Astro(
                 riseDate = riseTimes.rise,
@@ -697,7 +663,8 @@ private fun getCalculatedAstroSun(
 
         // If we miss the set time, redo a calculation that takes more computing power
         // Should not happen very often so avoid doing full cycle everytime
-        val setTimes2 = SunTimes.compute().fullCycle().on(riseTimes.rise).at(latitude, longitude).execute()
+        val setTimes2 =
+            SunTimes.compute().twilight(twilight).fullCycle().on(riseTimes.rise).at(latitude, longitude).execute()
         return Astro(
             riseDate = riseTimes.rise,
             setDate = setTimes2.set
@@ -707,7 +674,8 @@ private fun getCalculatedAstroSun(
     // If we miss the set time, redo a calculation that takes more computing power
     // Should not happen very often so avoid doing full cycle everytime
     if (riseTimes.rise != null && riseTimes.set == null) {
-        val times2 = SunTimes.compute().fullCycle().on(riseTimes.rise).at(latitude, longitude).execute()
+        val times2 =
+            SunTimes.compute().twilight(twilight).fullCycle().on(riseTimes.rise).at(latitude, longitude).execute()
         return Astro(
             riseDate = times2.rise,
             setDate = times2.set

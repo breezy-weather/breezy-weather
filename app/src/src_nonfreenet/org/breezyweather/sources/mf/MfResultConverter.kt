@@ -22,10 +22,8 @@ import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Minutely
-import breezyweather.domain.weather.model.MoonPhase
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -39,7 +37,6 @@ import breezyweather.domain.weather.wrappers.HourlyWrapper
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.sources.mf.json.MfCurrentResult
-import org.breezyweather.sources.mf.json.MfEphemeris
 import org.breezyweather.sources.mf.json.MfForecastDaily
 import org.breezyweather.sources.mf.json.MfForecastHourly
 import org.breezyweather.sources.mf.json.MfForecastProbability
@@ -98,7 +95,6 @@ internal fun getCurrent(currentResult: MfCurrentResult): CurrentWrapper? {
 internal fun getDailyList(
     location: Location,
     dailyForecasts: List<MfForecastDaily>?,
-    ephemerisResult: MfEphemeris?,
 ): List<DailyWrapper> {
     if (dailyForecasts.isNullOrEmpty()) return emptyList()
     val dailyList: MutableList<DailyWrapper> = ArrayList(dailyForecasts.size)
@@ -134,25 +130,6 @@ internal fun getDailyList(
                     // so we try to get tMin from next day if available
                     temperature = Temperature(temperature = dailyForecasts.getOrNull(i + 1)?.tMin)
                 ),
-                sun = Astro(
-                    riseDate = dailyForecast.sunriseTime,
-                    setDate = dailyForecast.sunsetTime
-                ),
-                moon = if (i == 0) {
-                    Astro(
-                        riseDate = ephemerisResult?.moonriseTime,
-                        setDate = ephemerisResult?.moonsetTime
-                    )
-                } else {
-                    null
-                },
-                moonPhase = if (i == 0) {
-                    MoonPhase(
-                        angle = MoonPhase.getAngleFromEnglishDescription(ephemerisResult?.moonPhaseDescription)
-                    )
-                } else {
-                    null
-                },
                 uV = UV(index = dailyForecast.uvIndex?.toDouble())
             )
         )

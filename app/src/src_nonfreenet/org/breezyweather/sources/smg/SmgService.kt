@@ -24,27 +24,21 @@ import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody.Companion.toRequestBody
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.smg.json.SmgAirQualityResult
-import org.breezyweather.sources.smg.json.SmgAstroResult
 import org.breezyweather.sources.smg.json.SmgBulletinResult
 import org.breezyweather.sources.smg.json.SmgCurrentResult
 import org.breezyweather.sources.smg.json.SmgForecastResult
 import org.breezyweather.sources.smg.json.SmgUvResult
 import org.breezyweather.sources.smg.json.SmgWarningResult
 import retrofit2.Retrofit
-import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
-import kotlin.text.startsWith
 
 class SmgService @Inject constructor(
     @ApplicationContext context: Context,
@@ -139,24 +133,6 @@ class SmgService @Inject constructor(
             Observable.just(SmgForecastResult())
         }
 
-        // ASTRO
-        val astro = if (SourceFeature.FORECAST in requestedFeatures) {
-            val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
-            formatter.timeZone = TimeZone.getTimeZone("Asia/Macau")
-            val now = Calendar.getInstance(TimeZone.getTimeZone("Asia/Macau"))
-            val body = """{"date":"${formatter.format(now.time)}"}"""
-            mApi.getAstro(
-                body.toRequestBody("application/json".toMediaTypeOrNull())
-            ).onErrorResumeNext {
-                /*if (BreezyWeather.instance.debugMode) {
-                    failedFeatures.add(SourceFeature.OTHER)
-                }*/
-                Observable.just(SmgAstroResult())
-            }
-        } else {
-            Observable.just(SmgAstroResult())
-        }
-
         // CURRENT
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent().onErrorResumeNext {
@@ -237,7 +213,7 @@ class SmgService @Inject constructor(
             Observable.just(SmgAirQualityResult())
         }
 
-        return Observable.zip(current, daily, hourly, bulletin, uv, warnings, airQuality, astro) {
+        return Observable.zip(current, daily, hourly, bulletin, uv, warnings, airQuality) {
                 currentResult: SmgCurrentResult,
                 dailyResult: SmgForecastResult,
                 hourlyResult: SmgForecastResult,
@@ -245,11 +221,10 @@ class SmgService @Inject constructor(
                 uvResult: SmgUvResult,
                 warningsResult: List<SmgWarningResult>,
                 airQualityResult: SmgAirQualityResult,
-                astroResult: SmgAstroResult,
             ->
             WeatherWrapper(
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
-                    getDailyForecast(context, dailyResult, astroResult)
+                    getDailyForecast(context, dailyResult)
                 } else {
                     null
                 },

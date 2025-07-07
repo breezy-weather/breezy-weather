@@ -21,11 +21,9 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.DegreeDay
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Minutely
-import breezyweather.domain.weather.model.MoonPhase
 import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationDuration
@@ -191,17 +189,6 @@ internal fun getDailyList(
             degreeDay = DegreeDay(
                 heating = getDegreeDayInCelsius(forecasts.DegreeDaySummary?.Heating),
                 cooling = getDegreeDayInCelsius(forecasts.DegreeDaySummary?.Cooling)
-            ),
-            sun = Astro(
-                riseDate = forecasts.Sun?.EpochRise?.seconds?.inWholeMilliseconds?.toDate(),
-                setDate = forecasts.Sun?.EpochSet?.seconds?.inWholeMilliseconds?.toDate()
-            ),
-            moon = Astro(
-                riseDate = forecasts.Moon?.EpochRise?.seconds?.inWholeMilliseconds?.toDate(),
-                setDate = forecasts.Moon?.EpochSet?.seconds?.inWholeMilliseconds?.toDate()
-            ),
-            moonPhase = MoonPhase(
-                angle = MoonPhase.getAngleFromEnglishDescription(forecasts.Moon?.Phase)
             ),
             uV = getDailyUV(forecasts.AirAndPollen),
             sunshineDuration = forecasts.HoursOfSun

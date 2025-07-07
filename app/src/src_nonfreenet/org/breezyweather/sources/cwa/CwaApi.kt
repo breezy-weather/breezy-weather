@@ -21,7 +21,6 @@ import okhttp3.RequestBody
 import org.breezyweather.sources.cwa.json.CwaAirQualityResult
 import org.breezyweather.sources.cwa.json.CwaAlertResult
 import org.breezyweather.sources.cwa.json.CwaAssistantResult
-import org.breezyweather.sources.cwa.json.CwaAstroResult
 import org.breezyweather.sources.cwa.json.CwaCurrentResult
 import org.breezyweather.sources.cwa.json.CwaForecastResult
 import org.breezyweather.sources.cwa.json.CwaLocationResult
@@ -39,17 +38,6 @@ interface CwaApi {
         @Query("Authorization") apiKey: String,
         @Query("format") format: String = "json",
     ): Observable<CwaAlertResult>
-
-    @GET("api/v1/rest/datastore/{endpoint}")
-    fun getAstro(
-        @Path("endpoint") endpoint: String,
-        @Query("Authorization") apiKey: String,
-        @Query("format") format: String = "json",
-        @Query("CountyName") countyName: String,
-        @Query("parameter") parameter: String,
-        @Query("timeFrom") timeFrom: String,
-        @Query("timeTo") timeTo: String,
-    ): Observable<CwaAstroResult>
 
     @POST("linked/graphql")
     fun getLocation(

@@ -21,7 +21,6 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -39,7 +38,6 @@ import org.breezyweather.sources.computePollutantInUgm3FromPpb
 import org.breezyweather.sources.cwa.json.CwaAirQualityResult
 import org.breezyweather.sources.cwa.json.CwaAlertResult
 import org.breezyweather.sources.cwa.json.CwaAssistantResult
-import org.breezyweather.sources.cwa.json.CwaAstroResult
 import org.breezyweather.sources.cwa.json.CwaCurrentResult
 import org.breezyweather.sources.cwa.json.CwaForecastResult
 import org.breezyweather.sources.cwa.json.CwaLocationTown
@@ -192,8 +190,6 @@ internal fun getAirQuality(
 // and retrieve the relevant numbers using the sorted keys.
 internal fun getDailyForecast(
     dailyResult: CwaForecastResult,
-    sunResult: CwaAstroResult,
-    moonResult: CwaAstroResult,
 ): List<DailyWrapper> {
     val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Taipei")
@@ -209,10 +205,6 @@ internal fun getDailyForecast(
     val minAtMap = mutableMapOf<Long, Double?>()
     val maxTMap = mutableMapOf<Long, Double?>()
     val wdMap = mutableMapOf<Long, Double?>()
-    val srMap = mutableMapOf<Long, Date?>()
-    val ssMap = mutableMapOf<Long, Date?>()
-    val mrMap = mutableMapOf<Long, Date?>()
-    val msMap = mutableMapOf<Long, Date?>()
 
     var key: Long
     var extraMilliSeconds: Long
@@ -269,21 +261,6 @@ internal fun getDailyForecast(
         }
     }
 
-    sunResult.records?.locations?.location?.getOrNull(0)?.time?.forEach { it ->
-        key = formatter.parse("${it.date} 06:00:00")!!.time
-        srMap[key] = formatter.parse("${it.date} ${it.sunRiseTime}:00")
-        ssMap[key] = formatter.parse("${it.date} ${it.sunSetTime}:00")
-    }
-    moonResult.records?.locations?.location?.getOrNull(0)?.time?.forEach { it ->
-        key = formatter.parse("${it.date} 06:00:00")!!.time
-        if (it.moonRiseTime != "") {
-            mrMap[key] = formatter.parse("${it.date} ${it.moonRiseTime}:00")
-        }
-        if (it.moonSetTime != "") {
-            msMap[key] = formatter.parse("${it.date} ${it.moonSetTime}:00")
-        }
-    }
-
     val dates = wxTextMap.keys.groupBy { formatter.format(it).substring(0, 10) }.keys
     var dayTime: Long
     var nightTime: Long
@@ -322,14 +299,6 @@ internal fun getDailyForecast(
                         degree = wdMap.getOrElse(nightTime) { null },
                         speed = wsMap.getOrElse(nightTime) { null }
                     )
-                ),
-                sun = Astro(
-                    riseDate = srMap.getOrElse(dayTime) { null },
-                    setDate = ssMap.getOrElse(dayTime) { null }
-                ),
-                moon = Astro(
-                    riseDate = mrMap.getOrElse(dayTime) { null },
-                    setDate = msMap.getOrElse(dayTime) { null }
                 ),
                 uV = UV(
                     index = uviMap.getOrElse(dayTime) { null }
