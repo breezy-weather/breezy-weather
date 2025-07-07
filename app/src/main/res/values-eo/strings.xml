@@ -94,7 +94,7 @@
     <string name="uv_index">UV indico</string>
     <string name="uv_index_short">UV indico</string>
     <string name="uv_index_0_2">Malalta</string>
-    <string name="uv_index_3_5">Meza</string>
+    <string name="uv_index_3_5">Modera</string>
     <string name="uv_index_6_7">Alta</string>
     <string name="uv_index_8_10">Tre alta</string>
     <string name="uv_index_11">Ekstrema</string>
@@ -334,7 +334,7 @@
     <string name="settings_location_summary">Agordoj de lokaj servoj</string>
     <string name="settings_location_service">Loka servo</string>
     <string name="settings_weather_sources">Veterfontoj</string>
-    <string name="settings_weather_sources_summary">Agordoj de veterfontoj</string>
+    <string name="settings_weather_sources_summary">Defaŭlta veterfonto por novaj lokoj, propraj API ŝlosiloj, aliaj fontaj agordoj</string>
     <string name="settings_source_default_value">Implicita (neŝanĝita)</string>
     <string name="settings_source_api_key">API ŝlosilo</string>
     <string name="settings_source_instance">Servilo</string>
@@ -645,8 +645,8 @@
     <string name="widget_clock_day_details">Horloĝo + taga vetero (detala)</string>
     <string name="widget_clock_day_vertical">Horloĝo + taga vetero (vertikala)</string>
     <string name="notification_precipitation_starting_desc">Verŝajne komenciĝos je %s</string>
-    <string name="dialog_permissions_location_background_content">Por permesi al la programo atingi lokinformojn fone, tiel ke ni povas percepti ŝanĝojn en loko kaj provizi vin per validaj veterdatenoj, bonvolu meti lokaliron kiel “Allow ĉia la tempo”.</string>
-    <string name="weather_message_data_refresh_failed">Malsukcesis aktualigi veterajn datenojn</string>
+    <string name="dialog_permissions_location_background_content">Por permesi vetero refreŝigo en la fono al la plej lastatempa aktuala loko konata fare de Android, vi devas agordi lokpermeson \"Permesi la tutan tempon\". Se vi ne, vetero estos refreŝigita surbaze de la plej malfruaj prenitaj koordinatoj en la malfono, kiu povas esti eksdatigita.</string>
+    <string name="weather_message_data_refresh_failed">Malsukcesis aktualigi datenojn</string>
     <string name="weather_message_invalid_location">Nevalida loko, bonvolu forigi ĝin kaj realdoni</string>
     <string name="weather_api_limit_reached_title">Troo da API-petoj</string>
     <string name="location_search_source">Loka serĉo fonto</string>
@@ -673,7 +673,7 @@
     <string name="settings_widgets_configure_widget_summary">Agordi ĉi tiun fenestraĵon</string>
     <string name="settings_widgets_section_notification_widget">Sciiga fenestraĵo</string>
     <string name="settings_widgets_notification_widget_title">Sciiga fenestraĵo</string>
-    <string name="dialog_permissions_location_content">Breezy Weather devas kolekti viajn lokinformojn en malfono aŭ fono por disponigi la veterdatenojn de via nuna loko. Por tio ni petos iujn permesojn. Via retejo informo nur estos uzata por akiri veterdatenojn ĉe via nuna loko. Se vi ne volas dividi vian retejon informo, vi povas nei tiujn postulojn kaj mane meti vian lokon en la administra paĝo.</string>
+    <string name="dialog_permissions_location_content">Por uzi tiun trajton, vi devas permesi la aplikaĵo aliri vian nunan lokon. Ĝi nur estos kunhavita kun la elektitaj veterfontoj. Se vi ŝanĝis vian menson, vi povas nuligi la procezon kaj aldoni fiksan lokon mane.</string>
     <string name="dialog_permissions_location_title">Atingi informojn pri la nuna loko</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Unuigita</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombini la plej bonajn vetermodelojn por tiu loko</string>
@@ -752,5 +752,11 @@
     <string name="chart_no_daily_data">Neniu datumo havebla por ĉi tiu tago.</string>
     <string name="chart_no_hourly_data">Neniu hora datumo havebla.</string>
     <string name="chart_not_enough_hourly_data">Ne sufiĉe da horaj datumoj haveblas elmontri diagramon por ĉi tiu tago.</string>
-    <string name="ephemeris_about_dawn">La aŭroro estas kiam la unua videbla lumo de la tago aperas antaŭ sunleviĝo.</string>
+    <string name="ephemeris_about_dawn">La tagiĝo estas kiam la unua videbla lumo de la tago aperas antaŭ sunleviĝo.</string>
+    <string name="ephemeris_about_dusk">La noktiĝo estas la plej malhela stadio de krepusko antaŭ ol la lasta videbla lumo malaperas.</string>
+    <string name="chart_average">Meza</string>
+    <string name="chart_maximum_value">Maksimuma valoro</string>
+    <string name="conditions">Kondiĉoj</string>
+    <string name="temperature_real">Efektiva</string>
+    <string name="temperature_real_details">La efektiva temperaturo</string>
 </resources>
