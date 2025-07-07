@@ -704,13 +704,13 @@
     <string name="notification_channel_app_updates">Apon aktualigoj</string>
     <string name="notification_app_update_available">Estas nova versio disponebla!</string>
     <string name="about_check_for_app_updates">Kontrolu aplikaĵajn aktualigojn</string>
-    <string name="about_no_new_updates">Neniu nova ĝisdatigo disponebla.</string>
+    <string name="about_no_new_updates">Neniu nova ĝisdatigo disponebla</string>
     <string name="common_weather_text_sand_storm">Sabltempesto</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornado aŭ trombo</string>
     <string name="common_weather_text_smoke">Fumo</string>
     <string name="settings_location_access_background_summaryOn">Aktivigita. Apo povos fone aktualigi veterajn datenojn por via nuna loko.</string>
     <string name="settings_items_drag_to_sort">Tuŝeti por treni la listerojn, kiun vi volas ordigi</string>
-    <string name="settings_unavailable_no_background_updates">Nedisponebla, permesu fonajn aktualigojn unue</string>
+    <string name="settings_unavailable_no_background_updates">Nedisponebla, permesu fonajn ĝisdatigojn unue</string>
     <string name="notification_running_in_background">Rulante fone por plue aktualigi</string>
     <string name="settings_debug_dump_crash_logs_summary">Registras erorprotokolojn al dosiero por doni ilin al la programistoj</string>
     <string name="forecast">Prognozoj</string>
@@ -845,4 +845,12 @@
     <string name="settings_notifications_permission_summary">Devata sciigi pri atentigoj, prognozoj kaj aplikaĵo ĝisdatigoj. %s</string>
     <string name="settings_widgets_live_wallpaper_error">Ne povis lanĉi tapeton elektilo. Vi povas ankoraŭ ebligi %s tapeton elektante \"Live Wallpaper\" en via hejma ekrana tapetelekto.</string>
     <string name="settings_widgets_notification_permission_summary">Devata montri la sciigan fenestraĵo. %s</string>
+    <string name="settings_debug_notification_permission">Bezonata por sciigi pri kraŝaj protokoloj kaj nesukcesaj veteraj ĝisdatigoj. %s</string>
+    <string name="unit_mum">μm</string>
+    <string name="unit_mum_voice">Mikrometroj</string>
+    <string name="common_weather_text_tornado">Tornado</string>
+    <string name="common_weather_text_blowing_snow">Blovanta neĝo</string>
+    <string name="common_weather_text_drifting_snow">Drivanta neĝo</string>
+    <string name="common_weather_text_glaze">Glazuro</string>
+    <string name="openmeteo_weather_text_depositing_rime_fog">Deponanta prujna nebulo</string>
 </resources>
