@@ -878,4 +878,8 @@
     <string name="action_toggle_data_type_menu">切換資料類型功能表</string>
     <string name="label_expanded">已展開</string>
     <string name="label_collapsed">已收合</string>
+    <string name="ephemeris_about_dawn">曙光是指日出前天空開始亮起的時間。</string>
+    <string name="ephemeris_about_dusk">暮光是指日落後天空尚有餘光的時間。</string>
+    <string name="ephemeris_dawn_at">曙光開始時間為 %s</string>
+    <string name="ephemeris_dusk_at">暮光結束時間為 %s</string>
 </resources>
