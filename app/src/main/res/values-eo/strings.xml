@@ -690,7 +690,7 @@
     <string name="action_download">Elŝuti</string>
     <string name="dialog_app_update_check_content">Tuŝeti ĉi tie por aktivigi sciigojn pri apon aktualigoj.</string>
     <string name="dialog_app_update_check_title">Resti aktuala</string>
-    <string name="settings_location_access_background_summaryOff">Bonvolu ŝalti “Permesi ĉiam” por ekhavi fonajn aktualigojn de vian nunan lokon.</string>
+    <string name="settings_location_access_background_summaryOff">Bonvolu ebligi “Permesi ĉiam” por ekhavi fonajn aktualigojn de vian nunan lokon.</string>
     <string name="location_delete_location_dialog_message">Vi estas forigonta “%s” el via listo de konservitaj lokoj.</string>
     <string name="location_delete_location_dialog_message_no_name">Vi estas forigonta ĉi tiun lokon el via listo de konservitaj lokoj.</string>
     <string name="message_source_not_installed_error_content_tip_2">Aŭ ŝanĝu la veterfontojn por tiu loko, aŭ forigu kaj realdonu tiun lokon.</string>
@@ -699,7 +699,7 @@
     <string name="settings_notifications_app_updates_check">Sciigoj pri apon aktualigoj</string>
     <string name="settings_debug_dump_crash_logs_saved">Kraŝaj protokoloj registritaj</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instrukcioj fabrikantspecifaj</string>
-    <string name="settings_location_access_switch_summaryOff">Bonvolu permesi se vi volas povi aldoni vian nunan lokon estkiel loko.</string>
+    <string name="settings_location_access_switch_summaryOff">Bonvolu permesi se vi volas povi aldoni vian nunan lokon kiel loko.</string>
     <string name="settings_unavailable_no_animations">Nedisponebla, aktivigu efektojn en Androidagordoj unue</string>
     <string name="notification_channel_app_updates">Apon aktualigoj</string>
     <string name="notification_app_update_available">Estas nova versio disponebla!</string>
@@ -838,5 +838,11 @@
     <string name="settings_location_access_precise_summaryOn">Ebligita. La aparata reta provizanto estos uzita en prioritato kaj plejparto de la tempo, sed GPS ankaŭ povas esti uzita kiel rezervo.</string>
     <string name="settings_location_access_precise_summaryOff">Ebligu “Uzi precizan lokon” se vi havas problemon akiri lokon.</string>
     <string name="settings_weather_source_not_configured">%s (ne agordita)</string>
-    <string name="settings_weather_source_freenet_disclaimer">Pli veterfontoj estas haveblaj de aliaj gustoj de la aplikaĵo. Tuŝetu ĉi tie por lerni pli.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Pli veterfontoj estas haveblaj de aliaj versioj de la aplikaĵo. Tuŝetu ĉi tie por lerni pli.</string>
+    <string name="settings_weather_source_current_position_disclaimer">Pli da veterfontoj povas iĝi haveblaj por via loko post la unua refreŝigo.</string>
+    <string name="settings_source_instance_geocoding">Geokoda servilo</string>
+    <string name="settings_notifications_permission">Sciiga permeso postulata</string>
+    <string name="settings_notifications_permission_summary">Devata sciigi pri atentigoj, prognozoj kaj aplikaĵo ĝisdatigoj. %s</string>
+    <string name="settings_widgets_live_wallpaper_error">Ne povis lanĉi tapeton elektilo. Vi povas ankoraŭ ebligi %s tapeton elektante \"Live Wallpaper\" en via hejma ekrana tapetelekto.</string>
+    <string name="settings_widgets_notification_permission_summary">Devata montri la sciigan uzaĵon. %s</string>
 </resources>
