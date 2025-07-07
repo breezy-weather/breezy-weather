@@ -700,19 +700,19 @@
     <string name="settings_debug_dump_crash_logs_saved">Kraŝaj protokoloj registritaj</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instrukcioj fabrikantspecifaj</string>
     <string name="settings_location_access_switch_summaryOff">Bonvolu permesi se vi volas povi aldoni vian nunan lokon kiel loko.</string>
-    <string name="settings_unavailable_no_animations">Nedisponebla, aktivigu efektojn en Androidagordoj unue</string>
+    <string name="settings_unavailable_no_animations">Nedisponebla, ebligi efektojn en Androidagordoj unue</string>
     <string name="notification_channel_app_updates">Apon aktualigoj</string>
     <string name="notification_app_update_available">Estas nova versio disponebla!</string>
-    <string name="about_check_for_app_updates">Serĉi apaktualigojn</string>
-    <string name="about_no_new_updates">Neniu nova aktualigo disponebla</string>
+    <string name="about_check_for_app_updates">Kontrolu aplikaĵajn aktualigojn</string>
+    <string name="about_no_new_updates">Neniu nova ĝisdatigo disponebla.</string>
     <string name="common_weather_text_sand_storm">Sabltempesto</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornado aŭ trombo</string>
     <string name="common_weather_text_smoke">Fumo</string>
     <string name="settings_location_access_background_summaryOn">Aktivigita. Apo povos fone aktualigi veterajn datenojn por via nuna loko.</string>
-    <string name="settings_items_drag_to_sort">Frapeti por treni la listerojn, kiun vi volas ordigi</string>
+    <string name="settings_items_drag_to_sort">Tuŝeti por treni la listerojn, kiun vi volas ordigi</string>
     <string name="settings_unavailable_no_background_updates">Nedisponebla, permesu fonajn aktualigojn unue</string>
     <string name="notification_running_in_background">Rulante fone por plue aktualigi</string>
-    <string name="settings_debug_dump_crash_logs_summary">Registras erorprotokolon al dosiero por doni ilin al la programistoj</string>
+    <string name="settings_debug_dump_crash_logs_summary">Registras erorprotokolojn al dosiero por doni ilin al la programistoj</string>
     <string name="forecast">Prognozoj</string>
     <string name="dialog_refresh_error_details_title">Aktualigi eraroj</string>
     <string name="dialog_refresh_error_details_content">Altuŝi erarmesaĝo kun demandosigno por ricevi pluan helpon.</string>
@@ -844,5 +844,5 @@
     <string name="settings_notifications_permission">Sciiga permeso postulata</string>
     <string name="settings_notifications_permission_summary">Devata sciigi pri atentigoj, prognozoj kaj aplikaĵo ĝisdatigoj. %s</string>
     <string name="settings_widgets_live_wallpaper_error">Ne povis lanĉi tapeton elektilo. Vi povas ankoraŭ ebligi %s tapeton elektante \"Live Wallpaper\" en via hejma ekrana tapetelekto.</string>
-    <string name="settings_widgets_notification_permission_summary">Devata montri la sciigan uzaĵon. %s</string>
+    <string name="settings_widgets_notification_permission_summary">Devata montri la sciigan fenestraĵo. %s</string>
 </resources>
