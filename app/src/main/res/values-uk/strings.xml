@@ -801,4 +801,8 @@
     <string name="action_toggle_data_type_menu">Перемикання меню вибору типу даних</string>
     <string name="label_expanded">Розгорнуто</string>
     <string name="label_collapsed">Згорнуто</string>
+    <string name="ephemeris_about_dawn">Світанок - це коли перше видиме світло дня з\'являється перед сходом сонця.</string>
+    <string name="ephemeris_about_dusk">Сутінки – це найтемніша стадія сутінків перед тим, як зникне останнє видиме світло.</string>
+    <string name="ephemeris_dawn_at">Світанок о %s</string>
+    <string name="ephemeris_dusk_at">Сутінки о %s</string>
 </resources>
