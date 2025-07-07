@@ -55,7 +55,6 @@ import kotlin.math.ln
 import kotlin.math.log10
 import kotlin.math.pow
 import kotlin.math.roundToInt
-import kotlin.math.sin
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 
@@ -1353,25 +1352,29 @@ private fun getCurrentUVFromDayMax(
         return null
     }
 
-    // You can visualize formula here: https://www.desmos.com/calculator/lna7dco4zi
     val calendar = Calendar.getInstance(timeZone)
 
     calendar.time = currentDate
     val currentTime = calendar[Calendar.HOUR_OF_DAY] + calendar[Calendar.MINUTE] / 60f // 1 minute approx. is enough
 
     calendar.time = sunriseDate
-    val sunRiseTime = calendar[Calendar.HOUR_OF_DAY] + calendar[Calendar.MINUTE] / 60f // b in desmos graph
+    val sunRiseTime = calendar[Calendar.HOUR_OF_DAY] + calendar[Calendar.MINUTE] / 60f
 
     calendar.time = sunsetDate
-    val sunSetTime = calendar[Calendar.HOUR_OF_DAY] + calendar[Calendar.MINUTE] / 60f // c in desmos graph
+    val sunSetTime = calendar[Calendar.HOUR_OF_DAY] + calendar[Calendar.MINUTE] / 60f
 
-    val sunlightDuration = sunSetTime - sunRiseTime // d in desmos graph
-    val sunRiseOffset = -Math.PI * sunRiseTime / sunlightDuration // o in desmos graph
-    val currentUV = dayMaxUV * sin(Math.PI / sunlightDuration * currentTime + sunRiseOffset) // dayMaxUV = a
+    val sunlightDuration = sunSetTime - sunRiseTime
+    val currentOffset = currentTime - sunRiseTime
 
-    val indexUV = if (currentUV < 0) 0.0 else currentUV
+    // Make θ = −π at sunrise, θ = 0 at local noon, and θ = +π at sunset
+    // such that cos(θ) is at minimum at sunrise and sunset, and maximum at noon
+    val theta = (currentOffset / sunlightDuration) * 2.0 * Math.PI - Math.PI
 
-    return UV(index = indexUV)
+    // cos(θ) output is between −1 and 1
+    // We normalize so that dayMaxUV is multiplied by a value between 0 and 1
+    val currentUV = dayMaxUV * (cos(theta) + 1) / 2
+
+    return UV(index = currentUV)
 }
 
 /**
