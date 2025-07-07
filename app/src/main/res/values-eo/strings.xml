@@ -758,5 +758,8 @@
     <string name="chart_maximum_value">Maksimuma valoro</string>
     <string name="conditions">Kondiĉoj</string>
     <string name="temperature_real">Efektiva</string>
-    <string name="temperature_real_details">La efektiva temperaturo</string>
+    <string name="temperature_real_details">La efektiva temperaturo.</string>
+    <string name="temperature_feels_like_details">Kiel la temperaturo sentas, rezulte de humideco, vento kaj/aŭ sunlumo.</string>
+    <string name="temperature_degree_day_heating_explanation">Diferenco inter la ekstera temperaturo kaj referenca agrabla temperaturo uzata por taksi varmaj energiaj postuloj</string>
+    <string name="temperature_degree_day_cooling_explanation">Diferenco inter la ekstera temperaturo kaj referenca agrabla temperaturo uzata por taksi malvarmigaj energiaj postuloj</string>
 </resources>
