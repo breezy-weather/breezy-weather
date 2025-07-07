@@ -819,4 +819,8 @@
     <string name="visibility_very_poor">Velmi špatná</string>
     <string name="data_sources">Zdroje dat</string>
     <string name="data_modified">Tento materiál byl upraven z originálu aplikací %s, převážně za účelem výpočtu nebo doplnění chybějících údajů.</string>
+    <string name="ephemeris_about_dawn">Úsvit je, když se objeví první viditelné světlo dne před východem slunce.</string>
+    <string name="ephemeris_about_dusk">Setmění je nejtmavější fáze soumraku předtím než zmizí poslední viditelné světlo.</string>
+    <string name="ephemeris_dawn_at">Úsvit v %s</string>
+    <string name="ephemeris_dusk_at">Setmění v %s</string>
 </resources>
