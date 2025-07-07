@@ -737,7 +737,7 @@
     <string name="temperature_feels_like_details">Яка відчувається температура внаслідок вологості, вітру та/або сонячного світла.</string>
     <string name="chart_not_enough_hourly_data">Недостатньо погодинних даних для відображення графіка за цей день.</string>
     <string name="ephemeris_about_set">Встановлений час – це коли сонце або місяць повністю зникають за горизонтом.</string>
-    <string name="ephemeris_about_rise">Час сходу сонця - це коли сонце або місяць повністю з\'являються над горизонтом.</string>
+    <string name="ephemeris_about_rise">Час сходу сонця - це коли сонце або місяць повністю з’являються над горизонтом.</string>
     <string name="temperature_degree_day_heating_explanation">Різниця між зовнішньою температурою та еталонною комфортною температурою, яка використовується для оцінки потреб в енергії на опалення</string>
     <string name="wind_speed_about_description">Швидкість вітру вимірюється шляхом усереднення швидкості вітру протягом певного періоду часу. Пориви вітру – це раптові сплески вітру, які зазвичай тривають менше 20 секунд.</string>
     <string name="air_quality_pm25_full">Дрібні тверді частинки (&lt; %s)</string>
@@ -748,14 +748,14 @@
     <string name="uv_index_about">Про УФ-індекс</string>
     <string name="air_quality_pollutant_details">Деталі забруднюючих речовин</string>
     <string name="air_quality_pm_sources">Основними джерелами є процеси горіння (наприклад, електростанції, опалення приміщень, вихлопні гази автомобілів, лісові пожежі), механічні процеси (наприклад, будівництво, мінеральний пил, сільське господарство) та біологічні частинки (наприклад, пилок, цвіль, бактерії, віруси).</string>
-    <string name="air_quality_index_about_description_2">Шкала, яка використовується в цьому додатку, базується на рекомендаціях Всесвітньої організації охорони здоров\'я, а не на місцевих правилах, щоб мати змістовні категорії та полегшити порівняння рівнів забруднення між країнами.</string>
+    <string name="air_quality_index_about_description_2">Шкала, яка використовується в цьому додатку, базується на рекомендаціях Всесвітньої організації охорони здоров’я, а не на місцевих правилах, щоб мати змістовні категорії та полегшити порівняння рівнів забруднення між країнами.</string>
     <string name="air_quality_level_2_harmless_exposure">&lt; 1 рік</string>
     <string name="air_quality_level_3_harmless_exposure">&lt; 1 день</string>
     <string name="air_quality_level_4_harmless_exposure">&lt; 1 година</string>
     <string name="air_quality_level_5_harmless_exposure">&lt; кілька хвилин</string>
     <string name="air_quality_level_6_harmless_exposure">&lt; 1 хвилина</string>
     <string name="air_quality_pollutant_primary">Основний забруднювач</string>
-    <string name="air_quality_health_information">Інформація про здоров\'я</string>
+    <string name="air_quality_health_information">Інформація про здоров’я</string>
     <string name="air_quality_pm10_full">Вдихувані тверді частинки (&lt; %s)</string>
     <string name="air_quality_so2_sources">Основними джерелами є процеси спалювання сірковмісного палива в промисловості, транспорті та на електростанціях.</string>
     <string name="air_quality_o3_sources">Озон утворюється в результаті хімічної реакції між атмосферним киснем, оксидами азоту, чадним газом та органічними сполуками під впливом сонячного світла.</string>
@@ -771,7 +771,7 @@
     <string name="pressure_falling">Падіння</string>
     <string name="pressure_about">Про тиск</string>
     <string name="visibility_about">Про видимість</string>
-    <string name="visibility_about_description">Видимість показує, наскільки далеко ви можете чітко бачити об\'єкти, такі як будівлі та пагорби. На видимість можуть впливати опади, туман, пил, дим або імла.</string>
+    <string name="visibility_about_description">Видимість показує, наскільки далеко ви можете чітко бачити об’єкти, такі як будівлі та пагорби. На видимість можуть впливати опади, туман, пил, дим або імла.</string>
     <string name="visibility_from_to_number">%1$s до %2$s</string>
     <string name="visibility_from_to_description">%1$s до %2$s</string>
     <string name="visibility_poor">Бідний</string>
@@ -781,7 +781,7 @@
     <string name="visibility_perfectly_clear">Абсолютно очистити</string>
     <string name="cloud_cover_about">Про хмарність</string>
     <string name="label_description">Опис</string>
-    <string name="air_quality_index_about_description_1">Індекс якості повітря (ІЯП) – це шкала, розроблена, щоб допомогти вам зрозуміти, наскільки забруднене повітря в певній місцевості, а також потенційні ризики для вашого здоров\'я.</string>
+    <string name="air_quality_index_about_description_1">Індекс якості повітря (ІЯП) – це шкала, розроблена, щоб допомогти вам зрозуміти, наскільки забруднене повітря в певній місцевості, а також потенційні ризики для вашого здоров’я.</string>
     <string name="uv_index_scale">Шкала УФ-індексу</string>
     <string name="air_quality_index_short">ІЯП</string>
     <string name="air_quality_index_harmless_exposure">Нешкідливий вплив</string>
