@@ -890,4 +890,7 @@
     <string name="label_collapsed">已折叠</string>
     <string name="label_expanded">已展开</string>
     <string name="action_toggle_data_type_menu">开/关数据类型选择菜单</string>
+    <string name="ephemeris_about_dawn">拂晓是日出前第一缕肉眼可见的光出现的时候。</string>
+    <string name="ephemeris_about_dusk">薄暮是最后一缕肉眼可见的光消失前暮光最黑暗的阶段。</string>
+    <string name="ephemeris_dawn_at">拂晓时间 %s</string>
 </resources>
