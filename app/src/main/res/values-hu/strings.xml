@@ -807,4 +807,8 @@
     <string name="label_expanded">Kibontva</string>
     <string name="label_collapsed">Összecsukva</string>
     <string name="action_close_menu">Menü bezárása</string>
+    <string name="ephemeris_about_dawn">A hajnal az, amikor a nap első látható fénye megjelenik a napfelkelte előtt.</string>
+    <string name="ephemeris_about_dusk">A szürkület az alkonyat legsötétebb szakasza, mielőtt az utolsó látható fény eltűnik.</string>
+    <string name="ephemeris_dawn_at">Hajnalodik ekkor: %s</string>
+    <string name="ephemeris_dusk_at">Szürkület ekkor: %s</string>
 </resources>
