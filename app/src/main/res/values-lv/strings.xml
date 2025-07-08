@@ -759,4 +759,8 @@
     <string name="uv_index_time_to_burn_explanations">Laiks līdz apdegumam ir atkarīgs no augstuma, atstarojošas virsmas klātesamība, piemēram, ūdens vai sniegs, ādas veida un saules aizsarglīdzekļa izmantošana.</string>
     <string name="air_quality_index_short">GKI</string>
     <string name="air_quality_index_about">Par gaisa kvalitātes indeksu</string>
+    <string name="ephemeris_dusk_at">Vakara krēsla %s</string>
+    <string name="ephemeris_dawn_at">Rītausma %s</string>
+    <string name="ephemeris_about_dusk">Vakara krēsla ir tumšākais krēslas posms, pirms pazūd pēdējā redzamā gaisma.</string>
+    <string name="ephemeris_about_dawn">Rītausma ir tad, kad pirms saullēkta parādās pirmā redzamā dienas gaisma.</string>
 </resources>
