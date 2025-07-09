@@ -730,7 +730,7 @@
     <string name="conditions">Умови</string>
     <string name="temperature_real">Фактична</string>
     <string name="temperature_real_details">Фактична температура.</string>
-    <string name="temperature_degree_day_cooling_explanation">Різниця між зовнішньою та еталонною комфортною температурою, що використовується для оцінювання потреби в охолоджені</string>
+    <string name="temperature_degree_day_cooling_explanation">Різниця між зовнішньою та еталонною комфортною температурою, що використовується для оцінювання потреби в охолодженні</string>
     <string name="wind_speed_about">Про швидкість та пориви вітру</string>
     <string name="wind_gusts_short">Пориви вітру</string>
     <string name="wind_strength_scale">Шкала Бофорта</string>
@@ -739,7 +739,7 @@
     <string name="ephemeris_about_set">Час заходу — це момент, коли сонце або місяць повністю зникає за горизонтом.</string>
     <string name="ephemeris_about_rise">Час сходу — це момент, коли сонце або місяць повністю з’являється над горизонтом.</string>
     <string name="temperature_degree_day_heating_explanation">Різниця між зовнішньою та еталонною комфортною температурою, що використовується для оцінювання потреби в опаленні</string>
-    <string name="wind_speed_about_description">Швидкість вітру вимірюється шляхом усереднення швидкості вітру протягом певного періоду часу. Пориви вітру – це раптові сплески вітру, які зазвичай тривають менше 20 секунд.</string>
+    <string name="wind_speed_about_description">Швидкість вітру вимірюється шляхом усереднення показників за певний проміжок часу. Пориви вітру — це раптові сплески вітру, що зазвичай тривають менше 20 секунд.</string>
     <string name="air_quality_pm25_full">Дрібні тверді частинки (&lt; %s)</string>
     <string name="uv_index_about_description">УФ-індекс вимірює силу ультрафіолетового випромінювання сонця. Чим він вищий, тим сильніше та швидше воно може спричинити сонячні опіки, рак шкіри та пошкодження очей.</string>
     <string name="uv_index_time_to_burn">Час горіти</string>
