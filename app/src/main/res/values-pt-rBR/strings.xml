@@ -872,4 +872,5 @@
     <string name="ephemeris_about_dusk">O anoitecer é o estágio mais escuro do crepúsculo antes que a última luz visível desapareça.</string>
     <string name="ephemeris_dawn_at">Amanhecer às %s</string>
     <string name="ephemeris_dusk_at">Anoitecer às %s</string>
+    <string name="wind_origin">De %s</string>
 </resources>
