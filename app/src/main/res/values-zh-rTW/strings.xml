@@ -891,4 +891,5 @@
     <string name="ephemeris_about_dusk">黃昏是指日沒後天空尚有餘光的時間。</string>
     <string name="ephemeris_dawn_at">黎明開始時刻為 %s</string>
     <string name="ephemeris_dusk_at">黃昏結束時刻為 %s</string>
+    <string name="wind_origin">吹%s</string>
 </resources>
