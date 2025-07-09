@@ -114,6 +114,7 @@
 
     <string name="wind">Vent</string>
     <string name="wind_short">Vent</string>
+    <string name="wind_origin">Origine : %s</string>
     <string name="wind_direction">Direction du vent</string>
     <string name="wind_speed">Vitesse du vent</string>
     <string name="wind_speed_about">À propos de la vitesse du vent et des rafales</string>

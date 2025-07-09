@@ -29,6 +29,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.graphics.ColorUtils
+import androidx.core.view.forEach
 import androidx.core.view.updatePadding
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -78,7 +79,6 @@ class HomeFragment : MainModuleFragment() {
         fun onEditIconClicked()
         fun onManageIconClicked()
         fun onOpenInOtherAppIconClicked()
-        fun onSettingsIconClicked()
     }
 
     override fun onCreateView(
@@ -188,9 +188,7 @@ class HomeFragment : MainModuleFragment() {
         binding.toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.action_edit -> callback?.onEditIconClicked()
-                R.id.action_manage -> callback?.onManageIconClicked()
                 R.id.action_open_in_other_app -> callback?.onOpenInOtherAppIconClicked()
-                R.id.action_settings -> callback?.onSettingsIconClicked()
             }
             true
         }
@@ -327,6 +325,27 @@ class HomeFragment : MainModuleFragment() {
 
         updateDayNightColors()
 
+        val onBackgroundColor = ThemeManager
+            .getInstance(requireContext())
+            .weatherThemeDelegate
+            .getOnBackgroundColor(
+                requireContext(),
+                WeatherViewController.getWeatherKind(location),
+                WeatherViewController.isDaylight(location)
+            )
+        binding.toolbar.setTitleTextColor(onBackgroundColor)
+        binding.toolbar.menu.forEach { menuItem ->
+            menuItem.icon?.let { drawable ->
+                drawable.mutate()
+                drawable.colorFilter = PorterDuffColorFilter(onBackgroundColor, PorterDuff.Mode.SRC_ATOP)
+                menuItem.icon = drawable
+            }
+        }
+        binding.toolbar.setNavigationIconTint(onBackgroundColor)
+        binding.refreshTimeText.compoundDrawablesRelative.forEach {
+            it?.setTint(onBackgroundColor)
+        }
+
         binding.switchLayout.reset()
 
         if (location?.weather == null) {
@@ -402,7 +421,11 @@ class HomeFragment : MainModuleFragment() {
 
         val textColor = ThemeManager.getInstance(requireContext())
             .weatherThemeDelegate
-            .getHeaderTextColor(requireContext())
+            .getOnBackgroundColor(
+                requireContext(),
+                weatherKind,
+                daylight
+            )
         binding.refreshTimeText.setTextColor(textColor)
         location?.weather?.base?.refreshTime?.let {
             binding.refreshTimeText.visibility = View.VISIBLE

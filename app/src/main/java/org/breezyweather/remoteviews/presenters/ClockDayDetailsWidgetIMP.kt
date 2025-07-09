@@ -28,6 +28,7 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayDetailsProvider
 import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getShortWeekdayDayMonth
@@ -270,15 +271,16 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
             weather.current!!.airQuality!!.getName(context) != null
         ) {
             context.getString(R.string.air_quality) +
-                " " +
-                weather.current!!.airQuality!!.getIndex() +
-                " (" +
-                weather.current!!.airQuality!!.getName(context) +
-                ")"
+                context.getString(R.string.colon_separator) +
+                context.getString(
+                    R.string.parenthesis,
+                    Utils.formatInt(context, weather.current!!.airQuality!!.getIndex()!!),
+                    weather.current!!.airQuality!!.getName(context)
+                )
         } else {
             weather.current?.relativeHumidity?.let {
                 context.getString(R.string.humidity) +
-                    " " +
+                    context.getString(R.string.colon_separator) +
                     NumberFormat.getPercentInstance(context.currentLocale).apply {
                         maximumFractionDigits = 0
                     }.format(it.div(100.0))

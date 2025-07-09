@@ -180,7 +180,7 @@ private fun PrecipitationItem(
         TextFixedHeight(
             text = buildAnnotatedString {
                 precipitation?.let { prec ->
-                    val precValueFormatted = precipitationUnit.getValueTextWithoutUnit(prec)
+                    val precValueFormatted = precipitationUnit.getValueTextWithoutUnit(context, prec)
                     append(precValueFormatted)
                     withStyle(style = SpanStyle(fontSize = MaterialTheme.typography.headlineSmall.fontSize)) {
                         append(precipitationUnit.getValueText(context, prec).substring(precValueFormatted.length))

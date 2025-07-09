@@ -39,8 +39,8 @@ abstract class GeoActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
             window.setSystemBarStyle(
                 statusShaderP = false,
-                lightStatusP = !this.isDarkMode,
-                lightNavigationP = !this.isDarkMode
+                lightStatusP = !isDarkMode,
+                lightNavigationP = !isDarkMode
             )
         }
 

@@ -193,7 +193,7 @@ enum class PollutantIndex(
         return if (this == PM10 || this == PM25) {
             context.getString(
                 fullName,
-                formatDouble(if (this == PM10) 10.0 else 2.5, 1) +
+                formatDouble(context, if (this == PM10) 10.0 else 2.5, 1) +
                     "\u202f" +
                     context.getString(R.string.unit_mum)
             )

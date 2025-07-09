@@ -75,7 +75,7 @@ class HourlyVisibilityAdapter(
             mPolylineAndHistogramView.setData(
                 buildVisibilityArrayForItem(mVisibilities, position),
                 null,
-                hourly.visibility?.let { mVisibilityUnit.getValueTextWithoutUnit(it) },
+                hourly.visibility?.let { mVisibilityUnit.getValueTextWithoutUnit(activity, it) },
                 null,
                 mHighestVisibility,
                 mLowestVisibility,

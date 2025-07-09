@@ -32,9 +32,11 @@ import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
+import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.databinding.ActivityCardDisplayManageBinding
+import org.breezyweather.domain.settings.SettingsChangedMessage
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.adapters.TagAdapter
 import org.breezyweather.ui.common.decorations.GridMarginsDecoration
@@ -163,10 +165,6 @@ class CardDisplayManageActivity : GeoActivity() {
         )
         mTagAdapter = TagAdapter(
             tagList,
-            colors[0],
-            colors[1],
-            colors[2],
-            colors[3],
             { _: Boolean, _: Int, newPosition: Int ->
                 setResult(RESULT_OK)
                 val tag = mTagAdapter!!.removeItem(newPosition) as CardTag
@@ -200,6 +198,12 @@ class CardDisplayManageActivity : GeoActivity() {
         val newList = mCardDisplayAdapter.cardDisplayList
         if (oldList != newList) {
             SettingsManager.getInstance(this).cardDisplayList = newList
+            // We need to do this manually, because the setter above can’t do it, or the homepage would reload
+            // on homepage drap & drops
+            EventBus
+                .instance
+                .with(SettingsChangedMessage::class.java)
+                .postValue(SettingsChangedMessage())
         }
     }
 

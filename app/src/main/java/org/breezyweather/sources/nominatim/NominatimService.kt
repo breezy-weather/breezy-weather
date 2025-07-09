@@ -42,7 +42,7 @@ class NominatimService @Inject constructor(
     override val id = "nominatim"
     override val name = "Nominatim"
     override val reverseGeocodingAttribution =
-        "Nominatim · Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright"
+        "Nominatim • Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright"
     override val privacyPolicyUrl = "https://osmfoundation.org/wiki/Privacy_Policy"
     override val continent = SourceContinent.WORLDWIDE
 

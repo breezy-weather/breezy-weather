@@ -22,7 +22,7 @@ import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import breezyweather.domain.weather.model.UV
 import org.breezyweather.R
-import org.breezyweather.common.extensions.format
+import org.breezyweather.common.basic.models.options.basic.Utils
 
 fun UV.getLevel(context: Context): String? {
     if (index == null) return null
@@ -39,7 +39,7 @@ fun UV.getLevel(context: Context): String? {
 fun UV.getContentDescription(context: Context): String {
     val builder = StringBuilder()
     index?.let {
-        builder.append(it.format(0))
+        builder.append(Utils.formatDouble(context, it, 0))
     }
     getLevel(context)?.let {
         if (builder.toString().isNotEmpty()) builder.append(context.getString(R.string.comma_separator))
@@ -51,7 +51,7 @@ fun UV.getContentDescription(context: Context): String {
 fun UV.getShortDescription(context: Context): String {
     val builder = StringBuilder()
     index?.let {
-        builder.append(it.format(0))
+        builder.append(Utils.formatDouble(context, it, 0))
     }
     getLevel(context)?.let {
         if (builder.toString().isNotEmpty()) builder.append(" ")

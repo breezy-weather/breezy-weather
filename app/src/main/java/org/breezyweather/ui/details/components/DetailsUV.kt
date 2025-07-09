@@ -161,7 +161,7 @@ private fun UVItem(
             TextFixedHeight(
                 text = buildAnnotatedString {
                     uv.index?.let {
-                        append(Utils.formatDouble(it, 1))
+                        append(Utils.formatDouble(context, it, 1))
                         append(" ")
                     }
                     uv.getLevel(context)?.let {
@@ -265,7 +265,7 @@ private fun UVChart(
         modelProducer,
         daily.date,
         maxY,
-        { _, value, _ -> value.roundToInt().toString() },
+        { _, value, _ -> Utils.formatInt(context, value.roundToInt()) },
         persistentListOf(
             persistentMapOf(
                 19f to Color(255, 255, 255),
@@ -278,7 +278,9 @@ private fun UVChart(
             )
         ),
         topAxisValueFormatter = { _, value, _ ->
-            hourlyList.firstOrNull { it.date.time == value.toLong() }?.uV?.index?.roundToInt()?.toString() ?: "-"
+            hourlyList.firstOrNull { it.date.time == value.toLong() }?.uV?.index?.roundToInt()
+                ?.let { Utils.formatInt(context, it) }
+                ?: "-"
         },
         trendHorizontalLines = persistentMapOf(
             UV.UV_INDEX_MIDDLE to context.getString(R.string.uv_alert_level)

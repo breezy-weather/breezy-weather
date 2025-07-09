@@ -40,48 +40,27 @@ enum class DailyTrendDisplay(
         fun toDailyTrendDisplayList(
             value: String?,
         ) = if (value.isNullOrEmpty()) {
-            mutableListOf()
+            DailyTrendDisplay.entries.toMutableList()
         } else {
             try {
-                val cards = value.split("&").toTypedArray()
-                val list = mutableListOf<DailyTrendDisplay>()
-                for (card in cards) {
-                    when (card) {
-                        "temperature" -> list.add(TAG_TEMPERATURE)
-                        "air_quality" -> list.add(TAG_AIR_QUALITY)
-                        "wind" -> list.add(TAG_WIND)
-                        "uv_index" -> list.add(TAG_UV_INDEX)
-                        "precipitation" -> list.add(TAG_PRECIPITATION)
-                        "sunshine" -> list.add(TAG_SUNSHINE)
-                        "feels_like" -> list.add(TAG_FEELS_LIKE)
-                    }
+                value.split("&").toTypedArray().mapNotNull { cardId ->
+                    DailyTrendDisplay.entries.firstOrNull { it.id == cardId }
                 }
-                list
             } catch (e: Exception) {
-                mutableListOf()
+                DailyTrendDisplay.entries.toMutableList()
             }
         }
 
         fun toValue(list: List<DailyTrendDisplay>): String {
-            val builder = StringBuilder()
-            for (v in list) {
-                builder.append("&").append(v.id)
+            return list.joinToString("&") { item ->
+                item.id
             }
-            if (builder.isNotEmpty() && builder[0] == '&') {
-                builder.deleteCharAt(0)
-            }
-            return builder.toString()
         }
 
         fun getSummary(context: Context, list: List<DailyTrendDisplay>): String {
-            val builder = StringBuilder()
-            for (item in list) {
-                builder.append(",").append(item.getName(context))
+            return list.joinToString(context.getString(R.string.comma_separator)) { item ->
+                item.getName(context)
             }
-            if (builder.isNotEmpty() && builder[0] == ',') {
-                builder.deleteCharAt(0)
-            }
-            return builder.toString().replace(",", context.getString(R.string.comma_separator))
         }
     }
 

@@ -122,8 +122,9 @@ enum class DistanceUnit(
     override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
+        context: Context,
         valueInDefaultUnit: Double,
-    ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, decimalNumbers)!!
+    ) = Utils.getValueTextWithoutUnit(context, this, valueInDefaultUnit, decimalNumbers)!!
 
     override fun getValueText(
         context: Context,
@@ -140,7 +141,7 @@ enum class DistanceUnit(
         context = context,
         enum = this,
         value = value,
-        decimalNumber = decimalNumbers,
+        precision = decimalNumbers,
         rtl = rtl,
         isValueInDefaultUnit = isValueInDefaultUnit
     )

@@ -26,6 +26,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTextProvider
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
@@ -180,10 +181,12 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
         return when (subtitleData) {
             "time" -> weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour)
             "aqi" -> weather.current?.airQuality?.let { airQuality ->
-                if (airQuality.getIndex() != null &&
-                    airQuality.getName(context) != null
-                ) {
-                    airQuality.getName(context, null) + " (" + airQuality.getIndex(null) + ")"
+                if (airQuality.getIndex() != null && airQuality.getName(context) != null) {
+                    context.getString(
+                        R.string.parenthesis,
+                        Utils.formatInt(context, airQuality.getIndex()!!),
+                        airQuality.getName(context, null)
+                    )
                 } else {
                     null
                 }

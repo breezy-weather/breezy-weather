@@ -2,11 +2,11 @@
 <resources>
 
     <!-- theme. -->
-    <attr name="colorTitleText" format="color|reference"/>
-    <attr name="colorBodyText" format="color|reference"/>
-    <attr name="colorCaptionText" format="color|reference"/>
-    <attr name="colorMainCardBackground" format="color|reference"/>
-    <attr name="colorPrecipitationProbability" format="color|reference"/>
+    <attr name="colorTitleText" format="color|reference" />
+    <attr name="colorBodyText" format="color|reference" />
+    <attr name="colorCaptionText" format="color|reference" />
+    <attr name="colorMainCardBackground" format="color|reference" />
+    <attr name="colorPrecipitationProbability" format="color|reference" />
 
     <!-- Ink page indicator. -->
     <declare-styleable name="InkPageIndicator">
@@ -25,20 +25,20 @@
 
     <!-- Arc progress. -->
     <declare-styleable name="ArcProgress">
-        <attr name="progress" format="integer"/>
-        <attr name="max" format="integer"/>
-        <attr name="arc_angle" format="float"/>
-        <attr name="progress_width" format="dimension"/>
-        <attr name="progress_color" format="color"/>
-        <attr name="background_color" format="color"/>
+        <attr name="progress" format="integer" />
+        <attr name="max" format="integer" />
+        <attr name="arc_angle" format="float" />
+        <attr name="progress_width" format="dimension" />
+        <attr name="progress_color" format="color" />
+        <attr name="background_color" format="color" />
 
-        <attr name="text" format="string"/>
-        <attr name="text_size" format="dimension"/>
-        <attr name="text_color" format="color"/>
+        <attr name="text" format="string" />
+        <attr name="text_size" format="dimension" />
+        <attr name="text_color" format="color" />
 
-        <attr name="bottom_text" format="string"/>
-        <attr name="bottom_text_size" format="dimension"/>
-        <attr name="bottom_text_color" format="color"/>
+        <attr name="bottom_text" format="string" />
+        <attr name="bottom_text_size" format="dimension" />
+        <attr name="bottom_text_color" format="color" />
     </declare-styleable>
 
     <!-- Animatable icon view. -->

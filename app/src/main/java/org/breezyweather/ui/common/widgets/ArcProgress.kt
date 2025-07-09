@@ -229,6 +229,9 @@ class ArcProgress @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+
+        if (layoutDirection == LAYOUT_DIRECTION_RTL) canvas.scale(-1f, 1f, width / 2f, height / 2f)
+
         val startAngle = 270 - mArcAngle / 2f
         val progressSweepAngle = (1.0 * mProgressMaxed / max * mArcAngle).toFloat()
         val progressEndAngle = startAngle + progressSweepAngle
@@ -260,6 +263,7 @@ class ArcProgress @JvmOverloads constructor(
             canvas.drawArc(mRectF, startAngle, progressSweepAngle, false, mProgressPaint)
         }
         if (!mText.isNullOrEmpty()) {
+            if (layoutDirection == LAYOUT_DIRECTION_RTL) canvas.scale(-1f, 1f, width / 2f, height / 2f)
             mCenterTextPaint.color = mTextColor
             mCenterTextPaint.textSize = mTextSize
             val textHeight = mCenterTextPaint.descent() + mCenterTextPaint.ascent()
@@ -270,6 +274,7 @@ class ArcProgress @JvmOverloads constructor(
                 textBaseline,
                 mCenterTextPaint
             )
+            if (layoutDirection == LAYOUT_DIRECTION_RTL) canvas.scale(-1f, 1f, width / 2f, height / 2f)
         }
         if (mArcBottomHeight == 0f) {
             val radius = width / 2f
@@ -277,6 +282,7 @@ class ArcProgress @JvmOverloads constructor(
             mArcBottomHeight = radius * (1 - cos(angle / 180 * Math.PI)).toFloat()
         }
         if (!mBottomText.isNullOrEmpty()) {
+            if (layoutDirection == LAYOUT_DIRECTION_RTL) canvas.scale(-1f, 1f, width / 2f, height / 2f)
             mBottomTextPaint.color = mBottomTextColor
             mBottomTextPaint.textSize = mBottomTextSize
             val bottomTextBaseline = (
@@ -290,6 +296,7 @@ class ArcProgress @JvmOverloads constructor(
                 bottomTextBaseline,
                 mBottomTextPaint
             )
+            if (layoutDirection == LAYOUT_DIRECTION_RTL) canvas.scale(-1f, 1f, width / 2f, height / 2f)
         }
     }
 

@@ -267,7 +267,7 @@ private fun AirQualityItem(
             TextFixedHeight(
                 text = buildAnnotatedString {
                     airQuality.getIndex()?.let {
-                        append(Utils.formatInt(it))
+                        append(Utils.formatInt(context, it))
                         append(" ")
                     }
                     airQuality.getName(context)?.let {
@@ -352,7 +352,7 @@ private fun AirQualityChart(
             modelProducer,
             daily.date,
             maxY.toDouble(),
-            { _, value, _ -> value.roundToInt().toString() },
+            { _, value, _ -> Utils.formatInt(context, value.roundToInt()) },
             persistentListOf(
                 (PollutantIndex.aqiThresholds.reversed().map { it.toFloat() }).zip(
                     context.resources.getIntArray(PollutantIndex.colorsArrayId).reversed().map { Color(it) }
@@ -363,7 +363,7 @@ private fun AirQualityChart(
                     context.resources.getStringArray(R.array.air_quality_levels)[3]
             ),
             topAxisValueFormatter = { _, value, _ ->
-                mappedValues.getOrElse(value.toLong()) { null }?.getIndex()?.toString() ?: "-"
+                mappedValues.getOrElse(value.toLong()) { null }?.getIndex()?.let { Utils.formatInt(context, it) } ?: "-"
             },
             endAxisItemPlacer = remember {
                 SpecificVerticalAxisItemPlacer(

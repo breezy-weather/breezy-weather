@@ -41,7 +41,7 @@ inline fun Modifier.conditional(
 // Simplified version of https://stackoverflow.com/a/77321467
 fun Modifier.handleNestedHorizontalDragGesture(
     view: View,
-) = this.pointerInput(Unit) {
+) = pointerInput(Unit) {
     var initialX = 0f
     var initialY = 0f
 

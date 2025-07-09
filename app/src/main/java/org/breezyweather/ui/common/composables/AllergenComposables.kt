@@ -44,10 +44,8 @@ import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.weather.index.PollenIndex
 import org.breezyweather.domain.weather.model.getColor
-import org.breezyweather.domain.weather.model.getColorFromSource
 import org.breezyweather.domain.weather.model.getConcentration
 import org.breezyweather.domain.weather.model.getIndexName
-import org.breezyweather.domain.weather.model.getIndexNameFromSource
 import org.breezyweather.domain.weather.model.validPollens
 import org.breezyweather.ui.theme.compose.DayNightTheme
 import java.text.Collator
@@ -58,11 +56,12 @@ fun PollenGrid(
     modifier: Modifier = Modifier,
     pollenIndexSource: PollenIndexSource? = null,
     specificPollens: ImmutableSet<PollenIndex> = persistentSetOf(),
+    maxItemsInEachRow: Int = 2,
 ) {
     val context = LocalContext.current
     val unit = PollenUnit.PPCM
     FlowRow(
-        maxItemsInEachRow = 2,
+        maxItemsInEachRow = maxItemsInEachRow,
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.normal_margin)),
         modifier = modifier
             .padding(dimensionResource(R.dimen.normal_margin))
@@ -79,7 +78,7 @@ fun PollenGrid(
                 PollenItem(
                     title = stringResource(validPollen.pollenName),
                     subtitle = if (pollenIndexSource != null) {
-                        pollen.getIndexNameFromSource(context, validPollen, pollenIndexSource) ?: ""
+                        pollen.getIndexName(context, validPollen, pollenIndexSource) ?: ""
                     } else {
                         unit.getValueText(
                             context,
@@ -87,14 +86,10 @@ fun PollenGrid(
                         ) + " – " + pollen.getIndexName(context, validPollen)
                     },
                     tintColor = Color(
-                        if (pollenIndexSource != null) {
-                            pollen.getColorFromSource(context, validPollen, pollenIndexSource)
-                        } else {
-                            pollen.getColor(context, validPollen)
-                        }
+                        pollen.getColor(context, validPollen)
                     ),
                     modifier = Modifier
-                        .fillMaxWidth(0.5f)
+                        .fillMaxWidth(1.0f.div(maxItemsInEachRow))
                 )
             }
     }

@@ -56,8 +56,9 @@ enum class PrecipitationUnit(
     override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
+        context: Context,
         valueInDefaultUnit: Double,
-    ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, 1)!!
+    ) = Utils.getValueTextWithoutUnit(context, this, valueInDefaultUnit, 1)!!
 
     override fun getValueText(
         context: Context,
@@ -74,7 +75,7 @@ enum class PrecipitationUnit(
         context = context,
         enum = this,
         value = value,
-        decimalNumber = decimals,
+        precision = decimals,
         rtl = rtl,
         isValueInDefaultUnit = isValueInDefaultUnit
     )
@@ -130,8 +131,9 @@ enum class PrecipitationIntensityUnit(
     override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
+        context: Context,
         valueInDefaultUnit: Double,
-    ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, decimals)!!
+    ) = Utils.getValueTextWithoutUnit(context, this, valueInDefaultUnit, decimals)!!
 
     override fun getValueText(
         context: Context,
@@ -148,7 +150,7 @@ enum class PrecipitationIntensityUnit(
         context = context,
         enum = this,
         value = value,
-        decimalNumber = decimals,
+        precision = decimals,
         rtl = rtl
     )
 

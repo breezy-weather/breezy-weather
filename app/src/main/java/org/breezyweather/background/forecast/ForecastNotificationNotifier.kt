@@ -156,11 +156,11 @@ class ForecastNotificationNotifier(
         context.getString(R.string.daytime) + context.getString(R.string.colon_separator) +
             daily.day?.temperature?.temperature?.let {
                 temperatureUnit.getValueText(context, it, 0)
-            } + " · " + daily.day?.weatherText
+            } + context.getString(R.string.dot_separator) + daily.day?.weatherText
 
     private fun getNightString(daily: Daily, temperatureUnit: TemperatureUnit) =
         context.getString(R.string.nighttime) + context.getString(R.string.colon_separator) +
             daily.night?.temperature?.temperature?.let {
                 temperatureUnit.getValueText(context, it, 0)
-            } + " · " + daily.night?.weatherText
+            } + context.getString(R.string.dot_separator) + daily.night?.weatherText
 }

@@ -147,7 +147,7 @@ private fun PressureItem(
         TextFixedHeight(
             text = buildAnnotatedString {
                 pressure?.let {
-                    val pressureValueFormatted = pressureUnit.getValueTextWithoutUnit(it)
+                    val pressureValueFormatted = pressureUnit.getValueTextWithoutUnit(context, it)
                     append(pressureValueFormatted)
                     withStyle(style = SpanStyle(fontSize = MaterialTheme.typography.headlineSmall.fontSize)) {
                         append(pressureUnit.getValueText(context, it).substring(pressureValueFormatted.length))

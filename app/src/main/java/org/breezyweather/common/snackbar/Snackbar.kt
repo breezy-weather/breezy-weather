@@ -342,7 +342,7 @@ class Snackbar private constructor(
         @Deprecated("Deprecated in Java")
         override fun requestFitSystemWindows() {
             // Do not apply horizontal insets in home fragment
-            val isHomeFragment = this.parent is CoordinatorLayout
+            val isHomeFragment = parent is CoordinatorLayout
             val insets = ViewCompat.getRootWindowInsets(this)
             val i = insets?.getInsets(WindowInsetsCompat.Type.systemBars() + WindowInsetsCompat.Type.displayCutout())
             if (i != null) {

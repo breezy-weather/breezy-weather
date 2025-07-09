@@ -24,7 +24,6 @@ import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.platform.LocalLayoutDirection
 import java.math.BigDecimal
 import java.math.RoundingMode
-import java.text.DecimalFormat
 import kotlin.math.ceil
 import kotlin.math.floor
 
@@ -47,39 +46,31 @@ operator fun Double?.minus(other: Double?): Double? = if (this != null || other 
 }
 
 fun Double.roundUpToNearestMultiplier(multiplier: Double): Double {
-    return ceil(this.div(multiplier)).times(multiplier)
+    return ceil(div(multiplier)).times(multiplier)
 }
 
 fun Double.roundDownToNearestMultiplier(multiplier: Double): Double {
-    return floor(this.div(multiplier)).times(multiplier)
+    return floor(div(multiplier)).times(multiplier)
 }
 
 fun Double.roundDecimals(decimals: Int): Double? {
-    return if (!this.isNaN()) {
+    return if (!isNaN()) {
         BigDecimal(this).setScale(decimals, RoundingMode.HALF_UP).toDouble()
     } else {
         null
     }
 }
 
-fun Double.format(decimals: Int): String {
-    val df = DecimalFormat("0").apply {
-        maximumFractionDigits = decimals
-    }
-
-    return df.format(this)
-}
-
 val Array<Double>.median: Double?
     get() {
-        if (this.isEmpty()) return null
+        if (isEmpty()) return null
 
-        this.sort()
+        sort()
 
-        return if (this.size % 2 != 0) {
-            this[this.size / 2]
+        return if (size % 2 != 0) {
+            this[size / 2]
         } else {
-            (this[(this.size - 1) / 2] + this[this.size / 2]) / 2.0
+            (this[(size - 1) / 2] + this[size / 2]) / 2.0
         }
     }
 

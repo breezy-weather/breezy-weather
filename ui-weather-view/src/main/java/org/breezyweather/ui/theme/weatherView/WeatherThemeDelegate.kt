@@ -42,6 +42,12 @@ interface WeatherThemeDelegate {
         daylight: Boolean,
     ): IntArray
 
+    fun isLightBackground(
+        context: Context,
+        weatherKind: Int,
+        daylight: Boolean,
+    ): Boolean
+
     @ColorInt
     fun getBackgroundColor(
         context: Context,
@@ -53,7 +59,11 @@ interface WeatherThemeDelegate {
     fun getHeaderTopMargin(context: Context): Int
 
     @ColorInt
-    fun getHeaderTextColor(context: Context): Int
+    fun getOnBackgroundColor(
+        context: Context,
+        weatherKind: Int,
+        daylight: Boolean,
+    ): Int
 
     fun setSystemBarStyle(
         window: Window,

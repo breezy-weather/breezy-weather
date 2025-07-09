@@ -70,7 +70,7 @@ class RecosanteService @Inject constructor(
         }
 
     override val supportedFeatures = mapOf(
-        SourceFeature.POLLEN to "Recosanté · Atmo France"
+        SourceFeature.POLLEN to "Recosanté • Atmo France"
     )
     override val attributionLinks = mapOf(
         "Recosanté" to "https://recosante.beta.gouv.fr/",

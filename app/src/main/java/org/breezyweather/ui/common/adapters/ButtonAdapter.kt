@@ -20,23 +20,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.chip.Chip
+import com.google.android.material.button.MaterialButton
 import org.breezyweather.R
 
-class TagAdapter @JvmOverloads constructor(
-    private val tagList: MutableList<Tag>,
+class ButtonAdapter @JvmOverloads constructor(
+    private val buttonList: MutableList<Button>,
     private val listener: ((checked: Boolean, oldPosition: Int, newPosition: Int) -> Boolean)? = null,
     private var checkedIndex: Int = UNCHECKABLE_INDEX,
-) : RecyclerView.Adapter<TagAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<ButtonAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val tagView: Chip = itemView.findViewById(R.id.item_tag)
+        private val buttonView: MaterialButton = itemView.findViewById(R.id.item_button)
 
         init {
-            tagView.setOnClickListener {
+            buttonView.setOnClickListener {
                 var consumed = false
                 if (listener != null) {
                     consumed = listener.invoke(
-                        !tagView.isChecked,
+                        !buttonView.isChecked,
                         checkedIndex,
                         bindingAdapterPosition
                     )
@@ -50,40 +50,40 @@ class TagAdapter @JvmOverloads constructor(
             }
         }
 
-        fun onBindView(tag: Tag, checked: Boolean) {
-            tagView.apply {
-                text = tag.name
+        fun onBindView(button: Button, checked: Boolean) {
+            buttonView.apply {
+                text = button.name
                 isChecked = checked
             }
         }
     }
 
-    interface Tag {
+    interface Button {
         val name: String
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_tag, parent, false)
+                .inflate(R.layout.item_button, parent, false)
         )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.onBindView(tagList[position], position == checkedIndex)
+        holder.onBindView(buttonList[position], position == checkedIndex)
     }
 
     override fun getItemCount(): Int {
-        return tagList.size
+        return buttonList.size
     }
 
-    fun insertItem(tag: Tag) {
-        tagList.add(tag)
-        notifyItemInserted(tagList.size - 1)
+    fun insertItem(button: Button) {
+        buttonList.add(button)
+        notifyItemInserted(buttonList.size - 1)
     }
 
-    fun removeItem(position: Int): Tag {
-        val tag = tagList.removeAt(position)
+    fun removeItem(position: Int): Button {
+        val tag = buttonList.removeAt(position)
         notifyItemRemoved(position)
         return tag
     }

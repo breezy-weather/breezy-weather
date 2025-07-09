@@ -286,7 +286,6 @@ class SettingsManager private constructor(
                 .edit()
                 .putString("card_display_2", CardDisplay.toValue(value))
                 .apply()
-            notifySettingsChanged()
         }
         get() = CardDisplay
             .toCardDisplayList(

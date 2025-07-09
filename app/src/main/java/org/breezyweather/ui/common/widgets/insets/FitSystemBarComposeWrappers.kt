@@ -113,22 +113,24 @@ fun FitStatusBarTopAppBar(
 @Composable
 fun BWCenterAlignedTopAppBar(
     title: String,
-    onBackPressed: () -> Unit,
     modifier: Modifier = Modifier,
+    onBackPressed: (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {},
     windowInsets: WindowInsets = WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top),
 ) = CenterAlignedTopAppBar(
     title = { Text(text = title) },
     modifier = modifier,
-    navigationIcon = {
-        IconButton(onClick = onBackPressed) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = stringResource(R.string.action_back),
-                tint = MaterialTheme.colorScheme.onSurface
-            )
+    navigationIcon = onBackPressed?.let {
+        {
+            IconButton(onClick = onBackPressed) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = stringResource(R.string.action_back),
+                    tint = MaterialTheme.colorScheme.onSurface
+                )
+            }
         }
-    },
+    } ?: {},
     actions = actions,
     windowInsets = windowInsets
 )

@@ -257,6 +257,8 @@ class SunMoonView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
+        if (layoutDirection == LAYOUT_DIRECTION_RTL) canvas.scale(-1f, 1f, width / 2f, height / 2f)
+
         // shadow.
         val startAngle = 270 - ARC_ANGLE / 2f
         val progressSweepAngleDay = (1.0 * mProgresses[0] / mMaxes[0] * ARC_ANGLE).toFloat()

@@ -888,10 +888,6 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
         setManagementFragmentVisibility(!isOrWillManagementFragmentVisible)
     }
 
-    override fun onSettingsIconClicked() {
-        IntentHelper.startSettingsActivity(this)
-    }
-
     // management fragment callback.
 
     override fun onSearchBarClicked() {

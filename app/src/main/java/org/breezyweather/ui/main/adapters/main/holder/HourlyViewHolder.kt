@@ -26,11 +26,9 @@ import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.extensions.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP
 import org.breezyweather.common.extensions.isLandscape
-import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.domain.settings.SettingsManager
-import org.breezyweather.ui.common.adapters.TagAdapter
+import org.breezyweather.ui.common.adapters.ButtonAdapter
 import org.breezyweather.ui.common.decorations.GridMarginsDecoration
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.main.adapters.trend.HourlyTrendAdapter
@@ -46,7 +44,7 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 ) {
     private val title: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_title)
     private val subtitle: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_subtitle)
-    private val tagView: RecyclerView = itemView.findViewById(R.id.container_main_hourly_trend_card_tagView)
+    private val buttoniew: RecyclerView = itemView.findViewById(R.id.container_main_hourly_trend_card_buttonView)
     private val trendRecyclerView: TrendRecyclerView = itemView.findViewById(
         R.id.container_main_hourly_trend_card_trendRecyclerView
     )
@@ -92,42 +90,35 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         val trendAdapter = HourlyTrendAdapter(activity, trendRecyclerView).apply {
             bindData(location)
         }
-        val tagList: MutableList<TagAdapter.Tag> = trendAdapter.adapters.map {
-            object : TagAdapter.Tag {
+        val buttonList: MutableList<ButtonAdapter.Button> = trendAdapter.adapters.map {
+            object : ButtonAdapter.Button {
                 override val name = it.getDisplayName(activity)
             }
         }.toMutableList()
 
-        if (tagList.size < 2) {
-            tagView.visibility = View.GONE
+        if (buttonList.size < 2) {
+            buttoniew.visibility = View.GONE
         } else {
-            tagView.visibility = View.VISIBLE
-            val decorCount = tagView.itemDecorationCount
+            buttoniew.visibility = View.VISIBLE
+            val decorCount = buttoniew.itemDecorationCount
             for (i in 0 until decorCount) {
-                tagView.removeItemDecorationAt(0)
+                buttoniew.removeItemDecorationAt(0)
             }
-            tagView.addItemDecoration(
+            buttoniew.addItemDecoration(
                 GridMarginsDecoration(
                     context.resources.getDimension(R.dimen.little_margin),
-                    context.resources.getDimension(R.dimen.normal_margin),
-                    tagView
+                    context.resources.getDimension(
+                        com.google.android.material.R.dimen.m3_comp_button_group_connected_small_between_space
+                    ),
+                    buttoniew
                 )
             )
-            tagView.layoutManager =
-                TrendHorizontalLinearLayoutManager(context)
-            tagView.adapter = TagAdapter(
-                tagList,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnPrimary),
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnSurface),
-                MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
-                ColorUtils.getWidgetSurfaceColor(
-                    DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
-                    MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
-                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorSurface)
-                ),
+            buttoniew.layoutManager = TrendHorizontalLinearLayoutManager(context)
+            buttoniew.adapter = ButtonAdapter(
+                buttonList,
                 { _, _, newPosition: Int ->
                     trendAdapter.selectedIndex = newPosition
-                    return@TagAdapter false
+                    return@ButtonAdapter false
                 },
                 0
             )

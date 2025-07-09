@@ -57,9 +57,10 @@ class CardDisplayTest {
 
     @Test
     fun getSummary() = runTest {
-        val context = mockk<Context>()
-        every { context.getString(any()) } returns "Name"
-        every { context.getString(R.string.comma_separator) } returns ", "
+        val context = mockk<Context>().apply {
+            every { getString(any()) } returns "Name"
+            every { getString(R.string.comma_separator) } returns ", "
+        }
         val list = arrayListOf(
             CardDisplay.CARD_DAILY_OVERVIEW,
             CardDisplay.CARD_HOURLY_OVERVIEW,

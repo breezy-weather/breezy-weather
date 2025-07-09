@@ -59,6 +59,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.domain.location.model.isDaylight
@@ -68,6 +69,7 @@ import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import org.breezyweather.ui.theme.weatherView.WeatherViewController
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
@@ -81,8 +83,8 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
     private val mTemperature: NumberAnimTextView = itemView.findViewById(R.id.container_main_header_temperature_value)
     private val mTemperatureUnitView: TextView = itemView.findViewById(R.id.container_main_header_temperature_unit)
     private val mWeatherText: TextView = itemView.findViewById(R.id.container_main_header_weather_text)
-    private var mTemperatureCFrom = 0.0
-    private var mTemperatureCTo = 0.0
+    private var mTemperatureFrom = 0
+    private var mTemperatureTo = 0
     private var mTemperatureUnit: TemperatureUnit? = null
 
     @SuppressLint("SetTextI18n")
@@ -97,7 +99,11 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
         val textColor = ThemeManager
             .getInstance(context)
             .weatherThemeDelegate
-            .getHeaderTextColor(context)
+            .getOnBackgroundColor(
+                context,
+                WeatherViewController.getWeatherKind(location),
+                WeatherViewController.isDaylight(location)
+            )
         mTemperature.setTextColor(textColor)
         mTemperatureUnitView.setTextColor(textColor)
         mWeatherText.setTextColor(textColor)
@@ -106,12 +112,12 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
             current.temperature?.temperature?.let {
                 mTemperatureContainer.visibility = View.VISIBLE
                 mTemperatureContainer.contentDescription = mTemperatureUnit!!.getValueVoice(context, it)
-                mTemperatureCFrom = mTemperatureCTo
-                mTemperatureCTo = it
+                mTemperatureFrom = mTemperatureTo
+                mTemperatureTo = mTemperatureUnit!!.getValueWithoutUnit(it).roundToInt()
                 mTemperature.isAnimEnabled = itemAnimationEnabled
                 // no longer than 2 seconds.
                 mTemperature.duration =
-                    max(2000.0, abs(mTemperatureCTo - mTemperatureCFrom) / 10f * 1000).toLong()
+                    max(2000.0, abs(mTemperatureTo - mTemperatureFrom) * 20.0).toLong()
                 mTemperatureUnitView.text = mTemperatureUnit!!.getName(context)
             } ?: run {
                 mTemperatureContainer.visibility = View.GONE
@@ -238,8 +244,8 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
     override fun onEnterScreen() {
         super.onEnterScreen()
         mTemperature.setNumberString(
-            String.format("%d", mTemperatureUnit!!.getValueWithoutUnit(mTemperatureCFrom).roundToInt()),
-            String.format("%d", mTemperatureUnit!!.getValueWithoutUnit(mTemperatureCTo).roundToInt())
+            Utils.formatInt(context, mTemperatureFrom),
+            Utils.formatInt(context, mTemperatureTo)
         )
     }
 

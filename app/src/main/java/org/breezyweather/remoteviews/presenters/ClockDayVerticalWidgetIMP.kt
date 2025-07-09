@@ -29,6 +29,7 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayVerticalProvider
 import org.breezyweather.common.basic.models.options.NotificationTextColor
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
@@ -533,7 +534,11 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
             }
             "aqi" -> weather.current?.airQuality?.let { airQuality ->
                 if (airQuality.getIndex() != null && airQuality.getName(context) != null) {
-                    airQuality.getName(context) + " (" + airQuality.getIndex() + ")"
+                    context.getString(
+                        R.string.parenthesis,
+                        Utils.formatInt(context, airQuality.getIndex()!!),
+                        airQuality.getName(context)
+                    )
                 } else {
                     null
                 }

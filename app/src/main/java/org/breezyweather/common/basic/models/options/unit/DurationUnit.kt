@@ -41,8 +41,9 @@ enum class DurationUnit(
     override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
     override fun getValueTextWithoutUnit(
+        context: Context,
         valueInDefaultUnit: Double,
-    ) = Utils.getValueTextWithoutUnit(this, valueInDefaultUnit, 2)!!
+    ) = Utils.getValueTextWithoutUnit(context, this, valueInDefaultUnit, 2)!!
 
     override fun getValueText(
         context: Context,
@@ -59,7 +60,7 @@ enum class DurationUnit(
         context = context,
         enum = this,
         value = value,
-        decimalNumber = 1,
+        precision = 1,
         rtl = rtl,
         isValueInDefaultUnit = isValueInDefaultUnit
     )

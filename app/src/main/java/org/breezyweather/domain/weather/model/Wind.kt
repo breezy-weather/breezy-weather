@@ -95,8 +95,6 @@ fun Wind.getContentDescription(
 ): String {
     val builder = StringBuilder()
     speed?.let {
-        builder.append(context.getString(R.string.wind_speed))
-        builder.append(context.getString(R.string.colon_separator))
         builder.append(unit.getValueVoice(context, it))
         if (!getStrength(context).isNullOrEmpty()) {
             builder.append(context.getString(R.string.comma_separator))
@@ -105,15 +103,13 @@ fun Wind.getContentDescription(
     }
     if (!getDirection(context).isNullOrEmpty()) {
         if (builder.toString().isNotEmpty()) builder.append(context.getString(R.string.comma_separator))
-        builder.append(context.getString(R.string.wind_direction))
-        builder.append(context.getString(R.string.colon_separator))
-        builder.append(getDirection(context, short = false))
+        builder.append(context.getString(R.string.wind_origin, getDirection(context, short = false)))
     }
     if (withGusts) {
         gusts?.let {
             if (it > (speed ?: 0.0)) {
                 if (builder.toString().isNotEmpty()) builder.append(context.getString(R.string.comma_separator))
-                builder.append(context.getString(R.string.wind_gusts))
+                builder.append(context.getString(R.string.wind_gusts_short))
                 builder.append(context.getString(R.string.colon_separator))
                 builder.append(unit.getValueVoice(context, it))
             }

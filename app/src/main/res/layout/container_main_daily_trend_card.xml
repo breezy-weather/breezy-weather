@@ -30,8 +30,9 @@
             tools:ignore="RtlHardcoded" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/container_main_daily_trend_card_tagView"
+            android:id="@+id/container_main_daily_trend_card_buttonView"
             android:layout_marginTop="@dimen/little_margin"
+            android:layout_marginStart="@dimen/normal_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

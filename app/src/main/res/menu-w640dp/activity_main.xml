@@ -15,10 +15,4 @@
         android:icon="@drawable/ic_open_in_new"
         app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="300"
-        android:icon="@drawable/ic_settings"
-        app:showAsAction="ifRoom" />
-
 </menu>

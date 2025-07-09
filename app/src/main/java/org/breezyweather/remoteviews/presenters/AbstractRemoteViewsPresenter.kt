@@ -34,6 +34,7 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.currentLocale
@@ -54,7 +55,6 @@ import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getSummary
-import org.breezyweather.domain.weather.model.getSummaryFromSource
 import org.breezyweather.domain.weather.model.pollensWithConcentration
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import java.text.NumberFormat
@@ -309,8 +309,11 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace(
                     "\$caqi$",
                     if (weather.current?.airQuality?.isIndexValid == true) {
-                        weather.current!!.airQuality!!.getIndex().toString() + " (" +
-                            weather.current!!.airQuality!!.getName(context) + ")"
+                        context.getString(
+                            R.string.parenthesis,
+                            Utils.formatInt(context, weather.current!!.airQuality!!.getIndex()!!),
+                            weather.current!!.airQuality!!.getName(context)
+                        )
                     } else {
                         context.getString(R.string.null_data_text)
                     }
@@ -497,8 +500,11 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace(
                     "$" + i + "aqi$",
                     if (weather.dailyForecastStartingToday.getOrNull(i)?.airQuality?.isIndexValid == true) {
-                        weather.dailyForecastStartingToday[i].airQuality!!.getIndex().toString() + " (" +
-                            weather.dailyForecastStartingToday[i].airQuality!!.getName(context) + ")"
+                        context.getString(
+                            R.string.parenthesis,
+                            Utils.formatInt(context, weather.dailyForecastStartingToday[i].airQuality!!.getIndex()!!),
+                            weather.dailyForecastStartingToday[i].airQuality!!.getName(context)
+                        )
                     } else {
                         context.getString(R.string.null_data_text)
                     }
@@ -507,14 +513,7 @@ abstract class AbstractRemoteViewsPresenter {
                     if (weather.dailyForecastStartingToday.getOrNull(i)?.pollen
                             ?.pollensWithConcentration?.isNotEmpty() == true
                     ) {
-                        if (pollenIndexSource != null) {
-                            weather.dailyForecastStartingToday[i].pollen!!.getSummaryFromSource(
-                                context,
-                                pollenIndexSource
-                            )
-                        } else {
-                            weather.dailyForecastStartingToday[i].pollen!!.getSummary(context)
-                        }
+                        weather.dailyForecastStartingToday[i].pollen!!.getSummary(context, pollenIndexSource)
                     } else {
                         context.getString(R.string.null_data_text)
                     }

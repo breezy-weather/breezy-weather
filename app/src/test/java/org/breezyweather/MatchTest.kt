@@ -16,9 +16,16 @@
 
 package org.breezyweather
 
+import android.content.Context
+import io.kotest.matchers.shouldBe
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkStatic
 import kotlinx.coroutines.test.runTest
 import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.extensions.currentLocale
 import org.junit.jupiter.api.Test
+import java.util.Locale
 
 class MatchTest {
 
@@ -30,7 +37,13 @@ class MatchTest {
 
     @Test
     fun formatFloat() = runTest {
-        println(Utils.formatDouble(7.00646, 2))
-        println(Utils.formatDouble(7.00246, 2))
+        mockkStatic(Context::currentLocale)
+
+        val context = mockk<Context>().apply {
+            every { currentLocale } returns Locale("fr", "FR")
+        }
+
+        Utils.formatDouble(context, 7.00646, 2) shouldBe "7,01"
+        Utils.formatDouble(context, 7.00246, 2) shouldBe "7"
     }
 }

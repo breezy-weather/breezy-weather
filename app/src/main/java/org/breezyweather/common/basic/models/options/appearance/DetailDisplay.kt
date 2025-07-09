@@ -110,25 +110,15 @@ enum class DetailDisplay(
         }
 
         fun toValue(list: List<DetailDisplay>): String {
-            val builder = StringBuilder()
-            for (v in list) {
-                builder.append("&").append(v.id)
+            return list.joinToString("&") { item ->
+                item.id
             }
-            if (builder.isNotEmpty() && builder[0] == '&') {
-                builder.deleteCharAt(0)
-            }
-            return builder.toString()
         }
 
         fun getSummary(context: Context, list: List<DetailDisplay>): String {
-            val builder = StringBuilder()
-            for (item in list) {
-                builder.append(",").append(item.getName(context))
+            return list.joinToString(context.getString(R.string.comma_separator)) { item ->
+                item.getName(context)
             }
-            if (builder.isNotEmpty() && builder[0] == ',') {
-                builder.deleteCharAt(0)
-            }
-            return builder.toString().replace(",", context.getString(R.string.comma_separator))
         }
     }
 

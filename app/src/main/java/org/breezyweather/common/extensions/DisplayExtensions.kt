@@ -50,26 +50,23 @@ const val DEFAULT_CARD_LIST_ITEM_ELEVATION_DP = 2f
 
 val Context.isTabletDevice: Boolean
     get() = (
-        this.resources.configuration.screenLayout
+        resources.configuration.screenLayout
             and Configuration.SCREENLAYOUT_SIZE_MASK
         ) >= Configuration.SCREENLAYOUT_SIZE_LARGE
 
 val Context.isLandscape: Boolean
-    get() = this.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    get() = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
 val Context.isRtl: Boolean
-    get() = this.resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
+    get() = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
 
 val Context.isDarkMode: Boolean
-    get() = (
-        this.resources.configuration.uiMode
-            and Configuration.UI_MODE_NIGHT_MASK
-        ) == Configuration.UI_MODE_NIGHT_YES
+    get() = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
 
 val Context.isMotionReduced: Boolean
     get() {
         return try {
-            Settings.Global.getFloat(this.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE) == 0f
+            Settings.Global.getFloat(contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE) == 0f
         } catch (e: SettingNotFoundException) {
             false
         }
@@ -86,27 +83,27 @@ val Context.windowWidthInDp: Float
     }
 
 fun Context.dpToPx(dp: Float): Float {
-    return dp * (this.resources.displayMetrics.densityDpi / 160f)
+    return dp * (resources.displayMetrics.densityDpi / 160f)
 }
 
 fun Context.spToPx(sp: Int): Float {
-    return sp * TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 1.0f, this.resources.displayMetrics)
+    return sp * TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 1.0f, resources.displayMetrics)
 }
 
 @Suppress("unused")
 fun Context.pxToDp(@Px px: Int): Float {
-    return px / (this.resources.displayMetrics.densityDpi / 160f)
+    return px / (resources.displayMetrics.densityDpi / 160f)
 }
 
 @Px
 fun Context.getTabletListAdaptiveWidth(@Px width: Int): Int {
-    return if (!this.isTabletDevice && !this.isLandscape) {
+    return if (!isTabletDevice && !isLandscape) {
         width
     } else {
         min(
             width.toFloat(),
-            this.dpToPx(
-                if (this.isTabletDevice) {
+            dpToPx(
+                if (isTabletDevice) {
                     MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET
                 } else {
                     MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE
@@ -142,46 +139,46 @@ fun Window.setSystemBarStyle(
             lightStatus = false
             statusShader = true
         }
-        this.statusBarColor = if (statusShader) {
+        statusBarColor = if (statusShader) {
             if (lightStatus) colorSystemBarLight else colorSystemBarDark
         } else {
             Color.TRANSPARENT
         }
 
-        this.navigationBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && lightNavigationP) {
+        navigationBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && lightNavigationP) {
             colorSystemBarLight
         } else {
             colorSystemBarDark
         }
     } else {
-        this.isStatusBarContrastEnforced = statusShader
-        this.isNavigationBarContrastEnforced = true
+        isStatusBarContrastEnforced = statusShader
+        isNavigationBarContrastEnforced = true
     }
 
     // Contrary to the documentation FALSE applies a light foreground color and TRUE a dark foreground color
-    WindowInsetsControllerCompat(this, this.decorView).run {
+    WindowInsetsControllerCompat(this, decorView).run {
         isAppearanceLightStatusBars = lightStatus
         isAppearanceLightNavigationBars = lightNavigationP
     }
 }
 
 fun Drawable.toBitmap(): Bitmap {
-    val bitmap = createBitmap(this.intrinsicWidth, this.intrinsicHeight)
+    val bitmap = createBitmap(intrinsicWidth, intrinsicHeight)
     val canvas = Canvas(bitmap)
-    this.setBounds(0, 0, this.intrinsicWidth, this.intrinsicHeight)
-    this.draw(canvas)
+    setBounds(0, 0, intrinsicWidth, intrinsicHeight)
+    draw(canvas)
     return bitmap
 }
 
 // translationY, scaleX, scaleY
 @Size(3)
 fun View.getFloatingOvershotEnterAnimators(): Array<Animator> {
-    return this.getFloatingOvershotEnterAnimators(1.5f)
+    return getFloatingOvershotEnterAnimators(1.5f)
 }
 
 @Size(3)
 fun View.getFloatingOvershotEnterAnimators(overshootFactor: Float): Array<Animator> {
-    return this.getFloatingOvershotEnterAnimators(overshootFactor, this.translationY, this.scaleX, this.scaleY)
+    return getFloatingOvershotEnterAnimators(overshootFactor, translationY, scaleX, scaleY)
 }
 
 @Size(3)

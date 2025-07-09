@@ -16,7 +16,6 @@
 
 package org.breezyweather.ui.details.components
 
-import android.text.BidiFormatter
 import android.text.SpannableString
 import android.text.style.RelativeSizeSpan
 import androidx.compose.foundation.layout.Arrangement
@@ -73,7 +72,7 @@ import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.Utils.formatDouble
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -189,7 +188,7 @@ private fun WindItem(
         wind.speed?.let { speed ->
             TextFixedHeight(
                 text = buildAnnotatedString {
-                    val speedValueFormatted = speedUnit.getValueTextWithoutUnit(speed)
+                    val speedValueFormatted = speedUnit.getValueTextWithoutUnit(context, speed)
                     append(speedValueFormatted)
                     withStyle(style = SpanStyle(fontSize = MaterialTheme.typography.headlineSmall.fontSize)) {
                         append(speedUnit.getValueText(context, speed).substring(speedValueFormatted.length))
@@ -458,22 +457,19 @@ fun WindScale(
                 )
             }
             SpeedUnit.beaufortScaleThresholds.forEachIndexed { index, startingValue ->
-                val startingValueFormatted = BidiFormatter
-                    .getInstance()
-                    .unicodeWrap(
-                        formatDouble(
-                            speedUnit.getValueWithoutUnit(startingValue),
-                            1
-                        )
-                    )
+                val startingValueFormatted = Utils.formatDouble(
+                    context,
+                    speedUnit.getValueWithoutUnit(startingValue),
+                    1
+                )
                 val endingValueFormatted = SpeedUnit.beaufortScaleThresholds.getOrElse(index + 1) { null }
                     ?.let {
                         " – ${
-                            BidiFormatter
-                                .getInstance()
-                                .unicodeWrap(
-                                    formatDouble(speedUnit.getValueWithoutUnit(it) - 0.1, 1)
-                                )
+                            Utils.formatDouble(
+                                context,
+                                speedUnit.getValueWithoutUnit(it) - 0.1,
+                                1
+                            )
                         }"
                     }
                     ?: "+"

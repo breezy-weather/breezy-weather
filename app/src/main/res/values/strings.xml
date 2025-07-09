@@ -3,7 +3,7 @@
     <!-- App -->
     <string name="app_name">Weather</string>
     <string name="breezy_weather" translatable="false">Breezy Weather</string>
-    <!-- Card names -->
+    <!-- Block names -->
     <string name="forecast">Forecast</string>
     <string name="daily_forecast">Daily forecast</string>
     <string name="hourly_forecast">Hourly forecast</string>
@@ -87,8 +87,11 @@
     <string name="wind_speed">Wind speed</string>
     <string name="wind_speed_about">About wind speed and gusts</string>
     <string name="wind_speed_about_description">Wind speed is measured by averaging wind speeds over a period of time. Gusts are sudden bursts of wind typically lasting under 20 seconds.</string>
-    <string name="wind_gusts">Wind gusts</string>
+    <!-- Deprecated -->
+    <string name="wind_gusts" translatable="false">Wind gusts</string>
     <string name="wind_gusts_short">Gusts</string>
+    <!-- From NE -->
+    <string name="wind_origin">From %s</string>
     <string name="wind_direction">Wind direction</string>
     <string name="wind_direction_variable">Variable</string>
     <string name="wind_direction_N">North</string>
@@ -1281,6 +1284,7 @@
     <!-- Keyword shown when data is missing, for example requesting humidity in widgets but data doesn’t exist -->
     <string name="null_data_text">N/A</string>
     <string name="colon_separator" translatable="false">:\u0020</string>
+    <string name="dot_separator" translatable="false">\u0020•\u0020</string>
     <string name="parenthesis" translatable="false">%1$s (%2$s)</string>
     <string name="comma_separator" translatable="false">,\u0020</string>
 </resources>

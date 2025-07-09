@@ -26,6 +26,7 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getIndex
@@ -77,7 +78,7 @@ class DailyAirQualityAdapter(
                 null,
                 null,
                 index?.toFloat(),
-                if (index != null) String.format("%d", index) else null,
+                if (index != null) Utils.formatInt(activity, index) else null,
                 mHighestIndex.toFloat(),
                 0f
             )

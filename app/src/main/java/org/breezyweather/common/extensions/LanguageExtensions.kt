@@ -26,10 +26,10 @@ val Context.currentLocale: Locale
     get() {
         return AppCompatDelegate.getApplicationLocales().get(0)
             ?: if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                this.resources.configuration.locales[0]
+                resources.configuration.locales[0]
             } else {
                 @Suppress("DEPRECATION")
-                this.resources.configuration.locale
+                resources.configuration.locale
             }
     }
 
@@ -116,7 +116,7 @@ fun String.chop(count: Int, replacement: String = "…"): String {
 }
 
 fun String.capitalize(locale: Locale = Locale("en", "001")): String {
-    return this.replaceFirstChar { firstChar ->
+    return replaceFirstChar { firstChar ->
         if (firstChar.isLowerCase()) {
             firstChar.titlecase(locale)
         } else {
@@ -126,7 +126,7 @@ fun String.capitalize(locale: Locale = Locale("en", "001")): String {
 }
 
 fun String.uncapitalize(locale: Locale = Locale("en", "001")): String {
-    return this.replaceFirstChar { firstChar ->
+    return replaceFirstChar { firstChar ->
         if (firstChar.isUpperCase()) {
             firstChar.lowercase(locale)
         } else {

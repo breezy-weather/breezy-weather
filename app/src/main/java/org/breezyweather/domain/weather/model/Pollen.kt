@@ -85,35 +85,35 @@ fun Pollen.getConcentration(pollen: PollenIndex) = when (pollen) {
     PollenIndex.WILLOW -> willow
 }
 
-fun Pollen.getIndexName(context: Context, pollen: PollenIndex? = null): String? {
-    return if (pollen == null) { // Global pollen risk
-        PollenIndex.getPollenIndexToName(context, getIndex())
-    } else { // Specific pollen
-        pollen.getName(context, getConcentration(pollen)?.toDouble())
-    }
-}
-
-fun Pollen.getIndexNameFromSource(
+fun Pollen.getIndexName(
     context: Context,
-    pollen: PollenIndex,
-    source: PollenIndexSource,
+    pollen: PollenIndex? = null,
+    source: PollenIndexSource? = null,
 ): String? {
-    return getConcentration(pollen)?.let {
-        context.resources.getStringArray(source.pollenLabels).getOrElse(it) { null }
+    return if (source != null) {
+        if (pollen != null) {
+            getConcentration(pollen)?.let {
+                context.resources.getStringArray(source.pollenLabels).getOrElse(it) { null }
+            }
+        } else {
+            null
+        }
+    } else {
+        if (pollen == null) { // Global pollen risk
+            PollenIndex.getPollenIndexToName(context, getIndex())
+        } else { // Specific pollen
+            pollen.getName(context, getConcentration(pollen)?.toDouble())
+        }
     }
 }
 
-fun Pollen.getSummary(context: Context): String {
+fun Pollen.getSummary(
+    context: Context,
+    source: PollenIndexSource? = null,
+): String {
     return pollensWithConcentration.joinToString(context.getString(R.string.comma_separator)) {
         getName(context, it) + context.getString(R.string.colon_separator) +
-            getIndexName(context, it)
-    }
-}
-
-fun Pollen.getSummaryFromSource(context: Context, source: PollenIndexSource): String {
-    return pollensWithConcentration.joinToString(context.getString(R.string.comma_separator)) {
-        getName(context, it) + context.getString(R.string.colon_separator) +
-            getIndexNameFromSource(context, it, source)
+            getIndexName(context, it, source)
     }
 }
 
@@ -122,23 +122,26 @@ fun Pollen.getName(context: Context, pollen: PollenIndex): String {
 }
 
 @ColorInt
-fun Pollen.getColor(context: Context, pollen: PollenIndex? = null): Int {
-    return if (pollen == null) {
-        PollenIndex.getPollenIndexToColor(context, getIndex())
-    } else { // Specific pollen
-        pollen.getColor(context, getConcentration(pollen)?.toDouble())
-    }
-}
-
-@ColorInt
-fun Pollen.getColorFromSource(
+fun Pollen.getColor(
     context: Context,
-    pollen: PollenIndex,
-    source: PollenIndexSource,
+    pollen: PollenIndex? = null,
+    source: PollenIndexSource? = null,
 ): Int {
-    return getConcentration(pollen)?.let {
-        context.resources.getIntArray(source.pollenColors).getOrElse(it) { Color.TRANSPARENT }
-    } ?: Color.TRANSPARENT
+    return if (source != null) {
+        if (pollen != null) {
+            getConcentration(pollen)?.let {
+                context.resources.getIntArray(source.pollenColors).getOrElse(it) { Color.TRANSPARENT }
+            } ?: Color.TRANSPARENT
+        } else {
+            Color.TRANSPARENT
+        }
+    } else {
+        if (pollen == null) {
+            PollenIndex.getPollenIndexToColor(context, getIndex())
+        } else { // Specific pollen
+            pollen.getColor(context, getConcentration(pollen)?.toDouble())
+        }
+    }
 }
 
 val Pollen.isIndexValid: Boolean

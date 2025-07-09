@@ -163,10 +163,6 @@ class HourlyTrendDisplayManageActivity : GeoActivity() {
         )
         mTagAdapter = TagAdapter(
             tagList,
-            colors[0],
-            colors[1],
-            colors[2],
-            colors[3],
             { _: Boolean, _: Int, newPosition: Int ->
                 setResult(RESULT_OK)
                 val tag = mTagAdapter!!.removeItem(newPosition) as HourlyTrendTag

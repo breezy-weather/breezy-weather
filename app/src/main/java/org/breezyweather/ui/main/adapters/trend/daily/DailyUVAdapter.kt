@@ -27,8 +27,7 @@ import breezyweather.domain.weather.model.UV
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.extensions.format
-import org.breezyweather.common.extensions.roundDecimals
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getUVColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
@@ -36,6 +35,7 @@ import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import kotlin.math.roundToInt
 
 /**
  * Daily UV adapter.
@@ -69,7 +69,7 @@ class DailyUVAdapter(
                 null, null,
                 null, null,
                 null, null,
-                index?.roundDecimals(0)?.toFloat() ?: 0f, index?.format(0),
+                index?.roundToInt()?.toFloat() ?: 0f, index?.let { Utils.formatDouble(activity, it, 0) },
                 mHighestIndex, 0f
             )
             mPolylineAndHistogramView.setLineColors(
@@ -124,7 +124,7 @@ class DailyUVAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 UV.UV_INDEX_MIDDLE.toFloat(),
-                UV.UV_INDEX_MIDDLE.format(0),
+                Utils.formatDouble(activity, UV.UV_INDEX_MIDDLE, 0),
                 activity.getString(R.string.uv_alert_level),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

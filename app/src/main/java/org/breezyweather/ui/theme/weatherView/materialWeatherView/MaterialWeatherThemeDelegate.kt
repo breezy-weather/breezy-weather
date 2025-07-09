@@ -111,6 +111,28 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
         )
     }
 
+    override fun isLightBackground(
+        context: Context,
+        weatherKind: Int,
+        daylight: Boolean,
+    ): Boolean {
+        return when (weatherKind) {
+            WeatherView.WEATHER_KIND_CLEAR -> false
+            WeatherView.WEATHER_KIND_CLOUDY -> false
+            WeatherView.WEATHER_KIND_CLOUD -> false
+            WeatherView.WEATHER_KIND_FOG -> false
+            WeatherView.WEATHER_KIND_HAIL -> false
+            WeatherView.WEATHER_KIND_HAZE -> false
+            WeatherView.WEATHER_KIND_RAINY -> false
+            WeatherView.WEATHER_KIND_SLEET -> false
+            WeatherView.WEATHER_KIND_SNOW -> false
+            WeatherView.WEATHER_KIND_THUNDERSTORM -> false
+            WeatherView.WEATHER_KIND_THUNDER -> false
+            WeatherView.WEATHER_KIND_WIND -> false
+            else -> false
+        }
+    }
+
     override fun getBackgroundColor(
         context: Context,
         weatherKind: Int,
@@ -122,8 +144,12 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
     override fun getHeaderTopMargin(context: Context): Int =
         (context.resources.displayMetrics.heightPixels * 0.25).toInt()
 
-    override fun getHeaderTextColor(context: Context): Int {
-        return Color.WHITE
+    override fun getOnBackgroundColor(
+        context: Context,
+        weatherKind: Int,
+        daylight: Boolean,
+    ): Int {
+        return if (isLightBackground(context, weatherKind, daylight)) Color.BLACK else Color.WHITE
     }
 
     override fun setSystemBarStyle(

@@ -63,41 +63,44 @@ object Utils {
     ) = values.zip(names).firstOrNull { it.first == value }?.second
 
     fun getValueTextWithoutUnit(
+        context: Context,
         enum: UnitEnum<Double>,
         valueInDefaultUnit: Double,
         decimalNumber: Int,
     ) = BidiFormatter
         .getInstance()
         .unicodeWrap(
-            formatDouble(enum.getValueWithoutUnit(valueInDefaultUnit), decimalNumber)
+            formatDouble(context, enum.getValueWithoutUnit(valueInDefaultUnit), decimalNumber)
         )
 
     fun getValueTextWithoutUnit(
+        context: Context,
         enum: UnitEnum<Int>,
         valueInDefaultUnit: Int,
     ) = BidiFormatter
         .getInstance()
         .unicodeWrap(
-            formatInt(enum.getValueWithoutUnit(valueInDefaultUnit))
+            formatInt(context, enum.getValueWithoutUnit(valueInDefaultUnit))
         )
 
     fun getValueText(
         context: Context,
         enum: UnitEnum<Double>,
         value: Double,
-        decimalNumber: Int,
+        precision: Int,
         rtl: Boolean,
         isValueInDefaultUnit: Boolean = true,
     ) = if (rtl) {
         BidiFormatter
             .getInstance()
             .unicodeWrap(
-                formatDouble(if (isValueInDefaultUnit) enum.getValueWithoutUnit(value) else value, decimalNumber)
+                formatDouble(context, if (isValueInDefaultUnit) enum.getValueWithoutUnit(value) else value, precision)
             ) + "\u202f" + getName(context, enum)
     } else {
         formatDouble(
+            context,
             if (isValueInDefaultUnit) enum.getValueWithoutUnit(value) else value,
-            decimalNumber
+            precision
         ) + "\u202f" + getName(context, enum)
     }
 
@@ -111,10 +114,10 @@ object Utils {
         BidiFormatter
             .getInstance()
             .unicodeWrap(
-                formatInt(if (isValueInDefaultUnit) enum.getValueWithoutUnit(value) else value)
+                formatInt(context, if (isValueInDefaultUnit) enum.getValueWithoutUnit(value) else value)
             ) + "\u202f" + getName(context, enum)
     } else {
-        formatInt(if (isValueInDefaultUnit) enum.getValueWithoutUnit(value) else value) +
+        formatInt(context, if (isValueInDefaultUnit) enum.getValueWithoutUnit(value) else value) +
             "\u202f" + getName(context, enum)
     }
 
@@ -129,12 +132,15 @@ object Utils {
             .getInstance()
             .unicodeWrap(
                 formatDouble(
+                    context,
                     enum.getValueWithoutUnit(valueInDefaultUnit),
                     decimalNumber
                 )
             ) + "\u202f" + getVoice(context, enum)
     } else {
-        formatDouble(enum.getValueWithoutUnit(valueInDefaultUnit), decimalNumber) + "\u202f" + getVoice(context, enum)
+        formatDouble(context, enum.getValueWithoutUnit(valueInDefaultUnit), decimalNumber) +
+            "\u202f" +
+            getVoice(context, enum)
     }
 
     fun getVoiceText(
@@ -146,22 +152,24 @@ object Utils {
         BidiFormatter
             .getInstance()
             .unicodeWrap(
-                formatInt(enum.getValueWithoutUnit(valueInDefaultUnit))
+                formatInt(context, enum.getValueWithoutUnit(valueInDefaultUnit))
             ) + "\u202f" + getVoice(context, enum)
     } else {
-        formatInt(enum.getValueWithoutUnit(valueInDefaultUnit)) + "\u202f" + getVoice(context, enum)
+        formatInt(context, enum.getValueWithoutUnit(valueInDefaultUnit)) + "\u202f" + getVoice(context, enum)
     }
 
-    fun formatDouble(value: Double, decimalNumber: Int = 2): String {
-        val factor = 10.0.pow(decimalNumber)
+    fun formatDouble(context: Context, value: Double, precision: Int = 2): String {
+        val factor = 10.0.pow(precision)
         return if (
             value.roundToInt() * factor == (value * factor).roundToInt().toDouble()
         ) {
-            value.roundToInt().toString()
+            UnitEnum.formatNumber(context, value.roundToInt(), 0)
         } else {
-            String.format("%." + decimalNumber + "f", value)
+            UnitEnum.formatNumber(context, value, precision)
         }
     }
 
-    fun formatInt(value: Int) = String.format("%d", value)
+    fun formatInt(context: Context, value: Int): String {
+        return UnitEnum.formatNumber(context, value, 0)
+    }
 }
