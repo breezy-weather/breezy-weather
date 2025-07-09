@@ -199,6 +199,7 @@ val appTranslators = arrayOf(
     TranslatorItem(arrayOf("de"), "ColorfulRhino", weblate = "ColorfulRhino"),
     TranslatorItem(arrayOf("de"), "Lacey Anaya", weblate = "lanAYA"),
     TranslatorItem(arrayOf("de"), "Kachelkaiser", github = "Kachelkaiser"),
+    TranslatorItem(arrayOf("de"), "Lenny Angst", github = "Lezurex"),
     TranslatorItem(arrayOf("el"), "Μιχάλης Καζώνης", mail = "istrios@gmail.com"),
     TranslatorItem(arrayOf("el"), "Kostas Giapis", github = "tsiflimagas"),
     TranslatorItem(arrayOf("el"), "giwrgosmant", github = "giwrgosmant"),

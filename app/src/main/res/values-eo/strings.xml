@@ -645,7 +645,7 @@
     <string name="widget_clock_day_details">Horloĝo + taga vetero (detala)</string>
     <string name="widget_clock_day_vertical">Horloĝo + taga vetero (vertikala)</string>
     <string name="notification_precipitation_starting_desc">Verŝajne komenciĝos je %s</string>
-    <string name="dialog_permissions_location_background_content">Por permesi vetero refreŝigo en la fono al la plej lastatempa aktuala loko konata fare de Android, vi devas agordi lokpermeson \"Permesi la tutan tempon\". Se vi ne, vetero estos refreŝigita surbaze de la plej malfruaj prenitaj koordinatoj en la malfono, kiu povas esti eksdatigita.</string>
+    <string name="dialog_permissions_location_background_content">Por permesi vetero refreŝigo en la fono al la plej lastatempa aktuala loko konata fare de Android, vi devas agordi lokpermeson “Permesi la tutan tempon”. Se vi ne, vetero estos refreŝigita surbaze de la plej malfruaj prenitaj koordinatoj en la malfono, kiu povas esti eksdatigita.</string>
     <string name="weather_message_data_refresh_failed">Malsukcesis aktualigi datenojn</string>
     <string name="weather_message_invalid_location">Nevalida loko, bonvolu forigi ĝin kaj realdoni</string>
     <string name="weather_api_limit_reached_title">Troo da API-petoj</string>
@@ -834,7 +834,7 @@
     <string name="message_server_insecure_title">Sekura konekto malsukcesis</string>
     <string name="message_outdated_server_data">Eksdatigititaj datenoj ricevita de servilo</string>
     <string name="settings_background_updates_battery_optimization_summary">Tio estas la unua afero provi kiam vin ne ricevas sciigojn aŭ uzaĵojn ne estas refreŝiganta.</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Kelkaj fabrikistoj havas aldonajn aplikaĵajn restriktojn kiu mortigas fonajn servojn. La Don\'t kill my app! retejo havas info sur kiel ripari ĝin.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Kelkaj fabrikistoj havas aldonajn aplikaĵajn restriktojn kiu mortigas fonajn servojn. La Don’t kill my app! retejo havas info sur kiel ripari ĝin.</string>
     <string name="settings_location_access_precise_summaryOn">Ebligita. La aparata reta provizanto estos uzita en prioritato kaj plejparto de la tempo, sed GPS ankaŭ povas esti uzita kiel rezervo.</string>
     <string name="settings_location_access_precise_summaryOff">Ebligu “Uzi precizan lokon” se vi havas problemon akiri lokon.</string>
     <string name="settings_weather_source_not_configured">%s (ne agordita)</string>
@@ -843,7 +843,7 @@
     <string name="settings_source_instance_geocoding">Geokoda servilo</string>
     <string name="settings_notifications_permission">Sciiga permeso postulata</string>
     <string name="settings_notifications_permission_summary">Devata sciigi pri atentigoj, prognozoj kaj aplikaĵo ĝisdatigoj. %s</string>
-    <string name="settings_widgets_live_wallpaper_error">Ne povis lanĉi tapeton elektilo. Vi povas ankoraŭ ebligi %s tapeton elektante \"Live Wallpaper\" en via hejma ekrana tapetelekto.</string>
+    <string name="settings_widgets_live_wallpaper_error">Ne povis lanĉi tapeton elektilo. Vi povas ankoraŭ ebligi %s tapeton elektante “Live Wallpaper” en via hejma ekrana tapetelekto.</string>
     <string name="settings_widgets_notification_permission_summary">Devata montri la sciigan fenestraĵo. %s</string>
     <string name="settings_debug_notification_permission">Bezonata por sciigi pri kraŝaj protokoloj kaj nesukcesaj veteraj ĝisdatigoj. %s</string>
     <string name="unit_mum">μm</string>
