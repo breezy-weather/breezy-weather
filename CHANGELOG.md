@@ -14,6 +14,7 @@
 - Details page - Conditions - move long weather condition description to a dedicated Daily summary card (especially noticeable with AccuWeather source)
 - Homepage - Move “Settings” icon to location list to be able to display icons on homepage without a submenu.
 - Homepage - Better animation for homepage current temperature when using Fahrenheit or Kelvin
+- Homepage - Use Material 3 Expressive buttons for forecast buttons
 - Homepage - Fix sun & moon direction in RtL languages
 - Homepage - Fix air quality direction in RtL languages
 - Fix tint of “Open in another app” icon in landscape mode

@@ -22,14 +22,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
+import androidx.core.view.children
 import breezyweather.domain.location.model.Location
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.button.MaterialButtonGroup
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.adapters.ButtonAdapter
-import org.breezyweather.ui.common.decorations.GridMarginsDecoration
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.main.adapters.trend.HourlyTrendAdapter
 import org.breezyweather.ui.main.layouts.TrendHorizontalLinearLayoutManager
@@ -44,7 +45,8 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 ) {
     private val title: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_title)
     private val subtitle: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_subtitle)
-    private val buttonView: RecyclerView = itemView.findViewById(R.id.container_main_hourly_trend_card_buttonView)
+    private val buttonGroup: MaterialButtonGroup =
+        itemView.findViewById(R.id.container_main_hourly_trend_card_buttonView)
     private val trendRecyclerView: TrendRecyclerView = itemView.findViewById(
         R.id.container_main_hourly_trend_card_trendRecyclerView
     )
@@ -97,31 +99,43 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         }.toMutableList()
 
         if (buttonList.size < 2) {
-            buttonView.visibility = View.GONE
+            buttonGroup.visibility = View.GONE
         } else {
-            buttonView.visibility = View.VISIBLE
-            val decorCount = buttonView.itemDecorationCount
-            for (i in 0 until decorCount) {
-                buttonView.removeItemDecorationAt(0)
+            buttonGroup.visibility = View.VISIBLE
+            // Dirty trick to get the button group to actually redraw with the correct styles AND the overflow menu
+            while (
+                buttonGroup.children
+                    .filter { it is MaterialButton && it.tag != MaterialButtonGroup.OVERFLOW_BUTTON_TAG }
+                    .count() != 0
+            ) {
+                buttonGroup.children
+                    .filter { it is MaterialButton && it.tag != MaterialButtonGroup.OVERFLOW_BUTTON_TAG }
+                    .forEach {
+                        buttonGroup.removeView(it)
+                    }
             }
-            buttonView.addItemDecoration(
-                GridMarginsDecoration(
-                    context.resources.getDimension(R.dimen.little_margin),
-                    context.resources.getDimension(
-                        com.google.android.material.R.dimen.m3_comp_button_group_connected_small_between_space
-                    ),
-                    buttonView
+            buttonList.forEachIndexed { index, button ->
+                buttonGroup.addView(
+                    MaterialButton(
+                        context,
+                        null,
+                        com.google.android.material.R.attr.materialButtonStyle
+                    ).apply {
+                        text = button.name
+                        isCheckable = true
+                        isChecked = index == trendAdapter.selectedIndex
+                        setOnClickListener {
+                            trendAdapter.selectedIndex = index
+                            buttonGroup.children
+                                .filter { it is MaterialButton && it.tag != MaterialButtonGroup.OVERFLOW_BUTTON_TAG }
+                                .forEach { button ->
+                                    (button as MaterialButton).isChecked = false
+                                }
+                            isChecked = true
+                        }
+                    }
                 )
-            )
-            buttonView.layoutManager = TrendHorizontalLinearLayoutManager(context)
-            buttonView.adapter = ButtonAdapter(
-                buttonList,
-                { _, _, newPosition: Int ->
-                    trendAdapter.selectedIndex = newPosition
-                    return@ButtonAdapter false
-                },
-                0
-            )
+            }
         }
 
         trendRecyclerView.layoutManager =
