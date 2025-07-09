@@ -730,7 +730,7 @@
     <string name="conditions">Умови</string>
     <string name="temperature_real">Фактична</string>
     <string name="temperature_real_details">Фактична температура.</string>
-    <string name="temperature_degree_day_cooling_explanation">Різниця між зовнішньою та еталонною комфортною температурою, що використовується для оцінювання потреби в охолодженні</string>
+    <string name="temperature_degree_day_cooling_explanation">Різниця між зовнішньою та еталонною комфортною температурою, що використовується для оцінювання потреби в охолоджені</string>
     <string name="wind_speed_about">Про швидкість та пориви вітру</string>
     <string name="wind_gusts_short">Пориви вітру</string>
     <string name="wind_strength_scale">Шкала Бофорта</string>
