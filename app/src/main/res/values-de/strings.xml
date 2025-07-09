@@ -822,4 +822,5 @@
     <string name="ephemeris_about_dusk">Die Abenddämmerung ist die dunkelste Phase der Dämmerung, bevor das letzte sichtbare Licht verschwindet.</string>
     <string name="ephemeris_dawn_at">Morgengrauen um %s</string>
     <string name="ephemeris_dusk_at">Abenddämmerung um %s</string>
+    <string name="wind_origin">Von %s</string>
 </resources>
