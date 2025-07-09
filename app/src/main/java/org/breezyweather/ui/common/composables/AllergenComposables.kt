@@ -86,7 +86,7 @@ fun PollenGrid(
                         ) + " – " + pollen.getIndexName(context, validPollen)
                     },
                     tintColor = Color(
-                        pollen.getColor(context, validPollen)
+                        pollen.getColor(context, validPollen, pollenIndexSource)
                     ),
                     modifier = Modifier
                         .fillMaxWidth(1.0f.div(maxItemsInEachRow))

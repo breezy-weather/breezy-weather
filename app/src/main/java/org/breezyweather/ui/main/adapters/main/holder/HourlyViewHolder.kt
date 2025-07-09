@@ -44,7 +44,7 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 ) {
     private val title: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_title)
     private val subtitle: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_subtitle)
-    private val buttoniew: RecyclerView = itemView.findViewById(R.id.container_main_hourly_trend_card_buttonView)
+    private val buttonView: RecyclerView = itemView.findViewById(R.id.container_main_hourly_trend_card_buttonView)
     private val trendRecyclerView: TrendRecyclerView = itemView.findViewById(
         R.id.container_main_hourly_trend_card_trendRecyclerView
     )
@@ -97,24 +97,24 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         }.toMutableList()
 
         if (buttonList.size < 2) {
-            buttoniew.visibility = View.GONE
+            buttonView.visibility = View.GONE
         } else {
-            buttoniew.visibility = View.VISIBLE
-            val decorCount = buttoniew.itemDecorationCount
+            buttonView.visibility = View.VISIBLE
+            val decorCount = buttonView.itemDecorationCount
             for (i in 0 until decorCount) {
-                buttoniew.removeItemDecorationAt(0)
+                buttonView.removeItemDecorationAt(0)
             }
-            buttoniew.addItemDecoration(
+            buttonView.addItemDecoration(
                 GridMarginsDecoration(
                     context.resources.getDimension(R.dimen.little_margin),
                     context.resources.getDimension(
                         com.google.android.material.R.dimen.m3_comp_button_group_connected_small_between_space
                     ),
-                    buttoniew
+                    buttonView
                 )
             )
-            buttoniew.layoutManager = TrendHorizontalLinearLayoutManager(context)
-            buttoniew.adapter = ButtonAdapter(
+            buttonView.layoutManager = TrendHorizontalLinearLayoutManager(context)
+            buttonView.adapter = ButtonAdapter(
                 buttonList,
                 { _, _, newPosition: Int ->
                     trendAdapter.selectedIndex = newPosition

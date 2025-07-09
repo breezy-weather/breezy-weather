@@ -66,7 +66,7 @@ class HourlyAirQualityAdapter(
             val index = hourly.airQuality?.getIndex()
             if (index != null) {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(index)
+                    .append(Utils.formatInt(activity, index))
                     .append(activity.getString(R.string.comma_separator))
                     .append(hourly.airQuality!!.getName(itemView.context))
             }
@@ -74,7 +74,7 @@ class HourlyAirQualityAdapter(
                 null, null,
                 null, null,
                 null, null,
-                index?.toFloat(), if (index != null) Utils.formatInt(activity, index) else null,
+                index?.toFloat(), index?.let { Utils.formatInt(activity, it) },
                 mHighestIndex.toFloat(), 0f
             )
             mPolylineAndHistogramView.setLineColors(
