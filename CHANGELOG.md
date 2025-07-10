@@ -17,6 +17,7 @@
 - Homepage - Use Material 3 Expressive buttons for forecast buttons
 - Homepage - Fix sun & moon direction in RtL languages
 - Homepage - Fix air quality direction in RtL languages
+- Homepage - Fix missing hourly visibility in some cases
 - Fix tint of “Open in another app” icon in landscape mode
 - Improve the formatting of today/tomorrow notification
 

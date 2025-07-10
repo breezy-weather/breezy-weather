@@ -26,6 +26,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
@@ -48,7 +49,7 @@ class HourlyVisibilityAdapter(
     private val mVisibilityUnit: DistanceUnit = unit
     private val mVisibilities: Array<Float?>
     private var mHighestVisibility: Float? = null
-    private var mLowestVisibility: Float? = null
+    private var mLowestVisibility: Float = 0f
 
     inner class ViewHolder(itemView: View) : AbsHourlyTrendAdapter.ViewHolder(itemView) {
         private val mPolylineAndHistogramView = PolylineAndHistogramView(itemView.context)
@@ -156,12 +157,10 @@ class HourlyVisibilityAdapter(
         }
         weather.nextHourlyForecast
             .forEach { hourly ->
+                LogHelper.log(msg = "vis: ${hourly.visibility}")
                 hourly.visibility?.let {
                     if (mHighestVisibility == null || it > mHighestVisibility!!) {
                         mHighestVisibility = it.toFloat()
-                    }
-                    if (mLowestVisibility == null || it < mLowestVisibility!!) {
-                        mLowestVisibility = it.toFloat()
                     }
                 }
             }
@@ -179,7 +178,7 @@ class HourlyVisibilityAdapter(
     override fun getItemCount() = location.weather!!.nextHourlyForecast.size
 
     override fun isValid(location: Location): Boolean {
-        return mHighestVisibility != null && mLowestVisibility != null
+        return mHighestVisibility != null
     }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_visibility)
