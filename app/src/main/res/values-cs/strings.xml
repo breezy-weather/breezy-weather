@@ -823,4 +823,5 @@
     <string name="ephemeris_about_dusk">Setmění je nejtmavější fáze soumraku předtím než zmizí poslední viditelné světlo.</string>
     <string name="ephemeris_dawn_at">Úsvit v %s</string>
     <string name="ephemeris_dusk_at">Setmění v %s</string>
+    <string name="wind_origin">Ze %s</string>
 </resources>
