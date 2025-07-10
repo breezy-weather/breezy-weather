@@ -763,4 +763,5 @@
     <string name="ephemeris_dawn_at">Rītausma %s</string>
     <string name="ephemeris_about_dusk">Vakara krēsla ir tumšākais krēslas posms, pirms pazūd pēdējā redzamā gaisma.</string>
     <string name="ephemeris_about_dawn">Rītausma ir tad, kad pirms saullēkta parādās pirmā redzamā dienas gaisma.</string>
+    <string name="wind_origin">No %s</string>
 </resources>
