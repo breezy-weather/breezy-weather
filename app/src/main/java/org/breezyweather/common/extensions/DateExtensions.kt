@@ -123,6 +123,13 @@ fun Date.getFormattedShortDayAndMonth(
     return getFormattedDate("MM-dd", location, context, withBestPattern = true)
 }
 
+fun Date.getFormattedDayOfTheMonth(
+    location: Location,
+    context: Context?,
+): String {
+    return getFormattedDate("dd", location, context, withBestPattern = true)
+}
+
 fun Date.getFormattedMediumDayAndMonth(
     location: Location,
     context: Context?,

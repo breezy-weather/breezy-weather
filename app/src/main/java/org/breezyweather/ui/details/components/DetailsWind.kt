@@ -493,7 +493,7 @@ fun WindScale(
                             tint = Color(SpeedUnit.getBeaufortScaleColor(context, index))
                         )
                         Text(
-                            text = index.toString()
+                            text = Utils.formatInt(context, index)
                         )
                     }
                     Text(

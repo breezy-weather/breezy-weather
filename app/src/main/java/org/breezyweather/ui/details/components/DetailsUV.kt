@@ -328,7 +328,7 @@ fun UVScale(
             }
             UV.uvThresholds.forEachIndexed { index, startingValue ->
                 val endingValue = UV.uvThresholds.getOrElse(index + 1) { null }
-                    ?.let { " – ${it - 1}" }
+                    ?.let { " – ${Utils.formatInt(context, it - 1)}" }
                     ?: "+"
                 val uv = UV(index = startingValue.toDouble())
                 Row(
@@ -355,7 +355,7 @@ fun UVScale(
                         )
                     }
                     Text(
-                        "$startingValue$endingValue",
+                        "${Utils.formatInt(context, startingValue)}$endingValue",
                         textAlign = TextAlign.End,
                         modifier = Modifier.weight(1f)
                     )

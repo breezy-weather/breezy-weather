@@ -77,8 +77,8 @@ import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.extensions.getDayOfMonth
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getFormattedDayOfTheMonth
 import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getWeek
@@ -245,7 +245,7 @@ fun DailyPagerIndicator(
                             }
                         )
                         Text(
-                            text = cal.getDayOfMonth(twoDigits = true),
+                            text = date.getFormattedDayOfTheMonth(location, context),
                             style = MaterialTheme.typography.headlineMedium
                         )
                         Text(
