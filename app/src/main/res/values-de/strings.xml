@@ -724,14 +724,14 @@
     <string name="daily_yesterday">Gestern</string>
     <string name="daily_today">Heute</string>
     <string name="daily_tomorrow">Morgen</string>
-    <string name="wind_direction_S">Süden</string>
-    <string name="wind_direction_SW">Südwesten</string>
-    <string name="wind_direction_W">Westen</string>
-    <string name="wind_direction_E">Osten</string>
-    <string name="wind_direction_NE">Nordosten</string>
-    <string name="wind_direction_SE">Südosten</string>
-    <string name="wind_direction_N">Norden</string>
-    <string name="wind_direction_NW">Nordwesten</string>
+    <string name="wind_direction_S">Süd</string>
+    <string name="wind_direction_SW">Südwest</string>
+    <string name="wind_direction_W">West</string>
+    <string name="wind_direction_E">Ost</string>
+    <string name="wind_direction_NE">Nordost</string>
+    <string name="wind_direction_SE">Südost</string>
+    <string name="wind_direction_N">Nord</string>
+    <string name="wind_direction_NW">Nordwest</string>
     <string name="message_server_insecure_title">Sichere Verbindung fehlgeschlagen</string>
     <string name="message_outdated_server_data">Veraltete Daten vom Server empfangen</string>
     <string name="action_enable">Aktivieren</string>
@@ -822,5 +822,5 @@
     <string name="ephemeris_about_dusk">Die Abenddämmerung ist die dunkelste Phase der Dämmerung, bevor das letzte sichtbare Licht verschwindet.</string>
     <string name="ephemeris_dawn_at">Morgengrauen um %s</string>
     <string name="ephemeris_dusk_at">Abenddämmerung um %s</string>
-    <string name="wind_origin">Von %s</string>
+    <string name="wind_origin">Aus %s</string>
 </resources>
