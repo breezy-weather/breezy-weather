@@ -894,4 +894,5 @@
     <string name="ephemeris_about_dusk">薄暮是最后一缕肉眼可见的光消失前暮光最昏暗的阶段。</string>
     <string name="ephemeris_dawn_at">拂晓时间 %s</string>
     <string name="ephemeris_dusk_at">薄暮时间 %s</string>
+    <string name="wind_origin">来自%s</string>
 </resources>
