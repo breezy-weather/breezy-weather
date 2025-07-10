@@ -25,8 +25,8 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
@@ -34,7 +34,6 @@ import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
-import java.text.NumberFormat
 import kotlin.math.max
 
 /**
@@ -68,11 +67,7 @@ class HourlyHumidityAdapter(
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.humidity))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(
-                        NumberFormat.getPercentInstance(activity.currentLocale).apply {
-                            maximumFractionDigits = 0
-                        }.format(it.div(100.0))
-                    )
+                    .append(Utils.formatPercent(activity, it))
             }
             hourly.dewPoint?.let {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
@@ -96,11 +91,7 @@ class HourlyHumidityAdapter(
                 mHighestDewPoint,
                 mLowestDewPoint,
                 hourly.relativeHumidity?.toFloat(),
-                hourly.relativeHumidity?.let {
-                    NumberFormat.getPercentInstance(activity.currentLocale).apply {
-                        maximumFractionDigits = 0
-                    }.format(it.div(100.0))
-                },
+                hourly.relativeHumidity?.let { Utils.formatPercent(activity, it) },
                 100f,
                 0f
             )

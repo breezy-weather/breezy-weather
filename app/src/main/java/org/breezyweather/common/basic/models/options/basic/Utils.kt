@@ -18,8 +18,18 @@ package org.breezyweather.common.basic.models.options.basic
 
 import android.content.Context
 import android.content.res.Resources
+import android.icu.number.LocalizedNumberFormatter
+import android.icu.number.NumberFormatter
+import android.icu.number.Precision
+import android.icu.text.MeasureFormat
+import android.icu.text.NumberFormat
+import android.icu.util.Measure
+import android.icu.util.MeasureUnit
+import android.os.Build
 import android.text.BidiFormatter
 import androidx.annotation.ArrayRes
+import androidx.annotation.RequiresApi
+import org.breezyweather.common.extensions.currentLocale
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
@@ -163,13 +173,105 @@ object Utils {
         return if (
             value.roundToInt() * factor == (value * factor).roundToInt().toDouble()
         ) {
-            UnitEnum.formatNumber(context, value.roundToInt(), 0)
+            formatNumber(context, value.roundToInt(), 0)
         } else {
-            UnitEnum.formatNumber(context, value, precision)
+            formatNumber(context, value, precision)
         }
     }
 
     fun formatInt(context: Context, value: Int): String {
-        return UnitEnum.formatNumber(context, value, 0)
+        return formatNumber(context, value, 0)
+    }
+
+    /**
+     * Uses LocalizedNumberFormatter on Android SDK >= 30 (which is the recommended way)
+     * Uses MeasureFormat on Android SDK < 30
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    fun formatWithIcu(
+        context: Context,
+        valueWithoutUnit: Number,
+        unit: MeasureUnit,
+        unitWidth: MeasureFormat.FormatWidth,
+    ): String {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            (NumberFormatter.withLocale(context.currentLocale) as LocalizedNumberFormatter)
+                .unit(unit)
+                .unitWidth(
+                    if (unitWidth == MeasureFormat.FormatWidth.WIDE) {
+                        NumberFormatter.UnitWidth.FULL_NAME
+                    } else {
+                        NumberFormatter.UnitWidth.SHORT
+                    }
+                )
+                .format(valueWithoutUnit)
+                .toString()
+        } else {
+            MeasureFormat
+                .getInstance(context.currentLocale, unitWidth)
+                .format(Measure(valueWithoutUnit, unit))
+        }
+    }
+
+    /**
+     * Uses LocalizedNumberFormatter on Android SDK >= 30 (which is the recommended way)
+     * Uses NumberFormat on Android SDK >= 24
+     * Uses String.format() on Android SDK < 24
+     */
+    fun formatNumber(
+        context: Context,
+        valueWithoutUnit: Number,
+        precision: Int,
+    ): String {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            (NumberFormatter.withLocale(context.currentLocale) as LocalizedNumberFormatter)
+                .precision(Precision.fixedFraction(precision))
+                .format(valueWithoutUnit)
+                .toString()
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            NumberFormat.getNumberInstance(context.currentLocale)
+                .apply {
+                    maximumFractionDigits = precision
+                }
+                .format(valueWithoutUnit)
+                .toString()
+        } else {
+            if (precision == 0) {
+                String.format(context.currentLocale, "%d", valueWithoutUnit)
+            } else {
+                String.format(context.currentLocale, "%." + precision + "f", valueWithoutUnit)
+            }
+        }
+    }
+
+    /**
+     * Uses LocalizedNumberFormatter on Android SDK >= 30 (which is the recommended way)
+     * Uses NumberFormat on Android SDK >= 24
+     * Uses java.text.NumberFormat on Android SDK < 24
+     *
+     * @param context
+     * @param value between 0.0 and 100.0
+     * @param precision
+     */
+    fun formatPercent(
+        context: Context,
+        value: Double,
+        precision: Int = 0,
+    ): String {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            (NumberFormatter.withLocale(context.currentLocale) as LocalizedNumberFormatter)
+                .precision(Precision.fixedFraction(precision))
+                .unit(MeasureUnit.PERCENT)
+                .format(value)
+                .toString()
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            NumberFormat.getPercentInstance(context.currentLocale).apply {
+                maximumFractionDigits = precision
+            }.format(if (value > 0) value.div(100.0) else 0)
+        } else {
+            java.text.NumberFormat.getPercentInstance(context.currentLocale).apply {
+                maximumFractionDigits = precision
+            }.format(if (value > 0) value.div(100.0) else 0)
+        }
     }
 }

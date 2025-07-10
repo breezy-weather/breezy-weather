@@ -26,8 +26,8 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
@@ -36,7 +36,6 @@ import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
-import java.text.NumberFormat
 import kotlin.math.max
 
 /**
@@ -85,11 +84,7 @@ class DailyTemperatureAdapter(
                         talkBackBuilder.append(activity.getString(R.string.comma_separator))
                             .append(activity.getString(R.string.precipitation_probability))
                             .append(activity.getString(R.string.colon_separator))
-                            .append(
-                                NumberFormat.getPercentInstance(activity.currentLocale).apply {
-                                    maximumFractionDigits = 0
-                                }.format(if (p > 0) p.div(100.0) else 0)
-                            )
+                            .append(Utils.formatPercent(activity, p))
                     }
                 }
             }
@@ -109,11 +104,7 @@ class DailyTemperatureAdapter(
                         talkBackBuilder.append(activity.getString(R.string.comma_separator))
                             .append(activity.getString(R.string.precipitation_probability))
                             .append(activity.getString(R.string.colon_separator))
-                            .append(
-                                NumberFormat.getPercentInstance(activity.currentLocale).apply {
-                                    maximumFractionDigits = 0
-                                }.format(if (p > 0) p.div(100.0) else 0)
-                            )
+                            .append(Utils.formatPercent(activity, p))
                     }
                 }
             }
@@ -143,9 +134,7 @@ class DailyTemperatureAdapter(
                 mLowestTemperature,
                 if (p > 0) p else null,
                 if (p > 0) {
-                    NumberFormat.getPercentInstance(activity.currentLocale).apply {
-                        maximumFractionDigits = 0
-                    }.format(p.div(100.0))
+                    Utils.formatPercent(activity, p.toDouble())
                 } else {
                     null
                 },

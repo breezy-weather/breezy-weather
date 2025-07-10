@@ -25,7 +25,7 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.domain.weather.model.CLOUD_COVER_CLEAR
 import org.breezyweather.domain.weather.model.CLOUD_COVER_PARTLY
 import org.breezyweather.domain.weather.model.getCloudCoverColor
@@ -34,7 +34,6 @@ import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
-import java.text.NumberFormat
 
 /**
  * Hourly Cloud Cover adapter.
@@ -59,12 +58,9 @@ class HourlyCloudCoverAdapter(
             val hourly = location.weather!!.nextHourlyForecast[position]
 
             hourly.cloudCover?.let { cloudCover ->
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(
-                        NumberFormat.getPercentInstance(activity.currentLocale).apply {
-                            maximumFractionDigits = 0
-                        }.format(cloudCover.div(100.0))
-                    )
+                talkBackBuilder
+                    .append(activity.getString(R.string.comma_separator))
+                    .append(Utils.formatPercent(activity, cloudCover.toDouble()))
             }
             mPolylineAndHistogramView.setData(
                 null,
@@ -74,11 +70,7 @@ class HourlyCloudCoverAdapter(
                 null,
                 null,
                 hourly.cloudCover?.toFloat() ?: 0f,
-                hourly.cloudCover?.let {
-                    NumberFormat.getPercentInstance(activity.currentLocale).apply {
-                        maximumFractionDigits = 0
-                    }.format(it.div(100.0))
-                },
+                hourly.cloudCover?.let { Utils.formatPercent(activity, it.toDouble()) },
                 100f,
                 0f
             )
@@ -141,9 +133,7 @@ class HourlyCloudCoverAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 CLOUD_COVER_PARTLY.toFloat(),
-                NumberFormat.getPercentInstance(activity.currentLocale).apply {
-                    maximumFractionDigits = 0
-                }.format(CLOUD_COVER_PARTLY.div(100.0)),
+                Utils.formatPercent(activity, CLOUD_COVER_PARTLY),
                 activity.getString(R.string.weather_kind_partly_cloudy),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -151,9 +141,7 @@ class HourlyCloudCoverAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 CLOUD_COVER_CLEAR.toFloat(),
-                NumberFormat.getPercentInstance(activity.currentLocale).apply {
-                    maximumFractionDigits = 1
-                }.format(CLOUD_COVER_CLEAR.div(100.0)),
+                Utils.formatPercent(activity, CLOUD_COVER_CLEAR),
                 activity.getString(R.string.weather_kind_clear),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )

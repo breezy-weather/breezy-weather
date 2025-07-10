@@ -22,11 +22,10 @@ import androidx.annotation.StringRes
 import breezyweather.domain.weather.model.Current
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getShortDescription
-import java.text.NumberFormat
 
 enum class DetailDisplay(
     override val id: String,
@@ -148,9 +147,7 @@ enum class DetailDisplay(
             null
         }
         "humidity" -> current.relativeHumidity?.let {
-            NumberFormat.getPercentInstance(context.currentLocale).apply {
-                maximumFractionDigits = 0
-            }.format(it.div(100.0))
+            Utils.formatPercent(context, it)
         }
         "dew_point" -> current.dewPoint?.let {
             SettingsManager.getInstance(context).temperatureUnit.getValueText(context, it, 0)
@@ -162,9 +159,7 @@ enum class DetailDisplay(
             SettingsManager.getInstance(context).distanceUnit.getValueText(context, it)
         }
         "cloud_cover" -> current.cloudCover?.let {
-            NumberFormat.getPercentInstance(context.currentLocale).apply {
-                maximumFractionDigits = 0
-            }.format(it.div(100.0))
+            Utils.formatPercent(context, it.toDouble())
         }
         "ceiling" -> current.ceiling?.let {
             SettingsManager.getInstance(context).distanceUnit.getValueText(context, it)
@@ -197,9 +192,7 @@ enum class DetailDisplay(
         "humidity" -> current.relativeHumidity?.let {
             getName(context) +
                 context.getString(R.string.colon_separator) +
-                NumberFormat.getPercentInstance(context.currentLocale).apply {
-                    maximumFractionDigits = 0
-                }.format(it.div(100.0))
+                Utils.formatPercent(context, it)
         }
         "dew_point" -> current.dewPoint?.let {
             getName(context) +
@@ -219,9 +212,7 @@ enum class DetailDisplay(
         "cloud_cover" -> current.cloudCover?.let {
             getName(context) +
                 context.getString(R.string.colon_separator) +
-                NumberFormat.getPercentInstance(context.currentLocale).apply {
-                    maximumFractionDigits = 0
-                }.format(it.div(100.0))
+                Utils.formatPercent(context, it.toDouble())
         }
         "ceiling" -> current.ceiling?.let {
             getName(context) +

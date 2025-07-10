@@ -33,7 +33,7 @@ import androidx.core.graphics.createBitmap
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendDailyProvider
-import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.utils.helpers.AsyncHelper
@@ -48,7 +48,6 @@ import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
-import java.text.NumberFormat
 import kotlin.math.max
 import kotlin.math.min
 
@@ -233,9 +232,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     lowestTemperature,
                     if (p > 0) p else null,
                     if (p > 0) {
-                        NumberFormat.getPercentInstance(context.currentLocale).apply {
-                            maximumFractionDigits = 0
-                        }.format(p.div(100.0))
+                        Utils.formatPercent(context, p.toDouble())
                     } else {
                         null
                     },

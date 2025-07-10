@@ -55,14 +55,13 @@ import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
-import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.settings.preference.bottomInsetItem
-import java.text.NumberFormat
 import java.util.Date
 
 @Composable
@@ -159,9 +158,7 @@ private fun CloudCoverItem(
         header()
         TextFixedHeight(
             text = cloudCover?.let {
-                NumberFormat.getPercentInstance(context.currentLocale).apply {
-                    maximumFractionDigits = 0
-                }.format(it.div(100.0))
+                Utils.formatPercent(context, it.toDouble())
             } ?: "",
             style = MaterialTheme.typography.displaySmall
         )
@@ -178,9 +175,7 @@ private fun CloudCoverChart(
     val maxY = 100.0
 
     val endAxisValueFormatter = CartesianValueFormatter { _, value, _ ->
-        NumberFormat.getPercentInstance(context.currentLocale).apply {
-            maximumFractionDigits = 0
-        }.format(value.div(100.0))
+        Utils.formatPercent(context, value)
     }
 
     val modelProducer = remember { CartesianChartModelProducer() }

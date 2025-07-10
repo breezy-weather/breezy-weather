@@ -141,7 +141,7 @@ enum class TemperatureUnit(
         context: Context,
         valueInDefaultUnit: Double,
     ) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        UnitEnum.formatWithIcu(
+        Utils.formatWithIcu(
             context,
             getDegreeDayValueWithoutUnit(valueInDefaultUnit).roundDecimals(0)!!,
             when (this) {
@@ -195,7 +195,7 @@ enum class TemperatureUnit(
         valueInDefaultUnit: Double,
         rtl: Boolean,
     ) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        UnitEnum.formatWithIcu(
+        Utils.formatWithIcu(
             context,
             getValueWithoutUnit(valueInDefaultUnit).roundDecimals(0)!!,
             when (this) {

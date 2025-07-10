@@ -68,8 +68,8 @@ import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.basic.models.options.basic.Utils
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
-import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.roundUpToNearestMultiplier
@@ -78,7 +78,6 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.charts.BreezyBarChart
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.settings.preference.bottomInsetItem
-import java.text.NumberFormat
 import kotlin.math.max
 
 @Composable
@@ -435,9 +434,7 @@ private fun PrecipitationProbabilityItem(
         header()
         precipitationProbability?.let { pp ->
             TextFixedHeight(
-                text = NumberFormat.getPercentInstance(context.currentLocale).apply {
-                    maximumFractionDigits = 0
-                }.format(pp.div(100.0)),
+                text = Utils.formatPercent(context, pp),
                 style = MaterialTheme.typography.displaySmall
             )
         }
@@ -526,9 +523,7 @@ internal fun PrecipitationProbabilityChart(
         val maxY = 100.0
 
         val endAxisValueFormatter = CartesianValueFormatter { _, value, _ ->
-            NumberFormat.getPercentInstance(context.currentLocale).apply {
-                maximumFractionDigits = 0
-            }.format(value.div(100.0))
+            Utils.formatPercent(context, value)
         }
 
         val modelProducer = remember { CartesianChartModelProducer() }
@@ -609,9 +604,6 @@ internal fun DailyPrecipitationProbabilityDetails(
     precipitationProbability: PrecipitationProbability?,
 ) {
     val context = LocalContext.current
-    val percentUnit = NumberFormat.getPercentInstance(context.currentLocale).apply {
-        maximumFractionDigits = 0
-    }
     val precipitationProbabilityItems = buildList {
         precipitationProbability?.let { pp ->
             if ((pp.rain ?: 0.0) > 0) {
@@ -638,14 +630,14 @@ internal fun DailyPrecipitationProbabilityDetails(
     precipitationProbabilityItems.forEach { item ->
         DetailsItem(
             headlineText = stringResource(item.first),
-            supportingText = percentUnit.format(item.second.div(100.0)),
+            supportingText = Utils.formatPercent(context, item.second),
             modifier = Modifier
                 .padding(top = dimensionResource(R.dimen.normal_margin))
                 .semantics(mergeDescendants = true) {}
                 .clearAndSetSemantics {
                     contentDescription = context.getString(item.first) +
                         context.getString(R.string.colon_separator) +
-                        percentUnit.format(item.second.div(100.0))
+                        Utils.formatPercent(context, item.second)
                 }
         )
     }

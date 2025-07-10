@@ -29,7 +29,6 @@ import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayDetailsProvider
 import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.basic.models.options.basic.Utils
-import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getShortWeekdayDayMonth
 import org.breezyweather.domain.location.model.getPlace
@@ -42,7 +41,6 @@ import org.breezyweather.domain.weather.model.getTrendTemperature
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
-import java.text.NumberFormat
 import java.util.Date
 
 object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
@@ -281,9 +279,7 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
             weather.current?.relativeHumidity?.let {
                 context.getString(R.string.humidity) +
                     context.getString(R.string.colon_separator) +
-                    NumberFormat.getPercentInstance(context.currentLocale).apply {
-                        maximumFractionDigits = 0
-                    }.format(it.div(100.0))
+                    Utils.formatPercent(context, it)
             }
         }
     }
