@@ -48,7 +48,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.breezyweather.R
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
 import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
@@ -63,6 +63,8 @@ fun SwitchPreferenceView(
     withState: Boolean = true,
     enabled: Boolean = true,
     card: Boolean = true,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(),
     onValueChanged: (Boolean) -> Unit,
 ) = SwitchPreferenceView(
@@ -75,6 +77,8 @@ fun SwitchPreferenceView(
     withState = withState,
     enabled = enabled,
     card = card,
+    isFirst = isFirst,
+    isLast = isLast,
     colors = colors,
     onValueChanged = onValueChanged
 )
@@ -88,6 +92,8 @@ fun SwitchPreferenceView(
     withState: Boolean = true,
     enabled: Boolean = true,
     card: Boolean = true,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(),
     onValueChanged: (Boolean) -> Unit,
 ) {
@@ -96,8 +102,10 @@ fun SwitchPreferenceView(
 
     // TODO: Redundancy
     if (card) {
-        Material3CardListItem(
-            elevation = if (enabled) defaultCardListItemElevation else 0.dp
+        Material3ExpressiveCardListItem(
+            elevation = if (enabled) defaultCardListItemElevation else 0.dp,
+            isFirst = isFirst,
+            isLast = isLast
         ) {
             Row(
                 modifier = Modifier

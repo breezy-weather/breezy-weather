@@ -17,9 +17,11 @@
 package org.breezyweather.ui.settings.compose
 
 import android.content.Context
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
@@ -27,6 +29,7 @@ import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.options.unit.PressureUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.plus
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
@@ -34,6 +37,7 @@ import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.ui.settings.preference.composables.ListPreferenceView
 import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.listPreferenceItem
+import org.breezyweather.ui.settings.preference.smallSeparatorItem
 
 @Composable
 fun UnitSettingsScreen(
@@ -56,7 +60,9 @@ fun UnitSettingsScreen(
             )
         }
     ) { paddings ->
-        PreferenceScreen(paddingValues = paddings) {
+        PreferenceScreen(
+            paddingValues = paddings.plus(PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)))
+        ) {
             listPreferenceItem(R.string.settings_units_temperature) { id ->
                 ListPreferenceView(
                     titleId = id,
@@ -64,6 +70,7 @@ fun UnitSettingsScreen(
                     valueArrayId = R.array.temperature_unit_values,
                     nameArrayId = R.array.temperature_units,
                     card = true,
+                    isFirst = true,
                     onValueChanged = {
                         SettingsManager
                             .getInstance(context)
@@ -75,6 +82,7 @@ fun UnitSettingsScreen(
                     }
                 )
             }
+            smallSeparatorItem()
             listPreferenceItem(R.string.settings_units_precipitation) { id ->
                 ListPreferenceView(
                     titleId = id,
@@ -93,6 +101,7 @@ fun UnitSettingsScreen(
                     }
                 )
             }
+            smallSeparatorItem()
             listPreferenceItem(R.string.settings_units_distance) { id ->
                 ListPreferenceView(
                     titleId = id,
@@ -111,6 +120,7 @@ fun UnitSettingsScreen(
                     }
                 )
             }
+            smallSeparatorItem()
             listPreferenceItem(R.string.settings_units_speed) { id ->
                 ListPreferenceView(
                     titleId = id,
@@ -129,6 +139,7 @@ fun UnitSettingsScreen(
                     }
                 )
             }
+            smallSeparatorItem()
             listPreferenceItem(R.string.settings_units_pressure) { id ->
                 ListPreferenceView(
                     titleId = id,
@@ -136,6 +147,7 @@ fun UnitSettingsScreen(
                     valueArrayId = R.array.pressure_unit_values,
                     nameArrayId = R.array.pressure_units,
                     card = true,
+                    isLast = true,
                     onValueChanged = {
                         SettingsManager
                             .getInstance(context)

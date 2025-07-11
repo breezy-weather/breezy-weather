@@ -23,6 +23,7 @@ import android.content.Intent
 import android.os.Build
 import android.provider.Settings
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
@@ -44,6 +45,7 @@ import org.breezyweather.R
 import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.models.options.UpdateInterval
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.powerManager
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.SettingsManager
@@ -57,9 +59,11 @@ import org.breezyweather.ui.settings.preference.composables.ListPreferenceView
 import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.composables.PreferenceViewWithCard
 import org.breezyweather.ui.settings.preference.composables.SwitchPreferenceView
+import org.breezyweather.ui.settings.preference.largeSeparatorItem
 import org.breezyweather.ui.settings.preference.listPreferenceItem
 import org.breezyweather.ui.settings.preference.sectionFooterItem
 import org.breezyweather.ui.settings.preference.sectionHeaderItem
+import org.breezyweather.ui.settings.preference.smallSeparatorItem
 import org.breezyweather.ui.settings.preference.switchPreferenceItem
 import org.breezyweather.ui.theme.compose.DayNightTheme
 import java.util.Date
@@ -85,7 +89,9 @@ fun BackgroundSettingsScreen(
             )
         }
     ) { paddings ->
-        PreferenceScreen(paddingValues = paddings) {
+        PreferenceScreen(
+            paddingValues = paddings.plus(PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)))
+        ) {
             sectionHeaderItem(R.string.settings_background_updates_section_general)
             listPreferenceItem(R.string.settings_background_updates_refresh_title) { id ->
                 val dialogNeverRefreshOpenState = remember { mutableStateOf(false) }
@@ -96,6 +102,7 @@ fun BackgroundSettingsScreen(
                     nameArrayId = R.array.automatic_refresh_rates,
                     withState = false,
                     card = true,
+                    isFirst = true,
                     onValueChanged = {
                         val newValue = UpdateInterval.getInstance(it)
                         if (newValue == UpdateInterval.INTERVAL_NEVER) {
@@ -171,6 +178,7 @@ fun BackgroundSettingsScreen(
                     )
                 }
             }
+            smallSeparatorItem()
             switchPreferenceItem(R.string.settings_background_updates_refresh_skip_when_battery_low) { id ->
                 SwitchPreferenceView(
                     titleId = id,
@@ -178,6 +186,7 @@ fun BackgroundSettingsScreen(
                     summaryOffId = R.string.settings_disabled,
                     checked = SettingsManager.getInstance(context).ignoreUpdatesWhenBatteryLow,
                     enabled = updateInterval != UpdateInterval.INTERVAL_NEVER,
+                    isLast = true,
                     onValueChanged = {
                         SettingsManager.getInstance(context).ignoreUpdatesWhenBatteryLow = it
                         WeatherUpdateJob.setupTask(context)
@@ -186,12 +195,15 @@ fun BackgroundSettingsScreen(
             }
             sectionFooterItem(R.string.settings_background_updates_section_general)
 
+            largeSeparatorItem()
+
             sectionHeaderItem(R.string.settings_background_updates_section_troubleshoot)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 clickablePreferenceItem(R.string.settings_background_updates_battery_optimization) { id ->
                     PreferenceViewWithCard(
                         titleId = id,
-                        summaryId = R.string.settings_background_updates_battery_optimization_summary
+                        summaryId = R.string.settings_background_updates_battery_optimization_summary,
+                        isFirst = true
                     ) {
                         val packageName: String = context.packageName
                         if (!context.powerManager.isIgnoringBatteryOptimizations(packageName)) {
@@ -218,6 +230,7 @@ fun BackgroundSettingsScreen(
                     }
                 }
             }
+            smallSeparatorItem()
             clickablePreferenceItem(R.string.settings_background_updates_dont_kill_my_app_title) { id ->
                 PreferenceViewWithCard(
                     titleId = id,
@@ -226,6 +239,7 @@ fun BackgroundSettingsScreen(
                     uriHandler.openUri("https://dontkillmyapp.com/")
                 }
             }
+            smallSeparatorItem()
             clickablePreferenceItem(R.string.settings_background_updates_worker_info_title) { id ->
                 PreferenceViewWithCard(
                     title = context.getString(id),
@@ -237,7 +251,8 @@ fun BackgroundSettingsScreen(
                         )
                     } else {
                         null
-                    }
+                    },
+                    isLast = true
                 ) {
                     context.startActivity(Intent(context, WorkerInfoActivity::class.java))
                 }

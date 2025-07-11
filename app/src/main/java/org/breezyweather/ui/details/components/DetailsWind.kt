@@ -81,7 +81,7 @@ import org.breezyweather.common.extensions.toDate
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getDirection
 import org.breezyweather.ui.common.charts.BreezyLineChart
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.theme.compose.DayNightTheme
 import kotlin.math.max
@@ -424,9 +424,10 @@ fun WindScale(
         if (it == SpeedUnit.BF) SpeedUnit.MPS else it
     }
 
-    Material3CardListItem(
+    Material3ExpressiveCardListItem(
         modifier = modifier,
-        withPadding = false
+        isFirst = true,
+        isLast = true
     ) {
         Column(
             modifier = Modifier.padding(

@@ -18,6 +18,9 @@
     <dimen name="material_icon_size">24dp</dimen>
 
     <!-- view. -->
+    <dimen name="material3_card_settings_list_item_corner_radius">28dp</dimen>
+    <dimen name="material3_card_settings_small_separator">2dp</dimen>
+    <dimen name="material3_card_settings_large_separator">16dp</dimen>
     <dimen name="material3_card_list_item_corner_radius">16dp</dimen>
     <dimen name="material3_card_list_item_inner_radius">12dp</dimen>
     <dimen name="material3_widget_corner_radius">16dp</dimen>

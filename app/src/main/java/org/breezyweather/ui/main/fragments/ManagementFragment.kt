@@ -271,7 +271,9 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                             // Do not set a horizontal padding as this adds too much padding in
                             // landscape mode.
                             top = paddings.calculateTopPadding(),
-                            bottom = paddings.calculateBottomPadding()
+                            bottom = paddings.calculateBottomPadding(),
+                            start = dimensionResource(R.dimen.normal_margin),
+                            end = dimensionResource(R.dimen.normal_margin)
                         )
                 ) {
                     if (!viewModel.statementManager.isPostNotificationDialogAlreadyShown &&

@@ -69,7 +69,7 @@ import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.extensions.pxToDp
 import org.breezyweather.common.extensions.spToPx
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.theme.compose.DayNightTheme
 import kotlin.math.roundToInt
 
@@ -226,10 +226,11 @@ fun DetailsSectionHeader(
 ) {
     Column(
         modifier = modifier
+            .padding(start = dimensionResource(R.dimen.normal_margin))
     ) {
         Text(
             text = sectionName,
-            style = MaterialTheme.typography.headlineSmall,
+            style = MaterialTheme.typography.titleLarge,
             modifier = Modifier
                 .padding(
                     bottom = if (subtitle == null) dimensionResource(R.dimen.little_margin) else 0.dp
@@ -265,8 +266,9 @@ fun DetailsCardText(
     text2: String? = null,
     modifier: Modifier = Modifier,
 ) {
-    Material3CardListItem(
-        withPadding = false,
+    Material3ExpressiveCardListItem(
+        isFirst = true,
+        isLast = true,
         modifier = modifier
             .fillMaxWidth()
     ) {

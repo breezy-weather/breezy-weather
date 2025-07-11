@@ -18,6 +18,7 @@
 - Homepage - Fix sun & moon direction in RtL languages
 - Homepage - Fix air quality direction in RtL languages
 - Homepage - Fix missing hourly visibility in some cases
+- Settings - Material 3 Expressive theme
 - Fix tint of “Open in another app” icon in landscape mode
 - Improve the formatting of today/tomorrow notification
 

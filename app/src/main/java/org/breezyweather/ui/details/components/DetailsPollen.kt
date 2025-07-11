@@ -34,7 +34,7 @@ import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.weather.model.getPollenWithMaxIndex
 import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.ui.common.composables.PollenGrid
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 
 /**
@@ -69,7 +69,7 @@ fun DetailsPollen(
                 DetailsSectionHeader(stringResource(R.string.pollen_details))
             }
             item {
-                Material3CardListItem(withPadding = false) {
+                Material3ExpressiveCardListItem(isFirst = true, isLast = true) {
                     PollenGrid(
                         pollen = pollen,
                         pollenIndexSource = pollenIndexSource

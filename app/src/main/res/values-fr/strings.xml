@@ -582,6 +582,8 @@
     <string name="settings_background_updates_worker_info_summary">Dernière exécution : %s</string>
     <string name="settings_location">Localisation</string>
     <string name="settings_appearance">Apparence</string>
+    <string name="settings_appearance_section_regional">Langue et région</string>
+    <string name="settings_appearance_section_theme">Thème</string>
     <string name="settings_appearance_summary">Langue, mode sombre, pack d’icônes, unités</string>
     <string name="settings_appearance_language_title">Langue</string>
     <string name="settings_appearance_calendar_title">Calendrier alternatif</string>

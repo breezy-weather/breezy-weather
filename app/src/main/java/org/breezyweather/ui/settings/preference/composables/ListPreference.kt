@@ -65,7 +65,7 @@ import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.basic.models.options.appearance.LocaleHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
 import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
@@ -81,6 +81,8 @@ fun ListPreferenceView(
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     card: Boolean = false,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(),
     withState: Boolean = true,
     onValueChanged: (String) -> Unit,
@@ -97,6 +99,8 @@ fun ListPreferenceView(
             valueArray = values,
             nameArray = names,
             enabled = enabled,
+            isFirst = isFirst,
+            isLast = isLast,
             colors = colors,
             withState = withState,
             onValueChanged = onValueChanged
@@ -127,13 +131,17 @@ fun ListPreferenceViewWithCard(
     @DrawableRes iconId: Int? = null,
     enableArray: Array<Boolean>? = null,
     enabled: Boolean = true,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(),
     withState: Boolean = true,
     dismissButton: @Composable (() -> Unit)? = null,
     onValueChanged: (String) -> Unit,
 ) {
-    Material3CardListItem(
-        elevation = if (enabled) defaultCardListItemElevation else 0.dp
+    Material3ExpressiveCardListItem(
+        elevation = if (enabled) defaultCardListItemElevation else 0.dp,
+        isFirst = isFirst,
+        isLast = isLast
     ) {
         ListPreferenceView(
             title = title,
@@ -398,6 +406,8 @@ internal fun RadioButton(
 @Composable
 fun LanguagePreferenceView(
     @StringRes titleId: Int,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
 ) {
     val context = LocalContext.current
 
@@ -411,7 +421,9 @@ fun LanguagePreferenceView(
         summary = { _, value -> langs.firstOrNull { value == it.langTag }?.displayName ?: "" },
         selectedKey = langs.firstOrNull { currentLanguage == it.langTag }?.langTag ?: "",
         valueArray = langs.map { it.langTag }.toTypedArray(),
-        nameArray = langs.map { it.displayName }.toTypedArray()
+        nameArray = langs.map { it.displayName }.toTypedArray(),
+        isFirst = isFirst,
+        isLast = isLast
     ) {
         val locale = if (it.isEmpty()) {
             LocaleListCompat.getEmptyLocaleList()
@@ -427,6 +439,8 @@ fun LanguagePreferenceView(
 @Composable
 fun CalendarPreferenceView(
     @StringRes titleId: Int,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
 ) {
     val context = LocalContext.current
 
@@ -440,7 +454,9 @@ fun CalendarPreferenceView(
         summary = { _, value -> calendars.firstOrNull { value == it.id }?.displayName ?: "" },
         selectedKey = calendars.firstOrNull { currentCalendar == it.id }?.id ?: "",
         valueArray = calendars.map { it.id }.toTypedArray(),
-        nameArray = calendars.map { it.displayName }.toTypedArray()
+        nameArray = calendars.map { it.displayName }.toTypedArray(),
+        isFirst = isFirst,
+        isLast = isLast
     ) {
         SettingsManager.getInstance(context).alternateCalendar = it
     }

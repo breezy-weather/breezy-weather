@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -115,7 +116,10 @@ fun DetailsHumidity(
             DetailsSectionDivider()
         }
         item {
-            DetailsSectionHeader(stringResource(R.string.dew_point))
+            Text(
+                text = stringResource(R.string.dew_point),
+                style = MaterialTheme.typography.headlineSmall
+            )
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))

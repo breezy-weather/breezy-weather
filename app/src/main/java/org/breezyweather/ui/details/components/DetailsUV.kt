@@ -70,7 +70,7 @@ import org.breezyweather.common.extensions.toDate
 import org.breezyweather.domain.weather.model.getLevel
 import org.breezyweather.domain.weather.model.getUVColor
 import org.breezyweather.ui.common.charts.BreezyLineChart
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.theme.compose.DayNightTheme
 import kotlin.math.max
@@ -299,9 +299,10 @@ fun UVScale(
 ) {
     val context = LocalContext.current
 
-    Material3CardListItem(
+    Material3ExpressiveCardListItem(
         modifier = modifier,
-        withPadding = false
+        isFirst = true,
+        isLast = true
     ) {
         Column(
             modifier = Modifier.padding(

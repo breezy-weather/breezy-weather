@@ -85,7 +85,7 @@ import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.charts.SpecificVerticalAxisItemPlacer
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.main.adapters.AqiAdapter.AqiItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.theme.compose.DayNightTheme
@@ -390,9 +390,10 @@ fun AirQualityDetails(
     detailedPollutants: ImmutableList<AqiItem>,
     modifier: Modifier = Modifier,
 ) {
-    Material3CardListItem(
+    Material3ExpressiveCardListItem(
         modifier = modifier,
-        withPadding = false
+        isFirst = true,
+        isLast = true
     ) {
         FlowRow(
             maxItemsInEachRow = 2,
@@ -457,9 +458,10 @@ fun AirQualityScale(
 ) {
     val context = LocalContext.current
 
-    Material3CardListItem(
+    Material3ExpressiveCardListItem(
         modifier = modifier,
-        withPadding = false
+        isFirst = true,
+        isLast = true
     ) {
         Column(
             modifier = Modifier.padding(

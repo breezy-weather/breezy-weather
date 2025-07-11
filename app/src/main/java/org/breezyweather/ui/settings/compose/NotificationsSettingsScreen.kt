@@ -18,15 +18,22 @@ package org.breezyweather.ui.settings.compose
 
 import android.content.Context
 import android.os.Build
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ListItemDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.background.forecast.TodayForecastNotificationJob
 import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
 import org.breezyweather.common.basic.models.options.UpdateInterval
+import org.breezyweather.common.extensions.plus
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.composables.AnimatedVisibilitySlideVertically
 import org.breezyweather.ui.common.widgets.Material3Scaffold
@@ -37,9 +44,11 @@ import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.composables.PreferenceViewWithCard
 import org.breezyweather.ui.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.ui.settings.preference.composables.TimePickerPreferenceView
+import org.breezyweather.ui.settings.preference.largeSeparatorItem
 import org.breezyweather.ui.settings.preference.listPreferenceItem
 import org.breezyweather.ui.settings.preference.sectionFooterItem
 import org.breezyweather.ui.settings.preference.sectionHeaderItem
+import org.breezyweather.ui.settings.preference.smallSeparatorItem
 import org.breezyweather.ui.settings.preference.switchPreferenceItem
 import org.breezyweather.ui.settings.preference.timePickerPreferenceItem
 
@@ -66,7 +75,9 @@ fun NotificationsSettingsScreen(
             )
         }
     ) { paddings ->
-        PreferenceScreen(paddingValues = paddings) {
+        PreferenceScreen(
+            paddingValues = paddings.plus(PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)))
+        ) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 listPreferenceItem(R.string.settings_notifications_permission) { title ->
                     AnimatedVisibilitySlideVertically(
@@ -79,6 +90,14 @@ fun NotificationsSettingsScreen(
                                 R.string.settings_notifications_permission_summary,
                                 stringResource(R.string.action_grant_permission)
                             ),
+                            surface = MaterialTheme.colorScheme.primaryContainer,
+                            onSurface = MaterialTheme.colorScheme.onPrimaryContainer,
+                            colors = ListItemDefaults.colors(
+                                containerColor = Color.Transparent
+                            ),
+                            isFirst = true,
+                            isLast = true,
+                            modifier = Modifier.padding(bottom = dimensionResource(R.dimen.normal_margin)),
                             onClick = {
                                 postNotificationPermissionEnsurer { /* no callback */ }
                             }
@@ -86,6 +105,7 @@ fun NotificationsSettingsScreen(
                     }
                 }
             }
+
             sectionHeaderItem(R.string.notification_channel_app_updates)
             if (BuildConfig.FLAVOR != "freenet") {
                 switchPreferenceItem(R.string.settings_notifications_app_updates_check) { id ->
@@ -95,6 +115,8 @@ fun NotificationsSettingsScreen(
                         summaryOffId = R.string.settings_disabled,
                         checked = SettingsManager.getInstance(context).isAppUpdateCheckEnabled,
                         enabled = hasNotificationPermission,
+                        isFirst = true,
+                        isLast = true,
                         onValueChanged = {
                             SettingsManager.getInstance(context).isAppUpdateCheckEnabled = it
                         }
@@ -102,6 +124,8 @@ fun NotificationsSettingsScreen(
                 }
             }
             sectionFooterItem(R.string.notification_channel_app_updates)
+
+            largeSeparatorItem()
 
             sectionHeaderItem(R.string.settings_notifications_section_general)
             switchPreferenceItem(R.string.settings_notifications_alerts_title) { id ->
@@ -119,11 +143,13 @@ fun NotificationsSettingsScreen(
                         SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
                     enabled = SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER &&
                         hasNotificationPermission,
+                    isFirst = true,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isAlertPushEnabled = it
                     }
                 )
             }
+            smallSeparatorItem()
             switchPreferenceItem(R.string.settings_notifications_precipitations_title) { id ->
                 SwitchPreferenceView(
                     titleId = id,
@@ -139,6 +165,7 @@ fun NotificationsSettingsScreen(
                         SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER,
                     enabled = SettingsManager.getInstance(context).updateInterval != UpdateInterval.INTERVAL_NEVER &&
                         hasNotificationPermission,
+                    isLast = true,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isPrecipitationPushEnabled = it
                     }
@@ -146,7 +173,8 @@ fun NotificationsSettingsScreen(
             }
             sectionFooterItem(R.string.settings_notifications_section_general)
 
-            // forecast.
+            largeSeparatorItem()
+
             sectionHeaderItem(R.string.settings_notifications_section_forecast)
             switchPreferenceItem(R.string.settings_notifications_forecast_today_title) { id ->
                 SwitchPreferenceView(
@@ -156,12 +184,14 @@ fun NotificationsSettingsScreen(
                     checked = todayForecastEnabled,
                     withState = false,
                     enabled = hasNotificationPermission,
+                    isFirst = true,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isTodayForecastEnabled = it
                         TodayForecastNotificationJob.setupTask(context, false)
                     }
                 )
             }
+            smallSeparatorItem()
             timePickerPreferenceItem(R.string.settings_notifications_forecast_time_today_title) { id ->
                 TimePickerPreferenceView(
                     titleId = id,
@@ -173,6 +203,7 @@ fun NotificationsSettingsScreen(
                     }
                 )
             }
+            smallSeparatorItem()
             switchPreferenceItem(R.string.settings_notifications_forecast_tomorrow_title) { id ->
                 SwitchPreferenceView(
                     titleId = id,
@@ -187,11 +218,13 @@ fun NotificationsSettingsScreen(
                     }
                 )
             }
+            smallSeparatorItem()
             timePickerPreferenceItem(R.string.settings_notifications_forecast_time_tomorrow_title) { id ->
                 TimePickerPreferenceView(
                     titleId = id,
                     currentTime = SettingsManager.getInstance(context).tomorrowForecastTime,
                     enabled = tomorrowForecastEnabled && hasNotificationPermission,
+                    isLast = true,
                     onValueChanged = {
                         SettingsManager.getInstance(context).tomorrowForecastTime = it
                         TomorrowForecastNotificationJob.setupTask(context, false)

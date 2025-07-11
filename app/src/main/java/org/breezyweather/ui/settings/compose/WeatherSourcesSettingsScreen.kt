@@ -18,6 +18,7 @@ package org.breezyweather.ui.settings.compose
 
 import android.content.Context
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -33,6 +34,7 @@ import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.source.ConfigurableSource
@@ -42,7 +44,7 @@ import org.breezyweather.common.source.getName
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.composables.AlertDialogLink
 import org.breezyweather.ui.common.composables.SourceView
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
@@ -54,10 +56,11 @@ import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.composables.SectionFooter
 import org.breezyweather.ui.settings.preference.composables.SectionHeader
 import org.breezyweather.ui.settings.preference.editTextPreferenceItem
+import org.breezyweather.ui.settings.preference.largeSeparatorItem
 import org.breezyweather.ui.settings.preference.listPreferenceItem
 import org.breezyweather.ui.settings.preference.sectionFooterItem
 import org.breezyweather.ui.settings.preference.sectionHeaderItem
-import org.breezyweather.ui.theme.compose.DayNightTheme
+import org.breezyweather.ui.settings.preference.smallSeparatorItem
 import java.text.Collator
 
 @Composable
@@ -81,19 +84,25 @@ fun WeatherSourcesSettingsScreen(
             )
         }
     ) { paddings ->
-        PreferenceScreen(paddingValues = paddings) {
+        PreferenceScreen(
+            paddingValues = paddings.plus(PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)))
+        ) {
             if (BuildConfig.FLAVOR == "freenet") {
                 clickablePreferenceItem(R.string.settings_weather_source_freenet_disclaimer) { id ->
                     val dialogLinkOpenState = remember { mutableStateOf(false) }
 
-                    Material3CardListItem(
+                    Material3ExpressiveCardListItem(
+                        isFirst = true,
+                        isLast = true,
+                        surface = MaterialTheme.colorScheme.secondaryContainer,
+                        onSurface = MaterialTheme.colorScheme.onSecondaryContainer,
                         modifier = Modifier.clickable {
                             dialogLinkOpenState.value = true
                         }
                     ) {
                         Text(
                             text = stringResource(id),
-                            color = DayNightTheme.colors.bodyColor,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
                             style = MaterialTheme.typography.bodyMedium,
                             modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin))
                         )
@@ -105,6 +114,7 @@ fun WeatherSourcesSettingsScreen(
                         )
                     }
                 }
+                largeSeparatorItem()
             }
 
             sectionHeaderItem(R.string.settings_weather_sources_section_general)
@@ -126,7 +136,9 @@ fun WeatherSourcesSettingsScreen(
                             }
                         )
                     }.toImmutableList(),
-                    card = true
+                    card = true,
+                    isFirst = true,
+                    isLast = true
                 ) { defaultSource ->
                     SettingsManager.getInstance(context).defaultForecastSource = defaultSource
                 }
@@ -143,10 +155,11 @@ fun WeatherSourcesSettingsScreen(
                     Collator.getInstance(context.currentLocale).compare(ws1.name, ws2.name)
                 }
                 .forEach { preferenceSource ->
+                    largeSeparatorItem()
                     item(key = "header_${preferenceSource.id}") {
                         SectionHeader(title = preferenceSource.name)
                     }
-                    preferenceSource.getPreferences(context).forEach { preference ->
+                    preferenceSource.getPreferences(context).forEachIndexed { index, preference ->
                         when (preference) {
                             is ListPreference -> {
                                 listPreferenceItem(preference.titleId) { id ->
@@ -156,6 +169,8 @@ fun WeatherSourcesSettingsScreen(
                                         valueArrayId = preference.valueArrayId,
                                         nameArrayId = preference.nameArrayId,
                                         card = true,
+                                        isFirst = index == 0,
+                                        isLast = index == preferenceSource.getPreferences(context).lastIndex,
                                         onValueChanged = preference.onValueChanged
                                     )
                                 }
@@ -171,10 +186,15 @@ fun WeatherSourcesSettingsScreen(
                                         regex = preference.regex,
                                         regexError = preference.regexError,
                                         keyboardType = preference.keyboardType,
+                                        isFirst = index == 0,
+                                        isLast = index == preferenceSource.getPreferences(context).lastIndex,
                                         onValueChanged = preference.onValueChanged
                                     )
                                 }
                             }
+                        }
+                        if (index != preferenceSource.getPreferences(context).lastIndex) {
+                            smallSeparatorItem()
                         }
                     }
                     item(key = "footer_${preferenceSource.id}") {

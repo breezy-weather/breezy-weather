@@ -62,7 +62,7 @@ import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneSpecificHour
 import org.breezyweather.domain.weather.model.getDescription
 import org.breezyweather.ui.common.charts.EphemerisChart
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.astro.MoonPhaseView
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
 import org.breezyweather.ui.settings.preference.bottomInsetItem
@@ -99,9 +99,10 @@ fun DetailsSunMoon(
         item {
             if (today.sun?.isValid == true || today.moon?.isValid == true || today.moonPhase?.isValid == true) {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
-                Material3CardListItem(
+                Material3ExpressiveCardListItem(
                     elevation = defaultCardListItemElevation,
-                    withPadding = false
+                    isFirst = true,
+                    isLast = true
                 ) {
                     if (today.sun?.isValid == true) {
                         DailySun(location, today.sun!!)

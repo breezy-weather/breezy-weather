@@ -191,23 +191,63 @@ fun getCardListItemMarginDp(context: Context) = context
     .resources
     .getDimension(R.dimen.little_margin)
 
+@Deprecated(message = "Use Material3ExpressiveCardListItem instead")
 @Composable
 fun Material3CardListItem(
     modifier: Modifier = Modifier,
     elevation: Dp = defaultCardListItemElevation,
     surface: Color = MaterialTheme.colorScheme.surface,
     onSurface: Color = MaterialTheme.colorScheme.onSurface,
-    withPadding: Boolean = true, // TODO: To be deprecated
     content: @Composable ColumnScope.() -> Unit,
 ) = Card(
     modifier = modifier
         .padding(
-            start = if (withPadding) dimensionResource(R.dimen.little_margin) else 0.dp,
-            end = if (withPadding) dimensionResource(R.dimen.little_margin) else 0.dp,
-            top = if (withPadding) dimensionResource(R.dimen.little_margin) else 0.dp
+            start = dimensionResource(R.dimen.little_margin),
+            end = dimensionResource(R.dimen.little_margin),
+            top = dimensionResource(R.dimen.little_margin)
         ),
     shape = RoundedCornerShape(
         size = dimensionResource(R.dimen.material3_card_list_item_corner_radius)
+    ),
+    colors = CardDefaults.cardColors(
+        containerColor = getWidgetSurfaceColor(elevation, surface),
+        contentColor = onSurface
+    ),
+    content = content
+)
+
+@Composable
+fun Material3ExpressiveCardListItem(
+    modifier: Modifier = Modifier,
+    elevation: Dp = defaultCardListItemElevation,
+    surface: Color = MaterialTheme.colorScheme.surface,
+    onSurface: Color = MaterialTheme.colorScheme.onSurface,
+    isFirst: Boolean = true,
+    isLast: Boolean = true,
+    content: @Composable ColumnScope.() -> Unit,
+) = Card(
+    modifier = modifier,
+    shape = RoundedCornerShape(
+        topStart = if (isFirst) {
+            dimensionResource(R.dimen.material3_card_settings_list_item_corner_radius)
+        } else {
+            2.dp
+        },
+        topEnd = if (isFirst) {
+            dimensionResource(R.dimen.material3_card_settings_list_item_corner_radius)
+        } else {
+            2.dp
+        },
+        bottomStart = if (isLast) {
+            dimensionResource(R.dimen.material3_card_settings_list_item_corner_radius)
+        } else {
+            2.dp
+        },
+        bottomEnd = if (isLast) {
+            dimensionResource(R.dimen.material3_card_settings_list_item_corner_radius)
+        } else {
+            2.dp
+        }
     ),
     colors = CardDefaults.cardColors(
         containerColor = getWidgetSurfaceColor(elevation, surface),

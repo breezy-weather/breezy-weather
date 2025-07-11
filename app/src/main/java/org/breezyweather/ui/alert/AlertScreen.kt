@@ -53,7 +53,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import org.breezyweather.R
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.domain.weather.model.getFormattedDates
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.ui.common.widgets.getCardListItemMarginDp
@@ -125,7 +125,7 @@ internal fun AlertScreen(
                 state = listState
             ) {
                 items(alertUiState.location?.weather?.alertList ?: emptyList()) { alert ->
-                    Material3CardListItem {
+                    Material3ExpressiveCardListItem(isFirst = true, isLast = true) {
                         Column(
                             modifier = Modifier
                                 .padding(dimensionResource(R.dimen.normal_margin))

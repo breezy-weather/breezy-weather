@@ -61,7 +61,7 @@ import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
 import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
@@ -82,11 +82,15 @@ fun MultiListPreferenceViewWithCard(
     noItemsMessage: String,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(),
     onValueChanged: (List<String>) -> Unit,
 ) {
-    Material3CardListItem(
-        elevation = if (enabled) defaultCardListItemElevation else 0.dp
+    Material3ExpressiveCardListItem(
+        elevation = if (enabled) defaultCardListItemElevation else 0.dp,
+        isFirst = isFirst,
+        isLast = isLast
     ) {
         MultiListPreferenceView(
             title = title,
@@ -341,6 +345,8 @@ fun PackagePreferenceView(
     title: String,
     selectedKeys: ImmutableList<String>,
     intent: String,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     onValueChanged: (List<String>) -> Unit,
 ) {
     val context = LocalContext.current
@@ -367,6 +373,8 @@ fun PackagePreferenceView(
                 )
             }.toTypedArray(),
         noItemsMessage = stringResource(R.string.settings_widgets_broadcast_send_data_summary_empty),
+        isFirst = isFirst,
+        isLast = isLast,
         onValueChanged = onValueChanged
     )
 }

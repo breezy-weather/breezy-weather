@@ -54,7 +54,7 @@ import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.source.resourceName
 import org.breezyweather.sources.SourceManager
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.settings.preference.composables.EditTextPreferenceView
 import org.breezyweather.ui.settings.preference.composables.ListPreferenceView
@@ -63,7 +63,6 @@ import org.breezyweather.ui.settings.preference.composables.ListPreferenceWithGr
 import org.breezyweather.ui.settings.preference.composables.PreferenceView
 import org.breezyweather.ui.settings.preference.composables.SectionFooter
 import org.breezyweather.ui.settings.preference.composables.SectionHeader
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import java.text.Collator
 
 @Composable
@@ -487,35 +486,43 @@ fun SecondarySourcesPreference(
                     .verticalScroll(rememberScrollState())
             ) {
                 if (BuildConfig.FLAVOR == "freenet") {
-                    Material3CardListItem(
-                        modifier = Modifier.clickable {
-                            dialogLinkOpenState.value = true
-                        }
+                    Material3ExpressiveCardListItem(
+                        surface = MaterialTheme.colorScheme.secondaryContainer,
+                        onSurface = MaterialTheme.colorScheme.onSecondaryContainer,
+                        isFirst = true,
+                        isLast = true,
+                        modifier = Modifier
+                            .padding(horizontal = dimensionResource(R.dimen.little_margin))
+                            .clickable { dialogLinkOpenState.value = true }
                     ) {
                         Text(
                             text = stringResource(R.string.settings_weather_source_freenet_disclaimer),
-                            color = DayNightTheme.colors.bodyColor,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
                             style = MaterialTheme.typography.bodyMedium,
                             modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin))
                         )
                     }
                 }
                 if (location.isCurrentPosition && !location.isUsable) {
-                    Material3CardListItem(
-                        modifier = Modifier.clickable {
-                            dialogLinkOpenState.value = true
-                        }
+                    Material3ExpressiveCardListItem(
+                        surface = MaterialTheme.colorScheme.secondaryContainer,
+                        onSurface = MaterialTheme.colorScheme.onSecondaryContainer,
+                        isFirst = true,
+                        isLast = true,
+                        modifier = Modifier
+                            .padding(horizontal = dimensionResource(R.dimen.little_margin))
+                            .clickable { dialogLinkOpenState.value = true }
                     ) {
                         Text(
                             text = stringResource(R.string.settings_weather_source_current_position_disclaimer),
-                            color = DayNightTheme.colors.bodyColor,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
                             style = MaterialTheme.typography.bodyMedium,
                             modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin))
                         )
                     }
                 }
                 SourceViewWithContinents(
-                    title = stringResource(SourceFeature.FORECAST.resourceName!!),
+                    title = stringResource(SourceFeature.FORECAST.resourceName),
                     selectedKey = forecastSource.value,
                     sourceList = buildMap {
                         if (
@@ -925,6 +932,8 @@ fun SourceView(
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     card: Boolean = false,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(),
     withState: Boolean = true,
     onValueChanged: (String) -> Unit,
@@ -961,6 +970,8 @@ fun SourceView(
             },
             enabled = enabled,
             colors = colors,
+            isFirst = isFirst,
+            isLast = isLast,
             withState = withState
         )
     } else {

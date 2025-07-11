@@ -290,7 +290,10 @@ fun DetailsConditions(
             DetailsSectionDivider()
         }
         item {
-            DetailsSectionHeader(stringResource(R.string.precipitation_probability))
+            Text(
+                text = stringResource(R.string.precipitation_probability),
+                style = MaterialTheme.typography.headlineSmall
+            )
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
