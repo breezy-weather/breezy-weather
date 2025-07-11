@@ -883,4 +883,6 @@
     <string name="ephemeris_dawn_at">黎明開始時間為 %s</string>
     <string name="ephemeris_dusk_at">黃昏結束時間為 %s</string>
     <string name="wind_origin">吹%s</string>
+    <string name="settings_appearance_section_regional">語言和地區</string>
+    <string name="settings_appearance_section_theme">佈景主題</string>
 </resources>
