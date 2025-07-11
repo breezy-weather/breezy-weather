@@ -812,4 +812,6 @@
     <string name="ephemeris_dawn_at">Hajnalodik ekkor: %s</string>
     <string name="ephemeris_dusk_at">Szürkület ekkor: %s</string>
     <string name="wind_origin">%s felől</string>
+    <string name="settings_appearance_section_regional">Nyelv és régió</string>
+    <string name="settings_appearance_section_theme">Téma</string>
 </resources>
