@@ -806,4 +806,6 @@
     <string name="ephemeris_dawn_at">Світанок о %s</string>
     <string name="ephemeris_dusk_at">Сутінки о %s</string>
     <string name="wind_origin">Від %s</string>
+    <string name="settings_appearance_section_regional">Мова та регіон</string>
+    <string name="settings_appearance_section_theme">Тема</string>
 </resources>
