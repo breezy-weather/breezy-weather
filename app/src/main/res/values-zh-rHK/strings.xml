@@ -127,7 +127,7 @@
     <string name="uv_index_6_7">高</string>
     <string name="uv_index_8_10">甚高</string>
     <string name="uv_index_11">極高</string>
-    <string name="uv_alert_level">甚高</string>
+    <string name="uv_alert_level">高</string>
     <string name="air_quality_index">空氣質素指數</string>
     <string name="air_quality_level_1">極佳</string>
     <string name="air_quality_level_1_description">空氣品質對大多數人來說很理想；享受您的正常戶外活動吧。</string>
