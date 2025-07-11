@@ -433,7 +433,7 @@
     <string name="air_quality_level_1_description">空氣品質對大多數人來說很理想；享受您的正常戶外活動吧。</string>
     <string name="air_quality_level_3">不佳</string>
     <string name="air_quality_level_3_description">空氣污染達到了很高的水準，這對敏感人群是不健康的。如果您出現呼吸困難或喉嚨刺激等症狀，請減少在戶外的時間。</string>
-    <string name="uv_alert_level">過量級</string>
+    <string name="uv_alert_level">高</string>
     <string name="message_tap_again_to_exit">再次點選以結束</string>
     <string name="common_weather_text_mainly_clear">大致天晴</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">雷雨伴有小冰雹</string>
