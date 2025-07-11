@@ -24,7 +24,7 @@
 
 **Translations**
 - Translations updated
-- Default units are now based on regional preferences. It does not support
+- Default units are now based on system region. It does not support Android 16 “Measurement system” preference yet, as there seems to be no way to access this value for now.
 - Better number formatting on Android >= 7
 
 
