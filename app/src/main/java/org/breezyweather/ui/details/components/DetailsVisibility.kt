@@ -115,7 +115,7 @@ private fun VisibilityItem(
     visibility: Double,
 ) {
     val context = LocalContext.current
-    val distanceUnit = SettingsManager.getInstance(context).distanceUnit
+    val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
     val visibilityDescription = DistanceUnit.getVisibilityDescription(context, visibility)
     val visibilityContentDescription = distanceUnit.getValueVoice(context, visibility)
 
@@ -150,7 +150,7 @@ private fun VisibilitySummary(
     mappedValues: ImmutableMap<Long, Double>,
 ) {
     val context = LocalContext.current
-    val distanceUnit = SettingsManager.getInstance(context).distanceUnit
+    val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
     val minVisibility = mappedValues.values.min()
     val minVisibilityDescription = DistanceUnit.getVisibilityDescription(context, minVisibility)
     val maxVisibility = mappedValues.values.max()
@@ -218,7 +218,7 @@ private fun VisibilityChart(
     theDay: Date,
 ) {
     val context = LocalContext.current
-    val distanceUnit = SettingsManager.getInstance(context).distanceUnit
+    val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
     val maxY = remember(mappedValues) {
         max(
             // This value makes it, once rounded, a minimum of 75000 ft
@@ -300,7 +300,7 @@ private fun VisibilityChart(
         ),
         topAxisValueFormatter = { _, value, _ ->
             mappedValues.getOrElse(value.toLong()) { null }?.let {
-                SettingsManager.getInstance(context).distanceUnit.getValueTextWithoutUnit(context, it)
+                SettingsManager.getInstance(context).getDistanceUnit(context).getValueTextWithoutUnit(context, it)
             } ?: "-"
         },
         endAxisItemPlacer = remember {

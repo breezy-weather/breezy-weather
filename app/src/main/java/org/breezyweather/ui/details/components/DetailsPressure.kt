@@ -138,7 +138,7 @@ private fun PressureItem(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val pressureUnit = SettingsManager.getInstance(context).pressureUnit
+    val pressureUnit = SettingsManager.getInstance(context).getPressureUnit(context)
 
     Column(
         modifier = modifier.fillMaxWidth()
@@ -173,7 +173,7 @@ private fun PressureChart(
     theDay: Date,
 ) {
     val context = LocalContext.current
-    val pressureUnit = SettingsManager.getInstance(context).pressureUnit
+    val pressureUnit = SettingsManager.getInstance(context).getPressureUnit(context)
     val chartStep = pressureUnit.chartStep
     val maxY = remember(mappedValues) {
         max(

@@ -109,7 +109,7 @@ class TileService : TileService(), CoroutineScope {
                         )
                     }
                     tile.label = current.temperature?.temperature?.let {
-                        SettingsManager.getInstance(context).temperatureUnit.getValueText(
+                        SettingsManager.getInstance(context).getTemperatureUnit(context).getValueText(
                             context,
                             value = it
                         )

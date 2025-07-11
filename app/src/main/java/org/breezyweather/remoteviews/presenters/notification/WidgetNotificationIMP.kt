@@ -60,7 +60,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
         // get sp & realTimeWeather.
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.temperatureUnit
+        val temperatureUnit = settings.getTemperatureUnit(context)
         val dayTime = location.isDaylight
         val tempIcon = settings.isWidgetNotificationTemperatureIconEnabled
         val persistent = settings.isWidgetNotificationPersistent

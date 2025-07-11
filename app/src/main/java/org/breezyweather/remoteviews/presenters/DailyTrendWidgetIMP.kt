@@ -98,7 +98,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         var highestTemperature: Float? = null
         var lowestTemperature: Float? = null
         val minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons
-        val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
         val lightTheme = color.isLightThemed
 
         // TODO: Redundant with DailyTemperatureAdapter

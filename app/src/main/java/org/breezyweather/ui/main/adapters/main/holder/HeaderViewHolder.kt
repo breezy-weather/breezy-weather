@@ -107,7 +107,7 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
         mTemperature.setTextColor(textColor)
         mTemperatureUnitView.setTextColor(textColor)
         mWeatherText.setTextColor(textColor)
-        mTemperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+        mTemperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
         location.weather?.current?.let { current ->
             current.temperature?.temperature?.let {
                 mTemperatureContainer.visibility = View.VISIBLE

@@ -150,7 +150,7 @@ class AccuService @Inject constructor(
         } else {
             "en"
         }
-        val metric = SettingsManager.getInstance(context).precipitationUnit != PrecipitationUnit.IN
+        val metric = SettingsManager.getInstance(context).getPrecipitationUnit(context) != PrecipitationUnit.IN
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(

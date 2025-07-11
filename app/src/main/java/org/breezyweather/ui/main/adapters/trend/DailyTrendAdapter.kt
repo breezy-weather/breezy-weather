@@ -59,7 +59,7 @@ class DailyTrendAdapter(
                     activity,
                     location,
                     provider,
-                    SettingsManager.getInstance(activity).temperatureUnit
+                    SettingsManager.getInstance(activity).getTemperatureUnit(activity)
                 )
                 DailyTrendDisplay.TAG_AIR_QUALITY -> DailyAirQualityAdapter(
                     activity,
@@ -68,14 +68,14 @@ class DailyTrendAdapter(
                 DailyTrendDisplay.TAG_WIND -> DailyWindAdapter(
                     activity,
                     location,
-                    SettingsManager.getInstance(activity).speedUnit
+                    SettingsManager.getInstance(activity).getSpeedUnit(activity)
                 )
                 DailyTrendDisplay.TAG_UV_INDEX -> DailyUVAdapter(activity, location)
                 DailyTrendDisplay.TAG_PRECIPITATION -> DailyPrecipitationAdapter(
                     activity,
                     location,
                     provider,
-                    SettingsManager.getInstance(activity).precipitationUnit
+                    SettingsManager.getInstance(activity).getPrecipitationUnit(activity)
                 )
                 DailyTrendDisplay.TAG_SUNSHINE -> DailySunshineAdapter(
                     activity,
@@ -85,7 +85,7 @@ class DailyTrendAdapter(
                     activity,
                     location,
                     provider,
-                    SettingsManager.getInstance(activity).temperatureUnit
+                    SettingsManager.getInstance(activity).getTemperatureUnit(activity)
                 )
             }
         }.filter {

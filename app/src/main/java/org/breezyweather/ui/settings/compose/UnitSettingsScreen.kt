@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
@@ -34,7 +35,7 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
-import org.breezyweather.ui.settings.preference.composables.ListPreferenceView
+import org.breezyweather.ui.settings.preference.composables.ListPreferenceViewWithCard
 import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.listPreferenceItem
 import org.breezyweather.ui.settings.preference.smallSeparatorItem
@@ -64,17 +65,31 @@ fun UnitSettingsScreen(
             paddingValues = paddings.plus(PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)))
         ) {
             listPreferenceItem(R.string.settings_units_temperature) { id ->
-                ListPreferenceView(
-                    titleId = id,
-                    selectedKey = SettingsManager.getInstance(context).temperatureUnit.id,
-                    valueArrayId = R.array.temperature_unit_values,
-                    nameArrayId = R.array.temperature_units,
-                    card = true,
+                val valueArray = stringArrayResource(R.array.temperature_unit_values)
+                val nameArray = stringArrayResource(R.array.temperature_units).mapIndexed { index, value ->
+                    if (index == 0) {
+                        stringResource(
+                            R.string.parenthesis,
+                            stringResource(R.string.settings_follow_system),
+                            TemperatureUnit.getDefaultUnit(context).getName(context)
+                        )
+                    } else {
+                        value
+                    }
+                }.toTypedArray()
+                ListPreferenceViewWithCard(
+                    title = stringResource(id),
+                    summary = { _, value -> nameArray[valueArray.indexOfFirst { it == value }] },
+                    selectedKey = SettingsManager.getInstance(context).temperatureUnit?.id ?: "auto",
+                    valueArray = valueArray,
+                    nameArray = nameArray,
                     isFirst = true,
-                    onValueChanged = {
-                        SettingsManager
-                            .getInstance(context)
-                            .temperatureUnit = TemperatureUnit.getInstance(it)
+                    onValueChanged = { temperatureUnitId ->
+                        SettingsManager.getInstance(context).temperatureUnit = if (temperatureUnitId != "auto") {
+                            TemperatureUnit.entries.firstOrNull { it.id == temperatureUnitId }
+                        } else {
+                            null
+                        }
 
                         // Widgets and notification-widget may use units, update them
                         updateWidgetIfNecessary(context)
@@ -84,35 +99,36 @@ fun UnitSettingsScreen(
             }
             smallSeparatorItem()
             listPreferenceItem(R.string.settings_units_precipitation) { id ->
-                ListPreferenceView(
-                    titleId = id,
-                    selectedKey = SettingsManager.getInstance(context).precipitationUnit.id,
-                    valueArrayId = R.array.precipitation_unit_values,
-                    nameArrayId = R.array.precipitation_units,
-                    card = true,
-                    onValueChanged = {
-                        SettingsManager
-                            .getInstance(context)
-                            .precipitationUnit = PrecipitationUnit.getInstance(it)
-
-                        // Widgets and notification-widget may use units, update them
-                        updateWidgetIfNecessary(context)
-                        updateNotificationIfNecessary(context)
+                val valueArray = stringArrayResource(R.array.precipitation_unit_values)
+                val nameArray = stringArrayResource(R.array.precipitation_units).mapIndexed { index, value ->
+                    if (index == 0) {
+                        val defaultUnit = PrecipitationUnit.getDefaultUnit(context)
+                        val snowfallUnit = PrecipitationUnit.getDefaultSnowfallUnit(context)
+                        stringResource(
+                            R.string.parenthesis,
+                            stringResource(R.string.settings_follow_system),
+                            if (defaultUnit != snowfallUnit) {
+                                defaultUnit.getName(context) + "/" + snowfallUnit.getName(context)
+                            } else {
+                                defaultUnit.getName(context)
+                            }
+                        )
+                    } else {
+                        value
                     }
-                )
-            }
-            smallSeparatorItem()
-            listPreferenceItem(R.string.settings_units_distance) { id ->
-                ListPreferenceView(
-                    titleId = id,
-                    selectedKey = SettingsManager.getInstance(context).distanceUnit.id,
-                    valueArrayId = R.array.distance_unit_values,
-                    nameArrayId = R.array.distance_units,
-                    card = true,
-                    onValueChanged = {
-                        SettingsManager
-                            .getInstance(context)
-                            .distanceUnit = DistanceUnit.getInstance(it)
+                }.toTypedArray()
+                ListPreferenceViewWithCard(
+                    title = stringResource(id),
+                    summary = { _, value -> nameArray[valueArray.indexOfFirst { it == value }] },
+                    selectedKey = SettingsManager.getInstance(context).precipitationUnit?.id ?: "auto",
+                    valueArray = valueArray,
+                    nameArray = nameArray,
+                    onValueChanged = { precipitationUnitId ->
+                        SettingsManager.getInstance(context).precipitationUnit = if (precipitationUnitId != "auto") {
+                            PrecipitationUnit.entries.firstOrNull { it.id == precipitationUnitId }
+                        } else {
+                            null
+                        }
 
                         // Widgets and notification-widget may use units, update them
                         updateWidgetIfNecessary(context)
@@ -122,16 +138,63 @@ fun UnitSettingsScreen(
             }
             smallSeparatorItem()
             listPreferenceItem(R.string.settings_units_speed) { id ->
-                ListPreferenceView(
-                    titleId = id,
-                    selectedKey = SettingsManager.getInstance(context).speedUnit.id,
-                    valueArrayId = R.array.speed_unit_values,
-                    nameArrayId = R.array.speed_units,
-                    card = true,
-                    onValueChanged = {
-                        SettingsManager
-                            .getInstance(context)
-                            .speedUnit = SpeedUnit.getInstance(it)
+                val valueArray = stringArrayResource(R.array.speed_unit_values)
+                val nameArray = stringArrayResource(R.array.speed_units).mapIndexed { index, value ->
+                    if (index == 0) {
+                        stringResource(
+                            R.string.parenthesis,
+                            stringResource(R.string.settings_follow_system),
+                            SpeedUnit.getDefaultUnit(context).getName(context)
+                        )
+                    } else {
+                        value
+                    }
+                }.toTypedArray()
+                ListPreferenceViewWithCard(
+                    title = stringResource(id),
+                    summary = { _, value -> nameArray[valueArray.indexOfFirst { it == value }] },
+                    selectedKey = SettingsManager.getInstance(context).speedUnit?.id ?: "auto",
+                    valueArray = valueArray,
+                    nameArray = nameArray,
+                    onValueChanged = { speedUnitId ->
+                        SettingsManager.getInstance(context).speedUnit = if (speedUnitId != "auto") {
+                            SpeedUnit.entries.firstOrNull { it.id == speedUnitId }
+                        } else {
+                            null
+                        }
+
+                        // Widgets and notification-widget may use units, update them
+                        updateWidgetIfNecessary(context)
+                        updateNotificationIfNecessary(context)
+                    }
+                )
+            }
+            smallSeparatorItem()
+            listPreferenceItem(R.string.settings_units_distance) { id ->
+                val valueArray = stringArrayResource(R.array.distance_unit_values)
+                val nameArray = stringArrayResource(R.array.distance_units).mapIndexed { index, value ->
+                    if (index == 0) {
+                        stringResource(
+                            R.string.parenthesis,
+                            stringResource(R.string.settings_follow_system),
+                            DistanceUnit.getDefaultUnit(context).getName(context)
+                        )
+                    } else {
+                        value
+                    }
+                }.toTypedArray()
+                ListPreferenceViewWithCard(
+                    title = stringResource(id),
+                    summary = { _, value -> nameArray[valueArray.indexOfFirst { it == value }] },
+                    selectedKey = SettingsManager.getInstance(context).distanceUnit?.id ?: "auto",
+                    valueArray = valueArray,
+                    nameArray = nameArray,
+                    onValueChanged = { distanceUnitId ->
+                        SettingsManager.getInstance(context).distanceUnit = if (distanceUnitId != "auto") {
+                            DistanceUnit.entries.firstOrNull { it.id == distanceUnitId }
+                        } else {
+                            null
+                        }
 
                         // Widgets and notification-widget may use units, update them
                         updateWidgetIfNecessary(context)
@@ -141,17 +204,31 @@ fun UnitSettingsScreen(
             }
             smallSeparatorItem()
             listPreferenceItem(R.string.settings_units_pressure) { id ->
-                ListPreferenceView(
-                    titleId = id,
-                    selectedKey = SettingsManager.getInstance(context).pressureUnit.id,
-                    valueArrayId = R.array.pressure_unit_values,
-                    nameArrayId = R.array.pressure_units,
-                    card = true,
+                val valueArray = stringArrayResource(R.array.pressure_unit_values)
+                val nameArray = stringArrayResource(R.array.pressure_units).mapIndexed { index, value ->
+                    if (index == 0) {
+                        stringResource(
+                            R.string.parenthesis,
+                            stringResource(R.string.settings_follow_system),
+                            PressureUnit.getDefaultUnit(context).getName(context)
+                        )
+                    } else {
+                        value
+                    }
+                }.toTypedArray()
+                ListPreferenceViewWithCard(
+                    title = stringResource(id),
+                    summary = { _, value -> nameArray[valueArray.indexOfFirst { it == value }] },
+                    selectedKey = SettingsManager.getInstance(context).pressureUnit?.id ?: "auto",
+                    valueArray = valueArray,
+                    nameArray = nameArray,
                     isLast = true,
-                    onValueChanged = {
-                        SettingsManager
-                            .getInstance(context)
-                            .pressureUnit = PressureUnit.getInstance(it)
+                    onValueChanged = { pressureUnitId ->
+                        SettingsManager.getInstance(context).pressureUnit = if (pressureUnitId != "auto") {
+                            PressureUnit.entries.firstOrNull { it.id == pressureUnitId }
+                        } else {
+                            null
+                        }
 
                         // Widgets and notification-widget may use units, update them
                         updateWidgetIfNecessary(context)

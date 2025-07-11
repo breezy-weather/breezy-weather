@@ -134,8 +134,8 @@ private fun buildRemoteViews(
     val provider = ResourcesProviderFactory.newInstance
 
     val settings = SettingsManager.getInstance(context)
-    val temperatureUnit = settings.temperatureUnit
-    val speedUnit = settings.speedUnit
+    val temperatureUnit = settings.getTemperatureUnit(context)
+    val speedUnit = settings.getSpeedUnit(context)
 
     views.setTextViewText(
         R.id.widget_material_you_forecast_city,

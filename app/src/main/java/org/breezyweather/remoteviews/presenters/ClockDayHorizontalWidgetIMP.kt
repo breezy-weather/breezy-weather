@@ -79,7 +79,7 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
         val provider = ResourcesProviderFactory.newInstance
         val dayTime = location.isDaylight
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.temperatureUnit
+        val temperatureUnit = settings.getTemperatureUnit(context)
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
 
         // Clock

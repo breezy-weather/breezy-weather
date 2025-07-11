@@ -62,7 +62,7 @@ class HourlyTrendAdapter(
                     activity,
                     location,
                     provider,
-                    SettingsManager.getInstance(activity).temperatureUnit
+                    SettingsManager.getInstance(activity).getTemperatureUnit(activity)
                 )
                 HourlyTrendDisplay.TAG_AIR_QUALITY -> HourlyAirQualityAdapter(
                     activity,
@@ -71,39 +71,39 @@ class HourlyTrendAdapter(
                 HourlyTrendDisplay.TAG_WIND -> HourlyWindAdapter(
                     activity,
                     location,
-                    SettingsManager.getInstance(activity).speedUnit
+                    SettingsManager.getInstance(activity).getSpeedUnit(activity)
                 )
                 HourlyTrendDisplay.TAG_UV_INDEX -> HourlyUVAdapter(activity, location)
                 HourlyTrendDisplay.TAG_PRECIPITATION -> HourlyPrecipitationAdapter(
                     activity,
                     location,
                     provider,
-                    SettingsManager.getInstance(activity).precipitationUnit
+                    SettingsManager.getInstance(activity).getPrecipitationUnit(activity)
                 )
                 HourlyTrendDisplay.TAG_FEELS_LIKE -> HourlyFeelsLikeAdapter(
                     activity,
                     location,
                     provider,
-                    SettingsManager.getInstance(activity).temperatureUnit
+                    SettingsManager.getInstance(activity).getTemperatureUnit(activity)
                 )
                 HourlyTrendDisplay.TAG_HUMIDITY -> HourlyHumidityAdapter(
                     activity,
                     location,
                     provider,
-                    SettingsManager.getInstance(activity).temperatureUnit
+                    SettingsManager.getInstance(activity).getTemperatureUnit(activity)
                 )
                 HourlyTrendDisplay.TAG_PRESSURE -> HourlyPressureAdapter(
                     activity,
                     location,
                     provider,
-                    SettingsManager.getInstance(activity).pressureUnit
+                    SettingsManager.getInstance(activity).getPressureUnit(activity)
                 )
                 HourlyTrendDisplay.TAG_CLOUD_COVER -> HourlyCloudCoverAdapter(activity, location)
                 HourlyTrendDisplay.TAG_VISIBILITY -> HourlyVisibilityAdapter(
                     activity,
                     location,
                     provider,
-                    SettingsManager.getInstance(activity).distanceUnit
+                    SettingsManager.getInstance(activity).getDistanceUnit(activity)
                 )
             }
         }.filter {

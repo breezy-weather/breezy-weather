@@ -157,7 +157,7 @@ class DailyWindAdapter(
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_wind)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val unit = SettingsManager.getInstance(activity).speedUnit
+        val unit = SettingsManager.getInstance(activity).getSpeedUnit(activity)
         val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(

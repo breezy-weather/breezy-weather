@@ -176,7 +176,7 @@ private fun PrecipitationItem(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val precipitationUnit = SettingsManager.getInstance(context).precipitationUnit
+    val precipitationUnit = SettingsManager.getInstance(context).getPrecipitationUnit(context)
 
     Column(
         modifier = modifier.fillMaxWidth()
@@ -282,7 +282,7 @@ internal fun PrecipitationChart(
     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
 
     if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
-        val precipitationUnit = SettingsManager.getInstance(context).precipitationUnit
+        val precipitationUnit = SettingsManager.getInstance(context).getPrecipitationUnit(context)
         val step = precipitationUnit.chartStep
         val maxY = remember(mappedValues) {
             max(
@@ -386,7 +386,8 @@ fun DailyPrecipitationDetails(
     precipitation: Precipitation?,
 ) {
     val context = LocalContext.current
-    val precipitationUnit = SettingsManager.getInstance(context).precipitationUnit
+    val precipitationUnit = SettingsManager.getInstance(context).getPrecipitationUnit(context)
+    val snowfallUnit = SettingsManager.getInstance(context).getSnowfallUnit(context)
     val precipitationItems = buildList {
         precipitation?.let { prec ->
             if ((prec.rain ?: 0.0) > 0) {
@@ -411,16 +412,17 @@ fun DailyPrecipitationDetails(
         }
     }
     precipitationItems.forEach { item ->
+        val unit = if (item.first == R.string.precipitation_snow) snowfallUnit else precipitationUnit
         DetailsItem(
             headlineText = stringResource(item.first),
-            supportingText = precipitationUnit.getValueText(context, item.second),
+            supportingText = unit.getValueText(context, item.second),
             modifier = Modifier
                 .padding(top = dimensionResource(R.dimen.normal_margin))
                 .semantics(mergeDescendants = true) {}
                 .clearAndSetSemantics {
                     contentDescription = context.getString(item.first) +
                         context.getString(R.string.colon_separator) +
-                        precipitationUnit.getValueVoice(context, item.second)
+                        unit.getValueVoice(context, item.second)
                 }
         )
     }

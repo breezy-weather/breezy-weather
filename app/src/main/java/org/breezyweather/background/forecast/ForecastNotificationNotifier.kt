@@ -83,7 +83,7 @@ class ForecastNotificationNotifier(
         } else {
             daily.day?.weatherCode
         }
-        val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
 
         val notification: Notification = with(completeNotificationBuilder) {
             priority = NotificationCompat.PRIORITY_MAX

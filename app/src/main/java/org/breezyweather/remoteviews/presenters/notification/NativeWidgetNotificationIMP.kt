@@ -74,7 +74,7 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
         val contentTitle = StringBuilder()
         if (!tempIcon && tempFeelsLikeOrAir != null) {
-            val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+            val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
             contentTitle.append(temperatureUnit.getValueText(context, value = tempFeelsLikeOrAir))
         }
         if (!current.weatherText.isNullOrEmpty()) {

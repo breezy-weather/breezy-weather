@@ -212,7 +212,7 @@ fun DetailsConditions(
         }
         // TODO: Make a better design for degree day
         if (daily.degreeDay?.isValid == true) {
-            val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+            val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
             item {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
             }
@@ -418,7 +418,7 @@ private fun WeatherConditionItem(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+    val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
 
     Column(
         modifier = modifier.fillMaxWidth()
@@ -575,7 +575,7 @@ private fun TemperatureChart(
 
     if (hasEnoughValues) {
         val provider = ResourcesProviderFactory.newInstance
-        val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
         val step = temperatureUnit.chartStep
         val minY = remember(mappedValues, showRealTemp, normals) {
             if (showRealTemp) {
@@ -748,7 +748,7 @@ fun DailyFeelsLikeTemperatureDetails(
     normalsTemperature: Double?,
 ) {
     val context = LocalContext.current
-    val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+    val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
     val temperatureItems = buildList {
         temperature?.let { temp ->
             temp.realFeelTemperature?.let {

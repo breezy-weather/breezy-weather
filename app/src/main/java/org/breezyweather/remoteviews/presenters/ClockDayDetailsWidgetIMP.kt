@@ -85,7 +85,7 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         val provider = ResourcesProviderFactory.newInstance
         val dayTime = location.isDaylight
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.temperatureUnit
+        val temperatureUnit = settings.getTemperatureUnit(context)
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
 
         // Clock
@@ -181,7 +181,7 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         }
         views.setTextViewText(R.id.widget_clock_day_aqiHumidity, getAQIHumidityTempText(context, weather))
         weather.current?.wind?.let { wind ->
-            val speedUnit = settings.speedUnit
+            val speedUnit = settings.getSpeedUnit(context)
             views.setTextViewText(
                 R.id.widget_clock_day_wind,
                 wind.getShortDescription(context, speedUnit)

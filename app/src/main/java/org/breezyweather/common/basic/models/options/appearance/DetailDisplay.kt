@@ -130,14 +130,14 @@ enum class DetailDisplay(
 
     fun getCurrentValue(context: Context, current: Current, isDaylight: Boolean = true): String? = when (id) {
         "feels_like" -> current.temperature?.feelsLikeTemperature?.let {
-            SettingsManager.getInstance(context).temperatureUnit.getValueText(context, it, 0)
+            SettingsManager.getInstance(context).getTemperatureUnit(context).getValueText(context, it, 0)
         }
         "wind" -> if (!current.wind?.getShortDescription(
                 context,
-                SettingsManager.getInstance(context).speedUnit
+                SettingsManager.getInstance(context).getSpeedUnit(context)
             ).isNullOrEmpty()
         ) {
-            current.wind?.getShortDescription(context, SettingsManager.getInstance(context).speedUnit)
+            current.wind?.getShortDescription(context, SettingsManager.getInstance(context).getSpeedUnit(context))
         } else {
             null
         }
@@ -150,19 +150,19 @@ enum class DetailDisplay(
             Utils.formatPercent(context, it)
         }
         "dew_point" -> current.dewPoint?.let {
-            SettingsManager.getInstance(context).temperatureUnit.getValueText(context, it, 0)
+            SettingsManager.getInstance(context).getTemperatureUnit(context).getValueText(context, it, 0)
         }
         "pressure" -> current.pressure?.let {
-            SettingsManager.getInstance(context).pressureUnit.getValueText(context, it)
+            SettingsManager.getInstance(context).getPressureUnit(context).getValueText(context, it)
         }
         "visibility" -> current.visibility?.let {
-            SettingsManager.getInstance(context).distanceUnit.getValueText(context, it)
+            SettingsManager.getInstance(context).getDistanceUnit(context).getValueText(context, it)
         }
         "cloud_cover" -> current.cloudCover?.let {
             Utils.formatPercent(context, it.toDouble())
         }
         "ceiling" -> current.ceiling?.let {
-            SettingsManager.getInstance(context).distanceUnit.getValueText(context, it)
+            SettingsManager.getInstance(context).getDistanceUnit(context).getValueText(context, it)
         }
         else -> null
     }
@@ -171,14 +171,14 @@ enum class DetailDisplay(
         "feels_like" -> current.temperature?.feelsLikeTemperature?.let {
             getName(context) +
                 context.getString(R.string.colon_separator) +
-                SettingsManager.getInstance(context).temperatureUnit.getValueVoice(context, it)
+                SettingsManager.getInstance(context).getTemperatureUnit(context).getValueVoice(context, it)
         }
         "wind" -> if (!current.wind?.getContentDescription(
                 context,
-                SettingsManager.getInstance(context).speedUnit
+                SettingsManager.getInstance(context).getSpeedUnit(context)
             ).isNullOrEmpty()
         ) {
-            current.wind!!.getContentDescription(context, SettingsManager.getInstance(context).speedUnit)
+            current.wind!!.getContentDescription(context, SettingsManager.getInstance(context).getSpeedUnit(context))
         } else {
             null
         }
@@ -197,17 +197,17 @@ enum class DetailDisplay(
         "dew_point" -> current.dewPoint?.let {
             getName(context) +
                 context.getString(R.string.colon_separator) +
-                SettingsManager.getInstance(context).temperatureUnit.getValueVoice(context, it)
+                SettingsManager.getInstance(context).getTemperatureUnit(context).getValueVoice(context, it)
         }
         "pressure" -> current.pressure?.let {
             getName(context) +
                 context.getString(R.string.colon_separator) +
-                SettingsManager.getInstance(context).pressureUnit.getValueVoice(context, it)
+                SettingsManager.getInstance(context).getPressureUnit(context).getValueVoice(context, it)
         }
         "visibility" -> current.visibility?.let {
             getName(context) +
                 context.getString(R.string.colon_separator) +
-                SettingsManager.getInstance(context).distanceUnit.getValueVoice(context, it)
+                SettingsManager.getInstance(context).getDistanceUnit(context).getValueVoice(context, it)
         }
         "cloud_cover" -> current.cloudCover?.let {
             getName(context) +
@@ -217,7 +217,7 @@ enum class DetailDisplay(
         "ceiling" -> current.ceiling?.let {
             getName(context) +
                 context.getString(R.string.colon_separator) +
-                SettingsManager.getInstance(context).distanceUnit.getValueVoice(context, it)
+                SettingsManager.getInstance(context).getDistanceUnit(context).getValueVoice(context, it)
         }
         else -> null
     }

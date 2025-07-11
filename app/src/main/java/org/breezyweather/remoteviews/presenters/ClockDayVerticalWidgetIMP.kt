@@ -93,8 +93,8 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
     ): RemoteViews {
         val color = WidgetColor(context, cardStyle!!, textColor!!, location?.isDaylight ?: true)
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.temperatureUnit
-        val speedUnit = settings.speedUnit
+        val temperatureUnit = settings.getTemperatureUnit(context)
+        val speedUnit = settings.getSpeedUnit(context)
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val views = buildWidgetViewDayPart(
             context,

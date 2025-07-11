@@ -438,6 +438,7 @@
 
     <!-- speed unit. -->
     <string-array name="speed_units">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_bf</item>
         <item>@string/unit_mps</item>
         <item>@string/unit_kph</item>
@@ -446,6 +447,7 @@
         <item>@string/unit_ftps</item>
     </string-array>
     <string-array name="speed_unit_voices">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_bf_voice</item>
         <item>@string/unit_mps_voice</item>
         <item>@string/unit_kph_voice</item>
@@ -454,6 +456,7 @@
         <item>@string/unit_ftps_voice</item>
     </string-array>
     <string-array name="speed_unit_values">
+        <item>auto</item>
         <item>bf</item>
         <item>mps</item>
         <item>kph</item>
@@ -464,18 +467,21 @@
 
     <!-- precipitation unit. -->
     <string-array name="precipitation_units">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_mm</item>
         <item>@string/unit_cm</item>
         <item>@string/unit_in</item>
         <item>@string/unit_lpsqm</item>
     </string-array>
     <string-array name="precipitation_unit_voices">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_mm_voice</item>
         <item>@string/unit_cm_voice</item>
         <item>@string/unit_in_voice</item>
         <item>@string/unit_lpsqm_voice</item>
     </string-array>
     <string-array name="precipitation_unit_values">
+        <item>auto</item>
         <item>mm</item>
         <item>cm</item>
         <item>in</item>
@@ -484,18 +490,21 @@
 
     <!-- precipitation intensity unit. -->
     <string-array name="precipitation_intensity_units">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_mmph</item>
         <item>@string/unit_cmph</item>
         <item>@string/unit_inph</item>
         <item>@string/unit_lpsqmph</item>
     </string-array>
     <string-array name="precipitation_intensity_unit_voices">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_mmph_voice</item>
         <item>@string/unit_cmph_voice</item>
         <item>@string/unit_inph_voice</item>
         <item>@string/unit_lpsqmph_voice</item>
     </string-array>
     <string-array name="precipitation_intensity_unit_values">
+        <item>auto</item>
         <item>mmph</item>
         <item>cmph</item>
         <item>inph</item>
@@ -504,16 +513,19 @@
 
     <!-- temperature unit. -->
     <string-array name="temperature_units">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_celsius</item>
         <item>@string/unit_fahrenheit</item>
         <item>@string/unit_kelvin</item>
     </string-array>
     <string-array name="temperature_units_short">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_celsius_short</item>
         <item>@string/unit_fahrenheit_short</item>
         <item>@string/unit_kelvin_short</item>
     </string-array>
     <string-array name="temperature_unit_values">
+        <item>auto</item>
         <item>c</item>
         <item>f</item>
         <item>k</item>
@@ -521,6 +533,7 @@
 
     <!-- distance unit. -->
     <string-array name="distance_units">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_km</item>
         <item>@string/unit_m</item>
         <item>@string/unit_mi</item>
@@ -528,6 +541,7 @@
         <item>@string/unit_ft</item>
     </string-array>
     <string-array name="distance_unit_voices">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_km_voice</item>
         <item>@string/unit_m_voice</item>
         <item>@string/unit_mi_voice</item>
@@ -535,6 +549,7 @@
         <item>@string/unit_ft_voice</item>
     </string-array>
     <string-array name="distance_unit_values">
+        <item>auto</item>
         <item>km</item>
         <item>m</item>
         <item>mi</item>
@@ -544,6 +559,7 @@
 
     <!-- pressure unit. -->
     <string-array name="pressure_units">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_mb</item>
         <item>@string/unit_kpa</item>
         <item>@string/unit_hpa</item>
@@ -553,6 +569,7 @@
         <item>@string/unit_kgfpsqcm</item>
     </string-array>
     <string-array name="pressure_unit_voices">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_mb_voice</item>
         <item>@string/unit_kpa_voice</item>
         <item>@string/unit_hpa_voice</item>
@@ -562,6 +579,7 @@
         <item>@string/unit_kgfpsqcm_voice</item>
     </string-array>
     <string-array name="pressure_unit_values">
+        <item>auto</item>
         <item>mb</item>
         <item>kpa</item>
         <item>hpa</item>

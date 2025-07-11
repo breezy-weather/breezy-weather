@@ -23,6 +23,7 @@ import breezyweather.domain.weather.model.Wind
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitEnum
 import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.isRtl
 
 // actual speed = speed(km/h) * factor.
@@ -108,11 +109,18 @@ enum class SpeedUnit(
             return context.resources.getIntArray(colorsArrayId).getOrNull(bf) ?: Color.TRANSPARENT
         }
 
-        fun getInstance(
-            value: String,
-        ) = SpeedUnit.entries.firstOrNull {
-            it.id == value
-        } ?: MPS
+        /**
+         * Copyright © 1991-Present Unicode, Inc.
+         * License: Unicode License v3 https://www.unicode.org/license.txt
+         * Source: https://github.com/unicode-org/cldr/blob/3f3967f3cbadc56bbb44a9aed20784e82ac64c67/common/supplemental/units.xml#L570-L574
+         */
+        fun getDefaultUnit(
+            context: Context,
+        ) = when (context.currentLocale.country) {
+            "CN", "DK", "FI", "JP", "KR", "NO", "PL", "RU", "SE" -> MPS
+            "GB", "US" -> MPH
+            else -> KPH
+        }
     }
 
     override val valueArrayId = R.array.speed_unit_values

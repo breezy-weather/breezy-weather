@@ -179,7 +179,7 @@ private fun WindItem(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val speedUnit = SettingsManager.getInstance(context).speedUnit
+    val speedUnit = SettingsManager.getInstance(context).getSpeedUnit(context)
 
     Column(
         modifier = modifier.fillMaxWidth()
@@ -282,7 +282,7 @@ private fun WindChart(
     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
 
     if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
-        val speedUnit = SettingsManager.getInstance(context).speedUnit
+        val speedUnit = SettingsManager.getInstance(context).getSpeedUnit(context)
         val step = speedUnit.chartStep
         val maxY = remember(mappedValues) {
             max(
@@ -420,7 +420,7 @@ fun WindScale(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val speedUnit = SettingsManager.getInstance(context).speedUnit.let {
+    val speedUnit = SettingsManager.getInstance(context).getSpeedUnit(context).let {
         if (it == SpeedUnit.BF) SpeedUnit.MPS else it
     }
 

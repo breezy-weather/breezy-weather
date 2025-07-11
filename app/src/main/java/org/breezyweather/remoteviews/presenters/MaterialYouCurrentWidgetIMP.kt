@@ -110,7 +110,7 @@ class MaterialYouCurrentWidgetIMP : AbstractRemoteViewsPresenter() {
             val provider = ResourcesProviderFactory.newInstance
 
             val settings = SettingsManager.getInstance(context)
-            val temperatureUnit = settings.temperatureUnit
+            val temperatureUnit = settings.getTemperatureUnit(context)
 
             // current.
             weather.current?.weatherCode?.let {

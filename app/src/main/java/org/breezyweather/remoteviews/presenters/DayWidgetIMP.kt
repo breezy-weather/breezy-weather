@@ -83,8 +83,8 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         pollenIndexSource: PollenIndexSource?,
     ): RemoteViews {
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.temperatureUnit
-        val speedUnit = settings.speedUnit
+        val temperatureUnit = settings.getTemperatureUnit(context)
+        val speedUnit = settings.getSpeedUnit(context)
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val color = WidgetColor(
             context,

@@ -20,6 +20,7 @@ import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitEnum
 import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.isRtl
 
 // actual pressure = pressure(mb) * factor.
@@ -43,11 +44,19 @@ enum class PressureUnit(
 
         const val NORMAL = 1013.25
 
-        fun getInstance(
-            value: String,
-        ) = PressureUnit.entries.firstOrNull {
-            it.id == value
-        } ?: MB
+        /**
+         * Copyright © 1991-Present Unicode, Inc.
+         * License: Unicode License v3 https://www.unicode.org/license.txt
+         * Source (simplified): https://github.com/unicode-org/cldr/blob/3f3967f3cbadc56bbb44a9aed20784e82ac64c67/common/supplemental/units.xml#L546-L551
+         */
+        fun getDefaultUnit(
+            context: Context,
+        ) = when (context.currentLocale.country) {
+            "BR", "EG", "GB", "IL", "TH" -> MB
+            "MX", "RU" -> MMHG
+            "US" -> INHG
+            else -> HPA
+        }
     }
 
     override val valueArrayId = R.array.pressure_unit_values

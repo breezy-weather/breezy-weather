@@ -270,11 +270,11 @@ abstract class AbstractRemoteViewsPresenter {
             pollenIndexSource: PollenIndexSource?,
         ): String {
             if (subtitleP.isNullOrEmpty()) return ""
-            val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
-            // val precipitationUnit = getInstance(context).precipitationUnit
-            val pressureUnit = SettingsManager.getInstance(context).pressureUnit
-            val distanceUnit = SettingsManager.getInstance(context).distanceUnit
-            val speedUnit = SettingsManager.getInstance(context).speedUnit
+            val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
+            // val precipitationUnit = getInstance(context).getPrecipitationUnit(context)
+            val pressureUnit = SettingsManager.getInstance(context).getPressureUnit(context)
+            val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
+            val speedUnit = SettingsManager.getInstance(context).getSpeedUnit(context)
             var subtitle = subtitleP
                 .replace(
                     "\$cw$",

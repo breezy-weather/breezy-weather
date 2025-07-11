@@ -83,8 +83,8 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
         )
         val weather = location?.weather ?: return views
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.temperatureUnit
-        val speedUnit = settings.speedUnit
+        val temperatureUnit = settings.getTemperatureUnit(context)
+        val speedUnit = settings.getSpeedUnit(context)
 
         val color = WidgetColor(
             context,

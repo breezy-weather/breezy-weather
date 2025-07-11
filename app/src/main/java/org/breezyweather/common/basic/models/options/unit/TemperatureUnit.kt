@@ -21,9 +21,11 @@ import android.icu.text.MeasureFormat
 import android.icu.util.MeasureUnit
 import android.os.Build
 import android.text.BidiFormatter
+import androidx.core.text.util.LocalePreferences
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitEnum
 import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.extensions.roundDecimals
 
@@ -42,11 +44,27 @@ enum class TemperatureUnit(
     ;
 
     companion object {
-        fun getInstance(
-            value: String,
-        ) = TemperatureUnit.entries.firstOrNull {
-            it.id == value
-        } ?: C
+        /**
+         * Resolve in the following order:
+         * - System regional preference
+         * - Current locale region preference
+         */
+        fun getDefaultUnit(
+            context: Context,
+        ) = when (LocalePreferences.getTemperatureUnit()) {
+            LocalePreferences.TemperatureUnit.CELSIUS -> C
+            LocalePreferences.TemperatureUnit.FAHRENHEIT -> F
+            LocalePreferences.TemperatureUnit.KELVIN -> K
+            /**
+             * Copyright © 1991-Present Unicode, Inc.
+             * License: Unicode License v3 https://www.unicode.org/license.txt
+             * Source: https://github.com/unicode-org/cldr/blob/3f3967f3cbadc56bbb44a9aed20784e82ac64c67/common/supplemental/units.xml#L579-L582
+             */
+            else -> when (context.currentLocale.country) {
+                "BS", "BZ", "KY", "PR", "PW", "US" -> F
+                else -> C
+            }
+        }
     }
 
     override val valueArrayId = R.array.temperature_unit_values

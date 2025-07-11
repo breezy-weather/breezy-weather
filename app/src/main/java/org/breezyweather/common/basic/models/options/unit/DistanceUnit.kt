@@ -20,6 +20,7 @@ import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitEnum
 import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.isRtl
 
 // actual distance = distance(km) * factor.
@@ -78,11 +79,18 @@ enum class DistanceUnit(
 
     companion object {
 
-        fun getInstance(
-            value: String,
-        ) = DistanceUnit.entries.firstOrNull {
-            it.id == value
-        } ?: M
+        /**
+         * Copyright © 1991-Present Unicode, Inc.
+         * License: Unicode License v3 https://www.unicode.org/license.txt
+         * Source (simplified): https://github.com/unicode-org/cldr/blob/3f3967f3cbadc56bbb44a9aed20784e82ac64c67/common/supplemental/units.xml#L506-L512
+         */
+        fun getDefaultUnit(
+            context: Context,
+        ) = when (context.currentLocale.country) {
+            "DE", "ML" -> M
+            "GB", "US" -> MI
+            else -> KM
+        }
 
         /**
          * Source: https://weather.metoffice.gov.uk/guides/what-does-this-forecast-mean

@@ -222,7 +222,7 @@ class HourlyTemperatureAdapter(
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
                     normals.daytimeTemperature!!.toFloat(),
-                    SettingsManager.getInstance(activity).temperatureUnit.getShortValueText(
+                    SettingsManager.getInstance(activity).getTemperatureUnit(activity).getShortValueText(
                         activity,
                         normals.daytimeTemperature!!
                     ),
@@ -239,7 +239,7 @@ class HourlyTemperatureAdapter(
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
                     normals.nighttimeTemperature!!.toFloat(),
-                    SettingsManager.getInstance(activity).temperatureUnit.getShortValueText(
+                    SettingsManager.getInstance(activity).getTemperatureUnit(activity).getShortValueText(
                         activity,
                         normals.nighttimeTemperature!!
                     ),

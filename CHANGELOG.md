@@ -24,6 +24,7 @@
 
 **Translations**
 - Translations updated
+- Default units are now based on regional preferences. It does not support
 - Better number formatting on Android >= 7
 
 

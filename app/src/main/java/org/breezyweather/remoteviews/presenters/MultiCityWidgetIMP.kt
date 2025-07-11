@@ -67,7 +67,7 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
     ): RemoteViews {
         val provider = ResourcesProviderFactory.newInstance
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.temperatureUnit
+        val temperatureUnit = settings.getTemperatureUnit(context)
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val color = WidgetColor(context, cardStyle!!, textColor!!, locationList.firstOrNull()?.isDaylight ?: true)
         val views = RemoteViews(

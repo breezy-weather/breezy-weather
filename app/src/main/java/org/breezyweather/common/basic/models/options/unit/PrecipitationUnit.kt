@@ -20,6 +20,7 @@ import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitEnum
 import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.isRtl
 
 // actual precipitation = precipitation(mm) * factor.
@@ -38,11 +39,30 @@ enum class PrecipitationUnit(
 
     companion object {
 
-        fun getInstance(
-            value: String,
-        ) = PrecipitationUnit.entries.firstOrNull {
-            it.id == value
-        } ?: MM
+        /**
+         * Copyright © 1991-Present Unicode, Inc.
+         * License: Unicode License v3 https://www.unicode.org/license.txt
+         * Source (simplified): https://github.com/unicode-org/cldr/blob/3f3967f3cbadc56bbb44a9aed20784e82ac64c67/common/supplemental/units.xml#L474-L478
+         */
+        fun getDefaultUnit(
+            context: Context,
+        ) = when (context.currentLocale.country) {
+            "BR" -> CM
+            "US" -> IN
+            else -> MM
+        }
+
+        /**
+         * Copyright © 1991-Present Unicode, Inc.
+         * License: Unicode License v3 https://www.unicode.org/license.txt
+         * Source (simplified): https://github.com/unicode-org/cldr/blob/3f3967f3cbadc56bbb44a9aed20784e82ac64c67/common/supplemental/units.xml#L498-L501
+         */
+        fun getDefaultSnowfallUnit(
+            context: Context,
+        ) = when (context.currentLocale.country) {
+            "US" -> IN
+            else -> CM
+        }
     }
 
     override val valueArrayId = R.array.precipitation_unit_values
@@ -113,11 +133,30 @@ enum class PrecipitationIntensityUnit(
 
     companion object {
 
-        fun getInstance(
-            value: String,
-        ) = PrecipitationIntensityUnit.entries.firstOrNull {
-            it.id == value
-        } ?: MMPH
+        /**
+         * Copyright © 1991-Present Unicode, Inc.
+         * License: Unicode License v3 https://www.unicode.org/license.txt
+         * Source (simplified): https://github.com/unicode-org/cldr/blob/3f3967f3cbadc56bbb44a9aed20784e82ac64c67/common/supplemental/units.xml#L561-L565
+         */
+        fun getDefaultUnit(
+            context: Context,
+        ) = when (context.currentLocale.country) {
+            "BR" -> CMPH
+            "US" -> INPH
+            else -> MMPH
+        }
+
+        /**
+         * Copyright © 1991-Present Unicode, Inc.
+         * License: Unicode License v3 https://www.unicode.org/license.txt
+         * Source (simplified): https://github.com/unicode-org/cldr/blob/3f3967f3cbadc56bbb44a9aed20784e82ac64c67/common/supplemental/units.xml#L566-L569
+         */
+        fun getDefaultSnowfallUnit(
+            context: Context,
+        ) = when (context.currentLocale.country) {
+            "US" -> INPH
+            else -> CMPH
+        }
     }
 
     override val valueArrayId = R.array.precipitation_intensity_unit_values

@@ -301,7 +301,7 @@ private fun DewPointItem(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+    val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
 
     Column(
         modifier = modifier.fillMaxWidth()
@@ -329,7 +329,7 @@ private fun DewPointChart(
     theDay: Date,
 ) {
     val context = LocalContext.current
-    val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+    val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
     val step = temperatureUnit.chartStep
     val maxY = remember(mappedValues) {
         temperatureUnit.getValueWithoutUnit(mappedValues.values.max()).roundUpToNearestMultiplier(step)

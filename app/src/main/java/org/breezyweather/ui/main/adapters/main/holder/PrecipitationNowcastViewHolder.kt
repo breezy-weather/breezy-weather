@@ -312,7 +312,7 @@ private class MarkerLabelFormatterMinutelyDecorator(
         targets: List<CartesianMarker.Target>,
     ): CharSequence {
         val model = targets.first()
-        val precipitationIntensityUnit = SettingsManager.getInstance(aContext).precipitationIntensityUnit
+        val precipitationIntensityUnit = SettingsManager.getInstance(aContext).getPrecipitationIntensityUnit(aContext)
         val startTime = model.x.toLong().toDate()
             .getFormattedTime(location, aContext, aContext.is12Hour)
         val endTime = (model.x.toLong() + 5.minutes.inWholeMilliseconds).toDate()
