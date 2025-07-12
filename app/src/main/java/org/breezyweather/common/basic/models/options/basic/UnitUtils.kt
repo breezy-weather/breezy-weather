@@ -41,7 +41,6 @@ import androidx.compose.ui.unit.TextUnit
 import org.breezyweather.common.basic.models.options.unit.UnitWidth
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.isRtl
-import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.domain.settings.SettingsManager
 import java.text.FieldPosition
 import kotlin.math.pow
@@ -155,7 +154,7 @@ object UnitUtils {
         (enum.perMeasureUnit == null || Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) &&
         SettingsManager.getInstance(context).let { it.useNumberFormatter || it.useMeasureFormat }
     ) {
-        LogHelper.log(msg = "Formatting with ICU ${enum.id}: ${enum.measureUnit} per ${enum.perMeasureUnit}")
+        // LogHelper.log(msg = "Formatting with ICU ${enum.id}: ${enum.measureUnit} per ${enum.perMeasureUnit}")
         formatWithIcu(
             context,
             if (isValueInDefaultUnit) enum.getConvertedUnit(value) else value,
@@ -165,7 +164,7 @@ object UnitUtils {
             unitWidth
         )
     } else {
-        LogHelper.log(msg = "Not formatting with ICU ${enum.id} because measureUnit=${enum.measureUnit}")
+        // LogHelper.log(msg = "Not formatting with ICU ${enum.id} because measureUnit=${enum.measureUnit}")
         formatWithoutIcu(
             context,
             enum,
