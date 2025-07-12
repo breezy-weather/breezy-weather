@@ -237,14 +237,6 @@
     <string name="settings_color_light">Světlý</string>
     <string name="settings_color_grey">Šedý</string>
     <string name="settings_color_dark">Tmavý</string>
-    <string name="settings_background_updates_refresh_30min">30 minut</string>
-    <string name="settings_background_updates_refresh_1h">1 hodina</string>
-    <string name="settings_background_updates_refresh_1h_30min">1,5 hodiny</string>
-    <string name="settings_background_updates_refresh_2h">2 hodiny</string>
-    <string name="settings_background_updates_refresh_3h">3 hodiny</string>
-    <string name="settings_background_updates_refresh_6h">6 hodin</string>
-    <string name="settings_background_updates_refresh_12h">12 hodin</string>
-    <string name="settings_background_updates_refresh_24h">24 hodin</string>
     <string name="notification_style_native">Nativní</string>
     <string name="notification_style_cities">Města</string>
     <string name="widget_style_rectangle">Obdélník</string>

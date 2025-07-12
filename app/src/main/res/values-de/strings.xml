@@ -139,14 +139,6 @@
     <string name="wind_direction">Windrichtung</string>
     <string name="wind_speed">Windgeschwindigkeit</string>
     <string name="daily_yesterday_short">Gest.</string>
-    <string name="settings_background_updates_refresh_30min">30 Minuten</string>
-    <string name="settings_background_updates_refresh_1h">1 Stunde</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 Stunden</string>
-    <string name="settings_background_updates_refresh_2h">2 Stunden</string>
-    <string name="settings_background_updates_refresh_3h">3 Stunden</string>
-    <string name="settings_background_updates_refresh_6h">6 Stunden</string>
-    <string name="settings_background_updates_refresh_12h">12 Stunden</string>
-    <string name="settings_background_updates_refresh_24h">24 Stunden</string>
     <string name="settings_automatic">Automatisch</string>
     <string name="settings_color_light">Hell</string>
     <string name="settings_color_grey">Grau</string>

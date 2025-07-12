@@ -288,8 +288,6 @@
     <string name="widget_style_vertical">Vertikaalne</string>
     <string name="widget_clock_font_analog">Analoog</string>
     <string name="widget_live_wallpaper_weather_kind">Ilm</string>
-    <string name="settings_background_updates_refresh_1h">1 tund</string>
-    <string name="settings_background_updates_refresh_3h">3 tundi</string>
     <string name="settings_background_updates_worker_info_summary">Viimati jooksutatud: %s</string>
     <string name="settings_units_speed">Kiirusühik</string>
     <string name="settings_units_pressure">Õhurõhuühik</string>
@@ -557,12 +555,6 @@
     <string name="settings_background_updates_refresh_title">Värskendussagedus</string>
     <string name="settings_background_updates_refresh_never">Mitte kunagi</string>
     <string name="settings_background_updates_refresh_never_warning3">Kaaluge tagataustauuenduste väljalülitamise asemel harvemat värskendussagedust, vastasel juhul vajutage valikut “Jätka”, kui soovite siiski jätkata.</string>
-    <string name="settings_background_updates_refresh_30min">30 minutit</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 tundi</string>
-    <string name="settings_background_updates_refresh_2h">2 tundi</string>
-    <string name="settings_background_updates_refresh_6h">6 tundi</string>
-    <string name="settings_background_updates_refresh_12h">12 tundi</string>
-    <string name="settings_background_updates_refresh_24h">24 tundi</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignoreeri kui on vähe akut</string>
     <string name="settings_background_updates_section_troubleshoot">Tõrkeotsing</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Tootja spetsiifilised juhised</string>

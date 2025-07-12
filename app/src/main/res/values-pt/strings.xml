@@ -105,14 +105,6 @@
     <string name="settings_color_light">Claro</string>
     <string name="settings_color_grey">Cinza</string>
     <string name="settings_color_dark">Escuro</string>
-    <string name="settings_background_updates_refresh_30min">30 min</string>
-    <string name="settings_background_updates_refresh_1h">01:00</string>
-    <string name="settings_background_updates_refresh_1h_30min">01:30</string>
-    <string name="settings_background_updates_refresh_2h">02:00</string>
-    <string name="settings_background_updates_refresh_3h">03:00</string>
-    <string name="settings_background_updates_refresh_6h">06:00</string>
-    <string name="settings_background_updates_refresh_12h">12:00</string>
-    <string name="settings_background_updates_refresh_24h">24:00</string>
     <string name="widget_style_rectangle">Rectangular</string>
     <string name="widget_style_symmetry">Simétrico</string>
     <string name="widget_subtitle_data_time">Última atualização</string>

@@ -192,14 +192,6 @@
     <string name="settings_color_light">밝음</string>
     <string name="settings_color_grey">회색</string>
     <string name="settings_color_dark">어두움</string>
-    <string name="settings_background_updates_refresh_30min">30분</string>
-    <string name="settings_background_updates_refresh_1h">1시간</string>
-    <string name="settings_background_updates_refresh_1h_30min">1시간 30분</string>
-    <string name="settings_background_updates_refresh_2h">2시간</string>
-    <string name="settings_background_updates_refresh_3h">3시간</string>
-    <string name="settings_background_updates_refresh_6h">6시간</string>
-    <string name="settings_background_updates_refresh_12h">12시간</string>
-    <string name="settings_background_updates_refresh_24h">24시간</string>
     <string name="notification_style_native">지역</string>
     <string name="widget_style_rectangle">직사각형</string>
     <string name="widget_style_symmetry">대칭</string>

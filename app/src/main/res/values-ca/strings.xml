@@ -195,14 +195,6 @@
     <string name="location_service_native">API nativa</string>
     <string name="settings_automatic">Automàtic</string>
     <string name="settings_background_updates_refresh_never">Mai</string>
-    <string name="settings_background_updates_refresh_30min">30 minuts</string>
-    <string name="settings_background_updates_refresh_1h">1 hora</string>
-    <string name="settings_background_updates_refresh_1h_30min">1,5 hores</string>
-    <string name="settings_background_updates_refresh_2h">2 hores</string>
-    <string name="settings_background_updates_refresh_3h">3 hores</string>
-    <string name="settings_background_updates_refresh_6h">6 hores</string>
-    <string name="settings_background_updates_refresh_12h">12 hores</string>
-    <string name="settings_background_updates_refresh_24h">24 hores</string>
     <string name="notification_style_native">Natiu</string>
     <string name="notification_style_cities">Ciutats</string>
     <string name="settings_color_light">Clar</string>

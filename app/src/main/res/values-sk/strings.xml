@@ -157,7 +157,6 @@
     <string name="common_weather_text_drizzle_freezing_light">Slabé mrznúce mrholenie</string>
     <string name="settings_background_updates_battery_optimization">Vypnúť optimalizáciu batérie</string>
     <string name="metno_weather_text_andthunder">%s a blesky</string>
-    <string name="settings_background_updates_refresh_2h">2 hodiny</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Búrka so slabým krupobitím</string>
     <string name="settings_section_general">Všeobecné</string>
     <string name="common_weather_text_rain_heavy">Silný dážď</string>
@@ -165,7 +164,6 @@
     <string name="about_contact">Kontakt</string>
     <string name="common_weather_text_drizzle">Mrholenie</string>
     <string name="weather_kind_hail">Krupobitie</string>
-    <string name="settings_background_updates_refresh_1h">1 hodina</string>
     <string name="about_translators">Prekladatelia</string>
     <string name="settings_widgets_section_widgets_in_use">Používané widgety</string>
     <string name="about_contribution_designer">Dizajnér loga</string>
@@ -180,19 +178,15 @@
     <string name="common_weather_text_rain">Dážď</string>
     <string name="common_weather_text_snow_grains">Snehové krúpy</string>
     <string name="settings_location">Poloha</string>
-    <string name="settings_background_updates_refresh_30min">30 minút</string>
-    <string name="settings_background_updates_refresh_6h">6 hodín</string>
     <string name="common_weather_text_drizzle_freezing">Mrznúce mrholenie</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Špecifické pokyny výrobcu</string>
     <string name="settings_widgets_notification_feels_like_switch">Použitie “pocitovej teploty”</string>
     <string name="common_weather_text_rain_freezing">Mrznúci dážď</string>
     <string name="common_weather_text_rain_snow_mixed_light">Slabý dážď so snehom</string>
-    <string name="settings_background_updates_refresh_12h">12 hodín</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Niektorí výrobcovia majú ďalšie obmedzenia aplikácií, ktoré vypínajú služby na pozadí. Na webovej stránke Don’t kill my app! nájdete informácie o tom, ako to napraviť.</string>
     <string name="settings_widgets_configure_widget_summary">Nastavenie tohto widgetu</string>
     <string name="settings_widgets_monochrome_icons_title">Čiernobiele ikony</string>
     <string name="settings_background_updates">Aktualizácia na pozadí</string>
-    <string name="settings_background_updates_refresh_24h">24 hodín</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Zmiešané dažďové a snehové prehánky</string>
     <string name="common_weather_text_overcast">Zamračené</string>
     <string name="weather_kind_thunder">Hrmenie</string>
@@ -205,7 +199,6 @@
     <string name="common_weather_text_clear_sky">Jasno</string>
     <string name="common_weather_text_snow_showers_heavy">Silné snehové prehánky</string>
     <string name="settings_background_updates_worker_info_summary">Posledné spustenie: %s</string>
-    <string name="settings_background_updates_refresh_1h_30min">1,5 hodiny</string>
     <string name="settings_background_updates_section_troubleshoot">Riešenie problémov</string>
     <string name="settings_widgets_notification_persistent_switch">Trvalé</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Búrka slabá alebo mierne silná</string>
@@ -222,7 +215,6 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Búrka so silným krupobitím</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Slabý dážď a zmiešané snehové prehánky</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Silné mrznúce mrholenie</string>
-    <string name="settings_background_updates_refresh_3h">3 hodiny</string>
     <string name="common_weather_text_drizzle_heavy">Silné mrholenie</string>
     <string name="common_weather_text_mainly_clear">Prevažne jasno</string>
     <string name="common_weather_text_rain_moderate">Mierny dážď</string>

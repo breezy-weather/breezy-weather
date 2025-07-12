@@ -306,14 +306,6 @@
     <string name="settings_background_updates">Фонові оновлення</string>
     <string name="settings_background_updates_summary">Частота оновлень та усунення несправностей</string>
     <string name="settings_background_updates_refresh_never">Ніколи</string>
-    <string name="settings_background_updates_refresh_30min">30 хвилин</string>
-    <string name="settings_background_updates_refresh_1h">1 година</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 годин</string>
-    <string name="settings_background_updates_refresh_2h">2 години</string>
-    <string name="settings_background_updates_refresh_3h">3 години</string>
-    <string name="settings_background_updates_refresh_6h">6 годин</string>
-    <string name="settings_background_updates_refresh_12h">12 годин</string>
-    <string name="settings_background_updates_refresh_24h">24 години</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Пропускати, якщо батарея розряджена</string>
     <string name="settings_background_updates_battery_optimization_summary">Це перше, що варто спробувати, якщо ви не отримуєте сповіщень або віджети не оновлюються.</string>
     <string name="settings_background_updates_section_troubleshoot">Усунення несправностей</string>

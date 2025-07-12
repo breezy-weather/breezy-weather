@@ -191,12 +191,10 @@
     <string name="location_delete_location_dialog_message_no_name">आप इस स्थान को अपने सहेजे गए स्थानों की सूची से हटाने वाले हैं।</string>
     <string name="location_message_permission_missing">स्थान की अनुमति अनुपलब्ध है</string>
     <string name="location_message_reverse_geocoding_failed">मौसम स्रोत मेल खाने वाला स्थान ढूंढने में विफल रहा</string>
-    <string name="settings_background_updates_refresh_12h">12 घंटे</string>
     <string name="settings_background_updates_dont_kill_my_app_title">निर्माता विशिष्ट निर्देश</string>
     <string name="settings_location_access_background_summaryOff">कृपया अपने वर्तमान स्थान की पृष्ठभूमि को ताज़ा करने के लिए “हर समय अनुमति दें” सक्षम करें।</string>
     <string name="settings_location_access_precise_summaryOn">सक्रिय। उपकरण के नेटवर्क प्रदाता का प्राथमिकता से उपयोग किया जाएगा और अधिकांश समय, लेकिन जीपीएस भी प्रतिरोध के रूप में प्रयोग किया जा सकता है।</string>
     <string name="settings_background_updates_summary">ताज़ा दर, समस्या निवारण</string>
-    <string name="settings_background_updates_refresh_30min">30 मिनट</string>
     <string name="settings_background_updates_refresh_never">कभी नहीं</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">उपकरण समायोजन नहीं खोला जा सका।</string>
     <string name="settings_background_updates_battery_optimization_summary">जब आपको सूचनाएं प्राप्त नहीं होती हैं और विजेट ताज़ा नहीं होते हैं तो यह प्रयास करने वाली पहली चीज़ है।</string>
@@ -213,14 +211,8 @@
     <string name="settings_location_access_background_title">पृष्ठभूमि में स्थान प्रवेश</string>
     <string name="settings_location_access_background_summaryOn">सक्षम. ऐप पृष्ठभूमि में आपके वर्तमान स्थान के लिए मौसम जानकारी को ताज़ा करने में सक्षम होगा।</string>
     <string name="settings_location_access_precise_title">उपकरण का जीपीएस उपयोग</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 घंटे</string>
-    <string name="settings_background_updates_refresh_2h">2 घंटे</string>
-    <string name="settings_background_updates_refresh_3h">3 घंटे</string>
-    <string name="settings_background_updates_refresh_6h">6 घंटे</string>
-    <string name="settings_background_updates_refresh_24h">24 घंटे</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">बैटरी कम होने पर ध्यान न दें</string>
     <string name="settings_background_updates_battery_optimization">बैटरी अनुकूलन अक्षम करें</string>
-    <string name="settings_background_updates_refresh_1h">1 घंटा</string>
     <string name="settings_background_updates_section_troubleshoot">समस्याओं का निवारण</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">कुछ निर्माताओं के पास अतिरिक्त ऐप प्रतिबंध हैं जो पृष्ठभूमि सेवाओं को ख़त्म कर देते हैं. “Don’t kill my app!” वेबसाइट पर इसे ठीक करने की जानकारी है।</string>
     <string name="air_quality_pm25">पीएम2.5</string>

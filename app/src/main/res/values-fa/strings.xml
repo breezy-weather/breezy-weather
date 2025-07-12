@@ -262,13 +262,6 @@
     <string name="widget_clock_font_analog">عقربه دار</string>
     <string name="settings_background_updates_summary">نرخ تازه سازی، عیب یابی</string>
     <string name="settings_background_updates_refresh_title">نرخ تازه سازی</string>
-    <string name="settings_background_updates_refresh_30min">۳۰ دقیقه</string>
-    <string name="settings_background_updates_refresh_1h">۱ ساعت</string>
-    <string name="settings_background_updates_refresh_1h_30min">۱ ساعت و نیم</string>
-    <string name="settings_background_updates_refresh_6h">۶ ساعت</string>
-    <string name="settings_background_updates_refresh_3h">۳ ساعت</string>
-    <string name="settings_background_updates_refresh_12h">۱۲ ساعت</string>
-    <string name="settings_background_updates_refresh_24h">۲۴ ساعت</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">نادیده گرفتن زمانی که باتری کم است</string>
     <string name="settings_background_updates_section_troubleshoot">عیب یابی</string>
     <string name="settings_background_updates_battery_optimization">غیرفعال کردن بهینه سازی باتری</string>
@@ -309,7 +302,6 @@
     <string name="widget_style_temperature">دما</string>
     <string name="settings_section_general">عمومی</string>
     <string name="settings_background_updates_refresh_never">هرگز</string>
-    <string name="settings_background_updates_refresh_2h">۲ ساعت</string>
     <string name="settings_background_updates_battery_optimization_disabled">بهینه سازی باتری از پیش غیرفعال است.</string>
     <string name="settings_location_access_switch_title">دسترسی به مکان</string>
     <string name="dew_point_short">نقطه شبنم</string>

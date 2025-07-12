@@ -169,15 +169,12 @@
     <string name="common_weather_text_rain">Nogen regn</string>
     <string name="action_more">Se mere</string>
     <string name="widget_subtitle_data_aqi">Luftkvalitet</string>
-    <string name="settings_background_updates_refresh_1h_30min">1,5 timer</string>
-    <string name="settings_background_updates_refresh_2h">2 timer</string>
     <string name="common_weather_text_rain_freezing">Isslag</string>
     <string name="common_weather_text_snow_moderate">Kraftig sne</string>
     <string name="common_weather_text_partly_cloudy">Delvist skyet</string>
     <string name="common_weather_text_rain_light">Let regn</string>
     <string name="common_weather_text_rain_heavy">Kraftig regn</string>
     <string name="common_weather_text_snow_showers_heavy">Kraftig snebyge</string>
-    <string name="settings_background_updates_refresh_30min">30 minutter</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Luftkvalitetsinstans</string>
     <string name="weather_message_invalid_location">Ugyldig placering, slet den venligst og tilføj igen</string>
     <string name="weather_message_too_frequent_refreshes">Vent venligst et par sekunder, før nyt forsøg…</string>
@@ -432,7 +429,6 @@
     <string name="widget_custom_subtitle_keyword_xss_description">Solnedgang for i dag, i morgen, …, 4 dage senere</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Måneopgang for i dag, i morgen, …, 4 dage senere</string>
     <string name="settings_background_updates_summary">Genopfriskningsrate, fejlfinding</string>
-    <string name="settings_background_updates_refresh_3h">3 timer</string>
     <string name="settings_icon_packs_title">Ikonpakker</string>
     <string name="settings_units_summary">Temperatur, nedbør, afstand, hastighed, tryk</string>
     <string name="settings_main_header_details_title">Detaljer i overskrift</string>
@@ -503,8 +499,6 @@
     <string name="settings_section_general">Generelt</string>
     <string name="settings_background_updates_refresh_title">Genopfriskningsrate</string>
     <string name="settings_background_updates_refresh_never">Aldrig</string>
-    <string name="settings_background_updates_refresh_1h">1 time</string>
-    <string name="settings_background_updates_refresh_6h">6 timer</string>
     <string name="widget_style_temperature">Temperatur</string>
     <string name="unit_nmi_voice">Sømil</string>
     <string name="unit_ft">ft</string>
@@ -593,8 +587,6 @@
     <string name="widget_style_mini">Mini</string>
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_week_style_5_days">5 dage</string>
-    <string name="settings_background_updates_refresh_12h">12 timer</string>
-    <string name="settings_background_updates_refresh_24h">24 timer</string>
     <string name="settings_location">Placering</string>
     <string name="settings_location_access_switch_title">Placeringsadgang</string>
     <string name="settings_location_access_background_title">Placeringsadgang i baggrunden</string>

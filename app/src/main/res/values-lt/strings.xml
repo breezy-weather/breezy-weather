@@ -302,17 +302,9 @@
     <string name="settings_background_updates_battery_optimization_summary">Tai pirmas dalykas, kurį reikia išbandyti, kai negaunate pranešimų arba valdikliai neatnaujinami.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Konkretaus gamintojo instrukcijos</string>
     <string name="widget_label_text_color">Teksto spalva</string>
-    <string name="settings_background_updates_refresh_24h">24 valandos</string>
     <string name="settings_background_updates_section_troubleshoot">Trikčių šalinimas</string>
     <string name="settings_background_updates_refresh_title">Atnaujinimo dažnis</string>
     <string name="settings_background_updates_refresh_never">Niekada</string>
-    <string name="settings_background_updates_refresh_30min">30 minučių</string>
-    <string name="settings_background_updates_refresh_1h">1 valanda</string>
-    <string name="settings_background_updates_refresh_1h_30min">1,5 valandos</string>
-    <string name="settings_background_updates_refresh_2h">2 valandos</string>
-    <string name="settings_background_updates_refresh_3h">3 valandos</string>
-    <string name="settings_background_updates_refresh_6h">6 valandos</string>
-    <string name="settings_background_updates_refresh_12h">12 valandų</string>
     <string name="action_app_store">Programėlių parduotuvė</string>
     <string name="settings_appearance_language_title">Kalba</string>
     <string name="settings_enabled">Įjungta</string>

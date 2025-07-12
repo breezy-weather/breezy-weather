@@ -238,13 +238,6 @@
     <string name="settings_background_updates_summary">Eguneratze-tasa, arazoak konpontzea</string>
     <string name="settings_background_updates_refresh_title">Eguneratze-tasa</string>
     <string name="settings_background_updates_refresh_never">inoiz ez</string>
-    <string name="settings_background_updates_refresh_30min">30 minutu</string>
-    <string name="settings_background_updates_refresh_1h">1 ordu</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 ordu</string>
-    <string name="settings_background_updates_refresh_2h">2 ordu</string>
-    <string name="settings_background_updates_refresh_3h">3 ordu</string>
-    <string name="settings_background_updates_refresh_6h">6 ordu</string>
-    <string name="settings_background_updates_refresh_12h">12 ordu</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Baztertu bateria baxu dagoenean</string>
     <string name="settings_background_updates_section_troubleshoot">Arazoak konpontzea</string>
     <string name="settings_background_updates_battery_optimization">Desaktibatu bateria optimizatzailea</string>
@@ -357,7 +350,6 @@
     <string name="air_quality_level_4_description">Talde sentikorrek ondorio kaltegarriak senti ditzakete berehala beren osasunean. Pertsona osasuntsuek zailtasunak izan ditzakete arnasa hartzeko eta eztarria narritatzeko esposizio luze baten aurrean. Mugatu aire zabaleko jarduera.</string>
     <string name="air_quality_level_5_description">Talde sentikorrek ondorio kaltegarriak izango dituzte berehala beren osasunean. Litekeena da pertsona osasuntsuek arnasa hartzeko zailtasunak eta eztarriko narritadura izatea; barrualdean geratzea eta aire zabaleko jarduerak birprogramatzea baloratu.</string>
     <string name="air_quality_o3_full">Ozono troposferiko (O₃)</string>
-    <string name="settings_background_updates_refresh_24h">24 ordu</string>
     <string name="settings_background_updates_battery_optimization_summary">Hau da probatu beharreko lehenengo gauza, jakinarazpenik jasotzen ez baduzu edo trepetak eguneratzen ari ez badira.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Bateriaren optimizazioa jada desgaituta dago.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Fabrikatzailearen araberako jarraibide espezifikoak</string>

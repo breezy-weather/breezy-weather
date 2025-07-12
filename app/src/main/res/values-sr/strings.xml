@@ -159,9 +159,6 @@
     <string name="widget_week_style_5_days">5 дана</string>
     <string name="widget_week_style_3_days">3 дана</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="settings_background_updates_refresh_3h">3 сата</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 сат</string>
-    <string name="settings_background_updates_refresh_2h">2 сата</string>
     <string name="settings_background_updates_battery_optimization_summary">Ово је прва ствар коју треба да покушате, када не добијате обавештења или се виџети не освежавају.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Специфична упутства произвођача</string>
     <string name="settings_background_updates_worker_info_title">Информације о процесу</string>
@@ -452,8 +449,6 @@
     <string name="settings_units_pressure">Јединица за притисак</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Тренутно време</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Тренутна температура (°C/°F)</string>
-    <string name="settings_background_updates_refresh_1h">1 сат</string>
-    <string name="settings_background_updates_refresh_6h">6 сати</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Занемарити, када је батерија празна</string>
     <string name="about_dependencies">Зависности</string>
     <string name="air_quality_index">Индекс квалитета ваздуха</string>
@@ -465,7 +460,6 @@
     <string name="air_quality_co_full">Угљен-моноксид (CO)</string>
     <string name="action_close">Затвори</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="settings_background_updates_refresh_24h">24 сата</string>
     <string name="settings_background_updates_section_troubleshoot">Решавање проблема</string>
     <string name="settings_main_hourly_trends_title">Трендови по сатима</string>
     <string name="settings_main">Главни екран</string>
@@ -488,8 +482,6 @@
     <string name="widget_custom_subtitle_keyword_cps_description">Тренутни притисак</string>
     <string name="widget_custom_subtitle_keyword_xdtd_description">Дневна температура - данас, сутра, …, 4 дана касније (°)</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Излазак месеца - данас, сутра, …, 4 дана касније</string>
-    <string name="settings_background_updates_refresh_30min">30 минута</string>
-    <string name="settings_background_updates_refresh_12h">12 сати</string>
     <string name="settings_background_updates_battery_optimization">Онемогући оптимизацију батерије</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Није могуће отворити подешавања уређаја.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Оптимизација батерије је већ онемогућена.</string>

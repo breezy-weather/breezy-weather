@@ -319,14 +319,6 @@
     <string name="settings_background_updates_summary">Ofteco de aktualigo, problemsolvi</string>
     <string name="settings_background_updates_refresh_title">Ofteco de aktualigo</string>
     <string name="settings_background_updates_refresh_never">Neniam</string>
-    <string name="settings_background_updates_refresh_30min">30 minutoj</string>
-    <string name="settings_background_updates_refresh_1h">1 horo</string>
-    <string name="settings_background_updates_refresh_1h_30min">1,5 horoj</string>
-    <string name="settings_background_updates_refresh_2h">2 horoj</string>
-    <string name="settings_background_updates_refresh_3h">3 horoj</string>
-    <string name="settings_background_updates_refresh_6h">6 horoj</string>
-    <string name="settings_background_updates_refresh_12h">12 horoj</string>
-    <string name="settings_background_updates_refresh_24h">24 horoj</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignori kiam baterio estas malalta</string>
     <string name="settings_background_updates_section_troubleshoot">Problemsolvi</string>
     <string name="settings_background_updates_battery_optimization">Malŝalti baterian optimumigon</string>

@@ -179,8 +179,6 @@
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_view_style">รูปแบบ</string>
     <string name="settings_background_updates_refresh_never">ไม่รีเฟรช</string>
-    <string name="settings_background_updates_refresh_30min">30 นาที</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 ชั่วโมง</string>
     <string name="air_quality_co_full">คาร์บอนมอนอกไซด์ (CO)</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">จันทร์ค่อมดวง ข้างขึ้น</string>
     <string name="ephemeris_moon_phase_full_moon">จันทร์เต็มดวง</string>
@@ -467,16 +465,10 @@
     <string name="settings_background_updates">การอัปเดตในพื้นหลัง</string>
     <string name="widget_live_wallpaper_day_night_type">เวลา</string>
     <string name="settings_background_updates_summary">ความถี่ของการรีเฟรช, การแก้ไขปัญหา</string>
-    <string name="settings_background_updates_refresh_1h">1 ชั่วโมง</string>
     <string name="settings_background_updates_refresh_never_warning1">เมื่อคุณปิดใช้งานการอัปเดตในพื้นหลัง คุณจะไม่ได้รับการแจ้งเตือนเกี่ยวกับการเตือนภัยหรือหยาดน้ำฟ้า วิดเจ็ตต่างๆจะไม่ถูกรีเฟรชจนกว่าคุณจะเปิดแอป</string>
     <string name="settings_background_updates_refresh_never_warning2">กระบวนการอัปเดตในพื้นหลังนั้นไม่หนักเครื่อง เพราะจะรีเฟรชแค่สถานที่แรกของคุณในความถี่ที่คุณเลือก และสถานที่อื่นที่คุณต้องการในความถี่วันละครั้ง ซึ่งเป็นการทำงานที่ใช้แบตเตอรี่อย่างประหยัดและควรใช้ข้อมูลไม่เกิน %d เมกะไบต์ต่อเดือน</string>
-    <string name="settings_background_updates_refresh_12h">12 ชั่วโมง</string>
     <string name="settings_background_updates_worker_info_title">ข้อมูลตัวทำงาน</string>
     <string name="settings_background_updates_worker_info_summary">ทำงานครั้งล่าสุด: %s</string>
-    <string name="settings_background_updates_refresh_2h">2 ชั่วโมง</string>
-    <string name="settings_background_updates_refresh_3h">3 ชั่วโมง</string>
-    <string name="settings_background_updates_refresh_6h">6 ชั่วโมง</string>
-    <string name="settings_background_updates_refresh_24h">24 ชั่วโมง</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">ไม่รีเฟรชเมื่อแบตเตอรี่เหลือน้อย</string>
     <string name="settings_background_updates_section_troubleshoot">การแก้ไขปัญหา</string>
     <string name="settings_background_updates_battery_optimization">ปิดใช้งานการเพิ่มประสิทธิภาพแบตเตอรี่</string>

@@ -233,8 +233,6 @@
     <string name="settings_widgets_notification_temp_icon_switch">Suhu sebagai Ikon Bilah Status</string>
     <string name="settings_widgets_notification_feels_like_switch">Gunakan suhu terasa seperti</string>
     <string name="settings_source_default_value">Bawaan (tidak diubah)</string>
-    <string name="settings_background_updates_refresh_1h">1 jam</string>
-    <string name="settings_background_updates_refresh_1h_30min">1,5 jam</string>
     <string name="settings_background_updates_refresh_never">Tidak pernah</string>
     <string name="alerts_to_follow">Peringatan yang akan datang, ketuk di sini untuk melihatnya.</string>
     <string name="temperature_real_feel">RealFeel®</string>
@@ -242,11 +240,6 @@
     <string name="wind_direction_variable">Variabel</string>
     <string name="wind_direction_N_short">U</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Badai petir dengan hujan es lebat</string>
-    <string name="settings_background_updates_refresh_30min">30 menit</string>
-    <string name="settings_background_updates_refresh_2h">2 jam</string>
-    <string name="settings_background_updates_refresh_3h">3 jam</string>
-    <string name="settings_background_updates_refresh_6h">6 jam</string>
-    <string name="settings_background_updates_refresh_12h">12 jam</string>
     <string name="precipitation_nowcasting">Curah hujan menit demi menit</string>
     <string name="temperature_degree_day_heating">Hari-derajat pemanasan</string>
     <string name="temperature_degree_day_cooling">Hari-derajat pendinginan</string>
@@ -373,7 +366,6 @@
     <string name="settings_widgets_monochrome_icons_title">Ikon monokrom</string>
     <string name="settings_background_updates">Pembaruan latar belakang</string>
     <string name="pollen_betula">Burja</string>
-    <string name="settings_background_updates_refresh_24h">24 jam</string>
     <string name="widget_subtitle_data_feels_like">Suhu yang dirasakan</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_inph_voice">Inci per jam</string>

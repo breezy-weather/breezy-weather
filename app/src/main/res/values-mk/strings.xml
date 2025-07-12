@@ -182,7 +182,6 @@
     <string name="settings_background_updates_section_troubleshoot">Решавање проблеми</string>
     <string name="settings_background_updates_battery_optimization">Оневозможете ја оптимизацијата на батеријата</string>
     <string name="settings_background_updates_battery_optimization_summary">Ова е првото нешто што треба да се обидете кога не добивате известувања или виџетите не се освежуваат.</string>
-    <string name="settings_background_updates_refresh_6h">6 часа</string>
     <string name="settings_background_updates_battery_optimization_disabled">Оптимизацијата на батеријата е веќе оневозможена.</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Некои производители имаат дополнителни ограничувања за апликации кои ги убиваат услугите во заднина. Веб-страницата Don’t kill my app! има информации за тоа како да го поправите.</string>
     <string name="settings_background_updates_worker_info_title">Информации за работникот</string>
@@ -266,9 +265,6 @@
     <string name="weather_source_accu_preference_days_5">5 дена</string>
     <string name="weather_source_accu_preference_hours_24">24 часа</string>
     <string name="widget_week_style_3_days">3 дена</string>
-    <string name="settings_background_updates_refresh_2h">2 часа</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 часа</string>
-    <string name="settings_background_updates_refresh_3h">3 часа</string>
     <string name="unit_nmi">наут. милји</string>
     <string name="location_search_no_results_advice">Осигурајте се дека барањето за пребарување е напишано правилно и не е премногу специфично. Можете исто така да се обидете да користите друг извор за пребарување локација, што може да даде различни резултати.</string>
     <string name="location_service_native">Мајчин API</string>
@@ -310,8 +306,6 @@
     <string name="widget_week_style_5_days">5 дена</string>
     <string name="widget_clock_font_sans_serif">Санс Сериф</string>
     <string name="widget_clock_font_sans_serif_black">Санс Сериф Црното</string>
-    <string name="settings_background_updates_refresh_12h">12 часа</string>
-    <string name="settings_background_updates_refresh_24h">24 часа</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Не може да се отворат поставките на уредот.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Специфични упатства за производителот</string>
     <string name="settings_location_service">Услуга за локација</string>
@@ -556,8 +550,6 @@
     <string name="settings_background_updates_summary">Стапка на освежување, смена на проблеми</string>
     <string name="settings_background_updates_refresh_title">Стапка на освежување</string>
     <string name="settings_background_updates_refresh_never">Никогаш</string>
-    <string name="settings_background_updates_refresh_30min">Половина час</string>
-    <string name="settings_background_updates_refresh_1h">1 час</string>
     <string name="settings_location_access_background_summaryOn">Овозможено. Апликацијата ќе може да ги освежува временските податоци за вашата моментална локација во заднина.</string>
     <string name="settings_location_access_precise_title">Користење GPS на уредот</string>
     <string name="settings_location_access_precise_summaryOn">Овозможено. И двете се користат мрежата на уредот и давателите на GPS.</string>

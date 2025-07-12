@@ -19,14 +19,14 @@
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
         <item>@string/settings_background_updates_refresh_never</item>
-        <item>@string/settings_background_updates_refresh_30min</item>
-        <item>@string/settings_background_updates_refresh_1h</item>
-        <item>@string/settings_background_updates_refresh_1h_30min</item>
-        <item>@string/settings_background_updates_refresh_2h</item>
-        <item>@string/settings_background_updates_refresh_3h</item>
-        <item>@string/settings_background_updates_refresh_6h</item>
-        <item>@string/settings_background_updates_refresh_12h</item>
-        <item>@string/settings_background_updates_refresh_24h</item>
+        <item>30 min</item>
+        <item>1 hr</item>
+        <item>1 hr and 30 min</item>
+        <item>2 hr</item>
+        <item>3 hr</item>
+        <item>6 hr</item>
+        <item>12 hr</item>
+        <item>24 hr</item>
     </string-array>
     <string-array name="automatic_refresh_rate_values">
         <item>never</item>

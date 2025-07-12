@@ -79,14 +79,6 @@
     <string name="settings_color_light">Licht</string>
     <string name="settings_color_grey">Grijs</string>
     <string name="settings_color_dark">Donker</string>
-    <string name="settings_background_updates_refresh_30min">30 minuten</string>
-    <string name="settings_background_updates_refresh_1h">01:00</string>
-    <string name="settings_background_updates_refresh_1h_30min">01:30</string>
-    <string name="settings_background_updates_refresh_2h">02:00</string>
-    <string name="settings_background_updates_refresh_3h">03:00</string>
-    <string name="settings_background_updates_refresh_6h">06:00</string>
-    <string name="settings_background_updates_refresh_12h">12:00</string>
-    <string name="settings_background_updates_refresh_24h">24:00</string>
     <string name="widget_style_rectangle">Rechthoek</string>
     <string name="widget_style_symmetry">Symmetrisch</string>
     <string name="widget_style_vertical">Verticaal</string>

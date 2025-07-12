@@ -118,14 +118,6 @@
     <string name="settings_location_access_switch_summaryOn">רשאי. אתה יכול להוסיף את המיקום הנוכחי שלך כמיקום.</string>
     <string name="settings_location_access_switch_summaryOff">אנה אפשר אם ברצונך להוסיף את המיקום הנוכחי שלך כמיקום.</string>
     <string name="settings_location_access_background_title">גישה למיקום ברקע</string>
-    <string name="settings_background_updates_refresh_30min">30 דקות</string>
-    <string name="settings_background_updates_refresh_3h">3 שעות</string>
-    <string name="settings_background_updates_refresh_2h">2 שעות</string>
-    <string name="settings_background_updates_refresh_1h">1 שעה</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 שעות</string>
-    <string name="settings_background_updates_refresh_24h">24 שעות</string>
-    <string name="settings_background_updates_refresh_6h">6 שעות</string>
-    <string name="settings_background_updates_refresh_12h">12 שעות</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">התעלם כאשר הסוללה חלשה</string>
     <string name="widget_week_style_5_days">5 ימים</string>
     <string name="widget_week_style_3_days">3 ימים</string>

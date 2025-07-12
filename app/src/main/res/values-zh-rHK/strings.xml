@@ -391,14 +391,6 @@
     <string name="settings_background_updates_refresh_never_warning1">關閉背景更新後，您將不會再收到警告或降水通知。在您開啟應用程式之前，小工具不會重新整理。</string>
     <string name="settings_background_updates_refresh_never_warning2">背景更新處理不會消耗太多資源：它只會按您選擇的頻率重新整理您的首要位置，而次要位置只在您需要時每天重新整理一次。該處理耗電量低，每月的資料使用量應不超過 %d MB。</string>
     <string name="settings_background_updates_refresh_never_warning3">考慮使用較低的重新整理頻率而不是關閉背景更新，如果您仍想關閉背景更新，請點選「繼續」。</string>
-    <string name="settings_background_updates_refresh_30min">30 分鐘</string>
-    <string name="settings_background_updates_refresh_1h">1 小時</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 小時</string>
-    <string name="settings_background_updates_refresh_2h">2 小時</string>
-    <string name="settings_background_updates_refresh_3h">3 小時</string>
-    <string name="settings_background_updates_refresh_6h">6 小時</string>
-    <string name="settings_background_updates_refresh_12h">12 小時</string>
-    <string name="settings_background_updates_refresh_24h">24 小時</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">電池電量低時忽略更新</string>
     <string name="settings_background_updates_section_troubleshoot">疑難排解</string>
     <string name="settings_background_updates_battery_optimization">停用電池最佳化</string>

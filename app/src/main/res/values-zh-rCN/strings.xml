@@ -258,14 +258,6 @@
     <string name="settings_color_grey">灰色</string>
     <string name="settings_color_dark">暗色</string>
     <string name="settings_background_updates_refresh_never">从不</string>
-    <string name="settings_background_updates_refresh_30min">30 分钟</string>
-    <string name="settings_background_updates_refresh_1h">1 小时</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 小时</string>
-    <string name="settings_background_updates_refresh_2h">2 小时</string>
-    <string name="settings_background_updates_refresh_3h">3 小时</string>
-    <string name="settings_background_updates_refresh_6h">6 小时</string>
-    <string name="settings_background_updates_refresh_12h">12 小时</string>
-    <string name="settings_background_updates_refresh_24h">24 小时</string>
     <string name="notification_style_native">原生</string>
     <string name="notification_style_cities">城市</string>
     <string name="widget_style_rectangle">矩形</string>

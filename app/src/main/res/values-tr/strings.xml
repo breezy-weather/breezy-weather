@@ -171,11 +171,6 @@
     <string name="settings_background_updates_summary">Yenileme sıklığı, sorun giderme</string>
     <string name="settings_background_updates_refresh_never">Hiçbir zaman</string>
     <string name="settings_background_updates">Arka plan güncellemeleri</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 saat</string>
-    <string name="settings_background_updates_refresh_3h">3 saat</string>
-    <string name="settings_background_updates_refresh_6h">6 saat</string>
-    <string name="settings_background_updates_refresh_12h">12 saat</string>
-    <string name="settings_background_updates_refresh_24h">24 saat</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Bazı üreticilerin arka plan hizmetlerini sonlandıran ek uygulama kısıtlamaları vardır. Don’t kill my app! Web sitesinden nasıl düzeltileceği hakkında bilgiye ulaşabilirsiniz.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Cihaz ayarları açılamadı.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Pil optimizasyonu zaten devre dışı.</string>
@@ -199,7 +194,6 @@
     <string name="widget_custom_subtitle_keyword_cdp_description">Şu anki çiy noktası</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Boylam</string>
     <string name="settings_background_updates_refresh_title">Yenileme sıklığı</string>
-    <string name="settings_background_updates_refresh_2h">2 saat</string>
     <string name="weather_source_accu_preference_days_1">1 günlük</string>
     <string name="weather_api_key_required_missing_content">Bu kaynağı kullanmak için bir API anahtarı girmeniz gerekir.</string>
     <string name="location_search_no_results">%1$s, %2$s konumunu bulamadı</string>
@@ -232,7 +226,6 @@
     <string name="weather_source_accu_preference_hours_120">120 saatlik</string>
     <string name="action_continue">Devam et</string>
     <string name="action_share">Paylaş</string>
-    <string name="settings_background_updates_refresh_1h">1 saat</string>
     <string name="settings_widgets">Widget’lar &amp; Canlı duvar kağıdı</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Başka bir konum hizmeti seçin</string>
     <string name="location_search_no_results_advice">Aramanızın doğru yazıldığından ve çok ayrıntılı olmadığından emin olun. Ayrıca, farklı sonuçlar verebilecek başka bir konum arama kaynağını da deneyebilirsiniz.</string>
@@ -248,7 +241,6 @@
     <string name="widget_custom_subtitle_keyword_d_description">Tarih</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Hafta (kısa)</string>
     <string name="settings_section_general">Genel</string>
-    <string name="settings_background_updates_refresh_30min">30 dakika</string>
     <string name="settings_icon_packs_weather_icon_dark">Koyu renk simge</string>
     <string name="settings_icon_packs_get_more">Daha fazla al</string>
     <string name="settings_units_summary">Sıcaklık, yağış, mesafe, hız, basınç</string>

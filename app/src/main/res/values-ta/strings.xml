@@ -175,10 +175,6 @@
     <string name="settings_background_updates_summary">புதுப்பிப்பு வீதம், சரிசெய்தல்</string>
     <string name="settings_background_updates_refresh_never_warning1">பின்னணி புதுப்பிப்புகளை முடக்குவதன் மூலம், நீங்கள் இனி விழிப்பூட்டல்கள் அல்லது மழைப்பொழிவு பற்றிய அறிவிப்புகளைப் பெற மாட்டீர்கள். நீங்கள் பயன்பாட்டைத் திறக்கும் வரை விட்செட்டுகள் புதுப்பிக்கப்படாது.</string>
     <string name="settings_background_updates_refresh_never_warning3">பின்னணி புதுப்பிப்புகளை முடக்குவதை விட குறைவான அடிக்கடி புதுப்பிப்பு வீதத்தைப் பயன்படுத்துவதைக் கவனியுங்கள், இல்லையெனில் நீங்கள் தொடர விரும்பினால் “தொடரவும்” என்பதைத் தட்டவும்.</string>
-    <string name="settings_background_updates_refresh_6h">6 மணி நேரம்</string>
-    <string name="settings_background_updates_refresh_3h">3 மணி நேரம்</string>
-    <string name="settings_background_updates_refresh_12h">12 மணி நேரம்</string>
-    <string name="settings_background_updates_refresh_24h">24 மணி நேரம்</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">பேட்டரி குறைவாக இருக்கும்போது புறக்கணிக்கவும்</string>
     <string name="settings_background_updates_section_troubleshoot">சரிசெய்தல்</string>
     <string name="settings_background_updates_battery_optimization">பேட்டரி தேர்வுமுறை முடக்கு</string>
@@ -471,7 +467,6 @@
     <string name="widget_clock_font_sans_serif_light">சான்ச் செரிஃப் லைட்</string>
     <string name="widget_clock_font_sans_serif">செரிஃப் இல்லாமல்</string>
     <string name="widget_clock_font_sans_serif_black">சான்ச் செரிஃப் பிளாக்</string>
-    <string name="settings_background_updates_refresh_2h">2 மணி நேரம்</string>
     <string name="settings_location_access_switch_summaryOn">அனுமதிக்கப்படுகிறது. உங்கள் தற்போதைய இருப்பிடத்தை இருப்பிடமாக சேர்க்கலாம்.</string>
     <string name="settings_location_access_precise_summaryOn">இயக்கப்பட்டது. சாதனத்தின் பிணைய வழங்குநர் முன்னுரிமையிலும் பெரும்பாலான நேரத்திலும் பயன்படுத்தப்படுவார், ஆனால் சி.பி.எச் ஒரு குறைவடையும்.</string>
     <string name="settings_units_precipitation">மழைப்பொழிவு அலகு</string>
@@ -511,9 +506,6 @@
     <string name="widget_label_align_end">வலதுபுறம் சீரமைக்கவும்</string>
     <string name="settings_background_updates_refresh_title">வீதத்தை புதுப்பிக்கவும்</string>
     <string name="settings_background_updates_refresh_never">ஒருபோதும்</string>
-    <string name="settings_background_updates_refresh_30min">30 நிமிடங்கள்</string>
-    <string name="settings_background_updates_refresh_1h">1 மணி நேரம்</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 மணி நேரம்</string>
     <string name="settings_location_access_background_summaryOn">இயக்கப்பட்டது. பின்னணியில் உங்கள் தற்போதைய இருப்பிடத்திற்கான வானிலை தரவை பயன்பாடு புதுப்பிக்க முடியும்.</string>
     <string name="settings_debug">பிழைத்திருத்தம்</string>
     <string name="unit_mps">எம்/கள்</string>

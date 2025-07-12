@@ -194,14 +194,6 @@
     <string name="settings_color_light">Светлая</string>
     <string name="settings_color_grey">Серая</string>
     <string name="settings_color_dark">Темная</string>
-    <string name="settings_background_updates_refresh_30min">30 минут</string>
-    <string name="settings_background_updates_refresh_1h">1 час</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 часа</string>
-    <string name="settings_background_updates_refresh_2h">2 часа</string>
-    <string name="settings_background_updates_refresh_3h">3 часа</string>
-    <string name="settings_background_updates_refresh_6h">6 часов</string>
-    <string name="settings_background_updates_refresh_12h">12 часов</string>
-    <string name="settings_background_updates_refresh_24h">24 часа</string>
     <string name="notification_style_native">Системный</string>
     <string name="notification_style_cities">Города</string>
     <string name="widget_style_rectangle">Прямоугольный</string>

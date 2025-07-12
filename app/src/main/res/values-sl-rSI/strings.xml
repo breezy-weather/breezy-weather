@@ -122,14 +122,6 @@
     <string name="settings_color_light">Svetel</string>
     <string name="settings_color_grey">Siv</string>
     <string name="settings_color_dark">Temen</string>
-    <string name="settings_background_updates_refresh_30min">30 minut</string>
-    <string name="settings_background_updates_refresh_1h">01:00</string>
-    <string name="settings_background_updates_refresh_1h_30min">01:30</string>
-    <string name="settings_background_updates_refresh_2h">02:00</string>
-    <string name="settings_background_updates_refresh_3h">03:00</string>
-    <string name="settings_background_updates_refresh_6h">06:00</string>
-    <string name="settings_background_updates_refresh_12h">12:00</string>
-    <string name="settings_background_updates_refresh_24h">24:00</string>
     <string name="notification_style_native">Privzet</string>
     <string name="widget_style_rectangle">Pravokotnik</string>
     <string name="widget_style_symmetry">Simetrija</string>

@@ -198,14 +198,6 @@
     <string name="location_service_native">API Nativ</string>
     <string name="notification_style_native">Sistem</string>
     <string name="notification_style_cities">Orașe</string>
-    <string name="settings_background_updates_refresh_30min">30 minute</string>
-    <string name="settings_background_updates_refresh_1h">1 oră</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 ore</string>
-    <string name="settings_background_updates_refresh_2h">2 ore</string>
-    <string name="settings_background_updates_refresh_3h">3 ore</string>
-    <string name="settings_background_updates_refresh_6h">6 ore</string>
-    <string name="settings_background_updates_refresh_12h">12 ore</string>
-    <string name="settings_background_updates_refresh_24h">24 de ore</string>
     <string name="settings_automatic">Automat</string>
     <string name="settings_color_light">Luminoasă</string>
     <string name="settings_color_grey">Gri</string>

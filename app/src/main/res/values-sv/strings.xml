@@ -45,7 +45,6 @@
     <string name="unit_cm">cm</string>
     <string name="location_search_weather_source">Väderkälla</string>
     <string name="location_message_failed_to_locate">Misslyckades med att hitta nuvarande plats</string>
-    <string name="settings_background_updates_refresh_2h">2 timmar</string>
     <string name="settings_section_general">Allmänt</string>
     <string name="precipitation_nowcasting">Korttidsprognos för nederbörd</string>
     <string name="unit_lpsqmph_voice">Liter per kvadratmeter per timme</string>
@@ -67,7 +66,6 @@
     <string name="weather_kind_hail">Hagel</string>
     <string name="unit_m">m</string>
     <string name="location_message_added">Plats tillagd</string>
-    <string name="settings_background_updates_refresh_1h">1 timme</string>
     <string name="about_translators">Översättare</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_fahrenheit_short">°</string>
@@ -101,10 +99,8 @@
     <string name="unit_ppcm_voice">Per kubikmeter</string>
     <string name="precipitation_probability">Sannolikhet för nederbörd</string>
     <string name="widget_subtitle_data_aqi">Luftkvalitet</string>
-    <string name="settings_background_updates_refresh_30min">30 minuter</string>
     <string name="uv_index_11">Extremt</string>
     <string name="unit_h_voice">timmar</string>
-    <string name="settings_background_updates_refresh_6h">6 timmar</string>
     <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/s</string>
     <string name="wind_strength">Vindstyrka</string>
@@ -134,10 +130,8 @@
     <string name="ephemeris_moon_phase_new_moon">Nymåne</string>
     <string name="widget_week_style_5_days">5 dagar</string>
     <string name="location_message_list_cannot_be_empty">Platslistan får inte vara tom</string>
-    <string name="settings_background_updates_refresh_12h">12 timmar</string>
     <string name="settings_background_updates">Bakgrundsuppdateringar</string>
     <string name="pollen_betula">Björk</string>
-    <string name="settings_background_updates_refresh_24h">24 timmar</string>
     <string name="uv_index_3_5">Måttligt</string>
     <string name="action_refresh">Uppdatera</string>
     <string name="unit_fahrenheit">°F</string>
@@ -168,7 +162,6 @@
     <string name="air_quality_o3">O₃</string>
     <string name="unit_cmph">cm/h</string>
     <string name="unit_mmph">mm/h</string>
-    <string name="settings_background_updates_refresh_1h_30min">1,5 timmar</string>
     <string name="settings_background_updates_section_troubleshoot">Problemlösning</string>
     <string name="settings_units">Enheter</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
@@ -221,7 +214,6 @@
     <string name="wind_direction">Vindriktning</string>
     <string name="unit_mps_voice">Meter per sekund</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Nuvarande UV</string>
-    <string name="settings_background_updates_refresh_3h">3 timmar</string>
     <string name="unit_ft_voice">Fot</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Nuvarande sikt</string>
     <string name="alerts">Varningar</string>

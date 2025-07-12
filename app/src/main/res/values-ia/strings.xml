@@ -6,12 +6,6 @@
     <string name="visibility_short">Visibilitate</string>
     <string name="widget_week_style_5_days">5 dies</string>
     <string name="settings_section_general">General</string>
-    <string name="settings_background_updates_refresh_1h">1 hora</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 horas</string>
-    <string name="settings_background_updates_refresh_3h">3 horas</string>
-    <string name="settings_background_updates_refresh_6h">6 horas</string>
-    <string name="settings_background_updates_refresh_12h">12 horas</string>
-    <string name="settings_background_updates_refresh_24h">24 horas</string>
     <string name="app_name">Tempore</string>
     <string name="details">Detalios</string>
     <string name="daily_yesterday_short">Heri</string>
@@ -26,7 +20,6 @@
     <string name="widget_live_wallpaper_day_night_type">Hora</string>
     <string name="settings_background_updates">Actualisationes de secunde plano</string>
     <string name="settings_background_updates_refresh_never">Nunquam</string>
-    <string name="settings_background_updates_refresh_2h">2 horas</string>
     <string name="settings_appearance_language_title">Lingua</string>
     <string name="about_app">A proposito del app</string>
     <string name="settings_appearance_summary">Lingua, modo obscur, pacchettos de icone, unitates</string>

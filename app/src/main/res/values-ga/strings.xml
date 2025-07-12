@@ -311,13 +311,6 @@
     <string name="settings_background_updates_refresh_never_warning1">Trí nuashonruithe cúlra a chasadh as, ní bhfaighidh tú fógraí faoi fholáirimh ná frasaíocht a thuilleadh. Ní dhéanfar giuirléidí a athnuachan go dtí go n-osclaíonn tú an aip.</string>
     <string name="settings_background_updates_refresh_never_warning2">Tá an próiseas nuashonraithe cúlra éadrom: ní athnuann sé ach do chéad suíomh ag do ráta roghnaithe, agus suíomhanna tánaisteacha ach amháin má theastaíonn siad uait, uair sa lá. Tá sé éifeachtúil ó thaobh ceallraí de agus níor cheart go sáródh sé %d MB de thomhaltas sonraí in aghaidh na míosa.</string>
     <string name="settings_background_updates_refresh_never_warning3">Smaoinigh ar ráta athnuachana nach bhfuil chomh minic sin a úsáid seachas nuashonruithe cúlra a chasadh as, nó tapáil “Lean ar aghaidh” más mian leat dul ar aghaidh fós.</string>
-    <string name="settings_background_updates_refresh_30min">30 nóiméad</string>
-    <string name="settings_background_updates_refresh_1h">1 uair an chloig</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 uair an chloig</string>
-    <string name="settings_background_updates_refresh_2h">2 uair an chloig</string>
-    <string name="settings_background_updates_refresh_3h">3 uair an chloig</string>
-    <string name="settings_background_updates_refresh_12h">12 uair an chloig</string>
-    <string name="settings_background_updates_refresh_24h">24 uair an chloig</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Déan neamhaird de nuair atá an ceallraí íseal</string>
     <string name="settings_background_updates_section_troubleshoot">Fabhtcheartú</string>
     <string name="settings_background_updates_battery_optimization">Díchumasaigh leas iomlán a bhaint ceallraí</string>
@@ -638,7 +631,6 @@
     <string name="widget_style_tile">Tíl</string>
     <string name="settings_background_updates_summary">Athnuaigh an ráta, fabhtcheartú</string>
     <string name="settings_background_updates_refresh_title">Ráta athnuachana</string>
-    <string name="settings_background_updates_refresh_6h">6 uair an chloig</string>
     <string name="settings_source_api_key">Eochair API</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Ásc réamhaisnéise</string>
     <string name="settings_units_temperature">Aonad teochta</string>

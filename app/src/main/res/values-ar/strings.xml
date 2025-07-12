@@ -152,14 +152,6 @@
     <string name="settings_color_light">فاتح</string>
     <string name="settings_color_grey">رمادي</string>
     <string name="settings_color_dark">داكن</string>
-    <string name="settings_background_updates_refresh_30min">30 دقيقة</string>
-    <string name="settings_background_updates_refresh_1h">كل ساعة</string>
-    <string name="settings_background_updates_refresh_1h_30min">كل ساعة ونصف</string>
-    <string name="settings_background_updates_refresh_2h">كل ساعتين</string>
-    <string name="settings_background_updates_refresh_3h">كل ٣ ساعات</string>
-    <string name="settings_background_updates_refresh_6h">كل ست ساعات</string>
-    <string name="settings_background_updates_refresh_12h">كل 12 ساعات</string>
-    <string name="settings_background_updates_refresh_24h">كل 24 ساعات</string>
     <string name="widget_subtitle_data_time">وقت آخر تحديث للطقس</string>
     <string name="widget_subtitle_data_aqi">جودة الهواء</string>
     <string name="widget_subtitle_data_wind">الرياح</string>

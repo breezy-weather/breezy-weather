@@ -231,14 +231,6 @@
     <string name="settings_color_night_always">Aina yönäkymä</string>
     <string name="settings_color_light">Vaalea</string>
     <string name="settings_color_dark">Tumma</string>
-    <string name="settings_background_updates_refresh_30min">30 minuuttia</string>
-    <string name="settings_background_updates_refresh_1h">1 tunti</string>
-    <string name="settings_background_updates_refresh_1h_30min">1,5 tuntia</string>
-    <string name="settings_background_updates_refresh_2h">2 tuntia</string>
-    <string name="settings_background_updates_refresh_3h">3 tuntia</string>
-    <string name="settings_background_updates_refresh_6h">6 tuntia</string>
-    <string name="settings_background_updates_refresh_12h">12 tuntia</string>
-    <string name="settings_background_updates_refresh_24h">24 tuntia</string>
     <string name="notification_style_native">Natiivi</string>
     <string name="notification_style_cities">Kaupungit</string>
     <string name="widget_style_rectangle">Suorakulmio</string>

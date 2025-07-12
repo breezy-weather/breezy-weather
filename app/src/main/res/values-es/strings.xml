@@ -200,14 +200,6 @@
     <string name="settings_color_light">Claro</string>
     <string name="settings_color_grey">Gris</string>
     <string name="settings_color_dark">Oscuro</string>
-    <string name="settings_background_updates_refresh_30min">30 minutos</string>
-    <string name="settings_background_updates_refresh_1h">1 hora</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 horas</string>
-    <string name="settings_background_updates_refresh_2h">2 horas</string>
-    <string name="settings_background_updates_refresh_3h">3 horas</string>
-    <string name="settings_background_updates_refresh_6h">6 horas</string>
-    <string name="settings_background_updates_refresh_12h">12 horas</string>
-    <string name="settings_background_updates_refresh_24h">24 horas</string>
     <string name="notification_style_native">Nativo</string>
     <string name="notification_style_cities">Ciudades</string>
     <string name="widget_style_rectangle">Rectangular</string>

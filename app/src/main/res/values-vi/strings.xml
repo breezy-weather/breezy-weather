@@ -74,11 +74,7 @@
     <string name="widget_custom_subtitle_keyword_xms_description">Thời gian mặt trăng lặn của hôm nay, ngày mai, …, 4 ngày sau</string>
     <string name="action_app_store">Cửa hàng ứng dụng</string>
     <string name="action_more">Xem thêm</string>
-    <string name="settings_background_updates_refresh_3h">3 tiếng</string>
-    <string name="settings_background_updates_refresh_6h">6 tiếng</string>
     <string name="settings_background_updates_battery_optimization_disabled">Tối ưu hóa pin đã bị tắt.</string>
-    <string name="settings_background_updates_refresh_12h">12 tiếng</string>
-    <string name="settings_background_updates_refresh_24h">24 tiếng</string>
     <string name="settings_background_updates_battery_optimization">Tắt tối ưu hóa pin</string>
     <string name="settings_background_updates_battery_optimization_summary">Đây là điều đầu tiên để thử khi bạn không nhận được thông báo hoặc tiện ích không làm mới.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Không thể mở cài đặt thiết bị.</string>
@@ -247,10 +243,6 @@
     <string name="settings_background_updates_summary">Tốc độ làm mới, khắc phục sự cố</string>
     <string name="settings_background_updates_refresh_title">Tốc độ làm mới</string>
     <string name="settings_background_updates_refresh_never">Không bao giờ</string>
-    <string name="settings_background_updates_refresh_30min">30 phút</string>
-    <string name="settings_background_updates_refresh_1h">1 tiếng</string>
-    <string name="settings_background_updates_refresh_1h_30min">1 tiếng rưỡi</string>
-    <string name="settings_background_updates_refresh_2h">2 tiếng</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Chỉ dẫn cụ thể theo nhà sản xuất</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Một số nhà sản xuất thêm một sự ngăn cản làm dừng các dịch vụ chạy dưới nền. Website Don’t kill my app! có thông tin về cách sửa nó.</string>
     <string name="settings_background_updates_worker_info_title">Thông tin tiến trình</string>

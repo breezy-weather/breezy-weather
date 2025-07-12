@@ -230,14 +230,6 @@
     <string name="settings_color_light">Chiaro</string>
     <string name="settings_color_grey">Grigio</string>
     <string name="settings_color_dark">Scuro</string>
-    <string name="settings_background_updates_refresh_30min">30 minuti</string>
-    <string name="settings_background_updates_refresh_1h">1 ora</string>
-    <string name="settings_background_updates_refresh_1h_30min">1,5 ore</string>
-    <string name="settings_background_updates_refresh_2h">2 ore</string>
-    <string name="settings_background_updates_refresh_3h">3 ore</string>
-    <string name="settings_background_updates_refresh_6h">6 ore</string>
-    <string name="settings_background_updates_refresh_12h">12 ore</string>
-    <string name="settings_background_updates_refresh_24h">24 ore</string>
     <string name="notification_style_native">Nativo</string>
     <string name="notification_style_cities">Città</string>
     <string name="widget_style_rectangle">Rettangolo</string>

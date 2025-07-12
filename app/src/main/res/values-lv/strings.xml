@@ -148,7 +148,6 @@
     <string name="widget_live_wallpaper_weather_kind">Laikapstākļi</string>
     <string name="widget_live_wallpaper_day_night_type">Laiks</string>
     <string name="settings_section_general">Vispārīgi</string>
-    <string name="settings_background_updates_refresh_30min">30 minūtes</string>
     <string name="settings_background_updates_refresh_never">Nekad</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Izlaist, kad akumulatora līmenis ir zems</string>
     <string name="settings_background_updates_section_troubleshoot">Sarežģījumu novēršana</string>
@@ -232,8 +231,6 @@
     <string name="widget_custom_subtitle_keyword_xnp_description">Nakts nokrišņi šodien, rīt, …, pēc 4 dienām (%)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Dienas vējš šodien, rīt, …, pēc 4 dienām</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Nakts vējš šodien, rīt, …, pēc 4 dienām</string>
-    <string name="settings_background_updates_refresh_1h_30min">1,5 stundas</string>
-    <string name="settings_background_updates_refresh_2h">2 stundas</string>
     <string name="settings_background_updates_battery_optimization_disabled">Akumulatora optimizēšana jau ir atspējota.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Ražotājiem atbilstošas norādes</string>
     <string name="settings_location_service">Atrašanās vietas pakalpojums</string>
@@ -374,11 +371,6 @@
     <string name="widget_style_temperature">Temperatūra</string>
     <string name="settings_background_updates">Fona atjauninājumi</string>
     <string name="settings_background_updates_refresh_title">Atsvaidzināšanas biežums</string>
-    <string name="settings_background_updates_refresh_1h">1 stunda</string>
-    <string name="settings_background_updates_refresh_3h">3 stundas</string>
-    <string name="settings_background_updates_refresh_6h">6 stundas</string>
-    <string name="settings_background_updates_refresh_12h">12 stundas</string>
-    <string name="settings_background_updates_refresh_24h">24 stundas</string>
     <string name="settings_background_updates_battery_optimization_summary">Šī ir pirmā lieta, ko izmēģināt, ja netiek saņemti paziņojumi vai logrīki netiek atsvaidzināti.</string>
     <string name="settings_location_access_switch_summaryOff">Lūgums atļaut, ja ir vēlme savu pašreizējo atrašanās vietu pievienot kā atrašanās vietu.</string>
     <string name="settings_location_access_switch_summaryOn">Atļauta. Savu pašreizējo atrašanās vietu var pievienot kā atrašanās vietu.</string>

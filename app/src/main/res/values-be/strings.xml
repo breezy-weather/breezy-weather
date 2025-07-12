@@ -315,14 +315,6 @@
     <string name="settings_background_updates">Фонавыя абнаўленні</string>
     <string name="settings_background_updates_summary">Частата абнаўлення, адладка</string>
     <string name="settings_background_updates_refresh_title">Частата абнаўлення</string>
-    <string name="settings_background_updates_refresh_30min">30 хвілін</string>
-    <string name="settings_background_updates_refresh_1h">1 гадзіна</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 гадзіны</string>
-    <string name="settings_background_updates_refresh_2h">2 гадзіны</string>
-    <string name="settings_background_updates_refresh_3h">3 гадзіны</string>
-    <string name="settings_background_updates_refresh_6h">6 гадзін</string>
-    <string name="settings_background_updates_refresh_12h">12 гадзін</string>
-    <string name="settings_background_updates_refresh_24h">24 гадзіны</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Прапускаць, калі нізкі зарад батарэі</string>
     <string name="settings_background_updates_section_troubleshoot">Адладка</string>
     <string name="settings_background_updates_battery_optimization">Адключыць аптымізацыю батарэі</string>

@@ -199,7 +199,6 @@
     <string name="dialog_permissions_location_content">A funkció használatához engedélyt kell adnia az alkalmazásnak, hogy hozzáférjen a jelenlegi tartózkodási helyszínéhez. Ez csak a kiválasztott időjárási forrásokkal lesz megosztva. Ha meggondolta magát, megszakíthatja a folyamatot, és kézzel is hozzáadhat egy rögzített helyszínt.</string>
     <string name="settings_background_updates_refresh_title">Frissítési gyakoriság</string>
     <string name="settings_background_updates_refresh_never">Soha</string>
-    <string name="settings_background_updates_refresh_1h_30min">1,5 óra</string>
     <string name="settings_background_updates_battery_optimization_summary">Ez az első teendő, amikor nem kap értesítéseket, vagy a modulok nem frissülnek.</string>
     <string name="location_message_reverse_geocoding_failed">Az időjárásforrás nem talált megegyező helyszínt</string>
     <string name="widget_multi_city">Több város</string>
@@ -210,7 +209,6 @@
     <string name="settings_location_access_precise_summaryOff">Engedélyezze a „Pontos helyszín használata” lehetőséget, ha problémái vannak a hely meghatározásával.</string>
     <string name="settings_location_access_precise_summaryOn">Engedélyezve. A készülék hálózati szolgáltatója elsőbbséget élvez, de a GPS is használható tartalékként.</string>
     <string name="widget_subtitle_data_wind">Szél</string>
-    <string name="settings_background_updates_refresh_2h">2 óra</string>
     <string name="action_undo">Visszavonás</string>
     <string name="settings_location_access_switch_summaryOff">Engedélyezze, ha hozzá szeretné adni a jelenlegi tartózkodási helyszínét az alkalmazáshoz.</string>
     <string name="settings_appearance_summary">Nyelv, színtéma, ikoncsomag, mértékegységek</string>
@@ -313,8 +311,6 @@
     <string name="widget_clock_font_analog">Analóg</string>
     <string name="settings_background_updates">Frissítés a háttérben</string>
     <string name="settings_background_updates_summary">Frissítési gyakoriság, hibaelhárítás</string>
-    <string name="settings_background_updates_refresh_3h">3 óra</string>
-    <string name="settings_background_updates_refresh_6h">6 óra</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Mellőzés alacsony töltöttségnél</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nem sikerült megnyitni a készülék beállításait.</string>
     <string name="settings_background_updates_worker_info_title">Folyamatinformáció</string>
@@ -340,9 +336,6 @@
     <string name="action_continue">Folytatás</string>
     <string name="widget_style_rectangle">Téglalap</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="settings_background_updates_refresh_30min">30 perc</string>
-    <string name="settings_background_updates_refresh_1h">1 óra</string>
-    <string name="settings_background_updates_refresh_12h">12 óra</string>
     <string name="settings_units_summary">Hőmérséklet, csapadék, távolság, sebesség, légnyomás</string>
     <string name="weather_source_accu_preference_days_15">15 nap</string>
     <string name="location_swipe_to_delete">Balra húzással eltávolíthatja ezt az elemet</string>
@@ -355,7 +348,6 @@
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="settings_background_updates_section_troubleshoot">Hibaelhárítás</string>
     <string name="settings_section_general">Általános</string>
-    <string name="settings_background_updates_refresh_24h">24 óra</string>
     <string name="pollen_level_5">Nagyon magas</string>
     <string name="weather_source_accu_preference_hours_24">24 óra</string>
     <string name="location_message_search_failed">A helyszínkeresés sikertelen</string>

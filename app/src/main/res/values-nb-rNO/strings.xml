@@ -212,9 +212,7 @@
     <string name="unit_cm">cm</string>
     <string name="unit_mm">mm</string>
     <string name="unit_mps">m/s</string>
-    <string name="settings_background_updates_refresh_30min">30 minutter</string>
     <string name="settings_invalid_syntax">Ugyldig syntaks</string>
-    <string name="settings_background_updates_refresh_12h">12 timer</string>
     <string name="settings_items_drag_to_sort">Trykk for å flytte objektet</string>
     <string name="settings_changes_apply_after_restart">Endringer vil skje etter omstart</string>
     <string name="settings_background_updates_refresh_never">Aldri</string>
@@ -225,9 +223,6 @@
     <string name="settings_none">Ingen</string>
     <string name="settings_color_app">Følg appen</string>
     <string name="unit_kph">km/h</string>
-    <string name="settings_background_updates_refresh_2h">2 timer</string>
-    <string name="settings_background_updates_refresh_1h_30min">1,5 time</string>
-    <string name="settings_background_updates_refresh_6h">6 timer</string>
     <string name="settings_color_day_night">Dag/natt</string>
     <string name="settings_automatic">Automatisk</string>
     <string name="settings_unavailable_no_background_updates">Ikke tilgjengelig, aktiver bakgrunnsoppdateringer først</string>
@@ -263,9 +258,6 @@
     <string name="unit_mps_voice">Meter per sekund</string>
     <string name="settings_debug_dump_crash_logs_saved">Krasjlogger lagret</string>
     <string name="unit_kph_voice">Kilometer i timen</string>
-    <string name="settings_background_updates_refresh_24h">24 timer</string>
-    <string name="settings_background_updates_refresh_3h">3 timer</string>
-    <string name="settings_background_updates_refresh_1h">1 time</string>
     <string name="unit_hpa_voice">Hektopascal</string>
     <string name="unit_hpa">hPa</string>
     <string name="unit_kpa_voice">Kilopascal</string>

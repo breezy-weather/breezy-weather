@@ -216,9 +216,6 @@
     <string name="widget_live_wallpaper_day_night_type">Vrijeme</string>
     <string name="settings_background_updates">Ažuriranja u pozadini</string>
     <string name="settings_background_updates_refresh_never">Nikada</string>
-    <string name="settings_background_updates_refresh_30min">30 minuta</string>
-    <string name="settings_background_updates_refresh_1h">1 sat</string>
-    <string name="settings_background_updates_refresh_1h_30min">1,5 sati</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Upute specifične za različite proizvođače</string>
     <string name="settings_background_updates_worker_info_summary">Zadnje pokretanje: %s</string>
     <string name="settings_location_access_switch_summaryOn">Dozvoljeno. Vašu trenutnu lokaciju možete dodati kao lokaciju za prognozu.</string>
@@ -465,11 +462,6 @@
     <string name="widget_live_wallpaper_weather_kind">Vrijeme</string>
     <string name="settings_background_updates_summary">Brzina osvježavanja, rješavanje problema</string>
     <string name="settings_background_updates_refresh_title">Učestalost osvježavanja</string>
-    <string name="settings_background_updates_refresh_2h">2 sata</string>
-    <string name="settings_background_updates_refresh_3h">3 sata</string>
-    <string name="settings_background_updates_refresh_6h">6 sati</string>
-    <string name="settings_background_updates_refresh_12h">12 sati</string>
-    <string name="settings_background_updates_refresh_24h">24 sata</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignoriši kada je baterija slaba</string>
     <string name="settings_background_updates_section_troubleshoot">Rješavanje problema</string>
     <string name="settings_background_updates_battery_optimization">Onemogući optimizaciju baterije</string>
