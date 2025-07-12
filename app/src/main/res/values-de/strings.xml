@@ -817,4 +817,5 @@
     <string name="wind_origin">Aus %s</string>
     <string name="settings_appearance_section_regional">Sprache und Region</string>
     <string name="settings_appearance_section_theme">Erscheinungsbild</string>
+    <string name="action_configure_item">%s konfigurieren</string>
 </resources>
