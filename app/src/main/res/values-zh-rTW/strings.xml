@@ -886,4 +886,5 @@
     <string name="wind_origin">吹%s</string>
     <string name="settings_appearance_section_regional">語言和區域</string>
     <string name="settings_appearance_section_theme">佈景主題</string>
+    <string name="action_configure_item">設定%s</string>
 </resources>
