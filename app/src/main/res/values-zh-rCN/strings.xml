@@ -895,4 +895,6 @@
     <string name="ephemeris_dawn_at">拂晓时间 %s</string>
     <string name="ephemeris_dusk_at">薄暮时间 %s</string>
     <string name="wind_origin">来自%s</string>
+    <string name="settings_appearance_section_regional">语言和区域</string>
+    <string name="settings_appearance_section_theme">主题</string>
 </resources>
