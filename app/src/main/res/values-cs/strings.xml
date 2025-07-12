@@ -816,4 +816,7 @@
     <string name="ephemeris_dawn_at">Úsvit v %s</string>
     <string name="ephemeris_dusk_at">Setmění v %s</string>
     <string name="wind_origin">Ze %s</string>
+    <string name="action_configure_item">Nastavit %s</string>
+    <string name="settings_appearance_section_regional">Jazyk a oblast</string>
+    <string name="settings_appearance_section_theme">Motiv</string>
 </resources>
