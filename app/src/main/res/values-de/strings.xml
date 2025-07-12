@@ -815,4 +815,6 @@
     <string name="ephemeris_dawn_at">Morgengrauen um %s</string>
     <string name="ephemeris_dusk_at">Abenddämmerung um %s</string>
     <string name="wind_origin">Aus %s</string>
+    <string name="settings_appearance_section_regional">Sprache und Region</string>
+    <string name="settings_appearance_section_theme">Erscheinungsbild</string>
 </resources>
