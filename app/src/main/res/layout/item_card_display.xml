@@ -39,10 +39,20 @@
             android:tint="?attr/colorPrimary"
             style="@style/material_image_button" />
 
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/item_card_display_configureBtn"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/item_card_display_deleteBtn"
+            android:contentDescription="@string/action_configure_item"
+            android:src="@drawable/ic_settings"
+            android:tint="?attr/colorPrimary"
+            android:visibility="gone"
+            style="@style/material_image_button" />
+
         <TextView
             android:id="@+id/item_card_display_title"
             android:layout_centerVertical="true"
-            android:layout_toStartOf="@id/item_card_display_deleteBtn"
+            android:layout_toStartOf="@id/item_card_display_configureBtn"
             android:layout_toEndOf="@id/item_card_display_sortButton"
             android:maxLines="1"
             android:ellipsize="end"

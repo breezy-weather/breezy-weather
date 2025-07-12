@@ -144,7 +144,7 @@ object IntentHelper {
         activity.startActivity(Intent(activity, DailyTrendDisplayManageActivity::class.java))
     }
 
-    fun startHourlyTrendDisplayManageActivityForResult(activity: Activity) {
+    fun startHourlyTrendDisplayManageActivity(activity: Activity) {
         activity.startActivity(Intent(activity, HourlyTrendDisplayManageActivity::class.java))
     }
 

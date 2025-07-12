@@ -427,6 +427,8 @@
     <string name="action_open_in_other_app">Open in another app</string>
     <string name="action_open_in_other_app_description">Open this location in another app</string>
     <string name="action_settings">Settings</string>
+    <!-- Example: Configure Daily forecast -->
+    <string name="action_configure_item">Configure %s</string>
     <string name="action_preview">Preview</string>
     <string name="action_about">About</string>
     <string name="action_dependencies" translatable="false">@string/about_dependencies</string>

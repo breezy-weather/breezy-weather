@@ -518,6 +518,7 @@
     <string name="uv_alert_level">Vigilance</string>
     <string name="action_search">Recherche</string>
     <string name="action_settings">Paramètres</string>
+    <string name="action_configure_item">Configurer %s</string>
     <string name="action_preview">Aperçu</string>
     <string name="action_about">À propos</string>
     <string name="action_app_store">Magasin d’applications</string>

@@ -116,7 +116,7 @@ fun MainScreenSettingsScreen(
                     summary = HourlyTrendDisplay.getSummary(context, hourlyTrendDisplayList)
                 ) {
                     (context as? Activity)?.let { a ->
-                        IntentHelper.startHourlyTrendDisplayManageActivityForResult(a)
+                        IntentHelper.startHourlyTrendDisplayManageActivity(a)
                     }
                 }
             }

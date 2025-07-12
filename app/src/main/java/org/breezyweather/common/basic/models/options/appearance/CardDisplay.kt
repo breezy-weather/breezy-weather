@@ -16,19 +16,30 @@
 
 package org.breezyweather.common.basic.models.options.appearance
 
+import android.app.Activity
 import android.content.Context
 import androidx.annotation.StringRes
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.BaseEnum
+import org.breezyweather.common.utils.helpers.IntentHelper
 
 enum class CardDisplay(
     override val id: String,
     @StringRes private val nameId: Int,
+    val configure: ((Activity) -> Unit)? = null
 ) : BaseEnum {
 
     CARD_PRECIPITATION_NOWCAST("precipitation_nowcast", R.string.precipitation_nowcasting),
-    CARD_DAILY_OVERVIEW("daily_overview", R.string.daily_forecast),
-    CARD_HOURLY_OVERVIEW("hourly_overview", R.string.hourly_forecast),
+    CARD_DAILY_OVERVIEW(
+        "daily_overview",
+        R.string.daily_forecast,
+        { activity -> IntentHelper.startDailyTrendDisplayManageActivity(activity) }
+    ),
+    CARD_HOURLY_OVERVIEW(
+        "hourly_overview",
+        R.string.hourly_forecast,
+        { activity -> IntentHelper.startHourlyTrendDisplayManageActivity(activity) }
+    ),
     CARD_AIR_QUALITY("air_quality", R.string.air_quality),
     CARD_POLLEN("pollen", R.string.pollen),
     CARD_SUNRISE_SUNSET("sunrise_sunset", R.string.ephemeris),
