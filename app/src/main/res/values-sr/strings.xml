@@ -809,4 +809,11 @@
     <string name="label_collapsed">Склопљено</string>
     <string name="unit_mum">µm</string>
     <string name="unit_mum_voice">Микрометри</string>
+    <string name="ephemeris_about_dawn">Зора је када се прва видљива светлост дана појави пре изласка сунца.</string>
+    <string name="ephemeris_about_dusk">Сумрак је најмрачнија фаза сумрака пре него што нестане последња видљива светлост.</string>
+    <string name="wind_origin">Од %s</string>
+    <string name="ephemeris_dawn_at">Зора у %s</string>
+    <string name="ephemeris_dusk_at">Сумрак у %s</string>
+    <string name="settings_appearance_section_regional">Језик и регион</string>
+    <string name="settings_appearance_section_theme">Тема</string>
 </resources>
