@@ -808,5 +808,5 @@
     <string name="ephemeris_dusk_at">Сумрак у %s</string>
     <string name="settings_appearance_section_regional">Језик и регион</string>
     <string name="settings_appearance_section_theme">Тема</string>
-    <string name="action_configure_item">Подешавање %s</string>
+    <string name="action_configure_item">Конфигурација %s</string>
 </resources>
