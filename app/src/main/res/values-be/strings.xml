@@ -344,9 +344,9 @@
     <string name="settings_source_default_value">Прадвызначаная (без змен)</string>
     <string name="settings_source_api_key">Ключ API</string>
     <string name="settings_appearance">Выгляд</string>
-    <string name="settings_appearance_summary">Мова, цёмная тэма, набор значкоў, адзінкі вымярэння</string>
+    <string name="settings_appearance_summary">Мова, цёмны варыянт тэмы, набор значкоў, адзінкі вымярэння</string>
     <string name="settings_appearance_language_title">Мова</string>
-    <string name="settings_appearance_dark_mode_title">Тэма</string>
+    <string name="settings_appearance_dark_mode_title">Цёмны варыянт тэмы</string>
     <string name="settings_appearance_dark_mode_locations_title">Светлая / Цёмная тэма для месцазнаходжання</string>
     <string name="settings_appearance_icon_pack_title">Набор значкоў</string>
     <string name="settings_icon_packs_title">Наборы значкоў</string>
@@ -418,9 +418,9 @@
     <string name="settings_color_app">Як у праграме</string>
     <string name="settings_color_day_always">Заўсёды дзень</string>
     <string name="settings_color_night_always">Заўсёды ноч</string>
-    <string name="settings_color_light">Светлы варыянт</string>
-    <string name="settings_color_grey">Шэры варыянт</string>
-    <string name="settings_color_dark">Цёмны варыянт</string>
+    <string name="settings_color_light">Светлы</string>
+    <string name="settings_color_grey">Шэры</string>
+    <string name="settings_color_dark">Цёмны</string>
     <string name="unit_bft_nominative">%s Бф</string>
     <string name="unit_bft_voice">па шкале Бофарта</string>
     <string name="unit_mps">м/с</string>
@@ -711,8 +711,8 @@
     <string name="message_outdated_server_data">Ад сервера атрыманы састарэлыя даныя</string>
     <string name="action_enable">Уключыць</string>
     <string name="action_allow">Дазволіць</string>
-    <string name="action_open_in_other_app">Адкрыць у знешняй праграме</string>
-    <string name="action_open_in_other_app_description">Адкрыць месца ў знешняй праграме</string>
+    <string name="action_open_in_other_app">Адкрыць у іншай праграме</string>
+    <string name="action_open_in_other_app_description">Адкрыць месца ў іншай праграме</string>
     <string name="uv_index_about">Пра УФ-індэкс</string>
     <string name="uv_index_about_description">УФ-індэкс вымярае сілу ультрафіялетавага выпраменьвання сонца. Чым вышэй паказальнік, тым мацней ўздзеянне і хутчэй могуць ўзнікаць сонечныя апёкі, рак скуры і пашкоджанне вачэй.</string>
     <string name="uv_index_scale">Шкала УФ-індэкса</string>
@@ -792,4 +792,8 @@
     <string name="visibility_about_description">Бачнасць паказвае, на якой адлегласці можна выразна разглядзець аб’екты накшталт будынкаў ці пагоркаў. Бачнасць могуць пагоршыць ападкі, туман, пыл, смог або дымка.</string>
     <string name="label_expanded">Разгорнута</string>
     <string name="label_collapsed">Згорнута</string>
+    <string name="wind_origin">З %s</string>
+    <string name="action_configure_item">Наладзіць %s</string>
+    <string name="settings_appearance_section_regional">Мова і рэгіён</string>
+    <string name="settings_appearance_section_theme">Тэма</string>
 </resources>
