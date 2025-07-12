@@ -865,4 +865,7 @@
     <string name="ephemeris_dawn_at">Amanhecer às %s</string>
     <string name="ephemeris_dusk_at">Anoitecer às %s</string>
     <string name="wind_origin">De %s</string>
+    <string name="action_configure_item">Configurar %s</string>
+    <string name="settings_appearance_section_regional">Idioma e região</string>
+    <string name="settings_appearance_section_theme">Tema</string>
 </resources>
