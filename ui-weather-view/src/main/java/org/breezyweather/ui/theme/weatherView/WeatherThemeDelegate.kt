@@ -55,9 +55,6 @@ interface WeatherThemeDelegate {
         daylight: Boolean,
     ): Int
 
-    @Px
-    fun getHeaderTopMargin(context: Context): Int
-
     @ColorInt
     fun getOnBackgroundColor(
         context: Context,

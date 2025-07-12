@@ -22,6 +22,7 @@ import android.view.Window
 import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
+import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.ui.theme.weatherView.WeatherThemeDelegate
 import org.breezyweather.ui.theme.weatherView.WeatherView
@@ -117,10 +118,10 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
         daylight: Boolean,
     ): Boolean {
         return when (weatherKind) {
-            WeatherView.WEATHER_KIND_CLEAR -> false
+            WeatherView.WEATHER_KIND_CLEAR -> daylight && !context.isDarkMode
             WeatherView.WEATHER_KIND_CLOUDY -> false
             WeatherView.WEATHER_KIND_CLOUD -> false
-            WeatherView.WEATHER_KIND_FOG -> false
+            WeatherView.WEATHER_KIND_FOG -> daylight
             WeatherView.WEATHER_KIND_HAIL -> false
             WeatherView.WEATHER_KIND_HAZE -> false
             WeatherView.WEATHER_KIND_RAINY -> false
@@ -140,9 +141,6 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
     ): Int {
         return innerGetBackgroundColor(weatherKind, daylight)
     }
-
-    override fun getHeaderTopMargin(context: Context): Int =
-        (context.resources.displayMetrics.heightPixels * 0.25).toInt()
 
     override fun getOnBackgroundColor(
         context: Context,
@@ -174,5 +172,5 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
 
     override fun getHomeCardMargins(context: Context): Int = context
         .resources
-        .getDimensionPixelSize(R.dimen.little_margin)
+        .getDimensionPixelSize(R.dimen.normal_margin)
 }

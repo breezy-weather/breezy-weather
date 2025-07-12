@@ -24,6 +24,8 @@ import android.graphics.Canvas
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.Size
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import org.breezyweather.ui.theme.weatherView.WeatherView
 import org.breezyweather.ui.theme.weatherView.WeatherView.WeatherKindRule
 import kotlin.math.min
@@ -78,8 +80,6 @@ class MaterialWeatherView(
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
         // At what position will animations disappear
-        // TODO: Stops too early, should take into account "current details" height
-        mFirstCardMarginTop = (resources.displayMetrics.heightPixels * 0.25).toInt() // 0.66
         for (index in 0 until childCount) {
             val child = getChildAt(index)
             child.measure(
@@ -87,6 +87,11 @@ class MaterialWeatherView(
                 MeasureSpec.makeMeasureSpec(measuredHeight, MeasureSpec.EXACTLY)
             )
         }
+        val insets = ViewCompat.getRootWindowInsets(this)
+        val i = insets?.getInsets(WindowInsetsCompat.Type.systemBars() + WindowInsetsCompat.Type.displayCutout())
+
+        // TODO: Arbitrary value
+        mFirstCardMarginTop = ((i?.top ?: 0) + 800) // 0.66
     }
 
     override fun onLayout(b: Boolean, i: Int, i1: Int, i2: Int, i3: Int) {

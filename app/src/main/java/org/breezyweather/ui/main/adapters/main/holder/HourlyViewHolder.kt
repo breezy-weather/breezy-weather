@@ -20,7 +20,9 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import breezyweather.domain.location.model.Location
@@ -36,20 +38,16 @@ import org.breezyweather.ui.main.adapters.trend.HourlyTrendAdapter
 import org.breezyweather.ui.main.layouts.TrendHorizontalLinearLayoutManager
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.main.widgets.TrendRecyclerViewScrollBar
-import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
-import org.breezyweather.ui.theme.weatherView.WeatherViewController
 
 class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_hourly_trend_card, parent, false)
 ) {
-    private val title: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_title)
-    private val subtitle: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_subtitle)
-    private val buttonGroup: MaterialButtonGroup =
-        itemView.findViewById(R.id.container_main_hourly_trend_card_buttonView)
-    private val trendRecyclerView: TrendRecyclerView = itemView.findViewById(
-        R.id.container_main_hourly_trend_card_trendRecyclerView
-    )
+    private val titleView: TextView = itemView.findViewById(R.id.hourly_block_title)
+    private val titleIconView: ImageView = itemView.findViewById(R.id.hourly_block_title_icon)
+    private val subtitle: TextView = itemView.findViewById(R.id.hourly_block_subtitle)
+    private val buttonGroup: MaterialButtonGroup = itemView.findViewById(R.id.hourly_block_button_group)
+    private val trendRecyclerView: TrendRecyclerView = itemView.findViewById(R.id.hourly_block_trendRecyclerView)
     private val scrollBar: TrendRecyclerViewScrollBar = TrendRecyclerViewScrollBar()
 
     init {
@@ -63,24 +61,21 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
         itemAnimationEnabled: Boolean,
-        firstCard: Boolean,
+        selectedTab: String?,
+        setSelectedTab: (String?) -> Unit,
     ) {
-        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
+
+        val color = MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            titleView.isAccessibilityHeading = true
+        }
+        titleView.setText(R.string.hourly_forecast)
+        titleView.setTextColor(color)
+        titleIconView.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.ic_schedule))
+        titleIconView.setColorFilter(color)
 
         val weather = location.weather ?: return
-        val colors = ThemeManager
-            .getInstance(context)
-            .weatherThemeDelegate
-            .getThemeColors(
-                context,
-                WeatherViewController.getWeatherKind(location),
-                WeatherViewController.isDaylight(location)
-            )
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            title.isAccessibilityHeading = true
-        }
-        title.setTextColor(colors[0])
 
         if (weather.current?.hourlyForecast.isNullOrEmpty()) {
             subtitle.visibility = View.GONE
@@ -97,6 +92,15 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 override val name = it.getDisplayName(activity)
             }
         }.toMutableList()
+        selectedTab?.let { tab ->
+            buttonList.indexOfFirst { it.name == tab }.let {
+                if (it >= 0) {
+                    trendAdapter.selectedIndex = it
+                } else {
+                    setSelectedTab(null) // Reset
+                }
+            }
+        }
 
         if (buttonList.size < 2) {
             buttonGroup.visibility = View.GONE
@@ -114,6 +118,11 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                         buttonGroup.removeView(it)
                     }
             }
+            buttonGroup.children
+                .filter { it is MaterialButton && it.tag == MaterialButtonGroup.OVERFLOW_BUTTON_TAG }
+                .forEach {
+                    it.contentDescription = context.getString(R.string.action_more)
+                }
             buttonList.forEachIndexed { index, button ->
                 buttonGroup.addView(
                     MaterialButton(
@@ -126,6 +135,7 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                         isChecked = index == trendAdapter.selectedIndex
                         setOnClickListener {
                             trendAdapter.selectedIndex = index
+                            setSelectedTab(button.name)
                             buttonGroup.children
                                 .filter { it is MaterialButton && it.tag != MaterialButtonGroup.OVERFLOW_BUTTON_TAG }
                                 .forEach { button ->

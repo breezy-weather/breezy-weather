@@ -43,6 +43,16 @@ import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.domain.settings.SettingsManager
 import java.text.FieldPosition
+import kotlin.Array
+import kotlin.Boolean
+import kotlin.Double
+import kotlin.Int
+import kotlin.Number
+import kotlin.String
+import kotlin.UnsupportedOperationException
+import kotlin.apply
+import kotlin.charArrayOf
+import kotlin.let
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
