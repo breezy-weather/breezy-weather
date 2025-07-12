@@ -19,6 +19,7 @@ package org.breezyweather.domain.weather.model
 import android.content.Context
 import android.graphics.Color
 import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import breezyweather.domain.weather.model.UV
 import org.breezyweather.R
@@ -70,5 +71,18 @@ fun UV.getUVColor(context: Context): Int {
         in UV.UV_INDEX_HIGH..<UV.UV_INDEX_EXCESSIVE -> ContextCompat.getColor(context, R.color.colorLevel_4)
         in UV.UV_INDEX_EXCESSIVE..Double.MAX_VALUE -> ContextCompat.getColor(context, R.color.colorLevel_5)
         else -> Color.TRANSPARENT
+    }
+}
+
+@DrawableRes
+fun UV.getShape(): Int {
+    if (index == null) return R.drawable.uv_unknown
+    return when (index!!) {
+        in 0.0..<UV.UV_INDEX_LOW -> R.drawable.uv_low
+        in UV.UV_INDEX_LOW..<UV.UV_INDEX_MIDDLE -> R.drawable.uv_moderate
+        in UV.UV_INDEX_MIDDLE..<UV.UV_INDEX_HIGH -> R.drawable.uv_high
+        in UV.UV_INDEX_HIGH..<UV.UV_INDEX_EXCESSIVE -> R.drawable.uv_very_high
+        in UV.UV_INDEX_EXCESSIVE..Double.MAX_VALUE -> R.drawable.uv_extreme
+        else -> R.drawable.uv_unknown
     }
 }

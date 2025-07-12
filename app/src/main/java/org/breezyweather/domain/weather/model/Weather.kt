@@ -23,6 +23,10 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.extensions.toCalendarWithTimeZone
+import org.breezyweather.domain.settings.SettingsManager
+import java.util.Calendar
+import java.util.Date
 
 val Weather.validAirQuality: AirQuality?
     get() = if (current?.airQuality != null && current!!.airQuality!!.isIndexValid) {
@@ -81,5 +85,70 @@ fun Weather.getMinutelyDescription(context: Context, location: Location): String
         )
     } else {
         context.getString(R.string.precipitation_none)
+    }
+}
+
+fun Weather.getTemperatureRangeSummary(context: Context, location: Location): Pair<String, String>? {
+    if (today == null) return null
+
+    val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
+    val currentHour = cal[Calendar.HOUR_OF_DAY]
+
+    val isDayFirst: Boolean
+    val temperatures = mutableListOf<Double?>()
+
+    val halfDayTemperatureRange = mutableListOf<String>()
+    val halfDayTemperatureRangeVoice = mutableListOf<String>()
+    val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
+
+    // Early morning
+    if (currentHour < 6) {
+        val yesterday = dailyForecast.getOrElse(todayIndex!!.minus(1)) { null }
+        isDayFirst = false
+        temperatures.add(yesterday?.night?.temperature?.temperature)
+        temperatures.add(today!!.day?.temperature?.temperature)
+    } else if (currentHour < 18) {
+        isDayFirst = true
+        temperatures.add(today!!.day?.temperature?.temperature)
+        temperatures.add(today!!.night?.temperature?.temperature)
+    } else {
+        isDayFirst = false
+        temperatures.add(today!!.night?.temperature?.temperature)
+        temperatures.add(tomorrow?.day?.temperature?.temperature)
+    }
+
+    temperatures.getOrElse(0) { null }?.let {
+        halfDayTemperatureRange.add(
+            context.getString(if (isDayFirst) R.string.daytime_short else R.string.nighttime_short) +
+                context.getString(R.string.colon_separator) +
+                temperatureUnit.formatMeasureShort(context, it)
+        )
+        halfDayTemperatureRangeVoice.add(
+            context.getString(if (isDayFirst) R.string.daytime_short else R.string.nighttime_short) +
+                context.getString(R.string.colon_separator) +
+                temperatureUnit.formatContentDescription(context, it)
+        )
+    }
+
+    temperatures.getOrElse(1) { null }?.let {
+        halfDayTemperatureRange.add(
+            context.getString(if (isDayFirst) R.string.nighttime_short else R.string.daytime_short) +
+                context.getString(R.string.colon_separator) +
+                temperatureUnit.formatMeasureShort(context, it)
+        )
+        halfDayTemperatureRangeVoice.add(
+            context.getString(if (isDayFirst) R.string.nighttime_short else R.string.daytime_short) +
+                context.getString(R.string.colon_separator) +
+                temperatureUnit.formatContentDescription(context, it)
+        )
+    }
+
+    return if (halfDayTemperatureRange.isNotEmpty()) {
+        Pair(
+            halfDayTemperatureRange.joinToString(context.getString(R.string.dot_separator)),
+            halfDayTemperatureRangeVoice.joinToString(context.getString(R.string.dot_separator))
+        )
+    } else {
+        null
     }
 }

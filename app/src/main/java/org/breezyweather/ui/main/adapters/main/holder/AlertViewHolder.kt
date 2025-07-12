@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -14,12 +14,13 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.main.adapters.main
+package org.breezyweather.ui.main.adapters.main.holder
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.LinearLayout
+import android.view.ViewGroup
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
@@ -48,49 +49,58 @@ import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
+import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import java.util.Date
 
-@SuppressLint("InflateParams")
-class FirstCardHeaderController(
-    private val mActivity: GeoActivity,
-    location: Location,
-) : View.OnClickListener {
-    private val mView: View = LayoutInflater.from(mActivity).inflate(R.layout.container_main_first_card_header, null)
-    private val mFormattedId: String = location.formattedId
-    private var mContainer: LinearLayout? = null
+class AlertViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
+    LayoutInflater.from(parent.context).inflate(R.layout.container_main_alert, parent, false)
+) {
 
-    init {
+    @SuppressLint("DefaultLocale")
+    override fun onBindView(
+        activity: GeoActivity,
+        location: Location,
+        provider: ResourceProvider,
+        listAnimationEnabled: Boolean,
+        itemAnimationEnabled: Boolean,
+    ) {
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
+
         // Don’t show if alertList only contains alerts in the past
         if (location.weather?.alertList?.any { it.endDate == null || it.endDate!!.time > Date().time } == true) {
-            mView.visibility = View.VISIBLE
-            mView.setOnClickListener {
-                IntentHelper.startAlertActivity(mActivity, mFormattedId)
+            itemView.visibility = View.VISIBLE
+            itemView.setOnClickListener {
+                IntentHelper.startAlertActivity(activity, location.formattedId)
             }
-            mView.findViewById<ComposeView>(R.id.container_main_first_card_alert_list).setContent {
-                BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(mActivity, location)) {
+            itemView.findViewById<ComposeView>(R.id.container_main_first_card_alert_list).setContent {
+                BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(activity, location)) {
                     if (location.weather!!.currentAlertList.isEmpty()) {
-                        UpcomingAlerts()
+                        UpcomingAlerts(location.formattedId)
                     } else {
                         AlertList(location)
                     }
                 }
             }
         } else {
-            mView.visibility = View.GONE
+            itemView.visibility = View.GONE
         }
     }
 
     @Composable
     fun UpcomingAlerts(
+        formattedId: String,
         modifier: Modifier = Modifier,
     ) {
+        val activity = LocalActivity.current
         ListItem(
             modifier = modifier
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = themeRipple(),
                     onClick = {
-                        IntentHelper.startAlertActivity(mActivity, mFormattedId)
+                        activity?.let {
+                            IntentHelper.startAlertActivity(it, formattedId)
+                        }
                     }
                 ),
             colors = ListItemDefaults.colors(
@@ -105,7 +115,7 @@ class FirstCardHeaderController(
             },
             leadingContent = {
                 Icon(
-                    painterResource(R.drawable.ic_alert),
+                    painterResource(R.drawable.ic_warning),
                     contentDescription = stringResource(R.string.alerts_to_follow),
                     tint = DayNightTheme.colors.titleColor
                 )
@@ -118,6 +128,7 @@ class FirstCardHeaderController(
         location: Location,
         modifier: Modifier = Modifier,
     ) {
+        val activity = LocalActivity.current
         val context = LocalContext.current
         Column {
             location.weather!!.currentAlertList.forEach { currentAlert ->
@@ -127,7 +138,9 @@ class FirstCardHeaderController(
                             interactionSource = remember { MutableInteractionSource() },
                             indication = themeRipple(),
                             onClick = {
-                                IntentHelper.startAlertActivity(mActivity, mFormattedId, currentAlert.alertId)
+                                activity?.let {
+                                    IntentHelper.startAlertActivity(it, location.formattedId, currentAlert.alertId)
+                                }
                             }
                         ),
                     colors = ListItemDefaults.colors(
@@ -160,7 +173,7 @@ class FirstCardHeaderController(
                     },
                     leadingContent = {
                         Icon(
-                            painterResource(R.drawable.ic_alert),
+                            painterResource(R.drawable.ic_warning),
                             contentDescription = null,
                             tint = Color(ColorUtils.getDarkerColor(currentAlert.color))
                         )
@@ -168,23 +181,5 @@ class FirstCardHeaderController(
                 )
             }
         }
-    }
-
-    fun bind(firstCardContainer: LinearLayout?) {
-        mContainer = firstCardContainer
-        mContainer!!.addView(mView, 0)
-    }
-
-    fun unbind() {
-        mContainer?.let {
-            it.removeViewAt(0)
-            mContainer = null
-        }
-    }
-
-    // interface.
-    @SuppressLint("NonConstantResourceId")
-    override fun onClick(v: View) {
-        IntentHelper.startAlertActivity(mActivity, mFormattedId)
     }
 }

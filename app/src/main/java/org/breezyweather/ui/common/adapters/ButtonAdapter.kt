@@ -77,17 +77,6 @@ class ButtonAdapter @JvmOverloads constructor(
         return buttonList.size
     }
 
-    fun insertItem(button: Button) {
-        buttonList.add(button)
-        notifyItemInserted(buttonList.size - 1)
-    }
-
-    fun removeItem(position: Int): Button {
-        val tag = buttonList.removeAt(position)
-        notifyItemRemoved(position)
-        return tag
-    }
-
     companion object {
         const val UNCHECKABLE_INDEX = -1
     }

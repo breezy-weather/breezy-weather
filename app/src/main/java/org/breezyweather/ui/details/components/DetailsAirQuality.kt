@@ -16,6 +16,7 @@
 
 package org.breezyweather.ui.details.components
 
+import androidx.annotation.ColorInt
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -86,11 +87,20 @@ import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.charts.SpecificVerticalAxisItemPlacer
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
-import org.breezyweather.ui.main.adapters.AqiAdapter.AqiItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.theme.compose.DayNightTheme
 import kotlin.math.max
 import kotlin.math.roundToInt
+
+class AqiItem(
+    val pollutantType: PollutantIndex,
+    @field:ColorInt val color: Int,
+    val progress: Float,
+    val max: Float,
+    val title: String,
+    val content: String,
+    val talkBack: String,
+)
 
 @Composable
 fun DetailsAirQuality(
@@ -124,8 +134,7 @@ fun DetailsAirQuality(
                                     PollutantIndex.getUnit(pollutantIndex).formatMeasure(context, it),
                                     context.getString(pollutantIndex.voicedName) +
                                         context.getString(R.string.colon_separator) +
-                                        PollutantIndex.getUnit(pollutantIndex).formatContentDescription(context, it),
-                                    false
+                                        PollutantIndex.getUnit(pollutantIndex).formatContentDescription(context, it)
                                 )
                             )
                         }
@@ -144,9 +153,7 @@ fun DetailsAirQuality(
                                         PollutantIndex.getUnit(pollutantIndex).formatMeasure(context, it),
                                         context.getString(pollutantIndex.voicedName) +
                                             context.getString(R.string.colon_separator) +
-                                            PollutantIndex.getUnit(pollutantIndex)
-                                                .formatContentDescription(context, it),
-                                        false
+                                            PollutantIndex.getUnit(pollutantIndex).formatContentDescription(context, it)
                                     )
                                 )
                             }
