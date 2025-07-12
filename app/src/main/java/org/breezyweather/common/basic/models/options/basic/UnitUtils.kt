@@ -25,6 +25,7 @@ import android.icu.text.MeasureFormat
 import android.icu.text.NumberFormat
 import android.icu.util.Measure
 import android.icu.util.MeasureUnit
+import android.icu.util.TimeUnit
 import android.os.Build
 import android.text.BidiFormatter
 import android.text.SpannableString
@@ -48,6 +49,11 @@ import java.text.FieldPosition
 import java.util.Locale
 import kotlin.math.pow
 import kotlin.math.roundToInt
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Duration.Companion.seconds
 
 object UnitUtils {
 
@@ -199,6 +205,10 @@ object UnitUtils {
             throw UnsupportedOperationException()
         }
 
+        if (unit is TimeUnit && unitWidth != UnitWidth.SHORT_SIMPLE) {
+            return formatDurationWithIcu(context, value, unit, unitWidth)
+        }
+
         val adjustedLocale = getAdjustedLocale(context.currentLocale, unit)
 
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
@@ -209,6 +219,7 @@ object UnitUtils {
                 .unit(unit)
                 .perUnit(perUnit)
                 .unitWidth(unitWidth.numberFormatterWidth)
+                .usage(if (unit is TimeUnit) "duration" else null)
                 .format(value)
                 .toString()
         } else {
@@ -232,6 +243,65 @@ object UnitUtils {
                         )
                     }
                 }
+        }
+    }
+
+    /**
+     * Format duration
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private fun formatDurationWithIcu(
+        context: Context,
+        value: Number,
+        unit: TimeUnit,
+        unitWidth: UnitWidth,
+    ): String {
+        val measureFormat = MeasureFormat.getInstance(context.currentLocale, unitWidth.measureFormatWidth)
+        val duration = when (unit) {
+            MeasureUnit.YEAR, MeasureUnit.MONTH, MeasureUnit.WEEK -> {
+                return measureFormat.format(Measure(value, unit))
+            }
+            MeasureUnit.DAY -> value.toDouble().days
+            MeasureUnit.HOUR -> value.toDouble().hours
+            MeasureUnit.MINUTE -> value.toDouble().minutes
+            MeasureUnit.SECOND -> value.toDouble().seconds
+            else -> value.toDouble().milliseconds
+        }
+
+        return duration.toComponents { days, hours, minutes, seconds, _ ->
+            when {
+                days > 0 -> {
+                    if (hours == 0) {
+                        measureFormat.format(Measure(days, MeasureUnit.DAY))
+                    } else {
+                        measureFormat.formatMeasures(
+                            Measure(days, MeasureUnit.DAY),
+                            Measure(hours, MeasureUnit.HOUR)
+                        )
+                    }
+                }
+                hours > 0 -> {
+                    if (minutes == 0) {
+                        measureFormat.format(Measure(hours, MeasureUnit.HOUR))
+                    } else {
+                        measureFormat.formatMeasures(
+                            Measure(hours, MeasureUnit.HOUR),
+                            Measure(minutes, MeasureUnit.MINUTE)
+                        )
+                    }
+                }
+                minutes > 0 -> {
+                    if (seconds == 0) {
+                        measureFormat.format(Measure(minutes, MeasureUnit.MINUTE))
+                    } else {
+                        measureFormat.formatMeasures(
+                            Measure(minutes, MeasureUnit.MINUTE),
+                            Measure(seconds, MeasureUnit.SECOND)
+                        )
+                    }
+                }
+                else -> measureFormat.format(Measure(minutes, MeasureUnit.SECOND))
+            }
         }
     }
 

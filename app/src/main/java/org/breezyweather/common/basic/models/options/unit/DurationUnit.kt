@@ -58,6 +58,19 @@ enum class DurationUnit(
         precision = 2
     )
 
+    fun formatMeasureShort(
+        context: Context,
+        value: Double,
+        isValueInDefaultUnit: Boolean = true,
+    ) = UnitUtils.formatMeasure(
+        context = context,
+        enum = this,
+        value = value,
+        precision = 1,
+        isValueInDefaultUnit = isValueInDefaultUnit,
+        unitWidth = UnitWidth.SHORT_SIMPLE
+    )
+
     override fun formatMeasure(
         context: Context,
         value: Double,

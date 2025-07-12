@@ -602,14 +602,15 @@
     <string name="settings_background_updates_refresh_never_warning1">By turning off background updates, you will no longer receive notifications of alerts or precipitation. Widgets won’t be refreshed until you open the app.</string>
     <string name="settings_background_updates_refresh_never_warning2">The background update process is lightweight: it only refreshes your first location at your select rate, and secondary locations only if you need them, once a day. It’s battery-efficient and should not exceed %d MB of data consumption a month.</string>
     <string name="settings_background_updates_refresh_never_warning3">Consider using a less frequent refresh rate rather than turning off background updates, otherwise tap “Continue” if you still want to proceed.</string>
-    <string name="settings_background_updates_refresh_30min">30 minutes</string>
-    <string name="settings_background_updates_refresh_1h">1 hour</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 hours</string>
-    <string name="settings_background_updates_refresh_2h">2 hours</string>
-    <string name="settings_background_updates_refresh_3h">3 hours</string>
-    <string name="settings_background_updates_refresh_6h">6 hours</string>
-    <string name="settings_background_updates_refresh_12h">12 hours</string>
-    <string name="settings_background_updates_refresh_24h">24 hours</string>
+    <!-- All deprecated below, now use duration formatting -->
+    <string name="settings_background_updates_refresh_30min" translatable="false">30 minutes</string>
+    <string name="settings_background_updates_refresh_1h" translatable="false">1 hour</string>
+    <string name="settings_background_updates_refresh_1h_30min" translatable="false">1.5 hours</string>
+    <string name="settings_background_updates_refresh_2h" translatable="false">2 hours</string>
+    <string name="settings_background_updates_refresh_3h" translatable="false">3 hours</string>
+    <string name="settings_background_updates_refresh_6h" translatable="false">6 hours</string>
+    <string name="settings_background_updates_refresh_12h" translatable="false">12 hours</string>
+    <string name="settings_background_updates_refresh_24h" translatable="false">24 hours</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Skip when battery is low</string>
     <string name="settings_background_updates_section_troubleshoot">Troubleshoot</string>
     <string name="settings_background_updates_battery_optimization">Disable battery optimization</string>

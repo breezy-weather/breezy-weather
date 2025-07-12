@@ -35,6 +35,11 @@ enum class UnitWidth(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureFormat.FormatWidth.SHORT else null,
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) NumberFormatter.UnitWidth.SHORT else null
     ),
+    SHORT_SIMPLE(
+        "short_simple",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureFormat.FormatWidth.SHORT else null,
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) NumberFormatter.UnitWidth.SHORT else null
+    ),
     FULL(
         "full",
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureFormat.FormatWidth.WIDE else null,

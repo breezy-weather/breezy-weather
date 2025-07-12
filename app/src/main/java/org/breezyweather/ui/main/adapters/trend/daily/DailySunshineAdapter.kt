@@ -75,7 +75,7 @@ class DailySunshineAdapter(
                 null,
                 null,
                 sunshineDuration?.toFloat(),
-                daily.sunshineDuration?.let { DurationUnit.HOUR.formatMeasure(itemView.context, it) },
+                daily.sunshineDuration?.let { DurationUnit.HOUR.formatMeasureShort(itemView.context, it) },
                 mHighestIndex.toFloat(),
                 0f
             )

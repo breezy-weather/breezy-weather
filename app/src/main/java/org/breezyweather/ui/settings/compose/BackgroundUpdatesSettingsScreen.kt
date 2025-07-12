@@ -39,11 +39,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.core.net.toUri
 import org.breezyweather.R
 import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.models.options.UpdateInterval
+import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.powerManager
@@ -55,7 +57,7 @@ import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.ui.settings.activities.WorkerInfoActivity
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.settings.preference.clickablePreferenceItem
-import org.breezyweather.ui.settings.preference.composables.ListPreferenceView
+import org.breezyweather.ui.settings.preference.composables.ListPreferenceViewWithCard
 import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.composables.PreferenceViewWithCard
 import org.breezyweather.ui.settings.preference.composables.SwitchPreferenceView
@@ -94,14 +96,22 @@ fun BackgroundSettingsScreen(
         ) {
             sectionHeaderItem(R.string.settings_background_updates_section_general)
             listPreferenceItem(R.string.settings_background_updates_refresh_title) { id ->
+                val valueArray = stringArrayResource(R.array.automatic_refresh_rate_values)
+                val nameArray = stringArrayResource(R.array.automatic_refresh_rates).mapIndexed { index, value ->
+                    UpdateInterval.entries.firstOrNull { it.id == valueArray[index] }?.let { updateInterval ->
+                        updateInterval.intervalInHour?.let { intervalInHour ->
+                            DurationUnit.HOUR.formatContentDescription(context, intervalInHour)
+                        }
+                    } ?: value
+                }.toTypedArray()
                 val dialogNeverRefreshOpenState = remember { mutableStateOf(false) }
-                ListPreferenceView(
-                    titleId = id,
+                ListPreferenceViewWithCard(
+                    title = stringResource(id),
+                    summary = { _, value -> nameArray[valueArray.indexOfFirst { it == value }] },
                     selectedKey = updateInterval.id,
-                    valueArrayId = R.array.automatic_refresh_rate_values,
-                    nameArrayId = R.array.automatic_refresh_rates,
+                    valueArray = valueArray,
+                    nameArray = nameArray,
                     withState = false,
-                    card = true,
                     isFirst = true,
                     onValueChanged = {
                         val newValue = UpdateInterval.getInstance(it)
