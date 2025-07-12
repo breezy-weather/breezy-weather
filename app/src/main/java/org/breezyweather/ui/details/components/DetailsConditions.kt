@@ -90,7 +90,6 @@ import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isLandscape
-import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.extensions.roundDownToNearestMultiplier
 import org.breezyweather.common.extensions.roundUpToNearestMultiplier
 import org.breezyweather.common.extensions.toBitmap
@@ -435,7 +434,7 @@ private fun WeatherConditionItem(
                 (if (showRealTemp) temperature?.temperature else temperature?.feelsLikeTemperature).let { temp ->
                     TextFixedHeight(
                         text = temp?.let {
-                            temperatureUnit.formatMeasureShort(context, value = it, 1, context.isRtl)
+                            temperatureUnit.formatMeasureShort(context, value = it, 1)
                         } ?: "",
                         style = MaterialTheme.typography.displaySmall,
                         modifier = Modifier

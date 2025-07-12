@@ -56,7 +56,6 @@ import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
-import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.extensions.roundDownToNearestMultiplier
 import org.breezyweather.common.extensions.roundUpToNearestMultiplier
 import org.breezyweather.common.extensions.toDate
@@ -309,7 +308,7 @@ private fun DewPointItem(
         header()
         TextFixedHeight(
             text = dewPoint?.let {
-                temperatureUnit.formatMeasureShort(context, value = it, 1, context.isRtl)
+                temperatureUnit.formatMeasureShort(context, value = it, 1)
             } ?: "",
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier

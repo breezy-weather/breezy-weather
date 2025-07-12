@@ -39,10 +39,13 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.TextUnit
 import org.breezyweather.common.basic.models.options.unit.UnitWidth
+import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.domain.settings.SettingsManager
 import java.text.FieldPosition
+import java.util.Locale
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
@@ -196,10 +199,12 @@ object UnitUtils {
             throw UnsupportedOperationException()
         }
 
+        val adjustedLocale = getAdjustedLocale(context.currentLocale, unit)
+
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
             SettingsManager.getInstance(context).useNumberFormatter
         ) {
-            (NumberFormatter.withLocale(context.currentLocale) as LocalizedNumberFormatter)
+            (NumberFormatter.withLocale(adjustedLocale) as LocalizedNumberFormatter)
                 .precision(if (precision == 0) Precision.integer() else Precision.maxFraction(precision))
                 .unit(unit)
                 .perUnit(perUnit)
@@ -209,7 +214,7 @@ object UnitUtils {
         } else {
             MeasureFormat
                 .getInstance(
-                    context.currentLocale,
+                    adjustedLocale,
                     unitWidth.measureFormatWidth,
                     NumberFormat.getInstance().apply { maximumFractionDigits = precision }
                 )
@@ -228,6 +233,33 @@ object UnitUtils {
                     }
                 }
         }
+    }
+
+    /**
+     * Some ICU translations are not really good, replacing with others locales
+     */
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun getAdjustedLocale(
+        currentLocale: Locale,
+        unit: MeasureUnit,
+    ): Locale {
+        /**
+         * Beaufort scale:
+         * - Chinese (traditional) is verbose but not Chinese (simplified), so using it instead
+         * - Ukrainian is verbose but not Russian, so using it instead
+         */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA && unit == MeasureUnit.BEAUFORT) {
+            if (currentLocale.isChinese) return Locale("zh", "CN")
+            if (currentLocale.code.startsWith("uk")) return Locale("ru")
+        }
+
+        /**
+         * Kelvin:
+         * - Chinese (traditional) is spelled, while it’s just a K in Chinese (simplified), so using it instead
+         */
+        if (unit == MeasureUnit.KELVIN && currentLocale.isChinese) return Locale("zh", "CN")
+
+        return currentLocale
     }
 
     fun formatWithoutIcu(
@@ -276,19 +308,29 @@ object UnitUtils {
      * Units will stay at the same size if it somehow fails to parse
      */
     fun formatUnitsHalfSize(formattedMeasure: String): CharSequence {
-        val lastIndexOfANumber = formattedMeasure.lastIndexOfAny(DIGITS, formattedMeasure.length - 1)
-        val relativeSizeStartingPosition = lastIndexOfANumber + 1
-        if (lastIndexOfANumber < 0 || relativeSizeStartingPosition >= formattedMeasure.length) {
+        val firstIndexOfADigit = formattedMeasure.indexOfAny(DIGITS, 0)
+        val lastIndexOfADigit = formattedMeasure.lastIndexOfAny(DIGITS, formattedMeasure.length - 1)
+        if (firstIndexOfADigit < 0 || lastIndexOfADigit < 0 || lastIndexOfADigit > formattedMeasure.length) {
             return formattedMeasure
         }
         return SpannableString(formattedMeasure)
             .apply {
-                setSpan(
-                    RelativeSizeSpan(0.5f),
-                    relativeSizeStartingPosition,
-                    formattedMeasure.length,
-                    SPAN_EXCLUSIVE_EXCLUSIVE
-                )
+                if (firstIndexOfADigit > 0) {
+                    setSpan(
+                        RelativeSizeSpan(0.5f),
+                        0,
+                        firstIndexOfADigit,
+                        SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
+                if (lastIndexOfADigit < formattedMeasure.length) {
+                    setSpan(
+                        RelativeSizeSpan(0.5f),
+                        lastIndexOfADigit + 1,
+                        formattedMeasure.length,
+                        SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
             }
     }
 
@@ -300,15 +342,22 @@ object UnitUtils {
         formattedMeasure: String,
         fontSize: TextUnit,
     ): AnnotatedString {
-        val lastIndexOfANumber = formattedMeasure.lastIndexOfAny(DIGITS, formattedMeasure.length - 1)
-        val differentSizeStartingPosition = lastIndexOfANumber + 1
+        val firstIndexOfADigit = formattedMeasure.indexOfAny(DIGITS, 0)
+        val lastIndexOfADigit = formattedMeasure.lastIndexOfAny(DIGITS, formattedMeasure.length - 1)
         return buildAnnotatedString {
-            if (lastIndexOfANumber < 0 || differentSizeStartingPosition >= formattedMeasure.length) {
+            if (firstIndexOfADigit < 0 || lastIndexOfADigit < 0 || lastIndexOfADigit > formattedMeasure.length) {
                 append(formattedMeasure)
             } else {
-                append(formattedMeasure.substring(0, differentSizeStartingPosition))
-                withStyle(style = SpanStyle(fontSize = fontSize)) {
-                    append(formattedMeasure.substring(differentSizeStartingPosition))
+                if (firstIndexOfADigit > 0) {
+                    withStyle(style = SpanStyle(fontSize = fontSize)) {
+                        append(formattedMeasure.substring(0, firstIndexOfADigit))
+                    }
+                }
+                append(formattedMeasure.substring(firstIndexOfADigit, lastIndexOfADigit + 1))
+                if (lastIndexOfADigit < formattedMeasure.length) {
+                    withStyle(style = SpanStyle(fontSize = fontSize)) {
+                        append(formattedMeasure.substring(lastIndexOfADigit + 1))
+                    }
                 }
             }
         }

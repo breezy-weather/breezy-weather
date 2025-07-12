@@ -37,6 +37,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.text.buildAnnotatedString
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Hourly
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
@@ -166,13 +167,20 @@ private fun VisibilitySummary(
             modifier = Modifier.clearAndSetSemantics {}
         )
         TextFixedHeight(
-            text = if (minVisibility == maxVisibility) {
-                maxVisibilityFormatted
-            } else {
-                stringResource(
-                    R.string.visibility_from_to_number,
-                    distanceUnit.formatValue(context, minVisibility),
-                    maxVisibilityFormatted
+            text = buildAnnotatedString {
+                append(
+                    UnitUtils.formatUnitsDifferentFontSize(
+                        formattedMeasure = if (minVisibility == maxVisibility) {
+                            maxVisibilityFormatted
+                        } else {
+                            stringResource(
+                                R.string.visibility_from_to_number,
+                                distanceUnit.formatValue(context, minVisibility),
+                                maxVisibilityFormatted
+                            )
+                        },
+                        fontSize = MaterialTheme.typography.headlineSmall.fontSize
+                    )
                 )
             },
             style = MaterialTheme.typography.displaySmall,
