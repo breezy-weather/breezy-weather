@@ -26,7 +26,7 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 enum class CardDisplay(
     override val id: String,
     @StringRes private val nameId: Int,
-    val configure: ((Activity) -> Unit)? = null
+    val configure: ((Activity) -> Unit)? = null,
 ) : BaseEnum {
 
     CARD_PRECIPITATION_NOWCAST("precipitation_nowcast", R.string.precipitation_nowcasting),

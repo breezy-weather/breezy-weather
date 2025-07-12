@@ -26,7 +26,6 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.ui.common.widgets.slidingItem.SlidingItemContainerLayout
 import org.breezyweather.ui.settings.activities.CardDisplayManageActivity
