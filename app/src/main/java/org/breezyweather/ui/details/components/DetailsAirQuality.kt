@@ -73,7 +73,7 @@ import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
@@ -121,10 +121,10 @@ fun DetailsAirQuality(
                                     airQuality.getIndex(pollutantIndex)!!.toFloat(),
                                     PollutantIndex.indexExcessivePollution.toFloat(),
                                     context.getString(pollutantIndex.shortName),
-                                    PollutantIndex.getUnit(pollutantIndex).getValueText(context, it),
+                                    PollutantIndex.getUnit(pollutantIndex).formatMeasure(context, it),
                                     context.getString(pollutantIndex.voicedName) +
                                         context.getString(R.string.colon_separator) +
-                                        PollutantIndex.getUnit(pollutantIndex).getValueVoice(context, it),
+                                        PollutantIndex.getUnit(pollutantIndex).formatContentDescription(context, it),
                                     false
                                 )
                             )
@@ -141,10 +141,11 @@ fun DetailsAirQuality(
                                         airQuality.getIndex(pollutantIndex)!!.toFloat(),
                                         PollutantIndex.indexExcessivePollution.toFloat(),
                                         context.getString(pollutantIndex.shortName),
-                                        PollutantIndex.getUnit(pollutantIndex).getValueText(context, it),
+                                        PollutantIndex.getUnit(pollutantIndex).formatMeasure(context, it),
                                         context.getString(pollutantIndex.voicedName) +
                                             context.getString(R.string.colon_separator) +
-                                            PollutantIndex.getUnit(pollutantIndex).getValueVoice(context, it),
+                                            PollutantIndex.getUnit(pollutantIndex)
+                                                .formatContentDescription(context, it),
                                         false
                                     )
                                 )
@@ -267,7 +268,7 @@ private fun AirQualityItem(
             TextFixedHeight(
                 text = buildAnnotatedString {
                     airQuality.getIndex()?.let {
-                        append(Utils.formatInt(context, it))
+                        append(UnitUtils.formatInt(context, it))
                         append(" ")
                     }
                     airQuality.getName(context)?.let {
@@ -352,7 +353,7 @@ private fun AirQualityChart(
             modelProducer,
             daily.date,
             maxY.toDouble(),
-            { _, value, _ -> Utils.formatInt(context, value.roundToInt()) },
+            { _, value, _ -> UnitUtils.formatInt(context, value.roundToInt()) },
             persistentListOf(
                 (PollutantIndex.aqiThresholds.reversed().map { it.toFloat() }).zip(
                     context.resources.getIntArray(PollutantIndex.colorsArrayId).reversed().map { Color(it) }
@@ -363,7 +364,8 @@ private fun AirQualityChart(
                     context.resources.getStringArray(R.array.air_quality_levels)[3]
             ),
             topAxisValueFormatter = { _, value, _ ->
-                mappedValues.getOrElse(value.toLong()) { null }?.getIndex()?.let { Utils.formatInt(context, it) } ?: "-"
+                mappedValues.getOrElse(value.toLong()) { null }?.getIndex()?.let { UnitUtils.formatInt(context, it) }
+                    ?: "-"
             },
             endAxisItemPlacer = remember {
                 SpecificVerticalAxisItemPlacer(

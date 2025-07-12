@@ -39,6 +39,6 @@ fun Daily.getTrendTemperature(context: Context, unit: TemperatureUnit): String? 
     if (day?.temperature?.temperature == null || night?.temperature?.temperature == null) {
         return null
     }
-    return unit.getShortValueText(context, day!!.temperature!!.temperature!!) + "/" +
-        unit.getShortValueText(context, night!!.temperature!!.temperature!!)
+    return unit.formatMeasureShort(context, day!!.temperature!!.temperature!!) + "/" +
+        unit.formatMeasureShort(context, night!!.temperature!!.temperature!!)
 }

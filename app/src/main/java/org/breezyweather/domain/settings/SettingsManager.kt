@@ -495,6 +495,20 @@ class SettingsManager private constructor(
         }
         get() = config.getBoolean("notification_widget_feelslike", false)
 
+    var useNumberFormatter: Boolean
+        set(value) {
+            config.edit().putBoolean("use_number_formatter", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("use_number_formatter", true)
+
+    var useMeasureFormat: Boolean
+        set(value) {
+            config.edit().putBoolean("use_measure_format", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("use_measure_format", true)
+
     private fun notifySettingsChanged() {
         EventBus
             .instance

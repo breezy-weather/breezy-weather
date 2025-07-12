@@ -73,7 +73,7 @@ class HourlyPrecipitationAdapter(
             val precipitation = hourly.precipitation?.total
             if (precipitation != null && precipitation > 0.0) {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(mPrecipitationUnit.getValueVoice(activity, precipitation))
+                    .append(mPrecipitationUnit.formatContentDescription(activity, precipitation))
             } else {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.precipitation_none))
@@ -83,7 +83,7 @@ class HourlyPrecipitationAdapter(
                 null, null,
                 null, null,
                 precipitation?.toFloat() ?: 0f,
-                precipitation?.let { mPrecipitationUnit.getValueTextWithoutUnit(activity, it) },
+                precipitation?.let { mPrecipitationUnit.formatValue(activity, it) },
                 mHighestPrecipitation,
                 0f
             )
@@ -156,7 +156,7 @@ class HourlyPrecipitationAdapter(
             TrendRecyclerView.KeyLine(
                 Precipitation.PRECIPITATION_HOURLY_LIGHT.toFloat(),
                 activity.getString(R.string.precipitation_intensity_light),
-                unit.getValueTextWithoutUnit(activity, Precipitation.PRECIPITATION_HOURLY_LIGHT),
+                unit.formatValue(activity, Precipitation.PRECIPITATION_HOURLY_LIGHT),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
@@ -164,7 +164,7 @@ class HourlyPrecipitationAdapter(
             TrendRecyclerView.KeyLine(
                 Precipitation.PRECIPITATION_HOURLY_HEAVY.toFloat(),
                 activity.getString(R.string.precipitation_intensity_heavy),
-                unit.getValueTextWithoutUnit(activity, Precipitation.PRECIPITATION_HOURLY_HEAVY),
+                unit.formatValue(activity, Precipitation.PRECIPITATION_HOURLY_HEAVY),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )

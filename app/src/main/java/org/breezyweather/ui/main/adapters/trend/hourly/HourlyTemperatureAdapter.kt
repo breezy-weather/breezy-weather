@@ -25,7 +25,7 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
@@ -68,7 +68,7 @@ class HourlyTemperatureAdapter(
             val hourly = weather.nextHourlyForecast[position]
             hourly.temperature?.temperature?.let {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(mTemperatureUnit.getValueVoice(activity, it))
+                    .append(mTemperatureUnit.formatContentDescription(activity, it))
             }
             if (!hourly.weatherText.isNullOrEmpty()) {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
@@ -88,20 +88,20 @@ class HourlyTemperatureAdapter(
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.precipitation_probability))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(Utils.formatPercent(activity, p.toDouble()))
+                    .append(UnitUtils.formatPercent(activity, p.toDouble()))
             }
             mPolylineAndHistogramView.setData(
                 buildTemperatureArrayForItem(mTemperatures, position),
                 null,
                 hourly.temperature?.temperature?.let {
-                    mTemperatureUnit.getShortValueText(activity, it)
+                    mTemperatureUnit.formatMeasureShort(activity, it)
                 },
                 null,
                 mHighestTemperature,
                 mLowestTemperature,
                 if (p > 0) p else null,
                 if (p > 0) {
-                    Utils.formatPercent(activity, p.toDouble())
+                    UnitUtils.formatPercent(activity, p.toDouble())
                 } else {
                     null
                 },
@@ -222,7 +222,7 @@ class HourlyTemperatureAdapter(
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
                     normals.daytimeTemperature!!.toFloat(),
-                    SettingsManager.getInstance(activity).getTemperatureUnit(activity).getShortValueText(
+                    SettingsManager.getInstance(activity).getTemperatureUnit(activity).formatMeasureShort(
                         activity,
                         normals.daytimeTemperature!!
                     ),
@@ -239,7 +239,7 @@ class HourlyTemperatureAdapter(
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
                     normals.nighttimeTemperature!!.toFloat(),
-                    SettingsManager.getInstance(activity).getTemperatureUnit(activity).getShortValueText(
+                    SettingsManager.getInstance(activity).getTemperatureUnit(activity).formatMeasureShort(
                         activity,
                         normals.nighttimeTemperature!!
                     ),

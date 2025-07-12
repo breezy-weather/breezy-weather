@@ -59,7 +59,7 @@ fun PollenGrid(
     maxItemsInEachRow: Int = 2,
 ) {
     val context = LocalContext.current
-    val unit = PollenUnit.PPCM
+    val unit = PollenUnit.PER_CUBIC_METER
     FlowRow(
         maxItemsInEachRow = maxItemsInEachRow,
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.normal_margin)),
@@ -80,9 +80,9 @@ fun PollenGrid(
                     subtitle = if (pollenIndexSource != null) {
                         pollen.getIndexName(context, validPollen, pollenIndexSource) ?: ""
                     } else {
-                        unit.getValueText(
+                        unit.formatMeasure(
                             context,
-                            pollen.getConcentration(validPollen) ?: 0
+                            pollen.getConcentration(validPollen)?.toDouble() ?: 0.0
                         ) + " – " + pollen.getIndexName(context, validPollen)
                     },
                     tintColor = Color(

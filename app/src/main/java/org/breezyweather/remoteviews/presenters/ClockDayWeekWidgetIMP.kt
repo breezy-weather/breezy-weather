@@ -155,7 +155,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         builder.append(location.getPlace(context))
         weather.current?.temperature?.temperature?.let {
             builder.append(" ").append(
-                temperatureUnit.getValueText(context, it, 0)
+                temperatureUnit.formatMeasure(context, it, 0)
             )
         }
         views.setTextViewText(R.id.widget_clock_day_week_subtitle, builder.toString())

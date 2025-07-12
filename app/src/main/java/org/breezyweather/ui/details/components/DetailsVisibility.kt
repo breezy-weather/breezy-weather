@@ -117,7 +117,7 @@ private fun VisibilityItem(
     val context = LocalContext.current
     val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
     val visibilityDescription = DistanceUnit.getVisibilityDescription(context, visibility)
-    val visibilityContentDescription = distanceUnit.getValueVoice(context, visibility)
+    val visibilityContentDescription = distanceUnit.formatContentDescription(context, visibility)
 
     Column(
         modifier = Modifier
@@ -126,10 +126,10 @@ private fun VisibilityItem(
         header()
         TextFixedHeight(
             text = buildAnnotatedString {
-                val visibilityValueFormatted = distanceUnit.getValueTextWithoutUnit(context, visibility)
+                val visibilityValueFormatted = distanceUnit.formatValue(context, visibility)
                 append(visibilityValueFormatted)
                 withStyle(style = SpanStyle(fontSize = MaterialTheme.typography.headlineSmall.fontSize)) {
-                    append(distanceUnit.getValueText(context, visibility).substring(visibilityValueFormatted.length))
+                    append(distanceUnit.formatMeasure(context, visibility).substring(visibilityValueFormatted.length))
                 }
             },
             style = MaterialTheme.typography.displaySmall,
@@ -155,8 +155,8 @@ private fun VisibilitySummary(
     val minVisibilityDescription = DistanceUnit.getVisibilityDescription(context, minVisibility)
     val maxVisibility = mappedValues.values.max()
     val maxVisibilityDescription = DistanceUnit.getVisibilityDescription(context, maxVisibility)
-    val maxVisibilityFormatted = distanceUnit.getValueText(context, maxVisibility)
-    val maxVisibilityContentDescription = distanceUnit.getValueVoice(context, maxVisibility)
+    val maxVisibilityFormatted = distanceUnit.formatMeasure(context, maxVisibility)
+    val maxVisibilityContentDescription = distanceUnit.formatContentDescription(context, maxVisibility)
 
     Column(
         modifier = Modifier
@@ -174,7 +174,7 @@ private fun VisibilitySummary(
             } else {
                 stringResource(
                     R.string.visibility_from_to_number,
-                    distanceUnit.getValueTextWithoutUnit(context, minVisibility),
+                    distanceUnit.formatValue(context, minVisibility),
                     maxVisibilityFormatted
                 )
             },
@@ -184,7 +184,7 @@ private fun VisibilitySummary(
                     contentDescription = if (minVisibility == maxVisibility) {
                         maxVisibilityContentDescription
                     } else {
-                        distanceUnit.getValueTextWithoutUnit(context, minVisibility).let {
+                        distanceUnit.formatValue(context, minVisibility).let {
                             context.getString(
                                 R.string.visibility_from_to_number,
                                 it,
@@ -225,7 +225,7 @@ private fun VisibilityChart(
             22850.0, // TODO: Make this a const
             mappedValues.values.max()
         ).let {
-            distanceUnit.getValueWithoutUnit(it)
+            distanceUnit.getConvertedUnit(it)
         }
     }
     val step = remember(mappedValues) {
@@ -242,7 +242,7 @@ private fun VisibilityChart(
             lineSeries {
                 series(
                     x = mappedValues.keys,
-                    y = mappedValues.values.map { distanceUnit.getValueWithoutUnit(it) }
+                    y = mappedValues.values.map { distanceUnit.getConvertedUnit(it) }
                 )
             }
         }
@@ -284,23 +284,23 @@ private fun VisibilityChart(
         modelProducer,
         theDay,
         maxYRounded,
-        { _, value, _ -> distanceUnit.getValueText(context, value, isValueInDefaultUnit = false) },
+        { _, value, _ -> distanceUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
         persistentListOf(
             persistentMapOf(
-                distanceUnit.getValueWithoutUnit(20000.0).toFloat() to Color(119, 141, 120),
-                distanceUnit.getValueWithoutUnit(15000.0).toFloat() to Color(91, 167, 99),
-                distanceUnit.getValueWithoutUnit(9000.0).toFloat() to Color(90, 169, 90),
-                distanceUnit.getValueWithoutUnit(8000.0).toFloat() to Color(98, 122, 160),
-                distanceUnit.getValueWithoutUnit(6000.0).toFloat() to Color(98, 122, 160),
-                distanceUnit.getValueWithoutUnit(5000.0).toFloat() to Color(167, 91, 91),
-                distanceUnit.getValueWithoutUnit(2200.0).toFloat() to Color(167, 91, 91),
-                distanceUnit.getValueWithoutUnit(1600.0).toFloat() to Color(162, 97, 160),
-                distanceUnit.getValueWithoutUnit(0.0).toFloat() to Color(166, 93, 165)
+                distanceUnit.getConvertedUnit(20000.0).toFloat() to Color(119, 141, 120),
+                distanceUnit.getConvertedUnit(15000.0).toFloat() to Color(91, 167, 99),
+                distanceUnit.getConvertedUnit(9000.0).toFloat() to Color(90, 169, 90),
+                distanceUnit.getConvertedUnit(8000.0).toFloat() to Color(98, 122, 160),
+                distanceUnit.getConvertedUnit(6000.0).toFloat() to Color(98, 122, 160),
+                distanceUnit.getConvertedUnit(5000.0).toFloat() to Color(167, 91, 91),
+                distanceUnit.getConvertedUnit(2200.0).toFloat() to Color(167, 91, 91),
+                distanceUnit.getConvertedUnit(1600.0).toFloat() to Color(162, 97, 160),
+                distanceUnit.getConvertedUnit(0.0).toFloat() to Color(166, 93, 165)
             )
         ),
         topAxisValueFormatter = { _, value, _ ->
             mappedValues.getOrElse(value.toLong()) { null }?.let {
-                SettingsManager.getInstance(context).getDistanceUnit(context).getValueTextWithoutUnit(context, it)
+                SettingsManager.getInstance(context).getDistanceUnit(context).formatValue(context, it)
             } ?: "-"
         },
         endAxisItemPlacer = remember {

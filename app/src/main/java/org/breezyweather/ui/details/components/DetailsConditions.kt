@@ -229,7 +229,7 @@ fun DetailsConditions(
                     ) {
                         DetailsItem(
                             headlineText = stringResource(R.string.temperature_degree_day_heating),
-                            supportingText = temperatureUnit.getDegreeDayValueText(
+                            supportingText = temperatureUnit.formatDegreeDay(
                                 context,
                                 daily.degreeDay!!.heating!!
                             ),
@@ -239,7 +239,10 @@ fun DetailsConditions(
                                 .clearAndSetSemantics {
                                     contentDescription = context.getString(R.string.temperature_degree_day_heating) +
                                         context.getString(R.string.colon_separator) +
-                                        temperatureUnit.getDegreeDayValueVoice(context, daily.degreeDay!!.heating!!)
+                                        temperatureUnit.formatDegreeDayContentDescription(
+                                            context,
+                                            daily.degreeDay!!.heating!!
+                                        )
                                 }
                                 .clickable {
                                     coroutineScope.launch {
@@ -263,7 +266,7 @@ fun DetailsConditions(
                     ) {
                         DetailsItem(
                             headlineText = stringResource(R.string.temperature_degree_day_cooling),
-                            supportingText = temperatureUnit.getDegreeDayValueText(
+                            supportingText = temperatureUnit.formatDegreeDay(
                                 context,
                                 daily.degreeDay!!.cooling!!
                             ),
@@ -273,7 +276,10 @@ fun DetailsConditions(
                                 .clearAndSetSemantics {
                                     contentDescription = context.getString(R.string.temperature_degree_day_cooling) +
                                         context.getString(R.string.colon_separator) +
-                                        temperatureUnit.getDegreeDayValueVoice(context, daily.degreeDay!!.cooling!!)
+                                        temperatureUnit.formatDegreeDayContentDescription(
+                                            context,
+                                            daily.degreeDay!!.cooling!!
+                                        )
                                 }
                                 .clickable {
                                     coroutineScope.launch {
@@ -429,13 +435,13 @@ private fun WeatherConditionItem(
                 (if (showRealTemp) temperature?.temperature else temperature?.feelsLikeTemperature).let { temp ->
                     TextFixedHeight(
                         text = temp?.let {
-                            temperatureUnit.getShortValueText(context, value = it, 1, context.isRtl)
+                            temperatureUnit.formatMeasureShort(context, value = it, 1, context.isRtl)
                         } ?: "",
                         style = MaterialTheme.typography.displaySmall,
                         modifier = Modifier
                             .clearAndSetSemantics {
                                 temp?.let {
-                                    contentDescription = temperatureUnit.getValueVoice(context, it)
+                                    contentDescription = temperatureUnit.formatContentDescription(context, it)
                                 }
                             }
                     )
@@ -445,7 +451,7 @@ private fun WeatherConditionItem(
                         text = temperature?.temperature?.let {
                             stringResource(R.string.temperature_real) +
                                 stringResource(R.string.colon_separator) +
-                                temperatureUnit.getValueText(context, value = it)
+                                temperatureUnit.formatMeasure(context, value = it)
                         } ?: "",
                         style = MaterialTheme.typography.labelLarge,
                         color = DayNightTheme.colors.captionColor,
@@ -454,7 +460,7 @@ private fun WeatherConditionItem(
                                 if (temperature?.temperature != null) {
                                     contentDescription = context.getString(R.string.temperature_real) +
                                         context.getString(R.string.colon_separator) +
-                                        temperatureUnit.getValueVoice(context, temperature.temperature!!)
+                                        temperatureUnit.formatContentDescription(context, temperature.temperature!!)
                                 }
                             }
                     )
@@ -590,7 +596,7 @@ private fun TemperatureChart(
                     if (normal < it) normal else it
                 } ?: it
             }.let {
-                temperatureUnit.getValueWithoutUnit(it)
+                temperatureUnit.getConvertedUnit(it)
             }.roundDownToNearestMultiplier(step)
         }
         val maxY = remember(mappedValues, showRealTemp, normals) {
@@ -606,12 +612,12 @@ private fun TemperatureChart(
                     if (normal > it) normal else it
                 } ?: it
             }.let {
-                temperatureUnit.getValueWithoutUnit(it)
+                temperatureUnit.getConvertedUnit(it)
             }.roundUpToNearestMultiplier(step)
         }
 
         val endAxisValueFormatter = CartesianValueFormatter { _, value, _ ->
-            temperatureUnit.getShortValueText(context, value, isValueInDefaultUnit = false)
+            temperatureUnit.formatMeasureShort(context, value, isValueInDefaultUnit = false)
         }
 
         val modelProducer = remember { CartesianChartModelProducer() }
@@ -622,7 +628,7 @@ private fun TemperatureChart(
                     series(
                         x = mappedValues.keys,
                         y = mappedValues.values.map {
-                            temperatureUnit.getValueWithoutUnit(
+                            temperatureUnit.getConvertedUnit(
                                 if (showRealTemp) {
                                     it.temperature!!.temperature!!
                                 } else {
@@ -635,7 +641,7 @@ private fun TemperatureChart(
                         series(
                             x = mappedValues.keys,
                             y = mappedValues.values.map {
-                                temperatureUnit.getValueWithoutUnit(it.temperature!!.temperature!!)
+                                temperatureUnit.getConvertedUnit(it.temperature!!.temperature!!)
                             }
                         )
                     }
@@ -651,19 +657,19 @@ private fun TemperatureChart(
             endAxisValueFormatter,
             persistentListOf(
                 persistentMapOf(
-                    temperatureUnit.getValueWithoutUnit(47.0).toFloat() to Color(71, 14, 0),
-                    temperatureUnit.getValueWithoutUnit(30.0).toFloat() to Color(232, 83, 25),
-                    temperatureUnit.getValueWithoutUnit(21.0).toFloat() to Color(243, 183, 4),
-                    temperatureUnit.getValueWithoutUnit(10.0).toFloat() to Color(128, 147, 24),
-                    temperatureUnit.getValueWithoutUnit(1.0).toFloat() to Color(68, 125, 99),
-                    temperatureUnit.getValueWithoutUnit(0.0).toFloat() to Color(93, 133, 198),
-                    temperatureUnit.getValueWithoutUnit(-4.0).toFloat() to Color(100, 166, 189),
-                    temperatureUnit.getValueWithoutUnit(-8.0).toFloat() to Color(106, 191, 181),
-                    temperatureUnit.getValueWithoutUnit(-15.0).toFloat() to Color(157, 219, 217),
-                    temperatureUnit.getValueWithoutUnit(-25.0).toFloat() to Color(143, 89, 169),
-                    temperatureUnit.getValueWithoutUnit(-40.0).toFloat() to Color(162, 70, 145),
-                    temperatureUnit.getValueWithoutUnit(-55.0).toFloat() to Color(202, 172, 195),
-                    temperatureUnit.getValueWithoutUnit(-70.0).toFloat() to Color(115, 70, 105)
+                    temperatureUnit.getConvertedUnit(47.0).toFloat() to Color(71, 14, 0),
+                    temperatureUnit.getConvertedUnit(30.0).toFloat() to Color(232, 83, 25),
+                    temperatureUnit.getConvertedUnit(21.0).toFloat() to Color(243, 183, 4),
+                    temperatureUnit.getConvertedUnit(10.0).toFloat() to Color(128, 147, 24),
+                    temperatureUnit.getConvertedUnit(1.0).toFloat() to Color(68, 125, 99),
+                    temperatureUnit.getConvertedUnit(0.0).toFloat() to Color(93, 133, 198),
+                    temperatureUnit.getConvertedUnit(-4.0).toFloat() to Color(100, 166, 189),
+                    temperatureUnit.getConvertedUnit(-8.0).toFloat() to Color(106, 191, 181),
+                    temperatureUnit.getConvertedUnit(-15.0).toFloat() to Color(157, 219, 217),
+                    temperatureUnit.getConvertedUnit(-25.0).toFloat() to Color(143, 89, 169),
+                    temperatureUnit.getConvertedUnit(-40.0).toFloat() to Color(162, 70, 145),
+                    temperatureUnit.getConvertedUnit(-55.0).toFloat() to Color(202, 172, 195),
+                    temperatureUnit.getConvertedUnit(-70.0).toFloat() to Color(115, 70, 105)
                 ),
                 persistentMapOf(
                     50f to Color(128, 128, 128, 160),
@@ -686,13 +692,13 @@ private fun TemperatureChart(
                 normals?.let {
                     it.daytimeTemperature?.let { normal ->
                         put(
-                            temperatureUnit.getValueWithoutUnit(normal),
+                            temperatureUnit.getConvertedUnit(normal),
                             context.getString(R.string.temperature_normal_short)
                         )
                     }
                     it.nighttimeTemperature?.let { normal ->
                         put(
-                            temperatureUnit.getValueWithoutUnit(normal),
+                            temperatureUnit.getConvertedUnit(normal),
                             context.getString(R.string.temperature_normal_short)
                         )
                     }
@@ -774,14 +780,14 @@ fun DailyFeelsLikeTemperatureDetails(
     temperatureItems.forEach { item ->
         DetailsItem(
             headlineText = stringResource(item.first),
-            supportingText = temperatureUnit.getValueText(context, value = item.second),
+            supportingText = temperatureUnit.formatMeasure(context, value = item.second),
             modifier = Modifier
                 .padding(top = dimensionResource(R.dimen.normal_margin))
                 .semantics(mergeDescendants = true) {}
                 .clearAndSetSemantics {
                     contentDescription = context.getString(item.first) +
                         context.getString(R.string.colon_separator) +
-                        temperatureUnit.getValueVoice(context, item.second)
+                        temperatureUnit.formatContentDescription(context, item.second)
                 }
         )
     }

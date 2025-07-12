@@ -189,7 +189,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     buildTemperatureArrayForItem(temperatures, i),
                     null,
                     hourly.temperature?.temperature?.let {
-                        temperatureUnit.getShortValueText(context, it)
+                        temperatureUnit.formatMeasureShort(context, it)
                     },
                     null,
                     highestTemperature,

@@ -69,7 +69,7 @@ class TrendLinearLayout @JvmOverloads constructor(
         setWillNotDraw(false)
         mPaint.setTypeface(getContext().getTypefaceFromTextAppearance(R.style.subtitle_text))
         mPaint.textSize = textSize
-        mTemperatureUnit = TemperatureUnit.C
+        mTemperatureUnit = TemperatureUnit.CELSIUS
         setColor(true)
         trendMarginTop = getContext().dpToPx(trendMarginTop.toInt().toFloat())
         trendMarginBottom = getContext().dpToPx(trendMarginBottom.toInt().toFloat())
@@ -108,13 +108,13 @@ class TrendLinearLayout @JvmOverloads constructor(
         mPaint.textAlign = Paint.Align.LEFT
         mPaint.color = mTextColor
         canvas.drawText(
-            mTemperatureUnit.getShortValueText(context, mHistoryTemps[0].toDouble()),
+            mTemperatureUnit.formatMeasureShort(context, mHistoryTemps[0].toDouble()),
             2 * marginText,
             mHistoryTempYs[0] - mPaint.fontMetrics.bottom - marginText,
             mPaint
         )
         canvas.drawText(
-            mTemperatureUnit.getShortValueText(context, mHistoryTemps[1].toDouble()),
+            mTemperatureUnit.formatMeasureShort(context, mHistoryTemps[1].toDouble()),
             2 * marginText,
             mHistoryTempYs[1] - mPaint.fontMetrics.top + marginText,
             mPaint

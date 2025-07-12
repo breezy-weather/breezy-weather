@@ -17,27 +17,76 @@
 package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
+import android.icu.util.MeasureUnit
+import android.os.Build
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitEnum
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.isRtl
 
 // actual pressure = pressure(mb) * factor.
 enum class PressureUnit(
     override val id: String,
+    override val measureUnit: MeasureUnit?,
+    override val perMeasureUnit: MeasureUnit?,
     override val convertUnit: (Double) -> Double,
     val chartStep: Double,
-    val decimalNumbers: Int = 0,
+    val precision: Int = 0,
 ) : UnitEnum<Double> {
 
-    MB("mb", { valueInDefaultUnit -> valueInDefaultUnit }, chartStep = 15.0),
-    KPA("kpa", { valueInDefaultUnit -> valueInDefaultUnit.div(10) }, chartStep = 1.5, 1),
-    HPA("hpa", { valueInDefaultUnit -> valueInDefaultUnit }, chartStep = 15.0),
-    ATM("atm", { valueInDefaultUnit -> valueInDefaultUnit.div(1013) }, chartStep = 0.015, 3),
-    MMHG("mmhg", { valueInDefaultUnit -> valueInDefaultUnit.div(1.333) }, chartStep = 10.0),
-    INHG("inhg", { valueInDefaultUnit -> valueInDefaultUnit.div(33.864) }, chartStep = 0.5, 2),
-    KGFPSQCM("kgfpsqcm", { valueInDefaultUnit -> valueInDefaultUnit.div(980.7) }, chartStep = 0.015, 3),
+    MILLIBAR(
+        "mb",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILLIBAR else null,
+        null,
+        { valueInDefaultUnit -> valueInDefaultUnit },
+        chartStep = 15.0
+    ),
+    KILOPASCAL( // TODO: Consider deleting
+        "kpa",
+        null,
+        null,
+        { valueInDefaultUnit -> valueInDefaultUnit.div(10) },
+        chartStep = 1.5,
+        1
+    ),
+    HECTOPASCAL(
+        "hpa",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.HECTOPASCAL else null,
+        null,
+        { valueInDefaultUnit -> valueInDefaultUnit },
+        chartStep = 15.0
+    ),
+    ATMOSPHERE(
+        "atm",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) MeasureUnit.ATMOSPHERE else null,
+        null,
+        { valueInDefaultUnit -> valueInDefaultUnit.div(1013) },
+        chartStep = 0.015,
+        3
+    ),
+    MILLIMETER_OF_MERCURY(
+        "mmhg",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILLIMETER_OF_MERCURY else null,
+        null,
+        { valueInDefaultUnit -> valueInDefaultUnit.div(1.333) },
+        chartStep = 10.0
+    ),
+    INCH_OF_MERCURY(
+        "inhg",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.INCH_HG else null,
+        null,
+        { valueInDefaultUnit -> valueInDefaultUnit.div(33.864) },
+        chartStep = 0.5,
+        2
+    ),
+    KILOGRAM_FORCE_PER_SQUARE_CENTIMETER( // TODO: Consider deleting
+        "kgfpsqcm",
+        null,
+        null,
+        { valueInDefaultUnit -> valueInDefaultUnit.div(980.7) },
+        chartStep = 0.015,
+        3
+    ),
     ;
 
     companion object {
@@ -52,62 +101,55 @@ enum class PressureUnit(
         fun getDefaultUnit(
             context: Context,
         ) = when (context.currentLocale.country) {
-            "BR", "EG", "GB", "IL", "TH" -> MB
-            "MX", "RU" -> MMHG
-            "US" -> INHG
-            else -> HPA
+            "BR", "EG", "GB", "IL", "TH" -> MILLIBAR
+            "MX", "RU" -> MILLIMETER_OF_MERCURY
+            "US" -> INCH_OF_MERCURY
+            else -> HECTOPASCAL
         }
     }
 
     override val valueArrayId = R.array.pressure_unit_values
     override val nameArrayId = R.array.pressure_units
-    override val voiceArrayId = R.array.pressure_unit_voices
+    override val contentDescriptionArrayId = R.array.pressure_unit_voices
 
-    override fun getName(context: Context) = Utils.getName(context, this)
+    override fun getName(context: Context) = UnitUtils.getName(context, this)
 
-    override fun getVoice(context: Context) = Utils.getVoice(context, this)
+    override fun getMeasureContentDescription(context: Context) = UnitUtils.getMeasureContentDescription(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
+    override fun getConvertedUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
-    override fun getValueTextWithoutUnit(
+    override fun formatValue(
         context: Context,
         valueInDefaultUnit: Double,
-    ) = Utils.getValueTextWithoutUnit(context, this, valueInDefaultUnit, decimalNumbers)!!
+    ) = UnitUtils.formatValue(
+        context = context,
+        enum = this,
+        value = valueInDefaultUnit,
+        precision = precision
+    )
 
-    override fun getValueText(
+    override fun formatMeasure(
         context: Context,
         value: Double,
         isValueInDefaultUnit: Boolean,
-    ) = getValueText(context, value, context.isRtl, isValueInDefaultUnit)
-
-    override fun getValueText(
-        context: Context,
-        value: Double,
-        rtl: Boolean,
-        isValueInDefaultUnit: Boolean,
-    ) = Utils.getValueText(
+    ) = UnitUtils.formatMeasure(
         context = context,
         enum = this,
         value = value,
-        precision = decimalNumbers,
-        rtl = rtl,
+        precision = precision,
         isValueInDefaultUnit = isValueInDefaultUnit
     )
 
-    override fun getValueVoice(
+    override fun formatContentDescription(
         context: Context,
-        valueInDefaultUnit: Double,
-    ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
-
-    override fun getValueVoice(
-        context: Context,
-        valueInDefaultUnit: Double,
-        rtl: Boolean,
-    ) = Utils.getVoiceText(
+        value: Double,
+        isValueInDefaultUnit: Boolean,
+    ) = UnitUtils.formatMeasure(
         context = context,
         enum = this,
-        valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = decimalNumbers,
-        rtl = rtl
+        value = value,
+        precision = precision,
+        isValueInDefaultUnit = isValueInDefaultUnit,
+        unitWidth = UnitWidth.FULL
     )
 }

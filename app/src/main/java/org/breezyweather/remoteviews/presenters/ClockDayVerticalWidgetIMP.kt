@@ -29,7 +29,7 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayVerticalProvider
 import org.breezyweather.common.basic.models.options.NotificationTextColor
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
@@ -452,7 +452,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                 stringBuilder.append(location.getPlace(context))
                 weather.current?.temperature?.temperature?.let {
                     stringBuilder.append("\n")
-                        .append(unit.getValueText(context, it, 0))
+                        .append(unit.formatMeasure(context, it, 0))
                 }
                 stringBuilder.toString()
             }
@@ -465,13 +465,13 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                     if (stringBuilder.isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
-                    stringBuilder.append(unit.getValueText(context, it, 0))
+                    stringBuilder.append(unit.formatMeasure(context, it, 0))
                 }
                 stringBuilder.toString()
             }
             "mini" -> weather.current?.weatherText
             "temp" -> weather.current?.temperature?.temperature?.let {
-                unit.getShortValueText(context, it)
+                unit.formatMeasureShort(context, it)
             }
             else -> null
         }
@@ -503,7 +503,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
             }
             "tile", "temp" -> weather.today?.getTrendTemperature(context, unit)
             "mini" -> weather.current?.temperature?.temperature?.let {
-                unit.getValueText(context, it, 0)
+                unit.formatMeasure(context, it, 0)
             }
             else -> null
         }
@@ -536,7 +536,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                 if (airQuality.getIndex() != null && airQuality.getName(context) != null) {
                     context.getString(
                         R.string.parenthesis,
-                        Utils.formatInt(context, airQuality.getIndex()!!),
+                        UnitUtils.formatInt(context, airQuality.getIndex()!!),
                         airQuality.getName(context)
                     )
                 } else {
@@ -558,7 +558,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
             }
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
                 context.getString(R.string.temperature_feels_like) + " " +
-                    temperatureUnit.getValueText(context, it, 0)
+                    temperatureUnit.formatMeasure(context, it, 0)
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)
         }

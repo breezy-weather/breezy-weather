@@ -33,7 +33,7 @@ import androidx.core.graphics.createBitmap
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendDailyProvider
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.utils.helpers.AsyncHelper
@@ -223,16 +223,16 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     buildTemperatureArrayForItem(daytimeTemperatures, i),
                     buildTemperatureArrayForItem(nighttimeTemperatures, i),
                     daily.day?.temperature?.temperature?.let {
-                        temperatureUnit.getShortValueText(context, it)
+                        temperatureUnit.formatMeasureShort(context, it)
                     },
                     daily.night?.temperature?.temperature?.let {
-                        temperatureUnit.getShortValueText(context, it)
+                        temperatureUnit.formatMeasureShort(context, it)
                     },
                     highestTemperature,
                     lowestTemperature,
                     if (p > 0) p else null,
                     if (p > 0) {
-                        Utils.formatPercent(context, p.toDouble())
+                        UnitUtils.formatPercent(context, p.toDouble())
                     } else {
                         null
                     },

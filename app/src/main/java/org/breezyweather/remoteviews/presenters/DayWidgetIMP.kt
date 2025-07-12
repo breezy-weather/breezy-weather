@@ -27,7 +27,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetDayProvider
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
@@ -241,7 +241,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         }
         if (viewStyle == "vertical") {
             weather.current?.temperature?.temperature?.let {
-                val negative = temperatureUnit.getValueWithoutUnit(it) < 0
+                val negative = temperatureUnit.getConvertedUnit(it) < 0
                 views.setViewVisibility(R.id.widget_day_sign, if (negative) View.VISIBLE else View.GONE)
             } ?: run {
                 views.setViewVisibility(R.id.widget_day_symbol, View.GONE)
@@ -320,7 +320,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 stringBuilder.append(location.getPlace(context))
                 weather.current?.temperature?.temperature?.let {
                     stringBuilder.append("\n")
-                        .append(unit.getValueText(context, it, 0))
+                        .append(unit.formatMeasure(context, it, 0))
                 }
                 stringBuilder.toString()
             }
@@ -333,18 +333,18 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                     if (stringBuilder.toString().isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
-                    stringBuilder.append(unit.getValueText(context, it, 0))
+                    stringBuilder.append(unit.formatMeasure(context, it, 0))
                 }
                 stringBuilder.toString()
             }
             "nano", "pixel" -> weather.current?.temperature?.temperature?.let {
-                unit.getValueText(context, it, 0)
+                unit.formatMeasure(context, it, 0)
             }
             "temp" -> weather.current?.temperature?.temperature?.let {
-                unit.getShortValueText(context, it)
+                unit.formatMeasureShort(context, it)
             }
             "vertical" -> weather.current?.temperature?.temperature?.let {
-                abs(unit.getValueWithoutUnit(it).roundToInt()).toString()
+                abs(unit.getConvertedUnit(it).roundToInt()).toString()
             }
             else -> null
         }
@@ -376,7 +376,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 stringBuilder.toString()
             }
             "oreo", "oreo_google_sans" -> weather.current?.temperature?.temperature?.let {
-                unit.getValueText(context, it, 0)
+                unit.formatMeasure(context, it, 0)
             }
             else -> null
         }
@@ -409,7 +409,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 if (airQuality.getIndex() != null && airQuality.getName(context) != null) {
                     context.getString(
                         R.string.parenthesis,
-                        Utils.formatInt(context, airQuality.getIndex()!!),
+                        UnitUtils.formatInt(context, airQuality.getIndex()!!),
                         airQuality.getName(context)
                     )
                 } else {
@@ -431,7 +431,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
             }
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
                 context.getString(R.string.temperature_feels_like) + " " +
-                    temperatureUnit.getValueText(context, it, 0)
+                    temperatureUnit.formatMeasure(context, it, 0)
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)
         }

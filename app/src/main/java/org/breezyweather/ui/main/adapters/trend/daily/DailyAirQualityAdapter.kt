@@ -26,7 +26,7 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getIndex
@@ -66,7 +66,7 @@ class DailyAirQualityAdapter(
             val index = daily.airQuality?.getIndex()
             if (index != null) {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(Utils.formatInt(activity, index))
+                    .append(UnitUtils.formatInt(activity, index))
                     .append(activity.getString(R.string.comma_separator))
                     .append(daily.airQuality!!.getName(itemView.context))
             }
@@ -74,7 +74,7 @@ class DailyAirQualityAdapter(
                 null, null,
                 null, null,
                 null, null,
-                index?.toFloat(), index?.let { Utils.formatInt(activity, it) },
+                index?.toFloat(), index?.let { UnitUtils.formatInt(activity, it) },
                 mHighestIndex.toFloat(), 0f
             )
             mPolylineAndHistogramView.setLineColors(

@@ -65,7 +65,7 @@ class DailySunshineAdapter(
             }
             daily.sunshineDuration?.let {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(DurationUnit.H.getValueVoice(itemView.context, it))
+                    .append(DurationUnit.HOUR.formatContentDescription(itemView.context, it))
             }
             mPolylineAndHistogramView.setData(
                 null,
@@ -75,7 +75,7 @@ class DailySunshineAdapter(
                 null,
                 null,
                 sunshineDuration?.toFloat(),
-                daily.sunshineDuration?.let { DurationUnit.H.getValueText(itemView.context, it) },
+                daily.sunshineDuration?.let { DurationUnit.HOUR.formatMeasure(itemView.context, it) },
                 mHighestIndex.toFloat(),
                 0f
             )

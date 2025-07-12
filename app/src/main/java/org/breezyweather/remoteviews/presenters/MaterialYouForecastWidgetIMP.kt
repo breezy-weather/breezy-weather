@@ -161,19 +161,19 @@ private fun buildRemoteViews(
         setTextViewText(
             R.id.widget_material_you_forecast_currentTemperature,
             weather.current?.temperature?.temperature?.let {
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             }
         )
         setTextViewText(
             R.id.widget_material_you_forecast_daytimeTemperature,
             weather.today?.day?.temperature?.temperature?.let {
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             }
         )
         setTextViewText(
             R.id.widget_material_you_forecast_nighttimeTemperature,
             weather.today?.night?.temperature?.temperature?.let {
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             }
         )
         setTextViewText(
@@ -249,7 +249,7 @@ private fun buildRemoteViews(
         views.setTextViewText(
             hourlyId[2],
             weather.nextHourlyForecast.getOrNull(i)?.temperature?.temperature?.let {
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             }
         )
     }
@@ -327,13 +327,13 @@ private fun buildRemoteViews(
         views.setTextViewText(
             dailyId[2],
             weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature?.let {
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             }
         )
         views.setTextViewText(
             dailyId[3],
             weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature?.let {
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             }
         )
         weather.dailyForecastStartingToday.getOrNull(i)?.night?.weatherCode?.let {

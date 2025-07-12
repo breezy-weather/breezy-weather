@@ -73,7 +73,7 @@ class DailyPrecipitationAdapter(
                     .append(activity.getString(R.string.colon_separator))
                     .append(
                         if (daytimePrecipitation != null && daytimePrecipitation > 0f) {
-                            mPrecipitationUnit.getValueVoice(activity, daytimePrecipitation)
+                            mPrecipitationUnit.formatContentDescription(activity, daytimePrecipitation)
                         } else {
                             activity.getString(R.string.precipitation_none)
                         }
@@ -83,7 +83,7 @@ class DailyPrecipitationAdapter(
                     .append(activity.getString(R.string.colon_separator))
                     .append(
                         if (nighttimePrecipitation != null && nighttimePrecipitation > 0f) {
-                            mPrecipitationUnit.getValueVoice(activity, nighttimePrecipitation)
+                            mPrecipitationUnit.formatContentDescription(activity, nighttimePrecipitation)
                         } else {
                             activity.getString(R.string.precipitation_none)
                         }
@@ -99,8 +99,8 @@ class DailyPrecipitationAdapter(
             mDoubleHistogramView.setData(
                 daily.day?.precipitation?.total?.toFloat(),
                 daily.night?.precipitation?.total?.toFloat(),
-                daytimePrecipitation?.let { mPrecipitationUnit.getValueTextWithoutUnit(activity, it) },
-                nighttimePrecipitation?.let { mPrecipitationUnit.getValueTextWithoutUnit(activity, it) },
+                daytimePrecipitation?.let { mPrecipitationUnit.formatValue(activity, it) },
+                nighttimePrecipitation?.let { mPrecipitationUnit.formatValue(activity, it) },
                 mHighestPrecipitation
             )
             mDoubleHistogramView.setLineColors(
@@ -155,7 +155,7 @@ class DailyPrecipitationAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 Precipitation.PRECIPITATION_HALF_DAY_LIGHT.toFloat(),
-                unit.getValueTextWithoutUnit(activity, Precipitation.PRECIPITATION_HALF_DAY_LIGHT),
+                unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_LIGHT),
                 activity.getString(R.string.precipitation_intensity_light),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -163,7 +163,7 @@ class DailyPrecipitationAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 Precipitation.PRECIPITATION_HALF_DAY_HEAVY.toFloat(),
-                unit.getValueTextWithoutUnit(activity, Precipitation.PRECIPITATION_HALF_DAY_HEAVY),
+                unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_HEAVY),
                 activity.getString(R.string.precipitation_intensity_heavy),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -171,7 +171,7 @@ class DailyPrecipitationAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 -Precipitation.PRECIPITATION_HALF_DAY_LIGHT.toFloat(),
-                unit.getValueTextWithoutUnit(activity, Precipitation.PRECIPITATION_HALF_DAY_LIGHT),
+                unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_LIGHT),
                 activity.getString(R.string.precipitation_intensity_light),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
@@ -179,7 +179,7 @@ class DailyPrecipitationAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 -Precipitation.PRECIPITATION_HALF_DAY_HEAVY.toFloat(),
-                unit.getValueTextWithoutUnit(activity, Precipitation.PRECIPITATION_HALF_DAY_HEAVY),
+                unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_HEAVY),
                 activity.getString(R.string.precipitation_intensity_heavy),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )

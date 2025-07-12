@@ -196,7 +196,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             temperature?.let {
                 setTextViewText(
                     R.id.notification_base_realtimeTemp,
-                    temperatureUnit.getShortValueText(context, it)
+                    temperatureUnit.formatMeasureShort(context, it)
                 )
             }
             if (current.airQuality?.isIndexValid == true) {
@@ -289,7 +289,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                         hourly.temperature?.temperature?.let {
                             setTextViewText(
                                 viewId.second,
-                                temperatureUnit.getShortValueText(context, it)
+                                temperatureUnit.formatMeasureShort(context, it)
                             )
                         }
                         hourly.weatherCode?.let { weatherCode ->

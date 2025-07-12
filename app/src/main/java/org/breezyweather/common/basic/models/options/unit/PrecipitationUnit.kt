@@ -17,24 +17,53 @@
 package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
+import android.icu.util.MeasureUnit
+import android.icu.util.TimeUnit
+import android.os.Build
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitEnum
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.isRtl
 
 // actual precipitation = precipitation(mm) * factor.
 enum class PrecipitationUnit(
     override val id: String,
+    override val measureUnit: MeasureUnit?,
+    override val perMeasureUnit: MeasureUnit?,
     override val convertUnit: (Double) -> Double,
     val chartStep: Double,
-    val decimals: Int = 1,
+    val precision: Int = 1,
 ) : UnitEnum<Double> {
 
-    MM("mm", { valueInDefaultUnit -> valueInDefaultUnit }, chartStep = 5.0),
-    CM("cm", { valueInDefaultUnit -> valueInDefaultUnit.div(10f) }, chartStep = 0.5),
-    IN("in", { valueInDefaultUnit -> valueInDefaultUnit.div(25.4f) }, chartStep = 0.2, decimals = 2),
-    LPSQM("lpsqm", { valueInDefaultUnit -> valueInDefaultUnit }, chartStep = 5.0),
+    MILLIMETER(
+        "mm",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILLIMETER else null,
+        null,
+        { valueInDefaultUnit -> valueInDefaultUnit },
+        chartStep = 5.0
+    ),
+    CENTIMETER(
+        "cm",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.CENTIMETER else null,
+        null,
+        { valueInDefaultUnit -> valueInDefaultUnit.div(10f) },
+        chartStep = 0.5
+    ),
+    INCH(
+        "in",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.INCH else null,
+        null,
+        { valueInDefaultUnit -> valueInDefaultUnit.div(25.4f) },
+        chartStep = 0.2,
+        precision = 2
+    ),
+    LITER_PER_SQUARE_METER(
+        "lpsqm",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.LITER else null,
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.SQUARE_METER else null,
+        { valueInDefaultUnit -> valueInDefaultUnit },
+        chartStep = 5.0
+    ),
     ;
 
     companion object {
@@ -47,9 +76,9 @@ enum class PrecipitationUnit(
         fun getDefaultUnit(
             context: Context,
         ) = when (context.currentLocale.country) {
-            "BR" -> CM
-            "US" -> IN
-            else -> MM
+            "BR" -> CENTIMETER
+            "US" -> INCH
+            else -> MILLIMETER
         }
 
         /**
@@ -60,75 +89,91 @@ enum class PrecipitationUnit(
         fun getDefaultSnowfallUnit(
             context: Context,
         ) = when (context.currentLocale.country) {
-            "US" -> IN
-            else -> CM
+            "US" -> INCH
+            else -> CENTIMETER
         }
     }
 
     override val valueArrayId = R.array.precipitation_unit_values
     override val nameArrayId = R.array.precipitation_units
-    override val voiceArrayId = R.array.precipitation_unit_voices
+    override val contentDescriptionArrayId = R.array.precipitation_unit_voices
 
-    override fun getName(context: Context) = Utils.getName(context, this)
+    override fun getName(context: Context) = UnitUtils.getName(context, this)
 
-    override fun getVoice(context: Context) = Utils.getVoice(context, this)
+    override fun getMeasureContentDescription(context: Context) = UnitUtils.getMeasureContentDescription(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
+    override fun getConvertedUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
-    override fun getValueTextWithoutUnit(
+    override fun formatValue(
         context: Context,
         valueInDefaultUnit: Double,
-    ) = Utils.getValueTextWithoutUnit(context, this, valueInDefaultUnit, 1)!!
+    ) = UnitUtils.formatValue(
+        context = context,
+        enum = this,
+        value = valueInDefaultUnit,
+        precision = 1
+    )
 
-    override fun getValueText(
+    override fun formatMeasure(
         context: Context,
         value: Double,
         isValueInDefaultUnit: Boolean,
-    ) = getValueText(context, value, context.isRtl, isValueInDefaultUnit)
-
-    override fun getValueText(
-        context: Context,
-        value: Double,
-        rtl: Boolean,
-        isValueInDefaultUnit: Boolean,
-    ) = Utils.getValueText(
+    ) = UnitUtils.formatMeasure(
         context = context,
         enum = this,
         value = value,
-        precision = decimals,
-        rtl = rtl,
+        precision = precision,
         isValueInDefaultUnit = isValueInDefaultUnit
     )
 
-    override fun getValueVoice(
+    override fun formatContentDescription(
         context: Context,
-        valueInDefaultUnit: Double,
-    ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
-
-    override fun getValueVoice(
-        context: Context,
-        valueInDefaultUnit: Double,
-        rtl: Boolean,
-    ) = Utils.getVoiceText(
+        value: Double,
+        isValueInDefaultUnit: Boolean,
+    ) = UnitUtils.formatMeasure(
         context = context,
         enum = this,
-        valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = decimals,
-        rtl = rtl
+        value = value,
+        precision = precision,
+        isValueInDefaultUnit = isValueInDefaultUnit,
+        unitWidth = UnitWidth.FULL
     )
 }
 
 // actual precipitation intensity = precipitation intensity(mm/h) * factor.
 enum class PrecipitationIntensityUnit(
     override val id: String,
+    override val measureUnit: MeasureUnit?,
+    override val perMeasureUnit: TimeUnit?,
     override val convertUnit: (Double) -> Double,
-    val decimals: Int = 1,
+    val precision: Int = 1,
 ) : UnitEnum<Double> {
 
-    MMPH("mmph", { valueInDefaultUnit -> valueInDefaultUnit }),
-    CMPH("cmph", { valueInDefaultUnit -> valueInDefaultUnit.div(10f) }),
-    INPH("inph", { valueInDefaultUnit -> valueInDefaultUnit.div(25.4f) }, 2),
-    LPSQMPH("lpsqmph", { valueInDefaultUnit -> valueInDefaultUnit }),
+    MILLIMETER_PER_HOUR(
+        "mmph",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILLIMETER else null,
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.HOUR else null,
+        { valueInDefaultUnit -> valueInDefaultUnit }
+    ),
+    CENTIMETER_PER_HOUR(
+        "cmph",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.CENTIMETER else null,
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.HOUR else null,
+        { valueInDefaultUnit -> valueInDefaultUnit.div(10f) }
+    ),
+    INCH_PER_HOUR(
+        "inph",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.INCH else null,
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.HOUR else null,
+        { valueInDefaultUnit -> valueInDefaultUnit.div(25.4f) },
+        2
+    ),
+    LITER_PER_SQUARE_METER_PER_HOUR(
+        "lpsqmph",
+        null, // TODO
+        null, // TODO: Multiple perUnit
+        { valueInDefaultUnit -> valueInDefaultUnit }
+    ),
     ;
 
     companion object {
@@ -141,9 +186,9 @@ enum class PrecipitationIntensityUnit(
         fun getDefaultUnit(
             context: Context,
         ) = when (context.currentLocale.country) {
-            "BR" -> CMPH
-            "US" -> INPH
-            else -> MMPH
+            "BR" -> CENTIMETER_PER_HOUR
+            "US" -> INCH_PER_HOUR
+            else -> MILLIMETER_PER_HOUR
         }
 
         /**
@@ -154,59 +199,53 @@ enum class PrecipitationIntensityUnit(
         fun getDefaultSnowfallUnit(
             context: Context,
         ) = when (context.currentLocale.country) {
-            "US" -> INPH
-            else -> CMPH
+            "US" -> INCH_PER_HOUR
+            else -> CENTIMETER_PER_HOUR
         }
     }
 
     override val valueArrayId = R.array.precipitation_intensity_unit_values
     override val nameArrayId = R.array.precipitation_intensity_units
-    override val voiceArrayId = R.array.precipitation_intensity_unit_voices
+    override val contentDescriptionArrayId = R.array.precipitation_intensity_unit_voices
 
-    override fun getName(context: Context) = Utils.getName(context, this)
+    override fun getName(context: Context) = UnitUtils.getName(context, this)
 
-    override fun getVoice(context: Context) = Utils.getVoice(context, this)
+    override fun getMeasureContentDescription(context: Context) = UnitUtils.getMeasureContentDescription(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
+    override fun getConvertedUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
-    override fun getValueTextWithoutUnit(
+    override fun formatValue(
         context: Context,
         valueInDefaultUnit: Double,
-    ) = Utils.getValueTextWithoutUnit(context, this, valueInDefaultUnit, decimals)!!
+    ) = UnitUtils.formatValue(
+        context = context,
+        enum = this,
+        value = valueInDefaultUnit,
+        precision = precision
+    )
 
-    override fun getValueText(
+    override fun formatMeasure(
         context: Context,
         value: Double,
         isValueInDefaultUnit: Boolean,
-    ) = getValueText(context, value, context.isRtl, isValueInDefaultUnit)
-
-    override fun getValueText(
-        context: Context,
-        value: Double,
-        rtl: Boolean,
-        isValueInDefaultUnit: Boolean,
-    ) = Utils.getValueText(
+    ) = UnitUtils.formatMeasure(
         context = context,
         enum = this,
         value = value,
-        precision = decimals,
-        rtl = rtl
+        precision = precision,
+        isValueInDefaultUnit = isValueInDefaultUnit
     )
 
-    override fun getValueVoice(
+    override fun formatContentDescription(
         context: Context,
-        valueInDefaultUnit: Double,
-    ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
-
-    override fun getValueVoice(
-        context: Context,
-        valueInDefaultUnit: Double,
-        rtl: Boolean,
-    ) = Utils.getVoiceText(
+        value: Double,
+        isValueInDefaultUnit: Boolean,
+    ) = UnitUtils.formatMeasure(
         context = context,
         enum = this,
-        valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = decimals,
-        rtl = rtl
+        value = value,
+        precision = precision,
+        isValueInDefaultUnit = isValueInDefaultUnit,
+        unitWidth = UnitWidth.FULL
     )
 }

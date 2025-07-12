@@ -18,28 +18,64 @@ package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
 import android.graphics.Color
+import android.icu.util.MeasureUnit
+import android.icu.util.TimeUnit
+import android.os.Build
 import androidx.annotation.ColorInt
 import breezyweather.domain.weather.model.Wind
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitEnum
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.isRtl
 
 // actual speed = speed(km/h) * factor.
 enum class SpeedUnit(
     override val id: String,
+    override val measureUnit: MeasureUnit?,
+    override val perMeasureUnit: TimeUnit?,
     override val convertUnit: (Double) -> Double,
     val chartStep: Double,
 ) : UnitEnum<Double> {
 
-    MPS("mps", { valueInDefaultUnit -> valueInDefaultUnit }, 5.0),
-    KPH("kph", { valueInDefaultUnit -> valueInDefaultUnit.times(3.6) }, 15.0),
-    KN("kn", { valueInDefaultUnit -> valueInDefaultUnit.times(1.94385) }, 10.0),
-    MPH("mph", { valueInDefaultUnit -> valueInDefaultUnit.times(2.23694) }, 10.0),
-    FTPS("ftps", { valueInDefaultUnit -> valueInDefaultUnit.times(3.28084) }, 15.0),
-    BF(
+    METER_PER_SECOND(
+        "mps",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.METER_PER_SECOND else null,
+        null,
+        { valueInDefaultUnit -> valueInDefaultUnit },
+        5.0
+    ),
+    KILOMETER_PER_HOUR(
+        "kph",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.KILOMETER_PER_HOUR else null,
+        null,
+        { valueInDefaultUnit -> valueInDefaultUnit.times(3.6) },
+        15.0
+    ),
+    KNOT(
+        "kn",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) MeasureUnit.KNOT else null,
+        null,
+        { valueInDefaultUnit -> valueInDefaultUnit.times(1.94385) },
+        10.0
+    ),
+    MILE_PER_HOUR(
+        "mph",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILE_PER_HOUR else null,
+        null,
+        { valueInDefaultUnit -> valueInDefaultUnit.times(2.23694) },
+        10.0
+    ),
+    FOOT_PER_SECOND(
+        "ftps",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.FOOT else null,
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.SECOND else null,
+        { valueInDefaultUnit -> valueInDefaultUnit.times(3.28084) },
+        15.0
+    ),
+    BEAUFORT(
         "bf",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA) MeasureUnit.BEAUFORT else null,
+        null,
         { valueInDefaultUnit ->
             when (valueInDefaultUnit) {
                 in 0.0..Wind.WIND_SPEED_0 -> 0.0
@@ -117,61 +153,54 @@ enum class SpeedUnit(
         fun getDefaultUnit(
             context: Context,
         ) = when (context.currentLocale.country) {
-            "CN", "DK", "FI", "JP", "KR", "NO", "PL", "RU", "SE" -> MPS
-            "GB", "US" -> MPH
-            else -> KPH
+            "CN", "DK", "FI", "JP", "KR", "NO", "PL", "RU", "SE" -> METER_PER_SECOND
+            "GB", "US" -> MILE_PER_HOUR
+            else -> KILOMETER_PER_HOUR
         }
     }
 
     override val valueArrayId = R.array.speed_unit_values
     override val nameArrayId = R.array.speed_units
-    override val voiceArrayId = R.array.speed_unit_voices
+    override val contentDescriptionArrayId = R.array.speed_unit_voices
 
-    override fun getName(context: Context) = Utils.getName(context, this)
+    override fun getName(context: Context) = UnitUtils.getName(context, this)
 
-    override fun getVoice(context: Context) = Utils.getVoice(context, this)
+    override fun getMeasureContentDescription(context: Context) = UnitUtils.getMeasureContentDescription(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
+    override fun getConvertedUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
-    override fun getValueTextWithoutUnit(
+    override fun formatValue(
         context: Context,
         valueInDefaultUnit: Double,
-    ) = Utils.getValueTextWithoutUnit(context, this, valueInDefaultUnit, 1)!!
+    ) = UnitUtils.formatValue(
+        context = context,
+        enum = this,
+        value = valueInDefaultUnit,
+        precision = 1
+    )
 
-    override fun getValueText(
+    override fun formatMeasure(
         context: Context,
         value: Double,
         isValueInDefaultUnit: Boolean,
-    ) = getValueText(context, value, context.isRtl, isValueInDefaultUnit)
-
-    override fun getValueText(
-        context: Context,
-        value: Double,
-        rtl: Boolean,
-        isValueInDefaultUnit: Boolean,
-    ) = Utils.getValueText(
+    ) = UnitUtils.formatMeasure(
         context = context,
         enum = this,
         value = value,
         precision = 1,
-        rtl = rtl,
         isValueInDefaultUnit = isValueInDefaultUnit
     )
 
-    override fun getValueVoice(
+    override fun formatContentDescription(
         context: Context,
-        valueInDefaultUnit: Double,
-    ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
-
-    override fun getValueVoice(
-        context: Context,
-        valueInDefaultUnit: Double,
-        rtl: Boolean,
-    ) = Utils.getVoiceText(
+        value: Double,
+        isValueInDefaultUnit: Boolean,
+    ) = UnitUtils.formatMeasure(
         context = context,
         enum = this,
-        valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = 1,
-        rtl = rtl
+        value = value,
+        precision = 1,
+        isValueInDefaultUnit = isValueInDefaultUnit,
+        unitWidth = UnitWidth.FULL
     )
 }

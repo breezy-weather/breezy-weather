@@ -160,7 +160,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             temperature?.let {
                 setTextViewText(
                     R.id.notification_base_realtimeTemp,
-                    temperatureUnit.getShortValueText(context, it)
+                    temperatureUnit.formatMeasureShort(context, it)
                 )
             }
             if (current.airQuality?.isIndexValid == true) {

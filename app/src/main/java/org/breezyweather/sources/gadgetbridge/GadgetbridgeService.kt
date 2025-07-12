@@ -23,7 +23,6 @@ import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
 import breezyweather.domain.weather.model.WeatherCode
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
@@ -83,7 +82,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
             currentCondition = current?.weatherText,
             currentHumidity = current?.relativeHumidity?.roundToInt(),
             windSpeed = current?.wind?.speed?.let {
-                SpeedUnit.KPH.convertUnit(it)
+                SpeedUnit.KILOMETER_PER_HOUR.convertUnit(it)
             }?.toFloat(),
             windDirection = current?.wind?.degree?.roundToInt(),
             uvIndex = current?.uV?.index?.toFloat(),
@@ -130,7 +129,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
 
                 // TODO: humidity
                 windSpeed = maxWind?.speed?.let {
-                    SpeedUnit.KPH.convertUnit(it)
+                    SpeedUnit.KILOMETER_PER_HOUR.convertUnit(it)
                 }?.toFloat(),
                 windDirection = maxWind?.degree?.roundToInt(),
                 uvIndex = day.uV?.index?.toFloat(),
@@ -181,7 +180,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
                 conditionCode = getWeatherCode(hour.weatherCode),
                 humidity = hour.relativeHumidity?.roundToInt(),
                 windSpeed = hour.wind?.speed?.let {
-                    SpeedUnit.KPH.convertUnit(it)
+                    SpeedUnit.KILOMETER_PER_HOUR.convertUnit(it)
                 }?.toFloat(),
                 windDirection = hour.wind?.degree?.roundToInt(),
                 uvIndex = hour.uV?.index?.toFloat(),
@@ -218,7 +217,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
 
     companion object {
         fun Double.roundCelsiusToKelvin(): Int {
-            return TemperatureUnit.K.convertUnit(this).roundToInt()
+            return TemperatureUnit.KELVIN.convertUnit(this).roundToInt()
         }
     }
 }

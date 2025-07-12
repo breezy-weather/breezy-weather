@@ -22,7 +22,7 @@ import androidx.annotation.StringRes
 import breezyweather.domain.weather.model.Current
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getShortDescription
@@ -130,7 +130,7 @@ enum class DetailDisplay(
 
     fun getCurrentValue(context: Context, current: Current, isDaylight: Boolean = true): String? = when (id) {
         "feels_like" -> current.temperature?.feelsLikeTemperature?.let {
-            SettingsManager.getInstance(context).getTemperatureUnit(context).getValueText(context, it, 0)
+            SettingsManager.getInstance(context).getTemperatureUnit(context).formatMeasure(context, it, 0)
         }
         "wind" -> if (!current.wind?.getShortDescription(
                 context,
@@ -147,22 +147,22 @@ enum class DetailDisplay(
             null
         }
         "humidity" -> current.relativeHumidity?.let {
-            Utils.formatPercent(context, it)
+            UnitUtils.formatPercent(context, it)
         }
         "dew_point" -> current.dewPoint?.let {
-            SettingsManager.getInstance(context).getTemperatureUnit(context).getValueText(context, it, 0)
+            SettingsManager.getInstance(context).getTemperatureUnit(context).formatMeasure(context, it, 0)
         }
         "pressure" -> current.pressure?.let {
-            SettingsManager.getInstance(context).getPressureUnit(context).getValueText(context, it)
+            SettingsManager.getInstance(context).getPressureUnit(context).formatMeasure(context, it)
         }
         "visibility" -> current.visibility?.let {
-            SettingsManager.getInstance(context).getDistanceUnit(context).getValueText(context, it)
+            SettingsManager.getInstance(context).getDistanceUnit(context).formatMeasure(context, it)
         }
         "cloud_cover" -> current.cloudCover?.let {
-            Utils.formatPercent(context, it.toDouble())
+            UnitUtils.formatPercent(context, it.toDouble())
         }
         "ceiling" -> current.ceiling?.let {
-            SettingsManager.getInstance(context).getDistanceUnit(context).getValueText(context, it)
+            SettingsManager.getInstance(context).getDistanceUnit(context).formatMeasure(context, it)
         }
         else -> null
     }
@@ -171,7 +171,7 @@ enum class DetailDisplay(
         "feels_like" -> current.temperature?.feelsLikeTemperature?.let {
             getName(context) +
                 context.getString(R.string.colon_separator) +
-                SettingsManager.getInstance(context).getTemperatureUnit(context).getValueVoice(context, it)
+                SettingsManager.getInstance(context).getTemperatureUnit(context).formatContentDescription(context, it)
         }
         "wind" -> if (!current.wind?.getContentDescription(
                 context,
@@ -192,32 +192,32 @@ enum class DetailDisplay(
         "humidity" -> current.relativeHumidity?.let {
             getName(context) +
                 context.getString(R.string.colon_separator) +
-                Utils.formatPercent(context, it)
+                UnitUtils.formatPercent(context, it)
         }
         "dew_point" -> current.dewPoint?.let {
             getName(context) +
                 context.getString(R.string.colon_separator) +
-                SettingsManager.getInstance(context).getTemperatureUnit(context).getValueVoice(context, it)
+                SettingsManager.getInstance(context).getTemperatureUnit(context).formatContentDescription(context, it)
         }
         "pressure" -> current.pressure?.let {
             getName(context) +
                 context.getString(R.string.colon_separator) +
-                SettingsManager.getInstance(context).getPressureUnit(context).getValueVoice(context, it)
+                SettingsManager.getInstance(context).getPressureUnit(context).formatContentDescription(context, it)
         }
         "visibility" -> current.visibility?.let {
             getName(context) +
                 context.getString(R.string.colon_separator) +
-                SettingsManager.getInstance(context).getDistanceUnit(context).getValueVoice(context, it)
+                SettingsManager.getInstance(context).getDistanceUnit(context).formatContentDescription(context, it)
         }
         "cloud_cover" -> current.cloudCover?.let {
             getName(context) +
                 context.getString(R.string.colon_separator) +
-                Utils.formatPercent(context, it.toDouble())
+                UnitUtils.formatPercent(context, it.toDouble())
         }
         "ceiling" -> current.ceiling?.let {
             getName(context) +
                 context.getString(R.string.colon_separator) +
-                SettingsManager.getInstance(context).getDistanceUnit(context).getValueVoice(context, it)
+                SettingsManager.getInstance(context).getDistanceUnit(context).formatContentDescription(context, it)
         }
         else -> null
     }

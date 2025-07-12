@@ -64,7 +64,7 @@ class HourlyPressureAdapter(
             val hourly = weather.nextHourlyForecast[position]
             hourly.pressure?.let { pressure ->
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(mPressureUnit.getValueVoice(activity, pressure))
+                    .append(mPressureUnit.formatContentDescription(activity, pressure))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -75,7 +75,7 @@ class HourlyPressureAdapter(
             mPolylineAndHistogramView.setData(
                 buildPressureArrayForItem(mPressures, position),
                 null,
-                hourly.pressure?.let { mPressureUnit.getValueTextWithoutUnit(activity, it) },
+                hourly.pressure?.let { mPressureUnit.formatValue(activity, it) },
                 null,
                 mHighestPressure,
                 mLowestPressure,
@@ -193,7 +193,7 @@ class HourlyPressureAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 PressureUnit.NORMAL.toFloat(),
-                mPressureUnit.getValueTextWithoutUnit(activity, PressureUnit.NORMAL),
+                mPressureUnit.formatValue(activity, PressureUnit.NORMAL),
                 activity.getString(R.string.temperature_normal_short),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

@@ -64,7 +64,7 @@ class HourlyFeelsLikeAdapter(
             val hourly = weather.nextHourlyForecast[position]
             hourly.temperature?.feelsLikeTemperature?.let {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(mTemperatureUnit.getValueVoice(activity, it))
+                    .append(mTemperatureUnit.formatContentDescription(activity, it))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -76,9 +76,9 @@ class HourlyFeelsLikeAdapter(
                 buildTemperatureArrayForItem(mTemperatures, position),
                 null,
                 hourly.temperature?.feelsLikeTemperature?.let {
-                    mTemperatureUnit.getShortValueText(activity, it)
+                    mTemperatureUnit.formatMeasureShort(activity, it)
                 } ?: hourly.temperature?.temperature?.let {
-                    mTemperatureUnit.getShortValueText(activity, it)
+                    mTemperatureUnit.formatMeasureShort(activity, it)
                 },
                 null,
                 mHighestTemperature,

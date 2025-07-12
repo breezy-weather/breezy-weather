@@ -800,6 +800,9 @@
     <string name="settings_debug_dump_crash_logs_saved">Crash logs saved</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Tap to open</string>
     <!-- Only shown in debug builds, so we don’t need translations -->
+    <string name="settings_debug_section_unit_formatting" translatable="false">Unit formatting</string>
+    <string name="settings_debug_use_numberformatter" translatable="false">Use NumberFormatter when possible</string>
+    <string name="settings_debug_use_measureformat" translatable="false">Use MeasureFormat when possible</string>
     <string name="settings_debug_force_weather_update" translatable="false">Force weather update</string>
     <string name="settings_debug_section_refresh_error" translatable="false">Trigger refresh errors</string>
     <string name="settings_changes_apply_after_restart">Changes will take effect after restart</string>

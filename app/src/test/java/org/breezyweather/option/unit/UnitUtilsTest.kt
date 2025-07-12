@@ -22,7 +22,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import kotlinx.coroutines.test.runTest
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.currentLocale
 import org.junit.jupiter.api.Test
 import java.util.Locale
@@ -36,10 +36,10 @@ class UnitUtilsTest {
             every { currentLocale } returns Locale("fr", "FR")
         }
 
-        Utils.formatDouble(context, 14.34234) shouldBe "14,34"
-        Utils.formatDouble(context, 14.34834) shouldBe "14,35"
-        Utils.formatDouble(context, 14.34834, 3) shouldBe "14,348"
-        Utils.formatDouble(context, 14.34864, 3) shouldBe "14,349"
+        UnitUtils.formatDouble(context, 14.34234) shouldBe "14,34"
+        UnitUtils.formatDouble(context, 14.34834) shouldBe "14,35"
+        UnitUtils.formatDouble(context, 14.34834, 3) shouldBe "14,348"
+        UnitUtils.formatDouble(context, 14.34864, 3) shouldBe "14,349"
     }
 
     @Test
@@ -50,7 +50,7 @@ class UnitUtilsTest {
             every { currentLocale } returns Locale("fr", "FR")
         }
 
-        Utils.formatInt(context, 14) shouldBe "14"
-        Utils.formatInt(context, 16) shouldBe "16"
+        UnitUtils.formatInt(context, 14) shouldBe "14"
+        UnitUtils.formatInt(context, 16) shouldBe "16"
     }
 }

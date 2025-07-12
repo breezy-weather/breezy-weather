@@ -83,7 +83,7 @@ fun Wind.getShortDescription(context: Context, unit: SpeedUnit): String? {
     }
     speed?.let {
         if (builder.toString().isNotEmpty()) builder.append(" ")
-        builder.append(unit.getValueText(context, it))
+        builder.append(unit.formatMeasure(context, it))
     }
     return builder.toString().ifEmpty { null }
 }
@@ -95,7 +95,7 @@ fun Wind.getContentDescription(
 ): String {
     val builder = StringBuilder()
     speed?.let {
-        builder.append(unit.getValueVoice(context, it))
+        builder.append(unit.formatContentDescription(context, it))
         if (!getStrength(context).isNullOrEmpty()) {
             builder.append(context.getString(R.string.comma_separator))
             builder.append(getStrength(context))
@@ -115,7 +115,7 @@ fun Wind.getContentDescription(
                 if (builder.toString().isNotEmpty()) builder.append(context.getString(R.string.comma_separator))
                 builder.append(context.getString(R.string.wind_gusts_short))
                 builder.append(context.getString(R.string.colon_separator))
-                builder.append(unit.getValueVoice(context, it))
+                builder.append(unit.formatContentDescription(context, it))
             }
         }
     }

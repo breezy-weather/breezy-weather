@@ -28,7 +28,7 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetClockDayDetailsProvider
 import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getShortWeekdayDayMonth
 import org.breezyweather.domain.location.model.getPlace
@@ -157,7 +157,7 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         builder.append(location.getPlace(context))
         weather.current?.temperature?.temperature?.let {
             builder.append(" ").append(
-                temperatureUnit.getValueText(context, it, 0)
+                temperatureUnit.formatMeasure(context, it, 0)
             )
         }
         views.setTextViewText(R.id.widget_clock_day_subtitle, builder.toString())
@@ -174,7 +174,7 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
                 R.id.widget_clock_day_feelsLikeTemp,
                 context.getString(R.string.temperature_feels_like) +
                     " " +
-                    temperatureUnit.getValueText(context, it, 0)
+                    temperatureUnit.formatMeasure(context, it, 0)
             )
         } ?: run {
             views.setTextViewText(R.id.widget_clock_day_feelsLikeTemp, null)
@@ -272,14 +272,14 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
                 context.getString(R.string.colon_separator) +
                 context.getString(
                     R.string.parenthesis,
-                    Utils.formatInt(context, weather.current!!.airQuality!!.getIndex()!!),
+                    UnitUtils.formatInt(context, weather.current!!.airQuality!!.getIndex()!!),
                     weather.current!!.airQuality!!.getName(context)
                 )
         } else {
             weather.current?.relativeHumidity?.let {
                 context.getString(R.string.humidity) +
                     context.getString(R.string.colon_separator) +
-                    Utils.formatPercent(context, it)
+                    UnitUtils.formatPercent(context, it)
             }
         }
     }

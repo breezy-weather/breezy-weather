@@ -17,69 +17,70 @@
 package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
+import android.icu.util.MeasureUnit
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitEnum
-import org.breezyweather.common.basic.models.options.basic.Utils
-import org.breezyweather.common.extensions.isRtl
-import kotlin.math.roundToInt
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 
 enum class PollenUnit(
     override val id: String,
-    override val convertUnit: (Int) -> Double,
-) : UnitEnum<Int> {
+    override val measureUnit: MeasureUnit?,
+    override val perMeasureUnit: MeasureUnit?,
+    override val convertUnit: (Double) -> Double,
+) : UnitEnum<Double> {
 
-    PPCM("ppcm", { valueInDefaultUnit -> valueInDefaultUnit * 1.0 }),
+    PER_CUBIC_METER(
+        "ppcm",
+        null, // No matching unit
+        null, // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.CUBIC_METER else null,
+        { valueInDefaultUnit -> valueInDefaultUnit * 1.0 }
+    ),
     ;
 
     override val valueArrayId = R.array.pollen_unit_values
     override val nameArrayId = R.array.pollen_units
-    override val voiceArrayId = R.array.pollen_unit_voices
+    override val contentDescriptionArrayId = R.array.pollen_unit_voices
 
-    override fun getName(context: Context) = Utils.getName(context, this)
+    override fun getName(context: Context) = UnitUtils.getName(context, this)
 
-    override fun getVoice(context: Context) = Utils.getVoice(context, this)
+    override fun getMeasureContentDescription(context: Context) = UnitUtils.getMeasureContentDescription(context, this)
 
-    override fun getValueWithoutUnit(
-        valueInDefaultUnit: Int,
-    ) = convertUnit(valueInDefaultUnit).roundToInt()
+    override fun getConvertedUnit(
+        valueInDefaultUnit: Double,
+    ) = convertUnit(valueInDefaultUnit)
 
-    override fun getValueTextWithoutUnit(
+    override fun formatValue(
         context: Context,
-        valueInDefaultUnit: Int,
-    ) = Utils.getValueTextWithoutUnit(context, this, valueInDefaultUnit)!!
+        valueInDefaultUnit: Double,
+    ) = UnitUtils.formatValue(
+        context = context,
+        enum = this,
+        value = valueInDefaultUnit,
+        precision = 0
+    )
 
-    override fun getValueText(
+    override fun formatMeasure(
         context: Context,
-        value: Int,
+        value: Double,
         isValueInDefaultUnit: Boolean,
-    ) = getValueText(context, value, context.isRtl, isValueInDefaultUnit)
-
-    override fun getValueText(
-        context: Context,
-        value: Int,
-        rtl: Boolean,
-        isValueInDefaultUnit: Boolean,
-    ) = Utils.getValueText(
+    ) = UnitUtils.formatMeasure(
         context = context,
         enum = this,
         value = value,
-        rtl = rtl,
+        precision = 0,
         isValueInDefaultUnit = isValueInDefaultUnit
     )
 
-    override fun getValueVoice(
+    override fun formatContentDescription(
         context: Context,
-        valueInDefaultUnit: Int,
-    ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
-
-    override fun getValueVoice(
-        context: Context,
-        valueInDefaultUnit: Int,
-        rtl: Boolean,
-    ) = Utils.getVoiceText(
+        value: Double,
+        isValueInDefaultUnit: Boolean,
+    ) = UnitUtils.formatMeasure(
         context = context,
         enum = this,
-        valueInDefaultUnit = valueInDefaultUnit,
-        rtl = rtl
+        value = value,
+        precision = 0,
+        isValueInDefaultUnit = isValueInDefaultUnit,
+        unitWidth = UnitWidth.FULL
     )
 }

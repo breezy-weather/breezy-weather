@@ -147,19 +147,19 @@ private fun PressureItem(
         TextFixedHeight(
             text = buildAnnotatedString {
                 pressure?.let {
-                    val pressureValueFormatted = pressureUnit.getValueTextWithoutUnit(context, it)
+                    val pressureValueFormatted = pressureUnit.formatValue(context, it)
                     append(pressureValueFormatted)
                     withStyle(style = SpanStyle(fontSize = MaterialTheme.typography.headlineSmall.fontSize)) {
-                        append(pressureUnit.getValueText(context, it).substring(pressureValueFormatted.length))
+                        append(pressureUnit.formatMeasure(context, it).substring(pressureValueFormatted.length))
                     }
-                    pressureUnit.getValueText(context, it)
+                    pressureUnit.formatMeasure(context, it)
                 }
             },
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier
                 .clearAndSetSemantics {
                     pressure?.let {
-                        contentDescription = pressureUnit.getValueVoice(context, it)
+                        contentDescription = pressureUnit.formatContentDescription(context, it)
                     }
                 }
         )
@@ -177,14 +177,14 @@ private fun PressureChart(
     val chartStep = pressureUnit.chartStep
     val maxY = remember(mappedValues) {
         max(
-            pressureUnit.getValueWithoutUnit(PressureUnit.NORMAL) + chartStep.times(1.6),
-            pressureUnit.getValueWithoutUnit(mappedValues.values.max())
+            pressureUnit.getConvertedUnit(PressureUnit.NORMAL) + chartStep.times(1.6),
+            pressureUnit.getConvertedUnit(mappedValues.values.max())
         ).roundUpToNearestMultiplier(chartStep)
     }
     val minY = remember(mappedValues) {
         min(
-            pressureUnit.getValueWithoutUnit(PressureUnit.NORMAL) - chartStep.times(1.6),
-            pressureUnit.getValueWithoutUnit(mappedValues.values.min())
+            pressureUnit.getConvertedUnit(PressureUnit.NORMAL) - chartStep.times(1.6),
+            pressureUnit.getConvertedUnit(mappedValues.values.min())
         ).roundDownToNearestMultiplier(chartStep)
     }
     val averagePressure = remember(mappedValues) {
@@ -198,7 +198,7 @@ private fun PressureChart(
             lineSeries {
                 series(
                     x = mappedValues.keys,
-                    y = mappedValues.values.map { pressureUnit.getValueWithoutUnit(it) }
+                    y = mappedValues.values.map { pressureUnit.getConvertedUnit(it) }
                 )
             }
         }
@@ -240,29 +240,29 @@ private fun PressureChart(
         modelProducer,
         theDay,
         maxY,
-        { _, value, _ -> pressureUnit.getValueText(context, value, isValueInDefaultUnit = false) },
+        { _, value, _ -> pressureUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
         persistentListOf(
             persistentMapOf(
-                pressureUnit.getValueWithoutUnit(1080.0).toFloat() to Color(48, 8, 24),
-                pressureUnit.getValueWithoutUnit(1046.0).toFloat() to Color(111, 24, 64),
-                pressureUnit.getValueWithoutUnit(1038.0).toFloat() to Color(142, 47, 57),
-                pressureUnit.getValueWithoutUnit(1030.0).toFloat() to Color(159, 81, 44),
-                pressureUnit.getValueWithoutUnit(1024.0).toFloat() to Color(163, 116, 67),
-                pressureUnit.getValueWithoutUnit(1019.0).toFloat() to Color(167, 147, 107),
-                pressureUnit.getValueWithoutUnit(1015.25).toFloat() to Color(176, 174, 152),
-                pressureUnit.getValueWithoutUnit(1013.25).toFloat() to Color(182, 182, 182),
-                pressureUnit.getValueWithoutUnit(1011.25).toFloat() to Color(155, 183, 172),
-                pressureUnit.getValueWithoutUnit(1007.0).toFloat() to Color(103, 162, 155),
-                pressureUnit.getValueWithoutUnit(1002.0).toFloat() to Color(26, 140, 147),
-                pressureUnit.getValueWithoutUnit(995.0).toFloat() to Color(0, 117, 146),
-                pressureUnit.getValueWithoutUnit(986.0).toFloat() to Color(0, 90, 148),
-                pressureUnit.getValueWithoutUnit(976.0).toFloat() to Color(0, 52, 146),
-                pressureUnit.getValueWithoutUnit(950.0).toFloat() to Color(0, 32, 96),
-                pressureUnit.getValueWithoutUnit(900.0).toFloat() to Color(8, 16, 48)
+                pressureUnit.getConvertedUnit(1080.0).toFloat() to Color(48, 8, 24),
+                pressureUnit.getConvertedUnit(1046.0).toFloat() to Color(111, 24, 64),
+                pressureUnit.getConvertedUnit(1038.0).toFloat() to Color(142, 47, 57),
+                pressureUnit.getConvertedUnit(1030.0).toFloat() to Color(159, 81, 44),
+                pressureUnit.getConvertedUnit(1024.0).toFloat() to Color(163, 116, 67),
+                pressureUnit.getConvertedUnit(1019.0).toFloat() to Color(167, 147, 107),
+                pressureUnit.getConvertedUnit(1015.25).toFloat() to Color(176, 174, 152),
+                pressureUnit.getConvertedUnit(1013.25).toFloat() to Color(182, 182, 182),
+                pressureUnit.getConvertedUnit(1011.25).toFloat() to Color(155, 183, 172),
+                pressureUnit.getConvertedUnit(1007.0).toFloat() to Color(103, 162, 155),
+                pressureUnit.getConvertedUnit(1002.0).toFloat() to Color(26, 140, 147),
+                pressureUnit.getConvertedUnit(995.0).toFloat() to Color(0, 117, 146),
+                pressureUnit.getConvertedUnit(986.0).toFloat() to Color(0, 90, 148),
+                pressureUnit.getConvertedUnit(976.0).toFloat() to Color(0, 52, 146),
+                pressureUnit.getConvertedUnit(950.0).toFloat() to Color(0, 32, 96),
+                pressureUnit.getConvertedUnit(900.0).toFloat() to Color(8, 16, 48)
             )
         ),
         trendHorizontalLines = persistentMapOf(
-            pressureUnit.getValueWithoutUnit(PressureUnit.NORMAL) to stringResource(R.string.temperature_normal_short)
+            pressureUnit.getConvertedUnit(PressureUnit.NORMAL) to stringResource(R.string.temperature_normal_short)
         ),
         minY = minY,
         topAxisValueFormatter = { _, value, _ ->

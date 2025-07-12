@@ -19,7 +19,7 @@ package org.breezyweather.common.basic.models.options
 import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 
 enum class WidgetWeekIconMode(
     override val id: String,
@@ -42,5 +42,5 @@ enum class WidgetWeekIconMode(
     override val valueArrayId = R.array.week_icon_mode_values
     override val nameArrayId = R.array.week_icon_modes
 
-    override fun getName(context: Context) = Utils.getName(context, this)
+    override fun getName(context: Context) = UnitUtils.getName(context, this)
 }

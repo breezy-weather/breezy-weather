@@ -59,7 +59,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.domain.location.model.isDaylight
@@ -111,9 +111,9 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
         location.weather?.current?.let { current ->
             current.temperature?.temperature?.let {
                 mTemperatureContainer.visibility = View.VISIBLE
-                mTemperatureContainer.contentDescription = mTemperatureUnit!!.getValueVoice(context, it)
+                mTemperatureContainer.contentDescription = mTemperatureUnit!!.formatContentDescription(context, it)
                 mTemperatureFrom = mTemperatureTo
-                mTemperatureTo = mTemperatureUnit!!.getValueWithoutUnit(it).roundToInt()
+                mTemperatureTo = mTemperatureUnit!!.getConvertedUnit(it).roundToInt()
                 mTemperature.isAnimEnabled = itemAnimationEnabled
                 // no longer than 2 seconds.
                 mTemperature.duration =
@@ -244,8 +244,8 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
     override fun onEnterScreen() {
         super.onEnterScreen()
         mTemperature.setNumberString(
-            Utils.formatInt(context, mTemperatureFrom),
-            Utils.formatInt(context, mTemperatureTo)
+            UnitUtils.formatInt(context, mTemperatureFrom),
+            UnitUtils.formatInt(context, mTemperatureTo)
         )
     }
 

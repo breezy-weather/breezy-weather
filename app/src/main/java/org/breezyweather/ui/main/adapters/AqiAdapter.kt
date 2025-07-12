@@ -164,10 +164,10 @@ class AqiAdapter(
                                     airQuality.getIndex(pollutantIndex)!!.toFloat(),
                                     PollutantIndex.indexExcessivePollution.toFloat(),
                                     context.getString(pollutantIndex.shortName),
-                                    PollutantIndex.getUnit(pollutantIndex).getValueText(context, it),
+                                    PollutantIndex.getUnit(pollutantIndex).formatMeasure(context, it),
                                     context.getString(pollutantIndex.voicedName) +
                                         context.getString(R.string.colon_separator) +
-                                        PollutantIndex.getUnit(pollutantIndex).getValueVoice(context, it),
+                                        PollutantIndex.getUnit(pollutantIndex).formatContentDescription(context, it),
                                     executeAnimation
                                 )
                             )
@@ -184,10 +184,11 @@ class AqiAdapter(
                                         airQuality.getIndex(pollutantIndex)!!.toFloat(),
                                         PollutantIndex.indexExcessivePollution.toFloat(),
                                         context.getString(pollutantIndex.shortName),
-                                        PollutantIndex.getUnit(pollutantIndex).getValueText(context, it),
+                                        PollutantIndex.getUnit(pollutantIndex).formatMeasure(context, it),
                                         context.getString(pollutantIndex.voicedName) +
                                             context.getString(R.string.colon_separator) +
-                                            PollutantIndex.getUnit(pollutantIndex).getValueVoice(context, it),
+                                            PollutantIndex.getUnit(pollutantIndex)
+                                                .formatContentDescription(context, it),
                                         executeAnimation
                                     )
                                 )

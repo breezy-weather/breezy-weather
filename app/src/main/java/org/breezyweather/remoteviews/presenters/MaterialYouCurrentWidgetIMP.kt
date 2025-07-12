@@ -171,7 +171,7 @@ class MaterialYouCurrentWidgetIMP : AbstractRemoteViewsPresenter() {
             } ?: views.setViewVisibility(R.id.widget_material_you_current_currentIcon, View.INVISIBLE)
 
             val temperatureText = weather.current?.temperature?.temperature?.let {
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             }
             views.setTextViewText(
                 R.id.widget_material_you_current_currentTemperature,

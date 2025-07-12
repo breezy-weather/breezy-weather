@@ -26,7 +26,6 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
-import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
@@ -65,7 +64,7 @@ class HourlyVisibilityAdapter(
             val hourly = weather.nextHourlyForecast[position]
             hourly.visibility?.let {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(mVisibilityUnit.getValueText(activity, it))
+                    .append(mVisibilityUnit.formatMeasure(activity, it))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -76,7 +75,7 @@ class HourlyVisibilityAdapter(
             mPolylineAndHistogramView.setData(
                 buildVisibilityArrayForItem(mVisibilities, position),
                 null,
-                hourly.visibility?.let { mVisibilityUnit.getValueTextWithoutUnit(activity, it) },
+                hourly.visibility?.let { mVisibilityUnit.formatValue(activity, it) },
                 null,
                 mHighestVisibility,
                 mLowestVisibility,
@@ -157,7 +156,6 @@ class HourlyVisibilityAdapter(
         }
         weather.nextHourlyForecast
             .forEach { hourly ->
-                LogHelper.log(msg = "vis: ${hourly.visibility}")
                 hourly.visibility?.let {
                     if (mHighestVisibility == null || it > mHighestVisibility!!) {
                         mHighestVisibility = it.toFloat()

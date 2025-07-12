@@ -17,33 +17,39 @@
 package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
+import android.icu.util.MeasureUnit
+import android.os.Build
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitEnum
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.isRtl
 
 // actual distance = distance(km) * factor.
 enum class DistanceUnit(
     override val id: String,
+    override val measureUnit: MeasureUnit?,
     override val convertUnit: (Double) -> Double,
     val chartStep: (Double) -> Double,
-    val decimalNumbers: Int = 0,
+    val precision: Int = 0,
+    override val perMeasureUnit: MeasureUnit? = null,
 ) : UnitEnum<Double> {
 
-    M(
+    METER(
         "m",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.METER else null,
         { valueInDefaultUnit -> valueInDefaultUnit },
         chartStep = { maxY -> if (maxY < 40000) 5000.0 else 10000.0 }
     ),
-    KM(
+    KILOMETER(
         "km",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.KILOMETER else null,
         { valueInDefaultUnit -> valueInDefaultUnit.div(1000f) },
         chartStep = { maxY -> if (maxY < 4) 5.0 else 10.0 },
-        decimalNumbers = 1
+        precision = 1
     ),
-    MI(
+    MILE(
         "mi",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.MILE else null,
         { valueInDefaultUnit -> valueInDefaultUnit.div(1609.344f) },
         chartStep = { maxY ->
             with(maxY) {
@@ -54,10 +60,11 @@ enum class DistanceUnit(
                 }
             }
         },
-        decimalNumbers = 1
+        precision = 1
     ),
-    NMI(
+    NAUTICAL_MILE(
         "nmi",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.NAUTICAL_MILE else null,
         { valueInDefaultUnit -> valueInDefaultUnit.div(1852f) },
         chartStep = { maxY ->
             with(maxY) {
@@ -68,10 +75,11 @@ enum class DistanceUnit(
                 }
             }
         },
-        decimalNumbers = 1
+        precision = 1
     ),
-    FT(
+    FOOT(
         "ft",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.FOOT else null,
         { valueInDefaultUnit -> valueInDefaultUnit.times(3.28084f) },
         chartStep = { maxY -> if (maxY < 150000) 25000.0 else 50000.0 }
     ),
@@ -87,9 +95,9 @@ enum class DistanceUnit(
         fun getDefaultUnit(
             context: Context,
         ) = when (context.currentLocale.country) {
-            "DE", "ML" -> M
-            "GB", "US" -> MI
-            else -> KM
+            "DE", "ML" -> METER
+            "GB", "US" -> MILE
+            else -> KILOMETER
         }
 
         /**
@@ -121,53 +129,46 @@ enum class DistanceUnit(
 
     override val valueArrayId = R.array.distance_unit_values
     override val nameArrayId = R.array.distance_units
-    override val voiceArrayId = R.array.distance_unit_voices
+    override val contentDescriptionArrayId = R.array.distance_unit_voices
 
-    override fun getName(context: Context) = Utils.getName(context, this)
+    override fun getName(context: Context) = UnitUtils.getName(context, this)
 
-    override fun getVoice(context: Context) = Utils.getVoice(context, this)
+    override fun getMeasureContentDescription(context: Context) = UnitUtils.getMeasureContentDescription(context, this)
 
-    override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
+    override fun getConvertedUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
-    override fun getValueTextWithoutUnit(
+    override fun formatValue(
         context: Context,
         valueInDefaultUnit: Double,
-    ) = Utils.getValueTextWithoutUnit(context, this, valueInDefaultUnit, decimalNumbers)!!
+    ) = UnitUtils.formatValue(
+        context = context,
+        enum = this,
+        value = valueInDefaultUnit,
+        precision = precision
+    )
 
-    override fun getValueText(
+    override fun formatMeasure(
         context: Context,
         value: Double,
         isValueInDefaultUnit: Boolean,
-    ) = getValueText(context, value, context.isRtl, isValueInDefaultUnit)
-
-    override fun getValueText(
-        context: Context,
-        value: Double,
-        rtl: Boolean,
-        isValueInDefaultUnit: Boolean,
-    ) = Utils.getValueText(
+    ) = UnitUtils.formatMeasure(
         context = context,
         enum = this,
         value = value,
-        precision = decimalNumbers,
-        rtl = rtl,
+        precision = precision,
         isValueInDefaultUnit = isValueInDefaultUnit
     )
 
-    override fun getValueVoice(
+    override fun formatContentDescription(
         context: Context,
-        valueInDefaultUnit: Double,
-    ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
-
-    override fun getValueVoice(
-        context: Context,
-        valueInDefaultUnit: Double,
-        rtl: Boolean,
-    ) = Utils.getVoiceText(
+        value: Double,
+        isValueInDefaultUnit: Boolean,
+    ) = UnitUtils.formatMeasure(
         context = context,
         enum = this,
-        valueInDefaultUnit = valueInDefaultUnit,
-        decimalNumber = decimalNumbers,
-        rtl = rtl
+        value = value,
+        precision = precision,
+        isValueInDefaultUnit = isValueInDefaultUnit,
+        unitWidth = UnitWidth.FULL
     )
 }

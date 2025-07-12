@@ -58,7 +58,7 @@ import com.google.android.material.textfield.TextInputLayout
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.hasPermission
@@ -354,7 +354,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             valueTo = 100f
             value = ((cardAlpha.toDouble() / 10.0).roundToInt() * 10.0).toFloat()
             setLabelFormatter { value: Float ->
-                Utils.formatPercent(context, value.toDouble())
+                UnitUtils.formatPercent(context, value.toDouble())
             }
             addOnChangeListener { _, value, _ ->
                 if (cardAlpha != value.roundToInt()) {
@@ -417,7 +417,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
                 }
             }
             setLabelFormatter { value: Float ->
-                Utils.formatPercent(context, value.toDouble())
+                UnitUtils.formatPercent(context, value.toDouble())
             }
         }
 

@@ -25,7 +25,7 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.domain.weather.model.CLOUD_COVER_CLEAR
 import org.breezyweather.domain.weather.model.CLOUD_COVER_PARTLY
 import org.breezyweather.domain.weather.model.getCloudCoverColor
@@ -60,7 +60,7 @@ class HourlyCloudCoverAdapter(
             hourly.cloudCover?.let { cloudCover ->
                 talkBackBuilder
                     .append(activity.getString(R.string.comma_separator))
-                    .append(Utils.formatPercent(activity, cloudCover.toDouble()))
+                    .append(UnitUtils.formatPercent(activity, cloudCover.toDouble()))
             }
             mPolylineAndHistogramView.setData(
                 null,
@@ -70,7 +70,7 @@ class HourlyCloudCoverAdapter(
                 null,
                 null,
                 hourly.cloudCover?.toFloat() ?: 0f,
-                hourly.cloudCover?.let { Utils.formatPercent(activity, it.toDouble()) },
+                hourly.cloudCover?.let { UnitUtils.formatPercent(activity, it.toDouble()) },
                 100f,
                 0f
             )
@@ -133,7 +133,7 @@ class HourlyCloudCoverAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 CLOUD_COVER_PARTLY.toFloat(),
-                Utils.formatPercent(activity, CLOUD_COVER_PARTLY),
+                UnitUtils.formatPercent(activity, CLOUD_COVER_PARTLY),
                 activity.getString(R.string.weather_kind_partly_cloudy),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -141,7 +141,7 @@ class HourlyCloudCoverAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 CLOUD_COVER_CLEAR.toFloat(),
-                Utils.formatPercent(activity, CLOUD_COVER_CLEAR),
+                UnitUtils.formatPercent(activity, CLOUD_COVER_CLEAR),
                 activity.getString(R.string.weather_kind_clear),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )

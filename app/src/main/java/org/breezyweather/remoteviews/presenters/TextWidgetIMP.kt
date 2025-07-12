@@ -26,7 +26,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTextProvider
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
@@ -125,7 +125,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
                 setTextViewText(
                     R.id.widget_text_temperature,
                     weather.current?.temperature?.temperature?.let {
-                        temperatureUnit.getShortValueText(context, it)
+                        temperatureUnit.formatMeasureShort(context, it)
                     }
                 )
                 setTextColor(R.id.widget_text_date, color.textColor)
@@ -184,7 +184,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
                 if (airQuality.getIndex() != null && airQuality.getName(context) != null) {
                     context.getString(
                         R.string.parenthesis,
-                        Utils.formatInt(context, airQuality.getIndex()!!),
+                        UnitUtils.formatInt(context, airQuality.getIndex()!!),
                         airQuality.getName(context, null)
                     )
                 } else {
@@ -196,7 +196,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
                 context.getString(R.string.temperature_feels_like) +
                     " " +
-                    temperatureUnit.getValueText(context, it, 0)
+                    temperatureUnit.formatMeasure(context, it, 0)
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)
         }

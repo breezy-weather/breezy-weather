@@ -86,7 +86,7 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
         weather.current?.temperature?.temperature?.let {
             views.setTextViewText(
                 R.id.widget_week_temp,
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             )
         } ?: run {
             views.setTextViewText(R.id.widget_week_temp, null)

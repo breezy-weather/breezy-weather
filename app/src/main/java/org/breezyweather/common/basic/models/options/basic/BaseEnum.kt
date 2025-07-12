@@ -17,6 +17,7 @@
 package org.breezyweather.common.basic.models.options.basic
 
 import android.content.Context
+import android.icu.util.MeasureUnit
 
 interface BaseEnum {
     val id: String
@@ -25,17 +26,17 @@ interface BaseEnum {
     fun getName(context: Context): String
 }
 
-interface VoiceEnum : BaseEnum {
-    val voiceArrayId: Int
-    fun getVoice(context: Context): String
+interface ContentDescriptionEnum : BaseEnum {
+    val contentDescriptionArrayId: Int
+    fun getMeasureContentDescription(context: Context): String
 }
 
-interface UnitEnum<T : Number> : VoiceEnum {
+interface UnitEnum<T : Number> : ContentDescriptionEnum {
+    val measureUnit: MeasureUnit?
+    val perMeasureUnit: MeasureUnit?
     val convertUnit: (T) -> Double
-    fun getValueWithoutUnit(valueInDefaultUnit: T): T
-    fun getValueTextWithoutUnit(context: Context, valueInDefaultUnit: T): String
-    fun getValueText(context: Context, value: T, isValueInDefaultUnit: Boolean = true): String
-    fun getValueText(context: Context, value: T, rtl: Boolean, isValueInDefaultUnit: Boolean = true): String
-    fun getValueVoice(context: Context, valueInDefaultUnit: T): String
-    fun getValueVoice(context: Context, valueInDefaultUnit: T, rtl: Boolean): String
+    fun getConvertedUnit(valueInDefaultUnit: T): T
+    fun formatValue(context: Context, valueInDefaultUnit: T): String
+    fun formatMeasure(context: Context, value: T, isValueInDefaultUnit: Boolean = true): String
+    fun formatContentDescription(context: Context, value: T, isValueInDefaultUnit: Boolean = true): String
 }

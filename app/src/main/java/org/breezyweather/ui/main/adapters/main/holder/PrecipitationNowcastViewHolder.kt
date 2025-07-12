@@ -323,13 +323,13 @@ private class MarkerLabelFormatterMinutelyDecorator(
                 Precipitation.PRECIPITATION_HOURLY_LIGHT -> aContext.getString(R.string.precipitation_intensity_light)
                 Precipitation.PRECIPITATION_HOURLY_MEDIUM -> aContext.getString(R.string.precipitation_intensity_medium)
                 Precipitation.PRECIPITATION_HOURLY_HEAVY -> aContext.getString(R.string.precipitation_intensity_heavy)
-                else -> precipitationIntensityUnit.getValueText(
+                else -> precipitationIntensityUnit.formatMeasure(
                     aContext,
                     mappedValues.getOrElse(model.x.toLong()) { null } ?: 0.0
                 )
             }
         } else {
-            precipitationIntensityUnit.getValueText(
+            precipitationIntensityUnit.formatMeasure(
                 aContext,
                 mappedValues.getOrElse(model.x.toLong()) { null } ?: 0.0
             )

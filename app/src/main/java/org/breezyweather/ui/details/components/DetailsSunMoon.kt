@@ -202,7 +202,7 @@ fun EphemerisChart(
     EphemerisChart(
         location,
         modelProducer,
-        { _, value, _ -> TemperatureUnit.C.getShortValueText(context, value) }, // Hack
+        { _, value, _ -> TemperatureUnit.CELSIUS.formatMeasureShort(context, value) }, // Hack
         lineColors = if (mappedMoonValues.isNotEmpty()) {
             persistentListOf(
                 MaterialWeatherThemeDelegate.getBrighterColor(MeteorShowerImplementor.themeColor), // Moon
@@ -372,7 +372,7 @@ fun DailySun(
                                 ?: context.getString(R.string.null_data_text)
                             ) +
                         "↓" +
-                        (sun.duration?.let { " / " + DurationUnit.H.getValueText(context, it) } ?: "")
+                        (sun.duration?.let { " / " + DurationUnit.HOUR.formatMeasure(context, it) } ?: "")
                 } else {
                     (
                         sunriseTime ?: context.getString(R.string.null_data_text)
@@ -382,7 +382,7 @@ fun DailySun(
                             sunsetTime ?: context.getString(R.string.null_data_text)
                             ) +
                         "↓" +
-                        (sun.duration?.let { " / " + DurationUnit.H.getValueText(context, it) } ?: "")
+                        (sun.duration?.let { " / " + DurationUnit.HOUR.formatMeasure(context, it) } ?: "")
                 },
                 color = DayNightTheme.colors.titleColor
             )
@@ -405,7 +405,7 @@ fun DailySun(
                         talkBackBuilder.append(context.getString(R.string.comma_separator))
                     }
                     talkBackBuilder.append(context.getString(R.string.sunshine_duration))
-                    talkBackBuilder.append(DurationUnit.H.getValueVoice(context, it))
+                    talkBackBuilder.append(DurationUnit.HOUR.formatContentDescription(context, it))
                 }
                 contentDescription = talkBackBuilder.toString()
             }

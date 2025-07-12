@@ -17,30 +17,46 @@
 package org.breezyweather.common.basic.models.options.unit
 
 import android.content.Context
-import android.icu.text.MeasureFormat
 import android.icu.util.MeasureUnit
 import android.os.Build
 import android.text.BidiFormatter
 import androidx.core.text.util.LocalePreferences
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitEnum
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.isRtl
-import org.breezyweather.common.extensions.roundDecimals
 
 enum class TemperatureUnit(
     override val id: String,
+    override val measureUnit: MeasureUnit?,
     override val convertUnit: (Double) -> Double,
     val convertDegreeDayUnit: (Double) -> Double,
     val chartStep: Double,
+    override val perMeasureUnit: MeasureUnit? = null,
 ) : UnitEnum<Double> {
 
-    C("c", { valueInDefaultUnit -> valueInDefaultUnit }, { valueInDefaultUnit -> valueInDefaultUnit }, 5.0),
-    F("f", { valueInDefaultUnit ->
-        32 + valueInDefaultUnit.times(1.8)
-    }, { valueInDefaultUnit -> valueInDefaultUnit.times(1.8) }, 10.0),
-    K("k", { valueInDefaultUnit -> 273.15 + valueInDefaultUnit }, { valueInDefaultUnit -> valueInDefaultUnit }, 5.0),
+    CELSIUS(
+        "c",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.CELSIUS else null,
+        { valueInDefaultUnit -> valueInDefaultUnit },
+        { valueInDefaultUnit -> valueInDefaultUnit },
+        5.0
+    ),
+    FAHRENHEIT(
+        "f",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.FAHRENHEIT else null,
+        { valueInDefaultUnit -> 32 + valueInDefaultUnit.times(1.8) },
+        { valueInDefaultUnit -> valueInDefaultUnit.times(1.8) },
+        10.0
+    ),
+    KELVIN(
+        "k",
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) MeasureUnit.KELVIN else null,
+        { valueInDefaultUnit -> 273.15 + valueInDefaultUnit },
+        { valueInDefaultUnit -> valueInDefaultUnit },
+        5.0
+    ),
     ;
 
     companion object {
@@ -52,17 +68,17 @@ enum class TemperatureUnit(
         fun getDefaultUnit(
             context: Context,
         ) = when (LocalePreferences.getTemperatureUnit()) {
-            LocalePreferences.TemperatureUnit.CELSIUS -> C
-            LocalePreferences.TemperatureUnit.FAHRENHEIT -> F
-            LocalePreferences.TemperatureUnit.KELVIN -> K
+            LocalePreferences.TemperatureUnit.CELSIUS -> CELSIUS
+            LocalePreferences.TemperatureUnit.FAHRENHEIT -> FAHRENHEIT
+            LocalePreferences.TemperatureUnit.KELVIN -> KELVIN
             /**
              * Copyright © 1991-Present Unicode, Inc.
              * License: Unicode License v3 https://www.unicode.org/license.txt
              * Source: https://github.com/unicode-org/cldr/blob/3f3967f3cbadc56bbb44a9aed20784e82ac64c67/common/supplemental/units.xml#L579-L582
              */
             else -> when (context.currentLocale.country) {
-                "BS", "BZ", "KY", "PR", "PW", "US" -> F
-                else -> C
+                "BS", "BZ", "KY", "PR", "PW", "US" -> FAHRENHEIT
+                else -> CELSIUS
             }
         }
     }
@@ -70,166 +86,102 @@ enum class TemperatureUnit(
     override val valueArrayId = R.array.temperature_unit_values
     override val nameArrayId = R.array.temperature_units
     private val shortArrayId = R.array.temperature_units_short
-    override val voiceArrayId = R.array.temperature_units
+    override val contentDescriptionArrayId = R.array.temperature_units
 
-    override fun getName(context: Context) = Utils.getName(context, this)
+    override fun getName(context: Context) = UnitUtils.getName(context, this)
 
     fun getShortName(
         context: Context,
-    ) = Utils.getNameByValue(
+    ) = UnitUtils.getNameByValue(
         res = context.resources,
         value = id,
         nameArrayId = shortArrayId,
         valueArrayId = valueArrayId
     )!!
 
-    override fun getValueTextWithoutUnit(
+    override fun formatValue(
         context: Context,
         valueInDefaultUnit: Double,
-    ) = Utils.getValueTextWithoutUnit(context, this, valueInDefaultUnit, 0)!!
-
-    override fun getVoice(context: Context) = Utils.getVoice(context, this)
-
-    override fun getValueWithoutUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
-
-    fun getDegreeDayValueWithoutUnit(valueInDefaultUnit: Double) = convertDegreeDayUnit(valueInDefaultUnit)
-
-    override fun getValueText(
-        context: Context,
-        value: Double,
-        isValueInDefaultUnit: Boolean,
-    ) = getValueText(context, value, context.isRtl, isValueInDefaultUnit)
-
-    fun getValueText(
-        context: Context,
-        valueInDefaultUnit: Double,
-        decimalNumber: Int = 1,
-    ) = Utils.getValueText(
+    ) = UnitUtils.formatValue(
         context = context,
         enum = this,
         value = valueInDefaultUnit,
-        precision = decimalNumber,
-        rtl = context.isRtl
+        precision = 0
     )
 
-    override fun getValueText(
+    override fun getMeasureContentDescription(context: Context) = UnitUtils.getMeasureContentDescription(context, this)
+
+    override fun getConvertedUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
+
+    fun getDegreeDayConvertedUnit(valueInDefaultUnit: Double) = convertDegreeDayUnit(valueInDefaultUnit)
+
+    override fun formatMeasure(
         context: Context,
         value: Double,
-        rtl: Boolean,
         isValueInDefaultUnit: Boolean,
-    ) = Utils.getValueText(
+    ) = UnitUtils.formatMeasure(
         context = context,
         enum = this,
         value = value,
         precision = 1,
-        rtl = rtl,
-        isValueInDefaultUnit
+        isValueInDefaultUnit = isValueInDefaultUnit
     )
 
-    fun getDegreeDayValueText(
+    fun formatMeasure(
         context: Context,
         valueInDefaultUnit: Double,
-    ) = if (context.isRtl) {
-        BidiFormatter
-            .getInstance()
-            .unicodeWrap(
-                Utils.formatDouble(context, getDegreeDayValueWithoutUnit(valueInDefaultUnit), 1)
-            ) + "\u202f" + Utils.getName(context, this)
-    } else {
-        Utils.formatDouble(
-            context,
-            getDegreeDayValueWithoutUnit(valueInDefaultUnit),
-            1
-        ) + "\u202f" + Utils.getName(context, this)
-    }
-
-    fun getDegreeDayValueText(
-        context: Context,
-        valueInDefaultUnit: Double,
-        rtl: Boolean,
-    ) = Utils.getValueText(
+        precision: Int = 1,
+    ) = UnitUtils.formatMeasure(
         context = context,
         enum = this,
         value = valueInDefaultUnit,
-        precision = 1,
-        rtl = rtl
+        precision = precision
     )
 
-    fun getDegreeDayValueVoice(
-        context: Context,
-        valueInDefaultUnit: Double,
-    ) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        Utils.formatWithIcu(
-            context,
-            getDegreeDayValueWithoutUnit(valueInDefaultUnit).roundDecimals(0)!!,
-            when (this) {
-                C -> MeasureUnit.CELSIUS
-                F -> MeasureUnit.FAHRENHEIT
-                K -> MeasureUnit.KELVIN
-            },
-            MeasureFormat.FormatWidth.WIDE
-        )
-    } else {
-        getDegreeDayValueText(context, valueInDefaultUnit)
-    }
-
-    fun getShortValueText(
+    fun formatMeasureShort(
         context: Context,
         value: Double,
+        precision: Int = 0,
         isValueInDefaultUnit: Boolean = true,
-    ) = getShortValueText(context, value, 0, context.isRtl, isValueInDefaultUnit)
+    ): String = UnitUtils.formatValue(context, this, value, precision, isValueInDefaultUnit).let { formattedValue ->
+        if (context.isRtl) BidiFormatter.getInstance().unicodeWrap(formattedValue) else formattedValue
+    } + getShortName(context)
 
-    fun getShortValueText(
+    fun formatDegreeDay(
+        context: Context,
+        valueInDefaultUnit: Double,
+        precision: Int = 1,
+    ) = UnitUtils.formatMeasure(
+        context = context,
+        enum = this,
+        value = getDegreeDayConvertedUnit(valueInDefaultUnit),
+        precision = precision,
+        isValueInDefaultUnit = false
+    )
+
+    fun formatDegreeDayContentDescription(
+        context: Context,
+        valueInDefaultUnit: Double,
+        precision: Int = 0,
+    ) = UnitUtils.formatMeasure(
+        context = context,
+        enum = this,
+        value = getDegreeDayConvertedUnit(valueInDefaultUnit),
+        precision = precision,
+        isValueInDefaultUnit = false,
+        unitWidth = UnitWidth.FULL
+    )
+
+    override fun formatContentDescription(
         context: Context,
         value: Double,
-        decimalNumber: Int,
-        rtl: Boolean,
-        isValueInDefaultUnit: Boolean = true,
-    ) = if (rtl) {
-        BidiFormatter
-            .getInstance()
-            .unicodeWrap(
-                Utils.formatDouble(
-                    context,
-                    if (isValueInDefaultUnit) getValueWithoutUnit(value) else value,
-                    decimalNumber
-                )
-            ) + getShortName(context)
-    } else {
-        Utils.formatDouble(
-            context,
-            if (isValueInDefaultUnit) getValueWithoutUnit(value) else value,
-            decimalNumber
-        ) + getShortName(context)
-    }
-
-    override fun getValueVoice(
-        context: Context,
-        valueInDefaultUnit: Double,
-    ) = getValueVoice(context, valueInDefaultUnit, context.isRtl)
-
-    override fun getValueVoice(
-        context: Context,
-        valueInDefaultUnit: Double,
-        rtl: Boolean,
-    ) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        Utils.formatWithIcu(
-            context,
-            getValueWithoutUnit(valueInDefaultUnit).roundDecimals(0)!!,
-            when (this) {
-                C -> MeasureUnit.CELSIUS
-                F -> MeasureUnit.FAHRENHEIT
-                K -> MeasureUnit.KELVIN
-            },
-            MeasureFormat.FormatWidth.WIDE
-        )
-    } else {
-        Utils.getVoiceText(
-            context = context,
-            enum = this,
-            valueInDefaultUnit = valueInDefaultUnit,
-            decimalNumber = 0,
-            rtl = rtl
-        )
-    }
+        isValueInDefaultUnit: Boolean,
+    ) = UnitUtils.formatMeasure(
+        context = context,
+        enum = this,
+        value = value,
+        precision = 0,
+        isValueInDefaultUnit = isValueInDefaultUnit,
+        unitWidth = UnitWidth.FULL
+    )
 }

@@ -22,7 +22,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import kotlinx.coroutines.test.runTest
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.currentLocale
 import org.junit.jupiter.api.Test
 import java.util.Locale
@@ -43,7 +43,7 @@ class MatchTest {
             every { currentLocale } returns Locale("fr", "FR")
         }
 
-        Utils.formatDouble(context, 7.00646, 2) shouldBe "7,01"
-        Utils.formatDouble(context, 7.00246, 2) shouldBe "7"
+        UnitUtils.formatDouble(context, 7.00646, 2) shouldBe "7,01"
+        UnitUtils.formatDouble(context, 7.00246, 2) shouldBe "7"
     }
 }

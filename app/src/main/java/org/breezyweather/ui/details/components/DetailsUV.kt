@@ -63,7 +63,7 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen.Companion.CHART_MIN_COUNT
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
@@ -161,7 +161,7 @@ private fun UVItem(
             TextFixedHeight(
                 text = buildAnnotatedString {
                     uv.index?.let {
-                        append(Utils.formatDouble(context, it, 1))
+                        append(UnitUtils.formatDouble(context, it, 1))
                         append(" ")
                     }
                     uv.getLevel(context)?.let {
@@ -265,7 +265,7 @@ private fun UVChart(
         modelProducer,
         daily.date,
         maxY,
-        { _, value, _ -> Utils.formatInt(context, value.roundToInt()) },
+        { _, value, _ -> UnitUtils.formatInt(context, value.roundToInt()) },
         persistentListOf(
             persistentMapOf(
                 19f to Color(255, 255, 255),
@@ -279,7 +279,7 @@ private fun UVChart(
         ),
         topAxisValueFormatter = { _, value, _ ->
             hourlyList.firstOrNull { it.date.time == value.toLong() }?.uV?.index?.roundToInt()
-                ?.let { Utils.formatInt(context, it) }
+                ?.let { UnitUtils.formatInt(context, it) }
                 ?: "-"
         },
         trendHorizontalLines = persistentMapOf(
@@ -329,7 +329,7 @@ fun UVScale(
             }
             UV.uvThresholds.forEachIndexed { index, startingValue ->
                 val endingValue = UV.uvThresholds.getOrElse(index + 1) { null }
-                    ?.let { " – ${Utils.formatInt(context, it - 1)}" }
+                    ?.let { " – ${UnitUtils.formatInt(context, it - 1)}" }
                     ?: "+"
                 val uv = UV(index = startingValue.toDouble())
                 Row(
@@ -356,7 +356,7 @@ fun UVScale(
                         )
                     }
                     Text(
-                        "${Utils.formatInt(context, startingValue)}$endingValue",
+                        "${UnitUtils.formatInt(context, startingValue)}$endingValue",
                         textAlign = TextAlign.End,
                         modifier = Modifier.weight(1f)
                     )

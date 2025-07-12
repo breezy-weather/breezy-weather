@@ -19,7 +19,7 @@ package org.breezyweather.common.basic.models.options
 import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 
 enum class DarkMode(
     override val id: String,
@@ -42,5 +42,5 @@ enum class DarkMode(
     override val valueArrayId = R.array.dark_mode_values
     override val nameArrayId = R.array.dark_modes
 
-    override fun getName(context: Context) = Utils.getName(context, this)
+    override fun getName(context: Context) = UnitUtils.getName(context, this)
 }

@@ -55,7 +55,7 @@ import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -102,14 +102,14 @@ fun DetailsCloudCover(
             item {
                 DetailsItem(
                     headlineText = stringResource(R.string.sunshine_duration),
-                    supportingText = DurationUnit.H.getValueText(context, sunshineDuration),
+                    supportingText = DurationUnit.HOUR.formatMeasure(context, sunshineDuration),
                     icon = R.drawable.ic_sunshine_duration,
                     modifier = Modifier
                         .semantics(mergeDescendants = true) {}
                         .clearAndSetSemantics {
                             contentDescription = context.getString(R.string.sunshine_duration) +
                                 context.getString(R.string.colon_separator) +
-                                DurationUnit.H.getValueVoice(context, sunshineDuration)
+                                DurationUnit.HOUR.formatContentDescription(context, sunshineDuration)
                         }
                 )
             }
@@ -158,7 +158,7 @@ private fun CloudCoverItem(
         header()
         TextFixedHeight(
             text = cloudCover?.let {
-                Utils.formatPercent(context, it.toDouble())
+                UnitUtils.formatPercent(context, it.toDouble())
             } ?: "",
             style = MaterialTheme.typography.displaySmall
         )
@@ -175,7 +175,7 @@ private fun CloudCoverChart(
     val maxY = 100.0
 
     val endAxisValueFormatter = CartesianValueFormatter { _, value, _ ->
-        Utils.formatPercent(context, value)
+        UnitUtils.formatPercent(context, value)
     }
 
     val modelProducer = remember { CartesianChartModelProducer() }

@@ -165,7 +165,7 @@ object ResourceHelper {
 
     fun createTempBitmap(context: Context, temp: Double): Bitmap {
         val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
-        val temperatureFormatted = temperatureUnit.getShortValueText(context, temp)
+        val temperatureFormatted = temperatureUnit.formatMeasureShort(context, temp)
 
         val iconSize = 72
         val bounds = Rect()

@@ -72,7 +72,7 @@ import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -188,10 +188,10 @@ private fun WindItem(
         wind.speed?.let { speed ->
             TextFixedHeight(
                 text = buildAnnotatedString {
-                    val speedValueFormatted = speedUnit.getValueTextWithoutUnit(context, speed)
+                    val speedValueFormatted = speedUnit.formatValue(context, speed)
                     append(speedValueFormatted)
                     withStyle(style = SpanStyle(fontSize = MaterialTheme.typography.headlineSmall.fontSize)) {
-                        append(speedUnit.getValueText(context, speed).substring(speedValueFormatted.length))
+                        append(speedUnit.formatMeasure(context, speed).substring(speedValueFormatted.length))
                     }
                     wind.arrow?.let {
                         append(" ")
@@ -201,7 +201,7 @@ private fun WindItem(
                 style = MaterialTheme.typography.displaySmall,
                 modifier = Modifier
                     .clearAndSetSemantics {
-                        contentDescription = speedUnit.getValueVoice(context, speed) +
+                        contentDescription = speedUnit.formatContentDescription(context, speed) +
                             (
                                 wind.arrow?.let {
                                     context.getString(R.string.comma_separator) +
@@ -215,7 +215,7 @@ private fun WindItem(
                     TextFixedHeight(
                         text = stringResource(R.string.wind_gusts_short) +
                             stringResource(R.string.colon_separator) +
-                            speedUnit.getValueText(context, gusts),
+                            speedUnit.formatMeasure(context, gusts),
                         style = MaterialTheme.typography.labelLarge,
                         color = DayNightTheme.colors.captionColor,
                         overflow = TextOverflow.StartEllipsis,
@@ -223,7 +223,7 @@ private fun WindItem(
                             .clearAndSetSemantics {
                                 contentDescription = context.getString(R.string.wind_gusts_short) +
                                     context.getString(R.string.colon_separator) +
-                                    speedUnit.getValueVoice(context, gusts)
+                                    speedUnit.formatContentDescription(context, gusts)
                             }
                     )
                 } else {
@@ -292,7 +292,7 @@ private fun WindChart(
                     mappedValues.values.maxOf { it.speed!! }
                 )
             ).let {
-                speedUnit.getValueWithoutUnit(it)
+                speedUnit.getConvertedUnit(it)
             }.roundUpToNearestMultiplier(step)
         }
 
@@ -303,13 +303,13 @@ private fun WindChart(
                 lineSeries {
                     series(
                         x = mappedValues.keys,
-                        y = mappedValues.values.map { speedUnit.getValueWithoutUnit(it.speed!!) }
+                        y = mappedValues.values.map { speedUnit.getConvertedUnit(it.speed!!) }
                     )
                     if (mappedValues.values.any { it.gusts != null }) {
                         series(
                             x = mappedValues.keys,
                             y = mappedValues.values.map {
-                                speedUnit.getValueWithoutUnit(
+                                speedUnit.getConvertedUnit(
                                     it.gusts?.let { gusts ->
                                         if (gusts < it.speed!!) {
                                             it.speed!!
@@ -330,63 +330,63 @@ private fun WindChart(
             modelProducer,
             daily.date,
             maxY,
-            { _, value, _ -> speedUnit.getValueText(context, value, isValueInDefaultUnit = false) },
+            { _, value, _ -> speedUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
             persistentListOf(
                 persistentMapOf(
-                    speedUnit.getValueWithoutUnit(104.0).toFloat() to Color(128, 128, 128),
-                    speedUnit.getValueWithoutUnit(77.0).toFloat() to Color(205, 202, 112),
-                    speedUnit.getValueWithoutUnit(51.0).toFloat() to Color(219, 212, 135),
-                    speedUnit.getValueWithoutUnit(46.0).toFloat() to Color(231, 215, 215),
-                    speedUnit.getValueWithoutUnit(36.0).toFloat() to colorResource(R.color.windStrength_bf12),
-                    speedUnit.getValueWithoutUnit(30.5).toFloat() to colorResource(R.color.windStrength_bf11),
-                    speedUnit.getValueWithoutUnit(26.4).toFloat() to colorResource(R.color.windStrength_bf10),
-                    speedUnit.getValueWithoutUnit(24.475).toFloat() to Color(109, 97, 163),
-                    speedUnit.getValueWithoutUnit(22.55).toFloat() to colorResource(R.color.windStrength_bf9),
-                    speedUnit.getValueWithoutUnit(18.9).toFloat() to colorResource(R.color.windStrength_bf8),
-                    speedUnit.getValueWithoutUnit(17.175).toFloat() to Color(129, 58, 78),
-                    speedUnit.getValueWithoutUnit(15.45).toFloat() to colorResource(R.color.windStrength_bf7),
-                    speedUnit.getValueWithoutUnit(13.85).toFloat() to Color(159, 127, 58),
-                    speedUnit.getValueWithoutUnit(12.25).toFloat() to colorResource(R.color.windStrength_bf6),
-                    speedUnit.getValueWithoutUnit(9.3).toFloat() to colorResource(R.color.windStrength_bf5),
-                    speedUnit.getValueWithoutUnit(6.7).toFloat() to colorResource(R.color.windStrength_bf4),
-                    speedUnit.getValueWithoutUnit(4.4).toFloat() to colorResource(R.color.windStrength_bf3),
-                    speedUnit.getValueWithoutUnit(2.4).toFloat() to colorResource(R.color.windStrength_bf2),
-                    speedUnit.getValueWithoutUnit(1.0).toFloat() to colorResource(R.color.windStrength_bf1),
-                    speedUnit.getValueWithoutUnit(0.0).toFloat() to colorResource(R.color.windStrength_bf0)
+                    speedUnit.getConvertedUnit(104.0).toFloat() to Color(128, 128, 128),
+                    speedUnit.getConvertedUnit(77.0).toFloat() to Color(205, 202, 112),
+                    speedUnit.getConvertedUnit(51.0).toFloat() to Color(219, 212, 135),
+                    speedUnit.getConvertedUnit(46.0).toFloat() to Color(231, 215, 215),
+                    speedUnit.getConvertedUnit(36.0).toFloat() to colorResource(R.color.windStrength_bf12),
+                    speedUnit.getConvertedUnit(30.5).toFloat() to colorResource(R.color.windStrength_bf11),
+                    speedUnit.getConvertedUnit(26.4).toFloat() to colorResource(R.color.windStrength_bf10),
+                    speedUnit.getConvertedUnit(24.475).toFloat() to Color(109, 97, 163),
+                    speedUnit.getConvertedUnit(22.55).toFloat() to colorResource(R.color.windStrength_bf9),
+                    speedUnit.getConvertedUnit(18.9).toFloat() to colorResource(R.color.windStrength_bf8),
+                    speedUnit.getConvertedUnit(17.175).toFloat() to Color(129, 58, 78),
+                    speedUnit.getConvertedUnit(15.45).toFloat() to colorResource(R.color.windStrength_bf7),
+                    speedUnit.getConvertedUnit(13.85).toFloat() to Color(159, 127, 58),
+                    speedUnit.getConvertedUnit(12.25).toFloat() to colorResource(R.color.windStrength_bf6),
+                    speedUnit.getConvertedUnit(9.3).toFloat() to colorResource(R.color.windStrength_bf5),
+                    speedUnit.getConvertedUnit(6.7).toFloat() to colorResource(R.color.windStrength_bf4),
+                    speedUnit.getConvertedUnit(4.4).toFloat() to colorResource(R.color.windStrength_bf3),
+                    speedUnit.getConvertedUnit(2.4).toFloat() to colorResource(R.color.windStrength_bf2),
+                    speedUnit.getConvertedUnit(1.0).toFloat() to colorResource(R.color.windStrength_bf1),
+                    speedUnit.getConvertedUnit(0.0).toFloat() to colorResource(R.color.windStrength_bf0)
                 ),
                 persistentMapOf(
-                    speedUnit.getValueWithoutUnit(104.0).toFloat() to Color(128, 128, 128, 160),
-                    speedUnit.getValueWithoutUnit(77.0).toFloat() to Color(205, 202, 112, 160),
-                    speedUnit.getValueWithoutUnit(51.0).toFloat() to Color(219, 212, 135, 160),
-                    speedUnit.getValueWithoutUnit(46.0).toFloat() to Color(231, 215, 215, 160),
-                    speedUnit.getValueWithoutUnit(36.0).toFloat() to
+                    speedUnit.getConvertedUnit(104.0).toFloat() to Color(128, 128, 128, 160),
+                    speedUnit.getConvertedUnit(77.0).toFloat() to Color(205, 202, 112, 160),
+                    speedUnit.getConvertedUnit(51.0).toFloat() to Color(219, 212, 135, 160),
+                    speedUnit.getConvertedUnit(46.0).toFloat() to Color(231, 215, 215, 160),
+                    speedUnit.getConvertedUnit(36.0).toFloat() to
                         colorResource(R.color.windStrength_bf12).copy(alpha = 160f.div(255f)),
-                    speedUnit.getValueWithoutUnit(30.5).toFloat() to
+                    speedUnit.getConvertedUnit(30.5).toFloat() to
                         colorResource(R.color.windStrength_bf11).copy(alpha = 160f.div(255f)),
-                    speedUnit.getValueWithoutUnit(26.4).toFloat() to
+                    speedUnit.getConvertedUnit(26.4).toFloat() to
                         colorResource(R.color.windStrength_bf10).copy(alpha = 160f.div(255f)),
-                    speedUnit.getValueWithoutUnit(24.475).toFloat() to Color(109, 97, 163, 160),
-                    speedUnit.getValueWithoutUnit(22.55).toFloat() to
+                    speedUnit.getConvertedUnit(24.475).toFloat() to Color(109, 97, 163, 160),
+                    speedUnit.getConvertedUnit(22.55).toFloat() to
                         colorResource(R.color.windStrength_bf9).copy(alpha = 160f.div(255f)),
-                    speedUnit.getValueWithoutUnit(18.9).toFloat() to
+                    speedUnit.getConvertedUnit(18.9).toFloat() to
                         colorResource(R.color.windStrength_bf8).copy(alpha = 160f.div(255f)),
-                    speedUnit.getValueWithoutUnit(17.175).toFloat() to Color(129, 58, 78, 160),
-                    speedUnit.getValueWithoutUnit(15.45).toFloat() to
+                    speedUnit.getConvertedUnit(17.175).toFloat() to Color(129, 58, 78, 160),
+                    speedUnit.getConvertedUnit(15.45).toFloat() to
                         colorResource(R.color.windStrength_bf7).copy(alpha = 160f.div(255f)),
-                    speedUnit.getValueWithoutUnit(13.85).toFloat() to Color(159, 127, 58, 160),
-                    speedUnit.getValueWithoutUnit(12.25).toFloat() to
+                    speedUnit.getConvertedUnit(13.85).toFloat() to Color(159, 127, 58, 160),
+                    speedUnit.getConvertedUnit(12.25).toFloat() to
                         colorResource(R.color.windStrength_bf6).copy(alpha = 160f.div(255f)),
-                    speedUnit.getValueWithoutUnit(9.3).toFloat() to
+                    speedUnit.getConvertedUnit(9.3).toFloat() to
                         colorResource(R.color.windStrength_bf5).copy(alpha = 160f.div(255f)),
-                    speedUnit.getValueWithoutUnit(6.7).toFloat() to
+                    speedUnit.getConvertedUnit(6.7).toFloat() to
                         colorResource(R.color.windStrength_bf4).copy(alpha = 160f.div(255f)),
-                    speedUnit.getValueWithoutUnit(4.4).toFloat() to
+                    speedUnit.getConvertedUnit(4.4).toFloat() to
                         colorResource(R.color.windStrength_bf3).copy(alpha = 160f.div(255f)),
-                    speedUnit.getValueWithoutUnit(2.4).toFloat() to
+                    speedUnit.getConvertedUnit(2.4).toFloat() to
                         colorResource(R.color.windStrength_bf2).copy(alpha = 160f.div(255f)),
-                    speedUnit.getValueWithoutUnit(1.0).toFloat() to
+                    speedUnit.getConvertedUnit(1.0).toFloat() to
                         colorResource(R.color.windStrength_bf1).copy(alpha = 160f.div(255f)),
-                    speedUnit.getValueWithoutUnit(0.0).toFloat() to
+                    speedUnit.getConvertedUnit(0.0).toFloat() to
                         colorResource(R.color.windStrength_bf0).copy(alpha = 160f.div(255f))
                 )
             ),
@@ -397,11 +397,11 @@ private fun WindChart(
                 }
             },
             trendHorizontalLines = buildMap {
-                if (maxY > speedUnit.getValueWithoutUnit(Wind.WIND_SPEED_7)) {
-                    put(speedUnit.getValueWithoutUnit(Wind.WIND_SPEED_7), stringResource(R.string.wind_strength_7))
+                if (maxY > speedUnit.getConvertedUnit(Wind.WIND_SPEED_7)) {
+                    put(speedUnit.getConvertedUnit(Wind.WIND_SPEED_7), stringResource(R.string.wind_strength_7))
                 }
-                if (maxY < speedUnit.getValueWithoutUnit(Wind.WIND_SPEED_7 + 5.0)) { // TODO: Make this a const
-                    put(speedUnit.getValueWithoutUnit(Wind.WIND_SPEED_3), stringResource(R.string.wind_strength_3))
+                if (maxY < speedUnit.getConvertedUnit(Wind.WIND_SPEED_7 + 5.0)) { // TODO: Make this a const
+                    put(speedUnit.getConvertedUnit(Wind.WIND_SPEED_3), stringResource(R.string.wind_strength_3))
                 }
             }.toImmutableMap(),
             endAxisItemPlacer = remember {
@@ -421,7 +421,7 @@ fun WindScale(
 ) {
     val context = LocalContext.current
     val speedUnit = SettingsManager.getInstance(context).getSpeedUnit(context).let {
-        if (it == SpeedUnit.BF) SpeedUnit.MPS else it
+        if (it == SpeedUnit.BEAUFORT) SpeedUnit.METER_PER_SECOND else it
     }
 
     Material3ExpressiveCardListItem(
@@ -458,17 +458,17 @@ fun WindScale(
                 )
             }
             SpeedUnit.beaufortScaleThresholds.forEachIndexed { index, startingValue ->
-                val startingValueFormatted = Utils.formatDouble(
+                val startingValueFormatted = UnitUtils.formatDouble(
                     context,
-                    speedUnit.getValueWithoutUnit(startingValue),
+                    speedUnit.getConvertedUnit(startingValue),
                     1
                 )
                 val endingValueFormatted = SpeedUnit.beaufortScaleThresholds.getOrElse(index + 1) { null }
                     ?.let {
                         " – ${
-                            Utils.formatDouble(
+                            UnitUtils.formatDouble(
                                 context,
-                                speedUnit.getValueWithoutUnit(it) - 0.1,
+                                speedUnit.getConvertedUnit(it) - 0.1,
                                 1
                             )
                         }"
@@ -494,7 +494,7 @@ fun WindScale(
                             tint = Color(SpeedUnit.getBeaufortScaleColor(context, index))
                         )
                         Text(
-                            text = Utils.formatInt(context, index)
+                            text = UnitUtils.formatInt(context, index)
                         )
                     }
                     Text(

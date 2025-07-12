@@ -69,7 +69,7 @@ class DailyFeelsLikeAdapter(
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))
                 day.temperature?.feelsLikeTemperature?.let {
-                    talkBackBuilder.append(mTemperatureUnit.getValueVoice(activity, it))
+                    talkBackBuilder.append(mTemperatureUnit.formatContentDescription(activity, it))
                 }
             }
             daily.night?.let { night ->
@@ -77,7 +77,7 @@ class DailyFeelsLikeAdapter(
                     .append(activity.getString(R.string.nighttime))
                     .append(activity.getString(R.string.colon_separator))
                 night.temperature?.feelsLikeTemperature?.let {
-                    talkBackBuilder.append(mTemperatureUnit.getValueVoice(activity, it))
+                    talkBackBuilder.append(mTemperatureUnit.formatContentDescription(activity, it))
                 }
             }
             dailyItem.setDayIconDrawable(
@@ -88,14 +88,14 @@ class DailyFeelsLikeAdapter(
                 buildTemperatureArrayForItem(mDaytimeTemperatures, position),
                 buildTemperatureArrayForItem(mNighttimeTemperatures, position),
                 daily.day?.temperature?.feelsLikeTemperature?.let {
-                    mTemperatureUnit.getShortValueText(activity, it)
+                    mTemperatureUnit.formatMeasureShort(activity, it)
                 } ?: daily.day?.temperature?.temperature?.let {
-                    mTemperatureUnit.getShortValueText(activity, it)
+                    mTemperatureUnit.formatMeasureShort(activity, it)
                 },
                 daily.night?.temperature?.feelsLikeTemperature?.let {
-                    mTemperatureUnit.getShortValueText(activity, it)
+                    mTemperatureUnit.formatMeasureShort(activity, it)
                 } ?: daily.night?.temperature?.temperature?.let {
-                    mTemperatureUnit.getShortValueText(activity, it)
+                    mTemperatureUnit.formatMeasureShort(activity, it)
                 },
                 mHighestTemperature,
                 mLowestTemperature,

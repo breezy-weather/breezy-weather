@@ -19,7 +19,7 @@ package org.breezyweather.sources.openmeteo
 import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 
 /**
  * List from:
@@ -97,7 +97,7 @@ enum class OpenMeteoWeatherModel(
     override val nameArrayId = R.array.open_meteo_weather_models
 
     override fun getName(context: Context) =
-        Utils.getName(context, this)
+        UnitUtils.getName(context, this)
             .replace(
                 "Best match",
                 context.getString(R.string.settings_weather_source_open_meteo_weather_models_best_match)

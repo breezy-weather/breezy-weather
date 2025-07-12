@@ -34,6 +34,7 @@ import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.utils.CrashLogUtils
 import org.breezyweather.common.utils.helpers.SnackbarHelper
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.composables.AnimatedVisibilitySlideVertically
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
@@ -44,11 +45,13 @@ import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.settings.preference.clickablePreferenceItem
 import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.composables.PreferenceViewWithCard
+import org.breezyweather.ui.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.ui.settings.preference.largeSeparatorItem
 import org.breezyweather.ui.settings.preference.listPreferenceItem
 import org.breezyweather.ui.settings.preference.sectionFooterItem
 import org.breezyweather.ui.settings.preference.sectionHeaderItem
 import org.breezyweather.ui.settings.preference.smallSeparatorItem
+import org.breezyweather.ui.settings.preference.switchPreferenceItem
 
 @Composable
 fun DebugSettingsScreen(
@@ -128,6 +131,40 @@ fun DebugSettingsScreen(
                         WeatherUpdateJob.startNow(context)
                     }
                 }
+
+                largeSeparatorItem()
+
+                sectionHeaderItem(R.string.settings_debug_section_unit_formatting)
+                switchPreferenceItem(R.string.settings_debug_use_numberformatter) { id ->
+                    SwitchPreferenceView(
+                        titleId = id,
+                        summaryOnId = R.string.settings_enabled,
+                        summaryOffId = R.string.settings_disabled,
+                        checked = SettingsManager.getInstance(context).useNumberFormatter &&
+                            Build.VERSION.SDK_INT >= Build.VERSION_CODES.R,
+                        enabled = Build.VERSION.SDK_INT >= Build.VERSION_CODES.R,
+                        isFirst = true,
+                        onValueChanged = {
+                            SettingsManager.getInstance(context).useNumberFormatter = it
+                        }
+                    )
+                }
+                smallSeparatorItem()
+                switchPreferenceItem(R.string.settings_debug_use_measureformat) { id ->
+                    SwitchPreferenceView(
+                        titleId = id,
+                        summaryOnId = R.string.settings_enabled,
+                        summaryOffId = R.string.settings_disabled,
+                        checked = SettingsManager.getInstance(context).useMeasureFormat &&
+                            Build.VERSION.SDK_INT >= Build.VERSION_CODES.N,
+                        enabled = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N,
+                        isLast = true,
+                        onValueChanged = {
+                            SettingsManager.getInstance(context).useMeasureFormat = it
+                        }
+                    )
+                }
+                sectionFooterItem(R.string.settings_debug_section_unit_formatting)
 
                 largeSeparatorItem()
 

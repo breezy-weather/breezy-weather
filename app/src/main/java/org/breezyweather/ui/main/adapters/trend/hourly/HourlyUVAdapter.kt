@@ -27,7 +27,7 @@ import breezyweather.domain.weather.model.UV
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getUVColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
@@ -68,7 +68,7 @@ class HourlyUVAdapter(
                 null, null,
                 null, null,
                 null, null,
-                index?.roundToInt()?.toFloat() ?: 0f, index?.let { Utils.formatDouble(activity, it, 0) },
+                index?.roundToInt()?.toFloat() ?: 0f, index?.let { UnitUtils.formatDouble(activity, it, 0) },
                 mHighestIndex, 0f
             )
             mPolylineAndHistogramView.setLineColors(
@@ -129,7 +129,7 @@ class HourlyUVAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 UV.UV_INDEX_MIDDLE.toFloat(),
-                Utils.formatDouble(activity, UV.UV_INDEX_MIDDLE, 0),
+                UnitUtils.formatDouble(activity, UV.UV_INDEX_MIDDLE, 0),
                 activity.getString(R.string.uv_alert_level),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

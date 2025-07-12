@@ -22,7 +22,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitEnum
-import org.breezyweather.common.basic.models.options.basic.Utils.formatDouble
+import org.breezyweather.common.basic.models.options.basic.UnitUtils.formatDouble
 import org.breezyweather.common.basic.models.options.unit.AirQualityCOUnit
 import org.breezyweather.common.basic.models.options.unit.AirQualityUnit
 import kotlin.math.roundToInt
@@ -159,9 +159,9 @@ enum class PollutantIndex(
 
         fun getUnit(pollutantIndex: PollutantIndex): UnitEnum<Double> {
             return if (pollutantIndex == CO) {
-                AirQualityCOUnit.MGPCUM
+                AirQualityCOUnit.MILLIGRAM_PER_CUBIC_METER
             } else {
-                AirQualityUnit.MUGPCUM
+                AirQualityUnit.MICROGRAM_PER_CUBIC_METER
             }
         }
     }

@@ -53,7 +53,7 @@ import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isRtl
@@ -141,7 +141,7 @@ fun DetailsHumidity(
         }
         item {
             DetailsCardText(
-                stringResource(R.string.dew_point_about_description, Utils.formatPercent(context, 100.0))
+                stringResource(R.string.dew_point_about_description, UnitUtils.formatPercent(context, 100.0))
             )
         }
         bottomInsetItem()
@@ -178,7 +178,7 @@ private fun HumidityItem(
         header()
         TextFixedHeight(
             text = relativeHumidity?.let {
-                Utils.formatPercent(context, it)
+                UnitUtils.formatPercent(context, it)
             } ?: "",
             style = MaterialTheme.typography.displaySmall
         )
@@ -195,7 +195,7 @@ private fun HumidityChart(
     val maxY = 100.0
 
     val endAxisValueFormatter = CartesianValueFormatter { _, value, _ ->
-        Utils.formatPercent(context, value)
+        UnitUtils.formatPercent(context, value)
     }
 
     val modelProducer = remember { CartesianChartModelProducer() }
@@ -268,7 +268,7 @@ private fun HumidityChart(
         ),
         topAxisValueFormatter = { _, value, _ ->
             mappedValues.getOrElse(value.toLong()) { null }?.let {
-                Utils.formatPercent(context, it)
+                UnitUtils.formatPercent(context, it)
             } ?: "-"
         },
         endAxisItemPlacer = remember {
@@ -309,13 +309,13 @@ private fun DewPointItem(
         header()
         TextFixedHeight(
             text = dewPoint?.let {
-                temperatureUnit.getShortValueText(context, value = it, 1, context.isRtl)
+                temperatureUnit.formatMeasureShort(context, value = it, 1, context.isRtl)
             } ?: "",
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier
                 .clearAndSetSemantics {
                     dewPoint?.let {
-                        contentDescription = temperatureUnit.getValueVoice(context, it)
+                        contentDescription = temperatureUnit.formatContentDescription(context, it)
                     }
                 }
         )
@@ -332,10 +332,10 @@ private fun DewPointChart(
     val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
     val step = temperatureUnit.chartStep
     val maxY = remember(mappedValues) {
-        temperatureUnit.getValueWithoutUnit(mappedValues.values.max()).roundUpToNearestMultiplier(step)
+        temperatureUnit.getConvertedUnit(mappedValues.values.max()).roundUpToNearestMultiplier(step)
     }
     val minY = remember(mappedValues) {
-        temperatureUnit.getValueWithoutUnit(mappedValues.values.min()).roundDownToNearestMultiplier(step)
+        temperatureUnit.getConvertedUnit(mappedValues.values.min()).roundDownToNearestMultiplier(step)
     }
 
     val modelProducer = remember { CartesianChartModelProducer() }
@@ -345,7 +345,7 @@ private fun DewPointChart(
             lineSeries {
                 series(
                     x = mappedValues.keys,
-                    y = mappedValues.values.map { temperatureUnit.getValueWithoutUnit(it) }
+                    y = mappedValues.values.map { temperatureUnit.getConvertedUnit(it) }
                 )
             }
         }
@@ -387,28 +387,28 @@ private fun DewPointChart(
         modelProducer,
         theDay,
         maxY,
-        { _, value, _ -> temperatureUnit.getValueText(context, value, isValueInDefaultUnit = false) },
+        { _, value, _ -> temperatureUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
         persistentListOf(
             persistentMapOf(
                 // TODO: Duplicate of temperature colors
-                temperatureUnit.getValueWithoutUnit(47.0).toFloat() to Color(71, 14, 0),
-                temperatureUnit.getValueWithoutUnit(30.0).toFloat() to Color(232, 83, 25),
-                temperatureUnit.getValueWithoutUnit(21.0).toFloat() to Color(243, 183, 4),
-                temperatureUnit.getValueWithoutUnit(10.0).toFloat() to Color(128, 147, 24),
-                temperatureUnit.getValueWithoutUnit(1.0).toFloat() to Color(68, 125, 99),
-                temperatureUnit.getValueWithoutUnit(0.0).toFloat() to Color(93, 133, 198),
-                temperatureUnit.getValueWithoutUnit(-4.0).toFloat() to Color(100, 166, 189),
-                temperatureUnit.getValueWithoutUnit(-8.0).toFloat() to Color(106, 191, 181),
-                temperatureUnit.getValueWithoutUnit(-15.0).toFloat() to Color(157, 219, 217),
-                temperatureUnit.getValueWithoutUnit(-25.0).toFloat() to Color(143, 89, 169),
-                temperatureUnit.getValueWithoutUnit(-40.0).toFloat() to Color(162, 70, 145),
-                temperatureUnit.getValueWithoutUnit(-55.0).toFloat() to Color(202, 172, 195),
-                temperatureUnit.getValueWithoutUnit(-70.0).toFloat() to Color(115, 70, 105)
+                temperatureUnit.getConvertedUnit(47.0).toFloat() to Color(71, 14, 0),
+                temperatureUnit.getConvertedUnit(30.0).toFloat() to Color(232, 83, 25),
+                temperatureUnit.getConvertedUnit(21.0).toFloat() to Color(243, 183, 4),
+                temperatureUnit.getConvertedUnit(10.0).toFloat() to Color(128, 147, 24),
+                temperatureUnit.getConvertedUnit(1.0).toFloat() to Color(68, 125, 99),
+                temperatureUnit.getConvertedUnit(0.0).toFloat() to Color(93, 133, 198),
+                temperatureUnit.getConvertedUnit(-4.0).toFloat() to Color(100, 166, 189),
+                temperatureUnit.getConvertedUnit(-8.0).toFloat() to Color(106, 191, 181),
+                temperatureUnit.getConvertedUnit(-15.0).toFloat() to Color(157, 219, 217),
+                temperatureUnit.getConvertedUnit(-25.0).toFloat() to Color(143, 89, 169),
+                temperatureUnit.getConvertedUnit(-40.0).toFloat() to Color(162, 70, 145),
+                temperatureUnit.getConvertedUnit(-55.0).toFloat() to Color(202, 172, 195),
+                temperatureUnit.getConvertedUnit(-70.0).toFloat() to Color(115, 70, 105)
             )
         ),
         topAxisValueFormatter = { _, value, _ ->
             mappedValues.getOrElse(value.toLong()) { null }?.let {
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             } ?: "-"
         },
         minY = minY,
