@@ -50,12 +50,10 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.text.withStyle
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
@@ -188,11 +186,12 @@ private fun WindItem(
         wind.speed?.let { speed ->
             TextFixedHeight(
                 text = buildAnnotatedString {
-                    val speedValueFormatted = speedUnit.formatValue(context, speed)
-                    append(speedValueFormatted)
-                    withStyle(style = SpanStyle(fontSize = MaterialTheme.typography.headlineSmall.fontSize)) {
-                        append(speedUnit.formatMeasure(context, speed).substring(speedValueFormatted.length))
-                    }
+                    append(
+                        UnitUtils.formatUnitsDifferentFontSize(
+                            formattedMeasure = speedUnit.formatMeasure(context, speed),
+                            fontSize = MaterialTheme.typography.headlineSmall.fontSize
+                        )
+                    )
                     wind.arrow?.let {
                         append(" ")
                         append(it)

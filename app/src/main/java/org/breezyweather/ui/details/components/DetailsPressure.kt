@@ -39,9 +39,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.text.AnnotatedString
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Hourly
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
@@ -56,6 +54,7 @@ import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.PressureUnit
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -145,16 +144,12 @@ private fun PressureItem(
     ) {
         header()
         TextFixedHeight(
-            text = buildAnnotatedString {
-                pressure?.let {
-                    val pressureValueFormatted = pressureUnit.formatValue(context, it)
-                    append(pressureValueFormatted)
-                    withStyle(style = SpanStyle(fontSize = MaterialTheme.typography.headlineSmall.fontSize)) {
-                        append(pressureUnit.formatMeasure(context, it).substring(pressureValueFormatted.length))
-                    }
-                    pressureUnit.formatMeasure(context, it)
-                }
-            },
+            text = pressure?.let {
+                UnitUtils.formatUnitsDifferentFontSize(
+                    formattedMeasure = pressureUnit.formatMeasure(context, it),
+                    fontSize = MaterialTheme.typography.headlineSmall.fontSize
+                )
+            } ?: AnnotatedString(""),
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier
                 .clearAndSetSemantics {

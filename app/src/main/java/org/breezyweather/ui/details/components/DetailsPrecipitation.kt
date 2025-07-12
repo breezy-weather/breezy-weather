@@ -44,9 +44,7 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.text.AnnotatedString
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
@@ -183,15 +181,12 @@ private fun PrecipitationItem(
     ) {
         header()
         TextFixedHeight(
-            text = buildAnnotatedString {
-                precipitation?.let { prec ->
-                    val precValueFormatted = precipitationUnit.formatValue(context, prec)
-                    append(precValueFormatted)
-                    withStyle(style = SpanStyle(fontSize = MaterialTheme.typography.headlineSmall.fontSize)) {
-                        append(precipitationUnit.formatMeasure(context, prec).substring(precValueFormatted.length))
-                    }
-                }
-            },
+            text = precipitation?.let { prec ->
+                UnitUtils.formatUnitsDifferentFontSize(
+                    formattedMeasure = precipitationUnit.formatMeasure(context, prec),
+                    fontSize = MaterialTheme.typography.headlineSmall.fontSize
+                )
+            } ?: AnnotatedString(""),
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier
                 .clearAndSetSemantics {

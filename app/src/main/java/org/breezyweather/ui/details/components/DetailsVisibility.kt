@@ -37,9 +37,6 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withStyle
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Hourly
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
@@ -54,6 +51,7 @@ import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -125,12 +123,11 @@ private fun VisibilityItem(
     ) {
         header()
         TextFixedHeight(
-            text = buildAnnotatedString {
-                val visibilityValueFormatted = distanceUnit.formatValue(context, visibility)
-                append(visibilityValueFormatted)
-                withStyle(style = SpanStyle(fontSize = MaterialTheme.typography.headlineSmall.fontSize)) {
-                    append(distanceUnit.formatMeasure(context, visibility).substring(visibilityValueFormatted.length))
-                }
+            text = visibility.let { vis ->
+                UnitUtils.formatUnitsDifferentFontSize(
+                    formattedMeasure = distanceUnit.formatMeasure(context, vis),
+                    fontSize = MaterialTheme.typography.headlineSmall.fontSize
+                )
             },
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier

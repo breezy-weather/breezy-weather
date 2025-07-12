@@ -27,8 +27,17 @@ import android.icu.util.Measure
 import android.icu.util.MeasureUnit
 import android.os.Build
 import android.text.BidiFormatter
+import android.text.SpannableString
+import android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+import android.text.style.RelativeSizeSpan
 import androidx.annotation.ArrayRes
 import androidx.annotation.RequiresApi
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.TextUnit
 import org.breezyweather.common.basic.models.options.unit.UnitWidth
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.isRtl
@@ -263,4 +272,55 @@ object UnitUtils {
                 .format(if (value > 0) value.div(100.0) else 0)
         }
     }
+
+    /**
+     * Units will stay at the same size if it somehow fails to parse
+     */
+    fun formatUnitsHalfSize(formattedMeasure: String): CharSequence {
+        val lastIndexOfANumber = formattedMeasure.lastIndexOfAny(DIGITS, formattedMeasure.length - 1)
+        val relativeSizeStartingPosition = lastIndexOfANumber + 1
+        if (lastIndexOfANumber < 0 || relativeSizeStartingPosition >= formattedMeasure.length) {
+            return formattedMeasure
+        }
+        return SpannableString(formattedMeasure)
+            .apply {
+                setSpan(
+                    RelativeSizeSpan(0.5f),
+                    relativeSizeStartingPosition,
+                    formattedMeasure.length,
+                    SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+    }
+
+    /**
+     * Units will stay at the same size if it somehow fails to parse
+     */
+    @Composable
+    fun formatUnitsDifferentFontSize(
+        formattedMeasure: String,
+        fontSize: TextUnit,
+    ): AnnotatedString {
+        val lastIndexOfANumber = formattedMeasure.lastIndexOfAny(DIGITS, formattedMeasure.length - 1)
+        val differentSizeStartingPosition = lastIndexOfANumber + 1
+        return buildAnnotatedString {
+            if (lastIndexOfANumber < 0 || differentSizeStartingPosition >= formattedMeasure.length) {
+                append(formattedMeasure)
+            } else {
+                append(formattedMeasure.substring(0, differentSizeStartingPosition))
+                withStyle(style = SpanStyle(fontSize = fontSize)) {
+                    append(formattedMeasure.substring(differentSizeStartingPosition))
+                }
+            }
+        }
+    }
+
+    private val ARABIC_DIGITS = charArrayOf('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
+    private val ARABIC_INDIC_DIGITS = charArrayOf('٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩')
+    private val BENGALI_DIGITS = charArrayOf('০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯')
+    private val DEVANAGARI_DIGITS = charArrayOf('०', '१', '२', '३', '४', '५', '६', '७', '८', '९')
+    private val PERSIAN_DIGITS = charArrayOf('۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹')
+    private val TAMIL_DIGITS = charArrayOf('௦', '௧', '௨', '௩', '௪', '௫', '௬', '௭', '௮', '௯')
+    internal val DIGITS =
+        ARABIC_DIGITS + ARABIC_INDIC_DIGITS + BENGALI_DIGITS + DEVANAGARI_DIGITS + PERSIAN_DIGITS + TAMIL_DIGITS
 }
