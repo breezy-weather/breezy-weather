@@ -395,8 +395,7 @@
     <string name="settings_widgets_section_notification_widget">Értesítési modul</string>
     <string name="settings_debug">Hibakeresés</string>
     <string name="settings_debug_dump_crash_logs_title">Hibanapló megosztása</string>
-    <string name="unit_bf">Bf</string>
-    <string name="unit_bf_voice">a Beaufort-skálán</string>
+    <string name="unit_bft_voice">a Beaufort-skálán</string>
     <string name="unit_lpsqm_voice">Liter per négyzetméter</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_kelvin_short">K</string>

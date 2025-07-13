@@ -548,8 +548,7 @@
     <string name="common_weather_text_drizzle_freezing_light">Лёгкая морозящая изморось</string>
     <string name="metno_weather_text_andthunder">%s с грозой</string>
     <string name="common_weather_text_drizzle_freezing">Морозящая изморось</string>
-    <string name="unit_bf_voice">на шкале Бофорта</string>
-    <string name="unit_bf">Бф</string>
+    <string name="unit_bft_voice">на шкале Бофорта</string>
     <string name="settings_appearance_dark_mode_locations_title">Светлая / Тёмная тема для местоположения</string>
     <string name="weather_message_unsupported_feature">Источник не поддерживает одну из запрошенных функций</string>
     <string name="about_contribution_designer">Дизайнер логотипа</string>

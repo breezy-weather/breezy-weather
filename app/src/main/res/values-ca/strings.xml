@@ -470,7 +470,6 @@
     <string name="location_message_search_failed">Ha fallat la cerca d’ubicació</string>
     <string name="weather_source_accu_preference_hours_120">120 hores</string>
     <string name="settings_appearance_summary">Idioma, mode fosc, paquet d’icones, unitats</string>
-    <string name="unit_bf">Bf</string>
     <string name="settings_widgets_section_notification_widget">Giny de notificacions</string>
     <string name="unit_km">km</string>
     <string name="settings_background_updates_battery_optimization_disabled">L’optimització de la bateria ja està desactivada.</string>
@@ -491,7 +490,7 @@
     <string name="unit_cmph_voice">Centímetres per hora</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="settings_widgets_live_wallpaper_error">No s’ha pogut llançar el selector de fons de pantalla. Encara pots habilitar el fons de pantalla %s triant «Fons de pantalla animat» al teu selector de fons de pantalla d’inici.</string>
-    <string name="unit_bf_voice">a l’escala Beaufort</string>
+    <string name="unit_bft_voice">a l’escala Beaufort</string>
     <string name="message_server_timeout">S’ha excedit el temps d’espera de la sol·licitud</string>
     <string name="unit_mps">m/s</string>
     <string name="ephemeris_sunrise_at">Sortida del sol a les %s</string>

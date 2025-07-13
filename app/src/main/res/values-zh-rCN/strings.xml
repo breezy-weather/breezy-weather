@@ -551,8 +551,8 @@
     <string name="common_weather_text_drizzle">毛毛雨</string>
     <string name="common_weather_text_drizzle_light">小毛毛雨</string>
     <string name="metno_weather_text_andthunder">%s 并伴有雷电</string>
-    <string name="unit_bf_voice">蒲福风级</string>
-    <string name="unit_bf">级</string>
+    <string name="unit_bft_nominative">%s级</string>
+    <string name="unit_bft_voice">蒲福风级</string>
     <string name="settings_appearance_dark_mode_locations_title">位置的白天/夜间模式</string>
     <string name="weather_message_unsupported_feature">数据源不支持所请求功能中的一个</string>
     <string name="about_contribution_designer">Logo 设计者</string>

@@ -502,7 +502,6 @@
     <string name="about_matrix">Matrix soba</string>
     <string name="unit_kpa">kPa</string>
     <string name="unit_in_voice">Inča</string>
-    <string name="unit_bf">Bf</string>
     <string name="unit_kpa_voice">Kilopaskala</string>
     <string name="unit_atm_voice">Atmosfera</string>
     <string name="unit_km">km</string>
@@ -512,7 +511,7 @@
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="notification_style_native">Izvorni</string>
     <string name="unit_mgpcum_voice">Miligrama po kubnom metru</string>
-    <string name="unit_bf_voice">na Beaufort ljestvici</string>
+    <string name="unit_bft_voice">na Beaufort ljestvici</string>
     <string name="settings_none">Ništa</string>
     <string name="common_weather_text_partly_cloudy">Djelomično oblačno</string>
     <string name="unit_mb_voice">Milibari</string>

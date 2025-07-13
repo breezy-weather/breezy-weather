@@ -521,7 +521,6 @@
     <string name="common_weather_text_rain_moderate">بارش متوسط</string>
     <string name="common_weather_text_rain_heavy">بارش سنگین</string>
     <string name="null_data_text">بی پاسخ</string>
-    <string name="unit_bf">Bf</string>
     <string name="unit_lpsqm_voice">لیتر بر‌ متر مکعب</string>
     <string name="unit_ft_voice">فوت(پا)</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">یخ باران(تگرگ ریز) سنگین و کوتاه</string>
@@ -597,7 +596,7 @@
     <string name="common_weather_text_rain_freezing_heavy">تگرگ سنگین</string>
     <string name="weather_kind_hail">تگرگ</string>
     <string name="settings_main_threshold_lines_on_charts">خطوط آستانه در نمودارها</string>
-    <string name="unit_bf_voice">در مقیاس بوفور</string>
+    <string name="unit_bft_voice">در مقیاس بوفور</string>
     <string name="notification_refreshed_at">بازخوانی شده در</string>
     <string name="notification_channel_widget">ابزارک</string>
     <string name="notification_channel_background_services">خدمات پس‌زمینه</string>

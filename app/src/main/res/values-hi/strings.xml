@@ -278,7 +278,6 @@
     <string name="settings_color_dark">काला</string>
     <string name="unit_m">मि</string>
     <string name="unit_ft">फि</string>
-    <string name="unit_bf">बीएफ</string>
     <string name="unit_mph_voice">मील प्रति घंटे</string>
     <string name="unit_cm">सेमी</string>
     <string name="unit_cm_voice">सेंटीमीटर</string>
@@ -298,7 +297,8 @@
     <string name="unit_m_voice">मीटर</string>
     <string name="unit_mi_voice">मिले</string>
     <string name="settings_color_day_night">दिन / रात</string>
-    <string name="unit_bf_voice">ब्यूफोर्ट के पैमाने पर</string>
+    <string name="unit_bft_nominative">%s बीएफ</string>
+    <string name="unit_bft_voice">ब्यूफोर्ट के पैमाने पर</string>
     <string name="unit_mps_voice">मीटर प्रति सेकंद</string>
     <string name="unit_kph">कि/घंटा</string>
     <string name="unit_mph">मील प्रति घंटा</string>

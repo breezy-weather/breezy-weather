@@ -649,8 +649,7 @@
     <string name="settings_unavailable_no_animations">Níl sé ar fáil, cumasaigh beochan i suíomhanna Android ar dtús</string>
     <string name="settings_automatic">Uathoibríoch</string>
     <string name="settings_invalid_syntax">Comhréir neamhbhailí</string>
-    <string name="unit_bf">BF</string>
-    <string name="unit_bf_voice">ar scála Beaufort</string>
+    <string name="unit_bft_voice">ar scála Beaufort</string>
     <string name="unit_kn">kn</string>
     <string name="unit_mph">mph</string>
     <string name="unit_mph_voice">Míle san uair</string>

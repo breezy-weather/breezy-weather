@@ -337,7 +337,6 @@
     <string name="settings_notifications_section_forecast">Predpoveď</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notifikácia s predpoveďou na nasledujúci deň</string>
     <string name="settings_follow_system">Systémový</string>
-    <string name="unit_bf">Bf</string>
     <string name="unit_lpsqmph_voice">Litre na meter štvorcový za hodinu</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_nmi">nmi</string>
@@ -349,7 +348,7 @@
     <string name="settings_main_background_animation_title">Animácia pozadia</string>
     <string name="settings_notifications_forecast_today_title">Notifikácie s predpoveďou dňa</string>
     <string name="settings_widgets_broadcast_title">Zdieľanie dát</string>
-    <string name="unit_bf_voice">na Beaufortovej stupnici</string>
+    <string name="unit_bft_voice">na Beaufortovej stupnici</string>
     <string name="settings_color_dark">Tmavý</string>
     <string name="settings_color_light">Svetlý</string>
     <string name="unit_mps">m/s</string>

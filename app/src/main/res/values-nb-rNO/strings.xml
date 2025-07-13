@@ -251,8 +251,8 @@
     <string name="settings_location_summary">Innstillinger for posisjonstjenester</string>
     <string name="settings_location">Posisjon</string>
     <string name="settings_background_updates_worker_info_title">Prosessinformasjon</string>
-    <string name="unit_bf_voice">på Beauforts skala</string>
-    <string name="unit_bf">Beaufort</string>
+    <string name="unit_bft_voice">på Beauforts skala</string>
+    <string name="unit_bft_display_name">Beaufort</string>
     <string name="settings_color_night_always">Alltid natt</string>
     <string name="settings_color_day_always">Alltid dag</string>
     <string name="unit_mps_voice">Meter per sekund</string>

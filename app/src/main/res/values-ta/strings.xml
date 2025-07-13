@@ -202,7 +202,8 @@
     <string name="settings_notifications_alerts_title">கடுமையான வானிலை விழிப்பூட்டல்களின் அறிவிப்புகள்</string>
     <string name="about_privacy_policy">தனியுரிமைக் கொள்கை</string>
     <string name="settings_item_delete">இந்த உருப்படியை நீக்கு</string>
-    <string name="unit_bf_voice">பியூஃபோர்ட் அளவில்</string>
+    <string name="unit_bft_nominative">%sபி.எஃப்</string>
+    <string name="unit_bft_voice">பியூஃபோர்ட் அளவில்</string>
     <string name="unit_mph">எம்.பி.எச்</string>
     <string name="unit_mph_voice">ஒரு மணி நேரத்திற்கு மைல்கள்</string>
     <string name="unit_cm_voice">சென்டிமீட்டர்</string>
@@ -254,7 +255,6 @@
     <string name="settings_color_grey">சாம்பல்நிறம்</string>
     <string name="settings_follow_system">அமைப்பைப் பின்தொடரவும்</string>
     <string name="settings_color_day_night">பகல் / இரவு</string>
-    <string name="unit_bf">பி.எஃப்</string>
     <string name="unit_inph">அங்குலம்/ம</string>
     <string name="settings_invalid_syntax">தவறான தொடரியல்</string>
     <string name="unit_celsius">. C.</string>

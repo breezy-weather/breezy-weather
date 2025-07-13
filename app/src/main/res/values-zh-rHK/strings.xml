@@ -508,8 +508,8 @@
     <string name="settings_color_light">淺色</string>
     <string name="settings_color_dark">深色</string>
     <string name="settings_invalid_syntax">無效的語法</string>
-    <string name="unit_bf">級</string>
-    <string name="unit_bf_voice">級</string>
+    <string name="unit_bft_nominative">%s級</string>
+    <string name="unit_bft_voice">級</string>
     <string name="unit_kph">km/h</string>
     <string name="unit_kph_voice">公里每小時</string>
     <string name="unit_mps">m/s</string>

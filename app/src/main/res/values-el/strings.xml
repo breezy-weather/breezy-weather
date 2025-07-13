@@ -472,8 +472,8 @@
     <string name="unit_atm">ατμ</string>
     <string name="settings_widgets_notification_persistent_switch">Μόνιμη</string>
     <string name="settings_unavailable_no_background_updates">Μη διαθέσιμο, ενεργοποίησ πρώτα τις ενημερώσεις στο παρασκήνιο</string>
-    <string name="unit_bf">Μπφ</string>
-    <string name="unit_bf_voice">στην κλίμακα Μποφόρ</string>
+    <string name="unit_bft_nominative">%s Μπφ</string>
+    <string name="unit_bft_voice">στην κλίμακα Μποφόρ</string>
     <string name="unit_kph_voice">Χιλιόμετρα την ώρα</string>
     <string name="unit_kn_voice">Κόμβοι</string>
     <string name="unit_ftps_voice">Πόδια ανά δευτερόλεπτο</string>

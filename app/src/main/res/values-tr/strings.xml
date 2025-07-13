@@ -362,7 +362,7 @@
     <string name="common_weather_text_snow_showers_heavy">Şiddetli kar yağışı</string>
     <string name="common_weather_text_snow_grains">Kar taneleri</string>
     <string name="settings_location_access_switch_title">Konum erişimi</string>
-    <string name="unit_bf_voice">Beaufort ölçeğinde</string>
+    <string name="unit_bft_voice">Beaufort ölçeğinde</string>
     <string name="unit_mm_voice">Milimetre</string>
     <string name="unit_inhg">inHg</string>
     <string name="unit_kgfpsqcm_voice">Kilogram kuvvet bölü santimetre kare</string>
@@ -402,7 +402,6 @@
     <string name="settings_widgets_broadcast_send_data_title">%s’e hava durumu bilgisini gönder</string>
     <string name="about_privacy_policy">Gizlilik sözleşmesi</string>
     <string name="settings_color_day_night">Gündüz / Gece</string>
-    <string name="unit_bf">Bf</string>
     <string name="unit_cmph_voice">Saat başına santimetre</string>
     <string name="unit_inph">inç/sa</string>
     <string name="unit_inph_voice">Saat başına inç</string>

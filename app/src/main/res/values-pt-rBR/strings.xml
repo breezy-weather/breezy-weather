@@ -523,8 +523,7 @@
     <string name="wind_gusts">Rajadas de vento</string>
     <string name="about_dependencies">Dependências</string>
     <string name="about_contact">Contato</string>
-    <string name="unit_bf">Bf</string>
-    <string name="unit_bf_voice">na escala de Beaufort</string>
+    <string name="unit_bft_voice">na escala de Beaufort</string>
     <string name="weather_message_unsupported_feature">A fonte não suporta uma das funcionalidades solicitadas</string>
     <string name="settings_appearance_dark_mode_locations_title">Modo Dia / Noite para locais</string>
     <string name="about_contribution_designer">Designer da logo</string>

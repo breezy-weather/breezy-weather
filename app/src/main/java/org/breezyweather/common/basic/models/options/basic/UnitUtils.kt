@@ -39,11 +39,13 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.TextUnit
+import org.breezyweather.R
+import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.UnitWidth
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.isChinese
 import org.breezyweather.common.extensions.isRtl
+import org.breezyweather.common.extensions.isTraditionalChinese
 import org.breezyweather.domain.settings.SettingsManager
 import java.text.FieldPosition
 import java.util.Locale
@@ -138,9 +140,7 @@ object UnitUtils {
                 .toString()
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             NumberFormat.getNumberInstance(context.currentLocale)
-                .apply {
-                    maximumFractionDigits = precision
-                }
+                .apply { maximumFractionDigits = precision }
                 .format(valueWithoutUnit)
                 .toString()
         } else {
@@ -159,22 +159,55 @@ object UnitUtils {
         precision: Int,
         isValueInDefaultUnit: Boolean = true,
         unitWidth: UnitWidth = UnitWidth.SHORT,
-    ) = if (enum.measureUnit != null &&
-        (enum.perMeasureUnit == null || Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) &&
-        SettingsManager.getInstance(context).let { it.useNumberFormatter || it.useMeasureFormat }
-    ) {
-        // LogHelper.log(msg = "Formatting with ICU ${enum.id}: ${enum.measureUnit} per ${enum.perMeasureUnit}")
-        formatWithIcu(
-            context,
-            if (isValueInDefaultUnit) enum.getConvertedUnit(value) else value,
-            enum.measureUnit!!,
-            enum.perMeasureUnit,
-            precision,
-            unitWidth
-        )
-    } else {
-        // LogHelper.log(msg = "Not formatting with ICU ${enum.id} because measureUnit=${enum.measureUnit}")
-        formatWithoutIcu(
+    ): String {
+        if (enum.measureUnit != null &&
+            (enum.perMeasureUnit == null || Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) &&
+            SettingsManager.getInstance(context).let { it.useNumberFormatter || it.useMeasureFormat }
+        ) {
+            val convertedValue = if (isValueInDefaultUnit) enum.getConvertedUnit(value) else value
+
+            // LogHelper.log(msg = "Formatting with ICU ${enum.id}: ${enum.measureUnit} per ${enum.perMeasureUnit}")
+            if (enum.measureUnit is TimeUnit && unitWidth != UnitWidth.SHORT_SIMPLE) {
+                return formatDurationWithIcu(
+                    context,
+                    convertedValue,
+                    enum.measureUnit as TimeUnit,
+                    unitWidth
+                )
+            }
+
+            // If result is null, it skips to the default non-ICU formatter
+            getAdjustedFormatting(
+                context.currentLocale,
+                enum.measureUnit!!,
+                unitWidth
+            )?.let { (locale, numberFormatterWidth, measureFormatWidth) ->
+                return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+                    SettingsManager.getInstance(context).useNumberFormatter
+                ) {
+                    formatWithNumberFormatter(
+                        locale,
+                        convertedValue,
+                        enum.measureUnit!!,
+                        enum.perMeasureUnit,
+                        precision,
+                        numberFormatterWidth!!
+                    )
+                } else {
+                    formatWithMeasureFormat(
+                        locale,
+                        convertedValue,
+                        enum.measureUnit!!,
+                        enum.perMeasureUnit,
+                        precision,
+                        measureFormatWidth!!
+                    )
+                }
+            }
+        }
+
+        // LogHelper.log(msg = "Not formatting with ICU ${enum.id} in ${context.currentLocale}")
+        return formatWithoutIcu(
             context,
             enum,
             formatValue(context, enum, value, precision, isValueInDefaultUnit),
@@ -183,67 +216,75 @@ object UnitUtils {
     }
 
     /**
-     * @param context
+     * @param locale
      * @param value
      * @param unit
-     * @param perUnit an optional per unit. /!\ Only supported on Android SDK >= 26
-     * @param unitWidth
-     *
-     * Uses LocalizedNumberFormatter on Android SDK >= 30 (which is the recommended way)
-     * Uses MeasureFormat on Android SDK < 30
+     * @param perUnit an optional per unit
+     * @param numberFormatterWidth
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    fun formatWithIcu(
-        context: Context,
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    fun formatWithNumberFormatter(
+        locale: Locale,
         value: Number,
         unit: MeasureUnit,
         perUnit: MeasureUnit? = null,
         precision: Int,
-        unitWidth: UnitWidth,
+        numberFormatterWidth: NumberFormatter.UnitWidth,
+    ): String {
+        return (NumberFormatter.withLocale(locale) as LocalizedNumberFormatter)
+            .precision(if (precision == 0) Precision.integer() else Precision.maxFraction(precision))
+            .unit(unit)
+            .perUnit(perUnit)
+            .unitWidth(numberFormatterWidth)
+            .apply {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    usage(if (unit is TimeUnit) "duration" else null)
+                }
+            }
+            .format(value)
+            .toString()
+    }
+
+    /**
+     * @param locale
+     * @param value
+     * @param unit
+     * @param perUnit an optional per unit. /!\ Only supported on Android SDK >= 26
+     * @param unitWidth
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    fun formatWithMeasureFormat(
+        locale: Locale,
+        value: Number,
+        unit: MeasureUnit,
+        perUnit: MeasureUnit? = null,
+        precision: Int,
+        measureFormatWidth: MeasureFormat.FormatWidth,
     ): String {
         if (perUnit != null && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             throw UnsupportedOperationException()
         }
 
-        if (unit is TimeUnit && unitWidth != UnitWidth.SHORT_SIMPLE) {
-            return formatDurationWithIcu(context, value, unit, unitWidth)
-        }
-
-        val adjustedLocale = getAdjustedLocale(context.currentLocale, unit)
-
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
-            SettingsManager.getInstance(context).useNumberFormatter
-        ) {
-            (NumberFormatter.withLocale(adjustedLocale) as LocalizedNumberFormatter)
-                .precision(if (precision == 0) Precision.integer() else Precision.maxFraction(precision))
-                .unit(unit)
-                .perUnit(perUnit)
-                .unitWidth(unitWidth.numberFormatterWidth)
-                .usage(if (unit is TimeUnit) "duration" else null)
-                .format(value)
-                .toString()
-        } else {
-            MeasureFormat
-                .getInstance(
-                    adjustedLocale,
-                    unitWidth.measureFormatWidth,
-                    NumberFormat.getInstance().apply { maximumFractionDigits = precision }
-                )
-                .let {
-                    if (perUnit != null) {
-                        it.formatMeasurePerUnit(
-                            Measure(value, unit),
-                            perUnit,
-                            StringBuilder(),
-                            FieldPosition(0)
-                        ).toString()
-                    } else {
-                        it.format(
-                            Measure(value, unit)
-                        )
-                    }
+        return MeasureFormat
+            .getInstance(
+                locale,
+                measureFormatWidth,
+                NumberFormat.getInstance().apply { maximumFractionDigits = precision }
+            )
+            .let {
+                if (perUnit != null) {
+                    it.formatMeasurePerUnit(
+                        Measure(value, unit),
+                        perUnit,
+                        StringBuilder(),
+                        FieldPosition(0)
+                    ).toString()
+                } else {
+                    it.format(
+                        Measure(value, unit)
+                    )
                 }
-        }
+            }
     }
 
     /**
@@ -306,30 +347,49 @@ object UnitUtils {
     }
 
     /**
-     * Some ICU translations are not really good, replacing with others locales
+     * CLDR is not always good, this function replaces some parameters with others
+     * @returns null if ICU should not be used
      */
     @RequiresApi(Build.VERSION_CODES.N)
-    private fun getAdjustedLocale(
+    private fun getAdjustedFormatting(
         currentLocale: Locale,
         unit: MeasureUnit,
-    ): Locale {
-        /**
-         * Beaufort scale:
-         * - Chinese (traditional) is verbose but not Chinese (simplified), so using it instead
-         * - Ukrainian is verbose but not Russian, so using it instead
-         */
+        unitWidth: UnitWidth,
+    ): Triple<Locale, NumberFormatter.UnitWidth?, MeasureFormat.FormatWidth?>? {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA && unit == MeasureUnit.BEAUFORT) {
-            if (currentLocale.isChinese) return Locale("zh", "CN")
-            if (currentLocale.code.startsWith("uk")) return Locale("ru")
+            /*
+             * Japanese: use 風力7 instead of “B 7”
+             * Traditional Chinese: use 7級 rather than the verbose “蒲福風級 7 級”
+             */
+            if (currentLocale.code.startsWith("ja", ignoreCase = true) || currentLocale.isTraditionalChinese) {
+                return null
+            }
+        }
+
+        var newLocale = currentLocale
+        var numberFormatterWidth = unitWidth.numberFormatterWidth
+        var measureFormatWidth = unitWidth.measureFormatWidth
+
+        /**
+         * Use English units with Traditional Chinese
+         * Except for durations
+         *
+         * Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf
+         * Ongoing issue: https://unicode-org.atlassian.net/jira/software/c/projects/CLDR/issues/CLDR-10604
+         */
+        if (currentLocale.isTraditionalChinese && unit !is TimeUnit) {
+            newLocale = Locale("en", "001")
         }
 
         /**
-         * Kelvin:
-         * - Chinese (traditional) is spelled, while it’s just a K in Chinese (simplified), so using it instead
+         * Beaufort scale:
+         * - fr_FR uses the incorrect unit (it should be "Bf"), replace with fr_CA
          */
-        if (unit == MeasureUnit.KELVIN && currentLocale.isChinese) return Locale("zh", "CN")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA && unit == MeasureUnit.BEAUFORT) {
+            newLocale = Locale("fr", "CA")
+        }
 
-        return currentLocale
+        return Triple(newLocale, numberFormatterWidth, measureFormatWidth)
     }
 
     fun formatWithoutIcu(
@@ -337,9 +397,15 @@ object UnitUtils {
         enum: UnitEnum<Double>,
         formattedValue: String,
         unitWidth: UnitWidth = UnitWidth.SHORT,
-    ) = (if (context.isRtl) BidiFormatter.getInstance().unicodeWrap(formattedValue) else formattedValue) +
-        (if (unitWidth != UnitWidth.NARROW) "\u202f" else "") +
-        (if (unitWidth != UnitWidth.FULL) getName(context, enum) else getMeasureContentDescription(context, enum))
+    ) = if (enum == SpeedUnit.BEAUFORT) {
+        // Dirty hack for special case
+        // TODO: Add this kind of formatting for all units
+        context.getString(R.string.unit_bft_nominative, formattedValue)
+    } else {
+        (if (context.isRtl) BidiFormatter.getInstance().unicodeWrap(formattedValue) else formattedValue) +
+            (if (unitWidth != UnitWidth.NARROW) "\u202f" else "") +
+            (if (unitWidth != UnitWidth.FULL) getName(context, enum) else getMeasureContentDescription(context, enum))
+    }
 
     /**
      * Uses LocalizedNumberFormatter on Android SDK >= 30 (which is the recommended way)

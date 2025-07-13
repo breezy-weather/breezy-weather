@@ -411,7 +411,6 @@
     <string name="unit_in_voice">Inci</string>
     <string name="location_message_search_failed">Pencarian lokasi gagal</string>
     <string name="weather_source_accu_preference_hours_120">120 jam</string>
-    <string name="unit_bf">Bf</string>
     <string name="settings_widgets_section_notification_widget">Gawit notifikasi</string>
     <string name="unit_kpa_voice">Kilopascal</string>
     <string name="unit_atm_voice">Atmosfer</string>
@@ -544,7 +543,7 @@
     <string name="settings_debug_dump_crash_logs_title">Bagikan catatan kemogokan</string>
     <string name="settings_widgets_live_wallpaper_error">Tidak dapat meluncurkan pemilih latar belakang. Anda masih dapat mengaktifkan latar belakang %s dengan memilih “Latar Belakang Bergerak” dalam pemilih latar belakang layar beranda Anda.</string>
     <string name="unit_mgpcum_voice">Miligram per meter kubik</string>
-    <string name="unit_bf_voice">pada skala Beaufort</string>
+    <string name="unit_bft_voice">pada skala Beaufort</string>
     <string name="message_server_timeout">Waktu permintaan habis</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Tambahkan lokasi secara manual dan hapus “%s”</string>
     <string name="settings_debug_dump_crash_logs_saved">Catatan kemogokan disimpan</string>

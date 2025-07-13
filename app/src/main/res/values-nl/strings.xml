@@ -154,8 +154,8 @@
     <string name="notification_channel_background_services">Achtergronddiensten</string>
     <string name="pollen_artemisia">Bijvoet</string>
     <string name="settings_appearance_dark_mode_locations_title">Dag- / nachtmodus voor locaties</string>
-    <string name="unit_bf_voice">op schaal van Beaufort</string>
-    <string name="unit_bf">Bft</string>
+    <string name="unit_bft_nominative">%s Bft</string>
+    <string name="unit_bft_voice">op schaal van Beaufort</string>
     <string name="unit_mb">mb</string>
     <string name="unit_inhg_voice">Inches kwik</string>
     <string name="common_weather_text_rain_showers_light">Lichte regenbuien</string>

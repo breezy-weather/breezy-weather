@@ -440,7 +440,7 @@ fun WindScale(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    stringResource(R.string.unit_bf),
+                    stringResource(R.string.unit_bft_display_name),
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.weight(1f)
                 )

@@ -526,7 +526,6 @@
     <string name="temperature_average_short">Mediu</string>
     <string name="temperature_normals">Norme de temperatură</string>
     <string name="about_privacy_policy">Politica de confidențialitate</string>
-    <string name="unit_bf">bf</string>
     <string name="widget_label_show_widget_card_alpha">Opacitate</string>
     <string name="common_weather_text_rain_freezing_heavy">Chiciură Abundentă</string>
     <string name="notification_precipitation_starting">Precipitații în curând</string>
@@ -560,7 +559,7 @@
     <string name="location_delete_location_dialog_message_no_name">Ești pe cale să ștergi această locație din lista ta de locații salvate.</string>
     <string name="location_search_change_source">Schimbă serviciul de căutare a locației</string>
     <string name="settings_appearance_dark_mode_locations_title">Mod Luminos / Întunecat pentru locații</string>
-    <string name="unit_bf_voice">pe scara Beaufort</string>
+    <string name="unit_bft_voice">pe scara Beaufort</string>
     <string name="message_parsing_error_content">Asigură-te că ai actualizat la cea mai recentă versiune a aplicației. Este posibil ca serverul să fie temporar indisponibil, în acest caz, te rog să încerci din nou mai târziu. Dacă problema persistă, descarcă un jurnal de incident (crash log) din setările de depanare și raportează problema pe GitHub.</string>
     <string name="settings_unavailable_no_background_updates">Indisponibil, întâi activează actualizările de fundal</string>
     <string name="common_weather_text_drizzle_moderate">Burniță Moderată</string>

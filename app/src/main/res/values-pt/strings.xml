@@ -538,11 +538,10 @@
     <string name="settings_appearance_dark_mode_locations_title">Modo Dia / Noite para locais</string>
     <string name="common_weather_text_snow_showers_heavy">Nevasca forte</string>
     <string name="temperature_degree_day_heating">Grau de aquecimento do dia</string>
-    <string name="unit_bf">Bf</string>
     <string name="temperature_degree_day_cooling">Grau de resfriamento do dia</string>
     <string name="weather_message_unsupported_feature">A fonte não suporta uma das funcionalidades solicitadas</string>
     <string name="about_privacy_policy">Política de privacidade</string>
-    <string name="unit_bf_voice">na escala de Beaufort</string>
+    <string name="unit_bft_voice">na escala de Beaufort</string>
     <string name="common_weather_text_snow_showers">Nevasca</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Pancadas de chuva leve com neve</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Toque para abrir</string>

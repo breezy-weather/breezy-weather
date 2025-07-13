@@ -421,8 +421,8 @@
     <string name="settings_color_light">Светлы варыянт</string>
     <string name="settings_color_grey">Шэры варыянт</string>
     <string name="settings_color_dark">Цёмны варыянт</string>
-    <string name="unit_bf">Бф</string>
-    <string name="unit_bf_voice">па шкале Бофарта</string>
+    <string name="unit_bft_nominative">%s Бф</string>
+    <string name="unit_bft_voice">па шкале Бофарта</string>
     <string name="unit_mps">м/с</string>
     <string name="unit_mps_voice">Метраў за секунду</string>
     <string name="unit_kph">км/гадз</string>

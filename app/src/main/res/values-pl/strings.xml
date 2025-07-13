@@ -521,8 +521,7 @@
     <string name="message_parsing_error_content">Upewnij się, że zaktualizowałeś do najnowszej wersji aplikacji. Serwer może być tymczasowo nie dostępny, w tym przypadku spróbuj ponownie później. Jeśli problem się utrwala, proszę o wygenerowanie dziennika crasha z ustawień debugowania i zgłoszenie problemu na GitHubie.</string>
     <string name="about_privacy_policy">Polityka prywatności</string>
     <string name="about_contact">Kontakt</string>
-    <string name="unit_bf">Bf</string>
-    <string name="unit_bf_voice">w skali Beauforta</string>
+    <string name="unit_bft_voice">w skali Beauforta</string>
     <string name="common_weather_text_rain_showers_light">Lekkie przelotne opady deszczu</string>
     <string name="common_weather_text_rain_showers_moderate">Umiarkowane przelotne opady deszczu</string>
     <string name="common_weather_text_rain_showers_heavy">Silne przelotne opady deszczu</string>

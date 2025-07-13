@@ -472,7 +472,6 @@
     <string name="settings_location_access_precise_title">Enhetens gps-användning</string>
     <string name="settings_notifications_forecast_tomorrow_title">Avisering om nästa dags prognos</string>
     <string name="settings_main_section_displayed_data">Visade data</string>
-    <string name="unit_bf">Bf</string>
     <string name="settings_widgets_section_notification_widget">Aviseringswidget</string>
     <string name="settings_appearance_dark_mode_title">Mörkt läge</string>
     <string name="settings_background_updates_battery_optimization_disabled">Batterioptimering är redan inaktiverad.</string>
@@ -486,7 +485,7 @@
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="settings_location_service">Platstjänst</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Vind nattetid för i dag, i morgon, …, 4 dagar senare</string>
-    <string name="unit_bf_voice">på Beauforts skala</string>
+    <string name="unit_bft_voice">på Beauforts skala</string>
     <string name="settings_none">Ingen</string>
     <string name="common_weather_text_partly_cloudy">Halvklart</string>
     <string name="message_server_timeout">Tiden för begäran löpte ut</string>

@@ -585,7 +585,6 @@
     <string name="common_weather_text_snow_showers_light">Hõredad lumehood</string>
     <string name="weather_kind_thunder">Äike</string>
     <string name="weather_kind_wind">Tuul</string>
-    <string name="unit_bf">Bft</string>
     <string name="settings_color_dark">Tume</string>
     <string name="settings_invalid_syntax">Vigane süntaks</string>
     <string name="unit_mps">m/s</string>
@@ -619,7 +618,8 @@
     <string name="settings_color_day_always">Alati päev</string>
     <string name="settings_color_night_always">Alati öö</string>
     <string name="settings_color_grey">Hall</string>
-    <string name="unit_bf_voice">Beauforti skaalal</string>
+    <string name="unit_bft_nominative">%s Bft</string>
+    <string name="unit_bft_voice">Beauforti skaalal</string>
     <string name="unit_mps_voice">Meetrit sekundis</string>
     <string name="unit_kph_voice">Kilomeetrit tunnis</string>
     <string name="unit_kn">sõlm</string>

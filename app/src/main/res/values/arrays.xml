@@ -439,7 +439,7 @@
     <!-- speed unit. -->
     <string-array name="speed_units">
         <item>@string/settings_follow_system</item>
-        <item>@string/unit_bf</item>
+        <item>@string/unit_bft_display_name</item>
         <item>@string/unit_mps</item>
         <item>@string/unit_kph</item>
         <item>@string/unit_kn</item>
@@ -448,7 +448,7 @@
     </string-array>
     <string-array name="speed_unit_voices">
         <item>@string/settings_follow_system</item>
-        <item>@string/unit_bf_voice</item>
+        <item>@string/unit_bft_voice</item>
         <item>@string/unit_mps_voice</item>
         <item>@string/unit_kph_voice</item>
         <item>@string/unit_kn_voice</item>

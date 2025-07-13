@@ -499,8 +499,7 @@
     <string name="settings_notifications_alerts_title">การแจ้งเตือนการเตือนภัยสภาพอากาศที่รุนแรง</string>
     <string name="settings_notifications_precipitations_title">การแจ้งเตือนหยาดน้ำฟ้า</string>
     <string name="settings_notifications_forecast_today_title">การแจ้งเตือนการพยากรณ์รายวัน</string>
-    <string name="unit_bf">Bf</string>
-    <string name="unit_bf_voice">ในมาตราโบฟอร์ต</string>
+    <string name="unit_bft_voice">ในมาตราโบฟอร์ต</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_mph_voice">ไมล์ต่อชั่วโมง</string>
     <string name="unit_ftps">ft/s</string>

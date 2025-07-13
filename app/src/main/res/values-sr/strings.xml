@@ -335,8 +335,7 @@
     <string name="settings_debug_dump_crash_logs_title">Дели евиденције отказивања</string>
     <string name="settings_color_day_always">Увек дан</string>
     <string name="settings_color_night_always">Увек ноћ</string>
-    <string name="unit_bf">Bf</string>
-    <string name="unit_bf_voice">по Бофоровој скали</string>
+    <string name="unit_bft_voice">по Бофоровој скали</string>
     <string name="unit_cm_voice">Центиметри</string>
     <string name="unit_inph">inch/h</string>
     <string name="unit_kelvin_short">K</string>

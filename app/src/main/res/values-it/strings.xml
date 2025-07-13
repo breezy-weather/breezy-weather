@@ -553,8 +553,8 @@
     <string name="common_weather_text_snow_grains">Neve a granelli</string>
     <string name="weather_message_unsupported_feature">La fonte non supporta una delle funzionalità richieste</string>
     <string name="settings_appearance_dark_mode_locations_title">Modalità giorno / notte per le varie località</string>
-    <string name="unit_bf">Bft</string>
-    <string name="unit_bf_voice">sulla scala di Beaufort</string>
+    <string name="unit_bft_nominative">%s Bft</string>
+    <string name="unit_bft_voice">sulla scala di Beaufort</string>
     <string name="temperature_normal_short">Norma</string>
     <string name="temperature_normals">Norme di temperatura</string>
     <string name="temperature_average_short">Media</string>

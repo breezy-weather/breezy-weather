@@ -316,8 +316,7 @@
     <string name="weather_kind_wind">Vjetar</string>
     <string name="settings_unavailable_no_background_updates">Onemogućeno, najprije omogućite pozadinska ažuriranja</string>
     <string name="settings_color_dark">Tamna</string>
-    <string name="unit_bf_voice">na Beaufort skali</string>
-    <string name="unit_bf">Bf</string>
+    <string name="unit_bft_voice">na Beaufort skali</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_kn_voice">Čvorova</string>
     <string name="unit_mph">mph</string>

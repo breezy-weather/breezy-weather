@@ -543,8 +543,8 @@
     <string name="common_weather_text_rain_snow_mixed_light">Leichter Schneeregen</string>
     <string name="common_weather_text_rain_snow_mixed">Schneeregen</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Starker Schneeregen</string>
-    <string name="unit_bf">Bft</string>
-    <string name="unit_bf_voice">Auf der Beaufortskala</string>
+    <string name="unit_bft_nominative">%s Bft</string>
+    <string name="unit_bft_voice">Auf der Beaufortskala</string>
     <string name="settings_appearance_dark_mode_locations_title">Tag- / Nachtmodus für Orte</string>
     <string name="weather_message_unsupported_feature">Quelle unterstützt eines der gewünschten Features nicht</string>
     <string name="about_contribution_designer">Logo-Designer</string>

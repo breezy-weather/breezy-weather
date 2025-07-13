@@ -753,8 +753,10 @@
     <string name="action_open_in_other_app_description">Ouvrir cet emplacement dans une autre application</string>
     <string name="widget_material_you_forecast">Material You – Prévisions</string>
     <string name="widget_material_you_current">Material You – En ce moment</string>
-    <string name="unit_bf">Bf</string>
-    <string name="unit_bf_voice">sur l’échelle de Beaufort</string>
+    <string name="unit_bft_display_name">Beaufort</string>
+    <string name="unit_bf_value">%s Bf</string>
+    <string name="unit_bft_nominative">%s Bf</string>
+    <string name="unit_bft_voice">sur l’échelle de Beaufort</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_mps_voice">Mètres par seconde</string>
     <string name="unit_kph">km/h</string>

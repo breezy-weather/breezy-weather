@@ -547,8 +547,8 @@
     <string name="settings_location_access_switch_title">位置情報へのアクセス</string>
     <string name="settings_location_access_background_summaryOff">現在地の気象データをバックグラウンドで更新するには、「常に許可」を有効にしてください。</string>
     <string name="settings_debug">デバッグ</string>
-    <string name="unit_bf">Bf</string>
-    <string name="unit_bf_voice">風力階級</string>
+    <string name="unit_bft_nominative">風力%s</string>
+    <string name="unit_bft_voice">風力階級</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_in">inch</string>
     <string name="unit_lpsqmph_voice">リットル毎平方メートル毎時</string>

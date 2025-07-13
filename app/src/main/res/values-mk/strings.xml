@@ -432,8 +432,8 @@
     <string name="settings_color_light">Светлина</string>
     <string name="settings_color_grey">Сиво</string>
     <string name="settings_color_dark">Темно</string>
-    <string name="unit_bf">Бф</string>
-    <string name="unit_bf_voice">на скала Бофор</string>
+    <string name="unit_bft_nominative">%s Бф</string>
+    <string name="unit_bft_voice">на скала Бофор</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_kn">кн</string>
     <string name="unit_kn_voice">Јазли</string>

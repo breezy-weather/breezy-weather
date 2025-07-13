@@ -505,8 +505,7 @@
     <string name="settings_widgets_notification_persistent_switch">Nuolatinis</string>
     <string name="settings_debug_summary">Strigčių žurnalai</string>
     <string name="settings_changes_apply_after_restart">Pakeitimai įsigalios iš naujo paleidus</string>
-    <string name="unit_bf">Bf</string>
-    <string name="unit_bf_voice">pagal Boforto skalę</string>
+    <string name="unit_bft_voice">pagal Boforto skalę</string>
     <string name="common_weather_text_rain_light">Nedidelis lietus</string>
     <string name="common_weather_text_rain_moderate">Vidutinio stiprumo lietus</string>
     <string name="notification_updating_weather_data">Atnaujinami orų duomenys (%1$d/%2$d)</string>

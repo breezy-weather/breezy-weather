@@ -488,7 +488,6 @@
     <string name="settings_color_light">Gaiša</string>
     <string name="settings_color_grey">Pelēka</string>
     <string name="settings_color_dark">Tumša</string>
-    <string name="unit_bf">Dēļa pēda</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_fahrenheit_short">°</string>
@@ -522,7 +521,8 @@
     <string name="common_weather_text_snow_light">Neliels sniegs</string>
     <string name="common_weather_text_drizzle_freezing">Sasalstoša smidzināšana</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Spēcīga sasalstoša smidzināšana</string>
-    <string name="unit_bf_voice">pēc Boforta skalas</string>
+    <string name="unit_bft_nominative">%s Dēļa pēda</string>
+    <string name="unit_bft_voice">pēc Boforta skalas</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_mps_voice">Metri sekundē</string>
     <string name="unit_kph">km/h</string>

@@ -417,8 +417,7 @@
     <string name="unit_inph_voice">Hazbete orduko</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_kelvin">K</string>
-    <string name="unit_bf">Bf</string>
-    <string name="unit_bf_voice">Beaufort eskalan</string>
+    <string name="unit_bft_voice">Beaufort eskalan</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="settings_location_access_precise_summaryOn">Gaitua. Gailuan erabiltzen duzun sare-operadorea gehienetan erabiliko da, baina GPSa alternatiba gisa ere erabil daiteke.</string>
     <string name="unit_mps">m/s</string>

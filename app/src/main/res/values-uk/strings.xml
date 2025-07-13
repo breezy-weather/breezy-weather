@@ -476,8 +476,9 @@
     <string name="settings_debug_dump_crash_logs_summary">Зберегти журнал зі збоями у файл для надсилання розробникам</string>
     <string name="settings_color_grey">Сіра</string>
     <string name="settings_color_dark">Темна</string>
-    <string name="unit_bf">Бф</string>
-    <string name="unit_bf_voice">за шкалою Бофорта</string>
+    <string name="unit_bft_display_name">Бофорт</string>
+    <string name="unit_bft_nominative">%s бала</string>
+    <string name="unit_bft_voice">за шкалою Бофорта</string>
     <string name="unit_kn">вуз</string>
     <string name="unit_kn_voice">Вузлів</string>
     <string name="unit_mph">миль/год</string>

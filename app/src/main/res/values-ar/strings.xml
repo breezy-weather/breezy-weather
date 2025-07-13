@@ -537,9 +537,8 @@
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">أمطار غزيرة وثلوج مختلطة</string>
     <string name="common_weather_text_snow_showers_light">رشات ثلج خفيفة</string>
     <string name="common_weather_text_snow_showers_heavy">رشات ثلج غزيرة</string>
-    <string name="unit_bf_voice">على مقياس بوفورت</string>
+    <string name="unit_bft_voice">على مقياس بوفورت</string>
     <string name="common_weather_text_drizzle">رذاذ</string>
-    <string name="unit_bf">Bf</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">أمطار غزيرة وثلج مختلط</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">مطر خفيف ورشات ثلج مختلطة</string>
     <string name="common_weather_text_snow_light">ثلج خفيف</string>

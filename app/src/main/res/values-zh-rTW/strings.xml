@@ -547,8 +547,8 @@
     <string name="common_weather_text_rain_heavy">大雨</string>
     <string name="common_weather_text_rain_showers">陣雨</string>
     <string name="common_weather_text_rain_showers_light">小陣雨</string>
-    <string name="unit_bf">級</string>
-    <string name="unit_bf_voice">級</string>
+    <string name="unit_bft_nominative">%s級</string>
+    <string name="unit_bft_voice">級</string>
     <string name="settings_appearance_dark_mode_locations_title">跟隨日出日沒的深色模式</string>
     <string name="weather_message_unsupported_feature">該來源並不支援某項要求的功能</string>
     <string name="about_contribution_designer">Logo 設計</string>

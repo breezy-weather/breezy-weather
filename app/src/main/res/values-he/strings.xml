@@ -322,7 +322,7 @@
     <string name="settings_units_speed">יחידת מהירות</string>
     <string name="settings_main_cards_title">כרטיסים</string>
     <string name="settings_invalid_syntax">תחביר לא תקני</string>
-    <string name="unit_bf_voice">על סולם ביופורט</string>
+    <string name="unit_bft_voice">על סולם ביופורט</string>
     <string name="unit_kph_voice">קילומטרים לשניה</string>
     <string name="unit_mm_voice">מילימטרים</string>
     <string name="unit_in_voice">אינצ\'ים</string>

@@ -373,7 +373,7 @@
     <string name="common_weather_text_rain_freezing_light">Let isslag</string>
     <string name="settings_appearance_calendar_title">Alternativ kalender</string>
     <string name="unit_mps_voice">Meter i sekundet</string>
-    <string name="unit_bf_voice">på Beaufortskalaen</string>
+    <string name="unit_bft_voice">på Beaufortskalaen</string>
     <string name="unit_mm_voice">Millimeter</string>
     <string name="unit_cm_voice">Centimeter</string>
     <string name="unit_in_voice">tommer</string>
@@ -401,7 +401,6 @@
     <string name="widget_label_subtitle_data">Undertiteldata</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombinerer de bedste vejrmodeller til denne placering</string>
     <string name="settings_enabled">Aktiveret</string>
-    <string name="unit_bf">Bf</string>
     <string name="unit_cm">cm</string>
     <string name="unit_cmph">cm/t</string>
     <string name="unit_mugpcum_voice">Mikrogram per kubikmeter</string>

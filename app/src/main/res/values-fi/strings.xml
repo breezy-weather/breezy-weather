@@ -359,7 +359,6 @@
     <string name="location_message_search_failed">Sijainnin haku epäonnistui</string>
     <string name="weather_source_accu_preference_hours_120">120 tuntia</string>
     <string name="settings_appearance_summary">Kieli, tumma tila, kuvakepaketti, yksiköt</string>
-    <string name="unit_bf">Bf</string>
     <string name="settings_widgets_section_notification_widget">Ilmoitusalueen widget</string>
     <string name="unit_kpa_voice">Kilopascalia</string>
     <string name="unit_atm_voice">Normaali-ilmakehää</string>
@@ -377,7 +376,7 @@
     <string name="about_privacy_policy">Tietosuojaseloste</string>
     <string name="settings_debug_dump_crash_logs_title">Jaa kaatumislokit</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
-    <string name="unit_bf_voice">Boforiasteikolla</string>
+    <string name="unit_bft_voice">Boforiasteikolla</string>
     <string name="unit_mb_voice">Millibaaria</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_hpa_voice">Hehtopascalia</string>

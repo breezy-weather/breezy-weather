@@ -531,7 +531,7 @@
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Mưa lớn và có tuyết rơi xen kẽ</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Mưa rào nhẹ và có tuyết rơi xen kẽ</string>
     <string name="settings_widgets_broadcast_send_data_title">Gửi dữ liệu thời tiết cho %s</string>
-    <string name="unit_bf_voice">trên thang Beaufort</string>
+    <string name="unit_bft_voice">trên thang Beaufort</string>
     <string name="about_contribution_designer">Người thiết kế logo</string>
     <string name="common_weather_text_rain_showers_moderate">Mưa rào vừa phải</string>
     <string name="temperature_normals">Nhiệt độ bình thường</string>
@@ -549,7 +549,7 @@
     <string name="common_weather_text_snow_heavy">Tuyết rơi dày đặc</string>
     <string name="common_weather_text_rain_snow_mixed">Mưa và tuyết trộn lẫn</string>
     <string name="common_weather_text_rain_snow_mixed_light">Mưa nhẹ và tuyết xen kẽ</string>
-    <string name="unit_bf">Bf</string>
+    <string name="unit_bft_display_name">Bf</string>
     <string name="pollen_and_mold">Phấn hoa &amp; nấm mốc</string>
     <string name="settings_color_app">Tự động</string>
     <string name="settings_debug_dump_crash_logs_saved">Nhật lí sự cố đã lưu</string>

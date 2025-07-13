@@ -509,8 +509,7 @@
     <string name="precipitation_nowcasting">Текуща прогноза за валежите</string>
     <string name="about_privacy_policy">Политика за поверителност</string>
     <string name="settings_appearance_dark_mode_locations_title">Дневен / нощен режим за местоположения</string>
-    <string name="unit_bf">Bf</string>
-    <string name="unit_bf_voice">по скалата на Бофорт</string>
+    <string name="unit_bft_voice">по скалата на Бофорт</string>
     <string name="about_contact">Контакт</string>
     <string name="about_dependencies">Зависимости</string>
     <string name="action_save">Запази</string>

@@ -405,8 +405,8 @@
     <string name="settings_color_dark">Malhela</string>
     <string name="settings_invalid_syntax">Nevalida sintakso</string>
     <!-- Units -->
-    <string name="unit_bf">Bf</string>
-    <string name="unit_bf_voice">sur la boforta skalo</string>
+    <string name="unit_bft_nominative">%s Bft</string>
+    <string name="unit_bft_voice">sur la boforta skalo</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_mps_voice">Metroj por sekundo</string>
     <string name="unit_kph">km/h</string>
