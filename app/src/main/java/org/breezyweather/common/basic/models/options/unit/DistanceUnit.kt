@@ -95,7 +95,7 @@ enum class DistanceUnit(
         fun getDefaultUnit(
             context: Context,
         ) = when (context.currentLocale.country) {
-            "DE", "ML" -> METER
+            "DE", "NL" -> METER
             "GB", "US" -> MILE
             else -> KILOMETER
         }

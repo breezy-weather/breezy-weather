@@ -420,7 +420,7 @@ fun WindScale(
 ) {
     val context = LocalContext.current
     val speedUnit = SettingsManager.getInstance(context).getSpeedUnit(context).let {
-        if (it == SpeedUnit.BEAUFORT) SpeedUnit.METER_PER_SECOND else it
+        if (it == SpeedUnit.BEAUFORT) SpeedUnit.getDefaultUnit(context) else it
     }
 
     Material3ExpressiveCardListItem(
