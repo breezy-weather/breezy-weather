@@ -360,7 +360,7 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">雷雨伴有大冰雹</string>
     <string name="weather_api_key_required_missing_title">缺少必要的 API 金鑰</string>
     <string name="weather_api_unauthorized_title">API 存取未經授權</string>
-    <string name="weather_api_unauthorized_content">某些氣象資料來源需要您提供自己的 API 金鑰。若您已提供，請仔細檢查所輸入的 API 金鑰。</string>
+    <string name="weather_api_unauthorized_content">某些天氣資料來源需要您提供自己的 API 金鑰。若您已提供，請仔細檢查所輸入的 API 金鑰。</string>
     <string name="weather_api_key_required_missing_content">要使用這個資料來源，您需要提供 API 金鑰。</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">沉積霧凇</string>
     <string name="settings_background_updates_summary">更新率、疑難排解</string>
@@ -887,4 +887,5 @@
     <string name="settings_appearance_section_regional">語言和區域</string>
     <string name="settings_appearance_section_theme">佈景主題</string>
     <string name="action_configure_item">設定%s</string>
+    <string name="unit_bft_display_name">蒲福風級</string>
 </resources>
