@@ -589,8 +589,8 @@
     <string name="location_delete_location_dialog_message_no_name">Ez a helyszín törölve lesz a mentett helyszínek listájáról.</string>
     <string name="action_confirm">Megerősít</string>
     <string name="widget_label_hide_header">Fejléc elrejtése</string>
-    <string name="widget_custom_subtitle_keyword_caqi_description">Jelenlegi levegőszennyezettségi index</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Levegőszennyezettségi index ma, holnap, …, 4 nap múlva</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Jelenlegi levegőminőségi index</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Levegőminőségi index ma, holnap, …, 4 nap múlva</string>
     <string name="pollen_castanea">Szelídgesztenyefa</string>
     <string name="pollen_corylus">Mogyoró</string>
     <string name="pollen_fraxinus">Kőris</string>
