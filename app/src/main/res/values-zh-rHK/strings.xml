@@ -878,4 +878,5 @@
     <string name="settings_appearance_section_regional">語言和地區</string>
     <string name="settings_appearance_section_theme">佈景主題</string>
     <string name="action_configure_item">設定%s</string>
+    <string name="unit_bft_display_name">蒲福氏風級</string>
 </resources>
