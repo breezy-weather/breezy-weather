@@ -801,4 +801,5 @@
     <string name="wind_origin">Від %s</string>
     <string name="settings_appearance_section_regional">Мова та регіон</string>
     <string name="settings_appearance_section_theme">Тема</string>
+    <string name="action_configure_item">Налаштувати %s</string>
 </resources>
