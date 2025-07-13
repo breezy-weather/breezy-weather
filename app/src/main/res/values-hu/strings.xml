@@ -805,4 +805,5 @@
     <string name="wind_origin">%s felől</string>
     <string name="settings_appearance_section_regional">Nyelv és régió</string>
     <string name="settings_appearance_section_theme">Téma</string>
+    <string name="action_configure_item">%s konfigurálása</string>
 </resources>
