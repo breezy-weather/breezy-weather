@@ -867,4 +867,6 @@
     <string name="action_configure_item">Configurar %s</string>
     <string name="settings_appearance_section_regional">Idioma e região</string>
     <string name="settings_appearance_section_theme">Tema</string>
+    <string name="unit_bft_display_name">Beaufort</string>
+    <string name="unit_bft_nominative">força %s</string>
 </resources>
