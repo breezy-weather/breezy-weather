@@ -73,7 +73,7 @@
     <string name="pollen_tree">Fa</string>
     <string name="daily_forecast">Napi előrejelzés</string>
     <string name="hourly_forecast">Óránkénti előrejelzés</string>
-    <string name="air_quality">Légszennyezettség</string>
+    <string name="air_quality">Levegőminőség</string>
     <string name="pollen">Pollen</string>
     <string name="details">Részletek</string>
     <string name="ephemeris">Nap és Hold</string>
@@ -82,7 +82,7 @@
     <string name="settings_enabled">Engedélyezve</string>
     <string name="settings_disabled">Letiltva</string>
     <string name="action_set">Beállítás</string>
-    <string name="action_help">Segítség</string>
+    <string name="action_help">Súgó</string>
     <string name="action_learn_more">Tudjon meg többet</string>
     <string name="about_app">További információk az alkalmazásról</string>
     <string name="about_translators">Fordítók</string>
@@ -207,7 +207,7 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">Néhány gyártó további korlátozásokat alkalmaz, amelyek letilthatják a háttérszolgáltatásokat. A „Don’t kill my app!” weboldalon információkat találhat arról, hogyan lehet ezt javítani.</string>
     <string name="settings_location_access_background_summaryOn">Engedélyezve. Az alkalmazás képes lesz a jelenlegi tartózkodási helyszínének időjárásadatait frissíteni a háttérben.</string>
     <string name="settings_location_access_precise_summaryOff">Engedélyezze a „Pontos helyszín használata” lehetőséget, ha problémái vannak a hely meghatározásával.</string>
-    <string name="settings_location_access_precise_summaryOn">Engedélyezve. A készülék hálózati szolgáltatója elsőbbséget élvez, de a GPS is használható tartalékként.</string>
+    <string name="settings_location_access_precise_summaryOn">Engedélyezve. Az eszköz hálózati szolgáltatója elsőbbséget élvez, de a GPS is használható tartalékként.</string>
     <string name="widget_subtitle_data_wind">Szél</string>
     <string name="action_undo">Visszavonás</string>
     <string name="settings_location_access_switch_summaryOff">Engedélyezze, ha hozzá szeretné adni a jelenlegi tartózkodási helyszínét az alkalmazáshoz.</string>
@@ -228,7 +228,7 @@
     <string name="settings_icon_packs_title">Ikonkészletek</string>
     <string name="settings_icon_packs_weather_icon_light">Világos ikon</string>
     <string name="settings_location_access_permission_already_granted">Az engedély már meg van adva</string>
-    <string name="widget_subtitle_data_aqi">Légszennyezettség</string>
+    <string name="widget_subtitle_data_aqi">Levegőminőség</string>
     <string name="widget_subtitle_data_custom">Egyéni</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
@@ -251,7 +251,7 @@
     <string name="wind_direction_SE_short">DK</string>
     <string name="wind_direction_S_short">D</string>
     <string name="wind_strength">Szélerősség</string>
-    <string name="air_quality_level_2_description">A légszennyezettség a legtöbb ember számára általában elfogadható. Az érzékeny csoportok azonban a hosszú távú kitettség következtében kisebb vagy mérsékelt mértékű tüneteket tapasztalhatnak.</string>
+    <string name="air_quality_level_2_description">A levegőminőség a legtöbb ember számára általában elfogadható. Az érzékeny csoportok azonban a hosszú távú kitettség következtében kisebb vagy mérsékelt mértékű tüneteket tapasztalhatnak.</string>
     <string name="air_quality_level_5_description">Az érzékeny csoportok azonnal érzik az egészségügyi hatásokat, és kerülniük kell a szabadtéri tevékenységeket. Az egészséges egyének valószínűleg légzési nehézségeket és torokirritációt tapasztalnak; fontolja meg a beltérben maradást és a szabadtéri tevékenységek átütemezését.</string>
     <string name="air_quality_o3_full">Földfelszíni ózon (O₃)</string>
     <string name="air_quality_o3">O₃</string>
@@ -268,7 +268,7 @@
     <string name="settings_location_access_switch_summaryOn">Engedélyezve. Most már hozzáadhatja a jelenlegi tartózkodási helyszínét az alkalmazáshoz.</string>
     <string name="settings_background_updates_worker_info_summary">Utoljára futtatva: %s</string>
     <string name="settings_location_access_background_title">Helyszínhozzáférés a háttérben</string>
-    <string name="settings_location_access_precise_title">A készülék GPS-ének használata</string>
+    <string name="settings_location_access_precise_title">Az eszköz GPS-ének használata</string>
     <string name="settings_source_default_value">Alapértelmezett (változatlan)</string>
     <string name="settings_icon_packs_weather_icon_grey">Szürke ikon</string>
     <string name="settings_icon_packs_weather_icon_dark">Sötét ikon</string>
@@ -312,11 +312,11 @@
     <string name="settings_background_updates">Frissítés a háttérben</string>
     <string name="settings_background_updates_summary">Frissítési gyakoriság, hibaelhárítás</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Mellőzés alacsony töltöttségnél</string>
-    <string name="settings_background_updates_battery_optimization_activity_not_found">Nem sikerült megnyitni a készülék beállításait.</string>
+    <string name="settings_background_updates_battery_optimization_activity_not_found">Nem sikerült megnyitni az eszköz beállításait.</string>
     <string name="settings_background_updates_worker_info_title">Folyamatinformáció</string>
     <string name="settings_weather_sources_per_location_summary">A helyszínhez használt időjárási adatforrások testreszabása</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Időjárásikon</string>
-    <string name="air_quality_level_3_description">A légszennyezettség elérte a magas szintet, és az érzékeny csoportok számára egészségtelen. Csökkentse a szabadban töltött időt, ha olyan tüneteket tapasztal, mint légzési nehézség vagy torokirritáció.</string>
+    <string name="air_quality_level_3_description">A levegőminőség elérte a magas szintet, és az érzékeny csoportok számára egészségtelen. Csökkentse a szabadban töltött időt, ha olyan tüneteket tapasztal, mint légzési nehézség vagy torokirritáció.</string>
     <string name="air_quality_level_1_description">A levegő minősége a legtöbb ember számára ideális; élvezze a szokásos szabadtéri tevékenységeket.</string>
     <string name="air_quality_level_5">Nagyon káros</string>
     <string name="wind_direction_NW_short">ÉNy</string>
@@ -353,7 +353,7 @@
     <string name="location_message_search_failed">A helyszínkeresés sikertelen</string>
     <string name="action_share">Megosztás</string>
     <string name="settings_background_updates_battery_optimization">Akkumulátoroptimalizálás letiltása</string>
-    <string name="air_quality_index">Légszennyezettségi index</string>
+    <string name="air_quality_index">Levegőminőségi index</string>
     <string name="air_quality_level_3">Rossz</string>
     <string name="air_quality_level_4">Káros</string>
     <string name="air_quality_pm25">PM2,5</string>
@@ -559,7 +559,7 @@
     <string name="settings_color_app">Kövesse az alkalmazás beállításait</string>
     <string name="notification_channel_crash_logs">Összeomlási naplók</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Koppintson a megnyitáshoz</string>
-    <string name="settings_unavailable_no_background_updates">Nem elérhető, először engedélyezd a háttérfrissítéseket</string>
+    <string name="settings_unavailable_no_background_updates">Nem elérhető, először engedélyezze a háttérfrissítéseket</string>
     <string name="notification_precipitation_starting">Hamarosan csapadék várható</string>
     <string name="notification_precipitation_continuing">Csapadék</string>
     <string name="notification_precipitation_stopping">Hamarosan megszűnik a csapadék</string>
@@ -589,8 +589,8 @@
     <string name="location_delete_location_dialog_message_no_name">Ez a helyszín törölve lesz a mentett helyszínek listájáról.</string>
     <string name="action_confirm">Megerősít</string>
     <string name="widget_label_hide_header">Fejléc elrejtése</string>
-    <string name="widget_custom_subtitle_keyword_caqi_description">Jelenlegi légszennyezettségi index</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Légszennyezettségi index ma, holnap, …, 4 nap múlva</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Jelenlegi levegőszennyezettségi index</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Levegőszennyezettségi index ma, holnap, …, 4 nap múlva</string>
     <string name="pollen_castanea">Szelídgesztenyefa</string>
     <string name="pollen_corylus">Mogyoró</string>
     <string name="pollen_fraxinus">Kőris</string>
@@ -620,7 +620,7 @@
     <string name="alert">Riasztás</string>
     <string name="settings_source_instance_geocoding">Geokódolási példány</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Előrejelzési példány</string>
-    <string name="settings_weather_source_open_meteo_instance_air_quality">Légszennyezettségi példány</string>
+    <string name="settings_weather_source_open_meteo_instance_air_quality">levegőminőségi példány</string>
     <string name="settings_widgets_broadcast_title">Időjárásadatok továbbítása más alkalmazásoknak</string>
     <string name="message_invalid_incomplete_data">Érvénytelen, vagy hiányos adatokat küldött a kiszolgáló</string>
     <string name="settings_per_location_theme">Téma</string>
@@ -746,10 +746,10 @@
     <string name="uv_index_scale">UV-indexskála</string>
     <string name="uv_index_time_to_burn">Égési idő</string>
     <string name="uv_index_time_to_burn_explanations">A pontos égési idő függ a tengerszint feletti magasságtól, a víz vagy hó visszatükröződésétől, a bőrtípustól és a naptej használatától.</string>
-    <string name="air_quality_index_about">Légszennyezettségi indexszel kapcsolatos információk</string>
-    <string name="air_quality_index_about_description_1">A légszennyezettségi index (LMI) egy skála, amely segít megérteni, mennyire szennyezett a levegő egy adott területen, és milyen egészségügyi kockázatokat jelent.</string>
-    <string name="air_quality_index_about_description_2">Az alkalmazásban használt skála az Egészségügyi Világszervezet ajánlásain alapul, nem helyi szabályozásokon, hogy értelmes kategóriákat kapjunk, és könnyebb legyen az országok közötti szennyezettségi szintek összehasonlítása.</string>
-    <string name="air_quality_index_scale">Légszennyezettségi indexskála</string>
+    <string name="air_quality_index_about">Levegőminőségi indexszel kapcsolatos információk</string>
+    <string name="air_quality_index_about_description_1">A levegőminőségi index (LMI) egy skála, amely segít megérteni, mennyire szennyezett a levegő egy adott területen, és milyen egészségügyi kockázatokat jelent.</string>
+    <string name="air_quality_index_about_description_2">Az alkalmazásban használt skála az Egészségügyi Világszervezet ajánlásain alapul, nem a helyi szabályozásokon, hogy értelmes kategóriákat kapjunk, és könnyebb legyen az országok közötti levegőminőségi szintek összehasonlítása.</string>
+    <string name="air_quality_index_scale">Levegőminőségi indexskála</string>
     <string name="air_quality_index_harmless_exposure">Ártalmatlan kitettség</string>
     <string name="air_quality_level_1_harmless_exposure">&gt; 1 év</string>
     <string name="air_quality_level_2_harmless_exposure">&lt; 1 év</string>
@@ -806,4 +806,6 @@
     <string name="settings_appearance_section_regional">Nyelv és régió</string>
     <string name="settings_appearance_section_theme">Téma</string>
     <string name="action_configure_item">%s konfigurálása</string>
+    <string name="unit_bft_display_name">Beaufort</string>
+    <string name="unit_bft_nominative">%s Bft</string>
 </resources>
