@@ -167,14 +167,6 @@ object UnitUtils {
             val convertedValue = if (isValueInDefaultUnit) enum.getConvertedUnit(value) else value
 
             // LogHelper.log(msg = "Formatting with ICU ${enum.id}: ${enum.measureUnit} per ${enum.perMeasureUnit}")
-            if (enum.measureUnit is TimeUnit && unitWidth != UnitWidth.SHORT_SIMPLE) {
-                return formatDurationWithIcu(
-                    context,
-                    convertedValue,
-                    enum.measureUnit as TimeUnit,
-                    unitWidth
-                )
-            }
 
             // If result is null, it skips to the default non-ICU formatter
             getAdjustedFormatting(
@@ -182,6 +174,15 @@ object UnitUtils {
                 enum.measureUnit!!,
                 unitWidth
             )?.let { (locale, numberFormatterWidth, measureFormatWidth) ->
+                if (enum.measureUnit is TimeUnit && unitWidth != UnitWidth.NARROW) {
+                    return formatDurationWithIcu(
+                        context,
+                        convertedValue,
+                        enum.measureUnit as TimeUnit,
+                        measureFormatWidth!!
+                    )
+                }
+
                 return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
                     SettingsManager.getInstance(context).useNumberFormatter
                 ) {
@@ -295,9 +296,9 @@ object UnitUtils {
         context: Context,
         value: Number,
         unit: TimeUnit,
-        unitWidth: UnitWidth,
+        measureFormatWidth: MeasureFormat.FormatWidth,
     ): String {
-        val measureFormat = MeasureFormat.getInstance(context.currentLocale, unitWidth.measureFormatWidth)
+        val measureFormat = MeasureFormat.getInstance(context.currentLocale, measureFormatWidth)
         val duration = when (unit) {
             MeasureUnit.YEAR, MeasureUnit.MONTH, MeasureUnit.WEEK -> {
                 return measureFormat.format(Measure(value, unit))
@@ -356,6 +357,16 @@ object UnitUtils {
         unit: MeasureUnit,
         unitWidth: UnitWidth,
     ): Triple<Locale, NumberFormatter.UnitWidth?, MeasureFormat.FormatWidth?>? {
+        val numberFormatterWidth = unitWidth.numberFormatterWidth
+        val measureFormatWidth = unitWidth.measureFormatWidth
+        if (unitWidth == UnitWidth.FULL) {
+            return Triple(currentLocale, numberFormatterWidth, measureFormatWidth)
+        }
+
+        if (unit is TimeUnit && unitWidth == UnitWidth.NARROW) {
+            return Triple(currentLocale, UnitWidth.SHORT.numberFormatterWidth, UnitWidth.SHORT.measureFormatWidth)
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA && unit == MeasureUnit.BEAUFORT) {
             /*
              * Japanese: use 風力7 instead of “B 7”
@@ -367,9 +378,6 @@ object UnitUtils {
         }
 
         var newLocale = currentLocale
-        var numberFormatterWidth = unitWidth.numberFormatterWidth
-        var measureFormatWidth = unitWidth.measureFormatWidth
-
         /**
          * Use English units with Traditional Chinese
          * Except for durations

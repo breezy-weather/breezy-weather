@@ -68,7 +68,7 @@ enum class DurationUnit(
         value = value,
         precision = 1,
         isValueInDefaultUnit = isValueInDefaultUnit,
-        unitWidth = UnitWidth.SHORT_SIMPLE
+        unitWidth = UnitWidth.NARROW
     )
 
     override fun formatMeasure(
