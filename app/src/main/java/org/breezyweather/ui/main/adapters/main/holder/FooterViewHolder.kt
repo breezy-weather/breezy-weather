@@ -119,7 +119,7 @@ class FooterViewHolder(
 
         Row(
             modifier = modifier
-                .padding(dimensionResource(R.dimen.normal_margin))
+                .padding(dimensionResource(R.dimen.normal_margin).div(2))
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center

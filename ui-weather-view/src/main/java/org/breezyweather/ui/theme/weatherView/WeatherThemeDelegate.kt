@@ -73,9 +73,6 @@ interface WeatherThemeDelegate {
     )
 
     @Px
-    fun getHomeCardRadius(context: Context): Float
-
-    @Px
     fun getHomeCardElevation(context: Context): Float
 
     @Px

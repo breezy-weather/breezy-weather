@@ -19,11 +19,12 @@ package org.breezyweather.ui.main.adapters.main.holder
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
+import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.LinearLayout
 import androidx.annotation.CallSuper
-import androidx.cardview.widget.CardView
 import breezyweather.domain.location.model.Location
+import com.google.android.material.card.MaterialCardView
 import org.breezyweather.R
 import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.ui.main.adapters.main.FirstCardHeaderController
@@ -50,22 +51,23 @@ abstract class AbstractMainCardViewHolder(
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
         mLocation = location
         val delegate = ThemeManager.getInstance(activity).weatherThemeDelegate
-        val card = (itemView as CardView).apply {
-            radius = delegate.getHomeCardRadius(activity)
-            elevation = delegate.getHomeCardElevation(activity)
-            setCardBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground))
+        if (itemView is MaterialCardView) {
+            (itemView as MaterialCardView).apply {
+                elevation = delegate.getHomeCardElevation(activity)
+                setCardBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground))
+            }
         }
-        val params = card.layoutParams as MarginLayoutParams
+        val params = itemView.layoutParams as MarginLayoutParams
         params.setMargins(
-            delegate.getHomeCardMargins(context),
-            0,
-            delegate.getHomeCardMargins(context),
-            delegate.getHomeCardMargins(context)
+            delegate.getHomeCardMargins(context).div(2),
+            delegate.getHomeCardMargins(context).div(2),
+            delegate.getHomeCardMargins(context).div(2),
+            delegate.getHomeCardMargins(context).div(2)
         )
-        card.layoutParams = params
+        itemView.layoutParams = params
         if (firstCard) {
             mFirstCardHeaderController = FirstCardHeaderController(activity, location).apply {
-                bind(card.getChildAt(0) as LinearLayout)
+                bind((itemView as ViewGroup).getChildAt(0) as LinearLayout)
             }
         }
     }

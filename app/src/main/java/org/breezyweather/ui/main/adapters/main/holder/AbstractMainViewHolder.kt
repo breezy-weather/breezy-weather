@@ -62,9 +62,9 @@ abstract class AbstractMainViewHolder(
         host: RecyclerView,
         pendingAnimatorList: MutableList<Animator>,
         listAnimationEnabled: Boolean,
-    ) {
+    ): Boolean {
         if (!itemView.isLaidOut || top >= host.measuredHeight) {
-            return
+            return false
         }
         if (!mInScreen) {
             mInScreen = true
@@ -73,7 +73,9 @@ abstract class AbstractMainViewHolder(
             } else {
                 onEnterScreen()
             }
+            return true
         }
+        return false
     }
 
     fun executeEnterAnimator(pendingAnimatorList: MutableList<Animator>) {

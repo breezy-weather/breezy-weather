@@ -18,6 +18,7 @@ package org.breezyweather.ui.alert
 
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -26,7 +27,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.HorizontalDivider
@@ -51,6 +52,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.breezyweather.R
+import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.domain.weather.model.getFormattedDates
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
@@ -121,10 +123,12 @@ internal fun AlertScreen(
         ) {
             LazyColumn(
                 modifier = Modifier.fillMaxHeight(),
-                contentPadding = it,
+                contentPadding = it.plus(
+                    PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin))
+                ),
                 state = listState
             ) {
-                items(alertUiState.location?.weather?.alertList ?: emptyList()) { alert ->
+                itemsIndexed(alertUiState.location?.weather?.alertList ?: emptyList()) { index, alert ->
                     Material3ExpressiveCardListItem(isFirst = true, isLast = true) {
                         Column(
                             modifier = Modifier
@@ -201,6 +205,9 @@ internal fun AlertScreen(
                                 )
                             }
                         }
+                    }
+                    if (index != alertUiState.location!!.weather!!.alertList.lastIndex) {
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
                     }
                 }
 

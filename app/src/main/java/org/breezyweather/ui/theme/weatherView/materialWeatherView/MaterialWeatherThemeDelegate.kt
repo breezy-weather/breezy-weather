@@ -165,14 +165,10 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
         )
     }
 
-    override fun getHomeCardRadius(context: Context): Float = context
-        .resources
-        .getDimension(R.dimen.material3_card_list_item_corner_radius)
-
     override fun getHomeCardElevation(context: Context): Float =
         context.dpToPx(2f)
 
     override fun getHomeCardMargins(context: Context): Int = context
         .resources
-        .getDimensionPixelSize(R.dimen.little_margin)
+        .getDimensionPixelSize(R.dimen.normal_margin)
 }
