@@ -29,6 +29,7 @@ import kotlin.math.max
 class TrendHorizontalLinearLayoutManager @JvmOverloads constructor(
     private val mContext: Context,
     private val mFillCount: Int = 0,
+    private val minHeight: Int = mContext.dpToPx(MIN_ITEM_HEIGHT.toFloat()).toInt(),
 ) : TrendLayoutManager(mContext) {
     override fun scrollHorizontallyBy(dx: Int, recycler: Recycler, state: RecyclerView.State): Int {
         val consumed = super.scrollHorizontallyBy(dx, recycler, state)
@@ -43,7 +44,6 @@ class TrendHorizontalLinearLayoutManager @JvmOverloads constructor(
     override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams {
         return if (mFillCount > 0) {
             val minWidth = mContext.dpToPx(MIN_ITEM_WIDTH.toFloat()).toInt()
-            val minHeight = mContext.dpToPx(MIN_ITEM_HEIGHT.toFloat()).toInt()
             RecyclerView.LayoutParams(
                 max(minWidth, width / mFillCount),
                 if (height > minHeight) ViewGroup.LayoutParams.MATCH_PARENT else minHeight

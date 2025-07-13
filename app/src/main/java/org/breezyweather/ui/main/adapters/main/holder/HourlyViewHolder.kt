@@ -141,7 +141,8 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         trendRecyclerView.layoutManager =
             TrendHorizontalLinearLayoutManager(
                 context,
-                if (context.isLandscape) 7 else 5
+                if (context.isLandscape) 7 else 5,
+                minHeight = context.resources.getDimensionPixelSize(R.dimen.hourly_trend_item_height)
             )
         trendRecyclerView.setLineColor(
             MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
