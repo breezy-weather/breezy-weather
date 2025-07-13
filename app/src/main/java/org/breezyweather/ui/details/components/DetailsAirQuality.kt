@@ -495,7 +495,7 @@ fun AirQualityScale(
             }
             PollutantIndex.aqiThresholds.forEachIndexed { index, startingValue ->
                 val endingValue = PollutantIndex.aqiThresholds.getOrElse(index + 1) { null }
-                    ?.let { " – ${it - 1}" }
+                    ?.let { " – ${UnitUtils.formatInt(context, it - 1)}" }
                     ?: "+"
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -525,7 +525,7 @@ fun AirQualityScale(
                         modifier = Modifier.weight(1.5f)
                     )
                     Text(
-                        text = "$startingValue$endingValue",
+                        text = "${UnitUtils.formatInt(context, startingValue)}$endingValue",
                         textAlign = TextAlign.End,
                         modifier = Modifier.weight(1.5f)
                     )
