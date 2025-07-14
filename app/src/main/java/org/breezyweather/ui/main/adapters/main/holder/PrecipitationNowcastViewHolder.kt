@@ -70,7 +70,6 @@ import org.breezyweather.ui.common.charts.SpecificHorizontalAxisItemPlacer
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
-import org.breezyweather.ui.theme.weatherView.WeatherView
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 import java.util.Date
 import kotlin.math.abs

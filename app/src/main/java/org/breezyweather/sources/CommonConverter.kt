@@ -534,7 +534,7 @@ internal fun completeDailyListFromHourlyList(
     currentPollen: Pollen?,
     location: Location,
 ): List<Daily> {
-    if (dailyList.isEmpty() || hourlyList.isEmpty()) return dailyList
+    if (dailyList.isEmpty()) return dailyList
 
     val hourlyListByHalfDay = getHourlyListByHalfDay(hourlyList, location)
     val hourlyListByDay = hourlyList.groupBy { it.date.getIsoFormattedDate(location) }
