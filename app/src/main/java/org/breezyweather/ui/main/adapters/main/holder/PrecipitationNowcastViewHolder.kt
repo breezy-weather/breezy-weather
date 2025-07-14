@@ -206,16 +206,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
             ColumnCartesianLayer(
                 ColumnCartesianLayer.ColumnProvider.series(
                     LineComponent(
-                        fill = Fill(
-                            ThemeManager
-                                .getInstance(context)
-                                .weatherThemeDelegate
-                                .getThemeColors(
-                                    context,
-                                    WeatherView.WEATHER_KIND_RAINY,
-                                    WeatherViewController.isDaylight(location)
-                                )[0]
-                        ),
+                        fill = Fill(colors[0]),
                         thicknessDp = 500f,
                         shape = CorneredShape.rounded(allPercent = 15)
                     )
@@ -268,9 +259,6 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                             }
                             mLastX = event.x
                             mLastY = event.y
-                        }
-                        MotionEvent.ACTION_BUTTON_PRESS -> {
-                            v.parent.requestDisallowInterceptTouchEvent(true)
                         }
                     }
                     return false
