@@ -314,7 +314,7 @@ class SearchActivity : GeoActivity() {
                                     style = MaterialTheme.typography.titleMedium,
                                     color = DayNightTheme.colors.titleColor
                                 )
-                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                 Text(
                                     text = stringResource(R.string.location_search_no_results_advice),
                                     style = MaterialTheme.typography.bodyMedium,

@@ -84,7 +84,7 @@ fun DetailsItem(
     val context = LocalContext.current
 
     Row(
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
     ) {
@@ -97,7 +97,7 @@ fun DetailsItem(
         }
         Column {
             Row(
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
@@ -138,10 +138,10 @@ fun UnavailableChart(
         contentAlignment = Alignment.Center,
         modifier = modifier
             .fillMaxWidth()
-            .padding(bottom = dimensionResource(R.dimen.little_margin))
+            .padding(bottom = dimensionResource(R.dimen.small_margin))
     ) {
         Row(
-            horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+            horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth(0.5f)
@@ -200,7 +200,7 @@ fun NighttimeLabelWithInfo(
                         MaterialTheme.typography.labelMedium.lineHeight.toDp()
                     }
                 ),
-            horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+            horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
@@ -233,7 +233,7 @@ fun DetailsSectionHeader(
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier
                 .padding(
-                    bottom = if (subtitle == null) dimensionResource(R.dimen.little_margin) else 0.dp
+                    bottom = if (subtitle == null) dimensionResource(R.dimen.small_margin) else 0.dp
                 )
         )
         subtitle?.let {
@@ -243,7 +243,7 @@ fun DetailsSectionHeader(
                 color = DayNightTheme.colors.captionColor,
                 modifier = Modifier
                     .padding(
-                        bottom = dimensionResource(R.dimen.little_margin)
+                        bottom = dimensionResource(R.dimen.small_margin)
                     )
             )
         }
@@ -275,7 +275,7 @@ fun DetailsCardText(
         Column(
             modifier = Modifier.padding(
                 horizontal = dimensionResource(R.dimen.normal_margin),
-                vertical = dimensionResource(R.dimen.little_margin)
+                vertical = dimensionResource(R.dimen.small_margin)
             ),
             verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.normal_margin))
         ) {

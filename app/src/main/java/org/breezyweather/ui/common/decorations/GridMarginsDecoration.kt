@@ -32,7 +32,7 @@ class GridMarginsDecoration(
     constructor(
         context: Context,
         recyclerView: RecyclerView,
-    ) : this(context.resources.getDimensionPixelSize(R.dimen.little_margin).toFloat(), recyclerView)
+    ) : this(context.resources.getDimensionPixelSize(R.dimen.small_margin).toFloat(), recyclerView)
     constructor(@Px margins: Float, recyclerView: RecyclerView) : this(margins, margins, recyclerView)
 
     init {

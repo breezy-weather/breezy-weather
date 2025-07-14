@@ -160,7 +160,7 @@ fun BreezyLineChart(
                 ),
                 padding = insets(
                     dimensionResource(R.dimen.normal_margin),
-                    dimensionResource(R.dimen.little_margin)
+                    dimensionResource(R.dimen.small_margin)
                 ),
                 textAlignment = Layout.Alignment.ALIGN_CENTER,
                 minWidth = TextComponent.MinWidth.fixed(40f)

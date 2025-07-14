@@ -93,7 +93,7 @@ fun DetailsUV(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(
             horizontal = dimensionResource(R.dimen.normal_margin),
-            vertical = dimensionResource(R.dimen.little_margin)
+            vertical = dimensionResource(R.dimen.small_margin)
         )
     ) {
         if (hourlyNoMissingValuesSize >= CHART_MIN_COUNT) {
@@ -144,7 +144,7 @@ private fun UVItem(
 ) {
     val context = LocalContext.current
     Row(
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
@@ -307,12 +307,12 @@ fun UVScale(
         Column(
             modifier = Modifier.padding(
                 horizontal = dimensionResource(R.dimen.normal_margin),
-                vertical = dimensionResource(R.dimen.little_margin)
+                vertical = dimensionResource(R.dimen.small_margin)
             )
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
@@ -334,15 +334,15 @@ fun UVScale(
                 val uv = UV(index = startingValue.toDouble())
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = dimensionResource(R.dimen.little_margin))
+                        .padding(top = dimensionResource(R.dimen.small_margin))
                 ) {
                     Row(
                         modifier = Modifier.weight(2f),
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin))
+                        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin))
                     ) {
                         Icon(
                             modifier = Modifier

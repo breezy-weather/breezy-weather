@@ -22,8 +22,8 @@
                 android:id="@+id/widget_clock_day_clock_light"
                 android:fontFamily="sans-serif-light"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="@dimen/little_margin"
-                android:layout_marginEnd="@dimen/little_margin"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/small_margin"
                 android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
@@ -56,8 +56,8 @@
             <TextClock
                 android:id="@+id/widget_clock_day_clock_normal"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="@dimen/little_margin"
-                android:layout_marginEnd="@dimen/little_margin"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/small_margin"
                 android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
@@ -91,8 +91,8 @@
                 android:id="@+id/widget_clock_day_clock_black"
                 android:fontFamily="sans-serif-black"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="@dimen/little_margin"
-                android:layout_marginEnd="@dimen/little_margin"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/small_margin"
                 android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
@@ -124,7 +124,7 @@
 
             <AnalogClock
                 android:id="@+id/widget_clock_day_clock_analog_auto"
-                android:layout_margin="@dimen/little_margin"
+                android:layout_margin="@dimen/small_margin"
                 android:layout_centerInParent="true"
                 style="@style/widget_text_clock_analog"
                 tools:ignore="RelativeOverlap,RtlHardcoded" />
@@ -140,7 +140,7 @@
 
             <AnalogClock
                 android:id="@+id/widget_clock_day_clock_analog_light"
-                android:layout_margin="@dimen/little_margin"
+                android:layout_margin="@dimen/small_margin"
                 android:layout_centerInParent="true"
                 style="@style/widget_text_clock_analog.Light"
                 tools:ignore="RelativeOverlap,RtlHardcoded" />
@@ -156,7 +156,7 @@
 
             <AnalogClock
                 android:id="@+id/widget_clock_day_clock_analog_dark"
-                android:layout_margin="@dimen/little_margin"
+                android:layout_margin="@dimen/small_margin"
                 android:layout_centerInParent="true"
                 style="@style/widget_text_clock_analog.Dark"
                 tools:ignore="RelativeOverlap,RtlHardcoded" />
@@ -194,7 +194,7 @@
                     android:shadowRadius="1"
                     android:layout_toEndOf="@id/widget_clock_day_icon"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/little_margin"
+                    android:layout_marginStart="@dimen/small_margin"
                     style="@style/widget_content_text"
                     tools:text="@string/weather_kind_partly_cloudy"
                     tools:ignore="RtlHardcoded" />
@@ -210,7 +210,7 @@
                     android:shadowRadius="1"
                     android:layout_toEndOf="@id/widget_clock_day_title"
                     android:layout_centerVertical="true"
-                    android:layout_marginStart="@dimen/little_margin"
+                    android:layout_marginStart="@dimen/small_margin"
                     style="@style/widget_content_text"
                     tools:text="21 °C"
                     tools:ignore="RtlHardcoded" />

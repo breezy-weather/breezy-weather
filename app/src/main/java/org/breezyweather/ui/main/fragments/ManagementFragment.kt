@@ -310,7 +310,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                      */
                                 }
                             )
-                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                         }
                     }
                     if (!viewModel.statementManager.isAppUpdateCheckDialogAlreadyShown &&
@@ -333,7 +333,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                         notificationAppUpdateCheckDismissed = true
                                     }
                                 )
-                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                             }
                         } else {
                             NotificationCard(
@@ -349,7 +349,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                     notificationAppUpdateCheckDismissed = true
                                 }
                             )
-                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                         }
                     }
                     AndroidView(

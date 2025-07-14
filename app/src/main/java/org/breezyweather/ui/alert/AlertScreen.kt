@@ -169,7 +169,7 @@ internal fun AlertScreen(
                                 }
                             }
                             if (!alert.description.isNullOrBlank()) {
-                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                 SelectionContainer {
                                     Text(
                                         text = alert.description!!,
@@ -180,10 +180,10 @@ internal fun AlertScreen(
                             }
                             if (!alert.instruction.isNullOrBlank()) {
                                 if (!alert.description.isNullOrBlank()) {
-                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                     HorizontalDivider()
                                 }
-                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                 SelectionContainer {
                                     Text(
                                         text = alert.instruction!!,
@@ -194,10 +194,10 @@ internal fun AlertScreen(
                             }
                             if (!alert.source.isNullOrBlank()) {
                                 if (!alert.description.isNullOrBlank() || !alert.instruction.isNullOrBlank()) {
-                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                     HorizontalDivider()
                                 }
-                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                 Text(
                                     text = stringResource(R.string.alert_source, alert.source!!),
                                     color = DayNightTheme.colors.bodyColor,

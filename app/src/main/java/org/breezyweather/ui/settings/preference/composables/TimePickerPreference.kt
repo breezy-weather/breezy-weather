@@ -134,7 +134,7 @@ private fun TimePickerPreferenceView(
                 )
                 val currentSummary = time?.getFormattedTime(null, LocalContext.current, is12Hour)
                 if (currentSummary?.isNotEmpty() == true) {
-                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                     Text(
                         text = currentSummary,
                         color = DayNightTheme.colors.bodyColor,

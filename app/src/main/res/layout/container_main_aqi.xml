@@ -70,7 +70,7 @@
                 android:layout_toEndOf="@id/container_main_aqi_progress"
                 android:layout_centerVertical="true"
                 android:nestedScrollingEnabled="false"
-                android:paddingBottom="@dimen/little_margin"
+                android:paddingBottom="@dimen/small_margin"
                 tools:ignore="UnusedAttribute" />
 
         </RelativeLayout>

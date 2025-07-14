@@ -89,7 +89,7 @@ fun DetailsHumidity(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(
             horizontal = dimensionResource(R.dimen.normal_margin),
-            vertical = dimensionResource(R.dimen.little_margin)
+            vertical = dimensionResource(R.dimen.small_margin)
         )
     ) {
         if (mappedHumidityValues.size >= DetailScreen.CHART_MIN_COUNT) {

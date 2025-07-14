@@ -24,7 +24,7 @@
             android:id="@+id/activity_widget_config_widgetContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/little_margin" />
+            android:padding="@dimen/small_margin" />
 
     </FrameLayout>
 

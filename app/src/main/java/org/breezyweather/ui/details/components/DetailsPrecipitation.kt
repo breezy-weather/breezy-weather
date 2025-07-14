@@ -102,7 +102,7 @@ fun DetailsPrecipitation(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(
             horizontal = dimensionResource(R.dimen.normal_margin),
-            vertical = dimensionResource(R.dimen.little_margin)
+            vertical = dimensionResource(R.dimen.small_margin)
         )
     ) {
         item {
@@ -125,7 +125,7 @@ fun DetailsPrecipitation(
             )
         }
         item {
-            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
         }
         item {
             PrecipitationProbabilityChart(
@@ -154,7 +154,7 @@ fun DetailsPrecipitation(
                 )
             }
             item {
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
             }
             item {
                 PrecipitationDurationSummary(
@@ -204,7 +204,7 @@ private fun PrecipitationSummary(
     nighttimePrecipitation: Precipitation?,
 ) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
         modifier = Modifier
             .fillMaxWidth()
     ) {
@@ -351,7 +351,7 @@ private fun PrecipitationDetails(
     nighttimePrecipitation: Precipitation?,
 ) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
         modifier = Modifier
             .padding(top = dimensionResource(R.dimen.normal_margin))
             .fillMaxWidth()
@@ -450,7 +450,7 @@ private fun PrecipitationProbabilitySummary(
     nighttimePrecipitationProbability: PrecipitationProbability?,
 ) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
         modifier = Modifier
             .fillMaxWidth()
     ) {
@@ -571,7 +571,7 @@ internal fun PrecipitationProbabilityDetails(
     nighttimePrecipitationProbability: PrecipitationProbability?,
 ) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
         modifier = Modifier
             .padding(top = dimensionResource(R.dimen.normal_margin))
             .fillMaxWidth()
@@ -654,7 +654,7 @@ private fun PrecipitationDurationSummary(
     val context = LocalContext.current
 
     Row(
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
         modifier = Modifier
             .fillMaxWidth()
     ) {

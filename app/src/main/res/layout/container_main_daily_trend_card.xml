@@ -36,7 +36,7 @@
             android:id="@+id/container_main_daily_trend_card_buttonView"
             style="@style/Widget.Material3Expressive.MaterialButtonGroup.Connected"
             app:overflowMode="menu"
-            android:layout_marginTop="@dimen/little_margin"
+            android:layout_marginTop="@dimen/small_margin"
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -45,7 +45,7 @@
             android:id="@+id/container_main_daily_trend_card_trendRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/daily_trend_item_height"
-            android:layout_marginTop="@dimen/little_margin"
+            android:layout_marginTop="@dimen/small_margin"
             tools:ignore="UnusedAttribute" />
 
     </LinearLayout>

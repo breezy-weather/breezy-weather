@@ -163,7 +163,7 @@ fun DetailsAirQuality(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(
             horizontal = dimensionResource(R.dimen.normal_margin),
-            vertical = dimensionResource(R.dimen.little_margin)
+            vertical = dimensionResource(R.dimen.small_margin)
         )
     ) {
         item {
@@ -251,7 +251,7 @@ private fun AirQualityItem(
 ) {
     val context = LocalContext.current
     Row(
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
@@ -400,14 +400,14 @@ fun AirQualityDetails(
         FlowRow(
             maxItemsInEachRow = 2,
             modifier = Modifier
-                .padding(dimensionResource(R.dimen.little_margin))
+                .padding(dimensionResource(R.dimen.small_margin))
         ) {
             detailedPollutants.forEach {
                 DetailsAirQualityItem(
                     it,
                     Modifier
                         .fillMaxWidth(0.5f)
-                        .padding(dimensionResource(R.dimen.little_margin))
+                        .padding(dimensionResource(R.dimen.small_margin))
                 )
             }
         }
@@ -468,12 +468,12 @@ fun AirQualityScale(
         Column(
             modifier = Modifier.padding(
                 horizontal = dimensionResource(R.dimen.normal_margin),
-                vertical = dimensionResource(R.dimen.little_margin)
+                vertical = dimensionResource(R.dimen.small_margin)
             )
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
@@ -499,15 +499,15 @@ fun AirQualityScale(
                     ?: "+"
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = dimensionResource(R.dimen.little_margin))
+                        .padding(top = dimensionResource(R.dimen.small_margin))
                 ) {
                     Row(
                         modifier = Modifier.weight(2f),
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin))
+                        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin))
                     ) {
                         Icon(
                             modifier = Modifier

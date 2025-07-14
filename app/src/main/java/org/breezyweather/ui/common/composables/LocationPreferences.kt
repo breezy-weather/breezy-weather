@@ -492,7 +492,7 @@ fun SecondarySourcesPreference(
                         isFirst = true,
                         isLast = true,
                         modifier = Modifier
-                            .padding(horizontal = dimensionResource(R.dimen.little_margin))
+                            .padding(horizontal = dimensionResource(R.dimen.small_margin))
                             .clickable { dialogLinkOpenState.value = true }
                     ) {
                         Text(
@@ -510,7 +510,7 @@ fun SecondarySourcesPreference(
                         isFirst = true,
                         isLast = true,
                         modifier = Modifier
-                            .padding(horizontal = dimensionResource(R.dimen.little_margin))
+                            .padding(horizontal = dimensionResource(R.dimen.small_margin))
                             .clickable { dialogLinkOpenState.value = true }
                     ) {
                         Text(

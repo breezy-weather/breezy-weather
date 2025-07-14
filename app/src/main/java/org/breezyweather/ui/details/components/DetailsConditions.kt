@@ -140,7 +140,7 @@ fun DetailsConditions(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(
             horizontal = dimensionResource(R.dimen.normal_margin),
-            vertical = dimensionResource(R.dimen.little_margin)
+            vertical = dimensionResource(R.dimen.small_margin)
         )
     ) {
         item {
@@ -169,7 +169,7 @@ fun DetailsConditions(
             (daily.night?.weatherPhase != null && daily.night!!.weatherText != daily.night!!.weatherPhase)
         ) {
             item {
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
             }
             item {
                 DetailsSectionHeader(stringResource(R.string.daily_summary))
@@ -196,7 +196,7 @@ fun DetailsConditions(
                 )
             }
             item {
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
             }
         }
         // Detailed feels like temperatures
@@ -213,7 +213,7 @@ fun DetailsConditions(
         if (daily.degreeDay?.isValid == true) {
             val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
             item {
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
             }
             if ((daily.degreeDay!!.heating ?: 0.0) > 0) {
                 item {
@@ -301,7 +301,7 @@ fun DetailsConditions(
             )
         }
         item {
-            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
         }
         item {
             PrecipitationProbabilityChart(
@@ -471,7 +471,7 @@ private fun WeatherConditionItem(
             }
         }
         if (!context.isLandscape) {
-            Spacer(Modifier.height(dimensionResource(R.dimen.little_margin)))
+            Spacer(Modifier.height(dimensionResource(R.dimen.small_margin)))
             WeatherCondition(weatherCode, weatherText, isDaytime = isDaytime, animated = animated)
         }
     }
@@ -487,7 +487,7 @@ fun WeatherCondition(
 ) {
     val context = LocalContext.current
     Row(
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier.fillMaxWidth()
     ) {
@@ -508,14 +508,14 @@ fun WeatherCondition(
                         }
                     },
                     modifier = Modifier
-                        .size(dimensionResource(R.dimen.little_weather_icon_size))
+                        .size(dimensionResource(R.dimen.small_weather_icon_size))
                 )
             } else {
                 Image(
                     bitmap = provider.getWeatherIcon(weatherCode, isDaytime).toBitmap().asImageBitmap(),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(dimensionResource(R.dimen.little_weather_icon_size))
+                        .size(dimensionResource(R.dimen.small_weather_icon_size))
                 )
             }
         }
@@ -721,7 +721,7 @@ private fun TemperatureDetails(
     normals: Normals?,
 ) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin)),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
         modifier = Modifier
             .padding(top = dimensionResource(R.dimen.normal_margin))
             .fillMaxWidth()

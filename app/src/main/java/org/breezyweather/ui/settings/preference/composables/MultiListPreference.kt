@@ -177,7 +177,7 @@ fun MultiListPreferenceView(
         },
         supportingContent = {
             Column {
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                 Text(
                     text = currentSummary,
                     color = DayNightTheme.colors.bodyColor,

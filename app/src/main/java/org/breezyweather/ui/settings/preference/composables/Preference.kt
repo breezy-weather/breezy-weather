@@ -192,7 +192,7 @@ fun PreferenceView(
                     )
                 }
                 if (onClose != null) {
-                    Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
+                    Spacer(modifier = Modifier.width(dimensionResource(R.dimen.small_margin)))
                     IconButton(
                         onClick = {
                             onClose()
@@ -212,7 +212,7 @@ fun PreferenceView(
             {
                 Column {
                     if (onClose == null) { // We already have spacing from close button
-                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                     }
                     Text(
                         text = summary,

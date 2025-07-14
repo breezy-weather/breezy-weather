@@ -40,13 +40,13 @@
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:layout_marginTop="-4dp"
-                android:paddingStart="@dimen/little_margin"
-                android:paddingEnd="@dimen/little_margin">
+                android:paddingStart="@dimen/small_margin"
+                android:paddingEnd="@dimen/small_margin">
 
                 <TextView
                     android:id="@+id/widget_material_you_forecast_currentTemperature"
                     android:text="@string/widget_ellipsis"
-                    android:layout_marginStart="@dimen/little_margin"
+                    android:layout_marginStart="@dimen/small_margin"
                     android:layout_marginEnd="-4dp"
                     android:textSize="42sp"
                     android:textStyle="bold"
@@ -64,8 +64,8 @@
                     <TextView
                         android:id="@+id/widget_material_you_forecast_daytimeTemperature"
                         android:text="@string/widget_ellipsis"
-                        android:layout_marginStart="@dimen/little_margin"
-                        android:layout_marginEnd="@dimen/little_margin"
+                        android:layout_marginStart="@dimen/small_margin"
+                        android:layout_marginEnd="@dimen/small_margin"
                         android:textSize="@dimen/content_text_size"
                         android:textStyle="bold"
                         android:textColor="?android:attr/textColorSecondary"
@@ -77,8 +77,8 @@
                     <TextView
                         android:id="@+id/widget_material_you_forecast_nighttimeTemperature"
                         android:text="@string/widget_ellipsis"
-                        android:layout_marginStart="@dimen/little_margin"
-                        android:layout_marginEnd="@dimen/little_margin"
+                        android:layout_marginStart="@dimen/small_margin"
+                        android:layout_marginEnd="@dimen/small_margin"
                         android:textSize="@dimen/content_text_size"
                         android:textStyle="bold"
                         android:alpha="0.66"
@@ -96,8 +96,8 @@
 
         <ImageView
             android:id="@+id/widget_material_you_forecast_currentIcon"
-            android:layout_width="@dimen/widget_little_weather_icon_size"
-            android:layout_height="@dimen/widget_little_weather_icon_size"
+            android:layout_width="@dimen/widget_small_weather_icon_size"
+            android:layout_height="@dimen/widget_small_weather_icon_size"
             android:src="@drawable/weather_cloudy"
             android:layout_margin="@dimen/normal_margin"
             android:layout_gravity="bottom|end"

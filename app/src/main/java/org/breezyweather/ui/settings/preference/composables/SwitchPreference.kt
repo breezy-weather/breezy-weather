@@ -132,7 +132,7 @@ fun SwitchPreferenceView(
                         style = MaterialTheme.typography.titleMedium
                     )
                     if (currentSummary?.isNotEmpty() == true) {
-                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                         Text(
                             text = currentSummary,
                             color = DayNightTheme.colors.bodyColor,
@@ -141,7 +141,7 @@ fun SwitchPreferenceView(
                     }
                 }
 
-                Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
+                Spacer(modifier = Modifier.width(dimensionResource(R.dimen.small_margin)))
                 Switch(
                     enabled = enabled,
                     checked = if (withState) state.value else checked,
@@ -199,7 +199,7 @@ fun SwitchPreferenceView(
             supportingContent = if (currentSummary?.isNotEmpty() == true) {
                 {
                     Column {
-                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                         Text(
                             text = currentSummary,
                             color = DayNightTheme.colors.bodyColor,

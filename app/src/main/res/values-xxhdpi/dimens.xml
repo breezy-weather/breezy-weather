@@ -4,7 +4,7 @@
     <!-- widget. -->
     <dimen name="widget_current_weather_icon_size">61dp</dimen>
     <dimen name="widget_standard_weather_icon_size">52dp</dimen>
-    <dimen name="widget_little_weather_icon_size">39dp</dimen>
+    <dimen name="widget_small_weather_icon_size">39dp</dimen>
     <dimen name="widget_mini_weather_icon_size">26dp</dimen>
     <dimen name="widget_design_title_text_size">33sp</dimen>
     <dimen name="widget_large_title_text_size">22sp</dimen>

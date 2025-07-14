@@ -88,7 +88,7 @@ fun DetailsSunMoon(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(
             horizontal = dimensionResource(R.dimen.normal_margin),
-            vertical = dimensionResource(R.dimen.little_margin)
+            vertical = dimensionResource(R.dimen.small_margin)
         )
     ) {
         if (today.sun?.isValid == true || today.moon?.isValid == true) {

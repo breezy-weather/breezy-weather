@@ -189,7 +189,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                 ),
                 padding = Insets(
                     activity.pxToDp(activity.resources.getDimensionPixelSize(R.dimen.normal_margin)),
-                    activity.pxToDp(activity.resources.getDimensionPixelSize(R.dimen.little_margin))
+                    activity.pxToDp(activity.resources.getDimensionPixelSize(R.dimen.small_margin))
                 ),
                 textAlignment = Layout.Alignment.ALIGN_CENTER,
                 minWidth = TextComponent.MinWidth.fixed(40f)

@@ -615,7 +615,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                 title = {
                     Column {
                         Text(stringResource(R.string.dialog_refresh_error_details_title))
-                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                         Text(
                             text = stringResource(R.string.dialog_refresh_error_details_content),
                             style = MaterialTheme.typography.bodyMedium,
@@ -643,7 +643,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                                     .conditional(it.error.showDialogAction != null, {
                                         clickable { it.error.showDialogAction!!(this@MainActivity) }
                                     })
-                                    .padding(vertical = dimensionResource(R.dimen.little_margin)),
+                                    .padding(vertical = dimensionResource(R.dimen.small_margin)),
                                 headlineContent = {
                                     Text(
                                         text = source ?: message,
@@ -654,7 +654,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                                 supportingContent = {
                                     source?.let {
                                         Column {
-                                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                             Text(
                                                 text = message,
                                                 color = DayNightTheme.colors.bodyColor,

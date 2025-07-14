@@ -15,7 +15,7 @@
         android:id="@+id/container_main_first_card_header_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="@dimen/little_margin"
+        android:layout_marginTop="@dimen/small_margin"
         android:background="?attr/colorOutline" />
 
 </LinearLayout>

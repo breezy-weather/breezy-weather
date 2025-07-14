@@ -48,9 +48,9 @@
 
                     <ImageView
                         android:id="@+id/weather_icon"
-                        android:layout_width="@dimen/little_weather_icon_size"
-                        android:layout_height="@dimen/little_weather_icon_size"
-                        android:layout_marginEnd="@dimen/little_margin"
+                        android:layout_width="@dimen/small_weather_icon_size"
+                        android:layout_height="@dimen/small_weather_icon_size"
+                        android:layout_marginEnd="@dimen/small_margin"
                         android:layout_centerVertical="true"
                         tools:src="@drawable/weather_clear_day"
                         tools:ignore="ContentDescription" />

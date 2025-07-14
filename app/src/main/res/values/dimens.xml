@@ -3,7 +3,7 @@
     <!-- margin. -->
     <dimen name="large_margin">20dp</dimen>
     <dimen name="normal_margin">16dp</dimen>
-    <dimen name="little_margin">8dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
 
     <!-- elevator. -->
     <dimen name="touch_rise_z">10dp</dimen>
@@ -12,9 +12,9 @@
     <dimen name="current_weather_icon_container_size">128dp</dimen>
     <dimen name="current_weather_icon_size">80dp</dimen>
     <dimen name="standard_weather_icon_container_size">88dp</dimen>
-    <dimen name="little_weather_icon_container_size">74dp</dimen>
+    <dimen name="small_weather_icon_container_size">74dp</dimen>
     <dimen name="standard_weather_icon_size">56dp</dimen>
-    <dimen name="little_weather_icon_size">42dp</dimen>
+    <dimen name="small_weather_icon_size">42dp</dimen>
     <dimen name="material_icon_size">24dp</dimen>
 
     <!-- view. -->
@@ -53,7 +53,7 @@
 
     <dimen name="widget_current_weather_icon_size">@dimen/standard_weather_icon_size</dimen> <!-- 56dp. -->
     <dimen name="widget_standard_weather_icon_size">48dp</dimen>
-    <dimen name="widget_little_weather_icon_size">36dp</dimen>
+    <dimen name="widget_small_weather_icon_size">36dp</dimen>
     <dimen name="widget_mini_weather_icon_size">24dp</dimen>
     <dimen name="widget_design_title_text_size">30sp</dimen>
     <dimen name="widget_large_title_text_size">@dimen/large_title_text_size</dimen> <!-- 20sp. -->

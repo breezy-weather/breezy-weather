@@ -148,7 +148,7 @@
 
             <AnalogClock
                 android:id="@+id/widget_clock_day_clock_analog_auto"
-                android:layout_margin="@dimen/little_margin"
+                android:layout_margin="@dimen/small_margin"
                 android:layout_centerInParent="true"
                 style="@style/widget_text_clock_analog"
                 tools:ignore="RelativeOverlap,RtlHardcoded" />
@@ -164,7 +164,7 @@
 
             <AnalogClock
                 android:id="@+id/widget_clock_day_clock_analog_light"
-                android:layout_margin="@dimen/little_margin"
+                android:layout_margin="@dimen/small_margin"
                 android:layout_centerInParent="true"
                 style="@style/widget_text_clock_analog.Light"
                 tools:ignore="RelativeOverlap,RtlHardcoded" />
@@ -180,7 +180,7 @@
 
             <AnalogClock
                 android:id="@+id/widget_clock_day_clock_analog_dark"
-                android:layout_margin="@dimen/little_margin"
+                android:layout_margin="@dimen/small_margin"
                 android:layout_centerInParent="true"
                 style="@style/widget_text_clock_analog.Dark"
                 tools:ignore="RelativeOverlap,RtlHardcoded" />

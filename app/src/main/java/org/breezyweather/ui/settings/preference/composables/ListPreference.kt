@@ -226,7 +226,7 @@ fun ListPreferenceView(
         supportingContent = if (currentSummary?.isNotEmpty() == true) {
             {
                 Column {
-                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                     Text(
                         text = currentSummary,
                         color = DayNightTheme.colors.bodyColor,
@@ -260,13 +260,13 @@ fun ListPreferenceView(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(
-                                        horizontal = dimensionResource(R.dimen.little_margin)
+                                        horizontal = dimensionResource(R.dimen.small_margin)
                                     )
                             ) {
                                 if (i != 0) {
                                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.large_margin)))
                                 } else {
-                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                 }
                                 Text(
                                     modifier = Modifier.fillMaxWidth(),
@@ -381,7 +381,7 @@ internal fun RadioButton(
                 onClick = onClick
             )
             .padding(
-                horizontal = dimensionResource(R.dimen.little_margin)
+                horizontal = dimensionResource(R.dimen.small_margin)
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -390,7 +390,7 @@ internal fun RadioButton(
             selected = selected,
             onClick = onClick
         )
-        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
+        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.small_margin)))
         Text(
             text = text,
             color = if (enabled) {

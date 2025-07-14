@@ -189,7 +189,7 @@ val defaultCardListItemElevation = 2.dp
 
 fun getCardListItemMarginDp(context: Context) = context
     .resources
-    .getDimension(R.dimen.little_margin)
+    .getDimension(R.dimen.small_margin)
 
 @Deprecated(message = "Use Material3ExpressiveCardListItem instead")
 @Composable
@@ -202,9 +202,9 @@ fun Material3CardListItem(
 ) = Card(
     modifier = modifier
         .padding(
-            start = dimensionResource(R.dimen.little_margin),
-            end = dimensionResource(R.dimen.little_margin),
-            top = dimensionResource(R.dimen.little_margin)
+            start = dimensionResource(R.dimen.small_margin),
+            end = dimensionResource(R.dimen.small_margin),
+            top = dimensionResource(R.dimen.small_margin)
         ),
     shape = RoundedCornerShape(
         size = dimensionResource(R.dimen.material3_card_list_item_corner_radius)

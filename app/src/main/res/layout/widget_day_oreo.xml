@@ -35,7 +35,7 @@
 
         <TextView
             android:id="@+id/widget_day_subtitle"
-            android:layout_marginStart="@dimen/little_margin"
+            android:layout_marginStart="@dimen/small_margin"
             android:textSize="@dimen/widget_large_title_text_size"
             android:shadowColor="@color/colorWidgetTextShadow"
             android:shadowDx="1"

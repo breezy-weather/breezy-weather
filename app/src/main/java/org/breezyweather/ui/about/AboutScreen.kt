@@ -343,7 +343,7 @@ private fun Header() {
         )
         Spacer(
             modifier = Modifier
-                .height(dimensionResource(R.dimen.little_margin))
+                .height(dimensionResource(R.dimen.small_margin))
                 .fillMaxWidth()
         )
         Text(

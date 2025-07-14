@@ -30,7 +30,7 @@
                 android:textSize="@dimen/content_text_size"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/little_margin"
+                android:layout_marginTop="@dimen/small_margin"
                 style="@style/notification_content_text"
                 tools:text="Today" />
 
@@ -39,7 +39,7 @@
                 android:textSize="@dimen/content_text_size"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:paddingBottom="@dimen/little_margin"
+                android:paddingBottom="@dimen/small_margin"
                 style="@style/notification_content_text"
                 tools:text="9°/3°" />
 
@@ -66,7 +66,7 @@
                 android:textSize="@dimen/content_text_size"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/little_margin"
+                android:layout_marginTop="@dimen/small_margin"
                 style="@style/notification_content_text"
                 tools:text="Thu" />
 
@@ -75,7 +75,7 @@
                 android:textSize="@dimen/content_text_size"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:paddingBottom="@dimen/little_margin"
+                android:paddingBottom="@dimen/small_margin"
                 style="@style/notification_content_text"
                 tools:text="9°/3°" />
 
@@ -102,7 +102,7 @@
                 android:textSize="@dimen/content_text_size"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/little_margin"
+                android:layout_marginTop="@dimen/small_margin"
                 style="@style/notification_content_text"
                 tools:text="Fri" />
 
@@ -111,7 +111,7 @@
                 android:textSize="@dimen/content_text_size"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:paddingBottom="@dimen/little_margin"
+                android:paddingBottom="@dimen/small_margin"
                 style="@style/notification_content_text"
                 tools:text="9°/3°" />
 
@@ -138,7 +138,7 @@
                 android:textSize="@dimen/content_text_size"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/little_margin"
+                android:layout_marginTop="@dimen/small_margin"
                 style="@style/notification_content_text"
                 tools:text="Sat" />
 
@@ -147,7 +147,7 @@
                 android:textSize="@dimen/content_text_size"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:paddingBottom="@dimen/little_margin"
+                android:paddingBottom="@dimen/small_margin"
                 style="@style/notification_content_text"
                 tools:text="9°/3°" />
 
@@ -174,7 +174,7 @@
                 android:textSize="@dimen/content_text_size"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/little_margin"
+                android:layout_marginTop="@dimen/small_margin"
                 style="@style/notification_content_text"
                 tools:text="Sun" />
 
@@ -183,7 +183,7 @@
                 android:textSize="@dimen/content_text_size"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:paddingBottom="@dimen/little_margin"
+                android:paddingBottom="@dimen/small_margin"
                 style="@style/notification_content_text"
                 tools:text="9°/3°" />
 

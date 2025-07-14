@@ -28,7 +28,7 @@ class Material3ListItemDecoration(
     context: Context,
 ) : ItemDecoration() {
     @Px
-    private val margins: Int = context.resources.getDimensionPixelSize(R.dimen.little_margin)
+    private val margins: Int = context.resources.getDimensionPixelSize(R.dimen.small_margin)
 
     override fun getItemOffsets(
         outRect: Rect,

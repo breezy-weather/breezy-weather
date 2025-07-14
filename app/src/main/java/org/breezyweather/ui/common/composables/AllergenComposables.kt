@@ -104,7 +104,7 @@ private fun PollenItem(
 ) = Row(
     modifier = modifier,
     verticalAlignment = Alignment.CenterVertically,
-    horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.little_margin))
+    horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin))
 ) {
     Icon(
         modifier = Modifier
