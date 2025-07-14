@@ -113,8 +113,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
         private var mHandlerThread: HandlerThread? = null
         private var mHandler: Handler? = null
         private val mDrawableRunnable = Runnable {
-            if (mIntervalComputer == null ||
-                mImplementor == null ||
+            if (mImplementor == null ||
                 mBackground == null ||
                 mRotators == null ||
                 mHandler == null
@@ -275,9 +274,10 @@ class MaterialLiveWallpaperService : WallpaperService() {
         }
 
         private fun setIntervalComputer() {
-            mIntervalComputer?.reset() ?: run {
+            // Disable animations
+            /*mIntervalComputer?.reset() ?: run {
                 mIntervalComputer = IntervalComputer()
-            }
+            }*/
         }
 
         private fun setOpenGravitySensor(openGravitySensor: Boolean) {

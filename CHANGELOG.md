@@ -23,6 +23,7 @@
 - Settings - Add shortcuts to daily/trend configuration from cards configuration
 - Fix tint of “Open in another app” icon in landscape mode
 - Improve the formatting of today/tomorrow notification
+- Live wallpaper - Fix wallpaper animating when switching between apps
 
 **Translations**
 - Translations updated

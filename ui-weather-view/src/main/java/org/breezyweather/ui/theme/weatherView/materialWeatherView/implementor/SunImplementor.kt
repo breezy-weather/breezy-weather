@@ -65,50 +65,32 @@ class SunImplementor(
         if (scrollRate < 1) {
             val deltaX = (sin(rotation2D * Math.PI / 180.0) * 0.3 * canvasSizes[0]).toFloat()
             val deltaY = (sin(rotation3D * Math.PI / 180.0) * -0.3 * canvasSizes[0]).toFloat()
-            canvas.translate(canvasSizes[0] + deltaX, (0.0333 * canvasSizes[0] + deltaY).toFloat())
-            mPaint.alpha = ((1 - scrollRate) * 255 * 0.40).toInt()
-            canvas.rotate(mAngles[0])
-            for (i in 0..3) {
-                canvas.drawRect(
-                    -mUnitSizes[0],
-                    -mUnitSizes[0],
-                    mUnitSizes[0],
-                    mUnitSizes[0],
-                    mPaint
-                )
-                canvas.rotate(22.5f)
+            canvas.translate(canvasSizes[0] + deltaX, (SUN_POSITION * canvasSizes[0] + deltaY).toFloat())
+
+            arrayOf(SMALL_SUN_ALPHA, MEDIUM_SUN_ALPHA, LARGE_SUN_ALPHA).forEachIndexed { index, alpha ->
+                mPaint.alpha = ((1 - scrollRate) * 255 * alpha).toInt()
+                canvas.rotate(mAngles[index])
+                for (i in 0..3) {
+                    canvas.drawRect(
+                        -mUnitSizes[index],
+                        -mUnitSizes[index],
+                        mUnitSizes[index],
+                        mUnitSizes[index],
+                        mPaint
+                    )
+                    canvas.rotate(22.5f)
+                }
+                canvas.rotate(-90 - mAngles[index])
             }
-            canvas.rotate(-90 - mAngles[0])
-            mPaint.alpha = ((1 - scrollRate) * 255 * 0.16).toInt()
-            canvas.rotate(mAngles[1])
-            for (i in 0..3) {
-                canvas.drawRect(
-                    -mUnitSizes[1],
-                    -mUnitSizes[1],
-                    mUnitSizes[1],
-                    mUnitSizes[1],
-                    mPaint
-                )
-                canvas.rotate(22.5f)
-            }
-            canvas.rotate(-90 - mAngles[1])
-            mPaint.alpha = ((1 - scrollRate) * 255 * 0.08).toInt()
-            canvas.rotate(mAngles[2])
-            for (i in 0..3) {
-                canvas.drawRect(
-                    -mUnitSizes[2],
-                    -mUnitSizes[2],
-                    mUnitSizes[2],
-                    mUnitSizes[2],
-                    mPaint
-                )
-                canvas.rotate(22.5f)
-            }
-            canvas.rotate(-90 - mAngles[2])
         }
     }
 
     companion object {
+        const val SUN_POSITION = 0.0333
+        const val SMALL_SUN_ALPHA = 0.40
+        const val MEDIUM_SUN_ALPHA = 0.16
+        const val LARGE_SUN_ALPHA = 0.08
+
         @get:ColorInt
         val themeColor: Int
             get() = Color.rgb(253, 188, 76)
