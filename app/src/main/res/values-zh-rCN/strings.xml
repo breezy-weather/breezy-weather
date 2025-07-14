@@ -890,4 +890,5 @@
     <string name="settings_appearance_section_regional">语言和区域</string>
     <string name="settings_appearance_section_theme">主题</string>
     <string name="action_configure_item">配置 %s</string>
+    <string name="unit_bft_display_name">蒲福风级</string>
 </resources>
