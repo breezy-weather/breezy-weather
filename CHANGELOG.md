@@ -12,6 +12,7 @@
 - Details page - Fix jumping of the chart when tapping on it
 - Details page - Workaround missing top padding in the FAB menu for small device heights (@min7-i)
 - Details page - Conditions - move long weather condition description to a dedicated Daily summary card (especially noticeable with AccuWeather source)
+- Homepage - Attempt to make horizontal swipes in daily/hourly trends less prone to switch to prev/next locations
 - Homepage - Move “Settings” icon to location list to be able to display icons on homepage without a submenu.
 - Homepage - Better animation for homepage current temperature when using Fahrenheit or Kelvin
 - Homepage - Use Material 3 Expressive buttons for forecast buttons

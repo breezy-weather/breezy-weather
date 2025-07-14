@@ -32,6 +32,7 @@ import org.breezyweather.common.basic.GeoActivity
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.adapters.ButtonAdapter
+import org.breezyweather.ui.common.widgets.RecyclerViewNoVerticalScrollTouchListener
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.main.adapters.trend.DailyTrendAdapter
 import org.breezyweather.ui.main.layouts.TrendHorizontalLinearLayoutManager
@@ -162,6 +163,7 @@ class DailyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         trendRecyclerView.setKeyLineVisibility(
             SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
         )
+        trendRecyclerView.addOnItemTouchListener(RecyclerViewNoVerticalScrollTouchListener())
         weather.todayIndex?.let { todayIndex ->
             trendRecyclerView.scrollToPosition(todayIndex)
         }
