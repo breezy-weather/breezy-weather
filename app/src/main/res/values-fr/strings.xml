@@ -271,6 +271,7 @@
     <string name="about_app">À propos</string>
     <string name="about_check_for_app_updates">Vérifier les mises à jour de l’appli</string>
     <string name="about_no_new_updates">Pas de nouvelle version disponible</string>
+    <string name="about_update_check_eol">Cette version d’Android n’est plus supportée</string>
     <string name="about_contact">Contact</string>
     <string name="about_translators">Traducteurs</string>
 

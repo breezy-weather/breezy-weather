@@ -215,13 +215,13 @@ internal fun AboutScreen(
                                                         context.getString(R.string.about_no_new_updates)
                                                     )
                                                 }
-                                                /*is GetApplicationRelease.Result.OsTooOld -> {
+                                                is GetApplicationRelease.Result.OsTooOld -> {
                                                     SnackbarHelper.showSnackbar(
                                                         context.getString(
                                                             R.string.about_update_check_eol
                                                         )
                                                     )
-                                                }*/
+                                                }
                                                 else -> {}
                                             }
                                         } catch (e: Exception) {

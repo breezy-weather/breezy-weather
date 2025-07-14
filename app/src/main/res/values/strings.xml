@@ -914,6 +914,7 @@
     <string name="about_app">About app</string>
     <string name="about_check_for_app_updates">Check for app updates</string>
     <string name="about_no_new_updates">No new updates available</string>
+    <string name="about_update_check_eol">This Android version is no longer supported</string>
     <string name="about_contact">Contact</string>
     <string name="about_matrix">Matrix room</string>
     <string name="about_source_code">Source code</string>

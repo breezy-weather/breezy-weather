@@ -78,6 +78,11 @@ Gradle must always be updated that way (replace with new version number):
 You can find the newer checksum of the binary-only (-bin) ZIP on https://gradle.org/release-checksums/
 
 
+# Dropping support for an Android version
+
+1. In `org.breezyweather.background.updater.AppUpdateChecker`, uncomment the relevant lines to trigger a notification on the unsupported Android versions
+2. In `org.breezyweather.background.weather.WeatherUpdateJob`, uncomment the relevant lines to always enable “check for update” on these unsupported Android versions, to ensure that `freenet` users and users who disabled update check correctly receive the notification. No actual update check will be performed, so it’s safe to force it enabled.
+
 ____
 
 # Weather sources API
