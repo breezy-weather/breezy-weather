@@ -347,6 +347,7 @@ dependencies {
 
     // ui.
     implementation(libs.vico.compose.m3)
+    implementation(libs.vico.views)
     implementation(libs.adaptiveiconview)
     implementation(libs.activity)
 

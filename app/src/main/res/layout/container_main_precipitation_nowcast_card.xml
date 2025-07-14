@@ -31,13 +31,14 @@
             tools:text="Expected to start at 07:34"
             tools:ignore="RtlHardcoded" />
 
-        <androidx.compose.ui.platform.ComposeView
-            android:id="@+id/container_main_minutely_chart_composeView"
-            android:paddingStart="@dimen/normal_margin"
-            android:paddingEnd="@dimen/normal_margin"
-            android:paddingBottom="@dimen/normal_margin"
+        <!-- -->
+        <com.patrykandpatrick.vico.views.cartesian.CartesianChartView
+            android:id="@+id/container_main_minutely_chart"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="@dimen/nowcasting_chart_height"
+            android:paddingBottom="@dimen/normal_margin"
+            app:scrollEnabled="false"
+            app:chartStyle="@style/NowcastingChart" />
 
     </LinearLayout>
 

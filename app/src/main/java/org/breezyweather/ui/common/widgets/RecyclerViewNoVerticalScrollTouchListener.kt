@@ -21,8 +21,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.abs
 
 class RecyclerViewNoVerticalScrollTouchListener : RecyclerView.OnItemTouchListener {
-    var mLastX = 0f
-    var mLastY = 0f
+    private var mLastX = 0f
+    private var mLastY = 0f
 
     override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
         when (e.action) {

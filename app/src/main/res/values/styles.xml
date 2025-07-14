@@ -299,4 +299,10 @@
         <item name="android:indeterminateTintMode" tools:ignore="NewApi">src_atop</item>
         <item name="android:indeterminateTint" tools:ignore="NewApi">@color/lightPrimary_5</item>
     </style>
+
+    <!-- Charts -->
+    <style name="NowcastingChart">
+        <item name="layers">column</item>
+        <item name="showBottomAxis">true</item>
+    </style>
 </resources>

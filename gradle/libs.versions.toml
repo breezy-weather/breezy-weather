@@ -125,6 +125,7 @@ sqlite-ktx = { group = "androidx.sqlite", name = "sqlite-ktx", version.ref = "sq
 suncalc = { group = "org.shredzone.commons", name = "commons-suncalc", version.ref = "suncalc" }
 swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
 vico-compose-m3 = { group = "com.patrykandpatrick.vico", name = "compose-m3", version.ref = "vico" }
+vico-views = { group = "com.patrykandpatrick.vico", name = "views", version.ref = "vico" }
 work-runtime = { group = "androidx.work", name = "work-runtime", version.ref = "work-runtime" }
 
 [plugins]
