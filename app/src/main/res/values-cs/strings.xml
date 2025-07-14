@@ -818,4 +818,5 @@
     <string name="action_configure_item">Nastavit %s</string>
     <string name="settings_appearance_section_regional">Jazyk a oblast</string>
     <string name="settings_appearance_section_theme">Motiv</string>
+    <string name="unit_bft_display_name">Beaufortova stupnice</string>
 </resources>
