@@ -891,4 +891,5 @@
     <string name="settings_appearance_section_theme">主题</string>
     <string name="action_configure_item">配置 %s</string>
     <string name="unit_bft_display_name">蒲福风级</string>
+    <string name="about_update_check_eol">这个 Android 版本不再受支持</string>
 </resources>
