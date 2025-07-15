@@ -796,5 +796,11 @@
     <string name="ephemeris_about_dusk">Is í an luí na gréine an chéim is dorcha den luí na gréine sula n-imíonn an solas deireanach infheicthe.</string>
     <string name="wind_origin">Ó %s</string>
     <string name="ephemeris_dawn_at">Breacadh an lae ag %s</string>
-    <string name="ephemeris_dusk_at">Luí na gréine ag %s</string>
+    <string name="ephemeris_dusk_at">Titim na hoíche ag %s</string>
+    <string name="action_configure_item">Cumraigh %s</string>
+    <string name="settings_appearance_section_regional">Teanga agus réigiún</string>
+    <string name="settings_appearance_section_theme">Téama</string>
+    <string name="unit_bft_display_name">Beaufort</string>
+    <string name="unit_bft_nominative">%s Bft</string>
+    <string name="about_update_check_eol">Ní thacaítear leis an leagan Android seo a thuilleadh</string>
 </resources>
