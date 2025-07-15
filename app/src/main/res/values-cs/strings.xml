@@ -820,4 +820,5 @@
     <string name="settings_appearance_section_theme">Motiv</string>
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="unit_bft_nominative">%s Bft</string>
+    <string name="about_update_check_eol">Tato verze systému Android již není podporována</string>
 </resources>
