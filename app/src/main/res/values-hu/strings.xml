@@ -808,4 +808,5 @@
     <string name="action_configure_item">%s konfigurálása</string>
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="unit_bft_nominative">%s Bft</string>
+    <string name="about_update_check_eol">Ez az Android verzió már nem támogatott</string>
 </resources>
