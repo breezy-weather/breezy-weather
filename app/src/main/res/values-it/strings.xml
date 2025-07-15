@@ -758,4 +758,5 @@
     <string name="air_quality_health_information">Informazioni sulla salute</string>
     <string name="air_quality_pm25_full">Materia di particolato fine (&lt; %s)</string>
     <string name="air_quality_pm10_full">Materiale particolato inalabile (&lt; %s)</string>
+    <string name="about_update_check_eol">Questa versione di Android non è più supportata</string>
 </resources>
