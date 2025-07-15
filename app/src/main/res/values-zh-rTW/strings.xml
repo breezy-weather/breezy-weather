@@ -888,4 +888,5 @@
     <string name="settings_appearance_section_theme">佈景主題</string>
     <string name="action_configure_item">設定%s</string>
     <string name="unit_bft_display_name">蒲福風級</string>
+    <string name="about_update_check_eol">不再支援此 Android 版本</string>
 </resources>
