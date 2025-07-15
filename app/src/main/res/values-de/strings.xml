@@ -819,4 +819,5 @@
     <string name="settings_appearance_section_theme">Erscheinungsbild</string>
     <string name="action_configure_item">%s konfigurieren</string>
     <string name="unit_bft_display_name">Beaufort</string>
+    <string name="about_update_check_eol">Diese Androidversion wird nicht mehr unterstützt</string>
 </resources>
