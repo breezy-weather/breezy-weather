@@ -36,6 +36,7 @@ Facultatives :
 - Localisation (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION) : pour afficher la météo pour votre position actuelle
 - Stockage (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE) : permet à l’application de définir le fond d’écran animé et/ou les widgets sur certains appareils
 - Icône système (EXPAND_STATUS_BAR) : permet de lancer l’application depuis les paramètres rapides
+- Langue spécifique pour l’appli (READ_APP_SPECIFIC_LOCALES): permet de sauvegarder une langue spécifique pour l’appli et lire sa valeur après un redémarrage pour certains appareils
 
 <b>Licence</b>
 

@@ -34,6 +34,10 @@
     <!-- notification. -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
+    <uses-permission
+        android:name="android.permission.READ_APP_SPECIFIC_LOCALES"
+        tools:ignore="ProtectedPermissions" />
+
     <!-- weather update in background -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 

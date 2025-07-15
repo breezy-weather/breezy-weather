@@ -24,6 +24,7 @@
 - Fix tint of “Open in another app” icon in landscape mode
 - Improve the formatting of today/tomorrow notification
 - Live wallpaper - Fix wallpaper animating when switching between apps
+- Fix specific language for the app not remembered after reboot
 
 **Translations**
 - Translations updated
