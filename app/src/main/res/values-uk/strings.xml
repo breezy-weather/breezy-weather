@@ -802,4 +802,5 @@
     <string name="settings_appearance_section_regional">Мова та регіон</string>
     <string name="settings_appearance_section_theme">Тема</string>
     <string name="action_configure_item">Налаштувати %s</string>
+    <string name="about_update_check_eol">Ця версія Android більше не підтримується</string>
 </resources>
