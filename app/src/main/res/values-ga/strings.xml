@@ -792,4 +792,9 @@
     <string name="action_toggle_data_type_menu">Scoraigh an roghchlár roghnúcháin cineál sonraí</string>
     <string name="label_expanded">Leathnaithe</string>
     <string name="label_collapsed">Tite</string>
+    <string name="ephemeris_about_dawn">Is é breacadh an lae an uair a fheictear an chéad solas infheicthe den lá roimh éirí na gréine.</string>
+    <string name="ephemeris_about_dusk">Is í an luí na gréine an chéim is dorcha den luí na gréine sula n-imíonn an solas deireanach infheicthe.</string>
+    <string name="wind_origin">Ó %s</string>
+    <string name="ephemeris_dawn_at">Breacadh an lae ag %s</string>
+    <string name="ephemeris_dusk_at">Luí na gréine ag %s</string>
 </resources>
