@@ -62,6 +62,7 @@ import org.breezyweather.common.extensions.splitKeeping
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.source.resourceName
 import org.breezyweather.ui.common.composables.AlertDialogLink
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding

@@ -875,7 +875,7 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
     override fun onOpenInOtherAppIconClicked() {
         viewModel.currentLocation.value?.location?.let {
             try {
-                IntentHelper.startGeoActivity(this@MainActivity, it)
+                IntentHelper.startBreezyActivity(this@MainActivity, it)
             } catch (ignored: Exception) {
                 // TODO: Use a dedicated string
                 SnackbarHelper.showSnackbar(getString(R.string.settings_widgets_broadcast_send_data_summary_empty))

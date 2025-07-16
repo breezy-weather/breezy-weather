@@ -32,7 +32,7 @@ class RecyclerViewNoVerticalScrollTouchListener : RecyclerView.OnItemTouchListen
             }
             MotionEvent.ACTION_MOVE -> {
                 if (abs(e.x - mLastX) > abs(e.y - mLastY)) {
-                    rv.parent.requestDisallowInterceptTouchEvent(true)
+                    rv.parent.parent.requestDisallowInterceptTouchEvent(true)
                 }
                 mLastX = e.x
                 mLastY = e.y

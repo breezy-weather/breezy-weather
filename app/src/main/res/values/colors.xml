@@ -126,4 +126,7 @@
     <color name="md_theme_shadow">#000000</color>
     <color name="md_theme_primaryInverse">#A8C7FF</color>
 
+    <!-- Material You -->
+    <color name="sys_widget_background">#e0f3ff</color>
+
 </resources>

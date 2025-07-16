@@ -24,6 +24,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -176,6 +177,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     private fun ContentView() {
         ensureResourceProvider()
 
+        val activity = LocalActivity.current
         val validLocationListState = viewModel.validLocationList.collectAsState()
         var notificationDismissed by remember { mutableStateOf(false) }
         var notificationAppUpdateCheckDismissed by remember { mutableStateOf(false) }
@@ -195,9 +197,6 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             topBar = {
                 BWCenterAlignedTopAppBar(
                     title = stringResource(R.string.locations),
-                    onBackPressed = {
-                        (requireActivity() as MainActivity).setManagementFragmentVisibility(false)
-                    },
                     actions = {
                         IconButton(
                             onClick = {

@@ -16,6 +16,8 @@
 
 package org.breezyweather.ui.theme.weatherView.materialWeatherView
 
+import android.content.Context
+import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.annotation.Size
 import org.breezyweather.ui.theme.weatherView.R
@@ -33,109 +35,118 @@ import org.breezyweather.ui.theme.weatherView.materialWeatherView.implementor.Wi
 object WeatherImplementorFactory {
 
     fun getWeatherImplementor(
+        context: Context,
         @WeatherKindRule weatherKind: Int,
         daytime: Boolean,
         @Size(2) sizes: IntArray,
         animate: Boolean,
-    ): WeatherAnimationImplementor? = when (weatherKind) {
-        WeatherView.WEATHER_KIND_CLEAR -> if (daytime) {
-            SunImplementor(
-                sizes,
-                animate
-            )
-        } else {
-            MeteorShowerImplementor(
-                sizes,
-                animate
-            )
+    ): WeatherAnimationImplementor? {
+        val darkMode = (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+            Configuration.UI_MODE_NIGHT_YES
+        return when (weatherKind) {
+            WeatherView.WEATHER_KIND_CLEAR -> if (daytime) {
+                SunImplementor(
+                    sizes,
+                    animate
+                )
+            } else {
+                MeteorShowerImplementor(
+                    sizes,
+                    animate
+                )
+            }
+
+            WeatherView.WEATHER_KIND_CLOUD ->
+                CloudImplementor(
+                    sizes,
+                    animate,
+                    CloudImplementor.TYPE_CLOUD,
+                    daytime,
+                    darkMode
+                )
+
+            WeatherView.WEATHER_KIND_CLOUDY ->
+                CloudImplementor(
+                    sizes,
+                    animate,
+                    CloudImplementor.TYPE_CLOUDY,
+                    daytime,
+                    darkMode
+                )
+
+            WeatherView.WEATHER_KIND_FOG ->
+                CloudImplementor(
+                    sizes,
+                    animate,
+                    CloudImplementor.TYPE_FOG,
+                    daytime,
+                    darkMode
+                )
+
+            WeatherView.WEATHER_KIND_HAZE ->
+                CloudImplementor(
+                    sizes,
+                    animate,
+                    CloudImplementor.TYPE_HAZE,
+                    daytime,
+                    darkMode
+                )
+
+            WeatherView.WEATHER_KIND_RAINY ->
+                RainImplementor(
+                    sizes,
+                    animate,
+                    RainImplementor.TYPE_RAIN,
+                    daytime
+                )
+
+            WeatherView.WEATHER_KIND_SLEET ->
+                RainImplementor(
+                    sizes,
+                    animate,
+                    RainImplementor.TYPE_SLEET,
+                    daytime
+                )
+
+            WeatherView.WEATHER_KIND_SNOW ->
+                SnowImplementor(
+                    sizes,
+                    animate,
+                    daytime
+                )
+
+            WeatherView.WEATHER_KIND_HAIL ->
+                HailImplementor(
+                    sizes,
+                    animate,
+                    daytime
+                )
+
+            WeatherView.WEATHER_KIND_THUNDERSTORM ->
+                RainImplementor(
+                    sizes,
+                    animate,
+                    RainImplementor.TYPE_THUNDERSTORM,
+                    daytime
+                )
+
+            WeatherView.WEATHER_KIND_THUNDER ->
+                CloudImplementor(
+                    sizes,
+                    animate,
+                    CloudImplementor.TYPE_THUNDER,
+                    daytime
+                )
+
+            WeatherView.WEATHER_KIND_WIND ->
+                WindImplementor(
+                    sizes,
+                    animate,
+                    daytime
+                )
+
+            else -> null
         }
-
-        WeatherView.WEATHER_KIND_CLOUDY ->
-            CloudImplementor(
-                sizes,
-                animate,
-                CloudImplementor.TYPE_CLOUDY,
-                daytime
-            )
-
-        WeatherView.WEATHER_KIND_CLOUD ->
-            CloudImplementor(
-                sizes,
-                animate,
-                CloudImplementor.TYPE_CLOUD,
-                daytime
-            )
-
-        WeatherView.WEATHER_KIND_FOG ->
-            CloudImplementor(
-                sizes,
-                animate,
-                CloudImplementor.TYPE_FOG,
-                daytime
-            )
-
-        WeatherView.WEATHER_KIND_HAIL ->
-            HailImplementor(
-                sizes,
-                animate,
-                daytime
-            )
-
-        WeatherView.WEATHER_KIND_HAZE ->
-            CloudImplementor(
-                sizes,
-                animate,
-                CloudImplementor.TYPE_HAZE,
-                daytime
-            )
-
-        WeatherView.WEATHER_KIND_RAINY ->
-            RainImplementor(
-                sizes,
-                animate,
-                RainImplementor.TYPE_RAIN,
-                daytime
-            )
-
-        WeatherView.WEATHER_KIND_SNOW ->
-            SnowImplementor(
-                sizes,
-                animate,
-                daytime
-            )
-
-        WeatherView.WEATHER_KIND_THUNDERSTORM ->
-            RainImplementor(
-                sizes,
-                animate,
-                RainImplementor.TYPE_THUNDERSTORM,
-                daytime
-            )
-
-        WeatherView.WEATHER_KIND_THUNDER ->
-            CloudImplementor(
-                sizes,
-                animate,
-                CloudImplementor.TYPE_THUNDER,
-                daytime
-            )
-
-        WeatherView.WEATHER_KIND_WIND ->
-            WindImplementor(
-                sizes,
-                animate,
-                daytime
-            )
-
-        WeatherView.WEATHER_KIND_SLEET ->
-            RainImplementor(
-                sizes,
-                animate,
-                RainImplementor.TYPE_SLEET,
-                daytime
-            )
-
-        else -> null
     }
 
     @DrawableRes

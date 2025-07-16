@@ -25,7 +25,9 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.compose.ui.graphics.Color
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -60,6 +62,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.pxToDp
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.domain.settings.SettingsManager
@@ -70,6 +73,7 @@ import org.breezyweather.ui.common.charts.SpecificHorizontalAxisItemPlacer
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import org.breezyweather.ui.theme.weatherView.WeatherView
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 import java.util.Date
 import kotlin.math.abs
@@ -79,8 +83,9 @@ import kotlin.time.Duration.Companion.minutes
 class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_precipitation_nowcast_card, parent, false)
 ) {
-    private val title: TextView = itemView.findViewById(R.id.container_main_minutely_card_title)
-    private val subtitle: TextView = itemView.findViewById(R.id.container_main_minutely_card_subtitle)
+    private val titleView: TextView = itemView.findViewById(R.id.nowcasting_block_title)
+    private val titleIconView: ImageView = itemView.findViewById(R.id.nowcasting_block_title_icon)
+    private val subtitle: TextView = itemView.findViewById(R.id.nowcasting_block_subtitle)
     private val chartView: CartesianChartView = itemView.findViewById(R.id.container_main_minutely_chart)
     private val modelProducer = CartesianChartModelProducer()
 
@@ -90,25 +95,19 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
         itemAnimationEnabled: Boolean,
-        firstCard: Boolean,
     ) {
-        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
+
+        val color = MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            titleView.isAccessibilityHeading = true
+        }
 
         val weather = location.weather ?: return
-        val colors = ThemeManager
-            .getInstance(context)
-            .weatherThemeDelegate
-            .getThemeColors(
-                context,
-                WeatherViewController.getWeatherKind(location),
-                WeatherViewController.isDaylight(location)
-            )
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            title.isAccessibilityHeading = true
-        }
-        title.setTextColor(colors[0])
-        title.text = weather.getMinutelyTitle(context)
+        titleView.text = weather.getMinutelyTitle(context)
+        titleView.setTextColor(color)
+        titleIconView.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.ic_umbrella))
+        titleIconView.setColorFilter(color)
         subtitle.text = weather.getMinutelyDescription(context, location)
 
         val minutelyList = weather.minutelyForecast
@@ -205,7 +204,16 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
             ColumnCartesianLayer(
                 ColumnCartesianLayer.ColumnProvider.series(
                     LineComponent(
-                        fill = Fill(colors[0]),
+                        fill = Fill(
+                            ThemeManager
+                                .getInstance(context)
+                                .weatherThemeDelegate
+                                .getThemeColors(
+                                    context,
+                                    WeatherView.WEATHER_KIND_RAINY,
+                                    WeatherViewController.isDaylight(location) && !context.isDarkMode
+                                )[0]
+                        ),
                         thicknessDp = 500f,
                         shape = CorneredShape.rounded(allPercent = 15)
                     )
@@ -246,6 +254,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                 private var mLastX = 0f
                 private var mLastY = 0f
 
+                @Suppress("ClickableViewAccessibility")
                 override fun onTouch(v: View, event: MotionEvent): Boolean {
                     when (event.action) {
                         MotionEvent.ACTION_DOWN -> {

@@ -248,6 +248,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
         private fun setWeatherImplementor() {
             hasDrawn = false
             mImplementor = WeatherImplementorFactory.getWeatherImplementor(
+                applicationContext,
                 mWeatherKind,
                 mDaytime,
                 mAdaptiveSize,

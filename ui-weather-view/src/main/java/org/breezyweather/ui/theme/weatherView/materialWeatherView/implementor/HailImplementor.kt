@@ -24,6 +24,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.Size
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.MaterialWeatherView.WeatherAnimationImplementor
 import java.util.Random
+import kotlin.math.min
 import kotlin.math.pow
 import kotlin.math.sin
 
@@ -63,8 +64,8 @@ class HailImplementor(
 
         init {
             mCanvasSize = (mViewWidth * mViewWidth + mViewHeight * mViewHeight).toDouble().pow(0.5).toInt()
-            size = (0.0324 * mViewWidth).toFloat() * 0.8f
-            speedY = mViewWidth / 200f
+            size = (0.0324 * min(mViewWidth, mViewHeight)).toFloat() * 0.8f
+            speedY = min(mViewWidth, mViewHeight) / 150f
             init(true)
         }
 

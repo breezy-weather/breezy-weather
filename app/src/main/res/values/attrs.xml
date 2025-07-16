@@ -31,14 +31,6 @@
         <attr name="progress_width" format="dimension" />
         <attr name="progress_color" format="color" />
         <attr name="background_color" format="color" />
-
-        <attr name="text" format="string" />
-        <attr name="text_size" format="dimension" />
-        <attr name="text_color" format="color" />
-
-        <attr name="bottom_text" format="string" />
-        <attr name="bottom_text_size" format="dimension" />
-        <attr name="bottom_text_color" format="color" />
     </declare-styleable>
 
     <!-- Animatable icon view. -->

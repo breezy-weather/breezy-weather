@@ -69,13 +69,11 @@ import org.breezyweather.ui.settings.preference.composables.LanguagePreferenceVi
 import org.breezyweather.ui.settings.preference.composables.ListPreferenceView
 import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.composables.PreferenceViewWithCard
-import org.breezyweather.ui.settings.preference.composables.SwitchPreferenceView
 import org.breezyweather.ui.settings.preference.largeSeparatorItem
 import org.breezyweather.ui.settings.preference.listPreferenceItem
 import org.breezyweather.ui.settings.preference.sectionFooterItem
 import org.breezyweather.ui.settings.preference.sectionHeaderItem
 import org.breezyweather.ui.settings.preference.smallSeparatorItem
-import org.breezyweather.ui.settings.preference.switchPreferenceItem
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
@@ -155,7 +153,7 @@ fun AppearanceSettingsScreen(
                 )
             }
             smallSeparatorItem()
-            switchPreferenceItem(R.string.settings_appearance_dark_mode_locations_title) { id ->
+            /*switchPreferenceItem(R.string.settings_appearance_dark_mode_locations_title) { id ->
                 SwitchPreferenceView(
                     titleId = id,
                     summaryOnId = R.string.settings_enabled,
@@ -166,7 +164,7 @@ fun AppearanceSettingsScreen(
                     }
                 )
             }
-            smallSeparatorItem()
+            smallSeparatorItem()*/
             clickablePreferenceItem(
                 R.string.settings_appearance_icon_pack_title
             ) {

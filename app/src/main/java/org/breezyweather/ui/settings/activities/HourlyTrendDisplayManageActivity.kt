@@ -152,15 +152,6 @@ class HourlyTrendDisplayManageActivity : BreezyActivity() {
         for (tag in otherTags) {
             tagList.add(HourlyTrendTag(tag))
         }
-        val colors = ThemeManager.getInstance(this).getThemeColors(
-            this,
-            intArrayOf(
-                com.google.android.material.R.attr.colorOnPrimaryContainer,
-                com.google.android.material.R.attr.colorOnSecondaryContainer,
-                com.google.android.material.R.attr.colorPrimaryContainer,
-                com.google.android.material.R.attr.colorSecondaryContainer
-            )
-        )
         mTagAdapter = TagAdapter(
             tagList,
             { _: Boolean, _: Int, newPosition: Int ->

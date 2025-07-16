@@ -166,11 +166,6 @@
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
-            android:name=".ui.settings.activities.DetailDisplayManageActivity"
-            android:label="@string/settings_main_header_details_title"
-            android:theme="@style/BreezyWeatherTheme" />
-
-        <activity
             android:name=".ui.settings.activities.PreviewIconActivity"
             android:label="@string/action_preview"
             android:theme="@style/BreezyWeatherTheme" />
