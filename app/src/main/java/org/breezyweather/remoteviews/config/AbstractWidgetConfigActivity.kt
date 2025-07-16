@@ -56,7 +56,7 @@ import com.google.android.material.slider.Slider
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
@@ -74,7 +74,7 @@ import kotlin.math.roundToInt
 /**
  * Abstract widget config activity.
  */
-abstract class AbstractWidgetConfigActivity : GeoActivity() {
+abstract class AbstractWidgetConfigActivity : BreezyActivity() {
     protected var mTopContainer: FrameLayout? = null
     protected var mWallpaper: ImageView? = null
     protected var mWidgetContainer: FrameLayout? = null

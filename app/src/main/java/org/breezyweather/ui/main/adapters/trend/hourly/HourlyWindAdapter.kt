@@ -28,7 +28,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Wind
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.domain.weather.model.getColor
@@ -42,7 +42,7 @@ import org.breezyweather.ui.main.utils.MainThemeColorProvider
  * Hourly wind adapter.
  */
 class HourlyWindAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
     unit: SpeedUnit,
 ) : AbsHourlyTrendAdapter(activity, location) {
@@ -57,7 +57,7 @@ class HourlyWindAdapter(
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        fun onBindView(activity: GeoActivity, location: Location, position: Int) {
+        fun onBindView(activity: BreezyActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder()
             super.onBindView(activity, location, talkBackBuilder, position)
             val hourly = location.weather!!.nextHourlyForecast[position]

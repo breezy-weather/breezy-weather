@@ -28,7 +28,7 @@ import breezyweather.domain.location.model.Location
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonGroup
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.adapters.ButtonAdapter
@@ -61,7 +61,7 @@ class DailyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindView(
-        activity: GeoActivity,
+        activity: BreezyActivity,
         location: Location,
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,

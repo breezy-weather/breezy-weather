@@ -18,11 +18,7 @@ package org.breezyweather.ui.theme.weatherView.materialWeatherView
 
 import android.content.Context
 import android.graphics.Color
-import android.view.Window
 import androidx.core.graphics.ColorUtils
-import org.breezyweather.R
-import org.breezyweather.common.extensions.dpToPx
-import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.ui.theme.weatherView.WeatherThemeDelegate
 import org.breezyweather.ui.theme.weatherView.WeatherView
 import org.breezyweather.ui.theme.weatherView.WeatherView.WeatherKindRule
@@ -55,40 +51,18 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
             } else {
                 MeteorShowerImplementor.themeColor
             }
-
-            WeatherView.WEATHER_KIND_CLOUDY ->
-                CloudImplementor.getThemeColor(CloudImplementor.TYPE_CLOUDY, daytime)
-
-            WeatherView.WEATHER_KIND_CLOUD ->
-                CloudImplementor.getThemeColor(CloudImplementor.TYPE_CLOUD, daytime)
-
-            WeatherView.WEATHER_KIND_FOG ->
-                CloudImplementor.getThemeColor(CloudImplementor.TYPE_FOG, daytime)
-
-            WeatherView.WEATHER_KIND_HAIL ->
-                HailImplementor.getThemeColor(daytime)
-
-            WeatherView.WEATHER_KIND_HAZE ->
-                CloudImplementor.getThemeColor(CloudImplementor.TYPE_HAZE, daytime)
-
-            WeatherView.WEATHER_KIND_RAINY ->
-                RainImplementor.getThemeColor(RainImplementor.TYPE_RAIN, daytime)
-
-            WeatherView.WEATHER_KIND_SLEET ->
-                RainImplementor.getThemeColor(RainImplementor.TYPE_SLEET, daytime)
-
-            WeatherView.WEATHER_KIND_SNOW ->
-                SnowImplementor.getThemeColor(daytime)
-
+            WeatherView.WEATHER_KIND_CLOUDY -> CloudImplementor.getThemeColor(CloudImplementor.TYPE_CLOUDY, daytime)
+            WeatherView.WEATHER_KIND_CLOUD -> CloudImplementor.getThemeColor(CloudImplementor.TYPE_CLOUD, daytime)
+            WeatherView.WEATHER_KIND_FOG -> CloudImplementor.getThemeColor(CloudImplementor.TYPE_FOG, daytime)
+            WeatherView.WEATHER_KIND_HAIL -> HailImplementor.getThemeColor(daytime)
+            WeatherView.WEATHER_KIND_HAZE -> CloudImplementor.getThemeColor(CloudImplementor.TYPE_HAZE, daytime)
+            WeatherView.WEATHER_KIND_RAINY -> RainImplementor.getThemeColor(RainImplementor.TYPE_RAIN, daytime)
+            WeatherView.WEATHER_KIND_SLEET -> RainImplementor.getThemeColor(RainImplementor.TYPE_SLEET, daytime)
+            WeatherView.WEATHER_KIND_SNOW -> SnowImplementor.getThemeColor(daytime)
             WeatherView.WEATHER_KIND_THUNDERSTORM ->
                 RainImplementor.getThemeColor(RainImplementor.TYPE_THUNDERSTORM, daytime)
-
-            WeatherView.WEATHER_KIND_THUNDER ->
-                CloudImplementor.getThemeColor(CloudImplementor.TYPE_THUNDER, daytime)
-
-            WeatherView.WEATHER_KIND_WIND ->
-                WindImplementor.getThemeColor(daytime)
-
+            WeatherView.WEATHER_KIND_THUNDER -> CloudImplementor.getThemeColor(CloudImplementor.TYPE_THUNDER, daytime)
+            WeatherView.WEATHER_KIND_WIND -> WindImplementor.getThemeColor(daytime)
             else -> Color.TRANSPARENT
         }
     }
@@ -151,24 +125,4 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
     ): Int {
         return if (isLightBackground(context, weatherKind, daylight)) Color.BLACK else Color.WHITE
     }
-
-    override fun setSystemBarStyle(
-        window: Window,
-        statusShader: Boolean,
-        lightStatus: Boolean,
-        lightNavigation: Boolean,
-    ) {
-        window.setSystemBarStyle(
-            statusShaderP = statusShader,
-            lightStatusP = lightStatus,
-            lightNavigationP = lightNavigation
-        )
-    }
-
-    override fun getHomeCardElevation(context: Context): Float =
-        context.dpToPx(2f)
-
-    override fun getHomeCardMargins(context: Context): Int = context
-        .resources
-        .getDimensionPixelSize(R.dimen.normal_margin)
 }

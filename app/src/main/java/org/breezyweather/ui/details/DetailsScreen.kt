@@ -82,6 +82,7 @@ import org.breezyweather.common.extensions.getFormattedDayOfTheMonth
 import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getWeek
+import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.extensions.toCalendar
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toTimezoneSpecificHour
@@ -100,7 +101,6 @@ import org.breezyweather.ui.details.components.DetailsUV
 import org.breezyweather.ui.details.components.DetailsVisibility
 import org.breezyweather.ui.details.components.DetailsWind
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
-import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import java.util.Calendar
 import java.util.Date
@@ -119,19 +119,15 @@ internal fun DailyWeatherScreen(
     LaunchedEffect(detailsUiState.location) {
         // re-setting the status bar color once the location is fetched
         if (detailsUiState.location != null && activity != null) {
-            ThemeManager
-                .getInstance(context)
-                .weatherThemeDelegate
-                .setSystemBarStyle(
-                    window = activity.window,
-                    statusShader = false,
-                    lightStatus = isLightTheme,
-                    lightNavigation = isLightTheme
-                )
+            activity.window.setSystemBarStyle(
+                statusShader = false,
+                lightStatus = isLightTheme,
+                lightNavigation = isLightTheme
+            )
         }
     }
 
-    BreezyWeatherTheme(lightTheme = isLightTheme) {
+    BreezyWeatherTheme(!isLightTheme) {
         Material3Scaffold(
             topBar = {
                 BWCenterAlignedTopAppBar(

@@ -53,7 +53,6 @@ import androidx.compose.ui.unit.dp
 import org.breezyweather.R
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 
 @Composable
@@ -169,7 +168,7 @@ fun PreferenceView(
             {
                 Icon(
                     painter = painterResource(iconId),
-                    tint = DayNightTheme.colors.titleColor,
+                    tint = MaterialTheme.colorScheme.onSurface,
                     contentDescription = null,
                     modifier = Modifier.size(24.dp)
                 )
@@ -187,7 +186,7 @@ fun PreferenceView(
                 ) {
                     Text(
                         text = title,
-                        color = DayNightTheme.colors.titleColor,
+                        color = MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.titleMedium
                     )
                 }
@@ -202,7 +201,7 @@ fun PreferenceView(
                         Icon(
                             imageVector = Icons.Default.Close,
                             contentDescription = stringResource(R.string.action_close),
-                            tint = DayNightTheme.colors.bodyColor
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 }
@@ -216,7 +215,7 @@ fun PreferenceView(
                     }
                     Text(
                         text = summary,
-                        color = DayNightTheme.colors.bodyColor,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }

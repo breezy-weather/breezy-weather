@@ -35,7 +35,7 @@ import androidx.core.graphics.ColorUtils
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -88,7 +88,7 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
     @SuppressLint("SetTextI18n")
     override fun onBindView(
-        activity: GeoActivity,
+        activity: BreezyActivity,
         location: Location,
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
@@ -205,7 +205,7 @@ class AstroViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         itemView.contentDescription = talkBackBuilder.toString()
         itemView.setOnClickListener {
             IntentHelper.startDailyWeatherActivity(
-                context as GeoActivity,
+                context as BreezyActivity,
                 location.formattedId,
                 location.weather!!.todayIndex,
                 DetailScreen.TAG_SUN_MOON

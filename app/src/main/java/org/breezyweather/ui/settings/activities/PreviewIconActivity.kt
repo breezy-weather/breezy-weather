@@ -24,7 +24,7 @@ import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.GridLayoutManager
 import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.utils.ColorUtils
@@ -41,7 +41,7 @@ import org.breezyweather.ui.theme.resource.providers.DefaultResourceProvider
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import java.util.Locale
 
-class PreviewIconActivity : GeoActivity() {
+class PreviewIconActivity : BreezyActivity() {
     private lateinit var binding: ActivityPreviewIconBinding
     private lateinit var mProvider: ResourceProvider
     private val mItemList = mutableListOf<WeatherIconAdapter.Item>()
@@ -181,7 +181,7 @@ internal class WeatherIcon(
     override val drawable: Drawable
         get() = ResourceHelper.getWeatherIcon(provider, weatherCode, daytime)
 
-    override fun onItemClicked(activity: GeoActivity) {
+    override fun onItemClicked(activity: BreezyActivity) {
         AnimatableIconDialog.show(activity, weatherCode, daytime, provider)
     }
 }
@@ -195,7 +195,7 @@ internal class MinimalIcon(
     override val drawable: Drawable
         get() = ResourceHelper.getWidgetNotificationIcon(provider, weatherCode, daytime, true, !mDarkMode)
 
-    override fun onItemClicked(activity: GeoActivity) {
+    override fun onItemClicked(activity: BreezyActivity) {
         MinimalIconDialog.show(activity, weatherCode, daytime, provider)
     }
 }
@@ -208,7 +208,7 @@ internal class ShortcutIcon(
     override val drawable: Drawable
         get() = ResourceHelper.getShortcutsIcon(provider, weatherCode, daytime)
 
-    override fun onItemClicked(activity: GeoActivity) {
+    override fun onItemClicked(activity: BreezyActivity) {
         AdaptiveIconDialog.show(activity, weatherCode, daytime, provider)
     }
 }
@@ -222,7 +222,7 @@ internal open class SunIcon(
     override val contentDescription: String
         get() = "Sun"
 
-    override fun onItemClicked(activity: GeoActivity) {
+    override fun onItemClicked(activity: BreezyActivity) {
         // do nothing.
     }
 }

@@ -24,7 +24,7 @@ import android.view.View
 import android.view.ViewGroup
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.domain.weather.index.PollutantIndex
@@ -41,7 +41,7 @@ import org.breezyweather.ui.theme.weatherView.WeatherViewController
  * Hourly air quality adapter.
  */
 class HourlyAirQualityAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private var mHighestIndex: Int = 0
@@ -55,7 +55,7 @@ class HourlyAirQualityAdapter(
 
         @SuppressLint("DefaultLocale")
         fun onBindView(
-            activity: GeoActivity,
+            activity: BreezyActivity,
             location: Location,
             position: Int,
         ) {

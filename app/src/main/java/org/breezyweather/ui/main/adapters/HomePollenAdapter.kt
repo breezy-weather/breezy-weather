@@ -24,7 +24,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import kotlinx.collections.immutable.ImmutableSet
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.capitalize
 import org.breezyweather.common.extensions.currentLocale
@@ -86,7 +86,7 @@ class HomePollenViewHolder internal constructor(
 
         daily.pollen?.let {
             binding.composeView.setContent {
-                BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
+                BreezyWeatherTheme(!MainThemeColorProvider.isLightTheme(context, location)) {
                     PollenGrid(
                         pollen = it,
                         pollenIndexSource = pollenIndexSource,
@@ -98,7 +98,7 @@ class HomePollenViewHolder internal constructor(
 
         itemView.setOnClickListener {
             IntentHelper.startDailyWeatherActivity(
-                context as GeoActivity,
+                context as BreezyActivity,
                 location.formattedId,
                 location.weather!!.dailyForecast.indexOf(daily),
                 DetailScreen.TAG_POLLEN

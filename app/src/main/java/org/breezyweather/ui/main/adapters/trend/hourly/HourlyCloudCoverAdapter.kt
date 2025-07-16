@@ -23,7 +23,7 @@ import android.view.View
 import android.view.ViewGroup
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.domain.weather.model.CLOUD_COVER_CLEAR
@@ -39,7 +39,7 @@ import org.breezyweather.ui.theme.weatherView.WeatherViewController
  * Hourly Cloud Cover adapter.
  */
 class HourlyCloudCoverAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private var mHighestCloudCover: Float = 0f
@@ -52,7 +52,7 @@ class HourlyCloudCoverAdapter(
         }
 
         @SuppressLint("SetTextI18n, InflateParams", "DefaultLocale")
-        fun onBindView(activity: GeoActivity, location: Location, position: Int) {
+        fun onBindView(activity: BreezyActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_cloud_cover))
             super.onBindView(activity, location, talkBackBuilder, position)
             val hourly = location.weather!!.nextHourlyForecast[position]

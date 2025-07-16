@@ -46,7 +46,6 @@ import androidx.compose.ui.unit.dp
 import org.breezyweather.R
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 
 @Composable
@@ -118,7 +117,7 @@ fun EditTextPreferenceView(
         Column {
             Text(
                 text = title,
-                color = DayNightTheme.colors.titleColor,
+                color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.titleMedium
             )
             val currentSummary = summary(LocalContext.current, contentState.value)
@@ -126,7 +125,7 @@ fun EditTextPreferenceView(
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                 Text(
                     text = currentSummary,
-                    color = DayNightTheme.colors.bodyColor,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     style = MaterialTheme.typography.bodyMedium
                 )
             }

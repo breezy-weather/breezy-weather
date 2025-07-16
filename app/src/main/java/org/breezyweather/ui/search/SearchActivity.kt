@@ -21,7 +21,6 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -71,7 +70,7 @@ import breezyweather.domain.source.SourceFeature
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.inputMethodManager
 import org.breezyweather.common.source.LocationPreset
 import org.breezyweather.domain.location.model.getPlace
@@ -83,11 +82,10 @@ import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.Material3SearchBarInputField
 import org.breezyweather.ui.settings.preference.composables.RadioButton
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SearchActivity : GeoActivity() {
+class SearchActivity : BreezyActivity() {
     private lateinit var viewModel: SearchViewModel
 
     @Inject lateinit var sourceManager: SourceManager
@@ -97,7 +95,7 @@ class SearchActivity : GeoActivity() {
 
         initModel()
         setContent {
-            BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+            BreezyWeatherTheme {
                 ContentView()
             }
         }
@@ -133,7 +131,7 @@ class SearchActivity : GeoActivity() {
                                         locationSearchSource.locationSearchAttribution
                                     ),
                                     style = MaterialTheme.typography.bodySmall,
-                                    color = DayNightTheme.colors.bodyColor
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
                         }
@@ -312,13 +310,13 @@ class SearchActivity : GeoActivity() {
                                         latestTextSearch
                                     ),
                                     style = MaterialTheme.typography.titleMedium,
-                                    color = DayNightTheme.colors.titleColor
+                                    color = MaterialTheme.colorScheme.onSurface
                                 )
                                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                 Text(
                                     text = stringResource(R.string.location_search_no_results_advice),
                                     style = MaterialTheme.typography.bodyMedium,
-                                    color = DayNightTheme.colors.bodyColor
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
                         }

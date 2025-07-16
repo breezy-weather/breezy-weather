@@ -57,7 +57,7 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableMap
 import kotlinx.coroutines.launch
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.pxToDp
@@ -85,7 +85,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
     private val modelProducer = CartesianChartModelProducer()
 
     override fun onBindView(
-        activity: GeoActivity,
+        activity: BreezyActivity,
         location: Location,
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,

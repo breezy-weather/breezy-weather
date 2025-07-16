@@ -26,7 +26,6 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -91,9 +90,10 @@ import com.google.accompanist.permissions.rememberPermissionState
 import kotlinx.coroutines.launch
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.plus
+import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.source.LocationPreset
 import org.breezyweather.common.source.getName
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -116,9 +116,7 @@ import org.breezyweather.ui.main.adapters.LocationAdapterAnimWrapper
 import org.breezyweather.ui.main.adapters.location.LocationAdapter
 import org.breezyweather.ui.main.widgets.LocationItemTouchCallback
 import org.breezyweather.ui.main.widgets.LocationItemTouchCallback.TouchReactor
-import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
@@ -130,15 +128,11 @@ class PushedManagementFragment : ManagementFragment() {
     }
 
     override fun setSystemBarStyle() {
-        ThemeManager
-            .getInstance(requireContext())
-            .weatherThemeDelegate
-            .setSystemBarStyle(
-                requireActivity().window,
-                statusShader = false,
-                lightStatus = !requireActivity().isDarkMode,
-                lightNavigation = !requireActivity().isDarkMode
-            )
+        requireActivity().window.setSystemBarStyle(
+            statusShader = false,
+            lightStatus = !requireActivity().isDarkMode,
+            lightNavigation = !requireActivity().isDarkMode
+        )
     }
 }
 
@@ -171,7 +165,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
         return ComposeView(requireContext()).apply {
             setContent {
-                BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+                BreezyWeatherTheme {
                     ContentView()
                 }
             }
@@ -565,7 +559,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
         itemTouchHelper = ItemTouchHelper(
             LocationItemTouchCallback(
-                requireActivity() as GeoActivity,
+                requireActivity() as BreezyActivity,
                 viewModel,
                 this
             )
@@ -680,13 +674,13 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                     Text(
                                         it.getName(context),
                                         fontWeight = FontWeight.Bold,
-                                        color = DayNightTheme.colors.titleColor
+                                        color = MaterialTheme.colorScheme.onSurface
                                     )
                                 },
                                 supportingContent = {
                                     Text(
                                         it.testingLocations[0].getPlace(context),
-                                        color = DayNightTheme.colors.bodyColor
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
                                 }
                             )

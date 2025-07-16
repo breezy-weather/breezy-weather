@@ -75,7 +75,6 @@ import org.breezyweather.ui.common.widgets.insets.bottomInsetItem
 import org.breezyweather.ui.settings.preference.LargeSeparatorItem
 import org.breezyweather.ui.settings.preference.SmallSeparatorItem
 import org.breezyweather.ui.settings.preference.largeSeparatorItem
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 
 internal class AboutAppLinkItem(
@@ -163,13 +162,13 @@ internal fun AboutScreen(
                                     Icon(
                                         painter = painterResource(R.drawable.ic_sync),
                                         contentDescription = null,
-                                        tint = DayNightTheme.colors.titleColor
+                                        tint = MaterialTheme.colorScheme.onSurface
                                     )
                                 }
                                 true -> {
                                     CircularProgressIndicator(
                                         modifier = Modifier.size(24.dp),
-                                        color = DayNightTheme.colors.titleColor
+                                        color = MaterialTheme.colorScheme.onSurface
                                     )
                                 }
                             }
@@ -348,12 +347,12 @@ private fun Header() {
         )
         Text(
             text = stringResource(R.string.breezy_weather),
-            color = DayNightTheme.colors.titleColor,
+            color = MaterialTheme.colorScheme.onSurface,
             style = MaterialTheme.typography.headlineSmall
         )
         Text(
             text = versionFormatted,
-            color = DayNightTheme.colors.captionColor,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             style = MaterialTheme.typography.labelMedium
         )
     }
@@ -364,7 +363,7 @@ private fun SectionTitle(title: String) {
     Text(
         text = title,
         modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
-        color = DayNightTheme.colors.captionColor,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
         style = MaterialTheme.typography.labelMedium
     )
 }
@@ -399,7 +398,7 @@ private fun AboutAppLink(
             Spacer(modifier = Modifier.width(dimensionResource(R.dimen.normal_margin)))
             Text(
                 text = title,
-                color = DayNightTheme.colors.titleColor,
+                color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.titleMedium
             )
         }
@@ -419,7 +418,7 @@ private fun AboutAppLink(
             Icon(
                 painter = painterResource(iconId),
                 contentDescription = null,
-                tint = DayNightTheme.colors.titleColor
+                tint = MaterialTheme.colorScheme.onSurface
             )
         },
         title = title,
@@ -453,7 +452,7 @@ private fun ContributorView(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = name,
-                    color = DayNightTheme.colors.titleColor,
+                    color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.titleMedium
                 )
             }

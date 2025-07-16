@@ -29,7 +29,7 @@ import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.snackbar.SnackbarContainer
 
-abstract class GeoActivity : AppCompatActivity() {
+abstract class BreezyActivity : AppCompatActivity() {
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,9 +38,9 @@ abstract class GeoActivity : AppCompatActivity() {
         enableEdgeToEdge()
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
             window.setSystemBarStyle(
-                statusShaderP = false,
-                lightStatusP = !isDarkMode,
-                lightNavigationP = !isDarkMode
+                statusShader = false,
+                lightStatus = !isDarkMode,
+                lightNavigation = !isDarkMode
             )
         }
 

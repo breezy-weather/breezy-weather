@@ -63,7 +63,6 @@ import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 import java.text.Collator
 
@@ -151,7 +150,7 @@ fun MultiListPreferenceView(
             {
                 Icon(
                     painter = painterResource(iconId),
-                    tint = DayNightTheme.colors.titleColor,
+                    tint = MaterialTheme.colorScheme.onSurface,
                     contentDescription = null,
                     modifier = Modifier.size(24.dp)
                 )
@@ -169,7 +168,7 @@ fun MultiListPreferenceView(
                 ) {
                     Text(
                         text = title,
-                        color = DayNightTheme.colors.titleColor,
+                        color = MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.titleMedium
                     )
                 }
@@ -180,7 +179,7 @@ fun MultiListPreferenceView(
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                 Text(
                     text = currentSummary,
-                    color = DayNightTheme.colors.bodyColor,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
@@ -275,7 +274,7 @@ fun MultiListPreferenceView(
                 text = {
                     Text(
                         text = noItemsMessage,
-                        color = DayNightTheme.colors.bodyColor,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         style = MaterialTheme.typography.bodyMedium
                     )
                 },

@@ -21,7 +21,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.getHour
 import org.breezyweather.common.extensions.getHourIn24Format
@@ -33,7 +33,7 @@ import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import kotlin.time.Duration.Companion.days
 
 abstract class AbsHourlyTrendAdapter(
-    val activity: GeoActivity,
+    val activity: BreezyActivity,
     location: Location,
 ) : TrendRecyclerViewAdapter<AbsHourlyTrendAdapter.ViewHolder>(location) {
 
@@ -41,7 +41,7 @@ abstract class AbsHourlyTrendAdapter(
         val hourlyItem: HourlyTrendItemView = itemView.findViewById(R.id.item_trend_hourly)
 
         fun onBindView(
-            activity: GeoActivity,
+            activity: BreezyActivity,
             location: Location,
             talkBackBuilder: StringBuilder,
             position: Int,
@@ -63,7 +63,7 @@ abstract class AbsHourlyTrendAdapter(
         }
 
         protected fun onItemClicked(
-            activity: GeoActivity,
+            activity: BreezyActivity,
             location: Location,
             adapterPosition: Int,
             detailScreen: DetailScreen,

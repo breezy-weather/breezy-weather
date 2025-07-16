@@ -50,7 +50,6 @@ import androidx.compose.ui.unit.dp
 import org.breezyweather.R
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 
 @Composable
@@ -128,14 +127,14 @@ fun SwitchPreferenceView(
                 ) {
                     Text(
                         text = title,
-                        color = DayNightTheme.colors.titleColor,
+                        color = MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.titleMedium
                     )
                     if (currentSummary?.isNotEmpty() == true) {
                         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                         Text(
                             text = currentSummary,
-                            color = DayNightTheme.colors.bodyColor,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }
@@ -172,7 +171,7 @@ fun SwitchPreferenceView(
                 {
                     Icon(
                         painter = painterResource(iconId),
-                        tint = DayNightTheme.colors.titleColor,
+                        tint = MaterialTheme.colorScheme.onSurface,
                         contentDescription = null,
                         modifier = Modifier.size(24.dp)
                     )
@@ -190,7 +189,7 @@ fun SwitchPreferenceView(
                     ) {
                         Text(
                             text = title,
-                            color = DayNightTheme.colors.titleColor,
+                            color = MaterialTheme.colorScheme.onSurface,
                             style = MaterialTheme.typography.titleMedium
                         )
                     }
@@ -202,7 +201,7 @@ fun SwitchPreferenceView(
                         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                         Text(
                             text = currentSummary,
-                            color = DayNightTheme.colors.bodyColor,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }

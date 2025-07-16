@@ -70,7 +70,6 @@ import org.breezyweather.R
 import org.breezyweather.common.extensions.pxToDp
 import org.breezyweather.common.extensions.spToPx
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import kotlin.math.roundToInt
 
 @Composable
@@ -92,7 +91,7 @@ fun DetailsItem(
             Image(
                 painter = painterResource(icon),
                 contentDescription = null,
-                colorFilter = ColorFilter.tint(DayNightTheme.colors.titleColor)
+                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
             )
         }
         Column {
@@ -102,7 +101,7 @@ fun DetailsItem(
             ) {
                 Text(
                     text = headlineText,
-                    color = DayNightTheme.colors.titleColor,
+                    color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold
                 )
@@ -240,7 +239,7 @@ fun DetailsSectionHeader(
             Text(
                 text = it,
                 style = MaterialTheme.typography.bodySmall,
-                color = DayNightTheme.colors.captionColor,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier
                     .padding(
                         bottom = dimensionResource(R.dimen.small_margin)

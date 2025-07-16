@@ -47,7 +47,6 @@ import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getConcentration
 import org.breezyweather.domain.weather.model.getIndexName
 import org.breezyweather.domain.weather.model.validPollens
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import java.text.Collator
 
 @Composable
@@ -116,14 +115,14 @@ private fun PollenItem(
     Column {
         Text(
             text = title,
-            color = DayNightTheme.colors.titleColor,
+            color = MaterialTheme.colorScheme.onSurface,
             style = MaterialTheme.typography.titleMedium,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
         Text(
             text = subtitle,
-            color = DayNightTheme.colors.bodyColor,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             style = MaterialTheme.typography.bodyMedium,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis

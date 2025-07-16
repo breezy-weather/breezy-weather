@@ -30,7 +30,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.utils.ColorUtils
@@ -43,7 +43,7 @@ import org.breezyweather.ui.common.widgets.slidingItem.SlidingItemTouchCallback
 import org.breezyweather.ui.settings.adapters.DetailDisplayAdapter
 import org.breezyweather.ui.theme.ThemeManager
 
-class DetailDisplayManageActivity : GeoActivity() {
+class DetailDisplayManageActivity : BreezyActivity() {
     private lateinit var mBinding: ActivityDetailDisplayManageBinding
     private lateinit var mDetailDisplayAdapter: DetailDisplayAdapter
     private var mDetailDisplayItemTouchHelper: ItemTouchHelper? = null

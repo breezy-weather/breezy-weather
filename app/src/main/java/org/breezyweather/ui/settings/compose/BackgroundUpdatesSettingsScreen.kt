@@ -67,7 +67,6 @@ import org.breezyweather.ui.settings.preference.sectionFooterItem
 import org.breezyweather.ui.settings.preference.sectionHeaderItem
 import org.breezyweather.ui.settings.preference.smallSeparatorItem
 import org.breezyweather.ui.settings.preference.switchPreferenceItem
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import java.util.Date
 
 @Composable
@@ -135,7 +134,7 @@ fun BackgroundSettingsScreen(
                             ) {
                                 Text(
                                     text = stringResource(R.string.settings_background_updates_refresh_never_warning1),
-                                    color = DayNightTheme.colors.bodyColor,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
@@ -144,13 +143,13 @@ fun BackgroundSettingsScreen(
                                         R.string.settings_background_updates_refresh_never_warning2,
                                         5
                                     ),
-                                    color = DayNightTheme.colors.bodyColor,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
                                 Text(
                                     text = stringResource(R.string.settings_background_updates_refresh_never_warning3),
-                                    color = DayNightTheme.colors.bodyColor,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }

@@ -33,7 +33,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -65,7 +65,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
     @SuppressLint("DefaultLocale")
     override fun onBindView(
-        activity: GeoActivity,
+        activity: BreezyActivity,
         location: Location,
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
@@ -130,7 +130,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             }
             itemView.setOnClickListener {
                 IntentHelper.startDailyWeatherActivity(
-                    context as GeoActivity,
+                    context as BreezyActivity,
                     location.formattedId,
                     location.weather!!.todayIndex,
                     DetailScreen.TAG_AIR_QUALITY
@@ -149,7 +149,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         }
         mRecyclerView.setOnClickListener {
             IntentHelper.startDailyWeatherActivity(
-                context as GeoActivity,
+                context as BreezyActivity,
                 location.formattedId,
                 location.weather!!.todayIndex,
                 DetailScreen.TAG_AIR_QUALITY

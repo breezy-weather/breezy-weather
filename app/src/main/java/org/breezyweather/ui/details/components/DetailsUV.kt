@@ -72,7 +72,6 @@ import org.breezyweather.domain.weather.model.getUVColor
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import kotlin.math.max
 import kotlin.math.roundToInt
 
@@ -168,7 +167,7 @@ private fun UVItem(
                         withStyle(
                             style = SpanStyle(
                                 fontSize = MaterialTheme.typography.headlineSmall.fontSize,
-                                color = DayNightTheme.colors.captionColor
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         ) {
                             append(it)

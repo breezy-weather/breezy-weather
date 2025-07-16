@@ -69,7 +69,6 @@ import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -129,7 +128,7 @@ private fun TimePickerPreferenceView(
             Column {
                 Text(
                     text = title,
-                    color = DayNightTheme.colors.titleColor,
+                    color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.titleMedium
                 )
                 val currentSummary = time?.getFormattedTime(null, LocalContext.current, is12Hour)
@@ -137,7 +136,7 @@ private fun TimePickerPreferenceView(
                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                     Text(
                         text = currentSummary,
-                        color = DayNightTheme.colors.bodyColor,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }

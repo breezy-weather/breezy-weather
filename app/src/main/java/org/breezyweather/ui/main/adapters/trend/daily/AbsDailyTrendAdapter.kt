@@ -22,7 +22,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
@@ -36,7 +36,7 @@ import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import java.util.Date
 
 abstract class AbsDailyTrendAdapter(
-    val activity: GeoActivity,
+    val activity: BreezyActivity,
     location: Location,
 ) : TrendRecyclerViewAdapter<AbsDailyTrendAdapter.ViewHolder>(location) {
 
@@ -45,7 +45,7 @@ abstract class AbsDailyTrendAdapter(
 
         @SuppressLint("SetTextI18n, InflateParams", "DefaultLocale")
         fun onBindView(
-            activity: GeoActivity,
+            activity: BreezyActivity,
             location: Location,
             talkBackBuilder: StringBuilder,
             position: Int,
@@ -87,7 +87,7 @@ abstract class AbsDailyTrendAdapter(
         }
 
         protected fun onItemClicked(
-            activity: GeoActivity,
+            activity: BreezyActivity,
             location: Location,
             adapterPosition: Int,
             detailScreen: DetailScreen,

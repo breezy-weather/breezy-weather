@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -40,7 +41,7 @@ import breezyweather.domain.weather.model.Current
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -50,7 +51,6 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 
@@ -62,7 +62,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     private val mDetailsList: ComposeView = itemView.findViewById(R.id.container_main_details_list)
 
     override fun onBindView(
-        activity: GeoActivity,
+        activity: BreezyActivity,
         location: Location,
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
@@ -86,7 +86,7 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 )
                 mTime.text = weather.base.forecastUpdateTime?.getFormattedTime(location, context, context.is12Hour)
                 mDetailsList.setContent {
-                    BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
+                    BreezyWeatherTheme(!MainThemeColorProvider.isLightTheme(context, location)) {
                         ContentView(
                             SettingsManager.getInstance(context).detailDisplayList.toImmutableList(),
                             SettingsManager.getInstance(context).detailDisplayUnlisted.toImmutableList(),
@@ -134,20 +134,20 @@ class DetailsViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                         Text(
                             detailDisplay.getName(context),
                             fontWeight = FontWeight.Bold,
-                            color = DayNightTheme.colors.titleColor
+                            color = MaterialTheme.colorScheme.onSurface
                         )
                     },
                     supportingContent = {
                         Text(
                             detailDisplay.getCurrentValue(context, current, location.isDaylight)!!,
-                            color = DayNightTheme.colors.bodyColor
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     },
                     leadingContent = {
                         Icon(
                             painterResource(detailDisplay.iconId),
                             contentDescription = null,
-                            tint = DayNightTheme.colors.titleColor
+                            tint = MaterialTheme.colorScheme.onSurface
                         )
                     }
                 )

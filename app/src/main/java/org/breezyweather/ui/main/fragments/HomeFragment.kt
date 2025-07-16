@@ -44,6 +44,7 @@ import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimat
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.extensions.isTabletDevice
+import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.databinding.FragmentHomeBinding
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.settings.SettingsManager
@@ -140,15 +141,11 @@ class HomeFragment : MainModuleFragment() {
     }
 
     override fun setSystemBarStyle() {
-        ThemeManager
-            .getInstance(requireContext())
-            .weatherThemeDelegate
-            .setSystemBarStyle(
-                requireActivity().window,
-                statusShader = scrollListener?.topOverlap == true,
-                lightStatus = false,
-                lightNavigation = false
-            )
+        requireActivity().window.setSystemBarStyle(
+            statusShader = scrollListener?.topOverlap == true,
+            lightStatus = false,
+            lightNavigation = false
+        )
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {

@@ -81,7 +81,6 @@ import org.breezyweather.domain.weather.model.getDirection
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import kotlin.math.max
 
 @Composable
@@ -216,7 +215,7 @@ private fun WindItem(
                             stringResource(R.string.colon_separator) +
                             speedUnit.formatMeasure(context, gusts),
                         style = MaterialTheme.typography.labelLarge,
-                        color = DayNightTheme.colors.captionColor,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         overflow = TextOverflow.StartEllipsis,
                         modifier = Modifier
                             .clearAndSetSemantics {

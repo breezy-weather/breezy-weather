@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -67,7 +68,6 @@ import org.breezyweather.ui.common.widgets.astro.MoonPhaseView
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.theme.ThemeManager
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.MaterialWeatherThemeDelegate
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.implementor.MeteorShowerImplementor
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.implementor.SunImplementor
@@ -384,7 +384,7 @@ fun DailySun(
                         "↓" +
                         (sun.duration?.let { " / " + DurationUnit.HOUR.formatMeasure(context, it) } ?: "")
                 },
-                color = DayNightTheme.colors.titleColor
+                color = MaterialTheme.colorScheme.onSurface
             )
         },
         tonalElevation = defaultCardListItemElevation,
@@ -452,7 +452,7 @@ fun DailyTwilight(
                             ) +
                         "↓"
                 },
-                color = DayNightTheme.colors.titleColor
+                color = MaterialTheme.colorScheme.onSurface
             )
         },
         tonalElevation = defaultCardListItemElevation,
@@ -513,7 +513,7 @@ fun DailyMoon(
                             ) +
                         "↓"
                 },
-                color = DayNightTheme.colors.titleColor
+                color = MaterialTheme.colorScheme.onSurface
             )
         },
         tonalElevation = defaultCardListItemElevation,
@@ -559,7 +559,7 @@ fun DailyMoonPhase(
         headlineContent = {
             Text(
                 text = moonPhase.getDescription(context) ?: "",
-                color = DayNightTheme.colors.titleColor
+                color = MaterialTheme.colorScheme.onSurface
             )
         },
         tonalElevation = defaultCardListItemElevation,

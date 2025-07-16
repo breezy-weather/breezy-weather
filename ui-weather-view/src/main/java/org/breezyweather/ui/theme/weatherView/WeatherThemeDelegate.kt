@@ -17,7 +17,6 @@
 package org.breezyweather.ui.theme.weatherView
 
 import android.content.Context
-import android.view.Window
 import androidx.annotation.ColorInt
 import androidx.annotation.Px
 import androidx.annotation.Size
@@ -32,7 +31,6 @@ interface WeatherThemeDelegate {
      * color of daytime chart line,
      * color of nighttime chart line
      * }
-     *
      */
     @ColorInt
     @Size(3)
@@ -64,17 +62,4 @@ interface WeatherThemeDelegate {
         weatherKind: Int,
         daylight: Boolean,
     ): Int
-
-    fun setSystemBarStyle(
-        window: Window,
-        statusShader: Boolean,
-        lightStatus: Boolean,
-        lightNavigation: Boolean,
-    )
-
-    @Px
-    fun getHomeCardElevation(context: Context): Float
-
-    @Px
-    fun getHomeCardMargins(context: Context): Int
 }

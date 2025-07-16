@@ -23,7 +23,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import org.breezyweather.common.snackbar.SnackbarContainer
 
-open class GeoFragment : Fragment() {
+open class BreezyFragment : Fragment() {
     var isFragmentViewCreated = false
         private set
 

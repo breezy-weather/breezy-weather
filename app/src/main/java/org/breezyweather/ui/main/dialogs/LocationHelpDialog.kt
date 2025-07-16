@@ -41,7 +41,6 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
-import org.breezyweather.ui.theme.compose.DayNightTheme
 
 object LocationHelpDialog {
     fun show(
@@ -63,7 +62,7 @@ object LocationHelpDialog {
 
         composeView.setContent {
             BreezyWeatherTheme(
-                MainThemeColorProvider.isLightTheme(activity, daylight = isDaylight)
+                !MainThemeColorProvider.isLightTheme(activity, daylight = isDaylight)
             ) {
                 if (dialogOpenState.value) {
                     AlertDialog(
@@ -133,7 +132,7 @@ object LocationHelpDialog {
             headlineContent = {
                 Text(
                     content,
-                    color = DayNightTheme.colors.bodyColor,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     style = MaterialTheme.typography.bodyMedium
                 )
             },

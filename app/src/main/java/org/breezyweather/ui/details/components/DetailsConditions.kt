@@ -98,7 +98,6 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.widgets.AnimatableIconView
 import org.breezyweather.ui.settings.preference.bottomInsetItem
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import kotlin.math.max
@@ -453,7 +452,7 @@ private fun WeatherConditionItem(
                                 temperatureUnit.formatMeasure(context, value = it)
                         } ?: "",
                         style = MaterialTheme.typography.labelLarge,
-                        color = DayNightTheme.colors.captionColor,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier
                             .clearAndSetSemantics {
                                 if (temperature?.temperature != null) {
@@ -521,7 +520,7 @@ fun WeatherCondition(
         }
         TextFixedHeight(
             text = weatherText ?: "",
-            color = DayNightTheme.colors.titleColor,
+            color = MaterialTheme.colorScheme.onSurface,
             fontWeight = FontWeight.Bold,
             maxLines = 2
         )

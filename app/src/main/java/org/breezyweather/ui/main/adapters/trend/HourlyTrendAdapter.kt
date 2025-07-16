@@ -20,7 +20,7 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
@@ -39,7 +39,7 @@ import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 
 @SuppressLint("NotifyDataSetChanged")
 class HourlyTrendAdapter(
-    private val activity: GeoActivity,
+    private val activity: BreezyActivity,
     private val host: TrendRecyclerView,
 ) : RecyclerView.Adapter<AbsHourlyTrendAdapter.ViewHolder>() {
 

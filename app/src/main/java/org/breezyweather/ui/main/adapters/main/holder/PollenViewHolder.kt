@@ -28,7 +28,7 @@ import kotlinx.collections.immutable.ImmutableSet
 import kotlinx.collections.immutable.persistentSetOf
 import kotlinx.collections.immutable.toImmutableSet
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -85,7 +85,7 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
     @SuppressLint("SetTextI18n")
     override fun onBindView(
-        activity: GeoActivity,
+        activity: BreezyActivity,
         location: Location,
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
@@ -129,7 +129,7 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         itemView.contentDescription = mTitle.text
         itemView.setOnClickListener {
             IntentHelper.startDailyWeatherActivity(
-                context as GeoActivity,
+                context as BreezyActivity,
                 location.formattedId,
                 mPager.currentItem + (location.weather!!.todayIndex ?: 0),
                 DetailScreen.TAG_POLLEN

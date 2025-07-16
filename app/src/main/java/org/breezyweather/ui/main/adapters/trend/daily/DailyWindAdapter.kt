@@ -28,7 +28,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Wind
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.domain.settings.SettingsManager
@@ -43,7 +43,7 @@ import org.breezyweather.ui.main.utils.MainThemeColorProvider
  * Daily wind adapter.
  */
 class DailyWindAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
     unit: SpeedUnit,
 ) : AbsDailyTrendAdapter(activity, location) {
@@ -58,7 +58,7 @@ class DailyWindAdapter(
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        fun onBindView(activity: GeoActivity, location: Location, position: Int) {
+        fun onBindView(activity: BreezyActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder()
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]

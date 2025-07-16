@@ -130,7 +130,7 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
             }
 
             itemView.findViewById<ComposeView>(R.id.container_main_header_details).setContent {
-                BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
+                BreezyWeatherTheme(!MainThemeColorProvider.isLightTheme(context, location)) {
                     val detailList = SettingsManager.getInstance(context).detailDisplayList.filter {
                         it.getCurrentValue(LocalContext.current, current, location.isDaylight) != null
                     }

@@ -69,7 +69,6 @@ import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 
@@ -89,7 +88,7 @@ class FooterViewHolder(
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
         composeView.setContent {
-            BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(context, location)) {
+            BreezyWeatherTheme(!MainThemeColorProvider.isLightTheme(context, location)) {
                 ComposeView(location)
             }
         }
@@ -240,7 +239,7 @@ class FooterViewHolder(
                                     headlineContent = {
                                         Text(
                                             stringResource(sourceFeature.resourceName),
-                                            color = DayNightTheme.colors.titleColor
+                                            color = MaterialTheme.colorScheme.onSurface
                                         )
                                     },
                                     supportingContent = {

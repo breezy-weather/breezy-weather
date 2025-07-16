@@ -67,7 +67,6 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 import java.util.Date
 
@@ -199,7 +198,7 @@ fun ListPreferenceView(
             {
                 Icon(
                     painter = painterResource(iconId),
-                    tint = DayNightTheme.colors.titleColor,
+                    tint = MaterialTheme.colorScheme.onSurface,
                     contentDescription = null,
                     modifier = Modifier.size(24.dp)
                 )
@@ -217,7 +216,7 @@ fun ListPreferenceView(
                 ) {
                     Text(
                         text = title,
-                        color = DayNightTheme.colors.titleColor,
+                        color = MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.titleMedium
                     )
                 }
@@ -229,7 +228,7 @@ fun ListPreferenceView(
                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                     Text(
                         text = currentSummary,
-                        color = DayNightTheme.colors.bodyColor,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }
@@ -271,7 +270,7 @@ fun ListPreferenceView(
                                 Text(
                                     modifier = Modifier.fillMaxWidth(),
                                     text = it.first,
-                                    color = DayNightTheme.colors.titleColor,
+                                    color = MaterialTheme.colorScheme.onSurface,
                                     style = MaterialTheme.typography.titleSmall,
                                     textAlign = TextAlign.Center
                                 )
@@ -394,9 +393,9 @@ internal fun RadioButton(
         Text(
             text = text,
             color = if (enabled) {
-                DayNightTheme.colors.titleColor
+                MaterialTheme.colorScheme.onSurface
             } else {
-                DayNightTheme.colors.titleColor.copy(alpha = 0.5f)
+                MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
             },
             style = MaterialTheme.typography.titleMedium
         )

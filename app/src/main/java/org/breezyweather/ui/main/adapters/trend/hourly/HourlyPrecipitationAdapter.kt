@@ -24,7 +24,7 @@ import android.view.ViewGroup
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Precipitation
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.domain.settings.SettingsManager
@@ -41,7 +41,7 @@ import org.breezyweather.ui.theme.weatherView.WeatherViewController
  * Hourly precipitation adapter.
  */
 class HourlyPrecipitationAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
     unit: PrecipitationUnit,
@@ -57,7 +57,7 @@ class HourlyPrecipitationAdapter(
             hourlyItem.chartItemView = mPolylineAndHistogramView
         }
 
-        fun onBindView(activity: GeoActivity, location: Location, position: Int) {
+        fun onBindView(activity: BreezyActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_precipitation))
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!

@@ -77,7 +77,6 @@ import org.breezyweather.ui.settings.preference.sectionHeaderItem
 import org.breezyweather.ui.settings.preference.smallSeparatorItem
 import org.breezyweather.ui.settings.preference.switchPreferenceItem
 import org.breezyweather.ui.theme.ThemeManager
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
@@ -279,7 +278,7 @@ fun AppearanceSettingsScreen(
                                                     contentDescription = stringResource(
                                                         R.string.settings_icon_packs_check_details
                                                     ),
-                                                    tint = DayNightTheme.colors.titleColor
+                                                    tint = MaterialTheme.colorScheme.onSurface
                                                 )
                                             }
                                         }

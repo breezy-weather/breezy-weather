@@ -30,7 +30,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
@@ -45,7 +45,7 @@ import org.breezyweather.ui.common.widgets.slidingItem.SlidingItemTouchCallback
 import org.breezyweather.ui.settings.adapters.CardDisplayAdapter
 import org.breezyweather.ui.theme.ThemeManager
 
-class CardDisplayManageActivity : GeoActivity() {
+class CardDisplayManageActivity : BreezyActivity() {
     private lateinit var mBinding: ActivityCardDisplayManageBinding
     private lateinit var mCardDisplayAdapter: CardDisplayAdapter
     private var mCardDisplayItemTouchHelper: ItemTouchHelper? = null

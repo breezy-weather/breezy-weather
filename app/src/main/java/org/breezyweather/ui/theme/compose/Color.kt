@@ -1,4 +1,4 @@
-/*
+/**
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -14,21 +14,14 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.main.fragments
+package org.breezyweather.ui.theme.compose
 
-import org.breezyweather.common.basic.BreezyFragment
-import org.breezyweather.common.bus.EventBus
+import androidx.compose.ui.graphics.Color
 
-class ModifyMainSystemBarMessage
+val Purple80 = Color(0xFFD0BCFF)
+val PurpleGrey80 = Color(0xFFCCC2DC)
+val Pink80 = Color(0xFFEFB8C8)
 
-abstract class MainModuleFragment : BreezyFragment() {
-
-    protected fun checkToSetSystemBarStyle() {
-        EventBus
-            .instance
-            .with(ModifyMainSystemBarMessage::class.java)
-            .postValue(ModifyMainSystemBarMessage())
-    }
-
-    abstract fun setSystemBarStyle()
-}
+val Purple40 = Color(0xFF6650a4)
+val PurpleGrey40 = Color(0xFF625b71)
+val Pink40 = Color(0xFF7D5260)

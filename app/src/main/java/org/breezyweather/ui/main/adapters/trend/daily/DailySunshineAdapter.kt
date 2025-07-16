@@ -25,7 +25,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
@@ -38,7 +38,7 @@ import org.breezyweather.ui.theme.weatherView.WeatherViewController
  * Daily sunshine adapter.
  */
 class DailySunshineAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
 ) : AbsDailyTrendAdapter(activity, location) {
     private var mHighestIndex: Double = 0.0
@@ -52,7 +52,7 @@ class DailySunshineAdapter(
 
         @SuppressLint("DefaultLocale")
         fun onBindView(
-            activity: GeoActivity,
+            activity: BreezyActivity,
             location: Location,
             position: Int,
         ) {

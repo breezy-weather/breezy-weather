@@ -19,7 +19,6 @@ package org.breezyweather.ui.settings.activities
 import android.app.Application
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
@@ -46,8 +45,8 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.basic.GeoViewModel
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.BreezyViewModel
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.workManager
@@ -67,7 +66,7 @@ import javax.inject.Inject
  *
  * https://github.com/mihonapp/mihon/blob/5aec8f8018236a38106483da08f9cbc28261ac9b/app/src/main/java/eu/kanade/presentation/more/settings/screen/debug/WorkerInfoScreen.kt
  */
-class WorkerInfoActivity : GeoActivity() {
+class WorkerInfoActivity : BreezyActivity() {
     private lateinit var viewModel: WorkerInfoViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,7 +74,7 @@ class WorkerInfoActivity : GeoActivity() {
         initModel()
 
         setContent {
-            BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+            BreezyWeatherTheme {
                 ContentView()
             }
         }
@@ -143,14 +142,14 @@ class WorkerInfoActivity : GeoActivity() {
     @Preview
     @Composable
     private fun DefaultPreview() {
-        BreezyWeatherTheme(lightTheme = isSystemInDarkTheme()) {
+        BreezyWeatherTheme {
             ContentView()
         }
     }
 }
 
 @HiltViewModel
-class WorkerInfoViewModel @Inject constructor(application: Application) : GeoViewModel(application) {
+class WorkerInfoViewModel @Inject constructor(application: Application) : BreezyViewModel(application) {
     private val workManager = application.workManager
     private val ioCoroutineScope = MainScope()
 

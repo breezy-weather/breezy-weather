@@ -24,13 +24,13 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.ui.common.widgets.slidingItem.SlidingItemTouchCallback
 import org.breezyweather.ui.main.MainActivityViewModel
 
 class LocationItemTouchCallback(
-    private val mActivity: GeoActivity,
+    private val mActivity: BreezyActivity,
     private val mViewModel: MainActivityViewModel,
     private val mReactor: TouchReactor,
 ) : SlidingItemTouchCallback() {

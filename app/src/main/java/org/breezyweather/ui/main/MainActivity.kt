@@ -71,7 +71,7 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.Migrations
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.conditional
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
@@ -94,11 +94,10 @@ import org.breezyweather.ui.main.fragments.PushedManagementFragment
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.search.SearchActivity
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Callback {
+class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment.Callback {
 
     @Inject
     lateinit var sourceManager: SourceManager
@@ -383,7 +382,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                             val dialogLocationPermissionOpenState = mutableStateOf(true)
                             binding.locationPermissionDialog.setContent {
                                 BreezyWeatherTheme(
-                                    MainThemeColorProvider.isLightTheme(this@MainActivity, daylight = isDaylight)
+                                    !MainThemeColorProvider.isLightTheme(this@MainActivity, daylight = isDaylight)
                                 ) {
                                     if (dialogLocationPermissionOpenState.value) {
                                         AlertDialogConfirmOnly(
@@ -455,7 +454,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
             val isLightTheme = isLocationBasedLightTheme.collectAsState()
 
             BreezyWeatherTheme(
-                lightTheme = MainThemeColorProvider.isLightTheme(this, isLightTheme.value)
+                !MainThemeColorProvider.isLightTheme(this, isLightTheme.value)
             ) {
                 RefreshErrorDetails()
             }
@@ -467,7 +466,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
             val validLocation = viewModel.currentLocation.collectAsState()
 
             BreezyWeatherTheme(
-                lightTheme = MainThemeColorProvider.isLightTheme(this, validLocation.value?.daylight)
+                !MainThemeColorProvider.isLightTheme(this, validLocation.value?.daylight)
             ) {
                 PerLocationSettingsDialog(location = validLocation.value?.location)
             }
@@ -564,7 +563,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                                 } else {
                                     stringResource(R.string.location_delete_location_dialog_message_no_name)
                                 },
-                                color = DayNightTheme.colors.bodyColor,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 style = MaterialTheme.typography.bodyMedium
                             )
                         },
@@ -619,7 +618,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                         Text(
                             text = stringResource(R.string.dialog_refresh_error_details_content),
                             style = MaterialTheme.typography.bodyMedium,
-                            color = DayNightTheme.colors.bodyColor
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 },
@@ -647,7 +646,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                                 headlineContent = {
                                     Text(
                                         text = source ?: message,
-                                        color = DayNightTheme.colors.titleColor,
+                                        color = MaterialTheme.colorScheme.onSurface,
                                         style = MaterialTheme.typography.titleMedium
                                     )
                                 },
@@ -657,7 +656,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                                             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                             Text(
                                                 text = message,
-                                                color = DayNightTheme.colors.bodyColor,
+                                                color = MaterialTheme.colorScheme.onSurfaceVariant,
                                                 style = MaterialTheme.typography.bodyMedium
                                             )
                                         }
@@ -696,7 +695,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
             val dialogBackgroundLocationPermissionOpenState = mutableStateOf(true)
             binding.locationPermissionDialog.setContent {
                 BreezyWeatherTheme(
-                    MainThemeColorProvider.isLightTheme(this@MainActivity, daylight = isDaylight)
+                    !MainThemeColorProvider.isLightTheme(this@MainActivity, daylight = isDaylight)
                 ) {
                     if (dialogBackgroundLocationPermissionOpenState.value) {
                         AlertDialogConfirmOnly(

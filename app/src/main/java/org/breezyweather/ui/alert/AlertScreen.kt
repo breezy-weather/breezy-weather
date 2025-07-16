@@ -53,6 +53,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.breezyweather.R
 import org.breezyweather.common.extensions.plus
+import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.domain.weather.model.getFormattedDates
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
@@ -62,9 +63,7 @@ import org.breezyweather.ui.common.widgets.getCardListItemMarginDp
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.ui.common.widgets.insets.bottomInsetItem
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
-import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
-import org.breezyweather.ui.theme.compose.DayNightTheme
 
 @Composable
 internal fun AlertScreen(
@@ -98,19 +97,15 @@ internal fun AlertScreen(
 
         // re-setting the status bar color once the location is fetched
         if (alertUiState.location != null && activity != null) {
-            ThemeManager
-                .getInstance(context)
-                .weatherThemeDelegate
-                .setSystemBarStyle(
-                    window = activity.window,
-                    statusShader = false,
-                    lightStatus = isLightTheme,
-                    lightNavigation = isLightTheme
-                )
+            activity.window.setSystemBarStyle(
+                statusShader = false,
+                lightStatus = isLightTheme,
+                lightNavigation = isLightTheme
+            )
         }
     }
 
-    BreezyWeatherTheme(lightTheme = isLightTheme) {
+    BreezyWeatherTheme(!isLightTheme) {
         Material3Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
@@ -149,13 +144,13 @@ internal fun AlertScreen(
                                         text = alert.headline?.ifEmpty {
                                             stringResource(R.string.alert)
                                         } ?: stringResource(R.string.alert),
-                                        color = DayNightTheme.colors.titleColor,
+                                        color = MaterialTheme.colorScheme.onSurface,
                                         fontWeight = FontWeight.Bold,
                                         style = MaterialTheme.typography.titleMedium
                                     )
                                     Text(
                                         text = alert.getFormattedDates(alertUiState.location!!, context),
-                                        color = DayNightTheme.colors.captionColor,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         style = MaterialTheme.typography.labelMedium,
                                         modifier = Modifier
                                             .clearAndSetSemantics {
@@ -173,7 +168,7 @@ internal fun AlertScreen(
                                 SelectionContainer {
                                     Text(
                                         text = alert.description!!,
-                                        color = DayNightTheme.colors.bodyColor,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         style = MaterialTheme.typography.bodyMedium
                                     )
                                 }
@@ -187,7 +182,7 @@ internal fun AlertScreen(
                                 SelectionContainer {
                                     Text(
                                         text = alert.instruction!!,
-                                        color = DayNightTheme.colors.bodyColor,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         style = MaterialTheme.typography.bodyMedium
                                     )
                                 }
@@ -200,7 +195,7 @@ internal fun AlertScreen(
                                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                 Text(
                                     text = stringResource(R.string.alert_source, alert.source!!),
-                                    color = DayNightTheme.colors.bodyColor,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }

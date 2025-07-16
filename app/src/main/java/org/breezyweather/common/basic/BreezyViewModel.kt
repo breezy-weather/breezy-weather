@@ -20,7 +20,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 
 // TODO: Issue with getter on application when converted to Kotlin
-open class GeoViewModel(
+open class BreezyViewModel(
     application: Application,
 ) : AndroidViewModel(application) {
     private var mNewInstance = true

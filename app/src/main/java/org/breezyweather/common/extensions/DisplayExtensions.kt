@@ -122,12 +122,12 @@ fun Context.getTypefaceFromTextAppearance(
 
 @Suppress("DEPRECATION")
 fun Window.setSystemBarStyle(
-    statusShaderP: Boolean,
-    lightStatusP: Boolean,
-    lightNavigationP: Boolean,
+    statusShader: Boolean,
+    lightStatus: Boolean,
+    lightNavigation: Boolean,
 ) {
-    var lightStatus = lightStatusP
-    var statusShader = statusShaderP
+    var newLightStatus = lightStatus
+    var newStatusShader = statusShader
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
         // Use default dark and light platform colors from EdgeToEdge
@@ -136,29 +136,29 @@ fun Window.setSystemBarStyle(
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // Always apply a dark shader as a light or transparent status bar is not supported
-            lightStatus = false
-            statusShader = true
+            newLightStatus = false
+            newStatusShader = true
         }
-        statusBarColor = if (statusShader) {
-            if (lightStatus) colorSystemBarLight else colorSystemBarDark
+        statusBarColor = if (newStatusShader) {
+            if (newLightStatus) colorSystemBarLight else colorSystemBarDark
         } else {
             Color.TRANSPARENT
         }
 
-        navigationBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && lightNavigationP) {
+        navigationBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && lightNavigation) {
             colorSystemBarLight
         } else {
             colorSystemBarDark
         }
     } else {
-        isStatusBarContrastEnforced = statusShader
+        isStatusBarContrastEnforced = newStatusShader
         isNavigationBarContrastEnforced = true
     }
 
     // Contrary to the documentation FALSE applies a light foreground color and TRUE a dark foreground color
     WindowInsetsControllerCompat(this, decorView).run {
-        isAppearanceLightStatusBars = lightStatus
-        isAppearanceLightNavigationBars = lightNavigationP
+        isAppearanceLightStatusBars = newLightStatus
+        isAppearanceLightNavigationBars = lightNavigation
     }
 }
 

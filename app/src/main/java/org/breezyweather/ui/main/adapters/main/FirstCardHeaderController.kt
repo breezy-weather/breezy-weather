@@ -40,19 +40,18 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.model.getFormattedDates
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 import java.util.Date
 
 @SuppressLint("InflateParams")
 class FirstCardHeaderController(
-    private val mActivity: GeoActivity,
+    private val mActivity: BreezyActivity,
     location: Location,
 ) : View.OnClickListener {
     private val mView: View = LayoutInflater.from(mActivity).inflate(R.layout.container_main_first_card_header, null)
@@ -67,7 +66,7 @@ class FirstCardHeaderController(
                 IntentHelper.startAlertActivity(mActivity, mFormattedId)
             }
             mView.findViewById<ComposeView>(R.id.container_main_first_card_alert_list).setContent {
-                BreezyWeatherTheme(lightTheme = MainThemeColorProvider.isLightTheme(mActivity, location)) {
+                BreezyWeatherTheme(!MainThemeColorProvider.isLightTheme(mActivity, location)) {
                     if (location.weather!!.currentAlertList.isEmpty()) {
                         UpcomingAlerts()
                     } else {
@@ -99,7 +98,7 @@ class FirstCardHeaderController(
             headlineContent = {
                 Text(
                     stringResource(R.string.alerts_to_follow),
-                    color = DayNightTheme.colors.titleColor,
+                    color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.titleMedium
                 )
             },
@@ -107,7 +106,7 @@ class FirstCardHeaderController(
                 Icon(
                     painterResource(R.drawable.ic_alert),
                     contentDescription = stringResource(R.string.alerts_to_follow),
-                    tint = DayNightTheme.colors.titleColor
+                    tint = MaterialTheme.colorScheme.onSurface
                 )
             }
         )
@@ -138,7 +137,7 @@ class FirstCardHeaderController(
                             currentAlert.headline?.ifEmpty {
                                 stringResource(R.string.alert)
                             } ?: stringResource(R.string.alert),
-                            color = DayNightTheme.colors.titleColor,
+                            color = MaterialTheme.colorScheme.onSurface,
                             style = MaterialTheme.typography.titleMedium
                         )
                     },
@@ -146,7 +145,7 @@ class FirstCardHeaderController(
                         {
                             Text(
                                 currentAlert.getFormattedDates(location, context),
-                                color = DayNightTheme.colors.bodyColor,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier
                                     .clearAndSetSemantics {
                                         contentDescription = currentAlert.getFormattedDates(

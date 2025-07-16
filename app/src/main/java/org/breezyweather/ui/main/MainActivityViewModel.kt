@@ -33,7 +33,7 @@ import kotlinx.coroutines.runBlocking
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.background.updater.AppUpdateChecker
-import org.breezyweather.common.basic.GeoViewModel
+import org.breezyweather.common.basic.BreezyViewModel
 import org.breezyweather.common.basic.livedata.BusLiveData
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.launchIO
@@ -64,7 +64,7 @@ class MainActivityViewModel @Inject constructor(
     private val locationRepository: LocationRepository,
     private val weatherRepository: WeatherRepository,
     private val updateChecker: AppUpdateChecker,
-) : GeoViewModel(application), WeatherRequestCallback {
+) : BreezyViewModel(application), WeatherRequestCallback {
 
     // flow
     private val _currentLocation: MutableStateFlow<DayNightLocation?> = MutableStateFlow(null)

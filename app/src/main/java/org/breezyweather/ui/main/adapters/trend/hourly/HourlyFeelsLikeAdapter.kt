@@ -23,7 +23,7 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
@@ -39,7 +39,7 @@ import kotlin.math.max
  * Hourly feels like adapter.
  */
 class HourlyFeelsLikeAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
     unit: TemperatureUnit,
@@ -57,7 +57,7 @@ class HourlyFeelsLikeAdapter(
             hourlyItem.chartItemView = mPolylineAndHistogramView
         }
 
-        fun onBindView(activity: GeoActivity, location: Location, position: Int) {
+        fun onBindView(activity: BreezyActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_feels_like))
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
