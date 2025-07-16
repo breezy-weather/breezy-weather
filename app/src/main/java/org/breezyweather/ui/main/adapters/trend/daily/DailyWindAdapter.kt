@@ -37,7 +37,7 @@ import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.ui.common.images.RotateDrawable
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.DoubleHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 
 /**
  * Daily wind adapter.
@@ -97,9 +97,9 @@ class DailyWindAdapter(
             mDoubleHistogramView.setLineColors(
                 dayWindColor,
                 nightWindColor,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                ThemeManager.getColor(activity, com.google.android.material.R.attr.colorOutline)
             )
-            mDoubleHistogramView.setTextColors(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+            mDoubleHistogramView.setTextColors(ThemeManager.getColor(activity, R.attr.colorBodyText))
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f)
 
             if (daily.night?.wind?.isValid == true) {

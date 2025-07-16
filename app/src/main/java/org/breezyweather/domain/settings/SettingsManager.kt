@@ -179,17 +179,6 @@ class SettingsManager private constructor(
             config.getString("dark_mode", null) ?: "system"
         )
 
-    // Default config is: follow system on Android 10+ (disabled), automatic day/night switch (enabled)
-    // on Android < 10 where dark mode doesn’t exist natively
-    /*var dayNightModeForLocations: Boolean
-        set(value) {
-            config.edit().putBoolean("day_night_mode_locations", value).apply()
-            notifySettingsChanged()
-        }
-        get() = config.getBoolean("day_night_mode_locations", Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)*/
-    // TODO: Temporarily disabled while working on the new dynamic design
-    val dayNightModeForLocations: Boolean = false
-
     // service providers.
     var locationSource: String
         set(value) {

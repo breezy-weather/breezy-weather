@@ -36,7 +36,7 @@ import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.ui.common.images.RotateDrawable
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 
 /**
  * Hourly wind adapter.
@@ -93,13 +93,13 @@ class HourlyWindAdapter(
             mPolylineAndHistogramView.setLineColors(
                 windColor,
                 windColor,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                ThemeManager.getColor(activity, com.google.android.material.R.attr.colorOutline)
             )
 
             mPolylineAndHistogramView.setTextColors(
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+                ThemeManager.getColor(activity, R.attr.colorTitleText),
+                ThemeManager.getColor(activity, R.attr.colorBodyText),
+                ThemeManager.getColor(activity, R.attr.colorTitleText)
             )
             mPolylineAndHistogramView.setHistogramAlpha(1f)
             hourlyItem.contentDescription = talkBackBuilder.toString()

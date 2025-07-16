@@ -26,10 +26,9 @@ import androidx.core.widget.ImageViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.extensions.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP
-import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.databinding.ItemLocationCardBinding
 import org.breezyweather.domain.location.model.isDaylight
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
 class LocationHolder(
@@ -39,11 +38,10 @@ class LocationHolder(
 ) : RecyclerView.ViewHolder(mBinding.root) {
     @SuppressLint("SetTextI18n", "ClickableViewAccessibility")
     fun onBindView(context: Context, model: LocationModel, resourceProvider: ResourceProvider) {
-        val lightTheme = !context.isDarkMode
         val elevatedSurfaceColor = org.breezyweather.common.utils.ColorUtils.getWidgetSurfaceColor(
             DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
-            MainThemeColorProvider.getColor(lightTheme, androidx.appcompat.R.attr.colorPrimary),
-            MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorSurface)
+            ThemeManager.getColor(context, androidx.appcompat.R.attr.colorPrimary),
+            ThemeManager.getColor(context, com.google.android.material.R.attr.colorSurface)
         )
         val talkBackBuilder = StringBuilder()
         if (model.currentPosition) {
@@ -59,26 +57,23 @@ class LocationHolder(
         mBinding.container.iconResEnd = R.drawable.ic_settings
         mBinding.container.apply {
             backgroundColorStart =
-                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorErrorContainer)
+                ThemeManager.getColor(context, com.google.android.material.R.attr.colorErrorContainer)
             backgroundColorEnd = if (model.location.isCurrentPosition) {
-                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorTertiaryContainer)
+                ThemeManager.getColor(context, com.google.android.material.R.attr.colorTertiaryContainer)
             } else {
-                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorSecondaryContainer)
+                ThemeManager.getColor(context, com.google.android.material.R.attr.colorSecondaryContainer)
             }
             tintColorStart =
-                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorOnErrorContainer)
+                ThemeManager.getColor(context, com.google.android.material.R.attr.colorOnErrorContainer)
             tintColorEnd = if (model.location.isCurrentPosition) {
-                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorOnTertiaryContainer)
+                ThemeManager.getColor(context, com.google.android.material.R.attr.colorOnTertiaryContainer)
             } else {
-                MainThemeColorProvider.getColor(
-                    lightTheme,
-                    com.google.android.material.R.attr.colorOnSecondaryContainer
-                )
+                ThemeManager.getColor(context, com.google.android.material.R.attr.colorOnSecondaryContainer)
             }
         }
         mBinding.item.setBackgroundColor(
             if (model.selected) {
-                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorPrimaryContainer)
+                ThemeManager.getColor(context, com.google.android.material.R.attr.colorPrimaryContainer)
             } else if (model.alerts > 0) {
                 ContextCompat.getColor(context, R.color.alert_background)
             } else {
@@ -89,14 +84,11 @@ class LocationHolder(
             mBinding.sortButton,
             ColorStateList.valueOf(
                 if (model.selected) {
-                    MainThemeColorProvider.getColor(
-                        lightTheme,
-                        com.google.android.material.R.attr.colorOnPrimaryContainer
-                    )
+                    ThemeManager.getColor(context, com.google.android.material.R.attr.colorOnPrimaryContainer)
                 } else if (model.alerts > 0) {
                     ContextCompat.getColor(context, R.color.alert_text)
                 } else {
-                    MainThemeColorProvider.getColor(lightTheme, androidx.appcompat.R.attr.colorPrimary)
+                    ThemeManager.getColor(context, androidx.appcompat.R.attr.colorPrimary)
                 }
             )
         )
@@ -112,9 +104,9 @@ class LocationHolder(
         }
         mBinding.title1.setTextColor(
             if (model.selected) {
-                MainThemeColorProvider.getColor(lightTheme, com.google.android.material.R.attr.colorOnPrimaryContainer)
+                ThemeManager.getColor(context, com.google.android.material.R.attr.colorOnPrimaryContainer)
             } else {
-                MainThemeColorProvider.getColor(lightTheme, R.attr.colorTitleText)
+                ThemeManager.getColor(context, R.attr.colorTitleText)
             }
         )
         mBinding.title1.text = model.title
@@ -126,7 +118,7 @@ class LocationHolder(
                 if (model.alerts > 0) {
                     ContextCompat.getColor(context, R.color.alert_text)
                 } else {
-                    MainThemeColorProvider.getColor(lightTheme, R.attr.colorBodyText)
+                    ThemeManager.getColor(context, R.attr.colorBodyText)
                 }
             )
             mBinding.title2.text = model.body

@@ -21,9 +21,7 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import breezyweather.domain.location.model.Location
@@ -38,15 +36,14 @@ import org.breezyweather.ui.common.widgets.RecyclerViewNoVerticalScrollTouchList
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.main.adapters.trend.DailyTrendAdapter
 import org.breezyweather.ui.main.layouts.TrendHorizontalLinearLayoutManager
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.main.widgets.TrendRecyclerViewScrollBar
+import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
 class DailyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_daily_trend_card, parent, false)
 ) {
     private val titleView: TextView = itemView.findViewById(R.id.daily_block_title)
-    private val titleIconView: ImageView = itemView.findViewById(R.id.daily_block_title_icon)
     private val subtitle: TextView = itemView.findViewById(R.id.daily_block_subtitle)
     private val buttonGroup: MaterialButtonGroup = itemView.findViewById(R.id.daily_block_button_group)
     private val trendRecyclerView: TrendRecyclerView = itemView.findViewById(R.id.daily_block_trendRecyclerView)
@@ -69,14 +66,9 @@ class DailyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     ) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
-        val color = MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             titleView.isAccessibilityHeading = true
         }
-        titleView.setText(R.string.daily_forecast)
-        titleView.setTextColor(color)
-        titleIconView.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.ic_calendar))
-        titleIconView.setColorFilter(color)
 
         val weather = location.weather ?: return
 
@@ -157,12 +149,12 @@ class DailyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 minHeight = context.resources.getDimensionPixelSize(R.dimen.daily_trend_item_height)
             )
         trendRecyclerView.setLineColor(
-            MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+            ThemeManager.getColor(context, com.google.android.material.R.attr.colorOutline)
         )
         trendRecyclerView.setTextColor(
             ContextCompat.getColor(
                 context,
-                if (MainThemeColorProvider.isLightTheme(context, location)) {
+                if (ThemeManager.isLightTheme(context, location)) {
                     R.color.colorTextGrey
                 } else {
                     R.color.colorTextGrey2nd
@@ -177,6 +169,6 @@ class DailyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         weather.todayIndex?.let { todayIndex ->
             trendRecyclerView.scrollToPosition(todayIndex)
         }
-        scrollBar.resetColor(location)
+        scrollBar.resetColor(context)
     }
 }

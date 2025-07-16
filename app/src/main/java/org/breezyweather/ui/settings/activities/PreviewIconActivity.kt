@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.GlobalActivity
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.utils.ColorUtils
@@ -41,7 +42,7 @@ import org.breezyweather.ui.theme.resource.providers.DefaultResourceProvider
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import java.util.Locale
 
-class PreviewIconActivity : BreezyActivity() {
+class PreviewIconActivity : GlobalActivity() {
     private lateinit var binding: ActivityPreviewIconBinding
     private lateinit var mProvider: ResourceProvider
     private val mItemList = mutableListOf<WeatherIconAdapter.Item>()
@@ -133,10 +134,8 @@ class PreviewIconActivity : BreezyActivity() {
             setBackgroundColor(
                 ColorUtils.getWidgetSurfaceColor(
                     6f,
-                    ThemeManager.getInstance(this@PreviewIconActivity)
-                        .getThemeColor(this@PreviewIconActivity, androidx.appcompat.R.attr.colorPrimary),
-                    ThemeManager.getInstance(this@PreviewIconActivity)
-                        .getThemeColor(this@PreviewIconActivity, com.google.android.material.R.attr.colorSurface)
+                    ThemeManager.getColor(this@PreviewIconActivity, androidx.appcompat.R.attr.colorPrimary),
+                    ThemeManager.getColor(this@PreviewIconActivity, com.google.android.material.R.attr.colorSurface)
                 )
             )
         }

@@ -39,21 +39,8 @@ interface WeatherThemeDelegate {
         daylight: Boolean,
     ): IntArray
 
-    fun isLightBackground(
-        context: Context,
-        weatherKind: Int,
-        daylight: Boolean,
-    ): Boolean
-
     @ColorInt
     fun getBackgroundColor(
-        context: Context,
-        weatherKind: Int,
-        daylight: Boolean,
-    ): Int
-
-    @ColorInt
-    fun getOnBackgroundColor(
         context: Context,
         weatherKind: Int,
         daylight: Boolean,

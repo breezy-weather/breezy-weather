@@ -39,7 +39,6 @@ import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.main.MainActivity
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 
 object LocationHelpDialog {
@@ -61,9 +60,7 @@ object LocationHelpDialog {
         }
 
         composeView.setContent {
-            BreezyWeatherTheme(
-                !MainThemeColorProvider.isLightTheme(activity, daylight = isDaylight)
-            ) {
+            BreezyWeatherTheme {
                 if (dialogOpenState.value) {
                     AlertDialog(
                         onDismissRequest = {

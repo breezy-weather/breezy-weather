@@ -45,7 +45,6 @@ import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.model.getFormattedDates
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
@@ -72,7 +71,7 @@ class AlertViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 IntentHelper.startAlertActivity(activity, location.formattedId)
             }
             itemView.findViewById<ComposeView>(R.id.container_main_first_card_alert_list).setContent {
-                BreezyWeatherTheme(!MainThemeColorProvider.isLightTheme(activity, location)) {
+                BreezyWeatherTheme {
                     if (location.weather!!.currentAlertList.isEmpty()) {
                         UpcomingAlerts(location.formattedId)
                     } else {

@@ -29,7 +29,7 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerViewAdapter
 import org.breezyweather.ui.common.widgets.trend.item.HourlyTrendItemView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import kotlin.time.Duration.Companion.days
 
 abstract class AbsHourlyTrendAdapter(
@@ -55,8 +55,8 @@ abstract class AbsHourlyTrendAdapter(
             hourlyItem.setHourText(hourly.date.getHour(location, activity))
             val useAccentColorForDate = position == 0 || hourly.date.getHourIn24Format(location) == "0"
             hourlyItem.setTextColor(
-                MainThemeColorProvider.getColor(
-                    location,
+                ThemeManager.getColor(
+                    context,
                     if (useAccentColorForDate) R.attr.colorTitleText else R.attr.colorBodyText
                 )
             )

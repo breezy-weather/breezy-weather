@@ -32,7 +32,7 @@ import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.domain.weather.model.getDescription
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import java.util.Date
 
@@ -56,7 +56,7 @@ class MoonViewHolder(parent: ViewGroup) : AstroViewHolder(parent, isSun = false)
                 descriptionIconView.setColor(
                     ContextCompat.getColor(context, R.color.colorTextLight2nd),
                     ContextCompat.getColor(context, R.color.colorTextDark2nd),
-                    MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
+                    ThemeManager.getColor(context, R.attr.colorBodyText)
                 )
                 descriptionView.text = moonPhase.getDescription(context)
             } else {

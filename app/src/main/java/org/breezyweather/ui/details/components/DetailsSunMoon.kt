@@ -550,7 +550,7 @@ fun DailyMoonPhase(
                         setColor(
                             ContextCompat.getColor(context, R.color.colorTextLight2nd),
                             ContextCompat.getColor(context, R.color.colorTextDark2nd),
-                            ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorBodyText)
+                            ThemeManager.getColor(context, R.attr.colorBodyText)
                         )
                     }
                 }

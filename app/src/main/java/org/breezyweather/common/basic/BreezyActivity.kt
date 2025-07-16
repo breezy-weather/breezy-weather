@@ -17,7 +17,7 @@
 package org.breezyweather.common.basic
 
 import android.content.Intent
-import android.os.Build
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.ViewGroup
 import androidx.activity.enableEdgeToEdge
@@ -25,9 +25,11 @@ import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import org.breezyweather.BreezyWeather
+import org.breezyweather.R
 import org.breezyweather.common.extensions.isDarkMode
-import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.snackbar.SnackbarContainer
+import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.ui.theme.ThemeManager
 
 abstract class BreezyActivity : AppCompatActivity() {
 
@@ -36,13 +38,8 @@ abstract class BreezyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         enableEdgeToEdge()
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            window.setSystemBarStyle(
-                statusShader = false,
-                lightStatus = !isDarkMode,
-                lightNavigation = !isDarkMode
-            )
-        }
+
+        applyAppTheme()
 
         BreezyWeather.instance.addActivity(this)
     }
@@ -68,6 +65,21 @@ abstract class BreezyActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         BreezyWeather.instance.removeActivity(this)
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        checkToUpdateDarkMode()
+    }
+
+    private fun applyAppTheme() {
+        setTheme(R.style.BreezyWeatherTheme)
+    }
+
+    protected open fun checkToUpdateDarkMode() {
+        if (ThemeManager.isLightTheme(this) != !isDarkMode) {
+            BreezyWeather.instance.updateDayNightMode(SettingsManager.getInstance(this).darkMode.value)
+        }
     }
 
     open val snackbarContainer: SnackbarContainer

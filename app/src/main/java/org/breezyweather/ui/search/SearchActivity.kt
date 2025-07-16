@@ -70,7 +70,7 @@ import breezyweather.domain.source.SourceFeature
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.GlobalActivity
 import org.breezyweather.common.extensions.inputMethodManager
 import org.breezyweather.common.source.LocationPreset
 import org.breezyweather.domain.location.model.getPlace
@@ -85,7 +85,7 @@ import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SearchActivity : BreezyActivity() {
+class SearchActivity : GlobalActivity() {
     private lateinit var viewModel: SearchViewModel
 
     @Inject lateinit var sourceManager: SourceManager

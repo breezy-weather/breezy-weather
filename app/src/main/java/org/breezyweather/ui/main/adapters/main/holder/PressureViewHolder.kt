@@ -32,10 +32,11 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.ArcProgress
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
 class PressureViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
@@ -59,7 +60,7 @@ class PressureViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     ) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
-        val color = MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+        val color = ThemeManager.getColor(context, R.attr.colorTitleText)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             titleView.isAccessibilityHeading = true
         }
@@ -84,12 +85,9 @@ class PressureViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                     pressureValueView.text = pressureUnit.formatValue(context, it)
                 }
             }
-            val pressureColor = MainThemeColorProvider.getColor(
-                MainThemeColorProvider.isLightTheme(context, location),
-                androidx.appcompat.R.attr.colorPrimary
-            )
+            val pressureColor = ThemeManager.getColor(context, androidx.appcompat.R.attr.colorPrimary)
             pressureProgress.apply {
-                setProgressColor(pressureColor, MainThemeColorProvider.isLightTheme(context, location))
+                setProgressColor(pressureColor, !context.isDarkMode)
                 setArcBackgroundColor(ColorUtils.setAlphaComponent(pressureColor, (255 * 0.1).toInt()))
                 max = 100f
             }

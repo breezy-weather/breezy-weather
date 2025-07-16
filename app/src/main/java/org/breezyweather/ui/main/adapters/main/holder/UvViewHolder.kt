@@ -31,7 +31,7 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getLevel
 import org.breezyweather.domain.weather.model.getShape
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import kotlin.math.roundToInt
 
@@ -53,7 +53,7 @@ class UvViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     ) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
-        val color = MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+        val color = ThemeManager.getColor(context, R.attr.colorTitleText)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             titleView.isAccessibilityHeading = true
         }

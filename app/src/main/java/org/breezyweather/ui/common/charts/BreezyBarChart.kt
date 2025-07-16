@@ -68,7 +68,7 @@ import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toTimezoneSpecificHour
 import org.breezyweather.common.extensions.windowHeightInDp
 import org.breezyweather.domain.settings.SettingsManager
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import java.util.Calendar
 import java.util.Date
 import kotlin.math.max
@@ -115,10 +115,10 @@ fun BreezyBarChart(
     )
 
     val lineColor = Color(
-        MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+        ThemeManager.getColor(context, com.google.android.material.R.attr.colorOutline)
     )
     val labelColor = colorResource(
-        if (MainThemeColorProvider.isLightTheme(context, location)) {
+        if (ThemeManager.isLightTheme(context, location)) {
             R.color.colorTextGrey
         } else {
             R.color.colorTextGrey2nd
@@ -133,10 +133,10 @@ fun BreezyBarChart(
         } else {
             rememberTextComponent(
                 color = Color(
-                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnPrimary)
+                    ThemeManager.getColor(context, com.google.android.material.R.attr.colorOnPrimary)
                 ),
                 background = rememberShapeComponent(
-                    fill = Fill(MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary)),
+                    fill = Fill(ThemeManager.getColor(context, androidx.appcompat.R.attr.colorPrimary)),
                     CorneredShape.Pill,
                     shadow = Shadow(
                         radiusDp = LABEL_BACKGROUND_SHADOW_RADIUS_DP,

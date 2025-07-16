@@ -20,12 +20,10 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.Configuration
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -54,8 +52,6 @@ import androidx.core.content.IntentCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -80,8 +76,10 @@ import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.snackbar.SnackbarContainer
 import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.databinding.ActivityMainBinding
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.settings.SettingsChangedMessage
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.ui.common.composables.AlertDialogConfirmOnly
@@ -89,10 +87,8 @@ import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.common.composables.LocationPreference
 import org.breezyweather.ui.main.fragments.HomeFragment
 import org.breezyweather.ui.main.fragments.ManagementFragment
-import org.breezyweather.ui.main.fragments.ModifyMainSystemBarMessage
-import org.breezyweather.ui.main.fragments.PushedManagementFragment
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.search.SearchActivity
+import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import javax.inject.Inject
 
@@ -110,8 +106,6 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
 
     private val _dialogPerLocationSettingsOpen = MutableStateFlow(false)
     val dialogPerLocationSettingsOpen = _dialogPerLocationSettingsOpen.asStateFlow()
-    private val _isLocationBasedLightTheme: MutableStateFlow<Boolean?> = MutableStateFlow(null)
-    val isLocationBasedLightTheme = _isLocationBasedLightTheme.asStateFlow()
 
     companion object {
         const val SEARCH_ACTIVITY = 4
@@ -200,22 +194,6 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
         return viewModel.locationListSize()
     }
 
-    private val fragmentsLifecycleCallback = object : FragmentManager.FragmentLifecycleCallbacks() {
-
-        override fun onFragmentViewCreated(
-            fm: FragmentManager,
-            f: Fragment,
-            v: View,
-            savedInstanceState: Bundle?,
-        ) {
-            updateSystemBarStyle()
-        }
-
-        override fun onFragmentViewDestroyed(fm: FragmentManager, f: Fragment) {
-            updateSystemBarStyle()
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
 
@@ -228,10 +206,9 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
         }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-        supportFragmentManager.registerFragmentLifecycleCallbacks(fragmentsLifecycleCallback, false)
         setContentView(binding.root)
 
-        MainThemeColorProvider.bind(this)
+        // MainThemeColorProvider.bind(this)
 
         initModel(savedInstanceState == null)
         initView()
@@ -255,9 +232,6 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
 
             refreshBackgroundViews(viewModel.validLocationList.value)
         }
-        EventBus.instance.with(ModifyMainSystemBarMessage::class.java).observe(this) {
-            updateSystemBarStyle()
-        }
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -273,10 +247,48 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
         }
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        updateSystemBarStyle()
-        updateDayNightColors()
+    fun checkToUpdateDarkMode(location: Location?) {
+        LogHelper.log(msg = "Entering checkToUpdateDarkMode(location)")
+        if (location != null) {
+            LogHelper.log(msg = "Location not null: ${location.city}")
+            val lightTheme = ThemeManager.isLightTheme(this, location.isDaylight)
+            LogHelper.log(msg = "Location lightTheme: $lightTheme")
+            LogHelper.log(msg = "Current dark mode: $isDarkMode")
+            if (lightTheme != !isDarkMode) {
+                LogHelper.log(msg = "Location light theme and system dark mode differ")
+                BreezyWeather.instance.updateDayNightMode(
+                    if (lightTheme) AppCompatDelegate.MODE_NIGHT_NO else AppCompatDelegate.MODE_NIGHT_YES
+                )
+                binding.root.invalidate()
+            }
+        } else {
+            LogHelper.log(msg = "Location is null, using system dark mode")
+            super.checkToUpdateDarkMode()
+        }
+    }
+
+    public override fun checkToUpdateDarkMode() {
+        LogHelper.log(msg = "Entering checkToUpdateDarkMode()")
+        if (::viewModel.isInitialized) {
+            LogHelper.log(msg = "View model initialized: ${viewModel.currentLocation.value?.location?.city}")
+            val lightTheme = ThemeManager.isLightTheme(this, viewModel.currentLocation.value?.daylight)
+            LogHelper.log(msg = "Location lightTheme: $lightTheme")
+            LogHelper.log(msg = "Current dark mode: $isDarkMode")
+            if (lightTheme != !isDarkMode) {
+                LogHelper.log(msg = "Location light theme and system dark mode differ")
+                BreezyWeather.instance.updateDayNightMode(
+                    if (lightTheme) AppCompatDelegate.MODE_NIGHT_NO else AppCompatDelegate.MODE_NIGHT_YES
+                )
+            }
+        } else {
+            LogHelper.log(msg = "View model is not initialized, using system dark mode")
+            super.checkToUpdateDarkMode()
+        }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        checkToUpdateDarkMode()
     }
 
     override fun onStart() {
@@ -302,7 +314,6 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
 
     override fun onDestroy() {
         super.onDestroy()
-        supportFragmentManager.unregisterFragmentLifecycleCallbacks(fragmentsLifecycleCallback)
         EventBus.instance
             .with(Location::class.java)
             .removeObserver(backgroundUpdateObserver)
@@ -340,12 +351,6 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
     }
 
     private fun initView() {
-        binding.root.post {
-            if (isActivityCreated) {
-                updateDayNightColors()
-            }
-        }
-
         // Start a coroutine in the lifecycle scope
         lifecycleScope.launch {
             // repeatOnLifecycle launches the block in a new coroutine every time the
@@ -381,9 +386,7 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
                         ) {
                             val dialogLocationPermissionOpenState = mutableStateOf(true)
                             binding.locationPermissionDialog.setContent {
-                                BreezyWeatherTheme(
-                                    !MainThemeColorProvider.isLightTheme(this@MainActivity, daylight = isDaylight)
-                                ) {
+                                BreezyWeatherTheme {
                                     if (dialogLocationPermissionOpenState.value) {
                                         AlertDialogConfirmOnly(
                                             title = R.string.dialog_permissions_location_title,
@@ -424,13 +427,6 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
                     content = getString(R.string.message_multiple_refresh_errors),
                     action = getString(R.string.action_show)
                 ) {
-                    // Inefficient workaround to apply the correct theme while taking the location-based theme setting
-                    // into account. TODO: replace with a central solution which can be used in all composables
-                    _isLocationBasedLightTheme.value = if (isDrawerLayoutVisible || !isManagementFragmentVisible) {
-                        viewModel.currentLocation.value?.daylight
-                    } else {
-                        null
-                    }
                     viewModel.setRefreshErrorDetailsDialogVisible(true)
                 }
             } else {
@@ -451,11 +447,7 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
         initPerLocationSettingsView()
 
         binding.refreshErrorDialog.setContent {
-            val isLightTheme = isLocationBasedLightTheme.collectAsState()
-
-            BreezyWeatherTheme(
-                !MainThemeColorProvider.isLightTheme(this, isLightTheme.value)
-            ) {
+            BreezyWeatherTheme {
                 RefreshErrorDetails()
             }
         }
@@ -465,9 +457,7 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
         binding.perLocationSettings.setContent {
             val validLocation = viewModel.currentLocation.collectAsState()
 
-            BreezyWeatherTheme(
-                !MainThemeColorProvider.isLightTheme(this, validLocation.value?.daylight)
-            ) {
+            BreezyWeatherTheme {
                 PerLocationSettingsDialog(location = validLocation.value?.location)
             }
         }
@@ -694,9 +684,7 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
         ) {
             val dialogBackgroundLocationPermissionOpenState = mutableStateOf(true)
             binding.locationPermissionDialog.setContent {
-                BreezyWeatherTheme(
-                    !MainThemeColorProvider.isLightTheme(this@MainActivity, daylight = isDaylight)
-                ) {
+                BreezyWeatherTheme {
                     if (dialogBackgroundLocationPermissionOpenState.value) {
                         AlertDialogConfirmOnly(
                             title = R.string.dialog_permissions_location_background_title,
@@ -769,34 +757,6 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
         }
     }
 
-    private fun updateSystemBarStyle() {
-        if (binding.drawerLayout != null) {
-            findHomeFragment()?.setSystemBarStyle()
-            return
-        }
-
-        if (isOrWillManagementFragmentVisible) {
-            findManagementFragment()?.setSystemBarStyle()
-        } else {
-            findHomeFragment()?.setSystemBarStyle()
-        }
-    }
-
-    private fun updateDayNightColors() {
-        if (this.getResources().configuration.orientation == 2) {
-            // Set a black background to keep the background of the system bars black when root
-            // insets are applied in landscape mode.
-            binding.root.setBackgroundColor(Color.BLACK)
-        } else {
-            binding.root.setBackgroundColor(
-                MainThemeColorProvider.getColor(
-                    lightTheme = !this.isDarkMode,
-                    id = android.R.attr.colorBackground
-                )
-            )
-        }
-    }
-
     private val isOrWillManagementFragmentVisible: Boolean
         get() = binding.drawerLayout?.isUnfold
             ?: findManagementFragment()?.let { !it.isRemoving }
@@ -832,7 +792,7 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
             )
             .add(
                 R.id.fragment,
-                PushedManagementFragment.getInstance(),
+                ManagementFragment.getInstance(),
                 TAG_FRAGMENT_MANAGEMENT
             )
             .addToBackStack(null)

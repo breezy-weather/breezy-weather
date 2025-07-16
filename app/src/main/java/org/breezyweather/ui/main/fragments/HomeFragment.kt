@@ -29,7 +29,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.graphics.ColorUtils
-import androidx.core.view.forEach
 import androidx.core.view.updatePadding
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -40,6 +39,7 @@ import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import kotlinx.coroutines.launch
 import org.breezyweather.R
+import org.breezyweather.common.basic.BreezyFragment
 import org.breezyweather.common.basic.livedata.EqualtableLiveData
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.extensions.density
@@ -60,14 +60,13 @@ import org.breezyweather.ui.main.adapters.main.MainAdapter
 import org.breezyweather.ui.main.adapters.main.ViewType
 import org.breezyweather.ui.main.layouts.MainLayoutManager
 import org.breezyweather.ui.main.utils.MainModuleUtils
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherView
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 
-class HomeFragment : MainModuleFragment() {
+class HomeFragment : BreezyFragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: MainActivityViewModel
@@ -144,26 +143,6 @@ class HomeFragment : MainModuleFragment() {
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
         weatherView.setDrawable(!hidden)
-    }
-
-    override fun setSystemBarStyle() {
-        val delegate = ThemeManager
-            .getInstance(requireContext())
-            .weatherThemeDelegate
-        val location = if (::viewModel.isInitialized) viewModel.currentLocation.value?.location else null
-        val isLightBackground = location?.let {
-            delegate.isLightBackground(
-                requireContext(),
-                WeatherViewController.getWeatherKind(it),
-                WeatherViewController.isDaylight(it)
-            )
-        } ?: false
-
-        requireActivity().window.setSystemBarStyle(
-            statusShader = false,
-            lightStatus = isLightBackground,
-            lightNavigation = isLightBackground
-        )
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -331,16 +310,14 @@ class HomeFragment : MainModuleFragment() {
 
     private fun updateDayNightColors() {
         binding.refreshLayout.setProgressBackgroundColorSchemeColor(
-            MainThemeColorProvider.getColor(
-                location = viewModel.currentLocation.value?.location,
-                id = com.google.android.material.R.attr.colorSurface
-            )
+            ThemeManager.getColor(requireContext(), com.google.android.material.R.attr.colorSurface)
         )
     }
 
     // control.
     fun updateViews(location: Location? = viewModel.currentLocation.value?.location) {
         ensureResourceProvider()
+        (requireActivity() as MainActivity).checkToUpdateDarkMode(location)
         updateContentViews(location = location)
         if (isAdded && context != null) {
             updatePreviewSubviews()
@@ -355,27 +332,6 @@ class HomeFragment : MainModuleFragment() {
         }
 
         updateDayNightColors()
-
-        val onBackgroundColor = ThemeManager
-            .getInstance(requireContext())
-            .weatherThemeDelegate
-            .getOnBackgroundColor(
-                requireContext(),
-                WeatherViewController.getWeatherKind(location),
-                WeatherViewController.isDaylight(location)
-            )
-        binding.toolbar.setTitleTextColor(onBackgroundColor)
-        binding.toolbar.menu.forEach { menuItem ->
-            menuItem.icon?.let { drawable ->
-                drawable.mutate()
-                drawable.colorFilter = PorterDuffColorFilter(onBackgroundColor, PorterDuff.Mode.SRC_ATOP)
-                menuItem.icon = drawable
-            }
-        }
-        binding.toolbar.setNavigationIconTint(onBackgroundColor)
-        binding.refreshTimeText.compoundDrawablesRelative.forEach {
-            it?.setTint(onBackgroundColor)
-        }
 
         binding.switchLayout.reset()
 
@@ -430,9 +386,7 @@ class HomeFragment : MainModuleFragment() {
     }
 
     private fun ensureResourceProvider() {
-        val iconProvider = SettingsManager
-            .getInstance(requireContext())
-            .iconProvider
+        val iconProvider = SettingsManager.getInstance(requireContext()).iconProvider
         if (resourceProvider == null || resourceProvider!!.packageName != iconProvider) {
             resourceProvider = ResourcesProviderFactory.newInstance
         }
@@ -451,14 +405,6 @@ class HomeFragment : MainModuleFragment() {
             (location?.getPlace(requireContext()) ?: "") +
             (if (location?.isCurrentPosition == true && requireContext().isTabletDevice) " ⊙" else "")
 
-        val textColor = ThemeManager.getInstance(requireContext())
-            .weatherThemeDelegate
-            .getOnBackgroundColor(
-                requireContext(),
-                weatherKind,
-                daylight
-            )
-        binding.refreshTimeText.setTextColor(textColor)
         location?.weather?.base?.refreshTime?.let {
             binding.refreshTimeText.visibility = View.VISIBLE
             binding.refreshTimeText.setDate(it)

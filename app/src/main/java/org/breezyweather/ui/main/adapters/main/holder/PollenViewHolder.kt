@@ -38,7 +38,7 @@ import org.breezyweather.domain.weather.model.getIndexName
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.pollensWithConcentration
 import org.breezyweather.ui.main.MainActivity
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
 class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
@@ -65,7 +65,7 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     ) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
-        val color = MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+        val color = ThemeManager.getColor(context, R.attr.colorTitleText)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             titleView.isAccessibilityHeading = true
         }
@@ -92,9 +92,9 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 pollen1Container.visibility = View.VISIBLE
                 pollen1Icon.setColorFilter(pollen.getColor(context, p, pollenIndexSource))
                 pollen1Title.text = pollen.getName(context, p)
-                pollen1Title.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
+                pollen1Title.setTextColor(ThemeManager.getColor(context, R.attr.colorTitleText))
                 pollen1Content.text = pollen.getIndexName(context, p, pollenIndexSource)
-                pollen1Content.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+                pollen1Content.setTextColor(ThemeManager.getColor(context, R.attr.colorBodyText))
 
                 talkBackBuilder.append(context.getString(R.string.colon_separator))
                 talkBackBuilder.append(pollen1Title.text)
@@ -108,9 +108,9 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 pollen2Container.visibility = View.VISIBLE
                 pollen2Icon.setColorFilter(pollen.getColor(context, p, pollenIndexSource))
                 pollen2Title.text = pollen.getName(context, p)
-                pollen2Title.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
+                pollen2Title.setTextColor(ThemeManager.getColor(context, R.attr.colorTitleText))
                 pollen2Content.text = pollen.getIndexName(context, p, pollenIndexSource)
-                pollen2Content.setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+                pollen2Content.setTextColor(ThemeManager.getColor(context, R.attr.colorBodyText))
 
                 talkBackBuilder.append(context.getString(R.string.comma_separator))
                 talkBackBuilder.append(pollen2Title.text)

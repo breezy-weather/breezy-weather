@@ -45,8 +45,8 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.BreezyViewModel
+import org.breezyweather.common.basic.GlobalActivity
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.workManager
@@ -66,7 +66,7 @@ import javax.inject.Inject
  *
  * https://github.com/mihonapp/mihon/blob/5aec8f8018236a38106483da08f9cbc28261ac9b/app/src/main/java/eu/kanade/presentation/more/settings/screen/debug/WorkerInfoScreen.kt
  */
-class WorkerInfoActivity : BreezyActivity() {
+class WorkerInfoActivity : GlobalActivity() {
     private lateinit var viewModel: WorkerInfoViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {

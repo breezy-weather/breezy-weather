@@ -16,7 +16,6 @@
 
 package org.breezyweather.ui.alert
 
-import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -53,7 +52,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.breezyweather.R
 import org.breezyweather.common.extensions.plus
-import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.domain.weather.model.getFormattedDates
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
@@ -62,7 +60,6 @@ import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.ui.common.widgets.getCardListItemMarginDp
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.ui.common.widgets.insets.bottomInsetItem
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 
 @Composable
@@ -74,11 +71,9 @@ internal fun AlertScreen(
 
     val listState = rememberLazyListState()
     val context = LocalContext.current
-    val activity = LocalActivity.current
 
     val scrollBehavior = generateCollapsedScrollBehavior()
 
-    val isLightTheme = MainThemeColorProvider.isLightTheme(context, alertUiState.location)
     LaunchedEffect(alertUiState.location) {
         alertUiState.location?.weather?.alertList?.let { alerts ->
             if (alerts.isNotEmpty()) {
@@ -94,18 +89,9 @@ internal fun AlertScreen(
                 }
             }
         }
-
-        // re-setting the status bar color once the location is fetched
-        if (alertUiState.location != null && activity != null) {
-            activity.window.setSystemBarStyle(
-                statusShader = false,
-                lightStatus = isLightTheme,
-                lightNavigation = isLightTheme
-            )
-        }
     }
 
-    BreezyWeatherTheme(!isLightTheme) {
+    BreezyWeatherTheme {
         Material3Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {

@@ -70,7 +70,6 @@ import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getMinutelyDescription
 import org.breezyweather.domain.weather.model.getMinutelyTitle
 import org.breezyweather.ui.common.charts.SpecificHorizontalAxisItemPlacer
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherView
@@ -98,7 +97,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
     ) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
-        val color = MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+        val color = ThemeManager.getColor(context, R.attr.colorTitleText)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             titleView.isAccessibilityHeading = true
         }
@@ -159,10 +158,10 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
 
         val isTrendHorizontalLinesEnabled = SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
         val lineColor =
-            Color(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
+            Color(ThemeManager.getColor(context, com.google.android.material.R.attr.colorOutline))
         val labelColor = ContextCompat.getColor(
             context,
-            if (MainThemeColorProvider.isLightTheme(context, location)) {
+            if (ThemeManager.isLightTheme(context, location)) {
                 R.color.colorTextGrey
             } else {
                 R.color.colorTextGrey2nd
@@ -176,9 +175,9 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
         )
         val marker = DefaultCartesianMarker(
             label = TextComponent(
-                color = MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnPrimary),
+                color = ThemeManager.getColor(context, com.google.android.material.R.attr.colorOnPrimary),
                 background = ShapeComponent(
-                    fill = Fill(MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary)),
+                    fill = Fill(ThemeManager.getColor(context, androidx.appcompat.R.attr.colorPrimary)),
                     CorneredShape.Pill,
                     shadow = Shadow(
                         radiusDp = LABEL_BACKGROUND_SHADOW_RADIUS_DP,

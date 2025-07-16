@@ -74,7 +74,6 @@ import org.breezyweather.ui.settings.preference.listPreferenceItem
 import org.breezyweather.ui.settings.preference.sectionFooterItem
 import org.breezyweather.ui.settings.preference.sectionHeaderItem
 import org.breezyweather.ui.settings.preference.smallSeparatorItem
-import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
@@ -140,31 +139,16 @@ fun AppearanceSettingsScreen(
                     card = true,
                     isFirst = true,
                     onValueChanged = {
-                        SettingsManager
-                            .getInstance(context)
-                            .darkMode = DarkMode.getInstance(it)
+                        val darkMode = DarkMode.getInstance(it)
+                        SettingsManager.getInstance(context).darkMode = darkMode
 
                         AsyncHelper.delayRunOnUI({
-                            ThemeManager
-                                .getInstance(context)
-                                .update(darkMode = SettingsManager.getInstance(context).darkMode)
+                            BreezyWeather.instance.updateDayNightMode(darkMode.value)
                         }, 300)
                     }
                 )
             }
             smallSeparatorItem()
-            /*switchPreferenceItem(R.string.settings_appearance_dark_mode_locations_title) { id ->
-                SwitchPreferenceView(
-                    titleId = id,
-                    summaryOnId = R.string.settings_enabled,
-                    summaryOffId = R.string.settings_disabled,
-                    checked = SettingsManager.getInstance(context).dayNightModeForLocations,
-                    onValueChanged = {
-                        SettingsManager.getInstance(context).dayNightModeForLocations = it
-                    }
-                )
-            }
-            smallSeparatorItem()*/
             clickablePreferenceItem(
                 R.string.settings_appearance_icon_pack_title
             ) {

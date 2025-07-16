@@ -62,16 +62,13 @@ import org.breezyweather.common.extensions.splitKeeping
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.source.resourceName
 import org.breezyweather.ui.common.composables.AlertDialogLink
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.main.MainActivity
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
-import org.breezyweather.ui.theme.weatherView.WeatherViewController
 
 class FooterViewHolder(
     private val composeView: ComposeView,
@@ -89,7 +86,7 @@ class FooterViewHolder(
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
         composeView.setContent {
-            BreezyWeatherTheme(!MainThemeColorProvider.isLightTheme(context, location)) {
+            BreezyWeatherTheme {
                 ComposeView(location)
             }
         }
@@ -154,13 +151,7 @@ class FooterViewHolder(
                         withLink(moreClickableLinkAnnotation) { append(stringResource(R.string.action_more)) }
                     } ?: withLink(moreClickableLinkAnnotation) { append(stringResource(R.string.data_sources)) }
                 },
-                color = Color(
-                    delegate.getOnBackgroundColor(
-                        context,
-                        WeatherViewController.getWeatherKind(location),
-                        WeatherViewController.isDaylight(location)
-                    )
-                ),
+                color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold
             )
@@ -221,9 +212,7 @@ class FooterViewHolder(
                                         containerColor = AlertDialogDefaults.containerColor
                                     ),
                                     leadingContent = if (source is WeatherSource) {
-                                        source.getAttributionIcon(
-                                            !MainThemeColorProvider.isLightTheme(context, location)
-                                        )?.let {
+                                        source.getAttributionIcon()?.let {
                                             {
                                                 Icon(
                                                     painterResource(it),

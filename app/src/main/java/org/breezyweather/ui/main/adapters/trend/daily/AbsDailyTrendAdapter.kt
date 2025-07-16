@@ -32,7 +32,7 @@ import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerViewAdapter
 import org.breezyweather.ui.common.widgets.trend.item.DailyTrendItemView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import java.util.Date
 
 abstract class AbsDailyTrendAdapter(
@@ -75,12 +75,12 @@ abstract class AbsDailyTrendAdapter(
             dailyItem.setDateText(daily.date.getFormattedShortDayAndMonth(location, context))
             val useAccentColorForDate = daily.isToday(location) || daily.date > Date()
             dailyItem.setTextColor(
-                MainThemeColorProvider.getColor(
-                    location,
+                ThemeManager.getColor(
+                    context,
                     if (useAccentColorForDate) R.attr.colorTitleText else R.attr.colorBodyText
                 ),
-                MainThemeColorProvider.getColor(
-                    location,
+                ThemeManager.getColor(
+                    context,
                     if (useAccentColorForDate) R.attr.colorBodyText else R.attr.colorCaptionText
                 )
             )

@@ -27,13 +27,13 @@ import androidx.compose.ui.res.stringResource
 import com.mikepenz.aboutlibraries.ui.compose.android.rememberLibraries
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.GlobalActivity
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 
-class DependenciesActivity : BreezyActivity() {
+class DependenciesActivity : GlobalActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

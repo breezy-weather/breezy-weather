@@ -33,10 +33,10 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.common.widgets.astro.MoonPhaseView
 import org.breezyweather.ui.common.widgets.astro.SunMoonView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
@@ -85,7 +85,7 @@ abstract class AstroViewHolder(parent: ViewGroup, val isSun: Boolean) : Abstract
                 isSun
             )
 
-        val color = MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+        val color = ThemeManager.getColor(context, R.attr.colorTitleText)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             titleView.isAccessibilityHeading = true
         }
@@ -108,19 +108,19 @@ abstract class AstroViewHolder(parent: ViewGroup, val isSun: Boolean) : Abstract
         mSunMoonView.setDrawable(
             if (isSun) ResourceHelper.getSunDrawable(provider) else ResourceHelper.getMoonDrawable(provider)
         )
-        if (MainThemeColorProvider.isLightTheme(context, location)) {
-            mSunMoonView.setColors(
-                themeColors[0],
-                ColorUtils.setAlphaComponent(themeColors[1], (0.66 * 255).toInt()),
-                MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground),
-                true
-            )
-        } else {
+        if (context.isDarkMode) {
             mSunMoonView.setColors(
                 themeColors[2],
                 ColorUtils.setAlphaComponent(themeColors[2], (0.5 * 255).toInt()),
-                MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground),
+                ThemeManager.getColor(context, R.attr.colorMainCardBackground),
                 false
+            )
+        } else {
+            mSunMoonView.setColors(
+                themeColors[0],
+                ColorUtils.setAlphaComponent(themeColors[1], (0.66 * 255).toInt()),
+                ThemeManager.getColor(context, R.attr.colorMainCardBackground),
+                true
             )
         }
         if (itemAnimationEnabled) {

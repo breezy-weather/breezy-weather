@@ -53,13 +53,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.toSize
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.GlobalActivity
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 
-class LiveWallpaperConfigActivity : BreezyActivity() {
+class LiveWallpaperConfigActivity : GlobalActivity() {
 
     private lateinit var weatherKindValueNow: MutableState<String>
     private lateinit var weatherKinds: Array<String>

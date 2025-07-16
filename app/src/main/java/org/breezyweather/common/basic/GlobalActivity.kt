@@ -14,13 +14,12 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.ui.main.fragments
+package org.breezyweather.common.basic
 
-import org.breezyweather.common.basic.BreezyFragment
+abstract class GlobalActivity : BreezyActivity() {
 
-class ModifyMainSystemBarMessage
-
-abstract class MainModuleFragment : BreezyFragment() {
-
-    abstract fun setSystemBarStyle()
+    override fun onResume() {
+        super.onResume()
+        checkToUpdateDarkMode()
+    }
 }

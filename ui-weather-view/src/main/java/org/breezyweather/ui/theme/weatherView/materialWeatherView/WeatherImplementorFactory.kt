@@ -159,68 +159,16 @@ object WeatherImplementorFactory {
         } else {
             R.drawable.weather_background_clear_night
         }
-
-        WeatherView.WEATHER_KIND_CLOUD -> if (daylight) {
-            R.drawable.weather_background_partly_cloudy_day
-        } else {
-            R.drawable.weather_background_partly_cloudy_night
-        }
-
-        WeatherView.WEATHER_KIND_CLOUDY -> if (daylight) {
-            R.drawable.weather_background_cloudy_day
-        } else {
-            R.drawable.weather_background_cloudy_night
-        }
-
-        WeatherView.WEATHER_KIND_FOG -> if (daylight) {
-            R.drawable.weather_background_fog_day
-        } else {
-            R.drawable.weather_background_fog_night
-        }
-
-        WeatherView.WEATHER_KIND_HAIL -> if (daylight) {
-            R.drawable.weather_background_hail_day
-        } else {
-            R.drawable.weather_background_hail_night
-        }
-
-        WeatherView.WEATHER_KIND_HAZE -> if (daylight) {
-            R.drawable.weather_background_haze_day
-        } else {
-            R.drawable.weather_background_haze_night
-        }
-
-        WeatherView.WEATHER_KIND_RAINY -> if (daylight) {
-            R.drawable.weather_background_rain_day
-        } else {
-            R.drawable.weather_background_rain_night
-        }
-
-        WeatherView.WEATHER_KIND_SLEET -> if (daylight) {
-            R.drawable.weather_background_sleet_day
-        } else {
-            R.drawable.weather_background_sleet_night
-        }
-
-        WeatherView.WEATHER_KIND_SNOW -> if (daylight) {
-            R.drawable.weather_background_snow_day
-        } else {
-            R.drawable.weather_background_snow_night
-        }
-
-        WeatherView.WEATHER_KIND_THUNDER, WeatherView.WEATHER_KIND_THUNDERSTORM -> if (daylight) {
-            R.drawable.weather_background_thunder_day
-        } else {
-            R.drawable.weather_background_thunder_night
-        }
-
-        WeatherView.WEATHER_KIND_WIND -> if (daylight) {
-            R.drawable.weather_background_wind_day
-        } else {
-            R.drawable.weather_background_wind_night
-        }
-
-        else ->
-            R.drawable.weather_background_default
+        WeatherView.WEATHER_KIND_CLOUD -> R.drawable.weather_background_partly_cloudy
+        WeatherView.WEATHER_KIND_CLOUDY -> R.drawable.weather_background_cloudy
+        WeatherView.WEATHER_KIND_FOG -> R.drawable.weather_background_fog
+        WeatherView.WEATHER_KIND_HAIL -> R.drawable.weather_background_hail
+        WeatherView.WEATHER_KIND_HAZE -> R.drawable.weather_background_haze
+        WeatherView.WEATHER_KIND_RAINY -> R.drawable.weather_background_rain
+        WeatherView.WEATHER_KIND_SLEET -> R.drawable.weather_background_sleet
+        WeatherView.WEATHER_KIND_SNOW -> R.drawable.weather_background_snow
+        WeatherView.WEATHER_KIND_THUNDER, WeatherView.WEATHER_KIND_THUNDERSTORM -> R.drawable.weather_background_thunder
+        WeatherView.WEATHER_KIND_WIND -> R.drawable.weather_background_wind
+        else -> R.drawable.weather_background_default
     }
 }

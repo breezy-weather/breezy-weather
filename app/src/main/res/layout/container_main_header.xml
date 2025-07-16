@@ -21,8 +21,8 @@
         android:layout_marginTop="-8dp"
         android:textFontWeight="300"
         android:textAppearance="?attr/textAppearanceTitleLarge"
+        android:textColor="?attr/colorSurfaceInverse"
         tools:text="Sunny"
-        tools:textColor="@android:color/white"
         tools:ignore="RelativeOverlap,RtlHardcoded" />
 
     <RelativeLayout
@@ -42,6 +42,7 @@
             android:textFontWeight="700"
             android:layout_centerHorizontal="true"
             android:importantForAccessibility="no"
+            android:textColor="?attr/colorSurfaceInverse"
             style="@style/large_title_text"
             tools:text="11"
             tools:ignore="RelativeOverlap,RtlSymmetry" />
@@ -56,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/container_main_header_temperature_value"
             android:importantForAccessibility="no"
+            android:textColor="?attr/colorSurfaceInverse"
             style="@style/large_title_text"
             tools:text="°C" />
     </RelativeLayout>
@@ -72,8 +74,8 @@
         android:layout_marginTop="-10dp"
         android:layout_marginBottom="18dp"
         android:textAppearance="?attr/textAppearanceTitleLarge"
+        android:textColor="?attr/colorSurfaceInverse"
         tools:text="Feels like 18°"
-        tools:textColor="@android:color/white"
         tools:ignore="RelativeOverlap,RtlHardcoded" />
 
     <TextView
@@ -87,8 +89,8 @@
         android:textFontWeight="300"
         android:layout_marginTop="-10dp"
         android:textAppearance="?attr/textAppearanceTitleMedium"
+        android:textColor="?attr/colorSurfaceInverse"
         tools:text="Day: 30° • Night: 14°"
-        tools:textColor="@android:color/white"
         tools:ignore="RelativeOverlap,RtlHardcoded" />
 
 </LinearLayout>

@@ -92,9 +92,8 @@ import kotlinx.coroutines.launch
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.common.extensions.isDarkMode
+import org.breezyweather.common.basic.BreezyFragment
 import org.breezyweather.common.extensions.plus
-import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.source.LocationPreset
 import org.breezyweather.common.source.getName
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -122,22 +121,11 @@ import org.breezyweather.ui.theme.compose.themeRipple
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
-class PushedManagementFragment : ManagementFragment() {
+class ManagementFragment : BreezyFragment(), TouchReactor {
 
     companion object {
-        fun getInstance() = PushedManagementFragment()
+        fun getInstance() = ManagementFragment()
     }
-
-    override fun setSystemBarStyle() {
-        requireActivity().window.setSystemBarStyle(
-            statusShader = false,
-            lightStatus = !requireActivity().isDarkMode,
-            lightNavigation = !requireActivity().isDarkMode
-        )
-    }
-}
-
-open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
     protected lateinit var viewModel: MainActivityViewModel
 
@@ -492,10 +480,6 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             adapterAnimWrapper.setLastPosition(-1)
         }
         return super.onCreateAnimation(transit, enter, nextAnim)
-    }
-
-    override fun setSystemBarStyle() {
-        // do nothing.
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {

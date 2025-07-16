@@ -16,8 +16,10 @@
             android:id="@+id/daily_block_title_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:importantForAccessibility="no"
             android:layout_marginStart="@dimen/large_margin"
+            android:importantForAccessibility="no"
+            android:backgroundTint="?attr/colorSurfaceInverse"
+            android:src="@drawable/ic_calendar"
             app:layout_constraintBottom_toBottomOf="@+id/daily_block_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/daily_block_title" />
@@ -25,11 +27,12 @@
         <TextView
             android:id="@+id/daily_block_title"
             android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="?attr/colorSurfaceInverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/large_margin"
-            android:text="@string/daily_forecast"
             android:layout_marginStart="8dp"
+            android:text="@string/daily_forecast"
             app:layout_constraintStart_toEndOf="@+id/daily_block_title_icon"
             app:layout_constraintTop_toTopOf="parent" />
 

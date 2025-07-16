@@ -17,7 +17,6 @@
 package org.breezyweather.ui.theme.weatherView.materialWeatherView
 
 import android.content.Context
-import android.content.res.Configuration
 import android.graphics.Color
 import androidx.core.graphics.ColorUtils
 import org.breezyweather.ui.theme.weatherView.WeatherThemeDelegate
@@ -86,29 +85,11 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
         )
     }
 
-    override fun isLightBackground(
-        context: Context,
-        weatherKind: Int,
-        daylight: Boolean,
-    ): Boolean {
-        return daylight &&
-            (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) !=
-            Configuration.UI_MODE_NIGHT_YES
-    }
-
     override fun getBackgroundColor(
         context: Context,
         weatherKind: Int,
         daylight: Boolean,
     ): Int {
         return innerGetBackgroundColor(weatherKind, daylight)
-    }
-
-    override fun getOnBackgroundColor(
-        context: Context,
-        weatherKind: Int,
-        daylight: Boolean,
-    ): Int {
-        return if (isLightBackground(context, weatherKind, daylight)) Color.BLACK else Color.WHITE
     }
 }

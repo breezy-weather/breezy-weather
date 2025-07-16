@@ -26,7 +26,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.GlobalActivity
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.ui.common.widgets.Material3Scaffold
@@ -41,7 +41,7 @@ import java.text.Collator
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PrivacyPolicyActivity : BreezyActivity() {
+class PrivacyPolicyActivity : GlobalActivity() {
 
     @Inject lateinit var sourceManager: SourceManager
 

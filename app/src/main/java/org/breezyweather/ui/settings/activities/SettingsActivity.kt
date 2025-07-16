@@ -37,7 +37,7 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
-import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.GlobalActivity
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -63,7 +63,7 @@ import javax.inject.Inject
 private const val PERMISSION_CODE_POST_NOTIFICATION = 0
 
 @AndroidEntryPoint
-class SettingsActivity : BreezyActivity() {
+class SettingsActivity : GlobalActivity() {
 
     @Inject lateinit var sourceManager: SourceManager
 

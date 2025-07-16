@@ -16,23 +16,20 @@
 
 package org.breezyweather.ui.theme
 
-import android.annotation.SuppressLint
+import android.app.UiModeManager
 import android.content.Context
-import android.content.res.Configuration
-import android.graphics.Color
 import android.util.TypedValue
 import androidx.annotation.AttrRes
-import androidx.appcompat.app.AppCompatDelegate
-import org.breezyweather.R
-import org.breezyweather.common.basic.livedata.EqualtableLiveData
+import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.DarkMode
+import org.breezyweather.common.extensions.uiModeManager
+import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.theme.weatherView.WeatherThemeDelegate
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.MaterialWeatherThemeDelegate
 
 class ThemeManager private constructor(
     val weatherThemeDelegate: WeatherThemeDelegate,
-    var darkMode: DarkMode,
 ) {
 
     companion object {
@@ -40,13 +37,15 @@ class ThemeManager private constructor(
         @Volatile
         private var instance: ThemeManager? = null
 
+        /**
+         * Can be used in the future to support different themes
+         */
         fun getInstance(context: Context): ThemeManager {
             if (instance == null) {
                 synchronized(ThemeManager::class) {
                     if (instance == null) {
                         instance = ThemeManager(
-                            weatherThemeDelegate = MaterialWeatherThemeDelegate(),
-                            darkMode = SettingsManager.getInstance(context).darkMode
+                            weatherThemeDelegate = MaterialWeatherThemeDelegate()
                         )
                     }
                 }
@@ -54,59 +53,32 @@ class ThemeManager private constructor(
             return instance!!
         }
 
-        private fun generateGlobalUIMode(
-            darkMode: DarkMode,
-        ): Int = when (darkMode) {
-            DarkMode.LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
-            DarkMode.DARK -> AppCompatDelegate.MODE_NIGHT_YES
-            else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-        }
-    }
-
-    val uiMode: EqualtableLiveData<Int> = EqualtableLiveData(
-        generateGlobalUIMode(darkMode = darkMode)
-    )
-    private val typedValue = TypedValue()
-
-    fun update(darkMode: DarkMode) {
-        this.darkMode = darkMode
-
-        uiMode.setValue(
-            generateGlobalUIMode(
-                darkMode = this.darkMode
-            )
+        fun isLightTheme(
+            context: Context,
+            location: Location?,
+        ) = isLightTheme(
+            context = context,
+            daylight = location?.isDaylight
         )
-    }
 
-    fun getThemeColor(context: Context, @AttrRes id: Int): Int {
-        context.theme.resolveAttribute(id, typedValue, true)
-        return typedValue.data
-    }
-
-    @SuppressLint("ResourceType")
-    fun getThemeColors(context: Context, @AttrRes ids: IntArray): IntArray {
-        val a = context.theme.obtainStyledAttributes(ids)
-        val colors = ids.mapIndexed { index, _ ->
-            a.getColor(index, Color.TRANSPARENT)
+        /**
+         * - “Always light”: will use light theme, unless it’s nighttime in the location
+         * - “Always dark”: will always use dark mode
+         * - “Follow system”: will follow system, unless it’s light and nighttime in the location
+         */
+        fun isLightTheme(
+            context: Context,
+            daylight: Boolean? = null,
+        ): Boolean = when (SettingsManager.getInstance(context).darkMode) {
+            DarkMode.LIGHT -> daylight != false
+            DarkMode.DARK -> false
+            else -> context.uiModeManager?.nightMode != UiModeManager.MODE_NIGHT_YES && daylight != false
         }
-        a.recycle()
 
-        return colors.toIntArray()
-    }
-
-    fun generateThemeContext(
-        context: Context,
-        lightTheme: Boolean,
-    ): Context = context.createConfigurationContext(
-        Configuration(context.resources.configuration).apply {
-            uiMode = uiMode and Configuration.UI_MODE_NIGHT_MASK.inv()
-            uiMode = uiMode or if (lightTheme) {
-                Configuration.UI_MODE_NIGHT_NO
-            } else {
-                Configuration.UI_MODE_NIGHT_YES
-            }
+        fun getColor(context: Context, @AttrRes id: Int): Int {
+            val typedValue = TypedValue()
+            context.theme.resolveAttribute(id, typedValue, true)
+            return typedValue.data
         }
-    ).apply {
-        setTheme(R.style.BreezyWeatherTheme)
     }
 }

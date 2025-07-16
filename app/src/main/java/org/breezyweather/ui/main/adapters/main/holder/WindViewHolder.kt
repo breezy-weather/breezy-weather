@@ -32,14 +32,12 @@ import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getDirection
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
 class WindViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_wind, parent, false)
 ) {
     private val titleView: TextView = itemView.findViewById(R.id.title)
-    private val titleIconView: ImageView = itemView.findViewById(R.id.title_icon)
     private val windDirectionView: ImageView = itemView.findViewById(R.id.wind_direction)
     private val windSpeedValueView: TextView = itemView.findViewById(R.id.wind_speed_value)
     private val windDetailView: TextView = itemView.findViewById(R.id.visibility_description)
@@ -53,14 +51,10 @@ class WindViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     ) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
-        val color = MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             titleView.isAccessibilityHeading = true
         }
         titleView.setText(R.string.wind)
-        titleView.setTextColor(color)
-        titleIconView.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.ic_wind))
-        titleIconView.setColorFilter(color)
 
         val talkBackBuilder = StringBuilder(titleView.text)
 

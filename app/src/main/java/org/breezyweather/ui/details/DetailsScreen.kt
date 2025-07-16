@@ -17,7 +17,6 @@
 package org.breezyweather.ui.details
 
 import androidx.activity.compose.BackHandler
-import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -45,7 +44,6 @@ import androidx.compose.material3.ToggleFloatingActionButton
 import androidx.compose.material3.ToggleFloatingActionButtonDefaults.animateIcon
 import androidx.compose.material3.animateFloatingActionButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -100,7 +98,6 @@ import org.breezyweather.ui.details.components.DetailsSunMoon
 import org.breezyweather.ui.details.components.DetailsUV
 import org.breezyweather.ui.details.components.DetailsVisibility
 import org.breezyweather.ui.details.components.DetailsWind
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import java.util.Calendar
 import java.util.Date
@@ -113,21 +110,8 @@ internal fun DailyWeatherScreen(
     val detailsUiState by detailsViewModel.uiState.collectAsState()
 
     val context = LocalContext.current
-    val activity = LocalActivity.current
 
-    val isLightTheme = MainThemeColorProvider.isLightTheme(context, detailsUiState.location)
-    LaunchedEffect(detailsUiState.location) {
-        // re-setting the status bar color once the location is fetched
-        if (detailsUiState.location != null && activity != null) {
-            activity.window.setSystemBarStyle(
-                statusShader = false,
-                lightStatus = isLightTheme,
-                lightNavigation = isLightTheme
-            )
-        }
-    }
-
-    BreezyWeatherTheme(!isLightTheme) {
+    BreezyWeatherTheme {
         Material3Scaffold(
             topBar = {
                 BWCenterAlignedTopAppBar(

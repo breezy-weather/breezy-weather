@@ -44,10 +44,8 @@ class FitSystemBarAppBarLayout @JvmOverloads constructor(
         setBackgroundColor(
             ColorUtils.getWidgetSurfaceColor(
                 6f,
-                ThemeManager.getInstance(context)
-                    .getThemeColor(context, androidx.appcompat.R.attr.colorPrimary),
-                ThemeManager.getInstance(context)
-                    .getThemeColor(context, com.google.android.material.R.attr.colorSurface)
+                ThemeManager.getColor(context, androidx.appcompat.R.attr.colorPrimary),
+                ThemeManager.getColor(context, com.google.android.material.R.attr.colorSurface)
             )
         )
     }

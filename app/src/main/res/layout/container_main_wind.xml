@@ -59,11 +59,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:gravity="start"
                 android:id="@+id/title_icon"
+                android:gravity="start"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:importantForAccessibility="no"
+                android:backgroundTint="?attr/colorSurfaceInverse"
+                android:src="@drawable/ic_wind"
                 app:layout_constraintBottom_toBottomOf="@+id/title"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toStartOf="@+id/title"
@@ -74,13 +76,15 @@
             <TextView
                 android:id="@+id/title"
                 android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorSurfaceInverse"
                 android:textSize="@dimen/title_text_size"
                 android:textStyle="bold"
                 android:ellipsize="end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
                 android:layout_marginStart="4dp"
+                android:maxLines="1"
+                android:text="@string/wind"
                 app:layout_constraintEnd_toEndOf="@+id/display_area_end_guideline"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@+id/title_icon"

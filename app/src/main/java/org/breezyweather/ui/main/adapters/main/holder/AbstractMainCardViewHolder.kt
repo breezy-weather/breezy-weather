@@ -26,7 +26,6 @@ import com.google.android.material.card.MaterialCardView
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.dpToPx
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
 @SuppressLint("ObjectAnimatorBinding")
@@ -48,7 +47,6 @@ abstract class AbstractMainCardViewHolder(
         if (itemView is MaterialCardView) {
             (itemView as MaterialCardView).apply {
                 elevation = context.dpToPx(2f)
-                setCardBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground))
             }
         }
         val params = itemView.layoutParams as MarginLayoutParams

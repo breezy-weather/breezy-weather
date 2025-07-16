@@ -30,7 +30,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
-import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.GlobalActivity
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.utils.ColorUtils
@@ -43,7 +43,7 @@ import org.breezyweather.ui.common.widgets.slidingItem.SlidingItemTouchCallback
 import org.breezyweather.ui.settings.adapters.HourlyTrendDisplayAdapter
 import org.breezyweather.ui.theme.ThemeManager
 
-class HourlyTrendDisplayManageActivity : BreezyActivity() {
+class HourlyTrendDisplayManageActivity : GlobalActivity() {
     private lateinit var mBinding: ActivityHourlyTrendDisplayManageBinding
     private lateinit var mHourlyTrendDisplayAdapter: HourlyTrendDisplayAdapter
     private var mHourlyTrendDisplayItemTouchHelper: ItemTouchHelper? = null
@@ -105,8 +105,8 @@ class HourlyTrendDisplayManageActivity : BreezyActivity() {
         mBinding.toolbar.setBackgroundColor(
             ColorUtils.getWidgetSurfaceColor(
                 6f,
-                ThemeManager.getInstance(this).getThemeColor(this, androidx.appcompat.R.attr.colorPrimary),
-                ThemeManager.getInstance(this).getThemeColor(this, com.google.android.material.R.attr.colorSurface)
+                ThemeManager.getColor(this, androidx.appcompat.R.attr.colorPrimary),
+                ThemeManager.getColor(this, com.google.android.material.R.attr.colorSurface)
             )
         )
         mBinding.toolbar.setNavigationOnClickListener { finish() }
@@ -132,7 +132,7 @@ class HourlyTrendDisplayManageActivity : BreezyActivity() {
         mBinding.recyclerView.addItemDecoration(
             ListDecoration(
                 this,
-                ThemeManager.getInstance(this).getThemeColor(this, com.google.android.material.R.attr.colorOutline)
+                ThemeManager.getColor(this, com.google.android.material.R.attr.colorOutline)
             )
         )
         mBinding.recyclerView.adapter = mHourlyTrendDisplayAdapter

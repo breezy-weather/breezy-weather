@@ -19,11 +19,11 @@ package org.breezyweather.ui.about
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import dagger.hilt.android.AndroidEntryPoint
-import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.GlobalActivity
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 
 @AndroidEntryPoint
-class AboutActivity : BreezyActivity() {
+class AboutActivity : GlobalActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
