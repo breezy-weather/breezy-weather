@@ -70,6 +70,7 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.semantics.traversalIndex
 import androidx.lifecycle.viewmodel.compose.viewModel
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Astro
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
@@ -357,13 +358,18 @@ fun DailyPagerContent(
     val daily = remember(selected) {
         location.weather!!.dailyForecast[selected]
     }
-    val yesterday = remember(selected) {
-        if (selected > 0) {
-            location.weather!!.dailyForecast[selected - 1]
-        } else {
-            null
+    val sunTimes = mutableListOf<Astro>()
+    val moonTimes = mutableListOf<Astro>()
+
+    location.weather!!.dailyForecast.forEach {
+        if (it.sun != null) {
+            sunTimes.add(it.sun!!)
+        }
+        if (it.moon != null) {
+            moonTimes.add(it.moon!!)
         }
     }
+
     val hourlyList = remember(selected) {
         val startingDate = daily.date.toTimezoneSpecificHour(location.javaTimeZone, 0)
         val endingDate = daily.date.toCalendarWithTimeZone(location.javaTimeZone).apply {
@@ -408,7 +414,7 @@ fun DailyPagerContent(
             DetailScreen.TAG_PRESSURE -> DetailsPressure(location, hourlyList, daily.date)
             DetailScreen.TAG_CLOUD_COVER -> DetailsCloudCover(location, hourlyList, daily)
             DetailScreen.TAG_VISIBILITY -> DetailsVisibility(location, hourlyList, daily.date)
-            DetailScreen.TAG_SUN_MOON -> DetailsSunMoon(location, daily, yesterday)
+            DetailScreen.TAG_SUN_MOON -> DetailsSunMoon(location, daily, sunTimes, moonTimes)
         }
     }
 }

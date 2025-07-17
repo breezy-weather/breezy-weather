@@ -56,6 +56,7 @@ import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.windowHeightInDp
 import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import java.util.Date
+import kotlin.math.PI
 import kotlin.math.max
 import kotlin.math.roundToInt
 
@@ -124,7 +125,9 @@ fun EphemerisChart(
                                 ),
                                 context.isRtl
                             ),
-                            pointConnector = LineCartesianLayer.PointConnector.cubic(curvature = 0.3f)
+                            pointConnector = LineCartesianLayer.PointConnector.cubic(
+                                curvature = ((PI - 2.0) / PI).toFloat()
+                            )
                         )
                     }
                 ),
