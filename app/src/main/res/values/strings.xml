@@ -11,15 +11,22 @@
     <!-- Nowcasting is a FORECAST of the next 2-3 hours, also called "immediate forecast" -->
     <string name="precipitation_nowcasting">Precipitation nowcasting</string>
     <string name="air_quality">Air quality</string>
+    <!-- About 12 characters max -->
+    <string name="air_quality_short">Air quality</string>
     <!-- We use it singular in English as in “Grass pollen” -->
     <string name="pollen">Pollen</string>
     <string name="pollen_and_mold">Pollen &amp; mold</string>
     <string name="ephemeris">Sun &amp; moon</string>
+    <string name="ephemeris_sun">Sun</string>
+    <string name="ephemeris_moon">Moon</string>
     <string name="ephemeris_about">About rise and set times</string>
     <string name="ephemeris_about_rise">The rise time is when the sun or moon fully appears above the horizon.</string>
     <string name="ephemeris_about_set">The set time is when the sun or moon completely disappears below the horizon.</string>
     <string name="ephemeris_about_dawn">The dawn is when the first visible light of the day appears before sunrise.</string>
     <string name="ephemeris_about_dusk">The dusk is the darkest stage of twilight before the last visible light disappears.</string>
+    <string name="ephemeris_polar_day">Polar day</string>
+    <string name="ephemeris_polar_night">Polar night</string>
+    <string name="clock">Clock</string>
     <string name="details">Details</string>
     <!-- Alerts -->
     <string name="alert">Alert</string>
@@ -67,12 +74,24 @@
     <string name="temperature_normals">Temperature normals</string>
     <!-- Precipitation -->
     <string name="precipitation">Precipitation</string>
+    <!-- Translate while taking into account it is a text spread on 2-3 lines of about 12 characters each -->
+    <string name="precipitation_total_day">Precipitation for the daytime</string>
+    <!-- Translate while taking into account it is a text spread on 2-3 lines of about 12 characters each -->
+    <string name="precipitation_total_night">Precipitation for the nighttime</string>
     <string name="precipitation_probability">Precipitation probability</string>
     <string name="precipitation_duration">Precipitation duration</string>
     <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Thunderstorm</string>
     <string name="precipitation_rain">Rain</string>
+    <!-- Translate while taking into account it is a text spread on 2-3 lines of about 12 characters each -->
+    <string name="precipitation_rain_total_day">Rain for the daytime</string>
+    <!-- Translate while taking into account it is a text spread on 2-3 lines of about 12 characters each -->
+    <string name="precipitation_rain_total_night">Rain for the nighttime</string>
     <string name="precipitation_snow">Snow</string>
+    <!-- Translate while taking into account it is a text spread on 2-3 lines of about 12 characters each -->
+    <string name="precipitation_snow_total_day">Snow for the daytime</string>
+    <!-- Translate while taking into account it is a text spread on 2-3 lines of about 12 characters each -->
+    <string name="precipitation_snow_total_night">Snow for the nighttime</string>
     <string name="precipitation_ice">Ice</string>
     <string name="precipitation_intensity_light">Light</string>
     <string name="precipitation_intensity_medium">Medium</string>
@@ -290,7 +309,9 @@
     <string name="ephemeris_moonset_at">Moonset at %s</string>
     <!-- Other weather details vocabulary -->
     <string name="daytime">Daytime</string>
+    <string name="daytime_short">Day</string>
     <string name="nighttime">Nighttime</string>
+    <string name="nighttime_short">Night</string>
     <string name="nighttime_details">Begins in the evening and lasts until dawn next day</string>
     <string name="sunshine">Sunshine</string>
     <string name="sunshine_duration">Sunshine duration</string>
@@ -710,6 +731,8 @@
     <string name="settings_appearance_calendar_title">Alternate calendar</string>
     <string name="settings_appearance_dark_mode_title">Dark mode</string>
     <string name="settings_appearance_dark_mode_locations_title">Day / Night mode for locations</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled">Always enabled with light mode</string>
+    <string name="settings_appearance_dark_mode_locations_disabled">Disabled, but locations are always in dark mode at nighttime</string>
     <string name="settings_appearance_icon_pack_title">Icon pack</string>
     <string name="settings_icon_packs_title">Icon packs</string>
     <string name="settings_icon_packs_check_details">Check details</string>
