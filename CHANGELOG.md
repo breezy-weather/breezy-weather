@@ -1,4 +1,4 @@
-# Version 6.0.1-alpha (not yet released)
+# Version 6.0.1-alpha (2025-07-17)
 
 **New features**
 - Twilight dates (dawn and dusk)
