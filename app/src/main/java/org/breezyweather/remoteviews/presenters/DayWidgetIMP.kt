@@ -275,24 +275,26 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         }
         if (textSize != 100) {
             val signSymbolSize = context.resources.getDimensionPixelSize(R.dimen.widget_current_weather_icon_size)
-                .toFloat() * textSize / 100f
+                .toFloat()
+                .times(textSize)
+                .div(100f)
             views.apply {
                 setTextViewTextSize(
                     R.id.widget_day_title,
                     TypedValue.COMPLEX_UNIT_PX,
-                    getTitleSize(context, viewStyle) * textSize / 100f
+                    getTitleSize(context, viewStyle).times(textSize).div(100f)
                 )
                 setTextViewTextSize(R.id.widget_day_sign, TypedValue.COMPLEX_UNIT_PX, signSymbolSize)
                 setTextViewTextSize(R.id.widget_day_symbol, TypedValue.COMPLEX_UNIT_PX, signSymbolSize)
                 setTextViewTextSize(
                     R.id.widget_day_subtitle,
                     TypedValue.COMPLEX_UNIT_PX,
-                    getSubtitleSize(context, viewStyle) * textSize / 100f
+                    getSubtitleSize(context, viewStyle).times(textSize).div(100f)
                 )
                 setTextViewTextSize(
                     R.id.widget_day_time,
                     TypedValue.COMPLEX_UNIT_PX,
-                    getTimeSize(context, viewStyle) * textSize / 100f
+                    getTimeSize(context, viewStyle).times(textSize).div(100f)
                 )
             }
         }
@@ -394,13 +396,18 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
     ): String? {
         return when (subtitleData) {
             "time" -> when (viewStyle) {
-                "rectangle" -> location.getPlace(context) + " " +
+                "rectangle" -> location.getPlace(context) +
+                    " " +
                     (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: "")
 
-                "symmetry" -> Date().getWeek(location, context) + " " +
+                "symmetry" -> Date().getWeek(location, context) +
+                    " " +
                     (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: "")
 
-                "tile", "vertical" -> location.getPlace(context) + " " + Date().getWeek(location, context) + " " +
+                "tile", "vertical" -> location.getPlace(context) +
+                    " " +
+                    Date().getWeek(location, context) +
+                    " " +
                     (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: "")
 
                 else -> null
@@ -418,19 +425,25 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
             }
             "wind" -> weather.current?.wind?.getShortDescription(context, speedUnit)
             "lunar" -> when (viewStyle) {
-                "rectangle" -> location.getPlace(context) + " " +
+                "rectangle" -> location.getPlace(context) +
+                    " " +
                     Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
 
-                "symmetry" -> Date().getWeek(location, context) + " " +
+                "symmetry" -> Date().getWeek(location, context) +
+                    " " +
                     Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
 
-                "tile", "mini", "vertical" -> location.getPlace(context) + " " + Date().getWeek(location, context) +
-                    " " + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
+                "tile", "mini", "vertical" -> location.getPlace(context) +
+                    " " +
+                    Date().getWeek(location, context) +
+                    " " +
+                    Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
 
                 else -> null
             }
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
-                context.getString(R.string.temperature_feels_like) + " " +
+                context.getString(R.string.temperature_feels_like) +
+                    " " +
                     temperatureUnit.formatMeasure(context, it, 0)
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)

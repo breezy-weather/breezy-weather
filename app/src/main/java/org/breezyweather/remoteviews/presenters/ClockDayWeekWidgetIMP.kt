@@ -261,12 +261,15 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
             }
         }
         if (textSize != 100) {
-            val clockSize = context.resources.getDimensionPixelSize(R.dimen.widget_current_weather_icon_size)
-                .toFloat() * textSize / 100f
-            val clockAASize = context.resources.getDimensionPixelSize(R.dimen.widget_aa_text_size)
-                .toFloat() * textSize / 100f
-            val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size)
-                .toFloat() * textSize / 100f
+            val clockSize = context.resources.getDimensionPixelSize(R.dimen.widget_current_weather_icon_size).toFloat()
+                .times(textSize)
+                .div(100f)
+            val clockAASize = context.resources.getDimensionPixelSize(R.dimen.widget_aa_text_size).toFloat()
+                .times(textSize)
+                .div(100f)
+            val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size).toFloat()
+                .times(textSize)
+                .div(100f)
             views.apply {
                 setTextViewTextSize(R.id.widget_clock_day_week_clock_light, TypedValue.COMPLEX_UNIT_PX, clockSize)
                 setTextViewTextSize(R.id.widget_clock_day_week_clock_normal, TypedValue.COMPLEX_UNIT_PX, clockSize)

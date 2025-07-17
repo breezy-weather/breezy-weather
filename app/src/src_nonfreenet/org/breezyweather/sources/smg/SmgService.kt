@@ -55,7 +55,8 @@ class SmgService @Inject constructor(
             "地球物理氣象局"
         } else {
             "SMG"
-        } + " (${Locale(context.currentLocale.code, "MO").displayCountry})"
+        } +
+            " (${Locale(context.currentLocale.code, "MO").displayCountry})"
     }
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl by lazy {

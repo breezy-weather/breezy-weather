@@ -362,10 +362,11 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                         .padding(
                             // Do not set a horizontal padding as this adds too much padding in
                             // landscape mode.
-                            PaddingValues(
-                                top = paddings.calculateTopPadding(),
-                                bottom = paddings.calculateBottomPadding() + dimensionResource(R.dimen.large_margin)
-                            ) + PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin))
+                            PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)) +
+                                PaddingValues(
+                                    top = paddings.calculateTopPadding(),
+                                    bottom = paddings.calculateBottomPadding() + dimensionResource(R.dimen.large_margin)
+                                )
                         ),
                     verticalAlignment = Alignment.CenterVertically
                 ) {

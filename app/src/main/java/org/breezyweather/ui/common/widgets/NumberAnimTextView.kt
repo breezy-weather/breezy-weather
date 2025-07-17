@@ -92,8 +92,7 @@ class NumberAnimTextView @JvmOverloads constructor(
             start()
         } else {
             // 数字不合法　直接调用　setText　设置最终值
-            text = prefixString + BidiFormatter.getInstance()
-                .unicodeWrap(numberEnd) + postfixString
+            text = prefixString + BidiFormatter.getInstance().unicodeWrap(numberEnd) + postfixString
         }
     }
 

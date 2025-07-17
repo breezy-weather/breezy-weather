@@ -190,8 +190,10 @@ class SwipeSwitchLayout @JvmOverloads constructor(
         val progress = abs(realDistance) / triggerDistance
         mTarget?.alpha = 1 - progress
         mTarget?.translationX = (
-            swipeDirection * translateRatio * triggerDistance
-                * log10(1 + 9.0 * abs(mSwipeDistance) / triggerDistance)
+            swipeDirection *
+                translateRatio *
+                triggerDistance *
+                log10(1 + 9.0 * abs(mSwipeDistance) / triggerDistance)
             ).toFloat()
         mSwitchListener?.onSwiped(swipeDirection, progress)
         mPageSwipeListener?.let {

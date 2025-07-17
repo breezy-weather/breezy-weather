@@ -195,8 +195,8 @@ class HomeFragment : MainModuleFragment() {
         // Align refreshTimeText with toolbar (some devices, e.g. tablets, have an additional
         // start padding).
         (binding.refreshTimeText.layoutParams as ViewGroup.MarginLayoutParams).apply {
-            marginStart = binding.toolbar.paddingStart + requireContext()
-                .resources.getDimensionPixelSize(R.dimen.normal_margin)
+            marginStart = binding.toolbar.paddingStart +
+                requireContext().resources.getDimensionPixelSize(R.dimen.normal_margin)
         }
 
         binding.switchLayout.setOnSwitchListener(switchListener)

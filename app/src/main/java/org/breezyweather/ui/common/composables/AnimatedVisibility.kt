@@ -37,14 +37,10 @@ fun AnimatedVisibilitySlideVertically(
 ) {
     AnimatedVisibility(
         visible = visible,
-        enter = fadeIn() + expandVertically(
-            expandFrom = expandFrom
-        ) + slideInVertically(),
-        exit = slideOutVertically(
-            targetOffsetY = { -it / 2 }
-        ) + shrinkVertically(
-            shrinkTowards = shrinkTowards
-        ) + fadeOut(),
+        enter = fadeIn() + expandVertically(expandFrom = expandFrom) + slideInVertically(),
+        exit = slideOutVertically(targetOffsetY = { -it / 2 }) +
+            shrinkVertically(shrinkTowards = shrinkTowards) +
+            fadeOut(),
         label = label,
         content = content
     )

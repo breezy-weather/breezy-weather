@@ -148,10 +148,12 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
             }
         }
         if (textSize != 100) {
-            val titleSize = context.resources.getDimensionPixelSize(R.dimen.widget_title_text_size)
-                .toFloat() * textSize / 100f
-            val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size)
-                .toFloat() * textSize / 100f
+            val titleSize = context.resources.getDimensionPixelSize(R.dimen.widget_title_text_size).toFloat()
+                .times(textSize)
+                .div(100f)
+            val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size).toFloat()
+                .times(textSize)
+                .div(100f)
             views.apply {
                 setTextViewTextSize(R.id.widget_multi_city_horizontal_title_1, TypedValue.COMPLEX_UNIT_PX, titleSize)
                 setTextViewTextSize(R.id.widget_multi_city_horizontal_title_2, TypedValue.COMPLEX_UNIT_PX, titleSize)

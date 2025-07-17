@@ -399,10 +399,13 @@ private fun computeWetBulbTemperature(
 ): Double? {
     if (temperature == null || relativeHumidity == null) return null
 
-    return temperature * atan(0.151977 * (relativeHumidity + 8.313659).pow(0.5)) +
+    return temperature *
+        atan(0.151977 * (relativeHumidity + 8.313659).pow(0.5)) +
         atan(temperature + relativeHumidity) -
         atan(relativeHumidity - 1.676331) +
-        0.00391838 * relativeHumidity.pow(3 / 2) * atan(0.023101 * relativeHumidity) -
+        0.00391838 *
+        relativeHumidity.pow(3 / 2) *
+        atan(0.023101 * relativeHumidity) -
         4.686035
 }
 
@@ -475,8 +478,10 @@ internal fun computePollutantInUgm3FromPpb(
 ): Double? {
     if (concentrationInPpb == null) return null
     if (pollutant.molecularMass == null) return null
-    return concentrationInPpb * pollutant.molecularMass /
-        (8.31446261815324 / (barometricPressure ?: 1013.25) * 10) / (273.15 + (temperature ?: 25.0))
+    return concentrationInPpb *
+        pollutant.molecularMass /
+        (8.31446261815324 / (barometricPressure ?: 1013.25) * 10) /
+        (273.15 + (temperature ?: 25.0))
 }
 
 /**
@@ -500,8 +505,10 @@ internal fun computePollutantInPpbFromUgm3(
 ): Double? {
     if (concentrationInUgm3 == null) return null
     if (pollutant.molecularMass == null) return null
-    return concentrationInUgm3 / pollutant.molecularMass *
-        (8.31446261815324 / (barometricPressure ?: 1013.25) * 10) * (273.15 + (temperature ?: 25.0))
+    return concentrationInUgm3 /
+        pollutant.molecularMass *
+        (8.31446261815324 / (barometricPressure ?: 1013.25) * 10) *
+        (273.15 + (temperature ?: 25.0))
 }
 
 /**

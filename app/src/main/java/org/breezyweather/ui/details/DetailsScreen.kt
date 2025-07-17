@@ -228,7 +228,9 @@ fun DailyPagerIndicator(
                                     i == todayIndex -> context.getString(R.string.daily_today)
                                     i == todayIndex + 1 -> context.getString(R.string.daily_tomorrow)
                                     else -> date.getWeek(location, context, full = true)
-                                } + " " + date.getFormattedFullDayAndMonth(location, context)
+                                } +
+                                    " " +
+                                    date.getFormattedFullDayAndMonth(location, context)
                             }
                     ) {
                         Text(

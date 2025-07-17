@@ -68,7 +68,8 @@ class CwaService @Inject constructor(
                 startsWith("zh") -> "中央氣象署"
                 else -> "CWA"
             }
-        } + " (${Locale(context.currentLocale.code, "TW").displayCountry})"
+        } +
+            " (${Locale(context.currentLocale.code, "TW").displayCountry})"
     }
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl by lazy {

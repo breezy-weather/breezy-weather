@@ -49,7 +49,8 @@ class EpdHkService @Inject constructor(
                 startsWith("zh") -> "环境保护署"
                 else -> "EPD"
             }
-        } + " (${Locale(context.currentLocale.code, "HK").displayCountry})"
+        } +
+            " (${Locale(context.currentLocale.code, "HK").displayCountry})"
     }
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl by lazy {

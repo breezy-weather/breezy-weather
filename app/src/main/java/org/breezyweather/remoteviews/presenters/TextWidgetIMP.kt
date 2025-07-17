@@ -147,9 +147,10 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
             setTextColor(R.id.widget_text_subtitle, color.textColor)
         }
         if (textSize != 100) {
-            val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size)
-                .toFloat() * textSize / 100f
-            val temperatureSize = context.spToPx(48) * textSize / 100f
+            val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size).toFloat()
+                .times(textSize)
+                .div(100f)
+            val temperatureSize = context.spToPx(48).times(textSize).div(100f)
             views.apply {
                 if (!hideHeader) {
                     setTextViewTextSize(R.id.widget_text_date, TypedValue.COMPLEX_UNIT_PX, contentSize)

@@ -112,7 +112,8 @@ fun Pollen.getSummary(
     source: PollenIndexSource? = null,
 ): String {
     return pollensWithConcentration.joinToString(context.getString(R.string.comma_separator)) {
-        getName(context, it) + context.getString(R.string.colon_separator) +
+        getName(context, it) +
+            context.getString(R.string.colon_separator) +
             getIndexName(context, it, source)
     }
 }

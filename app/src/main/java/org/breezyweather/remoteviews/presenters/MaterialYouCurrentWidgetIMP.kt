@@ -133,7 +133,7 @@ class MaterialYouCurrentWidgetIMP : AbstractRemoteViewsPresenter() {
                     var ratio = min(
                         defaultDimension,
                         min(widgetSize.heightPx, widgetSize.widthPx).toDouble()
-                    ) / defaultDimension
+                    ).div(defaultDimension)
                     val iconDimension = context.resources.getDimensionPixelSize(
                         R.dimen.widget_material_you_current_default_icon_size
                     )

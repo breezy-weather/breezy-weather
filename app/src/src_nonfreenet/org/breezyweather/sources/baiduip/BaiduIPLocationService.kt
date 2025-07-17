@@ -53,7 +53,8 @@ class BaiduIPLocationService @Inject constructor(
                 startsWith("zh") -> "百度IP定位"
                 else -> "Baidu IP location"
             }
-        } + " (${Locale(context.currentLocale.code, "CN").displayCountry})"
+        } +
+            " (${Locale(context.currentLocale.code, "CN").displayCountry})"
     }
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = "https://lbs.baidu.com/index.php?title=openprivacy"

@@ -316,7 +316,8 @@ internal fun getDailyForecast(
                         // normalize timestamp to midnight local time
                         val midnight = (
                             floor((it.toDouble() + 9.hours.inWholeMilliseconds) / 1.days.inWholeMilliseconds) *
-                                1.days.inWholeMilliseconds - 9.hours.inWholeMilliseconds
+                                1.days.inWholeMilliseconds -
+                                9.hours.inWholeMilliseconds
                             ).toLong()
                         wxMap[midnight] = area.weatherCodes?.getOrNull(i)
                     }

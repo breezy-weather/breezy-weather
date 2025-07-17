@@ -67,7 +67,8 @@ class MeteoLuxService @Inject constructor(
                     "MeteoLux (universellen Transfers in die Gemeinfreiheit (Public Domain) Creative Commons CC0 1.0)"
                 else -> "MeteoLux (Universal transfer into the Public Domain Creative Commons CC0 1.0)."
             }
-        } + " ${context.getString(R.string.data_modified, context.getString(R.string.breezy_weather))}"
+        } +
+            " ${context.getString(R.string.data_modified, context.getString(R.string.breezy_weather))}"
     }
     override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(

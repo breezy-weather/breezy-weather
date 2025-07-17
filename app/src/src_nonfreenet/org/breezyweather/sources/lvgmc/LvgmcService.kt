@@ -248,11 +248,11 @@ class LvgmcService @Inject constructor(
         location: Location,
     ): String {
         return "POLYGON((" +
-            (location.longitude - 0.1) + " " + (location.latitude - 0.1) + ", " +
-            (location.longitude + 0.1) + " " + (location.latitude - 0.1) + ", " +
-            (location.longitude + 0.1) + " " + (location.latitude + 0.1) + ", " +
-            (location.longitude - 0.1) + " " + (location.latitude + 0.1) + ", " +
-            (location.longitude - 0.1) + " " + (location.latitude - 0.1) + "))"
+            "${location.longitude - 0.1} ${location.latitude - 0.1}, " +
+            "${location.longitude + 0.1} ${location.latitude - 0.1}, " +
+            "${location.longitude + 0.1} ${location.latitude + 0.1}, " +
+            "${location.longitude - 0.1} ${location.latitude + 0.1}, " +
+            "${location.longitude - 0.1} ${location.latitude - 0.1}))"
     }
 
     override val testingLocations: List<Location> = emptyList()

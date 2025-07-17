@@ -79,10 +79,9 @@ fun PollenGrid(
                     subtitle = if (pollenIndexSource != null) {
                         pollen.getIndexName(context, validPollen, pollenIndexSource) ?: ""
                     } else {
-                        unit.formatMeasure(
-                            context,
-                            pollen.getConcentration(validPollen)?.toDouble() ?: 0.0
-                        ) + " – " + pollen.getIndexName(context, validPollen)
+                        unit.formatMeasure(context, pollen.getConcentration(validPollen)?.toDouble() ?: 0.0) +
+                            " – " +
+                            pollen.getIndexName(context, validPollen)
                     },
                     tintColor = Color(
                         pollen.getColor(context, validPollen, pollenIndexSource)

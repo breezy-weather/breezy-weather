@@ -174,8 +174,9 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
 
         // set text size.
         if (textSize != 100) {
-            val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size)
-                .toFloat() * textSize / 100f
+            val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size).toFloat()
+                .times(textSize)
+                .div(100f)
             views.apply {
                 setTextViewTextSize(R.id.widget_week_week_1, TypedValue.COMPLEX_UNIT_PX, contentSize)
                 setTextViewTextSize(R.id.widget_week_week_2, TypedValue.COMPLEX_UNIT_PX, contentSize)

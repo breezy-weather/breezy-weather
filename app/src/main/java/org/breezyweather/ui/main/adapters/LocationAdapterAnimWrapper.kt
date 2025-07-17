@@ -61,12 +61,10 @@ class LocationAdapterAnimWrapper(
             BASE_DURATION - MAX_TENSOR_COUNT * 50
         )
         val delay = (if (mScrolled) 50 else pendingCount * 100).toLong()
-        val overShootTensor = 0.2f + min(
-            pendingCount * 0.4f,
-            MAX_TENSOR_COUNT * 0.4f
-        )
+        val overShootTensor = 0.2f + min(pendingCount * 0.4f, MAX_TENSOR_COUNT * 0.4f)
         val alpha: Animator = ObjectAnimator
-            .ofFloat(view, "alpha", 0f, 1f).setDuration(duration / 4 * 3)
+            .ofFloat(view, "alpha", 0f, 1f)
+            .setDuration(duration / 4 * 3)
         alpha.interpolator = FLOATING_DECELERATE_INTERPOLATOR
         val animators = view.getFloatingOvershotEnterAnimators(overShootTensor, mDY, 1.1f, 1.1f)
         for (a in animators) {

@@ -218,8 +218,11 @@ internal fun getAlertList(
                         severity = getAlertSeverity(singleAlert.severity)
                         alertList.add(
                             Alert(
-                                alertId = singleAlert.phenomenon + " " + singleAlert.severity +
-                                    " " + singleAlert.tFrom?.time.toString(),
+                                alertId = singleAlert.phenomenon +
+                                    " " +
+                                    singleAlert.severity +
+                                    " " +
+                                    singleAlert.tFrom?.time.toString(),
                                 startDate = singleAlert.tFrom,
                                 endDate = singleAlert.tTo,
                                 headline = getAlertText(context, singleAlert.headline),
