@@ -792,4 +792,15 @@
     <string name="action_toggle_data_type_menu">เปิดหรือปิดเมนูเลือกชนิดข้อมูล</string>
     <string name="label_expanded">เปิดออก</string>
     <string name="label_collapsed">หุบเข้า</string>
+    <string name="wind_origin">จาก %s</string>
+    <string name="action_configure_item">ตั้งค่า %s</string>
+    <string name="settings_appearance_section_regional">ภาษาและภูมิภาค</string>
+    <string name="settings_appearance_section_theme">ธีม</string>
+    <string name="unit_bft_display_name">โบฟอร์ต</string>
+    <string name="unit_bft_nominative">%s โบฟอร์ต</string>
+    <string name="about_update_check_eol">แอนดรอยด์เวอร์ชันนี้ไม่ได้รับการสนับสนุนแล้ว</string>
+    <string name="ephemeris_dawn_at">ฟ้าสาง เวลา %s</string>
+    <string name="ephemeris_dusk_at">พลบค่ำ เวลา %s</string>
+    <string name="ephemeris_about_dawn">ฟ้าสาง คือ เวลาที่สามารถมองเห็นแสงแรกของวันก่อนดวงอาทิตย์ขึ้น</string>
+    <string name="ephemeris_about_dusk">พลบค่ำ คือ เวลาที่มืดที่สุดก่อนที่แสงสุดท้ายของดวงอาทิตย์จะหายไป</string>
 </resources>
