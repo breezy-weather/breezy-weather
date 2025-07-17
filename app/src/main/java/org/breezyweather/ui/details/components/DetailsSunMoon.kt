@@ -75,13 +75,13 @@ import org.shredzone.commons.suncalc.MoonPosition
 import org.shredzone.commons.suncalc.SunPosition
 import java.util.Calendar
 import java.util.Date
-import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun DetailsSunMoon(
     location: Location,
     today: Daily,
-    yesterday: Daily? = null,
+    sunTimes: List<Astro>,
+    moonTimes: List<Astro>,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -93,7 +93,7 @@ fun DetailsSunMoon(
     ) {
         if (today.sun?.isValid == true || today.moon?.isValid == true) {
             item {
-                EphemerisChart(location, today, yesterday)
+                EphemerisChart(location, today, sunTimes, moonTimes)
             }
         }
         item {
@@ -150,7 +150,8 @@ fun DetailsSunMoon(
 fun EphemerisChart(
     location: Location,
     today: Daily,
-    yesterday: Daily?,
+    sunTimes: List<Astro>,
+    moonTimes: List<Astro>,
 ) {
     val context = LocalContext.current
 
@@ -164,18 +165,11 @@ fun EphemerisChart(
     }
 
     val mappedSunValues = remember(today) {
-        getMappedAstroValues(location, today.sun, isSun = true, startingDate, endingDate)
+        getMappedAstroValues(location, sunTimes, isSun = true, startingDate, endingDate)
     }
 
     val mappedMoonValues = remember(today) {
-        getMappedAstroValues(
-            location,
-            today.moon,
-            isSun = false,
-            startingDate,
-            endingDate,
-            previousSetDate = yesterday?.moon?.setDate
-        )
+        getMappedAstroValues(location, moonTimes, isSun = false, startingDate, endingDate)
     }
 
     val modelProducer = remember { CartesianChartModelProducer() }
@@ -220,86 +214,91 @@ fun EphemerisChart(
 
 internal fun getMappedAstroValues(
     location: Location,
-    astro: Astro?,
+    astro: List<Astro>,
     isSun: Boolean,
     startingDate: Date,
     endingDate: Date,
-    previousSetDate: Date? = null,
 ): ImmutableMap<Long, Double> {
     return buildMap {
-        if (astro?.isValid == true) {
-            val halfDaylightDuration = astro.setDate!!.time.minus(astro.riseDate!!.time).div(2)
-            val maxAltitudeTime = astro.setDate!!.time.minus(halfDaylightDuration)
-            val maxAltitude = getAltitude(location, maxAltitudeTime.toDate(), isSun)
-
-            // 00:00 start of the day
-            val altitudeAtStartDate = if (astro.riseDate == startingDate ||
-                (previousSetDate != null && previousSetDate > startingDate)
-            ) {
-                getAltitude(location, startingDate, isSun)
-            } else {
-                val startingReversedMinAltitudeTime = astro.riseDate!!.time.minus(halfDaylightDuration)
-                val slope = (maxAltitude - maxAltitude.times(-1))
-                    .div(maxAltitudeTime - startingReversedMinAltitudeTime)
-
-                slope * (startingDate.time - startingReversedMinAltitudeTime) + maxAltitude.times(-1)
-                // Already on the line, not adding to avoid curving issues:
-                /*put(
-                    astro.riseDate!!.time,
-                    0.0
-                )*/
+        val riseTimes = mutableListOf<Long>()
+        val setTimes = mutableListOf<Long>()
+        var riseCounter = 0
+        var setCounter = 0
+        var noon: Long
+        var nadir: Long
+        var halfUp: Long
+        var halfDown: Long
+        var altitude: Double
+        astro.forEach {
+            if (it.riseDate != null) {
+                riseTimes.add(it.riseDate!!.time)
             }
-            put(
-                startingDate.time,
-                altitudeAtStartDate
-            )
-
-            if (previousSetDate != null && previousSetDate > startingDate) {
-                val interceptionCoordinates = interceptionPoint(
-                    startingDate.time.toDouble(),
-                    altitudeAtStartDate,
-                    previousSetDate.time.toDouble(),
-                    0.0,
-                    astro.riseDate!!.time.toDouble(),
-                    0.0,
-                    maxAltitudeTime.toDouble(),
-                    maxAltitude
-                )
-                put(
-                    interceptionCoordinates.first.toLong(),
-                    interceptionCoordinates.second
-                )
+            if (it.setDate != null) {
+                setTimes.add(it.setDate!!.time)
             }
+        }
 
-            // Max altitude
-            put(
-                maxAltitudeTime,
-                maxAltitude
+        // Bookend the riseTimes and setTimes with an extra cycle on each end
+        // so the charts on the first and the last day look complete
+        if (riseTimes.size > 1 && setTimes.size > 1) {
+            riseTimes.add(0, riseTimes[0] - (riseTimes[1] - riseTimes[0]))
+            setTimes.add(0, setTimes[0] - (setTimes[1] - setTimes[0]))
+            riseTimes.add(
+                riseTimes[riseTimes.lastIndex] + (riseTimes[riseTimes.lastIndex] - riseTimes[riseTimes.lastIndex - 1])
             )
+            setTimes.add(
+                setTimes[setTimes.lastIndex] + (setTimes[setTimes.lastIndex] - setTimes[setTimes.lastIndex - 1])
+            )
+        }
 
-            // 00:00 end of the day
-            // 23:59:59 is used with our own converter, some other sources put 00:00 next day instead
-            // TODO: Consider only using our own internal computing for consistency
-            if (astro.setDate!!.time.plus(1.seconds.inWholeMilliseconds) == endingDate.time ||
-                astro.setDate!!.time == endingDate.time
-            ) {
-                put(
-                    endingDate.time,
-                    getAltitude(location, endingDate, isSun)
-                )
+        // Seek last rise/set prior to startingDate to be the starting counter,
+        // so we don't waste computation on noons and nadirs that won't show on the chart
+        while (riseCounter < riseTimes.size && riseTimes[riseCounter] < startingDate.time) {
+            riseCounter++
+        }
+        if (riseCounter > 0) {
+            riseCounter--
+        }
+        while (setCounter < setTimes.size && setTimes[setCounter] < startingDate.time) {
+            setCounter++
+        }
+        if (setCounter > 0) {
+            setCounter--
+        }
+
+        // Seek the first rise/set after endingDate to be the ending counter,
+        // so we don't waste computation on noons and nadirs that won't show on the chart
+        var riseCounterLimit: Int = riseTimes.lastIndex
+        var setCounterLimit: Int = setTimes.lastIndex
+        while (riseCounterLimit >= 0 && riseTimes[riseCounterLimit] > endingDate.time) {
+            riseCounterLimit--
+        }
+        if (riseCounterLimit < riseTimes.lastIndex) {
+            riseCounterLimit++
+        }
+        while (setCounterLimit >= 0 && setTimes[setCounterLimit] > endingDate.time) {
+            setCounterLimit--
+        }
+        if (setCounterLimit < setTimes.lastIndex) {
+            setCounterLimit++
+        }
+
+        // loop within our set boundary of rise and set times
+        while (riseCounter <= riseCounterLimit && setCounter <= setCounterLimit) {
+            if (riseTimes[riseCounter] < setTimes[setCounter]) {
+                // calculate noon
+                halfUp = setTimes[setCounter].minus(riseTimes[riseCounter]).div(2)
+                noon = riseTimes[riseCounter].plus(halfUp)
+                altitude = getAltitude(location, noon.toDate(), isSun)
+                put(noon, altitude)
+                riseCounter++
             } else {
-                val endingReversedMinAltitudeTime = astro.setDate!!.time.plus(halfDaylightDuration)
-                val slope = (maxAltitude - maxAltitude.times(-1))
-                    .div(maxAltitudeTime - endingReversedMinAltitudeTime)
-                put(
-                    endingDate.time,
-                    slope * (endingDate.time - endingReversedMinAltitudeTime) + maxAltitude.times(-1)
-                )
-                // Already on the line, not adding to avoid curving issues:
-                /*put(
-                    astro.setDate!!.time,
-                    0.0
-                )*/
+                // calculate nadir
+                halfDown = riseTimes[riseCounter].minus(setTimes[setCounter]).div(2)
+                nadir = setTimes[setCounter].plus(halfDown)
+                altitude = getAltitude(location, nadir.toDate(), isSun)
+                put(nadir, altitude)
+                setCounter++
             }
         }
     }.toImmutableMap()
@@ -315,31 +314,6 @@ private fun getAltitude(
     } else {
         MoonPosition.compute().on(date).at(location.latitude, location.longitude).execute().altitude
     }
-}
-
-private fun interceptionPoint(
-    s1x: Double,
-    s1y: Double,
-    s2x: Double,
-    s2y: Double,
-    d1x: Double,
-    d1y: Double,
-    d2x: Double,
-    d2y: Double,
-): Pair<Double, Double> {
-    val a1 = s2y - s1y
-    val b1 = s1x - s2x
-    val c1 = a1 * s1x + b1 * s1y
-
-    val a2 = d2y - d1y
-    val b2 = d1x - d2x
-    val c2 = a2 * d1x + b2 * d1y
-
-    val delta = a1 * b2 - a2 * b1
-    return Pair(
-        (b2 * c1 - b1 * c2) / delta,
-        (a1 * c2 - a2 * c1) / delta
-    )
 }
 
 @Composable
