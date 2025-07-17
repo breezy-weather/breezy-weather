@@ -12,6 +12,7 @@
 - Details page - Fix jumping of the chart when tapping on it
 - Details page - Workaround missing top padding in the FAB menu for small device heights (@min7-i)
 - Details page - Conditions - move long weather condition description to a dedicated Daily summary card (especially noticeable with AccuWeather source)
+- Details page - Sun & Moon - Fix glitched charts (@chunshek)
 - Homepage - Attempt to make horizontal swipes in daily/hourly trends less prone to switch to prev/next locations
 - Homepage - Move “Settings” icon to location list to be able to display icons on homepage without a submenu.
 - Homepage - Better animation for homepage current temperature when using Fahrenheit or Kelvin
@@ -25,6 +26,7 @@
 - Improve the formatting of today/tomorrow notification
 - Live wallpaper - Fix wallpaper animating when switching between apps
 - Fix specific language for the app not remembered after reboot
+- UV - Better computing of missing hourly UV from day UV (@chunshek)
 
 **Translations**
 - Translations updated
