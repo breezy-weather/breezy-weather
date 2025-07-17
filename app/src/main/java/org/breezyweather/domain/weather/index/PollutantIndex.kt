@@ -169,7 +169,9 @@ enum class PollutantIndex(
     private fun getIndex(cp: Double, bpLo: Int, bpHi: Int, inLo: Int, inHi: Int): Int {
         // Result will be incorrect if we don’t cast to double
         return (
-            (inHi.toDouble() - inLo.toDouble()) / (bpHi.toDouble() - bpLo.toDouble()) * (cp - bpLo.toDouble()) +
+            (inHi.toDouble() - inLo.toDouble()) /
+                (bpHi.toDouble() - bpLo.toDouble()) *
+                (cp - bpLo.toDouble()) +
                 inLo.toDouble()
             ).roundToInt()
     }

@@ -145,7 +145,8 @@ enum class TemperatureUnit(
         isValueInDefaultUnit: Boolean = true,
     ): String = UnitUtils.formatValue(context, this, value, precision, isValueInDefaultUnit).let { formattedValue ->
         if (context.isRtl) BidiFormatter.getInstance().unicodeWrap(formattedValue) else formattedValue
-    } + getShortName(context)
+    } +
+        getShortName(context)
 
     fun formatDegreeDay(
         context: Context,

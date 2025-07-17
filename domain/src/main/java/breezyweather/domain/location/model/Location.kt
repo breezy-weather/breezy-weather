@@ -84,8 +84,10 @@ data class Location(
         get() = if (isCurrentPosition) {
             CURRENT_POSITION_ID
         } else {
-            String.format(Locale.US, "%f", latitude) + "&" +
-                String.format(Locale.US, "%f", longitude) + "&" +
+            String.format(Locale.US, "%f", latitude) +
+                "&" +
+                String.format(Locale.US, "%f", longitude) +
+                "&" +
                 forecastSource
         }
 
@@ -370,7 +372,8 @@ data class Location(
 
             val latDistance = Math.toRadians(lat2 - lat1)
             val lonDistance = Math.toRadians(lon2 - lon1)
-            val a = sin(latDistance / 2) * sin(latDistance / 2) +
+            val a = sin(latDistance / 2) *
+                sin(latDistance / 2) +
                 (cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2)) * sin(lonDistance / 2) * sin(lonDistance / 2))
             val c = 2 * atan2(sqrt(a), sqrt(1 - a))
             var distance = r * c * 1000 // convert to meters

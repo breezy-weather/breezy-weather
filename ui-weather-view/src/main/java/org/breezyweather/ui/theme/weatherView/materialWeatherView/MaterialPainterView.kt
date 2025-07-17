@@ -121,16 +121,8 @@ class MaterialPainterView(
                 val cos2D = 1.0.coerceAtMost(aY / g2D).coerceAtLeast(-1.0)
                 val cos3D = 1.0.coerceAtMost(g2D / g3D).coerceAtLeast(-1.0)
 
-                rotation2D = Math.toDegrees(acos(cos2D)).toFloat() * if (aX >= 0) {
-                    1
-                } else {
-                    -1
-                }
-                rotation3D = Math.toDegrees(acos(cos3D)).toFloat() * if (aZ >= 0) {
-                    1
-                } else {
-                    -1
-                }
+                rotation2D = Math.toDegrees(acos(cos2D)).toFloat() * if (aX >= 0) 1 else -1
+                rotation3D = Math.toDegrees(acos(cos3D)).toFloat() * if (aZ >= 0) 1 else -1
 
                 when (mDeviceOrientation) {
                     DeviceOrientation.TOP -> {

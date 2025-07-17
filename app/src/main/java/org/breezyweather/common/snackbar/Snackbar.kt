@@ -392,14 +392,8 @@ class Snackbar private constructor(
                 heightUsed
             )
             val lp = child.layoutParams as MarginLayoutParams
-            width = (
-                child.measuredWidth + widthUsed + lp.leftMargin + lp.rightMargin +
-                    paddingLeft + paddingRight
-                )
-            height = (
-                child.measuredHeight + heightUsed + lp.topMargin + lp.bottomMargin +
-                    paddingTop + paddingBottom
-                )
+            width = child.measuredWidth + widthUsed + lp.leftMargin + lp.rightMargin + paddingLeft + paddingRight
+            height = child.measuredHeight + heightUsed + lp.topMargin + lp.bottomMargin + paddingTop + paddingBottom
             setMeasuredDimension(width, height)
         }
 
@@ -408,9 +402,8 @@ class Snackbar private constructor(
 
             // Set left insets for system bars and evenly align the snackbar
             // within the safe drawing area.
-            val x = mWindowInsets.left + (
-                measuredWidth - child.measuredWidth - mWindowInsets.left - mWindowInsets.right
-                ) / 2
+            val x = mWindowInsets.left +
+                (measuredWidth - child.measuredWidth - mWindowInsets.left - mWindowInsets.right).div(2)
             child.layout(x, 0, x + child.measuredWidth, child.measuredHeight)
             mOnLayoutChangeListener?.invoke(this, l, t, r, b)
         }
