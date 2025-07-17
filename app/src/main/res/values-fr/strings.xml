@@ -755,7 +755,6 @@
     <string name="widget_material_you_forecast">Material You – Prévisions</string>
     <string name="widget_material_you_current">Material You – En ce moment</string>
     <string name="unit_bft_display_name">Beaufort</string>
-    <string name="unit_bf_value">%s Bf</string>
     <string name="unit_bft_nominative">%s Bf</string>
     <string name="unit_bft_voice">sur l’échelle de Beaufort</string>
     <string name="unit_mps">m/s</string>
