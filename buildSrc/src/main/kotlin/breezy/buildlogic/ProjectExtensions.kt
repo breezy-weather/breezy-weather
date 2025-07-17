@@ -15,6 +15,7 @@ val Project.libs get() = the<LibrariesForLibs>()
 internal fun Project.configureAndroid(commonExtension: CommonExtension<*, *, *, *, *, *>) {
     commonExtension.apply {
         compileSdk = AndroidConfig.COMPILE_SDK
+        buildToolsVersion = AndroidConfig.BUILD_TOOLS
 
         defaultConfig {
             minSdk = AndroidConfig.MIN_SDK
