@@ -880,4 +880,20 @@
     <string name="action_configure_item">設定%s</string>
     <string name="unit_bft_display_name">蒲福氏風級</string>
     <string name="about_update_check_eol">不再支援此 Android 版本</string>
+    <string name="air_quality_short">空氣質素</string>
+    <string name="ephemeris_sun">太陽</string>
+    <string name="ephemeris_moon">月亮</string>
+    <string name="ephemeris_polar_day">永晝</string>
+    <string name="ephemeris_polar_night">永夜</string>
+    <string name="clock">時鐘</string>
+    <string name="precipitation_total_day">日間降水</string>
+    <string name="precipitation_total_night">晚間降水</string>
+    <string name="precipitation_rain_total_day">日間雨量</string>
+    <string name="precipitation_rain_total_night">晚間雨量</string>
+    <string name="precipitation_snow_total_day">日間降雪</string>
+    <string name="precipitation_snow_total_night">晚間降雪</string>
+    <string name="daytime_short">日間</string>
+    <string name="nighttime_short">晚間</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled">總是啟用淺色模式</string>
+    <string name="settings_appearance_dark_mode_locations_disabled">停用，在晚上總是使用深色模式</string>
 </resources>
