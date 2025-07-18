@@ -803,4 +803,20 @@
     <string name="settings_appearance_section_theme">Тема</string>
     <string name="action_configure_item">Налаштувати %s</string>
     <string name="about_update_check_eol">Ця версія Android більше не підтримується</string>
+    <string name="air_quality_short">Якість повітря</string>
+    <string name="ephemeris_sun">Сонце</string>
+    <string name="ephemeris_moon">Місяць</string>
+    <string name="ephemeris_polar_day">Полярний день</string>
+    <string name="ephemeris_polar_night">Полярна ніч</string>
+    <string name="clock">Годинник</string>
+    <string name="precipitation_total_day">Опади вдень</string>
+    <string name="precipitation_total_night">Опади вночі</string>
+    <string name="precipitation_rain_total_day">Дощ протягом дня</string>
+    <string name="precipitation_rain_total_night">Дощ на ніч</string>
+    <string name="precipitation_snow_total_day">Сніг на день</string>
+    <string name="precipitation_snow_total_night">Сніг на ніч</string>
+    <string name="daytime_short">День</string>
+    <string name="nighttime_short">Ніч</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled">Завжди ввімкнено зі світловим режимом</string>
+    <string name="settings_appearance_dark_mode_locations_disabled">Вимкнено, але вночі локації завжди перебувають у темному режимі</string>
 </resources>
