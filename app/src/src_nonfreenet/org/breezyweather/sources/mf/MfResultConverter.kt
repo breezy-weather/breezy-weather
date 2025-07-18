@@ -48,7 +48,6 @@ import org.breezyweather.sources.mf.json.MfWarningsOverseasResult
 import org.breezyweather.sources.mf.json.MfWarningsResult
 import java.util.Calendar
 import java.util.Date
-import java.util.Locale
 import java.util.Objects
 import java.util.TimeZone
 import kotlin.math.roundToInt
@@ -286,14 +285,10 @@ internal fun getOverseasWarningsList(
                     content.append("\n\n")
                 }
                 textBlocItem.title?.forEach { t ->
-                    content
-                        .append(t.uppercase(Locale.FRENCH))
-                        .append("\n")
+                    content.append("<h2>$t</h2>\n")
                 }
                 textBlocItem.text?.forEach { txt ->
-                    content
-                        .append(txt)
-                        .append("\n")
+                    content.append("$txt\n")
                 }
             }
             alertList.add(
@@ -317,10 +312,12 @@ internal fun getOverseasWarningsList(
         timelaps.timelapsItems
             ?.filter { it.colorId > 1 }
             ?.forEach { timelapsItem ->
-                val consequences = warningsResult.consequences?.firstOrNull { it.phenomenonId == timelaps.phenomenonId }
-                    ?.textConsequence?.replace("<br>", "\n")
-                val advices = warningsResult.advices?.firstOrNull { it.phenomenonId == timelaps.phenomenonId }
-                    ?.textAdvice?.replace("<br>", "\n")
+                val consequences = warningsResult.consequences
+                    ?.firstOrNull { it.phenomenonId == timelaps.phenomenonId }
+                    ?.textConsequence
+                val advices = warningsResult.advices
+                    ?.firstOrNull { it.phenomenonId == timelaps.phenomenonId }
+                    ?.textAdvice
 
                 val content = StringBuilder()
                 if (!consequences.isNullOrEmpty()) {
@@ -329,7 +326,7 @@ internal fun getOverseasWarningsList(
                     }
                     // TODO: Move to non-translatable en/fr strings
                     content
-                        .append("CONSÉQUENCES POSSIBLES\n")
+                        .append("<h2>Conséquences possibles</h2>\n")
                         .append(consequences)
                 }
                 if (!advices.isNullOrEmpty()) {
@@ -338,7 +335,7 @@ internal fun getOverseasWarningsList(
                     }
                     // TODO: Move to non-translatable en/fr strings
                     content
-                        .append("CONSEILS DE COMPORTEMENT\n")
+                        .append("<h2>Conseils de comportement</h2>\n")
                         .append(advices)
                 }
 
@@ -547,10 +544,12 @@ private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsR
     val textBlocs = warningsResult.text?.textBlocItems?.filter { textBlocItem ->
         textBlocItem.textItems?.any { it.hazardCode == phenomenonId } == true
     }
-    val consequences = warningsResult.consequences?.firstOrNull { it.phenomenonId == phenomenonId }
-        ?.textConsequence?.replace("<br>", "\n")
-    val advices = warningsResult.advices?.firstOrNull { it.phenomenonId == phenomenonId }
-        ?.textAdvice?.replace("<br>", "\n")
+    val consequences = warningsResult.consequences
+        ?.firstOrNull { it.phenomenonId == phenomenonId }
+        ?.textConsequence
+    val advices = warningsResult.advices
+        ?.firstOrNull { it.phenomenonId == phenomenonId }
+        ?.textAdvice
 
     val content = StringBuilder()
     if (!textBlocs.isNullOrEmpty()) {
