@@ -151,7 +151,7 @@
     <string name="widget_custom_subtitle_keyword_xmp_description">Fáze měsíce dnes, zítra, …, za 4 dny</string>
     <string name="widget_live_wallpaper_weather_kind">Počasí</string>
     <string name="widget_live_wallpaper_day_night_type">Čas</string>
-    <string name="location_message_added">Lokalita úspěšně přidána</string>
+    <string name="location_message_added">Umístění úspěšně přidáno</string>
     <string name="location_message_deleted">Poloha úspěšně odstraněna</string>
     <string name="location_message_list_cannot_be_empty">Seznam poloh nemůže být prázdný</string>
     <string name="location_search_placeholder">Vyhledat polohu…</string>
@@ -582,7 +582,7 @@
     <string name="location_search_source">Zdroj vyhledávání lokace</string>
     <string name="location_search_change_source">Změnit zdroj vyhledávání lokace</string>
     <string name="settings_weather_source_none">Žádný</string>
-    <string name="location_message_updated">Lokalita aktualizována</string>
+    <string name="location_message_updated">Umístění aktualizováno</string>
     <string name="location_message_already_exists">Seznam lokalit již obsahuje tuto lokalitu s tímto zdrojem předpovědi.</string>
     <string name="dew_point_short">Rosný bod</string>
     <string name="cloud_cover_short">Oblačnost</string>
@@ -821,4 +821,20 @@
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="unit_bft_nominative">%s Bft</string>
     <string name="about_update_check_eol">Tato verze systému Android již není podporována</string>
+    <string name="air_quality_short">Kvalita ovzduší</string>
+    <string name="ephemeris_sun">Slunce</string>
+    <string name="ephemeris_moon">Měsíc</string>
+    <string name="ephemeris_polar_day">Polární den</string>
+    <string name="ephemeris_polar_night">Polární noc</string>
+    <string name="clock">Hodiny</string>
+    <string name="precipitation_total_day">Srážky během dne</string>
+    <string name="precipitation_total_night">Srážky během noci</string>
+    <string name="precipitation_rain_total_day">Déšť během dne</string>
+    <string name="precipitation_rain_total_night">Déšť během noci</string>
+    <string name="precipitation_snow_total_day">Sníh během dne</string>
+    <string name="precipitation_snow_total_night">Sníh během noci</string>
+    <string name="daytime_short">Den</string>
+    <string name="nighttime_short">Noc</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled">Ve světlém režimu vždy povoleno</string>
+    <string name="settings_appearance_dark_mode_locations_disabled">Zakázáno, ale umístění jsou během noci vždy v tmavém režimu</string>
 </resources>
