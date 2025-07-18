@@ -29,6 +29,7 @@ import androidx.core.app.NotificationManagerCompat.IMPORTANCE_DEFAULT
 import androidx.core.app.NotificationManagerCompat.IMPORTANCE_HIGH
 import androidx.core.app.NotificationManagerCompat.IMPORTANCE_MIN
 import androidx.core.content.ContextCompat
+import androidx.core.text.parseAsHtml
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -149,7 +150,7 @@ object Notifications {
         @DrawableRes iconId: Int,
         title: String,
         subtitle: String,
-        content: String?,
+        content: CharSequence?,
         intent: PendingIntent,
     ): NotificationCompat.Builder {
         return context.notificationBuilder(CHANNEL_ALERT).apply {
@@ -238,6 +239,7 @@ object Notifications {
             // FIXME: Timezone
             DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.DEFAULT).format(it)
         }
+        val description = alert.description?.replace("\n", "<br />")?.parseAsHtml() ?: ""
         val builder = getNotificationBuilder(
             context,
             R.drawable.ic_alert,
@@ -245,7 +247,7 @@ object Notifications {
                 context.getString(R.string.alert)
             } ?: context.getString(R.string.alert),
             time ?: "",
-            alert.description,
+            description,
             PendingIntent.getActivity(
                 context,
                 notificationId,
@@ -260,7 +262,7 @@ object Notifications {
                     } ?: context.getString(R.string.alert)
                 )
                 .setSummaryText(time)
-                .bigText(alert.description)
+                .bigText(description)
         )
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && inGroup) {
             builder.setGroup(ALERT_GROUP_KEY)

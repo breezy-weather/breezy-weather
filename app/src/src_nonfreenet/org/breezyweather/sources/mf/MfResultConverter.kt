@@ -559,16 +559,26 @@ private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsR
                 content.append("\n\n")
             }
             if (!textBlocItem.typeName.isNullOrEmpty()) {
-                content
-                    .append(textBlocItem.typeName.uppercase(Locale.FRENCH))
-                    .append("\n")
+                content.append("<h2>${textBlocItem.typeName}</h2>\n")
             }
             textBlocItem.textItems?.filter { it.hazardCode == phenomenonId }?.forEach { textItem ->
-                textItem.termItems?.forEach { termItem ->
-                    termItem.subdivisionTexts?.forEach { subdivisionText ->
+                textItem.termItems?.forEachIndexed { termItemIndex, termItem ->
+                    termItem.subdivisionTexts?.forEachIndexed { subdivisionIndex, subdivisionText ->
+                        if (!subdivisionText.underlineText.isNullOrEmpty()) {
+                            content.append("<u>${subdivisionText.underlineText}</u> ")
+                        }
+                        if (!subdivisionText.boldText.isNullOrEmpty()) {
+                            content.append("<b>${subdivisionText.boldText}</b> ")
+                        }
                         subdivisionText.text?.let {
                             content.append(it.joinToString("\n"))
                         }
+                        if (subdivisionIndex != termItem.subdivisionTexts.lastIndex) {
+                            content.append("\n\n")
+                        }
+                    }
+                    if (termItemIndex != textItem.termItems.lastIndex) {
+                        content.append("\n\n")
                     }
                 }
             }
@@ -580,7 +590,7 @@ private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsR
         }
         // TODO: Move to non-translatable en/fr strings
         content
-            .append("CONSÉQUENCES POSSIBLES\n")
+            .append("<h2>Conséquences possibles</h2>\n")
             .append(consequences)
     }
     if (!advices.isNullOrEmpty()) {
@@ -589,7 +599,7 @@ private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsR
         }
         // TODO: Move to non-translatable en/fr strings
         content
-            .append("CONSEILS DE COMPORTEMENT\n")
+            .append("<h2>Conseils de comportement</h2>\n")
             .append(advices)
     }
 

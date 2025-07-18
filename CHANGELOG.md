@@ -1,3 +1,9 @@
+# Version 6.0.2-alpha (not yet released)
+
+**Weather sources**
+- [Météo-France] Better formatting for warnings
+
+
 # Version 6.0.1-alpha (2025-07-17)
 
 **New features**

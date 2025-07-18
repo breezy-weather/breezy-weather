@@ -48,7 +48,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.breezyweather.R
@@ -167,7 +169,9 @@ internal fun AlertScreen(
                                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                 SelectionContainer {
                                     Text(
-                                        text = alert.description!!,
+                                        text = AnnotatedString.fromHtml(
+                                            alert.description!!.replace("\n", "<br />")
+                                        ),
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         style = MaterialTheme.typography.bodyMedium
                                     )
