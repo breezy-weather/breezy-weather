@@ -1,5 +1,8 @@
 # Version 6.0.2-alpha (not yet released)
 
+**Improvements and fixes**
+- Fix notification icons not showing
+
 **Weather sources**
 - [Météo-France] Better formatting for warnings
 
