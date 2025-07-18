@@ -169,17 +169,18 @@ object UnitUtils {
             // LogHelper.log(msg = "Formatting with ICU ${enum.id}: ${enum.measureUnit} per ${enum.perMeasureUnit}")
 
             // If result is null, it skips to the default non-ICU formatter
-            getAdjustedFormatting(
+            val adjustedFormatting = getAdjustedFormatting(
                 context.currentLocale,
                 enum.measureUnit!!,
                 unitWidth
-            )?.let { (locale, numberFormatterWidth, measureFormatWidth) ->
+            )
+            if (adjustedFormatting != null) {
                 if (enum.measureUnit is TimeUnit && unitWidth != UnitWidth.NARROW) {
                     return formatDurationWithIcu(
                         context,
                         convertedValue,
                         enum.measureUnit as TimeUnit,
-                        measureFormatWidth!!
+                        adjustedFormatting.third!!
                     )
                 }
 
@@ -187,21 +188,21 @@ object UnitUtils {
                     SettingsManager.getInstance(context).useNumberFormatter
                 ) {
                     formatWithNumberFormatter(
-                        locale,
+                        adjustedFormatting.first,
                         convertedValue,
                         enum.measureUnit!!,
                         enum.perMeasureUnit,
                         precision,
-                        numberFormatterWidth!!
+                        adjustedFormatting.second!!
                     )
                 } else {
                     formatWithMeasureFormat(
-                        locale,
+                        adjustedFormatting.first,
                         convertedValue,
                         enum.measureUnit!!,
                         enum.perMeasureUnit,
                         precision,
-                        measureFormatWidth!!
+                        adjustedFormatting.third!!
                     )
                 }
             }
