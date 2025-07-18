@@ -190,6 +190,7 @@ class HomeFragment : MainModuleFragment() {
             true
         }
         binding.toolbar.menu.findItem(R.id.action_edit).setVisible(false)
+        binding.toolbar.menu.findItem(R.id.action_open_in_other_app).setVisible(false)
         binding.toolbar.overflowIcon?.colorFilter = PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
 
         // Align refreshTimeText with toolbar (some devices, e.g. tablets, have an additional
@@ -258,6 +259,7 @@ class HomeFragment : MainModuleFragment() {
                 viewModel.currentLocation.collect {
                     if (it?.location != null) {
                         binding.toolbar.menu.findItem(R.id.action_edit).setVisible(true)
+                        binding.toolbar.menu.findItem(R.id.action_open_in_other_app).setVisible(true)
                     }
 
                     // TODO: Dirty workaround to avoid recollecting on lifecycle resume

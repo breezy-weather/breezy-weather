@@ -13,6 +13,6 @@
         android:contentDescription="@string/action_open_in_other_app_description"
         android:orderInCategory="200"
         android:icon="@drawable/ic_open_in_new"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 
 </menu>
