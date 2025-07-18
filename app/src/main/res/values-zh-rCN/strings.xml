@@ -892,4 +892,20 @@
     <string name="action_configure_item">配置 %s</string>
     <string name="unit_bft_display_name">蒲福风级</string>
     <string name="about_update_check_eol">这个 Android 版本不再受支持</string>
+    <string name="air_quality_short">空气质量</string>
+    <string name="ephemeris_sun">太阳</string>
+    <string name="ephemeris_moon">月亮</string>
+    <string name="ephemeris_polar_day">极昼</string>
+    <string name="ephemeris_polar_night">极夜</string>
+    <string name="clock">时钟</string>
+    <string name="precipitation_total_day">日间降水</string>
+    <string name="precipitation_total_night">夜间降水</string>
+    <string name="precipitation_rain_total_day">日间雨量</string>
+    <string name="precipitation_rain_total_night">夜间雨量</string>
+    <string name="precipitation_snow_total_day">日间降雪量</string>
+    <string name="precipitation_snow_total_night">夜间降雪量</string>
+    <string name="daytime_short">白天</string>
+    <string name="nighttime_short">晚间</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled">始终启用浅色模式</string>
+    <string name="settings_appearance_dark_mode_locations_disabled">停用，但在夜间地点始终始终处在深色模式下</string>
 </resources>
