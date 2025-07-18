@@ -809,4 +809,20 @@
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="unit_bft_nominative">%s Bft</string>
     <string name="about_update_check_eol">Ez az Android verzió már nem támogatott</string>
+    <string name="ephemeris_sun">Nap</string>
+    <string name="ephemeris_moon">Hold</string>
+    <string name="ephemeris_polar_day">Sarkvidéki nappal</string>
+    <string name="ephemeris_polar_night">Sarkvidéki éjszaka</string>
+    <string name="clock">Óra</string>
+    <string name="precipitation_total_day">Napközbeni csapadékmennyiség</string>
+    <string name="precipitation_total_night">Éjszaka közbeni csapadékmennyiség</string>
+    <string name="precipitation_rain_total_day">Napközbeni eső</string>
+    <string name="precipitation_rain_total_night">Éjszaka közbeni eső</string>
+    <string name="precipitation_snow_total_day">Napközbeni hóesés</string>
+    <string name="precipitation_snow_total_night">Éjszaka közbeni hóesés</string>
+    <string name="daytime_short">Nappal</string>
+    <string name="nighttime_short">Éjszaka</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled">Mindig engedélyezve a világos móddal</string>
+    <string name="settings_appearance_dark_mode_locations_disabled">Letiltva, de a helyszínek éjszaka mindig sötét módban vannak</string>
+    <string name="air_quality_short">Levegőminőség</string>
 </resources>
