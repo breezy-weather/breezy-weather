@@ -757,4 +757,20 @@
     <string name="ephemeris_about_dawn">Rītausma ir tad, kad pirms saullēkta parādās pirmā redzamā dienas gaisma.</string>
     <string name="wind_origin">No %s</string>
     <string name="about_update_check_eol">Šī Android versija vairs netiek atbalstīta</string>
+    <string name="settings_appearance_dark_mode_locations_disabled">Atspējots, bet atrašanās vietas nakts laikā vienmēr ir ar tumšo izskatu</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled">Vienmēr iespējots ar gaišo izskatu</string>
+    <string name="nighttime_short">Nakts</string>
+    <string name="daytime_short">Diena</string>
+    <string name="precipitation_snow_total_night">Sniegs nakts laikā</string>
+    <string name="precipitation_snow_total_day">Sniegs dienas laikā</string>
+    <string name="precipitation_rain_total_night">Lietus nakts laikā</string>
+    <string name="precipitation_rain_total_day">Lietus dienas laikā</string>
+    <string name="precipitation_total_night">Nokrišņi nakts laikā</string>
+    <string name="precipitation_total_day">Nokrišņi dienas laikā</string>
+    <string name="clock">Pulkstenis</string>
+    <string name="ephemeris_polar_night">Polārā nakts</string>
+    <string name="ephemeris_polar_day">Polārā diena</string>
+    <string name="ephemeris_moon">Mēness</string>
+    <string name="ephemeris_sun">Saule</string>
+    <string name="air_quality_short">Gaisa kvalitāte</string>
 </resources>
