@@ -78,6 +78,7 @@ import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.isLandscape
+import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.snackbar.SnackbarContainer
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
@@ -825,10 +826,10 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
         val transaction = supportFragmentManager
             .beginTransaction()
             .setCustomAnimations(
-                R.anim.fragment_manage_enter,
-                R.anim.fragment_main_exit,
-                R.anim.fragment_main_pop_enter,
-                R.anim.fragment_manage_pop_exit
+                if (isRtl) R.anim.slide_in_right else R.anim.slide_in_left,
+                if (isRtl) R.anim.slide_out_left else R.anim.slide_out_right,
+                if (isRtl) R.anim.slide_in_left else R.anim.slide_in_right,
+                if (isRtl) R.anim.slide_out_right else R.anim.slide_out_left
             )
             .add(
                 R.id.fragment,

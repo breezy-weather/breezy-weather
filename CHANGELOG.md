@@ -2,7 +2,7 @@
 
 **Improvements and fixes**
 - Fix notification icons not showing
-- Tweak homepage top icons
+- Make homepage top icons feel more intuitive
 
 **Weather sources**
 - [Météo-France] Better formatting for warnings
