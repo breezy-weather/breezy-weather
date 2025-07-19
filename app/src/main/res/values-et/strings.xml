@@ -26,7 +26,7 @@
     <string name="wind_strength_9">Torm</string>
     <string name="wind_strength_10">Tugev torm</string>
     <string name="wind_strength_11">Maru</string>
-    <string name="wind_strength_12">Orkaan</string>
+    <string name="wind_strength_12">Täsimahuline orkaan</string>
     <string name="uv_index_11">Äärmiselt tugev</string>
     <string name="uv_index_0_2">Nõrk</string>
     <string name="uv_index_3_5">Mõõdukas</string>
@@ -175,7 +175,7 @@
     <string name="dialog_permissions_location_content">Selle funktsiooni kasutamiseks peate andma rakendusele ligipääsu seadme. Seda jagatakse ainult valitud ilmastikuallikatega. Kui olete ümber mõelnud, saate protsessi tühistada ja lisada fikseeritud asukoha käsitsi.</string>
     <string name="action_next">Järgmine</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Uus rida</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Õhukvaliteedi indeks täna, homme, …, 4 päeva hiljem</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Õhukvaliteedi indeks täna, homme, …, 4 päeva pärast</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Päikesetõus täna, homme, …, 4 päeva hiljem</string>
     <string name="settings_background_updates_refresh_never_warning1">Kui lülitate tagataustauuendused välja, ei saa te enam hoiatusi või teateid sademete kohta. Vidinaid ei värskendata enne rakenduse avamist.</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Mõnel tootjal on täiendavad rakenduste piirangud, mis lõpetavad taustateenused. Veebisaidil Don’t kill my app! on teavet selle kohta, kuidas seda parandada.</string>
@@ -340,7 +340,7 @@
     <string name="common_weather_text_snow_showers">Lumesajuhood</string>
     <string name="location_results_by">Asukohaandmed %s -ilt</string>
     <string name="location_message_updated">Asukoht uuendatud</string>
-    <string name="location_message_already_exists">Sama peamise ilmateateallikaga asukoht on juba olemas.</string>
+    <string name="location_message_already_exists">Asukohtade loendis on see asukoht sama ilmateateallikaga juba olemas.</string>
     <string name="location_delete_location_dialog_message">Olete kustutamas “%s” enda salvestatud asukohtade nimekirjast.</string>
     <string name="location_delete_location_dialog_message_no_name">Olete kustutamas seda asukohta enda salvestatud asukohtade nimekirjast.</string>
     <string name="location_message_search_failed">Asukoha otsing ebaõnnestus</string>
@@ -349,7 +349,7 @@
     <string name="action_search">Otsing</string>
     <string name="location_current_not_found_yet">Praegune asukoht ei ole veel leitud…</string>
     <string name="action_preview">Eelvaade</string>
-    <string name="action_about">Teave</string>
+    <string name="action_about">Rakenduse teave</string>
     <string name="action_more">Vaata rohkem</string>
     <string name="action_edit">Muuda</string>
     <string name="action_set">Sea</string>
@@ -372,7 +372,7 @@
     <string name="widget_label_text_size">Tekstisuurus</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Praegune tuul</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Praegune õhuniiskus</string>
-    <string name="widget_custom_subtitle_keyword_caqi_description">Praegune Õhukvaliteediindeks</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Praegune õhukvaliteediindeks</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Praegune õhurõhk</string>
     <string name="widget_custom_subtitle_keyword_l_description">Asukoht</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Laiuskraad</string>
@@ -503,7 +503,7 @@
     <string name="action_add_current_location">Lisa praegune asukoht</string>
     <string name="action_add_new_location">Lisa uus asukoht</string>
     <string name="action_edit_location">Muuda seda asukohta</string>
-    <string name="action_settings">Sätted</string>
+    <string name="action_settings">Seadistused</string>
     <string name="action_app_store">Rakenduste pood</string>
     <string name="action_delete">Kustuta</string>
     <string name="action_back">Tagasi</string>
@@ -525,7 +525,7 @@
     <string name="widget_subtitle_data_aqi">Õhukvaliteet</string>
     <string name="widget_subtitle_data_feels_like">Tundub kui temperatuur</string>
     <string name="action_restart">Taaskäivita</string>
-    <string name="action_show_errors">Vajuta, et lähemalt vaadata</string>
+    <string name="action_show_errors">Klõpsa üksikasjade vaatamiseks</string>
     <string name="location_service_native">Kohalik API</string>
     <string name="dialog_time_picker_input_time">Sisesta aeg</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Lülita tekstisestusele</string>
@@ -655,7 +655,7 @@
     <string name="common_weather_text_blowing_snow">Üldtuisk</string>
     <string name="common_weather_text_drifting_snow">Pinnatuisk</string>
     <string name="common_weather_text_glaze">Jäide</string>
-    <string name="pollen_alternaria">Alternaria</string>
+    <string name="pollen_alternaria">Alternarioos</string>
     <string name="pollen_ulmus">Jalakas</string>
     <string name="pollen_juniperus">Kadakas</string>
     <string name="pollen_picea">Kuusk</string>
@@ -713,4 +713,11 @@
     <string name="message_server_insecure_title">Turvaline ühendumine nurjus</string>
     <string name="action_enable">Lülita sisse</string>
     <string name="action_allow">Luba</string>
+    <string name="action_configure_item">Seadista %s</string>
+    <string name="air_quality_short">Õhukvaliteet</string>
+    <string name="ephemeris_sun">Päike</string>
+    <string name="ephemeris_moon">Kuu</string>
+    <string name="ephemeris_polar_day">Polaarpäev</string>
+    <string name="ephemeris_polar_night">Polaaröö</string>
+    <string name="clock">Kell</string>
 </resources>
