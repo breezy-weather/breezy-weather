@@ -1,3 +1,9 @@
+# Version 6.0.3-alpha (not yet released)
+
+**Improvements and fixes**
+- Fix nowcasting chart not honoring precipitation unit override
+
+
 # Version 6.0.2-alpha (2025-07-19)
 
 **Improvements and fixes**

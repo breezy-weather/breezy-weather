@@ -250,13 +250,13 @@ class SettingsManager private constructor(
 
     fun getPrecipitationIntensityUnit(context: Context): PrecipitationIntensityUnit {
         return PrecipitationIntensityUnit.entries
-            .firstOrNull { it.name == precipitationUnit?.id + "ph" }
+            .firstOrNull { it.id == "${precipitationUnit?.id}ph" }
             ?: PrecipitationIntensityUnit.getDefaultUnit(context)
     }
 
     fun getSnowfallIntensityUnit(context: Context): PrecipitationIntensityUnit {
         return PrecipitationIntensityUnit.entries
-            .firstOrNull { it.name == precipitationUnit?.id + "ph" }
+            .firstOrNull { it.id == "${precipitationUnit?.id}ph" }
             ?: PrecipitationIntensityUnit.getDefaultSnowfallUnit(context)
     }
 
