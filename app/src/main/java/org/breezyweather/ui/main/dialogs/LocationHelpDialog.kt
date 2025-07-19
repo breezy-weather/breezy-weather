@@ -102,7 +102,7 @@ object LocationHelpDialog {
                                         R.string.location_dialog_failed_to_locate_action_add_manually,
                                         stringResource(R.string.location_current)
                                     ),
-                                    iconId = R.drawable.ic_location_list3,
+                                    iconId = R.drawable.ic_list,
                                     onClick = {
                                         if (activity is MainActivity) {
                                             activity.setManagementFragmentVisibility(true)

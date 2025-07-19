@@ -1,4 +1,4 @@
-# Version 6.0.2-alpha (not yet released)
+# Version 6.0.2-alpha (2025-07-19)
 
 **Improvements and fixes**
 - Fix crash in some cases on old Android devices
