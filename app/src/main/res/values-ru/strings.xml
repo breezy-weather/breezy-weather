@@ -826,4 +826,6 @@
     <string name="precipitation_snow_total_night">Снег в течение ночи</string>
     <string name="daytime_short">День</string>
     <string name="nighttime_short">Ночь</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled">Всегда включен в светлом режиме</string>
+    <string name="settings_appearance_dark_mode_locations_disabled">Отключено, но в ночное время локации всегда работают в тёмном режиме</string>
 </resources>
