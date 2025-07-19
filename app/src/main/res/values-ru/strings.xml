@@ -812,4 +812,18 @@
     <string name="unit_bft_display_name">Бофорт</string>
     <string name="unit_bft_nominative">%s баллов</string>
     <string name="about_update_check_eol">Эта версия Android больше не поддерживается</string>
+    <string name="air_quality_short">Качество воздуха</string>
+    <string name="ephemeris_sun">Солнце</string>
+    <string name="ephemeris_moon">Луна</string>
+    <string name="ephemeris_polar_day">Полярный день</string>
+    <string name="ephemeris_polar_night">Полярная ночь</string>
+    <string name="clock">Часы</string>
+    <string name="precipitation_total_day">Осадки за день</string>
+    <string name="precipitation_total_night">Осадки за ночь</string>
+    <string name="precipitation_rain_total_day">Дождь в течение дня</string>
+    <string name="precipitation_rain_total_night">Дождь в течение ночи</string>
+    <string name="precipitation_snow_total_day">Снег в течение дня</string>
+    <string name="precipitation_snow_total_night">Снег в течение ночи</string>
+    <string name="daytime_short">День</string>
+    <string name="nighttime_short">Ночь</string>
 </resources>
