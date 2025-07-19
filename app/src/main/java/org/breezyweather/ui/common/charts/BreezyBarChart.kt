@@ -62,13 +62,14 @@ import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentMapOf
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.extensions.handleNestedHorizontalDragGesture
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toTimezoneSpecificHour
 import org.breezyweather.common.extensions.windowHeightInDp
 import org.breezyweather.domain.settings.SettingsManager
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import java.util.Calendar
 import java.util.Date
 import kotlin.math.max
@@ -114,11 +115,9 @@ fun BreezyBarChart(
         maxY = maxY
     )
 
-    val lineColor = Color(
-        MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-    )
+    val lineColor = Color(context.getThemeColor(com.google.android.material.R.attr.colorOutline))
     val labelColor = colorResource(
-        if (MainThemeColorProvider.isLightTheme(context, location)) {
+        if (ThemeManager.isLightTheme(context, location)) {
             R.color.colorTextGrey
         } else {
             R.color.colorTextGrey2nd
@@ -133,10 +132,10 @@ fun BreezyBarChart(
         } else {
             rememberTextComponent(
                 color = Color(
-                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnPrimary)
+                    context.getThemeColor(com.google.android.material.R.attr.colorOnPrimary)
                 ),
                 background = rememberShapeComponent(
-                    fill = Fill(MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary)),
+                    fill = Fill(context.getThemeColor(androidx.appcompat.R.attr.colorPrimary)),
                     CorneredShape.Pill,
                     shadow = Shadow(
                         radiusDp = LABEL_BACKGROUND_SHADOW_RADIUS_DP,

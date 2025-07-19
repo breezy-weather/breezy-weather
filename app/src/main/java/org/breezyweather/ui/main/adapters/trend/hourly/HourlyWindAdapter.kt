@@ -31,12 +31,12 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.ui.common.images.RotateDrawable
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 
 /**
  * Hourly wind adapter.
@@ -93,13 +93,13 @@ class HourlyWindAdapter(
             mPolylineAndHistogramView.setLineColors(
                 windColor,
                 windColor,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
 
             mPolylineAndHistogramView.setTextColors(
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+                activity.getThemeColor(R.attr.colorTitleText),
+                activity.getThemeColor(R.attr.colorBodyText),
+                activity.getThemeColor(R.attr.colorTitleText)
             )
             mPolylineAndHistogramView.setHistogramAlpha(1f)
             hourlyItem.contentDescription = talkBackBuilder.toString()

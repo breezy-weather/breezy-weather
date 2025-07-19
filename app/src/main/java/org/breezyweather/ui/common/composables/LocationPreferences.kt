@@ -156,12 +156,6 @@ fun LocationPreference(
             val customName = remember {
                 mutableStateOf(location.customName)
             }
-            val backgroundWeatherKind = remember {
-                mutableStateOf(location.backgroundWeatherKind ?: "auto")
-            }
-            val backgroundDayNightType = remember {
-                mutableStateOf(location.backgroundDayNightType ?: "auto")
-            }
             val sourcesWithPreferencesScreen = remember {
                 activity.sourceManager.sourcesWithPreferencesScreen(location)
             }
@@ -202,33 +196,6 @@ fun LocationPreference(
                             )
                             SectionFooter()
                         }
-
-                        SectionHeader(title = stringResource(R.string.settings_per_location_theme))
-                        ListPreferenceView(
-                            titleId = R.string.widget_live_wallpaper_weather_kind,
-                            selectedKey = backgroundWeatherKind.value,
-                            nameArrayId = R.array.live_wallpaper_weather_kinds,
-                            valueArrayId = R.array.live_wallpaper_weather_kind_values,
-                            colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
-                        ) { newValue ->
-                            if (newValue != backgroundWeatherKind.value) {
-                                backgroundWeatherKind.value = newValue
-                                hasChangedPreferences.value = true
-                            }
-                        }
-                        ListPreferenceView(
-                            titleId = R.string.widget_live_wallpaper_day_night_type,
-                            selectedKey = backgroundDayNightType.value,
-                            nameArrayId = R.array.live_wallpaper_day_night_types,
-                            valueArrayId = R.array.live_wallpaper_day_night_type_values,
-                            colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
-                        ) { newValue ->
-                            if (newValue != backgroundDayNightType.value) {
-                                backgroundDayNightType.value = newValue
-                                hasChangedPreferences.value = true
-                            }
-                        }
-                        SectionFooter()
 
                         sourcesWithPreferencesScreen.forEach { preferenceSource ->
                             SectionHeader(title = preferenceSource.name)
@@ -281,13 +248,7 @@ fun LocationPreference(
                             if (hasChangedPreferences.value) {
                                 dialogAdditionalLocationPreferencesOpenState.value = false
                                 dialogWeatherSourcesOpenState.value = false
-                                onClose(
-                                    location.copy(
-                                        customName = customName.value,
-                                        backgroundWeatherKind = backgroundWeatherKind.value,
-                                        backgroundDayNightType = backgroundDayNightType.value
-                                    )
-                                )
+                                onClose(location.copy(customName = customName.value))
                             } else {
                                 dialogAdditionalLocationPreferencesOpenState.value = false
                             }

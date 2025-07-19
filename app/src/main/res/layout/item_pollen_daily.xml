@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_pollen_daily"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:ignore="UnusedAttribute">
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/normal_margin"
-        android:layout_marginStart="@dimen/normal_margin"
-        android:layout_marginEnd="@dimen/normal_margin"
-        android:textStyle="bold"
-        android:importantForAccessibility="no"
-        style="@style/title_text"
-        tools:text="Wednesday, 3 April" />
+    android:layout_height="wrap_content">
 
     <androidx.compose.ui.platform.ComposeView
         android:id="@+id/composeView"

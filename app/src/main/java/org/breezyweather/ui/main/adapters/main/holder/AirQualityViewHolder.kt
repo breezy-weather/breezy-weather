@@ -21,44 +21,35 @@ import android.animation.ArgbEvaluator
 import android.animation.FloatEvaluator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
-import android.os.Build
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.extensions.getFormattedTime
-import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.domain.location.model.isDaylight
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.validAirQuality
 import org.breezyweather.ui.common.widgets.ArcProgress
-import org.breezyweather.ui.main.adapters.AqiAdapter
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
-import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import kotlin.math.roundToInt
 
 class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
-    LayoutInflater.from(parent.context).inflate(R.layout.container_main_aqi, parent, false)
+    LayoutInflater.from(parent.context).inflate(R.layout.container_main_air_quality, parent, false)
 ) {
-    private val mTitle: TextView = itemView.findViewById(R.id.container_main_aqi_title)
-    private val mTime: TextView = itemView.findViewById(R.id.container_main_aqi_time)
-    private val mProgress: ArcProgress = itemView.findViewById(R.id.container_main_aqi_progress)
-    private val mRecyclerView: RecyclerView = itemView.findViewById(R.id.container_main_aqi_recyclerView)
-    private var mAdapter: AqiAdapter? = null
+    private val aqiValueView: TextView = itemView.findViewById(R.id.aqi_value)
+    private val aqiLevelView: TextView = itemView.findViewById(R.id.aqi_level)
+    private val aqiProgress: ArcProgress = itemView.findViewById(R.id.aqi_progress)
     private var mAqiIndex = 0
     private var mEnable = false
     private var mAttachAnimatorSet: AnimatorSet? = null
@@ -70,84 +61,45 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
         itemAnimationEnabled: Boolean,
-        firstCard: Boolean,
     ) {
-        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
-        val isDaily = (location.weather?.current?.airQuality?.isIndexValid != true)
+        val talkBackBuilder = StringBuilder()
         location.weather!!.validAirQuality?.let { airQuality ->
             mAqiIndex = airQuality.getIndex() ?: 0
             mEnable = true
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                mTitle.isAccessibilityHeading = true
-            }
-            mTitle.setTextColor(
-                ThemeManager.getInstance(context)
-                    .weatherThemeDelegate
-                    .getThemeColors(
-                        context,
-                        WeatherViewController.getWeatherKind(location),
-                        WeatherViewController.isDaylight(location)
-                    )[0]
-            )
-            mTime.text = if (isDaily) {
-                context.getString(R.string.daily_today_short)
-            } else {
-                location.weather!!.base.refreshTime?.getFormattedTime(location, context, context.is12Hour)
-            }
-            mTime.contentDescription = if (isDaily) {
-                context.getString(R.string.daily_today)
-            } else {
-                location.weather!!.base.refreshTime?.getFormattedTime(location, context, context.is12Hour)
-            }
             if (itemAnimationEnabled) {
-                mProgress.apply {
+                aqiProgress.apply {
                     progress = 0f
-                    setText(String.format("%d", 0))
+                    aqiValueView.text = UnitUtils.formatInt(context, 0)
                     setProgressColor(
                         ContextCompat.getColor(context, R.color.colorLevel_1),
-                        MainThemeColorProvider.isLightTheme(context, location)
+                        ThemeManager.isLightTheme(context, location)
                     )
-                    setArcBackgroundColor(
-                        MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-                    )
+                    setArcBackgroundColor(context.getThemeColor(com.google.android.material.R.attr.colorOutline))
                 }
             } else {
-                val aqiColor = airQuality.getColor(mProgress.context)
-                mProgress.apply {
+                val aqiColor = airQuality.getColor(aqiProgress.context)
+                aqiProgress.apply {
                     progress = mAqiIndex.toFloat()
-                    setText(String.format("%d", mAqiIndex))
-                    setProgressColor(aqiColor, MainThemeColorProvider.isLightTheme(context, location))
+                    aqiValueView.text = UnitUtils.formatInt(context, mAqiIndex)
+                    setProgressColor(aqiColor, ThemeManager.isLightTheme(context, location))
                     setArcBackgroundColor(ColorUtils.setAlphaComponent(aqiColor, (255 * 0.1).toInt()))
                 }
             }
-            mProgress.apply {
-                setTextColor(MainThemeColorProvider.getColor(location, R.attr.colorTitleText))
-                setBottomText(airQuality.getName(context))
-                setBottomTextColor(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
-                contentDescription = mAqiIndex.toString() + ", " + airQuality.getName(context)
+            aqiProgress.apply {
                 max = PollutantIndex.indexExcessivePollution.toFloat()
             }
-            itemView.setOnClickListener {
-                IntentHelper.startDailyWeatherActivity(
-                    context as BreezyActivity,
-                    location.formattedId,
-                    location.weather!!.todayIndex,
-                    DetailScreen.TAG_AIR_QUALITY
-                )
-            }
+            aqiLevelView.text = airQuality.getName(context)
+            talkBackBuilder
+                .append(context.getString(R.string.air_quality_index))
+                .append(context.getString(R.string.colon_separator))
+                .append(UnitUtils.formatInt(context, mAqiIndex))
+                .append(context.getString(R.string.comma_separator))
+                .append(airQuality.getName(context))
         }
-        mAdapter = AqiAdapter(context, location, itemAnimationEnabled)
-        mRecyclerView.adapter = mAdapter
-        // Without this, the click event is not performed
-        mRecyclerView.setOnTouchListener { view, motionEvent ->
-            if (motionEvent.action == MotionEvent.ACTION_UP) {
-                view.performClick()
-            } else {
-                false
-            }
-        }
-        mRecyclerView.setOnClickListener {
+        itemView.contentDescription = talkBackBuilder.toString()
+        itemView.setOnClickListener {
             IntentHelper.startDailyWeatherActivity(
                 context as BreezyActivity,
                 location.formattedId,
@@ -155,42 +107,37 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 DetailScreen.TAG_AIR_QUALITY
             )
         }
-        mRecyclerView.layoutManager = LinearLayoutManager(context)
     }
 
-    @SuppressLint("DefaultLocale")
     override fun onEnterScreen() {
         if (itemAnimationEnabled && mEnable) {
             mLocation!!.weather!!.validAirQuality?.let { airQuality ->
-                val aqiColor = airQuality.getColor(mProgress.context)
+                val aqiColor = airQuality.getColor(aqiProgress.context)
                 val progressColor = ValueAnimator.ofObject(
                     ArgbEvaluator(),
                     ContextCompat.getColor(context, R.color.colorLevel_1),
                     aqiColor
                 )
                 progressColor.addUpdateListener { animation: ValueAnimator ->
-                    mProgress.setProgressColor(
+                    aqiProgress.setProgressColor(
                         animation.animatedValue as Int,
-                        MainThemeColorProvider.isLightTheme(context, mLocation!!)
+                        ThemeManager.isLightTheme(context, mLocation!!)
                     )
                 }
                 val backgroundColor = ValueAnimator.ofObject(
                     ArgbEvaluator(),
-                    MainThemeColorProvider.getColor(
-                        mLocation!!.isDaylight,
-                        com.google.android.material.R.attr.colorOutline
-                    ),
+                    context.getThemeColor(com.google.android.material.R.attr.colorOutline),
                     ColorUtils.setAlphaComponent(aqiColor, (255 * 0.1).toInt())
                 )
                 backgroundColor.addUpdateListener { animation: ValueAnimator ->
-                    mProgress.setArcBackgroundColor((animation.animatedValue as Int))
+                    aqiProgress.setArcBackgroundColor((animation.animatedValue as Int))
                 }
                 val aqiNumber = ValueAnimator.ofObject(FloatEvaluator(), 0, mAqiIndex)
                 aqiNumber.addUpdateListener { animation: ValueAnimator ->
-                    mProgress.apply {
+                    aqiProgress.apply {
                         progress = (animation.animatedValue as Float)
-                        setText(String.format("%d", mProgress.progress.toInt()))
                     }
+                    aqiValueView.text = UnitUtils.formatInt(context, aqiProgress.progress.roundToInt())
                 }
                 mAttachAnimatorSet = AnimatorSet().apply {
                     playTogether(progressColor, backgroundColor, aqiNumber)
@@ -198,7 +145,6 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                     duration = (1500 + mAqiIndex / 400f * 1500).toLong()
                     start()
                 }
-                mAdapter!!.executeAnimation()
             }
         }
     }
@@ -209,6 +155,5 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             if (it.isRunning) it.cancel()
         }
         mAttachAnimatorSet = null
-        mAdapter?.cancelAnimation()
     }
 }

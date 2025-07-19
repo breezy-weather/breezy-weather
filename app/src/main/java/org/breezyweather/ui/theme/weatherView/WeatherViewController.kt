@@ -43,18 +43,9 @@ object WeatherViewController {
     }
 
     @WeatherKindRule
-    fun getWeatherKind(location: Location?): Int = getWeatherKind(
-        when (location?.backgroundWeatherKind ?: "auto") {
-            "auto" -> location?.weather?.current?.weatherCode
-            else -> WeatherCode.getInstance(location!!.backgroundWeatherKind)
-        }
-    )
+    fun getWeatherKind(location: Location?): Int = getWeatherKind(location?.weather?.current?.weatherCode)
 
-    fun isDaylight(location: Location?): Boolean = when (location?.backgroundDayNightType ?: "auto") {
-        "day" -> true
-        "night" -> false
-        else -> location?.isDaylight ?: true
-    }
+    fun isDaylight(location: Location?): Boolean = location?.isDaylight ?: true
 
     @WeatherKindRule
     fun getWeatherKind(weatherCode: WeatherCode?): Int = when (weatherCode) {

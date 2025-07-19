@@ -24,6 +24,8 @@ import android.graphics.Canvas
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.Size
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import org.breezyweather.ui.theme.weatherView.WeatherView
 import org.breezyweather.ui.theme.weatherView.WeatherView.WeatherKindRule
 import kotlin.math.min
@@ -39,6 +41,7 @@ class MaterialWeatherView(
     override var weatherKind = 0
         private set
     private var mDaytime = false
+    private var mDarkMode = false
     private var mFirstCardMarginTop = 0
     private var mGravitySensorEnabled: Boolean = true
     private var mAnimate: Boolean = true
@@ -71,15 +74,13 @@ class MaterialWeatherView(
     }
 
     init {
-        setWeather(WeatherView.WEATHER_KIND_NULL, true)
+        setWeather(WeatherView.WEATHER_KIND_NULL, daytime = true, darkMode = false)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
         // At what position will animations disappear
-        // TODO: Stops too early, should take into account "current details" height
-        mFirstCardMarginTop = (resources.displayMetrics.heightPixels * 0.25).toInt() // 0.66
         for (index in 0 until childCount) {
             val child = getChildAt(index)
             child.measure(
@@ -87,6 +88,11 @@ class MaterialWeatherView(
                 MeasureSpec.makeMeasureSpec(measuredHeight, MeasureSpec.EXACTLY)
             )
         }
+        val insets = ViewCompat.getRootWindowInsets(this)
+        val i = insets?.getInsets(WindowInsetsCompat.Type.systemBars() + WindowInsetsCompat.Type.displayCutout())
+
+        // TODO: Arbitrary value
+        mFirstCardMarginTop = ((i?.top ?: 0) + 800) // 0.66
     }
 
     override fun onLayout(b: Boolean, i: Int, i1: Int, i2: Int, i3: Int) {
@@ -106,15 +112,17 @@ class MaterialWeatherView(
     override fun setWeather(
         @WeatherKindRule weatherKind: Int,
         daytime: Boolean,
+        darkMode: Boolean,
     ) {
         // do nothing if weather not change.
-        if (this.weatherKind == weatherKind && mDaytime == daytime) {
+        if (this.weatherKind == weatherKind && mDaytime == daytime && mDarkMode == darkMode) {
             return
         }
 
         // cache weather state.
         this.weatherKind = weatherKind
         mDaytime = daytime
+        mDarkMode = darkMode
 
         // cancel the previous switch animation if necessary.
         mSwitchAnimator?.let {

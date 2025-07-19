@@ -9,7 +9,7 @@ Nell'app troverete:
 - Qualità dell'aria, allergeni e dati sole e luna
 - Avvisi di maltempo e di precipitazioni
 
-L'app è fortemente incentrata sul design, con una UX semplice e pulita, animazioni fluide e Material Design, oltre a un'ampia possibilità di personalizzazione:
+L'app è fortemente incentrata sul design, con una UX semplice e pulita, animazioni fluide e Material 3 Expressive, oltre a un'ampia possibilità di personalizzazione:
 
 - Tema scuro automatico
 - Temi di icone personalizzati

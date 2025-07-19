@@ -23,6 +23,7 @@ import android.view.ViewGroup
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Lifecycle
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.extensions.isDarkMode
@@ -37,11 +38,7 @@ abstract class BreezyActivity : AppCompatActivity() {
 
         enableEdgeToEdge()
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            window.setSystemBarStyle(
-                statusShader = false,
-                lightStatus = !isDarkMode,
-                lightNavigation = !isDarkMode
-            )
+            window.setSystemBarStyle(!isDarkMode)
         }
 
         BreezyWeather.instance.addActivity(this)
@@ -68,6 +65,14 @@ abstract class BreezyActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         BreezyWeather.instance.removeActivity(this)
+    }
+
+    fun updateLocalNightMode(expectedLightTheme: Boolean) {
+        getDelegate().localNightMode = if (expectedLightTheme) {
+            AppCompatDelegate.MODE_NIGHT_NO
+        } else {
+            AppCompatDelegate.MODE_NIGHT_YES
+        }
     }
 
     open val snackbarContainer: SnackbarContainer

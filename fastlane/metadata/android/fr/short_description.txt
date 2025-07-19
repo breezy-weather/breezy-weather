@@ -1,1 +1,1 @@
-Une application météo en Material Design légère, puissante et libre.
+Une application météo en Material 3 Expressive légère, puissante et libre.

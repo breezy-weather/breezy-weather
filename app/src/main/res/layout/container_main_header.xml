@@ -9,23 +9,39 @@
     android:foreground="@drawable/selectable_item_background"
     android:gravity="bottom"
     android:padding="@dimen/normal_margin"
-    tools:layout_height="400dp"
-    tools:background="@android:color/black"
     tools:ignore="UnusedAttribute">
+
+    <TextView
+        android:id="@+id/container_main_header_weather_condition_description"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-8dp"
+        android:textFontWeight="300"
+        android:textAppearance="?attr/textAppearanceTitleLarge"
+        android:textColor="?attr/colorSurfaceInverse"
+        tools:text="Sunny"
+        tools:ignore="RelativeOverlap,RtlHardcoded" />
 
     <RelativeLayout
         android:id="@+id/container_main_header_temperature"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp">
 
         <org.breezyweather.ui.common.widgets.NumberAnimTextView
             android:id="@+id/container_main_header_temperature_value"
             android:layout_width="wrap_content"
             android:textSize="@dimen/main_title_text_size"
             android:includeFontPadding="false"
-            android:textFontWeight="200"
+            android:singleLine="true"
+            android:letterSpacing="0"
+            android:textStyle="bold"
+            android:textFontWeight="700"
             android:layout_centerHorizontal="true"
             android:importantForAccessibility="no"
+            android:textColor="?attr/colorSurfaceInverse"
             style="@style/large_title_text"
             tools:text="11"
             tools:ignore="RelativeOverlap,RtlSymmetry" />
@@ -33,36 +49,47 @@
         <TextView
             android:id="@+id/container_main_header_temperature_unit"
             android:layout_marginTop="15dp"
-            android:textSize="25sp"
-            android:textFontWeight="400"
+            android:textSize="50sp"
+            android:textFontWeight="700"
             android:includeFontPadding="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/container_main_header_temperature_value"
             android:importantForAccessibility="no"
+            android:textColor="?attr/colorSurfaceInverse"
             style="@style/large_title_text"
             tools:text="°C" />
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/container_main_header_weather_text"
-        android:textSize="@dimen/current_weather_text_size"
+        android:id="@+id/container_main_header_feels_like"
         android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:maxLines="1"
         android:ellipsize="end"
         android:textFontWeight="300"
         android:layout_marginTop="-10dp"
-        android:layout_marginBottom="5dp"
-        style="@style/large_title_text"
-        tools:text="Sunny"
+        android:layout_marginBottom="18dp"
+        android:textAppearance="?attr/textAppearanceTitleLarge"
+        android:textColor="?attr/colorSurfaceInverse"
+        tools:text="Feels like 18°"
         tools:ignore="RelativeOverlap,RtlHardcoded" />
 
-    <androidx.compose.ui.platform.ComposeView
-        android:id="@+id/container_main_header_details"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
+    <TextView
+        android:id="@+id/container_main_header_temperature_range"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textFontWeight="300"
+        android:layout_marginTop="-10dp"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
+        android:textColor="?attr/colorSurfaceInverse"
+        tools:text="Day: 30° • Night: 14°"
+        tools:ignore="RelativeOverlap,RtlHardcoded" />
 
 </LinearLayout>

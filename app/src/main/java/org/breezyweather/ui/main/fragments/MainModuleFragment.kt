@@ -17,18 +17,8 @@
 package org.breezyweather.ui.main.fragments
 
 import org.breezyweather.common.basic.BreezyFragment
-import org.breezyweather.common.bus.EventBus
-
-class ModifyMainSystemBarMessage
 
 abstract class MainModuleFragment : BreezyFragment() {
-
-    protected fun checkToSetSystemBarStyle() {
-        EventBus
-            .instance
-            .with(ModifyMainSystemBarMessage::class.java)
-            .postValue(ModifyMainSystemBarMessage())
-    }
 
     abstract fun setSystemBarStyle()
 }

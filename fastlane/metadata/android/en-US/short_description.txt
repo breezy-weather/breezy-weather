@@ -1,1 +1,1 @@
-A powerful, open-source Material Design weather app.
+A powerful, open-source Material 3 Expressive weather app.
