@@ -1,6 +1,7 @@
 # Version 6.0.2-alpha (not yet released)
 
 **Improvements and fixes**
+- Fix crash in some cases on old Android devices
 - Fix notification icons not showing
 - Make homepage top icons feel more intuitive
 
