@@ -21,21 +21,20 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.abs
 
 class RecyclerViewNoVerticalScrollTouchListener : RecyclerView.OnItemTouchListener {
-    private var mLastX = 0f
-    private var mLastY = 0f
+    private var initialX = 0f
+    private var initialY = 0f
 
     override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
         when (e.action) {
             MotionEvent.ACTION_DOWN -> {
-                mLastX = e.x
-                mLastY = e.y
+                rv.parent.requestDisallowInterceptTouchEvent(true)
+                initialX = e.x
+                initialY = e.y
             }
             MotionEvent.ACTION_MOVE -> {
-                if (abs(e.x - mLastX) > abs(e.y - mLastY)) {
-                    rv.parent.requestDisallowInterceptTouchEvent(true)
-                }
-                mLastX = e.x
-                mLastY = e.y
+                rv.parent.requestDisallowInterceptTouchEvent(abs(e.x - initialX) > abs(e.y - initialY))
+                initialX = e.x
+                initialY = e.y
             }
         }
         return false
