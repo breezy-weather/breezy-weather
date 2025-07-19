@@ -23,7 +23,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -112,7 +111,6 @@ import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
 import org.breezyweather.ui.common.widgets.insets.BWCenterAlignedTopAppBar
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.main.MainActivityViewModel
-import org.breezyweather.ui.main.adapters.LocationAdapterAnimWrapper
 import org.breezyweather.ui.main.adapters.location.LocationAdapter
 import org.breezyweather.ui.main.widgets.LocationItemTouchCallback
 import org.breezyweather.ui.main.widgets.LocationItemTouchCallback.TouchReactor
@@ -143,11 +141,9 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     private lateinit var layout: LinearLayoutManager
     private lateinit var adapter: LocationAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapterAnimWrapper: LocationAdapterAnimWrapper
     private lateinit var itemTouchHelper: ItemTouchHelper
     private var resourceProvider: ResourceProvider? = null
 
-    private var scrollOffset = 0f
     private var callback: Callback? = null
 
     interface Callback {
@@ -491,13 +487,6 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         }
     }
 
-    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
-        if (enter && nextAnim != 0) {
-            adapterAnimWrapper.setLastPosition(-1)
-        }
-        return super.onCreateAnimation(transit, enter, nextAnim)
-    }
-
     override fun setSystemBarStyle() {
         // do nothing.
     }
@@ -529,14 +518,8 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             ) { holder ->
                 itemTouchHelper.startDrag(holder)
             }
-        adapterAnimWrapper = LocationAdapterAnimWrapper(
-            requireContext(),
-            adapter
-        ).apply {
-            setLastPosition(Int.MAX_VALUE)
-        }
         recyclerView = RecyclerView(requireContext())
-        recyclerView.adapter = adapterAnimWrapper
+        recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(
             requireActivity(),
             RecyclerView.VERTICAL,
@@ -550,15 +533,6 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 requireContext()
             )
         )
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                scrollOffset = recyclerView.computeVerticalScrollOffset().toFloat()
-
-                if (dy != 0) {
-                    adapterAnimWrapper.setScrolled()
-                }
-            }
-        })
 
         itemTouchHelper = ItemTouchHelper(
             LocationItemTouchCallback(
