@@ -803,4 +803,20 @@
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="unit_bft_nominative">%s Bft</string>
     <string name="about_update_check_eol">Ní thacaítear leis an leagan Android seo a thuilleadh</string>
+    <string name="air_quality_short">Cáilíocht an aeir</string>
+    <string name="ephemeris_sun">Grian</string>
+    <string name="ephemeris_moon">Gealach</string>
+    <string name="ephemeris_polar_day">Lá polach</string>
+    <string name="ephemeris_polar_night">Oíche pholaire</string>
+    <string name="clock">Clog</string>
+    <string name="precipitation_total_day">Deascadh don lá</string>
+    <string name="precipitation_total_night">Deascadh don oíche</string>
+    <string name="precipitation_rain_total_day">Báisteach i rith an lae</string>
+    <string name="precipitation_rain_total_night">Báisteach don oíche</string>
+    <string name="precipitation_snow_total_day">Sneachta don lá</string>
+    <string name="precipitation_snow_total_night">Sneachta don oíche</string>
+    <string name="daytime_short">Lá</string>
+    <string name="nighttime_short">Oíche</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled">Cumasaithe i gcónaí le mód solais</string>
+    <string name="settings_appearance_dark_mode_locations_disabled">Díchumasaithe, ach bíonn na suíomhanna i mód dorcha i gcónaí san oíche</string>
 </resources>

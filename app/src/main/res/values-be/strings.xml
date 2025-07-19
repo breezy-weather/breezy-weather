@@ -341,7 +341,7 @@
     <string name="settings_weather_sources">Крыніцы надвор’я</string>
     <string name="settings_weather_sources_summary">Прадвызначаныя крыніцы даных пра надвор’е для новых месцаў, уласныя ключы API і іншыя налады крыніц</string>
     <string name="settings_weather_sources_per_location_summary">Наладзьце крыніцы даных пра надвор’е для гэтага месца</string>
-    <string name="settings_source_default_value">Прадвызначаная (без змен)</string>
+    <string name="settings_source_default_value">Прадвызначана (без змен)</string>
     <string name="settings_source_api_key">Ключ API</string>
     <string name="settings_appearance">Выгляд</string>
     <string name="settings_appearance_summary">Мова, цёмны варыянт тэмы, набор значкоў, адзінкі вымярэння</string>
@@ -796,4 +796,26 @@
     <string name="action_configure_item">Наладзіць %s</string>
     <string name="settings_appearance_section_regional">Мова і рэгіён</string>
     <string name="settings_appearance_section_theme">Тэма</string>
+    <string name="ephemeris_polar_day">Палярны дзень</string>
+    <string name="ephemeris_polar_night">Палярная ноч</string>
+    <string name="clock">Гадзіннік</string>
+    <string name="daytime_short">Дзень</string>
+    <string name="nighttime_short">Ноч</string>
+    <string name="air_quality_short">Паветра</string>
+    <string name="ephemeris_sun">Сонца</string>
+    <string name="ephemeris_moon">Месяц</string>
+    <string name="about_update_check_eol">Гэта версія Android больш не падтрымліваецца</string>
+    <string name="unit_bft_display_name">Балы Бофарта</string>
+    <string name="settings_appearance_dark_mode_locations_disabled">Адключаны, але ўночы для месцаў заўсёды выкарыстоўваецца цёмны рэжым</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled">Заўсёды ўключана са светлым рэжымам</string>
+    <string name="ephemeris_dusk_at">Змрок ў %s</string>
+    <string name="ephemeris_about_dusk">Змрок — найцямнейшая частка змяркання перад поўным знікненнем бачнага святла.</string>
+    <string name="ephemeris_about_dawn">Світанне — час перад ўсходам сонца, калі з\'яўляецца першае бачнае святло.</string>
+    <string name="precipitation_total_day">Ападкі ўдзень</string>
+    <string name="precipitation_total_night">Ападкі ўночы</string>
+    <string name="precipitation_rain_total_day">Дажджы ўдзень</string>
+    <string name="precipitation_rain_total_night">Дажджы ўночы</string>
+    <string name="precipitation_snow_total_day">Снег ўдзень</string>
+    <string name="precipitation_snow_total_night">Снег ўночы</string>
+    <string name="ephemeris_dawn_at">Світанне ў %s</string>
 </resources>
