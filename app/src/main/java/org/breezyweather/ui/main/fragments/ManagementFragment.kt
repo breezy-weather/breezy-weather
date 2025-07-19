@@ -195,8 +195,10 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             topBar = {
                 BWCenterAlignedTopAppBar(
                     title = stringResource(R.string.locations),
-                    onBackPressed = {
-                        (requireActivity() as MainActivity).setManagementFragmentVisibility(false)
+                    onBackPressed = if (!((requireActivity() as MainActivity).isDrawerLayoutVisible)) {
+                        { (requireActivity() as MainActivity).setManagementFragmentVisibility(false) }
+                    } else {
+                        null
                     },
                     actions = {
                         IconButton(
