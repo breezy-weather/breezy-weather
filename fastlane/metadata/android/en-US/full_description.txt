@@ -9,7 +9,7 @@ In the app, you'll find:
 - Air quality, allergen and ephemeris information
 - Severe weather and precipitation alerts
 
-The app has a strong focus on design, with a simple, clean UX, smooth animations, and Material Design all over, plus lots of customizability:
+The app has a strong focus on design, with a simple, clean UX, smooth animations, and Material 3 Expressive, plus lots of customizability:
 
 - Automatic dark mode
 - Custom icon packs

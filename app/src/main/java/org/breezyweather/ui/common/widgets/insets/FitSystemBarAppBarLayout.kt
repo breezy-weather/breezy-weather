@@ -21,8 +21,8 @@ import android.util.AttributeSet
 import androidx.core.view.updatePadding
 import com.google.android.material.appbar.AppBarLayout
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.utils.ColorUtils
-import org.breezyweather.ui.theme.ThemeManager
 
 class FitSystemBarAppBarLayout @JvmOverloads constructor(
     context: Context,
@@ -44,10 +44,8 @@ class FitSystemBarAppBarLayout @JvmOverloads constructor(
         setBackgroundColor(
             ColorUtils.getWidgetSurfaceColor(
                 6f,
-                ThemeManager.getInstance(context)
-                    .getThemeColor(context, androidx.appcompat.R.attr.colorPrimary),
-                ThemeManager.getInstance(context)
-                    .getThemeColor(context, com.google.android.material.R.attr.colorSurface)
+                context.getThemeColor(androidx.appcompat.R.attr.colorPrimary),
+                context.getThemeColor(com.google.android.material.R.attr.colorSurface)
             )
         )
     }

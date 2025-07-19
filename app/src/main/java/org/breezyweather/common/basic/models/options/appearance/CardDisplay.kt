@@ -29,21 +29,28 @@ enum class CardDisplay(
     val configure: ((Activity) -> Unit)? = null,
 ) : BaseEnum {
 
-    CARD_PRECIPITATION_NOWCAST("precipitation_nowcast", R.string.precipitation_nowcasting),
-    CARD_DAILY_OVERVIEW(
-        "daily_overview",
+    CARD_NOWCAST("nowcast", R.string.precipitation_nowcasting),
+    CARD_DAILY_FORECAST(
+        "daily_forecast",
         R.string.daily_forecast,
         { activity -> IntentHelper.startDailyTrendDisplayManageActivity(activity) }
     ),
-    CARD_HOURLY_OVERVIEW(
-        "hourly_overview",
+    CARD_HOURLY_FORECAST(
+        "hourly_forecast",
         R.string.hourly_forecast,
         { activity -> IntentHelper.startHourlyTrendDisplayManageActivity(activity) }
     ),
+    CARD_PRECIPITATION("precipitation", R.string.precipitation),
+    CARD_WIND("wind", R.string.wind),
     CARD_AIR_QUALITY("air_quality", R.string.air_quality),
     CARD_POLLEN("pollen", R.string.pollen),
-    CARD_SUNRISE_SUNSET("sunrise_sunset", R.string.ephemeris),
-    CARD_LIVE("live", R.string.details),
+    CARD_HUMIDITY("humidity", R.string.humidity),
+    CARD_UV("uv", R.string.uv_index),
+    CARD_VISIBILITY("visibility", R.string.visibility),
+    CARD_PRESSURE("pressure", R.string.pressure),
+    CARD_SUN("sun", R.string.ephemeris_sun),
+    CARD_MOON("moon", R.string.ephemeris_moon),
+    CARD_CLOCK("clock", R.string.clock),
     ;
 
     companion object {
@@ -54,21 +61,9 @@ enum class CardDisplay(
             mutableListOf()
         } else {
             try {
-                val cards = value.split("&").toTypedArray()
-                val list = mutableListOf<CardDisplay>()
-                for (card in cards) {
-                    when (card) {
-                        "precipitation_nowcast" -> list.add(CARD_PRECIPITATION_NOWCAST)
-                        "daily_overview" -> list.add(CARD_DAILY_OVERVIEW)
-                        "hourly_overview" -> list.add(CARD_HOURLY_OVERVIEW)
-                        "air_quality" -> list.add(CARD_AIR_QUALITY)
-                        "allergen", "pollen" -> list.add(CARD_POLLEN)
-                        "sunrise_sunset" -> list.add(CARD_SUNRISE_SUNSET)
-                        "live" -> list.add(CARD_LIVE)
-                    }
+                value.split("&").toTypedArray().mapNotNull { cardId ->
+                    CardDisplay.entries.firstOrNull { it.id == cardId }
                 }
-
-                list
             } catch (e: Exception) {
                 emptyList()
             }

@@ -31,13 +31,13 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.ui.common.images.RotateDrawable
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.DoubleHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 
 /**
  * Daily wind adapter.
@@ -97,9 +97,9 @@ class DailyWindAdapter(
             mDoubleHistogramView.setLineColors(
                 dayWindColor,
                 nightWindColor,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
-            mDoubleHistogramView.setTextColors(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+            mDoubleHistogramView.setTextColors(activity.getThemeColor(R.attr.colorBodyText))
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f)
 
             if (daily.night?.wind?.isValid == true) {

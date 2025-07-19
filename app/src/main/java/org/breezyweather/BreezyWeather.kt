@@ -31,8 +31,8 @@ import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.uiModeManager
 import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.utils.helpers.LogHelper
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.remoteviews.Notifications
-import org.breezyweather.ui.theme.ThemeManager
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
@@ -123,14 +123,10 @@ class BreezyWeather : Application(), Configuration.Provider {
     }
 
     private fun setDayNightMode() {
-        updateDayNightMode(ThemeManager.getInstance(this).uiMode.value!!)
-
-        ThemeManager.getInstance(this).uiMode.observeForever {
-            updateDayNightMode(it)
-        }
+        updateDayNightMode(SettingsManager.getInstance(this).darkMode.value)
     }
 
-    private fun updateDayNightMode(dayNightMode: Int) {
+    fun updateDayNightMode(dayNightMode: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             uiModeManager?.setApplicationNightMode(
                 when (dayNightMode) {

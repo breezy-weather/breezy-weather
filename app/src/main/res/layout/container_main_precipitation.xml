@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="0dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraLarge"
+    app:strokeWidth="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:id="@+id/block_top_guideline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintGuide_percent="0.1" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:id="@+id/block_bottom_guideline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintGuide_percent="0.9" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="vertical"
+                android:id="@+id/block_start_guideline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintGuide_percent="0.1" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="vertical"
+                android:id="@+id/block_end_guideline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintGuide_percent="0.9" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:id="@+id/precipitation_value_top_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.4" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:id="@+id/precipitation_value_bottom_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.6" />
+
+            <ImageView
+                android:id="@+id/title_icon"
+                android:gravity="start"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:importantForAccessibility="no"
+                android:backgroundTint="?attr/colorSurfaceInverse"
+                android:src="@drawable/ic_precipitation"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
+                app:layout_constraintTop_toTopOf="@+id/title" />
+
+            <TextView
+                android:id="@+id/title"
+                android:accessibilityHeading="true"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorSurfaceInverse"
+                android:textSize="@dimen/title_text_size"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textAlignment="viewStart"
+                android:text="@string/precipitation"
+                android:layout_marginStart="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/title_icon"
+                app:layout_constraintTop_toTopOf="@+id/block_top_guideline" />
+
+            <TextView
+                android:textAppearance="@style/TextAppearance.Material3.DisplaySmall"
+                android:textColor="?attr/colorSurfaceInverse"
+                android:gravity="center_vertical"
+                android:id="@+id/precipitation_value"
+                android:layout_width="0dp"
+                android:layout_height="68dp"
+                android:maxLines="1"
+                android:autoSizeTextType="uniform"
+                app:autoSizeMaxTextSize="48sp"
+                app:autoSizeStepGranularity="1sp"
+                app:layout_constraintBottom_toBottomOf="@+id/precipitation_value_bottom_guideline"
+                app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
+                app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
+                app:layout_constraintTop_toTopOf="@+id/precipitation_value_top_guideline"
+                tools:text="0.3 mm" />
+
+            <TextView
+                android:textAppearance="?attr/textAppearanceLabelMedium"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:ellipsize="end"
+                android:id="@+id/precipitation_amount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:maxLines="3"
+                android:minLines="2"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="16dp"
+                android:breakStrategy="balanced"
+                app:layout_constraintBottom_toBottomOf="@+id/block_bottom_guideline"
+                app:layout_constraintEnd_toStartOf="@+id/precipitation_icon"
+                app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
+                tools:text="Daytime precipitation total" />
+
+            <ImageView
+                android:id="@+id/precipitation_icon"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:importantForAccessibility="no"
+                app:layout_constraintBottom_toBottomOf="@+id/block_bottom_guideline"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
+                app:layout_constraintTop_toTopOf="@+id/precipitation_amount"
+                tools:src="@drawable/weather_rain" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

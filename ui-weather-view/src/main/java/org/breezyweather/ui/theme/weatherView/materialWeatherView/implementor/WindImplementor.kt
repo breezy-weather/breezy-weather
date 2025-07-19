@@ -17,11 +17,11 @@
 package org.breezyweather.ui.theme.weatherView.materialWeatherView.implementor
 
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import androidx.annotation.ColorInt
 import androidx.annotation.Size
+import androidx.core.graphics.toColorInt
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.MaterialWeatherView.WeatherAnimationImplementor
 import java.util.Random
 import kotlin.math.cos
@@ -109,15 +109,15 @@ class WindImplementor(
     init {
         val colors = if (daylight) {
             intArrayOf(
-                Color.rgb(240, 200, 148),
-                Color.rgb(237, 178, 100),
-                Color.rgb(209, 142, 54)
+                "#C2E4CA".toColorInt(), // Color.rgb(240, 200, 148),
+                "#B2E0BA".toColorInt(), // Color.rgb(237, 178, 100),
+                "#D2F0DA".toColorInt() // Color.rgb(209, 142, 54)
             )
         } else {
             intArrayOf(
-                Color.rgb(240, 200, 148),
-                Color.rgb(237, 178, 100),
-                Color.rgb(209, 142, 54)
+                "#313E3A".toColorInt(), // Color.rgb(240, 200, 148),
+                "#529B73".toColorInt(), // Color.rgb(237, 178, 100),
+                "#638170".toColorInt() // Color.rgb(209, 142, 54)
             )
         }
         val scales = floatArrayOf(0.6f, 0.8f, 1f)

@@ -83,6 +83,12 @@ You can find the newer checksum of the binary-only (-bin) ZIP on https://gradle.
 1. In `org.breezyweather.background.updater.AppUpdateChecker`, uncomment the relevant lines to trigger a notification on the unsupported Android versions
 2. In `org.breezyweather.background.weather.WeatherUpdateJob`, uncomment the relevant lines to always enable “check for update” on these unsupported Android versions, to ensure that `freenet` users and users who disabled update check correctly receive the notification. No actual update check will be performed, so it’s safe to force it enabled.
 
+
+# Adding a new Material Icon
+
+You can find [many Material Symbols and Icons here](https://fonts.google.com/icons).
+
+
 ____
 
 # Weather sources API

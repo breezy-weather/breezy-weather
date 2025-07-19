@@ -77,6 +77,9 @@ class SettingsActivity : BreezyActivity() {
     private val updateIntervalState = mutableStateOf(
         SettingsManager.getInstance(this).updateInterval
     )
+    private val darkModeState = mutableStateOf(
+        SettingsManager.getInstance(this).darkMode
+    )
     private val cardDisplayState = mutableStateOf(
         SettingsManager.getInstance(this).cardDisplayList
     )
@@ -85,9 +88,6 @@ class SettingsActivity : BreezyActivity() {
     )
     private val hourlyTrendDisplayState = mutableStateOf(
         SettingsManager.getInstance(this).hourlyTrendDisplayList
-    )
-    private val detailsDisplayState = mutableStateOf(
-        SettingsManager.getInstance(this).detailDisplayList
     )
     private val notificationEnabledState = mutableStateOf(
         SettingsManager.getInstance(this).isWidgetNotificationEnabled
@@ -114,6 +114,11 @@ class SettingsActivity : BreezyActivity() {
         }
 
         EventBus.instance.with(SettingsChangedMessage::class.java).observeAutoRemove(this) {
+            val darkMode = SettingsManager.getInstance(this).darkMode
+            if (darkModeState.value != darkMode) {
+                darkModeState.value = darkMode
+            }
+
             val updateInterval = SettingsManager.getInstance(this).updateInterval
             if (updateIntervalState.value != updateInterval) {
                 updateIntervalState.value = updateInterval
@@ -132,11 +137,6 @@ class SettingsActivity : BreezyActivity() {
             val hourlyTrendDisplayList = SettingsManager.getInstance(this).hourlyTrendDisplayList
             if (hourlyTrendDisplayState.value != hourlyTrendDisplayList) {
                 hourlyTrendDisplayState.value = hourlyTrendDisplayList
-            }
-
-            val detailsDisplayList = SettingsManager.getInstance(this).detailDisplayList
-            if (detailsDisplayState.value != detailsDisplayList) {
-                detailsDisplayState.value = detailsDisplayList
             }
 
             val notificationEnabled = SettingsManager.getInstance(this).isWidgetNotificationEnabled
@@ -240,7 +240,8 @@ class SettingsActivity : BreezyActivity() {
                 AppearanceSettingsScreen(
                     context = this@SettingsActivity,
                     onNavigateTo = { navController.navigate(it) },
-                    onNavigateBack = { onBack() }
+                    onNavigateBack = { onBack() },
+                    darkMode = remember { darkModeState }.value
                 )
             }
             composable(SettingsScreenRouter.Unit.route) {
@@ -266,7 +267,6 @@ class SettingsActivity : BreezyActivity() {
                     cardDisplayList = remember { cardDisplayState }.value.toImmutableList(),
                     dailyTrendDisplayList = remember { dailyTrendDisplayState }.value.toImmutableList(),
                     hourlyTrendDisplayList = remember { hourlyTrendDisplayState }.value.toImmutableList(),
-                    detailDisplayList = remember { detailsDisplayState }.value.toImmutableList(),
                     updateWidgetIfNecessary = { context: Context ->
                         scope.launch {
                             refreshHelper.updateWidgetIfNecessary(context)

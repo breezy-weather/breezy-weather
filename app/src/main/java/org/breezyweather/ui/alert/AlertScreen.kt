@@ -64,7 +64,7 @@ import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.ui.common.widgets.getCardListItemMarginDp
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.ui.common.widgets.insets.bottomInsetItem
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 
 @Composable
@@ -80,7 +80,7 @@ internal fun AlertScreen(
 
     val scrollBehavior = generateCollapsedScrollBehavior()
 
-    val isLightTheme = MainThemeColorProvider.isLightTheme(context, alertUiState.location)
+    val isLightTheme = ThemeManager.isLightTheme(context, alertUiState.location)
     LaunchedEffect(alertUiState.location) {
         alertUiState.location?.weather?.alertList?.let { alerts ->
             if (alerts.isNotEmpty()) {
@@ -99,11 +99,7 @@ internal fun AlertScreen(
 
         // re-setting the status bar color once the location is fetched
         if (alertUiState.location != null && activity != null) {
-            activity.window.setSystemBarStyle(
-                statusShader = false,
-                lightStatus = isLightTheme,
-                lightNavigation = isLightTheme
-            )
+            activity.window.setSystemBarStyle(isLightTheme)
         }
     }
 

@@ -9,7 +9,7 @@ Vous trouverez dans cette application, de façon non exhaustive :
 - Des informations sur la qualité de l’air, les allergènes et l’éphéméride
 - Vigilances météo et alertes de précipitations
 
-L’application met l’accent sur l’esthétique, avec une expérience utilisateur simple et épurée, des animations fluides, en Material Design, ainsi que plusieurs personnalisations :
+L’application met l’accent sur l’esthétique, avec une expérience utilisateur simple et épurée, des animations fluides, en Material 3 Expressive, ainsi que plusieurs personnalisations :
 
 - Thème sombre automatique
 - Thèmes d’icônes personnalisées

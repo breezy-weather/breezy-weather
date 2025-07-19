@@ -16,13 +16,46 @@
 
 package org.breezyweather.ui.main.layouts
 
-import android.view.ViewGroup
-import android.view.ViewGroup.MarginLayoutParams
-import androidx.annotation.Px
+import android.content.Context
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
 
-class MainLayoutManager : RecyclerView.LayoutManager() {
+/**
+ * FIXME: the old custom layout manager didn't have the following issues:
+ *  - Daily/hourly line charts glitching
+ *  - Blocks are recreated when scrolling up and down
+ */
+class MainLayoutManager(
+    context: Context,
+) : GridLayoutManager(context, 2, RecyclerView.VERTICAL, false) {
+
+    private var mDataSetChanged = false
+
+    init {
+        recycleChildrenOnDetach = true
+    }
+
+    override fun onAdapterChanged(oldAdapter: RecyclerView.Adapter<*>?, newAdapter: RecyclerView.Adapter<*>?) {
+        super.onAdapterChanged(oldAdapter, newAdapter)
+        scrollToPosition(0)
+        mDataSetChanged = true
+    }
+
+    override fun onItemsChanged(recyclerView: RecyclerView) {
+        super.onItemsChanged(recyclerView)
+        scrollToPosition(0)
+        mDataSetChanged = true
+    }
+
+    override fun onLayoutChildren(recycler: RecyclerView.Recycler, state: RecyclerView.State) {
+        if (mDataSetChanged) {
+            removeAndRecycleAllViews(recycler)
+            mDataSetChanged = false
+        }
+        super.onLayoutChildren(recycler, state)
+    }
+}
+/* ) : LinearLayoutManager(context, RecyclerView.VERTICAL, false) {
     @get:Px
     @Px
     var scrollOffset = 0
@@ -121,4 +154,4 @@ class MainLayoutManager : RecyclerView.LayoutManager() {
     override fun computeVerticalScrollRange(state: RecyclerView.State) = mMeasuredHeight
 
     override fun computeVerticalScrollExtent(state: RecyclerView.State) = height
-}
+}*/

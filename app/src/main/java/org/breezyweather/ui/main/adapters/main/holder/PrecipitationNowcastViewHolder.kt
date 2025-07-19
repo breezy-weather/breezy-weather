@@ -17,7 +17,6 @@
 package org.breezyweather.ui.main.adapters.main.holder
 
 import android.content.Context
-import android.os.Build
 import android.text.Layout
 import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
@@ -59,7 +58,9 @@ import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.pxToDp
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.domain.settings.SettingsManager
@@ -67,9 +68,9 @@ import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getMinutelyDescription
 import org.breezyweather.domain.weather.model.getMinutelyTitle
 import org.breezyweather.ui.common.charts.SpecificHorizontalAxisItemPlacer
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import org.breezyweather.ui.theme.weatherView.WeatherView
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 import java.util.Date
 import kotlin.math.abs
@@ -79,8 +80,8 @@ import kotlin.time.Duration.Companion.minutes
 class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_precipitation_nowcast_card, parent, false)
 ) {
-    private val title: TextView = itemView.findViewById(R.id.container_main_minutely_card_title)
-    private val subtitle: TextView = itemView.findViewById(R.id.container_main_minutely_card_subtitle)
+    private val titleView: TextView = itemView.findViewById(R.id.nowcasting_block_title)
+    private val subtitle: TextView = itemView.findViewById(R.id.nowcasting_block_subtitle)
     private val chartView: CartesianChartView = itemView.findViewById(R.id.container_main_minutely_chart)
     private val modelProducer = CartesianChartModelProducer()
 
@@ -90,25 +91,11 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
         itemAnimationEnabled: Boolean,
-        firstCard: Boolean,
     ) {
-        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
         val weather = location.weather ?: return
-        val colors = ThemeManager
-            .getInstance(context)
-            .weatherThemeDelegate
-            .getThemeColors(
-                context,
-                WeatherViewController.getWeatherKind(location),
-                WeatherViewController.isDaylight(location)
-            )
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            title.isAccessibilityHeading = true
-        }
-        title.setTextColor(colors[0])
-        title.text = weather.getMinutelyTitle(context)
+        titleView.text = weather.getMinutelyTitle(context)
         subtitle.text = weather.getMinutelyDescription(context, location)
 
         val minutelyList = weather.minutelyForecast
@@ -159,11 +146,10 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
         }
 
         val isTrendHorizontalLinesEnabled = SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
-        val lineColor =
-            Color(MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline))
+        val lineColor = Color(context.getThemeColor(com.google.android.material.R.attr.colorOutline))
         val labelColor = ContextCompat.getColor(
             context,
-            if (MainThemeColorProvider.isLightTheme(context, location)) {
+            if (ThemeManager.isLightTheme(context, location)) {
                 R.color.colorTextGrey
             } else {
                 R.color.colorTextGrey2nd
@@ -177,9 +163,9 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
         )
         val marker = DefaultCartesianMarker(
             label = TextComponent(
-                color = MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnPrimary),
+                color = context.getThemeColor(com.google.android.material.R.attr.colorOnPrimary),
                 background = ShapeComponent(
-                    fill = Fill(MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary)),
+                    fill = Fill(context.getThemeColor(androidx.appcompat.R.attr.colorPrimary)),
                     CorneredShape.Pill,
                     shadow = Shadow(
                         radiusDp = LABEL_BACKGROUND_SHADOW_RADIUS_DP,
@@ -205,7 +191,16 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
             ColumnCartesianLayer(
                 ColumnCartesianLayer.ColumnProvider.series(
                     LineComponent(
-                        fill = Fill(colors[0]),
+                        fill = Fill(
+                            ThemeManager
+                                .getInstance(context)
+                                .weatherThemeDelegate
+                                .getThemeColors(
+                                    context,
+                                    WeatherView.WEATHER_KIND_RAINY,
+                                    WeatherViewController.isDaylight(location) && !context.isDarkMode
+                                )[0]
+                        ),
                         thicknessDp = 500f,
                         shape = CorneredShape.rounded(allPercent = 15)
                     )
@@ -246,6 +241,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
                 private var mLastX = 0f
                 private var mLastY = 0f
 
+                @Suppress("ClickableViewAccessibility")
                 override fun onTouch(v: View, event: MotionEvent): Boolean {
                     when (event.action) {
                         MotionEvent.ACTION_DOWN -> {

@@ -105,8 +105,8 @@ class AccuService @Inject constructor(
     )
 
     @DrawableRes
-    override fun getAttributionIcon(isDarkMode: Boolean): Int {
-        return if (isDarkMode) R.drawable.accu_icon_dark else R.drawable.accu_icon_light
+    override fun getAttributionIcon(): Int {
+        return R.drawable.accu_icon
     }
 
     override fun isFeatureSupportedForLocation(

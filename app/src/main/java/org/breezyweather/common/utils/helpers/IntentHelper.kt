@@ -35,7 +35,6 @@ import org.breezyweather.ui.search.SearchActivity
 import org.breezyweather.ui.settings.activities.CardDisplayManageActivity
 import org.breezyweather.ui.settings.activities.DailyTrendDisplayManageActivity
 import org.breezyweather.ui.settings.activities.DependenciesActivity
-import org.breezyweather.ui.settings.activities.DetailDisplayManageActivity
 import org.breezyweather.ui.settings.activities.HourlyTrendDisplayManageActivity
 import org.breezyweather.ui.settings.activities.PreviewIconActivity
 import org.breezyweather.ui.settings.activities.PrivacyPolicyActivity
@@ -148,10 +147,6 @@ object IntentHelper {
         activity.startActivity(Intent(activity, HourlyTrendDisplayManageActivity::class.java))
     }
 
-    fun startDetailDisplayManageActivity(activity: Activity) {
-        activity.startActivity(Intent(activity, DetailDisplayManageActivity::class.java))
-    }
-
     fun startMainScreenSettingsActivity(activity: Activity) {
         activity.startActivity(
             Intent(activity, SettingsActivity::class.java).apply {
@@ -220,7 +215,7 @@ object IntentHelper {
         context.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
     }
 
-    fun startGeoActivity(activity: Activity, location: Location) {
+    fun startBreezyActivity(activity: Activity, location: Location) {
         activity.startActivity(
             Intent(
                 Intent.ACTION_VIEW,

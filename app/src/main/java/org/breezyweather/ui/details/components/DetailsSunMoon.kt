@@ -57,6 +57,7 @@ import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
@@ -67,7 +68,6 @@ import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.astro.MoonPhaseView
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
 import org.breezyweather.ui.settings.preference.bottomInsetItem
-import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.MaterialWeatherThemeDelegate
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.implementor.MeteorShowerImplementor
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.implementor.SunImplementor
@@ -524,7 +524,7 @@ fun DailyMoonPhase(
                         setColor(
                             ContextCompat.getColor(context, R.color.colorTextLight2nd),
                             ContextCompat.getColor(context, R.color.colorTextDark2nd),
-                            ThemeManager.getInstance(context).getThemeColor(context, R.attr.colorBodyText)
+                            context.getThemeColor(R.attr.colorBodyText)
                         )
                     }
                 }

@@ -26,6 +26,7 @@ import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -34,7 +35,6 @@ import org.breezyweather.ui.settings.adapters.WeatherIconAdapter
 import org.breezyweather.ui.settings.dialogs.AdaptiveIconDialog
 import org.breezyweather.ui.settings.dialogs.AnimatableIconDialog
 import org.breezyweather.ui.settings.dialogs.MinimalIconDialog
-import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.DefaultResourceProvider
@@ -133,10 +133,8 @@ class PreviewIconActivity : BreezyActivity() {
             setBackgroundColor(
                 ColorUtils.getWidgetSurfaceColor(
                     6f,
-                    ThemeManager.getInstance(this@PreviewIconActivity)
-                        .getThemeColor(this@PreviewIconActivity, androidx.appcompat.R.attr.colorPrimary),
-                    ThemeManager.getInstance(this@PreviewIconActivity)
-                        .getThemeColor(this@PreviewIconActivity, com.google.android.material.R.attr.colorSurface)
+                    getThemeColor(androidx.appcompat.R.attr.colorPrimary),
+                    getThemeColor(com.google.android.material.R.attr.colorSurface)
                 )
             )
         }

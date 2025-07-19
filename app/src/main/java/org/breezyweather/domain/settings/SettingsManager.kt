@@ -27,7 +27,6 @@ import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
-import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
@@ -59,13 +58,19 @@ class SettingsManager private constructor(
             return instance!!
         }
 
-        const val DEFAULT_CARD_DISPLAY = "precipitation_nowcast" +
-            "&daily_overview" +
-            "&hourly_overview" +
+        const val DEFAULT_CARD_DISPLAY = "nowcast" +
+            "&daily_forecast" +
+            "&hourly_forecast" +
+            "&precipitation" +
+            "&wind" +
             "&air_quality" +
             "&pollen" +
-            "&sunrise_sunset" +
-            "&live"
+            "&humidity" +
+            "&uv" +
+            "&visibility" +
+            "&pressure" +
+            "&sun" +
+            "&moon"
         const val DEFAULT_DAILY_TREND_DISPLAY = "temperature" +
             "&air_quality" +
             "&wind" +
@@ -83,10 +88,6 @@ class SettingsManager private constructor(
             "&pressure" +
             "&cloud_cover" +
             "&visibility"
-        private const val DEFAULT_DETAILS_DISPLAY = "feels_like" +
-            "&wind" +
-            "&uv_index" +
-            "&humidity"
 
         const val DEFAULT_TODAY_FORECAST_TIME = "07:00"
         const val DEFAULT_TOMORROW_FORECAST_TIME = "21:00"
@@ -299,12 +300,12 @@ class SettingsManager private constructor(
         set(value) {
             config
                 .edit()
-                .putString("card_display_2", CardDisplay.toValue(value))
+                .putString("card_display", CardDisplay.toValue(value))
                 .apply()
         }
         get() = CardDisplay
             .toCardDisplayList(
-                config.getString("card_display_2", DEFAULT_CARD_DISPLAY)
+                config.getString("card_display", DEFAULT_CARD_DISPLAY)
             )
             .toMutableList()
 
@@ -333,27 +334,6 @@ class SettingsManager private constructor(
         get() = HourlyTrendDisplay
             .toHourlyTrendDisplayList(
                 config.getString("hourly_trend_display", DEFAULT_HOURLY_TREND_DISPLAY)
-            )
-            .toMutableList()
-
-    var detailDisplayList: List<DetailDisplay>
-        set(value) {
-            config
-                .edit()
-                .putString("details_display", DetailDisplay.toValue(value))
-                .apply()
-            notifySettingsChanged()
-        }
-        get() = DetailDisplay
-            .toDetailDisplayList(
-                config.getString("details_display", DEFAULT_DETAILS_DISPLAY)
-            )
-            .toMutableList()
-
-    val detailDisplayUnlisted: List<DetailDisplay>
-        get() = DetailDisplay
-            .toDetailDisplayUnlisted(
-                config.getString("details_display", DEFAULT_DETAILS_DISPLAY)
             )
             .toMutableList()
 

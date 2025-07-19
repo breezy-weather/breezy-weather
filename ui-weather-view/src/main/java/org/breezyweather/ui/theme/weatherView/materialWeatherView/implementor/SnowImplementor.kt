@@ -60,7 +60,7 @@ class SnowImplementor(
         init {
             mCanvasSize = (mViewWidth * mViewWidth + mViewHeight * mViewHeight).toDouble().pow(0.5).toInt()
             radius = (mCanvasSize * (0.005 + Random().nextDouble() * 0.007) * scale).toFloat()
-            speedY = (mCanvasSize / (1000.0 * (2.5 + Random().nextDouble())) * 3.0).toFloat()
+            speedY = (mCanvasSize / (1000.0 * (2.5 + Random().nextDouble())) * SNOW_SPEED).toFloat()
             init(true)
         }
 
@@ -96,14 +96,14 @@ class SnowImplementor(
     init {
         val colors = if (daylight) {
             intArrayOf(
-                Color.rgb(128, 197, 255),
-                Color.rgb(185, 222, 255),
+                Color.rgb(190, 225, 255),
+                Color.rgb(211, 233, 255),
                 Color.rgb(255, 255, 255)
             )
         } else {
             intArrayOf(
-                Color.rgb(40, 102, 155),
-                Color.rgb(99, 144, 182),
+                Color.rgb(111, 133, 155),
+                Color.rgb(140, 161, 182),
                 Color.rgb(255, 255, 255)
             )
         }
@@ -154,7 +154,8 @@ class SnowImplementor(
 
     companion object {
         private const val INITIAL_ROTATION_3D = 1000f
-        private const val SNOW_COUNT = 90
+        private const val SNOW_COUNT = 50
+        private const val SNOW_SPEED = 1.5
 
         @ColorInt
         fun getThemeColor(daylight: Boolean): Int {
