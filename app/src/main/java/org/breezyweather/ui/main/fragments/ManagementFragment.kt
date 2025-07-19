@@ -40,7 +40,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.BugReport
@@ -105,7 +105,7 @@ import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.common.composables.NotificationCard
 import org.breezyweather.ui.common.composables.SecondarySourcesPreference
 import org.breezyweather.ui.common.decorations.Material3ListItemDecoration
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
 import org.breezyweather.ui.common.widgets.insets.BWCenterAlignedTopAppBar
@@ -609,6 +609,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         modifier: Modifier = Modifier,
     ) {
         val context = LocalContext.current
+        val sourcesWithTestingLocations = sourceManager.getWeatherSources().filter { it.testingLocations.isNotEmpty() }
 
         AlertDialogNoPadding(
             modifier = modifier,
@@ -625,42 +626,60 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             text = {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(horizontal = dimensionResource(R.dimen.small_margin)),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-                    items(sourceManager.getWeatherSources().filter { it.testingLocations.isNotEmpty() }) {
-                        val enabled = !viewModel.locationExists(it.testingLocations[0])
-
-                        Material3CardListItem(
-                            elevation = if (enabled) defaultCardListItemElevation else 0.dp
-                        ) {
-                            ListItem(
-                                tonalElevation = if (enabled) defaultCardListItemElevation else 0.dp,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .alpha(if (enabled) 1f else 0.5f)
-                                    .clickable(
-                                        interactionSource = remember { MutableInteractionSource() },
-                                        indication = themeRipple(),
-                                        onClick = { onClose(it.testingLocations[0]) },
-                                        enabled = enabled
-                                    ),
-                                colors = ListItemDefaults.colors(
-                                    containerColor = Color.Transparent
-                                ),
-                                headlineContent = {
-                                    Text(
-                                        it.getName(context),
-                                        fontWeight = FontWeight.Bold,
-                                        color = MaterialTheme.colorScheme.onSurface
-                                    )
-                                },
-                                supportingContent = {
-                                    Text(
-                                        it.testingLocations[0].getPlace(context),
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
-                                }
+                    itemsIndexed(sourcesWithTestingLocations) { sourceIndex, source ->
+                        Text(
+                            source.name,
+                            modifier = Modifier.padding(
+                                start = dimensionResource(R.dimen.normal_margin),
+                                bottom = dimensionResource(R.dimen.small_margin)
                             )
+                        )
+
+                        source.testingLocations.forEachIndexed { locationIndex, location ->
+                            val enabled = !viewModel.locationExists(location)
+                            Material3ExpressiveCardListItem(
+                                elevation = if (enabled) defaultCardListItemElevation else 0.dp,
+                                isFirst = locationIndex == 0,
+                                isLast = locationIndex == source.testingLocations.lastIndex
+                            ) {
+                                ListItem(
+                                    tonalElevation = if (enabled) defaultCardListItemElevation else 0.dp,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .alpha(if (enabled) 1f else 0.5f)
+                                        .clickable(
+                                            interactionSource = remember { MutableInteractionSource() },
+                                            indication = themeRipple(),
+                                            onClick = { onClose(location) },
+                                            enabled = enabled
+                                        ),
+                                    colors = ListItemDefaults.colors(
+                                        containerColor = Color.Transparent
+                                    ),
+                                    headlineContent = {
+                                        Text(
+                                            source.getName(context),
+                                            fontWeight = FontWeight.Bold,
+                                            color = MaterialTheme.colorScheme.onSurface
+                                        )
+                                    },
+                                    supportingContent = {
+                                        Text(
+                                            location.getPlace(context),
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                                        )
+                                    }
+                                )
+                            }
+                            if (locationIndex != source.testingLocations.lastIndex) {
+                                Spacer(modifier = Modifier.height(2.dp))
+                            }
+                        }
+                        if (sourceIndex != sourcesWithTestingLocations.lastIndex) {
+                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
                         }
                     }
                 }

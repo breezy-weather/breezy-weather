@@ -191,31 +191,6 @@ fun getCardListItemMarginDp(context: Context) = context
     .resources
     .getDimension(R.dimen.small_margin)
 
-@Deprecated(message = "Use Material3ExpressiveCardListItem instead")
-@Composable
-fun Material3CardListItem(
-    modifier: Modifier = Modifier,
-    elevation: Dp = defaultCardListItemElevation,
-    surface: Color = MaterialTheme.colorScheme.surface,
-    onSurface: Color = MaterialTheme.colorScheme.onSurface,
-    content: @Composable ColumnScope.() -> Unit,
-) = Card(
-    modifier = modifier
-        .padding(
-            start = dimensionResource(R.dimen.small_margin),
-            end = dimensionResource(R.dimen.small_margin),
-            top = dimensionResource(R.dimen.small_margin)
-        ),
-    shape = RoundedCornerShape(
-        size = dimensionResource(R.dimen.material3_card_list_item_corner_radius)
-    ),
-    colors = CardDefaults.cardColors(
-        containerColor = getWidgetSurfaceColor(elevation, surface),
-        contentColor = onSurface
-    ),
-    content = content
-)
-
 @Composable
 fun Material3ExpressiveCardListItem(
     modifier: Modifier = Modifier,

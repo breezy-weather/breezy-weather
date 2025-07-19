@@ -19,7 +19,13 @@ package org.breezyweather.sources.debug
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceFeature
+import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Minutely
+import breezyweather.domain.weather.model.Temperature
+import breezyweather.domain.weather.model.UV
+import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -31,6 +37,7 @@ import org.breezyweather.common.utils.helpers.LogHelper
 import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
+import kotlin.math.roundToInt
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.minutes
 
@@ -42,6 +49,7 @@ class DebugService @Inject constructor() : WeatherSource {
     private val weatherAttribution = "Debug"
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.MINUTELY to weatherAttribution
     )
 
@@ -73,6 +81,11 @@ class DebugService @Inject constructor() : WeatherSource {
                     },
                     minutelyForecast = if (SourceFeature.MINUTELY in requestedFeatures) {
                         getMinutelyList(location)
+                    } else {
+                        null
+                    },
+                    current = if (SourceFeature.CURRENT in requestedFeatures) {
+                        getCurrent(location)
                     } else {
                         null
                     }
@@ -119,30 +132,49 @@ class DebugService @Inject constructor() : WeatherSource {
         return emptyList()
     }
 
-    /**
-     * To test the minutely source with different results, add:
-     * - A location in Germany, for a minutely list with no precipitation
-     * - A location in France, for a single item in the minutely list (crash testing)
-     * - A location in Spain, for a two items in the minutely list (crash testing)
-     * - A location in Great Britain, for a three items in the minutely list (crash testing)
-     * - Any other location for a normal minutely list
-     *
-     * TODO: Add other kind of locations for testing different minute intervals
-     */
+    private fun getCurrent(location: Location): CurrentWrapper {
+        return CurrentWrapper(
+            weatherCode = WeatherCode.entries
+                .firstOrNull { "$CURRENT_CITY_LABEL${it.name}" == location.city }
+                ?: WeatherCode.CLEAR,
+            temperature = Temperature(
+                temperature = Math.random().times(10).plus(15)
+            ),
+            wind = Wind(
+                degree = Math.random().times(360), // TODO: Add loop case: -1
+                speed = Math.random().times(10).plus(10)
+            ),
+            uV = UV(index = Math.random().times(12)),
+            dewPoint = Math.random().times(10).plus(5),
+            pressure = Math.random().times(100).plus(963),
+            visibility = Math.random().times(50000).roundToInt().toDouble(),
+            cloudCover = Math.random().times(100).roundToInt()
+        )
+    }
+
     private fun getMinutelyList(location: Location): List<Minutely> {
-        return with(location.countryCode) {
-            when {
-                equals("DE", ignoreCase = true) -> listOf(Minutely(Date(), 5, null))
-                equals("FR", ignoreCase = true) -> generateMinutelyList(1)
-                equals("ES", ignoreCase = true) -> generateMinutelyList(2)
-                equals("GB", ignoreCase = true) -> generateMinutelyList(3)
-                else -> generateMinutelyList(10)
+        return arrayOf(
+            MINUTELY_NO_PRECIPITATION,
+            MINUTELY_ONE_PRECIPITATION,
+            MINUTELY_TWO_PRECIPITATION,
+            MINUTELY_THREE_PRECIPITATION,
+            MINUTELY_INTERVAL_1,
+            MINUTELY_INTERVAL_5,
+            MINUTELY_INTERVAL_15
+        ).firstOrNull { "$MINUTELY_CITY_LABEL$it" == location.city }.let {
+            when (it) {
+                MINUTELY_NO_PRECIPITATION -> listOf(Minutely(Date(), 5, null))
+                MINUTELY_ONE_PRECIPITATION -> generateMinutelyList(1)
+                MINUTELY_TWO_PRECIPITATION -> generateMinutelyList(2)
+                MINUTELY_THREE_PRECIPITATION -> generateMinutelyList(3)
+                MINUTELY_INTERVAL_1 -> generateMinutelyList(90, interval = 1)
+                MINUTELY_INTERVAL_5 -> generateMinutelyList(18, interval = 5)
+                else -> generateMinutelyList(8)
             }
         }
     }
 
-    private fun generateMinutelyList(times: Int): List<Minutely> {
-        val interval = 15
+    private fun generateMinutelyList(times: Int, interval: Int = 15): List<Minutely> {
         val currentDate = Date()
         return buildList {
             add(Minutely(currentDate, interval, Random.nextDouble().times(20)))
@@ -167,6 +199,60 @@ class DebugService @Inject constructor() : WeatherSource {
         }
     }
 
-    // TODO
-    override val testingLocations: List<Location> = emptyList()
+    // TODO: Add more cases
+    override val testingLocations: List<Location> = buildList {
+        WeatherCode.entries.forEachIndexed { index, weatherCode ->
+            add(
+                Location(
+                    city = "$CURRENT_CITY_LABEL${weatherCode.name}",
+                    latitude = CURRENT_LATITUDE,
+                    longitude = CURRENT_LONGITUDE_START + index * 0.01, // 2.00, 2.01, 2.02, 2.03, etc
+                    timeZone = "Europe/Paris",
+                    country = "France",
+                    countryCode = "FR",
+                    forecastSource = id,
+                    currentSource = id
+                )
+            )
+        }
+        arrayOf(
+            MINUTELY_NO_PRECIPITATION,
+            MINUTELY_ONE_PRECIPITATION,
+            MINUTELY_TWO_PRECIPITATION,
+            MINUTELY_THREE_PRECIPITATION,
+            MINUTELY_INTERVAL_1,
+            MINUTELY_INTERVAL_5,
+            MINUTELY_INTERVAL_15
+        ).forEachIndexed { index, label ->
+            add(
+                Location(
+                    city = "$MINUTELY_CITY_LABEL$label",
+                    latitude = MINUTELY_LATITUDE,
+                    longitude = MINUTELY_LONGITUDE_START + index * 0.01, // 2.00, 2.01, 2.02, 2.03, etc
+                    timeZone = "Europe/Paris",
+                    country = "France",
+                    countryCode = "FR",
+                    forecastSource = id,
+                    minutelySource = id
+                )
+            )
+        }
+    }
+
+    companion object {
+        private const val CURRENT_LATITUDE = 48.0
+        private const val CURRENT_LONGITUDE_START = 2.0
+        private const val CURRENT_CITY_LABEL = "Current weather: "
+
+        private const val MINUTELY_LATITUDE = 49.0
+        private const val MINUTELY_LONGITUDE_START = 2.0
+        private const val MINUTELY_CITY_LABEL = "Nowcasting: "
+        private const val MINUTELY_NO_PRECIPITATION = "No precipitation"
+        private const val MINUTELY_ONE_PRECIPITATION = "One minutely of precipitation"
+        private const val MINUTELY_TWO_PRECIPITATION = "Two minutely of precipitation"
+        private const val MINUTELY_THREE_PRECIPITATION = "Three minutely of precipitation"
+        private const val MINUTELY_INTERVAL_1 = "1 minute interval"
+        private const val MINUTELY_INTERVAL_5 = "5 minutes interval"
+        private const val MINUTELY_INTERVAL_15 = "15 minutes interval"
+    }
 }
