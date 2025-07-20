@@ -117,7 +117,7 @@ fun DetailsPrecipitation(
         }
         if (daily.day?.precipitationProbability != null ||
             daily.night?.precipitationProbability != null ||
-            hourlyList.any { it.precipitationProbability?.total != null }
+            mappedProbabilityValues.isNotEmpty()
         ) {
             item {
                 DetailsSectionDivider()
