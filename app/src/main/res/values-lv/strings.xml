@@ -269,7 +269,7 @@
     <string name="uv_alert_level">Brīdinājums</string>
     <string name="air_quality_index">Gaisa kvalitātes indekss</string>
     <string name="air_quality_level_1">Lieliska</string>
-    <string name="air_quality_level_1_description">Gaisa kvalitāte ir ideāla lielākajai daļai cilvēku; izbaudiet savas ierastās āra aktivitātes!</string>
+    <string name="air_quality_level_1_description">Gaisa kvalitāte ir ideāla lielākajai daļai cilvēku; izbaudiet savas ierastās āra aktivitātes.</string>
     <string name="air_quality_level_2">Pietiekama</string>
     <string name="air_quality_level_4_description">Ietekmi uz veselību jutīgi cilvēki var sajust uzreiz. Veseliem indivīdiem ilgstošas iedarbības gadījumā var rasties apgrūtināta elpošana un rīkles kairinājums. Jāierobežo darbības ārā.</string>
     <string name="air_quality_level_5">Ļoti neveselīga</string>
