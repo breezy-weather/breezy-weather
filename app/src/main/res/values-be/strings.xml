@@ -144,8 +144,8 @@
     <string name="ephemeris_sunset_at">Захад сонца ў %s</string>
     <string name="ephemeris_moonrise_at">Усход месяца ў %s</string>
     <string name="ephemeris_moonset_at">Захад месяца ў %s</string>
-    <string name="daytime">Дзень</string>
-    <string name="nighttime">Ноч</string>
+    <string name="daytime">Удзень</string>
+    <string name="nighttime">Уначы</string>
     <string name="sunshine_duration">Сонечны час</string>
     <string name="humidity">Вільготнасць</string>
     <string name="pressure">Ціск</string>
@@ -536,7 +536,7 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Сярэдняя навальніца</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Навальніца са слабым градам</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Навальніца з моцным градам</string>
-    <string name="metno_weather_text_andthunder">%s з навальніцай</string>
+    <string name="metno_weather_text_andthunder">%s з громам</string>
     <string name="dialog_permissions_location_content">Каб скарыстацца гэтай функцыяй, неабходна даць дазвол на доступ да вашага бягучага месцазнаходжання. Ён будзе даступны толькі выбраным крыніцам даных пра надвор’е. Калі вы перадумалі, можна скасаваць дзеянне і ўручную дадаць фіксаванае месца.</string>
     <string name="dialog_permissions_location_background_title">Доступ да месцазнаходжання ў фонавым рэжыме</string>
     <string name="dialog_permissions_location_background_content">Каб уключыць абнаўленне надвор’я ў фонавым рэжыме для апошняга бягучага месцазнаходжання, вядомага Android, вам неабходна ўсталяваць дазвол месцазнаходжання на «Дазволіць у любым рэжыме». Калі вы гэтага не зробіце, надвор’е будзе абноўлена на аснове апошніх атрыманых каардынат на пярэднім плане, якія могуць быць старымі.</string>
@@ -722,12 +722,12 @@
     <string name="wind_gusts_short">Парывы</string>
     <string name="ephemeris_about">Пра час усходу і захаду</string>
     <string name="ephemeris_about_rise">Час усходу — гэта момант, калі сонца або месяц цалкам з’яўляюцца над гарызонтам.</string>
-    <string name="ephemeris_about_set">Час захаду — гэта момант, калі сонца або месяц цалкам хаваюцца за гарызонт.</string>
+    <string name="ephemeris_about_set">Час захаду — момант, калі сонца або месяц цалкам хаваюцца за гарызонт.</string>
     <string name="temperature_real">Фактычная</string>
     <string name="temperature_real_details">Фактычная тэмпература.</string>
     <string name="chart_maximum_value">Максімальнае значэнне</string>
     <string name="conditions">Умовы</string>
-    <string name="temperature_feels_like_details">Як тэмпература адчуваецца ў залежнасці вільготнасці паветра, хуткасці ветру і(або) сонечнага святла.</string>
+    <string name="temperature_feels_like_details">Як тэмпература адчуваецца ў залежнасці ад вільготнасці паветра, хуткасці ветру і(або) сонечнага святла.</string>
     <string name="dew_point_about">Пра пункт расы</string>
     <string name="daily_summary">Штодзённая зводка</string>
     <string name="chart_no_daily_data">Для гэтага дня няма даных.</string>
@@ -735,7 +735,7 @@
     <string name="chart_not_enough_hourly_data">Няма даных прагнозу па гадзінах, каб вывесці графік для гэтага дня.</string>
     <string name="chart_average">Сярэдняе</string>
     <string name="air_quality_index_about">Пра індэкс якасці паветра</string>
-    <string name="air_quality_index_about_description_1">Індэкс якасці паветра (ІЯП) – гэта шкала, якая дапамагае зразумець наколькі забруджана паветра ў пэўнай вобласці, а таксама патэнцыяльныя наступствы для здароўя.</string>
+    <string name="air_quality_index_about_description_1">Індэкс якасці паветра (AQI) – гэта шкала, якая дапамагае зразумець наколькі забруджана паветра ў пэўнай вобласці, а таксама патэнцыяльныя наступствы для здароўя.</string>
     <string name="air_quality_index_scale">Шкала індэкса якасці паветра</string>
     <string name="air_quality_level_1_harmless_exposure">больш за год</string>
     <string name="air_quality_level_3_harmless_exposure">да 1 дня</string>
@@ -763,7 +763,7 @@
     <string name="humidity_about_description">Адносная вільготнасць (часта кажуць проста вільготнасць) — гэта колькасць вадзяной пары (працэнтаў) адносна максімальна магчымай колькасці, якую можа ўтрымліваць паветра пры гэтай тэмпературы.</string>
     <string name="dew_point_about_description">Пункт расы — гэта тэмпература, да якой трэба астудзіць паветра, каб дасягнуць адноснай вільготнасці %s.</string>
     <string name="uv_index_time_to_burn">Час да апёку</string>
-    <string name="air_quality_index_harmless_exposure">Бяспечнае ўздзеянне</string>
+    <string name="air_quality_index_harmless_exposure">Бяспечны час уздзеяння</string>
     <string name="air_quality_level_2_harmless_exposure">да 1 года</string>
     <string name="air_quality_level_5_harmless_exposure">некалькі хвілін</string>
     <string name="air_quality_pollutant_primary">Асноўны забруджвальнік</string>
@@ -774,7 +774,7 @@
     <string name="temperature_degree_day_cooling_explanation">Розніца паміж тэмпературай на дварэ і нормай камфортнай тэмпературы, якая выкарыстоўваецца для ацэнкі патрэб энергіі на ахалоджванне</string>
     <string name="pollen_primary">Асноўны пылок</string>
     <string name="uv_index_time_to_burn_explanations">Дакладны час да з’яўлення апёку залежыць ад вышыні над узроўнем мора, наяўнасці адбівальнай паверхні накшталт вады або снегу, тыпу скуры і выкарыстання сонцаахоўнага крэму.</string>
-    <string name="air_quality_index_about_description_2">Шкала, якая выкарыстоўваецца ў гэтай праграме, заснавана на рэкамендацыях Сусветнай арганізацыі аховы здароўя, а не на мясцовых нарматывах. Так зроблена, каб мець значныя катэгорыі і палегчыць параўнанне ўзроўню забруджвання паміж краінамі.</string>
+    <string name="air_quality_index_about_description_2">Шкала, якая выкарыстоўваецца ў гэтай праграме, заснавана на рэкамендацыях Сусветнай арганізацыі аховы здароўя, а не на мясцовых нарматывах. Так зроблена, каб мець значныя катэгорыі ацэнкі і палегчыць параўнанне ўзроўню забруджвання паміж краінамі.</string>
     <string name="air_quality_pm25_full">Завіслыя мікрачасцінкі (&lt; %s)</string>
     <string name="air_quality_pm10_full">Удыхальныя завіслыя часцінкі (&lt; %s)</string>
     <string name="air_quality_so2_sources">Асноўныя крыніцы — згаранне серазмяшчальнага паліва ў працэсах, якія выкарыстоўваюцца ў прамысловасці, транспарце і вытворчасці электраэнергіі.</string>
@@ -799,8 +799,8 @@
     <string name="ephemeris_polar_day">Палярны дзень</string>
     <string name="ephemeris_polar_night">Палярная ноч</string>
     <string name="clock">Гадзіннік</string>
-    <string name="daytime_short">Дзень</string>
-    <string name="nighttime_short">Ноч</string>
+    <string name="daytime_short">Удзень</string>
+    <string name="nighttime_short">Уначы</string>
     <string name="air_quality_short">Паветра</string>
     <string name="ephemeris_sun">Сонца</string>
     <string name="ephemeris_moon">Месяц</string>
