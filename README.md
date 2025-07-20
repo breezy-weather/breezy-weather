@@ -200,4 +200,4 @@ When creating a fork, remember to:
     - Change the app name
     - Change the app icon
 - Avoid installation conflicts:
-    - Change the `applicationId` in [`build.gradle.kts`](https://github.com/breezy-weather/breezy-weather/blob/main/app/build.gradle.kts#L19)
+    - Change the `applicationId` in [`build.gradle.kts`](https://github.com/breezy-weather/breezy-weather/blob/main/app/build.gradle.kts#L24)
