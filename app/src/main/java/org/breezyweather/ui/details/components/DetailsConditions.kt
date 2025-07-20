@@ -290,31 +290,36 @@ fun DetailsConditions(
                 }
             }
         }
-        item {
-            DetailsSectionDivider()
-        }
-        item {
-            Text(
-                text = stringResource(R.string.precipitation_probability),
-                style = MaterialTheme.typography.headlineSmall
-            )
-        }
-        item {
-            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
-        }
-        item {
-            PrecipitationProbabilityChart(
-                location,
-                mappedProbabilityValues,
-                daily
-            )
-        }
-        // TODO: Short explanation
-        item {
-            PrecipitationProbabilityDetails(
-                daily.day?.precipitationProbability,
-                daily.night?.precipitationProbability
-            )
+        if (daily.day?.precipitationProbability != null ||
+            daily.night?.precipitationProbability != null ||
+            hourlyList.any { it.precipitationProbability?.total != null }
+        ) {
+            item {
+                DetailsSectionDivider()
+            }
+            item {
+                Text(
+                    text = stringResource(R.string.precipitation_probability),
+                    style = MaterialTheme.typography.headlineSmall
+                )
+            }
+            item {
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
+            }
+            item {
+                PrecipitationProbabilityChart(
+                    location,
+                    mappedProbabilityValues,
+                    daily
+                )
+            }
+            // TODO: Short explanation
+            item {
+                PrecipitationProbabilityDetails(
+                    daily.day?.precipitationProbability,
+                    daily.night?.precipitationProbability
+                )
+            }
         }
         bottomInsetItem()
     }
