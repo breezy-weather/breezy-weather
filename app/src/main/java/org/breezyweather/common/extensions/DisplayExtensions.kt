@@ -35,6 +35,7 @@ import android.view.Window
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.Interpolator
 import android.view.animation.OvershootInterpolator
+import androidx.annotation.AttrRes
 import androidx.annotation.Px
 import androidx.annotation.Size
 import androidx.annotation.StyleRes
@@ -72,6 +73,21 @@ val Context.isMotionReduced: Boolean
         }
     }
 
+val Context.density: Int
+    get() {
+        return resources.displayMetrics.densityDpi
+    }
+
+val Context.fontScale: Float
+    get() {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            resources.configuration.fontScale *
+                resources.displayMetrics.densityDpi.div(android.util.DisplayMetrics.DENSITY_DEVICE_STABLE)
+        } else {
+            1f // Let’s just ignore it on old Android versions
+        }
+    }
+
 val Context.windowHeightInDp: Float
     get() {
         return pxToDp(resources.displayMetrics.heightPixels)
@@ -80,6 +96,12 @@ val Context.windowHeightInDp: Float
 val Context.windowWidthInDp: Float
     get() {
         return pxToDp(resources.displayMetrics.widthPixels)
+    }
+
+val Context.windowWidth: Int
+    @Px
+    get() {
+        return resources.displayMetrics.widthPixels
     }
 
 fun Context.dpToPx(dp: Float): Float {
@@ -120,14 +142,19 @@ fun Context.getTypefaceFromTextAppearance(
     return TextAppearance(this, textAppearanceId).getFont(this)
 }
 
+fun Context.getThemeColor(
+    @AttrRes id: Int,
+): Int {
+    val typedValue = TypedValue()
+    theme.resolveAttribute(id, typedValue, true)
+    return typedValue.data
+}
+
 @Suppress("DEPRECATION")
 fun Window.setSystemBarStyle(
-    statusShader: Boolean,
     lightStatus: Boolean,
-    lightNavigation: Boolean,
 ) {
     var newLightStatus = lightStatus
-    var newStatusShader = statusShader
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
         // Use default dark and light platform colors from EdgeToEdge
@@ -137,28 +164,23 @@ fun Window.setSystemBarStyle(
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // Always apply a dark shader as a light or transparent status bar is not supported
             newLightStatus = false
-            newStatusShader = true
         }
-        statusBarColor = if (newStatusShader) {
-            if (newLightStatus) colorSystemBarLight else colorSystemBarDark
-        } else {
-            Color.TRANSPARENT
-        }
+        statusBarColor = Color.TRANSPARENT
 
-        navigationBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && lightNavigation) {
+        navigationBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && lightStatus) {
             colorSystemBarLight
         } else {
             colorSystemBarDark
         }
     } else {
-        isStatusBarContrastEnforced = newStatusShader
+        isStatusBarContrastEnforced = false
         isNavigationBarContrastEnforced = true
     }
 
     // Contrary to the documentation FALSE applies a light foreground color and TRUE a dark foreground color
     WindowInsetsControllerCompat(this, decorView).run {
         isAppearanceLightStatusBars = newLightStatus
-        isAppearanceLightNavigationBars = lightNavigation
+        isAppearanceLightNavigationBars = lightStatus
     }
 }
 

@@ -1,24 +1,26 @@
-Breezy Weather è un'applicazione meteo per Android gratuita e open-source, un fork di Geometric Weather, che aggiunge nuove funzionalità e fonti di dati, modernizza il codice, risolve vari bug, aggiorna le dipendenze per ragioni di sicurezza, eccetera, continuando allo stesso tempo a perseguire l'obbiettivo di un'esperienza fluida per utenti e sviluppatori.
+Breezy Weather is a featureful free and open source Material 3 Expressive weather app with well-though-out visualizations, supporting forecast, real-time weather conditions, nowcasting, air quality, pollen, alerts, from more than 50 weather sources, such as Meteo AM and Open-Meteo.
 
-Nell'app troverete:
+<b>Features</b>
 
-- Condizioni in tempo reale (temperatura, reale e percepita, vento, indice UV, umidità, punto di rugiada, pressione atmosferica, visibilità, copertura nuvolosa, base delle nubi)
-- Previsioni orarie e giornaliere fino a 16 giorni (temperatura, qualità dell'aria, vento, indice UV, precipitazioni, sunshine duration, feels like)
-- Hourly details (Humidity / Dew point, Pressure, Cloud cover, Visibility)
+- Previsioni orarie e giornaliere fino a 16 giorni
+- Condizioni in tempo reale
 - Precipitazioni durante l'ora a venire
 - Qualità dell'aria, allergeni e dati sole e luna
 - Avvisi di maltempo e di precipitazioni
+- Opt-in data sharing with other apps (such as Gadgetbridge)
+- Focus on accessibility for screen readers and other locales
 
-L'app è fortemente incentrata sul design, con una UX semplice e pulita, animazioni fluide e Material Design, oltre a un'ampia possibilità di personalizzazione:
+<b>Design</b>
 
+- Material 3 Expressive
+- Detailed 24-hour charts
 - Tema scuro automatico
 - Temi di icone personalizzati
-- Ampia scelta di widget per la schermata iniziale, per avere informazioni immediate.
+- Ampia scelta di widget
 - Sfondo animato
 
 <b>Sources</b>
 
-More than 50 sources available:
 - In all flavors: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, Recosanté, SMA (Seychelles), SMA (Sudan), SSMS
 - Not libre/self-hostable (not included in versions with suffix _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Varie fonti per la Cina, NAMEM, NWS, OpenWeather, PAGASA, SMG, OMM Eventi Meteorologici Estremi
 

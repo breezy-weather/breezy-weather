@@ -28,7 +28,7 @@
 </div>
 
 
-<h4 align="center">Breezy Weather is a weather app with a strong focus on design, with a simple, clean UX, smooth animations, and Material Design all over, plus lots of customizability.</h4>
+<h4 align="center">Breezy Weather is a featureful free and open source Material 3 Expressive weather app with well-though-out visualizations, supporting forecast, observations, nowcasting, air quality, pollen, alerts, from more than 50 weather sources.</h4>
 
 <div align="center">
 
@@ -60,62 +60,54 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
 <hr />
 
 <div align="center">
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01-main-header-1.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/02-main-header-2.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/03-main-header-3.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/04-main-daily-hourly-1.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/05-main-daily-hourly-2.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/06-main-daily-hourly-3.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/07-air-quality-pollen.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/08-ephemeris-details.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/09-alerts.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/10-widgets-1.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/11-widgets-2.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/12-sources.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/13-sources-combine.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/14-settings.png" alt="" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01-main-header-light.png" alt="" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/02-main-header-dark.png" alt="" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/03-main-blocks-1.png" alt="" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/04-main-blocks-2.png" alt="" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/05-settings.png" alt="" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/06-sources.png" alt="" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/07-details.png" alt="" style="width: 300px" />
 </div>
 
 # Features
 
 - Weather data
   - Daily and hourly forecasts up to 16 days
-    - Temperature
-    - Air quality
-    - Wind
-    - UV index
-    - Precipitation
-    - Feels like temperature
-  - Hourly forecasts
-    - Humidity / Dew point
-    - Pressure
-    - Cloud cover
-    - Visibility
   - Precipitation in the next hour
+  - Severe weather and precipitation alerts
+  - Temperature / Feels like temperature / Normals
+  - Precipitation
+  - Wind
   - Air quality
   - Pollen & Mold
-  - Ephemeris (Sun & Moon)
-  - Severe weather and precipitation alerts
-  - Real-time weather conditions
-    - Temperature
-    - Feels like
-    - Wind
-    - UV index
-    - Humidity
-    - Dew point
-    - Atmospheric pressure
-    - Visibility
-    - Cloud cover
-    - Ceiling
-
+  - Humidity
+  - UV index
+  - Visibility
+  - Pressure
+  - Sun
+  - Moon
+- Visualization
+  - Detailed 24-hour charts
+  - Material 3 Expressive blocks
 - More than 50 weather sources supported (<a href="docs/SOURCES.md">full list</a>)
-- Large selection of home screen widgets for at-a-glance information
+- Large selection of widgets
 - Live wallpaper
 - Custom icon packs
   - [Geometric Weather icon packs](https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/README.md)
   - Chronus Weather icon packs
 - Automatic dark mode
 - Opt-in data sharing with other apps (such as Gadgetbridge)
+- <details><summary>Accessibility</summary>
+
+  - Localization
+    - Number formatting (different numeral systems, decimal separator, thousand separator)
+    - Unit formatting
+    - Alternate calendar
+  - Readability
+    - Good content descriptions for screen readers
+    - Navigation with screen readers: most things should work, features depending on drag & drop not yet supported
+    - Custom display settings: basic support
+</details>
 
 - <details><summary>Free and Open Source</summary>
 

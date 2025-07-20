@@ -151,8 +151,8 @@ class LocationRepository(
                         reverseGeocodingSource = location.reverseGeocodingSource,
                         currentPosition = location.isCurrentPosition,
                         needsGeocodeRefresh = location.needsGeocodeRefresh,
-                        backgroundWeatherKind = location.backgroundWeatherKind,
-                        backgroundDayNightType = location.backgroundDayNightType
+                        backgroundWeatherKind = null, // TODO: Deprecated
+                        backgroundDayNightType = null // TODO: Deprecated
                     )
 
                     // 3. Update location parameters
@@ -276,8 +276,8 @@ class LocationRepository(
                     reverseGeocodingSource = location.reverseGeocodingSource,
                     currentPosition = location.isCurrentPosition,
                     needsGeocodeRefresh = location.needsGeocodeRefresh,
-                    backgroundWeatherKind = location.backgroundWeatherKind,
-                    backgroundDayNightType = location.backgroundDayNightType
+                    backgroundWeatherKind = null, // TODO: Deprecated
+                    backgroundDayNightType = null // TODO: Deprecated
                 )
             }
             true

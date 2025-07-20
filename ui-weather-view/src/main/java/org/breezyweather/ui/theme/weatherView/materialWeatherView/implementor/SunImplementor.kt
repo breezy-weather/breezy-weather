@@ -35,7 +35,7 @@ class SunImplementor(
     private val mPaint = Paint().apply {
         style = Paint.Style.FILL
         isAntiAlias = true
-        color = Color.rgb(253, 84, 17)
+        color = Color.WHITE
     }
     private val mAngles = FloatArray(3)
     private val mUnitSizes: FloatArray = floatArrayOf(
@@ -86,10 +86,10 @@ class SunImplementor(
     }
 
     companion object {
-        const val SUN_POSITION = 0.0333
-        const val SMALL_SUN_ALPHA = 0.40
-        const val MEDIUM_SUN_ALPHA = 0.16
-        const val LARGE_SUN_ALPHA = 0.08
+        const val SUN_POSITION = 0.5 // Old: 0.0333. Moved lower to avoid overlap with top icons
+        const val SMALL_SUN_ALPHA = 0.16
+        const val MEDIUM_SUN_ALPHA = 0.08
+        const val LARGE_SUN_ALPHA = 0.04
 
         @get:ColorInt
         val themeColor: Int

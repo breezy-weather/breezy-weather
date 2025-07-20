@@ -100,7 +100,7 @@ import org.breezyweather.ui.details.components.DetailsSunMoon
 import org.breezyweather.ui.details.components.DetailsUV
 import org.breezyweather.ui.details.components.DetailsVisibility
 import org.breezyweather.ui.details.components.DetailsWind
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import java.util.Calendar
 import java.util.Date
@@ -115,15 +115,11 @@ internal fun DailyWeatherScreen(
     val context = LocalContext.current
     val activity = LocalActivity.current
 
-    val isLightTheme = MainThemeColorProvider.isLightTheme(context, detailsUiState.location)
+    val isLightTheme = ThemeManager.isLightTheme(context, detailsUiState.location)
     LaunchedEffect(detailsUiState.location) {
         // re-setting the status bar color once the location is fetched
         if (detailsUiState.location != null && activity != null) {
-            activity.window.setSystemBarStyle(
-                statusShader = false,
-                lightStatus = isLightTheme,
-                lightNavigation = isLightTheme
-            )
+            activity.window.setSystemBarStyle(isLightTheme)
         }
     }
 

@@ -23,6 +23,7 @@ import android.graphics.Paint
 import androidx.annotation.ColorInt
 import androidx.annotation.IntDef
 import androidx.annotation.Size
+import androidx.core.graphics.toColorInt
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.MaterialWeatherView.WeatherAnimationImplementor
 import java.util.Random
 import kotlin.math.pow
@@ -35,6 +36,7 @@ class CloudImplementor(
     animate: Boolean,
     @TypeRule type: Int,
     daylight: Boolean,
+    darkMode: Boolean = !daylight,
 ) : WeatherAnimationImplementor() {
     private val mAnimate = animate
     private var mPaint = Paint().apply {
@@ -171,31 +173,36 @@ class CloudImplementor(
         val viewHeight = canvasSizes[1]
         mRandom = Random()
         if (type == TYPE_FOG || type == TYPE_HAZE) {
-            val cloudColors: IntArray
-            val cloudAlphas: FloatArray
-            if (type == TYPE_FOG) {
-                cloudColors = if (daylight) {
-                    intArrayOf(-0x8e8260, -0x8e8260, -0x8e8260)
+            val cloudColors = if (type == TYPE_FOG) {
+                if (daylight && !darkMode) {
+                    intArrayOf(
+                        "#93B9FF".toColorInt(), // -0x8e8260,
+                        "#93B9FF".toColorInt(), // -0x8e8260,
+                        "#93B9FF".toColorInt() // -0x8e8260
+                    )
                 } else {
                     intArrayOf(
-                        Color.rgb(85, 99, 110),
-                        Color.rgb(91, 104, 114),
-                        Color.rgb(99, 113, 123)
+                        "#2A5476".toColorInt(), // Color.rgb(85, 99, 110),
+                        "#2A5476".toColorInt(), // Color.rgb(91, 104, 114),
+                        "#2A5476".toColorInt() // Color.rgb(99, 113, 123)
                     )
                 }
-                cloudAlphas = if (daylight) floatArrayOf(0.1f, 0.1f, 0.1f) else floatArrayOf(0.4f, 0.6f, 0.4f)
             } else {
-                cloudColors = if (daylight) {
-                    intArrayOf(-0x53627e, -0x53627e, -0x53627e)
+                if (daylight && !darkMode) {
+                    intArrayOf(
+                        "#FFDDA1".toColorInt(), // -0x53627e
+                        "#FFDDA1".toColorInt(), // -0x53627e
+                        "#FFDDA1".toColorInt() // -0x53627e
+                    )
                 } else {
                     intArrayOf(
-                        Color.rgb(179, 158, 132),
-                        Color.rgb(179, 158, 132),
-                        Color.rgb(179, 158, 132)
+                        "#4D3314".toColorInt(), // Color.rgb(179, 158, 132)
+                        "#4D3314".toColorInt(), // Color.rgb(179, 158, 132)
+                        "#4D3314".toColorInt() // Color.rgb(179, 158, 132)
                     )
                 }
-                cloudAlphas = floatArrayOf(0.3f, 0.3f, 0.3f)
             }
+            val cloudAlphas = floatArrayOf(0.3f, 0.3f, 0.3f)
             val clouds = arrayOf(
                 Cloud(
                     viewWidth * 1.0699f,
@@ -303,7 +310,7 @@ class CloudImplementor(
             var cloudAlphas = FloatArray(2)
             when (type) {
                 TYPE_CLOUDY -> {
-                    cloudColors = if (daylight) {
+                    cloudColors = if (daylight && !darkMode) {
                         intArrayOf(
                             Color.rgb(160, 179, 191),
                             Color.rgb(160, 179, 191)
@@ -317,15 +324,19 @@ class CloudImplementor(
                     cloudAlphas = floatArrayOf(0.3f, 0.3f)
                 }
                 TYPE_THUNDER -> {
-                    cloudColors = if (daylight) {
-                        intArrayOf(-0x43523f, -0x43523f)
+                    cloudColors = if (daylight && !darkMode) {
+                        intArrayOf(
+                            "#AB90DB".toColorInt(), // -0x43523f,
+                            "#AB90DB".toColorInt() // -0x43523f
+                        )
                     } else {
                         intArrayOf(
-                            Color.rgb(43, 30, 66),
-                            Color.rgb(43, 30, 66)
+                            "#2C1C4D".toColorInt(), // Color.rgb(43, 30, 66),
+                            "#2C1C4D".toColorInt() // Color.rgb(43, 30, 66)
                         )
                     }
-                    cloudAlphas = if (daylight) floatArrayOf(0.2f, 0.3f) else floatArrayOf(0.8f, 0.8f)
+                    cloudAlphas = floatArrayOf(0.3f, 0.3f)
+                    // cloudAlphas = if (daylight && !darkMode) floatArrayOf(0.2f, 0.3f) else floatArrayOf(0.8f, 0.8f)
                 }
             }
             val clouds = arrayOf(
@@ -398,7 +409,7 @@ class CloudImplementor(
             )
             initialize(clouds)
         } else {
-            val cloudColor = if (daylight) {
+            val cloudColor = if (daylight && !darkMode) {
                 Color.rgb(203, 245, 255)
             } else {
                 Color.rgb(151, 168, 202)

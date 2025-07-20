@@ -1,6 +1,14 @@
 # Version 6.0.3-alpha (not yet released)
 
+**New features**
+- Redesign of homepage in Material 3 Expressive
+- New information previously not shown on homepage: current wind gusts, clock (block not enabled by default)
+- Redesign background animations/colors to better adapt to the selected dark mode and avoid saturated colors with bad contrast
+
 **Removed features**
+- Homepage - Details in header
+- Homepage - Details block
+- Custom weather and time per location
 - Details of each different “feels like”. Will now just display the source-preferred feels like value, or if not available, our own computed feels like
 
 **Improvements and fixes**

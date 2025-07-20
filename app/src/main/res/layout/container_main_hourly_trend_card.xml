@@ -8,45 +8,63 @@
     app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraLarge"
     app:strokeWidth="0dp">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/container_main_hourly_trend_card_title"
-            android:text="@string/hourly_forecast"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginStart="@dimen/normal_margin"
-            style="@style/title_text"
-            tools:ignore="RtlHardcoded" />
+        <ImageView
+            android:id="@+id/hourly_block_title_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:importantForAccessibility="no"
+            android:layout_marginStart="@dimen/large_margin"
+            android:backgroundTint="?attr/colorSurfaceInverse"
+            android:src="@drawable/ic_schedule"
+            app:layout_constraintBottom_toBottomOf="@+id/hourly_block_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/hourly_block_title" />
 
         <TextView
-            android:id="@+id/container_main_hourly_trend_card_subtitle"
+            android:id="@+id/hourly_block_title"
+            android:accessibilityHeading="true"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="?attr/colorSurfaceInverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
+            android:text="@string/hourly_forecast"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/hourly_block_title_icon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/hourly_block_subtitle"
             android:layout_marginTop="2dp"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/normal_margin"
+            android:paddingEnd="@dimen/large_margin"
             style="@style/content_text"
-            tools:text="No precipitation for at least 120 min"
-            tools:ignore="RtlHardcoded" />
+            tools:text="Rain Wednesday evening"
+            app:layout_constraintTop_toBottomOf="@+id/hourly_block_title"
+            app:layout_constraintStart_toStartOf="@+id/hourly_block_title_icon" />
 
         <com.google.android.material.button.MaterialButtonGroup
-            android:id="@+id/container_main_hourly_trend_card_buttonView"
+            android:id="@+id/hourly_block_button_group"
             style="@style/Widget.Material3Expressive.MaterialButtonGroup.Connected"
             app:overflowMode="menu"
             android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginStart="@dimen/normal_margin"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/hourly_block_subtitle"
+            app:layout_constraintStart_toStartOf="@+id/hourly_block_title_icon" />
 
         <org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
-            android:id="@+id/container_main_hourly_trend_card_trendRecyclerView"
+            android:id="@+id/hourly_block_trendRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/hourly_trend_item_height"
             android:layout_marginTop="@dimen/small_margin"
-            tools:ignore="UnusedAttribute" />
+            tools:ignore="UnusedAttribute"
+            app:layout_constraintTop_toBottomOf="@+id/hourly_block_button_group"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

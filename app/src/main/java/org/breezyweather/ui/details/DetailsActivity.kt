@@ -20,7 +20,6 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.common.basic.BreezyActivity
-import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 
 @AndroidEntryPoint
 class DetailsActivity : BreezyActivity() {
@@ -29,13 +28,11 @@ class DetailsActivity : BreezyActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            BreezyWeatherTheme {
-                DailyWeatherScreen(
-                    onBackPressed = {
-                        finish()
-                    }
-                )
-            }
+            DailyWeatherScreen(
+                onBackPressed = {
+                    finish()
+                }
+            )
         }
     }
 

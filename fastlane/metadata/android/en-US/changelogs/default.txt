@@ -1,2 +1,2 @@
-Due to length limit on this text, please check release notes on GitHub:
+Release notes are available on GitHub:
 https://github.com/breezy-weather/breezy-weather/releases

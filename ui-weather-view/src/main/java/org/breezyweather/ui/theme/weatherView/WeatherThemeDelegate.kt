@@ -18,7 +18,6 @@ package org.breezyweather.ui.theme.weatherView
 
 import android.content.Context
 import androidx.annotation.ColorInt
-import androidx.annotation.Px
 import androidx.annotation.Size
 
 interface WeatherThemeDelegate {
@@ -52,9 +51,6 @@ interface WeatherThemeDelegate {
         weatherKind: Int,
         daylight: Boolean,
     ): Int
-
-    @Px
-    fun getHeaderTopMargin(context: Context): Int
 
     @ColorInt
     fun getOnBackgroundColor(

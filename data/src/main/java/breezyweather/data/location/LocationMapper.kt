@@ -48,8 +48,8 @@ object LocationMapper {
         reverseGeocodingSource: String?,
         isCurrentPosition: Boolean,
         needsGeocodeRefresh: Boolean,
-        backgroundWeatherKind: String?,
-        backgroundDayNightType: String?,
+        backgroundWeatherKind: String?, // TODO: Deprecated
+        backgroundDayNightType: String?, // TODO: Deprecated
     ): Location = Location(
         cityId = cityId,
         latitude = latitude,
@@ -77,8 +77,6 @@ object LocationMapper {
         normalsSource = normalsSource,
         reverseGeocodingSource = reverseGeocodingSource,
         isCurrentPosition = isCurrentPosition,
-        needsGeocodeRefresh = needsGeocodeRefresh,
-        backgroundWeatherKind = backgroundWeatherKind,
-        backgroundDayNightType = backgroundDayNightType
+        needsGeocodeRefresh = needsGeocodeRefresh
     )
 }

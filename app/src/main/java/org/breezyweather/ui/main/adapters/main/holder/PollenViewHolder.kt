@@ -17,71 +17,38 @@
 package org.breezyweather.ui.main.adapters.main.holder
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.os.Build
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.viewpager2.widget.ViewPager2
+import androidx.appcompat.widget.AppCompatImageView
 import breezyweather.domain.location.model.Location
-import kotlinx.collections.immutable.ImmutableSet
-import kotlinx.collections.immutable.persistentSetOf
-import kotlinx.collections.immutable.toImmutableSet
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.source.PollenIndexSource
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.index.PollenIndex
-import org.breezyweather.domain.weather.model.isIndexValid
-import org.breezyweather.domain.weather.model.isToday
+import org.breezyweather.domain.weather.model.getColor
+import org.breezyweather.domain.weather.model.getIndex
+import org.breezyweather.domain.weather.model.getIndexName
+import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.pollensWithConcentration
 import org.breezyweather.ui.main.MainActivity
-import org.breezyweather.ui.main.adapters.HomePollenAdapter
-import org.breezyweather.ui.main.adapters.HomePollenViewHolder
-import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
-import org.breezyweather.ui.theme.weatherView.WeatherViewController
 
 class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_pollen, parent, false)
 ) {
-    private val mTitle: TextView = itemView.findViewById(R.id.container_main_pollen_title)
-    private val mIndicator: TextView = itemView.findViewById(R.id.container_main_pollen_indicator)
-    private val mPager: ViewPager2 = itemView.findViewById(R.id.container_main_pollen_pager)
-    private var mCallback: DailyPollenPageChangeCallback? = null
-
-    private class DailyPollenPagerAdapter(
-        location: Location,
-        pollenIndexSource: PollenIndexSource?,
-        specificPollens: ImmutableSet<PollenIndex>,
-    ) : HomePollenAdapter(location, pollenIndexSource, specificPollens) {
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomePollenViewHolder {
-            val holder = super.onCreateViewHolder(parent, viewType)
-            holder.itemView.layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-            return holder
-        }
-    }
-
-    private inner class DailyPollenPageChangeCallback(
-        private val mContext: Context,
-        private val mLocation: Location,
-    ) : ViewPager2.OnPageChangeCallback() {
-        @SuppressLint("SetTextI18n")
-        override fun onPageSelected(position: Int) {
-            val daily = mLocation.weather!!.dailyForecastStartingToday[position]
-            if (daily.isToday(mLocation)) {
-                mIndicator.text = mContext.getString(R.string.daily_today_short)
-            } else {
-                mIndicator.text = (position + 1).toString() +
-                    "/" +
-                    mLocation.weather!!.dailyForecastStartingToday.filter { it.pollen?.isIndexValid == true }.size
-            }
-        }
-    }
+    private val pollen1Container: RelativeLayout = itemView.findViewById(R.id.pollen_item_1)
+    private val pollen1Icon: AppCompatImageView = itemView.findViewById(R.id.pollen_item_1_icon)
+    private val pollen1Title: TextView = itemView.findViewById(R.id.pollen_item_1_title)
+    private val pollen1Content: TextView = itemView.findViewById(R.id.pollen_item_1_content)
+    private val pollen2Container: RelativeLayout = itemView.findViewById(R.id.pollen_item_2)
+    private val pollen2Icon: AppCompatImageView = itemView.findViewById(R.id.pollen_item_2_icon)
+    private val pollen2Title: TextView = itemView.findViewById(R.id.pollen_item_2_title)
+    private val pollen2Content: TextView = itemView.findViewById(R.id.pollen_item_2_content)
 
     @SuppressLint("SetTextI18n")
     override fun onBindView(
@@ -90,58 +57,68 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
         itemAnimationEnabled: Boolean,
-        firstCard: Boolean,
     ) {
-        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            mTitle.isAccessibilityHeading = true
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
+
+        pollen1Container.visibility = View.GONE
+
+        val talkBackBuilder = StringBuilder()
+        location.weather?.today?.pollen?.let { pollen ->
+            val primaryPollens = pollen.pollensWithConcentration
+                .filter { it != PollenIndex.MOLD }
+                .sortedByDescending { pollen.getIndex(it) }
+
+            val pollenIndexSource = location.pollenSource?.let {
+                (activity as MainActivity).sourceManager.getPollenIndexSource(it)
+            }
+
+            talkBackBuilder.append(context.getString(R.string.pollen_primary))
+
+            primaryPollens.getOrElse(0) { null }?.let { p ->
+                pollen1Container.visibility = View.VISIBLE
+                pollen1Icon.setColorFilter(pollen.getColor(context, p, pollenIndexSource))
+                pollen1Title.text = pollen.getName(context, p)
+                pollen1Title.setTextColor(context.getThemeColor(R.attr.colorTitleText))
+                pollen1Content.text = pollen.getIndexName(context, p, pollenIndexSource)
+                pollen1Content.setTextColor(context.getThemeColor(R.attr.colorBodyText))
+
+                talkBackBuilder.append(context.getString(R.string.colon_separator))
+                talkBackBuilder.append(pollen1Title.text)
+                talkBackBuilder.append(context.getString(R.string.colon_separator))
+                talkBackBuilder.append(pollen1Content.text)
+            } ?: run {
+                pollen1Container.visibility = View.GONE
+            }
+
+            primaryPollens.getOrElse(1) { null }?.let { p ->
+                pollen2Container.visibility = View.VISIBLE
+                pollen2Icon.setColorFilter(pollen.getColor(context, p, pollenIndexSource))
+                pollen2Title.text = pollen.getName(context, p)
+                pollen2Title.setTextColor(context.getThemeColor(R.attr.colorTitleText))
+                pollen2Content.text = pollen.getIndexName(context, p, pollenIndexSource)
+                pollen2Content.setTextColor(context.getThemeColor(R.attr.colorBodyText))
+
+                talkBackBuilder.append(context.getString(R.string.comma_separator))
+                talkBackBuilder.append(pollen2Title.text)
+                talkBackBuilder.append(context.getString(R.string.colon_separator))
+                talkBackBuilder.append(pollen2Content.text)
+            } ?: run {
+                pollen2Container.visibility = View.GONE
+            }
+        } ?: run {
+            talkBackBuilder.append(context.getString(R.string.pollen))
+            pollen1Container.visibility = View.GONE
+            pollen2Container.visibility = View.GONE
         }
-        if (location.weather?.dailyForecast?.any { it.pollen?.isMoldValid == true } == true) {
-            mTitle.text = context.getString(R.string.pollen_and_mold)
-        } else {
-            mTitle.text = context.getString(R.string.pollen)
-        }
-        mTitle.setTextColor(
-            ThemeManager.getInstance(context)
-                .weatherThemeDelegate
-                .getThemeColors(
-                    context,
-                    WeatherViewController.getWeatherKind(location),
-                    WeatherViewController.isDaylight(location)
-                )[0]
-        )
-        mPager.adapter = DailyPollenPagerAdapter(
-            location,
-            (activity as MainActivity).sourceManager.getPollenIndexSource(
-                if (!location.pollenSource.isNullOrEmpty()) {
-                    location.pollenSource!!
-                } else {
-                    location.forecastSource
-                }
-            ),
-            location.weather?.dailyForecast?.map { daily ->
-                daily.pollen?.pollensWithConcentration ?: setOf()
-            }?.flatten()?.toImmutableSet() ?: persistentSetOf()
-        )
-        mPager.currentItem = 0
-        mCallback = DailyPollenPageChangeCallback(activity, location)
-        mPager.registerOnPageChangeCallback(mCallback!!)
-        itemView.contentDescription = mTitle.text
+
+        itemView.contentDescription = talkBackBuilder.toString()
         itemView.setOnClickListener {
             IntentHelper.startDailyWeatherActivity(
                 context as BreezyActivity,
                 location.formattedId,
-                mPager.currentItem + (location.weather!!.todayIndex ?: 0),
+                location.weather!!.todayIndex,
                 DetailScreen.TAG_POLLEN
             )
-        }
-    }
-
-    override fun onRecycleView() {
-        super.onRecycleView()
-        if (mCallback != null) {
-            mPager.unregisterOnPageChangeCallback(mCallback!!)
-            mCallback = null
         }
     }
 }

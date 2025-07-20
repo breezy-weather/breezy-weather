@@ -32,12 +32,10 @@ interface WeatherSource : Source {
      * An optional icon for the attribution page.
      * /!\ Only include it if it is mandatory in the attribution, as we don’t want to bundle copyrighted icons which
      * we don’t have the right to use!
-     * @param isDarkMode May be used to display a different icon depending on light/dark mode. If true, the background
-     * is dark.
-     * Example: return either R.drawable.accu_icon_dark or R.drawable.accu_icon_light
+     * Example: return R.drawable.accu_icon
      */
     @DrawableRes
-    fun getAttributionIcon(isDarkMode: Boolean): Int? {
+    fun getAttributionIcon(): Int? {
         return null
     }
 

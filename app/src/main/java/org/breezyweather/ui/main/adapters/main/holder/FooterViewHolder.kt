@@ -66,7 +66,6 @@ import org.breezyweather.domain.source.resourceName
 import org.breezyweather.ui.common.composables.AlertDialogLink
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.main.MainActivity
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
@@ -88,7 +87,7 @@ class FooterViewHolder(
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
         composeView.setContent {
-            BreezyWeatherTheme(!MainThemeColorProvider.isLightTheme(context, location)) {
+            BreezyWeatherTheme(!ThemeManager.isLightTheme(context, location)) {
                 ComposeView(location)
             }
         }
@@ -220,9 +219,7 @@ class FooterViewHolder(
                                         containerColor = AlertDialogDefaults.containerColor
                                     ),
                                     leadingContent = if (source is WeatherSource) {
-                                        source.getAttributionIcon(
-                                            !MainThemeColorProvider.isLightTheme(context, location)
-                                        )?.let {
+                                        source.getAttributionIcon()?.let {
                                             {
                                                 Icon(
                                                     painterResource(it),

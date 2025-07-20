@@ -54,6 +54,7 @@ class RainImplementor(
         private val mViewHeight: Int,
         @ColorInt val color: Int,
         val scale: Float,
+        @TypeRule type: Int,
     ) {
         var x = 0f
         var y = 0f
@@ -70,9 +71,10 @@ class RainImplementor(
 
         init {
             mCanvasSize = (mViewWidth * mViewWidth + mViewHeight * mViewHeight).toDouble().pow(0.5).toInt()
-            speed = (mCanvasSize / (1000.0 * (1.75 + Random().nextDouble())) * 5.0).toFloat()
-            maxWidth = (0.006 * mCanvasSize).toFloat()
-            minWidth = (0.003 * mCanvasSize).toFloat()
+            val velocity = if (type == TYPE_SLEET) 3.0 else 5.0
+            speed = (mCanvasSize / (1000.0 * (1.75 + Random().nextDouble())) * velocity).toFloat()
+            maxWidth = ((if (type == TYPE_SLEET) 0.006 else 0.003) * mCanvasSize).toFloat()
+            minWidth = ((if (type == TYPE_SLEET) 0.004 else 0.002) * mCanvasSize).toFloat()
             maxHeight = maxWidth * 10
             minHeight = minWidth * 6
             init(true)
@@ -223,7 +225,8 @@ class RainImplementor(
                     canvasSizes[0],
                     canvasSizes[1],
                     colors[i * 3 / rainCount],
-                    scales[i * 3 / rainCount]
+                    scales[i * 3 / rainCount],
+                    type
                 )
             }
         } else {

@@ -49,12 +49,13 @@ import com.patrykandpatrick.vico.core.cartesian.layer.LineCartesianLayer
 import kotlinx.collections.immutable.ImmutableList
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedTime
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.extensions.handleNestedHorizontalDragGesture
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.windowHeightInDp
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import java.util.Date
 import kotlin.math.PI
 import kotlin.math.max
@@ -92,15 +93,9 @@ fun EphemerisChart(
         Date(value.toLong()).getFormattedTime(location, context, context.is12Hour)
     }
 
-    val lineColor = Color(
-        MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
-    )
+    val lineColor = Color(context.getThemeColor(com.google.android.material.R.attr.colorOutline))
     val labelColor = colorResource(
-        if (MainThemeColorProvider.isLightTheme(context, location)) {
-            R.color.colorTextGrey
-        } else {
-            R.color.colorTextGrey2nd
-        }
+        if (ThemeManager.isLightTheme(context, location)) R.color.colorTextGrey else R.color.colorTextGrey2nd
     )
 
     CartesianChartHost(

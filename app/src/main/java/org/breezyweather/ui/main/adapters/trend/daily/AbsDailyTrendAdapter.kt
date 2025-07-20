@@ -26,13 +26,13 @@ import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.model.getWeek
 import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerViewAdapter
 import org.breezyweather.ui.common.widgets.trend.item.DailyTrendItemView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import java.util.Date
 
 abstract class AbsDailyTrendAdapter(
@@ -75,14 +75,8 @@ abstract class AbsDailyTrendAdapter(
             dailyItem.setDateText(daily.date.getFormattedShortDayAndMonth(location, context))
             val useAccentColorForDate = daily.isToday(location) || daily.date > Date()
             dailyItem.setTextColor(
-                MainThemeColorProvider.getColor(
-                    location,
-                    if (useAccentColorForDate) R.attr.colorTitleText else R.attr.colorBodyText
-                ),
-                MainThemeColorProvider.getColor(
-                    location,
-                    if (useAccentColorForDate) R.attr.colorBodyText else R.attr.colorCaptionText
-                )
+                activity.getThemeColor(if (useAccentColorForDate) R.attr.colorTitleText else R.attr.colorBodyText),
+                activity.getThemeColor(if (useAccentColorForDate) R.attr.colorBodyText else R.attr.colorCaptionText)
             )
         }
 

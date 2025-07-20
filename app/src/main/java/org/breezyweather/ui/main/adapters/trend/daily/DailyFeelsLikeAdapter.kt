@@ -27,9 +27,9 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
@@ -112,11 +112,11 @@ class DailyFeelsLikeAdapter(
                     WeatherViewController.getWeatherKind(location),
                     WeatherViewController.isDaylight(location)
                 )
-            val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
+            val lightTheme = ThemeManager.isLightTheme(itemView.context, location)
             mPolylineAndHistogramView.setLineColors(
                 themeColors[1],
                 themeColors[2],
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
             mPolylineAndHistogramView.setShadowColors(
                 themeColors[1],
@@ -124,9 +124,9 @@ class DailyFeelsLikeAdapter(
                 lightTheme
             )
             mPolylineAndHistogramView.setTextColors(
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                MainThemeColorProvider.getColor(location, R.attr.colorPrecipitationProbability)
+                activity.getThemeColor(R.attr.colorTitleText),
+                activity.getThemeColor(R.attr.colorBodyText),
+                activity.getThemeColor(R.attr.colorPrecipitationProbability)
             )
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 0.2f else 0.5f)
             dailyItem.setNightIconDrawable(
