@@ -32,6 +32,7 @@ enum class DetailScreen(
 ) : BaseEnum {
 
     TAG_CONDITIONS("conditions", R.string.conditions, R.drawable.ic_device_thermostat),
+    TAG_FEELS_LIKE("feels_like", R.string.tag_feels_like, R.drawable.ic_device_thermostat),
     TAG_WIND("wind", R.string.wind, R.drawable.ic_wind),
     TAG_AIR_QUALITY("air_quality", R.string.air_quality, R.drawable.weather_haze_mini_xml),
     TAG_POLLEN("pollen", R.string.pollen, R.drawable.ic_allergy),
@@ -55,6 +56,7 @@ enum class DetailScreen(
                 .filter { detailScreen ->
                     when (detailScreen) {
                         TAG_CONDITIONS -> true // Always displayed
+                        TAG_FEELS_LIKE -> false // never displayed, it’s actually a sub menu of TAG_CONDITIONS
                         TAG_PRECIPITATION -> true // Too many conditions
                         TAG_WIND -> location.weather?.dailyForecast?.any {
                             (it.day?.wind?.speed ?: 0.0) > 0.0 || (it.night?.wind?.speed ?: 0.0) > 0.0

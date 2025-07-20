@@ -135,8 +135,7 @@ class DailyFeelsLikeAdapter(
             )
             dailyItem.contentDescription = talkBackBuilder.toString()
             dailyItem.setOnClickListener {
-                // TODO: Allow to open the temperature page with the feels like toggle enabled
-                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_CONDITIONS)
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_FEELS_LIKE)
             }
         }
 

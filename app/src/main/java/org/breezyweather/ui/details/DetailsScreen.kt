@@ -182,6 +182,7 @@ internal fun DailyWeatherScreen(
                             location = loc,
                             selected = page,
                             selectedChart = detailsUiState.selectedChart,
+                            setSelectedChart = { chart -> detailsViewModel.setSelectedChart(chart) },
                             pollenIndexSource = detailsViewModel.getPollenIndexSource(loc)
                         )
                     }
@@ -352,6 +353,7 @@ fun DailyPagerContent(
     location: Location,
     selected: Int,
     selectedChart: DetailScreen,
+    setSelectedChart: (DetailScreen) -> Unit,
     pollenIndexSource: PollenIndexSource?,
     modifier: Modifier = Modifier,
 ) {
@@ -385,14 +387,21 @@ fun DailyPagerContent(
         modifier = modifier
     ) {
         when (selectedChart) {
-            DetailScreen.TAG_CONDITIONS -> {
+            DetailScreen.TAG_CONDITIONS, DetailScreen.TAG_FEELS_LIKE -> {
                 val cal = daily.date.toCalendarWithTimeZone(location.javaTimeZone)
                 val thisDayNormals = if (location.weather?.normals?.month == cal[Calendar.MONTH]) {
                     location.weather!!.normals
                 } else {
                     null
                 }
-                DetailsConditions(location, hourlyList, daily, thisDayNormals)
+                DetailsConditions(
+                    location,
+                    hourlyList,
+                    daily,
+                    thisDayNormals,
+                    selectedChart,
+                    { setSelectedChart(if (it) DetailScreen.TAG_CONDITIONS else DetailScreen.TAG_FEELS_LIKE) }
+                )
             }
             DetailScreen.TAG_PRECIPITATION -> DetailsPrecipitation(location, hourlyList, daily)
             DetailScreen.TAG_WIND -> DetailsWind(location, hourlyList, daily)

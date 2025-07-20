@@ -2,6 +2,8 @@
 
 **Improvements and fixes**
 - Fix nowcasting chart not honoring precipitation unit override
+- Details - Fix feels like toggle not remembered through days
+- Homepage - Fix tapping daily/hourly feels like forecast opening conditions with feels like toggle off
 - Improve display of precipitation details
 
 

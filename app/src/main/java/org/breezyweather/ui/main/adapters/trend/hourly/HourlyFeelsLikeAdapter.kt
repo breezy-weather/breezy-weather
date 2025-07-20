@@ -115,7 +115,7 @@ class HourlyFeelsLikeAdapter(
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 0.2f else 0.5f)
             hourlyItem.contentDescription = talkBackBuilder.toString()
             hourlyItem.setOnClickListener {
-                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_CONDITIONS)
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_FEELS_LIKE)
             }
         }
 

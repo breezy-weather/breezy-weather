@@ -52,7 +52,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -109,18 +108,19 @@ fun DetailsConditions(
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
     normals: Normals?,
+    selectedChart: DetailScreen,
+    setShowRealTemp: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val showRealTemp = rememberSaveable { mutableStateOf(true) }
-    val mappedValues = remember(hourlyList, showRealTemp.value) {
+    val mappedValues = remember(hourlyList, selectedChart) {
         hourlyList
             .filter {
                 it.temperature?.temperature != null &&
-                    if (!showRealTemp.value) {
-                        it.temperature?.feelsLikeTemperature != null
-                    } else {
+                    if (selectedChart != DetailScreen.TAG_FEELS_LIKE) {
                         true
+                    } else {
+                        it.temperature?.feelsLikeTemperature != null
                     }
             }
             .associateBy { it.date.time }
@@ -143,18 +143,15 @@ fun DetailsConditions(
         )
     ) {
         item {
-            TemperatureChart(location, mappedValues, showRealTemp.value, normals, daily)
+            TemperatureChart(location, mappedValues, selectedChart != DetailScreen.TAG_FEELS_LIKE, normals, daily)
         }
         item {
-            TemperatureSwitcher(
-                { showRealTemp.value = it },
-                showRealTemp.value
-            )
+            TemperatureSwitcher(setShowRealTemp, selectedChart != DetailScreen.TAG_FEELS_LIKE)
         }
         item {
             Text(
                 text = stringResource(
-                    if (showRealTemp.value) {
+                    if (selectedChart != DetailScreen.TAG_FEELS_LIKE) {
                         R.string.temperature_real_details
                     } else {
                         R.string.temperature_feels_like_details
@@ -199,11 +196,11 @@ fun DetailsConditions(
             }
         }
         // Detailed feels like temperatures
-        if (normals != null || !showRealTemp.value) {
+        if (normals != null || selectedChart == DetailScreen.TAG_FEELS_LIKE) {
             item {
                 TemperatureDetails(
-                    if (showRealTemp.value) null else daily.day?.temperature,
-                    if (showRealTemp.value) null else daily.night?.temperature,
+                    if (selectedChart != DetailScreen.TAG_FEELS_LIKE) null else daily.day?.temperature,
+                    if (selectedChart != DetailScreen.TAG_FEELS_LIKE) null else daily.night?.temperature,
                     normals
                 )
             }
