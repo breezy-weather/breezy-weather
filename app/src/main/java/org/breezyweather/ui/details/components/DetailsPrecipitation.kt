@@ -45,6 +45,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.isTraversalGroup
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.buildAnnotatedString
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
@@ -63,6 +64,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
@@ -355,77 +357,85 @@ private fun PrecipitationDetails(
     daytimePrecipitation: Precipitation?,
     nighttimePrecipitation: Precipitation?,
 ) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
-        modifier = Modifier
-            .padding(top = dimensionResource(R.dimen.normal_margin))
-            .fillMaxWidth()
-    ) {
-        Column(
+    val daytimePrecipitationItems = mutableListOf<Pair<Int, Double?>>()
+    val nighttimePrecipitationItems = mutableListOf<Pair<Int, Double?>>()
+
+    if ((daytimePrecipitation?.rain ?: 0.0) > 0 || (nighttimePrecipitation?.rain ?: 0.0) > 0) {
+        daytimePrecipitationItems.add(Pair(R.string.precipitation_rain, daytimePrecipitation?.rain))
+        nighttimePrecipitationItems.add(Pair(R.string.precipitation_rain, nighttimePrecipitation?.rain))
+    }
+    if ((daytimePrecipitation?.snow ?: 0.0) > 0 || (nighttimePrecipitation?.snow ?: 0.0) > 0) {
+        daytimePrecipitationItems.add(Pair(R.string.precipitation_snow, daytimePrecipitation?.snow))
+        nighttimePrecipitationItems.add(Pair(R.string.precipitation_snow, nighttimePrecipitation?.snow))
+    }
+    if ((daytimePrecipitation?.ice ?: 0.0) > 0 || (nighttimePrecipitation?.ice ?: 0.0) > 0) {
+        daytimePrecipitationItems.add(Pair(R.string.precipitation_ice, daytimePrecipitation?.ice))
+        nighttimePrecipitationItems.add(Pair(R.string.precipitation_ice, nighttimePrecipitation?.ice))
+    }
+    if ((daytimePrecipitation?.thunderstorm ?: 0.0) > 0 || (nighttimePrecipitation?.thunderstorm ?: 0.0) > 0) {
+        daytimePrecipitationItems.add(Pair(R.string.precipitation_thunderstorm, daytimePrecipitation?.thunderstorm))
+        nighttimePrecipitationItems.add(Pair(R.string.precipitation_thunderstorm, nighttimePrecipitation?.thunderstorm))
+    }
+
+    if (daytimePrecipitationItems.isNotEmpty()) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
             modifier = Modifier
+                .padding(top = dimensionResource(R.dimen.normal_margin))
                 .fillMaxWidth()
-                .weight(1f)
-                .semantics { isTraversalGroup = true }
         ) {
-            DailyPrecipitationDetails(isDaytime = true, daytimePrecipitation)
-        }
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .semantics { isTraversalGroup = true }
-        ) {
-            DailyPrecipitationDetails(isDaytime = false, nighttimePrecipitation)
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .semantics { isTraversalGroup = true }
+            ) {
+                DaytimeLabel()
+                daytimePrecipitationItems.forEach {
+                    DailyPrecipitationDetail(it)
+                }
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .semantics { isTraversalGroup = true }
+            ) {
+                NighttimeLabelWithInfo()
+                nighttimePrecipitationItems.forEach {
+                    DailyPrecipitationDetail(it)
+                }
+            }
         }
     }
 }
 
 @Composable
-fun DailyPrecipitationDetails(
-    isDaytime: Boolean,
-    precipitation: Precipitation?,
+fun DailyPrecipitationDetail(
+    item: Pair<Int, Double?>,
+    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val precipitationUnit = SettingsManager.getInstance(context).getPrecipitationUnit(context)
-    val snowfallUnit = SettingsManager.getInstance(context).getSnowfallUnit(context)
-    val precipitationItems = buildList {
-        precipitation?.let { prec ->
-            if ((prec.rain ?: 0.0) > 0) {
-                add(Pair(R.string.precipitation_rain, prec.rain!!))
-            }
-            if ((prec.snow ?: 0.0) > 0) {
-                add(Pair(R.string.precipitation_snow, prec.snow!!))
-            }
-            if ((prec.ice ?: 0.0) > 0) {
-                add(Pair(R.string.precipitation_ice, prec.ice!!))
-            }
-            if ((prec.thunderstorm ?: 0.0) > 0) {
-                add(Pair(R.string.precipitation_thunderstorm, prec.thunderstorm!!))
-            }
-        }
+    val unit = if (item.first == R.string.precipitation_snow) {
+        SettingsManager.getInstance(context).getSnowfallUnit(context)
+    } else {
+        SettingsManager.getInstance(context).getPrecipitationUnit(context)
     }
-    if (precipitationItems.isNotEmpty()) {
-        if (isDaytime) {
-            DaytimeLabel()
-        } else {
-            NighttimeLabelWithInfo()
-        }
-    }
-    precipitationItems.forEach { item ->
-        val unit = if (item.first == R.string.precipitation_snow) snowfallUnit else precipitationUnit
-        DetailsItem(
-            headlineText = stringResource(item.first),
-            supportingText = unit.formatMeasure(context, item.second),
-            modifier = Modifier
-                .padding(top = dimensionResource(R.dimen.normal_margin))
-                .semantics(mergeDescendants = true) {}
-                .clearAndSetSemantics {
+    DetailsItem(
+        headlineText = stringResource(item.first),
+        supportingText = item.second?.let { prec -> unit.formatMeasure(context, prec) }
+            ?: stringResource(R.string.null_data_text),
+        modifier = modifier
+            .padding(top = dimensionResource(R.dimen.normal_margin))
+            .semantics(mergeDescendants = true) {}
+            .clearAndSetSemantics {
+                item.second?.let { prec ->
                     contentDescription = context.getString(item.first) +
                         context.getString(R.string.colon_separator) +
-                        unit.formatContentDescription(context, item.second)
+                        unit.formatContentDescription(context, prec)
                 }
-        )
-    }
+            }
+    )
 }
 
 @Composable
@@ -440,12 +450,10 @@ private fun PrecipitationProbabilityItem(
         modifier = modifier.fillMaxWidth()
     ) {
         header()
-        precipitationProbability?.let { pp ->
-            TextFixedHeight(
-                text = UnitUtils.formatPercent(context, pp),
-                style = MaterialTheme.typography.displaySmall
-            )
-        }
+        TextFixedHeight(
+            text = precipitationProbability?.let { pp -> UnitUtils.formatPercent(context, pp) } ?: "",
+            style = MaterialTheme.typography.displaySmall
+        )
     }
 }
 
@@ -465,12 +473,10 @@ private fun PrecipitationProbabilitySummary(
                 .weight(1f)
                 .semantics { isTraversalGroup = true }
         ) {
-            daytimePrecipitationProbability?.total?.let {
-                PrecipitationProbabilityItem(
-                    { DaytimeLabel() },
-                    it
-                )
-            }
+            PrecipitationProbabilityItem(
+                { DaytimeLabel() },
+                daytimePrecipitationProbability?.total
+            )
         }
         Column(
             modifier = Modifier
@@ -478,12 +484,10 @@ private fun PrecipitationProbabilitySummary(
                 .weight(1f)
                 .semantics { isTraversalGroup = true }
         ) {
-            nighttimePrecipitationProbability?.total?.let {
-                PrecipitationProbabilityItem(
-                    { NighttimeLabelWithInfo() },
-                    it
-                )
-            }
+            PrecipitationProbabilityItem(
+                { NighttimeLabelWithInfo() },
+                nighttimePrecipitationProbability?.total
+            )
         }
     }
 }
@@ -572,91 +576,111 @@ internal fun PrecipitationProbabilityChart(
 
 @Composable
 internal fun PrecipitationProbabilityDetails(
-    daytimePrecipitationProbability: PrecipitationProbability?,
-    nighttimePrecipitationProbability: PrecipitationProbability?,
+    daytimePrecProb: PrecipitationProbability?,
+    nighttimePrecProb: PrecipitationProbability?,
 ) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
-        modifier = Modifier
-            .padding(top = dimensionResource(R.dimen.normal_margin))
-            .fillMaxWidth()
-    ) {
-        Column(
+    val daytimePrecProbItems = mutableListOf<Pair<Int, Double?>>()
+    val nighttimePrecProbItems = mutableListOf<Pair<Int, Double?>>()
+
+    if ((daytimePrecProb?.rain ?: 0.0) > 0 || (nighttimePrecProb?.rain ?: 0.0) > 0) {
+        daytimePrecProbItems.add(Pair(R.string.precipitation_rain, daytimePrecProb?.rain))
+        nighttimePrecProbItems.add(Pair(R.string.precipitation_rain, nighttimePrecProb?.rain))
+    }
+    if ((daytimePrecProb?.snow ?: 0.0) > 0 || (nighttimePrecProb?.snow ?: 0.0) > 0) {
+        daytimePrecProbItems.add(Pair(R.string.precipitation_snow, daytimePrecProb?.snow))
+        nighttimePrecProbItems.add(Pair(R.string.precipitation_snow, nighttimePrecProb?.snow))
+    }
+    if ((daytimePrecProb?.ice ?: 0.0) > 0 || (nighttimePrecProb?.ice ?: 0.0) > 0) {
+        daytimePrecProbItems.add(Pair(R.string.precipitation_ice, daytimePrecProb?.ice))
+        nighttimePrecProbItems.add(Pair(R.string.precipitation_ice, nighttimePrecProb?.ice))
+    }
+    if ((daytimePrecProb?.thunderstorm ?: 0.0) > 0 || (nighttimePrecProb?.thunderstorm ?: 0.0) > 0) {
+        daytimePrecProbItems.add(Pair(R.string.precipitation_thunderstorm, daytimePrecProb?.thunderstorm))
+        nighttimePrecProbItems.add(Pair(R.string.precipitation_thunderstorm, nighttimePrecProb?.thunderstorm))
+    }
+
+    if (daytimePrecProbItems.isNotEmpty()) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
             modifier = Modifier
+                .padding(top = dimensionResource(R.dimen.normal_margin))
                 .fillMaxWidth()
-                .weight(1f)
-                .semantics { isTraversalGroup = true }
         ) {
-            DailyPrecipitationProbabilityDetails(
-                isDaytime = true,
-                daytimePrecipitationProbability
-            )
-        }
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .semantics { isTraversalGroup = true }
-        ) {
-            DailyPrecipitationProbabilityDetails(
-                isDaytime = false,
-                nighttimePrecipitationProbability
-            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .semantics { isTraversalGroup = true }
+            ) {
+                DaytimeLabel()
+                daytimePrecProbItems.forEach {
+                    DailyPrecipitationDetail(it)
+                }
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .semantics { isTraversalGroup = true }
+            ) {
+                NighttimeLabelWithInfo()
+                nighttimePrecProbItems.forEach {
+                    DailyPrecipitationDetail(it)
+                }
+            }
         }
     }
 }
 
 @Composable
-internal fun DailyPrecipitationProbabilityDetails(
-    isDaytime: Boolean,
-    precipitationProbability: PrecipitationProbability?,
+internal fun DailyPrecipitationProbabilityDetail(
+    item: Pair<Int, Double?>,
+    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val precipitationProbabilityItems = buildList {
-        precipitationProbability?.let { pp ->
-            if ((pp.rain ?: 0.0) > 0) {
-                add(Pair(R.string.precipitation_rain, pp.rain!!))
-            }
-            if ((pp.snow ?: 0.0) > 0) {
-                add(Pair(R.string.precipitation_snow, pp.snow!!))
-            }
-            if ((pp.ice ?: 0.0) > 0) {
-                add(Pair(R.string.precipitation_ice, pp.ice!!))
-            }
-            if ((pp.thunderstorm ?: 0.0) > 0) {
-                add(Pair(R.string.precipitation_thunderstorm, pp.thunderstorm!!))
-            }
-        }
-    }
-    if (precipitationProbabilityItems.isNotEmpty()) {
-        if (isDaytime) {
-            DaytimeLabel()
-        } else {
-            NighttimeLabelWithInfo()
-        }
-    }
-    precipitationProbabilityItems.forEach { item ->
-        DetailsItem(
-            headlineText = stringResource(item.first),
-            supportingText = UnitUtils.formatPercent(context, item.second),
-            modifier = Modifier
-                .padding(top = dimensionResource(R.dimen.normal_margin))
-                .semantics(mergeDescendants = true) {}
-                .clearAndSetSemantics {
+
+    DetailsItem(
+        headlineText = stringResource(item.first),
+        supportingText = item.second?.let { pp -> UnitUtils.formatPercent(context, pp) }
+            ?: stringResource(R.string.null_data_text),
+        modifier = modifier
+            .padding(top = dimensionResource(R.dimen.normal_margin))
+            .semantics(mergeDescendants = true) {}
+            .clearAndSetSemantics {
+                item.second?.let { pp ->
                     contentDescription = context.getString(item.first) +
                         context.getString(R.string.colon_separator) +
-                        UnitUtils.formatPercent(context, item.second)
+                        UnitUtils.formatPercent(context, pp)
                 }
-        )
-    }
+            }
+    )
 }
 
 @Composable
 private fun PrecipitationDurationSummary(
-    daytimePrecipitationDuration: PrecipitationDuration?,
-    nighttimePrecipitationDuration: PrecipitationDuration?,
+    daytimePrecDur: PrecipitationDuration?,
+    nighttimePrecDur: PrecipitationDuration?,
 ) {
     val context = LocalContext.current
+    val daytimePrecDurItems = mutableListOf<Pair<Int, Double?>>()
+    val nighttimePrecDurItems = mutableListOf<Pair<Int, Double?>>()
+
+    if ((daytimePrecDur?.rain ?: 0.0) > 0 || (nighttimePrecDur?.rain ?: 0.0) > 0) {
+        daytimePrecDurItems.add(Pair(R.string.precipitation_rain, daytimePrecDur?.rain))
+        nighttimePrecDurItems.add(Pair(R.string.precipitation_rain, nighttimePrecDur?.rain))
+    }
+    if ((daytimePrecDur?.snow ?: 0.0) > 0 || (nighttimePrecDur?.snow ?: 0.0) > 0) {
+        daytimePrecDurItems.add(Pair(R.string.precipitation_snow, daytimePrecDur?.snow))
+        nighttimePrecDurItems.add(Pair(R.string.precipitation_snow, nighttimePrecDur?.snow))
+    }
+    if ((daytimePrecDur?.ice ?: 0.0) > 0 || (nighttimePrecDur?.ice ?: 0.0) > 0) {
+        daytimePrecDurItems.add(Pair(R.string.precipitation_ice, daytimePrecDur?.ice))
+        nighttimePrecDurItems.add(Pair(R.string.precipitation_ice, nighttimePrecDur?.ice))
+    }
+    if ((daytimePrecDur?.thunderstorm ?: 0.0) > 0 || (nighttimePrecDur?.thunderstorm ?: 0.0) > 0) {
+        daytimePrecDurItems.add(Pair(R.string.precipitation_thunderstorm, daytimePrecDur?.thunderstorm))
+        nighttimePrecDurItems.add(Pair(R.string.precipitation_thunderstorm, nighttimePrecDur?.thunderstorm))
+    }
 
     Row(
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
@@ -669,19 +693,30 @@ private fun PrecipitationDurationSummary(
                 .weight(1f)
                 .semantics { isTraversalGroup = true }
         ) {
-            daytimePrecipitationDuration?.let { precDur ->
-                precDur.total?.let {
-                    DaytimeLabel()
-                    Text(
-                        text = DurationUnit.HOUR.formatMeasure(context, it),
-                        style = MaterialTheme.typography.displaySmall,
-                        modifier = Modifier
-                            .clearAndSetSemantics {
-                                contentDescription = DurationUnit.HOUR.formatContentDescription(context, it)
-                            }
-                    )
-                    DailyPrecipitationDurationDetails(precDur)
-                }
+            DaytimeLabel()
+            Text(
+                text = buildAnnotatedString {
+                    daytimePrecDur?.total?.let {
+                        append(
+                            UnitUtils.formatUnitsDifferentFontSize(
+                                formattedMeasure = DurationUnit.HOUR.formatMeasureShort(context, it),
+                                fontSize = MaterialTheme.typography.headlineSmall.fontSize
+                            )
+                        )
+                    } ?: run {
+                        append(stringResource(R.string.null_data_text))
+                    }
+                },
+                style = MaterialTheme.typography.displaySmall,
+                modifier = Modifier
+                    .clearAndSetSemantics {
+                        daytimePrecDur?.total?.let {
+                            contentDescription = DurationUnit.HOUR.formatContentDescription(context, it)
+                        }
+                    }
+            )
+            daytimePrecDurItems.forEach {
+                DailyPrecipitationDurationDetail(it)
             }
         }
         Column(
@@ -690,58 +725,54 @@ private fun PrecipitationDurationSummary(
                 .weight(1f)
                 .semantics { isTraversalGroup = true }
         ) {
-            nighttimePrecipitationDuration?.let { precDur ->
-                precDur.total?.let {
-                    NighttimeLabelWithInfo()
-                    Text(
-                        text = DurationUnit.HOUR.formatMeasure(context, it),
-                        style = MaterialTheme.typography.displaySmall,
-                        modifier = Modifier
-                            .clearAndSetSemantics {
-                                contentDescription = DurationUnit.HOUR.formatContentDescription(context, it)
-                            }
-                    )
-                    DailyPrecipitationDurationDetails(precDur)
-                }
+            NighttimeLabelWithInfo()
+            Text(
+                text = buildAnnotatedString {
+                    nighttimePrecDur?.total?.let {
+                        append(
+                            UnitUtils.formatUnitsDifferentFontSize(
+                                formattedMeasure = DurationUnit.HOUR.formatMeasureShort(context, it),
+                                fontSize = MaterialTheme.typography.headlineSmall.fontSize
+                            )
+                        )
+                    } ?: run {
+                        append(stringResource(R.string.null_data_text))
+                    }
+                },
+                style = MaterialTheme.typography.displaySmall,
+                modifier = Modifier
+                    .clearAndSetSemantics {
+                        nighttimePrecDur?.total?.let {
+                            contentDescription = DurationUnit.HOUR.formatContentDescription(context, it)
+                        }
+                    }
+            )
+            nighttimePrecDurItems.forEach {
+                DailyPrecipitationDurationDetail(it)
             }
         }
     }
 }
 
 @Composable
-fun DailyPrecipitationDurationDetails(
-    precipitationDuration: PrecipitationDuration?,
+fun DailyPrecipitationDurationDetail(
+    item: Pair<Int, Double?>,
+    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
     val durationUnit = DurationUnit.HOUR
-    val precipitationDurationItems = buildList {
-        precipitationDuration?.let { precDur ->
-            if ((precDur.rain ?: 0.0) > 0) {
-                add(Pair(R.string.precipitation_rain, precDur.rain!!))
-            }
-            if ((precDur.snow ?: 0.0) > 0) {
-                add(Pair(R.string.precipitation_snow, precDur.snow!!))
-            }
-            if ((precDur.ice ?: 0.0) > 0) {
-                add(Pair(R.string.precipitation_ice, precDur.ice!!))
-            }
-            if ((precDur.thunderstorm ?: 0.0) > 0) {
-                add(Pair(R.string.precipitation_thunderstorm, precDur.thunderstorm!!))
-            }
-        }
-    }
-    precipitationDurationItems.forEach { item ->
-        DetailsItem(
-            headlineText = stringResource(item.first),
-            supportingText = durationUnit.formatMeasure(context, item.second),
-            modifier = Modifier
-                .padding(top = dimensionResource(R.dimen.normal_margin))
-                .semantics(mergeDescendants = true) {}
-                .clearAndSetSemantics {
+    DetailsItem(
+        headlineText = stringResource(item.first),
+        supportingText = item.second?.let { dur -> durationUnit.formatMeasure(context, dur) },
+        modifier = modifier
+            .padding(top = dimensionResource(R.dimen.normal_margin))
+            .semantics(mergeDescendants = true) {}
+            .clearAndSetSemantics {
+                item.second?.let { dur ->
                     contentDescription = context.getString(item.first) +
                         context.getString(R.string.colon_separator) +
-                        durationUnit.formatContentDescription(context, item.second)
+                        durationUnit.formatContentDescription(context, dur)
                 }
-        )
-    }
+            }
+    )
 }

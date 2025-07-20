@@ -724,6 +724,40 @@ private fun TemperatureDetails(
     nighttimeTemperature: Temperature?,
     normals: Normals?,
 ) {
+    val daytimeTempItems = mutableListOf<Pair<Int, Double?>>()
+    val nighttimeTempItems = mutableListOf<Pair<Int, Double?>>()
+
+    if (daytimeTemperature?.realFeelTemperature != null || nighttimeTemperature?.realFeelTemperature != null) {
+        daytimeTempItems.add(Pair(R.string.temperature_real_feel, daytimeTemperature?.realFeelTemperature))
+        nighttimeTempItems.add(Pair(R.string.temperature_real_feel, nighttimeTemperature?.realFeelTemperature))
+    }
+    if (daytimeTemperature?.realFeelShaderTemperature != null ||
+        nighttimeTemperature?.realFeelShaderTemperature != null
+    ) {
+        daytimeTempItems.add(
+            Pair(R.string.temperature_real_feel_shade, daytimeTemperature?.realFeelShaderTemperature)
+        )
+        nighttimeTempItems.add(
+            Pair(R.string.temperature_real_feel_shade, nighttimeTemperature?.realFeelShaderTemperature)
+        )
+    }
+    if (daytimeTemperature?.apparentTemperature != null || nighttimeTemperature?.apparentTemperature != null) {
+        daytimeTempItems.add(Pair(R.string.temperature_apparent, daytimeTemperature?.apparentTemperature))
+        nighttimeTempItems.add(Pair(R.string.temperature_apparent, nighttimeTemperature?.apparentTemperature))
+    }
+    if (daytimeTemperature?.windChillTemperature != null || nighttimeTemperature?.windChillTemperature != null) {
+        daytimeTempItems.add(Pair(R.string.temperature_wind_chill, daytimeTemperature?.windChillTemperature))
+        nighttimeTempItems.add(Pair(R.string.temperature_wind_chill, nighttimeTemperature?.windChillTemperature))
+    }
+    if (daytimeTemperature?.wetBulbTemperature != null || nighttimeTemperature?.wetBulbTemperature != null) {
+        daytimeTempItems.add(Pair(R.string.temperature_wet_bulb, daytimeTemperature?.wetBulbTemperature))
+        nighttimeTempItems.add(Pair(R.string.temperature_wet_bulb, nighttimeTemperature?.wetBulbTemperature))
+    }
+    if (normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null) {
+        daytimeTempItems.add(Pair(R.string.temperature_normal_short, normals.daytimeTemperature))
+        nighttimeTempItems.add(Pair(R.string.temperature_normal_short, normals.nighttimeTemperature))
+    }
+
     Row(
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
         modifier = Modifier
@@ -737,7 +771,9 @@ private fun TemperatureDetails(
                 .semantics { isTraversalGroup = true }
         ) {
             DaytimeLabel()
-            DailyFeelsLikeTemperatureDetails(daytimeTemperature, normals?.daytimeTemperature)
+            daytimeTempItems.forEach {
+                DailyFeelsLikeTemperatureDetail(it)
+            }
         }
         Column(
             modifier = Modifier
@@ -746,52 +782,33 @@ private fun TemperatureDetails(
                 .semantics { isTraversalGroup = true }
         ) {
             NighttimeLabelWithInfo()
-            DailyFeelsLikeTemperatureDetails(nighttimeTemperature, normals?.nighttimeTemperature)
+            nighttimeTempItems.forEach {
+                DailyFeelsLikeTemperatureDetail(it)
+            }
         }
     }
 }
 
 @Composable
-fun DailyFeelsLikeTemperatureDetails(
-    temperature: Temperature?,
-    normalsTemperature: Double?,
+fun DailyFeelsLikeTemperatureDetail(
+    item: Pair<Int, Double?>,
+    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
     val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
-    val temperatureItems = buildList {
-        temperature?.let { temp ->
-            temp.realFeelTemperature?.let {
-                add(Pair(R.string.temperature_real_feel, it))
-            }
-            temp.realFeelShaderTemperature?.let {
-                add(Pair(R.string.temperature_real_feel_shade, it))
-            }
-            temp.apparentTemperature?.let {
-                add(Pair(R.string.temperature_apparent, it))
-            }
-            temp.windChillTemperature?.let {
-                add(Pair(R.string.temperature_wind_chill, it))
-            }
-            temp.wetBulbTemperature?.let {
-                add(Pair(R.string.temperature_wet_bulb, it))
-            }
-        }
-        normalsTemperature?.let {
-            add(Pair(R.string.temperature_normal_short, it))
-        }
-    }
-    temperatureItems.forEach { item ->
-        DetailsItem(
-            headlineText = stringResource(item.first),
-            supportingText = temperatureUnit.formatMeasure(context, value = item.second),
-            modifier = Modifier
-                .padding(top = dimensionResource(R.dimen.normal_margin))
-                .semantics(mergeDescendants = true) {}
-                .clearAndSetSemantics {
+    DetailsItem(
+        headlineText = stringResource(item.first),
+        supportingText = item.second?.let { temperatureUnit.formatMeasure(context, value = it) }
+            ?: stringResource(R.string.null_data_text),
+        modifier = modifier
+            .padding(top = dimensionResource(R.dimen.normal_margin))
+            .semantics(mergeDescendants = true) {}
+            .clearAndSetSemantics {
+                item.second?.let {
                     contentDescription = context.getString(item.first) +
                         context.getString(R.string.colon_separator) +
-                        temperatureUnit.formatContentDescription(context, item.second)
+                        temperatureUnit.formatContentDescription(context, it)
                 }
-        )
-    }
+            }
+    )
 }

@@ -182,9 +182,9 @@ private fun WindItem(
         modifier = modifier.fillMaxWidth()
     ) {
         header()
-        wind.speed?.let { speed ->
-            TextFixedHeight(
-                text = buildAnnotatedString {
+        TextFixedHeight(
+            text = buildAnnotatedString {
+                wind.speed?.let { speed ->
                     append(
                         UnitUtils.formatUnitsDifferentFontSize(
                             formattedMeasure = speedUnit.formatMeasure(context, speed),
@@ -195,10 +195,12 @@ private fun WindItem(
                         append(" ")
                         append(it)
                     }
-                },
-                style = MaterialTheme.typography.displaySmall,
-                modifier = Modifier
-                    .clearAndSetSemantics {
+                }
+            },
+            style = MaterialTheme.typography.displaySmall,
+            modifier = Modifier
+                .clearAndSetSemantics {
+                    wind.speed?.let { speed ->
                         contentDescription = speedUnit.formatContentDescription(context, speed) +
                             (
                                 wind.arrow?.let {
@@ -207,31 +209,25 @@ private fun WindItem(
                                 } ?: ""
                                 )
                     }
-            )
-            wind.gusts?.let { gusts ->
-                if (gusts > speed) {
-                    TextFixedHeight(
-                        text = stringResource(R.string.wind_gusts_short) +
-                            stringResource(R.string.colon_separator) +
-                            speedUnit.formatMeasure(context, gusts),
-                        style = MaterialTheme.typography.labelLarge,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        overflow = TextOverflow.StartEllipsis,
-                        modifier = Modifier
-                            .clearAndSetSemantics {
-                                contentDescription = context.getString(R.string.wind_gusts_short) +
-                                    context.getString(R.string.colon_separator) +
-                                    speedUnit.formatContentDescription(context, gusts)
-                            }
-                    )
-                } else {
-                    TextFixedHeight(
-                        text = "",
-                        style = MaterialTheme.typography.labelLarge,
-                        modifier = Modifier.clearAndSetSemantics {}
-                    )
                 }
-            } ?: TextFixedHeight(
+        )
+        if (wind.gusts != null && wind.speed != null && wind.gusts!! > wind.speed!!) {
+            TextFixedHeight(
+                text = stringResource(R.string.wind_gusts_short) +
+                    stringResource(R.string.colon_separator) +
+                    speedUnit.formatMeasure(context, wind.gusts!!),
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                overflow = TextOverflow.StartEllipsis,
+                modifier = Modifier
+                    .clearAndSetSemantics {
+                        contentDescription = context.getString(R.string.wind_gusts_short) +
+                            context.getString(R.string.colon_separator) +
+                            speedUnit.formatContentDescription(context, wind.gusts!!)
+                    }
+            )
+        } else {
+            TextFixedHeight(
                 text = "",
                 style = MaterialTheme.typography.labelLarge,
                 modifier = Modifier.clearAndSetSemantics {}

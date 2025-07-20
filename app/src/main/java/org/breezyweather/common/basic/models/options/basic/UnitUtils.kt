@@ -175,12 +175,12 @@ object UnitUtils {
                 unitWidth
             )
             if (adjustedFormatting != null) {
-                if (enum.measureUnit is TimeUnit && unitWidth != UnitWidth.NARROW) {
+                if (enum.measureUnit is TimeUnit) {
                     return formatDurationWithIcu(
                         context,
                         convertedValue,
                         enum.measureUnit as TimeUnit,
-                        adjustedFormatting.third!!
+                        unitWidth.measureFormatWidth!!
                     )
                 }
 
@@ -299,7 +299,22 @@ object UnitUtils {
         unit: TimeUnit,
         measureFormatWidth: MeasureFormat.FormatWidth,
     ): String {
-        val measureFormat = MeasureFormat.getInstance(context.currentLocale, measureFormatWidth)
+        val measureFormat = MeasureFormat.getInstance(
+            context.currentLocale,
+            if (measureFormatWidth == MeasureFormat.FormatWidth.NARROW) {
+                MeasureFormat.FormatWidth.SHORT
+            } else {
+                measureFormatWidth
+            }
+        )
+
+        // Avoid showing “0 secs” / Shows “30 min” instead of “0.5 hrs” when narrow
+        if (value.toDouble() == 0.0 ||
+            (value.toDouble() >= 1 && measureFormatWidth == MeasureFormat.FormatWidth.NARROW)
+        ) {
+            return measureFormat.format(Measure(value, unit))
+        }
+
         val duration = when (unit) {
             MeasureUnit.YEAR, MeasureUnit.MONTH, MeasureUnit.WEEK -> {
                 return measureFormat.format(Measure(value, unit))
@@ -314,33 +329,33 @@ object UnitUtils {
         return duration.toComponents { days, hours, minutes, seconds, _ ->
             when {
                 days > 0 -> {
-                    if (hours == 0) {
-                        measureFormat.format(Measure(days, MeasureUnit.DAY))
-                    } else {
+                    if (hours != 0 && measureFormatWidth != MeasureFormat.FormatWidth.NARROW) {
                         measureFormat.formatMeasures(
                             Measure(days, MeasureUnit.DAY),
                             Measure(hours, MeasureUnit.HOUR)
                         )
+                    } else {
+                        measureFormat.format(Measure(days, MeasureUnit.DAY))
                     }
                 }
                 hours > 0 -> {
-                    if (minutes == 0) {
-                        measureFormat.format(Measure(hours, MeasureUnit.HOUR))
-                    } else {
+                    if (minutes != 0 && measureFormatWidth != MeasureFormat.FormatWidth.NARROW) {
                         measureFormat.formatMeasures(
                             Measure(hours, MeasureUnit.HOUR),
                             Measure(minutes, MeasureUnit.MINUTE)
                         )
+                    } else {
+                        measureFormat.format(Measure(hours, MeasureUnit.HOUR))
                     }
                 }
                 minutes > 0 -> {
-                    if (seconds == 0) {
-                        measureFormat.format(Measure(minutes, MeasureUnit.MINUTE))
-                    } else {
+                    if (seconds != 0 && measureFormatWidth != MeasureFormat.FormatWidth.NARROW) {
                         measureFormat.formatMeasures(
                             Measure(minutes, MeasureUnit.MINUTE),
                             Measure(seconds, MeasureUnit.SECOND)
                         )
+                    } else {
+                        measureFormat.format(Measure(minutes, MeasureUnit.MINUTE))
                     }
                 }
                 else -> measureFormat.format(Measure(minutes, MeasureUnit.SECOND))

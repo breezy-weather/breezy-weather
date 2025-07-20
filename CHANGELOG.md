@@ -2,6 +2,7 @@
 
 **Improvements and fixes**
 - Fix nowcasting chart not honoring precipitation unit override
+- Improve display of precipitation details
 
 
 # Version 6.0.2-alpha (2025-07-19)
