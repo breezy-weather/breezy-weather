@@ -55,7 +55,7 @@ import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getSummary
 import org.breezyweather.domain.weather.model.pollensWithConcentration
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import java.util.Date
 
 abstract class AbstractRemoteViewsPresenter {
@@ -89,7 +89,7 @@ abstract class AbstractRemoteViewsPresenter {
             isLightThemed = when (backgroundType) {
                 WidgetBackgroundType.LIGHT -> true
                 WidgetBackgroundType.DARK -> false
-                WidgetBackgroundType.AUTO -> MainThemeColorProvider.isLightTheme(context, dayTime)
+                WidgetBackgroundType.AUTO -> ThemeManager.isLightTheme(context, dayTime)
                 WidgetBackgroundType.NONE -> isLightWallpaper(context)
             }
             textType = when (backgroundType) {

@@ -25,7 +25,6 @@ import kotlinx.coroutines.runBlocking
 import org.breezyweather.background.forecast.TodayForecastNotificationJob
 import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
 import org.breezyweather.background.weather.WeatherUpdateJob
-import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.domain.settings.SettingsManager
@@ -88,20 +87,6 @@ object Migrations {
                         if (curDailyTrendDisplayList != SettingsManager.DEFAULT_DAILY_TREND_DISPLAY) {
                             SettingsManager.getInstance(context).dailyTrendDisplayList =
                                 DailyTrendDisplay.toDailyTrendDisplayList("$curDailyTrendDisplayList&sunshine")
-                        }
-                    } catch (ignored: Throwable) {
-                        // ignored
-                    }
-                }
-
-                if (oldVersion < 50108) {
-                    // V5.1.8 adds precipitation nowcast as a dedicated card
-                    try {
-                        val curCardDisplayList =
-                            CardDisplay.toValue(SettingsManager.getInstance(context).cardDisplayList)
-                        if (curCardDisplayList != SettingsManager.DEFAULT_CARD_DISPLAY) {
-                            SettingsManager.getInstance(context).cardDisplayList =
-                                CardDisplay.toCardDisplayList("precipitation_nowcast&$curCardDisplayList")
                         }
                     } catch (ignored: Throwable) {
                         // ignored

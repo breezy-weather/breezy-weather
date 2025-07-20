@@ -19,24 +19,19 @@ package org.breezyweather.ui.main.adapters.main.holder
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
-import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
-import android.widget.LinearLayout
 import androidx.annotation.CallSuper
 import breezyweather.domain.location.model.Location
 import com.google.android.material.card.MaterialCardView
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.dpToPx
-import org.breezyweather.ui.main.adapters.main.FirstCardHeaderController
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
 @SuppressLint("ObjectAnimatorBinding")
 abstract class AbstractMainCardViewHolder(
     view: View,
 ) : AbstractMainViewHolder(view) {
-    private var mFirstCardHeaderController: FirstCardHeaderController? = null
     protected var mLocation: Location? = null
 
     @CallSuper
@@ -46,14 +41,12 @@ abstract class AbstractMainCardViewHolder(
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
         itemAnimationEnabled: Boolean,
-        firstCard: Boolean,
     ) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
         mLocation = location
         if (itemView is MaterialCardView) {
             (itemView as MaterialCardView).apply {
                 elevation = context.dpToPx(2f)
-                setCardBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground))
             }
         }
         val params = itemView.layoutParams as MarginLayoutParams
@@ -64,11 +57,19 @@ abstract class AbstractMainCardViewHolder(
             context.resources.getDimensionPixelSize(R.dimen.small_margin)
         )
         itemView.layoutParams = params
-        if (firstCard) {
-            mFirstCardHeaderController = FirstCardHeaderController(activity, location).apply {
-                bind((itemView as ViewGroup).getChildAt(0) as LinearLayout)
-            }
-        }
+    }
+
+    @CallSuper
+    open fun onBindView(
+        activity: BreezyActivity,
+        location: Location,
+        provider: ResourceProvider,
+        listAnimationEnabled: Boolean,
+        itemAnimationEnabled: Boolean,
+        selectedTab: String?,
+        setSelectedTab: (String?) -> Unit,
+    ) {
+        onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
     }
 
     @SuppressLint("MissingSuperCall")
@@ -80,13 +81,5 @@ abstract class AbstractMainCardViewHolder(
         itemAnimationEnabled: Boolean,
     ) {
         throw RuntimeException("Deprecated method.")
-    }
-
-    override fun onRecycleView() {
-        super.onRecycleView()
-        mFirstCardHeaderController?.let {
-            it.unbind()
-            mFirstCardHeaderController = null
-        }
     }
 }

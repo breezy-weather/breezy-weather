@@ -328,6 +328,7 @@ class MaterialPainterView(
     private fun setWeatherImplementor() {
         hasDrawn = false
         impl = WeatherImplementorFactory.getWeatherImplementor(
+            context,
             weatherKind,
             daylight,
             canvasSize,

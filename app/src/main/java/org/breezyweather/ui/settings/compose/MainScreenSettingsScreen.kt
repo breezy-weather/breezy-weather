@@ -30,7 +30,6 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
-import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.extensions.plus
@@ -60,7 +59,6 @@ fun MainScreenSettingsScreen(
     cardDisplayList: ImmutableList<CardDisplay>,
     dailyTrendDisplayList: ImmutableList<DailyTrendDisplay>,
     hourlyTrendDisplayList: ImmutableList<HourlyTrendDisplay>,
-    detailDisplayList: ImmutableList<DetailDisplay>,
     updateWidgetIfNecessary: (Context) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -117,20 +115,6 @@ fun MainScreenSettingsScreen(
                 ) {
                     (context as? Activity)?.let { a ->
                         IntentHelper.startHourlyTrendDisplayManageActivity(a)
-                    }
-                }
-            }
-            smallSeparatorItem()
-            clickablePreferenceItem(
-                R.string.settings_main_header_details_title
-            ) {
-                PreferenceViewWithCard(
-                    title = stringResource(it),
-                    summary = DetailDisplay.getSummary(context, detailDisplayList),
-                    isLast = true
-                ) {
-                    (context as? Activity)?.let { a ->
-                        IntentHelper.startDetailDisplayManageActivity(a)
                     }
                 }
             }

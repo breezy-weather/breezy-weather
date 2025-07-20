@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:orientation="horizontal"
+            android:id="@+id/block_top_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:orientation="horizontal"
+            android:id="@+id/block_bottom_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:orientation="vertical"
+            android:id="@+id/block_start_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:orientation="vertical"
+            android:id="@+id/block_end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.8" />
+
+        <ImageView
+            android:id="@+id/clock_shape"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/clock_shape"
+            android:importantForAccessibility="no" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            app:layout_constraintTop_toTopOf="@+id/block_top_guideline"
+            app:layout_constraintBottom_toBottomOf="@+id/block_bottom_guideline"
+            app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
+            app:layout_constraintStart_toStartOf="@+id/block_start_guideline">
+
+            <TextClock
+                android:id="@+id/clock_text_hour"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|bottom"
+                android:textColor="?attr/colorPrimary"
+                android:textFontWeight="700"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:includeFontPadding="false"
+                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="50sp"
+                android:autoSizeMaxTextSize="130sp"
+                android:autoSizeStepGranularity="1sp"
+                android:format12Hour="hh"
+                android:format24Hour="HH" />
+
+            <TextClock
+                android:id="@+id/clock_text_minute"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal|top"
+                android:textColor="?attr/colorPrimary"
+                android:textFontWeight="700"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="50sp"
+                android:includeFontPadding="false"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="50sp"
+                android:autoSizeMaxTextSize="130sp"
+                android:autoSizeStepGranularity="1sp"
+                android:format12Hour="mm"
+                android:format24Hour="mm" />
+
+        </LinearLayout>
+
+        <AnalogClock
+            android:id="@+id/clock_analog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dialTint="@android:color/transparent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,7 +41,7 @@ interface WeatherView {
     )
     annotation class WeatherKindRule
 
-    fun setWeather(@WeatherKindRule weatherKind: Int, daytime: Boolean)
+    fun setWeather(@WeatherKindRule weatherKind: Int, daytime: Boolean, darkMode: Boolean)
 
     fun onScroll(scrollY: Int)
 
@@ -54,8 +54,8 @@ interface WeatherView {
     companion object {
         const val WEATHER_KIND_NULL = 0
         const val WEATHER_KIND_CLEAR = 1
-        const val WEATHER_KIND_CLOUD = 2
-        const val WEATHER_KIND_CLOUDY = 3
+        const val WEATHER_KIND_CLOUD = 2 // Partly cloudy
+        const val WEATHER_KIND_CLOUDY = 3 // Cloudy
         const val WEATHER_KIND_RAINY = 4
         const val WEATHER_KIND_SNOW = 5
         const val WEATHER_KIND_SLEET = 6

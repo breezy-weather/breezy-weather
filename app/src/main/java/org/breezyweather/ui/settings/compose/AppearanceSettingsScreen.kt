@@ -54,7 +54,6 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.DarkMode
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toBitmap
-import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.composables.AlertDialogLink
@@ -76,7 +75,6 @@ import org.breezyweather.ui.settings.preference.sectionFooterItem
 import org.breezyweather.ui.settings.preference.sectionHeaderItem
 import org.breezyweather.ui.settings.preference.smallSeparatorItem
 import org.breezyweather.ui.settings.preference.switchPreferenceItem
-import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
@@ -85,6 +83,7 @@ fun AppearanceSettingsScreen(
     context: Context,
     onNavigateTo: (route: String) -> Unit,
     onNavigateBack: () -> Unit,
+    darkMode: DarkMode,
     modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
@@ -136,21 +135,16 @@ fun AppearanceSettingsScreen(
             listPreferenceItem(R.string.settings_appearance_dark_mode_title) { id ->
                 ListPreferenceView(
                     titleId = id,
-                    selectedKey = SettingsManager.getInstance(context).darkMode.id,
+                    selectedKey = darkMode.id,
                     valueArrayId = R.array.dark_mode_values,
                     nameArrayId = R.array.dark_modes,
                     card = true,
                     isFirst = true,
+                    withState = false,
                     onValueChanged = {
-                        SettingsManager
-                            .getInstance(context)
-                            .darkMode = DarkMode.getInstance(it)
-
-                        AsyncHelper.delayRunOnUI({
-                            ThemeManager
-                                .getInstance(context)
-                                .update(darkMode = SettingsManager.getInstance(context).darkMode)
-                        }, 300)
+                        val newDarkMode = DarkMode.getInstance(it)
+                        SettingsManager.getInstance(context).darkMode = newDarkMode
+                        BreezyWeather.instance.updateDayNightMode(newDarkMode.value)
                     }
                 )
             }
@@ -158,9 +152,16 @@ fun AppearanceSettingsScreen(
             switchPreferenceItem(R.string.settings_appearance_dark_mode_locations_title) { id ->
                 SwitchPreferenceView(
                     titleId = id,
-                    summaryOnId = R.string.settings_enabled,
-                    summaryOffId = R.string.settings_disabled,
-                    checked = SettingsManager.getInstance(context).dayNightModeForLocations,
+                    summaryOnId = if (darkMode == DarkMode.LIGHT) {
+                        R.string.settings_appearance_dark_mode_locations_always_enabled
+                    } else {
+                        R.string.settings_enabled
+                    },
+                    summaryOffId = R.string.settings_appearance_dark_mode_locations_disabled,
+                    // TODO: Always true when selected dark mode is “Always light”:
+                    checked = SettingsManager.getInstance(context).dayNightModeForLocations ||
+                        darkMode == DarkMode.LIGHT,
+                    enabled = darkMode != DarkMode.LIGHT,
                     onValueChanged = {
                         SettingsManager.getInstance(context).dayNightModeForLocations = it
                     }

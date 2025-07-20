@@ -28,11 +28,11 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getHalfDayPrecipitationColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.DoubleHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
@@ -106,10 +106,10 @@ class DailyPrecipitationAdapter(
             mDoubleHistogramView.setLineColors(
                 daily.day?.precipitation?.getHalfDayPrecipitationColor(activity) ?: Color.TRANSPARENT,
                 daily.night?.precipitation?.getHalfDayPrecipitationColor(activity) ?: Color.TRANSPARENT,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
             mDoubleHistogramView.setTextColors(
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
+                activity.getThemeColor(R.attr.colorBodyText)
             )
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f)
             dailyItem.setNightIconDrawable(

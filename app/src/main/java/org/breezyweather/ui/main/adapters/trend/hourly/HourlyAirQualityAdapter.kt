@@ -27,13 +27,13 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 
@@ -80,7 +80,7 @@ class HourlyAirQualityAdapter(
             mPolylineAndHistogramView.setLineColors(
                 hourly.airQuality?.getColor(activity) ?: Color.TRANSPARENT,
                 hourly.airQuality?.getColor(activity) ?: Color.TRANSPARENT,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
 
             val themeColors = ThemeManager.getInstance(itemView.context)
@@ -90,12 +90,12 @@ class HourlyAirQualityAdapter(
                     WeatherViewController.getWeatherKind(location),
                     WeatherViewController.isDaylight(location)
                 )
-            val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
+            val lightTheme = ThemeManager.isLightTheme(itemView.context, location)
             mPolylineAndHistogramView.setShadowColors(themeColors[1], themeColors[2], lightTheme)
             mPolylineAndHistogramView.setTextColors(
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+                activity.getThemeColor(R.attr.colorTitleText),
+                activity.getThemeColor(R.attr.colorBodyText),
+                activity.getThemeColor(R.attr.colorTitleText)
             )
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 1f else 0.5f)
             hourlyItem.contentDescription = talkBackBuilder.toString()

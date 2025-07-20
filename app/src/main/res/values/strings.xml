@@ -755,13 +755,14 @@
     <string name="settings_units_speed">Speed unit</string>
     <string name="settings_units_pressure">Pressure unit</string>
     <string name="settings_main">Main screen</string>
-    <string name="settings_main_summary">Cards order, items displayed, animations</string>
+    <string name="settings_main_summary">Blocks order, items displayed, animations</string>
     <!-- Data is plural here -->
     <string name="settings_main_section_displayed_data">Displayed data</string>
-    <string name="settings_main_cards_title">Cards</string>
+    <string name="settings_main_cards_title">Blocks</string>
     <string name="settings_main_daily_trends_title">Daily trends</string>
     <string name="settings_main_hourly_trends_title">Hourly trends</string>
-    <string name="settings_main_header_details_title">Details in header</string>
+    <!-- TODO: Obsolete -->
+    <string name="settings_main_header_details_title" translatable="false">Details in header</string>
     <string name="settings_main_section_options">Options</string>
     <string name="settings_main_threshold_lines_on_charts">Threshold lines on charts</string>
     <string name="settings_main_section_animations">Animations</string>
@@ -769,7 +770,7 @@
     <string name="settings_main_background_animation_enabled">Enabled</string>
     <string name="settings_main_background_animation_disabled">Disabled</string>
     <string name="settings_main_gravity_sensor_switch">Gravity sensor</string>
-    <string name="settings_main_cards_fade_in_switch">Cards fade in</string>
+    <string name="settings_main_cards_fade_in_switch">Blocks fade in</string>
     <!-- Elements = temperature in header, AQI, sun &amp; moon arc, etc -->
     <string name="settings_main_cards_other_element_animations_switch">Other element animations</string>
     <string name="settings_notifications">Notifications</string>
@@ -1240,13 +1241,13 @@
     <string name="nws_weather_text_coverage_slight_chance_of" translatable="false">Slight chance of %s</string>
     <string name="nws_weather_text_coverage_widespread" translatable="false">Widespread %s</string>
     <!-- "Mainly clear and breezy" -->
-    <string name="nws_weather_text_condition_and_wind" translatable="false">%s and %s</string>
+    <string name="nws_weather_text_condition_and_wind" translatable="false">%1$s and %2$s</string>
     <string name="nws_weather_text_wind_high_wind" translatable="false">High Wind</string>
     <string name="nws_weather_text_wind_very_windy" translatable="false">Very Windy</string>
     <string name="nws_weather_text_wind_windy" translatable="false">Windy</string>
     <string name="nws_weather_text_wind_breezy" translatable="false">Breezy</string>
     <!-- "Heavy rain with large hail" -->
-    <string name="nws_weather_text_condition_with_attribute" translatable="false">%s with %s</string>
+    <string name="nws_weather_text_condition_with_attribute" translatable="false">%1$s with %2$s</string>
     <string name="nws_weather_text_attribute_wind_damaging" translatable="false">Damaging Wind</string>
     <string name="nws_weather_text_attribute_flooding" translatable="false">Flooding</string>
     <string name="nws_weather_text_attribute_wind_gusty" translatable="false">Gusty Wind</string>

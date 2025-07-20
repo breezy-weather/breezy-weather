@@ -41,12 +41,13 @@ import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 class HourlyTrendAdapter(
     private val activity: BreezyActivity,
     private val host: TrendRecyclerView,
+    initialIndex: Int = 0,
 ) : RecyclerView.Adapter<AbsHourlyTrendAdapter.ViewHolder>() {
 
     var adapters: Array<AbsHourlyTrendAdapter> = emptyArray()
         private set
 
-    var selectedIndex = 0
+    var selectedIndex = initialIndex
         set(value) {
             field = value
             notifyDataSetChanged()

@@ -50,4 +50,7 @@
     <color name="md_theme_shadow">#000000</color>
     <color name="md_theme_primaryInverse">#205DAF</color>
 
+    <!-- Material You -->
+    <color name="sys_widget_background">#20333d</color>
+
 </resources>

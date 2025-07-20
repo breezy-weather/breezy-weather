@@ -1,2 +1,2 @@
-En raison de la limite de taille de ce texte, veuillez consulter les notes de version sur GitHub :
+Les notes de version sont disponibles sur GitHub :
 https://github.com/breezy-weather/breezy-weather/releases

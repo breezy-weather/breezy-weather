@@ -17,6 +17,7 @@
 package org.breezyweather.ui.theme.weatherView.materialWeatherView
 
 import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Color
 import androidx.core.graphics.ColorUtils
 import org.breezyweather.ui.theme.weatherView.WeatherThemeDelegate
@@ -51,8 +52,8 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
             } else {
                 MeteorShowerImplementor.themeColor
             }
-            WeatherView.WEATHER_KIND_CLOUDY -> CloudImplementor.getThemeColor(CloudImplementor.TYPE_CLOUDY, daytime)
             WeatherView.WEATHER_KIND_CLOUD -> CloudImplementor.getThemeColor(CloudImplementor.TYPE_CLOUD, daytime)
+            WeatherView.WEATHER_KIND_CLOUDY -> CloudImplementor.getThemeColor(CloudImplementor.TYPE_CLOUDY, daytime)
             WeatherView.WEATHER_KIND_FOG -> CloudImplementor.getThemeColor(CloudImplementor.TYPE_FOG, daytime)
             WeatherView.WEATHER_KIND_HAIL -> HailImplementor.getThemeColor(daytime)
             WeatherView.WEATHER_KIND_HAZE -> CloudImplementor.getThemeColor(CloudImplementor.TYPE_HAZE, daytime)
@@ -90,21 +91,9 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
         weatherKind: Int,
         daylight: Boolean,
     ): Boolean {
-        return when (weatherKind) {
-            WeatherView.WEATHER_KIND_CLEAR -> false
-            WeatherView.WEATHER_KIND_CLOUDY -> false
-            WeatherView.WEATHER_KIND_CLOUD -> false
-            WeatherView.WEATHER_KIND_FOG -> false
-            WeatherView.WEATHER_KIND_HAIL -> false
-            WeatherView.WEATHER_KIND_HAZE -> false
-            WeatherView.WEATHER_KIND_RAINY -> false
-            WeatherView.WEATHER_KIND_SLEET -> false
-            WeatherView.WEATHER_KIND_SNOW -> false
-            WeatherView.WEATHER_KIND_THUNDERSTORM -> false
-            WeatherView.WEATHER_KIND_THUNDER -> false
-            WeatherView.WEATHER_KIND_WIND -> false
-            else -> false
-        }
+        return daylight &&
+            (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) !=
+            Configuration.UI_MODE_NIGHT_YES
     }
 
     override fun getBackgroundColor(
@@ -114,9 +103,6 @@ class MaterialWeatherThemeDelegate : WeatherThemeDelegate {
     ): Int {
         return innerGetBackgroundColor(weatherKind, daylight)
     }
-
-    override fun getHeaderTopMargin(context: Context): Int =
-        (context.resources.displayMetrics.heightPixels * 0.25).toInt()
 
     override fun getOnBackgroundColor(
         context: Context,

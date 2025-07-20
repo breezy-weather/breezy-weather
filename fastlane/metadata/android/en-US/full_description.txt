@@ -1,24 +1,26 @@
-Breezy Weather is a free and open-source Android weather app, forked from Geometric Weather, adding new features, sources, modernizing code, fixing bugs, updating dependencies for security reasons, etc., while keep having a smooth user and developer experience in mind.
+Breezy Weather is a featureful free and open source Material 3 Expressive weather app with well-though-out visualizations, supporting forecast, real-time weather conditions, nowcasting, air quality, pollen, alerts, from more than 50 weather sources, such as NWS, Met Office UK, Met Éireann, ECCC and Open-Meteo.
 
-In the app, you'll find:
+<b>Features</b>
 
-- Real-time weather conditions (temperature, feels like, wind, UV index, humidity, dew point, atmospheric pressure, visibility, cloud cover, ceiling)
-- Daily and hourly forecasts up to 16 days (temperature, air quality, wind, UV index, precipitation, sunshine, feels like)
-- Detailed hourly forecasts (humidity / dew point, pressure, cloud cover, visibility)
+- Daily and hourly forecasts up to 16 days
 - Precipitation in the next hour
+- Real-time weather conditions
 - Air quality, allergen and ephemeris information
 - Severe weather and precipitation alerts
+- Opt-in data sharing with other apps (such as Gadgetbridge)
+- Focus on accessibility for screen readers and other locales
 
-The app has a strong focus on design, with a simple, clean UX, smooth animations, and Material Design all over, plus lots of customizability:
+<b>Design</b>
 
+- Material 3 Expressive
+- Detailed 24-hour charts
 - Automatic dark mode
 - Custom icon packs
-- Large selection of home screen widgets for at-a-glance information
+- Large selection of widgets
 - Live wallpaper
 
 <b>Sources</b>
 
-More than 50 sources available:
 - In all flavors: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, Recosanté, SMA (Seychelles), SMA (Sudan), SSMS
 - Not libre/self-hostable (not included in versions with suffix _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mixed China sources, NAMEM, NWS, OpenWeather, PAGASA, SMG, WMO Severe Weather
 

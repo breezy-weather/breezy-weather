@@ -169,6 +169,16 @@ enum class SpeedUnit(
 
     override fun getConvertedUnit(valueInDefaultUnit: Double) = convertUnit(valueInDefaultUnit)
 
+    fun formatValueShort(
+        context: Context,
+        valueInDefaultUnit: Double,
+    ) = UnitUtils.formatValue(
+        context = context,
+        enum = this,
+        value = valueInDefaultUnit,
+        precision = 0
+    )
+
     override fun formatValue(
         context: Context,
         valueInDefaultUnit: Double,
@@ -177,6 +187,18 @@ enum class SpeedUnit(
         enum = this,
         value = valueInDefaultUnit,
         precision = 1
+    )
+
+    fun formatMeasureShort(
+        context: Context,
+        value: Double,
+        isValueInDefaultUnit: Boolean,
+    ) = UnitUtils.formatMeasure(
+        context = context,
+        enum = this,
+        value = value,
+        precision = 0,
+        isValueInDefaultUnit = isValueInDefaultUnit
     )
 
     override fun formatMeasure(

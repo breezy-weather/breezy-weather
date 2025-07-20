@@ -43,7 +43,7 @@ class DailyTrendAdapter(
     var adapters: Array<AbsDailyTrendAdapter> = emptyArray()
         private set
 
-    var selectedIndex = 0
+    var selectedIndex: Int = 0
         set(value) {
             field = value
             notifyDataSetChanged()
