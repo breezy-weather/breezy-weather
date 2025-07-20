@@ -115,6 +115,7 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
   - [Geometric Weather icon packs](https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/README.md)
   - Chronus Weather icon packs
 - Automatic dark mode
+- Opt-in data sharing with other apps (such as Gadgetbridge)
 
 - <details><summary>Free and Open Source</summary>
 
@@ -149,7 +150,6 @@ Pull requests are welcome. You can have a look at [issues opened to contribution
 ## Features currently being worked on by a contributor
 
 - [#863](https://github.com/breezy-weather/breezy-weather/issues/863) - Make Breezy weather data available through a ContentProvider
-- [#14](https://github.com/breezy-weather/breezy-weather/issues/14), [#252](https://github.com/breezy-weather/breezy-weather/issues/252) - New 24-hour fitting charts
 
 ## Features lacking an active contributor
 
@@ -194,10 +194,13 @@ English (and regional variants) and French translations are maintained by repo m
 * This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
 * Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
 
-When creating a fork, remember to:
+Before creating a fork, check if the intent action `nodomain.freeyourgadget.gadgetbridge.ACTION_GENERIC_WEATHER` can cover your need (for example, you want to re-use our weather data in your own customized widget). It can be enabled from Settings > Widgets & Live Wallpaper > Data sharing. We also have [plans to expose the full weather data of Breezy Weather](https://github.com/breezy-weather/breezy-weather/issues/863).
+
+Otherwise, remember to:
+
 - Respect the project’s LICENSE
 - Avoid confusion with Breezy Weather app:
-    - Change the app name
-    - Change the app icon
+  - Change the app name
+  - Change the app icon
 - Avoid installation conflicts:
-    - Change the `applicationId` in [`build.gradle.kts`](https://github.com/breezy-weather/breezy-weather/blob/main/app/build.gradle.kts#L24)
+  - Change the `applicationId` in [`build.gradle.kts`](https://github.com/breezy-weather/breezy-weather/blob/main/app/build.gradle.kts#L24)
