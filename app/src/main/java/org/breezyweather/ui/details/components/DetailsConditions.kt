@@ -196,13 +196,9 @@ fun DetailsConditions(
             }
         }
         // Detailed feels like temperatures
-        if (normals != null || selectedChart == DetailScreen.TAG_FEELS_LIKE) {
+        if (normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null) {
             item {
-                TemperatureDetails(
-                    if (selectedChart != DetailScreen.TAG_FEELS_LIKE) null else daily.day?.temperature,
-                    if (selectedChart != DetailScreen.TAG_FEELS_LIKE) null else daily.night?.temperature,
-                    normals
-                )
+                NormalsDetails(normals)
             }
         }
         // TODO: Make a better design for degree day
@@ -716,45 +712,9 @@ private fun TemperatureChart(
 }
 
 @Composable
-private fun TemperatureDetails(
-    daytimeTemperature: Temperature?,
-    nighttimeTemperature: Temperature?,
+private fun NormalsDetails(
     normals: Normals?,
 ) {
-    val daytimeTempItems = mutableListOf<Pair<Int, Double?>>()
-    val nighttimeTempItems = mutableListOf<Pair<Int, Double?>>()
-
-    if (daytimeTemperature?.realFeelTemperature != null || nighttimeTemperature?.realFeelTemperature != null) {
-        daytimeTempItems.add(Pair(R.string.temperature_real_feel, daytimeTemperature?.realFeelTemperature))
-        nighttimeTempItems.add(Pair(R.string.temperature_real_feel, nighttimeTemperature?.realFeelTemperature))
-    }
-    if (daytimeTemperature?.realFeelShaderTemperature != null ||
-        nighttimeTemperature?.realFeelShaderTemperature != null
-    ) {
-        daytimeTempItems.add(
-            Pair(R.string.temperature_real_feel_shade, daytimeTemperature?.realFeelShaderTemperature)
-        )
-        nighttimeTempItems.add(
-            Pair(R.string.temperature_real_feel_shade, nighttimeTemperature?.realFeelShaderTemperature)
-        )
-    }
-    if (daytimeTemperature?.apparentTemperature != null || nighttimeTemperature?.apparentTemperature != null) {
-        daytimeTempItems.add(Pair(R.string.temperature_apparent, daytimeTemperature?.apparentTemperature))
-        nighttimeTempItems.add(Pair(R.string.temperature_apparent, nighttimeTemperature?.apparentTemperature))
-    }
-    if (daytimeTemperature?.windChillTemperature != null || nighttimeTemperature?.windChillTemperature != null) {
-        daytimeTempItems.add(Pair(R.string.temperature_wind_chill, daytimeTemperature?.windChillTemperature))
-        nighttimeTempItems.add(Pair(R.string.temperature_wind_chill, nighttimeTemperature?.windChillTemperature))
-    }
-    if (daytimeTemperature?.wetBulbTemperature != null || nighttimeTemperature?.wetBulbTemperature != null) {
-        daytimeTempItems.add(Pair(R.string.temperature_wet_bulb, daytimeTemperature?.wetBulbTemperature))
-        nighttimeTempItems.add(Pair(R.string.temperature_wet_bulb, nighttimeTemperature?.wetBulbTemperature))
-    }
-    if (normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null) {
-        daytimeTempItems.add(Pair(R.string.temperature_normal_short, normals.daytimeTemperature))
-        nighttimeTempItems.add(Pair(R.string.temperature_normal_short, normals.nighttimeTemperature))
-    }
-
     Row(
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
         modifier = Modifier
@@ -768,9 +728,7 @@ private fun TemperatureDetails(
                 .semantics { isTraversalGroup = true }
         ) {
             DaytimeLabel()
-            daytimeTempItems.forEach {
-                DailyFeelsLikeTemperatureDetail(it)
-            }
+            DailyTemperatureDetail(Pair(R.string.temperature_normal_short, normals?.daytimeTemperature))
         }
         Column(
             modifier = Modifier
@@ -779,15 +737,13 @@ private fun TemperatureDetails(
                 .semantics { isTraversalGroup = true }
         ) {
             NighttimeLabelWithInfo()
-            nighttimeTempItems.forEach {
-                DailyFeelsLikeTemperatureDetail(it)
-            }
+            DailyTemperatureDetail(Pair(R.string.temperature_normal_short, normals?.nighttimeTemperature))
         }
     }
 }
 
 @Composable
-fun DailyFeelsLikeTemperatureDetail(
+fun DailyTemperatureDetail(
     item: Pair<Int, Double?>,
     modifier: Modifier = Modifier,
 ) {

@@ -1,5 +1,8 @@
 # Version 6.0.3-alpha (not yet released)
 
+**Removed features**
+- Details of each different “feels like”. Will now just display the source-preferred feels like value, or if not available, our own computed feels like
+
 **Improvements and fixes**
 - Fix nowcasting chart not honoring precipitation unit override
 - Details - Fix feels like toggle not remembered through days
