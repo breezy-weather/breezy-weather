@@ -269,7 +269,7 @@
     <string name="uv_alert_level">Brīdinājums</string>
     <string name="air_quality_index">Gaisa kvalitātes indekss</string>
     <string name="air_quality_level_1">Lieliska</string>
-    <string name="air_quality_level_1_description">Gaisa kvalitāte ir ideāla lielākajai daļai cilvēku; izbaudiet savas ierastās āra aktivitātes.</string>
+    <string name="air_quality_level_1_description">Gaisa kvalitāte ir nevainojama lielākajai daļai cilvēku; izbaudi savu ierasto darbošanos ārā!</string>
     <string name="air_quality_level_2">Pietiekama</string>
     <string name="air_quality_level_4_description">Ietekmi uz veselību jutīgi cilvēki var sajust uzreiz. Veseliem indivīdiem ilgstošas iedarbības gadījumā var rasties apgrūtināta elpošana un rīkles kairinājums. Jāierobežo darbības ārā.</string>
     <string name="air_quality_level_5">Ļoti neveselīga</string>
@@ -582,7 +582,7 @@
     <string name="location_search_source">Atrašanās vietas meklēšanas avots</string>
     <string name="location_search_change_source">Mainīt atrašanās vietas meklēšanas avotu</string>
     <string name="message_source_not_installed_error_content_tip_1">Tas var notikt, ja sava atrašanās vieta tiek pievienota standarta Breezy Weather laidienā un pēc tam notiek pārslēgšanās uz laidienu, kurā ir tikai brīvie tīkla avoti. Atgriešanās pie standarta laidiena var atrisināt šo nepilnību.</string>
-    <string name="sunshine">Saule</string>
+    <string name="sunshine">Saules gaisma</string>
     <string name="weather_message_too_frequent_refreshes">Lūgums uzgaidīt dažas sekundes, pirms mēģināt vēlreiz…</string>
     <string name="location_delete_location_dialog_title">Vai izdzēst atrašanās vietu?</string>
     <string name="location_delete_location_dialog_message">“%s” tiks izdzēsta no saglabāto atrašanās vietu saraksta.</string>
@@ -773,4 +773,21 @@
     <string name="ephemeris_moon">Mēness</string>
     <string name="ephemeris_sun">Saule</string>
     <string name="air_quality_short">Gaisa kvalitāte</string>
+    <string name="wind_speed_about_description">Vēja ātrums tiek noteikts pēc caurmēra vēja ātruma noteiktā laika posmā. Brāzmas ir pēkšņa vēja paātrināšanās, kas parasti ilgst mazāk par 20 sekundēm.</string>
+    <string name="wind_gusts_short">Brāzmas</string>
+    <string name="wind_strength_scale">Boforta skala</string>
+    <string name="air_quality_index_about_description_2">Skala, kas tiek izmantota šajā lietotnē, ir balstīta uz Pasaules veselības organizācijas ieteikumiem, nevis vietējām regulām, lai sniegtu jēgpilnas kategorijas un padarītu piesārņojuma līmeņa salīdzināšanu starp valstīm vienkāršāku.</string>
+    <string name="air_quality_index_scale">Gaisa kvalitātes indeksa skala</string>
+    <string name="air_quality_index_harmless_exposure">Nekaitīga ietekme</string>
+    <string name="air_quality_level_1_harmless_exposure">&gt; 1 gads</string>
+    <string name="air_quality_level_2_harmless_exposure">&lt; 1 gads</string>
+    <string name="air_quality_level_3_harmless_exposure">&lt; 1 diena</string>
+    <string name="air_quality_level_4_harmless_exposure">&lt; 1 stunda</string>
+    <string name="air_quality_level_5_harmless_exposure">&lt; dažas minūtes</string>
+    <string name="air_quality_level_6_harmless_exposure">&lt; 1 minūte</string>
+    <string name="air_quality_pollutant_primary">Galvenais piesārņotājs</string>
+    <string name="air_quality_pollutant_details">Informācija par piesārņotāju</string>
+    <string name="air_quality_health_information">Veselības informācija</string>
+    <string name="air_quality_pm25_full">Smalko putekļu daļiņas (&lt; %s)</string>
+    <string name="air_quality_pm10_full">Ieelpojamās putekļu daļiņas (&lt; %s)</string>
 </resources>
