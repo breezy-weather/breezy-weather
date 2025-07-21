@@ -54,11 +54,10 @@ object WeatherMapper {
         weatherText: String?,
         weatherCode: WeatherCode?,
         temperature: Double?,
-        realFeelTemperature: Double?,
-        realFeelShaderTemperature: Double?,
+        sourceFeelsLikeTemperature: Double?,
         apparentTemperature: Double?,
         windChillTemperature: Double?,
-        wetBulbTemperature: Double?,
+        humidex: Double?,
         windDegree: Double?,
         windSpeed: Double?,
         windGusts: Double?,
@@ -96,11 +95,10 @@ object WeatherMapper {
             weatherCode,
             Temperature(
                 temperature,
-                realFeelTemperature,
-                realFeelShaderTemperature,
-                apparentTemperature,
-                windChillTemperature,
-                wetBulbTemperature
+                sourceFeelsLike = sourceFeelsLikeTemperature,
+                computedApparent = apparentTemperature,
+                computedWindChill = windChillTemperature,
+                computedHumidex = humidex
             ),
             Wind(
                 windDegree,
@@ -138,11 +136,10 @@ object WeatherMapper {
         daytimeWeatherPhase: String?,
         daytimeWeatherCode: WeatherCode?,
         daytimeTemperature: Double?,
-        daytimeRealFeelTemperature: Double?,
-        daytimeRealFeelShaderTemperature: Double?,
+        daytimeSourceFeelsLikeTemperature: Double?,
         daytimeApparentTemperature: Double?,
         daytimeWindChillTemperature: Double?,
-        daytimeWetBulbTemperature: Double?,
+        daytimeHumidex: Double?,
         daytimeTotalPrecipitation: Double?,
         daytimeThunderstormPrecipitation: Double?,
         daytimeRainPrecipitation: Double?,
@@ -166,11 +163,10 @@ object WeatherMapper {
         nighttimeWeatherPhase: String?,
         nighttimeWeatherCode: WeatherCode?,
         nighttimeTemperature: Double?,
-        nighttimeRealFeelTemperature: Double?,
-        nighttimeRealFeelShaderTemperature: Double?,
+        nighttimeSourceFeelsLikeTemperature: Double?,
         nighttimeApparentTemperature: Double?,
         nighttimeWindChillTemperature: Double?,
-        nighttimeWetBulbTemperature: Double?,
+        nighttimeHumidex: Double?,
         nighttimeTotalPrecipitation: Double?,
         nighttimeThunderstormPrecipitation: Double?,
         nighttimeRainPrecipitation: Double?,
@@ -234,11 +230,10 @@ object WeatherMapper {
             daytimeWeatherText, daytimeWeatherPhase, daytimeWeatherCode,
             Temperature(
                 daytimeTemperature,
-                daytimeRealFeelTemperature,
-                daytimeRealFeelShaderTemperature,
+                sourceFeelsLike = daytimeSourceFeelsLikeTemperature,
                 daytimeApparentTemperature,
                 daytimeWindChillTemperature,
-                daytimeWetBulbTemperature
+                daytimeHumidex
             ),
             Precipitation(
                 daytimeTotalPrecipitation,
@@ -274,11 +269,10 @@ object WeatherMapper {
             nighttimeWeatherCode,
             Temperature(
                 nighttimeTemperature,
-                nighttimeRealFeelTemperature,
-                nighttimeRealFeelShaderTemperature,
+                sourceFeelsLike = nighttimeSourceFeelsLikeTemperature,
                 nighttimeApparentTemperature,
                 nighttimeWindChillTemperature,
-                nighttimeWetBulbTemperature
+                nighttimeHumidex
             ),
             Precipitation(
                 nighttimeTotalPrecipitation,
@@ -354,11 +348,10 @@ object WeatherMapper {
         weatherText: String?,
         weatherCode: WeatherCode?,
         temperature: Double?,
-        realFeelTemperature: Double?,
-        realFeelShaderTemperature: Double?,
+        sourceFeelsLikeTemperature: Double?,
         apparentTemperature: Double?,
         windChillTemperature: Double?,
-        wetBulbTemperature: Double?,
+        humidex: Double?,
         totalPrecipitation: Double?,
         thunderstormPrecipitation: Double?,
         rainPrecipitation: Double?,
@@ -391,11 +384,10 @@ object WeatherMapper {
         weatherCode,
         Temperature(
             temperature,
-            realFeelTemperature,
-            realFeelShaderTemperature,
-            apparentTemperature,
-            windChillTemperature,
-            wetBulbTemperature
+            sourceFeelsLike = sourceFeelsLikeTemperature,
+            computedApparent = apparentTemperature,
+            computedWindChill = windChillTemperature,
+            computedHumidex = humidex
         ),
         Precipitation(
             totalPrecipitation,

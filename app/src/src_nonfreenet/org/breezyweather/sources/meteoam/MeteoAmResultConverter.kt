@@ -25,7 +25,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.R
 import org.breezyweather.sources.meteoam.json.MeteoAmForecastStats
 import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocation
@@ -80,7 +82,7 @@ internal fun getCurrent(
     return CurrentWrapper(
         weatherText = getWeatherText(context, icon),
         weatherCode = getWeatherCode(icon),
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = temp
         ),
         wind = Wind(
@@ -102,11 +104,11 @@ internal fun getDailyForecast(
             dailyForecast.add(
                 DailyWrapper(
                     date = it.localDate,
-                    day = HalfDay(
+                    day = HalfDayWrapper(
                         weatherText = getWeatherText(context, it.icon),
                         weatherCode = getWeatherCode(it.icon)
                     ),
-                    night = HalfDay(
+                    night = HalfDayWrapper(
                         weatherText = getWeatherText(context, it.icon),
                         weatherCode = getWeatherCode(it.icon)
                     )
@@ -172,7 +174,7 @@ internal fun getHourlyForecast(
                 date = timeseries[i],
                 weatherText = getWeatherText(context, icon),
                 weatherCode = getWeatherCode(icon),
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = temp
                 ),
                 precipitationProbability = PrecipitationProbability(

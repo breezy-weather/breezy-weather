@@ -52,7 +52,7 @@ data class Current(
     fun toCurrentWrapper() = CurrentWrapper(
         weatherText = this.weatherText,
         weatherCode = this.weatherCode,
-        temperature = this.temperature,
+        temperature = this.temperature?.toTemperatureWrapper(),
         wind = this.wind,
         uV = uV ?: this.uV,
         relativeHumidity = this.relativeHumidity,

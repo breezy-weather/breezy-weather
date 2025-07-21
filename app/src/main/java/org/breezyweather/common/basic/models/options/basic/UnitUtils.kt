@@ -102,25 +102,35 @@ object UnitUtils {
         value: Double,
         precision: Int,
         isValueInDefaultUnit: Boolean = true,
+        showSign: Boolean = false,
     ) = if (precision == 0) {
-        formatInt(context, (if (isValueInDefaultUnit) enum.getConvertedUnit(value) else value).roundToInt())
+        formatInt(context, (if (isValueInDefaultUnit) enum.getConvertedUnit(value) else value).roundToInt(), showSign)
     } else {
-        formatDouble(context, if (isValueInDefaultUnit) enum.getConvertedUnit(value) else value, precision)
+        formatDouble(context, if (isValueInDefaultUnit) enum.getConvertedUnit(value) else value, precision, showSign)
     }
 
-    fun formatDouble(context: Context, value: Double, precision: Int = 2): String {
+    fun formatDouble(
+        context: Context,
+        value: Double,
+        precision: Int = 2,
+        showSign: Boolean = false,
+    ): String {
         val factor = 10.0.pow(precision)
         return if (
             value.roundToInt() * factor == (value * factor).roundToInt().toDouble()
         ) {
-            formatNumber(context, value.roundToInt(), 0)
+            formatNumber(context, value.roundToInt(), precision = 0, showSign)
         } else {
-            formatNumber(context, value, precision)
+            formatNumber(context, value, precision, showSign)
         }
     }
 
-    fun formatInt(context: Context, value: Int): String {
-        return formatNumber(context, value, 0)
+    fun formatInt(
+        context: Context,
+        value: Int,
+        showSign: Boolean = false,
+    ): String {
+        return formatNumber(context, value, precision = 0, showSign)
     }
 
     /**
@@ -132,22 +142,29 @@ object UnitUtils {
         context: Context,
         valueWithoutUnit: Number,
         precision: Int,
+        showSign: Boolean = false,
     ): String {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
+            SettingsManager.getInstance(context).useNumberFormatter
+        ) {
             (NumberFormatter.withLocale(context.currentLocale) as LocalizedNumberFormatter)
                 .precision(Precision.fixedFraction(precision))
+                .sign(if (showSign) NumberFormatter.SignDisplay.ALWAYS else NumberFormatter.SignDisplay.AUTO)
                 .format(valueWithoutUnit)
                 .toString()
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N &&
+            SettingsManager.getInstance(context).useMeasureFormat &&
+            !showSign // showSign not supported by NumberFormat, skip
+        ) {
             NumberFormat.getNumberInstance(context.currentLocale)
                 .apply { maximumFractionDigits = precision }
                 .format(valueWithoutUnit)
                 .toString()
         } else {
             if (precision == 0) {
-                String.format(context.currentLocale, "%d", valueWithoutUnit)
+                String.format(context.currentLocale, if (showSign) "%+d" else "%d", valueWithoutUnit)
             } else {
-                String.format(context.currentLocale, "%." + precision + "f", valueWithoutUnit)
+                String.format(context.currentLocale, "%+." + precision + "f", valueWithoutUnit)
             }
         }
     }

@@ -29,8 +29,8 @@ import java.util.Date
  */
 data class DailyWrapper(
     val date: Date,
-    val day: HalfDay? = null,
-    val night: HalfDay? = null,
+    val day: HalfDayWrapper? = null,
+    val night: HalfDayWrapper? = null,
     val degreeDay: DegreeDay? = null,
     val uV: UV? = null,
     /**
@@ -43,8 +43,8 @@ data class DailyWrapper(
         pollen: Pollen? = null,
     ) = Daily(
         date = this.date,
-        day = this.day,
-        night = this.night,
+        day = this.day?.toHalfDay(),
+        night = this.night?.toHalfDay(),
         degreeDay = this.degreeDay,
         airQuality = airQuality,
         pollen = pollen,

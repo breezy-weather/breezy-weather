@@ -28,7 +28,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
@@ -115,9 +117,9 @@ internal fun getCurrent(
     return CurrentWrapper(
         weatherText = getWeatherText(context, current?.nh),
         weatherCode = getWeatherCode(current?.nh),
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = current?.ttt,
-            apparentTemperature = current?.tttFeels
+            feelsLike = current?.tttFeels
         ),
         wind = Wind(
             degree = current?.windDir,
@@ -200,12 +202,12 @@ internal fun getDailyForecast(
             dailyList.add(
                 DailyWrapper(
                     date = Date(date.time.minus(86400000)),
-                    night = HalfDay(
+                    night = HalfDayWrapper(
                         weatherText = getWeatherText(context, forecast.wwN),
                         weatherCode = getWeatherCode(forecast.wwN),
-                        temperature = Temperature(
+                        temperature = TemperatureWrapper(
                             temperature = forecast.temN,
-                            apparentTemperature = forecast.temNFeel
+                            feelsLike = forecast.temNFeel
                         ),
                         precipitationProbability = PrecipitationProbability(
                             total = forecast.wwNPer
@@ -220,12 +222,12 @@ internal fun getDailyForecast(
         dailyList.add(
             DailyWrapper(
                 date = date,
-                day = HalfDay(
+                day = HalfDayWrapper(
                     weatherText = getWeatherText(context, forecast.wwD),
                     weatherCode = getWeatherCode(forecast.wwD),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = forecast.temD,
-                        apparentTemperature = forecast.temDFeel
+                        feelsLike = forecast.temDFeel
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = forecast.wwDPer
@@ -235,12 +237,12 @@ internal fun getDailyForecast(
                     )
                 ),
                 night = dailyResult.fore5Day.getOrNull(i + 1)?.let {
-                    HalfDay(
+                    HalfDayWrapper(
                         weatherText = getWeatherText(context, it.wwN),
                         weatherCode = getWeatherCode(it.wwN),
-                        temperature = Temperature(
+                        temperature = TemperatureWrapper(
                             temperature = it.temN,
-                            apparentTemperature = it.temNFeel
+                            feelsLike = it.temNFeel
                         ),
                         precipitationProbability = PrecipitationProbability(
                             total = it.wwNPer
@@ -265,7 +267,7 @@ internal fun getHourlyForecast(
             hourlyList.add(
                 HourlyWrapper(
                     date = it.fdate,
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = it.tem?.toDoubleOrNull()
                     ),
                     precipitation = Precipitation(

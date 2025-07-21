@@ -28,7 +28,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
@@ -73,9 +75,9 @@ internal fun getCurrent(
         CurrentWrapper(
             weatherText = getWeatherText(context, it.icon?.id),
             weatherCode = getWeatherCode(it.icon?.id),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = it.temperature?.temperature,
-                apparentTemperature = it.temperature?.felt
+                feelsLike = it.temperature?.felt
             ),
             wind = Wind(
                 degree = getWindDegree(it.wind?.direction),
@@ -98,12 +100,12 @@ internal fun getDailyForecast(
         dailyList.add(
             DailyWrapper(
                 date = formatter.parse(it.date)!!,
-                day = HalfDay(
+                day = HalfDayWrapper(
                     weatherText = getWeatherText(context, it.icon?.id),
                     weatherCode = getWeatherCode(it.icon?.id),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = it.temperatureMax?.temperature,
-                        apparentTemperature = it.temperatureMax?.felt
+                        feelsLike = it.temperatureMax?.felt
                     ),
                     precipitation = Precipitation(
                         rain = getRangeMax(it.rain),
@@ -115,12 +117,12 @@ internal fun getDailyForecast(
                         gusts = getRangeMax(it.wind?.gusts)?.div(3.6) // convert km/h to m/s
                     )
                 ),
-                night = HalfDay(
+                night = HalfDayWrapper(
                     weatherText = getWeatherText(context, it.icon?.id),
                     weatherCode = getWeatherCode(it.icon?.id),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = it.temperatureMin?.temperature,
-                        apparentTemperature = it.temperatureMin?.felt
+                        feelsLike = it.temperatureMin?.felt
                     ),
                     wind = Wind(
                         degree = getWindDegree(it.wind?.direction),
@@ -151,9 +153,9 @@ internal fun getHourlyForecast(
                 date = formatter.parse(it.date)!!,
                 weatherText = getWeatherText(context, it.icon?.id),
                 weatherCode = getWeatherCode(it.icon?.id),
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = it.temperature?.temperature?.average(),
-                    apparentTemperature = it.temperature?.felt
+                    feelsLike = it.temperature?.felt
                 ),
                 precipitation = Precipitation(
                     rain = getRangeMax(it.rain),

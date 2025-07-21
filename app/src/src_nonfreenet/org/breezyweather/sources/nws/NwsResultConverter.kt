@@ -29,7 +29,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
@@ -72,9 +74,9 @@ internal fun getCurrent(
         CurrentWrapper(
             weatherText = it.textDescription,
             weatherCode = getWeatherCode(it.icon),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = it.temperature?.value,
-                windChillTemperature = it.windChill?.value
+                feelsLike = it.windChill?.value
             ),
             // stations where the anemometer is not working would report 0 wind speed; ignore them
             wind = if (it.windSpeed?.value != null && it.windSpeed.value != 0.0) {
@@ -111,16 +113,16 @@ internal fun getDailyForecast(
     val dailyList = mutableListOf<DailyWrapper>()
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
-    val dayParts = mutableMapOf<String, HalfDay>()
-    val nightParts = mutableMapOf<String, HalfDay>()
+    val dayParts = mutableMapOf<String, HalfDayWrapper>()
+    val nightParts = mutableMapOf<String, HalfDayWrapper>()
     var date: String
     dailyResult.properties?.periods?.forEach {
         date = formatter.format(it.startTime.time)
         if (it.isDaytime) {
-            dayParts[date] = HalfDay(
+            dayParts[date] = HalfDayWrapper(
                 weatherText = it.shortForecast,
                 weatherCode = getWeatherCode(it.icon),
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = it.temperature?.value
                 ),
                 precipitationProbability = PrecipitationProbability(
@@ -133,10 +135,10 @@ internal fun getDailyForecast(
                 )
             )
         } else {
-            nightParts[date] = HalfDay(
+            nightParts[date] = HalfDayWrapper(
                 weatherText = it.shortForecast,
                 weatherCode = getWeatherCode(it.icon),
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = it.temperature?.value
                 ),
                 precipitationProbability = PrecipitationProbability(
@@ -244,11 +246,9 @@ internal fun getHourlyForecast(
                 windSpeed = windSpeedForecastList.getOrElse(it) { null }?.div(3.6),
                 cloudCover = skyCoverForecastList.getOrElse(it) { null }
             ),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = temperatureForecastList.getOrElse(it) { null },
-                apparentTemperature = apparentTemperatureForecastList.getOrElse(it) { null },
-                wetBulbTemperature = wetBulbGlobeTemperatureForecastList.getOrElse(it) { null },
-                windChillTemperature = windChillForecastList.getOrElse(it) { null }
+                feelsLike = apparentTemperatureForecastList.getOrElse(it) { null }
             ),
             precipitation = Precipitation(
                 total = quantitativePrecipitationForecastList.getOrElse(it) { null },

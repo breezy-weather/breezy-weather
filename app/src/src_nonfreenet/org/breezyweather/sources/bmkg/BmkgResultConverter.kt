@@ -28,6 +28,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
@@ -81,7 +82,7 @@ internal fun getCurrent(
     return CurrentWrapper(
         weatherText = getWeatherText(context, currentResult.data?.cuaca?.weather),
         weatherCode = getWeatherCode(currentResult.data?.cuaca?.weather),
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = currentResult.data?.cuaca?.t
         ),
         wind = Wind(
@@ -131,7 +132,7 @@ internal fun getHourlyForecast(
                             date = it.datetime,
                             weatherText = getWeatherText(context, it.weather),
                             weatherCode = getWeatherCode(it.weather),
-                            temperature = Temperature(
+                            temperature = TemperatureWrapper(
                                 temperature = it.t
                             ),
                             precipitation = Precipitation(

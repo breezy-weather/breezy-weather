@@ -30,7 +30,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.sources.china.json.ChinaCurrent
 import org.breezyweather.sources.china.json.ChinaForecastDaily
@@ -68,9 +70,9 @@ internal fun getCurrent(
     return CurrentWrapper(
         weatherText = getWeatherText(current.weather),
         weatherCode = getWeatherCode(current.weather),
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = current.temperature?.value?.toDoubleOrNull(),
-            apparentTemperature = current.feelsLike?.value?.toDoubleOrNull()
+            feelsLike = current.feelsLike?.value?.toDoubleOrNull()
         ),
         wind = if (current.wind != null) {
             Wind(
@@ -127,10 +129,10 @@ internal fun getDailyList(
         dailyList.add(
             DailyWrapper(
                 date = calendar.time,
-                day = HalfDay(
+                day = HalfDayWrapper(
                     weatherText = getWeatherText(weather.from),
                     weatherCode = getWeatherCode(weather.from),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = dailyForecast.temperature?.value?.getOrNull(index)?.from?.toDoubleOrNull()
                     ),
                     precipitationProbability = PrecipitationProbability(
@@ -146,10 +148,10 @@ internal fun getDailyList(
                         null
                     }
                 ),
-                night = HalfDay(
+                night = HalfDayWrapper(
                     weatherText = getWeatherText(weather.to),
                     weatherCode = getWeatherCode(weather.to),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = dailyForecast.temperature?.value?.getOrNull(index)?.to?.toDoubleOrNull()
                     ),
                     precipitationProbability = PrecipitationProbability(
@@ -202,7 +204,7 @@ internal fun getHourlyList(
                 date = date,
                 weatherText = getWeatherText(weather.toString()),
                 weatherCode = getWeatherCode(weather.toString()),
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = hourlyForecast.temperature?.value?.getOrNull(index)?.toDouble()
                 ),
                 wind = if (hourlyForecast.wind != null) {

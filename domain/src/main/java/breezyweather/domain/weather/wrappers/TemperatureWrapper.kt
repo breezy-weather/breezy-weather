@@ -14,30 +14,27 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package breezyweather.domain.weather.model
+package breezyweather.domain.weather.wrappers
 
-import breezyweather.domain.weather.wrappers.TemperatureWrapper
-import java.io.Serializable
+import breezyweather.domain.weather.model.Temperature
 
 /**
  * Temperature.
- * default unit : [TemperatureUnit.C]
+ * default unit : [TemperatureUnit.CELSIUS]
  */
-data class Temperature(
+data class TemperatureWrapper(
     val temperature: Double? = null,
-    val sourceFeelsLike: Double? = null,
-    val computedApparent: Double? = null,
-    val computedWindChill: Double? = null,
-    val computedHumidex: Double? = null,
-) : Serializable {
-
-    val feelsLikeTemperature: Double? = sourceFeelsLike
-        ?: computedApparent
-        ?: computedWindChill
-        ?: computedHumidex
-
-    fun toTemperatureWrapper() = TemperatureWrapper(
+    val feelsLike: Double? = null,
+) {
+    fun toTemperature(
+        computedApparent: Double? = null,
+        computedWindChill: Double? = null,
+        computedHumidex: Double? = null,
+    ) = Temperature(
         temperature = this.temperature,
-        feelsLike = this.sourceFeelsLike
+        sourceFeelsLike = this.feelsLike,
+        computedApparent = computedApparent,
+        computedWindChill = computedWindChill,
+        computedHumidex = computedHumidex
     )
 }

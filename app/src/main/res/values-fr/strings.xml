@@ -105,6 +105,11 @@
     <string name="temperature_average_short">Moy.</string>
     <string name="temperature_normal_short">Normale</string>
     <string name="temperature_normals">Normales de température</string>
+    <string name="temperature_normals_deviation">Écart</string>
+    <!-- %s = July -->
+    <string name="temperature_normals_deviation_explanation_maximum">Écart avec la moyenne de température maximale du mois de %s pour cet emplacement</string>
+    <!-- %s = July -->
+    <string name="temperature_normals_deviation_explanation_minimum">Écart avec la moyenne de température minimale du mois de %s pour cet emplacement</string>
 
     <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Orage</string>

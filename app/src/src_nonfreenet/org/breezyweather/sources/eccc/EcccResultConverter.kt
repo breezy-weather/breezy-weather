@@ -30,7 +30,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
@@ -80,9 +82,9 @@ internal fun getCurrent(result: EcccObservation?): CurrentWrapper? {
     return CurrentWrapper(
         weatherCode = getWeatherCode(result.iconCode),
         weatherText = result.condition,
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = getNonEmptyMetric(result.temperature),
-            apparentTemperature = getNonEmptyMetric(result.feelsLike)
+            feelsLike = getNonEmptyMetric(result.feelsLike)
         ),
         wind = Wind(
             degree = result.windBearing?.toDoubleOrNull(),
@@ -141,11 +143,11 @@ internal fun getDailyForecast(
                     DailyWrapper(
                         date = currentDay,
                         day = if (daytime != null) {
-                            HalfDay(
+                            HalfDayWrapper(
                                 weatherCode = getWeatherCode(daytime.iconCode),
                                 weatherText = daytime.summary,
                                 weatherPhase = daytime.text,
-                                temperature = Temperature(
+                                temperature = TemperatureWrapper(
                                     temperature = daytime.temperature?.periodHigh?.toDouble()
                                 ),
                                 precipitationProbability = PrecipitationProbability(
@@ -155,11 +157,11 @@ internal fun getDailyForecast(
                         } else {
                             null
                         },
-                        night = HalfDay(
+                        night = HalfDayWrapper(
                             weatherCode = getWeatherCode(nighttime.iconCode),
                             weatherText = nighttime.summary,
                             weatherPhase = nighttime.text,
-                            temperature = Temperature(
+                            temperature = TemperatureWrapper(
                                 temperature = nighttime.temperature?.periodLow?.toDouble()
                             ),
                             precipitationProbability = PrecipitationProbability(
@@ -187,9 +189,9 @@ internal fun getHourlyForecast(
             date = result.epochTime.times(1000L).toDate(),
             weatherText = result.condition,
             weatherCode = getWeatherCode(result.iconCode),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = getNonEmptyMetric(result.temperature),
-                apparentTemperature = getNonEmptyMetric(result.feelsLike)
+                feelsLike = getNonEmptyMetric(result.feelsLike)
             ),
             precipitationProbability = if (!result.precip.isNullOrEmpty()) {
                 PrecipitationProbability(total = result.precip.toDoubleOrNull())

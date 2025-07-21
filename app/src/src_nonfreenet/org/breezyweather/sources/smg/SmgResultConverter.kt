@@ -29,7 +29,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.R
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
@@ -62,7 +64,7 @@ internal fun getCurrent(
         if (report.station?.getOrNull(0) !== null && stationName == "TAIPA GRANDE") {
             report.station[0].let {
                 current = CurrentWrapper(
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = it.Temperature?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()
                     ),
                     wind = Wind(
@@ -112,17 +114,17 @@ internal fun getDailyForecast(
             dailyList.add(
                 DailyWrapper(
                     date = formatter.parse(it.ValidFor[0])!!,
-                    day = HalfDay(
+                    day = HalfDayWrapper(
                         weatherText = getWeatherText(context, it.dailyWeatherStatus?.getOrNull(0)),
                         weatherCode = getWeatherCode(it.dailyWeatherStatus?.getOrNull(0)),
-                        temperature = Temperature(
+                        temperature = TemperatureWrapper(
                             temperature = maxTemp
                         )
                     ),
-                    night = HalfDay(
+                    night = HalfDayWrapper(
                         weatherText = getWeatherText(context, it.dailyWeatherStatus?.getOrNull(0)),
                         weatherCode = getWeatherCode(it.dailyWeatherStatus?.getOrNull(0)),
-                        temperature = Temperature(
+                        temperature = TemperatureWrapper(
                             temperature = minTemp
                         )
                     )
@@ -147,7 +149,7 @@ internal fun getHourlyForecast(
                     date = formatter.parse(it.ValidFor[0] + " " + it.f_time[0])!!,
                     weatherText = getWeatherText(context, it.hourlyWeatherStatus?.getOrNull(0)?.Value?.getOrNull(0)),
                     weatherCode = getWeatherCode(it.hourlyWeatherStatus?.getOrNull(0)?.Value?.getOrNull(0)),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = it.Temperature?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull()
                     ),
                     wind = Wind(

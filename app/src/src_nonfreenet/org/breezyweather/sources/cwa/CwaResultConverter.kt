@@ -30,7 +30,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.sources.computeMeanSeaLevelPressure
@@ -133,7 +135,7 @@ internal fun getCurrent(
     return CurrentWrapper(
         weatherText = weatherText,
         weatherCode = weatherCode,
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = temperature
         ),
         wind = Wind(
@@ -270,12 +272,12 @@ internal fun getDailyForecast(
         dailyList.add(
             DailyWrapper(
                 date = formatter.parse("$date 00:00:00")!!,
-                day = HalfDay(
+                day = HalfDayWrapper(
                     weatherText = wxTextMap.getOrElse(dayTime) { null },
                     weatherCode = wxCodeMap.getOrElse(dayTime) { null },
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = maxTMap.getOrElse(dayTime) { null },
-                        apparentTemperature = maxAtMap.getOrElse(dayTime) { null }
+                        feelsLike = maxAtMap.getOrElse(dayTime) { null }
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = popMap.getOrElse(dayTime) { null }
@@ -285,12 +287,12 @@ internal fun getDailyForecast(
                         speed = wsMap.getOrElse(dayTime) { null }
                     )
                 ),
-                night = HalfDay(
+                night = HalfDayWrapper(
                     weatherText = wxTextMap.getOrElse(nightTime) { null },
                     weatherCode = wxCodeMap.getOrElse(nightTime) { null },
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = minTMap.getOrElse(nightTime) { null },
-                        apparentTemperature = minAtMap.getOrElse(nightTime) { null }
+                        feelsLike = minAtMap.getOrElse(nightTime) { null }
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = popMap.getOrElse(nightTime) { null }
@@ -410,9 +412,9 @@ internal fun getHourlyForecast(
                 date = Date(key),
                 weatherText = wxTextMap.getOrElse(key) { null },
                 weatherCode = wxCodeMap.getOrElse(key) { null },
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = tMap.getOrElse(key) { null },
-                    apparentTemperature = atMap.getOrElse(key) { null }
+                    feelsLike = atMap.getOrElse(key) { null }
                 ),
                 precipitationProbability = PrecipitationProbability(
                     total = popMap.getOrElse(key) { null }

@@ -24,6 +24,7 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.smhi.json.SmhiTimeSeries
@@ -60,7 +61,7 @@ internal fun getHourlyForecast(
         HourlyWrapper(
             date = result.validTime,
             weatherCode = getWeatherCode(result.parameters.firstOrNull { it.name == "Wsymb2" }?.values?.getOrNull(0)),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = result.parameters.firstOrNull { it.name == "t" }?.values?.getOrNull(0)
             ),
             precipitation = Precipitation(

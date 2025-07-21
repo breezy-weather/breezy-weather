@@ -44,8 +44,8 @@ data class Daily(
 
     fun toDailyWrapper() = DailyWrapper(
         date = this.date,
-        day = this.day,
-        night = this.night,
+        day = this.day?.toHalfDayWrapper(),
+        night = this.night?.toHalfDayWrapper(),
         degreeDay = this.degreeDay,
         uV = this.uV,
         sunshineDuration = this.sunshineDuration

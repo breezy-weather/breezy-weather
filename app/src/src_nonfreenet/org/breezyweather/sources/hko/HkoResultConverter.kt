@@ -29,7 +29,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.R
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
@@ -55,7 +57,7 @@ internal fun getCurrent(
     return CurrentWrapper(
         weatherText = getWeatherText(context, oneJson.FLW?.Icon1?.toIntOrNull()),
         weatherCode = getWeatherCode(oneJson.FLW?.Icon1?.toIntOrNull()),
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = regionalWeather?.Temp?.Value?.toDoubleOrNull()
         ),
         wind = Wind(
@@ -157,14 +159,14 @@ internal fun getDailyForecast(
         dailyList.add(
             DailyWrapper(
                 date = formatter.parse(it.ForecastDate)!!,
-                day = HalfDay(
+                day = HalfDayWrapper(
                     weatherText = getWeatherText(context, daytimeWeather),
                     weatherCode = getWeatherCode(daytimeWeather),
                     precipitationProbability = PrecipitationProbability(
                         total = getPrecipitationProbability(it.ForecastChanceOfRain)
                     )
                 ),
-                night = HalfDay(
+                night = HalfDayWrapper(
                     weatherText = getWeatherText(context, nightTimeWeather),
                     weatherCode = getWeatherCode(nightTimeWeather),
                     precipitationProbability = PrecipitationProbability(
@@ -227,7 +229,7 @@ internal fun getHourlyForecast(
                         date = formatter.parse(value.ForecastHour)!!,
                         weatherText = getWeatherText(context, currentHourWeather),
                         weatherCode = getWeatherCode(currentHourWeather),
-                        temperature = Temperature(
+                        temperature = TemperatureWrapper(
                             temperature = value.ForecastTemperature?.let {
                                 if (it < 100.0) it else null
                             }

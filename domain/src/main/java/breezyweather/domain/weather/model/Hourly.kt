@@ -49,7 +49,7 @@ data class Hourly(
         isDaylight = this.isDaylight,
         weatherText = this.weatherText,
         weatherCode = this.weatherCode,
-        temperature = this.temperature,
+        temperature = this.temperature?.toTemperatureWrapper(),
         precipitation = this.precipitation,
         precipitationProbability = this.precipitationProbability,
         wind = this.wind,

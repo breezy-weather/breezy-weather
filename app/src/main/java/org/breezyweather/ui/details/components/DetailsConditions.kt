@@ -27,14 +27,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.HelpOutline
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.ButtonGroupDefaults
 import androidx.compose.material3.Icon
@@ -58,6 +59,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -86,6 +88,7 @@ import kotlinx.collections.immutable.toImmutableMap
 import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isLandscape
@@ -99,6 +102,7 @@ import org.breezyweather.ui.common.widgets.AnimatableIconView
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
+import java.text.DateFormatSymbols
 import kotlin.math.max
 import kotlin.math.min
 
@@ -193,12 +197,6 @@ fun DetailsConditions(
             }
             item {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
-            }
-        }
-        // Detailed feels like temperatures
-        if (normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null) {
-            item {
-                NormalsDetails(normals)
             }
         }
         // TODO: Make a better design for degree day
@@ -363,6 +361,7 @@ private fun TemperatureSwitcher(
 private fun WeatherConditionSummary(
     daily: Daily,
     showRealTemp: Boolean,
+    normals: Normals?,
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.normal_margin)),
@@ -383,7 +382,9 @@ private fun WeatherConditionSummary(
                     weatherCode = day.weatherCode,
                     weatherText = day.weatherText,
                     isDaytime = true,
-                    animated = true
+                    animated = true,
+                    normals = normals,
+                    keepSpaceForSubtext = normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null
                 )
             }
         }
@@ -401,7 +402,9 @@ private fun WeatherConditionSummary(
                     weatherCode = night.weatherCode,
                     weatherText = night.weatherText,
                     isDaytime = false,
-                    animated = true
+                    animated = true,
+                    normals = normals,
+                    keepSpaceForSubtext = normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null
                 )
             }
         }
@@ -417,6 +420,8 @@ private fun WeatherConditionItem(
     weatherText: String?,
     isDaytime: Boolean,
     animated: Boolean,
+    normals: Normals?,
+    keepSpaceForSubtext: Boolean,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -460,6 +465,8 @@ private fun WeatherConditionItem(
                                 }
                             }
                     )
+                } else {
+                    NormalsDepartureLabel(temperature?.temperature, normals, isDaytime, keepSpaceForSubtext)
                 }
             }
             if (context.isLandscape) {
@@ -471,6 +478,86 @@ private fun WeatherConditionItem(
             Spacer(Modifier.height(dimensionResource(R.dimen.small_margin)))
             WeatherCondition(weatherCode, weatherText, isDaytime = isDaytime, animated = animated)
         }
+    }
+}
+
+@Composable
+fun NormalsDepartureLabel(
+    halfDayTemperature: Double?,
+    normals: Normals?,
+    isDaytime: Boolean,
+    keepSpaceForSubtext: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    val normal = if (isDaytime) normals?.daytimeTemperature else normals?.nighttimeTemperature
+
+    if (halfDayTemperature != null && normal != null) {
+        val context = LocalContext.current
+        val tooltipState = rememberTooltipState()
+        val coroutineScope = rememberCoroutineScope()
+        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
+        val departure = remember(halfDayTemperature, normal) {
+            temperatureUnit.getConvertedUnit(halfDayTemperature) - temperatureUnit.getConvertedUnit(normal)
+        }
+
+        TooltipBox(
+            positionProvider = TooltipDefaults.rememberTooltipPositionProvider(),
+            tooltip = {
+                PlainTooltip {
+                    Text(
+                        stringResource(
+                            if (isDaytime) {
+                                R.string.temperature_normals_deviation_explanation_maximum
+                            } else {
+                                R.string.temperature_normals_deviation_explanation_minimum
+                            },
+                            DateFormatSymbols(context.currentLocale).months[normals!!.month!!]
+                        )
+                    )
+                }
+            },
+            state = tooltipState
+        ) {
+            Row(
+                modifier = modifier
+                    .clickable {
+                        coroutineScope.launch {
+                            tooltipState.show()
+                        }
+                    }
+                    .height(
+                        with(LocalDensity.current) {
+                            MaterialTheme.typography.labelLarge.lineHeight.toDp()
+                        }
+                    ),
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = stringResource(R.string.temperature_normals_deviation) +
+                        stringResource(R.string.colon_separator) +
+                        "" +
+                        temperatureUnit.formatMeasureShort(
+                            context,
+                            departure,
+                            precision = 1,
+                            isValueInDefaultUnit = false,
+                            showSign = true
+                        ),
+                    style = MaterialTheme.typography.labelLarge,
+                    maxLines = 1
+                )
+                Icon(
+                    imageVector = Icons.AutoMirrored.Outlined.HelpOutline,
+                    // TooltipBox already takes care of adding the info that there is a tooltip:
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxHeight()
+                )
+            }
+        }
+    } else if (keepSpaceForSubtext) {
+        TextFixedHeight(text = "", style = MaterialTheme.typography.labelLarge)
     }
 }
 
@@ -564,10 +651,12 @@ private fun TemperatureChart(
                 weatherCode = hourly.weatherCode,
                 weatherText = hourly.weatherText,
                 isDaytime = hourly.isDaylight,
-                animated = false // Doesn't redraw otherwise
+                animated = false, // Doesn't redraw otherwise
+                normals = null,
+                keepSpaceForSubtext = normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null
             )
         }
-    } ?: WeatherConditionSummary(daily, showRealTemp)
+    } ?: WeatherConditionSummary(daily, showRealTemp, normals)
 
     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
 
@@ -709,59 +798,4 @@ private fun TemperatureChart(
     } else {
         UnavailableChart(mappedValues.size)
     }
-}
-
-@Composable
-private fun NormalsDetails(
-    normals: Normals?,
-) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
-        modifier = Modifier
-            .padding(top = dimensionResource(R.dimen.normal_margin))
-            .fillMaxWidth()
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .semantics { isTraversalGroup = true }
-        ) {
-            DaytimeLabel()
-            DailyTemperatureDetail(Pair(R.string.temperature_normal_short, normals?.daytimeTemperature))
-        }
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .semantics { isTraversalGroup = true }
-        ) {
-            NighttimeLabelWithInfo()
-            DailyTemperatureDetail(Pair(R.string.temperature_normal_short, normals?.nighttimeTemperature))
-        }
-    }
-}
-
-@Composable
-fun DailyTemperatureDetail(
-    item: Pair<Int, Double?>,
-    modifier: Modifier = Modifier,
-) {
-    val context = LocalContext.current
-    val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
-    DetailsItem(
-        headlineText = stringResource(item.first),
-        supportingText = item.second?.let { temperatureUnit.formatMeasure(context, value = it) }
-            ?: stringResource(R.string.null_data_text),
-        modifier = modifier
-            .padding(top = dimensionResource(R.dimen.normal_margin))
-            .semantics(mergeDescendants = true) {}
-            .clearAndSetSemantics {
-                item.second?.let {
-                    contentDescription = context.getString(item.first) +
-                        context.getString(R.string.colon_separator) +
-                        temperatureUnit.formatContentDescription(context, it)
-                }
-            }
-    )
 }

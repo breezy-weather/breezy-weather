@@ -35,8 +35,10 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.PollenWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.sources.accu.json.AccuAirQualityData
@@ -84,13 +86,9 @@ internal fun getCurrent(
     return CurrentWrapper(
         weatherText = currentResult.WeatherText,
         weatherCode = getWeatherCode(currentResult.WeatherIcon),
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = currentResult.Temperature?.Metric?.Value,
-            realFeelTemperature = currentResult.RealFeelTemperature?.Metric?.Value,
-            realFeelShaderTemperature = currentResult.RealFeelTemperatureShade?.Metric?.Value,
-            apparentTemperature = currentResult.ApparentTemperature?.Metric?.Value,
-            windChillTemperature = currentResult.WindChillTemperature?.Metric?.Value,
-            wetBulbTemperature = currentResult.WetBulbTemperature?.Metric?.Value
+            feelsLike = currentResult.RealFeelTemperature?.Metric?.Value
         ),
         wind = Wind(
             degree = currentResult.Wind?.Direction?.Degrees?.toDouble(),
@@ -116,14 +114,13 @@ internal fun getDailyList(
     return dailyForecasts?.map { forecasts ->
         DailyWrapper(
             date = forecasts.EpochDate.seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.javaTimeZone)!!,
-            day = HalfDay(
+            day = HalfDayWrapper(
                 weatherText = forecasts.Day?.ShortPhrase,
                 weatherPhase = forecasts.Day?.LongPhrase,
                 weatherCode = getWeatherCode(forecasts.Day?.Icon),
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = getTemperatureInCelsius(forecasts.Temperature?.Maximum),
-                    realFeelTemperature = getTemperatureInCelsius(forecasts.RealFeelTemperature?.Maximum),
-                    realFeelShaderTemperature = getTemperatureInCelsius(forecasts.RealFeelTemperatureShade?.Maximum)
+                    feelsLike = getTemperatureInCelsius(forecasts.RealFeelTemperature?.Maximum)
                 ),
                 precipitation = Precipitation(
                     total = getQuantityInMillimeters(forecasts.Day?.TotalLiquid),
@@ -151,14 +148,13 @@ internal fun getDailyList(
                 ),
                 cloudCover = forecasts.Day?.CloudCover
             ),
-            night = HalfDay(
+            night = HalfDayWrapper(
                 weatherText = forecasts.Night?.ShortPhrase,
                 weatherPhase = forecasts.Night?.LongPhrase,
                 weatherCode = getWeatherCode(forecasts.Night?.Icon),
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = getTemperatureInCelsius(forecasts.Temperature?.Minimum),
-                    realFeelTemperature = getTemperatureInCelsius(forecasts.RealFeelTemperature?.Minimum),
-                    realFeelShaderTemperature = getTemperatureInCelsius(forecasts.RealFeelTemperatureShade?.Minimum)
+                    feelsLike = getTemperatureInCelsius(forecasts.RealFeelTemperature?.Minimum)
                 ),
                 precipitation = Precipitation(
                     total = getQuantityInMillimeters(forecasts.Night?.TotalLiquid),
@@ -247,11 +243,9 @@ internal fun getHourlyList(
             isDaylight = result.IsDaylight,
             weatherText = result.IconPhrase,
             weatherCode = getWeatherCode(result.WeatherIcon),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = getTemperatureInCelsius(result.Temperature),
-                realFeelTemperature = getTemperatureInCelsius(result.RealFeelTemperature),
-                realFeelShaderTemperature = getTemperatureInCelsius(result.RealFeelTemperatureShade),
-                wetBulbTemperature = getTemperatureInCelsius(result.WetBulbTemperature)
+                feelsLike = getTemperatureInCelsius(result.RealFeelTemperature)
             ),
             precipitation = Precipitation(
                 total = getQuantityInMillimeters(result.TotalLiquid),

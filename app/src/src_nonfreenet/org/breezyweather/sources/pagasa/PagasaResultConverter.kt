@@ -25,6 +25,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
@@ -100,7 +101,7 @@ internal fun getCurrent(
     }
     return currentResult?.getOrNull(nearestStation)?.let {
         CurrentWrapper(
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = it.temperature?.substringBefore(" ")?.toDoubleOrNull()
             ),
             wind = Wind(
@@ -155,7 +156,7 @@ internal fun getHourlyForecast(
                         date = formatter.parse(it.attributes.from)!!,
                         weatherText = getHourlyWeatherText(context, it.symbol?.attributes?.symbol),
                         weatherCode = getHourlyWeatherCode(it.symbol?.attributes?.symbol),
-                        temperature = Temperature(
+                        temperature = TemperatureWrapper(
                             temperature = it.temperature?.attributes?.value?.toDoubleOrNull()
                         ),
                         precipitation = Precipitation(

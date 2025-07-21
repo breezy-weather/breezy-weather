@@ -26,6 +26,7 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.metie.json.MetIeHourly
 import org.breezyweather.sources.metie.json.MetIeLocationResult
@@ -80,7 +81,7 @@ internal fun getHourlyForecast(
             date = formatter.parse("${result.date} ${result.time}")!!,
             weatherCode = getWeatherCode(result.weatherNumber),
             weatherText = result.weatherDescription,
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = result.temperature?.toDouble()
             ),
             precipitation = Precipitation(

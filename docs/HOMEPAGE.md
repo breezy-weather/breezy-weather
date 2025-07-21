@@ -136,11 +136,10 @@ Bar color is always light orange. It’s filled relative to the maximum daylight
 #### Feels like trends
 
 Feels like temperature is the first available data from this list:
-- RealFeel® temperature
-- RealFeel Shade™ temperature
-- Apparent temperature
-- Wind chill temperature
-- Wet bulb temperature
+- Source-provided feels like temperature
+- Computed apparent temperature
+- Computed wind chill temperature
+- Computed Humidex
 - Temperature
 
 From top to bottom:

@@ -30,6 +30,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
@@ -45,7 +46,7 @@ internal fun getCurrent(nowcastResult: MetNoNowcastResult, context: Context): Cu
         CurrentWrapper(
             weatherText = getWeatherText(context, currentTimeseries.symbolCode),
             weatherCode = getWeatherCode(currentTimeseries.symbolCode),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = currentTimeseries.instant?.details?.airTemperature
             ),
             wind = if (currentTimeseries.instant?.details != null) {
@@ -76,7 +77,7 @@ internal fun getHourlyList(
             date = hourlyForecast.time,
             weatherText = getWeatherText(context, hourlyForecast.data?.symbolCode),
             weatherCode = getWeatherCode(hourlyForecast.data?.symbolCode),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = hourlyForecast.data?.instant?.details?.airTemperature
             ),
             precipitation = Precipitation(

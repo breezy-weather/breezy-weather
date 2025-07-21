@@ -22,6 +22,7 @@ import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.sources.imd.json.ImdWeatherResult
 import java.text.SimpleDateFormat
@@ -122,7 +123,7 @@ internal fun getHourlyForecast(
         hourlyList.add(
             HourlyWrapper(
                 date = Date(it),
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = tempMap[it]
                 ),
                 precipitation = Precipitation(

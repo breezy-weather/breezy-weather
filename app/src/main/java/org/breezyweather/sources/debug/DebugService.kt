@@ -28,6 +28,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.rx3.rxObservable
@@ -137,7 +138,7 @@ class DebugService @Inject constructor() : WeatherSource {
             weatherCode = WeatherCode.entries
                 .firstOrNull { "$CURRENT_CITY_LABEL${it.name}" == location.city }
                 ?: WeatherCode.CLEAR,
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = Math.random().times(10).plus(15)
             ),
             wind = Wind(

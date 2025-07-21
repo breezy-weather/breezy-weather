@@ -33,7 +33,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.sources.mf.json.MfCurrentResult
@@ -81,7 +83,7 @@ internal fun getCurrent(currentResult: MfCurrentResult): CurrentWrapper? {
     return CurrentWrapper(
         weatherText = currentResult.properties.gridded.weatherDescription,
         weatherCode = getWeatherCode(currentResult.properties.gridded.weatherIcon),
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = currentResult.properties.gridded.temperature
         ),
         wind = Wind(
@@ -114,18 +116,18 @@ internal fun getDailyList(
         dailyList.add(
             DailyWrapper(
                 date = theDayInLocal,
-                day = HalfDay(
+                day = HalfDayWrapper(
                     // Too complicated to get weather from hourly, so let's just use daily info for both day and night
                     weatherText = dailyForecast.dailyWeatherDescription,
                     weatherCode = getWeatherCode(dailyForecast.dailyWeatherIcon),
-                    temperature = Temperature(temperature = dailyForecast.tMax)
+                    temperature = TemperatureWrapper(temperature = dailyForecast.tMax)
                 ),
-                night = HalfDay(
+                night = HalfDayWrapper(
                     weatherText = dailyForecast.dailyWeatherDescription,
                     weatherCode = getWeatherCode(dailyForecast.dailyWeatherIcon),
                     // tMin is for current day, so it actually takes the previous night,
                     // so we try to get tMin from next day if available
-                    temperature = Temperature(temperature = dailyForecasts.getOrNull(i + 1)?.tMin)
+                    temperature = TemperatureWrapper(temperature = dailyForecasts.getOrNull(i + 1)?.tMin)
                 ),
                 uV = UV(index = dailyForecast.uvIndex?.toDouble())
             )
@@ -143,9 +145,9 @@ internal fun getHourlyList(
             date = hourlyForecast.time,
             weatherText = hourlyForecast.weatherDescription,
             weatherCode = getWeatherCode(hourlyForecast.weatherIcon),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = hourlyForecast.t,
-                windChillTemperature = hourlyForecast.tWindchill
+                feelsLike = hourlyForecast.tWindchill
             ),
             precipitation = getHourlyPrecipitation(hourlyForecast),
             precipitationProbability = getHourlyPrecipitationProbability(

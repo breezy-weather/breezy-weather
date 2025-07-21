@@ -720,6 +720,7 @@ class RefreshHelper @Inject constructor(
                 hourlyComputedMissingData,
                 weatherWrapperCompleted.airQuality?.hourlyForecast ?: emptyMap(),
                 weatherWrapperCompleted.pollen?.hourlyForecast ?: emptyMap(),
+                weatherWrapperCompleted.hourlyForecast?.associate { it.date to it.sunshineDuration } ?: emptyMap(),
                 weatherWrapperCompleted.pollen?.current,
                 location
             )

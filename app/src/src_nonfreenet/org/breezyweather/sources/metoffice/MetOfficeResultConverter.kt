@@ -25,7 +25,9 @@ import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.R
 import org.breezyweather.sources.metoffice.json.MetOfficeDaily
 import org.breezyweather.sources.metoffice.json.MetOfficeForecast
@@ -43,12 +45,12 @@ internal fun getDailyForecast(
             ?: Pair(null, null)
         DailyWrapper(
             date = result.time,
-            day = HalfDay(
+            day = HalfDayWrapper(
                 weatherText = dayText,
                 weatherCode = dayCode,
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = result.dayMaxScreenTemperature,
-                    apparentTemperature = result.dayMaxFeelsLikeTemp
+                    feelsLike = result.dayMaxFeelsLikeTemp
                 ),
                 precipitationProbability = PrecipitationProbability(
                     total = result.dayProbabilityOfPrecipitation?.toDouble(),
@@ -57,12 +59,12 @@ internal fun getDailyForecast(
                     thunderstorm = result.dayProbabilityOfSferics?.toDouble()
                 )
             ),
-            night = HalfDay(
+            night = HalfDayWrapper(
                 weatherText = nightText,
                 weatherCode = nightCode,
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = result.nightMinScreenTemperature,
-                    apparentTemperature = result.nightMinFeelsLikeTemp
+                    feelsLike = result.nightMinFeelsLikeTemp
                 ),
                 precipitationProbability = PrecipitationProbability(
                     total = result.nightProbabilityOfPrecipitation?.toDouble(),
@@ -91,9 +93,9 @@ internal fun getHourlyForecast(
             date = result.time,
             weatherText = weatherText,
             weatherCode = weatherCode,
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = result.screenTemperature,
-                apparentTemperature = result.feelsLikeTemperature
+                feelsLike = result.feelsLikeTemperature
             ),
             precipitation = Precipitation(
                 total = result.totalPrecipAmount,

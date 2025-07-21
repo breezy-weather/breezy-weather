@@ -16,58 +16,45 @@
 
 package breezyweather.domain.weather.wrappers
 
-import breezyweather.domain.weather.model.AirQuality
-import breezyweather.domain.weather.model.Hourly
+import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Precipitation
+import breezyweather.domain.weather.model.PrecipitationDuration
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
-import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
-import java.util.Date
+import java.io.Serializable
 
 /**
- * Hourly wrapper that allows isDaylight to be null and completed later
+ * Half day.
  */
-data class HourlyWrapper(
-    val date: Date,
-    val isDaylight: Boolean? = null,
+data class HalfDayWrapper(
+    /**
+     * A short description of the weather condition
+     */
     val weatherText: String? = null,
+
+    /**
+     * A long description of the weather condition. Used as a half-day summary
+     */
+    val weatherPhase: String? = null,
     val weatherCode: WeatherCode? = null,
     val temperature: TemperatureWrapper? = null,
     val precipitation: Precipitation? = null,
     val precipitationProbability: PrecipitationProbability? = null,
+    val precipitationDuration: PrecipitationDuration? = null,
     val wind: Wind? = null,
-    val uV: UV? = null,
-    val relativeHumidity: Double? = null,
-    val dewPoint: Double? = null,
-    val pressure: Double? = null,
     val cloudCover: Int? = null,
-    val visibility: Double? = null,
-    /**
-     * Sunshine duration in hours (ex: 0.5 means 30 min)
-     */
-    val sunshineDuration: Double? = null,
 ) {
-    fun toHourly(
-        airQuality: AirQuality? = null,
-        isDaylight: Boolean? = null,
-        uV: UV? = null,
-    ) = Hourly(
-        date = this.date,
-        isDaylight = isDaylight ?: this.isDaylight ?: true,
+    fun toHalfDay() = HalfDay(
         weatherText = this.weatherText,
+        weatherPhase = this.weatherPhase,
         weatherCode = this.weatherCode,
         temperature = this.temperature?.toTemperature(),
         precipitation = this.precipitation,
         precipitationProbability = this.precipitationProbability,
+        precipitationDuration = this.precipitationDuration,
         wind = this.wind,
-        airQuality = airQuality,
-        uV = uV ?: this.uV,
-        relativeHumidity = this.relativeHumidity,
-        dewPoint = this.dewPoint,
-        pressure = this.pressure,
-        cloudCover = this.cloudCover,
-        visibility = this.visibility
+        cloudCover = this.cloudCover
     )
 }

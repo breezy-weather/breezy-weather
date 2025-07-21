@@ -28,6 +28,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.brightsky.json.BrightSkyAlert
@@ -41,7 +42,7 @@ internal fun getCurrent(result: BrightSkyCurrentWeather?): CurrentWrapper? {
     if (result == null) return null
     return CurrentWrapper(
         weatherCode = getWeatherCode(result.icon),
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = result.temperature
         ),
         wind = Wind(
@@ -95,7 +96,7 @@ internal fun getHourlyForecast(
         HourlyWrapper(
             date = result.timestamp,
             weatherCode = getWeatherCode(result.icon),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = result.temperature
             ),
             precipitation = Precipitation(

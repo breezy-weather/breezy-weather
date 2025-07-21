@@ -28,7 +28,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.sources.pirateweather.json.PirateWeatherAlert
 import org.breezyweather.sources.pirateweather.json.PirateWeatherCurrently
@@ -47,9 +49,9 @@ internal fun getCurrent(result: PirateWeatherCurrently?): CurrentWrapper? {
     return CurrentWrapper(
         weatherText = result.summary,
         weatherCode = getWeatherCode(result.icon),
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = result.temperature,
-            apparentTemperature = result.apparentTemperature
+            feelsLike = result.apparentTemperature
         ),
         wind = Wind(
             degree = result.windBearing,
@@ -71,22 +73,22 @@ internal fun getDailyForecast(
     return dailyResult?.map { result ->
         DailyWrapper(
             date = result.time.seconds.inWholeMilliseconds.toDate(),
-            day = HalfDay(
+            day = HalfDayWrapper(
                 weatherText = result.summary,
                 weatherCode = getWeatherCode(result.icon),
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = result.temperatureHigh,
-                    apparentTemperature = result.apparentTemperatureHigh
+                    feelsLike = result.apparentTemperatureHigh
                 )
             ),
-            night = HalfDay(
+            night = HalfDayWrapper(
                 weatherText = result.summary,
                 weatherCode = getWeatherCode(result.icon),
                 // temperatureLow/High are always forward-looking
                 // See https://docs.pirateweather.net/en/latest/API/#temperaturelow
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = result.temperatureLow,
-                    apparentTemperature = result.apparentTemperatureLow
+                    feelsLike = result.apparentTemperatureLow
                 )
             ),
             uV = UV(index = result.uvIndex)
@@ -105,9 +107,9 @@ internal fun getHourlyForecast(
             date = result.time.seconds.inWholeMilliseconds.toDate(),
             weatherText = result.summary,
             weatherCode = getWeatherCode(result.icon),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = result.temperature,
-                apparentTemperature = result.apparentTemperature
+                feelsLike = result.apparentTemperature
             ),
             // see https://docs.pirateweather.net/en/latest/API/#precipaccumulation
             precipitation = Precipitation(

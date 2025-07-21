@@ -72,6 +72,11 @@
     <string name="temperature_average_short">Avg</string>
     <string name="temperature_normal_short">Normal</string>
     <string name="temperature_normals">Temperature normals</string>
+    <string name="temperature_normals_deviation">Deviation</string>
+    <!-- %s = July -->
+    <string name="temperature_normals_deviation_explanation_maximum">Deviation from %s average maximum temperature for this location</string>
+    <!-- %s = July -->
+    <string name="temperature_normals_deviation_explanation_minimum">Deviation from %s average minimum temperature for this location</string>
     <!-- Precipitation -->
     <string name="precipitation">Precipitation</string>
     <!-- Translate while taking into account it is a text spread on 2-3 lines of about 12 characters each -->

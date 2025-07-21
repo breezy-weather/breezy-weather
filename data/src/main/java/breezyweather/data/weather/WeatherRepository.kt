@@ -123,11 +123,10 @@ class WeatherRepository(
                 weatherCode = weather.current?.weatherCode,
 
                 temperature = weather.current?.temperature?.temperature,
-                realFeelTemperature = weather.current?.temperature?.realFeelTemperature,
-                realFeelShaderTemperature = weather.current?.temperature?.realFeelShaderTemperature,
-                apparentTemperature = weather.current?.temperature?.apparentTemperature,
-                windChillTemperature = weather.current?.temperature?.windChillTemperature,
-                wetBulbTemperature = weather.current?.temperature?.wetBulbTemperature,
+                sourceFeelsLikeTemperature = weather.current?.temperature?.sourceFeelsLike,
+                apparentTemperature = weather.current?.temperature?.computedApparent,
+                windChillTemperature = weather.current?.temperature?.computedWindChill,
+                humidex = weather.current?.temperature?.computedHumidex,
 
                 windDegree = weather.current?.wind?.degree,
                 windSpeed = weather.current?.wind?.speed,
@@ -170,11 +169,10 @@ class WeatherRepository(
                     daytimeWeatherCode = daily.day?.weatherCode,
 
                     daytimeTemperature = daily.day?.temperature?.temperature,
-                    daytimeRealFeelTemperature = daily.day?.temperature?.realFeelTemperature,
-                    daytimeRealFeelShaderTemperature = daily.day?.temperature?.realFeelShaderTemperature,
-                    daytimeApparentTemperature = daily.day?.temperature?.apparentTemperature,
-                    daytimeWindChillTemperature = daily.day?.temperature?.windChillTemperature,
-                    daytimeWetBulbTemperature = daily.day?.temperature?.wetBulbTemperature,
+                    daytimeSourceFeelsLikeTemperature = daily.day?.temperature?.sourceFeelsLike,
+                    daytimeApparentTemperature = daily.day?.temperature?.computedApparent,
+                    daytimeWindChillTemperature = daily.day?.temperature?.computedWindChill,
+                    daytimeHumidex = daily.day?.temperature?.computedHumidex,
 
                     daytimeTotalPrecipitation = daily.day?.precipitation?.total,
                     daytimeThunderstormPrecipitation = daily.day?.precipitation?.thunderstorm,
@@ -206,11 +204,10 @@ class WeatherRepository(
                     nighttimeWeatherCode = daily.night?.weatherCode,
 
                     nighttimeTemperature = daily.night?.temperature?.temperature,
-                    nighttimeRealFeelTemperature = daily.night?.temperature?.realFeelTemperature,
-                    nighttimeRealFeelShaderTemperature = daily.night?.temperature?.realFeelShaderTemperature,
-                    nighttimeApparentTemperature = daily.night?.temperature?.apparentTemperature,
-                    nighttimeWindChillTemperature = daily.night?.temperature?.windChillTemperature,
-                    nighttimeWetBulbTemperature = daily.night?.temperature?.wetBulbTemperature,
+                    nighttimeSourceFeelsLikeTemperature = daily.night?.temperature?.sourceFeelsLike,
+                    nighttimeApparentTemperature = daily.night?.temperature?.computedApparent,
+                    nighttimeWindChillTemperature = daily.night?.temperature?.computedWindChill,
+                    nighttimeHumidex = daily.night?.temperature?.computedHumidex,
 
                     nighttimeTotalPrecipitation = daily.night?.precipitation?.total,
                     nighttimeThunderstormPrecipitation = daily.night?.precipitation?.thunderstorm,
@@ -303,11 +300,10 @@ class WeatherRepository(
                     weatherText = hourly.weatherText,
 
                     temperature = hourly.temperature?.temperature,
-                    realFeelTemperature = hourly.temperature?.realFeelTemperature,
-                    realFeelShaderTemperature = hourly.temperature?.realFeelShaderTemperature,
-                    apparentTemperature = hourly.temperature?.apparentTemperature,
-                    windChillTemperature = hourly.temperature?.windChillTemperature,
-                    wetBulbTemperature = hourly.temperature?.wetBulbTemperature,
+                    sourceFeelsLikeTemperature = hourly.temperature?.sourceFeelsLike,
+                    apparentTemperature = hourly.temperature?.computedApparent,
+                    windChillTemperature = hourly.temperature?.computedWindChill,
+                    humidex = hourly.temperature?.computedHumidex,
 
                     totalPrecipitation = hourly.precipitation?.total,
                     thunderstormPrecipitation = hourly.precipitation?.thunderstorm,

@@ -26,7 +26,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.sources.here.json.HereGeocodingData
 import org.breezyweather.sources.here.json.HereWeatherData
@@ -63,9 +65,9 @@ internal fun getCurrentForecast(result: HereWeatherData?): CurrentWrapper? {
     return CurrentWrapper(
         weatherText = result.description,
         weatherCode = getWeatherCode(result.iconId),
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = result.temperature,
-            apparentTemperature = result.comfort?.toDouble()
+            feelsLike = result.comfort?.toDouble()
         ),
         wind = Wind(
             degree = result.windDirection,
@@ -93,8 +95,8 @@ internal fun getDailyForecast(
         dailyList.add(
             DailyWrapper(
                 date = dailyForecast.time,
-                day = HalfDay(
-                    temperature = Temperature(
+                day = HalfDayWrapper(
+                    temperature = TemperatureWrapper(
                         temperature = if (!dailyForecast.highTemperature.isNullOrEmpty()) {
                             dailyForecast.highTemperature.toDouble()
                         } else {
@@ -102,10 +104,10 @@ internal fun getDailyForecast(
                         }
                     )
                 ),
-                night = HalfDay(
+                night = HalfDayWrapper(
                     // low temperature is actually from previous night,
                     // so we try to get low temp from next day if available
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = if (!dailySimpleForecasts.getOrNull(i + 1)?.lowTemperature.isNullOrEmpty()) {
                             dailySimpleForecasts[i + 1].lowTemperature!!.toDouble()
                         } else {
@@ -132,9 +134,9 @@ internal fun getHourlyForecast(
             date = result.time,
             weatherText = result.description,
             weatherCode = getWeatherCode(result.iconId),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = result.temperature,
-                apparentTemperature = result.comfort?.toDouble()
+                feelsLike = result.comfort?.toDouble()
             ),
             precipitation = Precipitation(
                 total = result.precipitation1H ?: (result.rainFall + result.snowFall),

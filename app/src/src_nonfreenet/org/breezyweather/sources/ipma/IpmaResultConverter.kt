@@ -27,7 +27,9 @@ import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
@@ -117,10 +119,10 @@ internal fun getDailyForecast(
             dailyList.add(
                 DailyWrapper(
                     date = formatter.parse(it.dataPrev)!!,
-                    day = HalfDay(
+                    day = HalfDayWrapper(
                         weatherText = getWeatherText(context, it.idTipoTempo),
                         weatherCode = getWeatherCode(it.idTipoTempo),
-                        temperature = Temperature(
+                        temperature = TemperatureWrapper(
                             temperature = it.tMax?.toDoubleOrNull()
                         ),
                         precipitationProbability = PrecipitationProbability(
@@ -130,10 +132,10 @@ internal fun getDailyForecast(
                             degree = getWindDegree(it.ddVento)
                         )
                     ),
-                    night = HalfDay(
+                    night = HalfDayWrapper(
                         weatherText = getWeatherText(context, it.idTipoTempo),
                         weatherCode = getWeatherCode(it.idTipoTempo),
-                        temperature = Temperature(
+                        temperature = TemperatureWrapper(
                             temperature = it.tMin?.toDoubleOrNull()
                         ),
                         precipitationProbability = PrecipitationProbability(
@@ -169,9 +171,9 @@ internal fun getHourlyForecast(
                     date = formatter.parse(it.dataPrev)!!,
                     weatherText = getWeatherText(context, it.idTipoTempo),
                     weatherCode = getWeatherCode(it.idTipoTempo),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = it.tMed?.toDoubleOrNull(),
-                        apparentTemperature = it.utci?.toDoubleOrNull()
+                        feelsLike = it.utci?.toDoubleOrNull()
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = if (it.probabilidadePrecipita != "-99.0") {
