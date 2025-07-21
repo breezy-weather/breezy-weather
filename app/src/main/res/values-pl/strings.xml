@@ -832,4 +832,7 @@
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="unit_bft_nominative">%s Bft</string>
     <string name="about_update_check_eol">Ta wersja Androida nie jest już wspierana</string>
+    <string name="temperature_normals_deviation">odchylenie</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Odchylenie od średniej maksymalnej temperatury %s dla tej lokalizacji</string>
+    <string name="temperature_normals_deviation_explanation_minimum">Odchylenie od średniej minimalnej temperatury %s dla tej lokalizacji</string>
 </resources>
