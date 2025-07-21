@@ -836,4 +836,7 @@
     <string name="nighttime_short">Nacht</string>
     <string name="settings_appearance_dark_mode_locations_always_enabled">Im hellen Modus Immer aktiviert</string>
     <string name="settings_appearance_dark_mode_locations_disabled">Deaktiviert, aber Standorte sind bei Nacht immer im Darkmode</string>
+    <string name="temperature_normals_deviation">Abweichung</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Abweichung von der %s-Durchschnittsmaximaltemperatur für diesen Ort</string>
+    <string name="temperature_normals_deviation_explanation_minimum">Abweichung von der %s-Durchschnittsminimaltemperatur für diesen Ort</string>
 </resources>
