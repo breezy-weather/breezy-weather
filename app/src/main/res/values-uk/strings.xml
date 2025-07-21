@@ -819,4 +819,7 @@
     <string name="nighttime_short">Ніч</string>
     <string name="settings_appearance_dark_mode_locations_always_enabled">Завжди ввімкнено зі світловим режимом</string>
     <string name="settings_appearance_dark_mode_locations_disabled">Вимкнено, але вночі локації завжди перебувають у темному режимі</string>
+    <string name="temperature_normals_deviation">Відхилення</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Відхилення від середньої максимальної температури %s для цього місця</string>
+    <string name="temperature_normals_deviation_explanation_minimum">Відхилення від середньої мінімальної температури %s для цього місця</string>
 </resources>
