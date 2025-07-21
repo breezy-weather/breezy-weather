@@ -825,4 +825,7 @@
     <string name="settings_appearance_dark_mode_locations_always_enabled">Mindig engedélyezve a világos móddal</string>
     <string name="settings_appearance_dark_mode_locations_disabled">Letiltva, de a helyszínek éjszaka mindig sötét módban vannak</string>
     <string name="air_quality_short">Levegőminőség</string>
+    <string name="temperature_normals_deviation">Eltérés</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Eltérés az erre a helyre vonatkozó %s hónapi átlagos legmagasabb hőmérséklettől</string>
+    <string name="temperature_normals_deviation_explanation_minimum">Eltérés az erre a helyszínre vonatkozó %s hónapi átlagos lrgalacsonyabb hőmérséklettől</string>
 </resources>
