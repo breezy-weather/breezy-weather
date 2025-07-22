@@ -790,4 +790,7 @@
     <string name="air_quality_health_information">Veselības informācija</string>
     <string name="air_quality_pm25_full">Smalko putekļu daļiņas (&lt; %s)</string>
     <string name="air_quality_pm10_full">Ieelpojamās putekļu daļiņas (&lt; %s)</string>
+    <string name="temperature_normals_deviation_explanation_minimum">Novirze no %s vidējās šīs atrašanās vietas mazākās temperatūras</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Novirze no %s vidējās šīs atrašanās vietas lielākās temperatūras</string>
+    <string name="temperature_normals_deviation">Novirze</string>
 </resources>
