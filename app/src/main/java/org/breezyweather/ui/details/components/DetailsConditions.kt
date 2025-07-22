@@ -511,7 +511,7 @@ fun NormalsDepartureLabel(
                             } else {
                                 R.string.temperature_normals_deviation_explanation_minimum
                             },
-                            DateFormatSymbols(context.currentLocale).months[normals!!.month!!]
+                            DateFormatSymbols(context.currentLocale).months[normals!!.month!! - 1]
                         )
                     )
                 }
