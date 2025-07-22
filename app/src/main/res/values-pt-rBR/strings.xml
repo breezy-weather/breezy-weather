@@ -363,7 +363,7 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">Não foi possível abrir as configurações do dispositivo.</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Alguns fabricantes têm restrições adicionais de aplicativos que eliminam os serviços em segundo plano. O site Don’t kill my app! tem informações sobre como corrigir isso.</string>
     <string name="settings_main_cards_other_element_animations_switch">Animações de outros elementos</string>
-    <string name="settings_main_summary">Ordem dos cartões, itens exibidos e animações</string>
+    <string name="settings_main_summary">Ordem dos blocos, itens exibidos e animações</string>
     <string name="settings_widgets_notification_feels_like_switch">Usar sensação como temperatura</string>
     <string name="location_message_reverse_geocoding_failed">A fonte meteorológica não conseguiu encontrar um local correspondente</string>
     <string name="action_undo">Desfazer</string>
@@ -870,4 +870,16 @@
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="unit_bft_nominative">força %s</string>
     <string name="about_update_check_eol">Esta versão do Android não é mais compatível</string>
+    <string name="air_quality_short">Qualidade do ar</string>
+    <string name="ephemeris_sun">Sol</string>
+    <string name="ephemeris_moon">Lua</string>
+    <string name="ephemeris_polar_day">Dia Polar</string>
+    <string name="ephemeris_polar_night">Noite Polar</string>
+    <string name="clock">Relógio</string>
+    <string name="temperature_normals_deviation">Divergência</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Divergência da %s temperatura média máxima para este local</string>
+    <string name="precipitation_total_day">Precipitação para o dia</string>
+    <string name="daytime_short">Dia</string>
+    <string name="nighttime_short">Noite</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled">Sempre habilitado com o modo</string>
 </resources>
