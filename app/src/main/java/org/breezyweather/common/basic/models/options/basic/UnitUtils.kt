@@ -172,9 +172,17 @@ object UnitUtils {
                 .toString()
         } else {
             if (precision == 0) {
-                String.format(context.currentLocale, if (showSign) "%+d" else "%d", valueWithoutUnit)
+                String.format(
+                    context.currentLocale,
+                    if (showSign) "%+d" else "%d",
+                    valueWithoutUnit
+                )
             } else {
-                String.format(context.currentLocale, "%+." + precision + "f", valueWithoutUnit)
+                String.format(
+                    context.currentLocale,
+                    if (showSign) "%+." + precision + "f" else "%." + precision + "f",
+                    valueWithoutUnit
+                )
             }
         }
     }
