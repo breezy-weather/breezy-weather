@@ -1099,7 +1099,7 @@ class RefreshHelper @Inject constructor(
                 } else {
                     if (location.weather!!.normals?.month == null) return false
                     val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
-                    return location.weather!!.normals!!.month == cal[Calendar.MONTH]
+                    return location.weather!!.normals!!.month == cal[Calendar.MONTH] + 1
                 }
             }
             else -> {
