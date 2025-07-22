@@ -486,7 +486,7 @@ internal fun getNormals(location: Location, normalsResult: MfNormalsResult): Nor
     val normalsStats = normalsResult.properties?.stats?.getOrNull(currentMonth)
     return if (normalsStats != null) {
         Normals(
-            month = currentMonth,
+            month = currentMonth + 1,
             daytimeTemperature = normalsStats.tMax,
             nighttimeTemperature = normalsStats.tMin
         )

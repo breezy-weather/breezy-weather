@@ -337,7 +337,7 @@ class AccuService @Inject constructor(
                     accuClimoResult.Normals?.Temperatures != null
                 ) {
                     Normals(
-                        month = cal[Calendar.MONTH],
+                        month = cal[Calendar.MONTH] + 1,
                         daytimeTemperature = accuClimoResult.Normals.Temperatures.Maximum.Metric?.Value,
                         nighttimeTemperature = accuClimoResult.Normals.Temperatures.Minimum.Metric?.Value
                     )

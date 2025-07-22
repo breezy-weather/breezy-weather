@@ -386,7 +386,7 @@ fun DailyPagerContent(
         when (selectedChart) {
             DetailScreen.TAG_CONDITIONS, DetailScreen.TAG_FEELS_LIKE -> {
                 val cal = daily.date.toCalendarWithTimeZone(location.javaTimeZone)
-                val thisDayNormals = if (location.weather?.normals?.month == cal[Calendar.MONTH]) {
+                val thisDayNormals = if (location.weather?.normals?.month == cal[Calendar.MONTH] + 1) {
                     location.weather!!.normals
                 } else {
                     null
