@@ -177,7 +177,7 @@ fun DaytimeLabel(
 fun NighttimeLabelWithInfo(
     modifier: Modifier = Modifier,
 ) {
-    val tooltipState = rememberTooltipState()
+    val tooltipState = rememberTooltipState(isPersistent = true)
     val coroutineScope = rememberCoroutineScope()
 
     TooltipBox(

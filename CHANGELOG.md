@@ -9,6 +9,7 @@
 - Homepage - Fix tapping daily/hourly feels like forecast opening conditions with feels like toggle off
 - Details - Display normals as deviation directly under daytime/nighttime temperature
 - Improve display of precipitation details
+- Details - Make tooltips persistent until you click outside the bounds of the tooltip
 
 
 # Version 6.0.2-alpha (2025-07-19)

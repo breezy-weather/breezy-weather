@@ -136,7 +136,7 @@ fun DetailsConditions(
             .associate { it.date.time to it.precipitationProbability!!.total!! }
             .toImmutableMap()
     }
-    val tooltipState = rememberTooltipState()
+    val tooltipState = rememberTooltipState(isPersistent = true)
     val coroutineScope = rememberCoroutineScope()
 
     LazyColumn(
@@ -493,7 +493,7 @@ fun NormalsDepartureLabel(
 
     if (halfDayTemperature != null && normal != null) {
         val context = LocalContext.current
-        val tooltipState = rememberTooltipState()
+        val tooltipState = rememberTooltipState(isPersistent = true)
         val coroutineScope = rememberCoroutineScope()
         val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
         val departure = remember(halfDayTemperature, normal) {
