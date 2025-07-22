@@ -87,6 +87,7 @@ import org.breezyweather.common.extensions.toCalendar
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toTimezoneSpecificHour
 import org.breezyweather.common.source.PollenIndexSource
+import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.insets.BWCenterAlignedTopAppBar
 import org.breezyweather.ui.details.components.DetailsAirQuality
@@ -401,7 +402,17 @@ fun DailyPagerContent(
             }
             DetailScreen.TAG_PRECIPITATION -> DetailsPrecipitation(location, hourlyList, daily)
             DetailScreen.TAG_WIND -> DetailsWind(location, hourlyList, daily)
-            DetailScreen.TAG_AIR_QUALITY -> DetailsAirQuality(location, hourlyList, daily)
+            DetailScreen.TAG_AIR_QUALITY -> {
+                DetailsAirQuality(
+                    location,
+                    hourlyList,
+                    daily,
+                    (if (daily.isToday(location)) location.weather!!.current?.airQuality else null),
+                    location.weather!!.base.currentUpdateTime
+                        ?: location.weather!!.base.forecastUpdateTime
+                        ?: location.weather!!.base.refreshTime
+                )
+            }
             DetailScreen.TAG_POLLEN -> DetailsPollen(daily.pollen, pollenIndexSource)
             DetailScreen.TAG_UV_INDEX -> DetailsUV(location, hourlyList, daily)
             DetailScreen.TAG_HUMIDITY -> DetailsHumidity(location, hourlyList, daily.date)

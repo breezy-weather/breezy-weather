@@ -88,6 +88,7 @@ import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.charts.SpecificVerticalAxisItemPlacer
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
+import java.util.Date
 import kotlin.math.max
 import kotlin.math.roundToInt
 
@@ -106,6 +107,8 @@ fun DetailsAirQuality(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
+    currentAirQuality: AirQuality?,
+    currentTime: Date?,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -115,10 +118,19 @@ fun DetailsAirQuality(
             .associate { it.date.time to it.airQuality!! }
             .toImmutableMap()
     }
+    val selectedAirQuality = remember(daily, currentAirQuality) {
+        if (daily.airQuality?.isValid == true) {
+            daily.airQuality
+        } else if (currentAirQuality?.isValid == true) {
+            currentAirQuality
+        } else {
+            null
+        }
+    }
 
-    val detailedPollutants = remember(daily) {
+    val detailedPollutants = remember(selectedAirQuality) {
         buildList {
-            daily.airQuality?.let { airQuality ->
+            selectedAirQuality?.let { airQuality ->
                 // We use air quality index for the progress bar instead of concentration for more realistic bar
                 listOf(PollutantIndex.PM25, PollutantIndex.PM10, PollutantIndex.O3, PollutantIndex.NO2)
                     .forEach { pollutantIndex ->
@@ -173,9 +185,9 @@ fun DetailsAirQuality(
         )
     ) {
         item {
-            AirQualityChart(location, mappedValues, daily)
+            AirQualityChart(location, mappedValues, daily, currentAirQuality, currentTime)
         }
-        if (daily.airQuality?.isValid == true) {
+        selectedAirQuality?.let { airQuality ->
             item {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
             }
@@ -183,7 +195,7 @@ fun DetailsAirQuality(
                 DetailsSectionHeader(stringResource(R.string.air_quality_health_information))
             }
             item {
-                DetailsCardText(daily.airQuality!!.getDescription(context) ?: "")
+                DetailsCardText(airQuality.getDescription(context) ?: "")
             }
             primaryPollutant?.let {
                 item {
@@ -237,12 +249,13 @@ fun DetailsAirQuality(
 @Composable
 private fun AirQualitySummary(
     dayAirQuality: AirQuality,
+    label: String,
 ) {
     AirQualityItem(
         airQuality = dayAirQuality,
         header = {
             TextFixedHeight(
-                text = stringResource(R.string.air_quality_average),
+                text = label,
                 style = MaterialTheme.typography.labelMedium
             )
         }
@@ -299,6 +312,8 @@ private fun AirQualityChart(
     location: Location,
     mappedValues: ImmutableMap<Long, AirQuality>,
     daily: Daily,
+    currentAirQuality: AirQuality?,
+    currentTime: Date?,
 ) {
     val context = LocalContext.current
 
@@ -329,7 +344,23 @@ private fun AirQualityChart(
                 airQuality = airQuality
             )
         }
-    } ?: daily.airQuality?.let { if (it.isValid) AirQualitySummary(it) }
+    } ?: daily.airQuality?.let {
+        if (it.isValid) {
+            AirQualitySummary(
+                it,
+                stringResource(R.string.air_quality_average)
+            )
+        } else {
+            null
+        }
+    } ?: currentAirQuality?.let {
+        if (it.isValid) {
+            AirQualitySummary(
+                it,
+                currentTime?.getFormattedTime(location, context, context.is12Hour) ?: ""
+            )
+        }
+    }
 
     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
 
