@@ -357,7 +357,7 @@
     <string name="air_quality_level_1">Vynikající</string>
     <string name="air_quality_level_2_description">Kvalita ovzduší je obecně přijatelná pro většinu jedinců. Citlivé skupiny lidí ovšem mohou pociťovat mírné až střední symptomy při dlouhodobé expozici.</string>
     <string name="action_share">Sdílet</string>
-    <string name="settings_main_cards_fade_in_switch">Karty se ztratí</string>
+    <string name="settings_main_cards_fade_in_switch">Animace bloků</string>
     <string name="settings_main_cards_other_element_animations_switch">Další animace prvků</string>
     <string name="settings_widgets_configure_widget_summary">Konfigurace tohoto widgetu</string>
     <string name="settings_debug">Ladění</string>
@@ -444,9 +444,9 @@
     <string name="settings_background_updates">Aktualizace na pozadí</string>
     <string name="settings_background_updates_summary">Obnovovací frekvence, řešení potíží</string>
     <string name="settings_background_updates_battery_optimization">Vypnout optimalizaci baterie</string>
-    <string name="settings_main_summary">Pořadí karet, zobrazené položky, animace</string>
+    <string name="settings_main_summary">Pořadí bloků, zobrazené položky, animace</string>
     <string name="settings_main_section_displayed_data">Zobrazené údaje</string>
-    <string name="settings_main_cards_title">Karty</string>
+    <string name="settings_main_cards_title">Bloky</string>
     <string name="settings_main_daily_trends_title">Denní trendy</string>
     <string name="settings_main_header_details_title">Podrobnosti v záhlaví</string>
     <string name="settings_main_section_options">Možnosti</string>
@@ -837,4 +837,7 @@
     <string name="nighttime_short">Noc</string>
     <string name="settings_appearance_dark_mode_locations_always_enabled">Ve světlém režimu vždy povoleno</string>
     <string name="settings_appearance_dark_mode_locations_disabled">Zakázáno, ale umístění jsou během noci vždy v tmavém režimu</string>
+    <string name="temperature_normals_deviation">Odchylka</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Odchylka od průměrné maximální teploty v měsíci %s v tomto umístění</string>
+    <string name="temperature_normals_deviation_explanation_minimum">Odchylka od průměrné minimální teploty v měsíci %s v tomto umístění</string>
 </resources>
