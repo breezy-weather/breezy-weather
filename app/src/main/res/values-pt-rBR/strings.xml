@@ -332,7 +332,7 @@
     <string name="wind_direction_variable">Variável</string>
     <string name="action_location_list">Lista de locais</string>
     <string name="message_network_unavailable">Rede indisponível</string>
-    <string name="settings_main_cards_title">Cartões</string>
+    <string name="settings_main_cards_title">Blocos</string>
     <string name="settings_main">Tela principal</string>
     <string name="settings_main_section_options">Opções</string>
     <string name="settings_notifications_precipitations_title">Notificações de precipitações</string>
