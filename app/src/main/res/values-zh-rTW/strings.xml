@@ -353,7 +353,7 @@
     <string name="action_help_me_choose">幫我選擇</string>
     <string name="message_source_not_installed_error_title">資料來源不再可用</string>
     <string name="widget_style_pixel">Pixel</string>
-    <string name="settings_main_summary">卡片順序、顯示項目、動畫</string>
+    <string name="settings_main_summary">區塊順序、顯示項目、動畫</string>
     <string name="unit_kelvin">K</string>
     <string name="about_source_code">原始碼</string>
     <string name="common_weather_text_clear_sky">天晴</string>
@@ -486,14 +486,14 @@
     <string name="settings_notifications">通知</string>
     <string name="settings_main_cards_other_element_animations_switch">其他動畫</string>
     <string name="settings_main_background_animation_disabled">停用</string>
-    <string name="settings_main_cards_fade_in_switch">卡片淡入</string>
+    <string name="settings_main_cards_fade_in_switch">區塊淡入</string>
     <string name="settings_notifications_summary">首要位置的天氣警特報、降水或預報通知</string>
     <string name="settings_notifications_alerts_title">劇烈天氣警特報通知</string>
     <string name="settings_notifications_forecast_today_title">當日天氣預報通知</string>
     <string name="settings_notifications_precipitations_title">降水通知</string>
     <string name="action_location_list">位置清單</string>
     <string name="action_more">查看更多</string>
-    <string name="settings_main_cards_title">卡片</string>
+    <string name="settings_main_cards_title">區塊</string>
     <string name="settings_main_daily_trends_title">逐日趨勢</string>
     <string name="settings_background_updates_battery_optimization_summary">當您未收到通知或小工具未重新整理時，首先嘗試這個選項。</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">無法開啟裝置設定。</string>
@@ -905,4 +905,7 @@
     <string name="nighttime_short">晚上</string>
     <string name="settings_appearance_dark_mode_locations_always_enabled">總是啟動淺色模式</string>
     <string name="settings_appearance_dark_mode_locations_disabled">停用，在晚上總是使用深色模式</string>
+    <string name="temperature_normals_deviation">偏差</string>
+    <string name="temperature_normals_deviation_explanation_maximum">與此位置之%s平均最高氣溫偏差</string>
+    <string name="temperature_normals_deviation_explanation_minimum">與此位置之%s平均最低氣溫偏差</string>
 </resources>
