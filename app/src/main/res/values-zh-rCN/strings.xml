@@ -908,4 +908,7 @@
     <string name="nighttime_short">晚间</string>
     <string name="settings_appearance_dark_mode_locations_always_enabled">始终启用浅色模式</string>
     <string name="settings_appearance_dark_mode_locations_disabled">停用，但在夜间地点始终始终处在深色模式下</string>
+    <string name="temperature_normals_deviation">偏差</string>
+    <string name="temperature_normals_deviation_explanation_maximum">偏离此位置的 %s 最高气温均值</string>
+    <string name="temperature_normals_deviation_explanation_minimum">偏离此位置的 %s 最低气温均值</string>
 </resources>
