@@ -19,6 +19,7 @@ package org.breezyweather.ui.main.adapters.main
 import android.animation.Animator
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
@@ -50,6 +51,7 @@ import org.breezyweather.ui.main.adapters.main.holder.WindViewHolder
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherView
 import java.util.Calendar
+import java.util.Collections
 import java.util.Date
 
 class MainAdapter(
@@ -269,7 +271,7 @@ class MainAdapter(
         }
     }
 
-    /*fun isDraggable(position: Int): Boolean {
+    fun isDraggable(position: Int): Boolean {
         return mViewTypeList[position] !in arrayOf(
             ViewType.HEADER,
             ViewType.ALERT,
@@ -331,7 +333,7 @@ class MainAdapter(
         }
 
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {}
-    })*/
+    })
 
     companion object {
         private fun getViewType(cardDisplay: CardDisplay): Int = when (cardDisplay) {

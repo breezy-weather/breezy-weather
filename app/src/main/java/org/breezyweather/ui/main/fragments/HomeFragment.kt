@@ -250,10 +250,9 @@ class HomeFragment : MainModuleFragment() {
             resourceProvider!!,
             listAnimationEnabled,
             itemAnimationEnabled
-        )
-        /*.apply {
+        ).apply {
             itemTouchHelper.attachToRecyclerView(binding.recyclerView)
-        }*/
+        }
 
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = MainLayoutManager(requireContext()).apply {
