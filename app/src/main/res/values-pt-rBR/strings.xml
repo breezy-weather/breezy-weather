@@ -377,7 +377,7 @@
     <string name="settings_main_section_displayed_data">Dados exibidos</string>
     <string name="settings_widgets_notification_persistent_switch">Persistente</string>
     <string name="settings_location_access_switch_title">Acesso à localização</string>
-    <string name="settings_main_cards_fade_in_switch">Cartões se desvanecem</string>
+    <string name="settings_main_cards_fade_in_switch">Blocos aparecem gradualmente</string>
     <string name="settings_debug_dump_crash_logs_title">Compartilhar registros de falhas</string>
     <string name="air_quality_level_5">Muito insalubre</string>
     <string name="weather_source_accu_preference_days_1">1 dia</string>
@@ -877,9 +877,16 @@
     <string name="ephemeris_polar_night">Noite Polar</string>
     <string name="clock">Relógio</string>
     <string name="temperature_normals_deviation">Divergência</string>
-    <string name="temperature_normals_deviation_explanation_maximum">Divergência da %s temperatura média máxima para este local</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Desvio da temperatura média máxima de %s para este local</string>
     <string name="precipitation_total_day">Precipitação para o dia</string>
     <string name="daytime_short">Dia</string>
     <string name="nighttime_short">Noite</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">Sempre habilitado com o modo</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled">Sempre habilitado com o modo claro</string>
+    <string name="temperature_normals_deviation_explanation_minimum">Desvio da temperatura mínima média de %s para este local</string>
+    <string name="precipitation_total_night">Precipitação durante a noite</string>
+    <string name="precipitation_rain_total_day">Chuva durante o dia</string>
+    <string name="precipitation_rain_total_night">Chuva durante a noite</string>
+    <string name="precipitation_snow_total_day">Neve durante o dia</string>
+    <string name="precipitation_snow_total_night">Neve durante a noite</string>
+    <string name="settings_appearance_dark_mode_locations_disabled">Desabilitado, mas os locais estão sempre no modo escuro durante a noite</string>
 </resources>
