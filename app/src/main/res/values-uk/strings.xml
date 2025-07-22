@@ -342,9 +342,9 @@
     <string name="settings_icon_packs_weather_icon_dark">Темний значок</string>
     <string name="settings_icon_packs_get_more">Отримати більше</string>
     <string name="settings_units_summary">Температура, опади, відстань, швидкість та тиск</string>
-    <string name="settings_main_summary">Порядок карток, відображення елементів та анімації</string>
+    <string name="settings_main_summary">Порядок блоків, відображення елементів, анімація</string>
     <string name="settings_main_section_displayed_data">Відображувані дані</string>
-    <string name="settings_main_cards_title">Картки</string>
+    <string name="settings_main_cards_title">Блоки</string>
     <string name="settings_main_daily_trends_title">Щоденна динаміка</string>
     <string name="settings_main_header_details_title">Подробиці в заголовку</string>
     <string name="settings_main_section_options">Опції</string>
@@ -373,7 +373,7 @@
     <string name="settings_main_background_animation_title">Анімація тла</string>
     <string name="settings_main_background_animation_enabled">Увімкнено</string>
     <string name="settings_main_gravity_sensor_switch">Датник сили тяжіння</string>
-    <string name="settings_main_cards_fade_in_switch">Поява карток</string>
+    <string name="settings_main_cards_fade_in_switch">Блоки зникають</string>
     <string name="settings_main_cards_other_element_animations_switch">Інші анімації елементів</string>
     <string name="settings_notifications_summary">Сповіщення про погодні попередження, опади або прогноз для першого розташування</string>
     <string name="settings_notifications_forecast_today_title">Сповіщення про прогноз на день</string>
