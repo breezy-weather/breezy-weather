@@ -282,7 +282,7 @@ class MainAdapter(
         val toCard = getCardDisplay(getItemViewType(toPosition))
 
         if (fromCard == null || toCard == null) {
-            // LogHelper.log(msg = "[Homepage Drag & Drop] No matching cards")
+            // LogHelper.log(msg = "[Main screen Drag & Drop] No matching cards")
             return false
         }
 
@@ -291,16 +291,16 @@ class MainAdapter(
         val toCardPosition = cardDisplayList.indexOf(toCard)
 
         if (fromCardPosition == -1 || toCardPosition == -1) {
-            // LogHelper.log(msg = "[Homepage Drag & Drop] Can’t find one of the two cards positions")
+            // LogHelper.log(msg = "[Main screen Drag & Drop] Can’t find one of the two cards positions")
             return false
         }
 
         Collections.swap(mViewTypeList, fromPosition, toPosition)
         notifyItemMoved(fromPosition, toPosition)
 
-        // LogHelper.log(msg = "[Homepage Drag & Drop] Before: ${CardDisplay.toValue(cardDisplayList)}")
+        // LogHelper.log(msg = "[Main screen Drag & Drop] Before: ${CardDisplay.toValue(cardDisplayList)}")
         Collections.swap(cardDisplayList, fromCardPosition, toCardPosition)
-        // LogHelper.log(msg = "[Homepage Drag & Drop] After: ${CardDisplay.toValue(cardDisplayList)}")
+        // LogHelper.log(msg = "[Main screen Drag & Drop] After: ${CardDisplay.toValue(cardDisplayList)}")
         SettingsManager.getInstance(mActivity).cardDisplayList = cardDisplayList
 
         return true

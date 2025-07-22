@@ -129,7 +129,7 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
 # Help
 
 * [Frequently Asked Questions / Help](HELP.md)
-* [Homepage explanations](docs/HOMEPAGE.md)
+* [Main screen explanations](docs/HOMEPAGE.md)
 * [Weather sources comparison](docs/SOURCES.md)
 
 

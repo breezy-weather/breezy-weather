@@ -40,7 +40,7 @@ body:
     id: weather-source
     attributes:
       label: Weather source used
-      description: You can find it on bottom of homepage, or in location list.
+      description: You can find it on bottom of main screen, or in location list.
       placeholder: |
         Example: "AccuWeather"
     validations:

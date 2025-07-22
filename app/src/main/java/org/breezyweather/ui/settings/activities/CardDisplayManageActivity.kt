@@ -189,8 +189,8 @@ class CardDisplayManageActivity : BreezyActivity() {
         val newList = mCardDisplayAdapter.cardDisplayList
         if (oldList != newList) {
             SettingsManager.getInstance(this).cardDisplayList = newList
-            // We need to do this manually, because the setter above can’t do it, or the homepage would reload
-            // on homepage drap & drops
+            // We need to do this manually, because the setter above can’t do it, or the main screen would reload
+            // on main screen drap & drops
             EventBus
                 .instance
                 .with(SettingsChangedMessage::class.java)

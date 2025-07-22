@@ -1,8 +1,8 @@
-# Homepage
+# Main screen
 
-This page intends to give some explanations to how features displayed in the homepage of Breezy Weather (version 6.0.2 and later) work and how they should be interpreted. Position of elements are described for a Left-to-Right display. [Click here to access homepage documentation of versions before 6.0.2](https://github.com/breezy-weather/breezy-weather/blob/v6.0.0-alpha/docs/HOMEPAGE.md).
+This page intends to give some explanations to how features displayed in the main screen of Breezy Weather (version 6.0.2 and later) work and how they should be interpreted. Position of elements are described for a Left-to-Right display. [Click here to access main screen documentation of versions before 6.0.2](https://github.com/breezy-weather/breezy-weather/blob/v6.0.0-alpha/docs/HOMEPAGE.md).
 
-Homepage shows the weather for the selected location, with an optional drawer showing location list on large display devices.
+Main screen shows the weather for the selected location, with an optional drawer showing location list on large display devices.
 
 
 ## Glossary

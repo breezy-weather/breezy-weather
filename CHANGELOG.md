@@ -1,20 +1,20 @@
 # Version 6.0.3-alpha (not yet released)
 
 **New features**
-- Redesign of homepage in Material 3 Expressive
-- New information previously not shown on homepage: current wind gusts, clock (block not enabled by default)
+- Redesign of main screen in Material 3 Expressive
+- New information previously not shown on main screen: current wind gusts, clock (block not enabled by default)
 - Redesign background animations/colors to better adapt to the selected dark mode and avoid saturated colors with bad contrast
 
 **Removed features**
-- Homepage - Details in header
-- Homepage - Details block
+- Main screen - Details in header
+- Main screen - Details block
 - Custom weather and time per location
 - Details of each different “feels like”. Will now just display the source-preferred feels like value, or if not available, our own computed feels like
 
 **Improvements and fixes**
 - Fix nowcasting chart not honoring precipitation unit override
 - Details - Fix feels like toggle not remembered through days
-- Homepage - Fix tapping daily/hourly feels like forecast opening conditions with feels like toggle off
+- Main screen - Fix tapping daily/hourly feels like forecast opening conditions with feels like toggle off
 - Details - Display normals as deviation directly under daytime/nighttime temperature
 - Improve display of precipitation details
 - Details - Make tooltips persistent until you click outside the bounds of the tooltip
@@ -26,7 +26,7 @@
 **Improvements and fixes**
 - Fix crash in some cases on old Android devices
 - Fix notification icons not showing
-- Make homepage top icons feel more intuitive
+- Make main screen top icons feel more intuitive
 
 **Weather sources**
 - [Météo-France] Better formatting for warnings
@@ -47,13 +47,13 @@
 - Details page - Workaround missing top padding in the FAB menu for small device heights (@min7-i)
 - Details page - Conditions - move long weather condition description to a dedicated Daily summary card (especially noticeable with AccuWeather source)
 - Details page - Sun & Moon - Fix glitched charts (@chunshek)
-- Homepage - Attempt to make horizontal swipes in daily/hourly trends less prone to switch to prev/next locations
-- Homepage - Move “Settings” icon to location list to be able to display icons on homepage without a submenu.
-- Homepage - Better animation for homepage current temperature when using Fahrenheit or Kelvin
-- Homepage - Use Material 3 Expressive buttons for forecast buttons
-- Homepage - Fix sun & moon direction in RtL languages
-- Homepage - Fix air quality direction in RtL languages
-- Homepage - Fix missing hourly visibility in some cases
+- Main screen - Attempt to make horizontal swipes in daily/hourly trends less prone to switch to prev/next locations
+- Main screen - Move “Settings” icon to location list to be able to display icons on main screen without a submenu.
+- Main screen - Better animation for main screen current temperature when using Fahrenheit or Kelvin
+- Main screen - Use Material 3 Expressive buttons for forecast buttons
+- Main screen - Fix sun & moon direction in RtL languages
+- Main screen - Fix air quality direction in RtL languages
+- Main screen - Fix missing hourly visibility in some cases
 - Settings - Material 3 Expressive theme
 - Settings - Add shortcuts to daily/trend configuration from cards configuration
 - Fix tint of “Open in another app” icon in landscape mode
@@ -76,13 +76,13 @@
 - Past hourly forecast can now be viewed in the details page
 
 **Removed features**
-- Homepage hourly forecast card will now only show the next 24 hours, as the rest of the forecast can now be seen with more readability in the daily details page.
+- Main screen hourly forecast card will now only show the next 24 hours, as the rest of the forecast can now be seen with more readability in the daily details page.
 - The dedicated pollen page accessed when tapping on the pollen card now no longer exists, and was replaced by the pollen page in daily details.
-- Tapping on the homepage air quality card no longer show more details, but open the air quality page in daily details instead.
-- Tapping on an hourly item in the homepage hourly forecast no longer opens a dialog, but now opens the day details page of the currently selected type of data
+- Tapping on the main screen air quality card no longer show more details, but open the air quality page in daily details instead.
+- Tapping on an hourly item in the main screen hourly forecast no longer opens a dialog, but now opens the day details page of the currently selected type of data
 
 **Improvements and fixes**
-- Redesigned homepage footer to support links to the sources, a link to the privacy policy, and icons for the sources for which it is mandatory
+- Redesigned main screen footer to support links to the sources, a link to the privacy policy, and icons for the sources for which it is mandatory
 - Fix crash when using “Open in another app” when no app on the phone is able to open it
 
 **Weather sources**
@@ -1415,8 +1415,8 @@ Background updates logic was entirely rewritten in this version.
 # Version 4.0.1-alpha (2023-06-24)
 
 - Translation available from Weblate
-- Make dividers thinner on homepage
-- Fix vertical alignment of refresh time on homepage
+- Make dividers thinner on main screen
+- Fix vertical alignment of refresh time on main screen
 - Fix monochrome icon
 - Optimize new icons
 - Require a restart when changing "Background animation" or "Gravity sensor" settings
@@ -1427,7 +1427,7 @@ Initial version of Breezy Weather fork
 
 - New providers (Open-Meteo, MET Norway)
 - Additional data for other providers
-- New header design for homepage
+- New header design for main screen
 - More Material 3 components
 - Add hourly air quality
 - Add Plume AQI scale for air quality widget
