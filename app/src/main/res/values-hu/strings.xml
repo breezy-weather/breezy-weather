@@ -428,8 +428,8 @@
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_h">h</string>
     <string name="unit_km">km</string>
-    <string name="settings_main_cards_title">Kártyák</string>
-    <string name="settings_main_cards_fade_in_switch">Kártyák beúsztatása</string>
+    <string name="settings_main_cards_title">Blokkok</string>
+    <string name="settings_main_cards_fade_in_switch">Blokkok beúsztatása</string>
     <string name="settings_notifications_forecast_tomorrow_title">Értesítés a másnapi előrejelzésről</string>
     <string name="settings_widgets_section_widgets_in_use">Használt modulok</string>
     <string name="notification_style_cities">Városok</string>
@@ -472,7 +472,7 @@
     <string name="unit_mmph">mm/h</string>
     <string name="unit_h_voice">óra</string>
     <string name="about_contributors">Közreműködők</string>
-    <string name="settings_main_summary">Kártyák sorrendje, megjelenített elemek, animációk</string>
+    <string name="settings_main_summary">Blokkok sorrendje, megjelenített elemek, animációk</string>
     <string name="settings_main_hourly_trends_title">Óránkénti trendek</string>
     <string name="settings_main_header_details_title">Fejlécben megjelenő részletek</string>
     <string name="settings_notifications_precipitations_title">Értesítések a csapadékokról</string>
