@@ -449,9 +449,9 @@
     <string name="settings_units_speed">風速單位</string>
     <string name="settings_units_pressure">氣壓單位</string>
     <string name="settings_main">主畫面</string>
-    <string name="settings_main_summary">卡片順序、顯示項目、動畫</string>
+    <string name="settings_main_summary">區塊順序、顯示項目、動畫</string>
     <string name="settings_main_section_displayed_data">顯示資料</string>
-    <string name="settings_main_cards_title">卡片</string>
+    <string name="settings_main_cards_title">區塊</string>
     <string name="settings_main_daily_trends_title">每日趨勢</string>
     <string name="settings_main_hourly_trends_title">每小時趨勢</string>
     <string name="settings_main_header_details_title">標題中的詳細資料</string>
@@ -461,7 +461,7 @@
     <string name="settings_main_background_animation_enabled">啟用</string>
     <string name="settings_main_background_animation_disabled">停用</string>
     <string name="settings_main_gravity_sensor_switch">重力感應</string>
-    <string name="settings_main_cards_fade_in_switch">卡片淡入</string>
+    <string name="settings_main_cards_fade_in_switch">區塊淡入</string>
     <string name="settings_main_cards_other_element_animations_switch">其他動畫</string>
     <string name="settings_notifications">通知</string>
     <string name="settings_notifications_app_updates_check">應用程式更新通知</string>
@@ -896,4 +896,7 @@
     <string name="nighttime_short">晚間</string>
     <string name="settings_appearance_dark_mode_locations_always_enabled">總是啟用淺色模式</string>
     <string name="settings_appearance_dark_mode_locations_disabled">停用，在晚上總是使用深色模式</string>
+    <string name="temperature_normals_deviation">偏差</string>
+    <string name="temperature_normals_deviation_explanation_maximum">與此位置之%s平均最高氣溫偏差</string>
+    <string name="temperature_normals_deviation_explanation_minimum">與此位置之%s平均最低氣溫偏差</string>
 </resources>
