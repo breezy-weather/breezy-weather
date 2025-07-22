@@ -35,7 +35,7 @@ You can omit any of the following properties to let the user configure their own
 4) Update versionCode and versionName in `app/build.gradle`.
 5) Write changelog in `CHANGELOG.md`.
 6) Commit all changes.
-7) Tag version beginning with a `v` (example: `git tag v6.0.3-alpha -m "Version 6.0.3"`).
+7) Tag version beginning with a `v` (example: `git tag v6.0.4-alpha -m "Version 6.0.4"`).
 8) Push with `git push --tags`
 9) GitHub action will run and sign the release.
 10) Update GitHub release notes draft and publish.

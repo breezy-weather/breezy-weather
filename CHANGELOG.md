@@ -1,4 +1,4 @@
-# Version 6.0.3-alpha (not yet released)
+# Version 6.0.3-alpha (2025-07-22)
 
 **New features**
 - Redesign of main screen in Material 3 Expressive
@@ -19,6 +19,9 @@
 - Improve display of precipitation details
 - Details - Make tooltips persistent until you click outside the bounds of the tooltip
 - Details - Show current air quality on Today page when no daily air quality is available
+
+**Translations**
+- Translations updated
 
 
 # Version 6.0.2-alpha (2025-07-19)
