@@ -8,7 +8,9 @@
     android:background="@android:color/transparent"
     android:foreground="@drawable/selectable_item_background"
     android:gravity="bottom"
-    android:padding="@dimen/normal_margin"
+    android:paddingStart="@dimen/normal_margin"
+    android:paddingEnd="@dimen/normal_margin"
+    android:paddingBottom="@dimen/normal_margin"
     tools:ignore="UnusedAttribute">
 
     <TextView
@@ -17,7 +19,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="-8dp"
         android:textFontWeight="300"
         android:textAppearance="?attr/textAppearanceTitleLarge"
         android:textColor="?attr/colorSurfaceInverse"
