@@ -349,7 +349,10 @@
                         android:id="@+id/activity_widget_config_subtitle_inputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/normal_margin">
+                        android:padding="@dimen/normal_margin"
+                        app:endIconMode="custom"
+                        app:endIconDrawable="@drawable/ic_question"
+                        app:endIconContentDescription="@string/widget_custom_subtitle_help_content_description">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/activity_widget_config_subtitle_inputter"
@@ -365,22 +368,6 @@
                             tools:ignore="Autofill" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
-                    <TextView
-                        android:text="@string/widget_custom_subtitle_explanation"
-                        android:layout_marginStart="@dimen/normal_margin"
-                        android:layout_marginEnd="@dimen/normal_margin"
-                        android:layout_marginBottom="@dimen/normal_margin"
-                        style="@style/content_text" />
-
-                    <TextView
-                        android:id="@+id/activity_widget_config_custom_subtitle_keywords"
-                        android:layout_marginStart="@dimen/normal_margin"
-                        android:layout_marginEnd="@dimen/normal_margin"
-                        android:layout_marginBottom="@dimen/normal_margin"
-                        android:textIsSelectable="true"
-                        style="@style/content_text" />
-
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>

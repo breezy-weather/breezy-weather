@@ -52,6 +52,7 @@ import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.slider.Slider
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -496,8 +497,6 @@ abstract class AbstractWidgetConfigActivity : BreezyActivity() {
             })
             setText(if (isCustomSubtitle) subtitleDataValueNow else "")
         }
-        val subtitleCustomKeywords = findViewById<TextView>(R.id.activity_widget_config_custom_subtitle_keywords)
-        subtitleCustomKeywords.text = this.subtitleCustomKeywords
         val scrollContainer = findViewById<LinearLayout>(R.id.activity_widget_config_scrollContainer)
         scrollContainer.post {
             scrollContainer.setPaddingRelative(0, 0, 0, mSubtitleInputLayout!!.measuredHeight)
@@ -509,6 +508,15 @@ abstract class AbstractWidgetConfigActivity : BreezyActivity() {
         bottomSheet.post {
             mBottomSheetBehavior!!.peekHeight = mSubtitleInputLayout!!.measuredHeight
             setBottomSheetState(isCustomSubtitle)
+        }
+        val subtitleInputLayout = findViewById<TextInputLayout>(R.id.activity_widget_config_subtitle_inputLayout)
+        subtitleInputLayout.setEndIconOnClickListener {
+            val message = getString(R.string.widget_custom_subtitle_explanation) + subtitleCustomKeywords
+            MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.widget_custom_subtitle_alert_box_title)
+                .setMessage(message)
+                .setPositiveButton(R.string.action_done, null)
+                .show()
         }
     }
 
