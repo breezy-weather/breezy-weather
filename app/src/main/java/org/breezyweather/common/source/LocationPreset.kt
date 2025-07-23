@@ -78,7 +78,7 @@ enum class LocationPreset(
         pollen = "openmeteo",
         minutely = "openmeteo",
         alert = "nws",
-        normals = "accu"
+        normals = "ncei"
     ),
 
     // Europe
