@@ -1316,4 +1316,6 @@
     <string name="dot_separator" translatable="false">\u0020•\u0020</string>
     <string name="parenthesis" translatable="false">%1$s (%2$s)</string>
     <string name="comma_separator" translatable="false">,\u0020</string>
+    <string name="widget_custom_subtitle_help_content_description">Show custom subtitle keywords documentation</string>
+    <string name="widget_custom_subtitle_alert_box_title">Custom Subtitle Documentation</string>
 </resources>
