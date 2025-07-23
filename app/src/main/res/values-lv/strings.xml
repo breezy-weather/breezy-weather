@@ -162,7 +162,7 @@
     <string name="settings_appearance_icon_pack_title">Ikonu pakotne</string>
     <string name="settings_icon_packs_title">Ikonu pakotnes</string>
     <string name="settings_appearance_dark_mode_title">Tumšais izskats</string>
-    <string name="settings_main_cards_title">Kartītes</string>
+    <string name="settings_main_cards_title">Bloki</string>
     <string name="settings_main_daily_trends_title">Dienu prognozes</string>
     <string name="settings_widgets_live_wallpaper_summary">Iestatīt laikapstākļu animāciju kā ekrāntapeti</string>
     <string name="about_privacy_policy">Privātuma politika</string>
@@ -209,7 +209,7 @@
     <string name="settings_units_summary">Temperatūra, nokrišņi, attālums, ātrums, spiediens</string>
     <string name="settings_units_temperature">Temperatūras mērvienība</string>
     <string name="settings_units_precipitation">Nokrišņu mērvienība</string>
-    <string name="settings_main_cards_fade_in_switch">Kartītes izgaist</string>
+    <string name="settings_main_cards_fade_in_switch">Bloki izgaist pēc</string>
     <string name="message_tap_again_to_exit">Jāpiesit vēlreiz, lai izietu</string>
     <string name="widget_day">Dienu</string>
     <string name="widget_text">Teksts</string>
@@ -244,7 +244,7 @@
     <string name="settings_icon_packs_weather_icon_light">Gaišā ikona</string>
     <string name="settings_icon_packs_weather_icon_grey">Pelēka ikona</string>
     <string name="settings_icon_packs_get_more">Iegūt vairāk</string>
-    <string name="settings_main_summary">Kartīšu secība, attēlotie vienumi, animācijas</string>
+    <string name="settings_main_summary">Bloku secība, attēlotie vienumi, animācijas</string>
     <string name="settings_main_section_displayed_data">Attēlojamie dati</string>
     <string name="settings_main_hourly_trends_title">Stundu prognozes</string>
     <string name="settings_main_header_details_title">Informācija galvenē</string>
@@ -793,4 +793,21 @@
     <string name="temperature_normals_deviation_explanation_minimum">Novirze no %s vidējās šīs atrašanās vietas mazākās temperatūras</string>
     <string name="temperature_normals_deviation_explanation_maximum">Novirze no %s vidējās šīs atrašanās vietas lielākās temperatūras</string>
     <string name="temperature_normals_deviation">Novirze</string>
+    <string name="air_quality_pm_sources">Galvenie avoti ir sadegšana (piem., spēkstacijas, iekštelpu apkure, transporta izplūde, meža ugunsgrēki), mehāniskas norises (piem., būvniecība, minerālu putekļi, lauksaimniecība) un bioloģiskas daļiņas (piem., putekšņi, pelējums, baktērijas, vīrusi).</string>
+    <string name="air_quality_so2_sources">Galvenie avoti ir sēru saturošas degvielas sadedzināšana rūpniecībā, transportā un spēkstacijās.</string>
+    <string name="air_quality_no2_sources">Galvenie avoti ir degvielas sadedzināšana, piemēram, tāda, kas tiek izmantot rūpniecībā vai transportā.</string>
+    <string name="air_quality_o3_sources">Ozons rodas saules gaismā notiekošā ķīmiskā reakcijā starp atmosfēras skābekli, slāpekļa oksīdiem, oglekļa monoksīdu un organiskiem savienojumiem.</string>
+    <string name="air_quality_co_sources">Parasti rodas no nepilnīgas oglekļa degvielu sadegšanas, piemēram, transportlīdzekļu dzinējos un spēkstacijās.</string>
+    <string name="pollen_primary">Galvenie putekšņi</string>
+    <string name="pollen_details">Informācija par putekšņiem</string>
+    <string name="nighttime_details">Sākas vakarā un ilgst līdz nākamās dienas rītausmai</string>
+    <string name="humidity_about">Par relatīvo mitrumu</string>
+    <string name="humidity_about_description">Relatīvais mitrums, vairāk zināms vienkārši kā mitrums, ir procentu daļa no gaisā esošā ūdens tvaika attiecībā pret lielāko daudzumu, ko gaiss var saturēt noteiktā temperatūrā.</string>
+    <string name="dew_point_about">Par rasas punktu</string>
+    <string name="dew_point_about_description">Rasas punkts ir temperatūra, līdz kurai vajadzētu atdzist, lai sasniegtu relatīvo mitrumu %s.</string>
+    <string name="pressure_rising">Paaugstinās</string>
+    <string name="pressure_steady">Noturīgs</string>
+    <string name="pressure_falling">Pazeminās</string>
+    <string name="pressure_about">Par spiedienu</string>
+    <string name="pressure_about_description1">Atmosfēras spiediens ir lejup vērsts spiediens, ko rada Zemes atmosfēra. Šajā lietotnē tiek izmantots vidējais jūras līmeņa spiediens (MSLP - Mean Sea Level Pressure), lai nodrošinātu vienkāršāku dažādos augstumos esošu vietu spiediena salīdzināšanu.</string>
 </resources>
