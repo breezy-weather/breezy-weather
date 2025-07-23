@@ -48,6 +48,7 @@ private const val MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE = 512
 private const val MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET = 600
 val FLOATING_DECELERATE_INTERPOLATOR: Interpolator = DecelerateInterpolator(1f)
 const val DEFAULT_CARD_LIST_ITEM_ELEVATION_DP = 2f
+const val MAX_FONT_SCALE_FOR_HALF_BLOCKS = 1.2
 
 val Context.isTabletDevice: Boolean
     get() = (
@@ -57,6 +58,30 @@ val Context.isTabletDevice: Boolean
 
 val Context.isLandscape: Boolean
     get() = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+
+/**
+ * Returns true if there is enough width to display two blocks
+ * Allowed down to 320 dp and 1.0 font scale
+ * Then follows a linear progress between width and font scale
+ */
+val Context.isWidthHalfSizeable: Boolean
+    get() {
+        val currentWindowWidth = windowWidth.toFloat().div(density)
+        val currentFontScale = fontScale
+
+        // Below 320 dp
+        if (currentWindowWidth < 2.0) return false
+
+        /**
+         * Examples:
+         * window width = 2.0 (320 dp), max font scale = 1.0
+         * window width = 2.5 (400 dp), max font scale = 1.5
+         * window width = 3.0 (480 dp), max font scale = 2.0
+         */
+        val maxFontScale = currentWindowWidth - 1.0
+
+        return currentFontScale <= maxFontScale
+    }
 
 val Context.isRtl: Boolean
     get() = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL

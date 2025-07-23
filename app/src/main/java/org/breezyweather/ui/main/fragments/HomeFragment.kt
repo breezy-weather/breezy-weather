@@ -41,16 +41,14 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.livedata.EqualtableLiveData
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
-import org.breezyweather.common.extensions.density
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
-import org.breezyweather.common.extensions.fontScale
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.extensions.isTabletDevice
+import org.breezyweather.common.extensions.isWidthHalfSizeable
 import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.extensions.uiModeManager
-import org.breezyweather.common.extensions.windowWidth
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.databinding.FragmentHomeBinding
 import org.breezyweather.domain.location.model.getPlace
@@ -264,11 +262,7 @@ class HomeFragment : MainModuleFragment() {
                     ) {
                         2 // Full width
                     } else {
-                        // TODO: width should take into account drawer width if drawer is open
-                        if (requireContext().windowWidth.toFloat() / requireContext().density
-                            >= MIN_WIDTH_FOR_HALF_BLOCKS ||
-                            requireContext().fontScale <= MAX_FONT_SCALE_FOR_HALF_BLOCKS
-                        ) {
+                        if (requireContext().isWidthHalfSizeable) {
                             1 // Half width
                         } else {
                             2 // Full width
@@ -532,10 +526,5 @@ class HomeFragment : MainModuleFragment() {
             weatherView.onScroll(mScrollY)
             adapter?.onScroll()
         }
-    }
-
-    companion object {
-        const val MIN_WIDTH_FOR_HALF_BLOCKS = 2.0 // 320dp
-        const val MAX_FONT_SCALE_FOR_HALF_BLOCKS = 1.45
     }
 }
