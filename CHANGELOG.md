@@ -3,6 +3,7 @@
 **Improvements and fixes**
 - Main screen - Improvements to some cut off texts
 - Details - Fix precipitation probability details being expressed in precipitation unit instead of %
+- Fix missing normals every other refresh
 
 
 # Version 6.0.3-alpha (2025-07-22)

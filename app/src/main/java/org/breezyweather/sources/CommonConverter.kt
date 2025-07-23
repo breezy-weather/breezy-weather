@@ -154,7 +154,7 @@ internal fun getNormalsFromWeather(
 ): Normals? {
     return location.weather?.normals?.let { normals ->
         val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
-        if (normals.month == cal[Calendar.MONTH]) normals else null
+        if (normals.month == cal[Calendar.MONTH] + 1) normals else null
     }
 }
 
