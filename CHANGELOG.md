@@ -1,3 +1,9 @@
+# Version 6.0.4-alpha (not yet released)
+
+**Improvements and fixes**
+- Main screen - Improvements to some cut off texts
+
+
 # Version 6.0.3-alpha (2025-07-22)
 
 **New features**

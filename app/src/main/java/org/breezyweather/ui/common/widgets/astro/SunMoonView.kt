@@ -82,13 +82,17 @@ class SunMoonView @JvmOverloads constructor(
     private var mRootColor = Color.WHITE
     private var mLineSize = 0f
     private var mDottedLineSize = 0f
-    private var mMargin = 0f
+    private var mHorizontalMargin = 0f
+    private var mTopMargin = 0f
+    private var mBottomMargin = 0f
     private var iconSize = 0
 
     init {
         mLineSize = context.dpToPx(LINE_SIZE_DIP)
         mDottedLineSize = context.dpToPx(DOTTED_LINE_SIZE_DIP)
-        mMargin = context.dpToPx(MARGIN_DIP)
+        mHorizontalMargin = context.dpToPx(MARGIN_HORIZONTAL_DIP)
+        mTopMargin = context.dpToPx(MARGIN_TOP_DIP)
+        mBottomMargin = context.dpToPx(MARGIN_BOTTOM_DIP)
         iconSize = context.dpToPx(ICON_SIZE_DIP).toInt()
         mX1ShaderWrapper = DayNightShaderWrapper(measuredWidth, measuredHeight)
         mX2ShaderWrapper = DayNightShaderWrapper(measuredWidth, measuredHeight)
@@ -151,7 +155,7 @@ class SunMoonView @JvmOverloads constructor(
                     0f,
                     mRectF.top,
                     0f,
-                    measuredHeight - mMargin,
+                    measuredHeight - mTopMargin - mBottomMargin,
                     mX1ShaderColors[0],
                     mX1ShaderColors[1],
                     Shader.TileMode.CLAMP
@@ -168,7 +172,7 @@ class SunMoonView @JvmOverloads constructor(
                     0f,
                     mRectF.top,
                     0f,
-                    measuredHeight - mMargin,
+                    measuredHeight - mTopMargin - mBottomMargin,
                     mX2ShaderColors[0],
                     mX2ShaderColors[1],
                     Shader.TileMode.CLAMP
@@ -212,16 +216,16 @@ class SunMoonView @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val width = (MeasureSpec.getSize(widthMeasureSpec) - 2 * mMargin).toInt()
+        val width = (MeasureSpec.getSize(widthMeasureSpec) - 2 * mHorizontalMargin).toInt()
         val deltaRadians = Math.toRadians((180 - ARC_ANGLE) / 2.0)
         val radius = (width / 2 / cos(deltaRadians)).toInt()
         val height = (radius - width / 2 * tan(deltaRadians)).toInt()
         setMeasuredDimension(
-            MeasureSpec.makeMeasureSpec((width + 2 * mMargin).toInt(), MeasureSpec.EXACTLY),
-            MeasureSpec.makeMeasureSpec((height + 2 * mMargin).toInt(), MeasureSpec.EXACTLY)
+            MeasureSpec.makeMeasureSpec((width + 2 * mHorizontalMargin).toInt(), MeasureSpec.EXACTLY),
+            MeasureSpec.makeMeasureSpec((height + mTopMargin + mBottomMargin).toInt(), MeasureSpec.EXACTLY)
         )
         val centerX = measuredWidth / 2
-        val centerY = (mMargin + radius).toInt()
+        val centerY = (mTopMargin + radius).toInt()
         mRectF.set(
             (centerX - radius).toFloat(),
             (centerY - radius).toFloat(),
@@ -249,10 +253,10 @@ class SunMoonView @JvmOverloads constructor(
         mPaint.setPathEffect(mEffect)
         canvas.drawArc(mRectF, startAngle, ARC_ANGLE.toFloat(), false, mPaint)
         canvas.drawLine(
-            mMargin,
-            measuredHeight - mMargin,
-            measuredWidth - mMargin,
-            measuredHeight - mMargin,
+            mHorizontalMargin,
+            measuredHeight - mBottomMargin,
+            measuredWidth - mHorizontalMargin,
+            measuredHeight - mBottomMargin,
             mPaint
         )
 
@@ -331,7 +335,9 @@ class SunMoonView @JvmOverloads constructor(
         private const val ICON_SIZE_DIP = 24f
         private const val LINE_SIZE_DIP = 5f
         private const val DOTTED_LINE_SIZE_DIP = 1f
-        private const val MARGIN_DIP = 16f
+        private const val MARGIN_HORIZONTAL_DIP = 4f
+        private const val MARGIN_TOP_DIP = 16f
+        private const val MARGIN_BOTTOM_DIP = 8f
         private const val ARC_ANGLE = 135
         private const val SHADOW_ALPHA_FACTOR_LIGHT = 0.1f
         private const val SHADOW_ALPHA_FACTOR_DARK = 0.2f

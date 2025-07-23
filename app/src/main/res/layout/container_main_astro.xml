@@ -50,7 +50,7 @@
 
             <org.breezyweather.ui.common.widgets.astro.SunMoonView
                 android:id="@+id/container_main_sun_moon_controlView"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
                 app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
@@ -106,7 +106,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:maxLines="1"
-                app:layout_constraintBottom_toTopOf="@+id/sunset_bottom_guideline"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintTop_toBottomOf="@+id/container_main_sun_moon_controlView"
                 app:layout_constraintEnd_toEndOf="@+id/block_end_guideline" />

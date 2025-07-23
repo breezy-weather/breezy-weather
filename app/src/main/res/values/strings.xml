@@ -79,24 +79,24 @@
     <string name="temperature_normals_deviation_explanation_minimum">Deviation from %s average minimum temperature for this location</string>
     <!-- Precipitation -->
     <string name="precipitation">Precipitation</string>
-    <!-- Translate while taking into account it is a text spread on 2-3 lines of about 12 characters each -->
-    <string name="precipitation_total_day">Precipitation for the daytime</string>
-    <!-- Translate while taking into account it is a text spread on 2-3 lines of about 12 characters each -->
-    <string name="precipitation_total_night">Precipitation for the nighttime</string>
+    <!-- Translate while taking into account it is a text spread on 2 lines (3 may overlap) of about 12 characters each -->
+    <string name="precipitation_total_day">Daytime precipitation</string>
+    <!-- Translate while taking into account it is a text spread on 2 lines (3 may overlap) of about 12 characters each -->
+    <string name="precipitation_total_night">Nighttime precipitation</string>
     <string name="precipitation_probability">Precipitation probability</string>
     <string name="precipitation_duration">Precipitation duration</string>
     <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Thunderstorm</string>
     <string name="precipitation_rain">Rain</string>
-    <!-- Translate while taking into account it is a text spread on 2-3 lines of about 12 characters each -->
-    <string name="precipitation_rain_total_day">Rain for the daytime</string>
-    <!-- Translate while taking into account it is a text spread on 2-3 lines of about 12 characters each -->
-    <string name="precipitation_rain_total_night">Rain for the nighttime</string>
+    <!-- Translate while taking into account it is a text spread on 2 lines (3 may overlap) of about 12 characters each -->
+    <string name="precipitation_rain_total_day">Daytime rain</string>
+    <!-- Translate while taking into account it is a text spread on 2 lines (3 may overlap) of about 12 characters each -->
+    <string name="precipitation_rain_total_night">Nighttime rain</string>
     <string name="precipitation_snow">Snow</string>
-    <!-- Translate while taking into account it is a text spread on 2-3 lines of about 12 characters each -->
-    <string name="precipitation_snow_total_day">Snow for the daytime</string>
-    <!-- Translate while taking into account it is a text spread on 2-3 lines of about 12 characters each -->
-    <string name="precipitation_snow_total_night">Snow for the nighttime</string>
+    <!-- Translate while taking into account it is a text spread on 2 lines (3 may overlap) of about 12 characters each -->
+    <string name="precipitation_snow_total_day">Daytime snow</string>
+    <!-- Translate while taking into account it is a text spread on 2 lines (3 may overlap) of about 12 characters each -->
+    <string name="precipitation_snow_total_night">Nighttime snow</string>
     <string name="precipitation_ice">Ice</string>
     <string name="precipitation_intensity_light">Light</string>
     <string name="precipitation_intensity_medium">Medium</string>
