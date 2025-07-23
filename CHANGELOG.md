@@ -1,3 +1,12 @@
+# Version 6.0.5-alpha (not yet released)
+
+**Improvements and fixes**
+- Widgets - Improve UX of custom subtitle documentation (@codewithdipesh)
+
+**Translations**
+- Translations updated
+
+
 # Version 6.0.4-alpha (2025-07-23)
 
 **Improvements and fixes**

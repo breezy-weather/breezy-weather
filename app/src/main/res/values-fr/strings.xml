@@ -346,6 +346,8 @@
     <string name="widget_label_clock_font">Police de l’horloge</string>
     <string name="widget_label_hide_alternate_calendar">Masquer le calendrier alternatif</string>
     <string name="widget_label_align_end">Aligner à droite</string>
+    <string name="widget_custom_subtitle_help_content_description">Afficher l’aide des mots-clés du sous-titre personnalisé</string>
+    <string name="widget_custom_subtitle_alert_box_title">Aide du sous-titre personnalisé</string>
     <string name="widget_custom_subtitle_explanation">Vous pouvez saisir ce que vous voulez, mais faites attention à la longueur du texte. Si vous voulez citer des données météo, veuillez utiliser $ pour référencer le mot-clé correspond.\n\nPar example, « La météo actuelle est : $cw$. » s’affichera « La météo actuelle est : Ensoleillé. ».</string>
     <!-- keep those content with the format "$xxx$". -->
     <string name="widget_custom_subtitle_keyword_cw_description">Météo actuelle</string>

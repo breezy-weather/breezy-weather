@@ -351,7 +351,7 @@
                         android:layout_height="wrap_content"
                         android:padding="@dimen/normal_margin"
                         app:endIconMode="custom"
-                        app:endIconDrawable="@drawable/ic_question"
+                        app:endIconDrawable="@drawable/ic_help"
                         app:endIconContentDescription="@string/widget_custom_subtitle_help_content_description">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -368,6 +368,7 @@
                             tools:ignore="Autofill" />
 
                     </com.google.android.material.textfield.TextInputLayout>
+
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>

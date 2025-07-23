@@ -136,6 +136,10 @@ val appContributors: Array<ContributorItem> = arrayOf(
      */
     ContributorItem("Nero Nguyen", github = "neronguyenvn"),
     /**
+     * UX of custom subtitle documentation
+     */
+    ContributorItem("Dipesh Pal", github = "codewithdipesh"),
+    /**
      * Logo
      */
     ContributorItem(

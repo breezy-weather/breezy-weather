@@ -511,7 +511,7 @@ abstract class AbstractWidgetConfigActivity : BreezyActivity() {
         }
         val subtitleInputLayout = findViewById<TextInputLayout>(R.id.activity_widget_config_subtitle_inputLayout)
         subtitleInputLayout.setEndIconOnClickListener {
-            val message = getString(R.string.widget_custom_subtitle_explanation) + subtitleCustomKeywords
+            val message = getString(R.string.widget_custom_subtitle_explanation) + "\n\n" + subtitleCustomKeywords
             MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.widget_custom_subtitle_alert_box_title)
                 .setMessage(message)
