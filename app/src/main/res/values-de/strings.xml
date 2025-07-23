@@ -821,7 +821,7 @@
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="about_update_check_eol">Diese Androidversion wird nicht mehr unterstützt</string>
     <string name="precipitation_snow_total_day">Tagsüber Schnee</string>
-    <string name="precipitation_snow_total_night">Nachts Schnee</string>
+    <string name="precipitation_snow_total_night">Nächtlicher Schnee</string>
     <string name="air_quality_short">Luftqualität</string>
     <string name="ephemeris_sun">Sonne</string>
     <string name="ephemeris_moon">Mond</string>
@@ -829,9 +829,9 @@
     <string name="ephemeris_polar_night">Polarnacht</string>
     <string name="clock">Uhr</string>
     <string name="precipitation_total_day">Niederschlag am Tag</string>
-    <string name="precipitation_total_night">Niederschlag in der Nacht</string>
+    <string name="precipitation_total_night">Nächtlicher Niederschlag</string>
     <string name="precipitation_rain_total_day">Regen tagsüber</string>
-    <string name="precipitation_rain_total_night">Nachts Regen</string>
+    <string name="precipitation_rain_total_night">Nächtlicher Regen</string>
     <string name="daytime_short">Tag</string>
     <string name="nighttime_short">Nacht</string>
     <string name="settings_appearance_dark_mode_locations_always_enabled">Im hellen Modus Immer aktiviert</string>
