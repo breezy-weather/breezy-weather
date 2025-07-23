@@ -96,6 +96,7 @@ import org.breezyweather.sources.mf.MfService
 import org.breezyweather.sources.mgm.MgmService
 import org.breezyweather.sources.namem.NamemService
 import org.breezyweather.sources.naturalearth.NaturalEarthService
+import org.breezyweather.sources.ncei.NceiService
 import org.breezyweather.sources.nominatim.NominatimService
 import org.breezyweather.sources.nws.NwsService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
@@ -167,6 +168,7 @@ class SourceManager @Inject constructor(
     msdZwService: MsdZwService,
     namemService: NamemService,
     naturalEarthService: NaturalEarthService,
+    nceiService: NceiService,
     nominatimService: NominatimService,
     nwsService: NwsService,
     openMeteoService: OpenMeteoService,
@@ -209,6 +211,7 @@ class SourceManager @Inject constructor(
         accuService,
         hereService,
         metNoService,
+        nceiService,
         openWeatherService,
         pirateWeatherService,
         wmoSevereWeatherService
