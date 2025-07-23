@@ -7,96 +7,97 @@ By default, when you add a location manually, Breezy Weather will auto-suggest y
 Below, you can find details about the support and implementation status for features on each weather source. Note that no forecast above 7 days is reliable, so you should not decide based on the highest number of days available.
 
 ## Summary
-| Country/Territory                  | Source                                             | Supported features                                                                   |
-|------------------------------------|----------------------------------------------------|--------------------------------------------------------------------------------------|
-| 🌐 Worldwide                       | [Open-Meteo](#open-meteo)                          | Forecast, Current, Air quality, Pollen, Normals, Search                              |
-| 🌐 Worldwide                       | [AccuWeather](#accuweather) 🔓                     | Forecast, Current, Air quality, Pollen, Nowcasting, Alerts, Normals, Search, Address |
-| 🌐 Worldwide                       | [Android](#android)                                | Address                                                                              |
-| 🌐 Worldwide                       | [GeoNames](#geonames) 🔐                           | Search                                                                               |
-| 🌐 Worldwide                       | [HERE](#here-destination-weather) 🔐               | Forecast, Current, Alerts, Address                                                   |
-| 🌐 Worldwide                       | [Nominatim](#nominatim)                            | Address                                                                              |
-| 🌐 Worldwide                       | [OpenWeather](#openweather) 🔓                     | Forecast, Current, Air quality                                                       |
-| 🌐 Worldwide                       | [Pirate Weather](#pirate-weather) 🔐               | Forecast, Current, Nowcasting, Alerts                                                |
-| 🌐 Worldwide                       | [WMO Severe Weather](#wmo-severe-weather)          | Alerts                                                                               |
-| 🇦🇹 Austria                       | [GeoSphere Austria](#geosphere-austria)            | Forecast, Air quality, Nowcasting, Alerts                                            |
-| 🇧🇩 Bangladesh                    | [BMD](#bangladesh-meteorological-department)       | Forecast, Address                                                                    |
-| 🇧🇯 Benin                         | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
-| 🇧🇫 Burkina Faso                  | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇧🇮 Burundi                       | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇨🇦 Canada                        | [ECCC](#environment-and-climate-change-canada)     | Forecast, Current, Alerts, Normals, Address                                          |
-| 🇹🇩 Chad                          | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
-| 🇨🇳 China                         | [China](#china)                                    | Forecast, Current, Air quality, Nowcasting, Alerts, Address                          |
-| 🇨🇩 Democratic Republic of Congo  | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇩🇰 Denmark                       | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Address                                                            |
-| 🇪🇪 Estonia                       | [Ilmateenistus](#ilmateenistus)                    | Forecast, Address                                                                    |
-| 🇪🇪 Estonia                       | [EKUK](#ekuk)                                      | Air quality, Pollen (later this year)                                                |
-| 🇪🇹 Ethiopia                      | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
-| 🇫🇰 Falkland Is.                  | [Met Office](#met-office) 🔐                       | Forecast, Address                                                                    |
-| 🇫🇴 Faroe Is.                     | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Address                                                            |
-| 🇫🇷 France                        | [Météo-France](#météo-france)                      | Forecast, Current, Nowcasting, Alerts, Normals, Address                              |
-| 🇫🇷 France                        | [Atmo France](#atmo-france)                        | Pollen                                                                               |
-| 🇫🇷 France                        | [Recosanté](#recosanté)                            | Pollen                                                                               |
-| 🇫🇷 France (Auvergne-Rhône-Alpes) | [Atmo Auvergne-Rhône-Alpes](#atmo)                 | Air Quality                                                                          |
-| 🇫🇷 France (Grand Est)            | [ATMO GrandEst](#atmo)                             | Air Quality                                                                          |
-| 🇫🇷 France (Hauts-de-France)      | [Atmo Hauts-de-France](#atmo)                      | Air Quality                                                                          |
-| 🇫🇷 France (PACA)                 | [AtmoSud](#atmo)                                   | Air Quality                                                                          |
-| 🇬🇫 French Guiana                 | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
-| 🇵🇫 French Polynesia              | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
-| 🇬🇲 Gambia                        | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇩🇪 Germany                       | [Bright Sky](#bright-sky)                          | Forecast, Current, Alerts                                                            |
-| 🇬🇭 Ghana                         | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇬🇮 Gibraltar                     | [Met Office](#met-office) 🔐                       | Forecast, Address                                                                    |
-| 🇬🇱 Greenland                     | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Address                                                            |
-| 🇬🇵 Guadeloupe                    | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
-| 🇬🇺 Guam                          | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Address                                                   |
-| 🇬🇬 Guernsey                      | [Met Office](#met-office) 🔐                       | Forecast, Address                                                                    |
-| 🇬🇼 Guinea-Bissau                 | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇭🇰 Hong Kong                     | [HKO](#hong-kong-observatory)                      | Forecast, Current, Alerts, Normals, Address                                          |
-| 🇭🇰 Hong Kong                     | [EPD](#environmental-protection-department)        | Air quality                                                                          |
-| 🇮🇳 India                         | [IMD](#india-meteorological-department)            | Forecast                                                                             |
-| 🇮🇩 Indonesia                     | [BMKG](#bmkg)                                      | Forecast, Current, Air quality, Alerts, Address                                      |
-| 🇮🇪 Ireland                       | [MET Éireann](#met-éireann)                        | Forecast, Alerts, Address                                                            |
-| 🇮🇲 Isle of Man                   | [Met Office](#met-office) 🔐                       | Forecast, Address                                                                    |
-| 🇮🇱 Israel                        | [IMS](#israel-meteorological-service)              | Forecast, Current, Alerts, Address                                                   |
-| 🇮🇹 Italy                         | [Meteo AM](#servizio-meteo-am)                     | Forecast, Current, Address                                                           |
-| 🇯🇵 Japan                         | [JMA](#japan-meteorological-agency)                | Forecast, Current, Alerts, Normals, Address                                          |
-| 🇯🇪 Jersey                        | [Met Office](#met-office) 🔐                       | Forecast, Address                                                                    |
-| 🇱🇻 Latvia                        | [LVĢMC](#lvģmc)                                    | Forecast, Current, Air quality, Address                                              |
-| 🇱🇹 Lithuania                     | [LHMT](#lhmt)                                      | Forecast, Current, Alerts, Address                                                   |
-| 🇱🇺 Luxembourg                    | [MeteoLux](#meteolux)                              | Forecast, Current, Alerts, Address                                                   |
-| 🇲🇴 Macao                         | [SMG](#serviços-meteorológicos-e-geofísicos)       | Forecast, Current, Air quality, Alerts, Normals                                      |
-| 🇲🇼 Malawi                        | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
-| 🇲🇱 Mali                          | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇲🇶 Martinique                    | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
-| 🇾🇹 Mayotte                       | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
-| 🇲🇳 Mongolia                      | [NAMEM](#namem)                                    | Forecast, Current, Air quality, Normals, Address                                     |
-| 🇳🇨 New Caledonia                 | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
-| 🇳🇪 Niger                         | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
-| 🇲🇵 Northern Mariana Is.          | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Address                                                   |
-| 🇳🇴 Norway                        | [MET Norway](#met-norway)                          | Forecast, Nowcasting, Air quality, Alerts                                            |
-| 🇵🇭 Philippines                   | [PAGASA](#pagasa)                                  | Forecast, Current                                                                    |
-| 🇵🇹 Portugal                      | [IPMA](#instituto-português-do-mar-e-da-atmosfera) | Forecast, Alerts, Address                                                            |
-| 🇵🇷 Puerto Rico                   | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Address                                                   |
-| 🇷🇪 Réunion                       | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
-| 🇸🇲 San Marino                    | [Meteo AM](#servizio-meteo-am)                     | Forecast, Current, Address                                                           |
-| 🇸🇨 Seychelles                    | [ClimWeb](#climweb)                                | Alerts, Normals                                                                      |
-| 🇸🇸 South Sudan                   | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇪🇸 Spain                         | [AEMET](#aemet) 🔐                                 | Forecast, Current, Normals                                                           |
-| 🇧🇱 St. Barthélemy                | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
-| 🇲🇫 St. Martin                    | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
-| 🇵🇲 St. Pierre &amp; Miquelon     | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
-| 🇸🇩 Sudan                         | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇸🇯 Svalbard &amp; Jan Mayen      | [MET Norway](#met-norway)                          | Forecast, Alerts                                                                     |
-| 🇸🇪 Sweden                        | [SMHI](#smhi)                                      | Forecast                                                                             |
-| 🇹🇼 Taiwan                        | [CWA](#central-weather-administration) 🔐          | Forecast, Current, Air quality, Alerts, Normals, Address                             |
-| 🇹🇬 Togo                          | [ClimWeb](#climweb)                                | Alerts                                                                               |
-| 🇹🇷 Türkiye                       | [MGM](#meteoroloji-genel-müdürlüğü)                | Forecast, Current, Alerts, Normals, Address                                          |
-| 🇬🇧 United Kingdom                | [Met Office](#met-office) 🔐                       | Forecast, Address                                                                    |
-| 🇺🇸 United States                 | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Address                                                   |
-| 🇻🇮 U.S. Virgin Is.               | [NWS](#national-weather-service)                   | Forecast, Current, Alerts, Address                                                   |
-| 🇻🇦 Vatican City                  | [Meteo AM](#servizio-meteo-am)                     | Forecast, Current, Address                                                           |
-| 🇼🇫 Wallis &amp; Futuna           | [Météo-France](#météo-france)                      | Forecast, Alerts, Address                                                            |
-| 🇿🇼 Zimbabwe                      | [ClimWeb](#climweb)                                | Alerts                                                                               |
+| Country/Territory                  | Source                                                  | Supported features                                                                   |
+|------------------------------------|---------------------------------------------------------|--------------------------------------------------------------------------------------|
+| 🌐 Worldwide                       | [Open-Meteo](#open-meteo)                               | Forecast, Current, Air quality, Pollen, Normals, Search                              |
+| 🌐 Worldwide                       | [AccuWeather](#accuweather) 🔓                          | Forecast, Current, Air quality, Pollen, Nowcasting, Alerts, Normals, Search, Address |
+| 🌐 Worldwide                       | [Android](#android)                                     | Address                                                                              |
+| 🌐 Worldwide                       | [GeoNames](#geonames) 🔐                                | Search                                                                               |
+| 🌐 Worldwide                       | [HERE](#here-destination-weather) 🔐                    | Forecast, Current, Alerts, Address                                                   |
+| 🌐 Worldwide                       | [NCEI](#national-centers-for-environmental-information) | Normals                                                                              |
+| 🌐 Worldwide                       | [Nominatim](#nominatim)                                 | Address                                                                              |
+| 🌐 Worldwide                       | [OpenWeather](#openweather) 🔓                          | Forecast, Current, Air quality                                                       |
+| 🌐 Worldwide                       | [Pirate Weather](#pirate-weather) 🔐                    | Forecast, Current, Nowcasting, Alerts                                                |
+| 🌐 Worldwide                       | [WMO Severe Weather](#wmo-severe-weather)               | Alerts                                                                               |
+| 🇦🇹 Austria                       | [GeoSphere Austria](#geosphere-austria)                 | Forecast, Air quality, Nowcasting, Alerts                                            |
+| 🇧🇩 Bangladesh                    | [BMD](#bangladesh-meteorological-department)            | Forecast, Address                                                                    |
+| 🇧🇯 Benin                         | [ClimWeb](#climweb)                                     | Alerts, Normals                                                                      |
+| 🇧🇫 Burkina Faso                  | [ClimWeb](#climweb)                                     | Alerts                                                                               |
+| 🇧🇮 Burundi                       | [ClimWeb](#climweb)                                     | Alerts                                                                               |
+| 🇨🇦 Canada                        | [ECCC](#environment-and-climate-change-canada)          | Forecast, Current, Alerts, Normals, Address                                          |
+| 🇹🇩 Chad                          | [ClimWeb](#climweb)                                     | Alerts, Normals                                                                      |
+| 🇨🇳 China                         | [China](#china)                                         | Forecast, Current, Air quality, Nowcasting, Alerts, Address                          |
+| 🇨🇩 Democratic Republic of Congo  | [ClimWeb](#climweb)                                     | Alerts                                                                               |
+| 🇩🇰 Denmark                       | [DMI](#danmarks-meteorologiske-institut)                | Forecast, Alerts, Address                                                            |
+| 🇪🇪 Estonia                       | [Ilmateenistus](#ilmateenistus)                         | Forecast, Address                                                                    |
+| 🇪🇪 Estonia                       | [EKUK](#ekuk)                                           | Air quality, Pollen (later this year)                                                |
+| 🇪🇹 Ethiopia                      | [ClimWeb](#climweb)                                     | Alerts, Normals                                                                      |
+| 🇫🇰 Falkland Is.                  | [Met Office](#met-office) 🔐                            | Forecast, Address                                                                    |
+| 🇫🇴 Faroe Is.                     | [DMI](#danmarks-meteorologiske-institut)                | Forecast, Alerts, Address                                                            |
+| 🇫🇷 France                        | [Météo-France](#météo-france)                           | Forecast, Current, Nowcasting, Alerts, Normals, Address                              |
+| 🇫🇷 France                        | [Atmo France](#atmo-france)                             | Pollen                                                                               |
+| 🇫🇷 France                        | [Recosanté](#recosanté)                                 | Pollen                                                                               |
+| 🇫🇷 France (Auvergne-Rhône-Alpes) | [Atmo Auvergne-Rhône-Alpes](#atmo)                      | Air Quality                                                                          |
+| 🇫🇷 France (Grand Est)            | [ATMO GrandEst](#atmo)                                  | Air Quality                                                                          |
+| 🇫🇷 France (Hauts-de-France)      | [Atmo Hauts-de-France](#atmo)                           | Air Quality                                                                          |
+| 🇫🇷 France (PACA)                 | [AtmoSud](#atmo)                                        | Air Quality                                                                          |
+| 🇬🇫 French Guiana                 | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇵🇫 French Polynesia              | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇬🇲 Gambia                        | [ClimWeb](#climweb)                                     | Alerts                                                                               |
+| 🇩🇪 Germany                       | [Bright Sky](#bright-sky)                               | Forecast, Current, Alerts                                                            |
+| 🇬🇭 Ghana                         | [ClimWeb](#climweb)                                     | Alerts                                                                               |
+| 🇬🇮 Gibraltar                     | [Met Office](#met-office) 🔐                            | Forecast, Address                                                                    |
+| 🇬🇱 Greenland                     | [DMI](#danmarks-meteorologiske-institut)                | Forecast, Alerts, Address                                                            |
+| 🇬🇵 Guadeloupe                    | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇬🇺 Guam                          | [NWS](#national-weather-service)                        | Forecast, Current, Alerts, Address                                                   |
+| 🇬🇬 Guernsey                      | [Met Office](#met-office) 🔐                            | Forecast, Address                                                                    |
+| 🇬🇼 Guinea-Bissau                 | [ClimWeb](#climweb)                                     | Alerts                                                                               |
+| 🇭🇰 Hong Kong                     | [HKO](#hong-kong-observatory)                           | Forecast, Current, Alerts, Normals, Address                                          |
+| 🇭🇰 Hong Kong                     | [EPD](#environmental-protection-department)             | Air quality                                                                          |
+| 🇮🇳 India                         | [IMD](#india-meteorological-department)                 | Forecast                                                                             |
+| 🇮🇩 Indonesia                     | [BMKG](#bmkg)                                           | Forecast, Current, Air quality, Alerts, Address                                      |
+| 🇮🇪 Ireland                       | [MET Éireann](#met-éireann)                             | Forecast, Alerts, Address                                                            |
+| 🇮🇲 Isle of Man                   | [Met Office](#met-office) 🔐                            | Forecast, Address                                                                    |
+| 🇮🇱 Israel                        | [IMS](#israel-meteorological-service)                   | Forecast, Current, Alerts, Address                                                   |
+| 🇮🇹 Italy                         | [Meteo AM](#servizio-meteo-am)                          | Forecast, Current, Address                                                           |
+| 🇯🇵 Japan                         | [JMA](#japan-meteorological-agency)                     | Forecast, Current, Alerts, Normals, Address                                          |
+| 🇯🇪 Jersey                        | [Met Office](#met-office) 🔐                            | Forecast, Address                                                                    |
+| 🇱🇻 Latvia                        | [LVĢMC](#lvģmc)                                         | Forecast, Current, Air quality, Address                                              |
+| 🇱🇹 Lithuania                     | [LHMT](#lhmt)                                           | Forecast, Current, Alerts, Address                                                   |
+| 🇱🇺 Luxembourg                    | [MeteoLux](#meteolux)                                   | Forecast, Current, Alerts, Address                                                   |
+| 🇲🇴 Macao                         | [SMG](#serviços-meteorológicos-e-geofísicos)            | Forecast, Current, Air quality, Alerts, Normals                                      |
+| 🇲🇼 Malawi                        | [ClimWeb](#climweb)                                     | Alerts, Normals                                                                      |
+| 🇲🇱 Mali                          | [ClimWeb](#climweb)                                     | Alerts                                                                               |
+| 🇲🇶 Martinique                    | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇾🇹 Mayotte                       | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇲🇳 Mongolia                      | [NAMEM](#namem)                                         | Forecast, Current, Air quality, Normals, Address                                     |
+| 🇳🇨 New Caledonia                 | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇳🇪 Niger                         | [ClimWeb](#climweb)                                     | Alerts, Normals                                                                      |
+| 🇲🇵 Northern Mariana Is.          | [NWS](#national-weather-service)                        | Forecast, Current, Alerts, Address                                                   |
+| 🇳🇴 Norway                        | [MET Norway](#met-norway)                               | Forecast, Nowcasting, Air quality, Alerts                                            |
+| 🇵🇭 Philippines                   | [PAGASA](#pagasa)                                       | Forecast, Current                                                                    |
+| 🇵🇹 Portugal                      | [IPMA](#instituto-português-do-mar-e-da-atmosfera)      | Forecast, Alerts, Address                                                            |
+| 🇵🇷 Puerto Rico                   | [NWS](#national-weather-service)                        | Forecast, Current, Alerts, Address                                                   |
+| 🇷🇪 Réunion                       | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇸🇲 San Marino                    | [Meteo AM](#servizio-meteo-am)                          | Forecast, Current, Address                                                           |
+| 🇸🇨 Seychelles                    | [ClimWeb](#climweb)                                     | Alerts, Normals                                                                      |
+| 🇸🇸 South Sudan                   | [ClimWeb](#climweb)                                     | Alerts                                                                               |
+| 🇪🇸 Spain                         | [AEMET](#aemet) 🔐                                      | Forecast, Current, Normals                                                           |
+| 🇧🇱 St. Barthélemy                | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇲🇫 St. Martin                    | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇵🇲 St. Pierre &amp; Miquelon     | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇸🇩 Sudan                         | [ClimWeb](#climweb)                                     | Alerts                                                                               |
+| 🇸🇯 Svalbard &amp; Jan Mayen      | [MET Norway](#met-norway)                               | Forecast, Alerts                                                                     |
+| 🇸🇪 Sweden                        | [SMHI](#smhi)                                           | Forecast                                                                             |
+| 🇹🇼 Taiwan                        | [CWA](#central-weather-administration) 🔐               | Forecast, Current, Air quality, Alerts, Normals, Address                             |
+| 🇹🇬 Togo                          | [ClimWeb](#climweb)                                     | Alerts                                                                               |
+| 🇹🇷 Türkiye                       | [MGM](#meteoroloji-genel-müdürlüğü)                     | Forecast, Current, Alerts, Normals, Address                                          |
+| 🇬🇧 United Kingdom                | [Met Office](#met-office) 🔐                            | Forecast, Address                                                                    |
+| 🇺🇸 United States                 | [NWS](#national-weather-service)                        | Forecast, Current, Alerts, Address                                                   |
+| 🇻🇮 U.S. Virgin Is.               | [NWS](#national-weather-service)                        | Forecast, Current, Alerts, Address                                                   |
+| 🇻🇦 Vatican City                  | [Meteo AM](#servizio-meteo-am)                          | Forecast, Current, Address                                                           |
+| 🇼🇫 Wallis &amp; Futuna           | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇿🇼 Zimbabwe                      | [ClimWeb](#climweb)                                     | Alerts                                                                               |
 
 ## Worldwide sources
 
@@ -122,14 +123,13 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ✅         |
-| Precipitation             | ✅         | Sunshine Duration | ✅         |
-| Precipitation Probability | ✅         | Sun &amp; Moon    | ✅         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ✅         |
-| Humidity                  | ✅         | Visibility        | ✅         |
-| Dew Point                 | ✅         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ✅         | UV Index          | ✅         |
+| Precipitation Probability | ✅         | Sunshine Duration | ✅         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
+| Wind                      | ✅         | Visibility        | ✅         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 <details><summary><h4>Details of available pollens from Open-Meteo</h4></summary>
@@ -166,35 +166,16 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 <details><summary><h4>Details of available data from AccuWeather</h4></summary>
 
-| Data                      | Available | Data              | Available   |
-|---------------------------|-----------|-------------------|-------------|
-| Weather Condition         | ✅         | Pressure          | ✅ (Current) |
-| Temperature               | ✅         | UV Index          | ✅           |
-| Precipitation             | ✅ (RSI)   | Sunshine Duration | ✅           |
-| Precipitation Probability | ✅ (TRSI)  | Sun &amp; Moon    | ✅           |
-| Precipitation Duration    | ✅ (RSI)   | Moon Phase        | ✅           |
-| Wind                      | ✅         | Cloud Cover       | ✅           |
-| Humidity                  | ✅         | Visibility        | ✅           |
-| Dew Point                 | ✅         | Ceiling           | ✅           |
+| Data                      | Available   | Data              | Available   |
+|---------------------------|-------------|-------------------|-------------|
+| Weather Condition         | ✅           | Humidity          | ✅         |
+| Temperature               | ✅           | Dew Point         | ✅         |
+| Precipitation             | ✅ (RSI)     | UV Index          | ✅         |
+| Precipitation Probability | ✅ (TRSI)    | Sunshine Duration | ✅         |
+| Precipitation Duration    | ✅ (RSI)     | Cloud Cover       | ✅         |
+| Wind                      | ✅           | Visibility        | ✅         |
+| Pressure                  | ✅ (Current) | Ceiling           | ✅         |
 </details>
-
-
-### Android
-
-Android can provide on some devices the address lookup feature.
-It uses the native Geocoder APIs. However, a backend for this geocoder is necessary for this to work.
-Google Play Services usually provide this backend.
-Some OS with only a partial subset of Google Play Services features, such as GrapheneOS, don’t have a backend implementation.
-
-This source doesn’t provide timezone support, so Breezy Weather will fallback to device’s timezone.
-
-
-### Nominatim
-
-Nominatim can provide the address lookup feature, using OpenStreetMap data.
-
-This source doesn’t provide timezone support, so Breezy Weather will fallback to device’s timezone.
-
 
 ### OpenWeather
 > 🔐 **This source requires an API key.** Breezy Weather comes with a pre-bundled API key. However, it is often rate-limited, so you may want to configure your own API key instead. [Register here](https://www.here.com/get-started/marketplace-listings/here-destination-weather)
@@ -218,14 +199,13 @@ This source doesn’t provide timezone support, so Breezy Weather will fallback 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ✅ (RS)    | Sunshine Duration | ❌         |
-| Precipitation Probability | ✅         | Sun &amp; Moon    | ✅         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ✅         |
-| Humidity                  | ✅         | Visibility        | ✅         |
-| Dew Point                 | ✅         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ✅ (RS)    | UV Index          | ❌         |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
+| Wind                      | ✅         | Visibility        | ✅         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### Pirate Weather
@@ -252,18 +232,19 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 | Data                      | Available | Data              | Available   |
 |---------------------------|-----------|-------------------|-------------|
-| Weather Condition         | ✅         | Pressure          | ✅           |
-| Temperature               | ✅         | UV Index          | ✅           |
-| Precipitation             | ✅ (RS)    | Sunshine Duration | ❌           |
-| Precipitation Probability | ✅         | Sun &amp; Moon    | ✅           |
-| Precipitation Duration    | ❌         | Moon Phase        | ✅           |
-| Wind                      | ✅         | Cloud Cover       | ✅           |
-| Humidity                  | ✅         | Visibility        | ✅ (Current) |
-| Dew Point                 | ✅         | Ceiling           | ❌           |
+| Weather Condition         | ✅         | Humidity          | ✅           |
+| Temperature               | ✅         | Dew Point         | ✅           |
+| Precipitation             | ✅ (RS)    | UV Index          | ✅           |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌           |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅           |
+| Wind                      | ✅         | Visibility        | ✅ (Current) |
+| Pressure                  | ✅         | Ceiling           | ❌           |
 </details>
 
 ### HERE Destination Weather
-> 🔐 **This source requires an API key.** [Register here](https://www.here.com/get-started/marketplace-listings/here-destination-weather)
+> 🚫 **This source will require the API key holder to provide Personal Identifiable Information after August 31, 2025.** It will no longer be eligible for inclusion in Breezy Weather, and will be removed from Breezy Weather after this date.
+
+> 🔐 **This source requires an API key.**
 
 **[HERE Destination Weather](https://www.here.com/get-started/marketplace-listings/here-destination-weather)** is operated by HERE Technologies, a Dutch mapping group that is majority-owned by a consortium of German automakers.
 
@@ -284,14 +265,13 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ✅         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ✅         | Sun &amp; Moon    | ✅         |
-| Precipitation Duration    | ❌         | Moon Phase        | ✅         |
-| Wind                      | ✅         | Cloud Cover       | ❌         |
-| Humidity                  | ✅         | Visibility        | ✅         |
-| Dew Point                 | ✅         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ✅         | UV Index          | ✅         |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ✅         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ## National sources
@@ -320,14 +300,13 @@ Unless otherwise specified, features in the following sources will only work for
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ✅         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ✅         | Sun &amp; Moon    | ✅         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ❌         |
-| Humidity                  | ✅         | Visibility        | ✅         |
-| Dew Point                 | ✅         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ✅         | UV Index          | ✅         |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ✅         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### Bangladesh Meteorological Department
@@ -351,14 +330,13 @@ Unless otherwise specified, features in the following sources will only work for
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ❌         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ❌         | Sun &amp; Moon    | ❌         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ✅         |
-| Humidity                  | ✅         | Visibility        | ❌         |
-| Dew Point                 | ❌         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ❌         |
+| Precipitation             | ✅         | UV Index          | ❌         |
+| Precipitation Probability | ❌         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
+| Wind                      | ✅         | Visibility        | ❌         |
+| Pressure                  | ❌         | Ceiling           | ❌         |
 </details>
 
 ### BMKG
@@ -382,14 +360,13 @@ Unless otherwise specified, features in the following sources will only work for
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ❌         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ❌         | Sun &amp; Moon    | ❌         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ❌         |
-| Humidity                  | ✅         | Visibility        | ✅         |
-| Dew Point                 | ❌         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ❌         |
+| Precipitation             | ✅         | UV Index          | ❌         |
+| Precipitation Probability | ❌         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ✅         |
+| Pressure                  | ❌         | Ceiling           | ❌         |
 </details>
 
 ### Bright Sky
@@ -412,14 +389,13 @@ Unless otherwise specified, features in the following sources will only work for
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ✅         | Sunshine Duration | ✅         |
-| Precipitation Probability | ✅         | Sun &amp; Moon    | ✅         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ✅         |
-| Humidity                  | ✅         | Visibility        | ✅         |
-| Dew Point                 | ✅         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ✅         | UV Index          | ❌         |
+| Precipitation Probability | ✅         | Sunshine Duration | ✅         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
+| Wind                      | ✅         | Visibility        | ✅         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### Central Weather Administration
@@ -431,7 +407,7 @@ Unless otherwise specified, features in the following sources will only work for
 |--------------------------------|------------------------------------------------------------------------------------------------|
 | 🗺️ **Coverage**               | 🇹🇼 Taiwan                                                                                    |
 | 📆 **Daily forecast**          | Up to 7 days                                                                                   |
-| ⏱️ **Hourly forecast**         | 3-hourly, up to 4 days                                                                         |
+| ⏱️ **Hourly forecast**         | Up to 4 days                                                                                   |
 | ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source**                     |
 | 😶‍🌫️ **Air quality**         | Available: current observation from the [Ministry of Environment](https://airtw.moenv.gov.tw/) |
 | 🤧 **Pollen**                  | Not available                                                                                  |
@@ -442,16 +418,15 @@ Unless otherwise specified, features in the following sources will only work for
 
 <details><summary><h4>Details of available data from CWA</h4></summary>
 
-| Data                      | Available  | Data              | Available   |
-|---------------------------|------------|-------------------|-------------|
-| Weather Condition         | ✅          | Pressure          | ✅ (Current) |
-| Temperature               | ✅          | UV Index          | ✅ (Daily)   |
-| Precipitation             | ❌          | Sunshine Duration | ❌           |
-| Precipitation Probability | ✅ (4 days) | Sun &amp; Moon    | ✅           |
-| Precipitation Duration    | ❌          | Moon Phase        | ❌           |
-| Wind                      | ✅          | Cloud Cover       | ❌           |
-| Humidity                  | ✅          | Visibility        | ❌           |
-| Dew Point                 | ✅          | Ceiling           | ❌           |
+| Data                      | Available   | Data              | Available |
+|---------------------------|-------------|-------------------|-----------|
+| Weather Condition         | ✅           | Humidity          | ✅         |
+| Temperature               | ✅           | Dew Point         | ✅         |
+| Precipitation             | ❌           | UV Index          | ✅ (Daily) |
+| Precipitation Probability | ✅ (4 days)  | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌           | Cloud Cover       | ❌         |
+| Wind                      | ✅           | Visibility        | ❌         |
+| Pressure                  | ✅ (Current) | Ceiling           | ❌         |
 </details>
 
 ### China
@@ -472,16 +447,15 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 <details><summary><h4>Details of available data from China source</h4></summary>
 
-| Data                      | Available   | Data              | Available   |
-|---------------------------|-------------|-------------------|-------------|
-| Weather Condition         | ✅           | Pressure          | ❌           |
-| Temperature               | ✅           | UV Index          | ❌           |
-| Precipitation             | ❌           | Sunshine Duration | ❌           |
-| Precipitation Probability | ✅ (Daily)   | Sun &amp; Moon    | ✅           |
-| Precipitation Duration    | ❌           | Moon Phase        | ❌           |
-| Wind                      | ✅           | Cloud Cover       | ❌           |
-| Humidity                  | ✅ (Current) | Visibility        | ✅ (Current) |
-| Dew Point                 | ✅ (Current) | Ceiling           | ❌           |
+| Data                      | Available | Data              | Available   |
+|---------------------------|-----------|-------------------|-------------|
+| Weather Condition         | ✅         | Humidity          | ✅ (Current) |
+| Temperature               | ✅         | Dew Point         | ✅ (Current) |
+| Precipitation             | ❌         | UV Index          | ❌           |
+| Precipitation Probability | ✅ (Daily) | Sunshine Duration | ❌           |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌           |
+| Wind                      | ✅         | Visibility        | ✅ (Current) |
+| Pressure                  | ❌         | Ceiling           | ❌           |
 </details>
 
 ### Danmarks Meteorologiske Institut
@@ -504,14 +478,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ❌         | Sun &amp; Moon    | ✅         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ❌         |
-| Humidity                  | ✅         | Visibility        | ✅         |
-| Dew Point                 | ✅         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ✅         | UV Index          | ❌         |
+| Precipitation Probability | ❌         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ✅         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### Environment and Climate Change Canada
@@ -534,14 +507,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available   | Data              | Available   |
 |---------------------------|-------------|-------------------|-------------|
-| Weather Condition         | ✅           | Pressure          | ✅ (Current) |
-| Temperature               | ✅           | UV Index          | ✅           |
-| Precipitation             | ❌           | Sunshine Duration | ✅           |
-| Precipitation Probability | ✅           | Sun &amp; Moon    | ✅           |
-| Precipitation Duration    | ❌           | Moon Phase        | ❌           |
-| Wind                      | ✅           | Cloud Cover       | ❌           |
-| Humidity                  | ✅ (Current) | Visibility        | ✅ (Current) |
-| Dew Point                 | ✅ (Current) | Ceiling           | ❌           |
+| Weather Condition         | ✅           | Humidity          | ✅ (Current) |
+| Temperature               | ✅           | Dew Point         | ✅ (Current) |
+| Precipitation             | ❌           | UV Index          | ✅           |
+| Precipitation Probability | ✅           | Sunshine Duration | ✅           |
+| Precipitation Duration    | ❌           | Cloud Cover       | ❌           |
+| Wind                      | ✅           | Visibility        | ✅ (Current) |
+| Pressure                  | ✅ (Current) | Ceiling           | ❌           |
 </details>
 
 ### GeoSphere Austria
@@ -564,14 +536,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ❌         | Sun &amp; Moon    | ✅         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ✅         |
-| Humidity                  | ✅         | Visibility        | ❌         |
-| Dew Point                 | ✅         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ✅         | UV Index          | ❌         |
+| Precipitation Probability | ❌         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
+| Wind                      | ✅         | Visibility        | ❌         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### Hong Kong Observatory
@@ -593,16 +564,15 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 <details><summary><h4>Details of available data from HKO</h4></summary>
 
-| Data                      | Available | Data              | Available   |
-|---------------------------|-----------|-------------------|-------------|
-| Weather Condition         | ✅         | Pressure          | ✅ (Current) |
-| Temperature               | ✅         | UV Index          | ✅ (Current) |
-| Precipitation             | ❌         | Sunshine Duration | ❌           |
-| Precipitation Probability | ✅ (Daily) | Sun &amp; Moon    | ✅           |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌           |
-| Wind                      | ✅         | Cloud Cover       | ❌           |
-| Humidity                  | ✅         | Visibility        | ❌           |
-| Dew Point                 | ✅         | Ceiling           | ❌           |
+| Data                      | Available   | Data              | Available   |
+|---------------------------|-------------|-------------------|-------------|
+| Weather Condition         | ✅           | Humidity          | ✅           |
+| Temperature               | ✅           | Dew Point         | ✅           |
+| Precipitation             | ❌           | UV Index          | ✅ (Current) |
+| Precipitation Probability | ✅ (Daily)   | Sunshine Duration | ❌           |
+| Precipitation Duration    | ❌           | Cloud Cover       | ❌           |
+| Wind                      | ✅           | Visibility        | ❌           |
+| Pressure                  | ✅ (Current) | Ceiling           | ❌           |
 </details>
 
 ### Ilmateenistus
@@ -626,14 +596,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ❌         | Sun &amp; Moon    | ❌         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ❌         |
-| Humidity                  | ❌         | Visibility        | ❌         |
-| Dew Point                 | ❌         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ❌         |
+| Temperature               | ✅         | Dew Point         | ❌         |
+| Precipitation             | ✅         | UV Index          | ❌         |
+| Precipitation Probability | ❌         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ❌         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### India Meteorological Department
@@ -657,14 +626,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ❌         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ❌         | Sun &amp; Moon    | ❌         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ✅         |
-| Humidity                  | ✅         | Visibility        | ❌         |
-| Dew Point                 | ❌         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ❌         |
+| Precipitation             | ✅         | UV Index          | ❌         |
+| Precipitation Probability | ❌         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
+| Wind                      | ✅         | Visibility        | ❌         |
+| Pressure                  | ❌         | Ceiling           | ❌         |
 </details>
 
 ### Instituto Português do Mar e da Atmosfera
@@ -688,14 +656,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ❌         |
-| Temperature               | ✅         | UV Index          | ✅         |
-| Precipitation             | ❌         | Sunshine Duration | ❌         |
-| Precipitation Probability | ✅         | Sun &amp; Moon    | ❌         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ❌         |
-| Humidity                  | ✅         | Visibility        | ❌         |
-| Dew Point                 | ❌         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ❌         |
+| Precipitation             | ❌         | UV Index          | ✅         |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ❌         |
+| Pressure                  | ❌         | Ceiling           | ❌         |
 </details>
 
 ### Israel Meteorological Service
@@ -716,16 +683,15 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 <details><summary><h4>Details of available data from IMS</h4></summary>
 
-| Data                      | Available        | Data              | Available |
-|---------------------------|------------------|-------------------|-----------|
-| Weather Condition         | 🚧 *in progress* | Pressure          | ❌         |
-| Temperature               | ✅                | UV Index          | ✅         |
-| Precipitation             | ❌                | Sunshine Duration | ❌         |
-| Precipitation Probability | ✅                | Sun &amp; Moon    | ✅         |
-| Precipitation Duration    | ❌                | Moon Phase        | ❌         |
-| Wind                      | ✅                | Cloud Cover       | ❌         |
-| Humidity                  | ✅                | Visibility        | ❌         |
-| Dew Point                 | ✅                | Ceiling           | ❌         |
+| Data                      | Available | Data              | Available |
+|---------------------------|-----------|-------------------|-----------|
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ❌         | UV Index          | ✅         |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ❌         |
+| Pressure                  | ❌         | Ceiling           | ❌         |
 </details>
 
 ### Japan Meteorological Agency
@@ -749,14 +715,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ❌         | Sunshine Duration | ❌         |
-| Precipitation Probability | ✅         | Sun &amp; Moon    | ❌         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ❌         |
-| Humidity                  | ✅         | Visibility        | ✅         |
-| Dew Point                 | ❌         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ❌         |
+| Precipitation             | ❌         | UV Index          | ❌         |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ✅         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### LHMT
@@ -780,14 +745,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ❌         | Sun &amp; Moon    | ❌         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ✅         |
-| Humidity                  | ✅         | Visibility        | ❌         |
-| Dew Point                 | ❌         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ❌         |
+| Precipitation             | ✅         | UV Index          | ❌         |
+| Precipitation Probability | ❌         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
+| Wind                      | ✅         | Visibility        | ❌         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### LVĢMC
@@ -811,14 +775,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ✅         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ✅         | Sun &amp; Moon    | ❌         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ✅         |
-| Humidity                  | ✅         | Visibility        | ✅         |
-| Dew Point                 | ❌         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ❌         |
+| Precipitation             | ✅         | UV Index          | ✅         |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
+| Wind                      | ✅         | Visibility        | ✅         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### Met Éireann
@@ -841,14 +804,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ✅         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ✅         | Sun &amp; Moon    | ✅         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ✅         |
-| Humidity                  | ✅         | Visibility        | ✅         |
-| Dew Point                 | ✅         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ✅         | UV Index          | ✅         |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
+| Wind                      | ✅         | Visibility        | ✅         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### Météo-France
@@ -874,14 +836,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ✅         |
-| Precipitation             | ✅ (RS)    | Sunshine Duration | ❌         |
-| Precipitation Probability | ✅ (RSI)   | Sun &amp; Moon    | ✅         |
-| Precipitation Duration    | ❌         | Moon Phase        | ✅         |
-| Wind                      | ✅         | Cloud Cover       | ✅         |
-| Humidity                  | ✅         | Visibility        | ❌         |
-| Dew Point                 | ✅         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ✅ (RS)    | UV Index          | ✅         |
+| Precipitation Probability | ✅ (RSI)   | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
+| Wind                      | ✅         | Visibility        | ❌         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### MeteoLux
@@ -905,14 +866,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ❌         |
-| Temperature               | ✅         | UV Index          | ✅         |
-| Precipitation             | ✅         | Sunshine Duration | ✅         |
-| Precipitation Probability | ❌         | Sun &amp; Moon    | ✅         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ❌         |
-| Humidity                  | ✅         | Visibility        | ❌         |
-| Dew Point                 | ❌         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ❌         |
+| Precipitation             | ✅         | UV Index          | ✅         |
+| Precipitation Probability | ❌         | Sunshine Duration | ✅         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ❌         |
+| Pressure                  | ❌         | Ceiling           | ❌         |
 </details>
 
 ### Meteoroloji Genel Müdürlüğü
@@ -936,14 +896,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ❌         | Sunshine Duration | ❌         |
-| Precipitation Probability | ❌         | Sun &amp; Moon    | ❌         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ❌         |
-| Humidity                  | ✅         | Visibility        | ❌         |
-| Dew Point                 | ❌         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ❌         |
+| Precipitation             | ❌         | UV Index          | ❌         |
+| Precipitation Probability | ❌         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ❌         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### MET Norway
@@ -966,14 +925,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ✅         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ✅         | Sun &amp; Moon    | ✅         |
-| Precipitation Duration    | ❌         | Moon Phase        | ✅         |
-| Wind                      | ✅         | Cloud Cover       | ✅         |
-| Humidity                  | ✅         | Visibility        | ❌         |
-| Dew Point                 | ✅         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ✅         | UV Index          | ✅         |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
+| Wind                      | ✅         | Visibility        | ❌         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### Met Office
@@ -999,14 +957,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ✅         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ✅         | Sun &amp; Moon    | ❌         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ❌         |
-| Humidity                  | ✅         | Visibility        | ✅         |
-| Dew Point                 | ✅         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ✅         | UV Index          | ✅         |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ✅         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### NAMEM
@@ -1030,14 +987,13 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ✅         | Sun &amp; Moon    | ❌         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ❌         |
-| Humidity                  | ✅         | Visibility        | ❌         |
-| Dew Point                 | ❌         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ❌         |
+| Precipitation             | ✅         | UV Index          | ❌         |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ❌         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### National Weather Service
@@ -1062,14 +1018,13 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ✅ (SI)    | Sunshine Duration | ❌         |
-| Precipitation Probability | ✅ (T)     | Sun &amp; Moon    | ✅         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ✅         |
-| Humidity                  | ✅         | Visibility        | ✅         |
-| Dew Point                 | ✅         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ✅ (SI)    | UV Index          | ❌         |
+| Precipitation Probability | ✅ (T)     | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ✅         |
+| Wind                      | ✅         | Visibility        | ✅         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### PAGASA
@@ -1093,14 +1048,13 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ❌         | Sun &amp; Moon    | ❌         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ❌         |
-| Humidity                  | ✅         | Visibility        | ❌         |
-| Dew Point                 | ❌         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ❌         |
+| Precipitation             | ✅         | UV Index          | ❌         |
+| Precipitation Probability | ❌         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ❌         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### Serviços Meteorológicos e Geofísicos
@@ -1122,16 +1076,15 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 <details><summary><h4>Details of available data from SMG</h4></summary>
 
-| Data                      | Available | Data              | Available   |
-|---------------------------|-----------|-------------------|-------------|
-| Weather Condition         | ✅         | Pressure          | ✅ (Current) |
-| Temperature               | ✅         | UV Index          | ✅ (Current) |
-| Precipitation             | ❌         | Sunshine Duration | ❌           |
-| Precipitation Probability | ❌         | Sun &amp; Moon    | ❌           |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌           |
-| Wind                      | ✅         | Cloud Cover       | ❌           |
-| Humidity                  | ✅         | Visibility        | ❌           |
-| Dew Point                 | ✅         | Ceiling           | ❌           |
+| Data                      | Available   | Data              | Available   |
+|---------------------------|-------------|-------------------|-------------|
+| Weather Condition         | ✅           | Humidity          | ✅           |
+| Temperature               | ✅           | Dew Point         | ✅           |
+| Precipitation             | ❌           | UV Index          | ✅ (Current) |
+| Precipitation Probability | ❌           | Sunshine Duration | ❌           |
+| Precipitation Duration    | ❌           | Cloud Cover       | ❌           |
+| Wind                      | ✅           | Visibility        | ❌           |
+| Pressure                  | ✅ (Current) | Ceiling           | ❌           |
 </details>
 
 ### Servizio Meteo AM
@@ -1154,14 +1107,13 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ❌         | Sunshine Duration | ❌         |
-| Precipitation Probability | ✅         | Sun &amp; Moon    | ❌         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ❌         |
-| Humidity                  | ✅         | Visibility        | ❌         |
-| Dew Point                 | ❌         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ❌         |
+| Precipitation             | ❌         | UV Index          | ❌         |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ❌         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
 ### SMHI
@@ -1184,17 +1136,22 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 | Data                      | Available | Data              | Available |
 |---------------------------|-----------|-------------------|-----------|
-| Weather Condition         | ✅         | Pressure          | ✅         |
-| Temperature               | ✅         | UV Index          | ❌         |
-| Precipitation             | ✅         | Sunshine Duration | ❌         |
-| Precipitation Probability | ✅         | Sun &amp; Moon    | ✅         |
-| Precipitation Duration    | ❌         | Moon Phase        | ❌         |
-| Wind                      | ✅         | Cloud Cover       | ❌         |
-| Humidity                  | ✅         | Visibility        | ✅         |
-| Dew Point                 | ✅         | Ceiling           | ❌         |
+| Weather Condition         | ✅         | Humidity          | ✅         |
+| Temperature               | ✅         | Dew Point         | ✅         |
+| Precipitation             | ✅         | UV Index          | ❌         |
+| Precipitation Probability | ✅         | Sunshine Duration | ❌         |
+| Precipitation Duration    | ❌         | Cloud Cover       | ❌         |
+| Wind                      | ✅         | Visibility        | ✅         |
+| Pressure                  | ✅         | Ceiling           | ❌         |
 </details>
 
-## Secondary weather sources
+## Secondary sources
+
+### Android
+**Android** can provide on some devices the address lookup feature. It uses the native Geocoder APIs. However, a backend for this geocoder is necessary for this to work.
+Google Play Services usually provide this backend. Some OS with only a partial subset of Google Play Services features, such as GrapheneOS, don’t have a backend implementation.
+
+This source doesn’t provide timezone support, so Breezy Weather will fallback to device’s timezone.
 
 ### ATMO
 ATMO sources can be added as a secondary **Air Quality** source for some regions of France.
@@ -1203,6 +1160,21 @@ ATMO sources can be added as a secondary **Air Quality** source for some regions
 - **[ATMO GrandEst](https://www.atmo-grandest.eu/)** provides air quality information for the French region of Grand Est.
 - **[Atmo Hauts-de-France](https://www.atmo-hdf.fr/)** provides air quality information for the French region of Hauts-de-France.
 - **[AtmoSud](https://www.atmosud.org/)** provides air quality information for the French region of Provence-Alpes-Côte d’Azur.
+
+### Atmo France
+**[Atmo France](https://www.atmo-france.org/)** can be added as a secondary **Pollen** source for France. Pollen concentration is calculated from Copernicus data.
+
+<details><summary><h4>Details of available pollens from Atmo France</h4></summary>
+
+| Pollen               | Availability                        |
+|----------------------|-------------------------------------|
+| Alder (Aulne)        | January to June                     |
+| Birch (Bouleau)      | March to June                       |
+| Olive tree (Olivier) | April to June                       |
+| Grass (Graminées)    | March to August (peak in June-July) |
+| Mugwort (Armoise)    | June to October                     |
+| Ragweed (Ambroisie)  | June to October (as early as April) |
+</details>
 
 ### ClimWeb
 **[ClimWeb](https://github.com/wmo-raf/climweb)** is an open source content management system developed by WMO Africa for 17 of its member states:
@@ -1230,11 +1202,9 @@ ATMO sources can be added as a secondary **Air Quality** source for some regions
 These sources can be added as a secondary **Alert** and **Temperature normals** source for their respective countries.
 
 ### EKUK
-
 **[Eesti Keskkonnauuringute Keskus](https://www.ohuseire.ee/)** (EKUK) can be added as a secondary **Air quality** and **Pollen** (later this year) source for Estonia.
 
 ### Environmental Protection Department
-
 **[Environmental Protection Department](https://www.aqhi.gov.hk/)** can be added as a secondary **Air quality** source for Hong Kong.
 
 ### GeoNames
@@ -1242,25 +1212,16 @@ These sources can be added as a secondary **Alert** and **Temperature normals** 
 
 **[GeoNames](https://www.geonames.org/)** provides multilingual search for place names of more than 11 million locations worldwide. This source can be enabled as a **Search** source after adding your API key.
 
-### Atmo France
-**[Atmo France](https://www.atmo-france.org/)** can be added as a secondary **Pollen** source for France. Pollen concentration is calculated from Copernicus data.
+### National Centers for Environmental Information
+**[National Centers for Environmental Information](https://www.ncei.noaa.gov/)** (NCEI) provides Global Summary of the Month (GSOM), a global climatological database that can be added as a **Temperature normals** source worldwide.
 
-<details><summary><h4>Details of available pollens from Atmo France</h4></summary>
-
-| Pollen               | Availability                        |
-|----------------------|-------------------------------------|
-| Alder (Aulne)        | January to June                     |
-| Birch (Bouleau)      | March to June                       |
-| Olive tree (Olivier) | April to June                       |
-| Grass (Graminées)    | March to August (peak in June-July) |
-| Mugwort (Armoise)    | June to October                     |
-| Ragweed (Ambroisie)  | June to October (as early as April) |
-</details>
+### Nominatim
+**[Nominatim](https://nominatim.org/)** can provide the address lookup feature, using OpenStreetMap data. This source doesn’t provide timezone support, so Breezy Weather will fallback to device’s timezone.
 
 ### Recosanté
-**[Recosanté](https://recosante.beta.gouv.fr/)** can be added as a secondary **Pollen** source for France. Only a pollen level is available, and not the concentration. Since it is sourcing its info from Atmo France which has concentration available, it’s best to use Atmo France source directly whenever possible.
+> **April 2025 update:** Recosanté is temporarily not producing any data
 
-**April 2025 update: Recosanté is temporarily not producing any data**
+**[Recosanté](https://recosante.beta.gouv.fr/)** can be added as a secondary **Pollen** source for France. Only a pollen level is available, and not the concentration. Since it is sourcing its info from Atmo France which has concentration available, it’s best to use Atmo France source directly whenever possible.
 
 ### WMO Severe Weather
 The **[WMO Severe Weather Information Centre](https://severeweather.wmo.int/)** is World Meteorological Organisation’s central repository of current and upcoming weather warnings from more than 130 countries and territories worldwide. This source can be added as a secondary **Alert** source, which is particularly useful if the selected national source for your location does not provide Alert information.
