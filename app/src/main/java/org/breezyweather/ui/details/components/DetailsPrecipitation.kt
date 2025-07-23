@@ -614,7 +614,7 @@ internal fun PrecipitationProbabilityDetails(
             ) {
                 DaytimeLabel()
                 daytimePrecProbItems.forEach {
-                    DailyPrecipitationDetail(it)
+                    DailyPrecipitationProbabilityDetail(it)
                 }
             }
             Column(
@@ -625,7 +625,7 @@ internal fun PrecipitationProbabilityDetails(
             ) {
                 NighttimeLabelWithInfo()
                 nighttimePrecProbItems.forEach {
-                    DailyPrecipitationDetail(it)
+                    DailyPrecipitationProbabilityDetail(it)
                 }
             }
         }
