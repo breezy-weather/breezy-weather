@@ -437,7 +437,7 @@
     <string name="settings_main_section_animations">动画</string>
     <string name="settings_widgets_section_widgets_in_use">正在使用的微件</string>
     <string name="settings_main_daily_trends_title">每日趋势</string>
-    <string name="settings_main_cards_fade_in_switch">卡片淡入</string>
+    <string name="settings_main_cards_fade_in_switch">块淡入</string>
     <string name="settings_debug_dump_crash_logs_title">分享崩溃日志</string>
     <string name="settings_notifications">通知</string>
     <string name="settings_notifications_precipitations_title">降水通知</string>
@@ -445,8 +445,8 @@
     <string name="settings_main_background_animation_enabled">启用</string>
     <string name="settings_widgets_notification_persistent_switch">持久化</string>
     <string name="settings_debug">调试</string>
-    <string name="settings_main_cards_title">卡片</string>
-    <string name="settings_main_summary">卡片顺序，显示的项目，动画</string>
+    <string name="settings_main_cards_title">块</string>
+    <string name="settings_main_summary">块顺序，显示的项目，动画</string>
     <string name="settings_main_section_displayed_data">显示的数据</string>
     <string name="settings_main_cards_other_element_animations_switch">其他动画</string>
     <string name="settings_notifications_alerts_title">恶劣天气预警通知</string>
