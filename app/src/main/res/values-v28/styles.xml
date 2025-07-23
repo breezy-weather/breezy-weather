@@ -16,13 +16,8 @@
 
 <resources>
 
-    <style name="Weather.TextAppearance.MainBlock.NumberUnit" parent="@style/TextAppearance.Material3.HeadlineSmall">
-        <item name="android:textSize">24sp</item>
-        <item name="android:lineHeight">24sp</item>
-    </style>
-
     <style name="Weather.TextAppearance.MainBlock.NumberDigit" parent="@style/TextAppearance.Material3.DisplaySmall">
         <item name="android:textSize">48sp</item>
-        <item name="android:lineHeight">40sp</item>
+        <item name="android:lineHeight">48sp</item>
     </style>
 </resources>

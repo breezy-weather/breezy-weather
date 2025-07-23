@@ -25,6 +25,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.Size
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.constraintlayout.widget.Guideline
 import androidx.core.graphics.ColorUtils
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Astro
@@ -32,7 +33,11 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.extensions.density
+import org.breezyweather.common.extensions.fontScale
 import org.breezyweather.common.extensions.getThemeColor
+import org.breezyweather.common.extensions.isWidthHalfSizeable
+import org.breezyweather.common.extensions.windowWidth
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.common.widgets.astro.MoonPhaseView
 import org.breezyweather.ui.common.widgets.astro.SunMoonView
@@ -55,6 +60,8 @@ abstract class AstroViewHolder(parent: ViewGroup, val isSun: Boolean) : Abstract
     protected val setTimeView: TextView = itemView.findViewById(R.id.set_time)
     protected val descriptionIconView: MoonPhaseView = itemView.findViewById(R.id.description_icon)
     protected val descriptionView: TextView = itemView.findViewById(R.id.description)
+    protected val topGuideline = itemView.findViewById<Guideline>(R.id.block_top_guideline)
+    protected val bottomGuideline = itemView.findViewById<Guideline>(R.id.block_bottom_guideline)
     protected var mWeather: Weather? = null
 
     protected var mStartTime: Long = 0L
@@ -91,6 +98,8 @@ abstract class AstroViewHolder(parent: ViewGroup, val isSun: Boolean) : Abstract
                 if (isSun) R.drawable.weather_clear_day_mini_xml else R.drawable.weather_clear_night_mini_xml
             )
         )
+
+        if (isSmallDisplay) topGuideline.setGuidelinePercent(0.05f)
 
         ensureTime(
             if (isSun) mWeather!!.today?.sun else mWeather!!.today?.moon,
@@ -185,5 +194,16 @@ abstract class AstroViewHolder(parent: ViewGroup, val isSun: Boolean) : Abstract
         get() {
             val duration = max(0.0, mPhaseAngle / 360.0 * 1000 + 1000).toLong()
             return min(duration, 2000)
+        }
+
+    /**
+     * Note: not considered “small display” if one block per row
+     */
+    protected val isSmallDisplay: Boolean
+        get() {
+            if (!itemView.context.isWidthHalfSizeable) return false
+
+            return itemView.context.fontScale >
+                itemView.context.windowWidth.toFloat().div(itemView.context.density) - 1.2
         }
 }

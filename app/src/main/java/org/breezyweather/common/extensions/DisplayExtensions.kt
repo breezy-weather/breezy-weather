@@ -67,7 +67,6 @@ val Context.isLandscape: Boolean
 val Context.isWidthHalfSizeable: Boolean
     get() {
         val currentWindowWidth = windowWidth.toFloat().div(density)
-        val currentFontScale = fontScale
 
         // Below 320 dp
         if (currentWindowWidth < 2.0) return false
@@ -80,7 +79,7 @@ val Context.isWidthHalfSizeable: Boolean
          */
         val maxFontScale = currentWindowWidth - 1.0
 
-        return currentFontScale <= maxFontScale
+        return fontScale <= maxFontScale
     }
 
 val Context.isRtl: Boolean
