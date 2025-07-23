@@ -50,10 +50,10 @@
 
             <org.breezyweather.ui.common.widgets.astro.SunMoonView
                 android:id="@+id/container_main_sun_moon_controlView"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
-                app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/small_margin"
                 app:layout_constraintTop_toBottomOf="@id/title" />
 
             <ImageView
