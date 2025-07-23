@@ -363,7 +363,7 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">Não foi possível abrir as configurações do dispositivo.</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Alguns fabricantes têm restrições adicionais de aplicativos que eliminam os serviços em segundo plano. O site Don’t kill my app! tem informações sobre como corrigir isso.</string>
     <string name="settings_main_cards_other_element_animations_switch">Animações de outros elementos</string>
-    <string name="settings_main_summary">Ordem dos blocos, itens exibidos e animações</string>
+    <string name="settings_main_summary">Ordem dos blocos, itens exibidos, animações</string>
     <string name="settings_widgets_notification_feels_like_switch">Usar sensação como temperatura</string>
     <string name="location_message_reverse_geocoding_failed">A fonte meteorológica não conseguiu encontrar um local correspondente</string>
     <string name="action_undo">Desfazer</string>
