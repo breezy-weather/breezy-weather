@@ -1,10 +1,13 @@
-# Version 6.0.4-alpha (not yet released)
+# Version 6.0.4-alpha (2025-07-23)
 
 **Improvements and fixes**
 - Main screen - Improvements to some cut off texts with different display sizes
 - Main screen - Improve the “two blocks per row” threshold when using custom font scale
 - Details - Fix precipitation probability details being expressed in precipitation unit instead of %
 - Fix missing normals every other refresh
+
+**Translations**
+- Translations updated
 
 
 # Version 6.0.3-alpha (2025-07-22)
