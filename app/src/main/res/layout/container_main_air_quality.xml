@@ -100,10 +100,10 @@
                 app:layout_constraintTop_toTopOf="@+id/block_top_guideline" />
 
             <TextView
+                android:id="@+id/aqi_value"
                 android:textAppearance="?attr/textAppearanceDisplayMedium"
                 android:textColor="?attr/colorSurfaceInverse"
                 android:ellipsize="end"
-                android:id="@+id/aqi_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
@@ -113,15 +113,15 @@
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <TextView
+                android:id="@+id/aqi_level"
                 android:textAppearance="?attr/textAppearanceLabelLarge"
                 android:textColor="?attr/colorSurfaceInverse"
                 android:ellipsize="end"
-                android:id="@+id/aqi_level"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="@+id/block_bottom_guideline"
+                app:layout_constraintBaseline_toBottomOf="@+id/block_bottom_guideline"
                 app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
                 app:layout_constraintStart_toStartOf="@+id/block_start_guideline" />
 

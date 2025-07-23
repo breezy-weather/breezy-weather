@@ -27,28 +27,28 @@
                 android:id="@+id/block_top_guideline"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintGuide_percent="0.1" />
+                app:layout_constraintGuide_percent="0.08" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:orientation="horizontal"
                 android:id="@+id/block_bottom_guideline"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintGuide_percent="0.9" />
+                app:layout_constraintGuide_percent="0.92" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:orientation="vertical"
                 android:id="@+id/block_start_guideline"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintGuide_percent="0.1" />
+                app:layout_constraintGuide_percent="0.08" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:orientation="vertical"
                 android:id="@+id/block_end_guideline"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintGuide_percent="0.9" />
+                app:layout_constraintGuide_percent="0.92" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:orientation="horizontal"

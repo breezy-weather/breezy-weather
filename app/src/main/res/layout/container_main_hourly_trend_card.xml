@@ -53,6 +53,7 @@
             android:layout_marginTop="@dimen/small_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             app:layout_constraintTop_toBottomOf="@+id/hourly_block_subtitle"
             app:layout_constraintStart_toStartOf="@+id/hourly_block_title_icon" />
 
