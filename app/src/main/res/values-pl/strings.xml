@@ -236,7 +236,7 @@
     <string name="settings_main_section_animations">Animacje</string>
     <string name="settings_main_daily_trends_title">Trendy dzienne</string>
     <string name="settings_main_section_displayed_data">Wyświetlane dane</string>
-    <string name="settings_main_cards_title">Karty</string>
+    <string name="settings_main_cards_title">Bloki</string>
     <string name="settings_main_hourly_trends_title">Trendy godzinne</string>
     <string name="null_data_text">N/A</string>
     <string name="location_search_weather_source">Źródło danych pogodowych</string>
@@ -457,14 +457,14 @@
     <string name="settings_location_access_precise_summaryOff">Włącz opcję „Używaj dokładnej lokalizacji”, jeśli masz problem z uzyskaniem lokalizacji.</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="settings_appearance_summary">Język, tryb ciemny, pakiet ikon, jednostki</string>
-    <string name="settings_main_cards_fade_in_switch">Animacja pojawiania się kart</string>
+    <string name="settings_main_cards_fade_in_switch">Pojawianie się bloków</string>
     <string name="settings_main_background_animation_title">Animacja tła</string>
     <string name="common_weather_text_snow_grains">Śnieg ziarnisty</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Mgła osadzająca szadź</string>
     <string name="unit_mgpcum_voice">Miligramów na metr sześcienny</string>
     <string name="settings_location_access_precise_summaryOn">Włączone. Używana jest przede wszystkim sieć komórkowa, ale GPS również może być użyty jako rezerwowe źródło lokalizacji.</string>
     <string name="settings_weather_sources_summary">Domyślne źródło danych pogodowych dla nowych lokalizacji, osobiste klucze API i inne ustawienia źródeł danych</string>
-    <string name="settings_main_summary">Kolejność kart, wyświetlane elementy, animacje</string>
+    <string name="settings_main_summary">Kolejność bloków, wyświetlane elementy, animacje</string>
     <string name="settings_main_header_details_title">Szczegóły w nagłówku</string>
     <string name="settings_notifications_summary">Powiadomienia o alertach pogodowych, opadach lub prognozie pogody dla pierwszej lokalizacji</string>
     <string name="settings_notifications_precipitations_title">Powiadomienia o opadach</string>
@@ -835,4 +835,6 @@
     <string name="temperature_normals_deviation">odchylenie</string>
     <string name="temperature_normals_deviation_explanation_maximum">Odchylenie od średniej maksymalnej temperatury %s dla tej lokalizacji</string>
     <string name="temperature_normals_deviation_explanation_minimum">Odchylenie od średniej minimalnej temperatury %s dla tej lokalizacji</string>
+    <string name="widget_custom_subtitle_help_content_description">Pokaż pomoc dotyczącą niestandardowych słów kluczowych napisów</string>
+    <string name="widget_custom_subtitle_alert_box_title">Pomoc dotycząca niestandardowych napisów</string>
 </resources>
