@@ -376,7 +376,7 @@
     <string name="settings_units_speed">Aonad luais</string>
     <string name="settings_units_pressure">Aonad brú</string>
     <string name="settings_main">Príomhscáileán</string>
-    <string name="settings_main_summary">Ordú cártaí, míreanna ar taispeáint, beochan</string>
+    <string name="settings_main_summary">Ord na mbloc, míreanna a thaispeántar, beochana</string>
     <string name="settings_main_header_details_title">Sonraí sa cheanntásc</string>
     <string name="settings_main_section_options">Roghanna</string>
     <string name="settings_main_threshold_lines_on_charts">Línte tairsí ar chairteacha</string>
@@ -385,7 +385,7 @@
     <string name="settings_main_background_animation_enabled">Cumasaithe</string>
     <string name="settings_main_background_animation_disabled">Díchumasaithe</string>
     <string name="settings_main_gravity_sensor_switch">Braiteoir domhantarraingthe</string>
-    <string name="settings_main_cards_fade_in_switch">Cártaí céimnithe i</string>
+    <string name="settings_main_cards_fade_in_switch">Céimníonn bloic isteach</string>
     <string name="settings_main_cards_other_element_animations_switch">Beochan eiliminte eile</string>
     <string name="settings_notifications">Fógraí</string>
     <string name="settings_notifications_summary">Fógraí maidir le foláirimh aimsire, frasaíocht nó réamhaisnéis don chéad suíomh</string>
@@ -635,7 +635,7 @@
     <string name="settings_weather_source_open_meteo_instance_forecast">Ásc réamhaisnéise</string>
     <string name="settings_units_temperature">Aonad teochta</string>
     <string name="settings_main_section_displayed_data">Sonraí ar taispeáint</string>
-    <string name="settings_main_cards_title">Cártaí</string>
+    <string name="settings_main_cards_title">Bloic</string>
     <string name="settings_main_daily_trends_title">Treochtaí laethúla</string>
     <string name="settings_main_hourly_trends_title">Treochtaí in aghaidh na huaire</string>
     <string name="settings_widgets">Giuirléidí &amp; Ballapháipéir beo</string>
@@ -809,14 +809,19 @@
     <string name="ephemeris_polar_day">Lá polach</string>
     <string name="ephemeris_polar_night">Oíche pholaire</string>
     <string name="clock">Clog</string>
-    <string name="precipitation_total_day">Deascadh don lá</string>
-    <string name="precipitation_total_night">Deascadh don oíche</string>
+    <string name="precipitation_total_day">Deascadh i rith an lae</string>
+    <string name="precipitation_total_night">Deascadh oíche</string>
     <string name="precipitation_rain_total_day">Báisteach i rith an lae</string>
-    <string name="precipitation_rain_total_night">Báisteach don oíche</string>
-    <string name="precipitation_snow_total_day">Sneachta don lá</string>
-    <string name="precipitation_snow_total_night">Sneachta don oíche</string>
+    <string name="precipitation_rain_total_night">Báisteach san oíche</string>
+    <string name="precipitation_snow_total_day">Sneachta i rith an lae</string>
+    <string name="precipitation_snow_total_night">Sneachta san oíche</string>
     <string name="daytime_short">Lá</string>
     <string name="nighttime_short">Oíche</string>
     <string name="settings_appearance_dark_mode_locations_always_enabled">Cumasaithe i gcónaí le mód solais</string>
     <string name="settings_appearance_dark_mode_locations_disabled">Díchumasaithe, ach bíonn na suíomhanna i mód dorcha i gcónaí san oíche</string>
+    <string name="temperature_normals_deviation">Diall</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Diall ón meánteocht uasta %s don suíomh seo</string>
+    <string name="temperature_normals_deviation_explanation_minimum">Diall ón meánteocht íosta %s don suíomh seo</string>
+    <string name="widget_custom_subtitle_help_content_description">Taispeáin cabhair le heochairfhocail saincheaptha le fotheidil</string>
+    <string name="widget_custom_subtitle_alert_box_title">Cabhair le fotheidil saincheaptha</string>
 </resources>
