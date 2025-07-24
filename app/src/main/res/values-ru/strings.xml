@@ -286,7 +286,7 @@
     <string name="pollen_ambrosia">Амброзия</string>
     <string name="ephemeris_sunrise_at">Восход солнца в %s</string>
     <string name="settings_main">Главный экран</string>
-    <string name="settings_main_summary">Порядок карточек, отображаемые элементы, анимации</string>
+    <string name="settings_main_summary">Порядок блоков, отображаемые элементы, анимации</string>
     <string name="settings_main_hourly_trends_title">Почасовой прогноз</string>
     <string name="settings_main_header_details_title">Детали в заголовке</string>
     <string name="settings_main_section_options">Опции</string>
@@ -304,7 +304,7 @@
     <string name="weather_source_accu_preference_days_10">10 дней</string>
     <string name="weather_api_limit_reached_content">Чтобы обойти ограничение, используйте свой API-ключ.</string>
     <string name="air_quality_no2_voice">Диоксид азота</string>
-    <string name="settings_main_cards_title">Карточки</string>
+    <string name="settings_main_cards_title">Блоки</string>
     <string name="settings_main_section_displayed_data">Отображаемые данные</string>
     <string name="wind_direction_S_short">Ю</string>
     <string name="air_quality_level_2_description">Качество воздуха в целом является приемлемым для большинства людей. Однако у людей с повышенной чувствительностью после длительного нахождения на улице могут появляться симптомы малой и средней тяжести.</string>
@@ -339,7 +339,7 @@
     <string name="settings_appearance_summary">Язык, тёмная тема, набор иконок, единицы измерения</string>
     <string name="settings_main_background_animation_title">Анимации фона</string>
     <string name="settings_main_cards_other_element_animations_switch">Другие элементы анимаций</string>
-    <string name="settings_main_cards_fade_in_switch">Появление карточек</string>
+    <string name="settings_main_cards_fade_in_switch">Появление блоков</string>
     <string name="settings_widgets_configure_widget_summary">Настроить этот виджет</string>
     <string name="settings_widgets_section_notification_widget">Виджет в уведомлениях</string>
     <string name="settings_widgets_notification_widget_title">Виджет в уведомлениях</string>
@@ -818,14 +818,19 @@
     <string name="ephemeris_polar_day">Полярный день</string>
     <string name="ephemeris_polar_night">Полярная ночь</string>
     <string name="clock">Часы</string>
-    <string name="precipitation_total_day">Осадки за день</string>
-    <string name="precipitation_total_night">Осадки за ночь</string>
-    <string name="precipitation_rain_total_day">Дождь в течение дня</string>
-    <string name="precipitation_rain_total_night">Дождь в течение ночи</string>
-    <string name="precipitation_snow_total_day">Снег в течение дня</string>
-    <string name="precipitation_snow_total_night">Снег в течение ночи</string>
+    <string name="precipitation_total_day">Дневные осадки</string>
+    <string name="precipitation_total_night">Ночные осадки</string>
+    <string name="precipitation_rain_total_day">Дневной дождь</string>
+    <string name="precipitation_rain_total_night">Ночной дождь</string>
+    <string name="precipitation_snow_total_day">Дневной снег</string>
+    <string name="precipitation_snow_total_night">Ночной снег</string>
     <string name="daytime_short">День</string>
     <string name="nighttime_short">Ночь</string>
     <string name="settings_appearance_dark_mode_locations_always_enabled">Всегда включен в светлом режиме</string>
     <string name="settings_appearance_dark_mode_locations_disabled">Отключено, но в ночное время локации всегда работают в тёмном режиме</string>
+    <string name="temperature_normals_deviation">Отклонение</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Отклонение от %s средней максимальной температуры для этого местоположения</string>
+    <string name="temperature_normals_deviation_explanation_minimum">Отклонение от %s средней минимальной температуры для этого местоположения</string>
+    <string name="widget_custom_subtitle_help_content_description">Показать пользовательские ключевые слова для субтитров</string>
+    <string name="widget_custom_subtitle_alert_box_title">Помощь с пользовательскими субтитрами</string>
 </resources>
