@@ -822,4 +822,6 @@
     <string name="temperature_normals_deviation">Відхилення</string>
     <string name="temperature_normals_deviation_explanation_maximum">Відхилення від середньої максимальної температури %s для цього місця</string>
     <string name="temperature_normals_deviation_explanation_minimum">Відхилення від середньої мінімальної температури %s для цього місця</string>
+    <string name="widget_custom_subtitle_help_content_description">Показати довідку щодо ключових слів для власних субтитрів</string>
+    <string name="widget_custom_subtitle_alert_box_title">Допомога з налаштуванням субтитрів</string>
 </resources>
