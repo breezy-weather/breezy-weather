@@ -889,4 +889,6 @@
     <string name="precipitation_snow_total_day">Neve durante o dia</string>
     <string name="precipitation_snow_total_night">Neve durante a noite</string>
     <string name="settings_appearance_dark_mode_locations_disabled">Desabilitado, mas os locais estão sempre no modo escuro durante a noite</string>
+    <string name="widget_custom_subtitle_help_content_description">Mostrar ajuda para palavras-chave de legendas personalizadas</string>
+    <string name="widget_custom_subtitle_alert_box_title">Ajuda para legendas personalizadas</string>
 </resources>
