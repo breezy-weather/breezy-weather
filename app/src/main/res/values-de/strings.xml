@@ -18,7 +18,7 @@
     <string name="daytime">Tagsüber</string>
     <string name="temperature_degree_day">Gradtagzahl</string>
     <string name="dew_point">Taupunkt</string>
-    <string name="action_done">Erledigt</string>
+    <string name="action_done">Fertig</string>
     <string name="action_edit">Bearbeiten</string>
     <string name="widget_ellipsis">…</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Standort manuell hinzufügen und „%s“ löschen</string>
@@ -306,7 +306,7 @@
     <string name="widget_custom_subtitle_keyword_cwd_description">Aktueller Wind</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Aktueller Taupunkt</string>
     <string name="widget_custom_subtitle_keyword_al_description">Warnungen</string>
-    <string name="widget_custom_subtitle_keyword_ut_description">Aktualisierungszeit</string>
+    <string name="widget_custom_subtitle_keyword_ut_description">Aktualisierungszeitpunkt</string>
     <string name="widget_custom_subtitle_keyword_w_description">Woche</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Wetter tagsüber heute, morgen, …, in 4 Tagen</string>
     <string name="widget_custom_subtitle_keyword_xdt_description">Temperatur tagsüber heute, morgen, …, in 4 Tagen (°C/°F)</string>
@@ -820,18 +820,18 @@
     <string name="action_configure_item">%s konfigurieren</string>
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="about_update_check_eol">Diese Androidversion wird nicht mehr unterstützt</string>
-    <string name="precipitation_snow_total_day">Tagsüber Schnee</string>
-    <string name="precipitation_snow_total_night">Nächtlicher Schnee</string>
+    <string name="precipitation_snow_total_day">Schnee tagsüber</string>
+    <string name="precipitation_snow_total_night">Schnee nachts</string>
     <string name="air_quality_short">Luftqualität</string>
     <string name="ephemeris_sun">Sonne</string>
     <string name="ephemeris_moon">Mond</string>
     <string name="ephemeris_polar_day">Polartag</string>
     <string name="ephemeris_polar_night">Polarnacht</string>
     <string name="clock">Uhr</string>
-    <string name="precipitation_total_day">Niederschlag am Tag</string>
-    <string name="precipitation_total_night">Nächtlicher Niederschlag</string>
+    <string name="precipitation_total_day">Niederschlag tagsüber</string>
+    <string name="precipitation_total_night">Niederschlag nachts</string>
     <string name="precipitation_rain_total_day">Regen tagsüber</string>
-    <string name="precipitation_rain_total_night">Nächtlicher Regen</string>
+    <string name="precipitation_rain_total_night">Regen nachts</string>
     <string name="daytime_short">Tag</string>
     <string name="nighttime_short">Nacht</string>
     <string name="settings_appearance_dark_mode_locations_always_enabled">Im hellen Modus Immer aktiviert</string>
@@ -839,4 +839,6 @@
     <string name="temperature_normals_deviation">Abweichung</string>
     <string name="temperature_normals_deviation_explanation_maximum">Abweichung von der %s-Durchschnittsmaximaltemperatur für diesen Ort</string>
     <string name="temperature_normals_deviation_explanation_minimum">Abweichung von der %s-Durchschnittsminimaltemperatur für diesen Ort</string>
+    <string name="widget_custom_subtitle_alert_box_title">Hilfe zu benutzerdefiniertem Untertitel</string>
+    <string name="widget_custom_subtitle_help_content_description">Zeigt Schlüsselwörter für benutzerdefinierte Untertitel als Hilfe an</string>
 </resources>
