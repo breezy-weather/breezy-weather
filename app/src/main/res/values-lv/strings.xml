@@ -810,4 +810,6 @@
     <string name="pressure_falling">Pazeminās</string>
     <string name="pressure_about">Par spiedienu</string>
     <string name="pressure_about_description1">Atmosfēras spiediens ir lejup vērsts spiediens, ko rada Zemes atmosfēra. Šajā lietotnē tiek izmantots vidējais jūras līmeņa spiediens (MSLP - Mean Sea Level Pressure), lai nodrošinātu vienkāršāku dažādos augstumos esošu vietu spiediena salīdzināšanu.</string>
+    <string name="widget_custom_subtitle_alert_box_title">Palīdzība par pielāgotu apakšvirsrakstu</string>
+    <string name="widget_custom_subtitle_help_content_description">Parādīt palīdzību par pielāgotiem apakšvirsraksta atslēgvārdiem</string>
 </resources>
