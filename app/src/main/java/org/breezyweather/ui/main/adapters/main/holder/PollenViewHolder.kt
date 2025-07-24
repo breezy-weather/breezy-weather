@@ -30,6 +30,8 @@ import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.index.PollenIndex
+import org.breezyweather.domain.weather.index.PollenIndex.Companion.getNegligiblePollenColor
+import org.breezyweather.domain.weather.index.PollenIndex.Companion.getNegligiblePollenText
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getIndexName
@@ -72,11 +74,11 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 (activity as MainActivity).sourceManager.getPollenIndexSource(it)
             }
 
-            talkBackBuilder.append(context.getString(R.string.pollen_primary))
-
             primaryPollens.getOrElse(0) { null }?.let { p ->
+                talkBackBuilder.append(context.getString(R.string.pollen_primary))
                 pollen1Container.visibility = View.VISIBLE
                 pollen1Icon.setColorFilter(pollen.getColor(context, p, pollenIndexSource))
+                pollen1Title.visibility = View.VISIBLE
                 pollen1Title.text = pollen.getName(context, p)
                 pollen1Title.setTextColor(context.getThemeColor(R.attr.colorTitleText))
                 pollen1Content.text = pollen.getIndexName(context, p, pollenIndexSource)
@@ -87,7 +89,19 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 talkBackBuilder.append(context.getString(R.string.colon_separator))
                 talkBackBuilder.append(pollen1Content.text)
             } ?: run {
-                pollen1Container.visibility = View.GONE
+                if (pollen.isValid) {
+                    pollen1Container.visibility = View.VISIBLE
+                    pollen1Icon.setColorFilter(getNegligiblePollenColor(context, pollenIndexSource))
+                    pollen1Title.visibility = View.GONE
+                    pollen1Content.text = getNegligiblePollenText(context, pollenIndexSource)
+                    pollen1Content.setTextColor(context.getThemeColor(R.attr.colorBodyText))
+
+                    talkBackBuilder.append(context.getString(R.string.pollen))
+                    talkBackBuilder.append(context.getString(R.string.colon_separator))
+                    talkBackBuilder.append(pollen1Content.text)
+                } else {
+                    pollen1Container.visibility = View.GONE
+                }
             }
 
             primaryPollens.getOrElse(1) { null }?.let { p ->

@@ -22,6 +22,7 @@ import androidx.annotation.ColorInt
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import org.breezyweather.R
+import org.breezyweather.common.source.PollenIndexSource
 import kotlin.math.roundToInt
 
 @Suppress("ktlint")
@@ -89,6 +90,29 @@ enum class PollenIndex(
             val level = getPollenIndexToLevel(pollenIndex)
             return if (level != null) context.resources.getStringArray(namesArrayId).getOrNull(level) else null
         }
+
+        @ColorInt
+        fun getNegligiblePollenColor(
+            context: Context,
+            source: PollenIndexSource? = null,
+        ): Int {
+            return if (source != null) {
+                context.resources.getIntArray(source.pollenColors).getOrElse(0) { Color.TRANSPARENT }
+            } else {
+                ContextCompat.getColor(context, R.color.pollenLevel_0)
+            }
+        }
+
+        fun getNegligiblePollenText(
+            context: Context,
+            source: PollenIndexSource? = null,
+        ): String? {
+            return if (source != null) {
+                context.resources.getStringArray(source.pollenLabels).getOrElse(0) { null }
+            } else {
+                context.resources.getStringArray(namesArrayId).getOrNull(0)
+            }
+        }
     }
 
     private fun getIndex(cp: Double, bpLo: Int, bpHi: Int, inLo: Int, inHi: Int): Int {
@@ -117,7 +141,7 @@ enum class PollenIndex(
     fun getIndex(cp: Double?): Int? {
         if (cp == null) return null
         val level = thresholds.indexOfLast { cp >= it }
-        return if (level >= 0) getIndex(cp, level) else null
+        return if (level >= 0) getIndex(cp, level) else 0
     }
 
     fun getLevel(cp: Double?): Int? {
