@@ -840,4 +840,6 @@
     <string name="temperature_normals_deviation">Odchylka</string>
     <string name="temperature_normals_deviation_explanation_maximum">Odchylka od průměrné maximální teploty v měsíci %s v tomto umístění</string>
     <string name="temperature_normals_deviation_explanation_minimum">Odchylka od průměrné minimální teploty v měsíci %s v tomto umístění</string>
+    <string name="widget_custom_subtitle_help_content_description">Zobrazit nápovědu k vlastním klíčovým slovům titulků</string>
+    <string name="widget_custom_subtitle_alert_box_title">Vlastní nápověda titulků</string>
 </resources>
