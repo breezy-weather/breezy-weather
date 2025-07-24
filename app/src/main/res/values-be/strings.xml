@@ -810,7 +810,7 @@
     <string name="settings_appearance_dark_mode_locations_always_enabled">Заўсёды ўключана са светлым рэжымам</string>
     <string name="ephemeris_dusk_at">Змрок ў %s</string>
     <string name="ephemeris_about_dusk">Змрок — найцямнейшая частка змяркання перад поўным знікненнем бачнага святла.</string>
-    <string name="ephemeris_about_dawn">Світанне — час перад ўсходам сонца, калі з\'яўляецца першае бачнае святло.</string>
+    <string name="ephemeris_about_dawn">Світанне — час перад ўсходам сонца, калі з’яўляецца першае бачнае святло.</string>
     <string name="precipitation_total_day">Ападкі ўдзень</string>
     <string name="precipitation_total_night">Ападкі ўначы</string>
     <string name="precipitation_rain_total_day">Дажджы ўдзень</string>

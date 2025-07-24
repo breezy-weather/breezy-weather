@@ -598,7 +598,7 @@
     <string name="widget_custom_subtitle_keyword_caqi_description">当前空气质量指数</string>
     <string name="weather_message_too_frequent_refreshes">请稍候几秒再试…</string>
     <string name="widget_label_hide_header">隐藏标题</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">空气质量指数（今天、明天、...、4 天后）</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">空气质量指数（今天、明天、…、4 天后）</string>
     <string name="pollen_castanea">栗子树</string>
     <string name="pollen_corylus">榛子</string>
     <string name="pollen_fraxinus">白蜡树</string>
