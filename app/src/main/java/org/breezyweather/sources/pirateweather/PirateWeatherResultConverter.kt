@@ -44,7 +44,11 @@ import kotlin.time.Duration.Companion.seconds
 /**
  * Returns current weather
  */
-internal fun getCurrent(result: PirateWeatherCurrently?): CurrentWrapper? {
+internal fun getCurrent(
+    result: PirateWeatherCurrently?,
+    dailySummary: String?,
+    hourlySummary: String?,
+): CurrentWrapper? {
     if (result == null) return null
     return CurrentWrapper(
         weatherText = result.summary,
@@ -63,7 +67,9 @@ internal fun getCurrent(result: PirateWeatherCurrently?): CurrentWrapper? {
         dewPoint = result.dewPoint,
         pressure = result.pressure,
         cloudCover = result.cloudCover?.times(100)?.roundToInt(),
-        visibility = result.visibility?.times(1000)
+        visibility = result.visibility?.times(1000),
+        dailyForecast = dailySummary,
+        hourlyForecast = hourlySummary
     )
 }
 
@@ -74,7 +80,7 @@ internal fun getDailyForecast(
         DailyWrapper(
             date = result.time.seconds.inWholeMilliseconds.toDate(),
             day = HalfDayWrapper(
-                weatherText = result.summary,
+                weatherPhase = result.summary,
                 weatherCode = getWeatherCode(result.icon),
                 temperature = TemperatureWrapper(
                     temperature = result.temperatureHigh,
@@ -82,7 +88,7 @@ internal fun getDailyForecast(
                 )
             ),
             night = HalfDayWrapper(
-                weatherText = result.summary,
+                weatherPhase = result.summary,
                 weatherCode = getWeatherCode(result.icon),
                 // temperatureLow/High are always forward-looking
                 // See https://docs.pirateweather.net/en/latest/API/#temperaturelow

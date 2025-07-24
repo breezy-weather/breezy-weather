@@ -6,6 +6,7 @@
 
 **Weather sources**
 - [GeoSphere AT] Fix missing info in warnings
+- [Pirate Weather] Add support for daily/hourly summaries
 
 **Translations**
 - Translations updated

@@ -40,11 +40,11 @@
         <TextView
             android:id="@+id/hourly_block_subtitle"
             android:layout_marginTop="2dp"
-            android:paddingEnd="@dimen/large_margin"
+            android:layout_marginHorizontal="@dimen/large_margin"
+            android:layout_width="match_parent"
             style="@style/content_text"
             tools:text="Rain Wednesday evening"
-            app:layout_constraintTop_toBottomOf="@+id/hourly_block_title"
-            app:layout_constraintStart_toStartOf="@+id/hourly_block_title_icon" />
+            app:layout_constraintTop_toBottomOf="@+id/hourly_block_title" />
 
         <com.google.android.material.button.MaterialButtonGroup
             android:id="@+id/hourly_block_button_group"

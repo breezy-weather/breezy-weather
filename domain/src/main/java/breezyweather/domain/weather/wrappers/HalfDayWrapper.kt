@@ -20,10 +20,8 @@ import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationDuration
 import breezyweather.domain.weather.model.PrecipitationProbability
-import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
-import java.io.Serializable
 
 /**
  * Half day.

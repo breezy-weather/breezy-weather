@@ -97,7 +97,7 @@ class PirateWeatherService @Inject constructor(
                     null
                 },
                 current = if (SourceFeature.CURRENT in requestedFeatures) {
-                    getCurrent(it.currently)
+                    getCurrent(it.currently, it.daily?.summary, it.hourly?.summary)
                 } else {
                     null
                 },
