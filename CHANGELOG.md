@@ -6,6 +6,7 @@
 
 **Weather sources**
 - [GeoSphere AT] Fix missing info in warnings
+- [GeoSphere AT] Use the newer better endpoint for air quality
 - [Pirate Weather] Add support for daily/hourly summaries
 
 **Translations**

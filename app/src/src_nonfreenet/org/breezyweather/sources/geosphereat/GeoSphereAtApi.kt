@@ -36,9 +36,9 @@ interface GeoSphereAtApi {
         @Query("parameters", encoded = true) parameters: String,
     ): Observable<GeoSphereAtTimeseriesResult>
 
-    @GET("v1/timeseries/forecast/chem-v1-1h-{km}km")
+    @GET("v1/timeseries/forecast/chem-v2-1h-{km}km")
     fun getAirQuality(
-        @Path("km") km: Int, // 4 or 12 depending on bbox
+        @Path("km") km: Int, // 3 or 9 depending on bbox
         @Query("lat_lon", encoded = true) latLon: String,
         @Query("parameters", encoded = true) parameters: String,
     ): Observable<GeoSphereAtTimeseriesResult>
