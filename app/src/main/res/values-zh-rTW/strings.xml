@@ -908,4 +908,6 @@
     <string name="temperature_normals_deviation">偏差</string>
     <string name="temperature_normals_deviation_explanation_maximum">與此位置之%s平均最高氣溫偏差</string>
     <string name="temperature_normals_deviation_explanation_minimum">與此位置之%s平均最低氣溫偏差</string>
+    <string name="widget_custom_subtitle_help_content_description">顯示自訂副標題關鍵字說明</string>
+    <string name="widget_custom_subtitle_alert_box_title">自訂副標題說明</string>
 </resources>
