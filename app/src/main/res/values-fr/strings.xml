@@ -33,8 +33,8 @@
     <string name="nighttime">Nuit</string>
     <string name="nighttime_short">Nuit</string>
     <string name="nighttime_details">Commence dans la soirée et se termine à l’aube du lendemain</string>
-    <string name="settings_follow_system">Préférence système</string>
     <!-- Littéralement "suivre les préférences système" -->
+    <string name="settings_follow_system">Préférence système</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="notification_channel_background_services">Services en arrière-plan</string>
     <string name="notification_channel_crash_logs">Journaux d’incident</string>
@@ -325,7 +325,6 @@
     <string name="widget_label_hide_header">Masquer l’entête</string>
     <string name="widget_label_subtitle_data">Sous-titre</string>
     <string name="widget_label_text_color">Couleur du texte</string>
-    <!-- Texte sombre -->
     <string name="widget_label_text_size">Taille du texte</string>
     <string name="widget_label_clock_font">Police de l’horloge</string>
     <string name="widget_label_hide_alternate_calendar">Masquer le calendrier alternatif</string>
@@ -497,17 +496,13 @@
     <string name="ephemeris_moonset_at">Coucher de lune à %s</string>
     <string name="precipitation_none">Pas de précipitations</string>
     <string name="precipitation_between_time">Précipitations de %1$s à %2$s</string>
-    <!-- $1 = start time, $2 = end time. -->
     <string name="action_add_current_location">Ajouter ma position actuelle</string>
     <string name="settings_items_drag_to_sort">Maintenez puis déplacez les éléments de la liste pour les ordonner</string>
     <string name="settings_item_delete">Supprimer cet élément</string>
     <string name="location_swipe_to_delete">Vous pouvez balayer vers la gauche pour supprimer cet élément</string>
     <string name="data_sources">Sources des données</string>
     <string name="data_modified">Ce contenu a été modifié par %s par rapport à l’original, principalement pour calculer ou extrapoler des données manquantes.</string>
-    <!-- $ = weather source. -->
-    <!-- $ = weather source. -->
     <string name="location_results_by">Résultats d’emplacement par %s</string>
-    <!-- $ = location source -->
     <string name="settings_icon_packs_weather_adaptive_icon">Icône météo</string>
     <string name="settings_icon_packs_weather_icon_light">Icône claire</string>
     <string name="settings_icon_packs_weather_icon_grey">Icône grise</string>
