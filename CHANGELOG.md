@@ -10,6 +10,7 @@
 **Weather sources**
 - [GeoSphere AT] Fix missing info in warnings
 - [GeoSphere AT] Use the newer better endpoint for air quality
+- [JMA] Added Thai translations (@chunshek)
 - [Pirate Weather] Add support for daily/hourly summaries
 
 **Translations**
