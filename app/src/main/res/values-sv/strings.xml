@@ -719,4 +719,8 @@
     <string name="ephemeris_about_set">Nedgångstiden är när solen eller månen helt och hållet försvinner under horisonten.</string>
     <string name="ephemeris_about_dawn">Gryningen är när dagens första synliga ljus framträder före soluppgången.</string>
     <string name="daily_summary">Dagsöversikt</string>
+    <string name="air_quality_short">Luftkvalitet</string>
+    <string name="ephemeris_sun">Solen</string>
+    <string name="ephemeris_moon">Månen</string>
+    <string name="ephemeris_polar_day">Polardag</string>
 </resources>
