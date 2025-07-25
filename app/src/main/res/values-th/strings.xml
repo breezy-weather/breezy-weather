@@ -844,4 +844,7 @@
     <string name="jma_warning_text_frost_advisory">ประกาศเฝ้าระวังน้ำค้างแข็ง</string>
     <string name="jma_warning_text_ice_accretion_advisory">ประกาศเฝ้าระวังน้ำแข็งเกาะ</string>
     <string name="jma_warning_text_snow_accretion_advisory">ประกาศเฝ้าระวังหิมะเกาะ</string>
+    <string name="air_quality_short">คุณภาพอากาศ</string>
+    <string name="ephemeris_sun">ดวงอาทิตย์</string>
+    <string name="ephemeris_moon">ดวงจันทร์</string>
 </resources>
