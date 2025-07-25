@@ -18,7 +18,7 @@ package org.breezyweather.common.utils.helpers
 
 import android.view.View
 import org.breezyweather.BreezyWeather
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.snackbar.Snackbar
 
 object SnackbarHelper {
@@ -26,7 +26,7 @@ object SnackbarHelper {
     fun showSnackbar(
         content: String,
         action: String? = null,
-        activity: GeoActivity? = null,
+        activity: BreezyActivity? = null,
         listener: View.OnClickListener? = null,
     ) {
         if (action != null && listener == null) {

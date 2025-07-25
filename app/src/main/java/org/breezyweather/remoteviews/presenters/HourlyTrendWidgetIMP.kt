@@ -20,7 +20,6 @@ import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.os.Looper
@@ -30,6 +29,7 @@ import android.widget.RemoteViews
 import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.core.graphics.createBitmap
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendHourlyProvider
@@ -98,7 +98,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         var highestTemperature: Float? = null
         var lowestTemperature: Float? = null
         val minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons
-        val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
         val lightTheme = color.isLightThemed
 
         // TODO: Redundant with HourlyTemperatureAdapter
@@ -189,7 +189,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     buildTemperatureArrayForItem(temperatures, i),
                     null,
                     hourly.temperature?.temperature?.let {
-                        temperatureUnit.getShortValueText(context, it)
+                        temperatureUnit.formatMeasureShort(context, it)
                     },
                     null,
                     highestTemperature,
@@ -275,11 +275,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             drawableView.measuredWidth,
             drawableView.measuredHeight
         )
-        val cache = Bitmap.createBitmap(
-            drawableView.measuredWidth,
-            drawableView.measuredHeight,
-            Bitmap.Config.ARGB_8888
-        )
+        val cache = createBitmap(drawableView.measuredWidth, drawableView.measuredHeight)
         val canvas = Canvas(cache)
         drawableView.draw(canvas)
         views.setImageViewBitmap(R.id.widget_remote_drawable, cache)

@@ -18,7 +18,6 @@ package org.breezyweather.domain.settings
 
 import android.content.Context
 import android.os.Build
-import androidx.core.text.util.LocalePreferences
 import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.basic.models.options.DarkMode
@@ -28,7 +27,6 @@ import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
-import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
@@ -60,13 +58,19 @@ class SettingsManager private constructor(
             return instance!!
         }
 
-        const val DEFAULT_CARD_DISPLAY = "precipitation_nowcast" +
-            "&daily_overview" +
-            "&hourly_overview" +
+        const val DEFAULT_CARD_DISPLAY = "nowcast" +
+            "&daily_forecast" +
+            "&hourly_forecast" +
+            "&precipitation" +
+            "&wind" +
             "&air_quality" +
             "&pollen" +
-            "&sunrise_sunset" +
-            "&live"
+            "&humidity" +
+            "&uv" +
+            "&visibility" +
+            "&pressure" +
+            "&sun" +
+            "&moon"
         const val DEFAULT_DAILY_TREND_DISPLAY = "temperature" +
             "&air_quality" +
             "&wind" +
@@ -84,10 +88,6 @@ class SettingsManager private constructor(
             "&pressure" +
             "&cloud_cover" +
             "&visibility"
-        private const val DEFAULT_DETAILS_DISPLAY = "feels_like" +
-            "&wind" +
-            "&uv_index" +
-            "&humidity"
 
         const val DEFAULT_TODAY_FORECAST_TIME = "07:00"
         const val DEFAULT_TOMORROW_FORECAST_TIME = "21:00"
@@ -209,67 +209,83 @@ class SettingsManager private constructor(
         get() = config.getString("default_weather_source", null) ?: BuildConfig.DEFAULT_FORECAST_SOURCE
 
     // unit.
-    var temperatureUnit: TemperatureUnit
+    var temperatureUnit: TemperatureUnit?
         set(value) {
-            config.edit().putString("temperature_unit", value.id).apply()
+            config.edit().putString("temperature_unit", value?.id ?: "auto").apply()
             notifySettingsChanged()
         }
-        get() = TemperatureUnit.getInstance(
-            config.getString("temperature_unit", null) ?: defaultTemperatureUnit
-        )
+        get() = TemperatureUnit.entries
+            .firstOrNull { it.id == (config.getString("temperature_unit", "auto") ?: "auto") }
 
-    private val defaultTemperatureUnit: String
-        get() {
-            return when (LocalePreferences.getTemperatureUnit()) {
-                LocalePreferences.TemperatureUnit.FAHRENHEIT -> "f"
-                LocalePreferences.TemperatureUnit.KELVIN -> "k"
-                else -> "c"
-            }
-        }
+    fun getTemperatureUnit(context: Context): TemperatureUnit {
+        return temperatureUnit ?: TemperatureUnit.getDefaultUnit(context)
+    }
 
-    var distanceUnit: DistanceUnit
+    var distanceUnit: DistanceUnit?
         set(value) {
-            config.edit().putString("distance_unit", value.id).apply()
+            config.edit().putString("distance_unit", value?.id ?: "auto").apply()
             notifySettingsChanged()
         }
-        get() = DistanceUnit.getInstance(
-            config.getString("distance_unit", "km") ?: ""
-        )
+        get() = DistanceUnit.entries
+            .firstOrNull { it.id == (config.getString("distance_unit", "auto") ?: "auto") }
 
-    var precipitationUnit: PrecipitationUnit
+    fun getDistanceUnit(context: Context): DistanceUnit {
+        return distanceUnit ?: DistanceUnit.getDefaultUnit(context)
+    }
+
+    var precipitationUnit: PrecipitationUnit?
         set(value) {
-            config.edit().putString("precipitation_unit", value.id).apply()
+            config.edit().putString("precipitation_unit", value?.id ?: "auto").apply()
             notifySettingsChanged()
         }
-        get() = PrecipitationUnit.getInstance(
-            config.getString("precipitation_unit", "mm") ?: ""
-        )
+        get() = PrecipitationUnit.entries
+            .firstOrNull { it.id == (config.getString("precipitation_unit", "auto") ?: "auto") }
 
-    val precipitationIntensityUnit: PrecipitationIntensityUnit
-        get() = PrecipitationIntensityUnit.getInstance(
-            (config.getString("precipitation_unit", "mm") ?: "") + "ph"
-        )
+    fun getPrecipitationUnit(context: Context): PrecipitationUnit {
+        return precipitationUnit ?: PrecipitationUnit.getDefaultUnit(context)
+    }
 
-    var pressureUnit: PressureUnit
+    fun getSnowfallUnit(context: Context): PrecipitationUnit {
+        return precipitationUnit ?: PrecipitationUnit.getDefaultSnowfallUnit(context)
+    }
+
+    fun getPrecipitationIntensityUnit(context: Context): PrecipitationIntensityUnit {
+        return PrecipitationIntensityUnit.entries
+            .firstOrNull { it.id == "${precipitationUnit?.id}ph" }
+            ?: PrecipitationIntensityUnit.getDefaultUnit(context)
+    }
+
+    fun getSnowfallIntensityUnit(context: Context): PrecipitationIntensityUnit {
+        return PrecipitationIntensityUnit.entries
+            .firstOrNull { it.id == "${precipitationUnit?.id}ph" }
+            ?: PrecipitationIntensityUnit.getDefaultSnowfallUnit(context)
+    }
+
+    var pressureUnit: PressureUnit?
         set(value) {
-            config.edit().putString("pressure_unit", value.id).apply()
+            config.edit().putString("pressure_unit", value?.id ?: "auto").apply()
             notifySettingsChanged()
         }
-        get() = PressureUnit.getInstance(
-            config.getString("pressure_unit", "mb") ?: ""
-        )
+        get() = PressureUnit.entries
+            .firstOrNull { it.id == (config.getString("pressure_unit", "auto") ?: "auto") }
 
-    var speedUnit: SpeedUnit
+    fun getPressureUnit(context: Context): PressureUnit {
+        return pressureUnit ?: PressureUnit.getDefaultUnit(context)
+    }
+
+    var speedUnit: SpeedUnit?
         set(value) {
-            config.edit().putString("speed_unit", value.id).apply()
+            config.edit().putString("speed_unit", value?.id ?: "auto").apply()
             notifySettingsChanged()
         }
-        get() = SpeedUnit.getInstance(
-            config.getString("speed_unit", "mps") ?: ""
-        )
+        get() = SpeedUnit.entries
+            .firstOrNull { it.id == (config.getString("speed_unit", "auto") ?: "auto") }
+
+    fun getSpeedUnit(context: Context): SpeedUnit {
+        return speedUnit ?: SpeedUnit.getDefaultUnit(context)
+    }
 
     // appearance.
-
     var iconProvider: String
         set(value) {
             config
@@ -284,13 +300,12 @@ class SettingsManager private constructor(
         set(value) {
             config
                 .edit()
-                .putString("card_display_2", CardDisplay.toValue(value))
+                .putString("card_display", CardDisplay.toValue(value))
                 .apply()
-            notifySettingsChanged()
         }
         get() = CardDisplay
             .toCardDisplayList(
-                config.getString("card_display_2", DEFAULT_CARD_DISPLAY)
+                config.getString("card_display", DEFAULT_CARD_DISPLAY)
             )
             .toMutableList()
 
@@ -319,27 +334,6 @@ class SettingsManager private constructor(
         get() = HourlyTrendDisplay
             .toHourlyTrendDisplayList(
                 config.getString("hourly_trend_display", DEFAULT_HOURLY_TREND_DISPLAY)
-            )
-            .toMutableList()
-
-    var detailDisplayList: List<DetailDisplay>
-        set(value) {
-            config
-                .edit()
-                .putString("details_display", DetailDisplay.toValue(value))
-                .apply()
-            notifySettingsChanged()
-        }
-        get() = DetailDisplay
-            .toDetailDisplayList(
-                config.getString("details_display", DEFAULT_DETAILS_DISPLAY)
-            )
-            .toMutableList()
-
-    val detailDisplayUnlisted: List<DetailDisplay>
-        get() = DetailDisplay
-            .toDetailDisplayUnlisted(
-                config.getString("details_display", DEFAULT_DETAILS_DISPLAY)
             )
             .toMutableList()
 
@@ -480,6 +474,20 @@ class SettingsManager private constructor(
             notifySettingsChanged()
         }
         get() = config.getBoolean("notification_widget_feelslike", false)
+
+    var useNumberFormatter: Boolean
+        set(value) {
+            config.edit().putBoolean("use_number_formatter", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("use_number_formatter", true)
+
+    var useMeasureFormat: Boolean
+        set(value) {
+            config.edit().putBoolean("use_measure_format", value).apply()
+            notifySettingsChanged()
+        }
+        get() = config.getBoolean("use_measure_format", true)
 
     private fun notifySettingsChanged() {
         EventBus

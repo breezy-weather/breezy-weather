@@ -35,7 +35,6 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getWeek
-import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.ui.theme.resource.ResourceHelper
@@ -135,8 +134,8 @@ private fun buildRemoteViews(
     val provider = ResourcesProviderFactory.newInstance
 
     val settings = SettingsManager.getInstance(context)
-    val temperatureUnit = settings.temperatureUnit
-    val speedUnit = settings.speedUnit
+    val temperatureUnit = settings.getTemperatureUnit(context)
+    val speedUnit = settings.getSpeedUnit(context)
 
     views.setTextViewText(
         R.id.widget_material_you_forecast_city,
@@ -162,19 +161,19 @@ private fun buildRemoteViews(
         setTextViewText(
             R.id.widget_material_you_forecast_currentTemperature,
             weather.current?.temperature?.temperature?.let {
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             }
         )
         setTextViewText(
             R.id.widget_material_you_forecast_daytimeTemperature,
             weather.today?.day?.temperature?.temperature?.let {
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             }
         )
         setTextViewText(
             R.id.widget_material_you_forecast_nighttimeTemperature,
             weather.today?.night?.temperature?.temperature?.let {
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             }
         )
         setTextViewText(
@@ -187,11 +186,11 @@ private fun buildRemoteViews(
         R.id.widget_material_you_forecast_aqiOrWind,
         weather.current?.let { current ->
             if (current.airQuality?.isIndexValid == true) {
-                context.getString(R.string.air_quality) + " - " + current.airQuality!!.getName(context)
+                context.getString(R.string.air_quality) + " – " + current.airQuality!!.getName(context)
             } else {
                 current.wind?.let { wind ->
                     wind.getShortDescription(context, speedUnit)?.let {
-                        context.getString(R.string.wind) + " - " + it
+                        context.getString(R.string.wind) + " – " + it
                     }
                 }
             }
@@ -250,7 +249,7 @@ private fun buildRemoteViews(
         views.setTextViewText(
             hourlyId[2],
             weather.nextHourlyForecast.getOrNull(i)?.temperature?.temperature?.let {
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             }
         )
     }
@@ -328,13 +327,13 @@ private fun buildRemoteViews(
         views.setTextViewText(
             dailyId[2],
             weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature?.let {
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             }
         )
         views.setTextViewText(
             dailyId[3],
             weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature?.let {
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             }
         )
         weather.dailyForecastStartingToday.getOrNull(i)?.night?.weatherCode?.let {

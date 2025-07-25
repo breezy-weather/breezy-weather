@@ -19,14 +19,14 @@
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
         <item>@string/settings_background_updates_refresh_never</item>
-        <item>@string/settings_background_updates_refresh_30min</item>
-        <item>@string/settings_background_updates_refresh_1h</item>
-        <item>@string/settings_background_updates_refresh_1h_30min</item>
-        <item>@string/settings_background_updates_refresh_2h</item>
-        <item>@string/settings_background_updates_refresh_3h</item>
-        <item>@string/settings_background_updates_refresh_6h</item>
-        <item>@string/settings_background_updates_refresh_12h</item>
-        <item>@string/settings_background_updates_refresh_24h</item>
+        <item>30 min</item>
+        <item>1 hr</item>
+        <item>1 hr and 30 min</item>
+        <item>2 hr</item>
+        <item>3 hr</item>
+        <item>6 hr</item>
+        <item>12 hr</item>
+        <item>24 hr</item>
     </string-array>
     <string-array name="automatic_refresh_rate_values">
         <item>never</item>
@@ -269,9 +269,8 @@
     <!-- Open-Meteo models -->
     <string-array name="open_meteo_weather_models">
         <item>Best match</item>
-        <item>ECMWF IFS 0.4°</item>
         <item>ECMWF IFS 0.25°</item>
-        <item>ECMWF AIFS 0.25°</item>
+        <item>ECMWF AIFS 0.25° Single</item>
         <item>CMA GRAPES Global</item>
         <item>BOM ACCESS Global</item>
         <item>NCEP GFS Seamless</item>
@@ -282,6 +281,9 @@
         <item>JMA Seamless</item>
         <item>JMA MSM</item>
         <item>JMA GSM</item>
+        <item>KMA Seamless</item>
+        <item>KMA LDPS</item>
+        <item>KMA GDPS</item>
         <item>DWD ICON Seamless</item>
         <item>DWD ICON Global</item>
         <item>DWD ICON EU</item>
@@ -295,9 +297,7 @@
         <item>Météo-France ARPEGE Europe</item>
         <item>Météo-France AROME France</item>
         <item>Météo-France AROME France HD</item>
-        <item>ARPAE Seamless</item>
-        <item>ARPAE COSMO 2I</item>
-        <item>ARPAE COSMO 5M</item>
+        <item>ItaliaMeteo ARPAE ICON 2I</item>
         <item>MET Norway Nordic (with ECMWF) Seamless</item>
         <item>MET Norway Nordic</item>
         <item>KNMI (with ECMWF) Seamless</item>
@@ -311,9 +311,8 @@
     </string-array>
     <string-array name="open_meteo_weather_models_values">
         <item>best_match</item>
-        <item>ecmwf_ifs04</item>
         <item>ecmwf_ifs025</item>
-        <item>ecmwf_aifs025</item>
+        <item>ecmwf_aifs025_single</item>
         <item>cma_grapes_global</item>
         <item>bom_access_global</item>
         <item>gfs_seamless</item>
@@ -324,6 +323,9 @@
         <item>jma_seamless</item>
         <item>jma_msm</item>
         <item>jma_gsm</item>
+        <item>kma_seamless</item>
+        <item>kma_ldps</item>
+        <item>kma_gdps</item>
         <item>icon_seamless</item>
         <item>icon_global</item>
         <item>icon_eu</item>
@@ -337,9 +339,7 @@
         <item>meteofrance_arpege_europe</item>
         <item>meteofrance_arome_france</item>
         <item>meteofrance_arome_france_hd</item>
-        <item>arpae_cosmo_seamless</item>
-        <item>arpae_cosmo_2i</item>
-        <item>arpae_cosmo_5m</item>
+        <item>italia_meteo_arpae_icon_2i</item>
         <item>metno_seamless</item>
         <item>metno_nordic</item>
         <item>knmi_seamless</item>
@@ -351,6 +351,23 @@
         <item>ukmo_global_deterministic_10km</item>
         <item>ukmo_uk_deterministic_2km</item>
     </string-array>
+
+    <!-- Beaufort scale levels -->
+    <integer-array name="wind_strength_colors">
+        <item>@color/windStrength_bf0</item>
+        <item>@color/windStrength_bf1</item>
+        <item>@color/windStrength_bf2</item>
+        <item>@color/windStrength_bf3</item>
+        <item>@color/windStrength_bf4</item>
+        <item>@color/windStrength_bf5</item>
+        <item>@color/windStrength_bf6</item>
+        <item>@color/windStrength_bf7</item>
+        <item>@color/windStrength_bf8</item>
+        <item>@color/windStrength_bf9</item>
+        <item>@color/windStrength_bf10</item>
+        <item>@color/windStrength_bf11</item>
+        <item>@color/windStrength_bf12</item>
+    </integer-array>
 
     <!-- air quality levels -->
     <string-array name="air_quality_levels">
@@ -368,6 +385,14 @@
         <item>@string/air_quality_level_4_description</item>
         <item>@string/air_quality_level_5_description</item>
         <item>@string/air_quality_level_6_description</item>
+    </string-array>
+    <string-array name="air_quality_level_harmless_exposures">
+        <item>@string/air_quality_level_1_harmless_exposure</item>
+        <item>@string/air_quality_level_2_harmless_exposure</item>
+        <item>@string/air_quality_level_3_harmless_exposure</item>
+        <item>@string/air_quality_level_4_harmless_exposure</item>
+        <item>@string/air_quality_level_5_harmless_exposure</item>
+        <item>@string/air_quality_level_6_harmless_exposure</item>
     </string-array>
     <integer-array name="air_quality_level_colors">
         <item>@color/aqiLevel_1</item>
@@ -413,7 +438,8 @@
 
     <!-- speed unit. -->
     <string-array name="speed_units">
-        <item>@string/unit_bf</item>
+        <item>@string/settings_follow_system</item>
+        <item>@string/unit_bft_display_name</item>
         <item>@string/unit_mps</item>
         <item>@string/unit_kph</item>
         <item>@string/unit_kn</item>
@@ -421,7 +447,8 @@
         <item>@string/unit_ftps</item>
     </string-array>
     <string-array name="speed_unit_voices">
-        <item>@string/unit_bf_voice</item>
+        <item>@string/settings_follow_system</item>
+        <item>@string/unit_bft_voice</item>
         <item>@string/unit_mps_voice</item>
         <item>@string/unit_kph_voice</item>
         <item>@string/unit_kn_voice</item>
@@ -429,6 +456,7 @@
         <item>@string/unit_ftps_voice</item>
     </string-array>
     <string-array name="speed_unit_values">
+        <item>auto</item>
         <item>bf</item>
         <item>mps</item>
         <item>kph</item>
@@ -439,18 +467,21 @@
 
     <!-- precipitation unit. -->
     <string-array name="precipitation_units">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_mm</item>
         <item>@string/unit_cm</item>
         <item>@string/unit_in</item>
         <item>@string/unit_lpsqm</item>
     </string-array>
     <string-array name="precipitation_unit_voices">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_mm_voice</item>
         <item>@string/unit_cm_voice</item>
         <item>@string/unit_in_voice</item>
         <item>@string/unit_lpsqm_voice</item>
     </string-array>
     <string-array name="precipitation_unit_values">
+        <item>auto</item>
         <item>mm</item>
         <item>cm</item>
         <item>in</item>
@@ -459,18 +490,21 @@
 
     <!-- precipitation intensity unit. -->
     <string-array name="precipitation_intensity_units">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_mmph</item>
         <item>@string/unit_cmph</item>
         <item>@string/unit_inph</item>
         <item>@string/unit_lpsqmph</item>
     </string-array>
     <string-array name="precipitation_intensity_unit_voices">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_mmph_voice</item>
         <item>@string/unit_cmph_voice</item>
         <item>@string/unit_inph_voice</item>
         <item>@string/unit_lpsqmph_voice</item>
     </string-array>
     <string-array name="precipitation_intensity_unit_values">
+        <item>auto</item>
         <item>mmph</item>
         <item>cmph</item>
         <item>inph</item>
@@ -479,16 +513,19 @@
 
     <!-- temperature unit. -->
     <string-array name="temperature_units">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_celsius</item>
         <item>@string/unit_fahrenheit</item>
         <item>@string/unit_kelvin</item>
     </string-array>
     <string-array name="temperature_units_short">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_celsius_short</item>
         <item>@string/unit_fahrenheit_short</item>
         <item>@string/unit_kelvin_short</item>
     </string-array>
     <string-array name="temperature_unit_values">
+        <item>auto</item>
         <item>c</item>
         <item>f</item>
         <item>k</item>
@@ -496,6 +533,7 @@
 
     <!-- distance unit. -->
     <string-array name="distance_units">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_km</item>
         <item>@string/unit_m</item>
         <item>@string/unit_mi</item>
@@ -503,6 +541,7 @@
         <item>@string/unit_ft</item>
     </string-array>
     <string-array name="distance_unit_voices">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_km_voice</item>
         <item>@string/unit_m_voice</item>
         <item>@string/unit_mi_voice</item>
@@ -510,6 +549,7 @@
         <item>@string/unit_ft_voice</item>
     </string-array>
     <string-array name="distance_unit_values">
+        <item>auto</item>
         <item>km</item>
         <item>m</item>
         <item>mi</item>
@@ -519,6 +559,7 @@
 
     <!-- pressure unit. -->
     <string-array name="pressure_units">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_mb</item>
         <item>@string/unit_kpa</item>
         <item>@string/unit_hpa</item>
@@ -528,6 +569,7 @@
         <item>@string/unit_kgfpsqcm</item>
     </string-array>
     <string-array name="pressure_unit_voices">
+        <item>@string/settings_follow_system</item>
         <item>@string/unit_mb_voice</item>
         <item>@string/unit_kpa_voice</item>
         <item>@string/unit_hpa_voice</item>
@@ -537,6 +579,7 @@
         <item>@string/unit_kgfpsqcm_voice</item>
     </string-array>
     <string-array name="pressure_unit_values">
+        <item>auto</item>
         <item>mb</item>
         <item>kpa</item>
         <item>hpa</item>

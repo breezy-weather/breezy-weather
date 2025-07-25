@@ -44,7 +44,7 @@ fun Context.notify(
     block: (NotificationCompat.Builder.() -> Unit)? = null,
 ) {
     val notification = notificationBuilder(channelId, block).build()
-    this.notify(id, notification)
+    notify(id, notification)
 }
 
 fun Context.notify(id: Int, notification: Notification) {

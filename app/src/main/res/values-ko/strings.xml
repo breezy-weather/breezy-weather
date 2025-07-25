@@ -89,9 +89,6 @@
     <!-- feedback. -->
     <string name="location_message_failed_to_locate">현재 위치 찾기 실패</string>
     <string name="weather_message_data_refresh_failed">날씨 데이터 새로고침 실패</string>
-    <string name="location_dialog_failed_to_locate_title">위치를 제대로 받아오지 못했나요\?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">위치 권한 확인</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">위치 정보 사용</string>
     <string name="location_dialog_failed_to_locate_action_select_source">위치 공급자 선택</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">위치를 직접 추가하고 “%s” 삭제</string>
     <string name="widget_label_view_style">보이는 스타일</string>
@@ -150,7 +147,6 @@
     <string name="settings_changes_apply_after_restart">변경 사항은 재시작 후에 적용됩니다</string>
     <string name="notification_running_in_background">날씨를 계속 업데이트하기 위해 백그라운드에서 실행 중</string>
     <string name="notification_updating_weather_data">날씨 데이터 업데이트 중 (%1$d/%2$d)</string>
-    <string name="pollen_tap_to_see_more">눌러서 더 알아보기…</string>
     <!-- action -->
     <string name="alerts">경보</string>
     <string name="action_search">검색</string>
@@ -196,14 +192,6 @@
     <string name="settings_color_light">밝음</string>
     <string name="settings_color_grey">회색</string>
     <string name="settings_color_dark">어두움</string>
-    <string name="settings_background_updates_refresh_30min">30분</string>
-    <string name="settings_background_updates_refresh_1h">1시간</string>
-    <string name="settings_background_updates_refresh_1h_30min">1시간 30분</string>
-    <string name="settings_background_updates_refresh_2h">2시간</string>
-    <string name="settings_background_updates_refresh_3h">3시간</string>
-    <string name="settings_background_updates_refresh_6h">6시간</string>
-    <string name="settings_background_updates_refresh_12h">12시간</string>
-    <string name="settings_background_updates_refresh_24h">24시간</string>
     <string name="notification_style_native">지역</string>
     <string name="widget_style_rectangle">직사각형</string>
     <string name="widget_style_symmetry">대칭</string>
@@ -280,7 +268,6 @@
     <string name="unit_h_voice">시간</string>
     <string name="unit_ppcm">/m³</string>
     <string name="settings_item_delete">이 항목 삭제</string>
-    <string name="weather_air_quality_and_pollen_data_by">대기질 및 꽃가루 정보 %s 제공</string>
     <string name="action_location_list">위치 목록</string>
     <string name="widget_subtitle_data_aqi">대기질</string>
     <string name="unit_kph_voice">시속 킬로미터</string>
@@ -342,7 +329,6 @@
     <string name="ephemeris_sunset_at">%s에 일몰</string>
     <string name="ephemeris_moonrise_at">%s에 월출</string>
     <string name="ephemeris_moonset_at">%s에 월몰</string>
-    <string name="weather_data_by">%s 제공</string>
     <string name="locations">위치</string>
     <string name="dialog_permissions_location_title">위치 정보 접근</string>
     <string name="message_tap_again_to_exit">한 번 더 누르면 앱을 종료합니다.</string>
@@ -404,7 +390,7 @@
     <string name="weather_source_accu_preference_hours_1">1시간</string>
     <string name="action_add_current_location">현재 위치 추가</string>
     <string name="action_add_new_location">새 위치 추가</string>
-    <string name="action_see_more">더 보기</string>
+    <string name="action_more">더 보기</string>
     <string name="action_back">뒤로</string>
     <string name="action_continue">계속</string>
     <string name="action_share">공유</string>
@@ -451,23 +437,10 @@
     <string name="wind_strength">바람의 세기</string>
     <string name="wind_gusts">돌풍</string>
     <string name="air_quality_pm25_voice">오후 2시 5분</string>
-    <string name="air_quality_co_info_consequences">일산화탄소는 폐 조직을 가로질러 혈류로 확산되어 몸의 세포가 산소와 결합하는 것을 어렵게 만듭니다. 이러한 산소 부족은 조직과 세포에 손상을 입힙니다. 일산화탄소에 노출되면 호흡 곤란, 탈진, 어지러움 및 기타 독감과 유사한 증상을 유발할 수 있습니다. 높은 수준의 일산화탄소에 노출되면 치명적일 수 있습니다.</string>
     <string name="alert">경고</string>
     <string name="pollen_and_mold">꽃가루 &amp; 곰팡이</string>
     <string name="air_quality_pm10_voice">PM ten</string>
-    <string name="air_quality_pm_info_title">미립자 (PM2.5 &amp; PM10)</string>
-    <string name="air_quality_pm_explanations_introduction">미립자 또는 대기 미립자 물질은 공기 중에 부유하는 고체 또는 액체 물질의 미세한 입자입니다.</string>
-    <string name="air_quality_o3_info_introduction">지표면 오존 (O ₃)은 스모그의 주요 구성 요소입니다. 같은 분자일지라도, 지표면 오존은 과도한 자외선으로부터 지구를 보호하는 성층권 오존과는 달리 인간의 건강에 해로울 수 있습니다.</string>
-    <string name="air_quality_no2_info_introduction">이산화질소(NO ₂)는 특징적인 톡 쏘는 매캐한 냄새를 가진 숨막히는 독성 적갈색 가스입니다.</string>
-    <string name="air_quality_o3_info_origin">휘발성 유기 화합물, 차량 및 산업에서 배출되는 일산화탄소 및 질소 산화물(NO ₓ)과 같은 오염 물질과의 광화학 반응으로 형성됩니다. 광화학적 특성으로 인해 맑은 날씨 기간 동안 가장 높은 수준의 오존이 관찰됩니다.</string>
-    <string name="air_quality_o3_info_consequences">과도한 오존에 노출되면 호흡에 문제가 생기고 천식이 유발되며 폐 기능이 저하되고 폐 질환으로 이어질 수 있습니다.</string>
-    <string name="air_quality_no2_info_origin">주변의 NO ₂ 공급원은 난방, 운송, 산업 및 발전에 사용되는 것과 같은 과정에서 연료의 고온 연소로 인해 발생합니다. 가정용 질소 산화물(NO ₓ) 공급원에는 용광로, 벽난로 및 가스 스토브 및 오븐과 같은 연료를 연소하는 장비가 포함됩니다.</string>
-    <string name="air_quality_no2_info_consequences">이산화질소에 노출되면 기도를 자극하고 호흡기 질환을 악화시킬 수 있습니다. 또한 NO ₂는 천식 및 기타 호흡기 질환과 밀접한 관련이 있는 오염물질인 중요한 오존 전구체입니다.</string>
-    <string name="air_quality_so2_info_origin">화산 활동에 의해 자연적으로 방출되며 주로 국내 난방, 산업 및 발전을 위한 화석 연료의 연소에서 파생됩니다.</string>
-    <string name="air_quality_so2_info_consequences">SO ₂ 노출은 천식 병원 입원 및 응급실 방문과 관련이 있습니다.</string>
-    <string name="air_quality_co_info_introduction">일산화탄소(CO)는 무색, 무취, 무미, 자극적이지 않은 유독하고 가연성 가스입니다.</string>
-    <string name="air_quality_co_info_title">일산화탄소 (CO)</string>
-    <string name="air_quality_co_info_origin">나무, 휘발유, 석탄, 천연 가스 및 등유와 같은 탄소질 연료가 단순 난로, 오픈 파이어, 심지 램프, 용광로, 벽난로에서 불완전 연소되어 생성됩니다. 주변 공기 중 일산화탄소(CO)의 주요 공급원은 자동차입니다.</string>
+    <string name="air_quality_co_full">일산화탄소 (CO)</string>
     <string name="pollen_artemisia">쑥</string>
     <string name="pollen_betula">자작나무</string>
     <string name="pollen_carpinus">서어나무</string>
@@ -478,17 +451,14 @@
     <string name="pollen_platanus">올리브 나무</string>
     <string name="temperature_average_short">평균</string>
     <string name="temperature_normals">온도평년값</string>
-    <string name="air_quality_so2_info_title">이산화황(SO₂)</string>
+    <string name="air_quality_so2_full">이산화황(SO₂)</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="precipitation_nowcasting">강수 예보</string>
     <string name="temperature_normal_short">보통</string>
-    <string name="air_quality_pm_explanations_consequences">미립자는 혈류로부터 폐와 뇌 깊숙이 침투하여 심장질환, 폐질환, 조기사망 등의 건강문제를 일으키는 능력으로 인해 가장 유해한 대기오염의 형태입니다.</string>
-    <string name="air_quality_no2_info_title">이산화질소(NO ₂)</string>
+    <string name="air_quality_no2_full">이산화질소(NO ₂)</string>
     <string name="air_quality_index">대기질지수</string>
-    <string name="air_quality_o3_info_title">지상 오존(O ₃)</string>
-    <string name="air_quality_pm_explanations_origin">일부 미립자는 화산, 먼지 폭풍, 산림 및 초지 화재, 살아있는 식물 및 바다 스프레이에서 비롯되며 자연적으로 발생합니다. 인간의 활동은 또한 교통 및 운송, 산업 활동, 발전소, 건설 현장, 폐기물 연소 또는 들판과 같은 상당한 양의 미립자를 생성합니다.</string>
+    <string name="air_quality_o3_full">지상 오존(O ₃)</string>
     <string name="air_quality_so2">SO₂</string>
-    <string name="air_quality_so2_info_introduction">이산화황(SO ₂)은 불에 탄 성냥 냄새의 원인이 되는 무색 유독 가스입니다.</string>
     <string name="pollen_alnus">오리나무</string>
     <string name="alert_source">출처: %s</string>
     <string name="pollen_quercus">오크 나무</string>
@@ -500,10 +470,8 @@
     <string name="pollen_level_0">없음</string>
     <string name="pollen_level_1">매우 낮음</string>
     <string name="pollen_level_3">보통</string>
-    <string name="weather_alert_data_by">%s에 의한 경보 데이터</string>
     <string name="sunshine">햇빛</string>
     <string name="pollen_plantaginaceae">플랜틴</string>
-    <string name="weather_pollen_data_by">%s에 의한 꽃가루 데이터</string>
     <string name="pollen_cupressaceae_taxaceae">편백나무</string>
     <string name="pollen_populus">포플러</string>
     <string name="common_weather_text_rain_showers_heavy">폭우</string>
@@ -520,10 +488,8 @@
     <string name="action_help_me_choose">선택 도움받기</string>
     <string name="weather_message_unsupported_feature">날씨 출처가 요구하신 부분을 지원하지 않습니다</string>
     <string name="precipitation_intensity_medium">보통 비</string>
-    <string name="weather_normals_data_by">%s 제공 평균 온도</string>
     <string name="weather_message_too_frequent_refreshes">몇초 뒤 다시 시도해주세요.</string>
     <string name="location_message_permission_background_missing">백그라운드 위치 사용 권한이 없습니다.</string>
-    <string name="weather_minutely_data_by">%s 제공 비 초단기예보</string>
     <string name="null_data_text">정보없음</string>
     <string name="location_delete_location_dialog_title">위치정보를 제거할까요?</string>
     <string name="location_swipe_to_delete">왼쪽으로 밀어 이 항목을 삭제할수 있습니다.</string>
@@ -535,7 +501,6 @@
     <string name="action_edit_location">이 위치를 수정</string>
     <string name="action_close">끄기</string>
     <string name="pollen_tilia">피나무</string>
-    <string name="weather_air_quality_data_by">%s 제공 대기 질 데이터</string>
     <string name="location_delete_location_dialog_message">“%s”를 저장된 위치 목록에서 제거합니다.</string>
     <string name="location_delete_location_dialog_message_no_name">이 위치를 저장된 목록에서 삭제합니다.</string>
     <string name="location_message_reverse_geocoding_failed">날씨정보 제공자가 일치하는 위치를 확인하지 못했습니다.</string>

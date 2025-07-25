@@ -41,5 +41,9 @@ class EventBus private constructor() {
         return liveDataMap[key] as BusLiveData<T>
     }
 
+    fun remove(type: Class<*>) {
+        liveDataMap.remove(key(type))
+    }
+
     private fun <T> key(type: Class<T>) = type.name
 }

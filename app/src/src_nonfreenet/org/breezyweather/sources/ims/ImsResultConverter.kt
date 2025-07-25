@@ -17,7 +17,7 @@
 package org.breezyweather.sources.ims
 
 import android.content.Context
-import android.graphics.Color
+import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -29,6 +29,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.R
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
@@ -94,9 +95,9 @@ internal fun getHourlyForecast(
                         date = hourlyDate,
                         weatherText = getWeatherText(context, currentWeatherCode),
                         weatherCode = getWeatherCode(currentWeatherCode),
-                        temperature = Temperature(
+                        temperature = TemperatureWrapper(
                             temperature = hourlyResult.value.preciseTemperature?.toDoubleOrNull(),
-                            windChillTemperature = hourlyResult.value.windChill?.toDoubleOrNull()
+                            feelsLike = hourlyResult.value.windChill?.toDoubleOrNull()
                         ),
                         precipitationProbability = PrecipitationProbability(
                             total = hourlyResult.value.rainChance?.toDoubleOrNull()
@@ -133,10 +134,9 @@ internal fun getCurrent(
         weatherText = getWeatherText(context, data.analysis.weatherCode),
         weatherCode = getWeatherCode(data.analysis.weatherCode),
         temperature = data.analysis.temperature?.toDoubleOrNull()?.let {
-            Temperature(
+            TemperatureWrapper(
                 temperature = it,
-                apparentTemperature = data.analysis.feelsLike?.toDoubleOrNull(),
-                windChillTemperature = data.analysis.windChill?.toDoubleOrNull()
+                feelsLike = data.analysis.feelsLike?.toDoubleOrNull()
             )
         },
         wind = data.analysis.windSpeed?.let { windSpeed ->
@@ -183,9 +183,7 @@ internal fun getAlerts(
             },
             severity = severity,
             color = warningEntry.value.severityId?.let { severityId ->
-                data.warningsMetadata?.warningSeverity?.getOrElse(severityId) { null }?.color?.let {
-                    Color.parseColor(it)
-                }
+                data.warningsMetadata?.warningSeverity?.getOrElse(severityId) { null }?.color?.toColorInt()
             } ?: Alert.colorFromSeverity(severity)
         )
     }

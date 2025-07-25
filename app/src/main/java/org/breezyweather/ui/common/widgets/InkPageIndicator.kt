@@ -285,11 +285,7 @@ class InkPageIndicator @JvmOverloads constructor(
     }
 
     private val desiredHeight: Int
-        get() = paddingBottom + if (mPageCount > 7) {
-            calculateTextSize().toInt()
-        } else {
-            mDotDiameter
-        }
+        get() = paddingBottom + if (mPageCount > 7) calculateTextSize().toInt() else mDotDiameter
     private val requiredWidth: Int
         get() = mPageCount * mDotDiameter + (mPageCount - 1) * mGap
     private val desiredWidth: Int

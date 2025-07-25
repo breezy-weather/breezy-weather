@@ -20,7 +20,7 @@ import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
@@ -39,14 +39,15 @@ import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 
 @SuppressLint("NotifyDataSetChanged")
 class HourlyTrendAdapter(
-    private val activity: GeoActivity,
+    private val activity: BreezyActivity,
     private val host: TrendRecyclerView,
+    initialIndex: Int = 0,
 ) : RecyclerView.Adapter<AbsHourlyTrendAdapter.ViewHolder>() {
 
     var adapters: Array<AbsHourlyTrendAdapter> = emptyArray()
         private set
 
-    var selectedIndex = 0
+    var selectedIndex = initialIndex
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -62,7 +63,7 @@ class HourlyTrendAdapter(
                     activity,
                     location,
                     provider,
-                    SettingsManager.getInstance(activity).temperatureUnit
+                    SettingsManager.getInstance(activity).getTemperatureUnit(activity)
                 )
                 HourlyTrendDisplay.TAG_AIR_QUALITY -> HourlyAirQualityAdapter(
                     activity,
@@ -71,39 +72,39 @@ class HourlyTrendAdapter(
                 HourlyTrendDisplay.TAG_WIND -> HourlyWindAdapter(
                     activity,
                     location,
-                    SettingsManager.getInstance(activity).speedUnit
+                    SettingsManager.getInstance(activity).getSpeedUnit(activity)
                 )
                 HourlyTrendDisplay.TAG_UV_INDEX -> HourlyUVAdapter(activity, location)
                 HourlyTrendDisplay.TAG_PRECIPITATION -> HourlyPrecipitationAdapter(
                     activity,
                     location,
                     provider,
-                    SettingsManager.getInstance(activity).precipitationUnit
+                    SettingsManager.getInstance(activity).getPrecipitationUnit(activity)
                 )
                 HourlyTrendDisplay.TAG_FEELS_LIKE -> HourlyFeelsLikeAdapter(
                     activity,
                     location,
                     provider,
-                    SettingsManager.getInstance(activity).temperatureUnit
+                    SettingsManager.getInstance(activity).getTemperatureUnit(activity)
                 )
                 HourlyTrendDisplay.TAG_HUMIDITY -> HourlyHumidityAdapter(
                     activity,
                     location,
                     provider,
-                    SettingsManager.getInstance(activity).temperatureUnit
+                    SettingsManager.getInstance(activity).getTemperatureUnit(activity)
                 )
                 HourlyTrendDisplay.TAG_PRESSURE -> HourlyPressureAdapter(
                     activity,
                     location,
                     provider,
-                    SettingsManager.getInstance(activity).pressureUnit
+                    SettingsManager.getInstance(activity).getPressureUnit(activity)
                 )
                 HourlyTrendDisplay.TAG_CLOUD_COVER -> HourlyCloudCoverAdapter(activity, location)
                 HourlyTrendDisplay.TAG_VISIBILITY -> HourlyVisibilityAdapter(
                     activity,
                     location,
                     provider,
-                    SettingsManager.getInstance(activity).distanceUnit
+                    SettingsManager.getInstance(activity).getDistanceUnit(activity)
                 )
             }
         }.filter {

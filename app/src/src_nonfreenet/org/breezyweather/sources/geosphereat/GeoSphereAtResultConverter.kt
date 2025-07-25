@@ -22,11 +22,11 @@ import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Precipitation
-import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.minus
 import org.breezyweather.common.extensions.toDate
@@ -109,7 +109,7 @@ internal fun getHourlyForecast(
         HourlyWrapper(
             date = date,
             weatherCode = getWeatherCode(hourlyResult.features[0].properties!!.parameters!!.sy?.data?.getOrNull(i)),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = hourlyResult.features[0].properties!!.parameters!!.t2m?.data?.getOrNull(i)
             ),
             precipitation = Precipitation(
@@ -166,21 +166,27 @@ internal fun getAlerts(alertsResult: GeoSphereAtWarningsResult): List<Alert>? {
     return alertsResult.properties.warnings.map { result ->
         Alert(
             alertId = result.properties.warnid.toString(),
-            startDate = result.properties.rawInfo?.start?.toLongOrNull()?.seconds?.inWholeMilliseconds?.toDate(),
-            endDate = result.properties.rawInfo?.end?.toLongOrNull()?.seconds?.inWholeMilliseconds?.toDate(),
+            startDate = result.properties.rawinfo?.start?.toLongOrNull()?.seconds?.inWholeMilliseconds?.toDate(),
+            endDate = result.properties.rawinfo?.end?.toLongOrNull()?.seconds?.inWholeMilliseconds?.toDate(),
             headline = result.properties.text,
-            description = "${result.properties.meteotext.let {
-                if (!it.isNullOrEmpty()) it + "\n\n" else ""
-            }}${result.properties.consequences}",
+            description = if (!result.properties.meteotext.isNullOrEmpty() ||
+                !result.properties.consequences.isNullOrEmpty()
+            ) {
+                "${result.properties.meteotext.let {
+                    if (!it.isNullOrEmpty()) it + "\n\n" else ""
+                }}${result.properties.consequences ?: ""}"
+            } else {
+                null
+            },
             instruction = result.properties.instructions,
             source = "GeoSphere Austria",
-            severity = when (result.properties.rawInfo?.wlevel) {
+            severity = when (result.properties.rawinfo?.wlevel) {
                 3 -> AlertSeverity.EXTREME
                 2 -> AlertSeverity.SEVERE
                 1 -> AlertSeverity.MODERATE
                 else -> AlertSeverity.UNKNOWN
             },
-            color = when (result.properties.rawInfo?.wlevel) {
+            color = when (result.properties.rawinfo?.wlevel) {
                 3 -> Color.rgb(255, 0, 0)
                 2 -> Color.rgb(255, 196, 0)
                 1 -> Color.rgb(255, 255, 0)

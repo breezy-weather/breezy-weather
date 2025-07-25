@@ -67,7 +67,7 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
     ): RemoteViews {
         val provider = ResourcesProviderFactory.newInstance
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.temperatureUnit
+        val temperatureUnit = settings.getTemperatureUnit(context)
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val color = WidgetColor(context, cardStyle!!, textColor!!, locationList.firstOrNull()?.isDaylight ?: true)
         val views = RemoteViews(
@@ -148,10 +148,12 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
             }
         }
         if (textSize != 100) {
-            val titleSize = context.resources.getDimensionPixelSize(R.dimen.widget_title_text_size)
-                .toFloat() * textSize / 100f
-            val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size)
-                .toFloat() * textSize / 100f
+            val titleSize = context.resources.getDimensionPixelSize(R.dimen.widget_title_text_size).toFloat()
+                .times(textSize)
+                .div(100f)
+            val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size).toFloat()
+                .times(textSize)
+                .div(100f)
             views.apply {
                 setTextViewTextSize(R.id.widget_multi_city_horizontal_title_1, TypedValue.COMPLEX_UNIT_PX, titleSize)
                 setTextViewTextSize(R.id.widget_multi_city_horizontal_title_2, TypedValue.COMPLEX_UNIT_PX, titleSize)

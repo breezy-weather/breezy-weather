@@ -26,6 +26,7 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.dmi.json.DmiResult
@@ -94,7 +95,7 @@ internal fun getHourlyForecast(
             // TODO: Check units
             date = result.localTimeIso,
             weatherCode = getWeatherCode(result.symbol),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = result.temp
             ),
             precipitation = if (result.precip != null) {

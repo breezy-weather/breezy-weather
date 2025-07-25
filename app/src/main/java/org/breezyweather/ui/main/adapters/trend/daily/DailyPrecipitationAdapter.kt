@@ -25,13 +25,14 @@ import android.view.ViewGroup
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Precipitation
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getHalfDayPrecipitationColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.DoubleHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
@@ -39,7 +40,7 @@ import org.breezyweather.ui.theme.resource.providers.ResourceProvider
  * Daily precipitation adapter.
  */
 class DailyPrecipitationAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
     unit: PrecipitationUnit,
@@ -57,7 +58,7 @@ class DailyPrecipitationAdapter(
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        fun onBindView(activity: GeoActivity, location: Location, position: Int) {
+        fun onBindView(activity: BreezyActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_precipitation))
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
@@ -72,7 +73,7 @@ class DailyPrecipitationAdapter(
                     .append(activity.getString(R.string.colon_separator))
                     .append(
                         if (daytimePrecipitation != null && daytimePrecipitation > 0f) {
-                            mPrecipitationUnit.getValueVoice(activity, daytimePrecipitation)
+                            mPrecipitationUnit.formatContentDescription(activity, daytimePrecipitation)
                         } else {
                             activity.getString(R.string.precipitation_none)
                         }
@@ -82,7 +83,7 @@ class DailyPrecipitationAdapter(
                     .append(activity.getString(R.string.colon_separator))
                     .append(
                         if (nighttimePrecipitation != null && nighttimePrecipitation > 0f) {
-                            mPrecipitationUnit.getValueVoice(activity, nighttimePrecipitation)
+                            mPrecipitationUnit.formatContentDescription(activity, nighttimePrecipitation)
                         } else {
                             activity.getString(R.string.precipitation_none)
                         }
@@ -98,17 +99,17 @@ class DailyPrecipitationAdapter(
             mDoubleHistogramView.setData(
                 daily.day?.precipitation?.total?.toFloat(),
                 daily.night?.precipitation?.total?.toFloat(),
-                daytimePrecipitation?.let { mPrecipitationUnit.getValueTextWithoutUnit(it) },
-                nighttimePrecipitation?.let { mPrecipitationUnit.getValueTextWithoutUnit(it) },
+                daytimePrecipitation?.let { mPrecipitationUnit.formatValue(activity, it) },
+                nighttimePrecipitation?.let { mPrecipitationUnit.formatValue(activity, it) },
                 mHighestPrecipitation
             )
             mDoubleHistogramView.setLineColors(
                 daily.day?.precipitation?.getHalfDayPrecipitationColor(activity) ?: Color.TRANSPARENT,
                 daily.night?.precipitation?.getHalfDayPrecipitationColor(activity) ?: Color.TRANSPARENT,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
             mDoubleHistogramView.setTextColors(
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText)
+                activity.getThemeColor(R.attr.colorBodyText)
             )
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f)
             dailyItem.setNightIconDrawable(
@@ -116,6 +117,9 @@ class DailyPrecipitationAdapter(
                 missingIconVisibility = View.INVISIBLE
             )
             dailyItem.contentDescription = talkBackBuilder.toString()
+            dailyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_PRECIPITATION)
+            }
         }
     }
 
@@ -146,12 +150,12 @@ class DailyPrecipitationAdapter(
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_precipitation)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val unit = SettingsManager.getInstance(activity).precipitationUnit
+        val unit = SettingsManager.getInstance(activity).getPrecipitationUnit(activity)
         val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 Precipitation.PRECIPITATION_HALF_DAY_LIGHT.toFloat(),
-                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HALF_DAY_LIGHT),
+                unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_LIGHT),
                 activity.getString(R.string.precipitation_intensity_light),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -159,7 +163,7 @@ class DailyPrecipitationAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 Precipitation.PRECIPITATION_HALF_DAY_HEAVY.toFloat(),
-                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HALF_DAY_HEAVY),
+                unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_HEAVY),
                 activity.getString(R.string.precipitation_intensity_heavy),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -167,7 +171,7 @@ class DailyPrecipitationAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 -Precipitation.PRECIPITATION_HALF_DAY_LIGHT.toFloat(),
-                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HALF_DAY_LIGHT),
+                unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_LIGHT),
                 activity.getString(R.string.precipitation_intensity_light),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
@@ -175,7 +179,7 @@ class DailyPrecipitationAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 -Precipitation.PRECIPITATION_HALF_DAY_HEAVY.toFloat(),
-                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HALF_DAY_HEAVY),
+                unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_HEAVY),
                 activity.getString(R.string.precipitation_intensity_heavy),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )

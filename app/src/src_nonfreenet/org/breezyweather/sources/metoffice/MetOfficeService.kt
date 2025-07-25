@@ -61,6 +61,9 @@ class MetOfficeService @Inject constructor(
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to reverseGeocodingAttribution
     )
+    override val attributionLinks = mapOf(
+        reverseGeocodingAttribution to "https://www.metoffice.gov.uk/"
+    )
 
     override fun requestWeather(
         context: Context,

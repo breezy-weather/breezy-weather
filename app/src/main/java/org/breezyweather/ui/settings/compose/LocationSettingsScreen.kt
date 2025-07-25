@@ -19,9 +19,11 @@ package org.breezyweather.ui.settings.compose
 import android.Manifest
 import android.app.Activity
 import android.os.Build
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.core.app.ActivityCompat
 import com.google.accompanist.permissions.PermissionStatus
@@ -30,6 +32,7 @@ import kotlinx.collections.immutable.ImmutableList
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.extensions.openApplicationDetailsSettings
+import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.ListPreference
 import org.breezyweather.common.source.ConfigurableSource
@@ -50,9 +53,11 @@ import org.breezyweather.ui.settings.preference.composables.PreferenceViewWithCa
 import org.breezyweather.ui.settings.preference.composables.SectionFooter
 import org.breezyweather.ui.settings.preference.composables.SectionHeader
 import org.breezyweather.ui.settings.preference.editTextPreferenceItem
+import org.breezyweather.ui.settings.preference.largeSeparatorItem
 import org.breezyweather.ui.settings.preference.listPreferenceItem
 import org.breezyweather.ui.settings.preference.sectionFooterItem
 import org.breezyweather.ui.settings.preference.sectionHeaderItem
+import org.breezyweather.ui.settings.preference.smallSeparatorItem
 
 @Composable
 fun LocationSettingsScreen(
@@ -85,7 +90,9 @@ fun LocationSettingsScreen(
             )
         }
     ) { paddings ->
-        PreferenceScreen(paddingValues = paddings) {
+        PreferenceScreen(
+            paddingValues = paddings.plus(PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)))
+        ) {
             if (BuildConfig.FLAVOR != "freenet") {
                 sectionHeaderItem(R.string.settings_location_section_general)
                 listPreferenceItem(R.string.settings_location_service) { id ->
@@ -98,12 +105,15 @@ fun LocationSettingsScreen(
                             it !is ConfigurableSource || it.isConfigured
                         }.toTypedArray(),
                         summary = { _, value -> locationSources.firstOrNull { it.id == value }?.name },
+                        isFirst = true,
+                        isLast = true,
                         onValueChanged = { sourceId ->
                             SettingsManager.getInstance(context).locationSource = sourceId
                         }
                     )
                 }
                 sectionFooterItem(R.string.settings_location_section_general)
+                largeSeparatorItem()
             }
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -116,6 +126,9 @@ fun LocationSettingsScreen(
                         } else {
                             R.string.settings_location_access_switch_summaryOff
                         },
+                        isFirst = true,
+                        isLast = accessBackgroundLocationPermissionState == null &&
+                            Build.VERSION.SDK_INT < Build.VERSION_CODES.S,
                         onClick = {
                             if (accessCoarseLocationPermissionState.status != PermissionStatus.Granted) {
                                 if (
@@ -137,6 +150,7 @@ fun LocationSettingsScreen(
                     )
                 }
                 accessBackgroundLocationPermissionState?.let {
+                    smallSeparatorItem()
                     clickablePreferenceItem(R.string.settings_location_access_background_title) { id ->
                         PreferenceViewWithCard(
                             titleId = id,
@@ -146,6 +160,7 @@ fun LocationSettingsScreen(
                                 R.string.settings_location_access_background_summaryOff
                             },
                             enabled = accessCoarseLocationPermissionState.status == PermissionStatus.Granted,
+                            isLast = Build.VERSION.SDK_INT < Build.VERSION_CODES.S,
                             onClick = {
                                 if (it.status != PermissionStatus.Granted) {
                                     if (
@@ -168,6 +183,7 @@ fun LocationSettingsScreen(
                     }
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    smallSeparatorItem()
                     clickablePreferenceItem(R.string.settings_location_access_precise_title) { id ->
                         PreferenceViewWithCard(
                             titleId = id,
@@ -177,6 +193,7 @@ fun LocationSettingsScreen(
                                 R.string.settings_location_access_precise_summaryOff
                             },
                             enabled = accessCoarseLocationPermissionState.status == PermissionStatus.Granted,
+                            isLast = true,
                             onClick = {
                                 if (accessFineLocationPermissionState.status != PermissionStatus.Granted) {
                                     if (
@@ -203,10 +220,11 @@ fun LocationSettingsScreen(
 
             // TODO: Duplicate code from weather sources
             locationSources.filterIsInstance<ConfigurableSource>().forEach { preferenceSource ->
+                largeSeparatorItem()
                 item(key = "header_${preferenceSource.id}") {
                     SectionHeader(title = preferenceSource.name)
                 }
-                preferenceSource.getPreferences(context).forEach { preference ->
+                preferenceSource.getPreferences(context).forEachIndexed { index, preference ->
                     when (preference) {
                         is ListPreference -> {
                             listPreferenceItem(preference.titleId) { id ->
@@ -216,6 +234,8 @@ fun LocationSettingsScreen(
                                     valueArrayId = preference.valueArrayId,
                                     nameArrayId = preference.nameArrayId,
                                     card = true,
+                                    isFirst = index == 0,
+                                    isLast = index == preferenceSource.getPreferences(context).lastIndex,
                                     onValueChanged = preference.onValueChanged
                                 )
                             }
@@ -230,10 +250,15 @@ fun LocationSettingsScreen(
                                     regex = preference.regex,
                                     regexError = preference.regexError,
                                     keyboardType = preference.keyboardType,
+                                    isFirst = index == 0,
+                                    isLast = index == preferenceSource.getPreferences(context).lastIndex,
                                     onValueChanged = preference.onValueChanged
                                 )
                             }
                         }
+                    }
+                    if (index != preferenceSource.getPreferences(context).lastIndex) {
+                        smallSeparatorItem()
                     }
                 }
                 item(key = "footer_${preferenceSource.id}") {

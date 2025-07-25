@@ -25,6 +25,7 @@ import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import androidx.annotation.ColorInt
 import androidx.annotation.Size
+import androidx.core.graphics.withRotation
 import kotlin.math.min
 import kotlin.math.sin
 
@@ -76,16 +77,15 @@ class SunDrawable : Drawable() {
             mPaint
         )
         mPaint.color = mHaloColors[0]
-        val restoreCount = canvas.save()
-        canvas.rotate(45f, mCX, mCY)
-        canvas.drawRect(
-            mCX - mRadius,
-            mCY - mRadius,
-            mCX + mRadius,
-            mCY + mRadius,
-            mPaint
-        )
-        canvas.restoreToCount(restoreCount)
+        canvas.withRotation(45f, mCX, mCY) {
+            canvas.drawRect(
+                mCX - mRadius,
+                mCY - mRadius,
+                mCX + mRadius,
+                mCY + mRadius,
+                mPaint
+            )
+        }
         mPaint.color = mCoreColor
         canvas.drawCircle(mCX, mCY, mRadius, mPaint)
     }

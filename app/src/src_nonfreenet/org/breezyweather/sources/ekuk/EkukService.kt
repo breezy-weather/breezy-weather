@@ -68,6 +68,9 @@ class EkukService @Inject constructor(
         SourceFeature.AIR_QUALITY to weatherAttribution
         // TODO at pollen season: SourceFeature.POLLEN to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.ohuseire.ee/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

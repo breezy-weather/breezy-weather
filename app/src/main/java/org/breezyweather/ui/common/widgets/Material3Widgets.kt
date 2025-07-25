@@ -189,25 +189,40 @@ val defaultCardListItemElevation = 2.dp
 
 fun getCardListItemMarginDp(context: Context) = context
     .resources
-    .getDimension(R.dimen.little_margin)
+    .getDimension(R.dimen.small_margin)
 
 @Composable
-fun Material3CardListItem(
+fun Material3ExpressiveCardListItem(
     modifier: Modifier = Modifier,
     elevation: Dp = defaultCardListItemElevation,
     surface: Color = MaterialTheme.colorScheme.surface,
     onSurface: Color = MaterialTheme.colorScheme.onSurface,
+    isFirst: Boolean = true,
+    isLast: Boolean = true,
     content: @Composable ColumnScope.() -> Unit,
 ) = Card(
-    modifier = modifier
-        .padding(
-            start = dimensionResource(R.dimen.little_margin),
-            end = dimensionResource(R.dimen.little_margin),
-            top = dimensionResource(R.dimen.little_margin),
-            bottom = 0.dp
-        ),
+    modifier = modifier,
     shape = RoundedCornerShape(
-        size = dimensionResource(R.dimen.material3_card_list_item_corner_radius)
+        topStart = if (isFirst) {
+            dimensionResource(R.dimen.material3_card_settings_list_item_corner_radius)
+        } else {
+            2.dp
+        },
+        topEnd = if (isFirst) {
+            dimensionResource(R.dimen.material3_card_settings_list_item_corner_radius)
+        } else {
+            2.dp
+        },
+        bottomStart = if (isLast) {
+            dimensionResource(R.dimen.material3_card_settings_list_item_corner_radius)
+        } else {
+            2.dp
+        },
+        bottomEnd = if (isLast) {
+            dimensionResource(R.dimen.material3_card_settings_list_item_corner_radius)
+        } else {
+            2.dp
+        }
     ),
     colors = CardDefaults.cardColors(
         containerColor = getWidgetSurfaceColor(elevation, surface),

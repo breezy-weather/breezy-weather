@@ -78,6 +78,9 @@ class HereService @Inject constructor(
         SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.here.com/"
+    )
 
     /**
      * Returns weather
@@ -95,7 +98,6 @@ class HereService @Inject constructor(
             if (SourceFeature.FORECAST in requestedFeatures) {
                 add("forecast7daysSimple")
                 add("forecastHourly")
-                add("forecastAstronomy")
             }
         }
 
@@ -119,10 +121,7 @@ class HereService @Inject constructor(
                     val dailySimpleForecasts = hereWeatherForecastResult.places.firstNotNullOfOrNull {
                         it.dailyForecasts?.getOrNull(0)?.forecasts
                     }
-                    val astronomyForecasts = hereWeatherForecastResult.places.firstNotNullOfOrNull {
-                        it.astronomyForecasts?.getOrNull(0)?.forecasts
-                    }
-                    getDailyForecast(dailySimpleForecasts, astronomyForecasts)
+                    getDailyForecast(dailySimpleForecasts)
                 } else {
                     null
                 },

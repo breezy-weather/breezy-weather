@@ -25,10 +25,10 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 
 class WeatherIconAdapter(
-    private val mActivity: GeoActivity,
+    private val mActivity: BreezyActivity,
     private val mItemList: List<Item>,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     // item.
@@ -37,7 +37,7 @@ class WeatherIconAdapter(
     abstract class WeatherIcon : Item {
         abstract val drawable: Drawable
         abstract val contentDescription: String
-        abstract fun onItemClicked(activity: GeoActivity)
+        abstract fun onItemClicked(activity: BreezyActivity)
     }
 
     class Line : Item

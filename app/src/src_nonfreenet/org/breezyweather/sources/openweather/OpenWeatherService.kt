@@ -67,6 +67,9 @@ class OpenWeatherService @Inject constructor(
         SourceFeature.CURRENT to name,
         SourceFeature.AIR_QUALITY to name
     )
+    override val attributionLinks = mapOf(
+        name to "https://openweather.co.uk/"
+    )
 
     override fun requestWeather(
         context: Context,

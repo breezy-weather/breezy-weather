@@ -29,7 +29,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.PolyUtil
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.data.geojson.GeoJsonFeature
@@ -242,7 +244,7 @@ internal fun getCurrent(
         CurrentWrapper(
             weatherText = getCurrentWeatherText(context, weather),
             weatherCode = getCurrentWeatherCode(weather),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = it.temp?.getOrNull(0)
             ),
             wind = Wind(
@@ -316,7 +318,8 @@ internal fun getDailyForecast(
                         // normalize timestamp to midnight local time
                         val midnight = (
                             floor((it.toDouble() + 9.hours.inWholeMilliseconds) / 1.days.inWholeMilliseconds) *
-                                1.days.inWholeMilliseconds - 9.hours.inWholeMilliseconds
+                                1.days.inWholeMilliseconds -
+                                9.hours.inWholeMilliseconds
                             ).toLong()
                         wxMap[midnight] = area.weatherCodes?.getOrNull(i)
                     }
@@ -364,7 +367,7 @@ internal fun getDailyForecast(
         dailyList.add(
             DailyWrapper(
                 date = Date(key),
-                day = HalfDay(
+                day = HalfDayWrapper(
                     weatherText = getDailyWeatherText(
                         context = context,
                         weather = wxMap.getOrElse(key) { null },
@@ -374,7 +377,7 @@ internal fun getDailyForecast(
                         weather = wxMap.getOrElse(key) { null },
                         night = false
                     ),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = maxTMap.getOrElse(key) { null }
                     ),
                     precipitationProbability = PrecipitationProbability(
@@ -384,7 +387,7 @@ internal fun getDailyForecast(
                         )
                     )
                 ),
-                night = HalfDay(
+                night = HalfDayWrapper(
                     weatherText = getDailyWeatherText(
                         context = context,
                         weather = wxMap.getOrElse(key) { null },
@@ -394,7 +397,7 @@ internal fun getDailyForecast(
                         weather = wxMap.getOrElse(key) { null },
                         night = true
                     ),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = minTMap.getOrElse(key + 1.days.inWholeMilliseconds) { null }
                     ),
                     precipitationProbability = PrecipitationProbability(
@@ -444,7 +447,7 @@ internal fun getHourlyForecast(
                 date = Date(key),
                 weatherText = wxTextMap.getOrElse(key) { null },
                 weatherCode = wxCodeMap.getOrElse(key) { null },
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = tMap.getOrElse(key) { null }
                 ),
                 wind = Wind(

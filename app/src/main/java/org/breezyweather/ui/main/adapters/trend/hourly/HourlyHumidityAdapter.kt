@@ -23,24 +23,24 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
-import java.text.NumberFormat
 import kotlin.math.max
 
 /**
  * Hourly humidity / dew point adapter.
  */
 class HourlyHumidityAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
     unit: TemperatureUnit,
@@ -58,7 +58,7 @@ class HourlyHumidityAdapter(
             hourlyItem.chartItemView = mPolylineAndHistogramView
         }
 
-        fun onBindView(activity: GeoActivity, location: Location, position: Int) {
+        fun onBindView(activity: BreezyActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder()
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
@@ -67,17 +67,13 @@ class HourlyHumidityAdapter(
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.humidity))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(
-                        NumberFormat.getPercentInstance(activity.currentLocale).apply {
-                            maximumFractionDigits = 0
-                        }.format(it.div(100.0))
-                    )
+                    .append(UnitUtils.formatPercent(activity, it))
             }
             hourly.dewPoint?.let {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.dew_point))
                     .append(activity.getString(R.string.colon_separator))
-                    .append(mDewPointUnit.getValueVoice(activity, it))
+                    .append(mDewPointUnit.formatContentDescription(activity, it))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -89,17 +85,13 @@ class HourlyHumidityAdapter(
                 buildDewPointArrayForItem(mDewPoints, position),
                 null,
                 hourly.dewPoint?.let {
-                    mDewPointUnit.getShortValueText(activity, it)
+                    mDewPointUnit.formatMeasureShort(activity, it)
                 },
                 null,
                 mHighestDewPoint,
                 mLowestDewPoint,
                 hourly.relativeHumidity?.toFloat(),
-                hourly.relativeHumidity?.let {
-                    NumberFormat.getPercentInstance(activity.currentLocale).apply {
-                        maximumFractionDigits = 0
-                    }.format(it.div(100.0))
-                },
+                hourly.relativeHumidity?.let { UnitUtils.formatPercent(activity, it) },
                 100f,
                 0f
             )
@@ -111,11 +103,11 @@ class HourlyHumidityAdapter(
                     WeatherViewController.getWeatherKind(location),
                     WeatherViewController.isDaylight(location)
                 )
-            val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
+            val lightTheme = ThemeManager.isLightTheme(itemView.context, location)
             mPolylineAndHistogramView.setLineColors(
                 themeColors[if (lightTheme) 1 else 2],
                 themeColors[2],
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
             mPolylineAndHistogramView.setShadowColors(
                 themeColors[if (lightTheme) 1 else 2],
@@ -123,12 +115,15 @@ class HourlyHumidityAdapter(
                 lightTheme
             )
             mPolylineAndHistogramView.setTextColors(
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                MainThemeColorProvider.getColor(location, R.attr.colorPrecipitationProbability)
+                activity.getThemeColor(R.attr.colorTitleText),
+                activity.getThemeColor(R.attr.colorBodyText),
+                activity.getThemeColor(R.attr.colorPrecipitationProbability)
             )
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 0.2f else 0.5f)
             hourlyItem.contentDescription = talkBackBuilder.toString()
+            hourlyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_HUMIDITY)
+            }
         }
 
         @Size(3)

@@ -17,6 +17,7 @@
 package org.breezyweather.common.source
 
 import android.content.Context
+import androidx.annotation.DrawableRes
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -26,6 +27,17 @@ import io.reactivex.rxjava3.core.Observable
  * Weather service.
  */
 interface WeatherSource : Source {
+
+    /**
+     * An optional icon for the attribution page.
+     * /!\ Only include it if it is mandatory in the attribution, as we don’t want to bundle copyrighted icons which
+     * we don’t have the right to use!
+     * Example: return R.drawable.accu_icon
+     */
+    @DrawableRes
+    fun getAttributionIcon(): Int? {
+        return null
+    }
 
     /**
      * List the features by the source as keys

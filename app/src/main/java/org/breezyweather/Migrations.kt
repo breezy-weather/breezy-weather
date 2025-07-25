@@ -25,7 +25,6 @@ import kotlinx.coroutines.runBlocking
 import org.breezyweather.background.forecast.TodayForecastNotificationJob
 import org.breezyweather.background.forecast.TomorrowForecastNotificationJob
 import org.breezyweather.background.weather.WeatherUpdateJob
-import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.domain.settings.SettingsManager
@@ -88,20 +87,6 @@ object Migrations {
                         if (curDailyTrendDisplayList != SettingsManager.DEFAULT_DAILY_TREND_DISPLAY) {
                             SettingsManager.getInstance(context).dailyTrendDisplayList =
                                 DailyTrendDisplay.toDailyTrendDisplayList("$curDailyTrendDisplayList&sunshine")
-                        }
-                    } catch (ignored: Throwable) {
-                        // ignored
-                    }
-                }
-
-                if (oldVersion < 50108) {
-                    // V5.1.8 adds precipitation nowcast as a dedicated card
-                    try {
-                        val curCardDisplayList =
-                            CardDisplay.toValue(SettingsManager.getInstance(context).cardDisplayList)
-                        if (curCardDisplayList != SettingsManager.DEFAULT_CARD_DISPLAY) {
-                            SettingsManager.getInstance(context).cardDisplayList =
-                                CardDisplay.toCardDisplayList("precipitation_nowcast&$curCardDisplayList")
                         }
                     } catch (ignored: Throwable) {
                         // ignored
@@ -200,6 +185,76 @@ object Migrations {
                                     }
                                 }
                             }
+                    }
+                }
+
+                if (oldVersion < 50407) {
+                    runBlocking {
+                        // V5.4.7 removes incorrect INSEE code for Paris, Marseille, Lyon with Atmo France
+                        locationRepository.updateParameters(
+                            source = "atmofrance",
+                            parameter = "citycode",
+                            values = mapOf(
+                                "75101" to "75056", // Paris
+                                "75102" to "75056", // Paris
+                                "75103" to "75056", // Paris
+                                "75104" to "75056", // Paris
+                                "75105" to "75056", // Paris
+                                "75106" to "75056", // Paris
+                                "75107" to "75056", // Paris
+                                "75108" to "75056", // Paris
+                                "75109" to "75056", // Paris
+                                "75110" to "75056", // Paris
+                                "75111" to "75056", // Paris
+                                "75112" to "75056", // Paris
+                                "75113" to "75056", // Paris
+                                "75114" to "75056", // Paris
+                                "75115" to "75056", // Paris
+                                "75116" to "75056", // Paris
+                                "75117" to "75056", // Paris
+                                "75118" to "75056", // Paris
+                                "75119" to "75056", // Paris
+                                "75120" to "75056", // Paris
+                                "13201" to "13055", // Marseille
+                                "13202" to "13055", // Marseille
+                                "13203" to "13055", // Marseille
+                                "13204" to "13055", // Marseille
+                                "13205" to "13055", // Marseille
+                                "13206" to "13055", // Marseille
+                                "13207" to "13055", // Marseille
+                                "13208" to "13055", // Marseille
+                                "13209" to "13055", // Marseille
+                                "13210" to "13055", // Marseille
+                                "13211" to "13055", // Marseille
+                                "13212" to "13055", // Marseille
+                                "13213" to "13055", // Marseille
+                                "13214" to "13055", // Marseille
+                                "13215" to "13055", // Marseille
+                                "13216" to "13055", // Marseille
+                                "69381" to "69123", // Lyon
+                                "69382" to "69123", // Lyon
+                                "69383" to "69123", // Lyon
+                                "69384" to "69123", // Lyon
+                                "69385" to "69123", // Lyon
+                                "69386" to "69123", // Lyon
+                                "69387" to "69123", // Lyon
+                                "69388" to "69123", // Lyon
+                                "69389" to "69123" // Lyon
+                            )
+                        )
+
+                        // V5.4.7 migrates some Open-Meteo weather models
+                        locationRepository.updateParameters(
+                            source = "openmeteo",
+                            parameter = "weatherModels",
+                            values = mapOf(
+                                "ecmwf_ifs04" to "ecmwf_ifs025",
+                                "ecmwf_aifs025" to "ecmwf_aifs025_single",
+                                "arpae_cosmo_seamless" to "italia_meteo_arpae_icon_2i",
+                                "arpae_cosmo_2i" to "italia_meteo_arpae_icon_2i",
+                                "arpae_cosmo_5m" to "italia_meteo_arpae_icon_2i"
+                            )
+                        )
                     }
                 }
             }

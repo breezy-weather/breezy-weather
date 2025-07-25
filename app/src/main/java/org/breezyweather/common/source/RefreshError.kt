@@ -32,7 +32,7 @@ class RefreshError(
         return if (!source.isNullOrEmpty()) {
             val sourceName = sourceManager.getSource(source)?.name ?: source
             if (feature != null) {
-                "$sourceName ${context.getString(R.string.parenthesis, context.getString(feature.resourceName!!))}"
+                context.getString(R.string.parenthesis, sourceName, context.getString(feature.resourceName))
             } else {
                 sourceName
             }

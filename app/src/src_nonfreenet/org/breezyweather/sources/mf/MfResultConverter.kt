@@ -18,13 +18,12 @@ package org.breezyweather.sources.mf
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
+import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Minutely
-import breezyweather.domain.weather.model.MoonPhase
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -34,11 +33,12 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.sources.mf.json.MfCurrentResult
-import org.breezyweather.sources.mf.json.MfEphemeris
 import org.breezyweather.sources.mf.json.MfForecastDaily
 import org.breezyweather.sources.mf.json.MfForecastHourly
 import org.breezyweather.sources.mf.json.MfForecastProbability
@@ -50,7 +50,6 @@ import org.breezyweather.sources.mf.json.MfWarningsOverseasResult
 import org.breezyweather.sources.mf.json.MfWarningsResult
 import java.util.Calendar
 import java.util.Date
-import java.util.Locale
 import java.util.Objects
 import java.util.TimeZone
 import kotlin.math.roundToInt
@@ -84,7 +83,7 @@ internal fun getCurrent(currentResult: MfCurrentResult): CurrentWrapper? {
     return CurrentWrapper(
         weatherText = currentResult.properties.gridded.weatherDescription,
         weatherCode = getWeatherCode(currentResult.properties.gridded.weatherIcon),
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = currentResult.properties.gridded.temperature
         ),
         wind = Wind(
@@ -97,7 +96,6 @@ internal fun getCurrent(currentResult: MfCurrentResult): CurrentWrapper? {
 internal fun getDailyList(
     location: Location,
     dailyForecasts: List<MfForecastDaily>?,
-    ephemerisResult: MfEphemeris?,
 ): List<DailyWrapper> {
     if (dailyForecasts.isNullOrEmpty()) return emptyList()
     val dailyList: MutableList<DailyWrapper> = ArrayList(dailyForecasts.size)
@@ -118,40 +116,19 @@ internal fun getDailyList(
         dailyList.add(
             DailyWrapper(
                 date = theDayInLocal,
-                day = HalfDay(
+                day = HalfDayWrapper(
                     // Too complicated to get weather from hourly, so let's just use daily info for both day and night
                     weatherText = dailyForecast.dailyWeatherDescription,
-                    weatherPhase = dailyForecast.dailyWeatherDescription,
                     weatherCode = getWeatherCode(dailyForecast.dailyWeatherIcon),
-                    temperature = Temperature(temperature = dailyForecast.tMax)
+                    temperature = TemperatureWrapper(temperature = dailyForecast.tMax)
                 ),
-                night = HalfDay(
+                night = HalfDayWrapper(
                     weatherText = dailyForecast.dailyWeatherDescription,
-                    weatherPhase = dailyForecast.dailyWeatherDescription,
                     weatherCode = getWeatherCode(dailyForecast.dailyWeatherIcon),
                     // tMin is for current day, so it actually takes the previous night,
                     // so we try to get tMin from next day if available
-                    temperature = Temperature(temperature = dailyForecasts.getOrNull(i + 1)?.tMin)
+                    temperature = TemperatureWrapper(temperature = dailyForecasts.getOrNull(i + 1)?.tMin)
                 ),
-                sun = Astro(
-                    riseDate = dailyForecast.sunriseTime,
-                    setDate = dailyForecast.sunsetTime
-                ),
-                moon = if (i == 0) {
-                    Astro(
-                        riseDate = ephemerisResult?.moonriseTime,
-                        setDate = ephemerisResult?.moonsetTime
-                    )
-                } else {
-                    null
-                },
-                moonPhase = if (i == 0) {
-                    MoonPhase(
-                        angle = MoonPhase.getAngleFromEnglishDescription(ephemerisResult?.moonPhaseDescription)
-                    )
-                } else {
-                    null
-                },
                 uV = UV(index = dailyForecast.uvIndex?.toDouble())
             )
         )
@@ -168,9 +145,9 @@ internal fun getHourlyList(
             date = hourlyForecast.time,
             weatherText = hourlyForecast.weatherDescription,
             weatherCode = getWeatherCode(hourlyForecast.weatherIcon),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = hourlyForecast.t,
-                windChillTemperature = hourlyForecast.tWindchill
+                feelsLike = hourlyForecast.tWindchill
             ),
             precipitation = getHourlyPrecipitation(hourlyForecast),
             precipitationProbability = getHourlyPrecipitationProbability(
@@ -310,14 +287,10 @@ internal fun getOverseasWarningsList(
                     content.append("\n\n")
                 }
                 textBlocItem.title?.forEach { t ->
-                    content
-                        .append(t.uppercase(Locale.FRENCH))
-                        .append("\n")
+                    content.append("<h2>$t</h2>\n")
                 }
                 textBlocItem.text?.forEach { txt ->
-                    content
-                        .append(txt)
-                        .append("\n")
+                    content.append("$txt\n")
                 }
             }
             alertList.add(
@@ -331,7 +304,7 @@ internal fun getOverseasWarningsList(
                     source = "Météo-France",
                     severity = AlertSeverity.EXTREME, // Let’s put it on top
                     color = warningsDictionaryResult.colors?.firstOrNull { c -> c.id == warningsResult.colorMax }
-                        ?.hexaCode?.let { h -> Color.parseColor(h) }
+                        ?.hexaCode?.toColorInt()
                         ?: Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
                 )
             )
@@ -341,10 +314,12 @@ internal fun getOverseasWarningsList(
         timelaps.timelapsItems
             ?.filter { it.colorId > 1 }
             ?.forEach { timelapsItem ->
-                val consequences = warningsResult.consequences?.firstOrNull { it.phenomenonId == timelaps.phenomenonId }
-                    ?.textConsequence?.replace("<br>", "\n")
-                val advices = warningsResult.advices?.firstOrNull { it.phenomenonId == timelaps.phenomenonId }
-                    ?.textAdvice?.replace("<br>", "\n")
+                val consequences = warningsResult.consequences
+                    ?.firstOrNull { it.phenomenonId == timelaps.phenomenonId }
+                    ?.textConsequence
+                val advices = warningsResult.advices
+                    ?.firstOrNull { it.phenomenonId == timelaps.phenomenonId }
+                    ?.textAdvice
 
                 val content = StringBuilder()
                 if (!consequences.isNullOrEmpty()) {
@@ -353,7 +328,7 @@ internal fun getOverseasWarningsList(
                     }
                     // TODO: Move to non-translatable en/fr strings
                     content
-                        .append("CONSÉQUENCES POSSIBLES\n")
+                        .append("<h2>Conséquences possibles</h2>\n")
                         .append(consequences)
                 }
                 if (!advices.isNullOrEmpty()) {
@@ -362,7 +337,7 @@ internal fun getOverseasWarningsList(
                     }
                     // TODO: Move to non-translatable en/fr strings
                     content
-                        .append("CONSEILS DE COMPORTEMENT\n")
+                        .append("<h2>Conseils de comportement</h2>\n")
                         .append(advices)
                 }
 
@@ -392,7 +367,7 @@ internal fun getOverseasWarningsList(
                                 }
                             } ?: AlertSeverity.UNKNOWN,
                         color = warningsDictionaryResult.colors?.firstOrNull { c -> c.id == timelapsItem.colorId }
-                            ?.hexaCode?.let { h -> Color.parseColor(h) }
+                            ?.hexaCode?.toColorInt()
                             ?: Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
                     )
                 )
@@ -511,7 +486,7 @@ internal fun getNormals(location: Location, normalsResult: MfNormalsResult): Nor
     val normalsStats = normalsResult.properties?.stats?.getOrNull(currentMonth)
     return if (normalsStats != null) {
         Normals(
-            month = currentMonth,
+            month = currentMonth + 1,
             daytimeTemperature = normalsStats.tMax,
             nighttimeTemperature = normalsStats.tMin
         )
@@ -571,10 +546,12 @@ private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsR
     val textBlocs = warningsResult.text?.textBlocItems?.filter { textBlocItem ->
         textBlocItem.textItems?.any { it.hazardCode == phenomenonId } == true
     }
-    val consequences = warningsResult.consequences?.firstOrNull { it.phenomenonId == phenomenonId }
-        ?.textConsequence?.replace("<br>", "\n")
-    val advices = warningsResult.advices?.firstOrNull { it.phenomenonId == phenomenonId }
-        ?.textAdvice?.replace("<br>", "\n")
+    val consequences = warningsResult.consequences
+        ?.firstOrNull { it.phenomenonId == phenomenonId }
+        ?.textConsequence
+    val advices = warningsResult.advices
+        ?.firstOrNull { it.phenomenonId == phenomenonId }
+        ?.textAdvice
 
     val content = StringBuilder()
     if (!textBlocs.isNullOrEmpty()) {
@@ -583,16 +560,26 @@ private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsR
                 content.append("\n\n")
             }
             if (!textBlocItem.typeName.isNullOrEmpty()) {
-                content
-                    .append(textBlocItem.typeName.uppercase(Locale.FRENCH))
-                    .append("\n")
+                content.append("<h2>${textBlocItem.typeName}</h2>\n")
             }
             textBlocItem.textItems?.filter { it.hazardCode == phenomenonId }?.forEach { textItem ->
-                textItem.termItems?.forEach { termItem ->
-                    termItem.subdivisionTexts?.forEach { subdivisionText ->
+                textItem.termItems?.forEachIndexed { termItemIndex, termItem ->
+                    termItem.subdivisionTexts?.forEachIndexed { subdivisionIndex, subdivisionText ->
+                        if (!subdivisionText.underlineText.isNullOrEmpty()) {
+                            content.append("<u>${subdivisionText.underlineText}</u> ")
+                        }
+                        if (!subdivisionText.boldText.isNullOrEmpty()) {
+                            content.append("<b>${subdivisionText.boldText}</b> ")
+                        }
                         subdivisionText.text?.let {
                             content.append(it.joinToString("\n"))
                         }
+                        if (subdivisionIndex != termItem.subdivisionTexts.lastIndex) {
+                            content.append("\n\n")
+                        }
+                    }
+                    if (termItemIndex != textItem.termItems.lastIndex) {
+                        content.append("\n\n")
                     }
                 }
             }
@@ -604,7 +591,7 @@ private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsR
         }
         // TODO: Move to non-translatable en/fr strings
         content
-            .append("CONSÉQUENCES POSSIBLES\n")
+            .append("<h2>Conséquences possibles</h2>\n")
             .append(consequences)
     }
     if (!advices.isNullOrEmpty()) {
@@ -613,7 +600,7 @@ private fun getWarningContent(phenomenonId: String?, warningsResult: MfWarningsR
         }
         // TODO: Move to non-translatable en/fr strings
         content
-            .append("CONSEILS DE COMPORTEMENT\n")
+            .append("<h2>Conseils de comportement</h2>\n")
             .append(advices)
     }
 

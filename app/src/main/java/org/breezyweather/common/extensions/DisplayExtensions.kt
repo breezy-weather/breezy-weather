@@ -29,14 +29,17 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.provider.Settings
 import android.provider.Settings.SettingNotFoundException
+import android.util.TypedValue
 import android.view.View
 import android.view.Window
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.Interpolator
 import android.view.animation.OvershootInterpolator
+import androidx.annotation.AttrRes
 import androidx.annotation.Px
 import androidx.annotation.Size
 import androidx.annotation.StyleRes
+import androidx.core.graphics.createBitmap
 import androidx.core.view.WindowInsetsControllerCompat
 import com.google.android.material.resources.TextAppearance
 import kotlin.math.min
@@ -45,55 +48,108 @@ private const val MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE = 512
 private const val MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET = 600
 val FLOATING_DECELERATE_INTERPOLATOR: Interpolator = DecelerateInterpolator(1f)
 const val DEFAULT_CARD_LIST_ITEM_ELEVATION_DP = 2f
+const val MAX_FONT_SCALE_FOR_HALF_BLOCKS = 1.2
 
 val Context.isTabletDevice: Boolean
     get() = (
-        this.resources.configuration.screenLayout
+        resources.configuration.screenLayout
             and Configuration.SCREENLAYOUT_SIZE_MASK
         ) >= Configuration.SCREENLAYOUT_SIZE_LARGE
 
 val Context.isLandscape: Boolean
-    get() = this.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    get() = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+
+/**
+ * Returns true if there is enough width to display two blocks
+ * Allowed down to 320 dp and 1.0 font scale
+ * Then follows a linear progress between width and font scale
+ */
+val Context.isWidthHalfSizeable: Boolean
+    get() {
+        val currentWindowWidth = windowWidth.toFloat().div(density)
+
+        // Below 320 dp
+        if (currentWindowWidth < 2.0) return false
+
+        /**
+         * Examples:
+         * window width = 2.0 (320 dp), max font scale = 1.0
+         * window width = 2.5 (400 dp), max font scale = 1.5
+         * window width = 3.0 (480 dp), max font scale = 2.0
+         */
+        val maxFontScale = currentWindowWidth - 1.0
+
+        return fontScale <= maxFontScale
+    }
 
 val Context.isRtl: Boolean
-    get() = this.resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
+    get() = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
 
 val Context.isDarkMode: Boolean
-    get() = (
-        this.resources.configuration.uiMode
-            and Configuration.UI_MODE_NIGHT_MASK
-        ) == Configuration.UI_MODE_NIGHT_YES
+    get() = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
 
 val Context.isMotionReduced: Boolean
     get() {
         return try {
-            Settings.Global.getFloat(this.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE) == 0f
+            Settings.Global.getFloat(contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE) == 0f
         } catch (e: SettingNotFoundException) {
             false
         }
     }
 
+val Context.density: Int
+    get() {
+        return resources.displayMetrics.densityDpi
+    }
+
+val Context.fontScale: Float
+    get() {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            resources.configuration.fontScale *
+                resources.displayMetrics.densityDpi.div(android.util.DisplayMetrics.DENSITY_DEVICE_STABLE)
+        } else {
+            1f // Let’s just ignore it on old Android versions
+        }
+    }
+
+val Context.windowHeightInDp: Float
+    get() {
+        return pxToDp(resources.displayMetrics.heightPixels)
+    }
+
+val Context.windowWidthInDp: Float
+    get() {
+        return pxToDp(resources.displayMetrics.widthPixels)
+    }
+
+val Context.windowWidth: Int
+    @Px
+    get() {
+        return resources.displayMetrics.widthPixels
+    }
+
 fun Context.dpToPx(dp: Float): Float {
-    return dp * (this.resources.displayMetrics.densityDpi / 160f)
+    return dp * (resources.displayMetrics.densityDpi / 160f)
 }
 
 fun Context.spToPx(sp: Int): Float {
-    return sp * this.resources.displayMetrics.scaledDensity
+    return sp * TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 1.0f, resources.displayMetrics)
 }
 
+@Suppress("unused")
 fun Context.pxToDp(@Px px: Int): Float {
-    return px / (this.resources.displayMetrics.densityDpi / 160f)
+    return px / (resources.displayMetrics.densityDpi / 160f)
 }
 
 @Px
 fun Context.getTabletListAdaptiveWidth(@Px width: Int): Int {
-    return if (!this.isTabletDevice && !this.isLandscape) {
+    return if (!isTabletDevice && !isLandscape) {
         width
     } else {
         min(
             width.toFloat(),
-            this.dpToPx(
-                if (this.isTabletDevice) {
+            dpToPx(
+                if (isTabletDevice) {
                     MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET
                 } else {
                     MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE
@@ -110,14 +166,19 @@ fun Context.getTypefaceFromTextAppearance(
     return TextAppearance(this, textAppearanceId).getFont(this)
 }
 
+fun Context.getThemeColor(
+    @AttrRes id: Int,
+): Int {
+    val typedValue = TypedValue()
+    theme.resolveAttribute(id, typedValue, true)
+    return typedValue.data
+}
+
 @Suppress("DEPRECATION")
 fun Window.setSystemBarStyle(
-    statusShaderP: Boolean,
-    lightStatusP: Boolean,
-    lightNavigationP: Boolean,
+    lightStatus: Boolean,
 ) {
-    var lightStatus = lightStatusP
-    var statusShader = statusShaderP
+    var newLightStatus = lightStatus
 
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
         // Use default dark and light platform colors from EdgeToEdge
@@ -126,53 +187,44 @@ fun Window.setSystemBarStyle(
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // Always apply a dark shader as a light or transparent status bar is not supported
-            lightStatus = false
-            statusShader = true
+            newLightStatus = false
         }
-        this.statusBarColor = if (statusShader) {
-            if (lightStatus) colorSystemBarLight else colorSystemBarDark
-        } else {
-            Color.TRANSPARENT
-        }
+        statusBarColor = Color.TRANSPARENT
 
-        this.navigationBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && lightNavigationP) {
+        navigationBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && lightStatus) {
             colorSystemBarLight
         } else {
             colorSystemBarDark
         }
     } else {
-        this.isStatusBarContrastEnforced = statusShader
-        this.isNavigationBarContrastEnforced = true
+        isStatusBarContrastEnforced = false
+        isNavigationBarContrastEnforced = true
     }
 
     // Contrary to the documentation FALSE applies a light foreground color and TRUE a dark foreground color
-    WindowInsetsControllerCompat(this, this.decorView).run {
-        isAppearanceLightStatusBars = lightStatus
-        isAppearanceLightNavigationBars = lightNavigationP
+    WindowInsetsControllerCompat(this, decorView).run {
+        isAppearanceLightStatusBars = newLightStatus
+        isAppearanceLightNavigationBars = lightStatus
     }
 }
 
 fun Drawable.toBitmap(): Bitmap {
-    val bitmap = Bitmap.createBitmap(
-        this.intrinsicWidth,
-        this.intrinsicHeight,
-        Bitmap.Config.ARGB_8888
-    )
+    val bitmap = createBitmap(intrinsicWidth, intrinsicHeight)
     val canvas = Canvas(bitmap)
-    this.setBounds(0, 0, this.intrinsicWidth, this.intrinsicHeight)
-    this.draw(canvas)
+    setBounds(0, 0, intrinsicWidth, intrinsicHeight)
+    draw(canvas)
     return bitmap
 }
 
 // translationY, scaleX, scaleY
 @Size(3)
 fun View.getFloatingOvershotEnterAnimators(): Array<Animator> {
-    return this.getFloatingOvershotEnterAnimators(1.5f)
+    return getFloatingOvershotEnterAnimators(1.5f)
 }
 
 @Size(3)
 fun View.getFloatingOvershotEnterAnimators(overshootFactor: Float): Array<Animator> {
-    return this.getFloatingOvershotEnterAnimators(overshootFactor, this.translationY, this.scaleX, this.scaleY)
+    return getFloatingOvershotEnterAnimators(overshootFactor, translationY, scaleX, scaleY)
 }
 
 @Size(3)

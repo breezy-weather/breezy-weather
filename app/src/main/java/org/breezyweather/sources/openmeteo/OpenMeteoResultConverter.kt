@@ -19,7 +19,6 @@ package org.breezyweather.sources.openmeteo
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
-import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Pollen
@@ -32,8 +31,10 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.PollenWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.R
 import org.breezyweather.common.extensions.plus
@@ -84,9 +85,9 @@ internal fun getCurrent(
     return CurrentWrapper(
         weatherText = getWeatherText(context, current.weatherCode),
         weatherCode = getWeatherCode(current.weatherCode),
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = current.temperature,
-            apparentTemperature = current.apparentTemperature
+            feelsLike = current.apparentTemperature
         ),
         wind = Wind(
             degree = current.windDirection,
@@ -118,22 +119,18 @@ internal fun getDailyList(
             }.time
         val daily = DailyWrapper(
             date = theDayWithDstFixed,
-            day = HalfDay(
-                temperature = Temperature(
+            day = HalfDayWrapper(
+                temperature = TemperatureWrapper(
                     temperature = dailyResult.temperatureMax?.getOrNull(i),
-                    apparentTemperature = dailyResult.apparentTemperatureMax?.getOrNull(i)
+                    feelsLike = dailyResult.apparentTemperatureMax?.getOrNull(i)
                 )
             ),
-            night = HalfDay(
-                temperature = Temperature(
+            night = HalfDayWrapper(
+                temperature = TemperatureWrapper(
                     // For night temperature, we take the minTemperature from the following day
                     temperature = dailyResult.temperatureMin?.getOrNull(i + 1),
-                    apparentTemperature = dailyResult.apparentTemperatureMin?.getOrNull(i + 1)
+                    feelsLike = dailyResult.apparentTemperatureMin?.getOrNull(i + 1)
                 )
-            ),
-            sun = Astro(
-                riseDate = dailyResult.sunrise?.getOrNull(i)?.seconds?.inWholeMilliseconds?.toDate(),
-                setDate = dailyResult.sunset?.getOrNull(i)?.seconds?.inWholeMilliseconds?.toDate()
             ),
             uV = UV(index = dailyResult.uvIndexMax?.getOrNull(i)),
             sunshineDuration = dailyResult.sunshineDuration?.getOrNull(i)?.div(3600)
@@ -157,9 +154,9 @@ internal fun getHourlyList(
                 isDaylight = if (hourlyResult.isDay?.getOrNull(i) != null) hourlyResult.isDay[i] > 0 else null,
                 weatherText = getWeatherText(context, hourlyResult.weatherCode?.getOrNull(i)),
                 weatherCode = getWeatherCode(hourlyResult.weatherCode?.getOrNull(i)),
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = hourlyResult.temperature?.getOrNull(i),
-                    apparentTemperature = hourlyResult.apparentTemperature?.getOrNull(i)
+                    feelsLike = hourlyResult.apparentTemperature?.getOrNull(i)
                 ),
                 precipitation = Precipitation(
                     total = hourlyResult.precipitation?.getOrNull(i),

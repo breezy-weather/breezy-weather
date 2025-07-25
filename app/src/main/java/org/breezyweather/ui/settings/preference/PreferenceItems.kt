@@ -27,8 +27,10 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import org.breezyweather.R
 import org.breezyweather.ui.common.widgets.getCardListItemMarginDp
 import org.breezyweather.ui.settings.preference.composables.SectionFooter
 import org.breezyweather.ui.settings.preference.composables.SectionHeader
@@ -55,6 +57,32 @@ fun LazyListScope.sectionFooterItem(
     ) {
         SectionFooter()
     }
+}
+
+fun LazyListScope.smallSeparatorItem() {
+    item {
+        SmallSeparatorItem()
+    }
+}
+
+@Composable
+fun SmallSeparatorItem(
+    modifier: Modifier = Modifier,
+) {
+    Spacer(modifier = modifier.height(dimensionResource(R.dimen.material3_card_settings_small_separator)))
+}
+
+fun LazyListScope.largeSeparatorItem() {
+    item {
+        LargeSeparatorItem()
+    }
+}
+
+@Composable
+fun LargeSeparatorItem(
+    modifier: Modifier = Modifier,
+) {
+    Spacer(modifier = modifier.height(dimensionResource(R.dimen.material3_card_settings_large_separator)))
 }
 
 fun LazyListScope.bottomInsetItem() {

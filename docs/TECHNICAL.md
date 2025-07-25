@@ -9,6 +9,7 @@ breezy.accu.key=myapikey
 breezy.accu.days=15
 breezy.accu.hours=120
 breezy.atmoaura.key=myapikey
+breezy.atmofrance.key=myapikey
 breezy.atmograndest.key=myapikey
 breezy.atmohdf.key=myapikey
 breezy.atmosud.key=myapikey
@@ -34,7 +35,7 @@ You can omit any of the following properties to let the user configure their own
 4) Update versionCode and versionName in `app/build.gradle`.
 5) Write changelog in `CHANGELOG.md`.
 6) Commit all changes.
-7) Tag version beginning with a `v` (example: `git tag v5.4.6 -m "Version 5.4.6"`).
+7) Tag version beginning with a `v` (example: `git tag v6.0.5-alpha -m "Version 6.0.5"`).
 8) Push with `git push --tags`
 9) GitHub action will run and sign the release.
 10) Update GitHub release notes draft and publish.
@@ -71,10 +72,21 @@ When translations are updated from Weblate, if there are new contributors, add t
 
 Gradle must always be updated that way (replace with new version number):
 ```
-./gradlew wrapper --gradle-version=8.13 --gradle-distribution-sha256-sum=20f1b1176237254a6fc204d8434196fa11a4cfb387567519c61556e8710aed78
+./gradlew wrapper --gradle-version=8.14.3 --gradle-distribution-sha256-sum=bd71102213493060956ec229d946beee57158dbd89d0e62b91bca0fa2c5f3531
 ```
 
 You can find the newer checksum of the binary-only (-bin) ZIP on https://gradle.org/release-checksums/
+
+
+# Dropping support for an Android version
+
+1. In `org.breezyweather.background.updater.AppUpdateChecker`, uncomment the relevant lines to trigger a notification on the unsupported Android versions
+2. In `org.breezyweather.background.weather.WeatherUpdateJob`, uncomment the relevant lines to always enable “check for update” on these unsupported Android versions, to ensure that `freenet` users and users who disabled update check correctly receive the notification. No actual update check will be performed, so it’s safe to force it enabled.
+
+
+# Adding a new Material Icon
+
+You can find [many Material Symbols and Icons here](https://fonts.google.com/icons).
 
 
 ____

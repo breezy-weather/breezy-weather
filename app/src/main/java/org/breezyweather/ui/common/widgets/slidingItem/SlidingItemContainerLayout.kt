@@ -26,6 +26,7 @@ import android.widget.FrameLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.content.withStyledAttributes
 import androidx.core.widget.ImageViewCompat
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
@@ -96,22 +97,22 @@ class SlidingItemContainerLayout @JvmOverloads constructor(
         setBackgroundColor(Color.GRAY)
         mChild = null
         mSwipeX = 0f
-        val a = context.obtainStyledAttributes(
+        context.withStyledAttributes(
             attrs,
             R.styleable.SlidingItemContainerLayout,
             defStyleAttr,
             0
-        )
-        iconResStart = a.getResourceId(R.styleable.SlidingItemContainerLayout_iconResStart, 0)
-        iconResEnd = a.getResourceId(R.styleable.SlidingItemContainerLayout_iconResEnd, 0)
-        backgroundColorStart =
-            a.getColor(R.styleable.SlidingItemContainerLayout_backgroundColorStart, Color.DKGRAY)
-        backgroundColorEnd =
-            a.getColor(R.styleable.SlidingItemContainerLayout_backgroundColorEnd, Color.DKGRAY)
-        tintColorStart =
-            a.getColor(R.styleable.SlidingItemContainerLayout_tintColorStart, Color.WHITE)
-        tintColorEnd = a.getColor(R.styleable.SlidingItemContainerLayout_tintColorEnd, Color.WHITE)
-        a.recycle()
+        ) {
+            iconResStart = getResourceId(R.styleable.SlidingItemContainerLayout_iconResStart, 0)
+            iconResEnd = getResourceId(R.styleable.SlidingItemContainerLayout_iconResEnd, 0)
+            backgroundColorStart =
+                getColor(R.styleable.SlidingItemContainerLayout_backgroundColorStart, Color.DKGRAY)
+            backgroundColorEnd =
+                getColor(R.styleable.SlidingItemContainerLayout_backgroundColorEnd, Color.DKGRAY)
+            tintColorStart =
+                getColor(R.styleable.SlidingItemContainerLayout_tintColorStart, Color.WHITE)
+            tintColorEnd = getColor(R.styleable.SlidingItemContainerLayout_tintColorEnd, Color.WHITE)
+        }
         mUpdateFlag = true
     }
 

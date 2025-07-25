@@ -24,6 +24,7 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
@@ -91,7 +92,7 @@ internal fun getHourlyForecast(
                     date = formatter.parse(it.attributes.from)!!,
                     weatherText = getWeatherText(context, it.phenomen?.attributes?.className),
                     weatherCode = getWeatherCode(it.phenomen?.attributes?.className),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = it.temperature?.attributes?.value?.toDoubleOrNull()
                     ),
                     precipitation = Precipitation(

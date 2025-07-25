@@ -32,6 +32,7 @@ data class Daily(
     val night: HalfDay? = null,
     val degreeDay: DegreeDay? = null,
     val sun: Astro? = null,
+    val twilight: Astro? = null,
     val moon: Astro? = null,
     val moonPhase: MoonPhase? = null,
     val airQuality: AirQuality? = null,
@@ -43,12 +44,9 @@ data class Daily(
 
     fun toDailyWrapper() = DailyWrapper(
         date = this.date,
-        day = this.day,
-        night = this.night,
+        day = this.day?.toHalfDayWrapper(),
+        night = this.night?.toHalfDayWrapper(),
         degreeDay = this.degreeDay,
-        sun = this.sun,
-        moon = this.moon,
-        moonPhase = this.moonPhase,
         uV = this.uV,
         sunshineDuration = this.sunshineDuration
     )

@@ -25,22 +25,23 @@ import android.view.ViewGroup
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.UV
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.extensions.format
-import org.breezyweather.common.extensions.roundDecimals
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.domain.weather.model.getUVColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import kotlin.math.roundToInt
 
 /**
  * Daily UV adapter.
  */
 class DailyUVAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
 ) : AbsDailyTrendAdapter(activity, location) {
     private var mHighestIndex: Float = 0f
@@ -53,7 +54,7 @@ class DailyUVAdapter(
         }
 
         @SuppressLint("SetTextI18n, InflateParams", "DefaultLocale")
-        fun onBindView(activity: GeoActivity, location: Location, position: Int) {
+        fun onBindView(activity: BreezyActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_uv))
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
@@ -68,13 +69,13 @@ class DailyUVAdapter(
                 null, null,
                 null, null,
                 null, null,
-                index?.roundDecimals(0)?.toFloat() ?: 0f, index?.format(0),
+                index?.roundToInt()?.toFloat() ?: 0f, index?.let { UnitUtils.formatDouble(activity, it, 0) },
                 mHighestIndex, 0f
             )
             mPolylineAndHistogramView.setLineColors(
                 daily.uV?.getUVColor(activity) ?: Color.TRANSPARENT,
                 daily.uV?.getUVColor(activity) ?: Color.TRANSPARENT,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
 
             val themeColors = ThemeManager.getInstance(itemView.context)
@@ -84,15 +85,18 @@ class DailyUVAdapter(
                     WeatherViewController.getWeatherKind(location),
                     WeatherViewController.isDaylight(location)
                 )
-            val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
+            val lightTheme = ThemeManager.isLightTheme(itemView.context, location)
             mPolylineAndHistogramView.setShadowColors(themeColors[1], themeColors[2], lightTheme)
             mPolylineAndHistogramView.setTextColors(
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+                activity.getThemeColor(R.attr.colorTitleText),
+                activity.getThemeColor(R.attr.colorBodyText),
+                activity.getThemeColor(R.attr.colorTitleText)
             )
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 1f else 0.5f)
             dailyItem.contentDescription = talkBackBuilder.toString()
+            dailyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_UV_INDEX)
+            }
         }
     }
 
@@ -119,8 +123,8 @@ class DailyUVAdapter(
         val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                UV.UV_INDEX_HIGH.toFloat(),
-                UV.UV_INDEX_HIGH.format(0),
+                UV.UV_INDEX_MIDDLE.toFloat(),
+                UnitUtils.formatDouble(activity, UV.UV_INDEX_MIDDLE, 0),
                 activity.getString(R.string.uv_alert_level),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

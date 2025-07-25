@@ -3,7 +3,7 @@
     <!-- margin. -->
     <dimen name="large_margin">20dp</dimen>
     <dimen name="normal_margin">16dp</dimen>
-    <dimen name="little_margin">8dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
 
     <!-- elevator. -->
     <dimen name="touch_rise_z">10dp</dimen>
@@ -12,12 +12,15 @@
     <dimen name="current_weather_icon_container_size">128dp</dimen>
     <dimen name="current_weather_icon_size">80dp</dimen>
     <dimen name="standard_weather_icon_container_size">88dp</dimen>
-    <dimen name="little_weather_icon_container_size">74dp</dimen>
+    <dimen name="small_weather_icon_container_size">74dp</dimen>
     <dimen name="standard_weather_icon_size">56dp</dimen>
-    <dimen name="little_weather_icon_size">42dp</dimen>
+    <dimen name="small_weather_icon_size">42dp</dimen>
     <dimen name="material_icon_size">24dp</dimen>
 
     <!-- view. -->
+    <dimen name="material3_card_settings_list_item_corner_radius">28dp</dimen>
+    <dimen name="material3_card_settings_small_separator">2dp</dimen>
+    <dimen name="material3_card_settings_large_separator">16dp</dimen>
     <dimen name="material3_card_list_item_corner_radius">16dp</dimen>
     <dimen name="material3_card_list_item_inner_radius">12dp</dimen>
     <dimen name="material3_widget_corner_radius">16dp</dimen>
@@ -27,11 +30,12 @@
     <dimen name="progress_view_size">36dp</dimen>
     <dimen name="trend_item_width">56dp</dimen>
     <dimen name="daily_trend_item_height">298dp</dimen>
-    <dimen name="hourly_trend_item_height">256dp</dimen>
+    <dimen name="hourly_trend_item_height">206dp</dimen>
+    <dimen name="nowcasting_chart_height">150dp</dimen>
     <dimen name="action_bar_height">64dp</dimen>
 
     <!-- text. -->
-    <dimen name="main_title_text_size">96sp</dimen>
+    <dimen name="main_title_text_size">140sp</dimen>
     <dimen name="design_title_text_size">48sp</dimen>
     <dimen name="large_title_text_size">20sp</dimen>
     <dimen name="title_text_size">16sp</dimen>
@@ -49,7 +53,7 @@
 
     <dimen name="widget_current_weather_icon_size">@dimen/standard_weather_icon_size</dimen> <!-- 56dp. -->
     <dimen name="widget_standard_weather_icon_size">48dp</dimen>
-    <dimen name="widget_little_weather_icon_size">36dp</dimen>
+    <dimen name="widget_small_weather_icon_size">36dp</dimen>
     <dimen name="widget_mini_weather_icon_size">24dp</dimen>
     <dimen name="widget_design_title_text_size">30sp</dimen>
     <dimen name="widget_large_title_text_size">@dimen/large_title_text_size</dimen> <!-- 20sp. -->

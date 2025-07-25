@@ -42,6 +42,7 @@ import org.breezyweather.sources.aemet.AemetService
 import org.breezyweather.sources.android.AndroidGeocoderService
 import org.breezyweather.sources.android.AndroidLocationService
 import org.breezyweather.sources.atmo.AtmoAuraService
+import org.breezyweather.sources.atmo.AtmoFranceService
 import org.breezyweather.sources.atmo.AtmoGrandEstService
 import org.breezyweather.sources.atmo.AtmoHdfService
 import org.breezyweather.sources.atmo.AtmoSudService
@@ -102,7 +103,6 @@ import org.breezyweather.sources.openweather.OpenWeatherService
 import org.breezyweather.sources.pagasa.PagasaService
 import org.breezyweather.sources.pirateweather.PirateWeatherService
 import org.breezyweather.sources.recosante.RecosanteService
-import org.breezyweather.sources.rnsa.RnsaService
 import org.breezyweather.sources.smg.SmgService
 import org.breezyweather.sources.smhi.SmhiService
 import org.breezyweather.sources.wmosevereweather.WmoSevereWeatherService
@@ -118,6 +118,7 @@ class SourceManager @Inject constructor(
     androidGeocoderService: AndroidGeocoderService,
     androidLocationService: AndroidLocationService,
     atmoAuraService: AtmoAuraService,
+    atmoFranceService: AtmoFranceService,
     atmoGrandEstService: AtmoGrandEstService,
     atmoHdfService: AtmoHdfService,
     atmoSudService: AtmoSudService,
@@ -173,7 +174,6 @@ class SourceManager @Inject constructor(
     pagasaService: PagasaService,
     pirateWeatherService: PirateWeatherService,
     recosanteService: RecosanteService,
-    rnsaService: RnsaService,
     smaScService: SmaScService,
     smaSuService: SmaSuService,
     smgService: SmgService,
@@ -220,6 +220,7 @@ class SourceManager @Inject constructor(
         anamBfService,
         anametService,
         atmoAuraService,
+        atmoFranceService,
         atmoGrandEstService,
         atmoHdfService,
         atmoSudService,
@@ -263,7 +264,6 @@ class SourceManager @Inject constructor(
         nwsService,
         pagasaService,
         recosanteService,
-        rnsaService,
         smaScService,
         smaSuService,
         smgService,

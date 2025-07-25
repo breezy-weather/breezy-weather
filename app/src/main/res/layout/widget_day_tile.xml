@@ -25,7 +25,7 @@
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/little_margin"
+            android:layout_marginStart="@dimen/small_margin"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@id/widget_day_icon"
             tools:ignore="RtlHardcoded">

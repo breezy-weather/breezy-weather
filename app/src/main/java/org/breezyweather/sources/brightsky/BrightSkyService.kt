@@ -56,8 +56,8 @@ class BrightSkyService @Inject constructor(
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://brightsky.dev/"
 
-    private val weatherAttribution =
-        "Bright Sky, Data basis: Deutscher Wetterdienst, reproduced graphically and with missing data computed or extrapolated by Breezy Weather"
+    private val weatherAttribution = "Bright Sky, Data basis: Deutscher Wetterdienst. " +
+        context.getString(R.string.data_modified, context.getString(R.string.breezy_weather))
 
     private val mApi: BrightSkyApi
         get() {
@@ -71,6 +71,10 @@ class BrightSkyService @Inject constructor(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
+    )
+    override val attributionLinks = mapOf(
+        "Bright Sky" to "https://brightsky.dev/",
+        "Deutscher Wetterdienst" to "https://www.dwd.de/"
     )
 
     override fun isFeatureSupportedForLocation(

@@ -8,10 +8,10 @@
 <br />
 
 <div align="center">
-  <img alt="API 21+" src="https://img.shields.io/badge/Api%2021+-50f270?logo=android&logoColor=black&style=for-the-badge"/>
-  <img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-a503fc?logo=kotlin&logoColor=white&style=for-the-badge"/>
-  <img alt="Jetpack Compose" src="https://img.shields.io/static/v1?style=for-the-badge&message=Jetpack+Compose&color=4285F4&logo=Jetpack+Compose&logoColor=FFFFFF&label="/>
-  <img alt="Material You" src="https://custom-icon-badges.demolab.com/badge/material%20you-lightblue?style=for-the-badge&logoColor=333&logo=material-you"/>
+  <img alt="API 21+" src="https://img.shields.io/badge/Api%2021+-50f270?logo=android&logoColor=black&style=for-the-badge" />
+  <img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-a503fc?logo=kotlin&logoColor=white&style=for-the-badge" />
+  <img alt="Jetpack Compose" src="https://img.shields.io/static/v1?style=for-the-badge&message=Jetpack+Compose&color=4285F4&logo=Jetpack+Compose&logoColor=FFFFFF&label=" />
+  <img alt="Material You" src="https://custom-icon-badges.demolab.com/badge/material%20you-lightblue?style=for-the-badge&logoColor=333&logo=material-you" />
   <br />
   <img src="https://img.shields.io/github/license/breezy-weather/breezy-weather?style=for-the-badge" alt="License LGPL-3.0" />
   <img src="https://img.shields.io/github/languages/code-size/breezy-weather/breezy-weather?style=for-the-badge" alt="GitHub code size in bytes" />
@@ -28,7 +28,7 @@
 </div>
 
 
-<h4 align="center">Breezy Weather is a weather app with a strong focus on design, with a simple, clean UX, smooth animations, and Material Design all over, plus lots of customizability.</h4>
+<h4 align="center">Breezy Weather is a feature-rich free and open source Material 3 Expressive weather app with well-though-out visualizations, supporting forecast, observations, nowcasting, air quality, pollen, alerts, from more than 50 weather sources.</h4>
 
 <div align="center">
 
@@ -49,67 +49,65 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
 </div>
 
 <div align="center">
-    <a href="https://github.com/breezy-weather/breezy-weather/blob/main/INSTALL.md"><strong>All installation methods</strong></a>
+    <p><a href="https://github.com/breezy-weather/breezy-weather/blob/main/INSTALL.md"><strong>All installation methods</strong></a></p>
+</div>
+
+<div align="center">
+  <p><strong>SHA-256 hash of the signing certificate:</strong> 29d435f70aa9aec3c1faff7f7ffa6e15785088d87f06ecfcab9c3cc62dc269d8<br />
+  SHA-256 checksums are also provided per file on the <a href="https://github.com/breezy-weather/breezy-weather/releases">GitHub releases page</a>.</p>
 </div>
 
 <hr />
 
 <div align="center">
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01-main-header-1.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/02-main-header-2.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/03-main-header-3.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/04-main-daily-hourly-1.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/05-main-daily-hourly-2.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/06-main-daily-hourly-3.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/07-air-quality-pollen.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/08-ephemeris-details.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/09-alerts.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/10-widgets-1.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/11-widgets-2.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/12-sources.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/13-sources-combine.png" alt="" style="width: 300px" />
-    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/14-settings.png" alt="" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01-main-header-light.png" alt="" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/02-main-header-dark.png" alt="" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/03-main-blocks-1.png" alt="" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/04-main-blocks-2.png" alt="" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/05-settings.png" alt="" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/06-sources.png" alt="" style="width: 300px" />
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/07-details.png" alt="" style="width: 300px" />
 </div>
 
 # Features
 
 - Weather data
-    - Daily and hourly forecasts up to 16 days
-      - Temperature
-      - Air quality
-      - Wind
-      - UV index
-      - Precipitation
-      - Feels like temperature
-    - Hourly forecasts
-      - Humidity / Dew point
-      - Pressure
-      - Cloud cover
-      - Visibility
-    - Precipitation in the next hour
-    - Air quality
-    - Pollen & Mold
-    - Ephemeris (Sun & Moon)
-    - Severe weather and precipitation alerts
-    - Real-time weather conditions
-      - Temperature
-      - Feels like
-      - Wind
-      - UV index
-      - Humidity
-      - Dew point
-      - Atmospheric pressure
-      - Visibility
-      - Cloud cover
-      - Ceiling
-
+  - Daily and hourly forecasts up to 16 days
+  - Precipitation in the next hour
+  - Severe weather and precipitation alerts
+  - Temperature / Feels like temperature / Normals
+  - Precipitation
+  - Wind
+  - Air quality
+  - Pollen & Mold
+  - Humidity
+  - UV index
+  - Visibility
+  - Pressure
+  - Sun
+  - Moon
+- Visualization
+  - Detailed 24-hour charts
+  - Material 3 Expressive blocks
 - More than 50 weather sources supported (<a href="docs/SOURCES.md">full list</a>)
-- Large selection of home screen widgets for at-a-glance information
+- Large selection of widgets
 - Live wallpaper
 - Custom icon packs
   - [Geometric Weather icon packs](https://github.com/breezy-weather/breezy-weather-icon-packs/blob/main/README.md)
   - Chronus Weather icon packs
 - Automatic dark mode
+- Opt-in data sharing with other apps (such as Gadgetbridge)
+- <details><summary>Accessibility</summary>
+
+  - Localization
+    - Number formatting (different numeral systems, decimal separator, thousand separator)
+    - Unit formatting
+    - Alternate calendar
+  - Readability
+    - Good content descriptions for screen readers
+    - Navigation with screen readers: most things should work, features depending on drag & drop not yet supported
+    - Custom display settings: basic support
+</details>
 
 - <details><summary>Free and Open Source</summary>
 
@@ -131,7 +129,7 @@ alt="Get it on F-Droid" align="center" height="80" /></a>
 # Help
 
 * [Frequently Asked Questions / Help](HELP.md)
-* [Homepage explanations](docs/HOMEPAGE.md)
+* [Main screen explanations](docs/HOMEPAGE.md)
 * [Weather sources comparison](docs/SOURCES.md)
 
 
@@ -144,7 +142,6 @@ Pull requests are welcome. You can have a look at [issues opened to contribution
 ## Features currently being worked on by a contributor
 
 - [#863](https://github.com/breezy-weather/breezy-weather/issues/863) - Make Breezy weather data available through a ContentProvider
-- [#14](https://github.com/breezy-weather/breezy-weather/issues/14), [#252](https://github.com/breezy-weather/breezy-weather/issues/252) - New 24-hour fitting charts
 
 ## Features lacking an active contributor
 
@@ -189,10 +186,13 @@ English (and regional variants) and French translations are maintained by repo m
 * This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
 * Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
 
-When creating a fork, remember to:
+Before creating a fork, check if the intent action `nodomain.freeyourgadget.gadgetbridge.ACTION_GENERIC_WEATHER` can cover your need (for example, you want to re-use our weather data in your own customized widget). It can be enabled from Settings > Widgets & Live Wallpaper > Data sharing. We also have [plans to expose the full weather data of Breezy Weather](https://github.com/breezy-weather/breezy-weather/issues/863).
+
+Otherwise, remember to:
+
 - Respect the project’s LICENSE
 - Avoid confusion with Breezy Weather app:
-    - Change the app name
-    - Change the app icon
+  - Change the app name
+  - Change the app icon
 - Avoid installation conflicts:
-    - Change the `applicationId` in [`build.gradle.kts`](https://github.com/breezy-weather/breezy-weather/blob/main/app/build.gradle.kts#L19)
+  - Change the `applicationId` in [`build.gradle.kts`](https://github.com/breezy-weather/breezy-weather/blob/main/app/build.gradle.kts#L24)

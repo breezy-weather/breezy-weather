@@ -31,7 +31,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/normal_margin"
-                    android:layout_marginEnd="@dimen/little_margin"
+                    android:layout_marginEnd="@dimen/small_margin"
                     android:layout_marginTop="-2dp"
                     android:layout_marginBottom="-2dp"
                     android:textSize="48dp"
@@ -70,7 +70,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/normal_margin"
-                    android:layout_marginEnd="@dimen/little_margin"
+                    android:layout_marginEnd="@dimen/small_margin"
                     android:layout_marginTop="-2dp"
                     android:layout_marginBottom="-2dp"
                     android:textSize="48dp"
@@ -110,7 +110,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/normal_margin"
-                    android:layout_marginEnd="@dimen/little_margin"
+                    android:layout_marginEnd="@dimen/small_margin"
                     android:layout_marginTop="-2dp"
                     android:layout_marginBottom="-2dp"
                     android:textSize="48dp"
@@ -142,7 +142,7 @@
                 android:layout_height="@dimen/widget_standard_weather_icon_size"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/little_margin"
+                android:layout_marginStart="@dimen/small_margin"
                 android:layout_marginEnd="@dimen/normal_margin"
                 android:src="@drawable/weather_clear_day"
                 tools:ignore="ContentDescription,RtlHardcoded" />
@@ -173,7 +173,7 @@
                 android:layout_toEndOf="@id/widget_clock_day_title"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="2dp"
-                android:layout_marginEnd="@dimen/little_margin"
+                android:layout_marginEnd="@dimen/small_margin"
                 android:text=""
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="1"
@@ -182,7 +182,7 @@
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 style="@style/widget_content_text"
-                tools:text=" - 九月十八"
+                tools:text=" – 九月十八"
                 tools:ignore="RtlHardcoded" />
 
             <TextView

@@ -60,6 +60,9 @@ class ImdService @Inject constructor(
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to "India Meteorological Department"
     )
+    override val attributionLinks = mapOf(
+        "India Meteorological Department" to "https://imd.gov.in/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

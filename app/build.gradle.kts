@@ -22,8 +22,8 @@ android {
 
     defaultConfig {
         applicationId = "org.breezyweather"
-        versionCode = 50406
-        versionName = "5.4.6"
+        versionCode = 60005
+        versionName = "6.0.5-alpha"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")
@@ -100,6 +100,11 @@ android {
             "String",
             "ATMO_AURA_KEY",
             "\"${properties.getProperty("breezy.atmoaura.key") ?: ""}\""
+        )
+        it.buildConfigField(
+            "String",
+            "ATMO_FRANCE_KEY",
+            "\"${properties.getProperty("breezy.atmofrance.key") ?: ""}\""
         )
         it.buildConfigField(
             "String",
@@ -183,9 +188,11 @@ android {
     sourceSets {
         getByName("basic") {
             java.srcDirs("src/src_nonfreenet")
+            res.srcDirs("src/res_nonfreenet")
         }
         getByName("freenet") {
             java.srcDirs("src/src_freenet")
+            res.srcDirs("src/res_freenet")
         }
     }
 
@@ -235,6 +242,7 @@ kotlin {
     compilerOptions {
         freeCompilerArgs.addAll(
             "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3ExpressiveApi",
             "-opt-in=androidx.compose.foundation.layout.ExperimentalLayoutApi",
             "-opt-in=kotlinx.serialization.ExperimentalSerializationApi",
             "-opt-in=com.google.accompanist.permissions.ExperimentalPermissionsApi"
@@ -248,20 +256,26 @@ kapt {
 }
 
 aboutLibraries {
-    // Define the path configuration files are located in. E.g. additional libraries, licenses to add to the
-    // target .json
-    // Warning: Please do not use the parent folder of a module as path, as this can result in issues.
-    // More details: https://github.com/mikepenz/AboutLibraries/issues/936
-    configPath = "config"
+    offlineMode = true
 
-    // Remove the "generated" timestamp to allow for reproducible builds
-    excludeFields = arrayOf("generated")
+    collect {
+        // Define the path configuration files are located in. E.g. additional libraries, licenses to add to the target .json
+        // Warning: Please do not use the parent folder of a module as path, as this can result in issues. More details: https://github.com/mikepenz/AboutLibraries/issues/936
+        // The path provided is relative to the modules path (not project root)
+        configPath = file("../config")
+    }
+
+    export {
+        // Remove the "generated" timestamp to allow for reproducible builds
+        excludeFields.add("generated")
+    }
 }
 
 dependencies {
     implementation(projects.data)
     implementation(projects.domain)
     implementation(projects.mapsUtils)
+    implementation(projects.uiWeatherView)
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
@@ -286,6 +300,7 @@ dependencies {
     implementation(libs.accompanist.permissions)
 
     testImplementation(libs.bundles.test)
+    testRuntimeOnly(libs.junit.platform)
 
     // preference.
     implementation(libs.preference.ktx)
@@ -309,7 +324,7 @@ dependencies {
     // HTTP
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.okhttp)
-    implementation(libs.kotlinx.serialization.csv)
+    // implementation(libs.kotlinx.serialization.csv) // Can be reenabled if needed (see also HttpModule.kt)
     implementation(libs.kotlinx.serialization.json)
     // Not used in free sources
     "basicImplementation"(libs.kotlinx.serialization.xml.core)
@@ -332,9 +347,9 @@ dependencies {
 
     // ui.
     implementation(libs.vico.compose.m3)
+    implementation(libs.vico.views)
     implementation(libs.adaptiveiconview)
     implementation(libs.activity)
-    implementation(libs.expandabletextcompose)
 
     // utils.
     implementation(libs.suncalc)

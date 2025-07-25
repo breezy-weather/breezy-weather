@@ -36,11 +36,11 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.median
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
-import org.breezyweather.common.extensions.toDate
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 import org.shredzone.commons.suncalc.MoonIllumination
@@ -49,14 +49,12 @@ import org.shredzone.commons.suncalc.SunTimes
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
-import kotlin.math.atan
 import kotlin.math.cos
 import kotlin.math.exp
 import kotlin.math.ln
 import kotlin.math.log10
 import kotlin.math.pow
 import kotlin.math.roundToInt
-import kotlin.math.sin
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 
@@ -156,7 +154,7 @@ internal fun getNormalsFromWeather(
 ): Normals? {
     return location.weather?.normals?.let { normals ->
         val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
-        if (normals.month == cal[Calendar.MONTH]) normals else null
+        if (normals.month == cal[Calendar.MONTH] + 1) normals else null
     }
 }
 
@@ -202,43 +200,40 @@ internal fun convertDailyWrapperToDailyList(
  */
 internal fun computeMissingHourlyData(
     hourlyList: List<HourlyWrapper>?,
-): List<HourlyWrapper>? {
+): List<Hourly>? {
     return hourlyList?.map { hourly ->
-        if (hourly.dewPoint == null ||
-            hourly.temperature?.windChillTemperature == null ||
-            hourly.temperature!!.wetBulbTemperature == null ||
-            hourly.weatherCode == null ||
-            hourly.weatherText.isNullOrEmpty()
-        ) {
-            val weatherCode = hourly.weatherCode ?: getHalfDayWeatherCodeFromHourlyList(
-                listOf(hourly),
-                hourly.precipitation,
-                hourly.precipitationProbability,
-                hourly.wind,
-                hourly.cloudCover,
-                hourly.visibility
-            )
+        val weatherCode = hourly.weatherCode ?: getHalfDayWeatherCodeFromHourlyList(
+            listOf(hourly.toHourly()),
+            hourly.precipitation,
+            hourly.precipitationProbability,
+            hourly.wind,
+            hourly.cloudCover,
+            hourly.visibility
+        )
+        val relativeHumidity = hourly.relativeHumidity
+            ?: computeRelativeHumidity(hourly.temperature?.temperature, hourly.dewPoint)
+        val dewPoint = hourly.dewPoint
+            ?: computeDewPoint(hourly.temperature?.temperature, hourly.relativeHumidity)
 
-            hourly.copy(
-                weatherCode = weatherCode,
-                weatherText = if (hourly.weatherText.isNullOrEmpty()) {
-                    weatherCode?.let { WeatherViewController.getWeatherText(it) }
-                } else {
-                    hourly.weatherText
-                },
-                relativeHumidity = hourly.relativeHumidity
-                    ?: computeRelativeHumidity(hourly.temperature?.temperature, hourly.dewPoint),
-                dewPoint = hourly.dewPoint
-                    ?: computeDewPoint(hourly.temperature?.temperature, hourly.relativeHumidity),
-                temperature = completeTemperatureWithComputedData(
-                    hourly.temperature,
-                    hourly.wind?.speed,
-                    hourly.relativeHumidity
-                )
+        hourly.toHourly().copy(
+            weatherCode = weatherCode,
+            weatherText = if (hourly.weatherText.isNullOrEmpty()) {
+                weatherCode?.let { WeatherViewController.getWeatherText(it) }
+            } else {
+                hourly.weatherText
+            },
+            relativeHumidity = relativeHumidity,
+            dewPoint = dewPoint,
+            temperature = hourly.temperature?.toTemperature(
+                computedApparent = computeApparentTemperature(
+                    hourly.temperature!!.temperature,
+                    relativeHumidity,
+                    hourly.wind?.speed
+                ),
+                computedWindChill = computeWindChillTemperature(hourly.temperature!!.temperature, hourly.wind?.speed),
+                computedHumidex = computeHumidex(hourly.temperature!!.temperature, dewPoint)
             )
-        } else {
-            hourly
-        }
+        )
     }
 }
 
@@ -280,31 +275,6 @@ private fun computeDewPoint(temperature: Double?, relativeHumidity: Double?): Do
     return ((c * magnus) / (b - magnus))
 }
 
-private fun completeTemperatureWithComputedData(
-    temperature: Temperature?,
-    windSpeed: Double?,
-    relativeHumidity: Double?,
-): Temperature? {
-    if (temperature?.temperature == null ||
-        (
-            temperature.apparentTemperature != null &&
-                temperature.windChillTemperature != null &&
-                temperature.wetBulbTemperature != null
-            )
-    ) {
-        return temperature
-    }
-
-    return temperature.copy(
-        apparentTemperature = temperature.apparentTemperature
-            ?: computeApparentTemperature(temperature.temperature!!, relativeHumidity, windSpeed),
-        windChillTemperature = temperature.windChillTemperature
-            ?: computeWindChillTemperature(temperature.temperature!!, windSpeed),
-        wetBulbTemperature = temperature.wetBulbTemperature
-            ?: computeWetBulbTemperature(temperature.temperature!!, relativeHumidity)
-    )
-}
-
 /**
  * Compute apparent temperature from temperature, relative humidity, and wind speed
  * Uses Bureau of Meteorology Australia methodology
@@ -315,7 +285,7 @@ private fun completeTemperatureWithComputedData(
  * @param relativeHumidity in %
  * @param windSpeed in m/s
  */
-private fun computeApparentTemperature(
+internal fun computeApparentTemperature(
     temperature: Double?,
     relativeHumidity: Double?,
     windSpeed: Double?,
@@ -336,7 +306,7 @@ private fun computeApparentTemperature(
  * @param temperature in °C
  * @param windSpeed in m/s
  */
-private fun computeWindChillTemperature(
+internal fun computeWindChillTemperature(
     temperature: Double?,
     windSpeed: Double?,
 ): Double? {
@@ -353,6 +323,27 @@ private fun computeWindChillTemperature(
     } else {
         null
     }
+}
+
+/**
+ * Compute humidex from temperature and humidity
+ * Based on formula from ECCC
+ *
+ * @param temperature in °C
+ * @param dewPoint in °C
+ */
+internal fun computeHumidex(
+    temperature: Double?,
+    dewPoint: Double?,
+): Double? {
+    if (temperature == null || dewPoint == null || temperature < 15) return null
+
+    return temperature +
+        0.5555.times(
+            6.11.times(
+                exp(5417.7530.times(1.div(273.15) - 1.div(273.15 + dewPoint)))
+            ).minus(10)
+        )
 }
 
 /**
@@ -385,27 +376,6 @@ internal fun getWindDegree(
     "NNW", "NNO" -> 337.5
     "VR", "VAR" -> -1.0
     else -> null
-}
-
-/**
- * Compute wet bulb from temperature and humidity
- * Based on formula from https://journals.ametsoc.org/view/journals/apme/50/11/jamc-d-11-0143.1.xml
- * TODO: Unit test
- *
- * @param temperature in °C
- * @param relativeHumidity in %
- */
-private fun computeWetBulbTemperature(
-    temperature: Double?,
-    relativeHumidity: Double?,
-): Double? {
-    if (temperature == null || relativeHumidity == null) return null
-
-    return temperature * atan(0.151977 * (relativeHumidity + 8.313659).pow(0.5)) +
-        atan(temperature + relativeHumidity) -
-        atan(relativeHumidity - 1.676331) +
-        0.00391838 * relativeHumidity.pow(3 / 2) * atan(0.023101 * relativeHumidity) -
-        4.686035
 }
 
 /**
@@ -477,8 +447,10 @@ internal fun computePollutantInUgm3FromPpb(
 ): Double? {
     if (concentrationInPpb == null) return null
     if (pollutant.molecularMass == null) return null
-    return concentrationInPpb * pollutant.molecularMass /
-        (8.31446261815324 / (barometricPressure ?: 1013.25) * 10) / (273.15 + (temperature ?: 25.0))
+    return concentrationInPpb *
+        pollutant.molecularMass /
+        (8.31446261815324 / (barometricPressure ?: 1013.25) * 10) /
+        (273.15 + (temperature ?: 25.0))
 }
 
 /**
@@ -502,8 +474,10 @@ internal fun computePollutantInPpbFromUgm3(
 ): Double? {
     if (concentrationInUgm3 == null) return null
     if (pollutant.molecularMass == null) return null
-    return concentrationInUgm3 / pollutant.molecularMass *
-        (8.31446261815324 / (barometricPressure ?: 1013.25) * 10) * (273.15 + (temperature ?: 25.0))
+    return concentrationInUgm3 /
+        pollutant.molecularMass *
+        (8.31446261815324 / (barometricPressure ?: 1013.25) * 10) *
+        (273.15 + (temperature ?: 25.0))
 }
 
 /**
@@ -514,7 +488,7 @@ internal fun computePollutantInPpbFromUgm3(
  * Completes daily data from hourly data:
  * - HalfDay (day and night)
  * - Degree day
- * - Sunrise/set (recomputes it if data is inconsistent)
+ * - Sunrise/set
  * - Air quality
  * - Pollen
  * - UV
@@ -524,18 +498,20 @@ internal fun computePollutantInPpbFromUgm3(
  * @param hourlyList hourly data
  * @param hourlyAirQuality hourly air quality data from WeatherWrapper
  * @param hourlyPollen hourly pollen data from WeatherWrapper
+ * @param hourlySunshine hourly sunshine duration from HourlyWrapper
  * @param currentPollen current pollen data from WeatherWrapper, will be used as "Today" if hourlyPollen is empty
  * @param location for timeZone and calculation of sunrise/set according to lon/lat purposes
  */
 internal fun completeDailyListFromHourlyList(
     dailyList: List<Daily>,
-    hourlyList: List<HourlyWrapper>,
+    hourlyList: List<Hourly>,
     hourlyAirQuality: Map<Date, AirQuality>,
     hourlyPollen: Map<Date, Pollen>,
+    hourlySunshine: Map<Date, Double?>,
     currentPollen: Pollen?,
     location: Location,
 ): List<Daily> {
-    if (dailyList.isEmpty() || hourlyList.isEmpty()) return dailyList
+    if (dailyList.isEmpty()) return dailyList
 
     val hourlyListByHalfDay = getHourlyListByHalfDay(hourlyList, location)
     val hourlyListByDay = hourlyList.groupBy { it.date.getIsoFormattedDate(location) }
@@ -553,24 +529,7 @@ internal fun completeDailyListFromHourlyList(
             isDay = false
         )
 
-        /**
-         * Most sources will return null data both on midnight sun and polar night
-         * because the sun never rises in both cases
-         * So we recalculate even in that case, and if it’s always up, we set up fake dates for
-         * the whole 24-hour period to avoid having nighttime all the time
-         */
-        val nextDayAtMidnight = (daily.date.time + 1.days.inWholeMilliseconds).toDate()
-        val newSun = if (daily.sun?.isValid == true) {
-            // We check that the sunrise is indeed between 00:00 and 23:59 that day
-            // (many sources unfortunately return next day!)
-            if (daily.sun!!.riseDate!! in daily.date..<nextDayAtMidnight) {
-                daily.sun!!
-            } else {
-                getCalculatedAstroSun(daily.date, location.longitude, location.latitude)
-            }
-        } else {
-            getCalculatedAstroSun(daily.date, location.longitude, location.latitude)
-        }
+        val newSun = getCalculatedAstroSun(daily.date, location.longitude, location.latitude)
 
         daily.copy(
             day = newDay,
@@ -584,18 +543,14 @@ internal fun completeDailyListFromHourlyList(
                 daily.degreeDay
             },
             sun = newSun,
-            moon = if (daily.moon?.isValid == true) {
-                // We check that the moonrise is indeed between 00:00 and 23:59 that day
-                // (many sources unfortunately return next day!)
-                if (daily.moon!!.riseDate!! in daily.date..<nextDayAtMidnight) {
-                    daily.moon
-                } else {
-                    getCalculatedAstroMoon(daily.date, location.longitude, location.latitude)
-                }
-            } else {
-                getCalculatedAstroMoon(daily.date, location.longitude, location.latitude)
-            },
-            moonPhase = if (daily.moonPhase?.angle != null) daily.moonPhase else getCalculatedMoonPhase(daily.date),
+            twilight = getCalculatedAstroSun(
+                daily.date,
+                location.longitude,
+                location.latitude,
+                SunTimes.Twilight.CIVIL
+            ),
+            moon = getCalculatedAstroMoon(daily.date, location.longitude, location.latitude),
+            moonPhase = getCalculatedMoonPhase(daily.date),
             airQuality = daily.airQuality ?: getDailyAirQualityFromHourlyList(
                 hourlyAirQuality.filter { it.key.getIsoFormattedDate(location) == theDayFormatted }.values
             ),
@@ -617,7 +572,9 @@ internal fun completeDailyListFromHourlyList(
                 getDailyUVFromHourlyList(hourlyListByDay.getOrElse(theDayFormatted) { null })
             },
             sunshineDuration = daily.sunshineDuration
-                ?: getSunshineDuration(hourlyListByDay.getOrElse(theDayFormatted) { null })
+                ?: getSunshineDuration(
+                    hourlySunshine.filter { it.key.getIsoFormattedDate(location) == theDayFormatted }.values
+                )
         )
     }
 }
@@ -650,14 +607,14 @@ private fun getDegreeDay(
  * Return 00:00:00.00 to 23:59:59.999 if sun is always up (assuming date parameter is at 00:00)
  * Takes 5 to 40 ms to execute on my device
  * Means that for a 15-day forecast, take between 0.1 and 0.6 sec
- * Given it is only called on missing data, it’s efficiently-safe
  */
 private fun getCalculatedAstroSun(
     date: Date,
     longitude: Double,
     latitude: Double,
+    twilight: SunTimes.Twilight = SunTimes.Twilight.VISUAL,
 ): Astro {
-    val riseTimes = SunTimes.compute().on(date).at(latitude, longitude).execute()
+    val riseTimes = SunTimes.compute().twilight(twilight).on(date).at(latitude, longitude).execute()
 
     if (riseTimes.isAlwaysUp) {
         return Astro(
@@ -675,7 +632,7 @@ private fun getCalculatedAstroSun(
     }
 
     if (riseTimes.rise != null && riseTimes.set != null && riseTimes.set!! < riseTimes.rise) {
-        val setTimes = SunTimes.compute().on(riseTimes.rise).at(latitude, longitude).execute()
+        val setTimes = SunTimes.compute().twilight(twilight).on(riseTimes.rise).at(latitude, longitude).execute()
         if (setTimes.set != null) {
             return Astro(
                 riseDate = riseTimes.rise,
@@ -685,7 +642,8 @@ private fun getCalculatedAstroSun(
 
         // If we miss the set time, redo a calculation that takes more computing power
         // Should not happen very often so avoid doing full cycle everytime
-        val setTimes2 = SunTimes.compute().fullCycle().on(riseTimes.rise).at(latitude, longitude).execute()
+        val setTimes2 =
+            SunTimes.compute().twilight(twilight).fullCycle().on(riseTimes.rise).at(latitude, longitude).execute()
         return Astro(
             riseDate = riseTimes.rise,
             setDate = setTimes2.set
@@ -695,7 +653,8 @@ private fun getCalculatedAstroSun(
     // If we miss the set time, redo a calculation that takes more computing power
     // Should not happen very often so avoid doing full cycle everytime
     if (riseTimes.rise != null && riseTimes.set == null) {
-        val times2 = SunTimes.compute().fullCycle().on(riseTimes.rise).at(latitude, longitude).execute()
+        val times2 =
+            SunTimes.compute().twilight(twilight).fullCycle().on(riseTimes.rise).at(latitude, longitude).execute()
         return Astro(
             riseDate = times2.rise,
             setDate = times2.set
@@ -781,10 +740,10 @@ private fun getCalculatedMoonPhase(
 }
 
 private fun getHourlyListByHalfDay(
-    hourlyList: List<HourlyWrapper>,
+    hourlyList: List<Hourly>,
     location: Location,
-): MutableMap<String, Map<String, MutableList<HourlyWrapper>>> {
-    val hourlyByHalfDay: MutableMap<String, Map<String, MutableList<HourlyWrapper>>> = HashMap()
+): MutableMap<String, Map<String, MutableList<Hourly>>> {
+    val hourlyByHalfDay: MutableMap<String, Map<String, MutableList<Hourly>>> = HashMap()
 
     hourlyList.forEach { hourly ->
         // We shift by 6 hours the hourly date, otherwise nighttime (00:00 to 05:59) would be on the wrong day
@@ -828,7 +787,7 @@ private fun getHourlyListByHalfDay(
  */
 private fun completeHalfDayFromHourlyList(
     initialHalfDay: HalfDay? = null,
-    halfDayHourlyList: List<HourlyWrapper>? = null,
+    halfDayHourlyList: List<Hourly>? = null,
     isDay: Boolean,
 ): HalfDay? {
     if (halfDayHourlyList.isNullOrEmpty()) return initialHalfDay
@@ -836,9 +795,9 @@ private fun completeHalfDayFromHourlyList(
     val newHalfDay = initialHalfDay ?: HalfDay()
 
     val extremeTemperature = if (newHalfDay.temperature?.temperature == null ||
-        newHalfDay.temperature!!.apparentTemperature == null ||
-        newHalfDay.temperature!!.windChillTemperature == null ||
-        newHalfDay.temperature!!.wetBulbTemperature == null
+        newHalfDay.temperature!!.computedApparent == null ||
+        newHalfDay.temperature!!.computedWindChill == null ||
+        newHalfDay.temperature!!.computedHumidex == null
     ) {
         getHalfDayTemperatureFromHourlyList(newHalfDay.temperature, halfDayHourlyList, isDay)
     } else {
@@ -923,7 +882,7 @@ private fun completeHalfDayFromHourlyList(
  * @return a WeatherCode?, if guessed
  */
 private fun getHalfDayWeatherCodeFromHourlyList(
-    halfDayHourlyList: List<HourlyWrapper>,
+    halfDayHourlyList: List<Hourly>,
     totPrecipitation: Precipitation?,
     maxPrecipitationProbability: PrecipitationProbability?,
     maxWind: Wind?,
@@ -1044,15 +1003,15 @@ private fun getHalfDayWeatherCodeFromHourlyList(
  */
 private fun getHalfDayTemperatureFromHourlyList(
     initialTemperature: Temperature?,
-    halfDayHourlyList: List<HourlyWrapper>,
+    halfDayHourlyList: List<Hourly>,
     isDay: Boolean,
 ): Temperature {
     val newTemperature = initialTemperature ?: Temperature()
 
     var temperatureTemperature = newTemperature.temperature
-    var temperatureApparentTemperature = newTemperature.apparentTemperature
-    var temperatureWindChillTemperature = newTemperature.windChillTemperature
-    var temperatureWetBulbTemperature = newTemperature.wetBulbTemperature
+    var temperatureApparent = newTemperature.computedApparent
+    var temperatureWindChill = newTemperature.computedWindChill
+    var temperatureComputedHumidex = newTemperature.computedHumidex
 
     if (temperatureTemperature == null) {
         val halfDayHourlyListTemperature = halfDayHourlyList.mapNotNull { it.temperature?.temperature }
@@ -1062,42 +1021,42 @@ private fun getHalfDayTemperatureFromHourlyList(
             halfDayHourlyListTemperature.minOrNull()
         }
     }
-    if (temperatureApparentTemperature == null) {
-        val halfDayHourlyListApparentTemperature = halfDayHourlyList.mapNotNull { it.temperature?.apparentTemperature }
-        temperatureApparentTemperature = if (isDay) {
-            halfDayHourlyListApparentTemperature.maxOrNull()
+    if (temperatureApparent == null) {
+        val halfDayHourlyListApparent = halfDayHourlyList.mapNotNull { it.temperature?.computedApparent }
+        temperatureApparent = if (isDay) {
+            halfDayHourlyListApparent.maxOrNull()
         } else {
-            halfDayHourlyListApparentTemperature.minOrNull()
+            halfDayHourlyListApparent.minOrNull()
         }
     }
-    if (temperatureWindChillTemperature == null) {
-        val halfDayHourlyListWindChillTemperature = halfDayHourlyList.mapNotNull {
-            it.temperature?.windChillTemperature
+    if (temperatureWindChill == null) {
+        val halfDayHourlyListWindChill = halfDayHourlyList.mapNotNull {
+            it.temperature?.computedWindChill
         }
-        temperatureWindChillTemperature = if (isDay) {
-            halfDayHourlyListWindChillTemperature.maxOrNull()
+        temperatureWindChill = if (isDay) {
+            halfDayHourlyListWindChill.maxOrNull()
         } else {
-            halfDayHourlyListWindChillTemperature.minOrNull()
+            halfDayHourlyListWindChill.minOrNull()
         }
     }
-    if (temperatureWetBulbTemperature == null) {
-        val halfDayHourlyListWetBulbTemperature = halfDayHourlyList.mapNotNull { it.temperature?.wetBulbTemperature }
-        temperatureWetBulbTemperature = if (isDay) {
-            halfDayHourlyListWetBulbTemperature.maxOrNull()
+    if (temperatureComputedHumidex == null) {
+        val halfDayHourlyListComputedHumidex = halfDayHourlyList.mapNotNull { it.temperature?.computedHumidex }
+        temperatureComputedHumidex = if (isDay) {
+            halfDayHourlyListComputedHumidex.maxOrNull()
         } else {
-            halfDayHourlyListWetBulbTemperature.minOrNull()
+            halfDayHourlyListComputedHumidex.minOrNull()
         }
     }
     return newTemperature.copy(
         temperature = temperatureTemperature,
-        apparentTemperature = temperatureApparentTemperature,
-        windChillTemperature = temperatureWindChillTemperature,
-        wetBulbTemperature = temperatureWetBulbTemperature
+        computedApparent = temperatureApparent,
+        computedWindChill = temperatureWindChill,
+        computedHumidex = temperatureComputedHumidex
     )
 }
 
 private fun getHalfDayPrecipitationFromHourlyList(
-    halfDayHourlyList: List<HourlyWrapper>,
+    halfDayHourlyList: List<Hourly>,
 ): Precipitation {
     val halfDayHourlyListPrecipitationTotal = halfDayHourlyList
         .mapNotNull { it.precipitation?.total }
@@ -1140,7 +1099,7 @@ private fun getHalfDayPrecipitationFromHourlyList(
 }
 
 private fun getHalfDayPrecipitationProbabilityFromHourlyList(
-    halfDayHourlyList: List<HourlyWrapper>,
+    halfDayHourlyList: List<Hourly>,
 ): PrecipitationProbability {
     val halfDayHourlyListPrecipitationProbabilityTotal = halfDayHourlyList
         .mapNotNull { it.precipitationProbability?.total }
@@ -1163,16 +1122,27 @@ private fun getHalfDayPrecipitationProbabilityFromHourlyList(
 }
 
 private fun getHalfDayWindFromHourlyList(
-    halfDayHourlyList: List<HourlyWrapper>,
+    halfDayHourlyList: List<Hourly>,
 ): Wind? {
-    return halfDayHourlyList
+    val maxWind = halfDayHourlyList
         .filter { it.wind?.speed != null }
         .maxByOrNull { it.wind!!.speed!! }
         ?.wind
+    val maxWindGusts = halfDayHourlyList
+        .filter { it.wind?.gusts != null }
+        .maxByOrNull { it.wind!!.gusts!! }
+        ?.wind?.gusts
+    return if (maxWindGusts == null || maxWindGusts == maxWind?.gusts) {
+        maxWind
+    } else {
+        maxWind?.copy(
+            gusts = maxWindGusts
+        )
+    }
 }
 
 private fun getHalfDayCloudCoverFromHourlyList(
-    halfDayHourlyList: List<HourlyWrapper>,
+    halfDayHourlyList: List<Hourly>,
 ): Int? {
     // average() would return NaN when called for an empty list
     return halfDayHourlyList.mapNotNull { it.cloudCover }
@@ -1180,7 +1150,7 @@ private fun getHalfDayCloudCoverFromHourlyList(
 }
 
 private fun getHalfDayAvgVisibilityFromHourlyList(
-    halfDayHourlyList: List<HourlyWrapper>,
+    halfDayHourlyList: List<Hourly>,
 ): Double? {
     // average() would return NaN when called for an empty list
     return halfDayHourlyList.mapNotNull { it.visibility }.takeIf { it.isNotEmpty() }?.average()
@@ -1246,7 +1216,7 @@ private fun getDailyPollenFromHourlyList(
  * Returns the max UV for the day from a list of hourly
  */
 private fun getDailyUVFromHourlyList(
-    hourlyList: List<HourlyWrapper>? = null,
+    hourlyList: List<Hourly>? = null,
 ): UV? {
     if (hourlyList.isNullOrEmpty()) return null
     val hourlyListWithUV = hourlyList.mapNotNull { it.uV?.index }
@@ -1261,12 +1231,12 @@ private fun getDailyUVFromHourlyList(
  * @param hourlyList hourly list for that day
  */
 private fun getSunshineDuration(
-    hourlyList: List<HourlyWrapper>?,
+    hourlyList: Collection<Double?>?,
 ): Double? {
     return if (hourlyList != null) {
-        val hourlyWithSunshine = hourlyList.filter { it.sunshineDuration != null }
+        val hourlyWithSunshine = hourlyList.filterNotNull()
         if (hourlyWithSunshine.isNotEmpty()) {
-            hourlyWithSunshine.sumOf { it.sunshineDuration!! }
+            hourlyWithSunshine.sum()
         } else {
             null
         }
@@ -1293,7 +1263,7 @@ private fun getSunshineDuration(
  * @param location timeZone of the location
  */
 internal fun completeHourlyListFromDailyList(
-    hourlyList: List<HourlyWrapper>,
+    hourlyList: List<Hourly>,
     dailyList: List<Daily>,
     hourlyAirQuality: Map<Date, AirQuality>,
     location: Location,
@@ -1303,13 +1273,9 @@ internal fun completeHourlyListFromDailyList(
     return hourlyList.map { hourly ->
         val dateForHourFormatted = hourly.date.getIsoFormattedDate(location)
         dailyListByDate.getOrElse(dateForHourFormatted) { null }?.let { daily ->
-            hourly.toHourly(
+            hourly.copy(
                 airQuality = hourlyAirQuality.getOrElse(hourly.date) { null },
-                isDaylight = hourly.isDaylight ?: isDaylight(
-                    daily.second?.riseDate,
-                    daily.second?.setDate,
-                    hourly.date
-                ),
+                isDaylight = isDaylight(daily.second?.riseDate, daily.second?.setDate, hourly.date),
                 uV = if (hourly.uV?.index != null) {
                     hourly.uV
                 } else {
@@ -1322,7 +1288,7 @@ internal fun completeHourlyListFromDailyList(
                     )
                 }
             )
-        } ?: hourly.toHourly()
+        } ?: hourly
     }
 }
 
@@ -1362,25 +1328,29 @@ private fun getCurrentUVFromDayMax(
         return null
     }
 
-    // You can visualize formula here: https://www.desmos.com/calculator/lna7dco4zi
     val calendar = Calendar.getInstance(timeZone)
 
     calendar.time = currentDate
     val currentTime = calendar[Calendar.HOUR_OF_DAY] + calendar[Calendar.MINUTE] / 60f // 1 minute approx. is enough
 
     calendar.time = sunriseDate
-    val sunRiseTime = calendar[Calendar.HOUR_OF_DAY] + calendar[Calendar.MINUTE] / 60f // b in desmos graph
+    val sunRiseTime = calendar[Calendar.HOUR_OF_DAY] + calendar[Calendar.MINUTE] / 60f
 
     calendar.time = sunsetDate
-    val sunSetTime = calendar[Calendar.HOUR_OF_DAY] + calendar[Calendar.MINUTE] / 60f // c in desmos graph
+    val sunSetTime = calendar[Calendar.HOUR_OF_DAY] + calendar[Calendar.MINUTE] / 60f
 
-    val sunlightDuration = sunSetTime - sunRiseTime // d in desmos graph
-    val sunRiseOffset = -Math.PI * sunRiseTime / sunlightDuration // o in desmos graph
-    val currentUV = dayMaxUV * sin(Math.PI / sunlightDuration * currentTime + sunRiseOffset) // dayMaxUV = a
+    val sunlightDuration = sunSetTime - sunRiseTime
+    val currentOffset = currentTime - sunRiseTime
 
-    val indexUV = if (currentUV < 0) 0.0 else currentUV
+    // Make θ = −π at sunrise, θ = 0 at local noon, and θ = +π at sunset
+    // such that cos(θ) is at minimum at sunrise and sunset, and maximum at noon
+    val theta = (currentOffset / sunlightDuration) * 2.0 * Math.PI - Math.PI
 
-    return UV(index = indexUV)
+    // cos(θ) output is between −1 and 1
+    // We normalize so that dayMaxUV is multiplied by a value between 0 and 1
+    val currentUV = dayMaxUV * (cos(theta) + 1) / 2
+
+    return UV(index = currentUV)
 }
 
 /**
@@ -1435,21 +1405,22 @@ internal fun completeCurrentFromHourlyData(
         hourly.wind
     }
     val newRelativeHumidity = newCurrent.relativeHumidity ?: hourly.relativeHumidity
-    val newTemperature = completeCurrentTemperatureFromHourly(
-        newCurrent.temperature,
-        hourly.temperature,
-        newWind?.speed,
-        newRelativeHumidity
-    )
     val newDewPoint = newCurrent.dewPoint ?: if (newCurrent.relativeHumidity != null ||
         newCurrent.temperature?.temperature != null
     ) {
         // If current data is available, we compute this over hourly dewpoint
-        computeDewPoint(newTemperature?.temperature, newRelativeHumidity)
+        computeDewPoint(newCurrent.temperature?.temperature ?: hourly.temperature?.temperature, newRelativeHumidity)
     } else {
         // Already calculated earlier
         hourly.dewPoint
     }
+    val newTemperature = completeCurrentTemperatureFromHourly(
+        newCurrent.temperature,
+        hourly.temperature,
+        newWind?.speed,
+        newRelativeHumidity,
+        newDewPoint
+    )
     return newCurrent.toCurrent(
         uV = if (newCurrent.uV?.index == null && todayDaily != null) {
             getCurrentUVFromDayMax(
@@ -1485,30 +1456,26 @@ internal fun completeCurrentFromHourlyData(
 }
 
 private fun completeCurrentTemperatureFromHourly(
-    initialTemperature: Temperature?,
+    initialTemperature: TemperatureWrapper?,
     hourlyTemperature: Temperature?,
     windSpeed: Double?,
     relativeHumidity: Double?,
+    dewPoint: Double?,
 ): Temperature? {
-    if (hourlyTemperature == null) return initialTemperature
-    val newTemperature = initialTemperature ?: Temperature()
+    if (initialTemperature == null) return hourlyTemperature
 
-    val newWindChill = newTemperature.windChillTemperature ?: newTemperature.temperature?.let {
-        // If current data is available, we compute this over hourly windChill
-        computeWindChillTemperature(it, windSpeed)
-    } ?: hourlyTemperature.windChillTemperature
-    val newWetBulb = newTemperature.wetBulbTemperature ?: newTemperature.temperature?.let {
-        // If current data is available, we compute this over hourly wetBulb
-        computeWetBulbTemperature(it, relativeHumidity)
-    } ?: hourlyTemperature.wetBulbTemperature
-    return newTemperature.copy(
-        temperature = newTemperature.temperature ?: hourlyTemperature.temperature,
-        realFeelTemperature = newTemperature.realFeelTemperature ?: hourlyTemperature.realFeelTemperature,
-        realFeelShaderTemperature = newTemperature.realFeelShaderTemperature
-            ?: hourlyTemperature.realFeelShaderTemperature,
-        apparentTemperature = newTemperature.apparentTemperature ?: hourlyTemperature.apparentTemperature,
-        windChillTemperature = newWindChill,
-        wetBulbTemperature = newWetBulb
+    return Temperature(
+        temperature = initialTemperature.temperature ?: hourlyTemperature?.temperature,
+        sourceFeelsLike = initialTemperature.feelsLike ?: hourlyTemperature?.sourceFeelsLike,
+        computedApparent = initialTemperature.temperature?.let {
+            computeApparentTemperature(it, relativeHumidity, windSpeed)
+        } ?: hourlyTemperature?.computedApparent,
+        computedWindChill = initialTemperature.temperature?.let {
+            computeWindChillTemperature(it, windSpeed)
+        } ?: hourlyTemperature?.computedWindChill,
+        computedHumidex = initialTemperature.temperature?.let {
+            computeHumidex(it, dewPoint)
+        } ?: hourlyTemperature?.computedHumidex
     )
 }
 

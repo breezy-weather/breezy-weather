@@ -23,6 +23,7 @@ import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.R
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
@@ -58,12 +59,31 @@ class MeteoLuxService @Inject constructor(
             .create(MeteoLuxApi::class.java)
     }
 
-    private val weatherAttribution = "MeteoLux"
+    private val weatherAttribution by lazy {
+        with(context.currentLocale.code) {
+            when {
+                startsWith("fr") -> "MeteoLux (Transfert universel dans le Domaine Public Creative Commons CC0 1.0)"
+                startsWith("de") ->
+                    "MeteoLux (universellen Transfers in die Gemeinfreiheit (Public Domain) Creative Commons CC0 1.0)"
+                else -> "MeteoLux (Universal transfer into the Public Domain Creative Commons CC0 1.0)."
+            }
+        } +
+            " ${context.getString(R.string.data_modified, context.getString(R.string.breezy_weather))}"
+    }
     override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
+    )
+    override val attributionLinks = mapOf(
+        "MeteoLux" to "https://www.meteolux.lu/",
+        "Transfert universel dans le Domaine Public Creative Commons CC0 1.0" to
+            "https://creativecommons.org/publicdomain/zero/1.0/deed.fr",
+        "universellen Transfers in die Gemeinfreiheit (Public Domain) Creative Commons CC0 1.0" to
+            "https://creativecommons.org/publicdomain/zero/1.0/deed.de",
+        "Universal transfer into the Public Domain Creative Commons CC0 1.0" to
+            "https://creativecommons.org/publicdomain/zero/1.0/deed.en"
     )
 
     override fun isFeatureSupportedForLocation(

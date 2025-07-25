@@ -31,9 +31,8 @@ import androidx.core.content.ContextCompat.getString
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.ui.main.MainActivity
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
-import org.breezyweather.ui.theme.compose.DayNightTheme
 
 object SourceNoLongerAvailableHelpDialog {
     fun show(
@@ -57,7 +56,7 @@ object SourceNoLongerAvailableHelpDialog {
 
         composeView.setContent {
             BreezyWeatherTheme(
-                MainThemeColorProvider.isLightTheme(activity, daylight = isDaylight)
+                !ThemeManager.isLightTheme(activity, daylight = isDaylight)
             ) {
                 if (dialogOpenState.value) {
                     AlertDialog(
@@ -83,7 +82,7 @@ object SourceNoLongerAvailableHelpDialog {
                                 helpText
                             )
                         },
-                        textContentColor = DayNightTheme.colors.bodyColor,
+                        textContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                         iconContentColor = MaterialTheme.colorScheme.onSurface
                     )
                 }

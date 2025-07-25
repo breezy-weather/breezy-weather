@@ -16,6 +16,7 @@
 
 package org.breezyweather.ui.common.composables
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
@@ -43,12 +44,9 @@ import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.domain.weather.index.PollenIndex
 import org.breezyweather.domain.weather.model.getColor
-import org.breezyweather.domain.weather.model.getColorFromSource
 import org.breezyweather.domain.weather.model.getConcentration
 import org.breezyweather.domain.weather.model.getIndexName
-import org.breezyweather.domain.weather.model.getIndexNameFromSource
 import org.breezyweather.domain.weather.model.validPollens
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import java.text.Collator
 
 @Composable
@@ -57,12 +55,15 @@ fun PollenGrid(
     modifier: Modifier = Modifier,
     pollenIndexSource: PollenIndexSource? = null,
     specificPollens: ImmutableSet<PollenIndex> = persistentSetOf(),
+    maxItemsInEachRow: Int = 2,
 ) {
     val context = LocalContext.current
-    val unit = PollenUnit.PPCM
+    val unit = PollenUnit.PER_CUBIC_METER
     FlowRow(
-        maxItemsInEachRow = 2,
+        maxItemsInEachRow = maxItemsInEachRow,
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.normal_margin)),
         modifier = modifier
+            .padding(dimensionResource(R.dimen.normal_margin))
     ) {
         specificPollens.ifEmpty { pollen.validPollens }
             .sortedWith { va1, va2 ->
@@ -76,21 +77,17 @@ fun PollenGrid(
                 PollenItem(
                     title = stringResource(validPollen.pollenName),
                     subtitle = if (pollenIndexSource != null) {
-                        pollen.getIndexNameFromSource(context, validPollen, pollenIndexSource) ?: ""
+                        pollen.getIndexName(context, validPollen, pollenIndexSource) ?: ""
                     } else {
-                        unit.getValueText(
-                            context,
-                            pollen.getConcentration(validPollen) ?: 0
-                        ) + " - " + pollen.getIndexName(context, validPollen)
+                        unit.formatMeasure(context, pollen.getConcentration(validPollen)?.toDouble() ?: 0.0) +
+                            " – " +
+                            pollen.getIndexName(context, validPollen)
                     },
                     tintColor = Color(
-                        if (pollenIndexSource != null) {
-                            pollen.getColorFromSource(context, validPollen, pollenIndexSource)
-                        } else {
-                            pollen.getColor(context, validPollen)
-                        }
+                        pollen.getColor(context, validPollen, pollenIndexSource)
                     ),
-                    modifier = Modifier.fillMaxWidth(0.5f)
+                    modifier = Modifier
+                        .fillMaxWidth(1.0f.div(maxItemsInEachRow))
                 )
             }
     }
@@ -104,33 +101,27 @@ private fun PollenItem(
     modifier: Modifier = Modifier,
 ) = Row(
     modifier = modifier,
-    verticalAlignment = Alignment.CenterVertically
+    verticalAlignment = Alignment.CenterVertically,
+    horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin))
 ) {
     Icon(
         modifier = Modifier
-            .padding(dimensionResource(R.dimen.normal_margin))
             .size(dimensionResource(R.dimen.material_icon_size)),
-        painter = painterResource(R.drawable.ic_circle_medium),
+        painter = painterResource(R.drawable.ic_circle),
         contentDescription = null,
         tint = tintColor
     )
-    Column(
-        Modifier.padding(
-            end = dimensionResource(R.dimen.normal_margin),
-            top = dimensionResource(R.dimen.normal_margin),
-            bottom = dimensionResource(R.dimen.normal_margin)
-        )
-    ) {
+    Column {
         Text(
             text = title,
-            color = DayNightTheme.colors.titleColor,
+            color = MaterialTheme.colorScheme.onSurface,
             style = MaterialTheme.typography.titleMedium,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
         Text(
             text = subtitle,
-            color = DayNightTheme.colors.bodyColor,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             style = MaterialTheme.typography.bodyMedium,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis

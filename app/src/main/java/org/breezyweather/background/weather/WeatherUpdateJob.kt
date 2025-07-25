@@ -124,6 +124,9 @@ class WeatherUpdateJob @AssistedInject constructor(
                 }
             } finally {
                 notifier.cancelProgressNotification()
+                /*if ((BuildConfig.FLAVOR != "freenet" && SettingsManager.getInstance(context).isAppUpdateCheckEnabled) ||
+                    Build.VERSION.SDK_INT < Build.VERSION_CODES.M
+                    ) {*/
                 if (BuildConfig.FLAVOR != "freenet" && SettingsManager.getInstance(context).isAppUpdateCheckEnabled) {
                     try {
                         updateChecker.checkForUpdate(context, forceCheck = false)
@@ -317,7 +320,7 @@ class WeatherUpdateJob @AssistedInject constructor(
         if (failedUpdates.isNotEmpty()) {
             val errorFile = writeErrorFile(failedUpdates)
             notifier.showUpdateErrorNotification(
-                failedUpdates.size,
+                failedUpdates.groupBy { it.first }.size,
                 errorFile.getUriCompat(context)
             )
         }
@@ -394,12 +397,12 @@ class WeatherUpdateJob @AssistedInject constructor(
                 file.bufferedWriter().use { out ->
                     out.write("Errors during refresh\n\n")
                     // Error file format:
-                    // ! Error
-                    //   - Location
-                    errors.groupBy({ it.second }, { it.first }).forEach { (error, locations) ->
-                        out.write("\n! ${error}\n")
-                        locations.forEach {
-                            out.write("  - ${it.getPlace(context, showCurrentPositionInPriority = true)}\n")
+                    // ! Location
+                    //   - Error
+                    errors.groupBy({ it.first }, { it.second }).forEach { (location, errors) ->
+                        out.write("\n! ${location.getPlace(context, showCurrentPositionInPriority = true)}\n")
+                        errors.forEach {
+                            out.write("  - $it\n")
                         }
                     }
                 }

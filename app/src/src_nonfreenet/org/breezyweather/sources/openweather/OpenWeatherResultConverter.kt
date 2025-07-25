@@ -26,6 +26,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.capitalize
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toDate
@@ -41,9 +42,9 @@ internal fun getCurrent(currentResult: OpenWeatherForecast): CurrentWrapper? {
     return CurrentWrapper(
         weatherText = currentResult.weather?.getOrNull(0)?.main?.capitalize(),
         weatherCode = getWeatherCode(currentResult.weather?.getOrNull(0)?.id),
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = currentResult.main?.temp,
-            apparentTemperature = currentResult.main?.feelsLike
+            feelsLike = currentResult.main?.feelsLike
         ),
         wind = Wind(
             degree = currentResult.wind?.deg?.toDouble(),
@@ -88,9 +89,9 @@ internal fun getHourlyList(
             date = theDate,
             weatherText = result.weather?.getOrNull(0)?.main?.capitalize(),
             weatherCode = getWeatherCode(result.weather?.getOrNull(0)?.id),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = result.main?.temp,
-                apparentTemperature = result.main?.feelsLike
+                feelsLike = result.main?.feelsLike
             ),
             precipitation = Precipitation(
                 total = getTotalPrecipitation(result.rain?.cumul3h, result.snow?.cumul3h),

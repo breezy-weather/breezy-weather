@@ -18,7 +18,6 @@ package org.breezyweather.sources.here
 
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.HalfDay
-import breezyweather.domain.weather.model.MoonPhase
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
@@ -27,12 +26,12 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.sources.here.json.HereGeocodingData
-import org.breezyweather.sources.here.json.HereWeatherAstronomy
 import org.breezyweather.sources.here.json.HereWeatherData
-import kotlin.math.roundToInt
 
 /**
  * Converts here.com geocoding result into a list of locations
@@ -66,9 +65,9 @@ internal fun getCurrentForecast(result: HereWeatherData?): CurrentWrapper? {
     return CurrentWrapper(
         weatherText = result.description,
         weatherCode = getWeatherCode(result.iconId),
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = result.temperature,
-            apparentTemperature = result.comfort?.toDouble()
+            feelsLike = result.comfort?.toDouble()
         ),
         wind = Wind(
             degree = result.windDirection,
@@ -87,19 +86,17 @@ internal fun getCurrentForecast(result: HereWeatherData?): CurrentWrapper? {
  */
 internal fun getDailyForecast(
     dailySimpleForecasts: List<HereWeatherData>?,
-    astroForecasts: List<HereWeatherAstronomy>?,
 ): List<DailyWrapper> {
     if (dailySimpleForecasts.isNullOrEmpty()) return emptyList()
     val dailyList: MutableList<DailyWrapper> = ArrayList(dailySimpleForecasts.size)
     for (i in 0 until dailySimpleForecasts.size - 1) { // Skip last day
         val dailyForecast = dailySimpleForecasts[i]
-        val astro = astroForecasts?.firstOrNull { astro -> astro.time == dailyForecast.time }
 
         dailyList.add(
             DailyWrapper(
                 date = dailyForecast.time,
-                day = HalfDay(
-                    temperature = Temperature(
+                day = HalfDayWrapper(
+                    temperature = TemperatureWrapper(
                         temperature = if (!dailyForecast.highTemperature.isNullOrEmpty()) {
                             dailyForecast.highTemperature.toDouble()
                         } else {
@@ -107,10 +104,10 @@ internal fun getDailyForecast(
                         }
                     )
                 ),
-                night = HalfDay(
+                night = HalfDayWrapper(
                     // low temperature is actually from previous night,
                     // so we try to get low temp from next day if available
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = if (!dailySimpleForecasts.getOrNull(i + 1)?.lowTemperature.isNullOrEmpty()) {
                             dailySimpleForecasts[i + 1].lowTemperature!!.toDouble()
                         } else {
@@ -118,7 +115,6 @@ internal fun getDailyForecast(
                         }
                     )
                 ),
-                moonPhase = MoonPhase(angle = astro?.moonPhase?.times(360)?.roundToInt()),
                 uV = UV(index = dailyForecast.uvIndex?.toDouble())
             )
         )
@@ -138,9 +134,9 @@ internal fun getHourlyForecast(
             date = result.time,
             weatherText = result.description,
             weatherCode = getWeatherCode(result.iconId),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = result.temperature,
-                apparentTemperature = result.comfort?.toDouble()
+                feelsLike = result.comfort?.toDouble()
             ),
             precipitation = Precipitation(
                 total = result.precipitation1H ?: (result.rainFall + result.snowFall),

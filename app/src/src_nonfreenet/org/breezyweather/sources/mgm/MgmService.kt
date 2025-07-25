@@ -67,6 +67,9 @@ class MgmService @Inject constructor(
         SourceFeature.ALERT to weatherAttribution,
         SourceFeature.NORMALS to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.mgm.gov.tr/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

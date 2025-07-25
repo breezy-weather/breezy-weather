@@ -28,21 +28,22 @@ import androidx.appcompat.content.res.AppCompatResources
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Wind
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.ui.common.images.RotateDrawable
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.DoubleHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 
 /**
  * Daily wind adapter.
  */
 class DailyWindAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
     unit: SpeedUnit,
 ) : AbsDailyTrendAdapter(activity, location) {
@@ -57,7 +58,7 @@ class DailyWindAdapter(
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        fun onBindView(activity: GeoActivity, location: Location, position: Int) {
+        fun onBindView(activity: BreezyActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder()
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]
@@ -89,16 +90,16 @@ class DailyWindAdapter(
             mDoubleHistogramView.setData(
                 daily.day?.wind?.speed?.toFloat() ?: 0f,
                 daily.night?.wind?.speed?.toFloat() ?: 0f,
-                daily.day?.wind?.speed?.let { mSpeedUnit.getValueTextWithoutUnit(it) },
-                daily.night?.wind?.speed?.let { mSpeedUnit.getValueTextWithoutUnit(it) },
+                daily.day?.wind?.speed?.let { mSpeedUnit.formatValue(activity, it) },
+                daily.night?.wind?.speed?.let { mSpeedUnit.formatValue(activity, it) },
                 mHighestWindSpeed
             )
             mDoubleHistogramView.setLineColors(
                 dayWindColor,
                 nightWindColor,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
-            mDoubleHistogramView.setTextColors(MainThemeColorProvider.getColor(location, R.attr.colorBodyText))
+            mDoubleHistogramView.setTextColors(activity.getThemeColor(R.attr.colorBodyText))
             mDoubleHistogramView.setHistogramAlphas(1f, 0.5f)
 
             if (daily.night?.wind?.isValid == true) {
@@ -123,6 +124,9 @@ class DailyWindAdapter(
             dailyItem.setNightIconDrawable(nightIcon, missingIconVisibility = View.INVISIBLE)
 
             dailyItem.contentDescription = talkBackBuilder.toString()
+            dailyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_WIND)
+            }
         }
     }
 
@@ -153,12 +157,12 @@ class DailyWindAdapter(
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_wind)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val unit = SettingsManager.getInstance(activity).speedUnit
+        val unit = SettingsManager.getInstance(activity).getSpeedUnit(activity)
         val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 Wind.WIND_SPEED_3.toFloat(),
-                unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
+                unit.formatValue(activity, Wind.WIND_SPEED_3),
                 activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -166,7 +170,7 @@ class DailyWindAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 Wind.WIND_SPEED_7.toFloat(),
-                unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
+                unit.formatValue(activity, Wind.WIND_SPEED_7),
                 activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -174,7 +178,7 @@ class DailyWindAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 -Wind.WIND_SPEED_3.toFloat(),
-                unit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
+                unit.formatValue(activity, Wind.WIND_SPEED_3),
                 activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
@@ -182,7 +186,7 @@ class DailyWindAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 -Wind.WIND_SPEED_7.toFloat(),
-                unit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
+                unit.formatValue(activity, Wind.WIND_SPEED_7),
                 activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )

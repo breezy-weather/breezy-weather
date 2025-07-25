@@ -45,14 +45,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.breezyweather.R
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 
 @Composable
@@ -63,6 +63,8 @@ fun PreferenceViewWithCard(
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     colors: ListItemColors = ListItemDefaults.colors(),
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     onClick: () -> Unit,
 ) = PreferenceViewWithCard(
     title = stringResource(titleId),
@@ -71,6 +73,8 @@ fun PreferenceViewWithCard(
     iconId = iconId,
     enabled = enabled,
     colors = colors,
+    isFirst = isFirst,
+    isLast = isLast,
     onClick = onClick
 )
 
@@ -101,15 +105,23 @@ fun PreferenceViewWithCard(
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     colors: ListItemColors = ListItemDefaults.colors(),
+    surface: Color = MaterialTheme.colorScheme.surface,
+    onSurface: Color = MaterialTheme.colorScheme.onSurface,
     onClose: (() -> Unit)? = null,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     onClick: () -> Unit,
 ) {
-    Material3CardListItem(
-        elevation = if (enabled) defaultCardListItemElevation else 0.dp
+    Material3ExpressiveCardListItem(
+        elevation = if (enabled) defaultCardListItemElevation else 0.dp,
+        surface = surface,
+        onSurface = onSurface,
+        isFirst = isFirst,
+        isLast = isLast,
+        modifier = modifier
     ) {
         PreferenceView(
             title = title,
-            modifier = modifier,
             summary = summary,
             iconId = iconId,
             enabled = enabled,
@@ -156,7 +168,7 @@ fun PreferenceView(
             {
                 Icon(
                     painter = painterResource(iconId),
-                    tint = DayNightTheme.colors.titleColor,
+                    tint = MaterialTheme.colorScheme.onSurface,
                     contentDescription = null,
                     modifier = Modifier.size(24.dp)
                 )
@@ -174,12 +186,12 @@ fun PreferenceView(
                 ) {
                     Text(
                         text = title,
-                        color = DayNightTheme.colors.titleColor,
+                        color = MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.titleMedium
                     )
                 }
                 if (onClose != null) {
-                    Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
+                    Spacer(modifier = Modifier.width(dimensionResource(R.dimen.small_margin)))
                     IconButton(
                         onClick = {
                             onClose()
@@ -189,7 +201,7 @@ fun PreferenceView(
                         Icon(
                             imageVector = Icons.Default.Close,
                             contentDescription = stringResource(R.string.action_close),
-                            tint = DayNightTheme.colors.bodyColor
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 }
@@ -199,11 +211,11 @@ fun PreferenceView(
             {
                 Column {
                     if (onClose == null) { // We already have spacing from close button
-                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                     }
                     Text(
                         text = summary,
-                        color = DayNightTheme.colors.bodyColor,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }

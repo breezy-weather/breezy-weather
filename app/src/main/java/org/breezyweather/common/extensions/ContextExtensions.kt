@@ -17,6 +17,7 @@
 package org.breezyweather.common.extensions
 
 import android.Manifest
+import android.app.UiModeManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -80,6 +81,9 @@ val Context.windowManager: WindowManager?
     get() = getSystemService()
 
 val Context.shortcutManager: ShortcutManager?
+    get() = getSystemService()
+
+val Context.uiModeManager: UiModeManager?
     get() = getSystemService()
 
 fun Context.createFileInCacheDir(name: String): File {

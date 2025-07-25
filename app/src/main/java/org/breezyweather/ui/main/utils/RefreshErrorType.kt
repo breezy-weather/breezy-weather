@@ -33,6 +33,7 @@ import org.breezyweather.common.exceptions.LocationSearchException
 import org.breezyweather.common.exceptions.MissingPermissionLocationBackgroundException
 import org.breezyweather.common.exceptions.MissingPermissionLocationException
 import org.breezyweather.common.exceptions.NoNetworkException
+import org.breezyweather.common.exceptions.OutdatedServerDataException
 import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.exceptions.SourceNotInstalledException
@@ -45,9 +46,11 @@ import org.breezyweather.ui.main.dialogs.ApiHelpDialog
 import org.breezyweather.ui.main.dialogs.LocationHelpDialog
 import org.breezyweather.ui.main.dialogs.SourceNoLongerAvailableHelpDialog
 import retrofit2.HttpException
+import java.net.SocketException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import java.text.ParseException
+import javax.net.ssl.SSLHandshakeException
 
 enum class RefreshErrorType(
     @StringRes val shortMessage: Int,
@@ -101,6 +104,7 @@ enum class RefreshErrorType(
             )
         }*/
     ),
+    SERVER_INSECURE(shortMessage = R.string.message_server_insecure_title),
     PARSING_ERROR(
         shortMessage = R.string.message_parsing_error_title
         /*showDialogAction = { TODO
@@ -127,16 +131,19 @@ enum class RefreshErrorType(
         showDialogAction = { LocationHelpDialog.show(it) }
     ),
     ACCESS_LOCATION_PERMISSION_MISSING(
-        shortMessage = R.string.location_message_permission_missing
-        // showDialogAction = { } // TODO
+        shortMessage = R.string.location_message_permission_missing,
+        showDialogAction = { IntentHelper.startApplicationDetailsActivity(it) },
+        actionButtonMessage = R.string.action_allow
     ),
     ACCESS_BACKGROUND_LOCATION_PERMISSION_MISSING(
-        shortMessage = R.string.location_message_permission_background_missing
-        // showDialogAction = { } // TODO
+        shortMessage = R.string.location_message_permission_background_missing,
+        showDialogAction = { IntentHelper.startApplicationDetailsActivity(it) },
+        actionButtonMessage = R.string.action_allow
     ),
     LOCATION_ACCESS_OFF(
         shortMessage = R.string.location_message_location_access_off,
-        showDialogAction = { IntentHelper.startLocationSettingsActivity(it) }
+        showDialogAction = { IntentHelper.startLocationSettingsActivity(it) },
+        actionButtonMessage = R.string.action_enable
     ),
     REVERSE_GEOCODING_FAILED(
         shortMessage = R.string.location_message_reverse_geocoding_failed
@@ -157,6 +164,9 @@ enum class RefreshErrorType(
     INVALID_INCOMPLETE_DATA(
         shortMessage = R.string.message_invalid_incomplete_data
     ),
+    OUTDATED_SERVER_DATA(
+        shortMessage = R.string.message_outdated_server_data
+    ),
     DATA_REFRESH_FAILED(
         shortMessage = R.string.weather_message_data_refresh_failed
     ),
@@ -172,6 +182,7 @@ enum class RefreshErrorType(
                 is NoNetworkException -> NETWORK_UNAVAILABLE
                 // Can mean different things but most of the time, it’s a network issue:
                 is UnknownHostException -> NETWORK_UNAVAILABLE
+                is SocketException -> SERVER_UNAVAILABLE
                 is HttpException -> {
                     LogHelper.log(msg = "HttpException ${e.code()}")
                     when (e.code()) {
@@ -184,6 +195,7 @@ enum class RefreshErrorType(
                         }
                     }
                 }
+                is SSLHandshakeException -> SERVER_INSECURE
                 is SocketTimeoutException -> SERVER_TIMEOUT
                 is ApiLimitReachedException -> API_LIMIT_REACHED
                 is ApiKeyMissingException -> API_KEY_REQUIRED_MISSING
@@ -201,6 +213,7 @@ enum class RefreshErrorType(
                 is SourceNotInstalledException -> SOURCE_NOT_INSTALLED
                 is LocationSearchException -> LOCATION_SEARCH_FAILED
                 is InvalidOrIncompleteDataException -> INVALID_INCOMPLETE_DATA
+                is OutdatedServerDataException -> OUTDATED_SERVER_DATA
                 is UnsupportedFeatureException -> UNSUPPORTED_FEATURE
                 is WeatherException -> DATA_REFRESH_FAILED
                 else -> {

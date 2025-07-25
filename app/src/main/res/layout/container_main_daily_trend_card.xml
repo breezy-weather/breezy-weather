@@ -1,47 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container_main_daily_trend_card"
-    android:layout_margin="0dp"
-    style="@style/material_card">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraLarge"
+    app:strokeWidth="0dp">
 
-    <LinearLayout
-        android:id="@+id/container_main_first_daily_card_container"
-        android:orientation="vertical"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/container_main_daily_trend_card_title"
-            android:text="@string/daily_forecast"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:textStyle="bold"
-            style="@style/title_text"
-            tools:ignore="RtlHardcoded" />
+        <ImageView
+            android:id="@+id/daily_block_title_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="@dimen/large_margin"
+            android:importantForAccessibility="no"
+            android:backgroundTint="?attr/colorSurfaceInverse"
+            android:src="@drawable/ic_calendar"
+            app:layout_constraintBottom_toBottomOf="@+id/daily_block_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/daily_block_title" />
 
         <TextView
-            android:id="@+id/container_main_daily_trend_card_subtitle"
+            android:id="@+id/daily_block_title"
+            android:accessibilityHeading="true"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:textColor="?attr/colorSurfaceInverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginStart="8dp"
+            android:text="@string/daily_forecast"
+            app:layout_constraintStart_toEndOf="@+id/daily_block_title_icon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/daily_block_subtitle"
             android:layout_marginTop="2dp"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginEnd="@dimen/normal_margin"
+            android:layout_marginHorizontal="@dimen/large_margin"
+            android:layout_width="match_parent"
             style="@style/content_text"
             tools:text="Rain Wednesday evening"
-            tools:ignore="RtlHardcoded" />
+            app:layout_constraintTop_toBottomOf="@+id/daily_block_title" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/container_main_daily_trend_card_tagView"
-            android:layout_marginTop="@dimen/little_margin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <com.google.android.material.button.MaterialButtonGroup
+            android:id="@+id/daily_block_button_group"
+            style="@style/Widget.Material3Expressive.MaterialButtonGroup.Connected"
+            app:overflowMode="menu"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toBottomOf="@+id/daily_block_subtitle"
+            app:layout_constraintStart_toStartOf="@+id/daily_block_title_icon" />
 
         <org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
-            android:id="@+id/container_main_daily_trend_card_trendRecyclerView"
+            android:id="@+id/daily_block_trendRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/daily_trend_item_height"
-            android:layout_marginTop="@dimen/little_margin"
-            tools:ignore="UnusedAttribute" />
+            android:layout_marginTop="@dimen/small_margin"
+            tools:ignore="UnusedAttribute"
+            app:layout_constraintTop_toBottomOf="@+id/daily_block_button_group"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

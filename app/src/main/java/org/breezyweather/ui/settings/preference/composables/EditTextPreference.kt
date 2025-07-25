@@ -44,9 +44,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import org.breezyweather.R
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 
 @Composable
@@ -60,11 +59,15 @@ fun EditTextPreferenceViewWithCard(
     regex: Regex? = null,
     regexError: String? = null,
     keyboardType: KeyboardType? = null,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     onValueChanged: (String) -> Unit,
 ) {
-    Material3CardListItem(
+    Material3ExpressiveCardListItem(
         modifier = modifier,
-        elevation = if (enabled) defaultCardListItemElevation else 0.dp
+        elevation = if (enabled) defaultCardListItemElevation else 0.dp,
+        isFirst = isFirst,
+        isLast = isLast
     ) {
         EditTextPreferenceView(
             title = stringResource(titleId),
@@ -114,15 +117,15 @@ fun EditTextPreferenceView(
         Column {
             Text(
                 text = title,
-                color = DayNightTheme.colors.titleColor,
+                color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.titleMedium
             )
             val currentSummary = summary(LocalContext.current, contentState.value)
             if (currentSummary?.isNotEmpty() == true) {
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                 Text(
                     text = currentSummary,
-                    color = DayNightTheme.colors.bodyColor,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     style = MaterialTheme.typography.bodyMedium
                 )
             }

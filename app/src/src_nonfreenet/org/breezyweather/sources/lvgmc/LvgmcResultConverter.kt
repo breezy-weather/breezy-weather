@@ -27,7 +27,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
@@ -127,7 +129,7 @@ internal fun getCurrent(
     return currentResult.filter { it.stationCode == currentLocation }
         .sortedByDescending { it.time }.firstOrNull()?.let {
             CurrentWrapper(
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     it.temperature?.toDoubleOrNull()
                 ),
                 wind = Wind(
@@ -152,8 +154,8 @@ internal fun getDailyForecast(
     val dailyList = mutableListOf<DailyWrapper>()
     val formatter = SimpleDateFormat("yyyyMMdd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Europe/Riga")
-    val dayParts = mutableMapOf<Long, HalfDay>()
-    val nightParts = mutableMapOf<Long, HalfDay>()
+    val dayParts = mutableMapOf<Long, HalfDayWrapper>()
+    val nightParts = mutableMapOf<Long, HalfDayWrapper>()
     val uviMap = mutableMapOf<Long, Double?>()
     var time: Long
     dailyResult.forEach {
@@ -163,10 +165,10 @@ internal fun getDailyForecast(
                 // Subtracting 23 hours will keep it within the previous day
                 // during daylight saving time switchover
                 time = formatter.parse(it.time.substring(0, 8))!!.time - 23.hours.inWholeMilliseconds
-                nightParts[time] = HalfDay(
+                nightParts[time] = HalfDayWrapper(
                     weatherText = getWeatherText(context, it.icon),
                     weatherCode = getWeatherCode(it.icon),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = it.temperature?.toDoubleOrNull()
                     ),
                     precipitation = Precipitation(
@@ -182,10 +184,10 @@ internal fun getDailyForecast(
             if (it.time.substring(8, 10) == "12") {
                 // day part of current day:
                 time = formatter.parse(it.time.substring(0, 8))!!.time
-                dayParts[time] = HalfDay(
+                dayParts[time] = HalfDayWrapper(
                     weatherText = getWeatherText(context, it.icon),
                     weatherCode = getWeatherCode(it.icon),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = it.temperature?.toDoubleOrNull()
                     ),
                     precipitation = Precipitation(
@@ -242,9 +244,9 @@ internal fun getHourlyForecast(
                     date = formatter.parse(it.time)!!,
                     weatherText = getWeatherText(context, it.icon),
                     weatherCode = getWeatherCode(it.icon),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = it.temperature?.toDoubleOrNull(),
-                        apparentTemperature = it.apparentTemperature?.toDoubleOrNull()
+                        feelsLike = it.apparentTemperature?.toDoubleOrNull()
                     ),
                     precipitation = Precipitation(
                         total = it.precipitation1h?.toDoubleOrNull(),

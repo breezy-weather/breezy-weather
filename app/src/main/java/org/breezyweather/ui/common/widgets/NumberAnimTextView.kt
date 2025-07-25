@@ -77,6 +77,8 @@ class NumberAnimTextView @JvmOverloads constructor(
      */
     private var isInt = false
     private var animator: ValueAnimator? = null
+
+    @Suppress("unused")
     fun setNumberString(number: String) {
         setNumberString("0", number)
     }
@@ -90,8 +92,7 @@ class NumberAnimTextView @JvmOverloads constructor(
             start()
         } else {
             // 数字不合法　直接调用　setText　设置最终值
-            text = prefixString + BidiFormatter.getInstance()
-                .unicodeWrap(numberEnd) + postfixString
+            text = prefixString + BidiFormatter.getInstance().unicodeWrap(numberEnd) + postfixString
         }
     }
 
@@ -126,7 +127,7 @@ class NumberAnimTextView @JvmOverloads constructor(
         }
         val f = BidiFormatter.getInstance()
         animator = ValueAnimator.ofObject(
-            org.breezyweather.ui.common.widgets.NumberAnimTextView.BigDecimalEvaluator(),
+            BigDecimalEvaluator(),
             BigDecimal(mNumStart),
             BigDecimal(mNumEnd)
         ).apply {
@@ -166,10 +167,7 @@ class NumberAnimTextView @JvmOverloads constructor(
             val s = if (s1.size > s2.size) s1 else s2
             if (s.size > 1) {
                 // 小数部分
-                val decimals = s[1]
-                if (decimals != null) {
-                    length = decimals.length
-                }
+                length = s[1].length
             }
             pattern.append("#,##0")
             if (length > 0) {

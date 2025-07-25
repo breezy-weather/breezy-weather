@@ -29,7 +29,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.ParsingException
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
@@ -72,9 +74,9 @@ internal fun getCurrent(
         CurrentWrapper(
             weatherText = it.textDescription,
             weatherCode = getWeatherCode(it.icon),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = it.temperature?.value,
-                windChillTemperature = it.windChill?.value
+                feelsLike = it.windChill?.value
             ),
             // stations where the anemometer is not working would report 0 wind speed; ignore them
             wind = if (it.windSpeed?.value != null && it.windSpeed.value != 0.0) {
@@ -111,16 +113,16 @@ internal fun getDailyForecast(
     val dailyList = mutableListOf<DailyWrapper>()
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
-    val dayParts = mutableMapOf<String, HalfDay>()
-    val nightParts = mutableMapOf<String, HalfDay>()
+    val dayParts = mutableMapOf<String, HalfDayWrapper>()
+    val nightParts = mutableMapOf<String, HalfDayWrapper>()
     var date: String
     dailyResult.properties?.periods?.forEach {
         date = formatter.format(it.startTime.time)
         if (it.isDaytime) {
-            dayParts[date] = HalfDay(
+            dayParts[date] = HalfDayWrapper(
                 weatherText = it.shortForecast,
                 weatherCode = getWeatherCode(it.icon),
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = it.temperature?.value
                 ),
                 precipitationProbability = PrecipitationProbability(
@@ -133,10 +135,10 @@ internal fun getDailyForecast(
                 )
             )
         } else {
-            nightParts[date] = HalfDay(
+            nightParts[date] = HalfDayWrapper(
                 weatherText = it.shortForecast,
                 weatherCode = getWeatherCode(it.icon),
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = it.temperature?.value
                 ),
                 precipitationProbability = PrecipitationProbability(
@@ -208,16 +210,25 @@ internal fun getHourlyForecast(
     // val ceilingHeightForecastList = getDoubleForecast(properties.ceilingHeight, false, timeZone)
 
     val uniqueDates = (
-        temperatureForecastList.keys + dewpointForecastList.keys +
-            relativeHumidityList.keys + apparentTemperatureForecastList.keys +
-            wetBulbGlobeTemperatureForecastList.keys + // heatIndexForecastList.keys +
-            windChillForecastList.keys + skyCoverForecastList.keys +
-            windDirectionForecastList.keys + windSpeedForecastList.keys +
-            windGustForecastList.keys + weatherForecastList.keys +
+        temperatureForecastList.keys +
+            dewpointForecastList.keys +
+            relativeHumidityList.keys +
+            apparentTemperatureForecastList.keys +
+            wetBulbGlobeTemperatureForecastList.keys +
+            // heatIndexForecastList.keys +
+            windChillForecastList.keys +
+            skyCoverForecastList.keys +
+            windDirectionForecastList.keys +
+            windSpeedForecastList.keys +
+            windGustForecastList.keys +
+            weatherForecastList.keys +
             probabilityOfPrecipitationForecastList.keys +
-            quantitativePrecipitationForecastList.keys + iceAccumulationForecastList.keys +
-            snowfallAmountForecastList.keys + // ceilingHeightForecastList.keys +
-            visibilityForecastList.keys + pressureForecastList.keys +
+            quantitativePrecipitationForecastList.keys +
+            iceAccumulationForecastList.keys +
+            snowfallAmountForecastList.keys +
+            // ceilingHeightForecastList.keys +
+            visibilityForecastList.keys +
+            pressureForecastList.keys +
             probabilityOfThunderForecastList.keys
         ).sorted()
 
@@ -235,11 +246,9 @@ internal fun getHourlyForecast(
                 windSpeed = windSpeedForecastList.getOrElse(it) { null }?.div(3.6),
                 cloudCover = skyCoverForecastList.getOrElse(it) { null }
             ),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = temperatureForecastList.getOrElse(it) { null },
-                apparentTemperature = apparentTemperatureForecastList.getOrElse(it) { null },
-                wetBulbTemperature = wetBulbGlobeTemperatureForecastList.getOrElse(it) { null },
-                windChillTemperature = windChillForecastList.getOrElse(it) { null }
+                feelsLike = apparentTemperatureForecastList.getOrElse(it) { null }
             ),
             precipitation = Precipitation(
                 total = quantitativePrecipitationForecastList.getOrElse(it) { null },
@@ -566,37 +575,31 @@ private fun getWeatherText(
         // Qualify precipitation with intensity
         weatherText = when (weather?.intensity) {
             // Qualifying "very light" as "light" should be sufficient
-            "very_light" -> String.format(context.getString(R.string.nws_weather_text_intensity_light), weatherText)
-            "light" -> String.format(context.getString(R.string.nws_weather_text_intensity_light), weatherText)
+            "very_light" -> context.getString(R.string.nws_weather_text_intensity_light, weatherText)
+            "light" -> context.getString(R.string.nws_weather_text_intensity_light, weatherText)
             "moderate" -> weatherText // don't qualify "moderate"
-            "heavy" -> String.format(context.getString(R.string.nws_weather_text_intensity_heavy), weatherText)
+            "heavy" -> context.getString(R.string.nws_weather_text_intensity_heavy, weatherText)
             else -> weatherText
         }
 
         // Qualify precipitation with coverage
         weatherText = when (weather?.coverage) {
-            "areas" -> String.format(context.getString(R.string.nws_weather_text_coverage_areas_of), weatherText)
-            "brief" -> String.format(context.getString(R.string.nws_weather_text_coverage_brief), weatherText)
-            "chance" -> String.format(context.getString(R.string.nws_weather_text_coverage_chance_of), weatherText)
+            "areas" -> context.getString(R.string.nws_weather_text_coverage_areas_of, weatherText)
+            "brief" -> context.getString(R.string.nws_weather_text_coverage_brief, weatherText)
+            "chance" -> context.getString(R.string.nws_weather_text_coverage_chance_of, weatherText)
             "definite" -> weatherText // don't qualify "definite"
-            "few" -> String.format(context.getString(R.string.nws_weather_text_coverage_few), weatherText)
-            "frequent" -> String.format(context.getString(R.string.nws_weather_text_coverage_frequent), weatherText)
-            "intermittent" -> String.format(
-                context.getString(R.string.nws_weather_text_coverage_intermittent),
-                weatherText
-            )
-            "isolated" -> String.format(context.getString(R.string.nws_weather_text_coverage_isolated), weatherText)
-            "likely" -> String.format(context.getString(R.string.nws_weather_text_coverage_likely), weatherText)
-            "numerous" -> String.format(context.getString(R.string.nws_weather_text_coverage_numerous), weatherText)
-            "occasional" -> String.format(context.getString(R.string.nws_weather_text_coverage_occasional), weatherText)
-            "patchy" -> String.format(context.getString(R.string.nws_weather_text_coverage_patchy), weatherText)
-            "periods" -> String.format(context.getString(R.string.nws_weather_text_coverage_periods_of), weatherText)
-            "scattered" -> String.format(context.getString(R.string.nws_weather_text_coverage_scattered), weatherText)
-            "slight_chance" -> String.format(
-                context.getString(R.string.nws_weather_text_coverage_slight_chance_of),
-                weatherText
-            )
-            "widespread" -> String.format(context.getString(R.string.nws_weather_text_coverage_widespread), weatherText)
+            "few" -> context.getString(R.string.nws_weather_text_coverage_few, weatherText)
+            "frequent" -> context.getString(R.string.nws_weather_text_coverage_frequent, weatherText)
+            "intermittent" -> context.getString(R.string.nws_weather_text_coverage_intermittent, weatherText)
+            "isolated" -> context.getString(R.string.nws_weather_text_coverage_isolated, weatherText)
+            "likely" -> context.getString(R.string.nws_weather_text_coverage_likely, weatherText)
+            "numerous" -> context.getString(R.string.nws_weather_text_coverage_numerous, weatherText)
+            "occasional" -> context.getString(R.string.nws_weather_text_coverage_occasional, weatherText)
+            "patchy" -> context.getString(R.string.nws_weather_text_coverage_patchy, weatherText)
+            "periods" -> context.getString(R.string.nws_weather_text_coverage_periods_of, weatherText)
+            "scattered" -> context.getString(R.string.nws_weather_text_coverage_scattered, weatherText)
+            "slight_chance" -> context.getString(R.string.nws_weather_text_coverage_slight_chance_of, weatherText)
+            "widespread" -> context.getString(R.string.nws_weather_text_coverage_widespread, weatherText)
             else -> weatherText
         }
     } else {
@@ -618,7 +621,6 @@ private fun getWeatherText(
     if (weather?.attributes.isNullOrEmpty() ||
         (!weather!!.attributes!!.contains("gusty_wind") && !weather.attributes!!.contains("damaging_wind"))
     ) {
-        val andWind = context.getString(R.string.nws_weather_text_condition_and_wind)
         val mphInMetersPerSecond = 0.44704
         val windDescription: String?
         if (windSpeed != null) {
@@ -631,7 +633,7 @@ private fun getWeatherText(
             }
             if (!windDescription.isNullOrEmpty()) {
                 weatherText = if (!weatherText.isNullOrEmpty()) {
-                    String.format(andWind, weatherText, windDescription)
+                    context.getString(R.string.nws_weather_text_condition_and_wind, weatherText, windDescription)
                 } else {
                     windDescription
                 }
@@ -640,7 +642,6 @@ private fun getWeatherText(
     }
 
     // Add attributes
-    val withAttributes = context.getString(R.string.nws_weather_text_condition_with_attribute)
     var attributes = ""
     var separator: String
     weather?.attributes?.forEachIndexed { i, attr ->
@@ -651,8 +652,7 @@ private fun getWeatherText(
         }
         when (attr) {
             "damaging_wind" ->
-                attributes +=
-                    separator + context.getString(R.string.nws_weather_text_attribute_wind_damaging)
+                attributes += separator + context.getString(R.string.nws_weather_text_attribute_wind_damaging)
             "dry_thunderstorms" -> attributes += separator + context.getString(R.string.weather_kind_thunder)
             "flooding" -> attributes += separator + context.getString(R.string.nws_weather_text_attribute_flooding)
             "gusty_wind" -> attributes += separator + context.getString(R.string.nws_weather_text_attribute_wind_gusty)
@@ -664,7 +664,7 @@ private fun getWeatherText(
     }
     if (attributes != "") {
         weatherText = if (!weatherText.isNullOrEmpty()) {
-            String.format(withAttributes, weatherText, attributes)
+            context.getString(R.string.nws_weather_text_condition_with_attribute, weatherText, attributes)
         } else {
             attributes
         }

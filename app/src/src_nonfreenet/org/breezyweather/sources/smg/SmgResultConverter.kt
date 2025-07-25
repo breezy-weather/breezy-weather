@@ -1,3 +1,19 @@
+/*
+ * This file is part of Breezy Weather.
+ *
+ * Breezy Weather is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, version 3 of the License.
+ *
+ * Breezy Weather is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package org.breezyweather.sources.smg
 
 import android.content.Context
@@ -5,7 +21,6 @@ import android.graphics.Color
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Temperature
@@ -14,12 +29,13 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.R
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.sources.smg.json.SmgAirQualityResult
-import org.breezyweather.sources.smg.json.SmgAstroResult
 import org.breezyweather.sources.smg.json.SmgBulletinResult
 import org.breezyweather.sources.smg.json.SmgCurrentResult
 import org.breezyweather.sources.smg.json.SmgForecastResult
@@ -48,7 +64,7 @@ internal fun getCurrent(
         if (report.station?.getOrNull(0) !== null && stationName == "TAIPA GRANDE") {
             report.station[0].let {
                 current = CurrentWrapper(
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = it.Temperature?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()
                     ),
                     wind = Wind(
@@ -75,7 +91,6 @@ internal fun getCurrent(
 internal fun getDailyForecast(
     context: Context,
     dailyResult: SmgForecastResult,
-    astroResult: SmgAstroResult,
 ): List<DailyWrapper> {
     val dailyList = mutableListOf<DailyWrapper>()
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
@@ -85,31 +100,6 @@ internal fun getDailyForecast(
 
     var maxTemp: Double?
     var minTemp: Double?
-    var date: Date
-    val sunriseMap = mutableMapOf<String, Date>()
-    val sunsetMap = mutableMapOf<String, Date>()
-    val moonriseMap = mutableMapOf<String, Date>()
-    val moonsetMap = mutableMapOf<String, Date>()
-    astroResult.let {
-        if (it.displayDate?.en != null) {
-            if (!it.sunrise.isNullOrBlank()) {
-                date = dateTimeFormatter.parse("${it.displayDate.en} ${it.sunrise}")!!
-                sunriseMap[formatter.format(date.time)] = date
-            }
-            if (!it.sunset.isNullOrBlank()) {
-                date = dateTimeFormatter.parse("${it.displayDate.en} ${it.sunset}")!!
-                sunsetMap[formatter.format(date.time)] = date
-            }
-            if (!it.moonrise.isNullOrBlank()) {
-                date = dateTimeFormatter.parse("${it.displayDate.en} ${it.moonrise}")!!
-                moonriseMap[formatter.format(date.time)] = date
-            }
-            if (!it.moonset.isNullOrBlank()) {
-                date = dateTimeFormatter.parse("${it.displayDate.en} ${it.moonset}")!!
-                moonsetMap[formatter.format(date.time)] = date
-            }
-        }
-    }
 
     dailyResult.forecast?.Custom?.getOrNull(0)?.WeatherForecast?.forEach {
         if (it.ValidFor?.getOrNull(0) !== null) {
@@ -124,27 +114,19 @@ internal fun getDailyForecast(
             dailyList.add(
                 DailyWrapper(
                     date = formatter.parse(it.ValidFor[0])!!,
-                    day = HalfDay(
+                    day = HalfDayWrapper(
                         weatherText = getWeatherText(context, it.dailyWeatherStatus?.getOrNull(0)),
                         weatherCode = getWeatherCode(it.dailyWeatherStatus?.getOrNull(0)),
-                        temperature = Temperature(
+                        temperature = TemperatureWrapper(
                             temperature = maxTemp
                         )
                     ),
-                    night = HalfDay(
+                    night = HalfDayWrapper(
                         weatherText = getWeatherText(context, it.dailyWeatherStatus?.getOrNull(0)),
                         weatherCode = getWeatherCode(it.dailyWeatherStatus?.getOrNull(0)),
-                        temperature = Temperature(
+                        temperature = TemperatureWrapper(
                             temperature = minTemp
                         )
-                    ),
-                    sun = Astro(
-                        riseDate = sunriseMap.getOrElse(it.ValidFor[0]) { null },
-                        setDate = sunsetMap.getOrElse(it.ValidFor[0]) { null }
-                    ),
-                    moon = Astro(
-                        riseDate = moonriseMap.getOrElse(it.ValidFor[0]) { null },
-                        setDate = moonsetMap.getOrElse(it.ValidFor[0]) { null }
                     )
                 )
             )
@@ -167,7 +149,7 @@ internal fun getHourlyForecast(
                     date = formatter.parse(it.ValidFor[0] + " " + it.f_time[0])!!,
                     weatherText = getWeatherText(context, it.hourlyWeatherStatus?.getOrNull(0)?.Value?.getOrNull(0)),
                     weatherCode = getWeatherCode(it.hourlyWeatherStatus?.getOrNull(0)?.Value?.getOrNull(0)),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = it.Temperature?.getOrNull(0)?.Value?.getOrNull(0)?.toDoubleOrNull()
                     ),
                     wind = Wind(

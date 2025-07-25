@@ -27,6 +27,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetDayProvider
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
@@ -82,8 +83,8 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         pollenIndexSource: PollenIndexSource?,
     ): RemoteViews {
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.temperatureUnit
-        val speedUnit = settings.speedUnit
+        val temperatureUnit = settings.getTemperatureUnit(context)
+        val speedUnit = settings.getSpeedUnit(context)
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
         val color = WidgetColor(
             context,
@@ -240,7 +241,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         }
         if (viewStyle == "vertical") {
             weather.current?.temperature?.temperature?.let {
-                val negative = temperatureUnit.getValueWithoutUnit(it) < 0
+                val negative = temperatureUnit.getConvertedUnit(it) < 0
                 views.setViewVisibility(R.id.widget_day_sign, if (negative) View.VISIBLE else View.GONE)
             } ?: run {
                 views.setViewVisibility(R.id.widget_day_symbol, View.GONE)
@@ -274,24 +275,26 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
         }
         if (textSize != 100) {
             val signSymbolSize = context.resources.getDimensionPixelSize(R.dimen.widget_current_weather_icon_size)
-                .toFloat() * textSize / 100f
+                .toFloat()
+                .times(textSize)
+                .div(100f)
             views.apply {
                 setTextViewTextSize(
                     R.id.widget_day_title,
                     TypedValue.COMPLEX_UNIT_PX,
-                    getTitleSize(context, viewStyle) * textSize / 100f
+                    getTitleSize(context, viewStyle).times(textSize).div(100f)
                 )
                 setTextViewTextSize(R.id.widget_day_sign, TypedValue.COMPLEX_UNIT_PX, signSymbolSize)
                 setTextViewTextSize(R.id.widget_day_symbol, TypedValue.COMPLEX_UNIT_PX, signSymbolSize)
                 setTextViewTextSize(
                     R.id.widget_day_subtitle,
                     TypedValue.COMPLEX_UNIT_PX,
-                    getSubtitleSize(context, viewStyle) * textSize / 100f
+                    getSubtitleSize(context, viewStyle).times(textSize).div(100f)
                 )
                 setTextViewTextSize(
                     R.id.widget_day_time,
                     TypedValue.COMPLEX_UNIT_PX,
-                    getTimeSize(context, viewStyle) * textSize / 100f
+                    getTimeSize(context, viewStyle).times(textSize).div(100f)
                 )
             }
         }
@@ -319,7 +322,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 stringBuilder.append(location.getPlace(context))
                 weather.current?.temperature?.temperature?.let {
                     stringBuilder.append("\n")
-                        .append(unit.getValueText(context, it, 0))
+                        .append(unit.formatMeasure(context, it, 0))
                 }
                 stringBuilder.toString()
             }
@@ -332,18 +335,18 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                     if (stringBuilder.toString().isNotEmpty()) {
                         stringBuilder.append(" ")
                     }
-                    stringBuilder.append(unit.getValueText(context, it, 0))
+                    stringBuilder.append(unit.formatMeasure(context, it, 0))
                 }
                 stringBuilder.toString()
             }
             "nano", "pixel" -> weather.current?.temperature?.temperature?.let {
-                unit.getValueText(context, it, 0)
+                unit.formatMeasure(context, it, 0)
             }
             "temp" -> weather.current?.temperature?.temperature?.let {
-                unit.getShortValueText(context, it)
+                unit.formatMeasureShort(context, it)
             }
             "vertical" -> weather.current?.temperature?.temperature?.let {
-                abs(unit.getValueWithoutUnit(it).roundToInt()).toString()
+                abs(unit.getConvertedUnit(it).roundToInt()).toString()
             }
             else -> null
         }
@@ -375,7 +378,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 stringBuilder.toString()
             }
             "oreo", "oreo_google_sans" -> weather.current?.temperature?.temperature?.let {
-                unit.getValueText(context, it, 0)
+                unit.formatMeasure(context, it, 0)
             }
             else -> null
         }
@@ -393,40 +396,55 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
     ): String? {
         return when (subtitleData) {
             "time" -> when (viewStyle) {
-                "rectangle" -> location.getPlace(context) + " " +
+                "rectangle" -> location.getPlace(context) +
+                    " " +
                     (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: "")
 
-                "symmetry" -> Date().getWeek(location, context) + " " +
+                "symmetry" -> Date().getWeek(location, context) +
+                    " " +
                     (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: "")
 
-                "tile", "vertical" -> location.getPlace(context) + " " + Date().getWeek(location, context) + " " +
+                "tile", "vertical" -> location.getPlace(context) +
+                    " " +
+                    Date().getWeek(location, context) +
+                    " " +
                     (weather.base.refreshTime?.getFormattedTime(location, context, context.is12Hour) ?: "")
 
                 else -> null
             }
             "aqi" -> weather.current?.airQuality?.let { airQuality ->
                 if (airQuality.getIndex() != null && airQuality.getName(context) != null) {
-                    airQuality.getName(context, null) + " (" + airQuality.getIndex(null) + ")"
+                    context.getString(
+                        R.string.parenthesis,
+                        UnitUtils.formatInt(context, airQuality.getIndex()!!),
+                        airQuality.getName(context)
+                    )
                 } else {
                     null
                 }
             }
             "wind" -> weather.current?.wind?.getShortDescription(context, speedUnit)
             "lunar" -> when (viewStyle) {
-                "rectangle" -> location.getPlace(context) + " " +
+                "rectangle" -> location.getPlace(context) +
+                    " " +
                     Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
 
-                "symmetry" -> Date().getWeek(location, context) + " " +
+                "symmetry" -> Date().getWeek(location, context) +
+                    " " +
                     Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
 
-                "tile", "mini", "vertical" -> location.getPlace(context) + " " + Date().getWeek(location, context) +
-                    " " + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
+                "tile", "mini", "vertical" -> location.getPlace(context) +
+                    " " +
+                    Date().getWeek(location, context) +
+                    " " +
+                    Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
 
                 else -> null
             }
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
-                context.getString(R.string.temperature_feels_like) + " " +
-                    temperatureUnit.getValueText(context, it, 0)
+                context.getString(R.string.temperature_feels_like) +
+                    " " +
+                    temperatureUnit.formatMeasure(context, it, 0)
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)
         }

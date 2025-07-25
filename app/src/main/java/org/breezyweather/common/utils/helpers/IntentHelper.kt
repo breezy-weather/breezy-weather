@@ -24,17 +24,17 @@ import android.net.Uri
 import android.os.Build
 import android.provider.Settings
 import androidx.annotation.RequiresApi
+import androidx.core.net.toUri
 import breezyweather.domain.location.model.Location
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.ui.about.AboutActivity
 import org.breezyweather.ui.alert.AlertActivity
-import org.breezyweather.ui.daily.DailyActivity
+import org.breezyweather.ui.details.DetailsActivity
 import org.breezyweather.ui.main.MainActivity
-import org.breezyweather.ui.pollen.PollenActivity
 import org.breezyweather.ui.search.SearchActivity
 import org.breezyweather.ui.settings.activities.CardDisplayManageActivity
 import org.breezyweather.ui.settings.activities.DailyTrendDisplayManageActivity
 import org.breezyweather.ui.settings.activities.DependenciesActivity
-import org.breezyweather.ui.settings.activities.DetailDisplayManageActivity
 import org.breezyweather.ui.settings.activities.HourlyTrendDisplayManageActivity
 import org.breezyweather.ui.settings.activities.PreviewIconActivity
 import org.breezyweather.ui.settings.activities.PrivacyPolicyActivity
@@ -100,12 +100,18 @@ object IntentHelper {
     fun startDailyWeatherActivity(
         activity: Activity,
         formattedId: String?,
-        index: Int,
+        index: Int? = null,
+        chart: DetailScreen? = null,
     ) {
         activity.startActivity(
-            Intent(activity, DailyActivity::class.java).apply {
-                putExtra(DailyActivity.KEY_FORMATTED_LOCATION_ID, formattedId)
-                putExtra(DailyActivity.KEY_CURRENT_DAILY_INDEX, index)
+            Intent(activity, DetailsActivity::class.java).apply {
+                putExtra(DetailsActivity.KEY_FORMATTED_LOCATION_ID, formattedId)
+                if (index != null) {
+                    putExtra(DetailsActivity.KEY_CURRENT_DAILY_INDEX, index)
+                }
+                if (chart != null) {
+                    putExtra(DetailsActivity.KEY_CURRENT_PAGE, chart.id)
+                }
             }
         )
     }
@@ -117,17 +123,6 @@ object IntentHelper {
                 if (alertId != null) {
                     putExtra(AlertActivity.KEY_ALERT_ID, alertId)
                 }
-            }
-        )
-    }
-
-    fun startPollenActivity(activity: Activity, location: Location) {
-        activity.startActivity(
-            Intent(activity, PollenActivity::class.java).apply {
-                putExtra(
-                    PollenActivity.KEY_POLLEN_ACTIVITY_LOCATION_FORMATTED_ID,
-                    location.formattedId
-                )
             }
         )
     }
@@ -148,12 +143,8 @@ object IntentHelper {
         activity.startActivity(Intent(activity, DailyTrendDisplayManageActivity::class.java))
     }
 
-    fun startHourlyTrendDisplayManageActivityForResult(activity: Activity) {
+    fun startHourlyTrendDisplayManageActivity(activity: Activity) {
         activity.startActivity(Intent(activity, HourlyTrendDisplayManageActivity::class.java))
-    }
-
-    fun startDetailDisplayManageActivity(activity: Activity) {
-        activity.startActivity(Intent(activity, DetailDisplayManageActivity::class.java))
     }
 
     fun startMainScreenSettingsActivity(activity: Activity) {
@@ -222,6 +213,15 @@ object IntentHelper {
 
     fun startLocationSettingsActivity(context: Context) {
         context.startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+    }
+
+    fun startBreezyActivity(activity: Activity, location: Location) {
+        activity.startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                "geo:${location.latitude},${location.longitude}".toUri()
+            )
+        )
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

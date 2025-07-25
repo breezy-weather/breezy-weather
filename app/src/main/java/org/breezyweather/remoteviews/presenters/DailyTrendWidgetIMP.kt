@@ -20,7 +20,6 @@ import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.os.Looper
@@ -30,10 +29,11 @@ import android.widget.RemoteViews
 import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.core.graphics.createBitmap
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendDailyProvider
-import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.utils.helpers.AsyncHelper
@@ -48,7 +48,6 @@ import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
-import java.text.NumberFormat
 import kotlin.math.max
 import kotlin.math.min
 
@@ -99,7 +98,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
         var highestTemperature: Float? = null
         var lowestTemperature: Float? = null
         val minimalIcon = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons
-        val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
         val lightTheme = color.isLightThemed
 
         // TODO: Redundant with DailyTemperatureAdapter
@@ -224,18 +223,16 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                     buildTemperatureArrayForItem(daytimeTemperatures, i),
                     buildTemperatureArrayForItem(nighttimeTemperatures, i),
                     daily.day?.temperature?.temperature?.let {
-                        temperatureUnit.getShortValueText(context, it)
+                        temperatureUnit.formatMeasureShort(context, it)
                     },
                     daily.night?.temperature?.temperature?.let {
-                        temperatureUnit.getShortValueText(context, it)
+                        temperatureUnit.formatMeasureShort(context, it)
                     },
                     highestTemperature,
                     lowestTemperature,
                     if (p > 0) p else null,
                     if (p > 0) {
-                        NumberFormat.getPercentInstance(context.currentLocale).apply {
-                            maximumFractionDigits = 0
-                        }.format(p.div(100.0))
+                        UnitUtils.formatPercent(context, p.toDouble())
                     } else {
                         null
                     },
@@ -321,11 +318,7 @@ object DailyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
             drawableView.measuredWidth,
             drawableView.measuredHeight
         )
-        val cache = Bitmap.createBitmap(
-            drawableView.measuredWidth,
-            drawableView.measuredHeight,
-            Bitmap.Config.ARGB_8888
-        )
+        val cache = createBitmap(drawableView.measuredWidth, drawableView.measuredHeight)
         val canvas = Canvas(cache)
         drawableView.draw(canvas)
         views.setImageViewBitmap(R.id.widget_remote_drawable, cache)

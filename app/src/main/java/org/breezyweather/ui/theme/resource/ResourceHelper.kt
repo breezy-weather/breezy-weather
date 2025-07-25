@@ -31,6 +31,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.createBitmap
 import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationTextColor
@@ -163,8 +164,8 @@ object ResourceHelper {
     }
 
     fun createTempBitmap(context: Context, temp: Double): Bitmap {
-        val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
-        val temperatureFormatted = temperatureUnit.getShortValueText(context, temp)
+        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
+        val temperatureFormatted = temperatureUnit.formatMeasureShort(context, temp)
 
         val iconSize = 72
         val bounds = Rect()
@@ -177,7 +178,7 @@ object ResourceHelper {
 
         // Consider leading whitespace and descenders to properly center the text.
         // Thanks to https://stackoverflow.com/a/32081250.
-        val bitmap = Bitmap.createBitmap(bounds.right, iconSize, Bitmap.Config.ARGB_8888)
+        val bitmap = createBitmap(bounds.right, iconSize)
         val canvas = Canvas(bitmap)
         canvas.drawText(
             temperatureFormatted,

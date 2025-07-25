@@ -24,6 +24,7 @@ import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import androidx.annotation.FloatRange
+import androidx.core.view.isNotEmpty
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
@@ -64,7 +65,7 @@ class DrawerLayout @JvmOverloads constructor(
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        if (childCount > 0) {
+        if (isNotEmpty()) {
             mDrawer = getChildAt(0)
         }
         if (childCount > 1) {
@@ -108,7 +109,7 @@ class DrawerLayout @JvmOverloads constructor(
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        if (childCount > 0) {
+        if (isNotEmpty()) {
             mDrawer = getChildAt(0)
         }
         if (childCount > 1) {

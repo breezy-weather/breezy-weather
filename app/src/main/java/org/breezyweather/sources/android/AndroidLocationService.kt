@@ -1,3 +1,19 @@
+/*
+ * This file is part of Breezy Weather.
+ *
+ * Breezy Weather is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, version 3 of the License.
+ *
+ * Breezy Weather is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package org.breezyweather.sources.android
 
 import android.Manifest
@@ -22,13 +38,13 @@ import javax.inject.Inject
 import kotlin.time.Duration.Companion.seconds
 
 @SuppressLint("MissingPermission")
-class AndroidLocationService @Inject constructor() : LocationSource, LocationListenerCompat {
+class AndroidLocationService @Inject constructor() : LocationSource {
 
     override val id = "native"
     override val name = "Android"
 
     private lateinit var locationManager: LocationManager
-    private var androidLocation: Location? = null
+    private lateinit var locationListener: LocationListenerCompat
 
     private val bestProvider: String
         get() = when {
@@ -55,8 +71,13 @@ class AndroidLocationService @Inject constructor() : LocationSource, LocationLis
         }
 
         return rxObservable {
-            androidLocation = null
-            clearLocationUpdates()
+            locationListener = LocationListenerCompat {
+                clearLocationUpdates(locationListener)
+                val result = trySend(LocationPositionWrapper(longitude = it.longitude, latitude = it.latitude))
+                if (!result.isSuccess) {
+                    throw LocationException()
+                }
+            }
 
             LocationManagerCompat.requestLocationUpdates(
                 locationManager,
@@ -64,22 +85,13 @@ class AndroidLocationService @Inject constructor() : LocationSource, LocationLis
                 LocationRequestCompat.Builder(1000).apply {
                     setQuality(LocationRequestCompat.QUALITY_BALANCED_POWER_ACCURACY)
                 }.build(),
-                this@AndroidLocationService,
+                locationListener,
                 Looper.getMainLooper()
             )
+            delay(TIMEOUT_MILLIS)
 
-            // TODO: Dirty, should be improved
-            // wait X seconds for callbacks to set locations
-            for (i in 1..TIMEOUT_MILLIS / 1000) {
-                delay(1000)
-
-                androidLocation?.let {
-                    clearLocationUpdates()
-                    send(LocationPositionWrapper(it.latitude, it.longitude))
-                }
-            }
-
-            clearLocationUpdates()
+            // Fall back to the last known location if it failed to find the location in the given time frame
+            clearLocationUpdates(locationListener)
             getLastKnownLocation(locationManager)?.let {
                 send(LocationPositionWrapper(it.latitude, it.longitude))
             } ?: run {
@@ -87,27 +99,14 @@ class AndroidLocationService @Inject constructor() : LocationSource, LocationLis
                 throw LocationException()
             }
         }.doOnDispose {
-            clearLocationUpdates()
+            if (this::locationListener.isInitialized) {
+                clearLocationUpdates(locationListener)
+            }
         }
     }
 
-    private fun clearLocationUpdates() {
-        locationManager.removeUpdates(this)
-    }
-
-    // location listener.
-    override fun onLocationChanged(location: Location) {
-        clearLocationUpdates()
-        androidLocation = location
-        LogHelper.log(msg = "Got GPS location")
-    }
-
-    override fun onProviderEnabled(provider: String) {
-        // do nothing.
-    }
-
-    override fun onProviderDisabled(provider: String) {
-        // do nothing.
+    private fun clearLocationUpdates(listener: LocationListenerCompat) {
+        locationManager.removeUpdates(listener)
     }
 
     override val permissions: Array<String>
@@ -117,9 +116,8 @@ class AndroidLocationService @Inject constructor() : LocationSource, LocationLis
         )
 
     companion object {
-        private val TIMEOUT_MILLIS = 10.seconds.inWholeMilliseconds
+        private val TIMEOUT_MILLIS = 15.seconds.inWholeMilliseconds
 
-        @SuppressLint("MissingPermission")
         private fun getLastKnownLocation(
             locationManager: LocationManager,
         ): Location? {

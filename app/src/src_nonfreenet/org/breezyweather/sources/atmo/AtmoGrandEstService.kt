@@ -38,7 +38,11 @@ class AtmoGrandEstService @Inject constructor(
 
     override val id = "atmograndest"
     override val name = "ATMO GrandEst (${Locale(injectedContext.currentLocale.code, "FR").displayCountry})"
-    override val attribution = "ATMO GrandEst (licence ODbL https://opendatacommons.org/licenses/odbl )"
+    override val attribution = "ATMO GrandEst (licence ODbL)"
+    override val attributionLinks = mapOf(
+        "ATMO GrandEst" to "https://www.atmo-grandest.eu/",
+        "licence ODbL" to "https://opendatacommons.org/licenses/odbl"
+    )
     override val privacyPolicyUrl = "https://www.atmo-grandest.eu/article/politique-de-confidentialite"
 
     override val context = injectedContext

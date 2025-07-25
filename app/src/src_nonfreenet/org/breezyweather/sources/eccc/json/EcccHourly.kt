@@ -24,6 +24,8 @@ data class EcccHourly(
     val iconCode: String?,
     val condition: String?,
 
+    val uv: EcccUv?,
+
     val temperature: EcccUnit?,
     val feelsLike: EcccUnit?,
 

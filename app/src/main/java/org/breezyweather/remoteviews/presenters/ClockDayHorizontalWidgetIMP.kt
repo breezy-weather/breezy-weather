@@ -79,7 +79,7 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
         val provider = ResourcesProviderFactory.newInstance
         val dayTime = location.isDaylight
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.temperatureUnit
+        val temperatureUnit = settings.getTemperatureUnit(context)
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
 
         // Clock
@@ -142,7 +142,7 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setTextViewText(
             R.id.widget_clock_day_alternate_calendar,
             if (CalendarHelper.getAlternateCalendarSetting(context) != null && !hideAlternateCalendar) {
-                " - " + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
+                " – " + Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
             } else {
                 ""
             }
@@ -151,7 +151,7 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
         builder.append(location.getPlace(context))
         weather.current?.temperature?.temperature?.let {
             builder.append(" ").append(
-                temperatureUnit.getValueText(context, it, 0)
+                temperatureUnit.formatMeasure(context, it, 0)
             )
         }
         views.setTextViewText(R.id.widget_clock_day_subtitle, builder.toString())
@@ -169,12 +169,15 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
             }
         }
         if (textSize != 100) {
-            val clockSize = context.resources.getDimensionPixelSize(R.dimen.widget_current_weather_icon_size)
-                .toFloat() * textSize / 100f
-            val clockAASize = context.resources.getDimensionPixelSize(R.dimen.widget_aa_text_size)
-                .toFloat() * textSize / 100f
-            val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size)
-                .toFloat() * textSize / 100f
+            val clockSize = context.resources.getDimensionPixelSize(R.dimen.widget_current_weather_icon_size).toFloat()
+                .times(textSize)
+                .div(100f)
+            val clockAASize = context.resources.getDimensionPixelSize(R.dimen.widget_aa_text_size).toFloat()
+                .times(textSize)
+                .div(100f)
+            val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size).toFloat()
+                .times(textSize)
+                .div(100f)
             views.apply {
                 setTextViewTextSize(R.id.widget_clock_day_clock_light, TypedValue.COMPLEX_UNIT_PX, clockSize)
                 setTextViewTextSize(R.id.widget_clock_day_clock_normal, TypedValue.COMPLEX_UNIT_PX, clockSize)

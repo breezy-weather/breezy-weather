@@ -1,0 +1,37 @@
+ALTER TABLE dailys
+DROP COLUMN daytime_real_feel_shader_temperature;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_real_feel_shader_temperature;
+
+ALTER TABLE dailys
+RENAME COLUMN daytime_real_feel_temperature TO daytime_source_feels_like_temperature;
+
+ALTER TABLE dailys
+RENAME COLUMN nighttime_real_feel_temperature TO nighttime_source_feels_like_temperature;
+
+ALTER TABLE dailys
+RENAME COLUMN daytime_wet_bulb_temperature TO daytime_humidex;
+
+ALTER TABLE dailys
+RENAME COLUMN nighttime_wet_bulb_temperature TO nighttime_humidex;
+
+
+ALTER TABLE hourlys
+DROP COLUMN real_feel_shader_temperature;
+
+ALTER TABLE hourlys
+RENAME COLUMN real_feel_temperature TO source_feels_like_temperature;
+
+ALTER TABLE hourlys
+RENAME COLUMN wet_bulb_temperature TO humidex;
+
+
+ALTER TABLE weathers
+DROP COLUMN real_feel_shader_temperature;
+
+ALTER TABLE weathers
+RENAME COLUMN real_feel_temperature TO source_feels_like_temperature;
+
+ALTER TABLE weathers
+RENAME COLUMN wet_bulb_temperature TO humidex;

@@ -29,6 +29,12 @@ abstract class HttpSource : Source {
     abstract val privacyPolicyUrl: String
 
     /**
+     * Add a link each time a string appears in an attribution
+     * Example: <"Open-Meteo", "https://open-meteo.com/">
+     */
+    open val attributionLinks: Map<String, String> = emptyMap()
+
+    /**
      * The continent the source is mainly based of
      *
      * Worldwide sources will use `SourceContinent.WORLDWIDE`

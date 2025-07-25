@@ -26,9 +26,10 @@ val Context.currentLocale: Locale
     get() {
         return AppCompatDelegate.getApplicationLocales().get(0)
             ?: if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                this.resources.configuration.locales[0]
+                resources.configuration.locales[0]
             } else {
-                this.resources.configuration.locale
+                @Suppress("DEPRECATION")
+                resources.configuration.locale
             }
     }
 
@@ -37,12 +38,7 @@ val Locale.code: String
     get() {
         val language = language
         val country = country
-        return if (!country.isNullOrEmpty() &&
-            (
-                country.equals("tw", ignoreCase = true) ||
-                    country.equals("hk", ignoreCase = true)
-                )
-        ) {
+        return if (isTraditionalChinese) {
             language.lowercase() + "-" + country.lowercase()
         } else {
             language.lowercase()
@@ -64,14 +60,7 @@ val Locale.codeWithCountry: String
 // Accepts "Hant" for traditional chinese but no country code otherwise
 val Locale.codeForGeonames: String
     get() {
-        val language = language
-        val country = country
-        return if (!country.isNullOrEmpty() &&
-            (
-                country.equals("tw", ignoreCase = true) ||
-                    country.equals("hk", ignoreCase = true)
-                )
-        ) {
+        return if (isTraditionalChinese) {
             language.lowercase() + "-Hant"
         } else {
             language.lowercase()
@@ -81,15 +70,7 @@ val Locale.codeForGeonames: String
 // Everything in uppercase + "ZHT" for traditional Chinese
 val Locale.codeForNaturalEarthService: String
     get() {
-        val language = language
-        val country = country
-        return if (!country.isNullOrEmpty() &&
-            (
-                country.equals("tw", ignoreCase = true) ||
-                    country.equals("hk", ignoreCase = true) ||
-                    country.equals("mo", ignoreCase = true)
-                )
-        ) {
+        return if (isTraditionalChinese) {
             language.uppercase() + "T"
         } else {
             language.uppercase()
@@ -97,10 +78,20 @@ val Locale.codeForNaturalEarthService: String
     }
 
 val Locale.isChinese: Boolean
-    get() = code.startsWith("zh")
+    get() = language.equals("zh", ignoreCase = true)
+
+// There is no way to access the script used, so assume Taiwan, Hong Kong and Macao
+val Locale.isTraditionalChinese: Boolean
+    get() = isChinese &&
+        !country.isNullOrEmpty() &&
+        (
+            country.equals("TW", ignoreCase = true) ||
+                country.equals("HK", ignoreCase = true) ||
+                country.equals("MO", ignoreCase = true)
+            )
 
 val Locale.isIndian: Boolean
-    get() = code.startsWith("hi") || code.startsWith("mr")
+    get() = language.equals("hi", ignoreCase = true) || language.equals("mr", ignoreCase = true)
 
 /**
  * Replaces the given string to have at most [count] characters using [replacement] at its end.
@@ -115,7 +106,7 @@ fun String.chop(count: Int, replacement: String = "…"): String {
 }
 
 fun String.capitalize(locale: Locale = Locale("en", "001")): String {
-    return this.replaceFirstChar { firstChar ->
+    return replaceFirstChar { firstChar ->
         if (firstChar.isLowerCase()) {
             firstChar.titlecase(locale)
         } else {
@@ -125,7 +116,7 @@ fun String.capitalize(locale: Locale = Locale("en", "001")): String {
 }
 
 fun String.uncapitalize(locale: Locale = Locale("en", "001")): String {
-    return this.replaceFirstChar { firstChar ->
+    return replaceFirstChar { firstChar ->
         if (firstChar.isUpperCase()) {
             firstChar.lowercase(locale)
         } else {

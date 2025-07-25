@@ -24,11 +24,12 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
@@ -39,7 +40,7 @@ import kotlin.math.max
  * Daily feels like adapter.
  */
 class DailyFeelsLikeAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
     unit: TemperatureUnit,
@@ -59,7 +60,7 @@ class DailyFeelsLikeAdapter(
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        fun onBindView(activity: GeoActivity, location: Location, position: Int) {
+        fun onBindView(activity: BreezyActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_feels_like))
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]
@@ -68,7 +69,7 @@ class DailyFeelsLikeAdapter(
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))
                 day.temperature?.feelsLikeTemperature?.let {
-                    talkBackBuilder.append(mTemperatureUnit.getValueVoice(activity, it))
+                    talkBackBuilder.append(mTemperatureUnit.formatContentDescription(activity, it))
                 }
             }
             daily.night?.let { night ->
@@ -76,7 +77,7 @@ class DailyFeelsLikeAdapter(
                     .append(activity.getString(R.string.nighttime))
                     .append(activity.getString(R.string.colon_separator))
                 night.temperature?.feelsLikeTemperature?.let {
-                    talkBackBuilder.append(mTemperatureUnit.getValueVoice(activity, it))
+                    talkBackBuilder.append(mTemperatureUnit.formatContentDescription(activity, it))
                 }
             }
             dailyItem.setDayIconDrawable(
@@ -87,14 +88,14 @@ class DailyFeelsLikeAdapter(
                 buildTemperatureArrayForItem(mDaytimeTemperatures, position),
                 buildTemperatureArrayForItem(mNighttimeTemperatures, position),
                 daily.day?.temperature?.feelsLikeTemperature?.let {
-                    mTemperatureUnit.getShortValueText(activity, it)
+                    mTemperatureUnit.formatMeasureShort(activity, it)
                 } ?: daily.day?.temperature?.temperature?.let {
-                    mTemperatureUnit.getShortValueText(activity, it)
+                    mTemperatureUnit.formatMeasureShort(activity, it)
                 },
                 daily.night?.temperature?.feelsLikeTemperature?.let {
-                    mTemperatureUnit.getShortValueText(activity, it)
+                    mTemperatureUnit.formatMeasureShort(activity, it)
                 } ?: daily.night?.temperature?.temperature?.let {
-                    mTemperatureUnit.getShortValueText(activity, it)
+                    mTemperatureUnit.formatMeasureShort(activity, it)
                 },
                 mHighestTemperature,
                 mLowestTemperature,
@@ -111,11 +112,11 @@ class DailyFeelsLikeAdapter(
                     WeatherViewController.getWeatherKind(location),
                     WeatherViewController.isDaylight(location)
                 )
-            val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
+            val lightTheme = ThemeManager.isLightTheme(itemView.context, location)
             mPolylineAndHistogramView.setLineColors(
                 themeColors[1],
                 themeColors[2],
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
             mPolylineAndHistogramView.setShadowColors(
                 themeColors[1],
@@ -123,9 +124,9 @@ class DailyFeelsLikeAdapter(
                 lightTheme
             )
             mPolylineAndHistogramView.setTextColors(
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                MainThemeColorProvider.getColor(location, R.attr.colorPrecipitationProbability)
+                activity.getThemeColor(R.attr.colorTitleText),
+                activity.getThemeColor(R.attr.colorBodyText),
+                activity.getThemeColor(R.attr.colorPrecipitationProbability)
             )
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 0.2f else 0.5f)
             dailyItem.setNightIconDrawable(
@@ -133,6 +134,9 @@ class DailyFeelsLikeAdapter(
                 missingIconVisibility = View.INVISIBLE
             )
             dailyItem.contentDescription = talkBackBuilder.toString()
+            dailyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_FEELS_LIKE)
+            }
         }
 
         @Size(3)

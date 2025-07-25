@@ -22,6 +22,7 @@ import android.os.Build
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -44,14 +45,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.DarkMode
+import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toBitmap
-import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.composables.AlertDialogLink
@@ -67,10 +69,12 @@ import org.breezyweather.ui.settings.preference.composables.ListPreferenceView
 import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.composables.PreferenceViewWithCard
 import org.breezyweather.ui.settings.preference.composables.SwitchPreferenceView
+import org.breezyweather.ui.settings.preference.largeSeparatorItem
 import org.breezyweather.ui.settings.preference.listPreferenceItem
+import org.breezyweather.ui.settings.preference.sectionFooterItem
+import org.breezyweather.ui.settings.preference.sectionHeaderItem
+import org.breezyweather.ui.settings.preference.smallSeparatorItem
 import org.breezyweather.ui.settings.preference.switchPreferenceItem
-import org.breezyweather.ui.theme.ThemeManager
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
@@ -79,6 +83,7 @@ fun AppearanceSettingsScreen(
     context: Context,
     onNavigateTo: (route: String) -> Unit,
     onNavigateBack: () -> Unit,
+    darkMode: DarkMode,
     modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = generateCollapsedScrollBehavior()
@@ -94,43 +99,75 @@ fun AppearanceSettingsScreen(
             )
         }
     ) { paddings ->
-        PreferenceScreen(paddingValues = paddings) {
+        PreferenceScreen(
+            paddingValues = paddings.plus(PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)))
+        ) {
+            sectionHeaderItem(R.string.settings_appearance_section_regional)
             listPreferenceItem(R.string.settings_appearance_language_title) { id ->
                 LanguagePreferenceView(
-                    titleId = id
+                    titleId = id,
+                    isFirst = true
                 )
             }
+            smallSeparatorItem()
+            clickablePreferenceItem(R.string.settings_units) { id ->
+                PreferenceViewWithCard(
+                    titleId = id,
+                    summaryId = R.string.settings_units_summary
+                ) {
+                    onNavigateTo(SettingsScreenRouter.Unit.route)
+                }
+            }
+            smallSeparatorItem()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                listPreferenceItem(R.string.settings_appearance_calendar_title) { id ->
+                    CalendarPreferenceView(
+                        titleId = id,
+                        isLast = true
+                    )
+                }
+            }
+            sectionFooterItem(R.string.settings_appearance_section_regional)
+
+            largeSeparatorItem()
+
+            sectionHeaderItem(R.string.settings_appearance_section_theme)
             listPreferenceItem(R.string.settings_appearance_dark_mode_title) { id ->
                 ListPreferenceView(
                     titleId = id,
-                    selectedKey = SettingsManager.getInstance(context).darkMode.id,
+                    selectedKey = darkMode.id,
                     valueArrayId = R.array.dark_mode_values,
                     nameArrayId = R.array.dark_modes,
                     card = true,
+                    isFirst = true,
+                    withState = false,
                     onValueChanged = {
-                        SettingsManager
-                            .getInstance(context)
-                            .darkMode = DarkMode.getInstance(it)
-
-                        AsyncHelper.delayRunOnUI({
-                            ThemeManager
-                                .getInstance(context)
-                                .update(darkMode = SettingsManager.getInstance(context).darkMode)
-                        }, 300)
+                        val newDarkMode = DarkMode.getInstance(it)
+                        SettingsManager.getInstance(context).darkMode = newDarkMode
+                        BreezyWeather.instance.updateDayNightMode(newDarkMode.value)
                     }
                 )
             }
+            smallSeparatorItem()
             switchPreferenceItem(R.string.settings_appearance_dark_mode_locations_title) { id ->
                 SwitchPreferenceView(
                     titleId = id,
-                    summaryOnId = R.string.settings_enabled,
-                    summaryOffId = R.string.settings_disabled,
-                    checked = SettingsManager.getInstance(context).dayNightModeForLocations,
+                    summaryOnId = if (darkMode == DarkMode.LIGHT) {
+                        R.string.settings_appearance_dark_mode_locations_always_enabled
+                    } else {
+                        R.string.settings_enabled
+                    },
+                    summaryOffId = R.string.settings_appearance_dark_mode_locations_disabled,
+                    // TODO: Always true when selected dark mode is “Always light”:
+                    checked = SettingsManager.getInstance(context).dayNightModeForLocations ||
+                        darkMode == DarkMode.LIGHT,
+                    enabled = darkMode != DarkMode.LIGHT,
                     onValueChanged = {
                         SettingsManager.getInstance(context).dayNightModeForLocations = it
                     }
                 )
             }
+            smallSeparatorItem()
             clickablePreferenceItem(
                 R.string.settings_appearance_icon_pack_title
             ) {
@@ -147,7 +184,8 @@ fun AppearanceSettingsScreen(
                     title = stringResource(it),
                     summary = ResourcesProviderFactory
                         .getNewInstance(iconProviderState.value)
-                        .providerName
+                        .providerName,
+                    isLast = true
                 ) {
                     dialogIconPackOpenState.value = true
                     /*(context as? Activity)?.let { activity ->
@@ -241,7 +279,7 @@ fun AppearanceSettingsScreen(
                                                     contentDescription = stringResource(
                                                         R.string.settings_icon_packs_check_details
                                                     ),
-                                                    tint = DayNightTheme.colors.titleColor
+                                                    tint = MaterialTheme.colorScheme.onSurface
                                                 )
                                             }
                                         }
@@ -258,21 +296,7 @@ fun AppearanceSettingsScreen(
                     )
                 }
             }
-            clickablePreferenceItem(R.string.settings_units) { id ->
-                PreferenceViewWithCard(
-                    titleId = id,
-                    summaryId = R.string.settings_units_summary
-                ) {
-                    onNavigateTo(SettingsScreenRouter.Unit.route)
-                }
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                listPreferenceItem(R.string.settings_appearance_calendar_title) { id ->
-                    CalendarPreferenceView(
-                        titleId = id
-                    )
-                }
-            }
+            sectionFooterItem(R.string.settings_appearance_section_theme)
 
             bottomInsetItem()
         }

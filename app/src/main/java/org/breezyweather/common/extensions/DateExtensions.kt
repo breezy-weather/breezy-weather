@@ -16,6 +16,7 @@
 
 package org.breezyweather.common.extensions
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.icu.text.DateTimePatternGenerator
 import android.icu.text.SimpleDateFormat
@@ -37,6 +38,7 @@ import java.util.Locale
 val Context.is12Hour: Boolean
     get() = !DateFormat.is24HourFormat(this)
 
+@SuppressLint("PrivateApi")
 fun Date.getRelativeTime(context: Context): String {
     try {
         // Reflection allows us to specify the locale
@@ -55,7 +57,7 @@ fun Date.getRelativeTime(context: Context): String {
             null,
             context.currentLocale,
             java.util.TimeZone.getDefault(),
-            this.time,
+            time,
             Date().time,
             DateUtils.MINUTE_IN_MILLIS,
             DateUtils.FORMAT_ABBREV_RELATIVE
@@ -65,7 +67,7 @@ fun Date.getRelativeTime(context: Context): String {
             LogHelper.log(msg = "Reflection of relative time failed")
         }
         return DateUtils.getRelativeTimeSpanString(
-            this.time,
+            time,
             Date().time,
             DateUtils.MINUTE_IN_MILLIS,
             DateUtils.FORMAT_ABBREV_RELATIVE
@@ -97,7 +99,8 @@ fun Date.getFormattedDate(
             timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it) } ?: TimeZone.getDefault()
         }.format(this)
     } else {
-        this.getFormattedDate(pattern, location?.javaTimeZone, locale)
+        @Suppress("DEPRECATION")
+        getFormattedDate(pattern, location?.javaTimeZone, locale)
     }
 }
 
@@ -107,9 +110,9 @@ fun Date.getFormattedTime(
     twelveHour: Boolean,
 ): String {
     return if (twelveHour) {
-        this.getFormattedDate("h:mm aa", location, context, withBestPattern = true)
+        getFormattedDate("h:mm aa", location, context, withBestPattern = true)
     } else {
-        this.getFormattedDate("HH:mm", location, context)
+        getFormattedDate("HH:mm", location, context)
     }
 }
 
@@ -117,7 +120,14 @@ fun Date.getFormattedShortDayAndMonth(
     location: Location,
     context: Context?,
 ): String {
-    return this.getFormattedDate("MM-dd", location, context, withBestPattern = true)
+    return getFormattedDate("MM-dd", location, context, withBestPattern = true)
+}
+
+fun Date.getFormattedDayOfTheMonth(
+    location: Location,
+    context: Context?,
+): String {
+    return getFormattedDate("dd", location, context, withBestPattern = true)
 }
 
 fun Date.getFormattedMediumDayAndMonth(
@@ -125,7 +135,7 @@ fun Date.getFormattedMediumDayAndMonth(
     context: Context?,
 ): String {
     val locale = context?.currentLocale ?: Locale("en", "001")
-    return this.getFormattedDate("d MMM", location, context, withBestPattern = true).capitalize(locale)
+    return getFormattedDate("d MMM", location, context, withBestPattern = true).capitalize(locale)
 }
 
 fun Date.getFormattedFullDayAndMonth(
@@ -133,7 +143,7 @@ fun Date.getFormattedFullDayAndMonth(
     context: Context?,
 ): String {
     val locale = context?.currentLocale ?: Locale("en", "001")
-    return this.getFormattedDate("d MMMM", location, context, withBestPattern = true).capitalize(locale)
+    return getFormattedDate("d MMMM", location, context, withBestPattern = true).capitalize(locale)
 }
 
 fun getShortWeekdayDayMonth(
@@ -248,5 +258,5 @@ fun Calendar.getDayOfMonth(twoDigits: Boolean = false): String {
 }
 
 fun Date.getIsoFormattedDate(location: Location): String {
-    return this.toCalendar(location).getIsoFormattedDate()
+    return toCalendar(location).getIsoFormattedDate()
 }

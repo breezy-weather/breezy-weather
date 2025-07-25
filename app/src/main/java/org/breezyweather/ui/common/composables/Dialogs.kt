@@ -50,7 +50,6 @@ import androidx.compose.ui.util.fastForEach
 import androidx.compose.ui.util.fastForEachIndexed
 import androidx.compose.ui.window.DialogProperties
 import org.breezyweather.R
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import kotlin.math.max
 
 @Composable
@@ -95,7 +94,7 @@ fun AlertDialogConfirmOnly(
                 )
             }
         },
-        textContentColor = DayNightTheme.colors.bodyColor,
+        textContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
         iconContentColor = MaterialTheme.colorScheme.onSurface
     )
 }
@@ -118,7 +117,7 @@ fun AlertDialogLink(
         text = {
             Text(
                 text = stringResource(R.string.about_open_link_message, linkToOpen),
-                color = DayNightTheme.colors.bodyColor,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
                 style = MaterialTheme.typography.bodyMedium
             )
         },

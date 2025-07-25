@@ -34,8 +34,8 @@ Below, you can find details about the support and implementation status for feat
 | 🇫🇰 Falkland Is.                  | [Met Office](#met-office) 🔐                       | Forecast, Address                                                                    |
 | 🇫🇴 Faroe Is.                     | [DMI](#danmarks-meteorologiske-institut)           | Forecast, Alerts, Address                                                            |
 | 🇫🇷 France                        | [Météo-France](#météo-france)                      | Forecast, Current, Nowcasting, Alerts, Normals, Address                              |
+| 🇫🇷 France                        | [Atmo France](#atmo-france)                        | Pollen                                                                               |
 | 🇫🇷 France                        | [Recosanté](#recosanté)                            | Pollen                                                                               |
-| 🇫🇷 France                        | [RNSA](#rnsa)                                      | Pollen                                                                               |
 | 🇫🇷 France (Auvergne-Rhône-Alpes) | [Atmo Auvergne-Rhône-Alpes](#atmo)                 | Air Quality                                                                          |
 | 🇫🇷 France (Grand Est)            | [ATMO GrandEst](#atmo)                             | Air Quality                                                                          |
 | 🇫🇷 France (Hauts-de-France)      | [Atmo Hauts-de-France](#atmo)                      | Air Quality                                                                          |
@@ -110,7 +110,7 @@ Below, you can find details about the support and implementation status for feat
 | ⏱️ **Hourly forecast**         | Up to 16 days                                                              |
 | ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
 | 😶‍🌫️ **Air quality**         | Available                                                                  |
-| 🤧 **Pollen**                  | Available in Europe for: Alder, Birch, Grass, Mugwort, Olive, and Ragweed  |
+| 🤧 **Pollen**                  | Available in Europe, based on Copernicus data (details below)              |
 | ☔ **Precipitation nowcasting** | Available (works best in Europe at the moment)                             |
 | ⚠️ **Alerts**                  | Not available                                                              |
 | 📊 **Normals**                 | Not available                                                              |
@@ -130,6 +130,18 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | Wind                      | ✅         | Cloud Cover       | ✅         |
 | Humidity                  | ✅         | Visibility        | ✅         |
 | Dew Point                 | ✅         | Ceiling           | ❌         |
+</details>
+
+<details><summary><h4>Details of available pollens from Open-Meteo</h4></summary>
+
+| Pollen     |
+|------------|
+| Alder      |
+| Birch      |
+| Olive tree |
+| Grass      |
+| Mugwort    |
+| Ragweed    |
 </details>
 
 ### AccuWeather
@@ -523,7 +535,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | Data                      | Available   | Data              | Available   |
 |---------------------------|-------------|-------------------|-------------|
 | Weather Condition         | ✅           | Pressure          | ✅ (Current) |
-| Temperature               | ✅           | UV Index          | ❌           |
+| Temperature               | ✅           | UV Index          | ✅           |
 | Precipitation             | ❌           | Sunshine Duration | ✅           |
 | Precipitation Probability | ✅           | Sun &amp; Moon    | ✅           |
 | Precipitation Duration    | ❌           | Moon Phase        | ❌           |
@@ -594,7 +606,6 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 </details>
 
 ### Ilmateenistus
-> Available starting from v5.4.0
 
 **[Ilmateeniustus](https://www.ilmateenistus.ee/)** is the official meteorological service of Estonia.
 
@@ -1219,12 +1230,10 @@ ATMO sources can be added as a secondary **Air Quality** source for some regions
 These sources can be added as a secondary **Alert** and **Temperature normals** source for their respective countries.
 
 ### EKUK
-> Available starting from v5.4.0
 
 **[Eesti Keskkonnauuringute Keskus](https://www.ohuseire.ee/)** (EKUK) can be added as a secondary **Air quality** and **Pollen** (later this year) source for Estonia.
 
 ### Environmental Protection Department
-> Available starting from v5.4.0
 
 **[Environmental Protection Department](https://www.aqhi.gov.hk/)** can be added as a secondary **Air quality** source for Hong Kong.
 
@@ -1233,11 +1242,25 @@ These sources can be added as a secondary **Alert** and **Temperature normals** 
 
 **[GeoNames](https://www.geonames.org/)** provides multilingual search for place names of more than 11 million locations worldwide. This source can be enabled as a **Search** source after adding your API key.
 
-### Recosanté
-**[Recosanté](https://recosante.beta.gouv.fr/)** can be added as a secondary **Pollen** source for France. It is sourcing its info from RNSA, so if you can add RNSA directly, it is probably better.
+### Atmo France
+**[Atmo France](https://www.atmo-france.org/)** can be added as a secondary **Pollen** source for France. Pollen concentration is calculated from Copernicus data.
 
-### RNSA
-**[Le Réseau National de Surveillance Aérobiologique](https://www.pollens.fr/)** can be added as a secondary **Pollen** source for France. If it doesn’t show up in the list, try adding your location with a different search source, or if you use current location, use a different “Address lookup”. Technically, this is due to missing department info (administration level 2 code) on the location.
+<details><summary><h4>Details of available pollens from Atmo France</h4></summary>
+
+| Pollen               | Availability                        |
+|----------------------|-------------------------------------|
+| Alder (Aulne)        | January to June                     |
+| Birch (Bouleau)      | March to June                       |
+| Olive tree (Olivier) | April to June                       |
+| Grass (Graminées)    | March to August (peak in June-July) |
+| Mugwort (Armoise)    | June to October                     |
+| Ragweed (Ambroisie)  | June to October (as early as April) |
+</details>
+
+### Recosanté
+**[Recosanté](https://recosante.beta.gouv.fr/)** can be added as a secondary **Pollen** source for France. Only a pollen level is available, and not the concentration. Since it is sourcing its info from Atmo France which has concentration available, it’s best to use Atmo France source directly whenever possible.
+
+**April 2025 update: Recosanté is temporarily not producing any data**
 
 ### WMO Severe Weather
 The **[WMO Severe Weather Information Centre](https://severeweather.wmo.int/)** is World Meteorological Organisation’s central repository of current and upcoming weather warnings from more than 130 countries and territories worldwide. This source can be added as a secondary **Alert** source, which is particularly useful if the selected national source for your location does not provide Alert information.

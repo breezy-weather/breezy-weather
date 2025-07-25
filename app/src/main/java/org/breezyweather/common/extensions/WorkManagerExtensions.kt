@@ -51,6 +51,6 @@ suspend fun CoroutineWorker.setForegroundSafely() {
     }
 }
 fun WorkManager.isRunning(tag: String): Boolean {
-    val list = this.getWorkInfosByTag(tag).get()
+    val list = getWorkInfosByTag(tag).get()
     return list.any { it.state == WorkInfo.State.RUNNING }
 }

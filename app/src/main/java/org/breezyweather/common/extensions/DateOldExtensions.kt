@@ -41,12 +41,12 @@ fun Date.toCalendarWithTimeZone(zone: TimeZone): Calendar {
  * @return Date
  */
 fun String.toDateNoHour(timeZoneP: TimeZone = TimeZone.getDefault()): Date? {
-    if (this.isEmpty() || this.length < 10) return null
+    if (isEmpty() || length < 10) return null
     return Calendar.getInstance().also {
         it.timeZone = timeZoneP
-        it.set(Calendar.YEAR, this.substring(0, 4).toInt())
-        it.set(Calendar.MONTH, this.substring(5, 7).toInt() - 1)
-        it.set(Calendar.DAY_OF_MONTH, this.substring(8, 10).toInt())
+        it.set(Calendar.YEAR, substring(0, 4).toInt())
+        it.set(Calendar.MONTH, substring(5, 7).toInt() - 1)
+        it.set(Calendar.DAY_OF_MONTH, substring(8, 10).toInt())
         it.set(Calendar.HOUR_OF_DAY, 0)
         it.set(Calendar.MINUTE, 0)
         it.set(Calendar.SECOND, 0)
@@ -56,7 +56,7 @@ fun String.toDateNoHour(timeZoneP: TimeZone = TimeZone.getDefault()): Date? {
 
 @Deprecated("Makes no sense, must be replaced")
 fun Date.toTimezone(timeZone: TimeZone = TimeZone.getDefault()): Date {
-    val calendarWithTimeZone = this.toCalendarWithTimeZone(timeZone)
+    val calendarWithTimeZone = toCalendarWithTimeZone(timeZone)
     return Date(
         calendarWithTimeZone[Calendar.YEAR] - 1900,
         calendarWithTimeZone[Calendar.MONTH],
@@ -67,12 +67,20 @@ fun Date.toTimezone(timeZone: TimeZone = TimeZone.getDefault()): Date {
     )
 }
 
-fun Date.toTimezoneNoHour(timeZone: TimeZone = TimeZone.getDefault()): Date? {
-    return this.toCalendarWithTimeZone(timeZone).apply {
-        set(Calendar.YEAR, this.get(Calendar.YEAR))
-        set(Calendar.MONTH, this.get(Calendar.MONTH))
-        set(Calendar.DAY_OF_MONTH, this.get(Calendar.DAY_OF_MONTH))
-        set(Calendar.HOUR_OF_DAY, 0)
+@Deprecated("Use toTimezoneSpecificHour instead")
+fun Date.toTimezoneNoHour(timeZone: TimeZone = TimeZone.getDefault()): Date {
+    return toTimezoneSpecificHour(timeZone)
+}
+
+fun Date.toTimezoneSpecificHour(
+    timeZone: TimeZone = TimeZone.getDefault(),
+    specificHour: Int = 0,
+): Date {
+    return toCalendarWithTimeZone(timeZone).apply {
+        set(Calendar.YEAR, get(Calendar.YEAR))
+        set(Calendar.MONTH, get(Calendar.MONTH))
+        set(Calendar.DAY_OF_MONTH, get(Calendar.DAY_OF_MONTH))
+        set(Calendar.HOUR_OF_DAY, specificHour)
         set(Calendar.MINUTE, 0)
         set(Calendar.SECOND, 0)
         set(Calendar.MILLISECOND, 0)

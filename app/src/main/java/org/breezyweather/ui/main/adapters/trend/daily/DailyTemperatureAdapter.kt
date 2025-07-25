@@ -24,25 +24,25 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
-import java.text.NumberFormat
 import kotlin.math.max
 
 /**
  * Daily temperature adapter.
  */
 class DailyTemperatureAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
     unit: TemperatureUnit,
@@ -64,7 +64,7 @@ class DailyTemperatureAdapter(
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        fun onBindView(activity: GeoActivity, location: Location, position: Int) {
+        fun onBindView(activity: BreezyActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_temperature))
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]
@@ -73,7 +73,7 @@ class DailyTemperatureAdapter(
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))
                 day.temperature?.temperature?.let {
-                    talkBackBuilder.append(mTemperatureUnit.getValueVoice(activity, it))
+                    talkBackBuilder.append(mTemperatureUnit.formatContentDescription(activity, it))
                         .append(activity.getString(R.string.comma_separator))
                 }
                 if (!day.weatherText.isNullOrEmpty()) {
@@ -84,11 +84,7 @@ class DailyTemperatureAdapter(
                         talkBackBuilder.append(activity.getString(R.string.comma_separator))
                             .append(activity.getString(R.string.precipitation_probability))
                             .append(activity.getString(R.string.colon_separator))
-                            .append(
-                                NumberFormat.getPercentInstance(activity.currentLocale).apply {
-                                    maximumFractionDigits = 0
-                                }.format(if (p > 0) p.div(100.0) else 0)
-                            )
+                            .append(UnitUtils.formatPercent(activity, p))
                     }
                 }
             }
@@ -97,7 +93,7 @@ class DailyTemperatureAdapter(
                     .append(activity.getString(R.string.nighttime))
                     .append(activity.getString(R.string.colon_separator))
                 night.temperature?.temperature?.let {
-                    talkBackBuilder.append(mTemperatureUnit.getValueVoice(activity, it))
+                    talkBackBuilder.append(mTemperatureUnit.formatContentDescription(activity, it))
                         .append(activity.getString(R.string.comma_separator))
                 }
                 if (!night.weatherText.isNullOrEmpty()) {
@@ -108,11 +104,7 @@ class DailyTemperatureAdapter(
                         talkBackBuilder.append(activity.getString(R.string.comma_separator))
                             .append(activity.getString(R.string.precipitation_probability))
                             .append(activity.getString(R.string.colon_separator))
-                            .append(
-                                NumberFormat.getPercentInstance(activity.currentLocale).apply {
-                                    maximumFractionDigits = 0
-                                }.format(if (p > 0) p.div(100.0) else 0)
-                            )
+                            .append(UnitUtils.formatPercent(activity, p))
                     }
                 }
             }
@@ -133,18 +125,16 @@ class DailyTemperatureAdapter(
                 buildTemperatureArrayForItem(mDaytimeTemperatures, position),
                 buildTemperatureArrayForItem(mNighttimeTemperatures, position),
                 daily.day?.temperature?.temperature?.let {
-                    mTemperatureUnit.getShortValueText(activity, it)
+                    mTemperatureUnit.formatMeasureShort(activity, it)
                 },
                 daily.night?.temperature?.temperature?.let {
-                    mTemperatureUnit.getShortValueText(activity, it)
+                    mTemperatureUnit.formatMeasureShort(activity, it)
                 },
                 mHighestTemperature,
                 mLowestTemperature,
                 if (p > 0) p else null,
                 if (p > 0) {
-                    NumberFormat.getPercentInstance(activity.currentLocale).apply {
-                        maximumFractionDigits = 0
-                    }.format(p.div(100.0))
+                    UnitUtils.formatPercent(activity, p.toDouble())
                 } else {
                     null
                 },
@@ -159,11 +149,11 @@ class DailyTemperatureAdapter(
                     WeatherViewController.getWeatherKind(location),
                     WeatherViewController.isDaylight(location)
                 )
-            val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
+            val lightTheme = ThemeManager.isLightTheme(itemView.context, location)
             mPolylineAndHistogramView.setLineColors(
                 themeColors[1],
                 themeColors[2],
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
             mPolylineAndHistogramView.setShadowColors(
                 themeColors[1],
@@ -171,9 +161,9 @@ class DailyTemperatureAdapter(
                 lightTheme
             )
             mPolylineAndHistogramView.setTextColors(
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                MainThemeColorProvider.getColor(location, R.attr.colorPrecipitationProbability)
+                activity.getThemeColor(R.attr.colorTitleText),
+                activity.getThemeColor(R.attr.colorBodyText),
+                activity.getThemeColor(R.attr.colorPrecipitationProbability)
             )
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 0.2f else 0.5f)
             dailyItem.setNightIconDrawable(
@@ -181,6 +171,9 @@ class DailyTemperatureAdapter(
                 missingIconVisibility = View.INVISIBLE
             )
             dailyItem.contentDescription = talkBackBuilder.toString()
+            dailyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_CONDITIONS)
+            }
         }
 
         @Size(3)
@@ -288,7 +281,7 @@ class DailyTemperatureAdapter(
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
                     normals.daytimeTemperature!!.toFloat(),
-                    SettingsManager.getInstance(activity).temperatureUnit.getShortValueText(
+                    SettingsManager.getInstance(activity).getTemperatureUnit(activity).formatMeasureShort(
                         activity,
                         normals.daytimeTemperature!!
                     ),
@@ -305,7 +298,7 @@ class DailyTemperatureAdapter(
             keyLineList.add(
                 TrendRecyclerView.KeyLine(
                     normals.nighttimeTemperature!!.toFloat(),
-                    SettingsManager.getInstance(activity).temperatureUnit.getShortValueText(
+                    SettingsManager.getInstance(activity).getTemperatureUnit(activity).formatMeasureShort(
                         activity,
                         normals.nighttimeTemperature!!
                     ),

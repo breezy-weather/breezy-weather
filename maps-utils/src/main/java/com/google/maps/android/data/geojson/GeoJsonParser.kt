@@ -169,8 +169,19 @@ class GeoJsonParser(
         private fun isGeometry(type: String): Boolean {
             return type.matches(
                 (
-                    POINT + "|" + MULTIPOINT + "|" + LINESTRING + "|" + MULTILINESTRING +
-                        "|" + POLYGON + "|" + MULTIPOLYGON + "|" + GEOMETRY_COLLECTION
+                    POINT +
+                        "|" +
+                        MULTIPOINT +
+                        "|" +
+                        LINESTRING +
+                        "|" +
+                        MULTILINESTRING +
+                        "|" +
+                        POLYGON +
+                        "|" +
+                        MULTIPOLYGON +
+                        "|" +
+                        GEOMETRY_COLLECTION
                     ).toRegex()
             )
         }

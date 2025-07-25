@@ -20,6 +20,7 @@ import java.io.Serializable
 import java.util.Date
 import kotlin.math.log10
 import kotlin.math.pow
+import kotlin.time.Duration.Companion.minutes
 
 /**
  * Minutely.
@@ -32,6 +33,9 @@ data class Minutely(
 
     val dbz: Int?
         get() = precipitationIntensityToDBZ(precipitationIntensity)
+
+    val endingDate: Date
+        get() = Date(date.time + minuteInterval.minutes.inWholeMilliseconds)
 
     companion object {
 

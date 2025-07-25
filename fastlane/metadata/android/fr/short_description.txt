@@ -1,1 +1,1 @@
-Une application météo en Material Design légère, puissante et libre.
+Une appli météo riche en fonctionnalités, visualisations et sources supportées.

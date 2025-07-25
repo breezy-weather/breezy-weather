@@ -30,9 +30,10 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.databinding.ActivityHourlyTrendDisplayManageBinding
 import org.breezyweather.domain.settings.SettingsManager
@@ -41,9 +42,8 @@ import org.breezyweather.ui.common.decorations.GridMarginsDecoration
 import org.breezyweather.ui.common.decorations.ListDecoration
 import org.breezyweather.ui.common.widgets.slidingItem.SlidingItemTouchCallback
 import org.breezyweather.ui.settings.adapters.HourlyTrendDisplayAdapter
-import org.breezyweather.ui.theme.ThemeManager
 
-class HourlyTrendDisplayManageActivity : GeoActivity() {
+class HourlyTrendDisplayManageActivity : BreezyActivity() {
     private lateinit var mBinding: ActivityHourlyTrendDisplayManageBinding
     private lateinit var mHourlyTrendDisplayAdapter: HourlyTrendDisplayAdapter
     private var mHourlyTrendDisplayItemTouchHelper: ItemTouchHelper? = null
@@ -105,8 +105,8 @@ class HourlyTrendDisplayManageActivity : GeoActivity() {
         mBinding.toolbar.setBackgroundColor(
             ColorUtils.getWidgetSurfaceColor(
                 6f,
-                ThemeManager.getInstance(this).getThemeColor(this, androidx.appcompat.R.attr.colorPrimary),
-                ThemeManager.getInstance(this).getThemeColor(this, com.google.android.material.R.attr.colorSurface)
+                getThemeColor(androidx.appcompat.R.attr.colorPrimary),
+                getThemeColor(com.google.android.material.R.attr.colorSurface)
             )
         )
         mBinding.toolbar.setNavigationOnClickListener { finish() }
@@ -132,7 +132,7 @@ class HourlyTrendDisplayManageActivity : GeoActivity() {
         mBinding.recyclerView.addItemDecoration(
             ListDecoration(
                 this,
-                ThemeManager.getInstance(this).getThemeColor(this, com.google.android.material.R.attr.colorOutline)
+                getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
         )
         mBinding.recyclerView.adapter = mHourlyTrendDisplayAdapter
@@ -152,21 +152,8 @@ class HourlyTrendDisplayManageActivity : GeoActivity() {
         for (tag in otherTags) {
             tagList.add(HourlyTrendTag(tag))
         }
-        val colors = ThemeManager.getInstance(this).getThemeColors(
-            this,
-            intArrayOf(
-                com.google.android.material.R.attr.colorOnPrimaryContainer,
-                com.google.android.material.R.attr.colorOnSecondaryContainer,
-                com.google.android.material.R.attr.colorPrimaryContainer,
-                com.google.android.material.R.attr.colorSecondaryContainer
-            )
-        )
         mTagAdapter = TagAdapter(
             tagList,
-            colors[0],
-            colors[1],
-            colors[2],
-            colors[3],
             { _: Boolean, _: Int, newPosition: Int ->
                 setResult(RESULT_OK)
                 val tag = mTagAdapter!!.removeItem(newPosition) as HourlyTrendTag

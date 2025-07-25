@@ -67,9 +67,8 @@ import androidx.compose.ui.zIndex
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -80,11 +79,15 @@ fun TimePickerPreferenceView(
     @StringRes titleId: Int,
     currentTime: String,
     enabled: Boolean = true,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     onValueChanged: (String) -> Unit,
 ) = TimePickerPreferenceView(
     title = stringResource(titleId),
     currentTime = currentTime,
     enabled = enabled,
+    isFirst = isFirst,
+    isLast = isLast,
     onValueChanged = onValueChanged
 )
 
@@ -93,6 +96,8 @@ private fun TimePickerPreferenceView(
     title: String,
     currentTime: String,
     enabled: Boolean = true,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     onValueChanged: (String) -> Unit,
 ) {
     var showTimePicker by remember { mutableStateOf(false) }
@@ -102,8 +107,10 @@ private fun TimePickerPreferenceView(
     val is12Hour = LocalContext.current.is12Hour
     val time = SimpleDateFormat("HH:mm", Locale.ENGLISH).parse(currentTimeState.value)
 
-    Material3CardListItem(
-        elevation = if (enabled) defaultCardListItemElevation else 0.dp
+    Material3ExpressiveCardListItem(
+        elevation = if (enabled) defaultCardListItemElevation else 0.dp,
+        isFirst = isFirst,
+        isLast = isLast
     ) {
         Column(
             modifier = Modifier
@@ -121,15 +128,15 @@ private fun TimePickerPreferenceView(
             Column {
                 Text(
                     text = title,
-                    color = DayNightTheme.colors.titleColor,
+                    color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.titleMedium
                 )
                 val currentSummary = time?.getFormattedTime(null, LocalContext.current, is12Hour)
                 if (currentSummary?.isNotEmpty() == true) {
-                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                     Text(
                         text = currentSummary,
-                        color = DayNightTheme.colors.bodyColor,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }

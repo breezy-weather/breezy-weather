@@ -76,6 +76,9 @@ class GeoSphereAtService @Inject constructor(
         SourceFeature.MINUTELY to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        "GeoSphere Austria" to "https://www.geosphere.at/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,
@@ -84,7 +87,7 @@ class GeoSphereAtService @Inject constructor(
         val latLng = LatLng(location.latitude, location.longitude)
         return when (feature) {
             SourceFeature.FORECAST -> hourlyBbox.contains(latLng)
-            SourceFeature.AIR_QUALITY -> airQuality12KmBbox.contains(latLng)
+            SourceFeature.AIR_QUALITY -> airQuality9KmBbox.contains(latLng)
             SourceFeature.MINUTELY -> nowcastBbox.contains(latLng)
             SourceFeature.ALERT -> location.countryCode.equals("AT", ignoreCase = true)
             else -> false
@@ -132,7 +135,7 @@ class GeoSphereAtService @Inject constructor(
         val airQuality = if (SourceFeature.AIR_QUALITY in requestedFeatures) {
             val latLng = LatLng(location.latitude, location.longitude)
             mApi.getAirQuality(
-                if (airQuality4KmBbox.contains(latLng)) 4 else 12,
+                if (airQuality3KmBbox.contains(latLng)) 3 else 9,
                 "${location.latitude},${location.longitude}",
                 airQualityParameters.joinToString(",")
             ).onErrorResumeNext {
@@ -228,8 +231,8 @@ class GeoSphereAtService @Inject constructor(
         private const val GEOSPHERE_AT_WARNINGS_BASE_URL = "https://warnungen.zamg.at/wsapp/api/"
 
         val hourlyBbox = LatLngBounds.parse(west = 5.49, south = 42.98, east = 22.1, north = 51.82)
-        val airQuality12KmBbox = LatLngBounds.parse(west = -59.21, south = 17.65, east = 83.21, north = 76.49)
-        val airQuality4KmBbox = LatLngBounds.parse(west = 4.31, south = 41.72, east = 18.99, north = 50.15)
+        val airQuality3KmBbox = LatLngBounds.parse(west = 2.86, south = 40.91, east = 23.74, north = 53.75)
+        val airQuality9KmBbox = LatLngBounds.parse(west = -53.73, south = 15.59, east = 80.33, north = 74.39)
         val nowcastBbox = LatLngBounds.parse(west = 8.1, south = 45.5, east = 17.74, north = 49.48)
     }
 }

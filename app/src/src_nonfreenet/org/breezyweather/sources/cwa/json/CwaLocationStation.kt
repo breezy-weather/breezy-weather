@@ -20,5 +20,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CwaLocationStation(
-    val stationId: String?,
+    val StationId: String?,
 )

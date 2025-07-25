@@ -34,6 +34,7 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.Size
 import androidx.core.graphics.ColorUtils
+import androidx.core.graphics.withTranslation
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.ui.common.widgets.DayNightShaderWrapper
 import kotlin.math.abs
@@ -48,9 +49,7 @@ class SunMoonView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
 ) : View(context, attrs, defStyleAttr) {
-    // 0 - day / 1 - night.
-    @Size(2)
-    private val mIconDrawables = arrayOfNulls<Drawable>(2)
+    private var mIconDrawable: Drawable? = null
     private val mPaint = Paint().apply {
         isAntiAlias = true
         strokeCap = Paint.Cap.ROUND
@@ -61,32 +60,17 @@ class SunMoonView @JvmOverloads constructor(
     private var mEffect: PathEffect? = null
     private val mRectF = RectF()
 
-    @Size(2)
-    private val mIconRotations = floatArrayOf(0f, 0f)
+    private var mIconRotation = 0f
+    private var mIconAlpha = 0f
+    private val mIconPositions = floatArrayOf(0f, 0f)
+    private var mStartTime = 1L
+    private var mCurrentTime = 1L
+    private var mEndTime = 0L
+    private var mProgress = -1L
+    private var mMax = 100L
 
     @Size(2)
-    private val mIconAlphas = floatArrayOf(0f, 0f)
-
-    @Size(2)
-    private val mIconPositions = arrayOf(floatArrayOf(0f, 0f), floatArrayOf(0f, 0f))
-
-    @Size(2)
-    private var mStartTimes = longArrayOf(1, 1)
-
-    @Size(2)
-    private var mCurrentTimes = longArrayOf(1, 1)
-
-    @Size(2)
-    private var mEndTimes = longArrayOf(0, 0)
-
-    @Size(2)
-    private val mProgresses = longArrayOf(-1, -1)
-
-    @Size(2)
-    private val mMaxes = longArrayOf(100, 100)
-
-    @Size(3)
-    private var mLineColors = intArrayOf(Color.BLACK, Color.GRAY, Color.LTGRAY)
+    private var mLineColors = intArrayOf(Color.BLACK, Color.LTGRAY)
 
     @Size(2)
     private val mX1ShaderColors = intArrayOf(Color.GRAY, Color.WHITE)
@@ -118,50 +102,43 @@ class SunMoonView @JvmOverloads constructor(
     }
 
     fun setTime(
-        @Size(2) startTimes: LongArray,
-        @Size(2) endTimes: LongArray,
-        @Size(2) currentTimes: LongArray,
+        startTime: Long,
+        endTime: Long,
+        currentTime: Long,
     ) {
-        mStartTimes = startTimes
-        mEndTimes = endTimes
-        mCurrentTimes = currentTimes
-        setIndicatorPosition(0)
-        setIndicatorPosition(1)
+        mStartTime = startTime
+        mEndTime = endTime
+        mCurrentTime = currentTime
+        setIndicatorPosition()
+        setIndicatorPosition()
         postInvalidateOnAnimation()
     }
 
     fun setColors(
-        @ColorInt sunLineColor: Int,
-        @ColorInt moonLineColor: Int,
+        @ColorInt lineColor: Int,
         @ColorInt backgroundLineColor: Int,
         @ColorInt rootColor: Int,
         lightTheme: Boolean,
     ) {
-        mLineColors = intArrayOf(sunLineColor, moonLineColor, backgroundLineColor)
-        ensureShader(rootColor, sunLineColor, moonLineColor, lightTheme)
+        mLineColors = intArrayOf(lineColor, backgroundLineColor)
+        ensureShader(rootColor, lineColor, lightTheme)
         postInvalidateOnAnimation()
     }
 
-    fun setDayIndicatorRotation(rotation: Float) {
-        mIconRotations[0] = rotation
-        postInvalidateOnAnimation()
-    }
-
-    fun setNightIndicatorRotation(rotation: Float) {
-        mIconRotations[1] = rotation
+    fun setIndicatorRotation(rotation: Float) {
+        mIconRotation = rotation
         postInvalidateOnAnimation()
     }
 
     private fun ensureShader(
         @ColorInt rootColor: Int,
-        @ColorInt sunLineColor: Int,
-        @ColorInt moonLineColor: Int,
+        @ColorInt lineColor: Int,
         lightTheme: Boolean,
     ) {
         val lineShadowShader = if (lightTheme) {
-            ColorUtils.setAlphaComponent(sunLineColor, (255 * SHADOW_ALPHA_FACTOR_LIGHT).toInt())
+            ColorUtils.setAlphaComponent(lineColor, (255 * SHADOW_ALPHA_FACTOR_LIGHT).toInt())
         } else {
-            ColorUtils.setAlphaComponent(moonLineColor, (255 * SHADOW_ALPHA_FACTOR_DARK).toInt())
+            ColorUtils.setAlphaComponent(lineColor, (255 * SHADOW_ALPHA_FACTOR_DARK).toInt())
         }
         mX1ShaderColors[0] = org.breezyweather.common.utils.ColorUtils.blendColor(lineShadowShader, rootColor)
         mX1ShaderColors[1] = rootColor
@@ -204,33 +181,33 @@ class SunMoonView @JvmOverloads constructor(
         }
     }
 
-    private fun ensureProgress(index: Int) {
-        mMaxes[index] = mEndTimes[index] - mStartTimes[index]
-        mProgresses[index] = mCurrentTimes[index] - mStartTimes[index]
-        mProgresses[index] = max(mProgresses[index], 0)
-        mProgresses[index] = min(mProgresses[index], mMaxes[index])
+    private fun ensureProgress() {
+        mMax = mEndTime - mStartTime
+        mProgress = mCurrentTime - mStartTime
+        mProgress = max(mProgress, 0)
+        mProgress = min(mProgress, mMax)
     }
 
-    private fun setIndicatorPosition(index: Int) {
-        ensureProgress(index)
+    private fun setIndicatorPosition() {
+        ensureProgress()
         val startAngle = 270 - ARC_ANGLE / 2f
-        val progressSweepAngle = (1.0 * mProgresses[index] / mMaxes[index] * ARC_ANGLE).toFloat()
+        val progressSweepAngle = (1.0 * mProgress / mMax * ARC_ANGLE).toFloat()
         val progressEndAngle = startAngle + progressSweepAngle
         val deltaAngle = progressEndAngle - 180
         val deltaWidth = abs(mRectF.width() / 2 * cos(Math.toRadians(deltaAngle.toDouble()))).toFloat()
         val deltaHeight = abs(mRectF.width() / 2 * sin(Math.toRadians(deltaAngle.toDouble()))).toFloat()
-        if (progressSweepAngle == 0f && mIconAlphas[index] != 0f) {
-            mIconAlphas[index] = 0f
-        } else if (progressSweepAngle != 0f && mIconAlphas[index] == 0f) {
-            mIconAlphas[index] = 1f
+        if (progressSweepAngle == 0f && mIconAlpha != 0f) {
+            mIconAlpha = 0f
+        } else if (progressSweepAngle != 0f && mIconAlpha == 0f) {
+            mIconAlpha = 1f
         }
-        if (mIconDrawables[index] != null) {
+        if (mIconDrawable != null) {
             if (progressEndAngle < 270) {
-                mIconPositions[index][0] = mRectF.centerX() - deltaWidth - iconSize / 2f
+                mIconPositions[0] = mRectF.centerX() - deltaWidth - iconSize / 2f
             } else {
-                mIconPositions[index][0] = mRectF.centerX() + deltaWidth - iconSize / 2f
+                mIconPositions[0] = mRectF.centerX() + deltaWidth - iconSize / 2f
             }
-            mIconPositions[index][1] = mRectF.centerY() - deltaHeight - iconSize / 2f
+            mIconPositions[1] = mRectF.centerY() - deltaHeight - iconSize / 2f
         }
     }
 
@@ -251,30 +228,22 @@ class SunMoonView @JvmOverloads constructor(
             (centerX + radius).toFloat(),
             (centerY + radius).toFloat()
         )
-        ensureShader(mRootColor, mLineColors[0], mLineColors[1], mX1ShaderWrapper.isLightTheme)
+        ensureShader(mRootColor, mLineColors[0], mX1ShaderWrapper.isLightTheme)
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
+        if (layoutDirection == LAYOUT_DIRECTION_RTL) canvas.scale(-1f, 1f, width / 2f, height / 2f)
+
         // shadow.
         val startAngle = 270 - ARC_ANGLE / 2f
-        val progressSweepAngleDay = (1.0 * mProgresses[0] / mMaxes[0] * ARC_ANGLE).toFloat()
-        val progressEndAngleDay = startAngle + progressSweepAngleDay
-        val progressSweepAngleNight = (1.0 * mProgresses[1] / mMaxes[1] * ARC_ANGLE).toFloat()
-        val progressEndAngleNight = startAngle + progressSweepAngleNight
-        if (progressEndAngleDay == progressEndAngleNight) {
-            drawShadow(canvas, 0, progressEndAngleDay, mX2ShaderWrapper.shader)
-        } else if (progressEndAngleDay > progressEndAngleNight) {
-            drawShadow(canvas, 0, progressEndAngleDay, mX1ShaderWrapper.shader)
-            drawShadow(canvas, 1, progressEndAngleNight, mX2ShaderWrapper.shader)
-        } else { // progressEndAngleDay < progressEndAngleNight
-            drawShadow(canvas, 1, progressEndAngleNight, mX1ShaderWrapper.shader)
-            drawShadow(canvas, 0, progressEndAngleDay, mX2ShaderWrapper.shader)
-        }
+        val progressSweepAngle = (1.0 * mProgress / mMax * ARC_ANGLE).toFloat()
+        val progressEndAngle = startAngle + progressSweepAngle
+        drawShadow(canvas, progressEndAngle, mX2ShaderWrapper.shader)
 
         // sub line.
-        mPaint.color = mLineColors[2]
+        mPaint.color = mLineColors[1]
         mPaint.style = Paint.Style.STROKE
         mPaint.strokeWidth = mDottedLineSize
         mPaint.setPathEffect(mEffect)
@@ -290,33 +259,22 @@ class SunMoonView @JvmOverloads constructor(
         // path.
         drawPathLine(
             canvas,
-            1,
             startAngle,
-            (1.0 * mProgresses[1] / mMaxes[1] * ARC_ANGLE).toFloat()
+            (1.0 * mProgress / mMax * ARC_ANGLE).toFloat()
         )
-        drawPathLine(
-            canvas,
-            0,
-            startAngle,
-            (1.0 * mProgresses[0] / mMaxes[0] * ARC_ANGLE).toFloat()
-        )
-        var restoreCount: Int
 
         // icon.
-        for (i in 1 downTo 0) {
-            if (mIconDrawables[i] == null || mProgresses[i] <= 0) {
-                continue
-            }
-            restoreCount = canvas.save()
-            canvas.translate(mIconPositions[i][0], mIconPositions[i][1])
-            canvas.rotate(mIconRotations[i], iconSize / 2f, iconSize / 2f)
-            mIconDrawables[i]!!.draw(canvas)
-            canvas.restoreToCount(restoreCount)
+        if (mIconDrawable == null || mProgress <= 0) {
+            return
+        }
+        canvas.withTranslation(mIconPositions[0], mIconPositions[1]) {
+            canvas.rotate(mIconRotation, iconSize / 2f, iconSize / 2f)
+            mIconDrawable!!.draw(canvas)
         }
     }
 
-    private fun drawShadow(canvas: Canvas, index: Int, progressEndAngle: Float, shader: Shader?) {
-        if (mProgresses[index] > 0) {
+    private fun drawShadow(canvas: Canvas, progressEndAngle: Float, shader: Shader?) {
+        if (mProgress > 0) {
             val layerId = canvas.saveLayer(
                 mRectF.left,
                 mRectF.top,
@@ -349,13 +307,12 @@ class SunMoonView @JvmOverloads constructor(
 
     private fun drawPathLine(
         canvas: Canvas,
-        index: Int,
         startAngle: Float,
         progressSweepAngle: Float,
     ) {
-        if (mProgresses[index] > 0) {
+        if (mProgress > 0) {
             mPaint.apply {
-                color = mLineColors[index]
+                color = mLineColors[0]
                 strokeWidth = mLineSize
                 pathEffect = null
             }
@@ -363,17 +320,10 @@ class SunMoonView @JvmOverloads constructor(
         }
     }
 
-    fun setSunDrawable(d: Drawable?) {
+    fun setDrawable(d: Drawable?) {
         if (d != null) {
-            mIconDrawables[0] = d
-            mIconDrawables[0]!!.setBounds(0, 0, iconSize, iconSize)
-        }
-    }
-
-    fun setMoonDrawable(d: Drawable?) {
-        if (d != null) {
-            mIconDrawables[1] = d
-            mIconDrawables[1]!!.setBounds(0, 0, iconSize, iconSize)
+            mIconDrawable = d
+            mIconDrawable!!.setBounds(0, 0, iconSize, iconSize)
         }
     }
 

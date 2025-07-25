@@ -49,7 +49,8 @@ class EpdHkService @Inject constructor(
                 startsWith("zh") -> "环境保护署"
                 else -> "EPD"
             }
-        } + " (${Locale(context.currentLocale.code, "HK").displayCountry})"
+        } +
+            " (${Locale(context.currentLocale.code, "HK").displayCountry})"
     }
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl by lazy {
@@ -79,6 +80,9 @@ class EpdHkService @Inject constructor(
             }
         }
     }
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.aqhi.gov.hk/"
+    )
     override val supportedFeatures = mapOf(
         SourceFeature.AIR_QUALITY to weatherAttribution
     )

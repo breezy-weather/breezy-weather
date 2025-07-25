@@ -28,7 +28,9 @@ import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
@@ -74,7 +76,7 @@ internal fun getCurrent(
     return CurrentWrapper(
         weatherText = getWeatherText(context, currentResult?.condition),
         weatherCode = getWeatherCode(currentResult?.condition),
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = getValid(currentResult?.temperature)
         ),
         wind = Wind(
@@ -165,7 +167,7 @@ internal fun getHourlyForecast(
                 date = formatter.parse(it.time)!!,
                 weatherText = getWeatherText(context, it.condition),
                 weatherCode = getWeatherCode(it.condition),
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = it.temperature
                 ),
                 wind = Wind(
@@ -258,10 +260,10 @@ private fun getDaily(
     formatter.timeZone = TimeZone.getTimeZone("Europe/Istanbul")
     return DailyWrapper(
         date = formatter.parse(date)!!,
-        day = HalfDay(
+        day = HalfDayWrapper(
             weatherText = getWeatherText(context, condition),
             weatherCode = getWeatherCode(condition),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = maxTemp
             ),
             wind = Wind(
@@ -269,10 +271,10 @@ private fun getDaily(
                 speed = windSpeed?.div(3.6)
             )
         ),
-        night = HalfDay(
+        night = HalfDayWrapper(
             weatherText = getWeatherText(context, condition),
             weatherCode = getWeatherCode(condition),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = minTemp
             ),
             wind = Wind(

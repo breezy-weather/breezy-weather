@@ -24,13 +24,14 @@ import android.view.ViewGroup
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Precipitation
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getHourlyPrecipitationColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
@@ -40,7 +41,7 @@ import org.breezyweather.ui.theme.weatherView.WeatherViewController
  * Hourly precipitation adapter.
  */
 class HourlyPrecipitationAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
     unit: PrecipitationUnit,
@@ -56,7 +57,7 @@ class HourlyPrecipitationAdapter(
             hourlyItem.chartItemView = mPolylineAndHistogramView
         }
 
-        fun onBindView(activity: GeoActivity, location: Location, position: Int) {
+        fun onBindView(activity: BreezyActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_precipitation))
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
@@ -72,7 +73,7 @@ class HourlyPrecipitationAdapter(
             val precipitation = hourly.precipitation?.total
             if (precipitation != null && precipitation > 0.0) {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(mPrecipitationUnit.getValueVoice(activity, precipitation))
+                    .append(mPrecipitationUnit.formatContentDescription(activity, precipitation))
             } else {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
                     .append(activity.getString(R.string.precipitation_none))
@@ -82,14 +83,14 @@ class HourlyPrecipitationAdapter(
                 null, null,
                 null, null,
                 precipitation?.toFloat() ?: 0f,
-                precipitation?.let { mPrecipitationUnit.getValueTextWithoutUnit(it) },
+                precipitation?.let { mPrecipitationUnit.formatValue(activity, it) },
                 mHighestPrecipitation,
                 0f
             )
             mPolylineAndHistogramView.setLineColors(
                 hourly.precipitation?.getHourlyPrecipitationColor(activity) ?: Color.TRANSPARENT,
                 hourly.precipitation?.getHourlyPrecipitationColor(activity) ?: Color.TRANSPARENT,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
 
             val themeColors = ThemeManager
@@ -100,19 +101,22 @@ class HourlyPrecipitationAdapter(
                     WeatherViewController.getWeatherKind(location),
                     WeatherViewController.isDaylight(location)
                 )
-            val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
+            val lightTheme = ThemeManager.isLightTheme(itemView.context, location)
             mPolylineAndHistogramView.setShadowColors(
                 themeColors[if (lightTheme) 1 else 2],
                 themeColors[2],
                 lightTheme
             )
             mPolylineAndHistogramView.setTextColors(
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+                activity.getThemeColor(R.attr.colorTitleText),
+                activity.getThemeColor(R.attr.colorBodyText),
+                activity.getThemeColor(R.attr.colorTitleText)
             )
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 1f else 0.5f)
             hourlyItem.contentDescription = talkBackBuilder.toString()
+            hourlyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_PRECIPITATION)
+            }
         }
     }
 
@@ -146,13 +150,13 @@ class HourlyPrecipitationAdapter(
     }
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val unit = SettingsManager.getInstance(activity).precipitationUnit
+        val unit = SettingsManager.getInstance(activity).getPrecipitationUnit(activity)
         val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 Precipitation.PRECIPITATION_HOURLY_LIGHT.toFloat(),
                 activity.getString(R.string.precipitation_intensity_light),
-                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HOURLY_LIGHT),
+                unit.formatValue(activity, Precipitation.PRECIPITATION_HOURLY_LIGHT),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
@@ -160,7 +164,7 @@ class HourlyPrecipitationAdapter(
             TrendRecyclerView.KeyLine(
                 Precipitation.PRECIPITATION_HOURLY_HEAVY.toFloat(),
                 activity.getString(R.string.precipitation_intensity_heavy),
-                unit.getValueTextWithoutUnit(Precipitation.PRECIPITATION_HOURLY_HEAVY),
+                unit.formatValue(activity, Precipitation.PRECIPITATION_HOURLY_HEAVY),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )

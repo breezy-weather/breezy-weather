@@ -27,6 +27,7 @@ import android.widget.FrameLayout
 import androidx.core.view.NestedScrollingParent2
 import androidx.core.view.NestedScrollingParent3
 import androidx.core.view.ViewCompat
+import androidx.core.view.isNotEmpty
 import androidx.dynamicanimation.animation.DynamicAnimation
 import androidx.dynamicanimation.animation.FloatValueHolder
 import androidx.dynamicanimation.animation.SpringAnimation
@@ -87,7 +88,7 @@ class SwipeSwitchLayout @JvmOverloads constructor(
         if (!isEnabled || ev.action != MotionEvent.ACTION_DOWN && mIsBeingNestedScrolling) {
             return false
         }
-        if (mTarget == null && childCount > 0) {
+        if (mTarget == null && isNotEmpty()) {
             mTarget = getChildAt(0)
         }
         if (mTarget == null) return false
@@ -132,7 +133,7 @@ class SwipeSwitchLayout @JvmOverloads constructor(
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(ev: MotionEvent): Boolean {
         if (!isEnabled || mIsBeingNestedScrolling) return false
-        if (mTarget == null && childCount > 0) {
+        if (mTarget == null && isNotEmpty()) {
             mTarget = getChildAt(0)
         }
         if (mTarget == null) return false
@@ -189,8 +190,10 @@ class SwipeSwitchLayout @JvmOverloads constructor(
         val progress = abs(realDistance) / triggerDistance
         mTarget?.alpha = 1 - progress
         mTarget?.translationX = (
-            swipeDirection * translateRatio * triggerDistance
-                * log10(1 + 9.0 * abs(mSwipeDistance) / triggerDistance)
+            swipeDirection *
+                translateRatio *
+                triggerDistance *
+                log10(1 + 9.0 * abs(mSwipeDistance) / triggerDistance)
             ).toFloat()
         mSwitchListener?.onSwiped(swipeDirection, progress)
         mPageSwipeListener?.let {
@@ -268,7 +271,7 @@ class SwipeSwitchLayout @JvmOverloads constructor(
 
     // nested scrolling parent.
     override fun onStartNestedScroll(child: View, target: View, axes: Int, type: Int): Boolean {
-        if (mTarget == null && childCount > 0) {
+        if (mTarget == null && isNotEmpty()) {
             mTarget = getChildAt(0)
         }
         return axes and ViewCompat.SCROLL_AXIS_HORIZONTAL != 0 &&

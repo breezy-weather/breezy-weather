@@ -16,39 +16,35 @@
 
 package org.breezyweather.ui.main.adapters.main.holder
 
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
+import androidx.core.content.ContextCompat
+import androidx.core.view.children
 import breezyweather.domain.location.model.Location
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.button.MaterialButtonGroup
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.common.extensions.DEFAULT_CARD_LIST_ITEM_ELEVATION_DP
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.extensions.isLandscape
-import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.domain.settings.SettingsManager
-import org.breezyweather.ui.common.adapters.TagAdapter
-import org.breezyweather.ui.common.decorations.GridMarginsDecoration
+import org.breezyweather.ui.common.adapters.ButtonAdapter
+import org.breezyweather.ui.common.widgets.RecyclerViewNoVerticalScrollTouchListener
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.main.adapters.trend.HourlyTrendAdapter
 import org.breezyweather.ui.main.layouts.TrendHorizontalLinearLayoutManager
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.main.widgets.TrendRecyclerViewScrollBar
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
-import org.breezyweather.ui.theme.weatherView.WeatherViewController
 
 class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_hourly_trend_card, parent, false)
 ) {
-    private val title: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_title)
-    private val subtitle: TextView = itemView.findViewById(R.id.container_main_hourly_trend_card_subtitle)
-    private val tagView: RecyclerView = itemView.findViewById(R.id.container_main_hourly_trend_card_tagView)
-    private val trendRecyclerView: TrendRecyclerView = itemView.findViewById(
-        R.id.container_main_hourly_trend_card_trendRecyclerView
-    )
+    private val subtitle: TextView = itemView.findViewById(R.id.hourly_block_subtitle)
+    private val buttonGroup: MaterialButtonGroup = itemView.findViewById(R.id.hourly_block_button_group)
+    private val trendRecyclerView: TrendRecyclerView = itemView.findViewById(R.id.hourly_block_trendRecyclerView)
     private val scrollBar: TrendRecyclerViewScrollBar = TrendRecyclerViewScrollBar()
 
     init {
@@ -57,29 +53,17 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     }
 
     override fun onBindView(
-        activity: GeoActivity,
+        activity: BreezyActivity,
         location: Location,
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
         itemAnimationEnabled: Boolean,
-        firstCard: Boolean,
+        selectedTab: String?,
+        setSelectedTab: (String?) -> Unit,
     ) {
-        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled, firstCard)
+        super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
 
         val weather = location.weather ?: return
-        val colors = ThemeManager
-            .getInstance(context)
-            .weatherThemeDelegate
-            .getThemeColors(
-                context,
-                WeatherViewController.getWeatherKind(location),
-                WeatherViewController.isDaylight(location)
-            )
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            title.isAccessibilityHeading = true
-        }
-        title.setTextColor(colors[0])
 
         if (weather.current?.hourlyForecast.isNullOrEmpty()) {
             subtitle.visibility = View.GONE
@@ -91,60 +75,88 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         val trendAdapter = HourlyTrendAdapter(activity, trendRecyclerView).apply {
             bindData(location)
         }
-        val tagList: MutableList<TagAdapter.Tag> = trendAdapter.adapters.map {
-            object : TagAdapter.Tag {
+        val buttonList: MutableList<ButtonAdapter.Button> = trendAdapter.adapters.map {
+            object : ButtonAdapter.Button {
                 override val name = it.getDisplayName(activity)
             }
         }.toMutableList()
-
-        if (tagList.size < 2) {
-            tagView.visibility = View.GONE
-        } else {
-            tagView.visibility = View.VISIBLE
-            val decorCount = tagView.itemDecorationCount
-            for (i in 0 until decorCount) {
-                tagView.removeItemDecorationAt(0)
+        selectedTab?.let { tab ->
+            buttonList.indexOfFirst { it.name == tab }.let {
+                if (it >= 0) {
+                    trendAdapter.selectedIndex = it
+                } else {
+                    setSelectedTab(null) // Reset
+                }
             }
-            tagView.addItemDecoration(
-                GridMarginsDecoration(
-                    context.resources.getDimension(R.dimen.little_margin),
-                    context.resources.getDimension(R.dimen.normal_margin),
-                    tagView
+        }
+
+        if (buttonList.size < 2) {
+            buttonGroup.visibility = View.GONE
+        } else {
+            buttonGroup.visibility = View.VISIBLE
+            // Dirty trick to get the button group to actually redraw with the correct styles AND the overflow menu
+            while (
+                buttonGroup.children
+                    .filter { it is MaterialButton && it.tag != MaterialButtonGroup.OVERFLOW_BUTTON_TAG }
+                    .count() != 0
+            ) {
+                buttonGroup.children
+                    .filter { it is MaterialButton && it.tag != MaterialButtonGroup.OVERFLOW_BUTTON_TAG }
+                    .forEach {
+                        buttonGroup.removeView(it)
+                    }
+            }
+            buttonGroup.children
+                .filter { it is MaterialButton && it.tag == MaterialButtonGroup.OVERFLOW_BUTTON_TAG }
+                .forEach {
+                    it.contentDescription = context.getString(R.string.action_more)
+                }
+            buttonList.forEachIndexed { index, button ->
+                buttonGroup.addView(
+                    MaterialButton(
+                        context,
+                        null,
+                        com.google.android.material.R.attr.materialButtonStyle
+                    ).apply {
+                        text = button.name
+                        isCheckable = true
+                        isChecked = index == trendAdapter.selectedIndex
+                        setOnClickListener {
+                            trendAdapter.selectedIndex = index
+                            setSelectedTab(button.name)
+                            buttonGroup.children
+                                .filter { it is MaterialButton && it.tag != MaterialButtonGroup.OVERFLOW_BUTTON_TAG }
+                                .forEach { button ->
+                                    (button as MaterialButton).isChecked = false
+                                }
+                            isChecked = true
+                        }
+                    }
                 )
-            )
-            tagView.layoutManager =
-                TrendHorizontalLinearLayoutManager(context)
-            tagView.adapter = TagAdapter(
-                tagList,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnPrimary),
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOnSurface),
-                MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
-                ColorUtils.getWidgetSurfaceColor(
-                    DEFAULT_CARD_LIST_ITEM_ELEVATION_DP,
-                    MainThemeColorProvider.getColor(location, androidx.appcompat.R.attr.colorPrimary),
-                    MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorSurface)
-                ),
-                { _, _, newPosition: Int ->
-                    trendAdapter.selectedIndex = newPosition
-                    return@TagAdapter false
-                },
-                0
-            )
+            }
         }
 
         trendRecyclerView.layoutManager =
             TrendHorizontalLinearLayoutManager(
                 context,
-                if (context.isLandscape) 7 else 5
+                if (context.isLandscape) 7 else 5,
+                minHeight = context.resources.getDimensionPixelSize(R.dimen.hourly_trend_item_height)
             )
         trendRecyclerView.setLineColor(
-            MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+            context.getThemeColor(com.google.android.material.R.attr.colorOutline)
+        )
+        trendRecyclerView.setTextColor(
+            ContextCompat.getColor(
+                context,
+                if (ThemeManager.isLightTheme(context, location)) R.color.colorTextGrey else R.color.colorTextGrey2nd
+            )
         )
         trendRecyclerView.adapter = trendAdapter
         trendRecyclerView.setKeyLineVisibility(
             SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
         )
+        trendRecyclerView.addOnItemTouchListener(RecyclerViewNoVerticalScrollTouchListener())
 
-        scrollBar.resetColor(location)
+        scrollBar.resetColor(activity)
     }
 }

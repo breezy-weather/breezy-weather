@@ -40,6 +40,18 @@ This error should be reported as soon as possible to GitHub, mentioning the sour
 
 This error may happen when a source is no longer provided by Breezy Weather. In that case, you will need to add a new location with another source, and delete this location. It can also happen when you switch from the standard flavor of Breezy Weather to `freenet` one which has less sources supported.
 
+### “Secure connection failed”
+
+This can mean many things.
+
+If this only happens with one source and not others:
+1) If you are using an Android version lower than Android 14, it is possible the server is using a Certificate Authority that was not trusted by the old Android version back then. On Android 14 and later, an updated trust store should be available to Google Play users. Note that we have our own bundled trust store in the app, where we can add missing Certificate Authorities.
+2) If you have a low Android version, the server may be communicating with a more modern protocol or cipher suites than is supported by your device
+3) The certificate may be expired. In that case, all users are affected, and the source will probably fix it very soon as this means no one can use the source (in any project, not just Breezy Weather)
+
+If this is happening will all sources, and presumably with other apps, in the worst case, you may be a victim of a [man-in-middle attack](https://en.wikipedia.org/wiki/Man-in-the-middle_attack).
+
+If in doubt, [start a discussion to ask for help](https://github.com/breezy-weather/breezy-weather/discussions/new?category=general).
 
 
 
@@ -60,7 +72,7 @@ Certain manufacturers implement non-standard Android behaviors, which prevents t
 
 The first thing to try is to whitelist Breezy Weather from battery optimization. From the app, go to Settings > Background updates and tap on “Disable battery optimization” (don’t worry, our background update job is optimized to be very battery-friendly, and you can change “Refresh rate” to “Never” at any time!).
 
-If it still doesn’t work, you can find ways to circumvent aggressive manufacturer behaviors on this website: https://dontkillmyapp.com/
+If it still doesn’t work, you can find ways to circumvent aggressive manufacturer behaviors on the [Don’t kill my app! website](https://dontkillmyapp.com/).
 
 
 ### I used Geometric Weather before, and the “persistent notification” method worked fine for me, can you bring it back?
@@ -92,3 +104,16 @@ If you still want shorter refreshes:
 - models are refreshed at best once an hour. Although there might be some little exceptions for some particular data, it’s mostly useless to refresh at intervals less than 30 minutes. Additionally, some providers send header instructions to not contact server again before X (datetime) so you would be served the same cached data anyway.
 - we ask for fair usage of API and resources. This app and these API are provided for free and shared by all users of Breezy Weather. Due to noticed abuse, we even had to implement additional caching methods to prevent these abuses and ensure API can still be used by everyone.
 - you can still force refresh from main screen by “swiping to refresh”.
+
+
+### Why is the app not called “Breezy Weather” on my launcher?
+
+The app name is “Breezy Weather”, however in the launcher we use the translated word for “weather”.
+
+The rationale behind this is to offer a better user experience:
+- You don’t have to recall what was the app name to find it in the list. You just have to remind you want to access the weather.
+- It better adapts to other languages, as we use the translated word for “weather” and you don’t have to recall a non-native word (Breezy).
+
+This choice is aligned with Breezy Weather principles to make it easy to use as a new user. Many other apps make the same decision.
+
+For users with advanced needs not happy with this choice, we recommend using a launcher that allows customisation of app names.

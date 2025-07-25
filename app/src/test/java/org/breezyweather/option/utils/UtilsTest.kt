@@ -22,7 +22,7 @@ import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.junit.jupiter.api.Test
 
 class UtilsTest {
@@ -32,6 +32,6 @@ class UtilsTest {
         every { res.getStringArray(R.array.dark_modes) } returns
             arrayOf("Automatic", "Follow system", "Always light", "Always dark")
         every { res.getStringArray(R.array.dark_mode_values) } returns arrayOf("auto", "system", "light", "dark")
-        Utils.getNameByValue(res, "auto", R.array.dark_modes, R.array.dark_mode_values) shouldBe "Automatic"
+        UnitUtils.getNameByValue(res, "auto", R.array.dark_modes, R.array.dark_mode_values) shouldBe "Automatic"
     }
 }

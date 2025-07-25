@@ -34,6 +34,7 @@ import androidx.annotation.RequiresApi
 import androidx.annotation.Size
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.withTranslation
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
 import breezyweather.domain.location.model.Location
@@ -112,8 +113,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
         private var mHandlerThread: HandlerThread? = null
         private var mHandler: Handler? = null
         private val mDrawableRunnable = Runnable {
-            if (mIntervalComputer == null ||
-                mImplementor == null ||
+            if (mImplementor == null ||
                 mBackground == null ||
                 mRotators == null ||
                 mHandler == null
@@ -154,19 +154,18 @@ class MaterialLiveWallpaperService : WallpaperService() {
                         )
                     }
                     if (mImplementor != null && mRotators != null) {
-                        canvas.save()
-                        canvas.translate(
+                        canvas.withTranslation(
                             (mSizes[0] - mAdaptiveSize[0]) / 2f,
                             (mSizes[1] - mAdaptiveSize[1]) / 2f
-                        )
-                        mImplementor!!.draw(
-                            mAdaptiveSize,
-                            canvas,
-                            0f,
-                            mRotators!![0].rotation.toFloat(),
-                            mRotators!![1].rotation.toFloat()
-                        )
-                        canvas.restore()
+                        ) {
+                            mImplementor!!.draw(
+                                mAdaptiveSize,
+                                this,
+                                0f,
+                                mRotators!![0].rotation.toFloat(),
+                                mRotators!![1].rotation.toFloat()
+                            )
+                        }
                     }
                     mHolder?.unlockCanvasAndPost(canvas)
                 }
@@ -249,6 +248,7 @@ class MaterialLiveWallpaperService : WallpaperService() {
         private fun setWeatherImplementor() {
             hasDrawn = false
             mImplementor = WeatherImplementorFactory.getWeatherImplementor(
+                applicationContext,
                 mWeatherKind,
                 mDaytime,
                 mAdaptiveSize,
@@ -275,9 +275,10 @@ class MaterialLiveWallpaperService : WallpaperService() {
         }
 
         private fun setIntervalComputer() {
-            mIntervalComputer?.reset() ?: run {
+            // Disable animations
+            /*mIntervalComputer?.reset() ?: run {
                 mIntervalComputer = IntervalComputer()
-            }
+            }*/
         }
 
         private fun setOpenGravitySensor(openGravitySensor: Boolean) {

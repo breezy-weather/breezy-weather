@@ -18,6 +18,7 @@ package org.breezyweather.common.basic.livedata
 
 import android.os.Handler
 import android.os.Looper
+import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -36,6 +37,17 @@ class BusLiveData<T>(
 
     override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
         runOnMainThread {
+            innerObserver(owner, MyObserverWrapper(this, observer, version))
+        }
+    }
+
+    fun observeAutoRemove(owner: LifecycleOwner, observer: Observer<in T>) {
+        runOnMainThread {
+            owner.lifecycle.addObserver(object : DefaultLifecycleObserver {
+                override fun onDestroy(owner: LifecycleOwner) {
+                    removeObserver(observer)
+                }
+            })
             innerObserver(owner, MyObserverWrapper(this, observer, version))
         }
     }

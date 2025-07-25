@@ -1,50 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- app -->
     <string name="app_name">Météo</string>
-
     <!-- mots-clés -->
     <string name="location_current">Ma position</string>
     <string name="location_custom_name">Nom personnalisé</string>
     <string name="location_reverse_geocoding">Recherche d’adresse</string>
     <string name="notification_refreshed_at">Consulté à</string>
     <string name="alerts_to_follow">Vigilances à venir, appuyez pour voir.</string>
-    <string name="alert_source">Source : %s</string>
+    <string name="alert_source">Source : %s</string>
     <string name="precipitation">Précipitation</string>
+    <string name="precipitation_total_day">Précip. de la journée</string>
+    <string name="precipitation_total_night">Précip. de la nuit</string>
     <string name="precipitation_probability">Probabilité de précipitation</string>
     <string name="precipitation_duration">Durée des précipitations</string>
     <!-- Selon l’échelle de Beaufort -->
     <string name="humidity">Humidité</string>
     <string name="humidity_short">Humidité</string>
     <string name="humidity_dew_point">Humidité / Point de rosée</string>
+    <string name="humidity_about">À propos de l’humidité relative</string>
+    <string name="humidity_about_description">L’humidité relative, plus couramment appelée simplement humidité, correspond au pourcentage de vapeur d’eau présent dans l’air par rapport à la quantité maximale que l’air peut contenir à une température donnée.</string>
+    <string name="dew_point">Point de rosée</string>
+    <string name="dew_point_short">P. de rosée</string>
+    <string name="dew_point_about">À propos du point de rosée</string>
+    <!-- %s = 100 % -->
+    <string name="dew_point_about_description">Le point de rosée est la température à laquelle il faudrait refroidir l’air pour atteindre une humidité relative de %s.</string>
     <string name="sunshine">Ensoleillement</string>
     <string name="sunshine_duration">Durée d’ensoleillement</string>
     <string name="notification_channel_forecast">Prévisions</string>
     <string name="daytime">Journée</string>
+    <string name="daytime_short">Jour</string>
     <string name="nighttime">Nuit</string>
-    <string name="temperature_feels_like">Ressenti</string>
-    <string name="temperature_feels_like_short">Ressenti</string>
-    <string name="settings_follow_system">Préférence système</string><!-- Littéralement "suivre les préférences système" -->
+    <string name="nighttime_short">Nuit</string>
+    <string name="nighttime_details">Commence dans la soirée et se termine à l’aube du lendemain</string>
+    <!-- Littéralement "suivre les préférences système" -->
+    <string name="settings_follow_system">Préférence système</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="notification_channel_background_services">Services en arrière-plan</string>
     <string name="notification_channel_crash_logs">Journaux d’incident</string>
     <string name="notification_channel_app_updates">Mises à jour de l’appli</string>
     <string name="pressure">Pression</string>
     <string name="pressure_short">Pression</string>
+    <string name="pressure_rising">En hausse</string>
+    <string name="pressure_steady">Stable</string>
+    <string name="pressure_falling">En baisse</string>
+    <string name="pressure_about">À propos de la pression</string>
+    <string name="pressure_about_description1">La pression atmosphérique est la pression exercée par l’atmosphère terrestre. Cette appli utilise la pression moyenne au niveau de la mer pour faciliter la comparaison de pression d’emplacements situés à des altitudes différentes.</string>
+    <string name="pressure_about_description2">Les variations importantes et rapides de la pression sont utilisées pour prévoir les changements météorologiques. Par exemple, une baisse de pression peut signifier que de la pluie ou de la neige se prépare, et une hausse de pression peut signifier que le temps va s’améliorer. Une pression atmosphérique anormale peut provoquer, entre autres, des maux de tête, des douleurs articulaires et de la fatigue.</string>
     <string name="visibility">Visibilité</string>
     <string name="visibility_short">Visibilité</string>
-    <string name="dew_point">Point de rosée</string>
-    <string name="dew_point_short">P. de rosée</string>
+    <string name="visibility_about">À propos de la visibilité</string>
+    <string name="visibility_about_description">La visibilité indique la distance à laquelle des objets tels que des bâtiments et des collines peuvent être clairement distingués. Elle peut être affectée par les précipitations, le brouillard, la poussière, la fumée ou la brume.</string>
+    <!-- 10 to 20 km, %1$s = 10, %2$s = 20 km -->
+    <string name="visibility_from_to_number">%1$s à %2$s</string>
+    <!-- Clear to Perfectly clear, %1$s = Clear, %2$s = Perfectly clear -->
+    <string name="visibility_from_to_description">%1$s à %2$s</string>
+    <string name="visibility_very_poor">Très mauvaise</string>
+    <string name="visibility_poor">Mauvaise</string>
+    <string name="visibility_moderate">Modérée</string>
+    <string name="visibility_good">Bonne</string>
+    <string name="visibility_clear">Dégagé</string>
+    <string name="visibility_perfectly_clear">Complètement dégagé</string>
     <string name="cloud_cover">Couverture nuageuse</string>
     <string name="cloud_cover_short">Couverture</string>
+    <string name="cloud_cover_about">À propos de la couverture nuageuse</string>
+    <string name="cloud_cover_about_description">La couverture nuageuse désigne le pourcentage du ciel obscurci par les nuages, en moyenne. La couverture nuageuse est corrélée à la durée d’ensoleillement.</string>
     <string name="ceiling">Plafond nuageux</string>
     <string name="ceiling_short">Plafond</string>
     <string name="settings_icon_packs_get_more">Voir plus</string>
     <string name="action_refresh">Actualiser</string>
     <string name="action_restart">Redémarrer</string>
-    <string name="action_see_more">Voir plus</string>
+    <string name="action_more">Plus</string>
     <string name="action_edit">Modifier</string>
-
     <string name="daily_yesterday">Hier</string>
     <string name="daily_today">Aujourd’hui</string>
     <string name="daily_tomorrow">Demain</string>
@@ -52,8 +79,20 @@
     <string name="daily_yesterday_short">Hier</string>
     <string name="daily_today_short">Auj.</string>
     <string name="daily_tomorrow_short">Dem.</string>
-
+    <string name="daily_summary">Synthèse quotidienne</string>
+    <!-- Charts -->
+    <string name="chart_no_daily_data">Aucune donnée disponible pour ce jour.</string>
+    <string name="chart_no_hourly_data">Aucune donnée horaire disponible.</string>
+    <string name="chart_not_enough_hourly_data">Pas assez de données horaires disponibles pour afficher un graphique pour ce jour.</string>
+    <string name="chart_average">Moyenne</string>
+    <string name="chart_maximum_value">Valeur maximale</string>
+    <string name="conditions">Conditions</string>
     <string name="temperature">Température</string>
+    <string name="temperature_real">Réel</string>
+    <string name="temperature_real_details">La température réelle.</string>
+    <string name="temperature_feels_like">Ressenti</string>
+    <string name="temperature_feels_like_short">Ressenti</string>
+    <string name="temperature_feels_like_details">La température telle qu’elle est perçue sous l’effet de l’humidité, du vent et/ou du soleil.</string>
     <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Ressentie</string>
@@ -61,23 +100,37 @@
     <string name="temperature_wet_bulb">Thermomètre-globe mouillé</string>
     <string name="temperature_degree_day">Degré jour unifié</string>
     <string name="temperature_degree_day_heating">Degré-jour de chauffe</string>
+    <string name="temperature_degree_day_heating_explanation">Différence entre la température extérieure et une température de confort de référence utilisée pour estimer les besoins en énergie de chauffage</string>
     <string name="temperature_degree_day_cooling">Degré-jour froid</string>
+    <string name="temperature_degree_day_cooling_explanation">Différence entre la température extérieure et une température de confort de référence utilisée pour estimer les besoins en énergie de réfrigération</string>
     <string name="temperature_average_short">Moy.</string>
     <string name="temperature_normal_short">Normale</string>
     <string name="temperature_normals">Normales de température</string>
-
+    <string name="temperature_normals_deviation">Écart</string>
+    <!-- %s = July -->
+    <string name="temperature_normals_deviation_explanation_maximum">Écart avec la moyenne de température maximale du mois de %s pour cet emplacement</string>
+    <!-- %s = July -->
+    <string name="temperature_normals_deviation_explanation_minimum">Écart avec la moyenne de température minimale du mois de %s pour cet emplacement</string>
     <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Orage</string>
     <string name="precipitation_rain">Pluie</string>
+    <string name="precipitation_rain_total_day">Pluie de la journée</string>
+    <string name="precipitation_rain_total_night">Pluie de la nuit</string>
     <string name="precipitation_snow">Neige</string>
+    <string name="precipitation_snow_total_day">Neige de la journée</string>
+    <string name="precipitation_snow_total_night">Neige de la nuit</string>
     <string name="precipitation_ice">Glace</string>
-
     <string name="wind">Vent</string>
     <string name="wind_short">Vent</string>
+    <string name="wind_origin">Origine : %s</string>
     <string name="wind_direction">Direction du vent</string>
     <string name="wind_speed">Vitesse du vent</string>
+    <string name="wind_speed_about">À propos de la vitesse du vent et des rafales</string>
+    <string name="wind_speed_about_description">La vitesse du vent est mesurée en effectuant la moyenne des vitesses de vent sur une période donnée. Les rafales sont des coups de vent soudains qui durent généralement moins de 20 secondes.</string>
     <string name="wind_gusts">Rafales de vent</string>
+    <string name="wind_gusts_short">Rafales</string>
     <string name="wind_strength">Force du vent</string>
+    <string name="wind_strength_scale">Échelle de Beaufort</string>
     <string name="wind_strength_0">Calme</string>
     <string name="wind_strength_1">Très légère brise</string>
     <string name="wind_strength_2">Légère brise</string>
@@ -90,8 +143,7 @@
     <string name="wind_strength_9">Fort coup de vent</string>
     <string name="wind_strength_10">Tempête</string>
     <string name="wind_strength_11">Violente tempête</string>
-    <string name="wind_strength_12">Ouragan</string>
-
+    <string name="wind_strength_12">Vent d’ouragan</string>
     <string name="wind_direction_variable">Variable</string>
     <string name="wind_direction_N">Nord</string>
     <string name="wind_direction_NE">Nord Est</string>
@@ -109,11 +161,9 @@
     <string name="wind_direction_SW_short">SO</string>
     <string name="wind_direction_W_short">O</string>
     <string name="wind_direction_NW_short">NO</string>
-
     <string name="precipitation_intensity_light">Faible</string>
     <string name="precipitation_intensity_medium">Modérée</string>
     <string name="precipitation_intensity_heavy">Forte</string>
-
     <string name="ephemeris_moon_phase_new_moon">Nouvelle lune</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Premier croissant</string>
     <string name="ephemeris_moon_phase_first_quarter">Premier quartier</string>
@@ -122,7 +172,8 @@
     <string name="ephemeris_moon_phase_waning_gibbous">Lune gibbeuse décroissante</string>
     <string name="ephemeris_moon_phase_last_quarter">Dernier quartier</string>
     <string name="ephemeris_moon_phase_waning_crescent">Dernier croissant</string>
-
+    <string name="pollen_primary">Pollen principal</string>
+    <string name="pollen_details">Détails des pollens</string>
     <string name="pollen_tree">Arbres</string>
     <string name="pollen_acer">Érable</string>
     <string name="pollen_alnus">Aulne</string>
@@ -158,7 +209,6 @@
     <string name="pollen_level_3">Modéré</string>
     <string name="pollen_level_4">Fort</string>
     <string name="pollen_level_5">Très fort</string>
-
     <!-- UV levels -->
     <string name="uv_index">Indice UV</string>
     <string name="uv_index_short">Indice UV</string>
@@ -167,18 +217,32 @@
     <string name="uv_index_6_7">Élevé</string>
     <string name="uv_index_8_10">Très élevé</string>
     <string name="uv_index_11">Extrême</string>
-
+    <string name="uv_index_about">À propos de l’indice UV</string>
+    <string name="uv_index_about_description">L’indice UV mesure l’intensité du rayonnement ultraviolet émis par le soleil. Plus elle est élevée, plus elle risque de provoquer rapidement des coups de soleil, des cancers de la peau et des lésions oculaires.</string>
+    <string name="uv_index_scale">Échelle de l’indice UV</string>
+    <string name="uv_index_time_to_burn">Temps avant brûlure</string>
+    <string name="uv_index_time_to_burn_explanations">Le temps exact avant brûlure dépend de l’altitude, de la présence de surfaces réfléchissantes comme l’eau ou la neige, du type de peau et de l’utilisation de crème solaire.</string>
     <string name="forecast">Prévisions</string>
     <string name="daily_forecast">Prévisions quotidiennes</string>
     <string name="hourly_forecast">Prévisions heure par heure</string>
     <string name="current_weather">Météo actuelle</string>
     <string name="precipitation_nowcasting">Prévisions immédiates de précipitations</string>
     <string name="air_quality">Qualité de l’air</string>
+    <string name="air_quality_short">Qual. de l’air</string>
     <string name="pollen">Pollen</string>
     <string name="pollen_and_mold">Pollen &amp; moisissure</string>
+    <string name="clock">Horloge</string>
     <string name="details">Détails</string>
     <string name="ephemeris">Soleil &amp; lune</string>
-
+    <string name="ephemeris_sun">Soleil</string>
+    <string name="ephemeris_moon">Lune</string>
+    <string name="ephemeris_about">À propos des heures de lever et coucher</string>
+    <string name="ephemeris_about_rise">L’heure de lever est le moment où le soleil ou la lune apparaît entièrement au-dessus de l’horizon.</string>
+    <string name="ephemeris_about_set">L’heure de coucher est le moment où le soleil ou la lune disparaît complètement sous l’horizon.</string>
+    <string name="ephemeris_about_dawn">L’aube est le moment où la première lumière du jour apparaît avant le lever du soleil.</string>
+    <string name="ephemeris_about_dusk">Le crépuscule est la phase la plus sombre de la tombée de la nuit, avant que la dernière lumière visible disparaisse.</string>
+    <string name="ephemeris_polar_day">Jour polaire</string>
+    <string name="ephemeris_polar_night">Nuit polaire</string>
     <!-- Weather texts -->
     <string name="common_weather_text_clear_sky">Ciel dégagé</string>
     <string name="common_weather_text_mainly_clear">Principalement dégagé</string>
@@ -188,7 +252,6 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Orage léger ou modéré</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Orage avec légère grêle</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Orage avec forte grêle</string>
-
     <string name="action_next">Suivant</string>
     <string name="action_done">OK</string>
     <string name="action_save">Enregistrer</string>
@@ -203,18 +266,18 @@
     <string name="action_continue">Continuer</string>
     <string name="action_confirm">Confirmer</string>
     <string name="action_close">Fermer</string>
+    <string name="action_close_menu">Fermer le menu</string>
+    <string name="action_toggle_data_type_menu">Menu de sélection du type de données</string>
     <string name="action_share">Partager</string>
     <string name="action_download">Télécharger</string>
-
     <string name="locations">Emplacements</string>
     <string name="location_search_weather_source">Source météo</string>
-
     <string name="about_app">À propos</string>
     <string name="about_check_for_app_updates">Vérifier les mises à jour de l’appli</string>
     <string name="about_no_new_updates">Pas de nouvelle version disponible</string>
+    <string name="about_update_check_eol">Cette version d’Android n’est plus supportée</string>
     <string name="about_contact">Contact</string>
     <string name="about_translators">Traducteurs</string>
-
     <!-- feedback. -->
     <string name="dialog_app_update_check_title">Restez à jour</string>
     <string name="dialog_app_update_check_content">Appuyez ici pour activer les notifications des mises à jour de l’application.</string>
@@ -223,14 +286,13 @@
     <string name="dialog_permissions_location_title">Accéder aux informations de localisation</string>
     <string name="dialog_permissions_location_content">Pour utiliser cette fonctionnalité, vous devez autoriser l’application à accéder à votre position actuelle. Celle-ci ne sera partagée qu’avec les sources météorologiques sélectionnées. Si vous avez changé d’avis, vous pouvez annuler l’opération et ajouter un emplacement fixe manuellement.</string>
     <string name="dialog_permissions_location_background_title">Accéder à la localisation en arrière-plan</string>
-    <string name="dialog_permissions_location_background_content">Pour que l’actualisation des données météo en arrière-plan se fasse pour la position la plus récente connue par Android, vous devez définir la permission de localisation sur « Toujours autoriser ». Si vous ne le faites pas, la météo sera actualisée sur la base des dernières coordonnées récupérées au premier plan, qui sont potentiellement obsolètes.</string>
+    <string name="dialog_permissions_location_background_content">Pour que l’actualisation des données météo en arrière-plan se fasse pour la position la plus récente connue par Android, vous devez définir la permission de localisation sur « Toujours autoriser ». Si vous ne le faites pas, la météo sera actualisée sur la base des dernières coordonnées récupérées au premier plan, qui sont potentiellement obsolètes.</string>
     <string name="dialog_refresh_error_details_title">Erreurs de mise à jour</string>
     <string name="dialog_refresh_error_details_content">Appuyez sur les messages d’erreur avec un point d’interrogation pour obtenir plus d’informations.</string>
     <string name="dialog_time_picker_select_time">Sélectionner l’heure</string>
     <string name="dialog_time_picker_input_time">Saisir l’heure</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Basculer en saisie tactile</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Basculer en saisie manuelle</string>
-
     <string name="location_message_search_failed">Échec de recherche d’emplacements</string>
     <string name="location_message_failed_to_locate">Échec de géolocalisation</string>
     <string name="location_message_permission_missing">Permission d’accéder à la position manquante</string>
@@ -241,13 +303,10 @@
     <string name="weather_message_unsupported_feature">La source ne supporte pas une des fonctionnalités demandées</string>
     <string name="weather_message_invalid_location">Emplacement invalide, veuillez le supprimer et le réajouter</string>
     <string name="weather_message_too_frequent_refreshes">Veuillez patienter quelques secondes avant de réessayer…</string>
-    <string name="location_dialog_failed_to_locate_title">Vous ne parvenez pas à être localisé ?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">Vérifiez les permissions de localisation</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">Activez les informations de localisation</string>
-    <string name="location_dialog_failed_to_locate_action_select_source">Sélectionnez un service de localisation</string>
-    <string name="location_dialog_failed_to_locate_action_add_manually">Ajoutez manuellement la localisation et supprimez « %s »</string>
+    <string name="location_dialog_failed_to_locate_action_select_source">Utiliser un autre service de localisation</string>
+    <string name="location_dialog_failed_to_locate_action_add_manually">Ajouter manuellement la localisation et supprimer « %s »</string>
     <string name="weather_api_limit_reached_title">Limite de requêtes API atteinte</string>
-    <string name="weather_api_limit_reached_content">Pour contourner la limite, ajoutez votre propre clé API.</string>
+    <string name="weather_api_limit_reached_content">Pour contourner la limite, ajouter votre propre clé API.</string>
     <string name="weather_api_unauthorized_title">Accès API non autorisé</string>
     <string name="weather_api_unauthorized_content">Pour certaines sources météo, vous devez fournir votre propre clé API. Si vous l’avez déjà fait, vérifiez qu’il n’y a pas d’erreur dans la clé fournie.</string>
     <string name="weather_api_key_required_missing_title">Clé API requise manquante</string>
@@ -265,12 +324,14 @@
     <string name="widget_label_hide_subtitle">Masquer le sous-titre</string>
     <string name="widget_label_hide_header">Masquer l’entête</string>
     <string name="widget_label_subtitle_data">Sous-titre</string>
-    <string name="widget_label_text_color">Couleur du texte</string><!-- Texte sombre -->
+    <string name="widget_label_text_color">Couleur du texte</string>
     <string name="widget_label_text_size">Taille du texte</string>
     <string name="widget_label_clock_font">Police de l’horloge</string>
     <string name="widget_label_hide_alternate_calendar">Masquer le calendrier alternatif</string>
     <string name="widget_label_align_end">Aligner à droite</string>
-    <string name="widget_custom_subtitle_explanation">Vous pouvez saisir ce que vous voulez, mais faites attention à la longueur du texte. Si vous voulez citer des données météo, veuillez utiliser $ pour référencer le mot-clé correspond.\n\nPar example, « La météo actuelle est : $cw$. » s’affichera « La météo actuelle est : Ensoleillé. ».</string>
+    <string name="widget_custom_subtitle_help_content_description">Afficher l’aide des mots-clés du sous-titre personnalisé</string>
+    <string name="widget_custom_subtitle_alert_box_title">Aide du sous-titre personnalisé</string>
+    <string name="widget_custom_subtitle_explanation">Vous pouvez saisir ce que vous voulez, mais faites attention à la longueur du texte. Si vous voulez citer des données météo, veuillez utiliser $ pour référencer le mot-clé correspond.\n\nPar example, « La météo actuelle est : $cw$. » s’affichera « La météo actuelle est : Ensoleillé. ».</string>
     <!-- keep those content with the format "$xxx$". -->
     <string name="widget_custom_subtitle_keyword_cw_description">Météo actuelle</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Température actuelle (°C/°F)</string>
@@ -278,7 +339,7 @@
     <string name="widget_custom_subtitle_keyword_at_description">Température ressentie actuelle (°C/°F)</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Température ressentie actuelle (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">Vent actuel</string>
-    <string name="widget_custom_subtitle_keyword_caqi_description">Indice de Qualité de l’Air actuel</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Indice de qualité de l’air actuel</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">UV actuel</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Humidité actuelle</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Pression actuelle</string>
@@ -306,26 +367,23 @@
     <string name="widget_custom_subtitle_keyword_xnp_description">Précipitations de nuit d’aujourd’hui, demain, …, dans 4 jours (%)</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Vent de jour d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Vent de nuit d’aujourd’hui, demain, …, dans 4 jours</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Indice de Qualité de l’Air d’aujourd’hui, demain, …, dans 4 jours</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Indice de qualité de l’air d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Résumé des indices de pollen d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Lever du soleil d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Coucher du soleil d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Lever de lune d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Coucher de lune d’aujourd’hui, demain, …, dans 4 jours</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Phase lunaire d’aujourd’hui, demain, …, dans 4 jours</string>
-
     <string name="widget_live_wallpaper_weather_kind">Météo</string>
     <string name="widget_live_wallpaper_day_night_type">Période</string>
-
     <string name="location_message_added">Emplacement ajouté</string>
     <string name="location_message_updated">Emplacement mis à jour</string>
-    <string name="location_message_already_exists">Un emplacement avec la même source météo principale existe déjà.</string>
+    <string name="location_message_already_exists">La liste d’emplacements contient déjà cet emplacement avec cette source de prévisions.</string>
     <string name="location_message_deleted">Emplacement supprimé</string>
-    <string name="location_delete_location_dialog_title">Supprimer l’emplacement ?</string>
+    <string name="location_delete_location_dialog_title">Supprimer l’emplacement ?</string>
     <string name="location_delete_location_dialog_message">Vous vous apprêtez à supprimer “%s” de votre liste d’emplacements enregistrés.</string>
     <string name="location_delete_location_dialog_message_no_name">Vous vous apprêtez à supprimer cet emplacement de votre liste d’emplacements enregistrés.</string>
     <string name="location_message_list_cannot_be_empty">La liste de localisation ne peut être vide</string>
-
     <string name="location_search_placeholder">Rechercher une localisation…</string>
     <string name="location_search_source">Source de recherche d’emplacements</string>
     <string name="location_search_change_source">Changer la source de recherche d’emplacements</string>
@@ -334,14 +392,14 @@
     <string name="location_has_active_alerts">Vigilance en cours</string>
     <string name="location_search_no_results">%1$s n’a pu trouver aucun résultat pour %2$s</string>
     <string name="location_search_no_results_advice">Vérifiez l’orthographe de votre requête, et que celle-ci n’est pas trop spécifique. Alternativement, vous pouvez essayer une autre source de recherche d’emplacements qui peut produire des résultats différents.</string>
-
     <string name="settings_changes_apply_after_restart">Les modifications seront appliquées après un redémarrage</string>
-
     <string name="notification_running_in_background">Fonctionnement en arrière-plan pour permettre l’actualisation</string>
     <string name="notification_updating_weather_data">Actualisation des données météo (%1$d/%2$d)</string>
     <string name="message_multiple_refresh_errors">Mise à jour terminée avec erreurs</string>
     <string name="message_invalid_incomplete_data">Données invalides ou incomplètes reçues du serveur</string>
+    <string name="message_outdated_server_data">Données obsolètes reçues du serveur</string>
     <string name="message_network_unavailable">Réseau non-disponible</string>
+    <string name="message_server_insecure_title">Connexion sécurisée impossible</string>
     <string name="message_server_timeout">Délai imparti dépassé</string>
     <string name="message_server_unavailable_title">Serveur indisponible</string>
     <string name="message_server_unavailable_content">L’erreur est en général temporaire. Si le problème persiste, merci de signaler le problème sur GitHub.</string>
@@ -349,7 +407,7 @@
     <string name="message_parsing_error_content">Assurez-vous d’avoir mis à jour vers la dernière version de l’application. Le serveur peut être temporairement indisponible, dans ce cas, réessayez plus tard. Si le problème persiste, merci de récupérer un journal d’incident à partir des paramètres de débogage, et signaler le problème sur GitHub.</string>
     <string name="message_source_not_installed_error_title">La source n’existe plus</string>
     <string name="message_source_not_installed_error_content_tip_1">Cela peut se produire lorsque vous avez ajouté votre emplacement dans la version Standard de l’application et que vous êtes ensuite passé à la version avec uniquement des sources réseau libres et auto-hébergeables (freenet). Revenir à la version Standard peut permettre de résoudre ce problème.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Modifiez les sources météorologiques pour cet emplacement ou supprimez et ajoutez à nouveau cet emplacement.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Modifiez les sources météorologiques pour cet emplacement, ou supprimez et ajoutez à nouveau cet emplacement.</string>
     <!-- $ = 15 minutes, may be adjusted in the future -->
 
     <!-- Example: Precipitation soon - New York -->
@@ -364,10 +422,7 @@
     <string name="notification_precipitation_stopping">Fin des précipitations à venir</string>
     <!-- Example: Expected to stop at 09:00 AM -->
     <string name="notification_precipitation_stopping_desc">Fin prévue à %s</string>
-
-    <string name="pollen_tap_to_see_more">Appuyez pour en voir plus…</string>
     <string name="message_tap_again_to_exit">Appuyez à nouveau pour quitter</string>
-
     <!-- content description -->
     <string name="action_delete">Supprimer</string>
     <string name="action_back">Retour</string>
@@ -407,75 +462,61 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Homogène</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combine tous les modèles météo de ce fournisseur en une prévision homogène</string>
     <string name="settings_icon_packs_check_details">Plus de détails</string>
-    <!-- $ = alert count. -->
+    <string name="air_quality_pollutant_primary">Polluant principal</string>
+    <string name="air_quality_pollutant_details">Détails des polluants</string>
+    <string name="air_quality_health_information">Informations sanitaires</string>
     <string name="air_quality_pm25">PM2,5</string>
     <string name="air_quality_pm25_voice">PM deux point cinq</string>
+    <string name="air_quality_pm25_full">Particules respirables (&lt; %s)</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_pm10_voice">PM dix</string>
+    <string name="air_quality_pm10_full">Particules inhalables (&lt; %s)</string>
+    <string name="air_quality_pm_sources">Les principales sources sont les processus de combustion (centrales électriques, chauffage intérieur, gaz d’échappement des voitures, feux de forêt), les processus mécaniques (construction, poussière minérale, agriculture) et les particules biologiques (pollen, moisissures, bactéries, virus).</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_so2_voice">Dioxyde de soufre</string>
+    <string name="air_quality_so2_full">Dioxyde de soufre (SO₂)</string>
+    <string name="air_quality_so2_sources">Les principales sources sont les processus de combustion de combustibles contenant du soufre dans l’industrie, les transports et les centrales électriques.</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Dioxyde d’azote</string>
+    <string name="air_quality_no2_full">Dioxyde d’azote (NO₂)</string>
+    <string name="air_quality_no2_sources">Les principales sources sont les processus de combustion de combustibles, tels que ceux utilisés dans l’industrie et les transports.</string>
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Ozone</string>
+    <string name="air_quality_o3_full">Ozone troposphérique (O₃)</string>
+    <string name="air_quality_o3_sources">L’ozone est créé par réaction chimique entre l’oxygène atmosphérique, les oxydes d’azote, le monoxyde de carbone et les composés organiques, en présence de la lumière du soleil.</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Monoxyde de carbone</string>
-    <string name="air_quality_pm_info_title">Particules (PM2,5 &amp; PM10)</string>
-    <string name="air_quality_pm_explanations_introduction">Les particules ou matières particulaires atmosphériques sont des particules microscopiques de matière solide ou liquide en suspension dans l’air.</string>
-    <string name="air_quality_pm_explanations_origin">Certaines particules sont d’origine naturelle et proviennent des volcans, des tempêtes de poussière, des incendies de forêts et de prairies, de la végétation vivante et des embruns. Les activités humaines génèrent également des quantités importantes de particules, comme la circulation et les transports, les activités industrielles, les centrales électriques, les chantiers de construction, la combustion de déchets ou les exploitations agricoles.</string>
-    <string name="air_quality_pm_explanations_consequences">Les particules sont la forme la plus nocive de pollution atmosphérique en raison de leur capacité à pénétrer profondément dans les poumons et le cerveau à partir des flux sanguins, causant des problèmes de santé tels que des maladies cardiaques, des maladies pulmonaires et des décès prématurés.</string>
-    <string name="air_quality_o3_info_title">Ozone troposphérique (O₃)</string>
-    <string name="air_quality_o3_info_introduction">L’ozone troposphérique (O₃) est un composant majeur du smog. Bien qu’il s’agisse de la même molécule, l’ozone troposphérique peut être nocif pour la santé humaine, alors que l’ozone stratosphérique protège la terre de l’excès de rayonnement UV. </string>
-    <string name="air_quality_o3_info_origin">Il se forme à partir de réactions photochimiques avec des polluants tels que les composés organiques volatils, le monoxyde de carbone et les oxydes d’azote (NOx) émis par les véhicules et l’industrie. En raison de la nature photochimique de l’ozone, les niveaux les plus élevés d’ozone sont observés pendant les périodes ensoleillées.</string>
-    <string name="air_quality_o3_info_consequences">L’exposition à une quantité excessive d’ozone peut entraîner des problèmes respiratoires, déclencher de l’asthme, réduire la fonction pulmonaire et provoquer des maladies pulmonaires.</string>
-    <string name="air_quality_no2_info_title">Dioxyde d’azote (NO₂)</string>
-    <string name="air_quality_no2_info_introduction">Le dioxyde d’azote (NO₂) est un gaz brun-rouge toxique suffocant à l’odeur âcre et piquante caractéristique.</string>
-    <string name="air_quality_no2_info_origin">Les sources ambiantes de NO₂ résultent de la combustion à haute température de combustibles dans des processus tels que ceux utilisés pour le chauffage, le transport, l’industrie et la production d’électricité. Les sources domestiques d’oxydes d’azote (NOx) comprennent les équipements qui brûlent des combustibles tels que les fours, les cheminées et les cuisinières et fours à gaz.</string>
-    <string name="air_quality_no2_info_consequences">L’exposition au dioxyde d’azote peut irriter les voies respiratoires et aggraver les maladies respiratoires. En outre, le NO₂ est un important précurseur de l’ozone, un polluant étroitement lié à l’asthme et à d’autres affections respiratoires.</string>
-    <string name="air_quality_so2_info_title">Dioxyde de soufre (SO₂)</string>
-    <string name="air_quality_so2_info_introduction">Le dioxyde de soufre (SO₂) est un gaz toxique incolore qui donne son odeur aux allumettes brûlées.</string>
-    <string name="air_quality_so2_info_origin">Il est libéré naturellement par l’activité volcanique et provient principalement de la combustion de combustibles fossiles pour le chauffage domestique, l’industrie et la production d’électricité.</string>
-    <string name="air_quality_so2_info_consequences">L’exposition au SO₂ est associée à des hospitalisations pour asthme et à des visites aux urgences.</string>
-    <string name="air_quality_co_info_title">Monoxyde de carbone (CO)</string>
-    <string name="air_quality_co_info_introduction">Le monoxyde de carbone (CO) est un gaz toxique et inflammable, incolore, inodore, insipide et non irritant.</string>
-    <string name="air_quality_co_info_origin">Il est produit par la combustion incomplète de combustibles carbonés tels que le bois, l’essence, le charbon, le gaz naturel et le kérosène dans des poêles simples, des feux ouverts, des lampes à mèche, des fours et des cheminées. La principale source de monoxyde de carbone (CO) dans l’air ambiant provient des véhicules à moteur.</string>
-    <string name="air_quality_co_info_consequences">Le monoxyde de carbone se diffuse à travers les tissus pulmonaires et dans la circulation sanguine, empêchant les cellules de l’organisme de se lier à l’oxygène. Ce manque d’oxygène endommage les tissus et les cellules. L’exposition au monoxyde de carbone peut entraîner des difficultés respiratoires, de l’épuisement, des vertiges et d’autres symptômes semblables à ceux de la grippe. L’exposition à des niveaux élevés de monoxyde de carbone peut être mortelle.</string>
-    <string name="ephemeris_sunrise_at">Lever de soleil à %s</string> <!-- $ = time. -->
-    <string name="ephemeris_sunset_at">Coucher de soleil à %s</string> <!-- $ = time. -->
-    <string name="ephemeris_moonrise_at">Lever de lune à %s</string> <!-- $ = time. -->
-    <string name="ephemeris_moonset_at">Coucher de lune à %s</string> <!-- $ = time. -->
+    <string name="air_quality_co_full">Monoxyde de carbone (CO)</string>
+    <string name="air_quality_co_sources">Provient généralement de la combustion incomplète de combustibles carbonés, comme celle qui se produit dans les moteurs de voiture et les centrales électriques.</string>
+    <string name="ephemeris_sunrise_at">Lever de soleil à %s</string>
+    <string name="ephemeris_sunset_at">Coucher de soleil à %s</string>
+    <string name="ephemeris_dawn_at">Aube à %s</string>
+    <string name="ephemeris_dusk_at">Crépuscule à %s</string>
+    <string name="ephemeris_moonrise_at">Lever de lune à %s</string>
+    <string name="ephemeris_moonset_at">Coucher de lune à %s</string>
     <string name="precipitation_none">Pas de précipitations</string>
-    <string name="precipitation_between_time">Précipitations entre %1$s et %2$s</string> <!-- $1 = start time, $2 = end time. -->
+    <string name="precipitation_between_time">Précipitations de %1$s à %2$s</string>
     <string name="action_add_current_location">Ajouter ma position actuelle</string>
     <string name="settings_items_drag_to_sort">Maintenez puis déplacez les éléments de la liste pour les ordonner</string>
     <string name="settings_item_delete">Supprimer cet élément</string>
     <string name="location_swipe_to_delete">Vous pouvez balayer vers la gauche pour supprimer cet élément</string>
-    <string name="weather_data_by">Données par %s</string> <!-- $ = weather source. -->
-    <string name="weather_forecast_data_by">Données de prévision par %s</string>
-    <string name="weather_current_data_by">Données de météo actuelle par %s</string> <!-- $ = weather source. -->
-    <string name="weather_air_quality_data_by">Données de qualité de l’air par %s</string>
-    <string name="weather_pollen_data_by">Données de pollen par %s</string>
-    <string name="weather_air_quality_and_pollen_data_by">Données de qualité de l’air et de pollen par %s</string>
-    <string name="weather_minutely_data_by">Données de prévisions immédiates de précipitations par %s</string>
-    <string name="weather_alert_data_by">Données d’alertes par %s</string>
-    <string name="weather_normals_data_by">Données des normales de température par %s</string>
-    <string name="location_reverse_geocoding_by">Recherche d’adresse par %s</string>
-    <string name="location_results_by">Résultats d’emplacement par %s</string> <!-- $ = location source -->
+    <string name="data_sources">Sources des données</string>
+    <string name="data_modified">Ce contenu a été modifié par %s par rapport à l’original, principalement pour calculer ou extrapoler des données manquantes.</string>
+    <string name="location_results_by">Résultats d’emplacement par %s</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Icône météo</string>
     <string name="settings_icon_packs_weather_icon_light">Icône claire</string>
     <string name="settings_icon_packs_weather_icon_grey">Icône grise</string>
     <string name="settings_icon_packs_weather_icon_dark">Icône sombre</string>
-
     <!-- action -->
     <string name="alert">Vigilance</string>
     <string name="alerts">Vigilances</string>
     <string name="uv_alert_level">Vigilance</string>
     <string name="action_search">Recherche</string>
     <string name="action_settings">Paramètres</string>
+    <string name="action_configure_item">Configurer %s</string>
     <string name="action_preview">Aperçu</string>
     <string name="action_about">À propos</string>
     <string name="action_app_store">Magasin d’applications</string>
-
     <!-- widget -->
     <string name="widget_day">Jour</string>
     <string name="widget_week">Semaine</string>
@@ -490,7 +531,6 @@
     <string name="widget_multi_city">Plusieurs villes</string>
     <string name="widget_refreshing">Veuillez patienter</string>
     <string name="widget_ellipsis">…</string>
-
     <!-- paramètres -->
     <!-- Settings (new design) -->
     <string name="settings_section_general">Général</string>
@@ -499,20 +539,18 @@
     <string name="settings_background_updates_refresh_title">Fréquence de rafraîchissement</string>
     <string name="settings_background_updates_refresh_never">Jamais</string>
     <string name="settings_background_updates_refresh_never_warning1">En désactivant les mises à jour en arrière-plan, vous ne recevrez plus de notifications de vigilances ou de précipitations. Les widgets ne seront actualisés que lorsque vous ouvrirez l’application.</string>
-    <string name="settings_background_updates_refresh_never_warning2">Le processus de mise à jour en arrière-plan est léger : il ne rafraîchit que votre premier emplacement à la fréquence choisie, et les emplacements secondaires uniquement si vous en avez besoin, une fois par jour. Il utilise la batterie avec parcimonie et la consommation de données ne devrait pas excéder %d Mio par mois.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Le processus de mise à jour en arrière-plan est léger : il ne rafraîchit que votre premier emplacement à la fréquence choisie, et les emplacements secondaires uniquement si vous en avez besoin, une fois par jour. Il utilise la batterie avec parcimonie et la consommation de données ne devrait pas excéder %d Mio par mois.</string>
     <string name="settings_background_updates_refresh_never_warning3">Privilégiez une fréquence de rafraîchissement moins élevée plutôt que de désactiver les mises à jour en arrière-plan, sinon appuyez sur “Continuer” si vous souhaitez quand même poursuivre.</string>
-    <string name="settings_background_updates_refresh_30min">30 minutes</string>
-    <string name="settings_background_updates_refresh_1h">1 heure</string>
-    <string name="settings_background_updates_refresh_1h_30min">1 heure 30</string>
-    <string name="settings_background_updates_refresh_2h">2 heures</string>
-    <string name="settings_background_updates_refresh_3h">3 heures</string>
-    <string name="settings_background_updates_refresh_6h">6 heures</string>
-    <string name="settings_background_updates_refresh_12h">12 heures</string>
-    <string name="settings_background_updates_refresh_24h">24 heures</string>
     <string name="action_show_errors">Appuyez pour voir les détails</string>
     <string name="action_show">Voir</string>
+    <string name="action_enable">Activer</string>
+    <string name="action_allow">Autoriser</string>
     <string name="action_grant_permission">Appuyez pour accorder la permission.</string>
     <string name="action_help_me_choose">Aidez-moi à choisir</string>
+    <!-- Libellés -->
+    <string name="label_description">Description</string>
+    <string name="label_expanded">Développé</string>
+    <string name="label_collapsed">Réduit</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorer quand la batterie est faible</string>
     <string name="settings_notifications_app_updates_check">Notifications des mises à jour de l’appli</string>
     <string name="settings_notifications_permission">Permission de notification requise</string>
@@ -527,20 +565,24 @@
     <string name="settings_background_updates_dont_kill_my_app_title">Instructions spécifiques selon fabricant</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Certains fabricants ont mis en place des restrictions supplémentaires sur les applications qui tuent les services en arrière-plan. Le site web Don’t kill my app! contient des informations pour résoudre ce problème.</string>
     <string name="settings_background_updates_worker_info_title">Informations sur les processsus</string>
-    <string name="settings_background_updates_worker_info_summary">Dernière exécution : %s</string>
+    <string name="settings_background_updates_worker_info_summary">Dernière exécution : %s</string>
     <string name="settings_location">Localisation</string>
     <string name="settings_appearance">Apparence</string>
+    <string name="settings_appearance_section_regional">Langue et région</string>
+    <string name="settings_appearance_section_theme">Thème</string>
     <string name="settings_appearance_summary">Langue, mode sombre, pack d’icônes, unités</string>
     <string name="settings_appearance_language_title">Langue</string>
     <string name="settings_appearance_calendar_title">Calendrier alternatif</string>
     <string name="settings_appearance_dark_mode_title">Mode sombre</string>
     <string name="settings_appearance_dark_mode_locations_title">Mode Jour / Nuit pour les emplacements</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled">Toujours actif en mode clair</string>
+    <string name="settings_appearance_dark_mode_locations_disabled">Inactif, mais les emplacements sont toujours en mode sombre de nuit</string>
     <string name="settings_appearance_icon_pack_title">Pack d’icônes</string>
     <string name="settings_icon_packs_title">Packs d’icônes</string>
     <string name="settings_main">Écran principal</string>
-    <string name="settings_main_summary">Ordre des cartes, éléments affichés, animations</string>
+    <string name="settings_main_summary">Ordre des blocs, éléments affichés, animations</string>
     <string name="settings_main_section_displayed_data">Données affichées</string>
-    <string name="settings_main_cards_title">Cartes</string>
+    <string name="settings_main_cards_title">Blocs</string>
     <string name="settings_main_daily_trends_title">Tendances quotidiennes</string>
     <string name="settings_main_hourly_trends_title">Tendances heure par heure</string>
     <string name="settings_main_header_details_title">Détails en entête</string>
@@ -551,7 +593,7 @@
     <string name="settings_main_background_animation_enabled">Activée</string>
     <string name="settings_main_background_animation_disabled">Désactivée</string>
     <string name="settings_main_gravity_sensor_switch">Accéléromètre</string>
-    <string name="settings_main_cards_fade_in_switch">Apparition des cartes en fondu</string>
+    <string name="settings_main_cards_fade_in_switch">Apparition des blocs en fondu</string>
     <!-- Elements = temperature in header, AQI, sun &amp; moon arc, etc -->
     <string name="settings_main_cards_other_element_animations_switch">Autres animations d’éléments</string>
     <string name="settings_units">Unités</string>
@@ -566,9 +608,7 @@
     <string name="settings_notifications_forecast_tomorrow_title">Notification pour les prévisions du lendemain</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Heure de notification pour les prévisions du lendemain</string>
     <string name="settings_widgets">Widgets &amp; Fond d’écran animé</string>
-    <string name="settings_widgets_summary">Définir le fond d’écran, configurer les widgets utilisés, notification
-        widget
-    </string>
+    <string name="settings_widgets_summary">Définir le fond d’écran, configurer les widgets utilisés, notification widget</string>
     <string name="settings_widgets_live_wallpaper_title">Fond d’écran animé</string>
     <string name="settings_widgets_live_wallpaper_summary">Définir une animation météo comme fond d’écran</string>
     <string name="settings_widgets_live_wallpaper_error">Impossible de lancer le sélecteur de fond d’écran. Vous pouvez toujours choisir le fond d’écran %s en choisissant “Fond d’écran animé” depuis le sélecteur de fond d’écran de votre écran d’accueil.</string>
@@ -602,22 +642,32 @@
     <string name="settings_units_speed">Unité de vitesse</string>
     <!-- Littéralement "suivre les préférences système" -->
     <string name="settings_source_default_value">Par défaut (inchangé)</string>
-
     <!-- Air quality -->
-    <string name="air_quality_index">Indice de Qualité de l’Air</string>
+    <string name="air_quality_index">Indice de qualité de l’air</string>
+    <string name="air_quality_index_short">IQA</string>
+    <string name="air_quality_index_about">À propos de l’indice de qualité de l’air</string>
+    <string name="air_quality_index_about_description_1">L’indice de la qualité de l’air (IQA) est une échelle conçue pour vous aider à comprendre le degré de pollution de l’air dans une zone spécifique et les risques potentiels pour votre santé.</string>
+    <string name="air_quality_index_about_description_2">L’échelle utilisée dans cette appli est basée sur les recommandations de l’Organisation Mondiale de la Santé, plutôt que sur les réglementations locales, pour avoir des catégories représentatives et permettre de comparer plus facilement les niveaux de pollution entre pays.</string>
+    <string name="air_quality_index_scale">Échelle de l’indice de qualité de l’air</string>
+    <string name="air_quality_index_harmless_exposure">Exposition sans danger</string>
     <string name="air_quality_level_1">Excellent</string>
-    <string name="air_quality_level_1_description">La qualité d’air est idéale pour la plupart des individus ; profitez de vos activités en extérieur habituelles.</string>
+    <string name="air_quality_level_1_description">La qualité d’air est idéale pour la plupart des individus ; profitez de vos activités en extérieur habituelles.</string>
+    <string name="air_quality_level_1_harmless_exposure">&gt; 1 an</string>
     <string name="air_quality_level_2">Correct</string>
     <string name="air_quality_level_2_description">La qualité d’air est généralement acceptable pour la plupart des individus. Cependant, les personnes sensibles risquent de faire l’expérience de symptômes légers à modérés en cas d’exposition à long terme.</string>
+    <string name="air_quality_level_2_harmless_exposure">&lt; 1 an</string>
     <string name="air_quality_level_3">Mauvais</string>
     <string name="air_quality_level_3_description">L’air a atteint un degré élevé de pollution et n’est pas sain pour les personnes sensibles. Réduisez le temps passé en extérieur si vous ressentez des symptômes, tels que des difficultés respiratoires ou des irritations de la gorge.</string>
+    <string name="air_quality_level_3_harmless_exposure">&lt; 1 jour</string>
     <string name="air_quality_level_4">Risque de santé</string>
     <string name="air_quality_level_4_description">Les effets sur la santé peuvent être ressentis immédiatement par les personnes sensibles. Les individus en bonne santé peuvent éprouver des gênes respiratoires et des irritations de la gorge en cas d’exposition prolongée. Limitez les activités en extérieur.</string>
+    <string name="air_quality_level_4_harmless_exposure">&lt; 1 heure</string>
     <string name="air_quality_level_5">Risque marqué de santé</string>
     <string name="air_quality_level_5_description">Les effets sur la santé risquent d’être ressentis immédiatement par les personnes sensibles et ces dernières doivent éviter les activités en extérieur. Les individus en bonne santé risquent d’éprouver des difficultés respiratoires et des irritations de la gorge ; envisagez de rester à l’intérieur et de repousser les activités en extérieur.</string>
+    <string name="air_quality_level_5_harmless_exposure">&lt; quelques minutes</string>
     <string name="air_quality_level_6">Dangereux</string>
     <string name="air_quality_level_6_description">Toute exposition à l’air, y compris pendant quelques minutes, risque de déboucher sur des problèmes de santé graves pour tous. Évitez les activités en extérieur.</string>
-
+    <string name="air_quality_level_6_harmless_exposure">&lt; 1 minute</string>
     <!-- Weather kind -->
     <string name="common_weather_text_partly_cloudy">Partiellement couvert</string>
     <string name="common_weather_text_cloudy">Nuageux</string>
@@ -632,7 +682,6 @@
     <string name="weather_kind_thunder">Tonnerre</string>
     <string name="weather_kind_thunderstorm">Orage</string>
     <string name="weather_kind_wind">Vent</string>
-
     <string name="settings_none">Aucun</string>
     <string name="settings_color_day_night">Jour / Nuit</string>
     <string name="settings_color_app">Automatique</string>
@@ -642,32 +691,31 @@
     <string name="settings_color_grey">Gris</string>
     <string name="settings_color_dark">Sombre</string>
     <string name="settings_invalid_syntax">Syntaxe invalide</string>
-
     <string name="about_source_code">Code source</string>
     <string name="about_dependencies">Dépendences</string>
     <string name="about_contributors">Contributeurs</string>
     <string name="about_contribution_WangDaYeeeeee">Développeur du projet d’origine Geometric Weather</string>
     <string name="about_contribution_designer">Concepteur du logo</string>
-    <string name="about_open_link_message">Ouvrir %s ?</string>
+    <string name="about_open_link_message">Ouvrir %s ?</string>
     <string name="action_location_list">Liste des emplacements</string>
     <string name="setting_weather_source_accu_days">Jours</string>
     <string name="settings_weather_source_portal">Portail</string>
-    <string name="weather_source_accu_preference_days_1">1 jour</string>
-    <string name="weather_source_accu_preference_days_5">5 jours</string>
-    <string name="weather_source_accu_preference_days_10">10 jours</string>
-    <string name="weather_source_accu_preference_days_15">15 jours</string>
+    <string name="weather_source_accu_preference_days_1">1 jour</string>
+    <string name="weather_source_accu_preference_days_5">5 jours</string>
+    <string name="weather_source_accu_preference_days_10">10 jours</string>
+    <string name="weather_source_accu_preference_days_15">15 jours</string>
     <string name="setting_weather_source_accu_hours">Heures</string>
-    <string name="weather_source_accu_preference_hours_1">1 heure</string>
-    <string name="weather_source_accu_preference_hours_12">12 heures</string>
-    <string name="weather_source_accu_preference_hours_24">24 heures</string>
-    <string name="weather_source_accu_preference_hours_72">72 heures</string>
-    <string name="weather_source_accu_preference_hours_120">120 heures</string>
-    <string name="weather_source_accu_preference_hours_240">240 heures</string>
+    <string name="weather_source_accu_preference_hours_1">1 heure</string>
+    <string name="weather_source_accu_preference_hours_12">12 heures</string>
+    <string name="weather_source_accu_preference_hours_24">24 heures</string>
+    <string name="weather_source_accu_preference_hours_72">72 heures</string>
+    <string name="weather_source_accu_preference_hours_120">120 heures</string>
+    <string name="weather_source_accu_preference_hours_240">240 heures</string>
     <string name="location_service_native">API native</string>
     <string name="settings_automatic">Automatique</string>
     <string name="notification_style_native">Natif</string>
     <string name="notification_style_cities">Villes</string>
-    <string name="notification_app_update_available">Nouvelle version disponible !</string>
+    <string name="notification_app_update_available">Nouvelle version disponible !</string>
     <string name="widget_style_rectangle">Rectangle</string>
     <string name="widget_style_symmetry">Symétrie</string>
     <string name="widget_style_tile">Carreau</string>
@@ -676,9 +724,9 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_vertical">Vertical</string>
     <string name="widget_style_oreo">Oreo</string>
-    <string name="widget_style_temperature">Temperature</string>
-    <string name="widget_week_style_5_days">5 jours</string>
-    <string name="widget_week_style_3_days">3 jours</string>
+    <string name="widget_style_temperature">Température</string>
+    <string name="widget_week_style_5_days">5 jours</string>
+    <string name="widget_week_style_3_days">3 jours</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
@@ -690,10 +738,13 @@
     <string name="widget_subtitle_data_custom">Personnalisé</string>
     <string name="action_add_new_location">Ajouter un nouvel emplacement</string>
     <string name="action_edit_location">Modifier cet emplacement</string>
-    <string name="widget_material_you_forecast">Material You - Prévisions</string>
-    <string name="widget_material_you_current">Material You - En ce moment</string>
-    <string name="unit_bf">Bf</string>
-    <string name="unit_bf_voice">sur l’échelle de Beaufort</string>
+    <string name="action_open_in_other_app">Ouvrir dans une autre app</string>
+    <string name="action_open_in_other_app_description">Ouvrir cet emplacement dans une autre application</string>
+    <string name="widget_material_you_forecast">Material You – Prévisions</string>
+    <string name="widget_material_you_current">Material You – En ce moment</string>
+    <string name="unit_bft_display_name">Beaufort</string>
+    <string name="unit_bft_nominative">%s Bf</string>
+    <string name="unit_bft_voice">sur l’échelle de Beaufort</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_mps_voice">Mètres par seconde</string>
     <string name="unit_kph">km/h</string>
@@ -758,9 +809,10 @@
     <string name="unit_h_voice">heures</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Par mètre cube</string>
+    <string name="unit_mum">µm</string>
+    <string name="unit_mum_voice">Micromètres</string>
     <string name="notification_channel_alerts">Vigilances</string>
     <string name="about_matrix">Salon Matrix</string>
-
     <string name="null_data_text">N/A</string>
     <string name="colon_separator">\u0020:\u0020</string>
     <string name="notification_update_error">%d mise(s) à jour en échec</string>

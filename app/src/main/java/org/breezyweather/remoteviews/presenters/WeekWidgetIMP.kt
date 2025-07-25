@@ -79,14 +79,14 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
         val provider = ResourcesProviderFactory.newInstance
         val dayTime = location.isDaylight
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.temperatureUnit
+        val temperatureUnit = settings.getTemperatureUnit(context)
         val weekIconMode = settings.widgetWeekIconMode
         val minimalIcon = settings.isWidgetUsingMonochromeIcons
 
         weather.current?.temperature?.temperature?.let {
             views.setTextViewText(
                 R.id.widget_week_temp,
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             )
         } ?: run {
             views.setTextViewText(R.id.widget_week_temp, null)
@@ -174,8 +174,9 @@ object WeekWidgetIMP : AbstractRemoteViewsPresenter() {
 
         // set text size.
         if (textSize != 100) {
-            val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size)
-                .toFloat() * textSize / 100f
+            val contentSize = context.resources.getDimensionPixelSize(R.dimen.widget_content_text_size).toFloat()
+                .times(textSize)
+                .div(100f)
             views.apply {
                 setTextViewTextSize(R.id.widget_week_week_1, TypedValue.COMPLEX_UNIT_PX, contentSize)
                 setTextViewTextSize(R.id.widget_week_week_2, TypedValue.COMPLEX_UNIT_PX, contentSize)

@@ -17,65 +17,64 @@
 package org.breezyweather.common.basic.models.options.basic
 
 import android.content.Context
-import android.icu.number.LocalizedNumberFormatter
-import android.icu.number.NumberFormatter
-import android.icu.text.MeasureFormat
-import android.icu.util.Measure
 import android.icu.util.MeasureUnit
-import android.os.Build
-import androidx.annotation.RequiresApi
-import org.breezyweather.common.extensions.currentLocale
 
 interface BaseEnum {
     val id: String
     val nameArrayId: Int
     val valueArrayId: Int
+
+    /**
+     * Get the name of the unit
+     * @param context
+     * @returns formatted unit, such as “km/h”
+     */
     fun getName(context: Context): String
 }
 
-interface VoiceEnum : BaseEnum {
-    val voiceArrayId: Int
-    fun getVoice(context: Context): String
+interface ContentDescriptionEnum : BaseEnum {
+    val contentDescriptionArrayId: Int
+
+    /**
+     * Get the name of the unit for screen readers
+     * @param context
+     * @returns formatted unit, such as “kilometers per hour”
+     */
+    fun getMeasureContentDescription(context: Context): String
 }
 
-interface UnitEnum<T : Number> : VoiceEnum {
+interface UnitEnum<T : Number> : ContentDescriptionEnum {
+    val measureUnit: MeasureUnit?
+    val perMeasureUnit: MeasureUnit?
     val convertUnit: (T) -> Double
-    fun getValueWithoutUnit(valueInDefaultUnit: T): T
-    fun getValueTextWithoutUnit(valueInDefaultUnit: T): String
-    fun getValueText(context: Context, valueInDefaultUnit: T): String
-    fun getValueText(context: Context, valueInDefaultUnit: T, rtl: Boolean): String
-    fun getValueVoice(context: Context, valueInDefaultUnit: T): String
-    fun getValueVoice(context: Context, valueInDefaultUnit: T, rtl: Boolean): String
 
-    companion object {
-        /**
-         * Uses LocalizedNumberFormatter on Android SDK >= 30 (which is the recommended way)
-         * Uses MeasureFormat on Android SDK < 30
-         */
-        @RequiresApi(api = Build.VERSION_CODES.N)
-        fun formatWithIcu(
-            context: Context,
-            valueWithoutUnit: Number,
-            unit: MeasureUnit,
-            unitWidth: MeasureFormat.FormatWidth,
-        ): String {
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                (NumberFormatter.withLocale(context.currentLocale) as LocalizedNumberFormatter)
-                    .unit(unit)
-                    .unitWidth(
-                        if (unitWidth == MeasureFormat.FormatWidth.WIDE) {
-                            NumberFormatter.UnitWidth.FULL_NAME
-                        } else {
-                            NumberFormatter.UnitWidth.SHORT
-                        }
-                    )
-                    .format(valueWithoutUnit)
-                    .toString()
-            } else {
-                MeasureFormat
-                    .getInstance(context.currentLocale, unitWidth)
-                    .format(Measure(valueWithoutUnit, unit))
-            }
-        }
-    }
+    /**
+     * Converted a value in default unit to the target unit (this)
+     * @param valueInDefaultUnit value in default unit
+     * @returns Number
+     */
+    fun getConvertedUnit(valueInDefaultUnit: T): T
+
+    /**
+     * Converted a value in default unit to the target unit (this)
+     * @param valueInDefaultUnit value in default unit
+     * @returns Number
+     */
+    fun formatValue(context: Context, valueInDefaultUnit: T): String
+
+    /**
+     * Format a value and its unit for general use
+     * @param context
+     * @param value
+     * @param isValueInDefaultUnit defaults to true, pass false if the value needs to be converted
+     * @returns formatted value with its unit, such as “14,6 km/h”
+     */
+    fun formatMeasure(context: Context, value: T, isValueInDefaultUnit: Boolean = true): String
+
+    /**
+     * Format a value and its unit for screen readers
+     * @param context
+     * @returns formatted value with its unit, such as “14,6 kilometers per hour”
+     */
+    fun formatContentDescription(context: Context, value: T, isValueInDefaultUnit: Boolean = true): String
 }

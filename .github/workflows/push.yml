@@ -16,13 +16,13 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Set up JDK
-        uses: actions/setup-java@3a4f6e1af504cf6a31855fa899c6aa5355ba6c12 # v4.7.0
+        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
         with:
           java-version: 17
           distribution: temurin
 
       - name: Set up gradle
-        uses: gradle/actions/setup-gradle@94baf225fe0a508e581a564467443d0e2379123b # v4.3.0
+        uses: gradle/actions/setup-gradle@ac638b010cf58a27ee6c972d7336334ccaf61c96 # v4.4.1
 
       - name: Lint
         run: ./gradlew spotlessCheck
@@ -72,6 +72,7 @@ jobs:
           echo "breezy.accu.key=$ACCU_WEATHER_KEY" >> local.properties
           echo "breezy.aemet.key=$AEMET_KEY" >> local.properties
           echo "breezy.atmoaura.key=$ATMO_AURA_KEY" >> local.properties
+          echo "breezy.atmofrance.key=$ATMO_FRANCE_KEY" >> local.properties
           echo "breezy.atmograndest.key=$ATMO_GRAND_EST_KEY" >> local.properties
           echo "breezy.atmohdf.key=$ATMO_HDF_KEY" >> local.properties
           echo "breezy.atmosud.key=$ATMO_SUD_KEY" >> local.properties
@@ -86,6 +87,7 @@ jobs:
           ACCU_WEATHER_KEY: ${{ secrets.ACCU_WEATHER_KEY }}
           AEMET_KEY: ${{ secrets.AEMET_KEY }}
           ATMO_AURA_KEY: ${{ secrets.ATMO_AURA_KEY }}
+          ATMO_FRANCE_KEY: ${{ secrets.ATMO_FRANCE_KEY }}
           ATMO_GRAND_EST_KEY: ${{ secrets.ATMO_GRAND_EST_KEY }}
           ATMO_HDF_KEY: ${{ secrets.ATMO_HDF_KEY }}
           ATMO_SUD_KEY: ${{ secrets.ATMO_SUD_KEY }}
@@ -141,7 +143,7 @@ jobs:
 
       - name: Create release
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
-        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda # v2.2.1
+        uses: softprops/action-gh-release@72f2c25fcb47643c292f7107632f7a47c1df5cd8 # v2.3.2
         with:
           tag_name: ${{ env.VERSION_TAG }}
           name: Breezy Weather ${{ env.VERSION_TAG }}

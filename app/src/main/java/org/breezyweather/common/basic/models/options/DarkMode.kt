@@ -17,17 +17,19 @@
 package org.breezyweather.common.basic.models.options
 
 import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 
 enum class DarkMode(
     override val id: String,
+    val value: Int,
 ) : BaseEnum {
 
-    SYSTEM("system"),
-    LIGHT("light"),
-    DARK("dark"),
+    SYSTEM("system", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM),
+    LIGHT("light", AppCompatDelegate.MODE_NIGHT_NO),
+    DARK("dark", AppCompatDelegate.MODE_NIGHT_YES),
     ;
 
     companion object {
@@ -42,5 +44,5 @@ enum class DarkMode(
     override val valueArrayId = R.array.dark_mode_values
     override val nameArrayId = R.array.dark_modes
 
-    override fun getName(context: Context) = Utils.getName(context, this)
+    override fun getName(context: Context) = UnitUtils.getName(context, this)
 }

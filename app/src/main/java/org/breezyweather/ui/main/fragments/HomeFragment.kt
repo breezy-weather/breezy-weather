@@ -20,29 +20,36 @@ import android.animation.Animator
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.graphics.Color
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.core.view.updatePadding
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import kotlinx.coroutines.launch
 import org.breezyweather.R
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.livedata.EqualtableLiveData
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
+import org.breezyweather.common.extensions.getThemeColor
+import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.extensions.isTabletDevice
+import org.breezyweather.common.extensions.isWidthHalfSizeable
+import org.breezyweather.common.extensions.setSystemBarStyle
+import org.breezyweather.common.extensions.uiModeManager
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.databinding.FragmentHomeBinding
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.settings.SettingsManager
@@ -50,9 +57,9 @@ import org.breezyweather.ui.common.widgets.SwipeSwitchLayout
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.main.MainActivityViewModel
 import org.breezyweather.ui.main.adapters.main.MainAdapter
+import org.breezyweather.ui.main.adapters.main.ViewType
 import org.breezyweather.ui.main.layouts.MainLayoutManager
 import org.breezyweather.ui.main.utils.MainModuleUtils
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
@@ -77,7 +84,7 @@ class HomeFragment : MainModuleFragment() {
     interface Callback {
         fun onEditIconClicked()
         fun onManageIconClicked()
-        fun onSettingsIconClicked()
+        fun onOpenInOtherAppIconClicked()
     }
 
     override fun onCreateView(
@@ -94,7 +101,7 @@ class HomeFragment : MainModuleFragment() {
             .getInstance(requireContext())
             .weatherThemeDelegate
             .getWeatherView(requireContext())
-        (binding.switchLayout.parent as CoordinatorLayout).addView(
+        (binding.switchLayout.parent.parent.parent as CoordinatorLayout).addView(
             weatherView as View,
             0,
             CoordinatorLayout.LayoutParams(
@@ -139,15 +146,19 @@ class HomeFragment : MainModuleFragment() {
     }
 
     override fun setSystemBarStyle() {
-        ThemeManager
+        val delegate = ThemeManager
             .getInstance(requireContext())
             .weatherThemeDelegate
-            .setSystemBarStyle(
-                requireActivity().window,
-                statusShader = scrollListener?.topOverlap == true,
-                lightStatus = false,
-                lightNavigation = false
+        val location = if (::viewModel.isInitialized) viewModel.currentLocation.value?.location else null
+        val isLightBackground = location?.let {
+            delegate.isLightBackground(
+                requireContext(),
+                WeatherViewController.getWeatherKind(it),
+                WeatherViewController.isDaylight(it)
             )
+        } ?: false
+
+        requireActivity().window.setSystemBarStyle(isLightBackground)
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -187,19 +198,20 @@ class HomeFragment : MainModuleFragment() {
         binding.toolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.action_edit -> callback?.onEditIconClicked()
-                R.id.action_manage -> callback?.onManageIconClicked()
-                R.id.action_settings -> callback?.onSettingsIconClicked()
+                R.id.action_open_in_other_app -> callback?.onOpenInOtherAppIconClicked()
             }
             true
         }
         binding.toolbar.menu.findItem(R.id.action_edit).setVisible(false)
-        binding.toolbar.overflowIcon?.colorFilter = PorterDuffColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
+        binding.toolbar.menu.findItem(R.id.action_open_in_other_app).setVisible(false)
+        // Needed to get the icon to show the correct color depending on dark mode
+        binding.toolbar.overflowIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_more_vert)
 
         // Align refreshTimeText with toolbar (some devices, e.g. tablets, have an additional
         // start padding).
         (binding.refreshTimeText.layoutParams as ViewGroup.MarginLayoutParams).apply {
-            marginStart = binding.toolbar.paddingStart + requireContext()
-                .resources.getDimensionPixelSize(R.dimen.normal_margin)
+            marginStart = binding.toolbar.paddingStart +
+                requireContext().resources.getDimensionPixelSize(R.dimen.normal_margin)
         }
 
         binding.switchLayout.setOnSwitchListener(switchListener)
@@ -215,9 +227,6 @@ class HomeFragment : MainModuleFragment() {
             )
         }
 
-        binding.refreshLayout.doOnApplyWindowInsets { _, insets ->
-            binding.refreshLayout.fitSystemBar(insets.top)
-        }
         binding.refreshLayout.setOnRefreshListener {
             viewModel.updateWithUpdatingChecking(
                 triggeredByUser = true,
@@ -240,14 +249,30 @@ class HomeFragment : MainModuleFragment() {
             listAnimationEnabled,
             itemAnimationEnabled
         )
+        /*.apply {
+            itemTouchHelper.attachToRecyclerView(binding.recyclerView)
+        }*/
 
         binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = MainLayoutManager()
+        binding.recyclerView.layoutManager = MainLayoutManager(requireContext()).apply {
+            spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return if (
+                        ViewType.isHalfSizeableBlock(binding.recyclerView.adapter!!.getItemViewType(position)) != true
+                    ) {
+                        2 // Full width
+                    } else {
+                        if (requireContext().isWidthHalfSizeable) {
+                            1 // Half width
+                        } else {
+                            2 // Full width
+                        }
+                    }
+                }
+            }
+        }
         binding.recyclerView.doOnApplyWindowInsets { view, insets ->
-            view.updatePadding(
-                top = insets.top, // required to correctly move the topAppBar when scrolling
-                bottom = insets.bottom
-            )
+            view.updatePadding(bottom = insets.bottom)
         }
         binding.recyclerView.addOnScrollListener(OnScrollListener().also { scrollListener = it })
         binding.recyclerView.setOnTouchListener(indicatorStateListener)
@@ -261,6 +286,7 @@ class HomeFragment : MainModuleFragment() {
                 viewModel.currentLocation.collect {
                     if (it?.location != null) {
                         binding.toolbar.menu.findItem(R.id.action_edit).setVisible(true)
+                        binding.toolbar.menu.findItem(R.id.action_open_in_other_app).setVisible(true)
                     }
 
                     // TODO: Dirty workaround to avoid recollecting on lifecycle resume
@@ -300,20 +326,26 @@ class HomeFragment : MainModuleFragment() {
 
     private fun updateDayNightColors() {
         binding.refreshLayout.setProgressBackgroundColorSchemeColor(
-            MainThemeColorProvider.getColor(
-                location = viewModel.currentLocation.value?.location,
-                id = com.google.android.material.R.attr.colorSurface
-            )
+            requireContext().getThemeColor(com.google.android.material.R.attr.colorSurface)
         )
     }
 
     // control.
     fun updateViews(location: Location? = viewModel.currentLocation.value?.location) {
         ensureResourceProvider()
+        updateDarkMode(location)
         updateContentViews(location = location)
         if (isAdded && context != null) {
             updatePreviewSubviews()
         }
+    }
+
+    private fun updateDarkMode(location: Location?) {
+        val expectedLightTheme = ThemeManager.isLightTheme(requireContext(), location)
+        LogHelper.log(msg = "Night mode: ${requireContext().uiModeManager?.nightMode}")
+        LogHelper.log(msg = "Expected light theme for ${location?.city}: $expectedLightTheme")
+
+        (activity as BreezyActivity).updateLocalNightMode(expectedLightTheme)
     }
 
     @SuppressLint("ClickableViewAccessibility", "NotifyDataSetChanged")
@@ -365,6 +397,7 @@ class HomeFragment : MainModuleFragment() {
 
         scrollListener!!.postReset(binding.recyclerView)
 
+        // TODO: What's the purpose of this?
         if (!listAnimationEnabled) {
             binding.recyclerView.alpha = 0f
             recyclerViewAnimator = MainModuleUtils.getEnterAnimator(
@@ -398,10 +431,6 @@ class HomeFragment : MainModuleFragment() {
             (location?.getPlace(requireContext()) ?: "") +
             (if (location?.isCurrentPosition == true && requireContext().isTabletDevice) " ⊙" else "")
 
-        val textColor = ThemeManager.getInstance(requireContext())
-            .weatherThemeDelegate
-            .getHeaderTextColor(requireContext())
-        binding.refreshTimeText.setTextColor(textColor)
         location?.weather?.base?.refreshTime?.let {
             binding.refreshTimeText.visibility = View.VISIBLE
             binding.refreshTimeText.setDate(it)
@@ -409,11 +438,7 @@ class HomeFragment : MainModuleFragment() {
             binding.refreshTimeText.visibility = View.GONE
         }
 
-        weatherView.setWeather(
-            weatherKind,
-            daylight,
-            resourceProvider!!
-        )
+        weatherView.setWeather(weatherKind, daylight, requireContext().isDarkMode)
         binding.refreshLayout.setColorSchemeColors(
             ThemeManager
                 .getInstance(requireContext())
@@ -484,50 +509,22 @@ class HomeFragment : MainModuleFragment() {
 
     private inner class OnScrollListener : RecyclerView.OnScrollListener() {
 
-        var topOverlap = false
         private var mScrollY = 0
-        private var mLastAppBarTranslationY = 0f
 
         fun postReset(recyclerView: RecyclerView) {
             recyclerView.post {
                 if (!isFragmentViewCreated) {
                     return@post
                 }
-                topOverlap = false
                 mScrollY = 0
-                mLastAppBarTranslationY = 0f
                 onScrolled(recyclerView, 0, 0)
             }
         }
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             mScrollY = recyclerView.computeVerticalScrollOffset()
-            mLastAppBarTranslationY = binding.appBar.translationY
             weatherView.onScroll(mScrollY)
-
             adapter?.onScroll()
-
-            // set translation y of toolbar.
-            if (adapter != null) {
-                if (adapter!!.headerTop == -1 || mScrollY < (adapter!!.headerTop - binding.appBar.measuredHeight)) {
-                    // Keep app bar on top until we reach top of temperature
-                    binding.appBar.translationY = 0f
-                } else if (mScrollY < adapter!!.headerTop) {
-                    // Make the app bar disappear when we reach top of temperature
-                    binding.appBar.translationY = (adapter!!.headerTop - binding.appBar.measuredHeight - mScrollY)
-                        .toFloat()
-                } else {
-                    // Make appbar completely disappear in other cases
-                    binding.appBar.translationY = -binding.appBar.measuredHeight.toFloat()
-                }
-            }
-
-            // set system bar style.
-            topOverlap = binding.appBar.translationY != 0f
-            if ((binding.appBar.translationY == 0f) != (mLastAppBarTranslationY == 0f)) {
-                // Only update the system bars when the app bar actually starts collapsing or stops expanding.
-                checkToSetSystemBarStyle()
-            }
         }
     }
 }

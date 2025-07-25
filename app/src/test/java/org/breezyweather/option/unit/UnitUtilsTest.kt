@@ -16,24 +16,41 @@
 
 package org.breezyweather.option.unit
 
-import io.kotest.matchers.collections.shouldBeIn
+import android.content.Context
 import io.kotest.matchers.shouldBe
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkStatic
 import kotlinx.coroutines.test.runTest
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.extensions.currentLocale
 import org.junit.jupiter.api.Test
+import java.util.Locale
 
 class UnitUtilsTest {
     @Test
     fun formatFloat() = runTest {
-        Utils.formatDouble(14.34234) shouldBeIn arrayOf("14.34", "14,34")
-        Utils.formatDouble(14.34834) shouldBeIn arrayOf("14.35", "14,35")
-        Utils.formatDouble(14.34834, 3) shouldBeIn arrayOf("14.348", "14,348")
-        Utils.formatDouble(14.34864, 3) shouldBeIn arrayOf("14.349", "14,349")
+        mockkStatic(Context::currentLocale)
+
+        val context = mockk<Context>().apply {
+            every { currentLocale } returns Locale("fr", "FR")
+        }
+
+        UnitUtils.formatDouble(context, 14.34234) shouldBe "14,34"
+        UnitUtils.formatDouble(context, 14.34834) shouldBe "14,35"
+        UnitUtils.formatDouble(context, 14.34834, 3) shouldBe "14,348"
+        UnitUtils.formatDouble(context, 14.34864, 3) shouldBe "14,349"
     }
 
     @Test
     fun formatInt() = runTest {
-        Utils.formatInt(14) shouldBe "14"
-        Utils.formatInt(16) shouldBe "16"
+        mockkStatic(Context::currentLocale)
+
+        val context = mockk<Context>().apply {
+            every { currentLocale } returns Locale("fr", "FR")
+        }
+
+        UnitUtils.formatInt(context, 14) shouldBe "14"
+        UnitUtils.formatInt(context, 16) shouldBe "16"
     }
 }

@@ -71,13 +71,14 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.Migrations
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.conditional
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.extensions.hasPermission
-import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.isLandscape
+import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.snackbar.SnackbarContainer
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
@@ -89,16 +90,14 @@ import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.common.composables.LocationPreference
 import org.breezyweather.ui.main.fragments.HomeFragment
 import org.breezyweather.ui.main.fragments.ManagementFragment
-import org.breezyweather.ui.main.fragments.ModifyMainSystemBarMessage
 import org.breezyweather.ui.main.fragments.PushedManagementFragment
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.search.SearchActivity
+import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Callback {
+class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment.Callback {
 
     @Inject
     lateinit var sourceManager: SourceManager
@@ -148,8 +147,12 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                     Location::class.java
                 )
                 if (location != null) {
-                    viewModel.addLocation(location, null)
-                    SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
+                    if (viewModel.locationExists(location)) {
+                        SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
+                    } else {
+                        viewModel.addLocation(location, null)
+                        SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
+                    }
                 }
             }
         }
@@ -228,8 +231,6 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
         supportFragmentManager.registerFragmentLifecycleCallbacks(fragmentsLifecycleCallback, false)
         setContentView(binding.root)
 
-        MainThemeColorProvider.bind(this)
-
         initModel(savedInstanceState == null)
         initView()
 
@@ -251,9 +252,6 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
             findHomeFragment()?.updateViews()
 
             refreshBackgroundViews(viewModel.validLocationList.value)
-        }
-        EventBus.instance.with(ModifyMainSystemBarMessage::class.java).observe(this) {
-            updateSystemBarStyle()
         }
     }
 
@@ -379,7 +377,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                             val dialogLocationPermissionOpenState = mutableStateOf(true)
                             binding.locationPermissionDialog.setContent {
                                 BreezyWeatherTheme(
-                                    MainThemeColorProvider.isLightTheme(this@MainActivity, daylight = isDaylight)
+                                    !ThemeManager.isLightTheme(this@MainActivity, daylight = isDaylight)
                                 ) {
                                     if (dialogLocationPermissionOpenState.value) {
                                         AlertDialogConfirmOnly(
@@ -451,7 +449,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
             val isLightTheme = isLocationBasedLightTheme.collectAsState()
 
             BreezyWeatherTheme(
-                lightTheme = MainThemeColorProvider.isLightTheme(this, isLightTheme.value)
+                !ThemeManager.isLightTheme(this, isLightTheme.value)
             ) {
                 RefreshErrorDetails()
             }
@@ -463,7 +461,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
             val validLocation = viewModel.currentLocation.collectAsState()
 
             BreezyWeatherTheme(
-                lightTheme = MainThemeColorProvider.isLightTheme(this, validLocation.value?.daylight)
+                !ThemeManager.isLightTheme(this, validLocation.value?.daylight)
             ) {
                 PerLocationSettingsDialog(location = validLocation.value?.location)
             }
@@ -500,6 +498,9 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                                     updateLocation(newLocation)
                                 }
                                 _dialogPerLocationSettingsOpen.value = false
+                            },
+                            locationExists = { loc: Location ->
+                                viewModel.locationExists(loc)
                             }
                         )
                     },
@@ -557,7 +558,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                                 } else {
                                     stringResource(R.string.location_delete_location_dialog_message_no_name)
                                 },
-                                color = DayNightTheme.colors.bodyColor,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 style = MaterialTheme.typography.bodyMedium
                             )
                         },
@@ -608,11 +609,11 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                 title = {
                     Column {
                         Text(stringResource(R.string.dialog_refresh_error_details_title))
-                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                         Text(
                             text = stringResource(R.string.dialog_refresh_error_details_content),
                             style = MaterialTheme.typography.bodyMedium,
-                            color = DayNightTheme.colors.bodyColor
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 },
@@ -636,21 +637,21 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
                                     .conditional(it.error.showDialogAction != null, {
                                         clickable { it.error.showDialogAction!!(this@MainActivity) }
                                     })
-                                    .padding(vertical = dimensionResource(R.dimen.little_margin)),
+                                    .padding(vertical = dimensionResource(R.dimen.small_margin)),
                                 headlineContent = {
                                     Text(
                                         text = source ?: message,
-                                        color = DayNightTheme.colors.titleColor,
+                                        color = MaterialTheme.colorScheme.onSurface,
                                         style = MaterialTheme.typography.titleMedium
                                     )
                                 },
                                 supportingContent = {
                                     source?.let {
                                         Column {
-                                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                             Text(
                                                 text = message,
-                                                color = DayNightTheme.colors.bodyColor,
+                                                color = MaterialTheme.colorScheme.onSurfaceVariant,
                                                 style = MaterialTheme.typography.bodyMedium
                                             )
                                         }
@@ -689,7 +690,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
             val dialogBackgroundLocationPermissionOpenState = mutableStateOf(true)
             binding.locationPermissionDialog.setContent {
                 BreezyWeatherTheme(
-                    MainThemeColorProvider.isLightTheme(this@MainActivity, daylight = isDaylight)
+                    !ThemeManager.isLightTheme(this@MainActivity, daylight = isDaylight)
                 ) {
                     if (dialogBackgroundLocationPermissionOpenState.value) {
                         AlertDialogConfirmOnly(
@@ -782,12 +783,7 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
             // insets are applied in landscape mode.
             binding.root.setBackgroundColor(Color.BLACK)
         } else {
-            binding.root.setBackgroundColor(
-                MainThemeColorProvider.getColor(
-                    lightTheme = !this.isDarkMode,
-                    id = android.R.attr.colorBackground
-                )
-            )
+            binding.root.setBackgroundColor(getThemeColor(android.R.attr.colorBackground))
         }
     }
 
@@ -819,10 +815,10 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
         val transaction = supportFragmentManager
             .beginTransaction()
             .setCustomAnimations(
-                R.anim.fragment_manage_enter,
-                R.anim.fragment_main_exit,
-                R.anim.fragment_main_pop_enter,
-                R.anim.fragment_manage_pop_exit
+                if (isRtl) R.anim.slide_in_right else R.anim.slide_in_left,
+                if (isRtl) R.anim.slide_out_left else R.anim.slide_out_right,
+                if (isRtl) R.anim.slide_in_left else R.anim.slide_in_right,
+                if (isRtl) R.anim.slide_out_right else R.anim.slide_out_left
             )
             .add(
                 R.id.fragment,
@@ -866,12 +862,19 @@ class MainActivity : GeoActivity(), HomeFragment.Callback, ManagementFragment.Ca
         initPerLocationSettingsView()
     }
 
-    override fun onManageIconClicked() {
-        setManagementFragmentVisibility(!isOrWillManagementFragmentVisible)
+    override fun onOpenInOtherAppIconClicked() {
+        viewModel.currentLocation.value?.location?.let {
+            try {
+                IntentHelper.startBreezyActivity(this@MainActivity, it)
+            } catch (ignored: Exception) {
+                // TODO: Use a dedicated string
+                SnackbarHelper.showSnackbar(getString(R.string.settings_widgets_broadcast_send_data_summary_empty))
+            }
+        }
     }
 
-    override fun onSettingsIconClicked() {
-        IntentHelper.startSettingsActivity(this)
+    override fun onManageIconClicked() {
+        setManagementFragmentVisibility(!isOrWillManagementFragmentVisible)
     }
 
     // management fragment callback.

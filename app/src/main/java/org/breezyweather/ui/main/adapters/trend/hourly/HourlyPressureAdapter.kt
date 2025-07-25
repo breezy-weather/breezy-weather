@@ -23,11 +23,12 @@ import android.view.ViewGroup
 import androidx.annotation.Size
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.PressureUnit
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
@@ -38,7 +39,7 @@ import kotlin.math.max
  * Hourly pressure adapter.
  */
 class HourlyPressureAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
     provider: ResourceProvider,
     unit: PressureUnit,
@@ -56,14 +57,14 @@ class HourlyPressureAdapter(
             hourlyItem.chartItemView = mPolylineAndHistogramView
         }
 
-        fun onBindView(activity: GeoActivity, location: Location, position: Int) {
+        fun onBindView(activity: BreezyActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder(activity.getString(R.string.tag_pressure))
             super.onBindView(activity, location, talkBackBuilder, position)
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
             hourly.pressure?.let { pressure ->
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(mPressureUnit.getValueVoice(activity, pressure))
+                    .append(mPressureUnit.formatContentDescription(activity, pressure))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -74,7 +75,7 @@ class HourlyPressureAdapter(
             mPolylineAndHistogramView.setData(
                 buildPressureArrayForItem(mPressures, position),
                 null,
-                hourly.pressure?.let { mPressureUnit.getValueTextWithoutUnit(it) },
+                hourly.pressure?.let { mPressureUnit.formatValue(activity, it) },
                 null,
                 mHighestPressure,
                 mLowestPressure,
@@ -91,11 +92,11 @@ class HourlyPressureAdapter(
                     WeatherViewController.getWeatherKind(location),
                     WeatherViewController.isDaylight(location)
                 )
-            val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
+            val lightTheme = ThemeManager.isLightTheme(itemView.context, location)
             mPolylineAndHistogramView.setLineColors(
                 themeColors[if (lightTheme) 1 else 2],
                 themeColors[2],
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
             mPolylineAndHistogramView.setShadowColors(
                 themeColors[if (lightTheme) 1 else 2],
@@ -103,12 +104,15 @@ class HourlyPressureAdapter(
                 lightTheme
             )
             mPolylineAndHistogramView.setTextColors(
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                MainThemeColorProvider.getColor(location, R.attr.colorPrecipitationProbability)
+                activity.getThemeColor(R.attr.colorTitleText),
+                activity.getThemeColor(R.attr.colorBodyText),
+                activity.getThemeColor(R.attr.colorPrecipitationProbability)
             )
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 0.2f else 0.5f)
             hourlyItem.contentDescription = talkBackBuilder.toString()
+            hourlyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_PRESSURE)
+            }
         }
 
         @Size(3)
@@ -189,7 +193,7 @@ class HourlyPressureAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 PressureUnit.NORMAL.toFloat(),
-                mPressureUnit.getValueTextWithoutUnit(PressureUnit.NORMAL),
+                mPressureUnit.formatValue(activity, PressureUnit.NORMAL),
                 activity.getString(R.string.temperature_normal_short),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

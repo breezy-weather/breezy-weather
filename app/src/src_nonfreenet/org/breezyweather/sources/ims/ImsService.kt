@@ -90,6 +90,9 @@ class ImsService @Inject constructor(
         SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://ims.gov.il/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

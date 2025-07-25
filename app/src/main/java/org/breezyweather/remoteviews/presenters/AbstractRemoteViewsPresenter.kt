@@ -34,9 +34,9 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
-import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
@@ -54,11 +54,8 @@ import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.domain.weather.model.getSummary
-import org.breezyweather.domain.weather.model.getSummaryFromSource
-import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.pollensWithConcentration
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
-import java.text.NumberFormat
+import org.breezyweather.ui.theme.ThemeManager
 import java.util.Date
 
 abstract class AbstractRemoteViewsPresenter {
@@ -92,7 +89,7 @@ abstract class AbstractRemoteViewsPresenter {
             isLightThemed = when (backgroundType) {
                 WidgetBackgroundType.LIGHT -> true
                 WidgetBackgroundType.DARK -> false
-                WidgetBackgroundType.AUTO -> MainThemeColorProvider.isLightTheme(context, dayTime)
+                WidgetBackgroundType.AUTO -> ThemeManager.isLightTheme(context, dayTime)
                 WidgetBackgroundType.NONE -> isLightWallpaper(context)
             }
             textType = when (backgroundType) {
@@ -273,11 +270,11 @@ abstract class AbstractRemoteViewsPresenter {
             pollenIndexSource: PollenIndexSource?,
         ): String {
             if (subtitleP.isNullOrEmpty()) return ""
-            val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
-            // val precipitationUnit = getInstance(context).precipitationUnit
-            val pressureUnit = SettingsManager.getInstance(context).pressureUnit
-            val distanceUnit = SettingsManager.getInstance(context).distanceUnit
-            val speedUnit = SettingsManager.getInstance(context).speedUnit
+            val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
+            // val precipitationUnit = getInstance(context).getPrecipitationUnit(context)
+            val pressureUnit = SettingsManager.getInstance(context).getPressureUnit(context)
+            val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
+            val speedUnit = SettingsManager.getInstance(context).getSpeedUnit(context)
             var subtitle = subtitleP
                 .replace(
                     "\$cw$",
@@ -286,22 +283,22 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace(
                     "\$ct$",
                     weather.current?.temperature?.temperature?.let {
-                        temperatureUnit.getValueText(context, it, 0)
+                        temperatureUnit.formatMeasure(context, it, 0)
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$ctd$",
                     weather.current?.temperature?.temperature?.let {
-                        temperatureUnit.getShortValueText(context, it)
+                        temperatureUnit.formatMeasureShort(context, it)
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$at$",
                     weather.current?.temperature?.feelsLikeTemperature?.let {
-                        temperatureUnit.getValueText(context, it, 0)
+                        temperatureUnit.formatMeasure(context, it, 0)
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$atd$",
                     weather.current?.temperature?.feelsLikeTemperature?.let {
-                        temperatureUnit.getShortValueText(context, it)
+                        temperatureUnit.formatMeasureShort(context, it)
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cwd$",
@@ -310,8 +307,11 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace(
                     "\$caqi$",
                     if (weather.current?.airQuality?.isIndexValid == true) {
-                        weather.current!!.airQuality!!.getIndex().toString() + " (" +
-                            weather.current!!.airQuality!!.getName(context) + ")"
+                        context.getString(
+                            R.string.parenthesis,
+                            UnitUtils.formatInt(context, weather.current!!.airQuality!!.getIndex()!!),
+                            weather.current!!.airQuality!!.getName(context)
+                        )
                     } else {
                         context.getString(R.string.null_data_text)
                     }
@@ -322,24 +322,22 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace(
                     "\$ch$",
                     weather.current?.relativeHumidity?.let {
-                        NumberFormat.getPercentInstance(context.currentLocale).apply {
-                            maximumFractionDigits = 0
-                        }.format(it.div(100.0))
+                        UnitUtils.formatPercent(context, it)
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cps$",
                     weather.current?.pressure?.let {
-                        pressureUnit.getValueText(context, it)
+                        pressureUnit.formatMeasure(context, it)
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cv$",
                     weather.current?.visibility?.let {
-                        distanceUnit.getValueText(context, it)
+                        distanceUnit.formatMeasure(context, it)
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cdp$",
                     weather.current?.dewPoint?.let {
-                        temperatureUnit.getValueText(context, it, 0)
+                        temperatureUnit.formatMeasure(context, it, 0)
                     } ?: context.getString(R.string.null_data_text)
                 ).replace("\$l$", location.getPlace(context))
                 .replace("\$lat$", location.latitude.toString())
@@ -454,36 +452,32 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace(
                     "$" + i + "dt$",
                     weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature?.let {
-                        temperatureUnit.getValueText(context, it, 0)
+                        temperatureUnit.formatMeasure(context, it, 0)
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "nt$",
                     weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature?.let {
-                        temperatureUnit.getValueText(context, it, 0)
+                        temperatureUnit.formatMeasure(context, it, 0)
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dtd$",
                     weather.dailyForecastStartingToday.getOrNull(i)?.day?.temperature?.temperature?.let {
-                        temperatureUnit.getShortValueText(context, it)
+                        temperatureUnit.formatMeasureShort(context, it)
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "ntd$",
                     weather.dailyForecastStartingToday.getOrNull(i)?.night?.temperature?.temperature?.let {
-                        temperatureUnit.getShortValueText(context, it)
+                        temperatureUnit.formatMeasureShort(context, it)
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dp$",
                     weather.dailyForecastStartingToday.getOrNull(i)?.day?.precipitationProbability?.total?.let {
-                        NumberFormat.getPercentInstance(context.currentLocale).apply {
-                            maximumFractionDigits = 0
-                        }.format(it.div(100.0))
+                        UnitUtils.formatPercent(context, it)
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "np$",
                     weather.dailyForecastStartingToday.getOrNull(i)?.night?.precipitationProbability?.total?.let {
-                        NumberFormat.getPercentInstance(context.currentLocale).apply {
-                            maximumFractionDigits = 0
-                        }.format(it.div(100.0))
+                        UnitUtils.formatPercent(context, it)
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "$" + i + "dwd$",
@@ -498,8 +492,14 @@ abstract class AbstractRemoteViewsPresenter {
                 ).replace(
                     "$" + i + "aqi$",
                     if (weather.dailyForecastStartingToday.getOrNull(i)?.airQuality?.isIndexValid == true) {
-                        weather.dailyForecastStartingToday[i].airQuality!!.getIndex().toString() + " (" +
-                            weather.dailyForecastStartingToday[i].airQuality!!.getName(context) + ")"
+                        context.getString(
+                            R.string.parenthesis,
+                            UnitUtils.formatInt(
+                                context,
+                                weather.dailyForecastStartingToday[i].airQuality!!.getIndex()!!
+                            ),
+                            weather.dailyForecastStartingToday[i].airQuality!!.getName(context)
+                        )
                     } else {
                         context.getString(R.string.null_data_text)
                     }
@@ -508,14 +508,7 @@ abstract class AbstractRemoteViewsPresenter {
                     if (weather.dailyForecastStartingToday.getOrNull(i)?.pollen
                             ?.pollensWithConcentration?.isNotEmpty() == true
                     ) {
-                        if (pollenIndexSource != null) {
-                            weather.dailyForecastStartingToday[i].pollen!!.getSummaryFromSource(
-                                context,
-                                pollenIndexSource
-                            )
-                        } else {
-                            weather.dailyForecastStartingToday[i].pollen!!.getSummary(context)
-                        }
+                        weather.dailyForecastStartingToday[i].pollen!!.getSummary(context, pollenIndexSource)
                     } else {
                         context.getString(R.string.null_data_text)
                     }

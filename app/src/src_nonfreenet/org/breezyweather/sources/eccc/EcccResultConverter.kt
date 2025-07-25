@@ -16,8 +16,8 @@
 
 package org.breezyweather.sources.eccc
 
-import android.graphics.Color
 import android.os.Build
+import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
@@ -25,11 +25,14 @@ import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
+import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
@@ -79,9 +82,9 @@ internal fun getCurrent(result: EcccObservation?): CurrentWrapper? {
     return CurrentWrapper(
         weatherCode = getWeatherCode(result.iconCode),
         weatherText = result.condition,
-        temperature = Temperature(
+        temperature = TemperatureWrapper(
             temperature = getNonEmptyMetric(result.temperature),
-            apparentTemperature = getNonEmptyMetric(result.feelsLike)
+            feelsLike = getNonEmptyMetric(result.feelsLike)
         ),
         wind = Wind(
             degree = result.windBearing?.toDoubleOrNull(),
@@ -140,11 +143,11 @@ internal fun getDailyForecast(
                     DailyWrapper(
                         date = currentDay,
                         day = if (daytime != null) {
-                            HalfDay(
+                            HalfDayWrapper(
                                 weatherCode = getWeatherCode(daytime.iconCode),
                                 weatherText = daytime.summary,
                                 weatherPhase = daytime.text,
-                                temperature = Temperature(
+                                temperature = TemperatureWrapper(
                                     temperature = daytime.temperature?.periodHigh?.toDouble()
                                 ),
                                 precipitationProbability = PrecipitationProbability(
@@ -154,11 +157,11 @@ internal fun getDailyForecast(
                         } else {
                             null
                         },
-                        night = HalfDay(
+                        night = HalfDayWrapper(
                             weatherCode = getWeatherCode(nighttime.iconCode),
                             weatherText = nighttime.summary,
                             weatherPhase = nighttime.text,
-                            temperature = Temperature(
+                            temperature = TemperatureWrapper(
                                 temperature = nighttime.temperature?.periodLow?.toDouble()
                             ),
                             precipitationProbability = PrecipitationProbability(
@@ -186,9 +189,9 @@ internal fun getHourlyForecast(
             date = result.epochTime.times(1000L).toDate(),
             weatherText = result.condition,
             weatherCode = getWeatherCode(result.iconCode),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = getNonEmptyMetric(result.temperature),
-                apparentTemperature = getNonEmptyMetric(result.feelsLike)
+                feelsLike = getNonEmptyMetric(result.feelsLike)
             ),
             precipitationProbability = if (!result.precip.isNullOrEmpty()) {
                 PrecipitationProbability(total = result.precip.toDoubleOrNull())
@@ -199,7 +202,12 @@ internal fun getHourlyForecast(
                 degree = getWindDegree(result.windDir),
                 speed = getNonEmptyMetric(result.windSpeed)?.div(3.6),
                 gusts = getNonEmptyMetric(result.windGust)?.div(3.6)
-            )
+            ),
+            uV = if (!result.uv?.index.isNullOrEmpty()) {
+                UV(index = result.uv!!.index!!.toDoubleOrNull())
+            } else {
+                null
+            }
         )
     }
 }
@@ -224,7 +232,7 @@ internal fun getAlertList(alertList: List<EcccAlert>?): List<Alert>? {
             description = alert.text,
             source = alert.specialText?.firstOrNull { it.type == "email" }?.link,
             severity = severity,
-            color = (if (alert.bannerColour?.startsWith("#") == true) Color.parseColor(alert.bannerColour) else null)
+            color = (if (alert.bannerColour?.startsWith("#") == true) alert.bannerColour.toColorInt() else null)
                 ?: Alert.colorFromSeverity(severity)
         )
     }

@@ -24,14 +24,16 @@ import android.view.View
 import android.view.ViewGroup
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 
@@ -39,7 +41,7 @@ import org.breezyweather.ui.theme.weatherView.WeatherViewController
  * Hourly air quality adapter.
  */
 class HourlyAirQualityAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
 ) : AbsHourlyTrendAdapter(activity, location) {
     private var mHighestIndex: Int = 0
@@ -53,7 +55,7 @@ class HourlyAirQualityAdapter(
 
         @SuppressLint("DefaultLocale")
         fun onBindView(
-            activity: GeoActivity,
+            activity: BreezyActivity,
             location: Location,
             position: Int,
         ) {
@@ -64,7 +66,7 @@ class HourlyAirQualityAdapter(
             val index = hourly.airQuality?.getIndex()
             if (index != null) {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(index)
+                    .append(UnitUtils.formatInt(activity, index))
                     .append(activity.getString(R.string.comma_separator))
                     .append(hourly.airQuality!!.getName(itemView.context))
             }
@@ -72,13 +74,13 @@ class HourlyAirQualityAdapter(
                 null, null,
                 null, null,
                 null, null,
-                index?.toFloat(), if (index != null) String.format("%d", index) else null,
+                index?.toFloat(), index?.let { UnitUtils.formatInt(activity, it) },
                 mHighestIndex.toFloat(), 0f
             )
             mPolylineAndHistogramView.setLineColors(
                 hourly.airQuality?.getColor(activity) ?: Color.TRANSPARENT,
                 hourly.airQuality?.getColor(activity) ?: Color.TRANSPARENT,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
 
             val themeColors = ThemeManager.getInstance(itemView.context)
@@ -88,15 +90,18 @@ class HourlyAirQualityAdapter(
                     WeatherViewController.getWeatherKind(location),
                     WeatherViewController.isDaylight(location)
                 )
-            val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
+            val lightTheme = ThemeManager.isLightTheme(itemView.context, location)
             mPolylineAndHistogramView.setShadowColors(themeColors[1], themeColors[2], lightTheme)
             mPolylineAndHistogramView.setTextColors(
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+                activity.getThemeColor(R.attr.colorTitleText),
+                activity.getThemeColor(R.attr.colorBodyText),
+                activity.getThemeColor(R.attr.colorTitleText)
             )
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 1f else 0.5f)
             hourlyItem.contentDescription = talkBackBuilder.toString()
+            hourlyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_AIR_QUALITY)
+            }
         }
     }
 
@@ -129,29 +134,26 @@ class HourlyAirQualityAdapter(
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
         val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
-        val goodPollutionLevel = PollutantIndex.indexFreshAir
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                goodPollutionLevel.toFloat(),
-                goodPollutionLevel.toString(),
+                PollutantIndex.indexFreshAir.toFloat(),
+                PollutantIndex.indexFreshAir.toString(),
                 activity.resources.getStringArray(R.array.air_quality_levels)[1],
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
-        val moderatePollutionLevel = PollutantIndex.indexHighPollution
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                moderatePollutionLevel.toFloat(),
-                moderatePollutionLevel.toString(),
+                PollutantIndex.indexHighPollution.toFloat(),
+                PollutantIndex.indexHighPollution.toString(),
                 activity.resources.getStringArray(R.array.air_quality_levels)[3],
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
         )
-        val heavyPollutionLevel = PollutantIndex.indexExcessivePollution
         keyLineList.add(
             TrendRecyclerView.KeyLine(
-                heavyPollutionLevel.toFloat(),
-                heavyPollutionLevel.toString(),
+                PollutantIndex.indexExcessivePollution.toFloat(),
+                PollutantIndex.indexExcessivePollution.toString(),
                 activity.resources.getStringArray(R.array.air_quality_levels)[5],
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.ui.common.widgets.slidingItem.SlidingItemContainerLayout
+import org.breezyweather.ui.settings.activities.CardDisplayManageActivity
 
 class CardDisplayAdapter(
     private val mCardDisplayList: MutableList<CardDisplay>,
@@ -43,6 +44,7 @@ class CardDisplayAdapter(
         val container: SlidingItemContainerLayout = itemView.findViewById(R.id.item_card_display_container)
         val item: RelativeLayout = itemView.findViewById(R.id.item_card_display)
         val title: TextView = itemView.findViewById(R.id.item_card_display_title)
+        val configureButton: ImageButton = itemView.findViewById(R.id.item_card_display_configureBtn)
         val sortButton: ImageButton = itemView.findViewById(R.id.item_card_display_sortButton)
         val deleteButton: ImageButton = itemView.findViewById(R.id.item_card_display_deleteBtn)
 
@@ -58,6 +60,18 @@ class CardDisplayAdapter(
 
         fun onBindView(cardDisplay: CardDisplay) {
             title.text = cardDisplay.getName(title.context)
+            cardDisplay.configure?.let { config ->
+                configureButton.visibility = View.VISIBLE
+                configureButton.contentDescription = itemView.context.getString(
+                    R.string.action_configure_item,
+                    title.text
+                )
+                configureButton.setOnClickListener {
+                    config.invoke(itemView.context as CardDisplayManageActivity)
+                }
+            } ?: run {
+                configureButton.visibility = View.GONE
+            }
             container.swipe(0f)
             container.setOnClickListener { }
         }

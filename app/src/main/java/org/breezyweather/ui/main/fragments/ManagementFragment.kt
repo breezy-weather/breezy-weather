@@ -23,10 +23,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -42,7 +40,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.BugReport
@@ -51,6 +49,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
@@ -71,6 +70,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -90,9 +90,10 @@ import kotlinx.coroutines.launch
 import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.plus
+import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.source.LocationPreset
 import org.breezyweather.common.source.getName
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -106,19 +107,16 @@ import org.breezyweather.ui.common.composables.AnimatedVisibilitySlideVertically
 import org.breezyweather.ui.common.composables.NotificationCard
 import org.breezyweather.ui.common.composables.SecondarySourcesPreference
 import org.breezyweather.ui.common.decorations.Material3ListItemDecoration
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
 import org.breezyweather.ui.common.widgets.insets.BWCenterAlignedTopAppBar
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.main.MainActivityViewModel
-import org.breezyweather.ui.main.adapters.LocationAdapterAnimWrapper
 import org.breezyweather.ui.main.adapters.location.LocationAdapter
 import org.breezyweather.ui.main.widgets.LocationItemTouchCallback
 import org.breezyweather.ui.main.widgets.LocationItemTouchCallback.TouchReactor
-import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
@@ -130,15 +128,7 @@ class PushedManagementFragment : ManagementFragment() {
     }
 
     override fun setSystemBarStyle() {
-        ThemeManager
-            .getInstance(requireContext())
-            .weatherThemeDelegate
-            .setSystemBarStyle(
-                requireActivity().window,
-                statusShader = false,
-                lightStatus = !requireActivity().isDarkMode,
-                lightNavigation = !requireActivity().isDarkMode
-            )
+        requireActivity().window.setSystemBarStyle(!requireActivity().isDarkMode)
     }
 }
 
@@ -149,11 +139,9 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
     private lateinit var layout: LinearLayoutManager
     private lateinit var adapter: LocationAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapterAnimWrapper: LocationAdapterAnimWrapper
     private lateinit var itemTouchHelper: ItemTouchHelper
     private var resourceProvider: ResourceProvider? = null
 
-    private var scrollOffset = 0f
     private var callback: Callback? = null
 
     interface Callback {
@@ -171,7 +159,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
         return ComposeView(requireContext()).apply {
             setContent {
-                BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+                BreezyWeatherTheme {
                     ContentView()
                 }
             }
@@ -205,8 +193,23 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             topBar = {
                 BWCenterAlignedTopAppBar(
                     title = stringResource(R.string.locations),
-                    onBackPressed = {
-                        (requireActivity() as MainActivity).setManagementFragmentVisibility(false)
+                    onBackPressed = if (!((requireActivity() as MainActivity).isDrawerLayoutVisible)) {
+                        { (requireActivity() as MainActivity).setManagementFragmentVisibility(false) }
+                    } else {
+                        null
+                    },
+                    actions = {
+                        IconButton(
+                            onClick = {
+                                activity?.let { IntentHelper.startSettingsActivity(it) }
+                            }
+                        ) {
+                            Icon(
+                                painterResource(R.drawable.ic_settings),
+                                contentDescription = stringResource(R.string.action_settings),
+                                tint = MaterialTheme.colorScheme.onSurface
+                            )
+                        }
                     },
                     windowInsets = WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
                 )
@@ -262,7 +265,9 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                             // Do not set a horizontal padding as this adds too much padding in
                             // landscape mode.
                             top = paddings.calculateTopPadding(),
-                            bottom = paddings.calculateBottomPadding()
+                            bottom = paddings.calculateBottomPadding(),
+                            start = dimensionResource(R.dimen.normal_margin),
+                            end = dimensionResource(R.dimen.normal_margin)
                         )
                 ) {
                     var hasNotificationPermission: Boolean? = null
@@ -310,7 +315,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                          */
                                     }
                                 )
-                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                             }
                         }
                     }
@@ -332,7 +337,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                         notificationAppUpdateCheckDismissed = true
                                     }
                                 )
-                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                             }
                         }
                     }
@@ -352,10 +357,11 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                         .padding(
                             // Do not set a horizontal padding as this adds too much padding in
                             // landscape mode.
-                            PaddingValues(
-                                top = paddings.calculateTopPadding(),
-                                bottom = paddings.calculateBottomPadding() + dimensionResource(R.dimen.large_margin)
-                            ) + PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin))
+                            PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)) +
+                                PaddingValues(
+                                    top = paddings.calculateTopPadding(),
+                                    bottom = paddings.calculateBottomPadding() + dimensionResource(R.dimen.large_margin)
+                                )
                         ),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -444,10 +450,17 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                                 SnackbarHelper.showSnackbar(getString(R.string.location_message_updated))
                             }
                         } else {
-                            viewModel.addLocation(newLocation, null)
-                            SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
+                            if (viewModel.locationExists(newLocation)) {
+                                SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
+                            } else {
+                                viewModel.addLocation(newLocation, null)
+                                SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
+                            }
                         }
                     }
+                },
+                locationExists = { loc: Location ->
+                    viewModel.locationExists(loc)
                 }
             )
         }
@@ -469,13 +482,6 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 }
             )
         }
-    }
-
-    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
-        if (enter && nextAnim != 0) {
-            adapterAnimWrapper.setLastPosition(-1)
-        }
-        return super.onCreateAnimation(transit, enter, nextAnim)
     }
 
     override fun setSystemBarStyle() {
@@ -509,14 +515,8 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             ) { holder ->
                 itemTouchHelper.startDrag(holder)
             }
-        adapterAnimWrapper = LocationAdapterAnimWrapper(
-            requireContext(),
-            adapter
-        ).apply {
-            setLastPosition(Int.MAX_VALUE)
-        }
         recyclerView = RecyclerView(requireContext())
-        recyclerView.adapter = adapterAnimWrapper
+        recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(
             requireActivity(),
             RecyclerView.VERTICAL,
@@ -530,19 +530,10 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                 requireContext()
             )
         )
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                scrollOffset = recyclerView.computeVerticalScrollOffset().toFloat()
-
-                if (dy != 0) {
-                    adapterAnimWrapper.setScrolled()
-                }
-            }
-        })
 
         itemTouchHelper = ItemTouchHelper(
             LocationItemTouchCallback(
-                requireActivity() as GeoActivity,
+                requireActivity() as BreezyActivity,
                 viewModel,
                 this
             )
@@ -615,6 +606,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         modifier: Modifier = Modifier,
     ) {
         val context = LocalContext.current
+        val sourcesWithTestingLocations = sourceManager.getWeatherSources().filter { it.testingLocations.isNotEmpty() }
 
         AlertDialogNoPadding(
             modifier = modifier,
@@ -631,42 +623,60 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
             text = {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
+                    contentPadding = PaddingValues(horizontal = dimensionResource(R.dimen.small_margin)),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-                    items(sourceManager.getWeatherSources().filter { it.testingLocations.isNotEmpty() }) {
-                        val enabled = !viewModel.locationExists(it.testingLocations[0])
-
-                        Material3CardListItem(
-                            elevation = if (enabled) defaultCardListItemElevation else 0.dp
-                        ) {
-                            ListItem(
-                                tonalElevation = if (enabled) defaultCardListItemElevation else 0.dp,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .alpha(if (enabled) 1f else 0.5f)
-                                    .clickable(
-                                        interactionSource = remember { MutableInteractionSource() },
-                                        indication = themeRipple(),
-                                        onClick = { onClose(it.testingLocations[0]) },
-                                        enabled = enabled
-                                    ),
-                                colors = ListItemDefaults.colors(
-                                    containerColor = Color.Transparent
-                                ),
-                                headlineContent = {
-                                    Text(
-                                        it.getName(context),
-                                        fontWeight = FontWeight.Bold,
-                                        color = DayNightTheme.colors.titleColor
-                                    )
-                                },
-                                supportingContent = {
-                                    Text(
-                                        it.testingLocations[0].getPlace(context),
-                                        color = DayNightTheme.colors.bodyColor
-                                    )
-                                }
+                    itemsIndexed(sourcesWithTestingLocations) { sourceIndex, source ->
+                        Text(
+                            source.name,
+                            modifier = Modifier.padding(
+                                start = dimensionResource(R.dimen.normal_margin),
+                                bottom = dimensionResource(R.dimen.small_margin)
                             )
+                        )
+
+                        source.testingLocations.forEachIndexed { locationIndex, location ->
+                            val enabled = !viewModel.locationExists(location)
+                            Material3ExpressiveCardListItem(
+                                elevation = if (enabled) defaultCardListItemElevation else 0.dp,
+                                isFirst = locationIndex == 0,
+                                isLast = locationIndex == source.testingLocations.lastIndex
+                            ) {
+                                ListItem(
+                                    tonalElevation = if (enabled) defaultCardListItemElevation else 0.dp,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .alpha(if (enabled) 1f else 0.5f)
+                                        .clickable(
+                                            interactionSource = remember { MutableInteractionSource() },
+                                            indication = themeRipple(),
+                                            onClick = { onClose(location) },
+                                            enabled = enabled
+                                        ),
+                                    colors = ListItemDefaults.colors(
+                                        containerColor = Color.Transparent
+                                    ),
+                                    headlineContent = {
+                                        Text(
+                                            source.getName(context),
+                                            fontWeight = FontWeight.Bold,
+                                            color = MaterialTheme.colorScheme.onSurface
+                                        )
+                                    },
+                                    supportingContent = {
+                                        Text(
+                                            location.getPlace(context),
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                                        )
+                                    }
+                                )
+                            }
+                            if (locationIndex != source.testingLocations.lastIndex) {
+                                Spacer(modifier = Modifier.height(2.dp))
+                            }
+                        }
+                        if (sourceIndex != sourcesWithTestingLocations.lastIndex) {
+                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
                         }
                     }
                 }

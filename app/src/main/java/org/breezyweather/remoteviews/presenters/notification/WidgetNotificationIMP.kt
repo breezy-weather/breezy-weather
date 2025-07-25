@@ -40,7 +40,6 @@ import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getStrength
 import org.breezyweather.domain.weather.model.getTrendTemperature
 import org.breezyweather.domain.weather.model.getWeek
-import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
@@ -61,7 +60,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
         // get sp & realTimeWeather.
         val settings = SettingsManager.getInstance(context)
-        val temperatureUnit = settings.temperatureUnit
+        val temperatureUnit = settings.getTemperatureUnit(context)
         val dayTime = location.isDaylight
         val tempIcon = settings.isWidgetNotificationTemperatureIconEnabled
         val persistent = settings.isWidgetNotificationPersistent
@@ -197,19 +196,19 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             temperature?.let {
                 setTextViewText(
                     R.id.notification_base_realtimeTemp,
-                    temperatureUnit.getShortValueText(context, it)
+                    temperatureUnit.formatMeasureShort(context, it)
                 )
             }
             if (current.airQuality?.isIndexValid == true) {
                 setTextViewText(
                     R.id.notification_base_aqiAndWind,
-                    context.getString(R.string.air_quality) + " - " + current.airQuality!!.getName(context)
+                    context.getString(R.string.air_quality) + " – " + current.airQuality!!.getName(context)
                 )
             } else {
                 current.wind?.getStrength(context)?.let { strength ->
                     setTextViewText(
                         R.id.notification_base_aqiAndWind,
-                        context.getString(R.string.wind) + " - " + strength
+                        context.getString(R.string.wind) + " – " + strength
                     )
                 }
             }
@@ -290,7 +289,7 @@ object WidgetNotificationIMP : AbstractRemoteViewsPresenter() {
                         hourly.temperature?.temperature?.let {
                             setTextViewText(
                                 viewId.second,
-                                temperatureUnit.getShortValueText(context, it)
+                                temperatureUnit.formatMeasureShort(context, it)
                             )
                         }
                         hourly.weatherCode?.let { weatherCode ->

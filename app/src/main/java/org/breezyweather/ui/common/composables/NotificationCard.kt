@@ -32,6 +32,8 @@ fun NotificationCard(
         onClick = onClick,
         title = title,
         summary = summary,
+        isFirst = true,
+        isLast = true,
         onClose = onClose
     )
 }

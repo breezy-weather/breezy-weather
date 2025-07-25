@@ -17,7 +17,6 @@
 package breezyweather.domain.weather.model
 
 import java.io.Serializable
-import java.util.Locale
 
 /**
  * Moon phase.
@@ -31,23 +30,4 @@ class MoonPhase(
 
     val isValid: Boolean
         get() = angle != null
-
-    companion object {
-        fun getAngleFromEnglishDescription(phase: String?): Int? {
-            return if (phase.isNullOrEmpty()) {
-                null
-            } else {
-                when (phase.lowercase(Locale.getDefault())) {
-                    "waxingcrescent", "waxing crescent" -> 45
-                    "first", "firstquarter", "first quarter" -> 90
-                    "waxinggibbous", "waxing gibbous" -> 135
-                    "full", "fullmoon", "full moon" -> 180
-                    "waninggibbous", "waning gibbous" -> 225
-                    "third", "thirdquarter", "third quarter", "last", "lastquarter", "last quarter" -> 270
-                    "waningcrescent", "waning crescent" -> 315
-                    else -> 360
-                }
-            }
-        }
-    }
 }

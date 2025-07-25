@@ -55,6 +55,7 @@ object ISO8601Utils {
     / * Formatting
     / **********************************************************
      */
+
     /**
      * Format date into yyyy-MM-ddThh:mm:ss[.sss][Z|[+-]hh:mm]
      *
@@ -346,24 +347,14 @@ object ISO8601Utils {
         if (i < endIndex) {
             digit = value[i++].digitToIntOrNull() ?: -1
             if (digit < 0) {
-                throw NumberFormatException(
-                    "Invalid number: " + value.substring(
-                        beginIndex,
-                        endIndex
-                    )
-                )
+                throw NumberFormatException("Invalid number: " + value.substring(beginIndex, endIndex))
             }
             result = -digit
         }
         while (i < endIndex) {
             digit = value[i++].digitToIntOrNull() ?: -1
             if (digit < 0) {
-                throw NumberFormatException(
-                    "Invalid number: " + value.substring(
-                        beginIndex,
-                        endIndex
-                    )
-                )
+                throw NumberFormatException("Invalid number: " + value.substring(beginIndex, endIndex))
             }
             result *= 10
             result -= digit

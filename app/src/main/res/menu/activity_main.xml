@@ -8,16 +8,11 @@
         android:icon="@drawable/ic_edit"
         app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/action_manage"
-        android:title="@string/action_location_list"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_location_list3"
-        app:showAsAction="ifRoom" />
-
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_settings"
-        app:showAsAction="ifRoom" />
+    <item android:id="@+id/action_open_in_other_app"
+        android:title="@string/action_open_in_other_app"
+        android:contentDescription="@string/action_open_in_other_app_description"
+        android:orderInCategory="300"
+        android:icon="@drawable/ic_open_in_new"
+        app:showAsAction="never" />
 
 </menu>

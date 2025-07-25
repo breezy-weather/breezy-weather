@@ -52,7 +52,7 @@ class LocationAdapter(
     }
 ) {
     private val mResourceProvider: ResourceProvider = ResourcesProviderFactory.newInstance
-    private val mTemperatureUnit: TemperatureUnit = SettingsManager.getInstance(mContext).temperatureUnit
+    private val mTemperatureUnit: TemperatureUnit = SettingsManager.getInstance(mContext).getTemperatureUnit(mContext)
 
     init {
         update(locationList, selectedId)

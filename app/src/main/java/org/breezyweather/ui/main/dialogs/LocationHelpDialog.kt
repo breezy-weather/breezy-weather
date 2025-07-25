@@ -39,9 +39,8 @@ import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.main.MainActivity
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
+import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
-import org.breezyweather.ui.theme.compose.DayNightTheme
 
 object LocationHelpDialog {
     fun show(
@@ -63,7 +62,7 @@ object LocationHelpDialog {
 
         composeView.setContent {
             BreezyWeatherTheme(
-                MainThemeColorProvider.isLightTheme(activity, daylight = isDaylight)
+                !ThemeManager.isLightTheme(activity, daylight = isDaylight)
             ) {
                 if (dialogOpenState.value) {
                     AlertDialog(
@@ -81,34 +80,13 @@ object LocationHelpDialog {
                         },
                         title = {
                             Text(
-                                stringResource(R.string.location_dialog_failed_to_locate_title)
+                                stringResource(R.string.location_message_failed_to_locate)
                             )
                         },
                         text = {
                             Column(
                                 modifier = Modifier.fillMaxWidth()
                             ) {
-                                // TODO: Check location permission and if location is enabled. Only show items when relevant (permission is not granted / location is disabled).
-                                DialogListItem(
-                                    content = stringResource(
-                                        R.string.location_dialog_failed_to_locate_action_check_permission
-                                    ),
-                                    iconId = R.drawable.ic_android,
-                                    onClick = {
-                                        IntentHelper.startApplicationDetailsActivity(activity)
-                                        dialogOpenState.value = false
-                                    }
-                                )
-                                DialogListItem(
-                                    content = stringResource(
-                                        R.string.location_dialog_failed_to_locate_action_enable_information
-                                    ),
-                                    iconId = R.drawable.ic_location,
-                                    onClick = {
-                                        IntentHelper.startLocationSettingsActivity(activity)
-                                        dialogOpenState.value = false
-                                    }
-                                )
                                 DialogListItem(
                                     content = stringResource(
                                         R.string.location_dialog_failed_to_locate_action_select_source
@@ -124,7 +102,7 @@ object LocationHelpDialog {
                                         R.string.location_dialog_failed_to_locate_action_add_manually,
                                         stringResource(R.string.location_current)
                                     ),
-                                    iconId = R.drawable.ic_location_list3,
+                                    iconId = R.drawable.ic_list,
                                     onClick = {
                                         if (activity is MainActivity) {
                                             activity.setManagementFragmentVisibility(true)
@@ -154,7 +132,7 @@ object LocationHelpDialog {
             headlineContent = {
                 Text(
                     content,
-                    color = DayNightTheme.colors.bodyColor,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     style = MaterialTheme.typography.bodyMedium
                 )
             },

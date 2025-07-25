@@ -1,13 +1,180 @@
-# Version 5.4.6 (unreleased)
+# Version 6.0.5-alpha (not yet released)
 
 **Improvements and fixes**
-- When changing an unit, widgets will now update automatically, instead of waiting for the next refresh to apply the new units
+- Widgets - Improve UX of custom subtitle documentation (@codewithdipesh)
+- Main screen - Show “Negligible” inside Pollen block if there is no pollen today instead of an empty block
+- Nowcasting chart/Precipitation notification - Fix slightly wrong ending time of precipitation report
 
 **Weather sources**
-- [RNSA] added as possible Pollen source for France. If it doesn’t show up, try adding your location with a different search source, or if you use current location, use a different “Address lookup”.
+- [GeoSphere AT] Fix missing info in warnings
+- [GeoSphere AT] Use the newer better endpoint for air quality
+- [Pirate Weather] Add support for daily/hourly summaries
 
 **Translations**
 - Translations updated
+
+
+# Version 6.0.4-alpha (2025-07-23)
+
+**Improvements and fixes**
+- Main screen - Improvements to some cut off texts with different display sizes
+- Main screen - Improve the “two blocks per row” threshold when using custom font scale
+- Details - Fix precipitation probability details being expressed in precipitation unit instead of %
+- Fix missing normals every other refresh
+
+**Translations**
+- Translations updated
+
+
+# Version 6.0.3-alpha (2025-07-22)
+
+**New features**
+- Redesign of main screen in Material 3 Expressive
+- New information previously not shown on main screen: current wind gusts, clock (block not enabled by default)
+- Redesign background animations/colors to better adapt to the selected dark mode and avoid saturated colors with bad contrast
+
+**Removed features**
+- Main screen - Details in header
+- Main screen - Details block
+- Custom weather and time per location
+- Details of each different “feels like”. Will now just display the source-preferred feels like value, or if not available, our own computed feels like
+
+**Improvements and fixes**
+- Fix nowcasting chart not honoring precipitation unit override
+- Details - Fix feels like toggle not remembered through days
+- Main screen - Fix tapping daily/hourly feels like forecast opening conditions with feels like toggle off
+- Details - Display normals as deviation directly under daytime/nighttime temperature
+- Improve display of precipitation details
+- Details - Make tooltips persistent until you click outside the bounds of the tooltip
+- Details - Show current air quality on Today page when no daily air quality is available
+
+**Translations**
+- Translations updated
+
+
+# Version 6.0.2-alpha (2025-07-19)
+
+**Improvements and fixes**
+- Fix crash in some cases on old Android devices
+- Fix notification icons not showing
+- Make main screen top icons feel more intuitive
+
+**Weather sources**
+- [Météo-France] Better formatting for warnings
+
+
+# Version 6.0.1-alpha (2025-07-17)
+
+**New features**
+- Twilight dates (dawn and dusk)
+
+**Removed features**
+- Sun & Moon data from sources. Will now always be computed by Breezy Weather for consistency
+
+**Improvements and fixes**
+- Details page - Fix floating action button not updating in real time (@min7-i)
+- Details page - Charts - Fix area fill in Right to Left languages (@chunshek)
+- Details page - Fix jumping of the chart when tapping on it
+- Details page - Workaround missing top padding in the FAB menu for small device heights (@min7-i)
+- Details page - Conditions - move long weather condition description to a dedicated Daily summary card (especially noticeable with AccuWeather source)
+- Details page - Sun & Moon - Fix glitched charts (@chunshek)
+- Main screen - Attempt to make horizontal swipes in daily/hourly trends less prone to switch to prev/next locations
+- Main screen - Move “Settings” icon to location list to be able to display icons on main screen without a submenu.
+- Main screen - Better animation for main screen current temperature when using Fahrenheit or Kelvin
+- Main screen - Use Material 3 Expressive buttons for forecast buttons
+- Main screen - Fix sun & moon direction in RtL languages
+- Main screen - Fix air quality direction in RtL languages
+- Main screen - Fix missing hourly visibility in some cases
+- Settings - Material 3 Expressive theme
+- Settings - Add shortcuts to daily/trend configuration from cards configuration
+- Fix tint of “Open in another app” icon in landscape mode
+- Improve the formatting of today/tomorrow notification
+- Live wallpaper - Fix wallpaper animating when switching between apps
+- Fix specific language for the app not remembered after reboot
+- UV - Better computing of missing hourly UV from day UV (@chunshek)
+
+**Translations**
+- Translations updated
+- Default units are now based on system region. It does not support Android 16 “Measurement system” preference yet, as there seems to be no way to access this value for now.
+- Better number formatting on Android >= 7
+- Better measure formatting on Android >= 7
+
+
+# Version 6.0.0-alpha (2025-06-26)
+
+**New features**
+- Complete overhaul of the daily details page to offer a better visualization of the data, and more explanations about the different types of weather data
+- Past hourly forecast can now be viewed in the details page
+
+**Removed features**
+- Main screen hourly forecast card will now only show the next 24 hours, as the rest of the forecast can now be seen with more readability in the daily details page.
+- The dedicated pollen page accessed when tapping on the pollen card now no longer exists, and was replaced by the pollen page in daily details.
+- Tapping on the main screen air quality card no longer show more details, but open the air quality page in daily details instead.
+- Tapping on an hourly item in the main screen hourly forecast no longer opens a dialog, but now opens the day details page of the currently selected type of data
+
+**Improvements and fixes**
+- Redesigned main screen footer to support links to the sources, a link to the privacy policy, and icons for the sources for which it is mandatory
+- Fix crash when using “Open in another app” when no app on the phone is able to open it
+
+**Weather sources**
+- [ECCC] Added UV index
+
+**Translations**
+- Translations updated
+
+
+# Version 5.4.8 (2025-06-22)
+
+**Improvements and fixes**
+- Add “Open in another app” in home screen action bar, to allow viewing the exact coordinates of the location in a maps application.
+- Add back alternate calendar to Daily details screen
+- Fix wrong valid time indication for the Air quality card
+- Show an error message when trying to add twice the same location with the same forecast source
+
+**Weather sources**
+- [CWA] Removed trust in HiPKI by Chunghwa Telecom Certificate Authority, following upstream change of CA
+- [Nominatim] Fix not showing up in the `freenet` flavor
+- [NWS] Will now report an error when data from the observation station is outdated, and fallback to current hour forecast data, instead of displaying outdated “current” info
+- [Pirate Weather] Now available in the `freenet` flavor (was open sourced a few months ago)
+- [Pirate Weather] Fix incorrect units for precipitation
+
+**Translations**
+- Translations updated
+- Translation added and completed for Thai (@wwwwwwari, @achn-syps)
+
+
+# Version 5.4.7 (2025-04-28)
+
+**Improvements and fixes**
+- Fix for “Network unavailable” when using VPN on Android < 10
+- Fix for word-break to new line when using a custom system font (Samsung or Motorola devices for example)
+
+**Weather sources**
+- [Atmo France] fix for no pollen in Paris, Marseille and Lyon
+- [CWA] Fix failure to refresh due to server side changes on 2025-04-28
+- [CWA] Fix failure to refresh on Android < 14
+- [Open Meteo] Update weather model list (adds KMA, migrate deprecated models)
+
+**Translations**
+- Translations updated
+
+
+# Version 5.4.6 (2025-04-19)
+
+**Improvements and fixes**
+- Background update will no longer execute when VPN is on, but no other Internet-providing transport is enabled
+- Background update errors will now be grouped by location
+- When changing an unit, widgets will now update automatically, instead of waiting for the next refresh to apply the new units
+- Adjusted thresholds for pollen levels of alder, birch, grass, mugwort, olive and ragweed
+
+**Weather sources**
+- [Atmo France] added as new Pollen source for France (still early, may not work in all regions)
+
+**Translations**
+- Translations updated
+
+**Technical**
+- [Android] Improved current location request (@min7-i)
 
 
 # Version 5.4.5 (2025-03-03)
@@ -1279,8 +1446,8 @@ Background updates logic was entirely rewritten in this version.
 # Version 4.0.1-alpha (2023-06-24)
 
 - Translation available from Weblate
-- Make dividers thinner on homepage
-- Fix vertical alignment of refresh time on homepage
+- Make dividers thinner on main screen
+- Fix vertical alignment of refresh time on main screen
 - Fix monochrome icon
 - Optimize new icons
 - Require a restart when changing "Background animation" or "Gravity sensor" settings
@@ -1291,7 +1458,7 @@ Initial version of Breezy Weather fork
 
 - New providers (Open-Meteo, MET Norway)
 - Additional data for other providers
-- New header design for homepage
+- New header design for main screen
 - More Material 3 components
 - Add hourly air quality
 - Add Plume AQI scale for air quality widget

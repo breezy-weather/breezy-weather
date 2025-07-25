@@ -18,26 +18,27 @@ package org.breezyweather.ui.settings.activities
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
+import com.mikepenz.aboutlibraries.ui.compose.android.rememberLibraries
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 
-class DependenciesActivity : GeoActivity() {
+class DependenciesActivity : BreezyActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+            BreezyWeatherTheme {
                 ContentView()
             }
         }
@@ -46,6 +47,7 @@ class DependenciesActivity : GeoActivity() {
     @Composable
     private fun ContentView() {
         val scrollBehavior = generateCollapsedScrollBehavior()
+        val libraries by rememberLibraries(R.raw.aboutlibraries)
 
         Material3Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -58,6 +60,7 @@ class DependenciesActivity : GeoActivity() {
             }
         ) {
             LibrariesContainer(
+                libraries,
                 Modifier.padding(it),
                 showLicenseBadges = true
             )

@@ -1,26 +1,28 @@
-Breezy Weather est une application météo Android libre et gratuite, dérivé de Geometric Weather, qui ajoute de nouvelles fonctionnalités, fournisseurs, modernise le code, corrige des bugs, met à jour les dépendances pour des raisons de sécurité, etc., tout en gardant l’expérience utilisateur et développeur en tête.
+Breezy Weather est une application météo gratuite et libre en Material 3 Expressive avec des visualisations bien pensées, prenant en charge les prévisions, les conditions météorologiques en temps réel, les prévisions immédiates, la qualité de l'air, le pollen, les alertes, à partir de plus de 50 sources météorologiques, telles que Météo-France, Atmo, ECCC, MeteoLux et Open-Meteo.
 
-Vous trouverez dans cette application, de façon non exhaustive :
+<b>Fonctionnalités</b>
 
-- Les conditions météorologiques en temps réel (température, ressenti, vent, indice UV, humidité, point de rosée, pression atmosphérique, visibilité, couverture nuageuse, plafond)
-- Les prévisions quotidiennes et horaires jusqu’à un maximum de 16 jours (température, qualité de l’air, vent, indice UV, précipitations, ensoleillement, ressenti)
-- Détails des prévisions horaires (humidité / point de rosée, pression, couverture nuageuse, visibilité)
-- Les précipitations dans l’heure à venir
-- Des informations sur la qualité de l’air, les allergènes et l’éphéméride
+- Prévisions quotidiennes et horaires jusqu’à un maximum de 16 jours
+- Précipitations dans l’heure à venir
+- Conditions météorologiques en temps réel
+- Informations sur la qualité de l’air, les allergènes et l’éphéméride
 - Vigilances météo et alertes de précipitations
+- Partage sur demande des données avec d’autres applications (comme Gadgetbridge)
+- Accessibilité pour les lecteurs d’écran et pour d’autres localisations
 
-L’application met l’accent sur l’esthétique, avec une expérience utilisateur simple et épurée, des animations fluides, en Material Design, ainsi que plusieurs personnalisations :
+<b>Design</b>
 
+- Material 3 Expressive
+- Graphiques sur 24 heures détaillés
 - Thème sombre automatique
-- Thèmes d’icônes personnalisées
-- Une large sélection de widgets pour l’écran d’accueil pour disposer de l’information en un coup d’œil
+- Packs d’icônes personnalisées
+- Large sélection de widgets
 - Fond d’écrans animés
 
 <b>Sources</b>
 
-Plus de 50 sources disponibles:
-- Toutes versions : Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Recosanté, RNSA, SMA (Seychelles), SMA (Sudan), SSMS
-- Sites non libres/auto-hébergeables (non inclues dans les versions avec suffixe _freenet) : AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mix de sources pour la Chine, NAMEM, NWS, OpenWeather, PAGASA, Pirate Weather, SMG, OMM Centre d’Information des Phénomènes Dangereux
+- Toutes versions : Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, Recosanté, SMA (Seychelles), SMA (Sudan), SSMS
+- Sites non libres/auto-hébergeables (non inclues dans les versions avec suffixe _freenet) : AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mix de sources pour la Chine, NAMEM, NWS, OpenWeather, PAGASA, SMG, OMM Centre d’Information des Phénomènes Dangereux
 
 <b>Permissions</b>
 
@@ -36,6 +38,7 @@ Facultatives :
 - Localisation (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION) : pour afficher la météo pour votre position actuelle
 - Stockage (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE) : permet à l’application de définir le fond d’écran animé et/ou les widgets sur certains appareils
 - Icône système (EXPAND_STATUS_BAR) : permet de lancer l’application depuis les paramètres rapides
+- Langue spécifique pour l’appli (READ_APP_SPECIFIC_LOCALES): permet de sauvegarder une langue spécifique pour l’appli et lire sa valeur après un redémarrage pour certains appareils
 
 <b>Licence</b>
 

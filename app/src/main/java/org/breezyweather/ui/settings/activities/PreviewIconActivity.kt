@@ -24,8 +24,9 @@ import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.GridLayoutManager
 import breezyweather.domain.weather.model.WeatherCode
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -34,14 +35,13 @@ import org.breezyweather.ui.settings.adapters.WeatherIconAdapter
 import org.breezyweather.ui.settings.dialogs.AdaptiveIconDialog
 import org.breezyweather.ui.settings.dialogs.AnimatableIconDialog
 import org.breezyweather.ui.settings.dialogs.MinimalIconDialog
-import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.resource.providers.DefaultResourceProvider
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import java.util.Locale
 
-class PreviewIconActivity : GeoActivity() {
+class PreviewIconActivity : BreezyActivity() {
     private lateinit var binding: ActivityPreviewIconBinding
     private lateinit var mProvider: ResourceProvider
     private val mItemList = mutableListOf<WeatherIconAdapter.Item>()
@@ -133,10 +133,8 @@ class PreviewIconActivity : GeoActivity() {
             setBackgroundColor(
                 ColorUtils.getWidgetSurfaceColor(
                     6f,
-                    ThemeManager.getInstance(this@PreviewIconActivity)
-                        .getThemeColor(this@PreviewIconActivity, androidx.appcompat.R.attr.colorPrimary),
-                    ThemeManager.getInstance(this@PreviewIconActivity)
-                        .getThemeColor(this@PreviewIconActivity, com.google.android.material.R.attr.colorSurface)
+                    getThemeColor(androidx.appcompat.R.attr.colorPrimary),
+                    getThemeColor(com.google.android.material.R.attr.colorSurface)
                 )
             )
         }
@@ -181,7 +179,7 @@ internal class WeatherIcon(
     override val drawable: Drawable
         get() = ResourceHelper.getWeatherIcon(provider, weatherCode, daytime)
 
-    override fun onItemClicked(activity: GeoActivity) {
+    override fun onItemClicked(activity: BreezyActivity) {
         AnimatableIconDialog.show(activity, weatherCode, daytime, provider)
     }
 }
@@ -195,7 +193,7 @@ internal class MinimalIcon(
     override val drawable: Drawable
         get() = ResourceHelper.getWidgetNotificationIcon(provider, weatherCode, daytime, true, !mDarkMode)
 
-    override fun onItemClicked(activity: GeoActivity) {
+    override fun onItemClicked(activity: BreezyActivity) {
         MinimalIconDialog.show(activity, weatherCode, daytime, provider)
     }
 }
@@ -208,7 +206,7 @@ internal class ShortcutIcon(
     override val drawable: Drawable
         get() = ResourceHelper.getShortcutsIcon(provider, weatherCode, daytime)
 
-    override fun onItemClicked(activity: GeoActivity) {
+    override fun onItemClicked(activity: BreezyActivity) {
         AdaptiveIconDialog.show(activity, weatherCode, daytime, provider)
     }
 }
@@ -222,7 +220,7 @@ internal open class SunIcon(
     override val contentDescription: String
         get() = "Sun"
 
-    override fun onItemClicked(activity: GeoActivity) {
+    override fun onItemClicked(activity: BreezyActivity) {
         // do nothing.
     }
 }

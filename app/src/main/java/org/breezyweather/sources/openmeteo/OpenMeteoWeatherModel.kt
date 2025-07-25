@@ -1,9 +1,25 @@
+/*
+ * This file is part of Breezy Weather.
+ *
+ * Breezy Weather is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, version 3 of the License.
+ *
+ * Breezy Weather is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package org.breezyweather.sources.openmeteo
 
 import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 
 /**
  * List from:
@@ -16,9 +32,8 @@ enum class OpenMeteoWeatherModel(
 ) : BaseEnum {
     BEST_MATCH("best_match"),
 
-    ECMWF_IFS04("ecmwf_ifs04"),
     ECMWF_IFS025("ecmwf_ifs025"),
-    ECMWF_AIFS025("ecmwf_aifs025"),
+    ECMWF_AIFS025_SINGLE("ecmwf_aifs025_single"),
     CMA_GRAPES_GLOBAL("cma_grapes_global"),
     BOM_ACCESS_GLOBAL("bom_access_global"),
 
@@ -31,6 +46,10 @@ enum class OpenMeteoWeatherModel(
     JMA_SEAMLESS("jma_seamless"),
     JMA_MSM("jma_msm"),
     JMA_GSM("jma_gsm"),
+
+    KMA_SEAMLESS("kma_seamless"),
+    KMA_MSM("kma_ldps"),
+    KMA_GSM("kma_gdps"),
 
     DWD_ICON_SEAMLESS("icon_seamless"),
     DWD_ICON_GLOBAL("icon_global"),
@@ -48,9 +67,7 @@ enum class OpenMeteoWeatherModel(
     METEO_FRANCE_AROME_FRANCE("meteofrance_arome_france"),
     METEO_FRANCE_AROME_FRANCE_HD("meteofrance_arome_france_hd"),
 
-    ARPAE_COSMO_SEAMLESS("arpae_cosmo_seamless"),
-    ARPAE_COSMO_2I("arpae_cosmo_2i"),
-    ARPAE_COSMO_5M("arpae_cosmo_5m"),
+    ITALIAMETEO_ARPAE_ICON_2I("italia_meteo_arpae_icon_2i"),
 
     MET_NO_SEAMLESS("metno_seamless"),
     MET_NO_NORDIC("metno_nordic"),
@@ -80,7 +97,7 @@ enum class OpenMeteoWeatherModel(
     override val nameArrayId = R.array.open_meteo_weather_models
 
     override fun getName(context: Context) =
-        Utils.getName(context, this)
+        UnitUtils.getName(context, this)
             .replace(
                 "Best match",
                 context.getString(R.string.settings_weather_source_open_meteo_weather_models_best_match)

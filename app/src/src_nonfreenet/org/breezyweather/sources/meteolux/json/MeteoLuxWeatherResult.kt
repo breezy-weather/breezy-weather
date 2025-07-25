@@ -23,5 +23,4 @@ data class MeteoLuxWeatherResult(
     val city: MeteoLuxWeatherCity? = null,
     val forecast: MeteoLuxWeatherForecast? = null,
     val vigilances: List<MeteoLuxWeatherVigilance>? = null,
-    val ephemeris: MeteoLuxWeatherEphemeris? = null,
 )

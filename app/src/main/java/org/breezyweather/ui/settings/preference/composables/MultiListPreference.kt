@@ -61,9 +61,8 @@ import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 import java.text.Collator
 
@@ -82,11 +81,15 @@ fun MultiListPreferenceViewWithCard(
     noItemsMessage: String,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(),
     onValueChanged: (List<String>) -> Unit,
 ) {
-    Material3CardListItem(
-        elevation = if (enabled) defaultCardListItemElevation else 0.dp
+    Material3ExpressiveCardListItem(
+        elevation = if (enabled) defaultCardListItemElevation else 0.dp,
+        isFirst = isFirst,
+        isLast = isLast
     ) {
         MultiListPreferenceView(
             title = title,
@@ -147,7 +150,7 @@ fun MultiListPreferenceView(
             {
                 Icon(
                     painter = painterResource(iconId),
-                    tint = DayNightTheme.colors.titleColor,
+                    tint = MaterialTheme.colorScheme.onSurface,
                     contentDescription = null,
                     modifier = Modifier.size(24.dp)
                 )
@@ -165,7 +168,7 @@ fun MultiListPreferenceView(
                 ) {
                     Text(
                         text = title,
-                        color = DayNightTheme.colors.titleColor,
+                        color = MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.titleMedium
                     )
                 }
@@ -173,10 +176,10 @@ fun MultiListPreferenceView(
         },
         supportingContent = {
             Column {
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                 Text(
                     text = currentSummary,
-                    color = DayNightTheme.colors.bodyColor,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
@@ -271,7 +274,7 @@ fun MultiListPreferenceView(
                 text = {
                     Text(
                         text = noItemsMessage,
-                        color = DayNightTheme.colors.bodyColor,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         style = MaterialTheme.typography.bodyMedium
                     )
                 },
@@ -341,6 +344,8 @@ fun PackagePreferenceView(
     title: String,
     selectedKeys: ImmutableList<String>,
     intent: String,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     onValueChanged: (List<String>) -> Unit,
 ) {
     val context = LocalContext.current
@@ -367,6 +372,8 @@ fun PackagePreferenceView(
                 )
             }.toTypedArray(),
         noItemsMessage = stringResource(R.string.settings_widgets_broadcast_send_data_summary_empty),
+        isFirst = isFirst,
+        isLast = isLast,
         onValueChanged = onValueChanged
     )
 }

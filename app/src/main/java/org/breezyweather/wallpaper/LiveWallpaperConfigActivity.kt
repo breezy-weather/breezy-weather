@@ -21,7 +21,6 @@ import androidx.activity.compose.setContent
 import androidx.annotation.StringRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -54,14 +53,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.toSize
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 
-class LiveWallpaperConfigActivity : GeoActivity() {
+class LiveWallpaperConfigActivity : BreezyActivity() {
 
     private lateinit var weatherKindValueNow: MutableState<String>
     private lateinit var weatherKinds: Array<String>
@@ -84,7 +82,7 @@ class LiveWallpaperConfigActivity : GeoActivity() {
         dayNightTypeValues = resources.getStringArray(R.array.live_wallpaper_day_night_type_values)
 
         setContent {
-            BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+            BreezyWeatherTheme {
                 ContentView()
             }
         }
@@ -217,7 +215,7 @@ class LiveWallpaperConfigActivity : GeoActivity() {
                         text = {
                             Text(
                                 text = item,
-                                color = DayNightTheme.colors.titleColor,
+                                color = MaterialTheme.colorScheme.onSurface,
                                 style = MaterialTheme.typography.titleMedium
                             )
                         },

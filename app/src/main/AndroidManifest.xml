@@ -32,7 +32,11 @@
         android:minSdkVersion="34" />
 
     <!-- notification. -->
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <uses-permission
+        android:name="android.permission.READ_APP_SPECIFIC_LOCALES"
+        tools:ignore="ProtectedPermissions" />
 
     <!-- weather update in background -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
@@ -100,7 +104,6 @@
             android:name=".ui.main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/BreezyWeatherTheme.Main"
-            android:configChanges="uiMode"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -125,18 +128,13 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".ui.daily.DailyActivity"
+            android:name=".ui.details.DetailsActivity"
             android:label="@string/daily_forecast"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
             android:name=".ui.alert.AlertActivity"
             android:label="@string/alerts"
-            android:theme="@style/BreezyWeatherTheme" />
-
-        <activity
-            android:name=".ui.pollen.PollenActivity"
-            android:label="@string/pollen"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity
@@ -164,11 +162,6 @@
         <activity
             android:name=".ui.settings.activities.HourlyTrendDisplayManageActivity"
             android:label="@string/settings_main_hourly_trends_title"
-            android:theme="@style/BreezyWeatherTheme" />
-
-        <activity
-            android:name=".ui.settings.activities.DetailDisplayManageActivity"
-            android:label="@string/settings_main_header_details_title"
             android:theme="@style/BreezyWeatherTheme" />
 
         <activity

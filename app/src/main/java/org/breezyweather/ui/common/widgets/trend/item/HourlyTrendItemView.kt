@@ -25,6 +25,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.annotation.IntDef
+import androidx.core.graphics.withTranslation
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
@@ -45,12 +46,7 @@ class HourlyTrendItemView @JvmOverloads constructor(
         isAntiAlias = true
         textAlign = Paint.Align.CENTER
     }
-    private val mDateTextPaint = Paint().apply {
-        isAntiAlias = true
-        textAlign = Paint.Align.CENTER
-    }
     private var mHourText: String? = null
-    private var mDayText: String? = null
 
     @IntDef(View.INVISIBLE, View.GONE)
     internal annotation class IconVisibility
@@ -62,9 +58,6 @@ class HourlyTrendItemView @JvmOverloads constructor(
     @ColorInt
     private var mContentColor = 0
 
-    @ColorInt
-    private var mSubTitleColor = 0
-    private var mDayTextBaseLine = 0f
     private var mHourTextBaseLine = 0f
     private var mIconLeft = 0f
     private var mIconTop = 0f
@@ -81,11 +74,7 @@ class HourlyTrendItemView @JvmOverloads constructor(
             typeface = getContext().getTypefaceFromTextAppearance(R.style.title_text)
             textSize = getContext().resources.getDimensionPixelSize(R.dimen.title_text_size).toFloat()
         }
-        mDateTextPaint.apply {
-            typeface = getContext().getTypefaceFromTextAppearance(R.style.content_text)
-            textSize = getContext().resources.getDimensionPixelSize(R.dimen.content_text_size).toFloat()
-        }
-        setTextColor(Color.BLACK, Color.GRAY)
+        setTextColor(Color.BLACK)
         mIconSize = getContext().dpToPx(ICON_SIZE_DIP.toFloat()).toInt()
     }
 
@@ -97,16 +86,9 @@ class HourlyTrendItemView @JvmOverloads constructor(
         val iconMargin = context.dpToPx(ICON_MARGIN_DIP.toFloat())
 
         // hour text.
-        var fontMetrics = mHourTextPaint.fontMetrics
+        val fontMetrics = mHourTextPaint.fontMetrics
         y += textMargin
         mHourTextBaseLine = y - fontMetrics.top
-        y += fontMetrics.bottom - fontMetrics.top
-        y += textMargin
-
-        // day text.
-        fontMetrics = mDateTextPaint.fontMetrics
-        y += textMargin
-        mDayTextBaseLine = y - fontMetrics.top
         y += fontMetrics.bottom - fontMetrics.top
         y += textMargin
 
@@ -156,24 +138,12 @@ class HourlyTrendItemView @JvmOverloads constructor(
             canvas.drawText(it, measuredWidth / 2f, mHourTextBaseLine, mHourTextPaint)
         }
 
-        // day text.
-        mDayText?.let {
-            mDateTextPaint.color = mSubTitleColor
-            canvas.drawText(it, measuredWidth / 2f, mDayTextBaseLine, mDateTextPaint)
-        }
-
         // day icon.
         mIconDrawable?.let {
-            val restoreCount = canvas.save()
-            canvas.translate(mIconLeft, mIconTop)
-            it.draw(canvas)
-            canvas.restoreToCount(restoreCount)
+            canvas.withTranslation(mIconLeft, mIconTop) {
+                it.draw(canvas)
+            }
         }
-    }
-
-    fun setDayText(dayText: String?) {
-        mDayText = dayText
-        invalidate()
     }
 
     fun setHourText(hourText: String?) {
@@ -181,9 +151,8 @@ class HourlyTrendItemView @JvmOverloads constructor(
         invalidate()
     }
 
-    fun setTextColor(@ColorInt contentColor: Int, @ColorInt subTitleColor: Int) {
+    fun setTextColor(@ColorInt contentColor: Int) {
         mContentColor = contentColor
-        mSubTitleColor = subTitleColor
         invalidate()
     }
 

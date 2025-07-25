@@ -1,6 +1,16 @@
 # Contributions
 
-## Rules
+## Rules for contributions
+
+While we welcome pull requests, before implementing any new feature/improvement, we ask you to come talk to us, to be sure it goes in the right direction. We don’t want you to spend time implementing something we don’t want (see “Rules for new features/improvements requests” section below) or implementing it the wrong way.
+
+You can also contribute to [existing issues tagged “Open to contributions”](https://github.com/breezy-weather/breezy-weather/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22Open%20to%20contributions%22), or [existing ideas tagged “Open to contributions”](https://github.com/breezy-weather/breezy-weather/discussions?discussions_q=is%3Aopen+label%3A%22Open+to+contributions%22).
+
+Prerequisites for pull requests contributions:
+1. You are contributing to an issue/idea tagged “Open to contributions”, or an [org member](https://github.com/orgs/breezy-weather/people) gave you permission to work on it.
+
+
+## Rules for new features/improvements requests
 
 ### General direction
 
@@ -8,8 +18,6 @@ Breezy Weather wants to be:
 - a general weather app covering most of what you can expect from a weather app, but not *all* of what you can expect. For advanced usage, some specialized apps will always cover it better
 - usable without having to be an expert to find anything in the app
 - mainly target small displays, so we don’t want to fit too many things, as we also want to let the design breathe a bit
-
-While we welcome pull requests, before implementing any new feature, we ask you to come talk to us, to be sure it goes in the right direction. We don’t want you to spend time implementing something we don’t want or implementing it the wrong way.
 
 
 ### New preference
@@ -141,7 +149,6 @@ As a starting point, we will only implement weather part, but here is the full l
 | `LocationParametersSource`    | Your source needs location parameters, such as the code of a city. This code can be found by calling an endpoint with lon/lat, or a station list can be fetch to find the nearest station given the coordinates.                           |
 | `LocationSearchSource`        | Your source is able to return a list of `Location` object from a query, containing at least the TimeZone of the location. If your source doesn’t include TimeZone, don’t implement it, and this will default to Open-Meteo location search |
 | `ReverseGeocodingSource`      | Your source is able to return one `Location` (you can pick the first one if you have many) from lon/lat. If you don’t have this feature available, don’t implement it and locations created with your source will only have lon/lat        |
-| `ParameterizedLocationSource` | Your source needs to fetch some parameters from an endpoint by longitude/latitude (for example, a city ID) before requesting weather for that cityId (you can’t call weather endpoint directly by longitude/latitude)                      |
 | `ConfigurableSource`          | You want to allow your user to change preferences, for example API key.                                                                                                                                                                    |
 
 For most complex needs, always have a look at existing sources. If you need to add a new type of pollen for your source, please contact us first as it is a non-trivial change to the code.

@@ -34,7 +34,6 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.sources.hko.json.HkoAstroResult
 import org.breezyweather.sources.hko.json.HkoCurrentResult
 import org.breezyweather.sources.hko.json.HkoForecastResult
 import org.breezyweather.sources.hko.json.HkoNormalsResult
@@ -42,9 +41,7 @@ import org.breezyweather.sources.hko.json.HkoOneJsonResult
 import org.breezyweather.sources.hko.json.HkoWarningResult
 import org.json.JSONObject
 import retrofit2.Retrofit
-import java.util.Calendar
 import java.util.Locale
-import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.math.round
@@ -80,13 +77,6 @@ class HkoService @Inject constructor(
             .create(HkoApi::class.java)
     }
 
-    private val mDataApi by lazy {
-        client
-            .baseUrl(HKO_DATA_BASE_URL)
-            .build()
-            .create(HkoDataApi::class.java)
-    }
-
     private val mMapsApi by lazy {
         client
             .baseUrl(HKO_MAPS_BASE_URL)
@@ -107,6 +97,9 @@ class HkoService @Inject constructor(
         SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution,
         SourceFeature.NORMALS to weatherAttribution
+    )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.hko.gov.hk/"
     )
 
     override fun isFeatureSupportedForLocation(
@@ -163,57 +156,6 @@ class HkoService @Inject constructor(
             }
         } else {
             Observable.just(HkoForecastResult())
-        }
-
-        // ASTRO
-        // Get sun and moon data for both the current month and next month,
-        // to fully cover the entire 9-day forecast period.
-        val now = Calendar.getInstance(TimeZone.getTimeZone("Asia/Hong_Kong"), Locale.ENGLISH)
-        var year = now.get(Calendar.YEAR)
-        var month = now.get(Calendar.MONTH) + 1
-        val sun1 = if (SourceFeature.FORECAST in requestedFeatures) {
-            mDataApi.getAstro("SRS", year, month).onErrorResumeNext {
-                /*if (BreezyWeather.instance.debugMode) {
-                    failedFeatures.add(SourceFeature.OTHER)
-                }*/
-                Observable.just(HkoAstroResult())
-            }
-        } else {
-            Observable.just(HkoAstroResult())
-        }
-        val moon1 = if (SourceFeature.FORECAST in requestedFeatures) {
-            mDataApi.getAstro("MRS", year, month).onErrorResumeNext {
-                /*if (BreezyWeather.instance.debugMode) {
-                    failedFeatures.add(SourceFeature.OTHER)
-                }*/
-                Observable.just(HkoAstroResult())
-            }
-        } else {
-            Observable.just(HkoAstroResult())
-        }
-
-        now.add(Calendar.MONTH, 1)
-        year = now.get(Calendar.YEAR)
-        month = now.get(Calendar.MONTH) + 1
-        val sun2 = if (SourceFeature.FORECAST in requestedFeatures) {
-            mDataApi.getAstro("SRS", year, month).onErrorResumeNext {
-                /*if (BreezyWeather.instance.debugMode) {
-                    failedFeatures.add(SourceFeature.OTHER)
-                }*/
-                Observable.just(HkoAstroResult())
-            }
-        } else {
-            Observable.just(HkoAstroResult())
-        }
-        val moon2 = if (SourceFeature.FORECAST in requestedFeatures) {
-            mDataApi.getAstro("MRS", year, month).onErrorResumeNext {
-                /*if (BreezyWeather.instance.debugMode) {
-                    failedFeatures.add(SourceFeature.OTHER)
-                }*/
-                Observable.just(HkoAstroResult())
-            }
-        } else {
-            Observable.just(HkoAstroResult())
         }
 
         // CURRENT
@@ -299,26 +241,18 @@ class HkoService @Inject constructor(
             Observable.just(HkoNormalsResult())
         }
 
-        return Observable.zip(current, forecast, normals, oneJson, warningDetails, sun1, sun2, moon1, moon2) {
+        return Observable.zip(current, forecast, normals, oneJson, warningDetails) {
                 currentResult: HkoCurrentResult,
                 forecastResult: HkoForecastResult,
                 normalsResult: HkoNormalsResult,
                 oneJsonResult: HkoOneJsonResult,
                 warningDetailsResult: MutableMap<String, HkoWarningResult>,
-                sun1Result: HkoAstroResult,
-                sun2Result: HkoAstroResult,
-                moon1Result: HkoAstroResult,
-                moon2Result: HkoAstroResult,
             ->
             WeatherWrapper(
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
                     getDailyForecast(
                         context,
                         forecastResult.DailyForecast,
-                        sun1Result,
-                        sun2Result,
-                        moon1Result,
-                        moon2Result,
                         oneJsonResult
                     )
                 } else {
@@ -508,7 +442,6 @@ class HkoService @Inject constructor(
 
     companion object {
         private const val HKO_BASE_URL = "https://www.hko.gov.hk/"
-        private const val HKO_DATA_BASE_URL = "https://data.weather.gov.hk/"
         private const val HKO_MAPS_BASE_URL = "https://maps.weather.gov.hk/"
         private const val HKO_SIMPLIFIED_CHINESE_PATH = "dps/sc/"
 

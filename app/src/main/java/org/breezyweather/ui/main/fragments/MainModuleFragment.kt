@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -16,19 +16,9 @@
 
 package org.breezyweather.ui.main.fragments
 
-import org.breezyweather.common.basic.GeoFragment
-import org.breezyweather.common.bus.EventBus
+import org.breezyweather.common.basic.BreezyFragment
 
-class ModifyMainSystemBarMessage
-
-abstract class MainModuleFragment : GeoFragment() {
-
-    protected fun checkToSetSystemBarStyle() {
-        EventBus
-            .instance
-            .with(ModifyMainSystemBarMessage::class.java)
-            .postValue(ModifyMainSystemBarMessage())
-    }
+abstract class MainModuleFragment : BreezyFragment() {
 
     abstract fun setSystemBarStyle()
 }

@@ -68,6 +68,9 @@ class LvgmcService @Inject constructor(
         SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.AIR_QUALITY to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to LVGMC_BASE_URL
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,
@@ -245,11 +248,11 @@ class LvgmcService @Inject constructor(
         location: Location,
     ): String {
         return "POLYGON((" +
-            (location.longitude - 0.1) + " " + (location.latitude - 0.1) + ", " +
-            (location.longitude + 0.1) + " " + (location.latitude - 0.1) + ", " +
-            (location.longitude + 0.1) + " " + (location.latitude + 0.1) + ", " +
-            (location.longitude - 0.1) + " " + (location.latitude + 0.1) + ", " +
-            (location.longitude - 0.1) + " " + (location.latitude - 0.1) + "))"
+            "${location.longitude - 0.1} ${location.latitude - 0.1}, " +
+            "${location.longitude + 0.1} ${location.latitude - 0.1}, " +
+            "${location.longitude + 0.1} ${location.latitude + 0.1}, " +
+            "${location.longitude - 0.1} ${location.latitude + 0.1}, " +
+            "${location.longitude - 0.1} ${location.latitude - 0.1}))"
     }
 
     override val testingLocations: List<Location> = emptyList()

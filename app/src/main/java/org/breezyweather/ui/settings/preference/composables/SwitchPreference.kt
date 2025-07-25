@@ -48,9 +48,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.breezyweather.R
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 
 @Composable
@@ -63,6 +62,8 @@ fun SwitchPreferenceView(
     withState: Boolean = true,
     enabled: Boolean = true,
     card: Boolean = true,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(),
     onValueChanged: (Boolean) -> Unit,
 ) = SwitchPreferenceView(
@@ -75,6 +76,8 @@ fun SwitchPreferenceView(
     withState = withState,
     enabled = enabled,
     card = card,
+    isFirst = isFirst,
+    isLast = isLast,
     colors = colors,
     onValueChanged = onValueChanged
 )
@@ -88,6 +91,8 @@ fun SwitchPreferenceView(
     withState: Boolean = true,
     enabled: Boolean = true,
     card: Boolean = true,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(),
     onValueChanged: (Boolean) -> Unit,
 ) {
@@ -96,8 +101,10 @@ fun SwitchPreferenceView(
 
     // TODO: Redundancy
     if (card) {
-        Material3CardListItem(
-            elevation = if (enabled) defaultCardListItemElevation else 0.dp
+        Material3ExpressiveCardListItem(
+            elevation = if (enabled) defaultCardListItemElevation else 0.dp,
+            isFirst = isFirst,
+            isLast = isLast
         ) {
             Row(
                 modifier = Modifier
@@ -120,20 +127,20 @@ fun SwitchPreferenceView(
                 ) {
                     Text(
                         text = title,
-                        color = DayNightTheme.colors.titleColor,
+                        color = MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.titleMedium
                     )
                     if (currentSummary?.isNotEmpty() == true) {
-                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                         Text(
                             text = currentSummary,
-                            color = DayNightTheme.colors.bodyColor,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }
                 }
 
-                Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
+                Spacer(modifier = Modifier.width(dimensionResource(R.dimen.small_margin)))
                 Switch(
                     enabled = enabled,
                     checked = if (withState) state.value else checked,
@@ -164,7 +171,7 @@ fun SwitchPreferenceView(
                 {
                     Icon(
                         painter = painterResource(iconId),
-                        tint = DayNightTheme.colors.titleColor,
+                        tint = MaterialTheme.colorScheme.onSurface,
                         contentDescription = null,
                         modifier = Modifier.size(24.dp)
                     )
@@ -182,7 +189,7 @@ fun SwitchPreferenceView(
                     ) {
                         Text(
                             text = title,
-                            color = DayNightTheme.colors.titleColor,
+                            color = MaterialTheme.colorScheme.onSurface,
                             style = MaterialTheme.typography.titleMedium
                         )
                     }
@@ -191,10 +198,10 @@ fun SwitchPreferenceView(
             supportingContent = if (currentSummary?.isNotEmpty() == true) {
                 {
                     Column {
-                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                         Text(
                             text = currentSummary,
-                            color = DayNightTheme.colors.bodyColor,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }

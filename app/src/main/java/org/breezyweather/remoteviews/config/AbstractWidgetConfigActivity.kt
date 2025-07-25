@@ -52,13 +52,14 @@ import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.slider.Slider
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
-import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.extensions.hasPermission
@@ -67,7 +68,6 @@ import org.breezyweather.common.snackbar.Snackbar
 import org.breezyweather.common.snackbar.SnackbarManager
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.ConfigStore
-import java.text.NumberFormat
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -75,7 +75,7 @@ import kotlin.math.roundToInt
 /**
  * Abstract widget config activity.
  */
-abstract class AbstractWidgetConfigActivity : GeoActivity() {
+abstract class AbstractWidgetConfigActivity : BreezyActivity() {
     protected var mTopContainer: FrameLayout? = null
     protected var mWallpaper: ImageView? = null
     protected var mWidgetContainer: FrameLayout? = null
@@ -355,9 +355,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             valueTo = 100f
             value = ((cardAlpha.toDouble() / 10.0).roundToInt() * 10.0).toFloat()
             setLabelFormatter { value: Float ->
-                NumberFormat.getPercentInstance(context.currentLocale).apply {
-                    maximumFractionDigits = 0
-                }.format(value.div(100.0))
+                UnitUtils.formatPercent(context, value.toDouble())
             }
             addOnChangeListener { _, value, _ ->
                 if (cardAlpha != value.roundToInt()) {
@@ -420,9 +418,7 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
                 }
             }
             setLabelFormatter { value: Float ->
-                NumberFormat.getPercentInstance(context.currentLocale).apply {
-                    maximumFractionDigits = 0
-                }.format(value.div(100.0))
+                UnitUtils.formatPercent(context, value.toDouble())
             }
         }
 
@@ -501,8 +497,6 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
             })
             setText(if (isCustomSubtitle) subtitleDataValueNow else "")
         }
-        val subtitleCustomKeywords = findViewById<TextView>(R.id.activity_widget_config_custom_subtitle_keywords)
-        subtitleCustomKeywords.text = this.subtitleCustomKeywords
         val scrollContainer = findViewById<LinearLayout>(R.id.activity_widget_config_scrollContainer)
         scrollContainer.post {
             scrollContainer.setPaddingRelative(0, 0, 0, mSubtitleInputLayout!!.measuredHeight)
@@ -514,6 +508,15 @@ abstract class AbstractWidgetConfigActivity : GeoActivity() {
         bottomSheet.post {
             mBottomSheetBehavior!!.peekHeight = mSubtitleInputLayout!!.measuredHeight
             setBottomSheetState(isCustomSubtitle)
+        }
+        val subtitleInputLayout = findViewById<TextInputLayout>(R.id.activity_widget_config_subtitle_inputLayout)
+        subtitleInputLayout.setEndIconOnClickListener {
+            val message = getString(R.string.widget_custom_subtitle_explanation) + "\n\n" + subtitleCustomKeywords
+            MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.widget_custom_subtitle_alert_box_title)
+                .setMessage(message)
+                .setPositiveButton(R.string.action_done, null)
+                .show()
         }
     }
 

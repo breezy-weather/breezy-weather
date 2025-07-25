@@ -34,7 +34,6 @@ import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getStrength
-import org.breezyweather.domain.weather.model.isIndexValid
 import org.breezyweather.remoteviews.Notifications
 import org.breezyweather.remoteviews.presenters.AbstractRemoteViewsPresenter
 import org.breezyweather.ui.theme.resource.ResourceHelper
@@ -75,11 +74,11 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
 
         val contentTitle = StringBuilder()
         if (!tempIcon && tempFeelsLikeOrAir != null) {
-            val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
-            contentTitle.append(temperatureUnit.getValueText(context, tempFeelsLikeOrAir))
+            val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
+            contentTitle.append(temperatureUnit.formatMeasure(context, value = tempFeelsLikeOrAir))
         }
         if (!current.weatherText.isNullOrEmpty()) {
-            if (contentTitle.toString().isNotEmpty()) contentTitle.append(" - ")
+            if (contentTitle.toString().isNotEmpty()) contentTitle.append(" – ")
             contentTitle.append(current.weatherText)
         }
 
@@ -111,10 +110,10 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             setSubText(subtitle.toString())
             setContentTitle(contentTitle.toString())
             if (current.airQuality?.isIndexValid == true) {
-                setContentText(context.getString(R.string.air_quality) + " - " + current.airQuality!!.getName(context))
+                setContentText(context.getString(R.string.air_quality) + " – " + current.airQuality!!.getName(context))
             } else {
                 current.wind?.getStrength(context)?.let { strength ->
-                    setContentText(context.getString(R.string.wind) + " - " + strength)
+                    setContentText(context.getString(R.string.wind) + " – " + strength)
                 }
             }
             setOngoing(persistent)

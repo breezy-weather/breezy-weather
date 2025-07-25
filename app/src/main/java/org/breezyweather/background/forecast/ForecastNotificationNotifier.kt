@@ -83,7 +83,7 @@ class ForecastNotificationNotifier(
         } else {
             daily.day?.weatherCode
         }
-        val temperatureUnit = SettingsManager.getInstance(context).temperatureUnit
+        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
 
         val notification: Notification = with(completeNotificationBuilder) {
             priority = NotificationCompat.PRIORITY_MAX
@@ -108,7 +108,8 @@ class ForecastNotificationNotifier(
             setStyle(
                 NotificationCompat.BigTextStyle()
                     .bigText(
-                        getDayString(daily, temperatureUnit) + "\n" +
+                        getDayString(daily, temperatureUnit) +
+                            "\n\n" +
                             getNightString(daily, temperatureUnit)
                     )
                     // do not show any title when expanding the notification
@@ -154,15 +155,19 @@ class ForecastNotificationNotifier(
 
     private fun getDayString(daily: Daily, temperatureUnit: TemperatureUnit) =
         context.getString(R.string.daytime) +
-            " " + daily.day?.weatherText +
-            " " + daily.day?.temperature?.temperature?.let {
-                temperatureUnit.getValueText(context, it, 0)
-            }
+            context.getString(R.string.colon_separator) +
+            daily.day?.temperature?.temperature?.let {
+                temperatureUnit.formatMeasure(context, it, 0)
+            } +
+            context.getString(R.string.dot_separator) +
+            daily.day?.weatherText
 
     private fun getNightString(daily: Daily, temperatureUnit: TemperatureUnit) =
         context.getString(R.string.nighttime) +
-            " " + daily.night?.weatherText +
-            " " + daily.night?.temperature?.temperature?.let {
-                temperatureUnit.getValueText(context, it, 0)
-            }
+            context.getString(R.string.colon_separator) +
+            daily.night?.temperature?.temperature?.let {
+                temperatureUnit.formatMeasure(context, it, 0)
+            } +
+            context.getString(R.string.dot_separator) +
+            daily.night?.weatherText
 }

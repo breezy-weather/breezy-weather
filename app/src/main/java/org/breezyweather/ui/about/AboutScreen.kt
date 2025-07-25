@@ -1,3 +1,19 @@
+/*
+ * This file is part of Breezy Weather.
+ *
+ * Breezy Weather is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, version 3 of the License.
+ *
+ * Breezy Weather is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package org.breezyweather.ui.about
 
 import androidx.activity.compose.LocalActivity
@@ -8,6 +24,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -17,7 +34,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -42,19 +59,22 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.background.updater.interactor.GetApplicationRelease
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.withIOContext
 import org.breezyweather.common.extensions.withUIContext
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.data.appContributors
 import org.breezyweather.data.appTranslators
 import org.breezyweather.ui.common.composables.AlertDialogLink
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.ui.common.widgets.getCardListItemMarginDp
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.ui.common.widgets.insets.bottomInsetItem
-import org.breezyweather.ui.theme.compose.DayNightTheme
+import org.breezyweather.ui.settings.preference.LargeSeparatorItem
+import org.breezyweather.ui.settings.preference.SmallSeparatorItem
+import org.breezyweather.ui.settings.preference.largeSeparatorItem
 import org.breezyweather.ui.theme.compose.themeRipple
 
 internal class AboutAppLinkItem(
@@ -120,11 +140,15 @@ internal fun AboutScreen(
     ) {
         LazyColumn(
             modifier = Modifier.fillMaxHeight(),
-            contentPadding = it
+            contentPadding = it.plus(
+                PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin))
+            )
         ) {
             item {
                 Header()
                 AboutAppLink(
+                    isFirst = true,
+                    isLast = true,
                     icon = {
                         // Use crossfade animation to prevent the progress indicator from flickering when repeatedly
                         // pressing the update card as this causes the loading state to change back and forth almost
@@ -138,13 +162,13 @@ internal fun AboutScreen(
                                     Icon(
                                         painter = painterResource(R.drawable.ic_sync),
                                         contentDescription = null,
-                                        tint = DayNightTheme.colors.titleColor
+                                        tint = MaterialTheme.colorScheme.onSurface
                                     )
                                 }
                                 true -> {
                                     CircularProgressIndicator(
                                         modifier = Modifier.size(24.dp),
-                                        color = DayNightTheme.colors.titleColor
+                                        color = MaterialTheme.colorScheme.onSurface
                                     )
                                 }
                             }
@@ -190,13 +214,13 @@ internal fun AboutScreen(
                                                         context.getString(R.string.about_no_new_updates)
                                                     )
                                                 }
-                                                /*is GetApplicationRelease.Result.OsTooOld -> {
+                                                is GetApplicationRelease.Result.OsTooOld -> {
                                                     SnackbarHelper.showSnackbar(
                                                         context.getString(
                                                             R.string.about_update_check_eol
                                                         )
                                                     )
-                                                }*/
+                                                }
                                                 else -> {}
                                             }
                                         } catch (e: Exception) {
@@ -215,42 +239,66 @@ internal fun AboutScreen(
                         }
                     }
                 )
+                LargeSeparatorItem()
                 SectionTitle(stringResource(R.string.about_contact))
             }
-            items(contactLinks) { item ->
+            itemsIndexed(contactLinks) { index, item ->
                 AboutAppLink(
                     iconId = item.iconId,
                     title = stringResource(item.titleId),
+                    isFirst = index == 0,
+                    isLast = index == contactLinks.lastIndex,
                     onClick = item.onClick
                 )
-            }
-
-            item {
-                SectionTitle(stringResource(R.string.about_app))
-            }
-            if (activity != null) {
-                items(aboutViewModel.getAboutAppLinks(activity)) { item ->
-                    AboutAppLink(
-                        iconId = item.iconId,
-                        title = stringResource(item.titleId),
-                        onClick = item.onClick
-                    )
+                if (index != contactLinks.lastIndex) {
+                    SmallSeparatorItem()
                 }
             }
 
+            largeSeparatorItem()
+            item { SectionTitle(stringResource(R.string.about_app)) }
+            if (activity != null) {
+                itemsIndexed(aboutViewModel.getAboutAppLinks(activity)) { index, item ->
+                    AboutAppLink(
+                        iconId = item.iconId,
+                        title = stringResource(item.titleId),
+                        isFirst = index == 0,
+                        isLast = index == aboutViewModel.getAboutAppLinks(activity).lastIndex,
+                        onClick = item.onClick
+                    )
+                    if (index != aboutViewModel.getAboutAppLinks(activity).lastIndex) {
+                        SmallSeparatorItem()
+                    }
+                }
+            }
+
+            largeSeparatorItem()
             item { SectionTitle(stringResource(R.string.about_contributors)) }
-            items(appContributors) { item ->
-                ContributorView(name = item.name, contribution = item.contribution) {
+            itemsIndexed(appContributors) { index, item ->
+                ContributorView(
+                    name = item.name,
+                    contribution = item.contribution,
+                    isFirst = index == 0,
+                    isLast = index == appContributors.lastIndex
+                ) {
                     linkToOpen.value = item.link
                     if (linkToOpen.value.isNotEmpty()) {
                         dialogLinkOpenState.value = true
                     }
                 }
+                if (index != appContributors.lastIndex) {
+                    SmallSeparatorItem()
+                }
             }
 
+            largeSeparatorItem()
             item { SectionTitle(stringResource(R.string.about_translators)) }
-            items(filteredTranslators) { item ->
-                ContributorView(name = item.name) {
+            itemsIndexed(filteredTranslators) { index, item ->
+                ContributorView(
+                    name = item.name,
+                    isFirst = index == 0,
+                    isLast = index == filteredTranslators.lastIndex
+                ) {
                     linkToOpen.value = when {
                         !item.github.isNullOrEmpty() -> "https://github.com/${item.github}"
                         !item.weblate.isNullOrEmpty() -> "https://hosted.weblate.org/user/${item.weblate}/"
@@ -261,6 +309,9 @@ internal fun AboutScreen(
                     if (linkToOpen.value.isNotEmpty()) {
                         dialogLinkOpenState.value = true
                     }
+                }
+                if (index != filteredTranslators.lastIndex) {
+                    SmallSeparatorItem()
                 }
             }
 
@@ -291,17 +342,17 @@ private fun Header() {
         )
         Spacer(
             modifier = Modifier
-                .height(dimensionResource(R.dimen.little_margin))
+                .height(dimensionResource(R.dimen.small_margin))
                 .fillMaxWidth()
         )
         Text(
             text = stringResource(R.string.breezy_weather),
-            color = DayNightTheme.colors.titleColor,
+            color = MaterialTheme.colorScheme.onSurface,
             style = MaterialTheme.typography.headlineSmall
         )
         Text(
             text = versionFormatted,
-            color = DayNightTheme.colors.captionColor,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             style = MaterialTheme.typography.labelMedium
         )
     }
@@ -312,7 +363,7 @@ private fun SectionTitle(title: String) {
     Text(
         text = title,
         modifier = Modifier.padding(dimensionResource(R.dimen.normal_margin)),
-        color = DayNightTheme.colors.captionColor,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
         style = MaterialTheme.typography.labelMedium
     )
 }
@@ -327,9 +378,11 @@ private val versionFormatted: String
 private fun AboutAppLink(
     icon: @Composable () -> Unit,
     title: String,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     onClick: () -> Unit,
 ) {
-    Material3CardListItem {
+    Material3ExpressiveCardListItem(isFirst = isFirst, isLast = isLast) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -345,7 +398,7 @@ private fun AboutAppLink(
             Spacer(modifier = Modifier.width(dimensionResource(R.dimen.normal_margin)))
             Text(
                 text = title,
-                color = DayNightTheme.colors.titleColor,
+                color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.titleMedium
             )
         }
@@ -356,6 +409,8 @@ private fun AboutAppLink(
 private fun AboutAppLink(
     @DrawableRes iconId: Int,
     title: String,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     onClick: () -> Unit,
 ) {
     AboutAppLink(
@@ -363,10 +418,12 @@ private fun AboutAppLink(
             Icon(
                 painter = painterResource(iconId),
                 contentDescription = null,
-                tint = DayNightTheme.colors.titleColor
+                tint = MaterialTheme.colorScheme.onSurface
             )
         },
         title = title,
+        isFirst = isFirst,
+        isLast = isLast,
         onClick = onClick
     )
 }
@@ -375,9 +432,11 @@ private fun AboutAppLink(
 private fun ContributorView(
     name: String,
     @StringRes contribution: Int? = null,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     onClick: () -> Unit,
 ) {
-    Material3CardListItem {
+    Material3ExpressiveCardListItem(isFirst = isFirst, isLast = isLast) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -393,7 +452,7 @@ private fun ContributorView(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = name,
-                    color = DayNightTheme.colors.titleColor,
+                    color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.titleMedium
                 )
             }

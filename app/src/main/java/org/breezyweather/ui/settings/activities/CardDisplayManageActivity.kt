@@ -30,20 +30,22 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
+import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.databinding.ActivityCardDisplayManageBinding
+import org.breezyweather.domain.settings.SettingsChangedMessage
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.adapters.TagAdapter
 import org.breezyweather.ui.common.decorations.GridMarginsDecoration
 import org.breezyweather.ui.common.decorations.ListDecoration
 import org.breezyweather.ui.common.widgets.slidingItem.SlidingItemTouchCallback
 import org.breezyweather.ui.settings.adapters.CardDisplayAdapter
-import org.breezyweather.ui.theme.ThemeManager
 
-class CardDisplayManageActivity : GeoActivity() {
+class CardDisplayManageActivity : BreezyActivity() {
     private lateinit var mBinding: ActivityCardDisplayManageBinding
     private lateinit var mCardDisplayAdapter: CardDisplayAdapter
     private var mCardDisplayItemTouchHelper: ItemTouchHelper? = null
@@ -105,8 +107,8 @@ class CardDisplayManageActivity : GeoActivity() {
         mBinding.toolbar.setBackgroundColor(
             ColorUtils.getWidgetSurfaceColor(
                 6f,
-                ThemeManager.getInstance(this).getThemeColor(this, androidx.appcompat.R.attr.colorPrimary),
-                ThemeManager.getInstance(this).getThemeColor(this, com.google.android.material.R.attr.colorSurface)
+                getThemeColor(androidx.appcompat.R.attr.colorPrimary),
+                getThemeColor(com.google.android.material.R.attr.colorSurface)
             )
         )
         mBinding.toolbar.setNavigationOnClickListener { finish() }
@@ -132,7 +134,7 @@ class CardDisplayManageActivity : GeoActivity() {
         mBinding.recyclerView.addItemDecoration(
             ListDecoration(
                 this,
-                ThemeManager.getInstance(this).getThemeColor(this, com.google.android.material.R.attr.colorOutline)
+                getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
         )
         mBinding.recyclerView.adapter = mCardDisplayAdapter
@@ -152,21 +154,8 @@ class CardDisplayManageActivity : GeoActivity() {
         for (tag in otherTags) {
             tagList.add(CardTag(tag))
         }
-        val colors = ThemeManager.getInstance(this).getThemeColors(
-            this,
-            intArrayOf(
-                com.google.android.material.R.attr.colorOnPrimaryContainer,
-                com.google.android.material.R.attr.colorOnSecondaryContainer,
-                com.google.android.material.R.attr.colorPrimaryContainer,
-                com.google.android.material.R.attr.colorSecondaryContainer
-            )
-        )
         mTagAdapter = TagAdapter(
             tagList,
-            colors[0],
-            colors[1],
-            colors[2],
-            colors[3],
             { _: Boolean, _: Int, newPosition: Int ->
                 setResult(RESULT_OK)
                 val tag = mTagAdapter!!.removeItem(newPosition) as CardTag
@@ -200,6 +189,12 @@ class CardDisplayManageActivity : GeoActivity() {
         val newList = mCardDisplayAdapter.cardDisplayList
         if (oldList != newList) {
             SettingsManager.getInstance(this).cardDisplayList = newList
+            // We need to do this manually, because the setter above can’t do it, or the main screen would reload
+            // on main screen drap & drops
+            EventBus
+                .instance
+                .with(SettingsChangedMessage::class.java)
+                .postValue(SettingsChangedMessage())
         }
     }
 

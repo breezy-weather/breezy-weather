@@ -22,7 +22,6 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
@@ -38,7 +37,7 @@ import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -64,7 +63,7 @@ import javax.inject.Inject
 private const val PERMISSION_CODE_POST_NOTIFICATION = 0
 
 @AndroidEntryPoint
-class SettingsActivity : GeoActivity() {
+class SettingsActivity : BreezyActivity() {
 
     @Inject lateinit var sourceManager: SourceManager
 
@@ -78,6 +77,9 @@ class SettingsActivity : GeoActivity() {
     private val updateIntervalState = mutableStateOf(
         SettingsManager.getInstance(this).updateInterval
     )
+    private val darkModeState = mutableStateOf(
+        SettingsManager.getInstance(this).darkMode
+    )
     private val cardDisplayState = mutableStateOf(
         SettingsManager.getInstance(this).cardDisplayList
     )
@@ -86,9 +88,6 @@ class SettingsActivity : GeoActivity() {
     )
     private val hourlyTrendDisplayState = mutableStateOf(
         SettingsManager.getInstance(this).hourlyTrendDisplayList
-    )
-    private val detailsDisplayState = mutableStateOf(
-        SettingsManager.getInstance(this).detailDisplayList
     )
     private val notificationEnabledState = mutableStateOf(
         SettingsManager.getInstance(this).isWidgetNotificationEnabled
@@ -109,12 +108,17 @@ class SettingsActivity : GeoActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+            BreezyWeatherTheme {
                 ContentView()
             }
         }
 
-        EventBus.instance.with(SettingsChangedMessage::class.java).observe(this) {
+        EventBus.instance.with(SettingsChangedMessage::class.java).observeAutoRemove(this) {
+            val darkMode = SettingsManager.getInstance(this).darkMode
+            if (darkModeState.value != darkMode) {
+                darkModeState.value = darkMode
+            }
+
             val updateInterval = SettingsManager.getInstance(this).updateInterval
             if (updateIntervalState.value != updateInterval) {
                 updateIntervalState.value = updateInterval
@@ -133,11 +137,6 @@ class SettingsActivity : GeoActivity() {
             val hourlyTrendDisplayList = SettingsManager.getInstance(this).hourlyTrendDisplayList
             if (hourlyTrendDisplayState.value != hourlyTrendDisplayList) {
                 hourlyTrendDisplayState.value = hourlyTrendDisplayList
-            }
-
-            val detailsDisplayList = SettingsManager.getInstance(this).detailDisplayList
-            if (detailsDisplayState.value != detailsDisplayList) {
-                detailsDisplayState.value = detailsDisplayList
             }
 
             val notificationEnabled = SettingsManager.getInstance(this).isWidgetNotificationEnabled
@@ -178,6 +177,11 @@ class SettingsActivity : GeoActivity() {
             }
             return
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.instance.remove(SettingsChangedMessage::class.java)
     }
 
     @Composable
@@ -236,7 +240,8 @@ class SettingsActivity : GeoActivity() {
                 AppearanceSettingsScreen(
                     context = this@SettingsActivity,
                     onNavigateTo = { navController.navigate(it) },
-                    onNavigateBack = { onBack() }
+                    onNavigateBack = { onBack() },
+                    darkMode = remember { darkModeState }.value
                 )
             }
             composable(SettingsScreenRouter.Unit.route) {
@@ -262,7 +267,6 @@ class SettingsActivity : GeoActivity() {
                     cardDisplayList = remember { cardDisplayState }.value.toImmutableList(),
                     dailyTrendDisplayList = remember { dailyTrendDisplayState }.value.toImmutableList(),
                     hourlyTrendDisplayList = remember { hourlyTrendDisplayState }.value.toImmutableList(),
-                    detailDisplayList = remember { detailsDisplayState }.value.toImmutableList(),
                     updateWidgetIfNecessary = { context: Context ->
                         scope.launch {
                             refreshHelper.updateWidgetIfNecessary(context)
@@ -355,7 +359,7 @@ class SettingsActivity : GeoActivity() {
     /*@Preview
     @Composable
     private fun DefaultPreview() {
-        BreezyWeatherTheme(lightTheme = isSystemInDarkTheme()) {
+        BreezyWeatherTheme {
             ContentView()
         }
     }*/

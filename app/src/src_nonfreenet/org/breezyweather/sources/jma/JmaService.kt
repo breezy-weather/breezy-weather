@@ -94,6 +94,9 @@ class JmaService @Inject constructor(
         SourceFeature.ALERT to weatherAttribution,
         SourceFeature.NORMALS to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.jma.go.jp/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

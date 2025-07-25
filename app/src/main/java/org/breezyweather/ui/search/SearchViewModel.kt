@@ -22,7 +22,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.breezyweather.BreezyWeather
-import org.breezyweather.common.basic.GeoViewModel
+import org.breezyweather.common.basic.BreezyViewModel
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.ui.main.utils.RefreshErrorType
 import javax.inject.Inject
@@ -31,7 +31,7 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     application: Application?,
     repository: SearchActivityRepository,
-) : GeoViewModel(application!!) {
+) : BreezyViewModel(application!!) {
     private val _listResource = MutableStateFlow<Pair<List<Location>, LoadableLocationStatus>>(
         Pair(emptyList(), LoadableLocationStatus.SUCCESS)
     )

@@ -6,73 +6,91 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.breezyweather.ui.common.widgets.SwipeSwitchLayout
-        android:id="@+id/switch_layout"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <org.breezyweather.ui.common.widgets.insets.FitSystemBarSwipeRefreshLayout
-            android:id="@+id/refresh_layout"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:elevation="0dp"
+            app:liftOnScrollColor="@android:color/transparent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                android:elevation="0dp"
+                android:paddingEnd="@dimen/small_margin"
+                app:navigationIcon="@drawable/ic_list"
+                app:navigationContentDescription="@string/action_location_list"
+                app:navigationIconTint="?attr/colorSurfaceInverse"
+                app:titleTextColor="?attr/colorSurfaceInverse"
+                app:titleTextAppearance="?attr/textAppearanceHeadline6"
+                tools:ignore="RtlSymmetry" />
+
+            <org.breezyweather.ui.main.widgets.TextRelativeClock
+                android:id="@+id/refreshTimeText"
+                android:textSize="@dimen/content_text_size"
+                android:textColor="?attr/colorSurfaceInverse"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:drawablePadding="6dp"
+                android:gravity="center_vertical"
+                android:drawableStart="@drawable/ic_time"
+                android:backgroundTint="?attr/colorSurfaceInverse"
+                android:layout_marginBottom="@dimen/normal_margin"
+                style="@style/large_title_text"
+                tools:text="1 minute ago"
+                tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <org.breezyweather.ui.main.widgets.FitTabletRecyclerView
-                android:id="@+id/recycler_view"
+            <org.breezyweather.ui.common.widgets.SwipeSwitchLayout
+                android:id="@+id/switch_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scrollbars="none"
-                android:clipToPadding="false"
-                android:descendantFocusability="blocksDescendants" />
+                android:layout_height="match_parent">
 
-        </org.breezyweather.ui.common.widgets.insets.FitSystemBarSwipeRefreshLayout>
+                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                    android:id="@+id/refresh_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-    </org.breezyweather.ui.common.widgets.SwipeSwitchLayout>
+                    <org.breezyweather.ui.main.widgets.FitTabletRecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbars="none"
+                        android:clipToPadding="false"
+                        android:descendantFocusability="blocksDescendants" />
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBar"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        app:elevation="0dp"
-        app:liftOnScrollColor="@android:color/transparent">
+                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/transparent"
-            android:elevation="0dp"
-            app:navigationIcon="@drawable/ic_menu"
-            app:navigationContentDescription="@string/action_location_list"
-            app:navigationIconTint="@android:color/white"
-            app:titleTextColor="@android:color/white"
-            app:titleTextAppearance="?attr/textAppearanceHeadline6" />
+            </org.breezyweather.ui.common.widgets.SwipeSwitchLayout>
 
-        <org.breezyweather.ui.main.widgets.TextRelativeClock
-            android:id="@+id/refreshTimeText"
-            android:textSize="@dimen/content_text_size"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:drawablePadding="6dp"
-            android:gravity="center_vertical"
-            android:drawableStart="@drawable/ic_time"
-            style="@style/large_title_text"
-            tools:text="1 minute ago"
-            tools:ignore="RelativeOverlap,RtlHardcoded" />
+            <org.breezyweather.ui.common.widgets.InkPageIndicator
+                android:id="@+id/indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/normal_margin"
+                android:alpha="0"
+                android:layout_gravity="bottom|center_horizontal"
+                app:layout_behavior="org.breezyweather.ui.common.behaviors.FloatingAboveSnackbarBehavior"
+                app:dotDiameter="8dp"
+                app:dotGap="8dp"
+                app:animationDuration="300" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <org.breezyweather.ui.common.widgets.InkPageIndicator
-        android:id="@+id/indicator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/normal_margin"
-        android:alpha="0"
-        android:layout_gravity="bottom|center_horizontal"
-        app:layout_behavior="org.breezyweather.ui.common.behaviors.FloatingAboveSnackbarBehavior"
-        app:dotDiameter="8dp"
-        app:dotGap="8dp"
-        app:animationDuration="300" />
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

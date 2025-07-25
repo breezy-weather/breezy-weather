@@ -50,13 +50,9 @@
     <string name="wind_direction_variable">மாறக்கூடிய</string>
     <string name="wind_strength_12">சூறாவளி</string>
     <string name="uv_index">புற ஊதா அட்டவணை</string>
-    <string name="air_quality_o3_info_introduction">தரை-நிலை ஓசோன் (O₃) புகைமூட்டத்தின் முக்கிய அங்கமாகும். அதே மூலக்கூறு என்றாலும், தரை-நிலை ஓசோன் மனித ஆரோக்கியத்திற்கு தீங்கு விளைவிக்கும், பூமியை அதிகப்படியான புற ஊதா கதிர்வீச்சிலிருந்து பாதுகாக்கும் அடுக்கு மண்டல ஓசோனைப் போலல்லாமல்.</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm25_voice">PM இரண்டு புள்ளி ஐந்து</string>
-    <string name="air_quality_no2_info_consequences">நைட்ரசன் டை ஆக்சைடு வெளிப்பாடு காற்றுப்பாதைகளை எரிச்சலூட்டுகிறது மற்றும் சுவாச நோய்களை மோசமாக்கும். கூடுதலாக, NO₂ ஒரு முக்கியமான ஓசோன் முன்னோடி, ஆச்துமா மற்றும் பிற சுவாச நிலைமைகளுடன் நெருக்கமாக இணைக்கப்பட்ட மாசுபடுத்தும்.</string>
-    <string name="air_quality_no2_info_introduction">நைட்ரசன் டை ஆக்சைடு (NO₂) என்பது ஒரு மூச்சுத் திணறல், நச்சு சிவப்பு-பழுப்பு காற்று ஆகும், இது ஒரு சிறப்பியல்பு, கடுமையான வாசனையைக் கொண்டுள்ளது.</string>
-    <string name="air_quality_so2_info_title">சல்பர் டை ஆக்சைடு (SO₂)</string>
-    <string name="air_quality_so2_info_introduction">சல்பர் டை ஆக்சைடு (SO₂) என்பது எரிந்த போட்டிகளின் வாசனைக்கு காரணமான நச்சு காற்று ஆகும்.</string>
+    <string name="air_quality_so2_full">சல்பர் டை ஆக்சைடு (SO₂)</string>
     <string name="pollen_mold">அச்சு</string>
     <string name="pollen_alnus">ஆல்டர்</string>
     <string name="pollen_ambrosia">ராக்வீட்</string>
@@ -73,7 +69,6 @@
     <string name="pollen_salix">வில்லோ</string>
     <string name="pollen_level_4">உயர்ந்த</string>
     <string name="pollen_level_5">மிக உயர்ந்த</string>
-    <string name="pollen_tap_to_see_more">மேலும் பார்க்க தட்டவும்…</string>
     <string name="ephemeris_moon_phase_new_moon">இல்மதி</string>
     <string name="ephemeris_moon_phase_waxing_crescent">மெழுகு பிறை</string>
     <string name="daytime">பகல்நேரம்</string>
@@ -92,11 +87,6 @@
     <string name="cloud_cover_short">கவர்</string>
     <string name="ceiling">உச்சவரம்பு</string>
     <string name="ceiling_short">உச்சவரம்பு</string>
-    <string name="weather_pollen_data_by">மகரந்த தரவு %s ஆல்</string>
-    <string name="weather_air_quality_and_pollen_data_by">காற்றின் தகுதி மற்றும் மகரந்த தரவு %s</string>
-    <string name="weather_minutely_data_by">மழைப்பொழிவு இப்போது %s மூலம் தரவு</string>
-    <string name="weather_alert_data_by">%s மூலம் தரவை எச்சரிக்கை</string>
-    <string name="weather_normals_data_by">வெப்பநிலை இயல்பான தரவு %s ஆல்</string>
     <string name="weather_api_unauthorized_title">பநிஇ அணுகல் அங்கீகரிக்கப்படாதது</string>
     <string name="weather_source_accu_preference_days_10">10 நாட்கள்</string>
     <string name="weather_source_accu_preference_days_15">15 நாட்கள்</string>
@@ -185,10 +175,6 @@
     <string name="settings_background_updates_summary">புதுப்பிப்பு வீதம், சரிசெய்தல்</string>
     <string name="settings_background_updates_refresh_never_warning1">பின்னணி புதுப்பிப்புகளை முடக்குவதன் மூலம், நீங்கள் இனி விழிப்பூட்டல்கள் அல்லது மழைப்பொழிவு பற்றிய அறிவிப்புகளைப் பெற மாட்டீர்கள். நீங்கள் பயன்பாட்டைத் திறக்கும் வரை விட்செட்டுகள் புதுப்பிக்கப்படாது.</string>
     <string name="settings_background_updates_refresh_never_warning3">பின்னணி புதுப்பிப்புகளை முடக்குவதை விட குறைவான அடிக்கடி புதுப்பிப்பு வீதத்தைப் பயன்படுத்துவதைக் கவனியுங்கள், இல்லையெனில் நீங்கள் தொடர விரும்பினால் “தொடரவும்” என்பதைத் தட்டவும்.</string>
-    <string name="settings_background_updates_refresh_6h">6 மணி நேரம்</string>
-    <string name="settings_background_updates_refresh_3h">3 மணி நேரம்</string>
-    <string name="settings_background_updates_refresh_12h">12 மணி நேரம்</string>
-    <string name="settings_background_updates_refresh_24h">24 மணி நேரம்</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">பேட்டரி குறைவாக இருக்கும்போது புறக்கணிக்கவும்</string>
     <string name="settings_background_updates_section_troubleshoot">சரிசெய்தல்</string>
     <string name="settings_background_updates_battery_optimization">பேட்டரி தேர்வுமுறை முடக்கு</string>
@@ -216,7 +202,8 @@
     <string name="settings_notifications_alerts_title">கடுமையான வானிலை விழிப்பூட்டல்களின் அறிவிப்புகள்</string>
     <string name="about_privacy_policy">தனியுரிமைக் கொள்கை</string>
     <string name="settings_item_delete">இந்த உருப்படியை நீக்கு</string>
-    <string name="unit_bf_voice">பியூஃபோர்ட் அளவில்</string>
+    <string name="unit_bft_nominative">%sபி.எஃப்</string>
+    <string name="unit_bft_voice">பியூஃபோர்ட் அளவில்</string>
     <string name="unit_mph">எம்.பி.எச்</string>
     <string name="unit_mph_voice">ஒரு மணி நேரத்திற்கு மைல்கள்</string>
     <string name="unit_cm_voice">சென்டிமீட்டர்</string>
@@ -268,7 +255,6 @@
     <string name="settings_color_grey">சாம்பல்நிறம்</string>
     <string name="settings_follow_system">அமைப்பைப் பின்தொடரவும்</string>
     <string name="settings_color_day_night">பகல் / இரவு</string>
-    <string name="unit_bf">பி.எஃப்</string>
     <string name="unit_inph">அங்குலம்/ம</string>
     <string name="settings_invalid_syntax">தவறான தொடரியல்</string>
     <string name="unit_celsius">. C.</string>
@@ -424,10 +410,7 @@
     <string name="air_quality_so2_voice">சல்பர் டை ஆக்சைடு</string>
     <string name="air_quality_no2">இல்லை</string>
     <string name="air_quality_o3">ஓ</string>
-    <string name="air_quality_pm_info_title">துகள்கள் (PM2.5 &amp; PM10)</string>
-    <string name="air_quality_pm_explanations_introduction">துகள்கள் அல்லது வளிமண்டல துகள்கள் ஆகியவை காற்றில் இடைநிறுத்தப்பட்ட திட அல்லது திரவப் பொருளின் நுண்ணிய துகள்கள்.</string>
-    <string name="air_quality_o3_info_consequences">அதிகப்படியான ஓசோனுக்கு வெளிப்பாடு சுவாசிப்பதை ஏற்படுத்தும், ஆச்துமாவைத் தூண்டும், நுரையீரல் செயல்பாட்டைக் குறைக்கும் மற்றும் நுரையீரல் நோய்க்கு வழிவகுக்கும்.</string>
-    <string name="air_quality_co_info_title">கார்பன் மோனக்கு</string>
+    <string name="air_quality_co_full">கார்பன் மோனக்கு</string>
     <string name="pollen_tree">மரம்</string>
     <string name="pollen_fraxinus">Fraxinus</string>
     <string name="pollen_olea">ஆலிவ் மரம்</string>
@@ -455,9 +438,6 @@
     <string name="location_message_added">இடம் சேர்க்கப்பட்டது</string>
     <string name="location_delete_location_dialog_title">இருப்பிடத்தை நீக்கவா?</string>
     <string name="location_delete_location_dialog_message">நீங்கள் சேமித்த இடங்களின் பட்டியலிலிருந்து “%s” ஐ நீக்க உள்ளீர்கள்.</string>
-    <string name="location_dialog_failed_to_locate_title">இருப்பிடத்தை சரியாகப் பெற முடியவில்லையா?</string>
-    <string name="location_dialog_failed_to_locate_action_check_permission">இருப்பிட அனுமதிகளை சரிபார்க்கவும்</string>
-    <string name="location_dialog_failed_to_locate_action_enable_information">இருப்பிட தகவல்களை இயக்கவும்</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">இருப்பிடத்தை கைமுறையாகச் சேர்த்து “%s” ஐ நீக்கவும்</string>
     <string name="action_edit_location">இந்த இருப்பிடத்தைத் திருத்தவும்</string>
     <string name="action_preview">முன்னோட்டம்</string>
@@ -471,7 +451,7 @@
     <string name="widget_trend_daily">நாள்தோறும் போக்கு</string>
     <string name="widget_trend_hourly">மணிநேர போக்கு</string>
     <string name="widget_multi_city">மல்டி சிட்டி</string>
-    <string name="widget_material_you_forecast">பொருள் நீங்கள் - முன்னறிவிப்பு</string>
+    <string name="widget_material_you_forecast">பொருள் நீங்கள் – முன்னறிவிப்பு</string>
     <string name="widget_label_hide_header">தலைப்பு மறைக்க</string>
     <string name="widget_custom_subtitle_keyword_ch_description">தற்போதைய ஈரப்பதம்</string>
     <string name="widget_custom_subtitle_keyword_cps_description">தற்போதைய அழுத்தம்</string>
@@ -487,7 +467,6 @@
     <string name="widget_clock_font_sans_serif_light">சான்ச் செரிஃப் லைட்</string>
     <string name="widget_clock_font_sans_serif">செரிஃப் இல்லாமல்</string>
     <string name="widget_clock_font_sans_serif_black">சான்ச் செரிஃப் பிளாக்</string>
-    <string name="settings_background_updates_refresh_2h">2 மணி நேரம்</string>
     <string name="settings_location_access_switch_summaryOn">அனுமதிக்கப்படுகிறது. உங்கள் தற்போதைய இருப்பிடத்தை இருப்பிடமாக சேர்க்கலாம்.</string>
     <string name="settings_location_access_precise_summaryOn">இயக்கப்பட்டது. சாதனத்தின் பிணைய வழங்குநர் முன்னுரிமையிலும் பெரும்பாலான நேரத்திலும் பயன்படுத்தப்படுவார், ஆனால் சி.பி.எச் ஒரு குறைவடையும்.</string>
     <string name="settings_units_precipitation">மழைப்பொழிவு அலகு</string>
@@ -527,9 +506,6 @@
     <string name="widget_label_align_end">வலதுபுறம் சீரமைக்கவும்</string>
     <string name="settings_background_updates_refresh_title">வீதத்தை புதுப்பிக்கவும்</string>
     <string name="settings_background_updates_refresh_never">ஒருபோதும்</string>
-    <string name="settings_background_updates_refresh_30min">30 நிமிடங்கள்</string>
-    <string name="settings_background_updates_refresh_1h">1 மணி நேரம்</string>
-    <string name="settings_background_updates_refresh_1h_30min">1.5 மணி நேரம்</string>
     <string name="settings_location_access_background_summaryOn">இயக்கப்பட்டது. பின்னணியில் உங்கள் தற்போதைய இருப்பிடத்திற்கான வானிலை தரவை பயன்பாடு புதுப்பிக்க முடியும்.</string>
     <string name="settings_debug">பிழைத்திருத்தம்</string>
     <string name="unit_mps">எம்/கள்</string>
@@ -621,17 +597,8 @@
     <string name="air_quality_o3_voice">சாரலியம்/மிகுவுயிரகம்</string>
     <string name="air_quality_co">கோ</string>
     <string name="air_quality_co_voice">கார்பன் மோனாக்சைடு</string>
-    <string name="air_quality_pm_explanations_origin">சில துகள்கள் இயற்கையாகவே நிகழ்கின்றன, எரிமலைகள், தூசி புயல்கள், காடு மற்றும் புல்வெளி தீ, வாழும் தாவரங்கள் மற்றும் கடல் தெளிப்பு ஆகியவற்றிலிருந்து உருவாகின்றன. போக்குவரத்து மற்றும் போக்குவரத்து, தொழில்துறை நடவடிக்கைகள், மின் விளைவாக்கம் நிலையங்கள், கட்டுமான தளங்கள், கழிவு எரியும் அல்லது வயல்கள் போன்ற குறிப்பிடத்தக்க அளவு துகள்களையும் மனித நடவடிக்கைகள் உருவாக்குகின்றன.</string>
-    <string name="air_quality_pm_explanations_consequences">இரத்த ஓட்டங்களில் இருந்து நுரையீரல் மற்றும் மூளைக்குள் ஆழமாக ஊடுருவிச் செல்வதற்கான திறனின் காரணமாக, காற்றின் மாசுபாட்டின் மிகவும் தீங்கு விளைவிக்கும் வடிவமாக துகள்கள் உள்ளன, இதனால் இதய நோய், நுரையீரல் நோய் மற்றும் அகால இறப்பு போன்ற உடல்நலப் பிரச்சினைகள் ஏற்படுகின்றன.</string>
-    <string name="air_quality_o3_info_title">தரை-நிலை ஓசோன் (O₃)</string>
-    <string name="air_quality_o3_info_origin">இது வாகனங்களில் இருந்து வெளியேற்றப்படும் கொந்தளிப்பான கரிம சேர்மங்கள், கார்பன் மோனாக்சைடு மற்றும் நைட்ரசன் ஆக்சைடுகள் (NOₓ) போன்ற மாசுபடுத்திகளுடன் ஒளி வேதியியல் எதிர்வினைகளிலிருந்து உருவாகிறது. ஒளி வேதியியல் தன்மை காரணமாக, சன்னி காலநிலையின் காலங்களில் மிக உயர்ந்த ஓசோன் காணப்படுகிறது.</string>
-    <string name="air_quality_no2_info_title">நைட்ரசன் டை ஆக்சைடு (NO₂)</string>
-    <string name="air_quality_no2_info_origin">வெப்பம், போக்குவரத்து, தொழில் மற்றும் மின் விளைவாக்கம் போன்ற செயல்முறைகளில் எரிபொருட்களின் அதிக வெப்பநிலை எரிப்பு காரணமாக இல்லை இன் சுற்றுப்புற ஆதாரங்கள் விளைகின்றன. நைட்ரசன் ஆக்சைடுகளின் (NOₓ) வீட்டு ஆதாரங்களில் உலைகள், நெருப்பிடம் மற்றும் எரிவாயு அடுப்புகள் மற்றும் அடுப்புகள் போன்ற எரிபொருட்களை எரிக்கும் உபகரணங்கள் அடங்கும்.</string>
-    <string name="air_quality_so2_info_origin">இது இயற்கையாகவே எரிமலை செயல்பாடுகளால் வெளியிடப்படுகிறது மற்றும் முக்கியமாக உள்நாட்டு வெப்பமாக்கல், தொழில்கள் மற்றும் மின் விளைவாக்கம் ஆகியவற்றிற்கான புதைபடிவ எரிபொருட்களின் எரிப்பிலிருந்து பெறப்படுகிறது.</string>
-    <string name="air_quality_so2_info_consequences">SO₂ க்கான வெளிப்பாடு ஆச்துமா மருத்துவமனை சேர்க்கை மற்றும் அவசர அறை வருகைகளுடன் தொடர்புடையது.</string>
-    <string name="air_quality_co_info_introduction">கார்பன் மோனாக்சைடு (CO) என்பது ஒரு நஞ்சு, எரியக்கூடிய காற்று ஆகும், இது நிறமற்ற, மணமற்ற, சுவையற்ற, மற்றும் எரிச்சலூட்டாதது.</string>
-    <string name="air_quality_co_info_origin">மரம், பெட்ரோல், நிலக்கரி, இயற்கை எரிவாயு மற்றும் மண்ணெண்ணெய் போன்ற கார்பனேசிய எரிபொருட்களின் முழுமையற்ற எரிப்பு, திறந்த தீ, விக் விளக்குகள், உலைகள், நெருப்பிடம் ஆகியவற்றால் இது தயாரிக்கப்படுகிறது. சுற்றுப்புற காற்றில் கார்பன் மோனாக்சைடு (CO) இன் முக்கிய சான்று மின்னோடி வாகனங்களிலிருந்து வந்தது.</string>
-    <string name="air_quality_co_info_consequences">கார்பன் மோனாக்சைடு நுரையீரல் திசுக்கள் முழுவதும் மற்றும் இரத்த ஓட்டத்தில் பரவுகிறது, இதனால் உடலின் செல்கள் ஆக்சிசனுடன் பிணைப்பது கடினம். ஆக்சிசன் இல்லாதது திசுக்கள் மற்றும் செல்களை சேதப்படுத்துகிறது. கார்பன் மோனாக்சைடு வெளிப்பாடு சுவாசம், சோர்வு, தலைச்சுற்றல் மற்றும் பிற காய்ச்சல் போன்ற அறிகுறிகளை ஏற்படுத்தும். கார்பன் மோனாக்சைடு அதிக அளவு வெளிப்பாடு ஆபத்தானது.</string>
+    <string name="air_quality_o3_full">தரை-நிலை ஓசோன் (O₃)</string>
+    <string name="air_quality_no2_full">நைட்ரசன் டை ஆக்சைடு (NO₂)</string>
     <string name="pollen_platanus">விமானம்-மரம்</string>
     <string name="pollen_urticaceae">தொட்டால் எரிச்சலூட்டுகின்றன</string>
     <string name="pollen_level_0">எதுவுமில்லை</string>
@@ -644,9 +611,6 @@
     <string name="ephemeris_moonrise_at">%s இல் மூன்ரைச்</string>
     <string name="humidity">ஈரப்பதம்</string>
     <string name="cloud_cover">முகில் கவர்</string>
-    <string name="weather_data_by">தரவு %s</string>
-    <string name="weather_current_data_by">தற்போதைய வானிலை தரவு %s</string>
-    <string name="weather_air_quality_data_by">காற்றின் தர தரவு %s ஆல்</string>
     <string name="weather_message_data_refresh_failed">தரவு புதுப்பிப்பு தோல்வி</string>
     <string name="weather_api_unauthorized_content">சில வானிலை தரவு மூலங்களில், நீங்கள் உங்கள் சொந்த பநிஇ விசையை வழங்க வேண்டும். நீங்கள் ஏற்கனவே ஒன்றை வழங்கியிருந்தால், நீங்கள் வழங்கிய பநிஇ விசையை இருமுறை சரிபார்க்கவும்.</string>
     <string name="weather_source_continent_north_america">வட அமெரிக்கா</string>
@@ -668,7 +632,7 @@
     <string name="location_service_native">சொந்த பநிஇ</string>
     <string name="action_location_list">இருப்பிட பட்டியல்</string>
     <string name="action_search">தேடல்</string>
-    <string name="action_see_more">மேலும் காண்க</string>
+    <string name="action_more">மேலும் காண்க</string>
     <string name="action_continue">தொடரவும்</string>
     <string name="action_confirm">உறுதிப்படுத்தவும்</string>
     <string name="action_close">மூடு</string>
@@ -677,7 +641,7 @@
     <string name="dialog_permissions_notification_content">வானிலை விழிப்பூட்டல்கள் பற்றிய அறிவிப்புகளை இயக்க இங்கே தட்டவும், அல்லது பின்னர் அமைப்புகளில் முடிவு செய்யுங்கள்.</string>
     <string name="dialog_permissions_location_background_content">ஆண்ட்ராய்டு ஆல் அறியப்பட்ட மிக அண்மைக் கால தற்போதைய இருப்பிடத்திற்கு பின்னணியில் வானிலை புதுப்பிப்பை அனுமதிக்க, “எல்லா நேரத்தையும் அனுமதிக்க” இருப்பிட அனுமதியை நீங்கள் அமைக்க வேண்டும். நீங்கள் இல்லையென்றால், முன்புறத்தில் அண்மைக் கால மீட்டெடுக்கப்பட்ட ஆயத்தொகுதிகளின் அடிப்படையில் வானிலை புதுப்பிக்கப்படும், இது காலாவதியானது.</string>
     <string name="message_parsing_error_content">பயன்பாட்டின் அண்மைக் கால பதிப்பிற்கு நீங்கள் புதுப்பித்துள்ளீர்கள் என்பதை உறுதிப்படுத்திக் கொள்ளுங்கள். சேவையகம் தற்காலிகமாக கிடைக்காமல் இருக்கலாம், அந்த விசயத்தில், தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும். சிக்கல் தொடர்ந்தால், தயவுசெய்து பிழைத்திருத்த அமைப்புகளிலிருந்து செயலிழப்பு பதிவைத் தள்ளிவிட்டு, GitHub ஒரு சிக்கலைப் புகாரளிக்கவும்.</string>
-    <string name="widget_material_you_current">பொருள் நீங்கள் - நடப்பு</string>
+    <string name="widget_material_you_current">பொருள் நீங்கள் – நடப்பு</string>
     <string name="widget_refreshing">புத்துணர்ச்சி</string>
     <string name="widget_ellipsis">…</string>
     <string name="widget_label_show_widget_card">பின்னணி நிறம்</string>
@@ -715,7 +679,6 @@
     <string name="forecast">முன்னறிவிப்பு</string>
     <string name="pollen_juniperus">Juniperus</string>
     <string name="pollen_atriplex">Atriplex</string>
-    <string name="weather_forecast_data_by">%s-இன் முன்னறிவிப்பு தரவு</string>
     <string name="settings_weather_source_not_configured">%s (உருவாகவில்லை)</string>
     <string name="settings_weather_source_current_position_disclaimer">முதல் முறை புதுப்பித்தபின் உங்கள் இருப்பிடத்திற்குரிய இன்னும் பல வானிலை தரவுகள் கிடைக்கும்.</string>
     <string name="settings_notifications_permission">அறிவிப்பு அனுமதி தேவை</string>
@@ -740,7 +703,6 @@
     <string name="common_weather_text_glaze">மெருகூட்டல் பனி</string>
     <string name="action_grant_permission">அனுமதியை வழங்க தட்டுங்கள்.</string>
     <string name="pollen_ulmus">Ulmus</string>
-    <string name="location_reverse_geocoding_by">%s மூலம் முகவரி தேடல்</string>
     <string name="pollen_acer">Acer</string>
     <string name="pollen_alternaria">Alternaria</string>
     <string name="pollen_picea">Picea</string>

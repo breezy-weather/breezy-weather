@@ -720,6 +720,7 @@ class RefreshHelper @Inject constructor(
                 hourlyComputedMissingData,
                 weatherWrapperCompleted.airQuality?.hourlyForecast ?: emptyMap(),
                 weatherWrapperCompleted.pollen?.hourlyForecast ?: emptyMap(),
+                weatherWrapperCompleted.hourlyForecast?.associate { it.date to it.sunshineDuration } ?: emptyMap(),
                 weatherWrapperCompleted.pollen?.current,
                 location
             )
@@ -1098,7 +1099,7 @@ class RefreshHelper @Inject constructor(
                 } else {
                     if (location.weather!!.normals?.month == null) return false
                     val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
-                    return location.weather!!.normals!!.month == cal[Calendar.MONTH]
+                    return location.weather!!.normals!!.month == cal[Calendar.MONTH] + 1
                 }
             }
             else -> {

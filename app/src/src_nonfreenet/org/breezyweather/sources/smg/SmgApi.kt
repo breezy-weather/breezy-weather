@@ -17,14 +17,11 @@
 package org.breezyweather.sources.smg
 
 import io.reactivex.rxjava3.core.Observable
-import okhttp3.RequestBody
-import org.breezyweather.sources.smg.json.SmgAstroResult
 import org.breezyweather.sources.smg.json.SmgBulletinResult
 import org.breezyweather.sources.smg.json.SmgCurrentResult
 import org.breezyweather.sources.smg.json.SmgForecastResult
 import org.breezyweather.sources.smg.json.SmgUvResult
 import org.breezyweather.sources.smg.json.SmgWarningResult
-import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -63,9 +60,4 @@ interface SmgApi {
         @Query("selection") warning: String,
         @Query("lang") lang: String = "e",
     ): Observable<SmgWarningResult>
-
-    @POST("day")
-    fun getAstro(
-        @Body body: RequestBody,
-    ): Observable<SmgAstroResult>
 }

@@ -19,7 +19,7 @@ package org.breezyweather.sources.accu.preferences
 import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 
 enum class AccuHoursPreference(
     override val id: String,
@@ -45,5 +45,5 @@ enum class AccuHoursPreference(
     override val valueArrayId = R.array.accu_preference_hour_values
     override val nameArrayId = R.array.accu_preference_hours
 
-    override fun getName(context: Context) = Utils.getName(context, this)
+    override fun getName(context: Context) = UnitUtils.getName(context, this)
 }

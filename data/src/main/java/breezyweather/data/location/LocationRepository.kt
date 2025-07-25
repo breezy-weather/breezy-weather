@@ -151,8 +151,8 @@ class LocationRepository(
                         reverseGeocodingSource = location.reverseGeocodingSource,
                         currentPosition = location.isCurrentPosition,
                         needsGeocodeRefresh = location.needsGeocodeRefresh,
-                        backgroundWeatherKind = location.backgroundWeatherKind,
-                        backgroundDayNightType = location.backgroundDayNightType
+                        backgroundWeatherKind = null, // TODO: Deprecated
+                        backgroundDayNightType = null // TODO: Deprecated
                     )
 
                     // 3. Update location parameters
@@ -207,6 +207,37 @@ class LocationRepository(
         }
     }
 
+    suspend fun updateParameters(
+        source: String,
+        parameter: String,
+        values: Map<String, String>,
+    ) {
+        handler.await {
+            values.entries.forEach { (oldValue, newValue) ->
+                location_parametersQueries.updateParameters(
+                    source = source,
+                    parameter = parameter,
+                    oldValue = oldValue,
+                    newValue = newValue
+                )
+            }
+        }
+    }
+
+    suspend fun deleteParameters(
+        source: String,
+        parameter: String,
+        values: List<String>,
+    ) {
+        handler.await {
+            location_parametersQueries.deleteParameters(
+                source,
+                parameter,
+                values
+            )
+        }
+    }
+
     suspend fun update(location: Location, oldFormattedId: String? = null): Boolean {
         return try {
             handler.await(inTransaction = true) {
@@ -245,8 +276,8 @@ class LocationRepository(
                     reverseGeocodingSource = location.reverseGeocodingSource,
                     currentPosition = location.isCurrentPosition,
                     needsGeocodeRefresh = location.needsGeocodeRefresh,
-                    backgroundWeatherKind = location.backgroundWeatherKind,
-                    backgroundDayNightType = location.backgroundDayNightType
+                    backgroundWeatherKind = null, // TODO: Deprecated
+                    backgroundDayNightType = null // TODO: Deprecated
                 )
             }
             true

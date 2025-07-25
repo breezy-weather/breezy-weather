@@ -81,6 +81,10 @@ class NamemService @Inject constructor(
         SourceFeature.AIR_QUALITY to weatherAttribution,
         SourceFeature.NORMALS to weatherAttribution
     )
+    override val attributionLinks
+        get() = mapOf(
+            weatherAttribution to NAMEM_BASE_URL
+        )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

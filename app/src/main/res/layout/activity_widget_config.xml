@@ -24,7 +24,7 @@
             android:id="@+id/activity_widget_config_widgetContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/little_margin" />
+            android:padding="@dimen/small_margin" />
 
     </FrameLayout>
 
@@ -349,7 +349,10 @@
                         android:id="@+id/activity_widget_config_subtitle_inputLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/normal_margin">
+                        android:padding="@dimen/normal_margin"
+                        app:endIconMode="custom"
+                        app:endIconDrawable="@drawable/ic_help"
+                        app:endIconContentDescription="@string/widget_custom_subtitle_help_content_description">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/activity_widget_config_subtitle_inputter"
@@ -361,26 +364,10 @@
                             android:textColorHighlight="@color/colorTextSubtitle"
                             android:textSize="@dimen/content_text_size"
                             android:textColor="@color/colorTextContent"
-                            android:layout_margin="@dimen/little_margin"
                             android:maxLines="1"
                             tools:ignore="Autofill" />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
-                    <TextView
-                        android:text="@string/widget_custom_subtitle_explanation"
-                        android:layout_marginStart="@dimen/normal_margin"
-                        android:layout_marginEnd="@dimen/normal_margin"
-                        android:layout_marginBottom="@dimen/normal_margin"
-                        style="@style/content_text" />
-
-                    <TextView
-                        android:id="@+id/activity_widget_config_custom_subtitle_keywords"
-                        android:layout_marginStart="@dimen/normal_margin"
-                        android:layout_marginEnd="@dimen/normal_margin"
-                        android:layout_marginBottom="@dimen/normal_margin"
-                        android:textIsSelectable="true"
-                        style="@style/content_text" />
 
                 </LinearLayout>
 

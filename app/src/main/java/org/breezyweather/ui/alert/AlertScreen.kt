@@ -18,6 +18,7 @@ package org.breezyweather.ui.alert
 
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -26,7 +27,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.HorizontalDivider
@@ -47,22 +48,24 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.breezyweather.R
+import org.breezyweather.common.extensions.plus
+import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.utils.ColorUtils
 import org.breezyweather.domain.weather.model.getFormattedDates
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.generateCollapsedScrollBehavior
 import org.breezyweather.ui.common.widgets.getCardListItemMarginDp
 import org.breezyweather.ui.common.widgets.insets.FitStatusBarTopAppBar
 import org.breezyweather.ui.common.widgets.insets.bottomInsetItem
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
-import org.breezyweather.ui.theme.compose.DayNightTheme
 
 @Composable
 internal fun AlertScreen(
@@ -77,7 +80,7 @@ internal fun AlertScreen(
 
     val scrollBehavior = generateCollapsedScrollBehavior()
 
-    val isLightTheme = MainThemeColorProvider.isLightTheme(context, alertUiState.location)
+    val isLightTheme = ThemeManager.isLightTheme(context, alertUiState.location)
     LaunchedEffect(alertUiState.location) {
         alertUiState.location?.weather?.alertList?.let { alerts ->
             if (alerts.isNotEmpty()) {
@@ -96,19 +99,11 @@ internal fun AlertScreen(
 
         // re-setting the status bar color once the location is fetched
         if (alertUiState.location != null && activity != null) {
-            ThemeManager
-                .getInstance(context)
-                .weatherThemeDelegate
-                .setSystemBarStyle(
-                    window = activity.window,
-                    statusShader = false,
-                    lightStatus = isLightTheme,
-                    lightNavigation = isLightTheme
-                )
+            activity.window.setSystemBarStyle(isLightTheme)
         }
     }
 
-    BreezyWeatherTheme(lightTheme = isLightTheme) {
+    BreezyWeatherTheme(!isLightTheme) {
         Material3Scaffold(
             modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
             topBar = {
@@ -121,11 +116,13 @@ internal fun AlertScreen(
         ) {
             LazyColumn(
                 modifier = Modifier.fillMaxHeight(),
-                contentPadding = it,
+                contentPadding = it.plus(
+                    PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin))
+                ),
                 state = listState
             ) {
-                items(alertUiState.location?.weather?.alertList ?: emptyList()) { alert ->
-                    Material3CardListItem {
+                itemsIndexed(alertUiState.location?.weather?.alertList ?: emptyList()) { index, alert ->
+                    Material3ExpressiveCardListItem(isFirst = true, isLast = true) {
                         Column(
                             modifier = Modifier
                                 .padding(dimensionResource(R.dimen.normal_margin))
@@ -145,13 +142,13 @@ internal fun AlertScreen(
                                         text = alert.headline?.ifEmpty {
                                             stringResource(R.string.alert)
                                         } ?: stringResource(R.string.alert),
-                                        color = DayNightTheme.colors.titleColor,
+                                        color = MaterialTheme.colorScheme.onSurface,
                                         fontWeight = FontWeight.Bold,
                                         style = MaterialTheme.typography.titleMedium
                                     )
                                     Text(
                                         text = alert.getFormattedDates(alertUiState.location!!, context),
-                                        color = DayNightTheme.colors.captionColor,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         style = MaterialTheme.typography.labelMedium,
                                         modifier = Modifier
                                             .clearAndSetSemantics {
@@ -165,42 +162,47 @@ internal fun AlertScreen(
                                 }
                             }
                             if (!alert.description.isNullOrBlank()) {
-                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                 SelectionContainer {
                                     Text(
-                                        text = alert.description!!,
-                                        color = DayNightTheme.colors.bodyColor,
+                                        text = AnnotatedString.fromHtml(
+                                            alert.description!!.replace("\n", "<br />")
+                                        ),
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         style = MaterialTheme.typography.bodyMedium
                                     )
                                 }
                             }
                             if (!alert.instruction.isNullOrBlank()) {
                                 if (!alert.description.isNullOrBlank()) {
-                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                     HorizontalDivider()
                                 }
-                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                 SelectionContainer {
                                     Text(
                                         text = alert.instruction!!,
-                                        color = DayNightTheme.colors.bodyColor,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                                         style = MaterialTheme.typography.bodyMedium
                                     )
                                 }
                             }
                             if (!alert.source.isNullOrBlank()) {
                                 if (!alert.description.isNullOrBlank() || !alert.instruction.isNullOrBlank()) {
-                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                     HorizontalDivider()
                                 }
-                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                 Text(
                                     text = stringResource(R.string.alert_source, alert.source!!),
-                                    color = DayNightTheme.colors.bodyColor,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                             }
                         }
+                    }
+                    if (index != alertUiState.location!!.weather!!.alertList.lastIndex) {
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
                     }
                 }
 

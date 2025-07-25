@@ -59,6 +59,9 @@ class PagasaService @Inject constructor(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to PAGASA_BASE_URL
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

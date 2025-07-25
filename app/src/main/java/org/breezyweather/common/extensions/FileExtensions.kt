@@ -33,7 +33,7 @@ fun File.getUriCompat(context: Context): Uri {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".fileprovider", this)
     } else {
-        this.toUri()
+        toUri()
     }
 }
 

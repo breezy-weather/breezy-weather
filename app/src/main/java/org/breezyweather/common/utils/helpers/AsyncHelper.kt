@@ -88,13 +88,7 @@ object AsyncHelper {
     }
 
     class Data<T> internal constructor(val t: T, val done: Boolean)
-    class Emitter<T> internal constructor(inner: ObservableEmitter<Data<T>>) {
-        val inner: ObservableEmitter<Data<T>>
-
-        init {
-            this.inner = inner
-        }
-
+    class Emitter<T> internal constructor(val inner: ObservableEmitter<Data<T>>) {
         fun send(t: T, done: Boolean) {
             inner.onNext(Data(t, done))
         }

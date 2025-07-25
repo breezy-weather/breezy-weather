@@ -37,23 +37,30 @@ data class Weather(
     val alertList: List<Alert> = emptyList(),
 ) : Serializable {
 
-    // Only hourly in the future, starting from current hour
+    // Only hourly in the future, starting from current hour until the next 24 hours
     val nextHourlyForecast = hourlyForecast.filter {
+        // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00
+        it.date.time >= System.currentTimeMillis() - 1.hours.inWholeMilliseconds &&
+            it.date.time < System.currentTimeMillis() + 24.hours.inWholeMilliseconds
+    }
+
+    // Only hourly in the future, starting from current hour until the end
+    val fullNextHourlyForecast = hourlyForecast.filter {
         // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00
         it.date.time >= System.currentTimeMillis() - 1.hours.inWholeMilliseconds
     }
 
     val todayIndex = dailyForecast.indexOfFirst {
         it.date.time > Date().time - 1.days.inWholeMilliseconds
-    }
+    }.let { if (it == -1) null else it }
     val today
-        get() = dailyForecast.getOrNull(todayIndex)
+        get() = todayIndex?.let { dailyForecast.getOrNull(it) }
     val tomorrow
         get() = dailyForecast.firstOrNull {
             it.date.time > Date().time
         }
 
-    val dailyForecastStartingToday = if (todayIndex >= 0) {
+    val dailyForecastStartingToday = if (todayIndex != null) {
         dailyForecast.subList(todayIndex, dailyForecast.size)
     } else {
         emptyList()

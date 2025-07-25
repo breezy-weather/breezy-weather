@@ -69,6 +69,9 @@ class IpmaService @Inject constructor(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.ipma.pt/"
+    )
 
     override fun isFeatureSupportedForLocation(
         location: Location,

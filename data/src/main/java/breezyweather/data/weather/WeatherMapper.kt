@@ -1,3 +1,19 @@
+/*
+ * This file is part of Breezy Weather.
+ *
+ * Breezy Weather is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, version 3 of the License.
+ *
+ * Breezy Weather is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package breezyweather.data.weather
 
 import breezyweather.domain.weather.model.AirQuality
@@ -38,11 +54,10 @@ object WeatherMapper {
         weatherText: String?,
         weatherCode: WeatherCode?,
         temperature: Double?,
-        realFeelTemperature: Double?,
-        realFeelShaderTemperature: Double?,
+        sourceFeelsLikeTemperature: Double?,
         apparentTemperature: Double?,
         windChillTemperature: Double?,
-        wetBulbTemperature: Double?,
+        humidex: Double?,
         windDegree: Double?,
         windSpeed: Double?,
         windGusts: Double?,
@@ -80,11 +95,10 @@ object WeatherMapper {
             weatherCode,
             Temperature(
                 temperature,
-                realFeelTemperature,
-                realFeelShaderTemperature,
-                apparentTemperature,
-                windChillTemperature,
-                wetBulbTemperature
+                sourceFeelsLike = sourceFeelsLikeTemperature,
+                computedApparent = apparentTemperature,
+                computedWindChill = windChillTemperature,
+                computedHumidex = humidex
             ),
             Wind(
                 windDegree,
@@ -122,11 +136,10 @@ object WeatherMapper {
         daytimeWeatherPhase: String?,
         daytimeWeatherCode: WeatherCode?,
         daytimeTemperature: Double?,
-        daytimeRealFeelTemperature: Double?,
-        daytimeRealFeelShaderTemperature: Double?,
+        daytimeSourceFeelsLikeTemperature: Double?,
         daytimeApparentTemperature: Double?,
         daytimeWindChillTemperature: Double?,
-        daytimeWetBulbTemperature: Double?,
+        daytimeHumidex: Double?,
         daytimeTotalPrecipitation: Double?,
         daytimeThunderstormPrecipitation: Double?,
         daytimeRainPrecipitation: Double?,
@@ -150,11 +163,10 @@ object WeatherMapper {
         nighttimeWeatherPhase: String?,
         nighttimeWeatherCode: WeatherCode?,
         nighttimeTemperature: Double?,
-        nighttimeRealFeelTemperature: Double?,
-        nighttimeRealFeelShaderTemperature: Double?,
+        nighttimeSourceFeelsLikeTemperature: Double?,
         nighttimeApparentTemperature: Double?,
         nighttimeWindChillTemperature: Double?,
-        nighttimeWetBulbTemperature: Double?,
+        nighttimeHumidex: Double?,
         nighttimeTotalPrecipitation: Double?,
         nighttimeThunderstormPrecipitation: Double?,
         nighttimeRainPrecipitation: Double?,
@@ -178,6 +190,8 @@ object WeatherMapper {
         degreeDayCooling: Double?,
         sunRiseDate: Long?,
         sunSetDate: Long?,
+        twilightRiseDate: Long?,
+        twilightSetDate: Long?,
         moonRiseDate: Long?,
         moonSetDate: Long?,
         moonPhaseAngle: Long?,
@@ -216,11 +230,10 @@ object WeatherMapper {
             daytimeWeatherText, daytimeWeatherPhase, daytimeWeatherCode,
             Temperature(
                 daytimeTemperature,
-                daytimeRealFeelTemperature,
-                daytimeRealFeelShaderTemperature,
+                sourceFeelsLike = daytimeSourceFeelsLikeTemperature,
                 daytimeApparentTemperature,
                 daytimeWindChillTemperature,
-                daytimeWetBulbTemperature
+                daytimeHumidex
             ),
             Precipitation(
                 daytimeTotalPrecipitation,
@@ -256,11 +269,10 @@ object WeatherMapper {
             nighttimeWeatherCode,
             Temperature(
                 nighttimeTemperature,
-                nighttimeRealFeelTemperature,
-                nighttimeRealFeelShaderTemperature,
+                sourceFeelsLike = nighttimeSourceFeelsLikeTemperature,
                 nighttimeApparentTemperature,
                 nighttimeWindChillTemperature,
-                nighttimeWetBulbTemperature
+                nighttimeHumidex
             ),
             Precipitation(
                 nighttimeTotalPrecipitation,
@@ -292,6 +304,7 @@ object WeatherMapper {
         ),
         DegreeDay(degreeDayHeating, degreeDayCooling),
         Astro(sunRiseDate?.let { Date(it) }, sunSetDate?.let { Date(it) }),
+        Astro(twilightRiseDate?.let { Date(it) }, twilightSetDate?.let { Date(it) }),
         Astro(moonRiseDate?.let { Date(it) }, moonSetDate?.let { Date(it) }),
         MoonPhase(moonPhaseAngle?.toInt()),
         AirQuality(
@@ -335,11 +348,10 @@ object WeatherMapper {
         weatherText: String?,
         weatherCode: WeatherCode?,
         temperature: Double?,
-        realFeelTemperature: Double?,
-        realFeelShaderTemperature: Double?,
+        sourceFeelsLikeTemperature: Double?,
         apparentTemperature: Double?,
         windChillTemperature: Double?,
-        wetBulbTemperature: Double?,
+        humidex: Double?,
         totalPrecipitation: Double?,
         thunderstormPrecipitation: Double?,
         rainPrecipitation: Double?,
@@ -372,11 +384,10 @@ object WeatherMapper {
         weatherCode,
         Temperature(
             temperature,
-            realFeelTemperature,
-            realFeelShaderTemperature,
-            apparentTemperature,
-            windChillTemperature,
-            wetBulbTemperature
+            sourceFeelsLike = sourceFeelsLikeTemperature,
+            computedApparent = apparentTemperature,
+            computedWindChill = windChillTemperature,
+            computedHumidex = humidex
         ),
         Precipitation(
             totalPrecipitation,

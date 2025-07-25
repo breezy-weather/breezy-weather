@@ -18,9 +18,11 @@ package org.breezyweather.ui.settings.compose
 
 import android.app.Activity
 import android.content.Context
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import kotlinx.collections.immutable.ImmutableList
 import org.breezyweather.BreezyWeather
@@ -28,9 +30,9 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay
 import org.breezyweather.common.basic.models.options.appearance.DailyTrendDisplay
-import org.breezyweather.common.basic.models.options.appearance.DetailDisplay
 import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
 import org.breezyweather.common.extensions.isMotionReduced
+import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.SettingsManager
@@ -43,9 +45,11 @@ import org.breezyweather.ui.settings.preference.composables.ListPreferenceView
 import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.composables.PreferenceViewWithCard
 import org.breezyweather.ui.settings.preference.composables.SwitchPreferenceView
+import org.breezyweather.ui.settings.preference.largeSeparatorItem
 import org.breezyweather.ui.settings.preference.listPreferenceItem
 import org.breezyweather.ui.settings.preference.sectionFooterItem
 import org.breezyweather.ui.settings.preference.sectionHeaderItem
+import org.breezyweather.ui.settings.preference.smallSeparatorItem
 import org.breezyweather.ui.settings.preference.switchPreferenceItem
 
 @Composable
@@ -55,7 +59,6 @@ fun MainScreenSettingsScreen(
     cardDisplayList: ImmutableList<CardDisplay>,
     dailyTrendDisplayList: ImmutableList<DailyTrendDisplay>,
     hourlyTrendDisplayList: ImmutableList<HourlyTrendDisplay>,
-    detailDisplayList: ImmutableList<DetailDisplay>,
     updateWidgetIfNecessary: (Context) -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -72,20 +75,24 @@ fun MainScreenSettingsScreen(
             )
         }
     ) { paddings ->
-        PreferenceScreen(paddingValues = paddings) {
+        PreferenceScreen(
+            paddingValues = paddings.plus(PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)))
+        ) {
             sectionHeaderItem(R.string.settings_main_section_displayed_data)
             clickablePreferenceItem(
                 R.string.settings_main_cards_title
             ) {
                 PreferenceViewWithCard(
                     title = stringResource(it),
-                    summary = CardDisplay.getSummary(context, cardDisplayList)
+                    summary = CardDisplay.getSummary(context, cardDisplayList),
+                    isFirst = true
                 ) {
                     (context as? Activity)?.let { a ->
                         IntentHelper.startCardDisplayManageActivity(a)
                     }
                 }
             }
+            smallSeparatorItem()
             clickablePreferenceItem(
                 R.string.settings_main_daily_trends_title
             ) {
@@ -98,6 +105,7 @@ fun MainScreenSettingsScreen(
                     }
                 }
             }
+            smallSeparatorItem()
             clickablePreferenceItem(
                 R.string.settings_main_hourly_trends_title
             ) {
@@ -106,23 +114,13 @@ fun MainScreenSettingsScreen(
                     summary = HourlyTrendDisplay.getSummary(context, hourlyTrendDisplayList)
                 ) {
                     (context as? Activity)?.let { a ->
-                        IntentHelper.startHourlyTrendDisplayManageActivityForResult(a)
-                    }
-                }
-            }
-            clickablePreferenceItem(
-                R.string.settings_main_header_details_title
-            ) {
-                PreferenceViewWithCard(
-                    title = stringResource(it),
-                    summary = DetailDisplay.getSummary(context, detailDisplayList)
-                ) {
-                    (context as? Activity)?.let { a ->
-                        IntentHelper.startDetailDisplayManageActivity(a)
+                        IntentHelper.startHourlyTrendDisplayManageActivity(a)
                     }
                 }
             }
             sectionFooterItem(R.string.settings_main_section_displayed_data)
+
+            largeSeparatorItem()
 
             sectionHeaderItem(R.string.settings_main_section_options)
             switchPreferenceItem(R.string.settings_main_threshold_lines_on_charts) { id ->
@@ -131,6 +129,8 @@ fun MainScreenSettingsScreen(
                     summaryOnId = R.string.settings_enabled,
                     summaryOffId = R.string.settings_disabled,
                     checked = SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled,
+                    isFirst = true,
+                    isLast = true,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled = it
                         updateWidgetIfNecessary(context) // Has some widgets with it
@@ -147,8 +147,9 @@ fun MainScreenSettingsScreen(
             }
             sectionFooterItem(R.string.settings_main_section_options)
 
-            sectionHeaderItem(R.string.settings_main_section_animations)
+            largeSeparatorItem()
 
+            sectionHeaderItem(R.string.settings_main_section_animations)
             listPreferenceItem(R.string.settings_main_background_animation_title) { id ->
                 ListPreferenceView(
                     titleId = id,
@@ -156,6 +157,7 @@ fun MainScreenSettingsScreen(
                     valueArrayId = R.array.background_animation_values,
                     nameArrayId = R.array.background_animation,
                     card = true,
+                    isFirst = true,
                     onValueChanged = {
                         SettingsManager
                             .getInstance(context)
@@ -170,7 +172,7 @@ fun MainScreenSettingsScreen(
                     }
                 )
             }
-
+            smallSeparatorItem()
             switchPreferenceItem(R.string.settings_main_gravity_sensor_switch) { id ->
                 SwitchPreferenceView(
                     titleId = id,
@@ -189,6 +191,7 @@ fun MainScreenSettingsScreen(
                     }
                 )
             }
+            smallSeparatorItem()
 
             val animationsEnabled = !context.isMotionReduced
             switchPreferenceItem(R.string.settings_main_cards_fade_in_switch) { id ->
@@ -211,6 +214,7 @@ fun MainScreenSettingsScreen(
                     enabled = animationsEnabled
                 )
             }
+            smallSeparatorItem()
             switchPreferenceItem(R.string.settings_main_cards_other_element_animations_switch) { id ->
                 SwitchPreferenceView(
                     titleId = id,
@@ -224,11 +228,12 @@ fun MainScreenSettingsScreen(
                     } else {
                         R.string.settings_unavailable_no_animations
                     },
+                    enabled = animationsEnabled,
                     checked = SettingsManager.getInstance(context).isElementsAnimationEnabled && animationsEnabled,
+                    isLast = true,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isElementsAnimationEnabled = it
-                    },
-                    enabled = animationsEnabled
+                    }
                 )
             }
             sectionFooterItem(R.string.settings_main_section_animations)

@@ -18,7 +18,7 @@ package org.breezyweather.ui.common.adapters
 
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import okhttp3.internal.toImmutableList
+import kotlinx.collections.immutable.toPersistentList
 import java.util.Collections
 
 abstract class SyncListAdapter<T : Any, VH : RecyclerView.ViewHolder>(
@@ -81,7 +81,7 @@ abstract class SyncListAdapter<T : Any, VH : RecyclerView.ViewHolder>(
     }
 
     val currentList: List<T>
-        get() = mModelList.toImmutableList()
+        get() = mModelList.toPersistentList()
 
     fun getItem(position: Int): T {
         return mModelList[position]

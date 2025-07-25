@@ -22,8 +22,8 @@
                 android:layout_width="@dimen/widget_current_weather_icon_size"
                 android:layout_height="@dimen/widget_current_weather_icon_size"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="@dimen/little_margin"
-                android:layout_marginEnd="@dimen/little_margin"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/small_margin"
                 android:src="@drawable/weather_cloudy"
                 tools:ignore="ContentDescription" />
 

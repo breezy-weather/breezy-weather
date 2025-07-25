@@ -28,20 +28,21 @@ import androidx.appcompat.content.res.AppCompatResources
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Wind
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.domain.weather.model.getColor
 import org.breezyweather.domain.weather.model.getContentDescription
 import org.breezyweather.ui.common.images.RotateDrawable
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 
 /**
  * Hourly wind adapter.
  */
 class HourlyWindAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
     unit: SpeedUnit,
 ) : AbsHourlyTrendAdapter(activity, location) {
@@ -56,7 +57,7 @@ class HourlyWindAdapter(
         }
 
         @SuppressLint("SetTextI18n, InflateParams")
-        fun onBindView(activity: GeoActivity, location: Location, position: Int) {
+        fun onBindView(activity: BreezyActivity, location: Location, position: Int) {
             val talkBackBuilder = StringBuilder()
             super.onBindView(activity, location, talkBackBuilder, position)
             val hourly = location.weather!!.nextHourlyForecast[position]
@@ -86,22 +87,25 @@ class HourlyWindAdapter(
                 null, null,
                 null, null,
                 hourly.wind?.speed?.toFloat(),
-                hourly.wind?.speed?.let { mSpeedUnit.getValueTextWithoutUnit(it) },
+                hourly.wind?.speed?.let { mSpeedUnit.formatValue(activity, it) },
                 mHighestWindSpeed, 0f
             )
             mPolylineAndHistogramView.setLineColors(
                 windColor,
                 windColor,
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
 
             mPolylineAndHistogramView.setTextColors(
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+                activity.getThemeColor(R.attr.colorTitleText),
+                activity.getThemeColor(R.attr.colorBodyText),
+                activity.getThemeColor(R.attr.colorTitleText)
             )
             mPolylineAndHistogramView.setHistogramAlpha(1f)
             hourlyItem.contentDescription = talkBackBuilder.toString()
+            hourlyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_WIND)
+            }
         }
     }
 
@@ -137,7 +141,7 @@ class HourlyWindAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 Wind.WIND_SPEED_3.toFloat(),
-                mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
+                mSpeedUnit.formatValue(activity, Wind.WIND_SPEED_3),
                 activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -145,7 +149,7 @@ class HourlyWindAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 Wind.WIND_SPEED_7.toFloat(),
-                mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
+                mSpeedUnit.formatValue(activity, Wind.WIND_SPEED_7),
                 activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )
@@ -153,7 +157,7 @@ class HourlyWindAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 -Wind.WIND_SPEED_3.toFloat(),
-                mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_3),
+                mSpeedUnit.formatValue(activity, Wind.WIND_SPEED_3),
                 activity.getString(R.string.wind_strength_3),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )
@@ -161,7 +165,7 @@ class HourlyWindAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 -Wind.WIND_SPEED_7.toFloat(),
-                mSpeedUnit.getValueTextWithoutUnit(Wind.WIND_SPEED_7),
+                mSpeedUnit.formatValue(activity, Wind.WIND_SPEED_7),
                 activity.getString(R.string.wind_strength_7),
                 TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
             )

@@ -65,9 +65,8 @@ import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.basic.models.options.appearance.LocaleHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
-import org.breezyweather.ui.common.widgets.Material3CardListItem
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.common.widgets.defaultCardListItemElevation
-import org.breezyweather.ui.theme.compose.DayNightTheme
 import org.breezyweather.ui.theme.compose.themeRipple
 import java.util.Date
 
@@ -81,6 +80,8 @@ fun ListPreferenceView(
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
     card: Boolean = false,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(),
     withState: Boolean = true,
     onValueChanged: (String) -> Unit,
@@ -97,6 +98,8 @@ fun ListPreferenceView(
             valueArray = values,
             nameArray = names,
             enabled = enabled,
+            isFirst = isFirst,
+            isLast = isLast,
             colors = colors,
             withState = withState,
             onValueChanged = onValueChanged
@@ -127,13 +130,17 @@ fun ListPreferenceViewWithCard(
     @DrawableRes iconId: Int? = null,
     enableArray: Array<Boolean>? = null,
     enabled: Boolean = true,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
     colors: ListItemColors = ListItemDefaults.colors(),
     withState: Boolean = true,
     dismissButton: @Composable (() -> Unit)? = null,
     onValueChanged: (String) -> Unit,
 ) {
-    Material3CardListItem(
-        elevation = if (enabled) defaultCardListItemElevation else 0.dp
+    Material3ExpressiveCardListItem(
+        elevation = if (enabled) defaultCardListItemElevation else 0.dp,
+        isFirst = isFirst,
+        isLast = isLast
     ) {
         ListPreferenceView(
             title = title,
@@ -191,7 +198,7 @@ fun ListPreferenceView(
             {
                 Icon(
                     painter = painterResource(iconId),
-                    tint = DayNightTheme.colors.titleColor,
+                    tint = MaterialTheme.colorScheme.onSurface,
                     contentDescription = null,
                     modifier = Modifier.size(24.dp)
                 )
@@ -209,7 +216,7 @@ fun ListPreferenceView(
                 ) {
                     Text(
                         text = title,
-                        color = DayNightTheme.colors.titleColor,
+                        color = MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.titleMedium
                     )
                 }
@@ -218,10 +225,10 @@ fun ListPreferenceView(
         supportingContent = if (currentSummary?.isNotEmpty() == true) {
             {
                 Column {
-                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                     Text(
                         text = currentSummary,
-                        color = DayNightTheme.colors.bodyColor,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }
@@ -252,18 +259,18 @@ fun ListPreferenceView(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(
-                                        horizontal = dimensionResource(R.dimen.little_margin)
+                                        horizontal = dimensionResource(R.dimen.small_margin)
                                     )
                             ) {
                                 if (i != 0) {
                                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.large_margin)))
                                 } else {
-                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.little_margin)))
+                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
                                 }
                                 Text(
                                     modifier = Modifier.fillMaxWidth(),
                                     text = it.first,
-                                    color = DayNightTheme.colors.titleColor,
+                                    color = MaterialTheme.colorScheme.onSurface,
                                     style = MaterialTheme.typography.titleSmall,
                                     textAlign = TextAlign.Center
                                 )
@@ -373,7 +380,7 @@ internal fun RadioButton(
                 onClick = onClick
             )
             .padding(
-                horizontal = dimensionResource(R.dimen.little_margin)
+                horizontal = dimensionResource(R.dimen.small_margin)
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -382,13 +389,13 @@ internal fun RadioButton(
             selected = selected,
             onClick = onClick
         )
-        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.little_margin)))
+        Spacer(modifier = Modifier.width(dimensionResource(R.dimen.small_margin)))
         Text(
             text = text,
             color = if (enabled) {
-                DayNightTheme.colors.titleColor
+                MaterialTheme.colorScheme.onSurface
             } else {
-                DayNightTheme.colors.titleColor.copy(alpha = 0.5f)
+                MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
             },
             style = MaterialTheme.typography.titleMedium
         )
@@ -398,6 +405,8 @@ internal fun RadioButton(
 @Composable
 fun LanguagePreferenceView(
     @StringRes titleId: Int,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
 ) {
     val context = LocalContext.current
 
@@ -411,7 +420,9 @@ fun LanguagePreferenceView(
         summary = { _, value -> langs.firstOrNull { value == it.langTag }?.displayName ?: "" },
         selectedKey = langs.firstOrNull { currentLanguage == it.langTag }?.langTag ?: "",
         valueArray = langs.map { it.langTag }.toTypedArray(),
-        nameArray = langs.map { it.displayName }.toTypedArray()
+        nameArray = langs.map { it.displayName }.toTypedArray(),
+        isFirst = isFirst,
+        isLast = isLast
     ) {
         val locale = if (it.isEmpty()) {
             LocaleListCompat.getEmptyLocaleList()
@@ -427,6 +438,8 @@ fun LanguagePreferenceView(
 @Composable
 fun CalendarPreferenceView(
     @StringRes titleId: Int,
+    isFirst: Boolean = false,
+    isLast: Boolean = false,
 ) {
     val context = LocalContext.current
 
@@ -440,7 +453,9 @@ fun CalendarPreferenceView(
         summary = { _, value -> calendars.firstOrNull { value == it.id }?.displayName ?: "" },
         selectedKey = calendars.firstOrNull { currentCalendar == it.id }?.id ?: "",
         valueArray = calendars.map { it.id }.toTypedArray(),
-        nameArray = calendars.map { it.displayName }.toTypedArray()
+        nameArray = calendars.map { it.displayName }.toTypedArray(),
+        isFirst = isFirst,
+        isLast = isLast
     ) {
         SettingsManager.getInstance(context).alternateCalendar = it
     }

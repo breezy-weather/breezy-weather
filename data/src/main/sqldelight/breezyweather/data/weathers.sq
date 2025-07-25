@@ -19,11 +19,10 @@ CREATE TABLE weathers(
     weather_code TEXT AS WeatherCode,
 
     temperature REAL,
-    real_feel_temperature REAL,
-    real_feel_shader_temperature REAL,
+    source_feels_like_temperature REAL,
     apparent_temperature REAL,
     wind_chill_temperature REAL,
-    wet_bulb_temperature REAL,
+    humidex REAL,
 
     wind_degree REAL,
     wind_speed REAL,
@@ -60,13 +59,13 @@ CREATE TABLE weathers(
 CREATE INDEX weathers_location_formatted_id_index ON weathers(location_formatted_id);
 
 getWeatherByLocationId:
-SELECT refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, weather_text, weather_code, temperature, real_feel_temperature, real_feel_shader_temperature, apparent_temperature, wind_chill_temperature, wet_bulb_temperature, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast, normals_month, normals_daytime_temperature, normals_nighttime_temperature
+SELECT refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, weather_text, weather_code, temperature, source_feels_like_temperature, apparent_temperature, wind_chill_temperature, humidex, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast, normals_month, normals_daytime_temperature, normals_nighttime_temperature
 FROM weathers
 WHERE location_formatted_id = :locationFormattedId;
 
 insert:
-INSERT INTO weathers(location_formatted_id, refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, weather_text, weather_code, temperature, real_feel_temperature, real_feel_shader_temperature, apparent_temperature, wind_chill_temperature, wet_bulb_temperature, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast, normals_month, normals_daytime_temperature, normals_nighttime_temperature)
-VALUES (:locationFormattedId, :refreshTime, :mainUpdateTime, :currentUpdateTime, :airQualityUpdateTime, :pollenUpdateTime, :minutelyUpdateTime, :alertsUpdateTime, :normalsUpdateTime, :weatherText, :weatherCode, :temperature, :realFeelTemperature, :realFeelShaderTemperature, :apparentTemperature, :windChillTemperature, :wetBulbTemperature, :windDegree, :windSpeed, :windGusts, :uvIndex, :pm25, :pm10, :so2, :no2, :o3, :co, :relativeHumidity, :dewPoint, :pressure, :visibility, :cloudCover, :ceiling, :dailyForecast, :hourlyForecast, :normalsMonth, :normalsDaytimeTemperature, :normalsNighttimeTemperature);
+INSERT INTO weathers(location_formatted_id, refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, weather_text, weather_code, temperature, source_feels_like_temperature, apparent_temperature, wind_chill_temperature, humidex, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast, normals_month, normals_daytime_temperature, normals_nighttime_temperature)
+VALUES (:locationFormattedId, :refreshTime, :mainUpdateTime, :currentUpdateTime, :airQualityUpdateTime, :pollenUpdateTime, :minutelyUpdateTime, :alertsUpdateTime, :normalsUpdateTime, :weatherText, :weatherCode, :temperature, :sourceFeelsLikeTemperature, :apparentTemperature, :windChillTemperature, :humidex, :windDegree, :windSpeed, :windGusts, :uvIndex, :pm25, :pm10, :so2, :no2, :o3, :co, :relativeHumidity, :dewPoint, :pressure, :visibility, :cloudCover, :ceiling, :dailyForecast, :hourlyForecast, :normalsMonth, :normalsDaytimeTemperature, :normalsNighttimeTemperature);
 
 update:
 UPDATE weathers SET
@@ -82,11 +81,10 @@ UPDATE weathers SET
     weather_text = coalesce(:weatherText, weather_text),
     weather_code = coalesce(:weatherCode, weather_code),
     temperature = coalesce(:temperature, temperature),
-    real_feel_temperature = coalesce(:realFeelTemperature, real_feel_temperature),
-    real_feel_shader_temperature = coalesce(:realFeelShaderTemperature, real_feel_shader_temperature),
+    source_feels_like_temperature = coalesce(:realFeelTemperature, source_feels_like_temperature),
     apparent_temperature = coalesce(:apparentTemperature, apparent_temperature),
     wind_chill_temperature = coalesce(:windChillTemperature, wind_chill_temperature),
-    wet_bulb_temperature = coalesce(:wetBulbTemperature, wet_bulb_temperature),
+    humidex = coalesce(:humidex, humidex),
     wind_degree = coalesce(:windDegree, wind_degree),
     wind_speed = coalesce(:windSpeed, wind_speed),
     wind_gusts = coalesce(:windGusts, wind_gusts),

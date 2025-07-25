@@ -1,54 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container_main_pollen"
-    android:layout_margin="0dp"
-    style="@style/material_card">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.ExtraLarge"
+    app:strokeWidth="0dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:id="@+id/block_top_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.1" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="vertical"
+                android:id="@+id/block_start_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.1" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:id="@+id/block_bottom_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.9" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="vertical"
+                android:id="@+id/block_end_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.9" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:id="@+id/pollen_1_top_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.3" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:id="@+id/pollen_2_top_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintGuide_percent="0.6" />
+
+            <ImageView
+                android:id="@+id/title_icon"
+                android:gravity="start"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:importantForAccessibility="no"
+                android:backgroundTint="?attr/colorSurfaceInverse"
+                android:src="@drawable/ic_allergy"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="@+id/block_start_guideline"
+                app:layout_constraintTop_toTopOf="@+id/title" />
 
             <TextView
-                android:id="@+id/container_main_pollen_title"
-                android:text="@string/pollen"
+                android:id="@+id/title"
+                android:accessibilityHeading="true"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorSurfaceInverse"
+                android:textSize="@dimen/title_text_size"
                 android:textStyle="bold"
-                android:layout_marginTop="@dimen/normal_margin"
-                android:layout_marginStart="@dimen/normal_margin"
-                android:layout_marginEnd="@dimen/normal_margin"
-                style="@style/title_text" />
+                android:ellipsize="end"
+                android:gravity="start"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textAlignment="viewStart"
+                android:text="@string/pollen"
+                android:layout_marginStart="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
+                app:layout_constraintStart_toEndOf="@+id/title_icon"
+                app:layout_constraintTop_toTopOf="@+id/block_top_guideline" />
 
-            <TextView
-                android:id="@+id/container_main_pollen_subtitle"
-                android:text="@string/pollen_tap_to_see_more"
-                android:layout_below="@id/container_main_pollen_title"
-                android:layout_marginTop="2dp"
-                android:layout_marginStart="@dimen/normal_margin"
-                android:layout_marginEnd="@dimen/normal_margin"
-                android:layout_marginBottom="@dimen/normal_margin"
-                style="@style/subtitle_text"
-                tools:ignore="RtlHardcoded" />
+            <RelativeLayout
+                android:id="@+id/pollen_item_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/small_margin"
+                app:layout_constraintTop_toBottomOf="@+id/pollen_1_top_guideline"
+                app:layout_constraintStart_toStartOf="@+id/block_start_guideline">
 
-            <TextView
-                android:id="@+id/container_main_pollen_indicator"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="@dimen/normal_margin"
-                style="@style/subtitle_text"
-                tools:text="3/15" />
+                <ImageView
+                    android:id="@+id/pollen_item_1_icon"
+                    android:layout_width="@dimen/material_icon_size"
+                    android:layout_height="@dimen/material_icon_size"
+                    android:importantForAccessibility="no"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_circle"
+                    tools:tint="@color/colorLevel_3" />
 
-        </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/small_margin"
+                    android:layout_toEndOf="@id/pollen_item_1_icon"
+                    android:layout_centerVertical="true">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/container_main_pollen_pager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/pollen_item_1_title"
+                        android:importantForAccessibility="no"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        style="@style/title_text"
+                        tools:text="Grass" />
 
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/pollen_item_1_content"
+                        android:importantForAccessibility="no"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        style="@style/content_text"
+                        tools:text="High" />
 
-</androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/pollen_item_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                app:layout_constraintTop_toBottomOf="@+id/pollen_2_top_guideline"
+                app:layout_constraintStart_toStartOf="@+id/block_start_guideline">
+
+                <ImageView
+                    android:id="@+id/pollen_item_2_icon"
+                    android:layout_width="@dimen/material_icon_size"
+                    android:layout_height="@dimen/material_icon_size"
+                    android:importantForAccessibility="no"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_circle"
+                    tools:tint="@color/colorLevel_2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/small_margin"
+                    android:layout_toEndOf="@id/pollen_item_2_icon"
+                    android:layout_centerVertical="true">
+
+                    <TextView
+                        android:id="@+id/pollen_item_2_title"
+                        android:importantForAccessibility="no"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        style="@style/title_text"
+                        tools:text="Ragweed" />
+
+                    <TextView
+                        android:id="@+id/pollen_item_2_content"
+                        android:importantForAccessibility="no"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        style="@style/content_text"
+                        tools:text="Moderate" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

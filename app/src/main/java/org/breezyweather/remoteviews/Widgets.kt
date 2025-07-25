@@ -105,13 +105,13 @@ object Widgets {
         val texts = arrayOf(
             weather.current?.weatherText ?: "",
             weather.current?.temperature?.temperature?.let {
-                unit.getValueText(context, it, 0)
+                unit.formatMeasure(context, it, 0)
             } ?: "",
             weather.today?.day?.temperature?.temperature?.let {
-                unit.getShortValueText(context, it)
+                unit.formatMeasureShort(context, it)
             } ?: "",
             weather.today?.night?.temperature?.temperature?.let {
-                unit.getShortValueText(context, it)
+                unit.formatMeasureShort(context, it)
             } ?: ""
         )
         val paint = TextPaint()

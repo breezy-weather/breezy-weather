@@ -20,54 +20,56 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
-import android.widget.LinearLayout
 import androidx.annotation.CallSuper
-import androidx.cardview.widget.CardView
 import breezyweather.domain.location.model.Location
+import com.google.android.material.card.MaterialCardView
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
-import org.breezyweather.ui.main.adapters.main.FirstCardHeaderController
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
-import org.breezyweather.ui.theme.ThemeManager
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
 @SuppressLint("ObjectAnimatorBinding")
 abstract class AbstractMainCardViewHolder(
     view: View,
 ) : AbstractMainViewHolder(view) {
-    private var mFirstCardHeaderController: FirstCardHeaderController? = null
     protected var mLocation: Location? = null
 
     @CallSuper
     open fun onBindView(
-        activity: GeoActivity,
+        activity: BreezyActivity,
         location: Location,
         provider: ResourceProvider,
         listAnimationEnabled: Boolean,
         itemAnimationEnabled: Boolean,
-        firstCard: Boolean,
     ) {
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
         mLocation = location
-        val delegate = ThemeManager.getInstance(activity).weatherThemeDelegate
-        val card = (itemView as CardView).apply {
-            radius = delegate.getHomeCardRadius(activity)
-            elevation = delegate.getHomeCardElevation(activity)
-            setCardBackgroundColor(MainThemeColorProvider.getColor(location, R.attr.colorMainCardBackground))
-        }
-        val params = card.layoutParams as MarginLayoutParams
-        params.setMargins(
-            delegate.getHomeCardMargins(context),
-            0,
-            delegate.getHomeCardMargins(context),
-            delegate.getHomeCardMargins(context)
-        )
-        card.layoutParams = params
-        if (firstCard) {
-            mFirstCardHeaderController = FirstCardHeaderController(activity, location).apply {
-                bind(card.getChildAt(0) as LinearLayout)
+        if (itemView is MaterialCardView) {
+            (itemView as MaterialCardView).apply {
+                elevation = context.dpToPx(2f)
             }
         }
+        val params = itemView.layoutParams as MarginLayoutParams
+        params.setMargins(
+            context.resources.getDimensionPixelSize(R.dimen.small_margin),
+            context.resources.getDimensionPixelSize(R.dimen.small_margin),
+            context.resources.getDimensionPixelSize(R.dimen.small_margin),
+            context.resources.getDimensionPixelSize(R.dimen.small_margin)
+        )
+        itemView.layoutParams = params
+    }
+
+    @CallSuper
+    open fun onBindView(
+        activity: BreezyActivity,
+        location: Location,
+        provider: ResourceProvider,
+        listAnimationEnabled: Boolean,
+        itemAnimationEnabled: Boolean,
+        selectedTab: String?,
+        setSelectedTab: (String?) -> Unit,
+    ) {
+        onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
     }
 
     @SuppressLint("MissingSuperCall")
@@ -79,13 +81,5 @@ abstract class AbstractMainCardViewHolder(
         itemAnimationEnabled: Boolean,
     ) {
         throw RuntimeException("Deprecated method.")
-    }
-
-    override fun onRecycleView() {
-        super.onRecycleView()
-        mFirstCardHeaderController?.let {
-            it.unbind()
-            mFirstCardHeaderController = null
-        }
     }
 }

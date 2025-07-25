@@ -70,6 +70,11 @@ class EcccService @Inject constructor(
             }
         }
     }
+    override val attributionLinks
+        get() = mapOf(
+            "Environnement et Changement Climatique Canada" to "https://meteo.gc.ca/",
+            "Environment and Climate Change Canada" to "https://weather.gc.ca/"
+        )
     override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,

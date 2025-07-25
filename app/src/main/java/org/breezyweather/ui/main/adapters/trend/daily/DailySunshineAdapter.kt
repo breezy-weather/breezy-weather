@@ -25,11 +25,12 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
 
@@ -37,7 +38,7 @@ import org.breezyweather.ui.theme.weatherView.WeatherViewController
  * Daily sunshine adapter.
  */
 class DailySunshineAdapter(
-    activity: GeoActivity,
+    activity: BreezyActivity,
     location: Location,
 ) : AbsDailyTrendAdapter(activity, location) {
     private var mHighestIndex: Double = 0.0
@@ -51,7 +52,7 @@ class DailySunshineAdapter(
 
         @SuppressLint("DefaultLocale")
         fun onBindView(
-            activity: GeoActivity,
+            activity: BreezyActivity,
             location: Location,
             position: Int,
         ) {
@@ -64,7 +65,7 @@ class DailySunshineAdapter(
             }
             daily.sunshineDuration?.let {
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(DurationUnit.H.getValueVoice(itemView.context, it))
+                    .append(DurationUnit.HOUR.formatContentDescription(itemView.context, it))
             }
             mPolylineAndHistogramView.setData(
                 null,
@@ -74,7 +75,7 @@ class DailySunshineAdapter(
                 null,
                 null,
                 sunshineDuration?.toFloat(),
-                daily.sunshineDuration?.let { DurationUnit.H.getValueText(itemView.context, it) },
+                daily.sunshineDuration?.let { DurationUnit.HOUR.formatMeasureShort(itemView.context, it) },
                 mHighestIndex.toFloat(),
                 0f
             )
@@ -89,7 +90,7 @@ class DailySunshineAdapter(
                 } else {
                     Color.TRANSPARENT
                 },
-                MainThemeColorProvider.getColor(location, com.google.android.material.R.attr.colorOutline)
+                activity.getThemeColor(com.google.android.material.R.attr.colorOutline)
             )
 
             val themeColors = ThemeManager.getInstance(itemView.context)
@@ -99,15 +100,18 @@ class DailySunshineAdapter(
                     WeatherViewController.getWeatherKind(location),
                     WeatherViewController.isDaylight(location)
                 )
-            val lightTheme = MainThemeColorProvider.isLightTheme(itemView.context, location)
+            val lightTheme = ThemeManager.isLightTheme(itemView.context, location)
             mPolylineAndHistogramView.setShadowColors(themeColors[1], themeColors[2], lightTheme)
             mPolylineAndHistogramView.setTextColors(
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText),
-                MainThemeColorProvider.getColor(location, R.attr.colorBodyText),
-                MainThemeColorProvider.getColor(location, R.attr.colorTitleText)
+                activity.getThemeColor(R.attr.colorTitleText),
+                activity.getThemeColor(R.attr.colorBodyText),
+                activity.getThemeColor(R.attr.colorTitleText)
             )
             mPolylineAndHistogramView.setHistogramAlpha(if (lightTheme) 1f else 0.5f)
             dailyItem.contentDescription = talkBackBuilder.toString()
+            dailyItem.setOnClickListener {
+                onItemClicked(activity, location, bindingAdapterPosition, DetailScreen.TAG_CLOUD_COVER)
+            }
         }
     }
 

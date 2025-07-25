@@ -19,55 +19,40 @@ package org.breezyweather.ui.common.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
 import org.breezyweather.R
-import org.breezyweather.ui.common.widgets.TagView
 
 class TagAdapter @JvmOverloads constructor(
-    private val mTagList: MutableList<Tag>,
-    @field:ColorInt @param:ColorInt private val mCheckedTitleColor: Int,
-    @field:ColorInt @param:ColorInt private val mUncheckedTitleColor: Int,
-    @field:ColorInt @param:ColorInt private val mCheckedBackgroundColor: Int,
-    @field:ColorInt @param:ColorInt private val mUncheckedBackgroundColor: Int,
-    private val mListener: ((checked: Boolean, oldPosition: Int, newPosition: Int) -> Boolean)? = null,
-    private var mCheckedIndex: Int = UNCHECKABLE_INDEX,
+    private val tagList: MutableList<Tag>,
+    private val listener: ((checked: Boolean, oldPosition: Int, newPosition: Int) -> Boolean)? = null,
+    private var checkedIndex: Int = UNCHECKABLE_INDEX,
 ) : RecyclerView.Adapter<TagAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val mTagView: TagView
+        private val tagView: Chip = itemView.findViewById(R.id.item_tag)
 
         init {
-            mTagView = itemView.findViewById(R.id.item_tag)
-            mTagView.setOnClickListener {
+            tagView.setOnClickListener {
                 var consumed = false
-                if (mListener != null) {
-                    consumed = mListener.invoke(
-                        !mTagView.isChecked,
-                        mCheckedIndex,
+                if (listener != null) {
+                    consumed = listener.invoke(
+                        !tagView.isChecked,
+                        checkedIndex,
                         bindingAdapterPosition
                     )
                 }
-                if (!consumed && mCheckedIndex != bindingAdapterPosition) {
-                    val i = mCheckedIndex
-                    mCheckedIndex = bindingAdapterPosition
+                if (!consumed && checkedIndex != bindingAdapterPosition) {
+                    val i = checkedIndex
+                    checkedIndex = bindingAdapterPosition
                     notifyItemChanged(i)
-                    notifyItemChanged(mCheckedIndex)
+                    notifyItemChanged(checkedIndex)
                 }
             }
         }
 
         fun onBindView(tag: Tag, checked: Boolean) {
-            mTagView.apply {
+            tagView.apply {
                 text = tag.name
-                checkedBackgroundColor = mCheckedBackgroundColor
-                uncheckedBackgroundColor = mUncheckedBackgroundColor
-            }
-            setChecked(checked)
-        }
-
-        fun setChecked(checked: Boolean) {
-            mTagView.apply {
-                setTextColor(if (checked) mCheckedTitleColor else mUncheckedTitleColor)
                 isChecked = checked
             }
         }
@@ -85,20 +70,20 @@ class TagAdapter @JvmOverloads constructor(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.onBindView(mTagList[position], position == mCheckedIndex)
+        holder.onBindView(tagList[position], position == checkedIndex)
     }
 
     override fun getItemCount(): Int {
-        return mTagList.size
+        return tagList.size
     }
 
     fun insertItem(tag: Tag) {
-        mTagList.add(tag)
-        notifyItemInserted(mTagList.size - 1)
+        tagList.add(tag)
+        notifyItemInserted(tagList.size - 1)
     }
 
     fun removeItem(position: Int): Tag {
-        val tag = mTagList.removeAt(position)
+        val tag = tagList.removeAt(position)
         notifyItemRemoved(position)
         return tag
     }

@@ -21,8 +21,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class AccuForecastDailyForecast(
     val EpochDate: Long,
-    val Sun: AccuForecastSun?,
-    val Moon: AccuForecastMoon?,
     val Temperature: AccuForecastTemperature?,
     val RealFeelTemperature: AccuForecastTemperature?,
     val RealFeelTemperatureShade: AccuForecastTemperature?,

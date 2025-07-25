@@ -22,18 +22,17 @@ import android.content.pm.ApplicationInfo
 import android.os.Build
 import android.os.Process
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import androidx.work.WorkInfo
 import androidx.work.WorkQuery
 import dagger.hilt.android.HiltAndroidApp
-import dagger.hilt.android.internal.Contexts.getApplication
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.extensions.uiModeManager
 import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.utils.helpers.LogHelper
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.remoteviews.Notifications
-import org.breezyweather.ui.theme.ThemeManager
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
@@ -63,10 +62,10 @@ class BreezyWeather : Application(), Configuration.Provider {
         }
     }
 
-    private val activitySet: MutableSet<GeoActivity> by lazy {
+    private val activitySet: MutableSet<BreezyActivity> by lazy {
         HashSet()
     }
-    var topActivity: GeoActivity? = null
+    var topActivity: BreezyActivity? = null
         private set
 
     val debugMode: Boolean by lazy {
@@ -83,6 +82,9 @@ class BreezyWeather : Application(), Configuration.Provider {
         setupNotificationChannels()
 
         if (getProcessName().equals(packageName)) {
+            // Sets and persists the night mode setting for this app. This allows the system to know
+            // if the app wants to be displayed in dark mode before it launches so that the splash
+            // screen can be displayed accordingly.
             setDayNightMode()
         }
 
@@ -93,19 +95,19 @@ class BreezyWeather : Application(), Configuration.Provider {
         this.workManager.getWorkInfosLiveData(WorkQuery.fromStates(WorkInfo.State.ENQUEUED))
     }
 
-    fun addActivity(a: GeoActivity) {
+    fun addActivity(a: BreezyActivity) {
         activitySet.add(a)
     }
 
-    fun removeActivity(a: GeoActivity) {
+    fun removeActivity(a: BreezyActivity) {
         activitySet.remove(a)
     }
 
-    fun setTopActivity(a: GeoActivity) {
+    fun setTopActivity(a: BreezyActivity) {
         topActivity = a
     }
 
-    fun checkToCleanTopActivity(a: GeoActivity) {
+    fun checkToCleanTopActivity(a: BreezyActivity) {
         if (topActivity === a) {
             topActivity = null
         }
@@ -121,26 +123,18 @@ class BreezyWeather : Application(), Configuration.Provider {
     }
 
     private fun setDayNightMode() {
-        updateDayNightMode(ThemeManager.getInstance(this).uiMode.value!!)
-
-        ThemeManager.getInstance(this).uiMode.observeForever {
-            updateDayNightMode(it)
-        }
+        updateDayNightMode(SettingsManager.getInstance(this).darkMode.value)
     }
 
-    private fun updateDayNightMode(dayNightMode: Int) {
+    fun updateDayNightMode(dayNightMode: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            // Sets and persists the night mode setting for this app. This allows the system to know
-            // if the app wants to be displayed in dark mode before it launches so that the splash
-            // screen can be displayed accordingly.
-            ContextCompat.getSystemService(getApplication(this), UiModeManager::class.java)
-                ?.setApplicationNightMode(
-                    when (dayNightMode) {
-                        -1 -> UiModeManager.MODE_NIGHT_AUTO
-                        1 -> UiModeManager.MODE_NIGHT_NO
-                        else -> UiModeManager.MODE_NIGHT_YES
-                    }
-                )
+            uiModeManager?.setApplicationNightMode(
+                when (dayNightMode) {
+                    AppCompatDelegate.MODE_NIGHT_NO -> UiModeManager.MODE_NIGHT_NO
+                    AppCompatDelegate.MODE_NIGHT_YES -> UiModeManager.MODE_NIGHT_YES
+                    else -> UiModeManager.MODE_NIGHT_AUTO
+                }
+            )
         } else {
             AppCompatDelegate.setDefaultNightMode(dayNightMode)
         }

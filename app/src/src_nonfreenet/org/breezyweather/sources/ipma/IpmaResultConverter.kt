@@ -1,3 +1,19 @@
+/*
+ * This file is part of Breezy Weather.
+ *
+ * Breezy Weather is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, version 3 of the License.
+ *
+ * Breezy Weather is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package org.breezyweather.sources.ipma
 
 import android.content.Context
@@ -11,7 +27,9 @@ import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
@@ -101,10 +119,10 @@ internal fun getDailyForecast(
             dailyList.add(
                 DailyWrapper(
                     date = formatter.parse(it.dataPrev)!!,
-                    day = HalfDay(
+                    day = HalfDayWrapper(
                         weatherText = getWeatherText(context, it.idTipoTempo),
                         weatherCode = getWeatherCode(it.idTipoTempo),
-                        temperature = Temperature(
+                        temperature = TemperatureWrapper(
                             temperature = it.tMax?.toDoubleOrNull()
                         ),
                         precipitationProbability = PrecipitationProbability(
@@ -114,10 +132,10 @@ internal fun getDailyForecast(
                             degree = getWindDegree(it.ddVento)
                         )
                     ),
-                    night = HalfDay(
+                    night = HalfDayWrapper(
                         weatherText = getWeatherText(context, it.idTipoTempo),
                         weatherCode = getWeatherCode(it.idTipoTempo),
-                        temperature = Temperature(
+                        temperature = TemperatureWrapper(
                             temperature = it.tMin?.toDoubleOrNull()
                         ),
                         precipitationProbability = PrecipitationProbability(
@@ -153,9 +171,9 @@ internal fun getHourlyForecast(
                     date = formatter.parse(it.dataPrev)!!,
                     weatherText = getWeatherText(context, it.idTipoTempo),
                     weatherCode = getWeatherCode(it.idTipoTempo),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = it.tMed?.toDoubleOrNull(),
-                        apparentTemperature = it.utci?.toDoubleOrNull()
+                        feelsLike = it.utci?.toDoubleOrNull()
                     ),
                     precipitationProbability = PrecipitationProbability(
                         total = if (it.probabilidadePrecipita != "-99.0") {

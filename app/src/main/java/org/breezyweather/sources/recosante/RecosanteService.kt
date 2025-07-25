@@ -70,8 +70,11 @@ class RecosanteService @Inject constructor(
         }
 
     override val supportedFeatures = mapOf(
-        SourceFeature.POLLEN to
-            "Recosanté, Le Réseau national de surveillance aérobiologique (RNSA) https://www.pollens.fr/"
+        SourceFeature.POLLEN to "Recosanté • Atmo France"
+    )
+    override val attributionLinks = mapOf(
+        "Recosanté" to "https://recosante.beta.gouv.fr/",
+        "Atmo France" to "https://www.atmo-france.org/"
     )
     override fun isFeatureSupportedForLocation(
         location: Location,

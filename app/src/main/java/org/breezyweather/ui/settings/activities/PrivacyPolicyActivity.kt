@@ -18,7 +18,6 @@ package org.breezyweather.ui.settings.activities
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -27,7 +26,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import dagger.hilt.android.AndroidEntryPoint
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.ui.common.widgets.Material3Scaffold
@@ -42,7 +41,7 @@ import java.text.Collator
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PrivacyPolicyActivity : GeoActivity() {
+class PrivacyPolicyActivity : BreezyActivity() {
 
     @Inject lateinit var sourceManager: SourceManager
 
@@ -50,7 +49,7 @@ class PrivacyPolicyActivity : GeoActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            BreezyWeatherTheme(lightTheme = !isSystemInDarkTheme()) {
+            BreezyWeatherTheme {
                 ContentView()
             }
         }

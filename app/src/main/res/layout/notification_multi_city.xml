@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:paddingHorizontal="@dimen/normal_margin"
-        android:paddingVertical="@dimen/little_margin"
+        android:paddingVertical="@dimen/small_margin"
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:paddingHorizontal="@dimen/normal_margin"
-        android:paddingVertical="@dimen/little_margin"
+        android:paddingVertical="@dimen/small_margin"
         tools:ignore="UseCompoundDrawables">
 
         <ImageView
@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:paddingHorizontal="@dimen/normal_margin"
-        android:paddingVertical="@dimen/little_margin"
+        android:paddingVertical="@dimen/small_margin"
         tools:ignore="UseCompoundDrawables">
 
         <ImageView

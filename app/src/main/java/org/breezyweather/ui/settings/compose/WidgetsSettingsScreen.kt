@@ -22,9 +22,14 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material3.ListItemDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -33,6 +38,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationStyle
 import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.source.BroadcastSource
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.SettingsManager
@@ -71,9 +77,11 @@ import org.breezyweather.ui.settings.preference.composables.PackagePreferenceVie
 import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.composables.PreferenceViewWithCard
 import org.breezyweather.ui.settings.preference.composables.SwitchPreferenceView
+import org.breezyweather.ui.settings.preference.largeSeparatorItem
 import org.breezyweather.ui.settings.preference.listPreferenceItem
 import org.breezyweather.ui.settings.preference.sectionFooterItem
 import org.breezyweather.ui.settings.preference.sectionHeaderItem
+import org.breezyweather.ui.settings.preference.smallSeparatorItem
 import org.breezyweather.ui.settings.preference.switchPreferenceItem
 import org.breezyweather.wallpaper.MaterialLiveWallpaperService
 import java.text.Collator
@@ -105,13 +113,16 @@ fun WidgetsSettingsScreen(
             )
         }
     ) { paddings ->
-        PreferenceScreen(paddingValues = paddings) {
+        PreferenceScreen(
+            paddingValues = paddings.plus(PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)))
+        ) {
             // widget.
             sectionHeaderItem(R.string.settings_widgets_section_general)
             clickablePreferenceItem(R.string.settings_widgets_live_wallpaper_title) { id ->
                 PreferenceViewWithCard(
                     titleId = id,
-                    summaryId = R.string.settings_widgets_live_wallpaper_summary
+                    summaryId = R.string.settings_widgets_live_wallpaper_summary,
+                    isFirst = true
                 ) {
                     try {
                         context.startActivity(
@@ -143,6 +154,7 @@ fun WidgetsSettingsScreen(
                     }
                 }
             }
+            smallSeparatorItem()
             listPreferenceItem(R.string.settings_widgets_week_icon_mode_title) { id ->
                 ListPreferenceView(
                     titleId = id,
@@ -158,145 +170,80 @@ fun WidgetsSettingsScreen(
                     }
                 )
             }
+            smallSeparatorItem()
             switchPreferenceItem(R.string.settings_widgets_monochrome_icons_title) { id ->
                 SwitchPreferenceView(
                     titleId = id,
                     summaryOnId = R.string.settings_enabled,
                     summaryOffId = R.string.settings_disabled,
                     checked = SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons,
+                    isLast = true,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isWidgetUsingMonochromeIcons = it
                         updateWidgetIfNecessary(context)
                     }
                 )
             }
+            smallSeparatorItem()
             sectionFooterItem(R.string.settings_widgets_section_general)
 
-            if (DayWidgetIMP.isInUse(context) ||
-                WeekWidgetIMP.isInUse(context) ||
-                DayWeekWidgetIMP.isInUse(context) ||
-                ClockDayHorizontalWidgetIMP.isInUse(context) ||
-                ClockDayDetailsWidgetIMP.isInUse(context) ||
-                ClockDayVerticalWidgetIMP.isInUse(context) ||
-                ClockDayWeekWidgetIMP.isInUse(context) ||
-                TextWidgetIMP.isInUse(context) ||
-                DailyTrendWidgetIMP.isInUse(context) ||
-                HourlyTrendWidgetIMP.isInUse(context) ||
-                MultiCityWidgetIMP.isInUse(context)
-            ) {
-                sectionHeaderItem(R.string.settings_widgets_section_widgets_in_use)
+            val widgetsInUse = buildList {
                 if (DayWidgetIMP.isInUse(context)) {
-                    clickablePreferenceItem(R.string.widget_day) {
-                        PreferenceViewWithCard(
-                            title = stringResource(it),
-                            summary = stringResource(R.string.settings_widgets_configure_widget_summary)
-                        ) {
-                            context.startActivity(Intent(context, DayWidgetConfigActivity::class.java))
-                        }
-                    }
+                    add(Pair(R.string.widget_day, DayWidgetConfigActivity::class.java))
                 }
                 if (WeekWidgetIMP.isInUse(context)) {
-                    clickablePreferenceItem(R.string.widget_week) {
-                        PreferenceViewWithCard(
-                            title = stringResource(it),
-                            summary = stringResource(R.string.settings_widgets_configure_widget_summary)
-                        ) {
-                            context.startActivity(Intent(context, WeekWidgetConfigActivity::class.java))
-                        }
-                    }
+                    add(Pair(R.string.widget_week, WeekWidgetConfigActivity::class.java))
                 }
                 if (DayWeekWidgetIMP.isInUse(context)) {
-                    clickablePreferenceItem(R.string.widget_day_week) {
-                        PreferenceViewWithCard(
-                            title = stringResource(it),
-                            summary = stringResource(R.string.settings_widgets_configure_widget_summary)
-                        ) {
-                            context.startActivity(Intent(context, DayWeekWidgetConfigActivity::class.java))
-                        }
-                    }
+                    add(Pair(R.string.widget_day_week, DayWeekWidgetConfigActivity::class.java))
                 }
                 if (ClockDayHorizontalWidgetIMP.isInUse(context)) {
-                    clickablePreferenceItem(R.string.widget_clock_day_horizontal) {
-                        PreferenceViewWithCard(
-                            title = stringResource(it),
-                            summary = stringResource(R.string.settings_widgets_configure_widget_summary)
-                        ) {
-                            context.startActivity(Intent(context, ClockDayHorizontalWidgetConfigActivity::class.java))
-                        }
-                    }
+                    add(Pair(R.string.widget_clock_day_horizontal, ClockDayHorizontalWidgetConfigActivity::class.java))
                 }
                 if (ClockDayDetailsWidgetIMP.isInUse(context)) {
-                    clickablePreferenceItem(R.string.widget_clock_day_details) {
-                        PreferenceViewWithCard(
-                            title = stringResource(it),
-                            summary = stringResource(R.string.settings_widgets_configure_widget_summary)
-                        ) {
-                            context.startActivity(Intent(context, ClockDayDetailsWidgetConfigActivity::class.java))
-                        }
-                    }
+                    add(Pair(R.string.widget_clock_day_details, ClockDayDetailsWidgetConfigActivity::class.java))
                 }
                 if (ClockDayVerticalWidgetIMP.isInUse(context)) {
-                    clickablePreferenceItem(R.string.widget_clock_day_vertical) {
-                        PreferenceViewWithCard(
-                            title = stringResource(it),
-                            summary = stringResource(R.string.settings_widgets_configure_widget_summary)
-                        ) {
-                            context.startActivity(Intent(context, ClockDayVerticalWidgetConfigActivity::class.java))
-                        }
-                    }
+                    add(Pair(R.string.widget_clock_day_vertical, ClockDayVerticalWidgetConfigActivity::class.java))
                 }
                 if (ClockDayWeekWidgetIMP.isInUse(context)) {
-                    clickablePreferenceItem(R.string.widget_clock_day_week) {
-                        PreferenceViewWithCard(
-                            title = stringResource(it),
-                            summary = stringResource(R.string.settings_widgets_configure_widget_summary)
-                        ) {
-                            context.startActivity(Intent(context, ClockDayWeekWidgetConfigActivity::class.java))
-                        }
-                    }
+                    add(Pair(R.string.widget_clock_day_week, ClockDayWeekWidgetConfigActivity::class.java))
                 }
                 if (TextWidgetIMP.isInUse(context)) {
-                    clickablePreferenceItem(R.string.widget_text) {
-                        PreferenceViewWithCard(
-                            title = stringResource(it),
-                            summary = stringResource(R.string.settings_widgets_configure_widget_summary)
-                        ) {
-                            context.startActivity(Intent(context, TextWidgetConfigActivity::class.java))
-                        }
-                    }
+                    add(Pair(R.string.widget_text, TextWidgetConfigActivity::class.java))
                 }
                 if (DailyTrendWidgetIMP.isInUse(context)) {
-                    clickablePreferenceItem(R.string.widget_trend_daily) {
-                        PreferenceViewWithCard(
-                            title = stringResource(it),
-                            summary = stringResource(R.string.settings_widgets_configure_widget_summary)
-                        ) {
-                            context.startActivity(Intent(context, DailyTrendWidgetConfigActivity::class.java))
-                        }
-                    }
+                    add(Pair(R.string.widget_trend_daily, DailyTrendWidgetConfigActivity::class.java))
                 }
                 if (HourlyTrendWidgetIMP.isInUse(context)) {
-                    clickablePreferenceItem(R.string.widget_trend_hourly) {
-                        PreferenceViewWithCard(
-                            title = stringResource(it),
-                            summary = stringResource(R.string.settings_widgets_configure_widget_summary)
-                        ) {
-                            context.startActivity(Intent(context, HourlyTrendWidgetConfigActivity::class.java))
-                        }
-                    }
+                    add(Pair(R.string.widget_trend_hourly, HourlyTrendWidgetConfigActivity::class.java))
                 }
                 if (MultiCityWidgetIMP.isInUse(context)) {
-                    clickablePreferenceItem(R.string.widget_multi_city) {
+                    add(Pair(R.string.widget_multi_city, MultiCityWidgetConfigActivity::class.java))
+                }
+            }
+            if (widgetsInUse.isNotEmpty()) {
+                largeSeparatorItem()
+                sectionHeaderItem(R.string.settings_widgets_section_widgets_in_use)
+                widgetsInUse.forEachIndexed { index, widget ->
+                    clickablePreferenceItem(widget.first) {
                         PreferenceViewWithCard(
                             title = stringResource(it),
-                            summary = stringResource(R.string.settings_widgets_configure_widget_summary)
+                            summary = stringResource(R.string.settings_widgets_configure_widget_summary),
+                            isFirst = index == 0,
+                            isLast = index == widgetsInUse.lastIndex
                         ) {
-                            context.startActivity(Intent(context, MultiCityWidgetConfigActivity::class.java))
+                            context.startActivity(Intent(context, widget.second))
                         }
+                    }
+                    if (index != widgetsInUse.lastIndex) {
+                        smallSeparatorItem()
                     }
                 }
                 sectionFooterItem(R.string.settings_widgets_section_widgets_in_use)
             }
+
+            largeSeparatorItem()
 
             // notification.
             sectionHeaderItem(R.string.settings_widgets_section_notification_widget)
@@ -312,12 +259,20 @@ fun WidgetsSettingsScreen(
                                 R.string.settings_widgets_notification_permission_summary,
                                 stringResource(R.string.action_grant_permission)
                             ),
+                            surface = MaterialTheme.colorScheme.primaryContainer,
+                            onSurface = MaterialTheme.colorScheme.onPrimaryContainer,
+                            colors = ListItemDefaults.colors(
+                                containerColor = Color.Transparent
+                            ),
+                            isFirst = true,
+                            isLast = true,
                             onClick = {
                                 postNotificationPermissionEnsurer {
                                     updateNotificationIfNecessary(context)
                                 }
                             }
                         )
+                        largeSeparatorItem()
                     }
                 }
             }
@@ -329,6 +284,7 @@ fun WidgetsSettingsScreen(
                     checked = notificationEnabled,
                     withState = false,
                     enabled = hasNotificationPermission,
+                    isFirst = true,
                     onValueChanged = {
                         SettingsManager.getInstance(context).isWidgetNotificationEnabled = it
                         if (it) { // open notification.
@@ -341,6 +297,7 @@ fun WidgetsSettingsScreen(
                     }
                 )
             }
+            smallSeparatorItem()
             switchPreferenceItem(R.string.settings_widgets_notification_persistent_switch) { id ->
                 SwitchPreferenceView(
                     titleId = id,
@@ -358,6 +315,7 @@ fun WidgetsSettingsScreen(
                     }
                 )
             }
+            smallSeparatorItem()
             listPreferenceItem(R.string.settings_widgets_notification_style_title) { id ->
                 ListPreferenceView(
                     titleId = id,
@@ -366,6 +324,7 @@ fun WidgetsSettingsScreen(
                     nameArrayId = R.array.notification_styles,
                     enabled = notificationEnabled && hasNotificationPermission,
                     card = true,
+                    isLast = Build.VERSION.SDK_INT < Build.VERSION_CODES.M,
                     onValueChanged = {
                         SettingsManager
                             .getInstance(context)
@@ -375,6 +334,7 @@ fun WidgetsSettingsScreen(
                 )
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                smallSeparatorItem()
                 switchPreferenceItem(R.string.settings_widgets_notification_temp_icon_switch) { id ->
                     SwitchPreferenceView(
                         titleId = id,
@@ -392,6 +352,7 @@ fun WidgetsSettingsScreen(
                         }
                     )
                 }
+                smallSeparatorItem()
                 switchPreferenceItem(R.string.settings_widgets_notification_feels_like_switch) { id ->
                     SwitchPreferenceView(
                         titleId = id,
@@ -403,6 +364,7 @@ fun WidgetsSettingsScreen(
                         enabled = notificationEnabled &&
                             hasNotificationPermission &&
                             notificationTemperatureIconEnabled,
+                        isLast = true,
                         onValueChanged = {
                             SettingsManager
                                 .getInstance(context)
@@ -414,12 +376,14 @@ fun WidgetsSettingsScreen(
             }
             sectionFooterItem(R.string.settings_widgets_section_notification_widget)
 
+            largeSeparatorItem()
+
             sectionHeaderItem(R.string.settings_widgets_broadcast_title)
             broadcastSources
                 .sortedWith { ws1, ws2 ->
                     Collator.getInstance(context.currentLocale).compare(ws1.name, ws2.name)
                 }
-                .forEach { broadcastSource ->
+                .forEachIndexed { index, broadcastSource ->
                     item(key = broadcastSource.id) {
                         val config = SourceConfigStore(context, broadcastSource.id)
                         val enabledPackages = (config.getString("packages", null) ?: "").let {
@@ -435,11 +399,16 @@ fun WidgetsSettingsScreen(
                                 broadcastSource.name
                             ),
                             intent = broadcastSource.intentAction,
-                            selectedKeys = enabledPackages
+                            selectedKeys = enabledPackages,
+                            isFirst = index == 0,
+                            isLast = index == broadcastSources.lastIndex
                         ) {
                             config.edit().putString("packages", it.joinToString(",")).apply()
                             broadcastDataIfNecessary(context, broadcastSource.id)
                         }
+                    }
+                    if (index != broadcastSources.lastIndex) {
+                        smallSeparatorItem()
                     }
                 }
             sectionFooterItem(R.string.settings_widgets_broadcast_title)

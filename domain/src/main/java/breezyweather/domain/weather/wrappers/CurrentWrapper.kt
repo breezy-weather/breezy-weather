@@ -28,7 +28,7 @@ import breezyweather.domain.weather.model.Wind
 data class CurrentWrapper(
     val weatherText: String? = null,
     val weatherCode: WeatherCode? = null,
-    val temperature: Temperature? = null,
+    val temperature: TemperatureWrapper? = null,
     val wind: Wind? = null,
     val uV: UV? = null,
     val relativeHumidity: Double? = null,
@@ -49,7 +49,7 @@ data class CurrentWrapper(
     ) = Current(
         weatherText = this.weatherText,
         weatherCode = this.weatherCode,
-        temperature = this.temperature,
+        temperature = this.temperature?.toTemperature(),
         wind = this.wind,
         uV = uV ?: this.uV,
         relativeHumidity = this.relativeHumidity,

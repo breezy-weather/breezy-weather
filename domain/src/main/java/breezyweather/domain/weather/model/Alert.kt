@@ -35,6 +35,9 @@ data class Alert(
     val startDate: Date? = null,
     val endDate: Date? = null,
     val headline: String? = null,
+    /**
+     * HTML accepted. For compatibility with non-HTML fields, line breaks (\n) will be replaced with <br />.
+     */
     val description: String? = null,
     val instruction: String? = null,
     val source: String? = null,

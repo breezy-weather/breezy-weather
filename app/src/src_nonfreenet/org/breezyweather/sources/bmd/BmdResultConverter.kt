@@ -24,7 +24,9 @@ import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.R
 import org.breezyweather.sources.bmd.json.BmdData
 import org.breezyweather.sources.bmd.json.BmdForecastResult
@@ -98,7 +100,7 @@ internal fun getDailyForecast(
         dailyList.add(
             DailyWrapper(
                 date = date,
-                day = HalfDay(
+                day = HalfDayWrapper(
                     weatherText = getWeatherText(
                         context = context,
                         cloudCover = ccDayMap.getOrElse(key) { null },
@@ -108,7 +110,7 @@ internal fun getDailyForecast(
                         cloudCover = ccDayMap.getOrElse(key) { null },
                         rainfall = rfMap.getOrElse(key) { null }
                     ),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = maxTMap.getOrElse(key) { null }
                     ),
                     wind = Wind(
@@ -121,7 +123,7 @@ internal fun getDailyForecast(
                     ),
                     cloudCover = ccDayMap.getOrElse(key) { null }
                 ),
-                night = HalfDay(
+                night = HalfDayWrapper(
                     weatherText = getWeatherText(
                         context = context,
                         cloudCover = ccNightMap.getOrElse(key) { null },
@@ -131,7 +133,7 @@ internal fun getDailyForecast(
                         cloudCover = ccNightMap.getOrElse(key) { null },
                         rainfall = rfMap.getOrElse(key) { null }
                     ),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = minTMap.getOrElse(key) { null }
                     ),
                     wind = Wind(
@@ -206,7 +208,7 @@ internal fun getHourlyForecast(
                     cloudCover = ccMap.getOrElse(key) { null },
                     rainfall = rfMap.getOrElse(key) { null }
                 ),
-                temperature = Temperature(
+                temperature = TemperatureWrapper(
                     temperature = tMap.getOrElse(key) { null }
                 ),
                 precipitation = Precipitation(

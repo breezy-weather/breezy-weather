@@ -19,7 +19,7 @@ package org.breezyweather.common.basic.models.options
 import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 
 enum class UpdateInterval(
     override val id: String,
@@ -49,7 +49,7 @@ enum class UpdateInterval(
     override val valueArrayId = R.array.automatic_refresh_rate_values
     override val nameArrayId = R.array.automatic_refresh_rates
 
-    override fun getName(context: Context) = Utils.getName(context, this)
+    override fun getName(context: Context) = UnitUtils.getName(context, this)
 
     // Makes locations valid for 1.5 hours when background updates are disabled
     val validityInHour = intervalInHour ?: 1.5

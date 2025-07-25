@@ -27,6 +27,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
@@ -125,9 +126,9 @@ internal fun getCurrent(
         CurrentWrapper(
             weatherText = getWeatherText(context, it.conditionCode),
             weatherCode = getWeatherCode(it.conditionCode),
-            temperature = Temperature(
+            temperature = TemperatureWrapper(
                 temperature = it.airTemperature,
-                apparentTemperature = it.feelsLikeTemperature
+                feelsLike = it.feelsLikeTemperature
             ),
             wind = Wind(
                 degree = it.windDirection,
@@ -169,9 +170,9 @@ internal fun getHourlyForecast(
                     date = it.forecastTimeUtc,
                     weatherText = getWeatherText(context, it.conditionCode),
                     weatherCode = getWeatherCode(it.conditionCode),
-                    temperature = Temperature(
+                    temperature = TemperatureWrapper(
                         temperature = it.airTemperature,
-                        apparentTemperature = it.feelsLikeTemperature
+                        feelsLike = it.feelsLikeTemperature
                     ),
                     precipitation = Precipitation(
                         total = it.totalPrecipitation
@@ -218,8 +219,11 @@ internal fun getAlertList(
                         severity = getAlertSeverity(singleAlert.severity)
                         alertList.add(
                             Alert(
-                                alertId = singleAlert.phenomenon + " " + singleAlert.severity +
-                                    " " + singleAlert.tFrom?.time.toString(),
+                                alertId = singleAlert.phenomenon +
+                                    " " +
+                                    singleAlert.severity +
+                                    " " +
+                                    singleAlert.tFrom?.time.toString(),
                                 startDate = singleAlert.tFrom,
                                 endDate = singleAlert.tTo,
                                 headline = getAlertText(context, singleAlert.headline),

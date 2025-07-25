@@ -16,6 +16,7 @@
 
 package breezyweather.domain.weather.model
 
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import java.io.Serializable
 
 /**
@@ -24,13 +25,19 @@ import java.io.Serializable
  */
 data class Temperature(
     val temperature: Double? = null,
-    val realFeelTemperature: Double? = null,
-    val realFeelShaderTemperature: Double? = null,
-    val apparentTemperature: Double? = null,
-    val windChillTemperature: Double? = null,
-    val wetBulbTemperature: Double? = null,
+    val sourceFeelsLike: Double? = null,
+    val computedApparent: Double? = null,
+    val computedWindChill: Double? = null,
+    val computedHumidex: Double? = null,
 ) : Serializable {
 
-    val feelsLikeTemperature: Double? = realFeelTemperature ?: realFeelShaderTemperature
-        ?: apparentTemperature ?: windChillTemperature ?: wetBulbTemperature
+    val feelsLikeTemperature: Double? = sourceFeelsLike
+        ?: computedApparent
+        ?: computedWindChill
+        ?: computedHumidex
+
+    fun toTemperatureWrapper() = TemperatureWrapper(
+        temperature = this.temperature,
+        feelsLike = this.sourceFeelsLike
+    )
 }

@@ -22,20 +22,21 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
-import org.breezyweather.common.basic.GeoActivity
+import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
 import org.breezyweather.common.extensions.getFormattedShortDayAndMonth
+import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.weather.model.getWeek
 import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerViewAdapter
 import org.breezyweather.ui.common.widgets.trend.item.DailyTrendItemView
-import org.breezyweather.ui.main.utils.MainThemeColorProvider
 import java.util.Date
 
 abstract class AbsDailyTrendAdapter(
-    val activity: GeoActivity,
+    val activity: BreezyActivity,
     location: Location,
 ) : TrendRecyclerViewAdapter<AbsDailyTrendAdapter.ViewHolder>(location) {
 
@@ -44,7 +45,7 @@ abstract class AbsDailyTrendAdapter(
 
         @SuppressLint("SetTextI18n, InflateParams", "DefaultLocale")
         fun onBindView(
-            activity: GeoActivity,
+            activity: BreezyActivity,
             location: Location,
             talkBackBuilder: StringBuilder,
             position: Int,
@@ -54,11 +55,15 @@ abstract class AbsDailyTrendAdapter(
             val daily = weather!!.dailyForecast[position]
             val todayIndex = weather.todayIndex
             talkBackBuilder.append(context.getString(R.string.comma_separator))
-            when (position) {
-                todayIndex -> talkBackBuilder.append(context.getString(R.string.daily_today))
-                todayIndex - 1 -> talkBackBuilder.append(context.getString(R.string.daily_yesterday))
-                todayIndex + 1 -> talkBackBuilder.append(context.getString(R.string.daily_tomorrow))
-                else -> talkBackBuilder.append(daily.getWeek(location, context, full = true))
+            if (todayIndex != null) {
+                when (position) {
+                    todayIndex -> talkBackBuilder.append(context.getString(R.string.daily_today))
+                    todayIndex - 1 -> talkBackBuilder.append(context.getString(R.string.daily_yesterday))
+                    todayIndex + 1 -> talkBackBuilder.append(context.getString(R.string.daily_tomorrow))
+                    else -> talkBackBuilder.append(daily.getWeek(location, context, full = true))
+                }
+            } else {
+                talkBackBuilder.append(daily.getWeek(location, context, full = true))
             }
             if (position == todayIndex) {
                 dailyItem.setWeekText(context.getString(R.string.daily_today_short))
@@ -70,16 +75,20 @@ abstract class AbsDailyTrendAdapter(
             dailyItem.setDateText(daily.date.getFormattedShortDayAndMonth(location, context))
             val useAccentColorForDate = daily.isToday(location) || daily.date > Date()
             dailyItem.setTextColor(
-                MainThemeColorProvider.getColor(
-                    location,
-                    if (useAccentColorForDate) R.attr.colorTitleText else R.attr.colorBodyText
-                ),
-                MainThemeColorProvider.getColor(
-                    location,
-                    if (useAccentColorForDate) R.attr.colorBodyText else R.attr.colorCaptionText
-                )
+                activity.getThemeColor(if (useAccentColorForDate) R.attr.colorTitleText else R.attr.colorBodyText),
+                activity.getThemeColor(if (useAccentColorForDate) R.attr.colorBodyText else R.attr.colorCaptionText)
             )
-            dailyItem.setOnClickListener { onItemClicked(activity, location, bindingAdapterPosition) }
+        }
+
+        protected fun onItemClicked(
+            activity: BreezyActivity,
+            location: Location,
+            adapterPosition: Int,
+            detailScreen: DetailScreen,
+        ) {
+            if (activity.isActivityResumed) {
+                IntentHelper.startDailyWeatherActivity(activity, location.formattedId, adapterPosition, detailScreen)
+            }
         }
     }
 
@@ -87,12 +96,4 @@ abstract class AbsDailyTrendAdapter(
     abstract fun isValid(location: Location): Boolean
     abstract fun getDisplayName(context: Context): String
     abstract fun bindBackgroundForHost(host: TrendRecyclerView)
-
-    companion object {
-        protected fun onItemClicked(activity: GeoActivity, location: Location, adapterPosition: Int) {
-            if (activity.isActivityResumed) {
-                IntentHelper.startDailyWeatherActivity(activity, location.formattedId, adapterPosition)
-            }
-        }
-    }
 }

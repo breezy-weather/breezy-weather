@@ -19,7 +19,7 @@ package org.breezyweather.common.basic.models.options
 import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.BaseEnum
-import org.breezyweather.common.basic.models.options.basic.Utils
+import org.breezyweather.common.basic.models.options.basic.UnitUtils
 
 enum class NotificationTextColor(
     override val id: String,
@@ -42,5 +42,5 @@ enum class NotificationTextColor(
     override val valueArrayId = R.array.notification_text_color_values
     override val nameArrayId = R.array.notification_text_colors
 
-    override fun getName(context: Context) = Utils.getName(context, this)
+    override fun getName(context: Context) = UnitUtils.getName(context, this)
 }

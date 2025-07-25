@@ -17,6 +17,7 @@
 package org.breezyweather.sources.accu
 
 import android.content.Context
+import androidx.annotation.DrawableRes
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -99,6 +100,14 @@ class AccuService @Inject constructor(
         SourceFeature.ALERT to weatherAttribution,
         SourceFeature.NORMALS to weatherAttribution
     )
+    override val attributionLinks = mapOf(
+        weatherAttribution to "https://www.accuweather.com/"
+    )
+
+    @DrawableRes
+    override fun getAttributionIcon(): Int {
+        return R.drawable.accu_icon
+    }
 
     override fun isFeatureSupportedForLocation(
         location: Location,
@@ -141,7 +150,7 @@ class AccuService @Inject constructor(
         } else {
             "en"
         }
-        val metric = SettingsManager.getInstance(context).precipitationUnit != PrecipitationUnit.IN
+        val metric = SettingsManager.getInstance(context).getPrecipitationUnit(context) != PrecipitationUnit.INCH
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
             mApi.getCurrent(
@@ -328,7 +337,7 @@ class AccuService @Inject constructor(
                     accuClimoResult.Normals?.Temperatures != null
                 ) {
                     Normals(
-                        month = cal[Calendar.MONTH],
+                        month = cal[Calendar.MONTH] + 1,
                         daytimeTemperature = accuClimoResult.Normals.Temperatures.Maximum.Metric?.Value,
                         nighttimeTemperature = accuClimoResult.Normals.Temperatures.Minimum.Metric?.Value
                     )

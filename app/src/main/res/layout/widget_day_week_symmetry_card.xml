@@ -27,8 +27,8 @@
                 android:layout_width="@dimen/widget_current_weather_icon_size"
                 android:layout_height="@dimen/widget_current_weather_icon_size"
                 android:layout_centerInParent="true"
-                android:layout_marginStart="@dimen/little_margin"
-                android:layout_marginEnd="@dimen/little_margin"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginEnd="@dimen/small_margin"
                 android:src="@drawable/weather_cloudy"
                 tools:ignore="ContentDescription" />
 
@@ -90,7 +90,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/little_margin"
+            android:layout_marginTop="@dimen/small_margin"
             tools:ignore="DisableBaselineAlignment">
 
             <RelativeLayout
@@ -110,8 +110,8 @@
 
                 <ImageView
                     android:id="@+id/widget_day_week_icon_1"
-                    android:layout_width="@dimen/widget_little_weather_icon_size"
-                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_width="@dimen/widget_small_weather_icon_size"
+                    android:layout_height="@dimen/widget_small_weather_icon_size"
                     android:layout_below="@id/widget_day_week_week_1"
                     android:layout_centerHorizontal="true"
                     android:padding="2dp"
@@ -149,8 +149,8 @@
 
                 <ImageView
                     android:id="@+id/widget_day_week_icon_2"
-                    android:layout_width="@dimen/widget_little_weather_icon_size"
-                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_width="@dimen/widget_small_weather_icon_size"
+                    android:layout_height="@dimen/widget_small_weather_icon_size"
                     android:layout_below="@id/widget_day_week_week_2"
                     android:layout_centerHorizontal="true"
                     android:padding="2dp"
@@ -188,8 +188,8 @@
 
                 <ImageView
                     android:id="@+id/widget_day_week_icon_3"
-                    android:layout_width="@dimen/widget_little_weather_icon_size"
-                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_width="@dimen/widget_small_weather_icon_size"
+                    android:layout_height="@dimen/widget_small_weather_icon_size"
                     android:layout_below="@id/widget_day_week_week_3"
                     android:layout_centerHorizontal="true"
                     android:padding="2dp"
@@ -227,8 +227,8 @@
 
                 <ImageView
                     android:id="@+id/widget_day_week_icon_4"
-                    android:layout_width="@dimen/widget_little_weather_icon_size"
-                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_width="@dimen/widget_small_weather_icon_size"
+                    android:layout_height="@dimen/widget_small_weather_icon_size"
                     android:layout_below="@id/widget_day_week_week_4"
                     android:layout_centerHorizontal="true"
                     android:padding="2dp"
@@ -266,8 +266,8 @@
 
                 <ImageView
                     android:id="@+id/widget_day_week_icon_5"
-                    android:layout_width="@dimen/widget_little_weather_icon_size"
-                    android:layout_height="@dimen/widget_little_weather_icon_size"
+                    android:layout_width="@dimen/widget_small_weather_icon_size"
+                    android:layout_height="@dimen/widget_small_weather_icon_size"
                     android:layout_below="@id/widget_day_week_week_5"
                     android:layout_centerHorizontal="true"
                     android:padding="2dp"

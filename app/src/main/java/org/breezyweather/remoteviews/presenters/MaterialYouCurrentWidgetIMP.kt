@@ -110,7 +110,7 @@ class MaterialYouCurrentWidgetIMP : AbstractRemoteViewsPresenter() {
             val provider = ResourcesProviderFactory.newInstance
 
             val settings = SettingsManager.getInstance(context)
-            val temperatureUnit = settings.temperatureUnit
+            val temperatureUnit = settings.getTemperatureUnit(context)
 
             // current.
             weather.current?.weatherCode?.let {
@@ -133,7 +133,7 @@ class MaterialYouCurrentWidgetIMP : AbstractRemoteViewsPresenter() {
                     var ratio = min(
                         defaultDimension,
                         min(widgetSize.heightPx, widgetSize.widthPx).toDouble()
-                    ) / defaultDimension
+                    ).div(defaultDimension)
                     val iconDimension = context.resources.getDimensionPixelSize(
                         R.dimen.widget_material_you_current_default_icon_size
                     )
@@ -171,7 +171,7 @@ class MaterialYouCurrentWidgetIMP : AbstractRemoteViewsPresenter() {
             } ?: views.setViewVisibility(R.id.widget_material_you_current_currentIcon, View.INVISIBLE)
 
             val temperatureText = weather.current?.temperature?.temperature?.let {
-                temperatureUnit.getShortValueText(context, it)
+                temperatureUnit.formatMeasureShort(context, it)
             }
             views.setTextViewText(
                 R.id.widget_material_you_current_currentTemperature,

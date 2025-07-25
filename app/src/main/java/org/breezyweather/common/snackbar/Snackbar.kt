@@ -38,8 +38,10 @@ import androidx.annotation.IntDef
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.withStyledAttributes
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
 import com.google.android.material.behavior.SwipeDismissBehavior
 import org.breezyweather.R
@@ -327,12 +329,10 @@ class Snackbar private constructor(
         private var mOnAttachStateChangeListener: OnAttachStateChangeListener? = null
 
         init {
-            val a = context.obtainStyledAttributes(
+            context.withStyledAttributes(
                 attrs,
                 com.google.android.material.R.styleable.SnackbarLayout
-            )
-
-            a.recycle()
+            ) {}
             isClickable = true
             fitsSystemWindows = false
             LayoutInflater.from(context).inflate(layoutId, this)
@@ -342,7 +342,7 @@ class Snackbar private constructor(
         @Deprecated("Deprecated in Java")
         override fun requestFitSystemWindows() {
             // Do not apply horizontal insets in home fragment
-            val isHomeFragment = this.parent is CoordinatorLayout
+            val isHomeFragment = parent is CoordinatorLayout
             val insets = ViewCompat.getRootWindowInsets(this)
             val i = insets?.getInsets(WindowInsetsCompat.Type.systemBars() + WindowInsetsCompat.Type.displayCutout())
             if (i != null) {
@@ -392,14 +392,8 @@ class Snackbar private constructor(
                 heightUsed
             )
             val lp = child.layoutParams as MarginLayoutParams
-            width = (
-                child.measuredWidth + widthUsed + lp.leftMargin + lp.rightMargin +
-                    paddingLeft + paddingRight
-                )
-            height = (
-                child.measuredHeight + heightUsed + lp.topMargin + lp.bottomMargin +
-                    paddingTop + paddingBottom
-                )
+            width = child.measuredWidth + widthUsed + lp.leftMargin + lp.rightMargin + paddingLeft + paddingRight
+            height = child.measuredHeight + heightUsed + lp.topMargin + lp.bottomMargin + paddingTop + paddingBottom
             setMeasuredDimension(width, height)
         }
 
@@ -408,9 +402,8 @@ class Snackbar private constructor(
 
             // Set left insets for system bars and evenly align the snackbar
             // within the safe drawing area.
-            val x = mWindowInsets.left + (
-                measuredWidth - child.measuredWidth - mWindowInsets.left - mWindowInsets.right
-                ) / 2
+            val x = mWindowInsets.left +
+                (measuredWidth - child.measuredWidth - mWindowInsets.left - mWindowInsets.right).div(2)
             child.layout(x, 0, x + child.measuredWidth, child.measuredHeight)
             mOnLayoutChangeListener?.invoke(this, l, t, r, b)
         }
@@ -435,7 +428,7 @@ class Snackbar private constructor(
                     .start()
 
                 actionView?.let { aView ->
-                    if (aView.visibility == VISIBLE) {
+                    if (aView.isVisible) {
                         aView.alpha = 0f
                         aView.animate()
                             .alpha(1f)
@@ -457,7 +450,7 @@ class Snackbar private constructor(
                     .start()
 
                 actionView?.let { aView ->
-                    if (aView.visibility == VISIBLE) {
+                    if (aView.isVisible) {
                         aView.alpha = 1f
                         mView.animate()
                             .alpha(0f)
