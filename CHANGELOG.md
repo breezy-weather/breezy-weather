@@ -3,6 +3,7 @@
 **Improvements and fixes**
 - Widgets - Improve UX of custom subtitle documentation (@codewithdipesh)
 - Main screen - Show “Negligible” inside Pollen block if there is no pollen today instead of an empty block
+- Nowcasting chart/Precipitation notification - Fix slightly wrong ending time of precipitation report
 
 **Weather sources**
 - [GeoSphere AT] Fix missing info in warnings

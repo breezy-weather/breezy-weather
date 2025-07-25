@@ -79,7 +79,7 @@ fun Weather.getMinutelyDescription(context: Context, location: Location): String
             when (case) {
                 1 -> minutelyForecast.first { (it.dbz ?: 0) > 0 }.date
                     .getFormattedTime(location, context, context.is12Hour)
-                else -> minutelyForecast.last { (it.dbz ?: 0) > 0 }.date
+                else -> minutelyForecast.last { (it.dbz ?: 0) > 0 }.endingDate
                     .getFormattedTime(location, context, context.is12Hour)
             }
         )

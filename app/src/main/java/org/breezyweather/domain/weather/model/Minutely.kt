@@ -64,8 +64,7 @@ fun List<Minutely>.getContentDescription(context: Context, location: Location): 
                     context.getString(
                         R.string.precipitation_between_time,
                         slice.first().date.getFormattedTime(location, context, context.is12Hour),
-                        Date(slice.last().date.time + slice.last().minuteInterval.minutes.inWholeMilliseconds)
-                            .getFormattedTime(location, context, context.is12Hour)
+                        slice.last().endingDate.getFormattedTime(location, context, context.is12Hour)
                     )
                 )
                 contentDescription.append(context.getString(R.string.colon_separator))
@@ -84,8 +83,7 @@ fun List<Minutely>.getContentDescription(context: Context, location: Location): 
             context.getString(
                 R.string.precipitation_between_time,
                 slice.first().date.getFormattedTime(location, context, context.is12Hour),
-                Date(slice.last().date.time + slice.last().minuteInterval.minutes.inWholeMilliseconds)
-                    .getFormattedTime(location, context, context.is12Hour)
+                slice.last().endingDate.getFormattedTime(location, context, context.is12Hour)
             )
         )
         contentDescription.append(context.getString(R.string.colon_separator))

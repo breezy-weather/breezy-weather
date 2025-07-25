@@ -100,7 +100,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
 
         val minutelyList = weather.minutelyForecast
         val minX = minutelyList.first().date.time
-        val maxX = minutelyList.last().date.time + minutelyList.last().minuteInterval.minutes.inWholeMilliseconds
+        val maxX = minutelyList.last().endingDate.time
 
         val minutely = location.weather!!.minutelyForecastBy5Minutes
             .associate { it.date.time to (it.precipitationIntensity ?: 0.0) }
