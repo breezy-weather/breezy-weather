@@ -268,7 +268,7 @@
     <string name="wind_strength_9">Mycket hård vind</string>
     <string name="wind_strength_10">Storm</string>
     <string name="wind_strength_11">Svår storm</string>
-    <string name="wind_strength_12">Orkan</string>
+    <string name="wind_strength_12">Orkanstyrka</string>
     <string name="air_quality_level_1">Utmärkt</string>
     <string name="air_quality_level_1_description">Luftkvaliteten är idealisk för de flesta, så njut av dina utomhusaktiviteter.</string>
     <string name="air_quality_level_2">Vackert</string>
@@ -327,7 +327,7 @@
     <string name="settings_weather_sources_summary">Förvald väderkälla för nya platser, egna API-nycklar, andra källinställningar</string>
     <string name="settings_widgets_live_wallpaper_title">Levande bakgrund</string>
     <string name="settings_notifications">Aviseringar</string>
-    <string name="settings_main_summary">Kortordning, visade objekt, animationer</string>
+    <string name="settings_main_summary">Blockordning, visade objekt, animationer</string>
     <string name="about_contributors">Utvecklare</string>
     <string name="settings_widgets_summary">Ange bakgrundsbild, konfigurera använda widgetar, aviseringswidget</string>
     <string name="settings_background_updates_summary">Uppdateringsfrekvens, problemlösning</string>
@@ -446,7 +446,7 @@
     <string name="settings_widgets_broadcast_send_data_title">Skicka väderdata till %s</string>
     <string name="notification_refreshed_at">Uppdaterades vid</string>
     <string name="common_weather_text_clear_sky">Klart</string>
-    <string name="settings_appearance_dark_mode_locations_title">Dag-/nattläge för platser</string>
+    <string name="settings_appearance_dark_mode_locations_title">Platsbaserat mörkt läge</string>
     <string name="settings_main_daily_trends_title">Dagstrender</string>
     <string name="settings_background_updates_worker_info_summary">Senast körd: %s</string>
     <string name="unit_mmhg">mmHg</string>
@@ -461,7 +461,7 @@
     <string name="settings_notifications_forecast_tomorrow_title">Avisering om nästa dags prognos</string>
     <string name="settings_main_section_displayed_data">Visade data</string>
     <string name="settings_widgets_section_notification_widget">Aviseringswidget</string>
-    <string name="settings_appearance_dark_mode_title">Mörkt läge</string>
+    <string name="settings_appearance_dark_mode_title">Mörkt läge i appen</string>
     <string name="settings_background_updates_battery_optimization_disabled">Batterioptimering är redan inaktiverad.</string>
     <string name="message_network_unavailable">Nätverk ej tillgängligt</string>
     <string name="settings_main_hourly_trends_title">Timtrender</string>
@@ -518,10 +518,10 @@
     <string name="settings_notifications_forecast_time_tomorrow_title">Aviseringstid för nästa dags prognos</string>
     <string name="settings_background_updates_worker_info_title">Processinfo</string>
     <string name="location_service_native">Inbyggt API</string>
-    <string name="settings_main_cards_title">Kort</string>
+    <string name="settings_main_cards_title">Block</string>
     <string name="settings_main_cards_other_element_animations_switch">Andra objektanimationer</string>
     <string name="notification_style_native">Inbyggd</string>
-    <string name="settings_main_cards_fade_in_switch">Kortframtoning</string>
+    <string name="settings_main_cards_fade_in_switch">Blockframtoning</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatur som statusfältsikon</string>
     <string name="settings_items_drag_to_sort">Tryck för att dra listobjekten för sortering</string>
     <string name="common_weather_text_mainly_clear">Mestadels klart</string>
@@ -566,7 +566,7 @@
     <string name="alert">Varning</string>
     <string name="location_delete_location_dialog_title">Ta bort plats?</string>
     <string name="weather_message_too_frequent_refreshes">Vänligen vänta några sekunder innan du försöker igen …</string>
-    <string name="widget_custom_subtitle_keyword_caqi_description">Rådande Luftkvalitetsindex</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Nuvarande luftkvalitetsindex</string>
     <string name="message_invalid_incomplete_data">Ogiltiga eller ofullständiga data mottagna från server</string>
     <string name="location_delete_location_dialog_message">Du håller på att ta bort “%s” från din lista över sparade platser.</string>
     <string name="location_delete_location_dialog_message_no_name">Du håller på att ta bort denna plats från din lista över sparade platser.</string>
@@ -764,6 +764,26 @@
     <string name="visibility_about">Om sikt</string>
     <string name="visibility_from_to_number">%1$s till %2$s</string>
     <string name="visibility_from_to_description">%1$s till %2$s</string>
-    <string name="visibility_perfectly_clear">Mycket god sikt</string>
-    <string name="visibility_clear">God sikt</string>
+    <string name="visibility_perfectly_clear">Helt klart</string>
+    <string name="visibility_clear">Klart</string>
+    <string name="visibility_good">Bra</string>
+    <string name="visibility_moderate">Måttlig</string>
+    <string name="visibility_poor">Dålig</string>
+    <string name="visibility_very_poor">Mycket dålig</string>
+    <string name="cloud_cover_about">Om molntäcke</string>
+    <string name="data_sources">Datakällor</string>
+    <string name="action_configure_item">Konfigurera %s</string>
+    <string name="label_description">Beskrivning</string>
+    <string name="label_expanded">Utökad</string>
+    <string name="label_collapsed">Hopfälld</string>
+    <string name="settings_appearance_section_regional">Språk och region</string>
+    <string name="settings_appearance_section_theme">Tema</string>
+    <string name="unit_bft_nominative">%s Bft</string>
+    <string name="unit_mum">µm</string>
+    <string name="unit_mum_voice">Mikrometer</string>
+    <string name="about_update_check_eol">Denna Android-version stöds inte längre</string>
+    <string name="chart_maximum_value">Maxvärde</string>
+    <string name="settings_appearance_dark_mode_locations_day_night">Följ dag/natt</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Alltid mörkt när appen är i mörkt läge</string>
+    <string name="ephemeris_about_dusk">Den mörkaste fasen av skymningen innan det sista synliga ljuset försvinner.</string>
 </resources>
