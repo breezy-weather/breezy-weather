@@ -1,6 +1,7 @@
 # Version 6.0.5-alpha (not yet released)
 
 **Improvements and fixes**
+- Main screen - Allow to move small blocks by drag & drop
 - Widgets - Improve UX of custom subtitle documentation (@codewithdipesh)
 - Main screen - Show “Negligible” inside Pollen block if there is no pollen today instead of an empty block
 - Nowcasting chart/Precipitation notification - Fix slightly wrong ending time of precipitation report
