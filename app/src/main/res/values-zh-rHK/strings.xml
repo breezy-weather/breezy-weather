@@ -420,8 +420,8 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match">最佳組合</string>
     <string name="settings_appearance_language_title">語言</string>
     <string name="settings_appearance_calendar_title">其他曆制</string>
-    <string name="settings_appearance_dark_mode_title">深色模式</string>
-    <string name="settings_appearance_dark_mode_locations_title">跟隨日出日落的深色模式</string>
+    <string name="settings_appearance_dark_mode_title">應用程式深色模式</string>
+    <string name="settings_appearance_dark_mode_locations_title">位置深色模式</string>
     <string name="settings_appearance_icon_pack_title">圖示套件</string>
     <string name="settings_icon_packs_title">圖示套件</string>
     <string name="settings_icon_packs_check_details">檢查詳細資料</string>
@@ -885,4 +885,6 @@
     <string name="temperature_normals_deviation_explanation_minimum">與此位置之%s平均最低氣溫偏差</string>
     <string name="widget_custom_subtitle_help_content_description">顯示自訂副標題關鍵字說明</string>
     <string name="widget_custom_subtitle_alert_box_title">自訂副標題說明</string>
+    <string name="settings_appearance_dark_mode_locations_day_night">跟隨位置晝夜</string>
+    <string name="settings_appearance_dark_mode_locations_dark">應用程式使用深色模式時，總是顯示深色模式</string>
 </resources>
