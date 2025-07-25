@@ -16,6 +16,16 @@
         <item>dark</item>
     </string-array>
 
+    <!-- Location-based dark mode. -->
+    <string-array name="dark_modes_location">
+        <item>@string/settings_appearance_dark_mode_locations_day_night</item>
+        <item>@string/settings_appearance_dark_mode_locations_dark</item>
+    </string-array>
+    <string-array name="dark_mode_location_values">
+        <item>day_night</item>
+        <item>dark</item>
+    </string-array>
+
     <!-- automatic refresh rate. -->
     <string-array name="automatic_refresh_rates">
         <item>@string/settings_background_updates_refresh_never</item>

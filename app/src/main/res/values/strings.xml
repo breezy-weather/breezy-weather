@@ -736,10 +736,12 @@
     <string name="settings_appearance_section_theme">Theme</string>
     <string name="settings_appearance_language_title">Language</string>
     <string name="settings_appearance_calendar_title">Alternate calendar</string>
-    <string name="settings_appearance_dark_mode_title">Dark mode</string>
-    <string name="settings_appearance_dark_mode_locations_title">Day / Night mode for locations</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">Always enabled with light mode</string>
-    <string name="settings_appearance_dark_mode_locations_disabled">Disabled, but locations are always in dark mode at nighttime</string>
+    <string name="settings_appearance_dark_mode_title">App dark mode</string>
+    <string name="settings_appearance_dark_mode_locations_title">Location-based dark mode</string>
+    <string name="settings_appearance_dark_mode_locations_day_night">Follow day/night</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Always dark when app is in dark mode</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled" translatable="false">Always enabled with light mode</string>
+    <string name="settings_appearance_dark_mode_locations_disabled" translatable="false">Disabled, but locations are always in dark mode at nighttime</string>
     <string name="settings_appearance_icon_pack_title">Icon pack</string>
     <string name="settings_icon_packs_title">Icon packs</string>
     <string name="settings_icon_packs_check_details">Check details</string>

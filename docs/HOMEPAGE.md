@@ -15,12 +15,16 @@ Main screen shows the weather for the selected location, with an optional drawer
 
 In the background, you can see an animation matching the current weather condition.
 
-The color of the background depends on dark mode from settings and whether the sun is up for the selected location:
+The color of the background depends on dark mode settings and whether the sun is up for the selected location:
 
-| Elements                          | Dark mode on | Dark mode off |
-|-----------------------------------|--------------|---------------|
-| Background color when sun is up   | Dark         | Light         |
-| Background color when sun is down | Dark         | Dark          |
+| App dark mode¹   | Location-based dark mode             | Sun is up | Sun is down |
+|------------------|--------------------------------------|-----------|-------------|
+| Light            | Follow day/night                     | Light     | Dark        |
+| Light            | Always dark when app is in dark mode | Light     | Dark        |
+| Dark             | Follow day/night                     | Light     | Dark        |
+| Dark             | Always dark when app is in dark mode | Dark      | Dark        |
+
+¹If set to “Follow system”, pick the current system dark mode to read this table
 
 This animation is dynamic by default, but you can choose a static one in the settings (Appearance).
 

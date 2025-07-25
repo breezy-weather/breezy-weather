@@ -573,10 +573,10 @@
     <string name="settings_appearance_summary">Langue, mode sombre, pack d’icônes, unités</string>
     <string name="settings_appearance_language_title">Langue</string>
     <string name="settings_appearance_calendar_title">Calendrier alternatif</string>
-    <string name="settings_appearance_dark_mode_title">Mode sombre</string>
-    <string name="settings_appearance_dark_mode_locations_title">Mode Jour / Nuit pour les emplacements</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">Toujours actif en mode clair</string>
-    <string name="settings_appearance_dark_mode_locations_disabled">Inactif, mais les emplacements sont toujours en mode sombre de nuit</string>
+    <string name="settings_appearance_dark_mode_title">Mode sombre de l’application</string>
+    <string name="settings_appearance_dark_mode_locations_title">Mode sombre selon l’emplacement</string>
+    <string name="settings_appearance_dark_mode_locations_day_night">En fonction du jour ou de la nuit</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Toujours sombre quand l’application est en mode sombre</string>
     <string name="settings_appearance_icon_pack_title">Pack d’icônes</string>
     <string name="settings_icon_packs_title">Packs d’icônes</string>
     <string name="settings_main">Écran principal</string>

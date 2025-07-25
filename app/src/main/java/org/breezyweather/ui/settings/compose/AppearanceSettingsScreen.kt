@@ -52,6 +52,7 @@ import androidx.compose.ui.unit.dp
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.DarkMode
+import org.breezyweather.common.basic.models.options.DarkModeLocation
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.toBitmap
 import org.breezyweather.common.utils.helpers.IntentHelper
@@ -150,20 +151,21 @@ fun AppearanceSettingsScreen(
             }
             smallSeparatorItem()
             switchPreferenceItem(R.string.settings_appearance_dark_mode_locations_title) { id ->
-                SwitchPreferenceView(
+                // Always “Follow day/night” when selected app dark mode is “Always light”:
+                ListPreferenceView(
                     titleId = id,
-                    summaryOnId = if (darkMode == DarkMode.LIGHT) {
-                        R.string.settings_appearance_dark_mode_locations_always_enabled
+                    selectedKey = if (darkMode == DarkMode.LIGHT) {
+                        DarkModeLocation.DAY_NIGHT.id
                     } else {
-                        R.string.settings_enabled
+                        DarkModeLocation.getInstance(SettingsManager.getInstance(context).dayNightModeForLocations).id
                     },
-                    summaryOffId = R.string.settings_appearance_dark_mode_locations_disabled,
-                    // TODO: Always true when selected dark mode is “Always light”:
-                    checked = SettingsManager.getInstance(context).dayNightModeForLocations ||
-                        darkMode == DarkMode.LIGHT,
+                    valueArrayId = R.array.dark_mode_location_values,
+                    nameArrayId = R.array.dark_modes_location,
+                    card = true,
                     enabled = darkMode != DarkMode.LIGHT,
                     onValueChanged = {
-                        SettingsManager.getInstance(context).dayNightModeForLocations = it
+                        val newDarkModeLocation = DarkModeLocation.getInstance(it)
+                        SettingsManager.getInstance(context).dayNightModeForLocations = newDarkModeLocation.value
                     }
                 )
             }
