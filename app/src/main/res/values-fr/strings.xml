@@ -258,6 +258,9 @@
     <string name="action_close_menu">Fermer le menu</string>
     <string name="action_toggle_data_type_menu">Menu de sélection du type de données</string>
     <string name="action_share">Partager</string>
+    <string name="action_share_no_app">Aucune appli compatible avec le partage trouvée</string>
+    <string name="action_translate">Traduire</string>
+    <string name="action_translate_no_app">Aucune appli de traduction compatible trouvée</string>
     <string name="action_download">Télécharger</string>
     <string name="locations">Emplacements</string>
     <string name="about_app">À propos</string>
@@ -726,6 +729,7 @@
     <string name="action_edit_location">Modifier cet emplacement</string>
     <string name="action_open_in_other_app">Ouvrir dans une autre app</string>
     <string name="action_open_in_other_app_description">Ouvrir cet emplacement dans une autre application</string>
+    <string name="action_open_in_other_app_no_app">Aucune appli de carte compatible trouvée</string>
     <string name="widget_material_you_forecast">Material You – Prévisions</string>
     <string name="widget_material_you_current">Material You – En ce moment</string>
     <string name="unit_bft_display_name">Beaufort</string>
