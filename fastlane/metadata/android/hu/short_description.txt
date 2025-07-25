@@ -1,1 +1,1 @@
-Funkciógazdag időjárás-alkalmazás az adatok részletes megjelenítésével és sok forrással.
+A feature-rich weather app with good visualizations and many sources.

@@ -1,1 +1,1 @@
-Une appli météo riche en fonctionnalités, visualisations et sources supportées.
+A feature-rich weather app with good visualizations and many sources.
