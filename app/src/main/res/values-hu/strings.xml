@@ -160,7 +160,7 @@
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Élő háttérkép</string>
     <string name="settings_location_service">Helyszínmeghatározási szolgáltatás</string>
-    <string name="settings_appearance_dark_mode_title">Színtéma</string>
+    <string name="settings_appearance_dark_mode_title">Alkalmazás sötét módja</string>
     <string name="settings_appearance_icon_pack_title">Ikonkészlet</string>
     <string name="settings_appearance">Megjelenés</string>
     <string name="settings_main_gravity_sensor_switch">Gravitációs érzékelő használata</string>
@@ -227,7 +227,7 @@
     <string name="weather_message_unsupported_feature">A forrás nem támogatja a kért funkciók valamelyikét</string>
     <string name="message_server_timeout">A kérelem időtúllépés miatt lejárt</string>
     <string name="widget_style_tile">Csempe</string>
-    <string name="settings_appearance_dark_mode_locations_title">Nappali / Éjszakai mód a helyszínekhez</string>
+    <string name="settings_appearance_dark_mode_locations_title">Helyszín alapú</string>
     <string name="temperature_degree_day_heating">Fűtési foknap</string>
     <string name="temperature_degree_day_cooling">Hűtési foknap</string>
     <string name="temperature_normal_short">Normál</string>
@@ -814,4 +814,6 @@
     <string name="temperature_normals_deviation_explanation_minimum">Eltérés az erre a helyszínre vonatkozó %s hónapi átlagos lrgalacsonyabb hőmérséklettől</string>
     <string name="widget_custom_subtitle_help_content_description">Egyéni súgófelirat-kulcsszavak megjelenítése</string>
     <string name="widget_custom_subtitle_alert_box_title">Egyéni segédfelirat</string>
+    <string name="settings_appearance_dark_mode_locations_day_night">Napszaktól függ</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Mindig sötét</string>
 </resources>
