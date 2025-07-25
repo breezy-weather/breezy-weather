@@ -67,8 +67,8 @@
     <string name="settings_section_general">Агульныя</string>
     <string name="settings_background_updates_refresh_never">Ніколі</string>
     <string name="settings_icon_packs_get_more">Яшчэ</string>
-    <string name="settings_main_summary">Парадак картак, паказ элементаў, анімацыі</string>
-    <string name="settings_main_cards_title">Карткі</string>
+    <string name="settings_main_summary">Парадак блокаў, паказ элементаў, анімацыі</string>
+    <string name="settings_main_cards_title">Блокі</string>
     <string name="settings_main_gravity_sensor_switch">Датчык змянення становішча</string>
     <string name="settings_notifications">Апавяшчэнні</string>
     <string name="settings_follow_system">Як у сістэме</string>
@@ -373,7 +373,7 @@
     <string name="settings_main_background_animation_title">Анімацыя фону</string>
     <string name="settings_main_background_animation_enabled">Уключана</string>
     <string name="settings_main_background_animation_disabled">Выключана</string>
-    <string name="settings_main_cards_fade_in_switch">Паступовае з’яўленне картак</string>
+    <string name="settings_main_cards_fade_in_switch">Паступовае з’яўленне блокаў</string>
     <string name="settings_main_cards_other_element_animations_switch">Анімацыя іншых элементаў</string>
     <string name="settings_notifications_summary">Апавяшчэнні пра надвор’е, ападкі або прагноз для першага месцазнаходжання</string>
     <string name="settings_notifications_alerts_title">Апавяшчэнні пра нядобрыя ўмовы надвор’я</string>
@@ -813,9 +813,9 @@
     <string name="ephemeris_about_dawn">Світанне — час перад ўсходам сонца, калі з’яўляецца першае бачнае святло.</string>
     <string name="precipitation_total_day">Ападкі ўдзень</string>
     <string name="precipitation_total_night">Ападкі ўначы</string>
-    <string name="precipitation_rain_total_day">Дажджы ўдзень</string>
+    <string name="precipitation_rain_total_day">Дождж удзень</string>
     <string name="precipitation_rain_total_night">Дождж уначы</string>
-    <string name="precipitation_snow_total_day">Снег ўдзень</string>
+    <string name="precipitation_snow_total_day">Снег удзень</string>
     <string name="precipitation_snow_total_night">Снег уначы</string>
     <string name="ephemeris_dawn_at">Світанне ў %s</string>
     <string name="temperature_normals_deviation">Адхіленне</string>
