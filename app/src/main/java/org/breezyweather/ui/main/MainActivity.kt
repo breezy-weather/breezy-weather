@@ -867,8 +867,7 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
             try {
                 IntentHelper.startBreezyActivity(this@MainActivity, it)
             } catch (ignored: Exception) {
-                // TODO: Use a dedicated string
-                SnackbarHelper.showSnackbar(getString(R.string.settings_widgets_broadcast_send_data_summary_empty))
+                SnackbarHelper.showSnackbar(getString(R.string.action_open_in_other_app_no_app))
             }
         }
     }

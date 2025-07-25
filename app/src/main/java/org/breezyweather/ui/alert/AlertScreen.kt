@@ -29,7 +29,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -54,6 +53,7 @@ import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.breezyweather.R
+import org.breezyweather.common.actionmodecallback.BreezySelectionContainer
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.utils.ColorUtils
@@ -163,7 +163,7 @@ internal fun AlertScreen(
                             }
                             if (!alert.description.isNullOrBlank()) {
                                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
-                                SelectionContainer {
+                                BreezySelectionContainer {
                                     Text(
                                         text = AnnotatedString.fromHtml(
                                             alert.description!!.replace("\n", "<br />")
@@ -179,7 +179,7 @@ internal fun AlertScreen(
                                     HorizontalDivider()
                                 }
                                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
-                                SelectionContainer {
+                                BreezySelectionContainer {
                                     Text(
                                         text = alert.instruction!!,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,

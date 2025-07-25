@@ -18,6 +18,7 @@ package org.breezyweather.common.extensions
 
 import android.Manifest
 import android.app.UiModeManager
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -60,6 +61,9 @@ fun Context.hasPermission(
 val Context.hasNotificationPermission
     get() = Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU ||
         hasPermission(Manifest.permission.POST_NOTIFICATIONS)
+
+val Context.clipboardManager: ClipboardManager
+    get() = getSystemService()!!
 
 val Context.inputMethodManager: InputMethodManager
     get() = getSystemService()!!
