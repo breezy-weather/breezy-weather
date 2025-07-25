@@ -894,7 +894,7 @@
     <string name="precipitation_snow_total_night">晚間降雪</string>
     <string name="daytime_short">日間</string>
     <string name="nighttime_short">晚間</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">總是啟用淺色模式</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled">使用淺色模式時保持啟用</string>
     <string name="settings_appearance_dark_mode_locations_disabled">停用，在晚上總是使用深色模式</string>
     <string name="temperature_normals_deviation">偏差</string>
     <string name="temperature_normals_deviation_explanation_maximum">與此位置之%s平均最高氣溫偏差</string>
