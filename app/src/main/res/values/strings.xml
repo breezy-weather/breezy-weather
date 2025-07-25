@@ -726,6 +726,7 @@
     <string name="settings_appearance_calendar_title">Alternate calendar</string>
     <string name="settings_appearance_dark_mode_title">App dark mode</string>
     <string name="settings_appearance_dark_mode_locations_title">Location-based dark mode</string>
+    <!-- Literally means “Will be in light mode when sun is up and in dark mode when sun is down” -->
     <string name="settings_appearance_dark_mode_locations_day_night">Follow day/night</string>
     <string name="settings_appearance_dark_mode_locations_dark">Always dark when app is in dark mode</string>
     <string name="settings_appearance_icon_pack_title">Icon pack</string>
