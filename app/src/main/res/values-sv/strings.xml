@@ -751,4 +751,19 @@
     <string name="air_quality_health_information">Hälsoinformation</string>
     <string name="pollen_primary">Primärt pollen</string>
     <string name="pollen_details">Uppgifter om pollen</string>
+    <string name="ephemeris_dawn_at">Gryning vid %s</string>
+    <string name="ephemeris_dusk_at">Skymning vid %s</string>
+    <string name="daytime_short">Dag</string>
+    <string name="nighttime_short">Natt</string>
+    <string name="humidity_about">Om relativ luftfuktighet</string>
+    <string name="dew_point_about">Om daggpunkt</string>
+    <string name="pressure_rising">Stigande</string>
+    <string name="pressure_steady">Stabilt</string>
+    <string name="pressure_falling">Fallande</string>
+    <string name="pressure_about">Om lufttryck</string>
+    <string name="visibility_about">Om sikt</string>
+    <string name="visibility_from_to_number">%1$s till %2$s</string>
+    <string name="visibility_from_to_description">%1$s till %2$s</string>
+    <string name="visibility_perfectly_clear">Mycket god sikt</string>
+    <string name="visibility_clear">God sikt</string>
 </resources>
