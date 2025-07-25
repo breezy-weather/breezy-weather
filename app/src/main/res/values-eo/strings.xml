@@ -9,9 +9,7 @@
     <string name="air_quality">Aerkvalito</string>
     <!-- We use it singular in English as in “Grass pollen” -->
     <string name="pollen">Poleno</string>
-    <string name="pollen_and_mold">Poleno &amp; ŝimo</string>
     <string name="ephemeris">Suno &amp; luno</string>
-    <string name="details">Detaloj</string>
     <!-- Alerts -->
     <string name="alert">Atentigo</string>
     <string name="alerts">Atentigoj</string>
@@ -26,11 +24,8 @@
     <string name="temperature">Temperaturo</string>
     <string name="temperature_feels_like">Sentotemperaturo</string>
     <string name="temperature_feels_like_short">Sentotemp.</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Aspektotemperaturo</string>
     <string name="temperature_wind_chill">Ventmalvarmtemperaturo</string>
-    <string name="temperature_wet_bulb">Malseka bulba</string>
     <!-- You might want to read https://en.wikipedia.org/wiki/Heating_degree_day -->
     <string name="temperature_degree_day">Grado-tago</string>
     <string name="temperature_degree_day_heating">Hejtado grado-tago</string>
@@ -43,7 +38,6 @@
     <string name="precipitation">Precipitaĵo</string>
     <string name="precipitation_probability">Probableco de precipitaĵo</string>
     <string name="precipitation_duration">Daŭro de precipitaĵo</string>
-    <string name="precipitation_total">Totalo</string>
     <string name="precipitation_thunderstorm">Fulmotondro</string>
     <string name="precipitation_rain">Pluvo</string>
     <string name="precipitation_snow">Neĝo</string>
@@ -55,10 +49,6 @@
     <!-- $1 = start time, $2 = end time. -->
     <!-- Wind -->
     <string name="wind">Vento</string>
-    <string name="wind_short">Vento</string>
-    <string name="wind_speed">Rapideco de vento</string>
-    <string name="wind_gusts">Ventoblovoj</string>
-    <string name="wind_direction">Direkto de vento</string>
     <string name="wind_direction_variable">Ŝanĝiĝema</string>
     <string name="wind_direction_N">Nordo</string>
     <string name="wind_direction_NE">Nordoriento</string>
@@ -76,7 +66,6 @@
     <string name="wind_direction_SW_short">SU</string>
     <string name="wind_direction_W_short">U</string>
     <string name="wind_direction_NW_short">NU</string>
-    <string name="wind_strength">Fortecon de vento</string>
     <string name="wind_strength_0">Kalmo</string>
     <string name="wind_strength_1">Sereno</string>
     <string name="wind_strength_2">Zefiro</string>
@@ -213,7 +202,6 @@
     <!-- Location -->
     <string name="locations">Lokoj</string>
     <string name="location_current">Nuna loko</string>
-    <string name="location_search_weather_source">Veterfonto</string>
     <string name="location_results_by">Rezultoj de lokaĵoj de %s</string>
     <!-- $ = location source -->
     <string name="location_message_added">Loko aldonita</string>
@@ -230,7 +218,6 @@
     <string name="action_settings">Agordoj</string>
     <string name="action_preview">Antaŭmontri</string>
     <string name="action_about">Pri</string>
-    <string name="action_app_store">Aplikaĵejo</string>
     <string name="action_refresh">Aktualigi</string>
     <string name="action_restart">Restarti</string>
     <string name="action_more">Pli</string>
@@ -362,7 +349,6 @@
     <string name="settings_main_daily_trends_title">Ĉiutagaj tendencoj</string>
     <string name="settings_main_hourly_trends_title">Ĉiuhoraj tendencoj</string>
     <!-- Also possible: ĉapo, paĝokapo -->
-    <string name="settings_main_header_details_title">Detaloj en kapo</string>
     <string name="settings_main_section_options">Opcioj</string>
     <string name="settings_main_threshold_lines_on_charts">Sojlaj linioj sur diagramoj</string>
     <string name="settings_main_section_animations">Efektoj</string>

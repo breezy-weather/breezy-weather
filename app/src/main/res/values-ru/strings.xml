@@ -11,8 +11,6 @@
     <string name="precipitation_duration">Продолжительность осадков</string>
     <string name="temperature">Температура</string>
     <string name="wind">Ветер</string>
-    <string name="wind_direction">Направление ветра</string>
-    <string name="wind_speed">Скорость ветра</string>
     <string name="humidity">Влажность</string>
     <string name="humidity_dew_point">Влажность / Точка росы</string>
     <string name="uv_index">УФ-индекс</string>
@@ -35,9 +33,7 @@
     <string name="daily_tomorrow_short">Завтра</string>
     <string name="temperature_apparent">Ощущается как</string>
     <string name="temperature_wind_chill">Влияние ветра</string>
-    <string name="temperature_wet_bulb">Влажный термометр</string>
     <string name="temperature_degree_day">Градусо-день</string>
-    <string name="precipitation_total">Всего</string>
     <string name="precipitation_thunderstorm">Гроза</string>
     <string name="precipitation_rain">Дождь</string>
     <string name="precipitation_snow">Снег</string>
@@ -69,7 +65,6 @@
     <string name="hourly_forecast">Почасовой прогноз</string>
     <string name="air_quality">Качество воздуха</string>
     <string name="pollen">Аллергены</string>
-    <string name="details">Подробно</string>
     <string name="ephemeris">Восход и закат</string>
     <string name="action_next">Далее</string>
     <string name="action_done">ОК</string>
@@ -152,7 +147,6 @@
     <string name="action_settings">Настройки</string>
     <string name="action_preview">Предпросмотр</string>
     <string name="action_about">Информация</string>
-    <string name="action_app_store">Магазин приложений</string>
     <!-- widget -->
     <string name="widget_day">Подневной</string>
     <string name="widget_week">Еженедельный</string>
@@ -245,15 +239,12 @@
     <string name="unit_mugpcum">мкг/м³</string>
     <string name="unit_h">ч</string>
     <string name="unit_ppcm">/м³</string>
-    <string name="location_search_weather_source">Источник погоды</string>
     <string name="locations">Местоположения</string>
     <string name="air_quality_level_5">Очень вредно</string>
     <string name="uv_index_3_5">Умеренный</string>
     <string name="air_quality_level_1">Отлично</string>
     <string name="pollen_poaeceae">Трава</string>
     <string name="uv_index_8_10">Очень высокий</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
-    <string name="temperature_real_feel">RealFeel®</string>
     <string name="precipitation_none">Без осадков</string>
     <string name="precipitation_between_time">Осадки с %1$s до %2$s</string>
     <string name="wind_direction_N_short">С</string>
@@ -288,7 +279,6 @@
     <string name="settings_main">Главный экран</string>
     <string name="settings_main_summary">Порядок блоков, отображаемые элементы, анимации</string>
     <string name="settings_main_hourly_trends_title">Почасовой прогноз</string>
-    <string name="settings_main_header_details_title">Детали в заголовке</string>
     <string name="settings_main_section_options">Опции</string>
     <string name="settings_main_daily_trends_title">Ежедневный прогноз</string>
     <string name="weather_source_accu_preference_hours_72">72 часа</string>
@@ -487,7 +477,6 @@
     <string name="settings_background_updates_refresh_skip_when_battery_low">Игнорировать, когда батарея разряжена</string>
     <string name="message_server_timeout">Истекло время запроса</string>
     <string name="message_parsing_error_title">Не удалось проанализировать данные о погоде</string>
-    <string name="wind_strength">Сила ветра</string>
     <string name="message_parsing_error_content">Убедитесь, что вы обновили приложение до последней версии. Сервер может быть временно недоступен, в этом случае повторите попытку позже. Если проблема не устранена, создайте дамп журнала сбоев из настроек отладки и сообщите о проблеме на GitHub.</string>
     <string name="notification_update_error">%d обновление(ий) не удалось</string>
     <string name="message_source_not_installed_error_title">Источник больше не доступен</string>
@@ -511,7 +500,6 @@
     <string name="pollen_level_3">Средний</string>
     <string name="action_delete">Удалить</string>
     <string name="weather_message_invalid_location">Неверное местоположение, удалите его и добавьте заново</string>
-    <string name="wind_gusts">Порывы ветра</string>
     <string name="about_dependencies">Зависимости</string>
     <string name="precipitation_nowcasting">Поминутные осадки</string>
     <string name="action_save">Сохранить</string>
@@ -557,7 +545,6 @@
     <string name="temperature_normal_short">Норма</string>
     <string name="settings_main_threshold_lines_on_charts">Пороговые линии на графиках</string>
     <string name="settings_widgets_broadcast_send_data_title">Отправить данные о погоде в %s</string>
-    <string name="pollen_and_mold">Пыльца и плесень</string>
     <string name="settings_color_app">Как в приложении</string>
     <string name="settings_debug_dump_crash_logs_saved">Журналы аварийных закрытий сохранены</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Нажмите, чтобы открыть</string>
@@ -575,7 +562,6 @@
     <string name="location_message_updated">Местоположение обновлено</string>
     <string name="location_message_already_exists">Список местоположений уже содержит это местоположение с теми же поставщиками.</string>
     <string name="humidity_short">Влажность</string>
-    <string name="wind_short">Ветер</string>
     <string name="uv_index_short">УФ-индекс</string>
     <string name="visibility_short">Видимость</string>
     <string name="pressure_short">Давление</string>
@@ -826,8 +812,6 @@
     <string name="precipitation_snow_total_night">Ночной снег</string>
     <string name="daytime_short">День</string>
     <string name="nighttime_short">Ночь</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">Всегда включен в светлом режиме</string>
-    <string name="settings_appearance_dark_mode_locations_disabled">Отключено, но в ночное время локации всегда работают в тёмном режиме</string>
     <string name="temperature_normals_deviation">Отклонение</string>
     <string name="temperature_normals_deviation_explanation_maximum">Отклонение от %s средней максимальной температуры для этого местоположения</string>
     <string name="temperature_normals_deviation_explanation_minimum">Отклонение от %s средней минимальной температуры для этого местоположения</string>

@@ -11,8 +11,6 @@
     <string name="precipitation_duration">Durată precipitații</string>
     <string name="temperature">Temperatură</string>
     <string name="wind">Vânt</string>
-    <string name="wind_direction">Direcția vântului</string>
-    <string name="wind_speed">Viteza vântului</string>
     <string name="humidity">Umiditate</string>
     <string name="humidity_dew_point">Umiditate / Punct de rouă</string>
     <string name="uv_index">Indice UV</string>
@@ -34,13 +32,9 @@
     <!-- The following set of strings should be as short as possible. -->
     <string name="daily_yesterday_short">Ieri</string>
     <string name="daily_tomorrow_short">Mâine</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Temp. aparentă</string>
     <string name="temperature_wind_chill">Răcoarea vântului</string>
-    <string name="temperature_wet_bulb">Temp. la umed</string>
     <string name="temperature_degree_day">Gradul zilei</string>
-    <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Furtună</string>
     <string name="precipitation_rain">Ploaie</string>
     <string name="precipitation_snow">Ninsoare</string>
@@ -76,7 +70,6 @@
     <string name="hourly_forecast">Prognoza pe ore</string>
     <string name="air_quality">Calitatea aerului</string>
     <string name="pollen">Polen</string>
-    <string name="details">Detalii</string>
     <string name="ephemeris">Soarele și Luna</string>
     <string name="action_next">Înainte</string>
     <string name="action_done">Gata</string>
@@ -164,7 +157,6 @@
     <string name="action_settings">Setări</string>
     <string name="action_preview">Previzualizare</string>
     <string name="action_about">Despre</string>
-    <string name="action_app_store">Magazin aplicații</string>
     <!-- widget -->
     <string name="widget_day">Zilnic</string>
     <string name="widget_week">Săptămânal</string>
@@ -228,7 +220,6 @@
     <string name="weather_kind_thunder">Fulgere și Tunete</string>
     <string name="weather_kind_thunderstorm">Furtună</string>
     <string name="weather_kind_wind">Vânt</string>
-    <string name="location_search_weather_source">Furnizorul datelor meteo</string>
     <string name="settings_background_updates_summary">Rata de actualizare și depanare</string>
     <string name="settings_section_general">General</string>
     <string name="settings_background_updates_refresh_title">Rata de actualizare</string>
@@ -436,7 +427,6 @@
     <string name="settings_main_cards_title">Carduri</string>
     <string name="settings_main_daily_trends_title">Tendințe zilnice</string>
     <string name="settings_main_hourly_trends_title">Tendințe orare</string>
-    <string name="settings_main_header_details_title">Detalii în antet</string>
     <string name="settings_main_section_options">Opțiuni</string>
     <string name="settings_main_cards_fade_in_switch">Cardurile se estompează</string>
     <string name="settings_main_cards_other_element_animations_switch">Alte elemente de animație</string>
@@ -492,8 +482,6 @@
     <string name="settings_background_updates_worker_info_summary">Rulat ultima dată: %s</string>
     <string name="action_delete">Șterge</string>
     <string name="action_help_me_choose">Ajută-mă să aleg</string>
-    <string name="wind_gusts">Rafale de vânt</string>
-    <string name="wind_strength">Puterea vântului</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_o3">O₃</string>
@@ -516,11 +504,9 @@
     <string name="temperature_feels_like_short">Se simte</string>
     <string name="ceiling_short">Plafon</string>
     <string name="humidity_short">Umiditate</string>
-    <string name="wind_short">Vânt</string>
     <string name="uv_index_short">Indice UV</string>
     <string name="visibility_short">Vizibilitate</string>
     <string name="pressure_short">Presiune</string>
-    <string name="pollen_and_mold">Polen și alergeni</string>
     <string name="temperature_normal_short">Normal</string>
     <string name="precipitation_nowcasting">Precipitații din minut în minut</string>
     <string name="temperature_average_short">Mediu</string>

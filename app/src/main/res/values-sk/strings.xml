@@ -4,23 +4,18 @@
     <string name="air_quality">Kvalita ovzdušia</string>
     <string name="pollen">Alergény</string>
     <string name="ephemeris">Slnko a mesiac</string>
-    <string name="details">Podrobnosti</string>
     <string name="alerts">Výstrahy</string>
     <string name="alerts_to_follow">Nadchádzajúce výstrahy zobrazíte ťuknutím sem.</string>
     <string name="daily_today_short">Dnes</string>
     <string name="daily_tomorrow_short">Zaj</string>
     <string name="temperature">Teplota</string>
     <string name="temperature_feels_like">Pocitová teplota</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Pocitová</string>
     <string name="temperature_wind_chill">Chladný vietor</string>
-    <string name="temperature_wet_bulb">Teplota mokrého teplomera</string>
     <string name="temperature_degree_day_heating">Deň vykurovania</string>
     <string name="precipitation">Zrážky</string>
     <string name="precipitation_probability">Pravdepodobnosť zrážok</string>
     <string name="precipitation_duration">Trvanie zrážok</string>
-    <string name="precipitation_total">Celkom</string>
     <string name="precipitation_thunderstorm">Blesková búrka</string>
     <string name="precipitation_rain">Dážď</string>
     <string name="precipitation_ice">Ľad</string>
@@ -29,8 +24,6 @@
     <string name="precipitation_none">Bez zrážok</string>
     <string name="precipitation_between_time">Zrážky od %1$s do %2$s</string>
     <string name="wind">Vietor</string>
-    <string name="wind_gusts">Nárazový vietor</string>
-    <string name="wind_direction">Smer vetra</string>
     <string name="wind_direction_variable">Premenlivý</string>
     <string name="wind_direction_N_short">S</string>
     <string name="wind_direction_NE_short">SV</string>
@@ -40,7 +33,6 @@
     <string name="wind_direction_SW_short">JZ</string>
     <string name="wind_direction_W_short">Z</string>
     <string name="wind_direction_NW_short">SZ</string>
-    <string name="wind_strength">Sila vetra</string>
     <string name="wind_strength_0">Bezvetrie</string>
     <string name="wind_strength_1">Vánok</string>
     <string name="wind_strength_2">Slabý vietor</string>
@@ -84,7 +76,6 @@
     <string name="daily_forecast">Denná predpoveď</string>
     <string name="hourly_forecast">Hodinová predpoveď</string>
     <string name="precipitation_snow">Sneh</string>
-    <string name="wind_speed">Rýchlosť vetra</string>
     <string name="wind_strength_9">Víchrica</string>
     <string name="air_quality_level_1">Výborná</string>
     <string name="uv_index_6_7">Vysoký</string>
@@ -111,7 +102,6 @@
     <string name="pollen_level_5">Veľmi vysoké</string>
     <string name="ephemeris_moon_phase_new_moon">Nov</string>
     <string name="ephemeris_moon_phase_full_moon">Úplnok</string>
-    <string name="pollen_and_mold">Peľ a pleseň</string>
     <string name="visibility">Viditeľnosť</string>
     <string name="ceiling">Výška mrakov</string>
     <string name="unit_ppcm">/m³</string>
@@ -233,7 +223,6 @@
     <string name="dew_point_short">Rosný bod</string>
     <string name="cloud_cover_short">Oblačnosť</string>
     <string name="humidity_short">Vlhkosť</string>
-    <string name="wind_short">Vietor</string>
     <string name="pressure_short">Tlak</string>
     <string name="weather_api_key_required_missing_content">Na použitie tohto zdroja je potrebné zadať API kľúč.</string>
     <string name="weather_source_accu_preference_hours_1">1 hodina</string>
@@ -272,7 +261,6 @@
     <string name="weather_source_accu_preference_days_15">15 dní</string>
     <string name="setting_weather_source_accu_hours">Hodiny</string>
     <string name="weather_source_accu_preference_hours_24">24 hodín</string>
-    <string name="location_search_weather_source">Zdroj počasia</string>
     <string name="action_location_list">Zoznam miest</string>
     <string name="action_search">Hľadať</string>
     <string name="action_add_current_location">Pridať momentálnu polohu</string>
@@ -300,7 +288,6 @@
     <string name="weather_api_limit_reached_content">Ak chcete limit obísť, pridajte vlastný API kľúč.</string>
     <string name="action_settings">Nastavenia</string>
     <string name="action_preview">Náhľad</string>
-    <string name="action_app_store">Obchod</string>
     <string name="action_refresh">Obnoviť</string>
     <string name="action_edit">Upraviť</string>
     <string name="location_message_updated">Miesto aktualizované</string>
@@ -678,7 +665,6 @@
     <string name="settings_icon_packs_get_more">Získať ďalšie</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Celkový</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kombinuje všetky modely počasia od tohto poskytovateľa do celkovej predpovede</string>
-    <string name="settings_main_header_details_title">Podrobnosti v záhlaví</string>
     <string name="settings_main_threshold_lines_on_charts">Hraničné čiary na grafoch</string>
     <string name="settings_main_cards_fade_in_switch">Karty sa strácajú</string>
     <string name="settings_notifications_summary">Upozornenia na výstrahy, zrážky alebo predpoveď počasia pre prvú lokalitu</string>

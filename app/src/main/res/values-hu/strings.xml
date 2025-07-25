@@ -11,8 +11,6 @@
     <string name="precipitation_duration">Csapadék időtartama</string>
     <string name="temperature">Hőmérséklet</string>
     <string name="wind">Szél</string>
-    <string name="wind_direction">Szélirány</string>
-    <string name="wind_speed">Szélsebesség</string>
     <string name="humidity">Páratartalom</string>
     <string name="humidity_dew_point">Páratartalom / Harmatpont</string>
     <string name="uv_index">UV-szint</string>
@@ -33,13 +31,9 @@
     <string name="action_edit">Szerkesztés</string>
     <string name="daily_yesterday_short">T</string>
     <string name="daily_tomorrow_short">H</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Hőérzet</string>
     <string name="temperature_wind_chill">Szélhűtés</string>
-    <string name="temperature_wet_bulb">Nedves hőmérséklet</string>
     <string name="temperature_degree_day">Foknap</string>
-    <string name="precipitation_total">Összes</string>
     <string name="precipitation_thunderstorm">Zivatar</string>
     <string name="precipitation_rain">Eső</string>
     <string name="precipitation_snow">Hó</string>
@@ -75,7 +69,6 @@
     <string name="hourly_forecast">Óránkénti előrejelzés</string>
     <string name="air_quality">Levegőminőség</string>
     <string name="pollen">Pollen</string>
-    <string name="details">Részletek</string>
     <string name="ephemeris">Nap és Hold</string>
     <string name="action_next">Következő</string>
     <string name="action_done">Kész</string>
@@ -151,7 +144,6 @@
     <string name="action_settings">Beállítások</string>
     <string name="action_preview">Előnézet</string>
     <string name="action_about">Névjegy</string>
-    <string name="action_app_store">Alkalmazásbolt</string>
     <!-- widget -->
     <string name="widget_day">Napi</string>
     <string name="widget_week">Heti</string>
@@ -243,14 +235,12 @@
     <string name="air_quality_level_4_description">Az egészségügyi hatások az érzékeny csoportok számára azonnal érezhetők. Az egészséges egyének légzési nehézséget és torokirritációt tapasztalhatnak hosszabb kitettség esetén. Korlátozza a szabadtéri tevékenységeit.</string>
     <string name="precipitation_none">Nincs csapadék</string>
     <string name="precipitation_between_time">Várhatóan %1$s és %2$s között esni fog</string>
-    <string name="wind_gusts">Széllökések</string>
     <string name="wind_direction_variable">Változó</string>
     <string name="wind_direction_N_short">É</string>
     <string name="wind_direction_NE_short">ÉK</string>
     <string name="wind_direction_E_short">K</string>
     <string name="wind_direction_SE_short">DK</string>
     <string name="wind_direction_S_short">D</string>
-    <string name="wind_strength">Szélerősség</string>
     <string name="air_quality_level_2_description">A levegőminőség a legtöbb ember számára általában elfogadható. Az érzékeny csoportok azonban a hosszú távú kitettség következtében kisebb vagy mérsékelt mértékű tüneteket tapasztalhatnak.</string>
     <string name="air_quality_level_5_description">Az érzékeny csoportok azonnal érzik az egészségügyi hatásokat, és kerülniük kell a szabadtéri tevékenységeket. Az egészséges egyének valószínűleg légzési nehézségeket és torokirritációt tapasztalnak; fontolja meg a beltérben maradást és a szabadtéri tevékenységek átütemezését.</string>
     <string name="air_quality_o3_full">Földfelszíni ózon (O₃)</string>
@@ -341,7 +331,6 @@
     <string name="location_swipe_to_delete">Balra húzással eltávolíthatja ezt az elemet</string>
     <string name="location_message_permission_missing">A helyadatokhoz való hozzáférés nincs engedélyezve</string>
     <string name="weather_source_accu_preference_hours_120">120 óra</string>
-    <string name="location_search_weather_source">Időjárásforrás</string>
     <string name="location_search_no_results_advice">Győződjön meg róla, hogy a keresés helyesen van-e írva, és nem túl specifikus. Alternatívaként megpróbálhat egy másik helyszínkeresési forrást is, amely más eredményeket adhat.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Jelenlegi páratartalom</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Jelenlegi légnyomás</string>
@@ -385,7 +374,6 @@
     <string name="settings_widgets_notification_feels_like_switch">Hőérzet használata</string>
     <string name="unit_m">m</string>
     <string name="weather_kind_wind">Szél</string>
-    <string name="pollen_and_mold">Pollen és penész</string>
     <string name="settings_main_threshold_lines_on_charts">Küszöbértékvonalak a diagramon</string>
     <string name="settings_main_background_animation_disabled">Letiltva</string>
     <string name="settings_main_background_animation_enabled">Engedélyezve</string>
@@ -474,7 +462,6 @@
     <string name="about_contributors">Közreműködők</string>
     <string name="settings_main_summary">Blokkok sorrendje, megjelenített elemek, animációk</string>
     <string name="settings_main_hourly_trends_title">Óránkénti trendek</string>
-    <string name="settings_main_header_details_title">Fejlécben megjelenő részletek</string>
     <string name="settings_notifications_precipitations_title">Értesítések a csapadékokról</string>
     <string name="settings_notifications_forecast_time_today_title">Értesítés ideje a napi előrejelzéshez</string>
     <string name="settings_notifications_summary">Értesítések az időjárási riasztásokról, csapadékokról vagy az előrejelzésekről az első helyszínhez</string>
@@ -574,7 +561,6 @@
     <string name="temperature_feels_like_short">Hőérzet</string>
     <string name="dew_point_short">Harmatpont</string>
     <string name="ceiling_short">Felhőalap</string>
-    <string name="wind_short">Szél</string>
     <string name="uv_index_short">UV-szint</string>
     <string name="pressure_short">Légnyomás</string>
     <string name="visibility_short">Látótávolság</string>
@@ -822,8 +808,6 @@
     <string name="precipitation_snow_total_night">Éjszaka közbeni hóesés</string>
     <string name="daytime_short">Nappal</string>
     <string name="nighttime_short">Éjszaka</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">Mindig engedélyezve a világos móddal</string>
-    <string name="settings_appearance_dark_mode_locations_disabled">Letiltva, de a helyszínek éjszaka mindig sötét módban vannak</string>
     <string name="air_quality_short">Levegőminőség</string>
     <string name="temperature_normals_deviation">Eltérés</string>
     <string name="temperature_normals_deviation_explanation_maximum">Eltérés az erre a helyre vonatkozó %s hónapi átlagos legmagasabb hőmérséklettől</string>

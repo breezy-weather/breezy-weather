@@ -6,7 +6,6 @@
     <string name="air_quality">Gaisa kvalitāte</string>
     <string name="pollen">Ziedputekšņi</string>
     <string name="ephemeris">Saule un Mēness</string>
-    <string name="details">Informācija</string>
     <string name="alerts">Brīdinājumi</string>
     <string name="alerts_to_follow">Gaidāmie brīdinājumi. Jāpiesit šeit, lai tos redzētu.</string>
     <string name="daily_yesterday_short">Vakar</string>
@@ -14,18 +13,14 @@
     <string name="daily_tomorrow_short">Rīt</string>
     <string name="temperature">Temperatūra</string>
     <string name="temperature_feels_like">Pēc sajūtām</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Šķietami</string>
     <string name="temperature_wind_chill">Vēja vēsums</string>
-    <string name="temperature_wet_bulb">Mitrā termometra</string>
     <string name="temperature_degree_day">Grāda diena</string>
     <string name="temperature_degree_day_heating">Dienas uzsilšanas pakāpe</string>
     <string name="temperature_degree_day_cooling">Atdzesēšanas grādu diena</string>
     <string name="precipitation">Nokrišņi</string>
     <string name="precipitation_probability">Nokrišņu iespējamība</string>
     <string name="precipitation_duration">Nokrišņu ilgums</string>
-    <string name="precipitation_total">Kopā</string>
     <string name="precipitation_thunderstorm">Pērkona negaiss</string>
     <string name="precipitation_rain">Lietus</string>
     <string name="precipitation_snow">Sniegs</string>
@@ -36,9 +31,6 @@
     <string name="precipitation_none">Bez nokrišņiem</string>
     <string name="precipitation_between_time">Nokrišņi no %1$s līdz %2$s</string>
     <string name="wind">Vējš</string>
-    <string name="wind_speed">Vēja ātrums</string>
-    <string name="wind_gusts">Vēja brāzmas</string>
-    <string name="wind_direction">Vēja virziens</string>
     <string name="wind_direction_N_short">Z</string>
     <string name="wind_direction_NE_short">ZA</string>
     <string name="wind_direction_E_short">A</string>
@@ -49,7 +41,6 @@
     <string name="wind_direction_NW_short">ZR</string>
     <string name="precipitation_nowcasting">Tūlītēja nokrišņu prognoze</string>
     <string name="wind_direction_variable">Mainīgs</string>
-    <string name="wind_strength">Vēja stiprums</string>
     <string name="wind_strength_2">Viegls vējš</string>
     <string name="wind_strength_0">Bezvējš</string>
     <string name="wind_strength_1">Vēja vēsma</string>
@@ -102,7 +93,6 @@
     <string name="action_add_current_location">Pievienot pašreizējo atrašanās vietu</string>
     <string name="action_settings">Iestatījumi</string>
     <string name="action_about">Par</string>
-    <string name="action_app_store">Aplikāciju veikals</string>
     <string name="action_refresh">Atsvaidzināt</string>
     <string name="action_back">Atpakaļ</string>
     <string name="action_next">Nākamais</string>
@@ -247,7 +237,6 @@
     <string name="settings_main_summary">Bloku secība, attēlotie vienumi, animācijas</string>
     <string name="settings_main_section_displayed_data">Attēlojamie dati</string>
     <string name="settings_main_hourly_trends_title">Stundu prognozes</string>
-    <string name="settings_main_header_details_title">Informācija galvenē</string>
     <string name="settings_main_section_options">Iespējas</string>
     <string name="settings_main_threshold_lines_on_charts">Sliekšņa līnijas diagrammās</string>
     <string name="settings_main_section_animations">Animācijas</string>
@@ -310,7 +299,6 @@
     <string name="weather_source_accu_preference_hours_240">240 stundas</string>
     <string name="location_swipe_to_delete">Var pavilkt pa kreisi, lai izdzēstu šo vienumu</string>
     <string name="weather_source_accu_preference_hours_24">24 stundas</string>
-    <string name="location_search_weather_source">Laikapstākļu avots</string>
     <string name="weather_source_accu_preference_hours_72">72 stundas</string>
     <string name="weather_source_accu_preference_hours_120">120 stundas</string>
     <string name="location_message_permission_background_missing">Trūkst atļaujas piekļūt atrašanās vietai fonā</string>
@@ -547,7 +535,6 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Pērkona negaiss ar stipru krusu</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Pērkona negaiss ar nelielu krusu</string>
     <string name="null_data_text">N/A</string>
-    <string name="pollen_and_mold">Ziedputekšņi un pelējums</string>
     <string name="pollen_tree">Koks</string>
     <string name="about_matrix">Matrix istaba</string>
     <string name="settings_widgets_broadcast_send_data_title">Nosūtīt datus uz %s</string>
@@ -558,7 +545,6 @@
     <string name="temperature_feels_like_short">Pēc sajūtām</string>
     <string name="ceiling_short">Griesti</string>
     <string name="humidity_short">Mitrums</string>
-    <string name="wind_short">Vējš</string>
     <string name="uv_index_short">UV indekss</string>
     <string name="visibility_short">Redzamība</string>
     <string name="pressure_short">Spiediens</string>
@@ -757,8 +743,6 @@
     <string name="ephemeris_about_dawn">Rītausma ir tad, kad pirms saullēkta parādās pirmā redzamā dienas gaisma.</string>
     <string name="wind_origin">No %s</string>
     <string name="about_update_check_eol">Šī Android versija vairs netiek atbalstīta</string>
-    <string name="settings_appearance_dark_mode_locations_disabled">Atspējots, bet atrašanās vietas nakts laikā vienmēr ir ar tumšo izskatu</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">Vienmēr iespējots ar gaišo izskatu</string>
     <string name="nighttime_short">Nakts</string>
     <string name="daytime_short">Diena</string>
     <string name="precipitation_snow_total_night">Sniegs nakts laikā</string>

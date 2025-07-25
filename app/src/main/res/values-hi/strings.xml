@@ -7,9 +7,7 @@
     <string name="wind_strength_3">मंद समीर</string>
     <string name="wind_direction_S_short">द</string>
     <string name="uv_index">यूवी सूचकांक</string>
-    <string name="pollen_and_mold">पोलन और मोल्ड</string>
     <string name="wind_strength_9">प्रबल झंझा</string>
-    <string name="wind_speed">हवा की गति</string>
     <string name="wind_strength_10">तूफान</string>
     <string name="temperature">तापमान</string>
     <string name="precipitation_ice">बर्फ</string>
@@ -27,12 +25,10 @@
     <string name="precipitation_intensity_heavy">भारी</string>
     <string name="air_quality_level_5">बहुत अस्वास्थ्यकर</string>
     <string name="precipitation_none">कोई वर्षा नहीं</string>
-    <string name="precipitation_total">कुल</string>
     <string name="wind_strength_7">अल्पबल झंझा</string>
     <string name="air_quality_level_3_description">वायु प्रदूषण के उच्च स्तर तक पहुंच गई है और संवेदनशील समूहों के लिए अस्वास्थ्यकर है। यदि आप साँस लेने या गले की जलन जैसे लक्षणों को महसूस कर रहे हैं तो बाहर समय बिताना कम करें।।</string>
     <string name="precipitation_probability">वर्षा संभावना</string>
     <string name="uv_index_11">चरम</string>
-    <string name="wind_strength">पवन शक्ति</string>
     <string name="hourly_forecast">हर घंटे पूर्वानुमान</string>
     <string name="air_quality_level_6_description">कुछ ही मिनटों में भी हवा के संपर्क में आने से हर किसी पर गंभीर स्वास्थ्य प्रभाव पड़ सकता है। बाहरी गतिविधियों से बचें।।</string>
     <string name="air_quality_index">वायु गुणवत्ता सूचकांक</string>
@@ -50,7 +46,6 @@
     <string name="ephemeris">सूर्य और चंद्रमा</string>
     <string name="air_quality_level_3">ख़राब</string>
     <string name="temperature_normal_short">सामान्य</string>
-    <string name="details">विवरण</string>
     <string name="air_quality_level_6">खतरनाक</string>
     <string name="wind_direction_SW_short">द प</string>
     <string name="precipitation_duration">वर्षा की अवधि</string>
@@ -61,7 +56,6 @@
     <string name="wind_direction_variable">चर</string>
     <string name="temperature_apparent">प्रतीत</string>
     <string name="wind_direction_NE_short">उ पू</string>
-    <string name="wind_direction">पवन दिशा</string>
     <string name="alerts">चेतावनी</string>
     <string name="wind_direction_NW_short">उ प</string>
     <string name="daily_today_short">आज</string>
@@ -81,13 +75,8 @@
     <string name="app_name">मौसम</string>
     <string name="precipitation_nowcasting">मिनट दर मिनट वर्षा</string>
     <string name="temperature_feels_like_short">जैसा लगना</string>
-    <string name="wind_short">हवा</string>
     <string name="uv_index_short">यूवी सूचकांक</string>
-    <string name="temperature_real_feel">रियलफील®</string>
-    <string name="temperature_real_feel_shade">रियलफील शेड™</string>
-    <string name="temperature_wet_bulb">गीला बल्ब</string>
     <string name="temperature_degree_day">डिग्री दिवस</string>
-    <string name="wind_gusts">हवा के झोके</string>
     <string name="air_quality_o3_full">जमीनी स्तर ओजोन (ओ₃)</string>
     <string name="air_quality_pm10">पीएम10</string>
     <string name="air_quality_pm10_voice">पीएम दस</string>
@@ -156,7 +145,6 @@
     <string name="setting_weather_source_accu_hours">घंटे</string>
     <string name="weather_source_accu_preference_hours_1">1 घंटा</string>
     <string name="location_current">वर्तमान स्थान</string>
-    <string name="location_search_weather_source">मौसम स्रोत</string>
     <string name="location_message_deleted">स्थान हटा दिया गया</string>
     <string name="location_message_list_cannot_be_empty">स्थान सूची खाली नहीं हो सकती</string>
     <string name="location_swipe_to_delete">आप इस मद को हटाने के लिए बाईं ओर ढकाल सकते हैं</string>
@@ -235,7 +223,6 @@
     <string name="air_quality_o3">ओ₃</string>
     <string name="settings_main_hourly_trends_title">प्रति घंटा रुझान</string>
     <string name="settings_widgets_summary">भित्ति पत्र बदले, उपयोग किए गए विजेट अनुरूप करें, अधिसूचना विजेट</string>
-    <string name="settings_main_header_details_title">शीर्षलेख में विवरण</string>
     <string name="settings_main_section_options">विकल्प</string>
     <string name="settings_main_section_animations">अनुप्राणन</string>
     <string name="settings_main_background_animation_title">पृष्ठभूमि अनुप्राणन</string>
@@ -599,7 +586,6 @@
     <string name="dialog_time_picker_select_time">समय चुनें</string>
     <string name="action_edit_location">इस स्थान को संपादित करें</string>
     <string name="precipitation_intensity_medium">मध्यम</string>
-    <string name="action_app_store">ऐप स्टोर</string>
     <string name="location_search_no_results">%1$s को %2$s नहीं मिल सका</string>
     <string name="ephemeris_moon_phase_waning_gibbous">वेनिंग गिबस</string>
     <string name="pollen_tilia">नींबू का पेड़</string>

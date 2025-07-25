@@ -34,7 +34,6 @@
     <string name="daily_forecast">Günlük tahmin</string>
     <string name="hourly_forecast">Saatlik tahmin</string>
     <string name="air_quality">Hava kalitesi</string>
-    <string name="details">Detaylar</string>
     <string name="ephemeris">Güneş &amp; Ay</string>
     <string name="action_next">Sonraki</string>
     <string name="action_done">Bitti</string>
@@ -81,7 +80,6 @@
     <string name="alerts_to_follow">Yaklaşan uyarıları görmek için buraya dokunun.</string>
     <string name="precipitation_none">Yağış yok</string>
     <string name="precipitation_between_time">%1$s ve %2$s arasında yağış</string>
-    <string name="wind_strength">Rüzgar gücü</string>
     <string name="uv_index_3_5">Orta</string>
     <string name="uv_index_0_2">Düşük</string>
     <string name="uv_index_6_7">Yüksek</string>
@@ -92,25 +90,19 @@
     <string name="temperature_apparent">Görülen</string>
     <string name="air_quality_level_4">Sağlık Açısından Sakıncalı</string>
     <string name="wind_direction_SW_short">GB</string>
-    <string name="temperature_wet_bulb">Islak hazne sıcaklığı</string>
     <string name="wind_direction_variable">Değişken</string>
     <string name="temperature_wind_chill">Rüzgar soğuğu</string>
     <string name="temperature">Sıcaklık</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Gölgede™</string>
     <string name="precipitation_probability">Yağış olasılığı</string>
     <string name="precipitation_duration">Yağış süresi</string>
     <string name="precipitation_ice">Buz</string>
     <string name="precipitation_intensity_light">Seyrek</string>
-    <string name="precipitation_total">Toplam</string>
     <string name="precipitation_thunderstorm">Gök gürültülü fırtına</string>
     <string name="precipitation_rain">Yağmur</string>
     <string name="precipitation_snow">Kar</string>
     <string name="precipitation_intensity_heavy">Sağanak</string>
-    <string name="wind_speed">Rüzgar hızı</string>
     <string name="wind_direction_N_short">K</string>
     <string name="wind_direction_NE_short">KD</string>
-    <string name="wind_direction">Rüzgar yönü</string>
     <string name="wind_direction_E_short">D</string>
     <string name="wind_direction_S_short">G</string>
     <string name="wind_direction_W_short">B</string>
@@ -133,7 +125,6 @@
     <string name="air_quality_pm10_voice">On PM</string>
     <string name="air_quality_so2_voice">Sülfür dioksit</string>
     <string name="air_quality_no2_voice">Nitrojen dioksit</string>
-    <string name="wind_gusts">Rüzgar esintileri</string>
     <string name="air_quality_no2_full">Nitrojen dioksit (NO₂)</string>
     <string name="air_quality_o3_full">Yer seviyesinde ozon (O₃)</string>
     <string name="precipitation_nowcasting">Dakika dakika yağışlar</string>
@@ -204,7 +195,6 @@
     <string name="settings_weather_source_portal">Portal</string>
     <string name="setting_weather_source_accu_hours">Saatler</string>
     <string name="weather_source_accu_preference_hours_24">24 saatlik</string>
-    <string name="location_search_weather_source">Hava durumu kaynağı</string>
     <string name="settings_widgets_notification_persistent_switch">Sabit</string>
     <string name="message_server_timeout">İstek zaman aşımına uğradı</string>
     <string name="widget_label_text_size">Metin boyutu</string>
@@ -300,7 +290,6 @@
     <string name="settings_main_section_animations">Animasyonlar</string>
     <string name="settings_main_background_animation_title">Arka plan animasyonu</string>
     <string name="settings_main_background_animation_enabled">Etkin</string>
-    <string name="settings_main_header_details_title">Başlıkta detaylar</string>
     <string name="weather_message_invalid_location">Geçersiz konum, lütfen silin ve tekrar ekleyin</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Enlem</string>
     <string name="widget_live_wallpaper_day_night_type">Zaman</string>
@@ -340,7 +329,6 @@
     <string name="action_save">Kaydet</string>
     <string name="message_network_unavailable">Ağ erişimi yok</string>
     <string name="action_preview">Ön izleme</string>
-    <string name="action_app_store">Uygulama Mağazası</string>
     <string name="action_refresh">Yenile</string>
     <string name="action_restart">Yeniden başlat</string>
     <string name="action_more">Daha fazla</string>
@@ -372,7 +360,6 @@
     <string name="common_weather_text_drizzle_freezing_light">Hafif dondurucu çiseleme</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Şiddetli dondurucu çiseleme</string>
     <string name="common_weather_text_drizzle_freezing">Dondurucu çiseleme</string>
-    <string name="pollen_and_mold">Polen &amp; küf</string>
     <string name="temperature_average_short">Ort</string>
     <string name="temperature_normals">Sıcaklık normalleri</string>
     <string name="weather_api_limit_reached_title">API sorgu limitine ulaşıldı</string>
@@ -575,7 +562,6 @@
     <string name="location_message_already_exists">Aynı ana hava durumu kaynağına sahip bir konum zaten var.</string>
     <string name="ceiling_short">Tavan</string>
     <string name="humidity_short">Nem</string>
-    <string name="wind_short">Rüzgar</string>
     <string name="uv_index_short">UV göstergesi</string>
     <string name="pressure_short">Basınç</string>
     <string name="temperature_feels_like_short">Hissedilen</string>

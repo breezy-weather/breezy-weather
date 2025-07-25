@@ -46,7 +46,6 @@
     <string name="daily_forecast">Previsão diária</string>
     <string name="hourly_forecast">Previsão horária</string>
     <string name="air_quality">Qualidade do Ar</string>
-    <string name="details">Detalhes</string>
     <string name="ephemeris">Sol &amp; Lua</string>
     <string name="action_next">Próximo</string>
     <string name="action_done">Concluído</string>
@@ -115,7 +114,6 @@
     <string name="widget_trend_hourly">Botões de ação horário</string>
     <string name="pollen">Alergéno</string>
     <string name="alerts_to_follow">Próximos alertas, toque aqui para vê-los.</string>
-    <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Tempestade</string>
     <string name="precipitation_rain">Chuva</string>
     <string name="precipitation_snow">Neve</string>
@@ -127,10 +125,7 @@
     <string name="widget_label_text_size">Tamanho do texto</string>
     <string name="precipitation_probability">Probabilidade de precipitação</string>
     <string name="precipitation_duration">Duração de precipitação</string>
-    <string name="wind_speed">Velocidade do vento</string>
-    <string name="wind_direction">Direção do vento</string>
     <string name="wind_direction_variable">Variável</string>
-    <string name="wind_strength">Força do vento</string>
     <string name="air_quality_co_full">Monóxido de carbono (CO)</string>
     <string name="ephemeris_sunrise_at">Nascer do sol às %s</string>
     <string name="ephemeris_moonset_at">Pôr da lua às %s</string>
@@ -215,7 +210,6 @@
     <string name="settings_weather_source_portal">Canal</string>
     <string name="setting_weather_source_accu_days">Dias</string>
     <string name="weather_source_accu_preference_days_5">5 dias</string>
-    <string name="location_search_weather_source">Provedor meteorológico</string>
     <string name="settings_widgets_configure_widget_summary">Configurar esse widget</string>
     <string name="settings_debug_dump_crash_logs_title">Partilhar registos de falhas</string>
     <string name="notification_channel_background_services">Serviços em segundo plano</string>
@@ -223,7 +217,6 @@
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorar quando a pilha estiver baixa</string>
     <string name="settings_main_section_displayed_data">Dados exibidos</string>
     <string name="unit_mph">mph</string>
-    <string name="settings_main_header_details_title">Detalhes no cabeçalho</string>
     <string name="unit_mmph_voice">Milímetros por hora</string>
     <string name="unit_cmph">cm/h</string>
     <string name="settings_main_cards_title">Cartões</string>
@@ -231,7 +224,6 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Tempestade com granizo pesado</string>
     <string name="unit_mb">mb</string>
     <string name="unit_mgpcum">mg/m³</string>
-    <string name="temperature_real_feel">RealFeel®</string>
     <string name="pollen_alnus">Amieiro</string>
     <string name="pollen_betula">Bétula</string>
     <string name="pollen_artemisia">Artemísia</string>
@@ -292,7 +284,6 @@
     <string name="common_weather_text_snow_grains">Grãos de neve</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Tempestade leve ou moderada</string>
-    <string name="temperature_wet_bulb">Bulbo húmido</string>
     <string name="settings_none">Nenhum</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Descrição diária</string>
     <string name="unit_mi_voice">Milhas</string>
@@ -345,7 +336,6 @@
     <string name="widget_custom_subtitle_keyword_al_description">Alertas</string>
     <string name="unit_nmi">nmi</string>
     <string name="widget_subtitle_data_custom">Personalizado</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="action_delete">Apagar</string>
     <string name="widget_style_tile">Bloco</string>
     <string name="location_message_permission_missing">Permissão de acesso à localização ausente</string>
@@ -400,7 +390,6 @@
     <string name="widget_style_pixel">Pixel</string>
     <string name="widget_style_temperature">Temperatura</string>
     <string name="settings_section_general">Geral</string>
-    <string name="action_app_store">Play Store</string>
     <string name="action_back">Voltar</string>
     <string name="dialog_permissions_location_background_title">Aceder localização em segundo plano</string>
     <string name="settings_item_delete">Remover este item</string>
@@ -419,7 +408,6 @@
     <string name="weather_source_accu_preference_hours_120">120 horas</string>
     <string name="weather_source_accu_preference_hours_240">240 horas</string>
     <string name="location_message_permission_background_missing">Permissão de acesso à localização em segundo plano ausente</string>
-    <string name="wind_gusts">Rajadas de vento</string>
     <string name="null_data_text">N/A</string>
     <string name="action_refresh">Atualizar</string>
     <string name="wind_direction_S_short">S</string>
@@ -512,7 +500,6 @@
     <string name="common_weather_text_rain_showers_light">Pancadas de chuva fraca</string>
     <string name="common_weather_text_drizzle_moderate">Garoa moderada</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Chuva forte com neve</string>
-    <string name="pollen_and_mold">Pólen e mofo</string>
     <string name="common_weather_text_drizzle_freezing_light">Garoa leve congelante</string>
     <string name="metno_weather_text_andthunder">%s com trovoadas</string>
     <string name="precipitation_nowcasting">Precipitação minuto a minuto</string>
@@ -562,7 +549,6 @@
     <string name="settings_debug_dump_crash_logs_saved">Registos de travamentos gravados</string>
     <string name="temperature_feels_like_short">Parece</string>
     <string name="humidity_short">Humidade</string>
-    <string name="wind_short">Vento</string>
     <string name="uv_index_short">Índice UV</string>
     <string name="pressure_short">Pressão</string>
     <string name="settings_unavailable_no_background_updates">Indisponível, ativar primeiro as actualizações em segundo plano</string>
@@ -867,8 +853,6 @@
     <string name="widget_custom_subtitle_alert_box_title">Ajuda para legendas personalizadas</string>
     <string name="settings_appearance_section_regional">Idioma e região</string>
     <string name="settings_appearance_section_theme">Tema</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">Sempre ativado com o modo claro</string>
-    <string name="settings_appearance_dark_mode_locations_disabled">Desativado, mas os locais estão sempre no modo escuro durante a noite</string>
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="unit_bft_nominative">força %s</string>
     <string name="unit_mum">µm</string>

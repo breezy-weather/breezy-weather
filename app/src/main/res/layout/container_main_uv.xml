@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:textAlignment="viewStart"
-            android:text="@string/uv_index"
+            android:text="@string/uv_index_short"
             android:layout_marginStart="4dp"
             app:layout_constraintEnd_toEndOf="@+id/block_end_guideline"
             app:layout_constraintHorizontal_chainStyle="packed"

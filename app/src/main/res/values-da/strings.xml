@@ -7,7 +7,6 @@
     <string name="pollen">Pollen</string>
     <string name="temperature_feels_like">Føles som</string>
     <string name="ephemeris">Sol &amp; måne</string>
-    <string name="details">Detaljer</string>
     <string name="temperature_wind_chill">Vindafkøling</string>
     <string name="alerts">Varsler</string>
     <string name="daily_today_short">I dag</string>
@@ -15,24 +14,18 @@
     <string name="daily_yesterday_short">I går</string>
     <string name="precipitation_thunderstorm">Tordenvejr</string>
     <string name="wind_direction_S_short">S</string>
-    <string name="pollen_and_mold">Pollen &amp; sporer</string>
-    <string name="wind_speed">Vindhastighed</string>
     <string name="precipitation_ice">Is</string>
     <string name="daily_tomorrow_short">I morgen</string>
     <string name="wind_direction_W_short">V</string>
     <string name="precipitation_intensity_heavy">Kraftig</string>
     <string name="precipitation_none">Ingen nedbør</string>
-    <string name="precipitation_total">Samlet</string>
     <string name="precipitation_probability">Nedbørssandsynlighed</string>
-    <string name="wind_strength">Vindstyrke</string>
     <string name="hourly_forecast">Timeudsigt</string>
     <string name="wind_strength_0">Vindstille</string>
     <string name="temperature_normals">Temperatur normaler</string>
     <string name="precipitation">Nedbør</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_normal_short">Normal</string>
     <string name="wind_direction_SW_short">SV</string>
-    <string name="wind_gusts">Vindstød</string>
     <string name="precipitation_duration">Nedbørsvarighed</string>
     <string name="temperature_degree_day_heating">Varmesum</string>
     <string name="precipitation_rain">Regn</string>
@@ -41,7 +34,6 @@
     <string name="wind_direction_variable">Variabel</string>
     <string name="temperature_apparent">Åbenbar</string>
     <string name="wind_direction_NE_short">NØ</string>
-    <string name="wind_direction">Vindretning</string>
     <string name="wind_direction_NW_short">NV</string>
     <string name="temperature_degree_day">Graddøgn</string>
     <string name="precipitation_snow">Sne</string>
@@ -52,7 +44,6 @@
     <string name="temperature_average_short">Gns.</string>
     <string name="precipitation_between_time">Nedbør mellem %1$s og %2$s</string>
     <string name="wind">Vind</string>
-    <string name="temperature_real_feel">RealFeel®</string>
     <string name="wind_strength_6">Hård vind</string>
     <string name="wind_strength_3">Let vind</string>
     <string name="wind_strength_4">Jævn vind</string>
@@ -110,12 +101,10 @@
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Kvælstofdioxid</string>
-    <string name="temperature_wet_bulb">Vådkugletemperatur</string>
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Kulilte</string>
     <string name="temperature_feels_like_short">Føles som</string>
-    <string name="wind_short">Vind</string>
     <string name="uv_index_short">UV indeks</string>
     <string name="alert">Varsel</string>
     <string name="alert_source">Kilde: %s</string>
@@ -320,7 +309,6 @@
     <string name="weather_kind_thunder">Torden</string>
     <string name="settings_background_updates_refresh_never_warning3">Overvej at bruge mindre mindre hyppig genopfriskningsrate, i stedet for at slå baggrundsopdateringer fra, eller tryk på “Fortsæt”, hvis du stadig vil fortsætte.</string>
     <string name="location_delete_location_dialog_title">Slet placering?</string>
-    <string name="location_search_weather_source">Vejrkilde</string>
     <string name="setting_weather_source_accu_hours">Timer</string>
     <string name="location_search_no_results">%1$s kan ikke finde %2$s</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Tilføj placering manuelt og slet “%s”</string>
@@ -430,7 +418,6 @@
     <string name="settings_background_updates_summary">Genopfriskningsrate, fejlfinding</string>
     <string name="settings_icon_packs_title">Ikonpakker</string>
     <string name="settings_units_summary">Temperatur, nedbør, afstand, hastighed, tryk</string>
-    <string name="settings_main_header_details_title">Detaljer i overskrift</string>
     <string name="settings_notifications_section_forecast">Vejrudsigt</string>
     <string name="settings_notifications_forecast_time_today_title">Notifikationstid for dagens vejrudsigt</string>
     <string name="settings_widgets_week_icon_mode_title">Ikon at vise i ugentlige visninger</string>
@@ -553,7 +540,6 @@
     <string name="action_add_current_location">Tilføj aktuel placering</string>
     <string name="action_edit_location">Redigér denne placering</string>
     <string name="action_about">Om</string>
-    <string name="action_app_store">App Store</string>
     <string name="action_restart">Genstart</string>
     <string name="action_undo">Fortryd</string>
     <string name="action_set">Indstil</string>

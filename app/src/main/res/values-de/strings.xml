@@ -3,7 +3,6 @@
     <string name="about_app">Über</string>
     <string name="action_about">Über</string>
     <string name="alerts">Warnungen</string>
-    <string name="action_app_store">App Store</string>
     <string name="action_preview">Vorschau</string>
     <string name="action_search">Suche</string>
     <string name="action_settings">Einstellungen</string>
@@ -56,7 +55,6 @@
     <string name="humidity_dew_point">Luftfeuchtigkeit / Taupunkt</string>
     <string name="precipitation_ice">Eis</string>
     <string name="action_learn_more">Mehr erfahren</string>
-    <string name="details">Details</string>
     <string name="pollen_mold">Schimmel</string>
     <string name="action_next">Weiter</string>
     <string name="nighttime">Nachts</string>
@@ -78,8 +76,6 @@
     <string name="pressure">Druck</string>
     <string name="pollen_ambrosia">Ambrosia</string>
     <string name="precipitation_rain">Regen</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
-    <string name="temperature_real_feel">RealFeel®</string>
     <string name="action_refresh">Aktualisieren</string>
     <string name="notification_refreshed_at">Aktualisiert um</string>
     <string name="action_restart">Neustart</string>
@@ -104,13 +100,11 @@
     <string name="precipitation_thunderstorm">Gewitter</string>
     <string name="daily_today_short">Heute</string>
     <string name="daily_tomorrow_short">Morg.</string>
-    <string name="precipitation_total">Gesamt</string>
     <string name="about_translators">Übersetzung</string>
     <string name="pollen_tree">Baum</string>
     <string name="uv_index">UV Index</string>
     <string name="visibility">Sicht</string>
     <string name="widget_refreshing">Aktualisiere</string>
-    <string name="temperature_wet_bulb">Kühlgrenztemperatur</string>
     <string name="widget_clock_day_details">Uhr + Tag (Details)</string>
     <string name="widget_clock_day_horizontal">Uhr + Tag (Horizontal)</string>
     <string name="widget_clock_day_vertical">Uhr + Tag (Vertikal)</string>
@@ -136,8 +130,6 @@
     <string name="wind_strength_8">Stürmischer Wind</string>
     <string name="wind_strength_9">Sturm</string>
     <string name="temperature_wind_chill">Windkühle</string>
-    <string name="wind_direction">Windrichtung</string>
-    <string name="wind_speed">Windgeschwindigkeit</string>
     <string name="daily_yesterday_short">Gest.</string>
     <string name="settings_automatic">Automatisch</string>
     <string name="settings_color_light">Hell</string>
@@ -371,7 +363,6 @@
         Benachrichtigungs-Widget
     </string>
     <string name="action_share">Teilen</string>
-    <string name="settings_main_header_details_title">Details im Header</string>
     <string name="settings_main_background_animation_enabled">Ein</string>
     <string name="settings_widgets_configure_widget_summary">Widget konfigurieren</string>
     <string name="settings_widgets_section_widgets_in_use">Verwendete Widgets</string>
@@ -413,7 +404,6 @@
     <string name="notification_channel_background_services">Hintergrunddienste</string>
     <string name="settings_debug">Debugging</string>
     <string name="uv_alert_level">Warnung</string>
-    <string name="location_search_weather_source">Wetterdienst</string>
     <string name="location_swipe_to_delete">Zum Löschen des Eintrags nach links wischen</string>
     <string name="settings_weather_sources">Wetterdienste</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Wettersymbol</string>
@@ -485,7 +475,6 @@
     <string name="action_show_errors">Antippen, um Details anzuzeigen</string>
     <string name="message_parsing_error_content">Stellen Sie sicher, dass Sie auf die neueste Version der App aktualisiert haben. Der Server kann vorübergehend nicht verfügbar sein. In diesem Fall versuchen Sie es bitte später erneut. Wenn das Problem weiterhin besteht, erstellen Sie bitte ein Absturzprotokoll in den Debugging-Einstellungen und melden Sie den Fehler auf GitHub.</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Bei niedrigem Akku nicht aktualisieren</string>
-    <string name="wind_strength">Windstärke</string>
     <string name="message_server_timeout">Zeitüberschreitung bei Anforderung</string>
     <string name="message_parsing_error_title">Wetterdaten konnten nicht ausgewertet werden</string>
     <string name="temperature_degree_day_cooling">Kühlgradtag</string>
@@ -506,7 +495,6 @@
     <string name="action_delete">Löschen</string>
     <string name="pollen_level_0">Keine</string>
     <string name="weather_message_invalid_location">Ungültiger Ort, bitte löschen und erneut hinzufügen</string>
-    <string name="wind_gusts">Windböen</string>
     <string name="action_save">Speichern</string>
     <string name="settings_weather_sources_per_location_summary">Wetterdatenquellen für diesen Ort anpassen</string>
     <string name="precipitation_nowcasting">Kurzvorhersage von Niederschlägen</string>
@@ -553,7 +541,6 @@
     <string name="settings_main_threshold_lines_on_charts">Grenzlinien in Diagrammen</string>
     <string name="temperature_average_short">Ø</string>
     <string name="settings_widgets_broadcast_send_data_title">Wetterdaten an %s senden</string>
-    <string name="pollen_and_mold">Pollen &amp; Schimmel</string>
     <string name="settings_debug_dump_crash_logs_saved">Absturzprotokolle gespeichert</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Zum Öffnen antippen</string>
     <string name="notification_channel_crash_logs">Absturzprotokolle</string>
@@ -573,7 +560,6 @@
     <string name="temperature_feels_like_short">Gefühlt</string>
     <string name="dew_point_short">Taupunkt</string>
     <string name="cloud_cover_short">Bewölkung</string>
-    <string name="wind_short">Wind</string>
     <string name="uv_index_short">UV Index</string>
     <string name="visibility_short">Sicht</string>
     <string name="pressure_short">Druck</string>
@@ -834,8 +820,6 @@
     <string name="precipitation_rain_total_night">Regen nachts</string>
     <string name="daytime_short">Tag</string>
     <string name="nighttime_short">Nacht</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">Im hellen Modus Immer aktiviert</string>
-    <string name="settings_appearance_dark_mode_locations_disabled">Deaktiviert, aber Standorte sind bei Nacht immer im Darkmode</string>
     <string name="temperature_normals_deviation">Abweichung</string>
     <string name="temperature_normals_deviation_explanation_maximum">Abweichung von der %s-Durchschnittsmaximaltemperatur für diesen Ort</string>
     <string name="temperature_normals_deviation_explanation_minimum">Abweichung von der %s-Durchschnittsminimaltemperatur für diesen Ort</string>

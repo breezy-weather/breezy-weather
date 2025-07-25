@@ -22,10 +22,7 @@
     <string name="air_quality_so2_full">Дыяксід серы (SO₂)</string>
     <string name="temperature">Тэмпература</string>
     <string name="temperature_feels_like">Адчуваецца як</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Адчуваецца як</string>
-    <string name="wind_strength">Сіла ветру</string>
     <string name="wind_strength_0">Штыль</string>
     <string name="wind_strength_5">Свежы</string>
     <string name="wind_strength_9">Шторм</string>
@@ -100,9 +97,7 @@
     <string name="hourly_forecast">Прагноз па гадзінах</string>
     <string name="app_name">Надвор’е</string>
     <string name="pollen">Пылок</string>
-    <string name="pollen_and_mold">Пылок і цвіль</string>
     <string name="ephemeris">Cонца і месяц</string>
-    <string name="details">Звесткі</string>
     <string name="daily_tomorrow_short">Заўтра</string>
     <string name="temperature_wind_chill">Адчуваецца пры ветры</string>
     <string name="temperature_degree_day_cooling">Градуса-дзень ахаладжальнага сезона</string>
@@ -114,7 +109,6 @@
     <string name="precipitation_snow">Снег</string>
     <string name="precipitation_intensity_heavy">Моцныя</string>
     <string name="precipitation_none">Без ападкаў</string>
-    <string name="wind_gusts">Парывы ветру</string>
     <string name="wind_direction_NE_short">ПнУ</string>
     <string name="wind_strength_1">Ціхі</string>
     <string name="wind_strength_2">Лёгкі</string>
@@ -170,7 +164,6 @@
     <string name="weather_source_accu_preference_hours_24">24 гадзіны</string>
     <string name="weather_source_accu_preference_hours_120">120 гадзін</string>
     <string name="weather_source_accu_preference_hours_240">240 гадзін</string>
-    <string name="location_search_weather_source">Крыніца надвор’я</string>
     <string name="location_results_by">Вынікі месцазнаходжання па %s</string>
     <string name="location_message_added">Месцазнаходжанне дададзена</string>
     <string name="location_message_deleted">Месцазнаходжанне выдалена</string>
@@ -195,7 +188,6 @@
     <string name="action_settings">Налады</string>
     <string name="action_preview">Перадпрагляд</string>
     <string name="action_about">Інфармацыя</string>
-    <string name="action_app_store">Крама праграм</string>
     <string name="action_refresh">Абнавіць</string>
     <string name="action_restart">Перазапуск</string>
     <string name="action_more">Разгарнуць</string>
@@ -223,24 +215,20 @@
     <string name="daily_today_short">Сёння</string>
     <string name="air_quality">Якасць паветра</string>
     <string name="alerts">Абвесткі</string>
-    <string name="temperature_wet_bulb">Змочаны тэрмометр</string>
     <string name="temperature_degree_day">Градуса-дзень</string>
     <string name="temperature_degree_day_heating">Градуса-дзень ацяпляльнага перыяду</string>
     <string name="temperature_normal_short">Норма</string>
     <string name="precipitation_intensity_light">Слабыя</string>
     <string name="precipitation_duration">Працягласць ападкаў</string>
-    <string name="precipitation_total">Усяго</string>
     <string name="precipitation_thunderstorm">Навальніца</string>
     <string name="precipitation_ice">Лёд</string>
     <string name="precipitation_between_time">Ападкі з %1$s да %2$s</string>
     <string name="wind">Вецер</string>
-    <string name="wind_speed">Хуткасць ветру</string>
     <string name="wind_direction_NW_short">ПнЗ</string>
     <string name="wind_direction_N_short">Пн</string>
     <string name="wind_direction_E_short">У</string>
     <string name="wind_direction_SE_short">ПдУ</string>
     <string name="wind_direction_S_short">Пд</string>
-    <string name="wind_direction">Напрамак ветру</string>
     <string name="wind_direction_variable">Пераменны</string>
     <string name="wind_direction_SW_short">ПдЗ</string>
     <string name="wind_direction_W_short">З</string>
@@ -366,7 +354,6 @@
     <string name="settings_main_section_displayed_data">Паказ даных</string>
     <string name="settings_main_daily_trends_title">Прагноз па днях</string>
     <string name="settings_main_hourly_trends_title">Прагноз па гадзінах</string>
-    <string name="settings_main_header_details_title">Звесткі ў загалоўку</string>
     <string name="settings_main_section_options">Дадатковыя функцыі</string>
     <string name="settings_main_threshold_lines_on_charts">Парогавыя лініі на графіках</string>
     <string name="settings_main_section_animations">Анімацыі</string>
@@ -566,7 +553,6 @@
     <string name="location_search_change_source">Змяніць крыніцу пошуку</string>
     <string name="location_message_updated">Месцазнаходжанне абноўлена</string>
     <string name="location_message_already_exists">Спіс месцазнаходжанняў ужо змяшчае гэта месца і з гэтай жа крыніцай прагнозаў.</string>
-    <string name="wind_short">Вецер</string>
     <string name="uv_index_short">УФ</string>
     <string name="visibility_short">Бачнасць</string>
     <string name="pressure_short">Ціск</string>
@@ -806,8 +792,6 @@
     <string name="ephemeris_moon">Месяц</string>
     <string name="about_update_check_eol">Гэта версія Android больш не падтрымліваецца</string>
     <string name="unit_bft_display_name">Балы Бофарта</string>
-    <string name="settings_appearance_dark_mode_locations_disabled">Адключаны, але ўначы для месцаў заўсёды выкарыстоўваецца цёмны рэжым</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">Заўсёды ўключана са светлым рэжымам</string>
     <string name="ephemeris_dusk_at">Змрок ў %s</string>
     <string name="ephemeris_about_dusk">Змрок — найцямнейшая частка змяркання перад поўным знікненнем бачнага святла.</string>
     <string name="ephemeris_about_dawn">Світанне — час перад ўсходам сонца, калі з’яўляецца першае бачнае святло.</string>

@@ -11,8 +11,6 @@
     <string name="precipitation_duration">Durada de precipitació</string>
     <string name="temperature">Temperatura</string>
     <string name="wind">Vent</string>
-    <string name="wind_direction">Direcció del vent</string>
-    <string name="wind_speed">Velocitat del vent</string>
     <string name="humidity">Humitat</string>
     <string name="humidity_dew_point">Humitat / Punt de rosada</string>
     <string name="uv_index">Índex UV</string>
@@ -34,13 +32,9 @@
     <!-- The following set of strings should be as short as possible. -->
     <string name="daily_yesterday_short">Ahir</string>
     <string name="daily_tomorrow_short">Dmà</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Aparent</string>
     <string name="temperature_wind_chill">Vent fred</string>
-    <string name="temperature_wet_bulb">Temperatura humida</string>
     <string name="temperature_degree_day">Grau dia</string>
-    <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Tempesta elèctrica</string>
     <string name="precipitation_rain">Pluja</string>
     <string name="precipitation_snow">Neu</string>
@@ -76,7 +70,6 @@
     <string name="hourly_forecast">Pronòstic horari</string>
     <string name="air_quality">Qualitat de l’aire</string>
     <string name="pollen">Pol·len</string>
-    <string name="details">Detalls</string>
     <string name="ephemeris">Sol i lluna</string>
     <string name="action_next">Següent</string>
     <string name="action_done">Fet</string>
@@ -161,7 +154,6 @@
     <string name="action_settings">Configuració</string>
     <string name="action_preview">Vista preliminar</string>
     <string name="action_about">Quant a</string>
-    <string name="action_app_store">Botiga d’aplicacions</string>
     <!-- widget -->
     <string name="widget_day">Diari</string>
     <string name="widget_week">Setmanal</string>
@@ -253,9 +245,7 @@
     <string name="unit_ppcm_voice">Per metre cúbic</string>
     <string name="temperature_degree_day_heating">Dia de graus de calefacció</string>
     <string name="temperature_degree_day_cooling">Gelant temperatura diària</string>
-    <string name="pollen_and_mold">Pol·len i floridura</string>
     <string name="alerts_to_follow">Alertes pròximes, toca per a veure-les.</string>
-    <string name="wind_gusts">Ràfegues de vent</string>
     <string name="wind_direction_N_short">N</string>
     <string name="wind_direction_NE_short">NE</string>
     <string name="wind_direction_E_short">E</string>
@@ -264,7 +254,6 @@
     <string name="uv_index_3_5">Moderat</string>
     <string name="uv_index_6_7">Alt</string>
     <string name="uv_index_11">Extrem</string>
-    <string name="wind_strength">Força del vent</string>
     <string name="uv_index_8_10">Molt alt</string>
     <string name="wind_direction_S_short">S</string>
     <string name="temperature_average_short">Mitj</string>
@@ -321,7 +310,6 @@
     <string name="unit_mph">mph</string>
     <string name="location_message_permission_missing">Falta el permís d’accés a la ubicació</string>
     <string name="unit_cm">cm</string>
-    <string name="location_search_weather_source">Font meteorològica</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Tempesta elèctrica amb lleugera calamarsa</string>
     <string name="settings_section_general">General</string>
     <string name="settings_notifications_forecast_today_title">Notificació per al pronòstic del dia</string>
@@ -511,7 +499,6 @@
     <string name="unit_celsius">°C</string>
     <string name="settings_units_summary">Temperatura, precipitació, distància, velocitat, pressió</string>
     <string name="unit_kn">kn</string>
-    <string name="settings_main_header_details_title">Detalls a la capçalera</string>
     <string name="common_weather_text_drizzle_heavy">Plugim intens</string>
     <string name="common_weather_text_mainly_clear">Majoritàriament clar</string>
     <string name="settings_main_background_animation_disabled">Desactivat</string>
@@ -565,7 +552,6 @@
     <string name="cloud_cover_short">Nuvolositat</string>
     <string name="ceiling_short">Plafó</string>
     <string name="humidity_short">Humitat</string>
-    <string name="wind_short">Vent</string>
     <string name="uv_index_short">Índex UV</string>
     <string name="visibility_short">Visibilitat</string>
     <string name="pressure_short">Pressió</string>

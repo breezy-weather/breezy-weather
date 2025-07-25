@@ -4,15 +4,12 @@
     <string name="daily_today_short">Täna</string>
     <string name="daily_tomorrow_short">Homme</string>
     <string name="ephemeris">Päike ja kuu</string>
-    <string name="details">Lisateave</string>
     <string name="alert">Hoiatus</string>
     <string name="alerts">Hoiatused</string>
     <string name="alert_source">Allikas: %s</string>
     <string name="temperature">Temperatuur</string>
     <string name="temperature_feels_like">Tundub kui</string>
     <string name="temperature_feels_like_short">Tundub kui</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="precipitation_rain">Vihm</string>
     <string name="precipitation_thunderstorm">Äikesetorm</string>
     <string name="precipitation_snow">Lumi</string>
@@ -54,7 +51,6 @@
     <string name="precipitation_nowcasting">Sademed minutist minutisse</string>
     <string name="air_quality">Õhu kvaliteet</string>
     <string name="pollen">Õietolm</string>
-    <string name="pollen_and_mold">Õietolm ja eosed</string>
     <string name="alerts_to_follow">Tulevased hoiatused. Puuduta nägemiseks.</string>
     <string name="precipitation">Sademed</string>
     <string name="precipitation_probability">Sademete tõenäosus</string>
@@ -68,13 +64,8 @@
     <string name="uv_index_short">UV-indeks</string>
     <string name="air_quality_index">Õhukvaliteedi indeks</string>
     <string name="wind">Tuul</string>
-    <string name="wind_short">Tuul</string>
-    <string name="wind_speed">Tuule kiirus</string>
-    <string name="wind_gusts">Tuule puhangud</string>
-    <string name="wind_direction">Tuule suund</string>
     <string name="precipitation_intensity_medium">Keskmine</string>
     <string name="wind_direction_variable">Muutlik</string>
-    <string name="wind_strength">Tuule tugevus</string>
     <string name="ephemeris_sunrise_at">Päikesetõus %s</string>
     <string name="ephemeris_sunset_at">Päikeseloojang %s</string>
     <string name="ephemeris_moonrise_at">Kuutõus %s</string>
@@ -96,7 +87,6 @@
     <string name="pollen_alnus">Lepp</string>
     <string name="pollen_ambrosia">Ambroosia</string>
     <string name="pollen_betula">Kask</string>
-    <string name="temperature_wet_bulb">Märgtermomeetri temperatuur</string>
     <string name="temperature_degree_day">Kraadpäev</string>
     <string name="temperature_degree_day_heating">Kütte kraadpäev</string>
     <string name="temperature_degree_day_cooling">Jahutuse kraadpäev</string>
@@ -164,7 +154,6 @@
     <string name="ephemeris_moon_phase_first_quarter">Poolkuu (esimene veerand)</string>
     <string name="locations">Asukohad</string>
     <string name="location_current">Praegune asukoht</string>
-    <string name="location_search_weather_source">Ilma allikas</string>
     <string name="location_message_added">Asukoht lisatud</string>
     <string name="location_message_deleted">Asukoht eemaldatud</string>
     <string name="location_delete_location_dialog_title">Kas soovite asukohta kustutada?</string>
@@ -237,7 +226,6 @@
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Äiksetorm kerge või mõõdukas</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Äikesetorm kerge rahega</string>
     <string name="temperature_apparent">Ilmselt</string>
-    <string name="precipitation_total">Kokku</string>
     <string name="air_quality_pm25_voice">PM kaks punkt viis</string>
     <string name="pollen_castanea">Kastanipuu</string>
     <string name="pollen_corylus">Sarapuu</string>
@@ -294,7 +282,6 @@
     <string name="settings_main">Peamine vaade</string>
     <string name="settings_main_daily_trends_title">Päevased prognoosid</string>
     <string name="settings_main_hourly_trends_title">Tunnised prognoosid</string>
-    <string name="settings_main_header_details_title">Üksikasjad pealkirjas</string>
     <string name="settings_debug_dump_crash_logs_title">Jaga krahhilogisid</string>
     <string name="unit_kpa_voice">Kilopaskalid</string>
     <string name="air_quality_pm10_voice">PM kümme</string>
@@ -504,7 +491,6 @@
     <string name="action_add_new_location">Lisa uus asukoht</string>
     <string name="action_edit_location">Muuda seda asukohta</string>
     <string name="action_settings">Seadistused</string>
-    <string name="action_app_store">Rakenduste pood</string>
     <string name="action_delete">Kustuta</string>
     <string name="action_back">Tagasi</string>
     <string name="action_done">Tehtud</string>

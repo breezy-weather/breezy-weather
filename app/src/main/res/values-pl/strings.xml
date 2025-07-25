@@ -15,8 +15,6 @@
     <string name="precipitation_duration">Czas trwania opadów</string>
     <string name="temperature">Temperatura</string>
     <string name="wind">Wiatr</string>
-    <string name="wind_direction">Kierunek wiatru</string>
-    <string name="wind_speed">Prędkość wiatru</string>
     <string name="humidity">Wilgotność</string>
     <string name="humidity_dew_point">Wilgotność / Punkt rosy</string>
     <string name="uv_index">Indeks UV</string>
@@ -39,9 +37,7 @@
     <string name="daily_tomorrow_short">Jutro</string>
     <string name="temperature_apparent">Temperatura odczuwalna</string>
     <string name="temperature_wind_chill">Chłód</string>
-    <string name="temperature_wet_bulb">Temperatura mokrego termometru</string>
     <string name="temperature_degree_day">Stopień ogrzewania dobowego</string>
-    <string name="precipitation_total">Ogółem</string>
     <string name="precipitation_thunderstorm">Burza</string>
     <string name="precipitation_rain">Deszcz</string>
     <string name="precipitation_snow">Śnieg</string>
@@ -77,7 +73,6 @@
     <string name="hourly_forecast">Prognoza godzinowa</string>
     <string name="air_quality">Jakość powietrza</string>
     <string name="pollen">Pyłki</string>
-    <string name="details">Szczegóły</string>
     <string name="ephemeris">Słońce i księżyc</string>
     <string name="action_next">Następny</string>
     <string name="action_done">Gotowe</string>
@@ -156,7 +151,6 @@
     <string name="action_settings">Ustawienia</string>
     <string name="action_preview">Podgląd</string>
     <string name="action_about">O</string>
-    <string name="action_app_store">Sklep z aplikacjami</string>
     <!-- widget -->
     <string name="widget_day">Dziennie</string>
     <string name="widget_week">Tygodniowo</string>
@@ -239,7 +233,6 @@
     <string name="settings_main_cards_title">Bloki</string>
     <string name="settings_main_hourly_trends_title">Trendy godzinne</string>
     <string name="null_data_text">N/A</string>
-    <string name="location_search_weather_source">Źródło danych pogodowych</string>
     <string name="widget_style_nano">Nano</string>
     <string name="settings_background_updates">Aktualizacje w tle</string>
     <string name="settings_widgets_notification_style_title">Styl</string>
@@ -304,7 +297,6 @@
     <string name="notification_channel_background_services">Usługi w tle</string>
     <string name="notification_style_cities">Miasta</string>
     <string name="about_source_code">Kod źródłowy</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="precipitation_none">Brak opadów</string>
     <string name="wind_direction_N_short">N</string>
     <string name="wind_direction_NE_short">NE</string>
@@ -357,7 +349,6 @@
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="settings_main_section_options">Opcje</string>
-    <string name="temperature_real_feel">RealFeel®</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_co">CO</string>
@@ -383,11 +374,9 @@
     <string name="air_quality_level_4_description">Osoby wrażliwe mogą od razu odczuć skutki zdrowotne. Po dłuższym przebywaniu na zewnątrz osoby zdrowe mogą mieć trudności z oddychaniem i odczuwać drapanie w gardle. Ogranicz aktywność na zewnątrz.</string>
     <string name="air_quality_index">Indeks jakości powietrza</string>
     <string name="air_quality_level_5_description">Osoby wrażliwe mogą od razu odczuć skutki zdrowotne i powinny unikać przebywania na zewnątrz. Osoby zdrowe mogą mieć trudności z oddychaniem i odczuwać drapanie w gardle. Warto rozważyć pozostanie w pomieszczeniach i zmianę planów zajęć na zewnątrz.</string>
-    <string name="wind_strength">Siła wiatru</string>
     <string name="air_quality_level_2">Umiarkowana</string>
     <string name="air_quality_level_2_description">Jakość powietrza jest akceptowalna dla większości osób. Jednak osoby wrażliwe mogą odczuwać niewielkie lub umiarkowane objawy po dłuższym przebywaniu na zewnątrz.</string>
     <string name="precipitation_between_time">Opady od %1$s do %2$s</string>
-    <string name="wind_gusts">Porywy wiatru</string>
     <string name="air_quality_level_3_description">Powietrze osiągnęło wysoki poziom zanieczyszczenia i jest niezdrowe dla osób wrażliwych. Jeśli odczuwasz takie objawy jak trudności w oddychaniu czy drapanie w gardle, skróć przebywanie na zewnątrz.</string>
     <string name="action_show_errors">Dotknij, aby zobaczyć szczegóły</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignoruj, gdy poziom naładowania baterii jest niski</string>
@@ -465,7 +454,6 @@
     <string name="settings_location_access_precise_summaryOn">Włączone. Używana jest przede wszystkim sieć komórkowa, ale GPS również może być użyty jako rezerwowe źródło lokalizacji.</string>
     <string name="settings_weather_sources_summary">Domyślne źródło danych pogodowych dla nowych lokalizacji, osobiste klucze API i inne ustawienia źródeł danych</string>
     <string name="settings_main_summary">Kolejność bloków, wyświetlane elementy, animacje</string>
-    <string name="settings_main_header_details_title">Szczegóły w nagłówku</string>
     <string name="settings_notifications_summary">Powiadomienia o alertach pogodowych, opadach lub prognozie pogody dla pierwszej lokalizacji</string>
     <string name="settings_notifications_precipitations_title">Powiadomienia o opadach</string>
     <string name="settings_notifications_forecast_time_today_title">Czas powiadomienia o prognozie na dany dzień</string>
@@ -538,7 +526,6 @@
     <string name="common_weather_text_rain_showers">Przelotne opady deszczu</string>
     <string name="common_weather_text_drizzle_moderate">Umiarkowana mżawka</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Silny deszcz ze śniegiem</string>
-    <string name="pollen_and_mold">Pyłki i pleśń</string>
     <string name="common_weather_text_drizzle_freezing_light">Lekka marznąca mżawka</string>
     <string name="metno_weather_text_andthunder">%s z piorunami</string>
     <string name="common_weather_text_drizzle">Mżawka</string>
@@ -578,7 +565,6 @@
     <string name="temperature_feels_like_short">Odczuwalna</string>
     <string name="dew_point_short">Punkt rosy</string>
     <string name="humidity_short">Wilgotność</string>
-    <string name="wind_short">Wiatr</string>
     <string name="uv_index_short">Indeks UV</string>
     <string name="visibility_short">Widoczność</string>
     <string name="pressure_short">Ciśnienie</string>
@@ -827,8 +813,6 @@
     <string name="action_configure_item">Konfiguruj %s</string>
     <string name="settings_appearance_section_regional">Język i region</string>
     <string name="settings_appearance_section_theme">Motyw</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">Zawsze włączone w trybie jasnym</string>
-    <string name="settings_appearance_dark_mode_locations_disabled">Wyłączone, ale lokalizacje zawsze są w trybie ciemnym w nocy</string>
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="unit_bft_nominative">%s Bft</string>
     <string name="about_update_check_eol">Ta wersja Androida nie jest już wspierana</string>

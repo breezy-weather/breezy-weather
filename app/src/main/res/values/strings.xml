@@ -15,7 +15,6 @@
     <string name="air_quality_short">Air quality</string>
     <!-- We use it singular in English as in “Grass pollen” -->
     <string name="pollen">Pollen</string>
-    <string name="pollen_and_mold">Pollen &amp; mold</string>
     <string name="ephemeris">Sun &amp; moon</string>
     <string name="ephemeris_sun">Sun</string>
     <string name="ephemeris_moon">Moon</string>
@@ -27,7 +26,6 @@
     <string name="ephemeris_polar_day">Polar day</string>
     <string name="ephemeris_polar_night">Polar night</string>
     <string name="clock">Clock</string>
-    <string name="details">Details</string>
     <!-- Alerts -->
     <string name="alert">Alert</string>
     <string name="alerts">Alerts</string>
@@ -58,11 +56,8 @@
     <!-- 10 characters max version of temperature_feels_like to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
     <string name="temperature_feels_like_short">Feels like</string>
     <string name="temperature_feels_like_details">What the temperature feels like, as a result of humidity, wind and/or sunlight.</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Apparent</string>
     <string name="temperature_wind_chill">Wind chill</string>
-    <string name="temperature_wet_bulb">Wet bulb</string>
     <string name="temperature_degree_day">Degree day</string>
     <string name="temperature_degree_day_heating">Heating degree day</string>
     <string name="temperature_degree_day_heating_explanation">Difference between the outside temperature and a reference comfortable temperature used to estimate heating energy requirements</string>
@@ -85,7 +80,6 @@
     <string name="precipitation_total_night">Nighttime precipitation</string>
     <string name="precipitation_probability">Precipitation probability</string>
     <string name="precipitation_duration">Precipitation duration</string>
-    <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Thunderstorm</string>
     <string name="precipitation_rain">Rain</string>
     <!-- Translate while taking into account it is a text spread on 2 lines (3 may overlap) of about 12 characters each -->
@@ -107,16 +101,11 @@
     <!-- Wind -->
     <string name="wind">Wind</string>
     <!-- 10 characters max version of wind to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
-    <string name="wind_short">Wind</string>
-    <string name="wind_speed">Wind speed</string>
     <string name="wind_speed_about">About wind speed and gusts</string>
     <string name="wind_speed_about_description">Wind speed is measured by averaging wind speeds over a period of time. Gusts are sudden bursts of wind typically lasting under 20 seconds.</string>
-    <!-- Deprecated -->
-    <string name="wind_gusts" translatable="false">Wind gusts</string>
     <string name="wind_gusts_short">Gusts</string>
     <!-- From NE -->
     <string name="wind_origin">From %s</string>
-    <string name="wind_direction">Wind direction</string>
     <string name="wind_direction_variable">Variable</string>
     <string name="wind_direction_N">North</string>
     <string name="wind_direction_NE">North East</string>
@@ -134,7 +123,6 @@
     <string name="wind_direction_SW_short">SW</string>
     <string name="wind_direction_W_short">W</string>
     <string name="wind_direction_NW_short">NW</string>
-    <string name="wind_strength">Wind strength</string>
     <string name="wind_strength_scale_description" translatable="false">@string/label_description</string>
     <string name="wind_strength_scale">Beaufort scale</string>
     <string name="wind_strength_0">Calm</string>
@@ -152,7 +140,7 @@
     <string name="wind_strength_12">Hurricane-force</string>
     <!-- UV -->
     <string name="uv_index">UV index</string>
-    <!-- 10 characters max version of uv_index to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
+    <!-- 10 characters max version of uv_index to be used in the main screen block. May be less in cyrillic/asian alphabets due to large letters -->
     <string name="uv_index_short">UV index</string>
     <string name="uv_index_0_2">Low</string>
     <string name="uv_index_3_5">Moderate</string>
@@ -407,7 +395,6 @@
     <string name="location_custom_name">Custom name</string>
     <!-- Address is singular -->
     <string name="location_reverse_geocoding">Address lookup</string>
-    <string name="location_search_weather_source">Weather source</string>
     <!-- Ex: Location results by Open-Meteo -->
     <string name="location_results_by">Location results by %s</string>
     <string name="location_message_added">Location added</string>
@@ -455,7 +442,6 @@
     <string name="action_preview">Preview</string>
     <string name="action_about">About</string>
     <string name="action_dependencies" translatable="false">@string/about_dependencies</string>
-    <string name="action_app_store">App Store</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_restart">Restart</string>
     <string name="action_more">More</string>
@@ -681,7 +667,6 @@
     <string name="settings_weather_source_open_weather_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_pirate_weather_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_here_api_key" translatable="false">@string/settings_source_api_key</string>
-    <string name="settings_weather_source_msn_azure_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_mf_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_atmo_aura_api_key" translatable="false">@string/settings_source_api_key</string>
     <string name="settings_weather_source_atmo_france_api_key" translatable="false">@string/settings_source_api_key</string>
@@ -715,7 +700,6 @@
     <string name="settings_weather_source_pirate_weather_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_recosante_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_recosante_instance_geocoding" translatable="false">@string/settings_source_instance_geocoding</string>
-    <string name="settings_weather_source_rnsa_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_sma_sc_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_sma_su_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_ssms_instance" translatable="false">@string/settings_source_instance</string>
@@ -740,8 +724,6 @@
     <string name="settings_appearance_dark_mode_locations_title">Location-based dark mode</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Follow day/night</string>
     <string name="settings_appearance_dark_mode_locations_dark">Always dark when app is in dark mode</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled" translatable="false">Always enabled with light mode</string>
-    <string name="settings_appearance_dark_mode_locations_disabled" translatable="false">Disabled, but locations are always in dark mode at nighttime</string>
     <string name="settings_appearance_icon_pack_title">Icon pack</string>
     <string name="settings_icon_packs_title">Icon packs</string>
     <string name="settings_icon_packs_check_details">Check details</string>
@@ -750,7 +732,6 @@
     <string name="settings_icon_packs_weather_icon_grey">Grey icon</string>
     <string name="settings_icon_packs_weather_icon_dark">Dark icon</string>
     <string name="settings_icon_packs_get_more">Get more</string>
-    <string name="settings_icon_providers_app_store" translatable="false">@string/action_app_store</string>
     <string name="settings_units">Units</string>
     <string name="settings_units_summary">Temperature, precipitation, distance, speed, pressure</string>
     <string name="settings_units_temperature">Temperature unit</string>
@@ -765,8 +746,6 @@
     <string name="settings_main_cards_title">Blocks</string>
     <string name="settings_main_daily_trends_title">Daily trends</string>
     <string name="settings_main_hourly_trends_title">Hourly trends</string>
-    <!-- TODO: Obsolete -->
-    <string name="settings_main_header_details_title" translatable="false">Details in header</string>
     <string name="settings_main_section_options">Options</string>
     <string name="settings_main_threshold_lines_on_charts">Threshold lines on charts</string>
     <string name="settings_main_section_animations">Animations</string>

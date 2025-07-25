@@ -11,8 +11,6 @@
     <string name="precipitation_duration">Durata delle precipitazioni</string>
     <string name="temperature">Temperatura</string>
     <string name="wind">Vento</string>
-    <string name="wind_direction">Direzione del vento</string>
-    <string name="wind_speed">Velocità del vento</string>
     <string name="humidity">Umidità</string>
     <string name="humidity_dew_point">Umidità / Punto di rugiada</string>
     <string name="uv_index">Indice UV</string>
@@ -34,13 +32,9 @@
     <!-- The following set of strings should be as short as possible. -->
     <string name="daily_yesterday_short">Ieri</string>
     <string name="daily_tomorrow_short">Domani</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Apparente</string>
     <string name="temperature_wind_chill">Percezione termica</string>
-    <string name="temperature_wet_bulb">Bulbo umido</string>
     <string name="temperature_degree_day">Grado giorno</string>
-    <string name="precipitation_total">Totale</string>
     <string name="precipitation_thunderstorm">Temporale</string>
     <string name="precipitation_rain">Pioggia</string>
     <string name="precipitation_snow">Neve</string>
@@ -76,7 +70,6 @@
     <string name="hourly_forecast">Previsioni orarie</string>
     <string name="air_quality">Qualità dell’aria</string>
     <string name="pollen">Polline</string>
-    <string name="details">Dettagli</string>
     <string name="ephemeris">Sole e Luna</string>
     <string name="action_next">Avanti</string>
     <string name="action_done">Fine</string>
@@ -163,7 +156,6 @@
     <string name="action_settings">Impostazioni</string>
     <string name="action_preview">Anteprima</string>
     <string name="action_about">Informazioni</string>
-    <string name="action_app_store">Play Store</string>
     <!-- widget -->
     <string name="widget_day">Giornaliero</string>
     <string name="widget_week">Settimanale</string>
@@ -335,7 +327,6 @@
     <string name="weather_source_accu_preference_hours_72">72 ore</string>
     <string name="weather_source_accu_preference_hours_120">120 ore</string>
     <string name="weather_source_accu_preference_hours_240">240 ore</string>
-    <string name="location_search_weather_source">Fonte dati meteo</string>
     <string name="locations">Località</string>
     <string name="settings_appearance_summary">Lingua, modalità scura, stile icone, unità di misura</string>
     <string name="settings_icon_packs_title">Pacchetti icone</string>
@@ -387,7 +378,6 @@
     <string name="settings_main_cards_title">Schede</string>
     <string name="settings_main_daily_trends_title">Tendenze giornaliere</string>
     <string name="settings_main_hourly_trends_title">Tendenze orarie</string>
-    <string name="settings_main_header_details_title">Dettagli nell’intestazione</string>
     <string name="settings_main_cards_fade_in_switch">Dissolvenza schede</string>
     <string name="settings_main_cards_other_element_animations_switch">Animazioni di altri elementi</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notifica per le previsioni del giorno successivo</string>
@@ -494,8 +484,6 @@
     <string name="settings_location_access_precise_summaryOn">Abilitato. Il provider di rete del dispositivo verrà utilizzato principalmente e per la maggior parte del tempo, ma il GPS può essere utilizzato anche come ripiego.</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Temporale con grandine leggera</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Temporale con grandine pesante</string>
-    <string name="wind_gusts">Raffiche di vento</string>
-    <string name="wind_strength">Forza del vento</string>
     <string name="pollen_level_0">Nessuno</string>
     <string name="pollen_level_2">Basso</string>
     <string name="pollen_level_3">Moderato</string>
@@ -560,7 +548,6 @@
     <string name="temperature_average_short">Media</string>
     <string name="settings_main_threshold_lines_on_charts">Linee di soglia sui grafici</string>
     <string name="settings_widgets_broadcast_send_data_title">Invia dati meteo a %s</string>
-    <string name="pollen_and_mold">Polline e muffa</string>
     <string name="about_contribution_designer">Designer del logo</string>
     <string name="settings_debug_dump_crash_logs_saved">Crash log salvato</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Premi per aprire</string>
@@ -575,7 +562,6 @@
     <string name="notification_precipitation_stopping">Le precipitazioni smetteranno presto</string>
     <string name="temperature_feels_like_short">Percepita</string>
     <string name="humidity_short">Umidità</string>
-    <string name="wind_short">Vento</string>
     <string name="uv_index_short">Indice UV</string>
     <string name="visibility_short">Visibilità</string>
     <string name="pressure_short">Pressione</string>

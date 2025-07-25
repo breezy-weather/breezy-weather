@@ -2,7 +2,6 @@
 <resources>
     <string name="alert_source">來源：%s</string>
     <string name="daily_yesterday_short">昨日</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_normals">正常溫度範圍</string>
     <string name="precipitation">降水量</string>
     <string name="wind_strength_8">烈風</string>
@@ -62,9 +61,7 @@
     <string name="precipitation_nowcasting">降水臨近預測</string>
     <string name="air_quality">空氣質素</string>
     <string name="pollen">花粉濃度</string>
-    <string name="pollen_and_mold">花粉與霉菌濃度</string>
     <string name="ephemeris">日月出沒</string>
-    <string name="details">詳細資料</string>
     <string name="alert">警告</string>
     <string name="alerts">警告</string>
     <string name="alerts_to_follow">點選這裡查看即將發出的天氣警告。</string>
@@ -73,10 +70,8 @@
     <string name="temperature">氣溫</string>
     <string name="temperature_feels_like">體感溫度</string>
     <string name="temperature_feels_like_short">體感</string>
-    <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_apparent">體感溫度</string>
     <string name="temperature_wind_chill">風寒指數</string>
-    <string name="temperature_wet_bulb">濕球溫度</string>
     <string name="temperature_degree_day">度日數</string>
     <string name="temperature_degree_day_heating">加熱度日數</string>
     <string name="temperature_average_short">平均</string>
@@ -84,7 +79,6 @@
     <string name="temperature_degree_day_cooling">降溫度日數</string>
     <string name="precipitation_probability">降水概率</string>
     <string name="precipitation_duration">降水時間</string>
-    <string name="precipitation_total">總量</string>
     <string name="precipitation_thunderstorm">雷暴</string>
     <string name="precipitation_rain">雨</string>
     <string name="precipitation_snow">雪</string>
@@ -95,10 +89,6 @@
     <string name="precipitation_none">無降水</string>
     <string name="precipitation_between_time">%1$s 至 %2$s 的降水情況</string>
     <string name="wind">風勢</string>
-    <string name="wind_direction">風向</string>
-    <string name="wind_short">風勢</string>
-    <string name="wind_speed">風速</string>
-    <string name="wind_gusts">陣風</string>
     <string name="wind_direction_variable">不定</string>
     <string name="wind_direction_N_short">北風</string>
     <string name="wind_direction_NE_short">東北風</string>
@@ -108,7 +98,6 @@
     <string name="wind_direction_SW_short">西南風</string>
     <string name="wind_direction_W_short">西風</string>
     <string name="wind_direction_NW_short">西北風</string>
-    <string name="wind_strength">風力</string>
     <string name="wind_strength_0">無風</string>
     <string name="wind_strength_1">輕微</string>
     <string name="wind_strength_2">輕微</string>
@@ -223,7 +212,6 @@
     <string name="weather_source_accu_preference_hours_240">240 小時</string>
     <string name="locations">位置</string>
     <string name="location_current">目前位置</string>
-    <string name="location_search_weather_source">天氣資料來源</string>
     <string name="location_results_by">定位結果由 %s 提供</string>
     <string name="location_message_added">位置已新增</string>
     <string name="location_message_updated">位置已更新</string>
@@ -256,7 +244,6 @@
     <string name="action_settings">設定</string>
     <string name="action_preview">預覽</string>
     <string name="action_about">關於</string>
-    <string name="action_app_store">應用程式商店</string>
     <string name="action_refresh">重新整理</string>
     <string name="action_restart">重新啟動</string>
     <string name="action_more">查看更多</string>
@@ -454,7 +441,6 @@
     <string name="settings_main_cards_title">區塊</string>
     <string name="settings_main_daily_trends_title">每日趨勢</string>
     <string name="settings_main_hourly_trends_title">每小時趨勢</string>
-    <string name="settings_main_header_details_title">標題中的詳細資料</string>
     <string name="settings_main_threshold_lines_on_charts">圖表中的閾值橫線</string>
     <string name="settings_main_section_animations">動畫</string>
     <string name="settings_main_background_animation_title">背景動畫</string>
@@ -894,8 +880,6 @@
     <string name="precipitation_snow_total_night">晚間降雪</string>
     <string name="daytime_short">日間</string>
     <string name="nighttime_short">晚間</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">使用淺色模式時保持啟用</string>
-    <string name="settings_appearance_dark_mode_locations_disabled">停用，在晚上總是使用深色模式</string>
     <string name="temperature_normals_deviation">偏差</string>
     <string name="temperature_normals_deviation_explanation_maximum">與此位置之%s平均最高氣溫偏差</string>
     <string name="temperature_normals_deviation_explanation_minimum">與此位置之%s平均最低氣溫偏差</string>

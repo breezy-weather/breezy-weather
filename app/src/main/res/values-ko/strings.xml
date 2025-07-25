@@ -11,8 +11,6 @@
     <string name="precipitation_duration">강수 지속 시간</string>
     <string name="temperature">온도</string>
     <string name="wind">바람</string>
-    <string name="wind_direction">풍향</string>
-    <string name="wind_speed">풍속</string>
     <string name="humidity">습도</string>
     <string name="humidity_dew_point">습도 / 이슬점</string>
     <string name="uv_index">자외선 지수</string>
@@ -33,13 +31,9 @@
     <string name="action_edit">편집</string>
     <string name="daily_yesterday_short">어제</string>
     <string name="daily_tomorrow_short">내일</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">겉보기 온도</string>
     <string name="temperature_wind_chill">풍속 냉각</string>
-    <string name="temperature_wet_bulb">습구</string>
     <string name="temperature_degree_day">도일</string>
-    <string name="precipitation_total">총</string>
     <string name="precipitation_thunderstorm">뇌우</string>
     <string name="precipitation_rain">비</string>
     <string name="precipitation_snow">눈</string>
@@ -75,7 +69,6 @@
     <string name="hourly_forecast">시간별 예보</string>
     <string name="air_quality">대기질</string>
     <string name="pollen">알레르기</string>
-    <string name="details">세부 사항</string>
     <string name="ephemeris">해와 달</string>
     <string name="action_next">다음</string>
     <string name="action_done">완료</string>
@@ -153,7 +146,6 @@
     <string name="action_settings">설정</string>
     <string name="action_preview">미리보기</string>
     <string name="action_about">정보</string>
-    <string name="action_app_store">앱 스토어</string>
     <!-- widget -->
     <string name="widget_day">오늘 날씨</string>
     <string name="widget_week">주간 날씨</string>
@@ -255,7 +247,6 @@
     <string name="settings_notifications_alerts_title">날씨 경보 알림</string>
     <string name="settings_widgets_summary">배경화면, 사용 중인 위젯, 알림 위젯 설정</string>
     <string name="settings_debug_dump_crash_logs_summary">오류 로그를 파일로 저장하여 개발자와 공유</string>
-    <string name="location_search_weather_source">날씨 소스</string>
     <string name="location_message_search_failed">위치 검색 실패</string>
     <string name="settings_section_general">일반</string>
     <string name="settings_appearance_summary">언어, 다크 모드, 아이콘 팩, 단위</string>
@@ -420,7 +411,6 @@
     <string name="cloud_cover_short">구름량</string>
     <string name="ceiling_short">상승 한도</string>
     <string name="humidity_short">습도</string>
-    <string name="wind_short">바람</string>
     <string name="uv_index_short">자외선 지수</string>
     <string name="visibility_short">시계</string>
     <string name="pressure_short">기압</string>
@@ -434,11 +424,8 @@
     <string name="temperature_degree_day_heating">난방도일</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="temperature_degree_day_cooling">냉방도일</string>
-    <string name="wind_strength">바람의 세기</string>
-    <string name="wind_gusts">돌풍</string>
     <string name="air_quality_pm25_voice">오후 2시 5분</string>
     <string name="alert">경고</string>
-    <string name="pollen_and_mold">꽃가루 &amp; 곰팡이</string>
     <string name="air_quality_pm10_voice">PM ten</string>
     <string name="air_quality_co_full">일산화탄소 (CO)</string>
     <string name="pollen_artemisia">쑥</string>

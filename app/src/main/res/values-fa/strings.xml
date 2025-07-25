@@ -9,7 +9,6 @@
     <string name="precipitation_nowcasting">بارش دقیقه به دقیقه</string>
     <string name="air_quality">کیفیت هوا</string>
     <string name="ephemeris">خورشید و ماه</string>
-    <string name="details">جزئیات</string>
     <string name="alerts">هشدار ها</string>
     <string name="alerts_to_follow">هشدار های آینده نزدیک، اینجا بزنید تا آن ها را ببینید.</string>
     <string name="daily_yesterday_short">دیروز</string>
@@ -27,7 +26,6 @@
     <string name="air_quality_level_4_description">گروه‌های حساس ممکن است آثار جسمی را بلافاصله حس کنند. افراد سالم ممکن است بر اثر فعالیت بلند-مدت دچار مشکل تنفس و ناراحتی گلو شوند. فعالیت در هوای آزاد را محدود کنید.</string>
     <string name="air_quality_level_5_description">گروه‌های حساس ممکن است آثار جسمی را بلافاصله حس کنند و باید از فعالیت در هوای آزاد بپرهیزند. افراد سالم احتمالاً دچار مشکل تنفس و ناراحتی گلو می‌شوند؛ در فضای بسته بمانید و زمان فعالیت در هوای آزاد را تغییر دهید.</string>
     <string name="air_quality_level_6_description">قرار گرفتن در معرض هوای آزاد، حتی به مدت چند دقیقه، ممکن است آثار جسمی زیانباری برای همه داشته باشد. از فعالیت در هوای آزاد پرهیز کنید.</string>
-    <string name="temperature_wet_bulb">نمناک</string>
     <string name="temperature_apparent">نمایان</string>
     <string name="temperature_wind_chill">باد سرد</string>
     <string name="temperature_degree_day">اختلاف دمای گرم شدن با بیرون</string>
@@ -42,9 +40,6 @@
     <string name="precipitation_intensity_light">سبک</string>
     <string name="precipitation_intensity_heavy">سنگین</string>
     <string name="precipitation_none">بدون بارش</string>
-    <string name="wind_speed">تندی باد</string>
-    <string name="wind_gusts">وزیدن باد</string>
-    <string name="wind_direction">جهت باد</string>
     <string name="wind_direction_variable">متغییر</string>
     <string name="wind_direction_N_short">N</string>
     <string name="wind_direction_NE_short">NE</string>
@@ -53,7 +48,6 @@
     <string name="wind_strength_0">آرام</string>
     <string name="wind_strength_1">نسیم ملایم</string>
     <string name="precipitation_duration">مدت زمان بارش</string>
-    <string name="precipitation_total">در کل</string>
     <string name="precipitation_rain">باران</string>
     <string name="precipitation_thunderstorm">آذرخش</string>
     <string name="precipitation_between_time">بارش از %1$s تا %2$s</string>
@@ -62,7 +56,6 @@
     <string name="wind_direction_SE_short">SE</string>
     <string name="wind_direction_W_short">W</string>
     <string name="wind_direction_NW_short">NW</string>
-    <string name="wind_strength">قدرت باد</string>
     <string name="wind_strength_3">وزش ملایم</string>
     <string name="wind_strength_4">وزش متوسط</string>
     <string name="wind_strength_2">نسیم</string>
@@ -121,7 +114,6 @@
     <string name="weather_source_accu_preference_hours_1">۱ ساعت</string>
     <string name="weather_source_accu_preference_hours_12">۱۲ ساعت</string>
     <string name="location_current">مکان فعلی</string>
-    <string name="location_search_weather_source">منبع آب و هوا</string>
     <string name="location_results_by">نتایج موقعیت یابی از %s</string>
     <string name="location_message_permission_background_missing">اجازه دسترسی به مکان در پس زمینه داده نشده است</string>
     <string name="location_message_reverse_geocoding_failed">منبع آب و هوا موفق به پیدا کردن یک مکان همخوان نشده است</string>
@@ -216,8 +208,6 @@
     <string name="widget_refreshing">تازه سازی</string>
     <string name="widget_label_hide_subtitle">پنهان کردن زیرنویس</string>
     <string name="widget_label_subtitle_data">داده زیرنویس</string>
-    <string name="pollen_and_mold">گرده و کپک</string>
-    <string name="temperature_real_feel">واقعا حس میشود®</string>
     <string name="weather_api_limit_reached_title">سقف محدودیت درخواست API</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">افزودن مکان به صورت دستی و پاک کردن ”%s“</string>
     <string name="location_service_native">API بومی</string>
@@ -276,7 +266,6 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">طلوع ماه امروز، فردا، …، ۴ روز آینده</string>
     <string name="settings_background_updates">به روز رسانی های پس زمینه</string>
     <string name="widget_custom_subtitle_keyword_ct_description">دمای فعلی (°C/°F)</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="weather_message_unsupported_feature">منبع از یکی از ویژگی های درخواست شده پشتیبانی نمی کند</string>
     <string name="weather_message_invalid_location">مکان نادرست است، خواهشمند است آن را پاک کرده و دوباره بیافزایید</string>
     <string name="weather_api_limit_reached_content">برای رهایی از محدودیت، کلید API خود را بیافزایید.</string>
@@ -286,7 +275,6 @@
     <string name="widget_custom_subtitle_keyword_ut_description">به روز رسانی زمان</string>
     <string name="widget_custom_subtitle_keyword_d_description">تاریخ</string>
     <string name="widget_style_mini">کوچک</string>
-    <string name="action_app_store">اَپ اِستور</string>
     <string name="action_show_errors">برای دیدن ریزگان لمس کنید</string>
     <string name="message_parsing_error_title">تجزیه و تحلیل داده های آب و هوایی انجام نشد</string>
     <string name="widget_material_you_current">Material You – اینگاه</string>
@@ -307,7 +295,6 @@
     <string name="dew_point_short">نقطه شبنم</string>
     <string name="cloud_cover_short">پوشش ابر</string>
     <string name="humidity_short">نم</string>
-    <string name="wind_short">باد</string>
     <string name="visibility_short">دید</string>
     <string name="pressure_short">فشار</string>
     <string name="message_parsing_error_content">مطمئن شوید که برنامه را به آخرین نسخه به روز کرده اید. سرور ممکن است به مدتی گذرا در دسترس نباشد، در این صورت، لطفاً بعداً دوباره امتحان کنید. اگر مشکل ادامه داشت، لطفاً گزارش خرابی را از تنظیمات اشکال زدایی حذف کنید و مشکل را در GitHub گزارش دهید.</string>
@@ -334,7 +321,6 @@
     <string name="settings_units_precipitation">واحد بارش</string>
     <string name="settings_units_pressure">واحد فشار</string>
     <string name="settings_main_hourly_trends_title">روند ساعتی</string>
-    <string name="settings_main_header_details_title">داده های سربرگ</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">شاخص کیفیت هوای کنونی</string>
     <string name="location_message_already_exists">فهرست مکان‌ها از پیش شامل این مکان با این منبع پیش‌بینی است.</string>
     <string name="location_message_updated">مکان به‌روز‌رسانی شد</string>

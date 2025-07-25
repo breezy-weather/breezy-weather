@@ -11,15 +11,12 @@
     <string name="air_quality">Airearen kalitatea</string>
     <string name="pollen">Polena</string>
     <string name="precipitation_nowcasting">Prezipitazioa minutuz minutu</string>
-    <string name="details">Xehetasunak</string>
     <string name="ephemeris">Eguzkia eta ilargia</string>
     <string name="alerts">Alertak</string>
     <string name="daily_today_short">Gaur</string>
     <string name="daily_tomorrow_short">Bihar</string>
     <string name="daily_yesterday_short">Atzo</string>
     <string name="temperature">Tenperatura</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_wind_chill">Haize hotza</string>
     <string name="temperature_degree_day">Egun-gradu</string>
     <string name="temperature_degree_day_heating">Berokuntzako egun-gradu</string>
@@ -28,14 +25,10 @@
     <string name="precipitation_probability">Prezipitazio-probabilitatea</string>
     <string name="precipitation_duration">Prezipitazioaren iraupena</string>
     <string name="temperature_normal_short">Normal</string>
-    <string name="precipitation_total">Guztira</string>
     <string name="precipitation_intensity_heavy">Euri-jasa</string>
     <string name="precipitation_none">Prezipitaziorik gabe</string>
     <string name="precipitation_between_time">Prezipitazioak %1$s eta %2$s artean</string>
     <string name="wind">Haizea</string>
-    <string name="wind_speed">Haizearen abiadura</string>
-    <string name="wind_gusts">Haize boladak</string>
-    <string name="wind_direction">Haizearen norabidea</string>
     <string name="wind_direction_N_short">I</string>
     <string name="wind_direction_NE_short">IE</string>
     <string name="wind_direction_E_short">E</string>
@@ -44,7 +37,6 @@
     <string name="wind_direction_SW_short">EM</string>
     <string name="wind_direction_W_short">M</string>
     <string name="wind_direction_NW_short">IM</string>
-    <string name="wind_strength">Haizearen indarra</string>
     <string name="wind_strength_0">Barealdia</string>
     <string name="wind_strength_1">Haize bereziki ahula</string>
     <string name="wind_strength_2">Haize oso ahula</string>
@@ -117,7 +109,6 @@
     <string name="daytime">Egun-argia</string>
     <string name="air_quality_level_5">Oso kaltegarria</string>
     <string name="setting_weather_source_accu_days">Egunak</string>
-    <string name="location_search_weather_source">Eguraldi iturria</string>
     <string name="location_message_failed_to_locate">Akatsa egungo kokapena aurkitzen</string>
     <string name="location_current_not_found_yet">Egungo kokapena ez da oraindik aurkitu…</string>
     <string name="location_service_native">API natiboa</string>
@@ -125,7 +116,6 @@
     <string name="action_search">Bilatu</string>
     <string name="action_settings">Ezarpenak</string>
     <string name="action_preview">Aurreikusi</string>
-    <string name="action_app_store">Aplikazioen denda</string>
     <string name="action_refresh">Eguneratu</string>
     <string name="action_edit">Editatu</string>
     <string name="action_delete">Ezabatu</string>
@@ -152,7 +142,6 @@
     <string name="widget_subtitle_data_aqi">Airearen kalitatea</string>
     <string name="widget_label_clock_font">Erlojuaren iturria</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Egungo tenperatura (°C/°F)</string>
-    <string name="pollen_and_mold">Polena eta lizuna</string>
     <string name="alerts_to_follow">Hurrengo alertak, ukitu hemen ikusteko.</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Ilgora</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Ilgora</string>
@@ -259,7 +248,6 @@
     <string name="settings_source_api_key">API gakoa</string>
     <string name="settings_main_daily_trends_title">Egunkako joerak</string>
     <string name="settings_main_hourly_trends_title">Ordukako joerak</string>
-    <string name="settings_main_header_details_title">Goiburuko xehetasunak</string>
     <string name="settings_main_section_animations">Animazioak</string>
     <string name="settings_main_background_animation_title">Atzeko planoko animazioa</string>
     <string name="settings_main_background_animation_enabled">Gaitua</string>
@@ -343,7 +331,6 @@
     <string name="weather_kind_thunderstorm">Trumoi ekaitza</string>
     <string name="weather_kind_wind">Haizea</string>
     <string name="temperature_normals">Tenperatura-parametroak</string>
-    <string name="temperature_wet_bulb">Erraboil hezea</string>
     <string name="temperature_degree_day_cooling">Hozte egun-gradu</string>
     <string name="air_quality_level_2_description">Airearen kalitatea onargarria da pertsona gehienentzat. Hala ere, talde sentikorrek sintoma arinak edo moderatuak izan ditzakete esposizio luze baten aurrean.</string>
     <string name="air_quality_level_3_description">Airea kutsadura-maila handira iritsi da, eta osasungaitza da talde sentikorrentzat. Murriztu aire zabalean igarotzen duzun denbora, arnasa hartzeko zailtasun edo eztarriko narritadura gisako sintomak sentitzen badituzu.</string>
@@ -563,7 +550,6 @@
     <string name="cloud_cover_short">Hodeitza</string>
     <string name="ceiling_short">Sabaia</string>
     <string name="humidity_short">Hezetasuna</string>
-    <string name="wind_short">Haizea</string>
     <string name="visibility_short">Ikuspena</string>
     <string name="pressure_short">Presioa</string>
     <string name="temperature_feels_like_short">Sentsazioa</string>

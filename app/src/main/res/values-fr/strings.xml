@@ -93,11 +93,8 @@
     <string name="temperature_feels_like">Ressenti</string>
     <string name="temperature_feels_like_short">Ressenti</string>
     <string name="temperature_feels_like_details">La température telle qu’elle est perçue sous l’effet de l’humidité, du vent et/ou du soleil.</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Ressentie</string>
     <string name="temperature_wind_chill">Refroidissement éolien</string>
-    <string name="temperature_wet_bulb">Thermomètre-globe mouillé</string>
     <string name="temperature_degree_day">Degré jour unifié</string>
     <string name="temperature_degree_day_heating">Degré-jour de chauffe</string>
     <string name="temperature_degree_day_heating_explanation">Différence entre la température extérieure et une température de confort de référence utilisée pour estimer les besoins en énergie de chauffage</string>
@@ -111,7 +108,6 @@
     <string name="temperature_normals_deviation_explanation_maximum">Écart avec la moyenne de température maximale du mois de %s pour cet emplacement</string>
     <!-- %s = July -->
     <string name="temperature_normals_deviation_explanation_minimum">Écart avec la moyenne de température minimale du mois de %s pour cet emplacement</string>
-    <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Orage</string>
     <string name="precipitation_rain">Pluie</string>
     <string name="precipitation_rain_total_day">Pluie de la journée</string>
@@ -121,15 +117,10 @@
     <string name="precipitation_snow_total_night">Neige de la nuit</string>
     <string name="precipitation_ice">Glace</string>
     <string name="wind">Vent</string>
-    <string name="wind_short">Vent</string>
     <string name="wind_origin">Origine : %s</string>
-    <string name="wind_direction">Direction du vent</string>
-    <string name="wind_speed">Vitesse du vent</string>
     <string name="wind_speed_about">À propos de la vitesse du vent et des rafales</string>
     <string name="wind_speed_about_description">La vitesse du vent est mesurée en effectuant la moyenne des vitesses de vent sur une période donnée. Les rafales sont des coups de vent soudains qui durent généralement moins de 20 secondes.</string>
-    <string name="wind_gusts">Rafales de vent</string>
     <string name="wind_gusts_short">Rafales</string>
-    <string name="wind_strength">Force du vent</string>
     <string name="wind_strength_scale">Échelle de Beaufort</string>
     <string name="wind_strength_0">Calme</string>
     <string name="wind_strength_1">Très légère brise</string>
@@ -230,9 +221,7 @@
     <string name="air_quality">Qualité de l’air</string>
     <string name="air_quality_short">Qual. de l’air</string>
     <string name="pollen">Pollen</string>
-    <string name="pollen_and_mold">Pollen &amp; moisissure</string>
     <string name="clock">Horloge</string>
-    <string name="details">Détails</string>
     <string name="ephemeris">Soleil &amp; lune</string>
     <string name="ephemeris_sun">Soleil</string>
     <string name="ephemeris_moon">Lune</string>
@@ -271,7 +260,6 @@
     <string name="action_share">Partager</string>
     <string name="action_download">Télécharger</string>
     <string name="locations">Emplacements</string>
-    <string name="location_search_weather_source">Source météo</string>
     <string name="about_app">À propos</string>
     <string name="about_check_for_app_updates">Vérifier les mises à jour de l’appli</string>
     <string name="about_no_new_updates">Pas de nouvelle version disponible</string>
@@ -516,7 +504,6 @@
     <string name="action_configure_item">Configurer %s</string>
     <string name="action_preview">Aperçu</string>
     <string name="action_about">À propos</string>
-    <string name="action_app_store">Magasin d’applications</string>
     <!-- widget -->
     <string name="widget_day">Jour</string>
     <string name="widget_week">Semaine</string>
@@ -585,7 +572,6 @@
     <string name="settings_main_cards_title">Blocs</string>
     <string name="settings_main_daily_trends_title">Tendances quotidiennes</string>
     <string name="settings_main_hourly_trends_title">Tendances heure par heure</string>
-    <string name="settings_main_header_details_title">Détails en entête</string>
     <string name="settings_main_section_options">Options</string>
     <string name="settings_main_threshold_lines_on_charts">Lignes de seuil sur les graphiques</string>
     <string name="settings_main_section_animations">Animations</string>

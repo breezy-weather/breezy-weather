@@ -26,7 +26,6 @@
     <string name="action_add_current_location">Dodajte trenutnu lokaciju</string>
     <string name="settings_widgets_notification_widget_title">Widget za obavijesti</string>
     <string name="widget_clock_day_horizontal">Sat + Dnevno (Vodoravni stil)</string>
-    <string name="action_app_store">Trgovina aplikacija</string>
     <string name="locations">Lokacije</string>
     <string name="settings_widgets_notification_style_title">Stil</string>
     <string name="settings_background_updates_refresh_title">Učestalost osvježavanja</string>
@@ -39,9 +38,7 @@
     <string name="uv_index">UV indeks</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Dnevni vjetar danas, sutra, …, 4 dana kasnije</string>
     <string name="settings_units_precipitation">Jedinica za oborine</string>
-    <string name="pollen_and_mold">Pelud i plijesan</string>
     <string name="wind_strength_9">Jak olujni vjetar</string>
-    <string name="wind_speed">Brzina vjetra</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignoriraj kada je baterija slaba</string>
     <string name="ephemeris_moon_phase_full_moon">Puni mjesec</string>
     <string name="location_message_reverse_geocoding_failed">Izvor vremena nije uspio pronaći jednu odgovarajuću lokaciju</string>
@@ -60,7 +57,6 @@
     <string name="widget_custom_subtitle_explanation">Možete unijeti bilo što, ali molimo obratite pažnju na duljinu teksta. Ako želite citirati vremenske podatke, koristite $ za referenciranje na odgovarajuću ključnu riječ.
 \n
 \nNa primjer, „Trenutno vrijeme je: $cw$.” će se prikazati kao „Trenutno vrijeme je: Vedro.”.</string>
-    <string name="location_search_weather_source">Izvor vremena</string>
     <string name="wind_strength_12">Orkan</string>
     <string name="widget_custom_subtitle_keyword_als_description">Upozorenja (kratko)</string>
     <string name="location_message_failed_to_locate">Neuspjelo pronalaženje trenutne lokacije</string>
@@ -68,7 +64,6 @@
     <string name="settings_section_general">Općenito</string>
     <string name="settings_notifications_forecast_today_title">Obavijest za dnevnu prognozu</string>
     <string name="precipitation_nowcasting">Oborine iz minute u minutu</string>
-    <string name="temperature_wet_bulb">Mokar termometar</string>
     <string name="daily_tomorrow_short">Sutra</string>
     <string name="air_quality">Kvaliteta zraka</string>
     <string name="weather_api_key_required_missing_title">Nedostaje potreban API ključ</string>
@@ -123,7 +118,6 @@
     <string name="widget_subtitle_data_custom">Prilagođeno</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="widget_custom_subtitle_keyword_l_description">Lokacija</string>
-    <string name="precipitation_total">Ukupno</string>
     <string name="pollen_mold">Plijesan</string>
     <string name="settings_appearance_icon_pack_title">Paket ikona</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Trenutačni osjećaj temperature (°)</string>
@@ -148,7 +142,6 @@
     <string name="settings_weather_sources_summary">Zadani izvor vremena za nove lokacije, prilagođeni API ključevi, druge postavke izvora</string>
     <string name="location_current_not_found_yet">Trenutna lokacija nije još pronađena…</string>
     <string name="widget_custom_subtitle_keyword_enter_description">Nova linija</string>
-    <string name="wind_strength">Snaga vjetra</string>
     <string name="ephemeris_moon_phase_first_quarter">Prva četvrt</string>
     <string name="hourly_forecast">Prognoza po satu</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Vrijeme aktualiziranja</string>
@@ -221,7 +214,6 @@
     <string name="widget_custom_subtitle_keyword_cdp_description">Trenutačna točka kondenziranja</string>
     <string name="pollen_ambrosia">Ambrozija</string>
     <string name="ephemeris">Sunce i mjesec</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="settings_main_summary">Redoslijed kartica, prikazane stavke, animacije</string>
     <string name="widget_week">Tjedno</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Noćne oborine danas, sutra, …, 4 dana kasnije (%)</string>
@@ -245,7 +237,6 @@
     <string name="settings_widgets_broadcast_send_data_title">Pošaljite podatke za %s</string>
     <string name="pressure">Tlak</string>
     <string name="temperature_normal_short">Normalno</string>
-    <string name="details">Detalji</string>
     <string name="settings_appearance_dark_mode_locations_title">Način Dan / Noć za lokacije</string>
     <string name="settings_main_daily_trends_title">Dnevni trendovi</string>
     <string name="air_quality_o3">O₃</string>
@@ -264,7 +255,6 @@
     <string name="settings_background_updates_summary">Učestalost osvježavanja, rješavanje problema</string>
     <string name="settings_location_access_precise_title">Korištenje GPS-a uređaja</string>
     <string name="wind_direction_SW_short">JZ</string>
-    <string name="wind_gusts">Naleti vjetra</string>
     <string name="precipitation_duration">Trajanje oborina</string>
     <string name="settings_notifications_forecast_tomorrow_title">Obavijest za prognozu za sljedeći dan</string>
     <string name="widget_trend_daily">Trend po danima</string>
@@ -323,7 +313,6 @@
     <string name="settings_debug_dump_crash_logs_tap_to_open">Dodirnite za otvaranje</string>
     <string name="action_save">Spremi</string>
     <string name="weather_api_limit_reached_content">Kako biste zaobišli ograničenje, dodajte svoj API ključ.</string>
-    <string name="wind_direction">Smjer vjetra</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Trenutni UV</string>
     <string name="settings_changes_apply_after_restart">Promijene će se primijeniti nakon ponovnog pokretanja</string>
     <string name="widget_material_you_current">Material You – Trenutno</string>
@@ -339,7 +328,6 @@
     <string name="settings_icon_packs_get_more">Preuzmi više</string>
     <string name="temperature_degree_day">Temperatura za grijanje ili hlađenje</string>
     <string name="action_settings">Postavke</string>
-    <string name="settings_main_header_details_title">Detalji u zaglavlju</string>
     <string name="daily_today_short">Danas</string>
     <string name="humidity">Vlažnost</string>
     <string name="humidity_dew_point">Vlažnost / Točka orošenja</string>
@@ -399,7 +387,6 @@
     <string name="settings_location_access_background_title">Pristup lokaciji u pozadini</string>
     <string name="widget_trend_hourly">Trend po satima</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="temperature_real_feel">RealFeel®</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Vrijeme obavještenja za prognozu za sljedeći dan</string>
     <string name="air_quality_level_5_description">Osjetljive skupine odmah će osjetiti zdravstvene učinke, pa trebaju izbjegavati aktivnosti na otvorenom. Zdrave osobe vjerojatno će otežano disati i osjetiti iritaciju grla. Preporučujemo da ostanete u zatvorenom prostoru i odgodite aktivnosti na otvorenom.</string>
     <string name="widget_clock_day_week">Sat + Dnevno + Tjedno</string>
@@ -568,7 +555,6 @@
     <string name="settings_weather_source_none">Nijedan</string>
     <string name="location_search_change_source">Promijenite izvor pretrage lokacije</string>
     <string name="humidity_short">Vlažnost</string>
-    <string name="wind_short">Vjetar</string>
     <string name="uv_index_short">UV indeks</string>
     <string name="visibility_short">Vidljivost</string>
     <string name="pressure_short">Tlak</string>

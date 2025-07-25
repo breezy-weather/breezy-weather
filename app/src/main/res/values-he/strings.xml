@@ -4,12 +4,9 @@
     <string name="daily_forecast">תחזית יומית</string>
     <string name="hourly_forecast">תחזית שעתית</string>
     <string name="ephemeris">שמש וירח</string>
-    <string name="details">פרטים</string>
     <string name="temperature_apparent">נראה</string>
     <string name="temperature_wind_chill">צינת רוח</string>
     <string name="wind">רוח</string>
-    <string name="wind_gusts">משבי רוח</string>
-    <string name="wind_direction">כיוון הרוח</string>
     <string name="wind_direction_variable">משתנה</string>
     <string name="wind_strength_1">נשיבה קלה</string>
     <string name="daily_today_short">היום</string>
@@ -17,7 +14,6 @@
     <string name="alerts">התראות</string>
     <string name="pollen">אבקה</string>
     <string name="alert">התראה</string>
-    <string name="pollen_and_mold">אבקה ועובש</string>
     <string name="alerts_to_follow">התראות קרובות, הקש כאן על מנת לצפות בהן.</string>
     <string name="alert_source">מקור: %s</string>
     <string name="temperature_feels_like">מרגיש כמו</string>
@@ -30,7 +26,6 @@
     <string name="precipitation_thunderstorm">סופת רעמים</string>
     <string name="precipitation_rain">גשם</string>
     <string name="precipitation_intensity_heavy">כבד</string>
-    <string name="precipitation_total">כמות המשקעים</string>
     <string name="precipitation_snow">שלג</string>
     <string name="precipitation_ice">קרח</string>
     <string name="precipitation_intensity_light">קל</string>
@@ -38,8 +33,6 @@
     <string name="precipitation_none">ללא משקעים</string>
     <string name="wind_direction_NE_short">צ-מז</string>
     <string name="precipitation_between_time">משקעים בין %1$s ל%2$s</string>
-    <string name="wind_short">רוח</string>
-    <string name="wind_speed">מהירות הרוח</string>
     <string name="wind_direction_N_short">צ</string>
     <string name="wind_direction_E_short">מז</string>
     <string name="wind_direction_SE_short">ד-מז</string>
@@ -47,7 +40,6 @@
     <string name="wind_direction_S_short">ד</string>
     <string name="wind_direction_W_short">מע</string>
     <string name="wind_direction_NW_short">צ-מע</string>
-    <string name="wind_strength">עוצמת הרוח</string>
     <string name="wind_strength_0">דממה</string>
     <string name="wind_strength_11">סופה עזה</string>
     <string name="wind_strength_12">הוריקן</string>
@@ -76,7 +68,6 @@
     <string name="uv_alert_level">התראה</string>
     <string name="air_quality_index">מדד איכות האוויר</string>
     <string name="uv_index_3_5">מתון</string>
-    <string name="temperature_wet_bulb">תרמומטר רטוב</string>
     <string name="temperature_degree_day_heating">יום מעלות חימום</string>
     <string name="temperature_degree_day">יום מעלות</string>
     <string name="temperature_degree_day_cooling">יום מעלות קירור</string>
@@ -173,7 +164,6 @@
     <string name="weather_source_accu_preference_hours_240">240 שעות</string>
     <string name="locations">מיקומים</string>
     <string name="location_current">מיקום נוכחי</string>
-    <string name="location_search_weather_source">מקור מזג האוויר</string>
     <string name="location_message_added">מיקום הוסף</string>
     <string name="ephemeris_moon_phase_waxing_crescent">סהר מתמלא</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">לקראת מילוא</string>
@@ -183,7 +173,6 @@
     <string name="weather_message_data_refresh_failed">רענון נתוני מזג האוויר נכשל</string>
     <string name="location_delete_location_dialog_message_no_name">הנך עומד למחוק את המיקום הזה מרשימת ההמיקומים השמורים שלך.</string>
     <string name="action_search">חיפוש</string>
-    <string name="action_app_store">חנות אפליקציות</string>
     <string name="action_refresh">רענן</string>
     <string name="action_next">הבא</string>
     <string name="action_done">סיים</string>
@@ -288,8 +277,6 @@
     <string name="widget_custom_subtitle_keyword_atd_description">טמפרטורה מורגשת נוכחית (°)</string>
     <string name="widget_custom_subtitle_keyword_cwd_description">רוח נוכחית</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">מדד איכות האוויר הנוכחי</string>
-    <string name="temperature_real_feel">®RealFeel</string>
-    <string name="temperature_real_feel_shade">™RealFeel Shade</string>
     <string name="pollen_betula">עץ ליבנה</string>
     <string name="location_dialog_failed_to_locate_action_select_source">בחר שירות מיקום</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">הוסף מיקום ידנית ומחק ”%s“</string>
@@ -356,7 +343,6 @@
     <string name="settings_main_summary">סדר כרטיסים, פריטים מוצגים, אנימציות</string>
     <string name="settings_main_section_displayed_data">מידע מוצג</string>
     <string name="settings_main_daily_trends_title">טרנדים יומיים</string>
-    <string name="settings_main_header_details_title">פרטים בכותרת</string>
     <string name="settings_main_section_options">אפשרויות</string>
     <string name="settings_main_section_animations">אנימציות</string>
     <string name="settings_notifications_section_forecast">תחזית</string>

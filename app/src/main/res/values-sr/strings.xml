@@ -34,7 +34,6 @@
     <string name="daily_forecast">Дневна прогноза</string>
     <string name="hourly_forecast">Прогноза по сатима</string>
     <string name="air_quality">Квалитет ваздуха</string>
-    <string name="details">Детаљи</string>
     <string name="ephemeris">Сунце и Месец</string>
     <string name="action_next">Следеће</string>
     <string name="action_done">Готово</string>
@@ -103,8 +102,6 @@
     <string name="temperature_degree_day_heating">Степен дан грејања</string>
     <string name="precipitation_between_time">Падавине од %1$s до %2$s</string>
     <string name="precipitation_intensity_light">Слабо</string>
-    <string name="wind_speed">Брзина ветра</string>
-    <string name="wind_direction">Правац ветра</string>
     <string name="wind_direction_N_short">С</string>
     <string name="wind_direction_variable">Променљива</string>
     <string name="uv_index_6_7">Високо</string>
@@ -218,7 +215,6 @@
     <string name="action_help">Помоћ</string>
     <string name="uv_index_0_2">Ниско</string>
     <string name="settings_weather_source_portal">Портал</string>
-    <string name="location_search_weather_source">Извор времена</string>
     <string name="weather_source_accu_preference_hours_240">240 сати</string>
     <string name="location_message_reverse_geocoding_failed">Извор времена није успео да пронађе одговарајућу локацију</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Додај локацију ручно и избриши „%s“</string>
@@ -377,7 +373,6 @@
     <string name="precipitation_intensity_heavy">Јако</string>
     <string name="widget_text">Текст</string>
     <string name="alerts_to_follow">Предстојећа упозорења, додирните овде да бисте их видели.</string>
-    <string name="precipitation_total">Укупно</string>
     <string name="temperature_degree_day">Степен дана</string>
     <string name="precipitation_none">Без падавина</string>
     <string name="air_quality_level_1">Одлично</string>
@@ -395,7 +390,6 @@
     <string name="unit_ft_voice">Стопе</string>
     <string name="action_edit">Измени</string>
     <string name="action_preview">Преглед</string>
-    <string name="action_app_store">Продавница апликација</string>
     <string name="settings_weather_sources">Извори времена</string>
     <string name="settings_weather_sources_summary">Подразумевани извор времена за нове локације, прилагођени API кључеви, остала подешавања извора</string>
     <string name="action_location_list">Листа локација</string>
@@ -428,10 +422,8 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">Неки произвођачи имају додатна ограничења апликација која убијају позадинске услуге. Веб-сајт „Don’t kill my app!“ садржи информације како то можете поправити.</string>
     <string name="settings_location_access_switch_title">Приступ локацији</string>
     <string name="settings_icon_packs_title">Пакети иконица</string>
-    <string name="wind_gusts">Удари ветра</string>
     <string name="wind_direction_W_short">З</string>
     <string name="wind_direction_NW_short">СЗ</string>
-    <string name="wind_strength">Снага ветра</string>
     <string name="ephemeris_moon_phase_full_moon">Пун месец</string>
     <string name="ephemeris_moon_phase_first_quarter">Прва четврт</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">Растућа месечева грба</string>
@@ -463,7 +455,6 @@
     <string name="settings_main_hourly_trends_title">Трендови по сатима</string>
     <string name="settings_main">Главни екран</string>
     <string name="settings_main_summary">Редослед картица, приказане ставке, анимације</string>
-    <string name="settings_main_header_details_title">Детаљи у заглављу</string>
     <string name="dialog_permissions_location_content">Да бисте користили ову функцију, потребно је да апликацији дате дозволу за приступ вашој тренутној локацији. Делиће се само са изабраним изворима времена. Ако сте се предомислили, можете отказати процес и додати локацију ручно.</string>
     <string name="action_help_me_choose">Помози ми да изаберем</string>
     <string name="temperature_normals">Температурне норме</string>
@@ -506,14 +497,11 @@
     <string name="common_weather_text_rain_snow_mixed_showers">Помешани пљускови са кишом и снегом</string>
     <string name="air_quality_level_4_description">Осетљиве групе особа могу одмах осетити последице по здравље. Здраве особе могу имати отежано дисање и иритацију грла при продуженом излагању. Ограничите активности на отвореном простору.</string>
     <string name="air_quality_level_2_description">Квалитет ваздуха је генерално прихватљив за већину особа. Међутим, осетљиве групе особа могу имати мање до умерених симптома од дуготрајне изложености.</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Привидно</string>
     <string name="temperature_wind_chill">Хладан ветар</string>
-    <string name="temperature_wet_bulb">Влажно</string>
     <string name="temperature_degree_day_cooling">Степен дан хлађења</string>
     <string name="precipitation_nowcasting">Падавине из минута у минут</string>
     <string name="temperature">Температура</string>
-    <string name="temperature_real_feel">RealFeel®</string>
     <string name="precipitation_probability">Вероватноћа падавина</string>
     <string name="precipitation_duration">Трајање падавина</string>
     <string name="precipitation_thunderstorm">Олуја са грмљавином</string>
@@ -556,7 +544,6 @@
     <string name="about_matrix">Matrix соба</string>
     <string name="pollen">Алергени</string>
     <string name="pollen_tree">Дрво</string>
-    <string name="pollen_and_mold">Полен и буђ</string>
     <string name="settings_color_app">Прати апликацију</string>
     <string name="settings_debug_dump_crash_logs_saved">Евиденције отказивања су сачуване</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Додирните да бисте отворили</string>
@@ -575,7 +562,6 @@
     <string name="location_search_change_source">Промените извор претраге локације</string>
     <string name="cloud_cover_short">Облачност</string>
     <string name="humidity_short">Влажност</string>
-    <string name="wind_short">Ветар</string>
     <string name="uv_index_short">УВ индекс</string>
     <string name="pressure_short">Притисак</string>
     <string name="dew_point_short">Тачка росе</string>

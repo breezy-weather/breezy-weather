@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="daily_yesterday_short">Iḍl</string>
-    <string name="wind_speed">Arured n waḍu</string>
     <string name="setting_weather_source_accu_days">Ussan</string>
     <string name="weather_source_accu_preference_days_5">5 wussan</string>
     <string name="weather_source_accu_preference_days_10">10 wussan</string>
     <string name="weather_source_accu_preference_days_1">1 wass</string>
-    <string name="wind_direction">Tanila n waḍu</string>
     <string name="daily_today_short">Ass-a</string>
     <string name="app_name">Tagnewt</string>
     <string name="weather_source_accu_preference_days_15">15 yum</string>
@@ -48,7 +46,6 @@
     <string name="temperature">Taẓɣelt</string>
     <string name="daily_tomorrow_short">Azk</string>
     <string name="temperature_feels_like">Ad s-tiniḍ</string>
-    <string name="wind_strength">Lǧehd n waḍu</string>
     <string name="wind_strength_0">Yerked</string>
     <string name="temperature_normal_short">Amagnu</string>
     <string name="sunshine_duration">Isragen n yiṭij</string>
@@ -89,11 +86,8 @@
     <string name="settings_enabled">Urmid</string>
     <string name="settings_automatic">Awurman</string>
     <string name="temperature_feels_like_short">Ad s-tiniḍ</string>
-    <string name="wind_short">Aḍu</string>
     <string name="temperature_average_short">Talemmast</string>
-    <string name="details">Talqayt</string>
     <string name="pollen">Adqis</string>
-    <string name="temperature_real_feel">RealFeel®</string>
     <string name="pollen_tree">Aseklu</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="action_show_errors">Kenned da akken ad twaliḍ ugar n ttfaṣil</string>

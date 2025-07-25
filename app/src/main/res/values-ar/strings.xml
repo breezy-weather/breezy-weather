@@ -11,8 +11,6 @@
     <string name="precipitation_duration">مدة التساقطات</string>
     <string name="temperature">درجة الحرارة</string>
     <string name="wind">الرياح</string>
-    <string name="wind_direction">إتجاه الرياح</string>
-    <string name="wind_speed">سرعة الرياح</string>
     <string name="humidity">الرطوبة</string>
     <string name="uv_index">مؤشر الأشعة فوق البنفسجية</string>
     <string name="sunshine_duration">مدة إضاءة الشمس</string>
@@ -32,13 +30,9 @@
     <string name="action_edit">تحرير</string>
     <string name="daily_yesterday_short">أمس</string>
     <string name="daily_tomorrow_short">غداً</string>
-    <string name="temperature_real_feel">الشعور الحقيقي</string>
-    <string name="temperature_real_feel_shade">الشعور الحقيقي في الظل</string>
     <string name="temperature_apparent">ظاهر</string>
     <string name="temperature_wind_chill">رياح باردة</string>
-    <string name="temperature_wet_bulb">هواء رطب</string>
     <string name="temperature_degree_day">درجة اليوم</string>
-    <string name="precipitation_total">المجموع</string>
     <string name="precipitation_thunderstorm">عاصفة رعدية</string>
     <string name="precipitation_rain">مطر</string>
     <string name="precipitation_snow">ثلج</string>
@@ -74,7 +68,6 @@
     <string name="hourly_forecast">توقعات كل ساعة</string>
     <string name="air_quality">جودة الهواء</string>
     <string name="pollen">مسببات الحساسية</string>
-    <string name="details">تفاصيل</string>
     <string name="ephemeris">الشمس والقمر</string>
     <string name="action_next">التالي</string>
     <string name="action_done">تم</string>
@@ -114,7 +107,6 @@
     <string name="action_settings">الإعدادات</string>
     <string name="action_preview">عرض</string>
     <string name="action_about">حول</string>
-    <string name="action_app_store">متجر التطبيقات</string>
     <!-- widget -->
     <string name="widget_day">يومي</string>
     <string name="widget_week">أسبوعي</string>
@@ -226,12 +218,10 @@
     <string name="settings_icon_packs_weather_icon_grey">أيقونة رمادية</string>
     <string name="settings_main_summary">ترتيب البطاقات، العناصر المعروضة، الرسوم المتحركة</string>
     <string name="settings_items_drag_to_sort">انقر لسحب عناصر القائمة لفرزها</string>
-    <string name="settings_main_header_details_title">التفاصيل في العنوان</string>
     <string name="notification_channel_widget">التطبيقات المصغرة</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">ترسيب ضباب الصقيع</string>
     <string name="common_weather_text_snow_grains">حبيبات الثلج</string>
     <string name="settings_units_summary">درجة الحرارة، التساقطات، المسافة، السرعة، الضغط</string>
-    <string name="location_search_weather_source">مصدر الطقس</string>
     <string name="settings_icon_packs_title">حزم الأيقونات</string>
     <string name="settings_icon_packs_check_details">تحقق من التفاصيل</string>
     <string name="settings_main_section_options">الخيارات</string>
@@ -488,7 +478,6 @@
     <string name="action_show_errors">انقر لرؤية التفاصيل</string>
     <string name="notification_update_error">%d فشل التحديث</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">تجاهل عندما تكون البطارية منخفضة</string>
-    <string name="wind_strength">قوة الرياح</string>
     <string name="message_parsing_error_title">فشل تحليل بيانات الطقس</string>
     <string name="message_server_timeout">انتهت مهلة الطلب</string>
     <string name="message_parsing_error_content">تأكد من تحديثك إلى أحدث إصدار من التطبيق. قد يكون الخادم غير متاح مؤقتًا، وفي هذه الحالة، يرجى المحاولة مرة أخرى لاحقًا. إذا استمرت المشكلة، يرجى مشاركة سجل الأعطال من إعدادات التصحيح، والإبلاغ عن مشكلة على GitHub.</string>
@@ -510,7 +499,6 @@
     <string name="pollen_level_2">منخفض</string>
     <string name="action_delete">حذف</string>
     <string name="weather_message_invalid_location">الموقع غير صالح، يرجى حذفه وإعادة إضافته</string>
-    <string name="wind_gusts">هبوب الرياح</string>
     <string name="about_dependencies">التبعيات</string>
     <string name="precipitation_nowcasting">التساقطات دقيقة بدقيقة</string>
     <string name="action_save">حفظ</string>
@@ -556,7 +544,6 @@
     <string name="temperature_normals">معايير درجة الحرارة</string>
     <string name="settings_main_threshold_lines_on_charts">خطوط العتبة على الرسوم البيانية</string>
     <string name="settings_widgets_broadcast_send_data_title">إرسال بيانات الطقس إلى %s</string>
-    <string name="pollen_and_mold">حبوب اللقاح والعفن</string>
     <string name="settings_color_app">اتبع التطبيق</string>
     <string name="settings_debug_dump_crash_logs_saved">تم حفظ سجل الاخطاء</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">اضغط للفتح</string>
@@ -578,7 +565,6 @@
     <string name="dew_point_short">درجة التكثف</string>
     <string name="ceiling_short">الحد الأعلى</string>
     <string name="humidity_short">الرطوبة</string>
-    <string name="wind_short">الرياح</string>
     <string name="visibility_short">الرؤية</string>
     <string name="pressure_short">الضغط</string>
     <string name="uv_index_short">الأشعة الضارة</string>

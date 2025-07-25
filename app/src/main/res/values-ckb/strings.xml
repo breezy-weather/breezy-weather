@@ -8,24 +8,17 @@
     <string name="air_quality">کوالیتی هەوا</string>
     <string name="pollen">مادەی هەستیاری</string>
     <string name="ephemeris">خۆر و مانگ</string>
-    <string name="details">ووردەکاریەکان</string>
     <string name="alerts">ئاگادارکردنەوەکان</string>
     <string name="daily_yesterday_short">دوێنێ</string>
     <string name="temperature_feels_like">هەست دەکەیت وەک</string>
-    <string name="temperature_real_feel">بەڕاستی هەست دەکەیت وەک</string>
-    <string name="temperature_real_feel_shade">لە ژێر سێبەردا بەڕاستی هەست دەکەیت وەک</string>
     <string name="temperature_apparent">دیارە</string>
-    <string name="temperature_wet_bulb">بای شێدار</string>
     <string name="precipitation_probability">ئەگەری بارین</string>
     <string name="precipitation_intensity_light">دڵۆپ</string>
     <string name="precipitation_intensity_heavy">بارانێکی بەلێزمە</string>
     <string name="precipitation_none">بێ باران</string>
-    <string name="wind_speed">خێرایی با</string>
-    <string name="wind_direction">ئاڕاستەی با</string>
     <string name="wind_direction_variable">گۆڕاو</string>
     <string name="wind_direction_NE_short">باک هەڵ</string>
     <string name="wind_direction_SE_short">باش هەڵ</string>
-    <string name="wind_strength">هێزی با</string>
     <string name="wind_strength_1">بای سووک</string>
     <string name="wind_strength_2">شنەبای سووک</string>
     <string name="wind_strength_5">شنەبای تازە</string>
@@ -85,7 +78,6 @@
     <string name="temperature_wind_chill">بای سارد</string>
     <string name="precipitation_ice">سەهۆڵ</string>
     <string name="precipitation_duration">ماوەی باران بارین</string>
-    <string name="precipitation_total">کۆی گشتی</string>
     <string name="precipitation_rain">باران</string>
     <string name="precipitation_thunderstorm">ڕەشەبا</string>
     <string name="precipitation_snow">بەفر</string>
@@ -140,6 +132,5 @@
     <string name="dew_point_short">خاڵی شەبنەم</string>
     <string name="ceiling_short">بنمیچ</string>
     <string name="humidity_short">شێداری</string>
-    <string name="wind_short">با</string>
     <string name="visibility_short">بینین</string>
 </resources>

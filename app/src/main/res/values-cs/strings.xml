@@ -11,8 +11,6 @@
     <string name="precipitation_duration">Trvání srážek</string>
     <string name="temperature">Teplota</string>
     <string name="wind">Vítr</string>
-    <string name="wind_direction">Směr větru</string>
-    <string name="wind_speed">Rychlost větru</string>
     <string name="humidity">Vlhkost</string>
     <string name="humidity_dew_point">Vlhkost / Rosný bod</string>
     <string name="uv_index">UV index</string>
@@ -33,13 +31,9 @@
     <string name="action_edit">Upravit</string>
     <string name="daily_yesterday_short">Včr</string>
     <string name="daily_tomorrow_short">Zít</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Pocitová</string>
     <string name="temperature_wind_chill">Chladivý vítr</string>
-    <string name="temperature_wet_bulb">Teplota mokrého teploměru</string>
     <string name="temperature_degree_day">Denostupeň</string>
-    <string name="precipitation_total">Celkově</string>
     <string name="precipitation_thunderstorm">Bouřka</string>
     <string name="precipitation_rain">Déšť</string>
     <string name="precipitation_snow">Sníh</string>
@@ -76,7 +70,6 @@
     <string name="hourly_forecast">Hodinová předpověď</string>
     <string name="air_quality">Kvalita ovzduší</string>
     <string name="pollen">Alergeny</string>
-    <string name="details">Podrobnosti</string>
     <string name="ephemeris">Slunce a měsíc</string>
     <string name="action_next">DalšÍ</string>
     <string name="action_done">Hotovo</string>
@@ -195,7 +188,6 @@
     <string name="action_settings">Nastavení</string>
     <string name="action_preview">Náhled</string>
     <string name="action_about">O aplikaci</string>
-    <string name="action_app_store">Obchod</string>
     <!-- widget -->
     <string name="widget_day">Denní</string>
     <string name="widget_week">Týdenní</string>
@@ -311,7 +303,6 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Bouřka se silným krupobitím</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="settings_units_summary">Teplota, srážky, vzdálenost, rychlost, tlak</string>
-    <string name="location_search_weather_source">Zdroj počasí</string>
     <string name="location_message_search_failed">Vyhledávání polohy se nezdařilo</string>
     <string name="location_message_permission_background_missing">Chybějící oprávnění k přístupu k poloze na pozadí</string>
     <string name="settings_background_updates_refresh_never">Nikdy</string>
@@ -348,7 +339,6 @@
     <string name="about_matrix">Matrix místnost</string>
     <string name="common_weather_text_overcast">Zataženo</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Čas oznámení předpovědi na další den</string>
-    <string name="wind_strength">Síla větru</string>
     <string name="uv_index_11">Extrémní</string>
     <string name="uv_index_3_5">Střední</string>
     <string name="uv_index_6_7">Vysoký</string>
@@ -448,7 +438,6 @@
     <string name="settings_main_section_displayed_data">Zobrazené údaje</string>
     <string name="settings_main_cards_title">Bloky</string>
     <string name="settings_main_daily_trends_title">Denní trendy</string>
-    <string name="settings_main_header_details_title">Podrobnosti v záhlaví</string>
     <string name="settings_main_section_options">Možnosti</string>
     <string name="settings_notifications_precipitations_title">Oznámení o srážkách</string>
     <string name="settings_widgets_live_wallpaper_summary">Nastavit animaci počasí jako tapetu</string>
@@ -503,7 +492,6 @@
     <string name="setting_weather_source_accu_hours">Hodiny</string>
     <string name="pollen_level_3">Střední</string>
     <string name="setting_weather_source_accu_days">Dny</string>
-    <string name="wind_gusts">Poryvy větru</string>
     <string name="pollen_alnus">Olše</string>
     <string name="pollen_level_5">Velmi vysoké</string>
     <string name="pollen_level_4">Vysoké</string>
@@ -566,7 +554,6 @@
     <string name="common_weather_text_rain_showers_moderate">Mírné dešťové přeháňky</string>
     <string name="metno_weather_text_andthunder">%s a hrom</string>
     <string name="action_save">Uložit</string>
-    <string name="pollen_and_mold">Alergeny a plísně</string>
     <string name="settings_widgets_broadcast_send_data_title">Posílat data o počasí do %s</string>
     <string name="settings_debug_dump_crash_logs_saved">Protokoly o chybách uloženy</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Klepnutím otevřete</string>
@@ -587,7 +574,6 @@
     <string name="dew_point_short">Rosný bod</string>
     <string name="cloud_cover_short">Oblačnost</string>
     <string name="humidity_short">Vlhkost</string>
-    <string name="wind_short">Vítr</string>
     <string name="uv_index_short">UV index</string>
     <string name="visibility_short">Viditelnost</string>
     <string name="pressure_short">Tlak</string>
@@ -835,8 +821,6 @@
     <string name="precipitation_snow_total_night">Sníh během noci</string>
     <string name="daytime_short">Den</string>
     <string name="nighttime_short">Noc</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">Ve světlém režimu vždy povoleno</string>
-    <string name="settings_appearance_dark_mode_locations_disabled">Zakázáno, ale umístění jsou během noci vždy v tmavém režimu</string>
     <string name="temperature_normals_deviation">Odchylka</string>
     <string name="temperature_normals_deviation_explanation_maximum">Odchylka od průměrné maximální teploty v měsíci %s v tomto umístění</string>
     <string name="temperature_normals_deviation_explanation_minimum">Odchylka od průměrné minimální teploty v měsíci %s v tomto umístění</string>

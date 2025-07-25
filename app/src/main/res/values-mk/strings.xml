@@ -2,7 +2,6 @@
 <resources>
     <string name="daily_forecast">Дневна прогноза</string>
     <string name="hourly_forecast">Часовна прогноза</string>
-    <string name="details">Детаљи</string>
     <string name="daily_yesterday_short">Вчр</string>
     <string name="daily_today_short">Ден</string>
     <string name="daily_tomorrow_short">Утр</string>
@@ -10,11 +9,9 @@
     <string name="temperature_normal_short">Нормална</string>
     <string name="temperature_normals">Нормали на температура</string>
     <string name="precipitation_rain">Дожд</string>
-    <string name="precipitation_total">Вкупно</string>
     <string name="precipitation_snow">Снег</string>
     <string name="precipitation_ice">Мраз</string>
     <string name="precipitation_intensity_heavy">Пороен</string>
-    <string name="wind_direction">Правец на ветрот</string>
     <string name="wind_direction_variable">Променливо</string>
     <string name="wind_direction_NE_short">СИ</string>
     <string name="wind_direction_N_short">С</string>
@@ -23,7 +20,6 @@
     <string name="wind_direction_SW_short">ЈЗ</string>
     <string name="wind_direction_W_short">З</string>
     <string name="wind_direction_NW_short">СЗ</string>
-    <string name="wind_strength">Јачина на ветрот</string>
     <string name="wind_strength_0">Мирно</string>
     <string name="wind_strength_2">Лесно ветре</string>
     <string name="wind_strength_5">Свеж ветар</string>
@@ -54,9 +50,7 @@
     <string name="air_quality_so2_voice">Сулфур диоксид</string>
     <string name="wind">Ветер</string>
     <string name="app_name">Метео</string>
-    <string name="wind_speed">Брзина на ветрот</string>
     <string name="wind_strength_7">Жесток ветар</string>
-    <string name="wind_gusts">Залети на ветер</string>
     <string name="wind_strength_9">Силна луња</string>
     <string name="uv_alert_level">Алармантен</string>
     <string name="air_quality_level_5_description">Лицата од чувствителните групи може веднаш да ги осетат ефектите врз здравјето и треба да избегнуваат активности на отворено. Здравите лица веројатно ќе имаат тешкотии при дишењето и иритација на грлото; размисли да останеш во затворено и да ги презакажеш активностите во природа.</string>
@@ -67,14 +61,11 @@
     <string name="air_quality_no2_voice">Азот диоксид</string>
     <string name="air_quality">Квалитет на воздух</string>
     <string name="pollen">Полен</string>
-    <string name="pollen_and_mold">Полен и мувла</string>
     <string name="ephemeris">Сонце и месечина</string>
     <string name="alerts">Тревоги</string>
     <string name="alerts_to_follow">Идни тревоги, допрете за да ги погледнете.</string>
     <string name="temperature">Температура</string>
     <string name="temperature_apparent">Видно</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="precipitation_thunderstorm">Грмотевици</string>
     <string name="precipitation_intensity_light">Роса</string>
     <string name="wind_direction_SE_short">ЈИ</string>
@@ -110,7 +101,6 @@
     <string name="weather_source_accu_preference_hours_120">120 часа</string>
     <string name="weather_source_accu_preference_hours_240">240 часа</string>
     <string name="locations">Локации</string>
-    <string name="location_search_weather_source">Извор на времето</string>
     <string name="location_message_added">Додадена е локација</string>
     <string name="location_message_deleted">Локацијата е избришана</string>
     <string name="location_message_list_cannot_be_empty">Списокот со локации не може да биде празен</string>
@@ -269,7 +259,6 @@
     <string name="location_search_no_results_advice">Осигурајте се дека барањето за пребарување е напишано правилно и не е премногу специфично. Можете исто така да се обидете да користите друг извор за пребарување локација, што може да даде различни резултати.</string>
     <string name="location_service_native">Мајчин API</string>
     <string name="action_location_list">Список на локации</string>
-    <string name="action_app_store">Продавница за Апликации</string>
     <string name="action_restart">Рестарт</string>
     <string name="action_more">Види повеќе</string>
     <string name="action_save">Зачувај</string>
@@ -320,7 +309,6 @@
     <string name="settings_main_section_displayed_data">Прикажани податоци</string>
     <string name="settings_main_daily_trends_title">Дневни трендови</string>
     <string name="settings_main_hourly_trends_title">Трендови на час</string>
-    <string name="settings_main_header_details_title">Детали во заглавието</string>
     <string name="settings_main_section_options">Опции</string>
     <string name="settings_main_section_animations">Анимации</string>
     <string name="settings_notifications_summary">Временски сигнали, врнежи, прогноза</string>
@@ -367,7 +355,6 @@
     <string name="common_weather_text_drizzle_heavy">Силен дожд</string>
     <string name="precipitation_nowcasting">Врнежи од минута во минута</string>
     <string name="temperature_wind_chill">Заладување на ветерот</string>
-    <string name="temperature_wet_bulb">Влажна сијалица</string>
     <string name="temperature_degree_day_heating">Степен ден за греење</string>
     <string name="temperature_degree_day_cooling">Степен ден за ладење</string>
     <string name="temperature_average_short">Просечно</string>
@@ -569,7 +556,6 @@
     <string name="location_message_already_exists">Локација со ист главен извор на времето веќе постои.</string>
     <string name="ceiling_short">Таванот</string>
     <string name="humidity_short">Влажност</string>
-    <string name="wind_short">Ветер</string>
     <string name="uv_index_short">УВ индекс</string>
     <string name="visibility_short">Видливост</string>
     <string name="pressure_short">Притисок</string>

@@ -2,17 +2,12 @@
 <resources>
     <string name="temperature_apparent">उघड</string>
     <string name="temperature_wind_chill">गार वारा</string>
-    <string name="temperature_wet_bulb">ओला बल्ब</string>
     <string name="temperature_degree_day">स्थानिक तापमान दिवस</string>
     <string name="temperature_degree_day_heating">उष्णता मापीचा दिवस</string>
-    <string name="precipitation_total">एकूण</string>
     <string name="precipitation_snow">बर्फ</string>
     <string name="precipitation_ice">बर्फ</string>
     <string name="precipitation_intensity_light">रिमझिम पाऊस</string>
     <string name="precipitation_between_time">%1$s आणि %2$s दरम्यान पाऊस</string>
-    <string name="wind_short">वारा</string>
-    <string name="wind_gusts">सोसाट्याचा वारा</string>
-    <string name="wind_direction">वाऱ्याची दिशा</string>
     <string name="wind_direction_variable">चल</string>
     <string name="wind_direction_N_short">उ</string>
     <string name="wind_direction_NE_short">ई</string>
@@ -45,8 +40,6 @@
     <string name="precipitation_nowcasting">मिनिटा मिनिटाला पर्जन्य</string>
     <string name="pollen">परागकण</string>
     <string name="ephemeris">सूर्य आणि चंद्र</string>
-    <string name="pollen_and_mold">परागकण आणि साचा</string>
-    <string name="details">तपशील</string>
     <string name="alerts">इशारे</string>
     <string name="alerts_to_follow">आगामी सूचना, ते पाहण्यासाठी येथे दाबा.</string>
     <string name="daily_yesterday_short">काल</string>
@@ -55,7 +48,6 @@
     <string name="temperature">तापमान</string>
     <string name="temperature_feels_like">असे वाटते</string>
     <string name="temperature_feels_like_short">असे वाटते</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_average_short">सरासरी</string>
     <string name="temperature_normals">तापमान सामान्य</string>
     <string name="temperature_normal_short">सामान्य</string>
@@ -67,8 +59,6 @@
     <string name="precipitation_intensity_heavy">जोरदार पाऊस</string>
     <string name="precipitation_none">पर्जन्य नाही</string>
     <string name="wind">वारा</string>
-    <string name="wind_speed">वाऱ्याचा वेग</string>
-    <string name="wind_strength">वाऱ्याची ताकद</string>
     <string name="wind_strength_0">शांत</string>
     <string name="wind_strength_3">वाऱ्याची मंद झुळूक</string>
     <string name="wind_strength_4">मध्यम वाऱ्याची झुळूक</string>
@@ -80,7 +70,6 @@
     <string name="wind_strength_12">चक्रीवादळ</string>
     <string name="uv_index_short">अतिनील निर्देशांक</string>
     <string name="air_quality_level_5">खूप अस्वस्थ</string>
-    <string name="temperature_real_feel">RealFeel®</string>
     <string name="air_quality_level_6">धोकादायक</string>
     <string name="air_quality_pm25">पीएम २.५</string>
     <string name="air_quality_pm25_voice">पीएम दोन दशांश पाच</string>

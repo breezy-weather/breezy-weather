@@ -11,8 +11,6 @@
     <string name="precipitation_duration">降水时长</string>
     <string name="temperature">温度</string>
     <string name="wind">风况</string>
-    <string name="wind_direction">风向</string>
-    <string name="wind_speed">风速</string>
     <string name="humidity">相对湿度</string>
     <string name="humidity_dew_point">相对湿度 / 露点</string>
     <string name="uv_index">紫外线指数</string>
@@ -33,13 +31,9 @@
     <string name="action_edit">编辑</string>
     <string name="daily_yesterday_short">昨天</string>
     <string name="daily_tomorrow_short">明天</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">体感温度</string>
     <string name="temperature_wind_chill">风寒指数</string>
-    <string name="temperature_wet_bulb">湿球温度</string>
     <string name="temperature_degree_day">度日温度</string>
-    <string name="precipitation_total">总计</string>
     <string name="precipitation_thunderstorm">雷雨</string>
     <string name="precipitation_rain">雨</string>
     <string name="precipitation_snow">雪</string>
@@ -89,7 +83,6 @@
     <string name="hourly_forecast">小时预报</string>
     <string name="air_quality">空气质量</string>
     <string name="pollen">花粉浓度</string>
-    <string name="details">详细数据</string>
     <string name="ephemeris">日月升落</string>
     <string name="common_weather_text_clear_sky">晴朗</string>
     <string name="common_weather_text_mainly_clear">少云</string>
@@ -212,7 +205,6 @@
     <string name="action_settings">设置</string>
     <string name="action_preview">预览</string>
     <string name="action_about">关于</string>
-    <string name="action_app_store">应用商店</string>
     <!-- widget -->
     <string name="widget_day">今日</string>
     <string name="widget_week">一周</string>
@@ -380,7 +372,6 @@
     <string name="unit_fahrenheit">°F</string>
     <string name="about_source_code">源代码</string>
     <string name="action_continue">继续</string>
-    <string name="location_search_weather_source">天气数据源</string>
     <string name="location_message_permission_missing">缺少访问位置的权限</string>
     <string name="settings_icon_packs_title">图标包</string>
     <string name="settings_background_updates_refresh_title">刷新频率</string>
@@ -431,7 +422,6 @@
     <string name="settings_section_general">一般选项</string>
     <string name="settings_background_updates_battery_optimization_summary">当您收不到通知或者微件不更新的时候，这是首先要尝试的事。</string>
     <string name="settings_location_access_permission_already_granted">已获得权限</string>
-    <string name="settings_main_header_details_title">显示在顶部的详细信息</string>
     <string name="settings_main_section_options">选项</string>
     <string name="settings_widgets_notification_widget_title">通知微件</string>
     <string name="settings_main_section_animations">动画</string>
@@ -491,7 +481,6 @@
     <string name="action_show_errors">点击以查看详情</string>
     <string name="notification_update_error">%d 更新失败</string>
     <string name="message_parsing_error_content">请确保您已更新到最新版本。服务器可能暂时不可用，请稍后重试。如果问题仍然存在，请点击设置 - 调试 - 分享崩溃日志，并在 GitHub 上报告问题。</string>
-    <string name="wind_strength">风力</string>
     <string name="message_server_timeout">请求超时</string>
     <string name="message_parsing_error_title">天气数据解析失败</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">电池电量低时停用后台刷新</string>
@@ -514,7 +503,6 @@
     <string name="pollen_level_3">中</string>
     <string name="action_delete">删除</string>
     <string name="weather_message_invalid_location">无效的位置，请删除并重新添加</string>
-    <string name="wind_gusts">阵风</string>
     <string name="about_dependencies">依赖</string>
     <string name="action_save">保存</string>
     <string name="settings_weather_sources_per_location_summary">自定义用于此位置的天气数据源</string>
@@ -561,7 +549,6 @@
     <string name="temperature_normals">气温标准值</string>
     <string name="temperature_normal_short">标准值</string>
     <string name="settings_widgets_broadcast_send_data_title">发送天气数据到 %s</string>
-    <string name="pollen_and_mold">花粉和霉菌浓度</string>
     <string name="settings_color_app">跟随应用设置</string>
     <string name="settings_debug_dump_crash_logs_saved">已保存崩溃日志</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">轻按打开</string>
@@ -583,7 +570,6 @@
     <string name="cloud_cover_short">云量</string>
     <string name="ceiling_short">云高</string>
     <string name="humidity_short">相对湿度</string>
-    <string name="wind_short">风况</string>
     <string name="uv_index_short">紫外线指数</string>
     <string name="visibility_short">能见度</string>
     <string name="pressure_short">气压</string>
@@ -906,8 +892,6 @@
     <string name="precipitation_snow_total_night">夜间降雪量</string>
     <string name="daytime_short">白天</string>
     <string name="nighttime_short">晚间</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">始终启用浅色模式</string>
-    <string name="settings_appearance_dark_mode_locations_disabled">停用，但在夜间地点始终始终处在深色模式下</string>
     <string name="temperature_normals_deviation">偏差</string>
     <string name="temperature_normals_deviation_explanation_maximum">偏离此位置的 %s 最高气温均值</string>
     <string name="temperature_normals_deviation_explanation_minimum">偏离此位置的 %s 最低气温均值</string>

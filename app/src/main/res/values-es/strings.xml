@@ -11,9 +11,6 @@
     <string name="precipitation_duration">Duración de precipitación</string>
     <string name="temperature">Temperatura</string>
     <string name="wind">Viento</string>
-    <string name="wind_short">Viento</string>
-    <string name="wind_direction">Dirección del viento</string>
-    <string name="wind_speed">Velocidad del viento</string>
     <string name="humidity">Humedad</string>
     <string name="humidity_dew_point">Humedad / Punto de rocío</string>
     <string name="uv_index">Índice UV</string>
@@ -34,13 +31,9 @@
     <string name="action_edit">Editar</string>
     <string name="daily_yesterday_short">Ayer</string>
     <string name="daily_tomorrow_short">Mña</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Aparente</string>
     <string name="temperature_wind_chill">Viento frío</string>
-    <string name="temperature_wet_bulb">Bulbo húmedo</string>
     <string name="temperature_degree_day">Día de grado</string>
-    <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Tormenta</string>
     <string name="precipitation_rain">Lluvia</string>
     <string name="precipitation_snow">Nieve</string>
@@ -76,7 +69,6 @@
     <string name="hourly_forecast">Pronóstico por horas</string>
     <string name="air_quality">Calidad del aire</string>
     <string name="pollen">Polen</string>
-    <string name="details">Detalles</string>
     <string name="ephemeris">Sol y luna</string>
     <string name="action_next">Siguiente</string>
     <string name="action_done">Hecho</string>
@@ -161,7 +153,6 @@
     <string name="action_settings">Configuración</string>
     <string name="action_preview">Vista previa</string>
     <string name="action_about">Acerca de</string>
-    <string name="action_app_store">Tienda de apps</string>
     <!-- widget -->
     <string name="widget_day">Diario</string>
     <string name="widget_week">Semanal</string>
@@ -296,7 +287,6 @@
     <string name="air_quality_co_voice">Monóxido de carbono</string>
     <string name="air_quality_o3_full">Ozono troposférico (O₃)</string>
     <string name="air_quality_co">CO</string>
-    <string name="wind_strength">Fuerza del viento</string>
     <string name="location_search_no_results">%1$s no puede encontrar %2$s</string>
     <string name="weather_source_accu_preference_days_15">15 días</string>
     <string name="weather_source_accu_preference_hours_120">120 horas</string>
@@ -312,7 +302,6 @@
     <string name="setting_weather_source_accu_days">Días</string>
     <string name="setting_weather_source_accu_hours">Horas</string>
     <string name="weather_source_accu_preference_hours_240">240 horas</string>
-    <string name="location_search_weather_source">Fuente meteorológica</string>
     <string name="location_message_search_failed">Búsqueda de ubicación fallida</string>
     <string name="action_undo">Deshacer</string>
     <string name="action_help_me_choose">Ayúdame a elegir</string>
@@ -384,7 +373,6 @@
     <string name="settings_location_summary">Parámetros de los servicios de lugar</string>
     <string name="temperature_degree_day_heating">Grados día de calefacción</string>
     <string name="temperature_degree_day_cooling">Grado día frío</string>
-    <string name="wind_gusts">Ráfagas de viento</string>
     <string name="pollen_betula">Abedul</string>
     <string name="pollen_artemisia">Artemisia</string>
     <string name="pollen_olea">Olivo</string>
@@ -398,7 +386,6 @@
     <string name="temperature_normal_short">Normal</string>
     <string name="weather_message_unsupported_feature">La fuente no admite una de las funciones solicitadas</string>
     <string name="weather_message_invalid_location">Ubicación no válida, elimínala y vuelve a añadirla</string>
-    <string name="pollen_and_mold">Polen y moho</string>
     <string name="temperature_normals">Temperaturas normales</string>
     <string name="pollen_level_5">Muy alto</string>
     <string name="ephemeris_moonset_at">Puesta de la luna a las %s</string>
@@ -434,7 +421,6 @@
     <string name="settings_widgets_configure_widget_summary">Configurar este complemento</string>
     <string name="settings_icon_packs_weather_icon_grey">Icono gris</string>
     <string name="settings_icon_packs_title">Paquetes de iconos</string>
-    <string name="settings_main_header_details_title">Detalles en el encabezado</string>
     <string name="settings_main_threshold_lines_on_charts">Líneas de umbral en los gráficos</string>
     <string name="settings_widgets_live_wallpaper_summary">Establecer una animación meteorológica como fondo de pantalla</string>
     <string name="settings_icon_packs_weather_icon_light">Icono claro</string>

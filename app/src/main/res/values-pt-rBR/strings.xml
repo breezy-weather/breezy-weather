@@ -11,8 +11,6 @@
     <string name="precipitation_duration">Duração da precipitação</string>
     <string name="temperature">Temperatura</string>
     <string name="wind">Vento</string>
-    <string name="wind_direction">Direção do vento</string>
-    <string name="wind_speed">Velocidade do vento</string>
     <string name="humidity">Umidade</string>
     <string name="humidity_dew_point">Umidade / Ponto de orvalho</string>
     <string name="uv_index">Índice UV</string>
@@ -34,13 +32,9 @@
     <!-- The following set of strings should be as short as possible. -->
     <string name="daily_yesterday_short">Ontem</string>
     <string name="daily_tomorrow_short">Amanhã</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Aparente</string>
     <string name="temperature_wind_chill">Frio do vento</string>
-    <string name="temperature_wet_bulb">Bulbo úmido</string>
     <string name="temperature_degree_day">Graus-dia</string>
-    <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Trovoada</string>
     <string name="precipitation_rain">Chuva</string>
     <string name="precipitation_snow">Neve</string>
@@ -76,7 +70,6 @@
     <string name="hourly_forecast">Previsão por hora</string>
     <string name="air_quality">Qualidade do ar</string>
     <string name="pollen">Pólen</string>
-    <string name="details">Detalhes</string>
     <string name="ephemeris">Sol e lua</string>
     <string name="action_next">Próximo</string>
     <string name="action_done">Concluído</string>
@@ -195,7 +188,6 @@
     <string name="action_settings">Configurações</string>
     <string name="action_preview">Visualização</string>
     <string name="action_about">Sobre</string>
-    <string name="action_app_store">Play Store</string>
     <!-- widget -->
     <string name="widget_day">Diária</string>
     <string name="widget_week">Semanal</string>
@@ -352,7 +344,6 @@
     <string name="settings_weather_sources">Fontes meteorológicas</string>
     <string name="settings_units_summary">Temperatura, precipitação, distância, velocidade e pressão</string>
     <string name="settings_main_background_animation_title">Animação de fundo</string>
-    <string name="settings_main_header_details_title">Detalhes no cabeçalho</string>
     <string name="settings_main_section_animations">Animações</string>
     <string name="settings_notifications_summary">Notificações de alertas meteorológicos, precipitações ou previsão para o primeiro local</string>
     <string name="settings_widgets_notification_style_title">Estilo</string>
@@ -407,7 +398,6 @@
     <string name="weather_source_accu_preference_hours_72">72 horas</string>
     <string name="weather_source_accu_preference_hours_120">120 horas</string>
     <string name="weather_source_accu_preference_hours_240">240 horas</string>
-    <string name="location_search_weather_source">Fonte meteorológica</string>
     <string name="settings_location_summary">Configurações dos serviços de localização</string>
     <string name="settings_location">Localização</string>
     <string name="settings_location_access_precise_title">Uso do GPS do dispositivo</string>
@@ -496,7 +486,6 @@
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorar quando a bateria estiver baixa</string>
     <string name="message_parsing_error_title">Falha ao analisar dados meteorológicos</string>
     <string name="notification_update_error">%d falha na(s) atualização(ões)</string>
-    <string name="wind_strength">Força do vento</string>
     <string name="message_server_timeout">Solicitação expirou</string>
     <string name="message_parsing_error_content">Certifique-se de atualizar para a versão mais recente do app. O servidor pode estar temporariamente indisponível, nesse caso, tente novamente mais tarde. Se o problema persistir, faça um relatório de crash a partir das configurações de depuração e relate o problema no GitHub.</string>
     <string name="temperature_degree_day_heating">Graus-dia de aquecimento</string>
@@ -520,7 +509,6 @@
     <string name="pollen_level_5">Muito alto</string>
     <string name="action_delete">Excluir</string>
     <string name="weather_message_invalid_location">Local inválido, por favor remova e readicione</string>
-    <string name="wind_gusts">Rajadas de vento</string>
     <string name="about_dependencies">Dependências</string>
     <string name="about_contact">Contato</string>
     <string name="unit_bft_voice">na escala de Beaufort</string>
@@ -535,7 +523,6 @@
     <string name="temperature_normal_short">Normal</string>
     <string name="temperature_average_short">Média</string>
     <string name="settings_main_threshold_lines_on_charts">Linhas de limite em gráficos</string>
-    <string name="pollen_and_mold">Pólen e mofo</string>
     <string name="settings_widgets_broadcast_send_data_title">Enviar dados meteorológicos para %s</string>
     <string name="common_weather_text_rain_showers_light">Pancadas de chuva leve</string>
     <string name="common_weather_text_drizzle_moderate">Garoa moderada</string>
@@ -586,7 +573,6 @@
     <string name="location_search_no_results_advice">Certifique-se de que sua busca esteja escrita corretamente e não tão específica. Como alternativa, você pode tentar outra fonte de busca de local, que pode produzir resultados diferentes.</string>
     <string name="temperature_feels_like_short">Sensação</string>
     <string name="humidity_short">Umidade</string>
-    <string name="wind_short">Vento</string>
     <string name="uv_index_short">Índice UV</string>
     <string name="pressure_short">Pressão</string>
     <string name="dew_point_short">Orvalho</string>
@@ -881,14 +867,12 @@
     <string name="precipitation_total_day">Precipitação para o dia</string>
     <string name="daytime_short">Dia</string>
     <string name="nighttime_short">Noite</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">Sempre habilitado com o modo claro</string>
     <string name="temperature_normals_deviation_explanation_minimum">Desvio da temperatura mínima média de %s para este local</string>
     <string name="precipitation_total_night">Precipitação durante a noite</string>
     <string name="precipitation_rain_total_day">Chuva durante o dia</string>
     <string name="precipitation_rain_total_night">Chuva durante a noite</string>
     <string name="precipitation_snow_total_day">Neve durante o dia</string>
     <string name="precipitation_snow_total_night">Neve durante a noite</string>
-    <string name="settings_appearance_dark_mode_locations_disabled">Desabilitado, mas os locais estão sempre no modo escuro durante a noite</string>
     <string name="widget_custom_subtitle_help_content_description">Mostrar ajuda para palavras-chave de legendas personalizadas</string>
     <string name="widget_custom_subtitle_alert_box_title">Ajuda para legendas personalizadas</string>
 </resources>

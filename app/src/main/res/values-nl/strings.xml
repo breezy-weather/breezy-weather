@@ -32,7 +32,6 @@
     <string name="daily_forecast">Dagelijkse verwachting</string>
     <string name="hourly_forecast">Verwachting per uur</string>
     <string name="air_quality">Luchtkwaliteit</string>
-    <string name="details">Details</string>
     <string name="ephemeris">Zon &amp; maan</string>
     <string name="action_next">Volgende</string>
     <string name="action_done">Klaar</string>
@@ -85,11 +84,8 @@
     <string name="widget_subtitle_data_feels_like">Gevoelstemperatuur</string>
     <string name="alerts_to_follow">Aankomende waarschuwingen, tik hier om ze te bekijken.</string>
     <string name="temperature">Temperatuur</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Schaduw™</string>
     <string name="temperature_apparent">Schijnbaar</string>
     <string name="temperature_wind_chill">Windkou</string>
-    <string name="temperature_wet_bulb">Natteboltemperatuur</string>
     <string name="temperature_degree_day">Daggraad dag</string>
     <string name="precipitation_nowcasting">Toekomstige neerslag</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Regen- en sneeuwbuien</string>
@@ -176,7 +172,6 @@
     <string name="settings_main_cards_title">Kaarten</string>
     <string name="settings_main_section_animations">Animaties</string>
     <string name="settings_item_delete">Dit item verwijderen</string>
-    <string name="settings_main_header_details_title">Details in koptekst</string>
     <string name="weather_api_limit_reached_title">API-verzoekenlimiet bereikt</string>
     <string name="weather_api_limit_reached_content">Om de limiet te omzeilen, kunt u uw eigen API-sleutel toevoegen.</string>
     <string name="weather_api_unauthorized_title">API-toegang ongeautoriseerd</string>
@@ -235,7 +230,6 @@
     <string name="settings_main_hourly_trends_title">Uurtrends</string>
     <string name="settings_debug_dump_crash_logs_title">Crashlogs delen</string>
     <string name="precipitation_duration">Neerslagduur</string>
-    <string name="precipitation_total">Totaal</string>
     <string name="precipitation_probability">Neerslagkans</string>
     <string name="precipitation_rain">Regen</string>
     <string name="pollen_betula">Berk</string>
@@ -259,7 +253,6 @@
     <string name="ephemeris_sunrise_at">Zonsopgang bij %s</string>
     <string name="ephemeris_sunset_at">Zonsondergang bij %s</string>
     <string name="cloud_cover">Bewolking</string>
-    <string name="location_search_weather_source">Weerbron</string>
     <string name="settings_units_summary">Temperatuur, neerslag, afstand, snelheid, druk</string>
     <string name="action_more">Bekijk meer</string>
     <string name="action_preview">Voorbeeld</string>
@@ -358,8 +351,6 @@
     <string name="precipitation_intensity_heavy">Hevig</string>
     <string name="precipitation_intensity_light">Motregen</string>
     <string name="precipitation_none">Geen neerslag</string>
-    <string name="wind_speed">Windsnelheid</string>
-    <string name="wind_direction">Windrichting</string>
     <string name="wind_direction_variable">Variabel</string>
     <string name="wind_direction_N_short">N</string>
     <string name="wind_direction_NE_short">NO</string>
@@ -375,7 +366,6 @@
     <string name="ephemeris_moon_phase_waning_crescent">Afnemende halve maan</string>
     <string name="locations">Locaties</string>
     <string name="action_add_new_location">Een nieuwe locatie toevoegen</string>
-    <string name="action_app_store">App Store</string>
     <string name="action_restart">Herstarten</string>
     <string name="action_edit">Bewerken</string>
     <string name="action_set">Instellen</string>
@@ -434,8 +424,6 @@
     <string name="notification_style_native">Natief</string>
     <string name="notification_running_in_background">Draait op de achtergrond om te blijven updaten</string>
     <string name="about_contribution_WangDaYeeeeee">Ontwikkelaar van het oorspronkelijke project Geometric Weather</string>
-    <string name="wind_gusts">windstoten</string>
-    <string name="wind_strength">Windkracht</string>
     <string name="uv_index_3_5">Matig</string>
     <string name="uv_index_6_7">Hoog</string>
     <string name="air_quality_o3_full">Ozon op grondniveau (O₃)</string>
@@ -553,7 +541,6 @@
     <string name="settings_widgets_notification_widget_title">Widget voor meldingen</string>
     <string name="common_weather_text_rain_snow_mixed_light">Lichte regen en sneeuw</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Zware regen en sneeuw</string>
-    <string name="pollen_and_mold">Pollen &amp; schimmels</string>
     <string name="settings_debug_dump_crash_logs_saved">Crashlogs opgeslagen</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Tik om te openen</string>
     <string name="notification_channel_crash_logs">Crashlogs</string>
@@ -561,7 +548,6 @@
     <string name="dew_point_short">Dauwpunt</string>
     <string name="cloud_cover_short">Bewolking</string>
     <string name="ceiling_short">Plafond</string>
-    <string name="wind_short">Wind</string>
     <string name="uv_index_short">UV-index</string>
     <string name="visibility_short">Zicht</string>
     <string name="pressure_short">Luchtdruk</string>

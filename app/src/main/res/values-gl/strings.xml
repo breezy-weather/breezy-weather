@@ -9,10 +9,7 @@
     <string name="alerts_to_follow">Próximas alertas, prema aquí para velas.</string>
     <string name="temperature">Temperatura</string>
     <string name="temperature_feels_like">Síntese coma</string>
-    <string name="pollen_and_mold">Polen e mofo</string>
     <string name="temperature_wind_chill">Sensación térmica</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="precipitation_duration">Duración das precipitacións</string>
     <string name="precipitation_thunderstorm">Tormenta</string>
     <string name="precipitation_rain">Chuvia</string>
@@ -22,9 +19,6 @@
     <string name="temperature_normals">Temperaturas normais</string>
     <string name="precipitation_none">Sen precipitacións</string>
     <string name="wind">Vento</string>
-    <string name="wind_speed">Velocidade do vento</string>
-    <string name="wind_gusts">Rachas de vento</string>
-    <string name="wind_direction">Dirección do vento</string>
     <string name="precipitation_intensity_medium">Media</string>
     <string name="precipitation_intensity_heavy">Forte</string>
     <string name="wind_direction_SE_short">SE</string>
@@ -41,7 +35,6 @@
     <string name="wind_strength_8">Vendaval</string>
     <string name="wind_strength_9">Vendaval intenso</string>
     <string name="wind_direction_variable">Variable</string>
-    <string name="wind_strength">Forza do vento</string>
     <string name="wind_strength_10">Tormenta</string>
     <string name="wind_strength_11">Tormenta forte</string>
     <string name="uv_index">Índice UV</string>
@@ -105,13 +98,10 @@
     <string name="daily_forecast">Previsión diaria</string>
     <string name="app_name">Tempo</string>
     <string name="air_quality">Calidade do aire</string>
-    <string name="details">Detalles</string>
     <string name="temperature_feels_like_short">Síntese</string>
     <string name="precipitation_probability">Probabilidade de precipitacións</string>
     <string name="precipitation">Precipitacións</string>
-    <string name="precipitation_total">Total</string>
     <string name="precipitation_intensity_light">Feble</string>
-    <string name="wind_short">Vento</string>
     <string name="precipitation_between_time">Precipitacións entre as %1$s e as %2$s</string>
     <string name="wind_direction_N_short">N</string>
     <string name="wind_direction_NE_short">NE</string>
@@ -161,7 +151,6 @@
     <string name="pollen_ambrosia">Ambrosia</string>
     <string name="pollen_artemisia">Artemisa</string>
     <string name="pollen_betula">Bidueiro</string>
-    <string name="temperature_wet_bulb">Temperatura húmida</string>
     <string name="temperature_average_short">Media</string>
     <string name="air_quality_so2_full">Dióxido de xofre (SO₂)</string>
     <string name="air_quality_co_full">Monóxido de carbono (CO)</string>
@@ -244,7 +233,6 @@
     <string name="weather_source_accu_preference_days_15">15 días</string>
     <string name="weather_source_accu_preference_hours_240">240 horas</string>
     <string name="location_current">Ubicación actual</string>
-    <string name="location_search_weather_source">Fonte meteorolóxica</string>
     <string name="setting_weather_source_accu_hours">Horas</string>
     <string name="location_custom_name">Nome personalizado</string>
     <string name="settings_weather_source_portal">Portal</string>

@@ -28,13 +28,9 @@
     <string name="precipitation_nowcasting">Nedbør minutt for minutt</string>
     <string name="temperature_feels_like">Føles som</string>
     <string name="air_quality">Luftkvalitet</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="ephemeris">Sol og måne</string>
-    <string name="details">Detaljer</string>
     <string name="temperature_apparent">Tilsynelatende</string>
     <string name="temperature_wind_chill">Vindavkjøling</string>
-    <string name="temperature_wet_bulb">Våttemperatur</string>
     <string name="temperature_degree_day">Gradsdag</string>
     <string name="temperature_degree_day_heating">Varmegradsdag</string>
     <string name="temperature_degree_day_cooling">Kuldegradsdag</string>
@@ -43,7 +39,6 @@
     <string name="temperature_normals">Normaltemperatur</string>
     <string name="precipitation">Nedbør</string>
     <string name="precipitation_probability">Nedbørssannsynlighet</string>
-    <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Tordenvær</string>
     <string name="precipitation_rain">Regn</string>
     <string name="precipitation_snow">Snø</string>
@@ -53,9 +48,6 @@
     <string name="precipitation_none">Ingen nedbør</string>
     <string name="precipitation_between_time">Nedbør mellom %1$s og %2$s</string>
     <string name="wind">Vind</string>
-    <string name="wind_speed">Vindhastighet</string>
-    <string name="wind_gusts">Vindkast</string>
-    <string name="wind_direction">Vindrettning</string>
     <string name="wind_direction_variable">Variabel</string>
     <string name="wind_direction_S_short">S</string>
     <string name="wind_direction_SW_short">SV</string>
@@ -63,7 +55,6 @@
     <string name="wind_direction_NW_short">NV</string>
     <string name="wind_strength_0">Stille</string>
     <string name="wind_direction_N_short">N</string>
-    <string name="wind_strength">Vindstyrke</string>
     <string name="wind_direction_NE_short">NØ</string>
     <string name="wind_direction_E_short">Ø</string>
     <string name="wind_strength_1">Flau vind</string>
@@ -98,13 +89,11 @@
     <string name="air_quality_pm25_voice">PM to komma fem</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="temperature_feels_like_short">Føles som</string>
-    <string name="wind_short">Vind</string>
     <string name="uv_index_short">UV</string>
     <string name="notification_update_error">%d oppdatering(er) feilet</string>
     <string name="notification_channel_forecast">Værvarsel</string>
     <string name="notification_channel_widget">Modul</string>
     <string name="pollen">Pollen</string>
-    <string name="pollen_and_mold">Pollen og mugg</string>
     <string name="ephemeris_sunset_at">Solnedgang %s</string>
     <string name="alert">Farevarsel</string>
     <string name="air_quality_so2_full">Svoveldioksid (SO₂)</string>
@@ -284,7 +273,6 @@
     <string name="settings_main_background_animation_title">Bakgrunnsanimasjon</string>
     <string name="widget_trend_daily">Daglig utvikling</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatur som indikatorikon</string>
-    <string name="settings_main_header_details_title">Detaljer i oppsummeringen</string>
     <string name="weather_kind_haze">Tørrdis</string>
     <string name="common_weather_text_drizzle_freezing">Underkjølt yr</string>
     <string name="settings_source_instance_geocoding">Server for geokoding</string>
@@ -518,7 +506,6 @@
     <string name="settings_background_updates_refresh_never_warning3">Vurder å bruke en lavere oppdateringsfrekvens istedenfor å skru av bakgrunnsoppdateringer. Trykk på “Fortsett” om du likevel vil gå videre.</string>
     <string name="settings_appearance_calendar_title">Alternativ kalender</string>
     <string name="location_message_deleted">Lokasjon slettet</string>
-    <string name="location_search_weather_source">Værkilde</string>
     <string name="location_swipe_to_delete">Du kan dra til venstre for å slette objektet</string>
     <string name="location_search_no_results">%1$s kan ikke finne %2$s</string>
     <string name="action_about">Om</string>
@@ -540,7 +527,6 @@
     <string name="weather_message_data_refresh_failed">Oppdatering av værdata feilet</string>
     <string name="weather_api_limit_reached_content">Legg til en API-nøkkel for å unngå denne begrensningen.</string>
     <string name="action_learn_more">Lær mer</string>
-    <string name="action_app_store">App Butikk</string>
     <string name="message_server_unavailable_title">Server utilgjengelig</string>
     <string name="location_search_placeholder">Søk etter en lokasjon…</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Legg til lokasjon manuelt og slett «%s»</string>

@@ -42,7 +42,7 @@ import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getStringByLocale
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.LogHelper
-import org.breezyweather.ui.main.dialogs.ApiHelpDialog
+import org.breezyweather.ui.main.dialogs.ErrorHelpDialog
 import org.breezyweather.ui.main.dialogs.LocationHelpDialog
 import org.breezyweather.ui.main.dialogs.SourceNoLongerAvailableHelpDialog
 import retrofit2.HttpException
@@ -67,53 +67,58 @@ enum class RefreshErrorType(
     API_KEY_REQUIRED_MISSING(
         shortMessage = R.string.weather_api_key_required_missing_title,
         showDialogAction = {
-            ApiHelpDialog.show(
+            ErrorHelpDialog.show(
                 it,
                 R.string.weather_api_key_required_missing_title,
-                R.string.weather_api_key_required_missing_content
+                R.string.weather_api_key_required_missing_content,
+                showSettings = true
             )
         }
     ),
     API_LIMIT_REACHED(
         shortMessage = R.string.weather_api_limit_reached_title,
         showDialogAction = {
-            ApiHelpDialog.show(
+            ErrorHelpDialog.show(
                 it,
                 R.string.weather_api_limit_reached_title,
-                R.string.weather_api_limit_reached_content
+                R.string.weather_api_limit_reached_content,
+                showSettings = true
             )
         }
     ),
     API_UNAUTHORIZED(
         shortMessage = R.string.weather_api_unauthorized_title,
         showDialogAction = {
-            ApiHelpDialog.show(
+            ErrorHelpDialog.show(
                 it,
                 R.string.weather_api_unauthorized_title,
-                R.string.weather_api_unauthorized_content
+                R.string.weather_api_unauthorized_content,
+                showSettings = true
             )
         }
     ),
     SERVER_UNAVAILABLE(
-        shortMessage = R.string.message_server_unavailable_title
-        /*showDialogAction = { TODO
-            ServerUnavailableErrorHelpDialog.show(
+        shortMessage = R.string.message_server_unavailable_title,
+        showDialogAction = {
+            ErrorHelpDialog.show(
                 it,
                 R.string.message_server_unavailable_title,
-                R.string.message_server_unavailable_content
+                R.string.message_server_unavailable_content,
+                showSettings = false
             )
-        }*/
+        }
     ),
     SERVER_INSECURE(shortMessage = R.string.message_server_insecure_title),
     PARSING_ERROR(
-        shortMessage = R.string.message_parsing_error_title
-        /*showDialogAction = { TODO
-            ParsingErrorHelpDialog.show(
+        shortMessage = R.string.message_parsing_error_title,
+        showDialogAction = {
+            ErrorHelpDialog.show(
                 it,
                 R.string.message_parsing_error_title,
-                R.string.message_parsing_error_content
+                R.string.message_parsing_error_content,
+                showSettings = false
             )
-        }*/
+        }
     ),
     SOURCE_NOT_INSTALLED(
         shortMessage = R.string.message_source_not_installed_error_title,

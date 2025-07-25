@@ -2,9 +2,7 @@
 <resources>
     <string name="air_quality">বাতাসের গুণমান</string>
     <string name="pollen">পরাগ</string>
-    <string name="pollen_and_mold">পরাগ এবং ছাঁচ</string>
     <string name="ephemeris">সূর্য ও চাঁদ</string>
-    <string name="details">বিস্তারিত</string>
     <string name="alert">সতর্কতা</string>
     <string name="daily_today_short">আজ</string>
     <string name="temperature">তাপমাত্রা</string>
@@ -36,7 +34,6 @@
     <string name="temperature_normals">স্বাভাবিক তাপমাত্রা</string>
     <string name="precipitation_probability">বৃষ্টিপাতের সম্ভাবনা</string>
     <string name="precipitation_duration">বৃষ্টিপাতের সময়কাল</string>
-    <string name="precipitation_total">মোট</string>
     <string name="precipitation_thunderstorm">বজ্রপাত</string>
     <string name="precipitation_rain">বৃষ্টি</string>
     <string name="precipitation_snow">তুষার</string>
@@ -46,13 +43,10 @@
     <string name="precipitation_none">বৃষ্টিপাত নেই</string>
     <string name="precipitation_between_time">%1$s এবং %2$s এর মধ্যে বৃষ্টিপাত</string>
     <string name="wind">বায়ু</string>
-    <string name="wind_short">বায়ু</string>
-    <string name="wind_gusts">ঝোড়ো হাওয়া</string>
     <string name="wind_direction_variable">পরিবর্তনশীল</string>
     <string name="wind_direction_SE_short">দক্ষিণ-পূর্ব</string>
     <string name="wind_direction_S_short">দক্ষিণ</string>
     <string name="wind_direction_SW_short">দক্ষিণ-পশ্চিম</string>
-    <string name="wind_strength">বাতাসের শক্তি</string>
     <string name="wind_strength_0">শান্ত</string>
     <string name="wind_strength_2">হালকা বাতাস</string>
     <string name="wind_strength_3">মৃদু হাওয়া</string>
@@ -76,8 +70,6 @@
     <string name="air_quality_co_voice">কার্বন মনোক্সাইড</string>
     <string name="precipitation">বৃষ্টিপাতের পরিমাণ</string>
     <string name="precipitation_intensity_heavy">ভারী</string>
-    <string name="wind_speed">বাতাসের গতি</string>
-    <string name="wind_direction">বায়ু দিক</string>
     <string name="wind_direction_W_short">পশ্চিম</string>
     <string name="wind_direction_NW_short">উত্তর-পশ্চিম</string>
     <string name="wind_strength_1">হাল্কা বাতাস</string>
@@ -86,10 +78,7 @@
     <string name="uv_index_short">অ. বে. সূচক</string>
     <string name="daily_yesterday_short">গতকাল</string>
     <string name="alert_source">উৎস: %s</string>
-    <string name="temperature_real_feel">প্রকৃত অনুভূত তাপমাত্রা</string>
-    <string name="temperature_real_feel_shade">ছায়ায় প্রকৃত অনুভূত তাপমাত্রা</string>
     <string name="null_data_text">উপলভ্য নয়</string>
-    <string name="temperature_wet_bulb">আর্দ্র বালব</string>
     <string name="temperature_degree_day_heating">হিটিং ডিগ্রি ডে</string>
     <string name="temperature_degree_day_cooling">শীতল ডিগ্রি দিন</string>
     <string name="wind_direction_N_short">উত্তর</string>
@@ -234,7 +223,6 @@
     <string name="weather_source_accu_preference_hours_240">২৪০ ঘন্টা</string>
     <string name="location_current">বর্তমান অবস্থান</string>
     <string name="location_reverse_geocoding">ঠিকানা অনুসন্ধান</string>
-    <string name="location_search_weather_source">আবহাওয়ার উৎস</string>
     <string name="location_message_updated">অবস্থান আপডেট করা হয়েছে</string>
     <string name="location_delete_location_dialog_title">অবস্থান মুছে ফেলবেন?</string>
     <string name="widget_material_you_current">Material You – বর্তমান</string>

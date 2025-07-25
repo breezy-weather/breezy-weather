@@ -11,8 +11,6 @@
     <string name="precipitation_duration">Διάρκεια υετού</string>
     <string name="temperature">Θερμοκρασία</string>
     <string name="wind">Άνεμος</string>
-    <string name="wind_direction">Κατεύθυνση ανέμου</string>
-    <string name="wind_speed">Ταχύτητα ανέμου</string>
     <string name="humidity">Υγρασία</string>
     <string name="humidity_dew_point">Υγρασία / Σημείο δρόσου</string>
     <string name="uv_index">Δείκτης UV</string>
@@ -33,13 +31,9 @@
     <string name="action_edit">Επεξεργασία</string>
     <string name="daily_yesterday_short">Χθες</string>
     <string name="daily_tomorrow_short">Αύριο</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Εμφανής</string>
     <string name="temperature_wind_chill">Δείκτης ψυχρότητας</string>
-    <string name="temperature_wet_bulb">Υγρός βολβός</string>
     <string name="temperature_degree_day">θερμοκρασία ημέρας</string>
-    <string name="precipitation_total">Σύνολο</string>
     <string name="precipitation_thunderstorm">Καταιγίδα</string>
     <string name="precipitation_rain">Βροχή</string>
     <string name="precipitation_snow">Χιόνι</string>
@@ -75,7 +69,6 @@
     <string name="hourly_forecast">Ωριαία πρόγνωση</string>
     <string name="air_quality">Ποιότητα αέρα</string>
     <string name="pollen">Γύρη</string>
-    <string name="details">Λεπτομέρειες</string>
     <string name="ephemeris">Ήλιος &amp; σελήνη</string>
     <string name="action_next">Επόμενο</string>
     <string name="action_done">Τέλος</string>
@@ -151,7 +144,6 @@
     <string name="action_settings">Ρυθμίσεις</string>
     <string name="action_preview">Προεπισκόπηση</string>
     <string name="action_about">Σχετικά</string>
-    <string name="action_app_store">Κατάστημα Εφαρμογής</string>
     <!-- widget -->
     <string name="widget_day">Καθημερινό</string>
     <string name="widget_week">Εβδομαδιαίο</string>
@@ -228,14 +220,12 @@
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Διοξείδιο του αζώτου</string>
     <string name="wind_direction_S_short">Ν</string>
-    <string name="pollen_and_mold">Γύρη &amp; μούχλα</string>
     <string name="uv_alert_level">Προειδοποίηση</string>
     <string name="wind_direction_W_short">Δ</string>
     <string name="air_quality_co_voice">Μονοξείδιο του άνθρακα</string>
     <string name="air_quality_o3_full">Επίγειο όζον (O₃)</string>
     <string name="precipitation_none">Χωρίς υετό</string>
     <string name="air_quality_co">CO</string>
-    <string name="wind_strength">Ένταση ανέμου</string>
     <string name="air_quality_so2_voice">Διοξείδιο του θείου</string>
     <string name="air_quality_index">Δείκτης Ποιότητας Αέρα</string>
     <string name="temperature_normals">Κανονική θερμοκρασία</string>
@@ -246,7 +236,6 @@
     <string name="temperature_normal_short">Κανονική</string>
     <string name="air_quality_o3">O₃</string>
     <string name="wind_direction_SW_short">ΝΔ</string>
-    <string name="wind_gusts">Ριπές ανέμου</string>
     <string name="air_quality_pm25_voice">ΣΥ δύο κόμμα πέντε</string>
     <string name="wind_direction_variable">Μεταβλητή</string>
     <string name="wind_direction_NE_short">ΒΑ</string>
@@ -302,7 +291,6 @@
     <string name="weather_source_accu_preference_days_15">15 μέρες</string>
     <string name="location_swipe_to_delete">Μπορείς να σύρεις αριστερά για να διαγράψεις το αντικείμενο</string>
     <string name="weather_source_accu_preference_days_10">10 μέρες</string>
-    <string name="location_search_weather_source">Πηγή καιρού</string>
     <string name="location_message_search_failed">Η αναζήτηση τοποθεσίας απέτυχε</string>
     <string name="location_search_no_results">Το %1$s δεν μπορεί να βρει το %2$s</string>
     <string name="action_share">Κοινοποίηση</string>
@@ -414,7 +402,6 @@
     <string name="settings_main_cards_title">Κάρτες</string>
     <string name="settings_main_daily_trends_title">Καθημερινές τάσεις</string>
     <string name="settings_main_hourly_trends_title">Ωριαίες τάσεις</string>
-    <string name="settings_main_header_details_title">Πληροφορίες στην κεφαλίδα</string>
     <string name="settings_debug">Εντοπισμός σφαλμάτων</string>
     <string name="unit_mps_voice">Μέτρα ανά δευτερόλεπτο</string>
     <string name="common_weather_text_rain_freezing_heavy">Σφοδρή παγωμένη βροχή</string>
@@ -568,7 +555,6 @@
     <string name="temperature_feels_like_short">Αίσθηση</string>
     <string name="cloud_cover_short">Κάλυψη</string>
     <string name="humidity_short">Υγρασία</string>
-    <string name="wind_short">Άνεμος</string>
     <string name="visibility_short">Ορατότητα</string>
     <string name="pressure_short">Πίεση</string>
     <string name="uv_index_short">Δείκτης UV</string>

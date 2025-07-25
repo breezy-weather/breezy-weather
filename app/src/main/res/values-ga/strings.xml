@@ -15,11 +15,8 @@
     <string name="daily_tomorrow_short">Amár</string>
     <string name="temperature">Teocht</string>
     <string name="temperature_feels_like_short">Mothaíonn sé cosúil le</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">Scáth™ RealFeel</string>
     <string name="temperature_apparent">Dhealraitheach</string>
     <string name="temperature_wind_chill">Fuarú gaoithe</string>
-    <string name="temperature_wet_bulb">Bolgán fliuch</string>
     <string name="temperature_degree_day">Lá céime</string>
     <string name="temperature_degree_day_heating">Lá céime teasa</string>
     <string name="temperature_degree_day_cooling">Lá céime fuaraithe</string>
@@ -32,9 +29,6 @@
     <string name="precipitation_none">Gan frasaíocht</string>
     <string name="precipitation_between_time">Deascadh ó %1$s go %2$s</string>
     <string name="wind">Gaoth</string>
-    <string name="wind_short">Gaoth</string>
-    <string name="wind_direction">Treo na gaoithe</string>
-    <string name="wind_gusts">Séideáin ghaoithe</string>
     <string name="wind_direction_variable">Athróg</string>
     <string name="wind_direction_NE_short">NE</string>
     <string name="wind_direction_E_short">E</string>
@@ -43,7 +37,6 @@
     <string name="wind_direction_SW_short">SW</string>
     <string name="wind_direction_W_short">W</string>
     <string name="wind_direction_NW_short">NW</string>
-    <string name="wind_strength">Neart na gaoithe</string>
     <string name="wind_strength_0">Socair</string>
     <string name="wind_strength_3">Breeze milis</string>
     <string name="wind_strength_4">Breeze measartha</string>
@@ -188,7 +181,6 @@
     <string name="action_settings">Socruithe</string>
     <string name="action_preview">Réamhamharc</string>
     <string name="action_about">Maidir</string>
-    <string name="action_app_store">Siopa Aipeanna</string>
     <string name="action_refresh">Athnuaigh</string>
     <string name="action_restart">Atosaigh</string>
     <string name="action_delete">Scrios</string>
@@ -377,7 +369,6 @@
     <string name="settings_units_pressure">Aonad brú</string>
     <string name="settings_main">Príomhscáileán</string>
     <string name="settings_main_summary">Ord na mbloc, míreanna a thaispeántar, beochana</string>
-    <string name="settings_main_header_details_title">Sonraí sa cheanntásc</string>
     <string name="settings_main_section_options">Roghanna</string>
     <string name="settings_main_threshold_lines_on_charts">Línte tairsí ar chairteacha</string>
     <string name="settings_main_section_animations">Beochan</string>
@@ -565,20 +556,16 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Stoirm thoirní le clocha sneachta trom</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornádó nó waterspout</string>
     <string name="metno_weather_text_andthunder">%s agus toirneach</string>
-    <string name="details">Sonraí</string>
-    <string name="pollen_and_mold">Pailin &amp; múscán</string>
     <string name="ephemeris">Ghrian &amp; gealach</string>
     <string name="daily_today_short">Inniu</string>
     <string name="temperature_feels_like">Mothaíonn sé cosúil le</string>
     <string name="precipitation_duration">Fad frasaíochta</string>
-    <string name="precipitation_total">Iomlán</string>
     <string name="precipitation_thunderstorm">Stoirm thoirní</string>
     <string name="precipitation_rain">Báisteach</string>
     <string name="precipitation_snow">Sneachta</string>
     <string name="precipitation_ice">Oighear</string>
     <string name="precipitation_intensity_light">Solas</string>
     <string name="precipitation_intensity_medium">Meánach</string>
-    <string name="wind_speed">Luas na gaoithe</string>
     <string name="wind_direction_N_short">N</string>
     <string name="wind_strength_1">Aer éadrom</string>
     <string name="wind_strength_2">Breeze éadrom</string>
@@ -596,7 +583,6 @@
     <string name="pollen_tilia">Linden</string>
     <string name="pressure">Brú</string>
     <string name="location_current">Suíomh reatha</string>
-    <string name="location_search_weather_source">Foinse aimsire</string>
     <string name="location_results_by">Torthaí suímh de réir %s</string>
     <string name="location_message_already_exists">Tá an suíomh seo leis an bhfoinse réamhaisnéise seo sa liosta suíomhanna cheana féin.</string>
     <string name="location_message_deleted">Scriosadh an suíomh</string>
@@ -817,8 +803,6 @@
     <string name="precipitation_snow_total_night">Sneachta san oíche</string>
     <string name="daytime_short">Lá</string>
     <string name="nighttime_short">Oíche</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">Cumasaithe i gcónaí le mód solais</string>
-    <string name="settings_appearance_dark_mode_locations_disabled">Díchumasaithe, ach bíonn na suíomhanna i mód dorcha i gcónaí san oíche</string>
     <string name="temperature_normals_deviation">Diall</string>
     <string name="temperature_normals_deviation_explanation_maximum">Diall ón meánteocht uasta %s don suíomh seo</string>
     <string name="temperature_normals_deviation_explanation_minimum">Diall ón meánteocht íosta %s don suíomh seo</string>

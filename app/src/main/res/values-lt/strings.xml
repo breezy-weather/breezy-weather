@@ -10,7 +10,6 @@
     <string name="precipitation">Krituliai</string>
     <string name="precipitation_probability">Kritulių tikimybė</string>
     <string name="precipitation_duration">Kritulių trukmė</string>
-    <string name="precipitation_total">Iš viso</string>
     <string name="temperature_feels_like">Juntamoji temperatūra</string>
     <string name="precipitation_thunderstorm">Perkūnija</string>
     <string name="precipitation_rain">Lietus</string>
@@ -21,8 +20,6 @@
     <string name="precipitation_none">Kritulių nėra</string>
     <string name="precipitation_between_time">Krituliai nuo %1$s iki %2$s</string>
     <string name="wind">Vėjas</string>
-    <string name="wind_speed">Vėjo greitis</string>
-    <string name="wind_direction">Vėjo kryptis</string>
     <string name="wind_direction_variable">Nepastovi</string>
     <string name="wind_direction_N_short">Š</string>
     <string name="wind_direction_NE_short">ŠR</string>
@@ -105,7 +102,6 @@
     <string name="weather_source_accu_preference_hours_120">120 valandų</string>
     <string name="weather_source_accu_preference_hours_240">240 valandų</string>
     <string name="location_current">Dabartinė buvimo vieta</string>
-    <string name="location_search_weather_source">Orų šaltinis</string>
     <string name="location_results_by">Vietovių rezultatai iš %s</string>
     <string name="location_message_added">Vietovė pridėta</string>
     <string name="location_message_deleted">Vietovė ištrinta</string>
@@ -121,10 +117,7 @@
     <string name="alerts">Perspėjimai</string>
     <string name="daily_forecast">Orai artimiausiomis dienomis</string>
     <string name="ephemeris">Saulė ir Mėnulis</string>
-    <string name="details">Išsamesnė informacija</string>
     <string name="temperature_apparent">Numanoma temperatūra</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="wind_direction_S_short">P</string>
     <string name="wind_direction_SE_short">PR</string>
     <string name="wind_direction_NW_short">ŠP</string>
@@ -175,7 +168,6 @@
     <string name="dialog_permissions_notification_title">Būkite informuoti</string>
     <string name="message_parsing_error_title">Nepavyko išanalizuoti orų duomenų</string>
     <string name="widget_trend_daily">Dienos tendencija</string>
-    <string name="wind_strength">Vėjo stiprumas</string>
     <string name="location_current_not_found_yet">Dabartinė buvimo vieta dar nerasta…</string>
     <string name="action_done">Atlikta</string>
     <string name="action_about">Apie</string>
@@ -202,7 +194,6 @@
     <string name="widget_clock_day_week">Laikrodis + Dienos + Savaitės</string>
     <string name="widget_text">Tekstas</string>
     <string name="temperature_wind_chill">Šaltas vėjas</string>
-    <string name="temperature_wet_bulb">Drėgnasis termometras</string>
     <string name="temperature_degree_day">Laipsnio diena</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Naudokite kitą vietovės paslaugą</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Pridėti vietą rankiniu būdu ir ištrinti „%s“</string>
@@ -305,7 +296,6 @@
     <string name="settings_background_updates_section_troubleshoot">Trikčių šalinimas</string>
     <string name="settings_background_updates_refresh_title">Atnaujinimo dažnis</string>
     <string name="settings_background_updates_refresh_never">Niekada</string>
-    <string name="action_app_store">Programėlių parduotuvė</string>
     <string name="settings_appearance_language_title">Kalba</string>
     <string name="settings_enabled">Įjungta</string>
     <string name="settings_disabled">Išjungta</string>
@@ -425,7 +415,6 @@
     <string name="action_delete">Ištrinti</string>
     <string name="settings_weather_sources_summary">Numatytas orų šaltinis naujoms vietovėms, pasirinktiniai API raktai, kiti šaltinio nustatymai</string>
     <string name="weather_message_invalid_location">Netinkama vieta, ištrinkite ją ir pridėkite iš naujo</string>
-    <string name="wind_gusts">Vėjo gūsiai</string>
     <string name="settings_source_default_value">Numatytoji reikšmė (nepakeista)</string>
     <string name="settings_main_cards_other_element_animations_switch">Kitų elementų animacija</string>
     <string name="temperature_degree_day_heating">Šildymo laipsnių diena</string>
@@ -472,14 +461,12 @@
     <string name="settings_weather_sources_per_location_summary">Tinkinti šiai vietovei naudojamus orų duomenų šaltinius</string>
     <string name="settings_units_summary">Temperatūra, krituliai, atstumas, greitis, slėgis</string>
     <string name="settings_main_section_displayed_data">Rodomi duomenys</string>
-    <string name="settings_main_header_details_title">Informacija antraštėje</string>
     <string name="settings_main_section_options">Parinktys</string>
     <string name="settings_main_gravity_sensor_switch">Gravitacijos jutiklis</string>
     <string name="settings_widgets_live_wallpaper_summary">Nustatykite orų animaciją kaip ekrano užsklandą</string>
     <string name="settings_widgets_monochrome_icons_title">Vienspalvės piktogramos</string>
     <string name="precipitation_nowcasting">Kritulių kiekis minutėmis</string>
     <string name="settings_debug_dump_crash_logs_title">Dalintis strigčių žurnalais</string>
-    <string name="pollen_and_mold">Žiedadulkės ir pelėsis</string>
     <string name="settings_main_threshold_lines_on_charts">Ribinės linijos diagramose</string>
     <string name="settings_widgets_broadcast_send_data_title">Orų duomenų siuntimas į %s</string>
     <string name="about_privacy_policy">Privatumo politika</string>
@@ -565,7 +552,6 @@
     <string name="location_search_change_source">Pakeisti vietos paieškos šaltinį</string>
     <string name="ceiling_short">Lubos</string>
     <string name="humidity_short">Drėgmė</string>
-    <string name="wind_short">Vėjas</string>
     <string name="visibility_short">Matomumas</string>
     <string name="pressure_short">Slėgis</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Dabartinis oro kokybės indeksas</string>

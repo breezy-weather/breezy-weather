@@ -12,7 +12,6 @@
     <string name="widget_style_vertical">Vertikal</string>
     <string name="action_add_new_location">Lägg till ny plats</string>
     <string name="action_add_current_location">Lägg till nuvarande plats</string>
-    <string name="action_app_store">Appbutik</string>
     <string name="locations">Platser</string>
     <string name="unit_nmi_voice">Sjömil</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
@@ -23,9 +22,7 @@
     <string name="uv_index">UV-index</string>
     <string name="common_weather_text_snow">Snö</string>
     <string name="settings_units_precipitation">Nederbördsenhet</string>
-    <string name="pollen_and_mold">Pollen &amp; mögel</string>
     <string name="unit_mugpcum_voice">Mikrogram per kubikmeter</string>
-    <string name="wind_speed">Vindhastighet</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorera när batterinivån är låg</string>
     <string name="ephemeris_moon_phase_full_moon">Fullmåne</string>
     <string name="common_weather_text_cloudy">Molnigt</string>
@@ -43,7 +40,6 @@
     <string name="notification_style_cities">Städer</string>
     <string name="location_message_permission_missing">Behörighet till platsåtkomst saknas</string>
     <string name="unit_cm">cm</string>
-    <string name="location_search_weather_source">Väderkälla</string>
     <string name="location_message_failed_to_locate">Misslyckades med att hitta nuvarande plats</string>
     <string name="settings_section_general">Allmänt</string>
     <string name="precipitation_nowcasting">Korttidsprognos för nederbörd</string>
@@ -89,7 +85,6 @@
     <string name="widget_style_oreo">Oreo</string>
     <string name="notification_updating_weather_data">Uppdaterar väderdata (%1$d/%2$d)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Plats</string>
-    <string name="precipitation_total">Totalt</string>
     <string name="pollen_mold">Mögel</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Nuvarande känns som-temperatur (°)</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Nuvarande väder</string>
@@ -103,7 +98,6 @@
     <string name="unit_h_voice">timmar</string>
     <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/s</string>
-    <string name="wind_strength">Vindstyrka</string>
     <string name="hourly_forecast">Timprognos</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Uppdateringstid</string>
     <string name="air_quality_so2_voice">Svaveldioxid</string>
@@ -144,7 +138,6 @@
     <string name="widget_custom_subtitle_keyword_cdp_description">Nuvarande daggpunkt</string>
     <string name="pollen_ambrosia">Ambrosia</string>
     <string name="ephemeris">Solen &amp; månen</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="weather_kind_thunder">Åska</string>
     <string name="air_quality_pm25">PM2,5</string>
     <string name="unit_mmph_voice">Millimeter per timme</string>
@@ -158,7 +151,6 @@
     <string name="common_weather_text_fog">Dimma</string>
     <string name="temperature_normal_short">Normal</string>
     <string name="unit_lpsqmph">L/m²/h</string>
-    <string name="details">Detaljer</string>
     <string name="air_quality_o3">O₃</string>
     <string name="unit_cmph">cm/h</string>
     <string name="unit_mmph">mm/h</string>
@@ -170,7 +162,6 @@
     <string name="widget_custom_subtitle_keyword_w_description">Vecka</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="wind_direction_SW_short">SV</string>
-    <string name="wind_gusts">Vindbyar</string>
     <string name="precipitation_duration">Nederbördens varaktighet</string>
     <string name="setting_weather_source_accu_hours">Timmar</string>
     <string name="about_matrix">Matrixrum</string>
@@ -211,7 +202,6 @@
     <string name="action_delete">Ta bort</string>
     <string name="wind_direction_NE_short">NO</string>
     <string name="action_save">Spara</string>
-    <string name="wind_direction">Vindriktning</string>
     <string name="unit_mps_voice">Meter per sekund</string>
     <string name="widget_custom_subtitle_keyword_cuv_description">Nuvarande UV</string>
     <string name="unit_ft_voice">Fot</string>
@@ -265,7 +255,6 @@
     <string name="precipitation_between_time">Nederbörd från %1$s till %2$s</string>
     <string name="wind">Vind</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="temperature_real_feel">RealFeel®</string>
     <string name="notification_channel_alerts">Varningar</string>
     <string name="wind_strength_0">Lugnt</string>
     <string name="wind_strength_1">Svag vind</string>
@@ -292,7 +281,6 @@
     <string name="air_quality_level_5_description">Känsliga personer kan omedelbart uppleva hälsopåverkan och bör undvika utomhusaktiviteter. Även friska personer kan uppleva andningssvårigheter och irritation i halsen och bör överväga att stanna inomhus och planera om utomhusaktiviteter.</string>
     <string name="air_quality_level_6">Fara</string>
     <string name="air_quality_level_6_description">All exponering mot utomhusluft, även under några få minuter, kan medföra allvarlig hälsopåverkan för alla. Undvik utomhusaktiviteter.</string>
-    <string name="temperature_wet_bulb">Våttemperatur</string>
     <string name="temperature_normals">Temperaturnormaler</string>
     <string name="temperature_degree_day_heating">Uppvärmningsgraddagar</string>
     <string name="temperature_degree_day_cooling">Nedkylningsgraddagar</string>
@@ -533,7 +521,6 @@
     <string name="settings_main_cards_title">Kort</string>
     <string name="settings_main_cards_other_element_animations_switch">Andra objektanimationer</string>
     <string name="notification_style_native">Inbyggd</string>
-    <string name="settings_main_header_details_title">Detaljer i översikten</string>
     <string name="settings_main_cards_fade_in_switch">Kortframtoning</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatur som statusfältsikon</string>
     <string name="settings_items_drag_to_sort">Tryck för att dra listobjekten för sortering</string>
@@ -570,7 +557,6 @@
     <string name="temperature_feels_like_short">Känns som</string>
     <string name="dew_point_short">Daggpunkt</string>
     <string name="ceiling_short">Tak</string>
-    <string name="wind_short">Vind</string>
     <string name="uv_index_short">UV-index</string>
     <string name="visibility_short">Sikt</string>
     <string name="pressure_short">Lufttryck</string>

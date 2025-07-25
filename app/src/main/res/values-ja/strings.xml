@@ -11,8 +11,6 @@
     <string name="precipitation_duration">降水時間</string>
     <string name="temperature">気温</string>
     <string name="wind">風</string>
-    <string name="wind_direction">風向</string>
-    <string name="wind_speed">風速</string>
     <string name="humidity">湿度</string>
     <string name="humidity_dew_point">湿度 / 露点</string>
     <string name="uv_index">紫外線指数</string>
@@ -35,9 +33,7 @@
     <string name="daily_tomorrow_short">明日</string>
     <string name="temperature_apparent">地表温度</string>
     <string name="temperature_wind_chill">風冷指数</string>
-    <string name="temperature_wet_bulb">湿球温度</string>
     <string name="temperature_degree_day">度日</string>
-    <string name="precipitation_total">合計</string>
     <string name="precipitation_thunderstorm">雷雨</string>
     <string name="precipitation_rain">雨</string>
     <string name="precipitation_snow">雪</string>
@@ -73,7 +69,6 @@
     <string name="hourly_forecast">予報（時間）</string>
     <string name="air_quality">大気の質</string>
     <string name="pollen">花粉</string>
-    <string name="details">詳細</string>
     <string name="ephemeris">太陽と月</string>
     <string name="action_next">次へ</string>
     <string name="action_done">終了</string>
@@ -152,7 +147,6 @@
     <string name="action_settings">設定</string>
     <string name="action_preview">プレビュー</string>
     <string name="action_about">情報</string>
-    <string name="action_app_store">アプリストア</string>
     <!-- widget -->
     <string name="widget_day">今日</string>
     <string name="widget_week">今週</string>
@@ -228,7 +222,6 @@
     <string name="wind_direction_variable">風向不定</string>
     <string name="wind_direction_N_short">北</string>
     <string name="wind_direction_NE_short">北東</string>
-    <string name="wind_strength">風力</string>
     <string name="uv_index_0_2">弱</string>
     <string name="uv_index_3_5">中程度</string>
     <string name="uv_index_6_7">強</string>
@@ -239,8 +232,6 @@
     <string name="uv_index_11">極端に強い</string>
     <string name="wind_direction_W_short">西</string>
     <string name="wind_direction_SW_short">南西</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="wind_direction_S_short">南</string>
     <string name="wind_direction_NW_short">北西</string>
     <string name="wind_direction_E_short">東</string>
@@ -257,7 +248,6 @@
     <string name="air_quality_level_2_description">大気の質はほとんどの人にとって一般的な許容範囲にあります。ただし、長期間さらされると敏感な人々に軽度から中程度の症状が発生する場合があります。</string>
     <string name="air_quality_level_3">悪い</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">電池残量が少ない場合に一時停止</string>
-    <string name="settings_main_header_details_title">ヘッダーに表示する情報</string>
     <string name="settings_main_section_displayed_data">表示するデータ</string>
     <string name="settings_background_updates_summary">更新間隔・自動更新の問題のトラブルシューティング</string>
     <string name="settings_background_updates">バックグラウンドでの自動更新</string>
@@ -351,7 +341,6 @@
     <string name="notification_channel_alerts">警報</string>
     <string name="notification_channel_crash_logs">クラッシュログ</string>
     <string name="unit_ppcm_voice">毎立方メートル</string>
-    <string name="pollen_and_mold">花粉とカビ</string>
     <string name="air_quality_o3_full">地表オゾン（O₃）</string>
     <string name="air_quality_no2_full">二酸化窒素（NO₂）</string>
     <string name="pollen_alnus">ハンノキ</string>
@@ -438,7 +427,6 @@
     <string name="weather_api_key_required_missing_title">必要なAPIキーがありません</string>
     <string name="dialog_permissions_notification_title">気象警報を通知</string>
     <string name="notification_update_error">%d件の更新に失敗しました</string>
-    <string name="location_search_weather_source">気象情報源</string>
     <string name="settings_location_access_permission_already_granted">権限は既に付与されています</string>
     <string name="settings_location_access_switch_summaryOn">許可されています。現在地を場所として追加できます。</string>
     <string name="settings_icon_packs_weather_icon_light">明るいアイコン</string>
@@ -493,7 +481,6 @@
     <string name="unit_kpa_voice">キロパスカル</string>
     <string name="unit_hpa">hPa</string>
     <string name="unit_mmhg_voice">水銀柱ミリメートル</string>
-    <string name="wind_gusts">突風</string>
     <string name="ephemeris_sunrise_at">日の出 %s</string>
     <string name="unit_cmph">cm/h</string>
     <string name="setting_weather_source_accu_hours">時間</string>
@@ -573,7 +560,6 @@
     <string name="cloud_cover_short">雲量</string>
     <string name="ceiling_short">雲高</string>
     <string name="humidity_short">湿度</string>
-    <string name="wind_short">風</string>
     <string name="uv_index_short">UV指数</string>
     <string name="visibility_short">視程</string>
     <string name="pressure_short">気圧</string>

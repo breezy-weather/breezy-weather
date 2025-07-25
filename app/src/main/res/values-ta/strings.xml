@@ -5,7 +5,6 @@
     <string name="hourly_forecast">மணிநேர முன்னறிவிப்பு</string>
     <string name="air_quality">காற்று தரம்</string>
     <string name="ephemeris">சூரியன் &amp; சந்திரன்</string>
-    <string name="details">விவரங்கள்</string>
     <string name="daily_today_short">இன்று</string>
     <string name="daily_tomorrow_short">நாளை</string>
     <string name="temperature_wind_chill">காற்று குளிர்ச்சி</string>
@@ -43,10 +42,6 @@
     <string name="precipitation_intensity_medium">சராசரி</string>
     <string name="precipitation_intensity_heavy">கனமான</string>
     <string name="precipitation_none">மழைப்பொழிவு இல்லை</string>
-    <string name="wind_speed">காற்றின் விரைவு</string>
-    <string name="wind_gusts">காற்று வாயுக்கள்</string>
-    <string name="wind_short">காற்று</string>
-    <string name="wind_direction">காற்று திசை</string>
     <string name="wind_direction_variable">மாறக்கூடிய</string>
     <string name="wind_strength_12">சூறாவளி</string>
     <string name="uv_index">புற ஊதா அட்டவணை</string>
@@ -102,7 +97,6 @@
     <string name="action_add_new_location">புதிய இடத்தைச் சேர்க்கவும்</string>
     <string name="action_settings">அமைப்புகள்</string>
     <string name="action_about">பற்றி</string>
-    <string name="action_app_store">ஆப் கடை</string>
     <string name="action_refresh">புதுப்பிப்பு</string>
     <string name="action_restart">மறுதொடக்கம்</string>
     <string name="action_edit">தொகு</string>
@@ -345,7 +339,6 @@
     <string name="common_weather_text_frost">உறைபனி</string>
     <string name="wind">காற்று</string>
     <string name="wind_direction_NW_short">NW</string>
-    <string name="wind_strength">காற்றின் வலிமை</string>
     <string name="dialog_app_update_check_title">புதுப்பித்த நிலையில் இருங்கள்</string>
     <string name="dialog_time_picker_select_time">நேரம் தேர்ந்தெடுக்கவும்</string>
     <string name="dialog_time_picker_input_time">உள்ளீட்டு நேரம்</string>
@@ -373,14 +366,10 @@
     <string name="common_weather_text_dust">தூசு</string>
     <string name="common_weather_text_dust_storm">தூசி புயல்</string>
     <string name="pollen">மகரந்தம்</string>
-    <string name="pollen_and_mold">மகரந்தம் &amp; அச்சு</string>
     <string name="alert_source">மூலம்: %s</string>
     <string name="daily_yesterday_short">இன்று</string>
     <string name="temperature_feels_like">உணரும் வெப்பநிலை</string>
     <string name="temperature_feels_like_short">உணர்கிறது</string>
-    <string name="temperature_real_feel">ரியல்ஃபீல்</string>
-    <string name="temperature_real_feel_shade">ரியல்ஃபீல் நிழல் ™</string>
-    <string name="temperature_wet_bulb">வெட் பல்பு</string>
     <string name="temperature_degree_day_heating">வெப்ப பட்டம் நாள்</string>
     <string name="temperature_degree_day_cooling">குளிரூட்டும் பட்டம் நாள்</string>
     <string name="temperature_normal_short">சாதாரண</string>
@@ -433,7 +422,6 @@
     <string name="weather_source_accu_preference_hours_240">240 மணி நேரம்</string>
     <string name="locations">இருப்பிடங்கள்</string>
     <string name="location_current">தற்போதைய இடம்</string>
-    <string name="location_search_weather_source">வானிலை சான்று</string>
     <string name="location_results_by">இருப்பிட முடிவுகள் %s</string>
     <string name="location_message_added">இடம் சேர்க்கப்பட்டது</string>
     <string name="location_delete_location_dialog_title">இருப்பிடத்தை நீக்கவா?</string>
@@ -534,7 +522,6 @@
     <string name="settings_main_background_animation_disabled">முடக்கப்பட்டது</string>
     <string name="settings_main_gravity_sensor_switch">ஈர்ப்பு சென்சார்</string>
     <string name="settings_main_cards_fade_in_switch">அட்டைகள் மங்கிவிடும்</string>
-    <string name="settings_main_header_details_title">தலைப்பில் விவரங்கள்</string>
     <string name="settings_main_cards_other_element_animations_switch">பிற உறுப்பு அனிமேசன்கள்</string>
     <string name="settings_widgets_section_notification_widget">அறிவிப்பு விட்செட்</string>
     <string name="settings_widgets_notification_style_title">சூல் தண்டு</string>
@@ -583,7 +570,6 @@
     <string name="temperature_degree_day">டிகிரி நாள்</string>
     <string name="temperature_average_short">ஏ.வி.சி</string>
     <string name="temperature_normals">வெப்பநிலை இயல்பு</string>
-    <string name="precipitation_total">மொத்தம்</string>
     <string name="precipitation_rain">மழை</string>
     <string name="precipitation_snow">பனி</string>
     <string name="precipitation_ice">பனி</string>

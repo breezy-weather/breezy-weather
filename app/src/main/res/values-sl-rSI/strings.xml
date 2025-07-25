@@ -47,7 +47,6 @@
     <string name="daily_forecast">Dnevna napoved</string>
     <string name="hourly_forecast">Urna napoved</string>
     <string name="air_quality">Kvaliteta zraka</string>
-    <string name="details">Podrobnosti</string>
     <string name="ephemeris">Sonce &amp; luna</string>
     <string name="action_next">Naslednji</string>
     <string name="action_done">Končano</string>
@@ -88,7 +87,6 @@
     <string name="action_settings">Nastavitve</string>
     <string name="action_preview">Predogled</string>
     <string name="action_about">O tem</string>
-    <string name="action_app_store">Trgovina aplikacij</string>
     <!-- widget -->
     <string name="widget_day">Dnevno</string>
     <string name="widget_week">Tedensko</string>
@@ -160,7 +158,6 @@
     <string name="temperature_feels_like_short">Občuti se</string>
     <string name="dew_point_short">Točka rose</string>
     <string name="humidity_short">Vlažnost</string>
-    <string name="wind_short">Veter</string>
     <string name="uv_index_short">UV indeks</string>
     <string name="visibility_short">Vidljivost</string>
     <string name="pressure_short">Tlak</string>
@@ -174,24 +171,19 @@
     <string name="ephemeris_sunrise_at">Sončni vzhod ob %s</string>
     <string name="ephemeris_sunset_at">Sončni zahod ob %s</string>
     <string name="pollen">Cvetni prah</string>
-    <string name="pollen_and_mold">Cvetni prah in plesen</string>
     <string name="wind_direction_variable">Spremenljiva</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="pollen_tree">Drevo</string>
     <string name="ephemeris_moonset_at">Lunin zahod ob %s</string>
     <string name="alert">Opozorilo</string>
-    <string name="precipitation_total">Skupno</string>
     <string name="precipitation_rain">Dež</string>
     <string name="precipitation_intensity_heavy">Obilno</string>
     <string name="precipitation_none">Brez padavin</string>
-    <string name="wind_speed">Hitrost vetra</string>
-    <string name="wind_gusts">Sunki vetra</string>
     <string name="wind_direction_N_short">S</string>
     <string name="wind_direction_NE_short">SV</string>
     <string name="wind_direction_E_short">V</string>
     <string name="wind_direction_W_short">Z</string>
     <string name="wind_direction_NW_short">SZ</string>
-    <string name="wind_strength">Moč vetra</string>
     <string name="air_quality_pm25_voice">Prašni delci dva cela pet</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_o3_full">Prizemni ozon (O₃)</string>
@@ -205,14 +197,11 @@
     <string name="uv_index_0_2">Nizek</string>
     <string name="air_quality_no2_voice">Dušikov dioksid</string>
     <string name="precipitation_ice">Led</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Občutek</string>
     <string name="precipitation_thunderstorm">Nevihta</string>
-    <string name="wind_direction">Smer vetra</string>
     <string name="uv_alert_level">Opozorilo</string>
     <string name="precipitation_nowcasting">Napoved padavin</string>
     <string name="temperature">Temperatura</string>
-    <string name="temperature_real_feel">RealFeel®</string>
     <string name="temperature_wind_chill">Hladen veter</string>
     <string name="wind_direction_S_short">J</string>
     <string name="temperature_average_short">Povp</string>
@@ -272,7 +261,6 @@
     <string name="weather_source_accu_preference_days_15">15 dni</string>
     <string name="locations">Lokacije</string>
     <string name="weather_source_accu_preference_hours_240">240 ur</string>
-    <string name="location_search_weather_source">Vir vremena</string>
     <string name="location_delete_location_dialog_title">Izbriši lokacijo?</string>
     <string name="weather_source_accu_preference_hours_120">120 ur</string>
     <string name="setting_weather_source_accu_hours">Ure</string>
@@ -380,7 +368,6 @@
     <string name="chart_average">Povprečje</string>
     <string name="chart_maximum_value">Maksimalna vrednost</string>
     <string name="conditions">Pogoji</string>
-    <string name="temperature_wet_bulb">Moker termometer</string>
     <string name="wind_speed_about">O hitrosti vetra in sunkih</string>
     <string name="wind_gusts_short">Sunki</string>
     <string name="wind_strength_scale">Beaufortova lestvica</string>

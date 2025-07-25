@@ -6,16 +6,12 @@
     <string name="daily_yesterday_short">Вчера</string>
     <string name="temperature">Температура</string>
     <string name="temperature_feels_like">Усеща се като</string>
-    <string name="temperature_real_feel">РеаленУсет®</string>
-    <string name="temperature_real_feel_shade">РеаленУсет Сянка™</string>
     <string name="temperature_apparent">Видима</string>
     <string name="temperature_wind_chill">Хладен вятър</string>
-    <string name="temperature_wet_bulb">Мокра крушка</string>
     <string name="temperature_degree_day">Топъл ден</string>
     <string name="precipitation">Валежи</string>
     <string name="precipitation_probability">Вероятност за валежи</string>
     <string name="precipitation_duration">Продължителност на валежите</string>
-    <string name="precipitation_total">Общо</string>
     <string name="precipitation_thunderstorm">Гръмотевична буря</string>
     <string name="precipitation_rain">Дъжд</string>
     <string name="precipitation_snow">Сняг</string>
@@ -26,13 +22,10 @@
     <string name="precipitation_none">Без валежи</string>
     <string name="precipitation_between_time">Валежи от %1$s до %2$s</string>
     <string name="wind">Вятър</string>
-    <string name="wind_speed">Скорост на вятъра</string>
-    <string name="wind_direction">Посока на вятъра</string>
     <string name="wind_direction_variable">Променливо</string>
     <string name="daily_forecast">Дневна прогноза</string>
     <string name="hourly_forecast">Часова прогноза</string>
     <string name="ephemeris">Слънце и луна</string>
-    <string name="details">Подробности</string>
     <string name="alerts">Сигнали</string>
     <string name="daily_today_short">Днес</string>
     <string name="daily_tomorrow_short">Утре</string>
@@ -155,7 +148,6 @@
     <string name="location_service_native">Вградено API</string>
     <string name="action_add_new_location">Добавете ново местоположение</string>
     <string name="action_preview">Преглед</string>
-    <string name="action_app_store">Магазин за приложения</string>
     <string name="action_back">Назад</string>
     <string name="action_help">Помощ</string>
     <string name="action_show_errors">Докосни за подробности</string>
@@ -171,7 +163,6 @@
     <string name="weather_source_accu_preference_days_10">10 дена</string>
     <string name="weather_source_accu_preference_hours_12">12 часа</string>
     <string name="weather_source_accu_preference_hours_24">24 часа</string>
-    <string name="location_search_weather_source">Източник на времето</string>
     <string name="location_message_added">Местоположението е добавено</string>
     <string name="location_swipe_to_delete">Можете да плъзнете наляво, за да изтриете този елемент</string>
     <string name="location_message_failed_to_locate">Неуспешно намиране на текущото местоположение</string>
@@ -230,7 +221,6 @@
     <string name="settings_units_pressure">Единица за налягане</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Текуща точка на оросяване</string>
     <string name="message_server_timeout">Времето за изчакване на заявката изтече</string>
-    <string name="wind_strength">Сила на вятъра</string>
     <string name="message_parsing_error_title">Неуспешно анализиране на данните за времето</string>
     <string name="widget_label_align_end">Подравни надясно</string>
     <string name="widget_subtitle_data_time">Време на опресняване</string>
@@ -350,7 +340,6 @@
     <string name="settings_main_hourly_trends_title">Почасови тенденции</string>
     <string name="settings_main_section_options">Опции</string>
     <string name="settings_main_daily_trends_title">Дневни тенденции</string>
-    <string name="settings_main_header_details_title">Подробности в заглавието</string>
     <string name="settings_main_section_animations">Анимации</string>
     <string name="settings_main_background_animation_title">Фонова анимация</string>
     <string name="settings_main_background_animation_enabled">Активирано</string>
@@ -505,7 +494,6 @@
     <string name="pollen_level_5">Много високо</string>
     <string name="weather_message_invalid_location">Невалидно местоположение, моля, изтрийте го и добавете отново</string>
     <string name="action_delete">Изтрий</string>
-    <string name="wind_gusts">Пориви на вятъра</string>
     <string name="precipitation_nowcasting">Текуща прогноза за валежите</string>
     <string name="about_privacy_policy">Политика за поверителност</string>
     <string name="settings_appearance_dark_mode_locations_title">Дневен / нощен режим за местоположения</string>
@@ -551,7 +539,6 @@
     <string name="settings_main_threshold_lines_on_charts">Прагови линии на диаграмите</string>
     <string name="temperature_normals">Температурни норми</string>
     <string name="settings_widgets_broadcast_send_data_title">Изпращайте данни за времето до %s</string>
-    <string name="pollen_and_mold">Прашец и плесен</string>
     <string name="settings_color_app">Следвай приложението</string>
     <string name="settings_debug_dump_crash_logs_saved">Журналите за сривове са запазени</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Докосни за отваряне</string>
@@ -569,7 +556,6 @@
     <string name="location_search_source">Източник на търсене</string>
     <string name="location_search_change_source">Промяна на източника на търсене</string>
     <string name="humidity_short">Влажност</string>
-    <string name="wind_short">Вятър</string>
     <string name="uv_index_short">UV индекс</string>
     <string name="visibility_short">Видимост</string>
     <string name="pressure_short">Налягане</string>
@@ -814,8 +800,6 @@
     <string name="widget_custom_subtitle_alert_box_title">Помощ за персонализирани подзаглавия</string>
     <string name="settings_appearance_section_regional">Език и регион</string>
     <string name="settings_appearance_section_theme">Тема</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">Винаги активирано със светъл режим</string>
-    <string name="settings_appearance_dark_mode_locations_disabled">Деактивирано, но местоположенията винаги са в тъмен режим през нощта</string>
     <string name="settings_notifications_permission_summary">Необходимо е да работят уведомленията за сигнали, прогнози и актуализации на приложенията. %s</string>
     <string name="settings_widgets_notification_permission_summary">Необходимо е да се покаже призпособлението за известия. %s</string>
     <string name="settings_debug_notification_permission">Необходимо е за уведомления за логове на сривовете и неуспешни актуализации на времето. %s</string>

@@ -11,8 +11,6 @@
     <string name="precipitation_duration">Sateen kesto</string>
     <string name="temperature">Lämpötila</string>
     <string name="wind">Tuuli</string>
-    <string name="wind_direction">Tuulensuunta</string>
-    <string name="wind_speed">Tuulennopeus</string>
     <string name="humidity">Ilmankosteus</string>
     <string name="humidity_dew_point">Ilmankosteus / Kastepiste</string>
     <string name="uv_index">UV-indeksi</string>
@@ -33,13 +31,9 @@
     <string name="action_edit">Muokkaa</string>
     <string name="daily_yesterday_short">Eilen</string>
     <string name="daily_tomorrow_short">Huomenna</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">Näennäinen</string>
     <string name="temperature_wind_chill">Tuulen hyytävyys</string>
-    <string name="temperature_wet_bulb">Märkälämpötila</string>
     <string name="temperature_degree_day">Astepäivä</string>
-    <string name="precipitation_total">Kokonaismäärä</string>
     <string name="precipitation_thunderstorm">Ukkonen</string>
     <string name="precipitation_rain">Vesisade</string>
     <string name="precipitation_snow">Lumi</string>
@@ -75,7 +69,6 @@
     <string name="hourly_forecast">Tuntikohtainen ennuste</string>
     <string name="air_quality">Ilmanlaatu</string>
     <string name="pollen">Siitepöly</string>
-    <string name="details">Lisätietoja</string>
     <string name="ephemeris">Aurinko &amp; kuu</string>
     <string name="action_next">Seuraava</string>
     <string name="action_done">Valmis</string>
@@ -192,7 +185,6 @@
     <string name="action_settings">Asetukset</string>
     <string name="action_preview">Esikatsele</string>
     <string name="action_about">Tietoja</string>
-    <string name="action_app_store">Sovelluskauppa</string>
     <!-- widget -->
     <string name="widget_day">Päivittäinen</string>
     <string name="widget_week">Viikottainen</string>
@@ -265,7 +257,6 @@
     <string name="settings_widgets_notification_style_title">Tyyli</string>
     <string name="settings_background_updates_refresh_title">Päivitystahti</string>
     <string name="air_quality_so2_full">Rikkidioksidi (SO₂)</string>
-    <string name="pollen_and_mold">Siitepöly &amp; home</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Jätä huomiotta, kun akku on vähissä</string>
     <string name="unit_hpa">hPa</string>
     <string name="settings_background_updates_battery_optimization">Poista akun käytön optimointi käytöstä</string>
@@ -309,7 +300,6 @@
     <string name="unit_h_voice">tuntia</string>
     <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/s</string>
-    <string name="wind_strength">Tuulen voimakkuus</string>
     <string name="settings_main_background_animation_enabled">Käytössä</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Laitevalmistajakohtaiset ohjeet</string>
     <string name="settings_main_cards_title">Kortit</string>
@@ -348,7 +338,6 @@
     <string name="pollen_level_1">Erittäin vähän</string>
     <string name="settings_background_updates_summary">Päivitystahti, vianmääritys</string>
     <string name="settings_location_access_precise_title">Laitteen GPS:n käyttö</string>
-    <string name="wind_gusts">Tuulenpuuskat</string>
     <string name="settings_notifications_forecast_tomorrow_title">Ilmoitus seuraavan päivän ennusteesta</string>
     <string name="settings_main_section_displayed_data">Näytettävät tiedot</string>
     <string name="setting_weather_source_accu_hours">Tunnit</string>
@@ -433,7 +422,6 @@
     <string name="metno_weather_text_andthunder">%s ja ukkosta</string>
     <string name="location_message_permission_missing">Sijainnin käyttöoikeus puuttuu</string>
     <string name="unit_mi_voice">Mailia</string>
-    <string name="location_search_weather_source">Säälähde</string>
     <string name="unit_lpsqmph_voice">Litraa neliömetriä kohden tunnissa</string>
     <string name="common_weather_text_rain_heavy">Rankkasadetta</string>
     <string name="unit_kelvin_short">K</string>
@@ -549,7 +537,6 @@
     <string name="common_weather_text_rain_snow_mixed_showers_light">Kuurottaista kevyttä vesisateen ja lumen sekoitusta</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Rankkaa jäätävää tihkusadetta</string>
     <string name="widget_material_you_current">Material You – Tämänhetkinen</string>
-    <string name="settings_main_header_details_title">Tiedot otsikossa</string>
     <string name="common_weather_text_drizzle_heavy">Rankkaa tihkusadetta</string>
     <string name="common_weather_text_rain_moderate">Kohtalaista sadetta</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Kuurottaista rankkaa vesisateen ja lumen sekoitusta</string>
@@ -583,7 +570,6 @@
     <string name="dew_point_short">Kastepiste</string>
     <string name="cloud_cover_short">Pilvisyys</string>
     <string name="ceiling_short">Pilvipeite</string>
-    <string name="wind_short">Tuuli</string>
     <string name="uv_index_short">UV-indeksi</string>
     <string name="visibility_short">Näkyvyys</string>
     <string name="pressure_short">Ilmanpaine</string>

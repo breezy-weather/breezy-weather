@@ -11,8 +11,6 @@
     <string name="precipitation_duration">Durasi curah hujan</string>
     <string name="temperature">Suhu</string>
     <string name="wind">Angin</string>
-    <string name="wind_direction">Arah angin</string>
-    <string name="wind_speed">Kecepatan angin</string>
     <string name="humidity">Kelembapan</string>
     <string name="humidity_dew_point">Kelembapan / Titik embun</string>
     <string name="uv_index">Indeks UV</string>
@@ -37,10 +35,8 @@
     <string name="daily_tomorrow_short">Bsk</string>
     <string name="temperature_apparent">Tampak</string>
     <string name="temperature_wind_chill">Kesejukan angin</string>
-    <string name="temperature_wet_bulb">Suhu bola basah</string>
     <!-- ? -->
     <string name="temperature_degree_day">Hari derajat</string>
-    <string name="precipitation_total">Total</string>
     <string name="precipitation_thunderstorm">Badai petir</string>
     <string name="precipitation_rain">Hujan</string>
     <string name="precipitation_snow">Salju</string>
@@ -76,7 +72,6 @@
     <string name="hourly_forecast">Prakiraan per jam</string>
     <string name="air_quality">Kualitas udara</string>
     <string name="pollen">Serbuk sari</string>
-    <string name="details">Detail</string>
     <string name="ephemeris">Matahari &amp; bulan</string>
     <string name="action_next">Berikutnya</string>
     <string name="action_done">Selesai</string>
@@ -198,7 +193,6 @@
     <string name="action_settings">Setelan</string>
     <string name="action_preview">Pratinjau</string>
     <string name="action_about">Tentang</string>
-    <string name="action_app_store">Toko Aplikasi</string>
     <!-- widget -->
     <string name="widget_day">Harian</string>
     <string name="widget_week">Mingguan</string>
@@ -235,8 +229,6 @@
     <string name="settings_source_default_value">Bawaan (tidak diubah)</string>
     <string name="settings_background_updates_refresh_never">Tidak pernah</string>
     <string name="alerts_to_follow">Peringatan yang akan datang, ketuk di sini untuk melihatnya.</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="wind_direction_variable">Variabel</string>
     <string name="wind_direction_N_short">U</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Badai petir dengan hujan es lebat</string>
@@ -255,13 +247,11 @@
     <string name="temperature_normal_short">Normal</string>
     <string name="temperature_normals">Suhu normal</string>
     <string name="wind_direction_W_short">B</string>
-    <string name="wind_strength">Kekuatan angin</string>
     <string name="uv_index_11">Ekstrem</string>
     <string name="air_quality_level_1">Sempurna</string>
     <string name="air_quality_level_4">Tidak sehat</string>
     <string name="uv_alert_level">Waspada</string>
     <string name="air_quality_level_3">Buruk</string>
-    <string name="wind_gusts">Embusan angin</string>
     <string name="wind_direction_S_short">S</string>
     <string name="air_quality_index">Indeks kualitas udara</string>
     <string name="air_quality_level_3_description">Udara telah mencapai tingkat polusi yang tinggi dan tidak sehat bagi kelompok sensitif. Kurangi waktu di luar ruangan jika Anda merasakan gejala seperti kesulitan bernapas atau radang tenggorokan.</string>
@@ -289,7 +279,6 @@
     <string name="widget_clock_font_sans_serif_black">Sans Serif Hitam</string>
     <string name="air_quality_so2_full">Sulfur dioksida (SO₂)</string>
     <string name="common_weather_text_snow">Salju</string>
-    <string name="pollen_and_mold">Serbuk sari &amp; jamur</string>
     <string name="common_weather_text_cloudy">Berawan</string>
     <string name="unit_hpa">hPa</string>
     <string name="unit_m_voice">Meter</string>
@@ -299,7 +288,6 @@
     <string name="notification_style_cities">Kota</string>
     <string name="unit_cm">cm</string>
     <string name="unit_mi_voice">Mil</string>
-    <string name="location_search_weather_source">Sumber cuaca</string>
     <string name="settings_section_general">Umum</string>
     <string name="common_weather_text_rain_heavy">Hujan lebat</string>
     <string name="unit_kelvin_short">K</string>
@@ -552,7 +540,6 @@
     <string name="common_weather_text_drizzle_freezing_heavy">Gerimis beku lebat</string>
     <string name="settings_location_access_background_summaryOn">Diaktifkan. Aplikasi akan dapat menyegarkan data cuaca lokasi Anda saat ini di latar.</string>
     <string name="settings_units_summary">Suhu, curah hujan, jarak, kecepatan, tekanan</string>
-    <string name="settings_main_header_details_title">Detail dalam tajuk</string>
     <string name="settings_main_cards_fade_in_switch">Kartu memudar</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Campuran hujan dan salju bergerimis lebat</string>
     <string name="weather_api_key_required_missing_content">Untuk menggunakan sumber ini, Anda perlu menyediakan kunci API.</string>
@@ -573,7 +560,6 @@
     <string name="about_contribution_WangDaYeeeeee">Pengembang proyek Geometric Weather yang asli</string>
     <string name="cloud_cover_short">Awan</string>
     <string name="ceiling_short">Batas awan</string>
-    <string name="wind_short">Angin</string>
     <string name="uv_index_short">Indeks UV</string>
     <string name="visibility_short">Ketampakan</string>
     <string name="pressure_short">Tekanan</string>

@@ -4,7 +4,6 @@
     <string name="alerts_to_follow">แตะที่นี่เพื่อดูการเตือนภัยที่กำลังจะถึง</string>
     <string name="temperature">อุณหภูมิ</string>
     <string name="pollen">ละอองเรณู</string>
-    <string name="details">รายละเอียด</string>
     <string name="temperature_feels_like_short">รู้สึกเหมือน</string>
     <string name="alert_source">ที่มา: %s</string>
     <string name="app_name">สภาพอากาศ</string>
@@ -13,7 +12,6 @@
     <string name="hourly_forecast">พยากรณ์อากาศรายชั่วโมง</string>
     <string name="current_weather">สภาพอากาศปัจจุบัน</string>
     <string name="air_quality">คุณภาพอากาศ</string>
-    <string name="pollen_and_mold">ละอองเรณูและเชื้อรา</string>
     <string name="ephemeris">ดวงอาทิตย์และดวงจันทร์</string>
     <string name="alert">การเตือนภัย</string>
     <string name="alerts">การเตือนภัย</string>
@@ -32,16 +30,12 @@
     <string name="air_quality_level_5_description">ประชากรในกลุ่มที่ไวต่อมลพิษจะรู้สึกได้ถึงผลกระทบต่อสุขภาพทันทีและควรหลีกเลี่ยงกิจกรรมนอกบ้าน ผู้ที่มีสุขภาพดีมีแนวโน้มพบปัญหาหายใจลำบากและอาการระคายคอ ควรทำกิจกรรมในบ้านและปรับเปลี่ยนตารางเวลาทำกิจกรรมนอกบ้าน</string>
     <string name="air_quality_co">CO</string>
     <string name="daily_yesterday_short">เมื่อวาน</string>
-    <string name="temperature_real_feel">RealFeel®</string>
-    <string name="temperature_real_feel_shade">RealFeel Shade™</string>
     <string name="temperature_apparent">ปรากฏ</string>
-    <string name="temperature_wet_bulb">กระเปาะเปียก</string>
     <string name="precipitation_duration">ระยะเวลาการเกิดหยาดน้ำฟ้า</string>
     <string name="temperature_normal_short">ทั่วไป</string>
     <string name="temperature_average_short">เฉลี่ย</string>
     <string name="precipitation">หยาดน้ำฟ้า</string>
     <string name="precipitation_probability">ความเป็นไปได้ของการเกิดหยาดน้ำฟ้า</string>
-    <string name="precipitation_total">รวม</string>
     <string name="precipitation_rain">ฝน</string>
     <string name="precipitation_snow">หิมะ</string>
     <string name="precipitation_ice">น้ำแข็ง</string>
@@ -52,10 +46,6 @@
     <string name="precipitation_none">ไม่มีหยาดน้ำฟ้า</string>
     <string name="precipitation_between_time">หยาดน้ำฟ้าตั้งแต่ %1$s ถึง %2$s</string>
     <string name="wind">ลม</string>
-    <string name="wind_short">ลม</string>
-    <string name="wind_speed">ความเร็วลม</string>
-    <string name="wind_gusts">ลมกระโชก</string>
-    <string name="wind_direction">ทิศทางลม</string>
     <string name="wind_direction_variable">แปรปรวน</string>
     <string name="wind_direction_N">เหนือ</string>
     <string name="wind_direction_NE">ตะวันออกเฉียงเหนือ</string>
@@ -72,7 +62,6 @@
     <string name="wind_direction_SW_short">ตต.ต.</string>
     <string name="wind_direction_W_short">ตต.</string>
     <string name="wind_direction_NW_short">ตต.น.</string>
-    <string name="wind_strength">แรงลม</string>
     <string name="wind_strength_0">ลมสงบ</string>
     <string name="wind_strength_1">ลมเบา</string>
     <string name="wind_strength_3">ลมเฉื่อย</string>
@@ -293,7 +282,6 @@
     <string name="weather_source_accu_preference_hours_240">240 ชั่วโมง</string>
     <string name="locations">สถานที่</string>
     <string name="location_current">สถานที่ปัจจุบัน</string>
-    <string name="location_search_weather_source">แหล่งข้อมูลสภาพอากาศ</string>
     <string name="location_reverse_geocoding">การค้นหาที่อยู่</string>
     <string name="location_results_by">ผลการค้นหาสถานที่จาก %s</string>
     <string name="location_custom_name">ชื่อแบบกำหนดเอง</string>
@@ -328,7 +316,6 @@
     <string name="action_more">ดูเพิ่ม</string>
     <string name="action_preview">แสดงตัวอย่าง</string>
     <string name="action_about">เกี่ยวกับ</string>
-    <string name="action_app_store">แอปสโตร์</string>
     <string name="action_refresh">รีเฟรช</string>
     <string name="action_edit_location">แก้ไขสถานที่นี้</string>
     <string name="action_undo">เลิกทำ</string>
@@ -552,7 +539,6 @@
     <string name="settings_icon_packs_weather_adaptive_icon">ไอคอนสภาพอากาศ</string>
     <string name="settings_icon_packs_weather_icon_dark">ไอคอนสีมืด</string>
     <string name="settings_icon_packs_get_more">ดาวน์โหลดเพิ่ม</string>
-    <string name="settings_main_header_details_title">รายละเอียดในส่วนหัว</string>
     <string name="settings_units_distance">หน่วยวัดระยะทาง</string>
     <string name="settings_units_speed">หน่วยวัดความเร็ว</string>
     <string name="settings_units_pressure">หน่วยวัดความกดอากาศ</string>

@@ -32,15 +32,16 @@ import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 
-object ApiHelpDialog {
+object ErrorHelpDialog {
     fun show(
         activity: Activity,
         @StringRes title: Int,
         @StringRes content: Int,
+        showSettings: Boolean,
     ) {
         val view = LayoutInflater
             .from(activity)
-            .inflate(R.layout.dialog_api_help, activity.findViewById(android.R.id.content), true)
+            .inflate(R.layout.dialog_error_help, activity.findViewById(android.R.id.content), true)
 
         val composeView = view.findViewById<ComposeView>(R.id.api_help_dialog)
         val dialogOpenState = mutableStateOf(true)
@@ -64,21 +65,25 @@ object ApiHelpDialog {
                         confirmButton = {
                             TextButton(
                                 onClick = {
-                                    IntentHelper.startWeatherProviderSettingsActivity(activity)
                                     dialogOpenState.value = false
                                 }
                             ) {
-                                Text(stringResource(id = R.string.action_settings))
+                                Text(stringResource(id = R.string.action_close))
                             }
                         },
-                        dismissButton = {
-                            TextButton(
-                                onClick = {
-                                    dialogOpenState.value = false
+                        dismissButton = if (showSettings) {
+                            {
+                                TextButton(
+                                    onClick = {
+                                        IntentHelper.startWeatherProviderSettingsActivity(activity)
+                                        dialogOpenState.value = false
+                                    }
+                                ) {
+                                    Text(stringResource(id = R.string.action_settings))
                                 }
-                            ) {
-                                Text(stringResource(id = android.R.string.cancel))
                             }
+                        } else {
+                            null
                         },
                         title = {
                             Text(
