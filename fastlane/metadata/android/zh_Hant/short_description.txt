@@ -1,1 +1,1 @@
-A feature-rich weather app with good visualizations and many sources.
+功能強大、風格鮮明的全球天氣 app，支援多國官方及第三方天氣資料來源。
