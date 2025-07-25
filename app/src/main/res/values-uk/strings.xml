@@ -323,7 +323,7 @@
     <string name="settings_weather_sources_summary">Типове джерело погодних даних для нових розташувань, ключі API та інші налаштування джерел</string>
     <string name="settings_appearance_summary">Мова, тема, набори значків та одиниці вимірювання</string>
     <string name="settings_appearance_language_title">Мова</string>
-    <string name="settings_appearance_dark_mode_title">Темна тема</string>
+    <string name="settings_appearance_dark_mode_title">Темний режим програми</string>
     <string name="settings_appearance_icon_pack_title">Набір значків</string>
     <string name="settings_icon_packs_title">Набори значків</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Значок погоди</string>
@@ -350,7 +350,7 @@
     <string name="settings_source_api_key">Ключ API</string>
     <string name="settings_appearance">Вигляд</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Час сповіщення про прогноз на наступний день</string>
-    <string name="settings_appearance_dark_mode_locations_title">Денний/нічний режим для розташувань</string>
+    <string name="settings_appearance_dark_mode_locations_title">Темний режим на основі місцезнаходження</string>
     <string name="settings_icon_packs_check_details">Переглянути подробиці</string>
     <string name="settings_icon_packs_weather_icon_grey">Сірий значок</string>
     <string name="settings_units">Одиниці вимірювання</string>
@@ -808,4 +808,6 @@
     <string name="temperature_normals_deviation_explanation_minimum">Відхилення від середньої мінімальної температури %s для цього місця</string>
     <string name="widget_custom_subtitle_help_content_description">Показати довідку щодо ключових слів для власних субтитрів</string>
     <string name="widget_custom_subtitle_alert_box_title">Допомога з налаштуванням субтитрів</string>
+    <string name="settings_appearance_dark_mode_locations_day_night">Слідкуйте за днем/ніччю</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Завжди темно, коли програма перебуває в темному режимі</string>
 </resources>
