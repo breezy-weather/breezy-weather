@@ -372,9 +372,9 @@
     <string name="settings_background_updates_worker_info_summary">最後執行：%s</string>
     <string name="settings_weather_sources">天氣資料來源</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="uv_index_0_2">低</string>
-    <string name="uv_index_8_10">過量</string>
-    <string name="uv_index_11">危險</string>
+    <string name="uv_index_0_2">低量級</string>
+    <string name="uv_index_8_10">過量級</string>
+    <string name="uv_index_11">危險級</string>
     <string name="settings_weather_source_portal">入口</string>
     <string name="setting_weather_source_accu_days">天數</string>
     <string name="location_search_weather_source">天氣資料來源</string>
@@ -442,7 +442,7 @@
     <string name="wind_direction_SW_short">西南風</string>
     <string name="wind_direction_W_short">西風</string>
     <string name="wind_strength">風力</string>
-    <string name="uv_index_3_5">中</string>
+    <string name="uv_index_3_5">中量級</string>
     <string name="air_quality_level_6_description">只要暴露在空氣中，即使幾分鐘也可能對每個人都會造成嚴重的健康影響。避免戶外活動。</string>
     <string name="air_quality_no2_full">二氧化氮 (NO₂)</string>
     <string name="pollen_level_2">低</string>
@@ -462,7 +462,7 @@
     <string name="wind_direction_SE_short">東南風</string>
     <string name="wind_direction_S_short">南風</string>
     <string name="wind_direction_N_short">北風</string>
-    <string name="uv_index_6_7">高</string>
+    <string name="uv_index_6_7">高量級</string>
     <string name="air_quality_level_5_description">敏感人群將會立即感受到健康影響，應避免戶外活動。健康人群可能會出現呼吸困難和喉嚨刺激；考慮待在室內並重新安排戶外活動。</string>
     <string name="location_message_search_failed">位置搜尋失敗</string>
     <string name="settings_weather_sources_summary">新位置的預設天氣來源、自訂 API 金鑰、其他來源設定</string>
@@ -903,7 +903,7 @@
     <string name="precipitation_snow_total_night">晚上降雪</string>
     <string name="daytime_short">白天</string>
     <string name="nighttime_short">晚上</string>
-    <string name="settings_appearance_dark_mode_locations_always_enabled">總是啟動淺色模式</string>
+    <string name="settings_appearance_dark_mode_locations_always_enabled">使用淺色模式時保持啟用</string>
     <string name="settings_appearance_dark_mode_locations_disabled">停用，在晚上總是使用深色模式</string>
     <string name="temperature_normals_deviation">偏差</string>
     <string name="temperature_normals_deviation_explanation_maximum">與此位置之%s平均最高氣溫偏差</string>
