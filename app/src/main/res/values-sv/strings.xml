@@ -801,4 +801,6 @@
     <string name="temperature_degree_day_heating_explanation">Skillnaden mellan utomhustemperaturen och en behaglig referenstemperatur som används för att uppskatta energibehovet för uppvärmning</string>
     <string name="temperature_degree_day_cooling_explanation">Skillnaden mellan utomhustemperaturen och en behaglig referenstemperatur som används för att uppskatta energibehovet för nedkylning</string>
     <string name="wind_speed_about_description">Vindhastigheten mäts genom att beräkna genomsnittet av vindhastigheterna under en viss tidsperiod. Vindbyar är plötsliga vindstötar som vanligtvis varar i mindre än 20 sekunder.</string>
+    <string name="uv_index_about_description">UV-indexet mäter styrkan hos solens ultravioletta strålning. Ju starkare den är, desto snabbare kan den orsaka solbränna, hudcancer och ögonskador.</string>
+    <string name="uv_index_time_to_burn_explanations">Den exakta tiden till solbränna beror på höjden över havet, förekomsten av reflekterande ytor såsom vatten eller snö, din hudtyp och användningen av solskyddsmedel.</string>
 </resources>
