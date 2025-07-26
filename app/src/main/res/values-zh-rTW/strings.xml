@@ -900,4 +900,16 @@
     <string name="action_share_no_app">找不到可分享的應用程式</string>
     <string name="action_translate">翻譯</string>
     <string name="action_translate_no_app">找不到翻譯應用程式</string>
+    <string name="air_quality_pm25_about">關於細懸浮微粒 (PM2.5)</string>
+    <string name="air_quality_pm25_index">PM2.5 的空氣品質指標</string>
+    <string name="air_quality_pm10_about">關於懸浮微粒 (PM10)</string>
+    <string name="air_quality_pm10_index">PM10 的空氣品質指標</string>
+    <string name="air_quality_so2_about">關於二氧化硫 (SO₂)</string>
+    <string name="air_quality_so2_index">SO₂ 的空氣品質指標</string>
+    <string name="air_quality_no2_about">關於二氧化氮 (NO₂)</string>
+    <string name="air_quality_no2_index">NO₂ 的空氣品質指標</string>
+    <string name="air_quality_o3_about">關於地表臭氧 (O₃)</string>
+    <string name="air_quality_o3_index">O₃ 的空氣品質指標</string>
+    <string name="air_quality_co_about">關於一氧化碳 (CO)</string>
+    <string name="air_quality_co_index">CO 的空氣品質指標</string>
 </resources>
