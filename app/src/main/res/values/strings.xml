@@ -477,9 +477,9 @@
     <string name="action_close_menu">Close menu</string>
     <string name="action_toggle_data_type_menu">Toggle the data type selection menu</string>
     <string name="action_share">Share</string>
-    <string name="action_share_no_app">No app to share found</string>
+    <string name="action_share_no_app">No app to share with found</string>
     <string name="action_translate">Translate</string>
-    <string name="action_translate_no_app">No translator app found</string>
+    <string name="action_translate_no_app">No translation app found</string>
     <string name="action_download">Download</string>
     <string name="action_show_errors">Tap to see details</string>
     <string name="action_show">Show</string>
