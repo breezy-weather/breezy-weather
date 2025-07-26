@@ -29,6 +29,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.source.PollenIndexSource
+import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.sources.SourceManager
 import javax.inject.Inject
 
@@ -105,6 +106,12 @@ class DetailsViewModel @Inject constructor(
     fun setSelectedChart(detailScreen: DetailScreen) {
         _uiState.value = _uiState.value.copy(
             selectedChart = detailScreen
+        )
+    }
+
+    fun setSelectedPollutant(pollutantIndex: PollutantIndex?) {
+        _uiState.value = _uiState.value.copy(
+            selectedPollutant = pollutantIndex
         )
     }
 }

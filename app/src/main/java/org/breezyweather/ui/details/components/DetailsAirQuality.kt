@@ -115,6 +115,8 @@ class AqiItem(
 fun DetailsAirQuality(
     location: Location,
     supportedPollutants: ImmutableList<PollutantIndex>,
+    selectedPollutant: PollutantIndex?,
+    setSelectedPollutant: (PollutantIndex?) -> Unit,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
     currentAirQuality: AirQuality?,
@@ -122,12 +124,10 @@ fun DetailsAirQuality(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    // Defaults to AQI (= no specific pollutant)
-    val selectedPollutant = remember { mutableStateOf<PollutantIndex?>(null) }
     val mappedValues = remember(hourlyList, selectedPollutant) {
         hourlyList
             .filter { hourly ->
-                selectedPollutant.value?.let {
+                selectedPollutant?.let {
                     hourly.airQuality?.getConcentration(it) != null
                 } ?: (hourly.airQuality?.isIndexValid == true)
             }
@@ -201,8 +201,8 @@ fun DetailsAirQuality(
         )
     ) {
         // Force recomposition when switching charts
-        item(key = "chart-${selectedPollutant.value}") {
-            AirQualityChart(location, selectedPollutant.value, mappedValues, daily, currentAirQuality, currentTime)
+        item(key = "chart-$selectedPollutant") {
+            AirQualityChart(location, selectedPollutant, mappedValues, daily, currentAirQuality, currentTime)
         }
         if (supportedPollutants.isNotEmpty()) {
             item {
@@ -211,12 +211,12 @@ fun DetailsAirQuality(
             item {
                 AirQualitySwitcher(
                     supportedPollutants,
-                    { pollutant -> selectedPollutant.value = pollutant },
-                    selectedPollutant.value
+                    setSelectedPollutant,
+                    selectedPollutant
                 )
             }
         }
-        selectedPollutant.value?.let { pollutant ->
+        selectedPollutant?.let { pollutant ->
             item {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
             }
@@ -281,11 +281,11 @@ fun DetailsAirQuality(
         }
         item {
             DetailsSectionHeader(
-                stringResource(selectedPollutant.value?.aboutIndex ?: R.string.air_quality_index_scale)
+                stringResource(selectedPollutant?.aboutIndex ?: R.string.air_quality_index_scale)
             )
         }
         item {
-            AirQualityScale(selectedPollutant.value)
+            AirQualityScale(selectedPollutant)
         }
         bottomInsetItem()
     }
@@ -519,7 +519,7 @@ private fun AirQualityChart(
 @Composable
 private fun AirQualitySwitcher(
     supportedPollutants: ImmutableList<PollutantIndex>,
-    onPollutantSwitch: (PollutantIndex?) -> Unit,
+    setSelectedPollutant: (PollutantIndex?) -> Unit,
     selectedPollutant: PollutantIndex?,
 ) {
     ButtonGroup(
@@ -547,7 +547,7 @@ private fun AirQualitySwitcher(
             buttonGroupContent = {
                 ToggleButton(
                     checked = selectedPollutant == null,
-                    onCheckedChange = { onPollutantSwitch(null) },
+                    onCheckedChange = { setSelectedPollutant(null) },
                     shapes = ButtonGroupDefaults.connectedLeadingButtonShapes()
                 ) {
                     if (selectedPollutant == null) {
@@ -574,7 +574,7 @@ private fun AirQualitySwitcher(
                     },
                     text = { Text(stringResource(R.string.air_quality_index_short)) },
                     onClick = {
-                        onPollutantSwitch(null)
+                        setSelectedPollutant(null)
                         state.dismiss()
                     }
                 )
@@ -585,7 +585,7 @@ private fun AirQualitySwitcher(
                 buttonGroupContent = {
                     ToggleButton(
                         checked = selectedPollutant == pollutant,
-                        onCheckedChange = { onPollutantSwitch(pollutant) },
+                        onCheckedChange = { setSelectedPollutant(pollutant) },
                         shapes = ButtonGroupDefaults.connectedMiddleButtonShapes()
                     ) {
                         if (selectedPollutant == pollutant) {
@@ -612,7 +612,7 @@ private fun AirQualitySwitcher(
                         },
                         text = { Text(stringResource(pollutant.shortName)) },
                         onClick = {
-                            onPollutantSwitch(pollutant)
+                            setSelectedPollutant(pollutant)
                             state.dismiss()
                         }
                     )

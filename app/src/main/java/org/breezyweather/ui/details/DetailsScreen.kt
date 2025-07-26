@@ -182,6 +182,8 @@ internal fun DailyWeatherScreen(
                             selected = page,
                             selectedChart = detailsUiState.selectedChart,
                             setSelectedChart = { chart -> detailsViewModel.setSelectedChart(chart) },
+                            selectedPollutant = detailsUiState.selectedPollutant,
+                            setSelectedPollutant = { pollutant -> detailsViewModel.setSelectedPollutant(pollutant) },
                             pollenIndexSource = detailsViewModel.getPollenIndexSource(loc)
                         )
                     }
@@ -353,6 +355,8 @@ fun DailyPagerContent(
     selected: Int,
     selectedChart: DetailScreen,
     setSelectedChart: (DetailScreen) -> Unit,
+    selectedPollutant: PollutantIndex?,
+    setSelectedPollutant: (PollutantIndex?) -> Unit,
     pollenIndexSource: PollenIndexSource?,
     modifier: Modifier = Modifier,
 ) {
@@ -421,6 +425,8 @@ fun DailyPagerContent(
                 DetailsAirQuality(
                     location,
                     supportedPollutants,
+                    selectedPollutant,
+                    setSelectedPollutant,
                     hourlyList,
                     daily,
                     (if (daily.isToday(location)) location.weather!!.current?.airQuality else null),
