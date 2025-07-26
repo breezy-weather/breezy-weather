@@ -115,8 +115,8 @@
     <string name="widget_custom_subtitle_keyword_cps_description">Aktuální tlak</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Aktuální viditelnost</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Aktuální rosný bod</string>
-    <string name="widget_custom_subtitle_keyword_al_description">Upozornění</string>
-    <string name="widget_custom_subtitle_keyword_als_description">Upozornění (krátká)</string>
+    <string name="widget_custom_subtitle_keyword_al_description">Výstrahy</string>
+    <string name="widget_custom_subtitle_keyword_als_description">Výstrahy (krátké)</string>
     <string name="widget_custom_subtitle_keyword_l_description">Poloha</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Zeměpisná šířka</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Zeměpisná délka</string>
@@ -183,7 +183,7 @@
     <string name="settings_icon_packs_weather_icon_grey">Šedá ikona</string>
     <string name="settings_icon_packs_weather_icon_dark">Tmavá ikona</string>
     <!-- action -->
-    <string name="alerts">Upozornění</string>
+    <string name="alerts">Výstrahy</string>
     <string name="action_search">Hledat</string>
     <string name="action_settings">Nastavení</string>
     <string name="action_preview">Náhled</string>
@@ -378,7 +378,7 @@
     <string name="air_quality_level_6">Nebezpečná</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="about_contribution_WangDaYeeeeee">Vývojář původního projektu Geometric Weather</string>
-    <string name="air_quality_level_2">Slušná</string>
+    <string name="air_quality_level_2">Dostatečná</string>
     <string name="unit_mm">mm</string>
     <string name="unit_mph">mph</string>
     <string name="unit_kn">kn</string>
@@ -392,7 +392,7 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="action_location_list">Seznam poloh</string>
     <string name="wind_direction_SE_short">JV</string>
-    <string name="alerts_to_follow">Nadcházející upozornění, klepněte sem pro jejich zobrazení.</string>
+    <string name="alerts_to_follow">Nadcházející výstrahy, klepněte sem pro jejich zobrazení.</string>
     <string name="wind_direction_N_short">S</string>
     <string name="wind_direction_E_short">V</string>
     <string name="wind_direction_S_short">J</string>
@@ -467,7 +467,7 @@
     <string name="weather_api_limit_reached_title">Dosažen limit požadavků API</string>
     <string name="weather_api_key_required_missing_title">Chybí potřebný klíč API</string>
     <string name="dialog_permissions_notification_title">Zůstaňte informováni</string>
-    <string name="dialog_permissions_notification_content">Klepnutím sem povolíte upozornění na počasí nebo můžete povolit upozornění později v Nastavení.</string>
+    <string name="dialog_permissions_notification_content">Klepnutím sem povolíte upozornění. Tuto možnost můžete později změnit v nastavení.</string>
     <string name="settings_notifications_forecast_today_title">Oznámení o předpovědi na daný den</string>
     <string name="settings_notifications_forecast_time_today_title">Čas oznámení denní předpovědi</string>
     <string name="settings_location_access_permission_already_granted">Povolení již bylo uděleno</string>
@@ -475,7 +475,7 @@
     <string name="settings_debug_summary">Protokoly o pádu</string>
     <string name="null_data_text">N/A</string>
     <string name="action_more">Zobrazit více</string>
-    <string name="settings_main_background_animation_disabled">Zakázano</string>
+    <string name="settings_main_background_animation_disabled">Zakázáno</string>
     <string name="settings_notifications_summary">Upozornění na výstrahy, srážky nebo předpověď počasí pro první lokalitu</string>
     <string name="settings_notifications_alerts_title">Upozornění na důležité meteorologické výstrahy</string>
     <string name="unit_cm">cm</string>
@@ -615,7 +615,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombinuje nejlepší předpovědní modely pro toto umístění</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Souhrnné</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Kombinuje všechny předpovědní modely tohoto poskytovatele do souhrnné předpovědi</string>
-    <string name="alert">Upozornění</string>
+    <string name="alert">Výstraha</string>
     <string name="settings_source_instance_geocoding">Geokódovací instance</string>
     <string name="settings_source_instance">Instance</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Instance předpovědi</string>
@@ -631,7 +631,7 @@
     <string name="dialog_time_picker_toggle_text_input_voice">Přepnout na textový vstup</string>
     <string name="widget_label_hide_alternate_calendar">Skrýt alternativní kalendář</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Přepnout na dotykový vstup</string>
-    <string name="settings_background_updates_refresh_never_warning1">Po vypnutí aktualizací na pozadí již nebudete získávat oznámení a upozornění o předpovědi. Widgety nebudou obnoveny, dokud neotevřete aplikaci.</string>
+    <string name="settings_background_updates_refresh_never_warning1">Po vypnutí aktualizací na pozadí již nebudete získávat oznámení a výstrahy předpovědi. Widgety nebudou obnoveny, dokud neotevřete aplikaci.</string>
     <string name="settings_background_updates_refresh_never_warning2">Proces aktualizace na pozadí je nenáročný: obnovuje pouze vaši první lokaci ve vybraném cyklu a sekundární lokace pouze, pokud je potřebujete, jednou za den. Není náročný na baterii a za měsíc by neměl spotřebovat více než %d MB dat.</string>
     <string name="settings_background_updates_refresh_never_warning3">Zvažte použití méně časté frekvence obnovování, namísto vypnutí aktualizací na pozadí. Pokud stále chcete pokračovat, klepněte na „Pokračovat“.</string>
     <string name="settings_appearance_calendar_title">Alternativní kalendář</string>
@@ -691,7 +691,7 @@
     <string name="pollen_picea">Smrk</string>
     <string name="pollen_ulmus">Jilm</string>
     <string name="location_last_updated_x">Naposledy aktualizováno %s</string>
-    <string name="location_has_active_alerts">Aktivní upozornění</string>
+    <string name="location_has_active_alerts">Aktivní výstraha</string>
     <string name="settings_notifications_permission">Vyžadováno oprávnění k oznámením</string>
     <string name="settings_debug_notification_permission">Potřeba k oznamování o pádech a selhaných aktualizacích počasí. %s</string>
     <string name="location_custom_name">Vlastní název</string>
