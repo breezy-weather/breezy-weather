@@ -786,4 +786,19 @@
     <string name="settings_appearance_dark_mode_locations_day_night">Följ dag/natt</string>
     <string name="settings_appearance_dark_mode_locations_dark">Alltid mörkt när appen är i mörkt läge</string>
     <string name="ephemeris_about_dusk">Den mörkaste fasen av skymningen innan det sista synliga ljuset försvinner.</string>
+    <string name="action_translate_no_app">Ingen översättningsapp hittades</string>
+    <string name="action_translate">Översätt</string>
+    <string name="action_share_no_app">Ingen app att dela till hittades</string>
+    <string name="action_toggle_data_type_menu">Meny för val av datatyp</string>
+    <string name="action_close_menu">Stäng menyn</string>
+    <string name="action_open_in_other_app_no_app">Ingen kartapp hittades</string>
+    <string name="nighttime_details">Börjar på kvällen och varar till gryningen nästa dag</string>
+    <string name="air_quality_pm25_full">Fina luftburna partiklar (&lt; %s)</string>
+    <string name="air_quality_pm10_full">Grova luftburna partiklar (&lt; %s)</string>
+    <string name="widget_custom_subtitle_alert_box_title">Hjälp för anpassad undertext</string>
+    <string name="widget_custom_subtitle_help_content_description">Visa hjälp för nyckelord i anpassad undertext</string>
+    <string name="data_modified">Detta material har modifierats från originalet av %s, främst för att beräkna eller extrapolera saknade data.</string>
+    <string name="temperature_degree_day_heating_explanation">Skillnaden mellan utomhustemperaturen och en behaglig referenstemperatur som används för att uppskatta energibehovet för uppvärmning</string>
+    <string name="temperature_degree_day_cooling_explanation">Skillnaden mellan utomhustemperaturen och en behaglig referenstemperatur som används för att uppskatta energibehovet för nedkylning</string>
+    <string name="wind_speed_about_description">Vindhastigheten mäts genom att beräkna genomsnittet av vindhastigheterna under en viss tidsperiod. Vindbyar är plötsliga vindstötar som vanligtvis varar i mindre än 20 sekunder.</string>
 </resources>
