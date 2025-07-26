@@ -87,6 +87,8 @@ import org.breezyweather.common.extensions.toCalendar
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toTimezoneSpecificHour
 import org.breezyweather.common.source.PollenIndexSource
+import org.breezyweather.domain.weather.index.PollutantIndex
+import org.breezyweather.domain.weather.model.getConcentration
 import org.breezyweather.domain.weather.model.isToday
 import org.breezyweather.ui.common.widgets.Material3Scaffold
 import org.breezyweather.ui.common.widgets.insets.BWCenterAlignedTopAppBar
@@ -403,8 +405,22 @@ fun DailyPagerContent(
             DetailScreen.TAG_PRECIPITATION -> DetailsPrecipitation(location, hourlyList, daily)
             DetailScreen.TAG_WIND -> DetailsWind(location, hourlyList, daily)
             DetailScreen.TAG_AIR_QUALITY -> {
+                val supportedPollutants = remember(location) {
+                    PollutantIndex.entries
+                        .filter { pollutant ->
+                            location.weather!!.dailyForecast.any {
+                                it.airQuality?.getConcentration(pollutant) != null
+                            } ||
+                                location.weather!!.hourlyForecast.any {
+                                    it.airQuality?.getConcentration(pollutant) != null
+                                } ||
+                                location.weather!!.current?.airQuality?.getConcentration(pollutant) != null
+                        }.toImmutableList()
+                }
+
                 DetailsAirQuality(
                     location,
+                    supportedPollutants,
                     hourlyList,
                     daily,
                     (if (daily.isToday(location)) location.weather!!.current?.airQuality else null),

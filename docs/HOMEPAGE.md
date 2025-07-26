@@ -349,27 +349,7 @@ Below is a small text:
 
 Air quality uses the [2023 Plume index](https://plumelabs.files.wordpress.com/2023/06/plume_aqi_2023.pdf) as a reference, and for SO2 and CO, it uses a similar scale based on [WHO recommendations from 2021](https://apps.who.int/iris/handle/10665/345329).
 
-Here is the meaning of each category (it’s also available in app by tapping on the block for more info):
-
-| Range    | Title          | Harmless exposure  |
-|----------|----------------|--------------------|
-| 0-20     | Excellent      | &gt; 1 year        |
-| 20-50    | Fair           | &lt; 1 year        |
-| 50-100   | Poor           | &lt; 1 day         |
-| 100-150  | Unhealthy      | &lt; 1 hour        |
-| 150-250  | Very unhealthy | &lt; a few minutes |
-| &gt; 250 | Dangerous      | &lt; 1 minutes     |
-
-Here are the thresholds:
-
-| Pollutant | AQI 20 | AQI 50 | AQI 100 | AQI 150 | AQI 250 |
-|-----------|--------|--------|---------|---------|---------|
-| O3        | 50     | 100    | 160     | 240     | 480     |
-| NO2       | 10     | 25     | 200     | 400     | 1000    |
-| PM10      | 15     | 45     | 80      | 160     | 400     |
-| PM2.5     | 5      | 15     | 30      | 60      | 150     |
-| SO2       | 20     | 40     | 270     | 500     | 960     |
-| CO        | 2      | 4      | 35      | 100     | 230     |
+Tap on the block for more info about the thresholds.
 
 AQIs above 250 follow a linear progression.
 

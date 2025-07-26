@@ -191,29 +191,44 @@
     <string name="air_quality_pm25_voice">PM two point five</string>
     <!-- %s = 2.5 µm -->
     <string name="air_quality_pm25_full">Fine particulate matter (&lt; %s)</string>
+    <string name="air_quality_pm25_about">About fine particulate matter (PM2.5)</string>
+    <string name="air_quality_pm25_index">Air quality index scale for PM2.5</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_pm10_voice">PM ten</string>
     <!-- %s = 10 µm -->
     <string name="air_quality_pm10_full">Inhalable particulate matter (&lt; %s)</string>
+    <string name="air_quality_pm10_about">About inhalable particulate matter (PM10)</string>
+    <string name="air_quality_pm10_index">Air quality index scale for PM10</string>
     <string name="air_quality_pm_sources">Main sources are combustion processes (e.g. power plants, indoor heating, car exhausts, wildfires), mechanical processes (e.g. construction, mineral dust, agriculture) and biological particles (e.g. pollen, mold, bacteria, viruses).</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_so2_voice">Sulfur dioxide</string>
     <!-- Please keep the 2 in SO₂ written this way -->
     <string name="air_quality_so2_full">Sulfur dioxide (SO₂)</string>
+    <!-- Please keep the 2 in SO₂ written this way -->
+    <string name="air_quality_so2_about">About sulfur dioxide (SO₂)</string>
+    <string name="air_quality_so2_index">Air quality index scale for SO₂</string>
     <string name="air_quality_so2_sources">Main sources are burning processes of sulfur-containing fuel in industry, transportation and power plants.</string>
     <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Nitrogen dioxide</string>
     <!-- Please keep the 2 in NO₂ written this way -->
     <string name="air_quality_no2_full">Nitrogen dioxide (NO₂)</string>
+    <!-- Please keep the 2 in NO₂ written this way -->
+    <string name="air_quality_no2_about">About nitrogen dioxide (NO₂)</string>
+    <string name="air_quality_no2_index">Air quality index scale for NO₂</string>
     <string name="air_quality_no2_sources">Main sources are fuel burning processes, such as those used in industry and transportation.</string>
     <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Ozone</string>
     <!-- Please keep the 3 in O₃ written this way -->
     <string name="air_quality_o3_full">Ground-level ozone (O₃)</string>
+    <!-- Please keep the 3 in O₃ written this way -->
+    <string name="air_quality_o3_about">About ground-level ozone (O₃)</string>
+    <string name="air_quality_o3_index">Air quality index scale for O₃</string>
     <string name="air_quality_o3_sources">Ozone is created in a chemical reaction between atmospheric oxygen, nitrogen oxides, carbon monoxide and organic compounds, in the presence of sunlight.</string>
     <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Carbon monoxide</string>
     <string name="air_quality_co_full">Carbon monoxide (CO)</string>
+    <string name="air_quality_co_about">About carbon monoxide (CO)</string>
+    <string name="air_quality_co_index">Air quality index scale for CO</string>
     <string name="air_quality_co_sources">Typically originates from incomplete combustion of carbon fuels, such as that which occurs in car engines and power plants.</string>
     <!-- Pollen -->
     <string name="pollen_primary">Primary pollen</string>

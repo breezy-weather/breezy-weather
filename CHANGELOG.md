@@ -3,6 +3,7 @@
 **Improvements and fixes**
 - Main screen - Allow to move small blocks by drag & drop
 - Main screen - Show “Negligible” inside Pollen block if there is no pollen today instead of an empty block
+- Details - Air quality - Add individual charts for each pollutant
 - Alerts - Add “Translate” and “Share” to text select actions
 - Widgets - Improve UX of custom subtitle documentation (@codewithdipesh)
 - Nowcasting chart/Precipitation notification - Fix slightly wrong ending time of precipitation report

@@ -36,10 +36,10 @@ fun AirQuality.getIndex(pollutant: PollutantIndex? = null): Int? {
 }
 
 fun AirQuality.getConcentration(pollutant: PollutantIndex) = when (pollutant) {
+    PollutantIndex.PM25 -> pM25
+    PollutantIndex.PM10 -> pM10
     PollutantIndex.O3 -> o3
     PollutantIndex.NO2 -> nO2
-    PollutantIndex.PM10 -> pM10
-    PollutantIndex.PM25 -> pM25
     PollutantIndex.SO2 -> sO2
     PollutantIndex.CO -> cO
 }

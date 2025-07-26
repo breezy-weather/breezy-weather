@@ -31,10 +31,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.ButtonGroup
+import androidx.compose.material3.ButtonGroupDefaults
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.ToggleButton
+import androidx.compose.material3.ToggleButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -77,6 +85,7 @@ import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
+import org.breezyweather.common.extensions.roundUpToNearestMultiplier
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.domain.weather.model.getColor
@@ -105,6 +114,7 @@ class AqiItem(
 @Composable
 fun DetailsAirQuality(
     location: Location,
+    supportedPollutants: ImmutableList<PollutantIndex>,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
     currentAirQuality: AirQuality?,
@@ -112,9 +122,15 @@ fun DetailsAirQuality(
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val mappedValues = remember(hourlyList) {
+    // Defaults to AQI (= no specific pollutant)
+    val selectedPollutant = remember { mutableStateOf<PollutantIndex?>(null) }
+    val mappedValues = remember(hourlyList, selectedPollutant) {
         hourlyList
-            .filter { it.airQuality?.isIndexValid == true }
+            .filter { hourly ->
+                selectedPollutant.value?.let {
+                    hourly.airQuality?.getConcentration(it) != null
+                } ?: (hourly.airQuality?.isIndexValid == true)
+            }
             .associate { it.date.time to it.airQuality!! }
             .toImmutableMap()
     }
@@ -184,41 +200,68 @@ fun DetailsAirQuality(
             vertical = dimensionResource(R.dimen.small_margin)
         )
     ) {
-        item {
-            AirQualityChart(location, mappedValues, daily, currentAirQuality, currentTime)
+        // Force recomposition when switching charts
+        item(key = "chart-${selectedPollutant.value}") {
+            AirQualityChart(location, selectedPollutant.value, mappedValues, daily, currentAirQuality, currentTime)
         }
-        selectedAirQuality?.let { airQuality ->
+        if (supportedPollutants.isNotEmpty()) {
             item {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
             }
             item {
-                DetailsSectionHeader(stringResource(R.string.air_quality_health_information))
+                AirQualitySwitcher(
+                    supportedPollutants,
+                    { pollutant -> selectedPollutant.value = pollutant },
+                    selectedPollutant.value
+                )
+            }
+        }
+        selectedPollutant.value?.let { pollutant ->
+            item {
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
             }
             item {
-                DetailsCardText(airQuality.getDescription(context) ?: "")
+                DetailsSectionHeader(
+                    stringResource(pollutant.aboutPollutant)
+                )
             }
-            primaryPollutant?.let {
+            item {
+                DetailsCardText(stringResource(pollutant.sources))
+            }
+        } ?: run {
+            selectedAirQuality?.let { airQuality ->
                 item {
                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
                 }
                 item {
-                    DetailsSectionHeader(
-                        stringResource(R.string.air_quality_pollutant_primary),
-                        it.pollutantType.getFullName(context)
-                    )
+                    DetailsSectionHeader(stringResource(R.string.air_quality_health_information))
                 }
                 item {
-                    DetailsCardText(stringResource(it.pollutantType.sources))
+                    DetailsCardText(airQuality.getDescription(context) ?: "")
                 }
-            }
-            item {
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
-            }
-            item {
-                DetailsSectionHeader(stringResource(R.string.air_quality_pollutant_details))
-            }
-            item {
-                AirQualityDetails(detailedPollutants)
+                primaryPollutant?.let {
+                    item {
+                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+                    }
+                    item {
+                        DetailsSectionHeader(
+                            stringResource(R.string.air_quality_pollutant_primary),
+                            it.pollutantType.getFullName(context)
+                        )
+                    }
+                    item {
+                        DetailsCardText(stringResource(it.pollutantType.sources))
+                    }
+                }
+                item {
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+                }
+                item {
+                    DetailsSectionHeader(stringResource(R.string.air_quality_pollutant_details))
+                }
+                item {
+                    AirQualityDetails(detailedPollutants)
+                }
             }
         }
         item {
@@ -237,10 +280,12 @@ fun DetailsAirQuality(
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
         }
         item {
-            DetailsSectionHeader(stringResource(R.string.air_quality_index_scale))
+            DetailsSectionHeader(
+                stringResource(selectedPollutant.value?.aboutIndex ?: R.string.air_quality_index_scale)
+            )
         }
         item {
-            AirQualityScale()
+            AirQualityScale(selectedPollutant.value)
         }
         bottomInsetItem()
     }
@@ -249,10 +294,12 @@ fun DetailsAirQuality(
 @Composable
 private fun AirQualitySummary(
     dayAirQuality: AirQuality,
+    selectedPollutant: PollutantIndex?,
     label: String,
 ) {
     AirQualityItem(
         airQuality = dayAirQuality,
+        selectedPollutant = selectedPollutant,
         header = {
             TextFixedHeight(
                 text = label,
@@ -265,6 +312,7 @@ private fun AirQualitySummary(
 @Composable
 private fun AirQualityItem(
     airQuality: AirQuality,
+    selectedPollutant: PollutantIndex?,
     header: @Composable () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -280,17 +328,30 @@ private fun AirQualityItem(
                 .size(dimensionResource(R.dimen.material_icon_size)),
             painter = painterResource(R.drawable.ic_circle),
             contentDescription = null,
-            tint = Color(airQuality.getColor(context))
+            tint = Color(airQuality.getColor(context, selectedPollutant))
         )
         Column {
             header()
             TextFixedHeight(
                 text = buildAnnotatedString {
-                    airQuality.getIndex()?.let {
-                        append(UnitUtils.formatInt(context, it))
-                        append(" ")
+                    if (selectedPollutant == null) {
+                        airQuality.getIndex()?.let {
+                            append(UnitUtils.formatInt(context, it))
+                            append(" ")
+                        }
+                    } else {
+                        airQuality.getConcentration(selectedPollutant)?.let {
+                            append(
+                                UnitUtils.formatUnitsDifferentFontSize(
+                                    formattedMeasure = PollutantIndex.getUnit(selectedPollutant)
+                                        .formatMeasure(context, it),
+                                    fontSize = MaterialTheme.typography.headlineSmall.fontSize
+                                )
+                            )
+                            append(" ")
+                        }
                     }
-                    airQuality.getName(context)?.let {
+                    airQuality.getName(context, selectedPollutant)?.let {
                         withStyle(
                             style = SpanStyle(
                                 fontSize = MaterialTheme.typography.headlineSmall.fontSize,
@@ -310,6 +371,7 @@ private fun AirQualityItem(
 @Composable
 private fun AirQualityChart(
     location: Location,
+    selectedPollutant: PollutantIndex?,
     mappedValues: ImmutableMap<Long, AirQuality>,
     daily: Daily,
     currentAirQuality: AirQuality?,
@@ -341,6 +403,7 @@ private fun AirQualityChart(
                         style = MaterialTheme.typography.labelMedium
                     )
                 },
+                selectedPollutant = selectedPollutant,
                 airQuality = airQuality
             )
         }
@@ -348,6 +411,7 @@ private fun AirQualityChart(
         if (it.isValid) {
             AirQualitySummary(
                 it,
+                selectedPollutant,
                 stringResource(R.string.air_quality_average)
             )
         } else {
@@ -357,6 +421,7 @@ private fun AirQualityChart(
         if (it.isValid) {
             AirQualitySummary(
                 it,
+                selectedPollutant,
                 currentTime?.getFormattedTime(location, context, context.is12Hour) ?: ""
             )
         }
@@ -365,10 +430,16 @@ private fun AirQualityChart(
     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
 
     if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
-        val maxY = remember(mappedValues) {
+        val maxY = remember(mappedValues, selectedPollutant) {
             max(
-                PollutantIndex.aqiThresholds[4],
-                mappedValues.values.maxOf { it.getIndex()!! }
+                selectedPollutant?.maxY ?: PollutantIndex.aqiThresholds[4],
+                mappedValues.values.maxOf {
+                    if (selectedPollutant == null) {
+                        it.getIndex()!!
+                    } else {
+                        it.getConcentration(selectedPollutant)?.roundUpToNearestMultiplier(1.0)?.roundToInt() ?: 0
+                    }
+                }
             )
         }
 
@@ -379,7 +450,13 @@ private fun AirQualityChart(
                 lineSeries {
                     series(
                         x = mappedValues.keys,
-                        y = mappedValues.values.map { it.getIndex()!! }
+                        y = mappedValues.values.map {
+                            if (selectedPollutant == null) {
+                                it.getIndex()!!
+                            } else {
+                                it.getConcentration(selectedPollutant)!!
+                            }
+                        }
                     )
                 }
             }
@@ -390,24 +467,38 @@ private fun AirQualityChart(
             modelProducer,
             daily.date,
             maxY.toDouble(),
-            { _, value, _ -> UnitUtils.formatInt(context, value.roundToInt()) },
+            { _, value, _ ->
+                if (selectedPollutant == null) {
+                    UnitUtils.formatInt(context, value.roundToInt())
+                } else {
+                    PollutantIndex.getUnit(selectedPollutant).formatMeasure(context, value)
+                }
+            },
             persistentListOf(
-                (PollutantIndex.aqiThresholds.reversed().map { it.toFloat() }).zip(
+                ((selectedPollutant?.thresholds ?: PollutantIndex.aqiThresholds).reversed().map { it.toFloat() }).zip(
                     context.resources.getIntArray(PollutantIndex.colorsArrayId).reversed().map { Color(it) }
                 ).toMap().toImmutableMap()
             ),
             trendHorizontalLines = persistentMapOf(
-                PollutantIndex.indexHighPollution.toDouble() to
+                (selectedPollutant?.let { it.thresholds[3] } ?: PollutantIndex.aqiThresholds[3]).toDouble() to
                     context.resources.getStringArray(R.array.air_quality_levels)[3]
             ),
             topAxisValueFormatter = { _, value, _ ->
-                mappedValues.getOrElse(value.toLong()) { null }?.getIndex()?.let { UnitUtils.formatInt(context, it) }
-                    ?: "-"
+                mappedValues.getOrElse(value.toLong()) { null }
+                    ?.let {
+                        UnitUtils.formatInt(
+                            context,
+                            if (selectedPollutant == null) {
+                                it.getIndex()!!
+                            } else {
+                                it.getConcentration(selectedPollutant)!!.roundToInt()
+                            }
+                        )
+                    } ?: "-"
             },
-            endAxisItemPlacer = remember {
+            endAxisItemPlacer = remember(selectedPollutant) {
                 SpecificVerticalAxisItemPlacer(
-                    PollutantIndex
-                        .aqiThresholds
+                    (selectedPollutant?.thresholds ?: PollutantIndex.aqiThresholds)
                         .map { it.toDouble() }
                         .toMutableList()
                         .apply {
@@ -421,6 +512,113 @@ private fun AirQualityChart(
         )
     } else {
         UnavailableChart(mappedValues.size)
+    }
+}
+
+// TODO: Redundancy
+@Composable
+private fun AirQualitySwitcher(
+    supportedPollutants: ImmutableList<PollutantIndex>,
+    onPollutantSwitch: (PollutantIndex?) -> Unit,
+    selectedPollutant: PollutantIndex?,
+) {
+    ButtonGroup(
+        horizontalArrangement = Arrangement.spacedBy(ButtonGroupDefaults.ConnectedSpaceBetween),
+        overflowIndicator = { menuState ->
+            ToggleButton(
+                checked = false,
+                onCheckedChange = {
+                    if (menuState.isExpanded) {
+                        menuState.dismiss()
+                    } else {
+                        menuState.show()
+                    }
+                },
+                shapes = ButtonGroupDefaults.connectedTrailingButtonShapes()
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.MoreVert,
+                    contentDescription = stringResource(R.string.action_more)
+                )
+            }
+        }
+    ) {
+        customItem(
+            buttonGroupContent = {
+                ToggleButton(
+                    checked = selectedPollutant == null,
+                    onCheckedChange = { onPollutantSwitch(null) },
+                    shapes = ButtonGroupDefaults.connectedLeadingButtonShapes()
+                ) {
+                    if (selectedPollutant == null) {
+                        Icon(
+                            Icons.Filled.Check,
+                            contentDescription = stringResource(R.string.settings_enabled)
+                        )
+                        Spacer(Modifier.size(ToggleButtonDefaults.IconSpacing))
+                    }
+                    Text(stringResource(R.string.air_quality_index_short))
+                }
+            },
+            menuContent = { state ->
+                DropdownMenuItem(
+                    leadingIcon = if (selectedPollutant == null) {
+                        {
+                            Icon(
+                                Icons.Filled.Check,
+                                contentDescription = stringResource(R.string.settings_enabled)
+                            )
+                        }
+                    } else {
+                        null
+                    },
+                    text = { Text(stringResource(R.string.air_quality_index_short)) },
+                    onClick = {
+                        onPollutantSwitch(null)
+                        state.dismiss()
+                    }
+                )
+            }
+        )
+        supportedPollutants.forEach { pollutant ->
+            customItem(
+                buttonGroupContent = {
+                    ToggleButton(
+                        checked = selectedPollutant == pollutant,
+                        onCheckedChange = { onPollutantSwitch(pollutant) },
+                        shapes = ButtonGroupDefaults.connectedMiddleButtonShapes()
+                    ) {
+                        if (selectedPollutant == pollutant) {
+                            Icon(
+                                Icons.Filled.Check,
+                                contentDescription = stringResource(R.string.settings_enabled)
+                            )
+                            Spacer(Modifier.size(ToggleButtonDefaults.IconSpacing))
+                        }
+                        Text(stringResource(pollutant.shortName))
+                    }
+                },
+                menuContent = { state ->
+                    DropdownMenuItem(
+                        leadingIcon = if (selectedPollutant == pollutant) {
+                            {
+                                Icon(
+                                    Icons.Filled.Check,
+                                    contentDescription = stringResource(R.string.settings_enabled)
+                                )
+                            }
+                        } else {
+                            null
+                        },
+                        text = { Text(stringResource(pollutant.shortName)) },
+                        onClick = {
+                            onPollutantSwitch(pollutant)
+                            state.dismiss()
+                        }
+                    )
+                }
+            )
+        }
     }
 }
 
@@ -493,6 +691,7 @@ fun DetailsAirQualityItem(
 // TODO: Accessibility
 @Composable
 fun AirQualityScale(
+    selectedPollutant: PollutantIndex?,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -524,14 +723,21 @@ fun AirQualityScale(
                     modifier = Modifier.weight(1.5f)
                 )
                 Text(
-                    stringResource(R.string.air_quality_index_short),
+                    selectedPollutant?.let { PollutantIndex.getUnit(it).getName(context) }
+                        ?: stringResource(R.string.air_quality_index_short),
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.End,
                     modifier = Modifier.weight(1.5f)
                 )
             }
-            PollutantIndex.aqiThresholds.forEachIndexed { index, startingValue ->
-                val endingValue = PollutantIndex.aqiThresholds.getOrElse(index + 1) { null }
+            (selectedPollutant?.thresholds ?: PollutantIndex.aqiThresholds).forEachIndexed { index, startingValue ->
+                val aqi = if (selectedPollutant == null) {
+                    startingValue
+                } else {
+                    selectedPollutant.getIndex(startingValue.toDouble())
+                }
+                val endingValue = (selectedPollutant?.thresholds ?: PollutantIndex.aqiThresholds)
+                    .getOrElse(index + 1) { null }
                     ?.let { " – ${UnitUtils.formatInt(context, it - 1)}" }
                     ?: "+"
                 Row(
@@ -551,14 +757,14 @@ fun AirQualityScale(
                                 .size(dimensionResource(R.dimen.material_icon_size)),
                             painter = painterResource(R.drawable.ic_circle),
                             contentDescription = null,
-                            tint = Color(PollutantIndex.getAqiToColor(context, startingValue))
+                            tint = Color(PollutantIndex.getAqiToColor(context, aqi))
                         )
                         Text(
-                            text = PollutantIndex.getAqiToName(context, startingValue)!!
+                            text = PollutantIndex.getAqiToName(context, aqi)!!
                         )
                     }
                     Text(
-                        text = PollutantIndex.getAqiToHarmlessExposure(context, startingValue)!!,
+                        text = PollutantIndex.getAqiToHarmlessExposure(context, aqi)!!,
                         modifier = Modifier.weight(1.5f)
                     )
                     Text(

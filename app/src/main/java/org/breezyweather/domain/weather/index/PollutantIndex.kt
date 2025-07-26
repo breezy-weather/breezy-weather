@@ -30,47 +30,62 @@ import kotlin.math.roundToInt
 enum class PollutantIndex(
     val id: String,
     val thresholds: List<Int>,
+    val maxY: Int,
     val molecularMass: Double?,
     @StringRes val shortName: Int,
     @StringRes val voicedName: Int,
     @StringRes val fullName: Int,
+    @StringRes val aboutPollutant: Int,
+    @StringRes val aboutIndex: Int,
     @StringRes val sources: Int,
 ) {
+    PM25(
+        "pm25",
+        listOf(0, 5, 15, 30, 60, 150), // Plume 2023
+        60,
+        null,
+        R.string.air_quality_pm25,
+        R.string.air_quality_pm25_voice,
+        R.string.air_quality_pm25_full,
+        R.string.air_quality_pm25_about,
+        R.string.air_quality_pm25_index,
+        R.string.air_quality_pm_sources
+    ),
+    PM10(
+        "pm10",
+        listOf(0, 15, 45, 80, 160, 400), // Plume 2023
+        160,
+        null,
+        R.string.air_quality_pm10,
+        R.string.air_quality_pm10_voice,
+        R.string.air_quality_pm10_full,
+        R.string.air_quality_pm10_about,
+        R.string.air_quality_pm10_index,
+        R.string.air_quality_pm_sources
+    ),
     O3(
         "o3",
         listOf(0, 50, 100, 160, 240, 480), // Plume 2023
+        240,
         48.0,
         R.string.air_quality_o3,
         R.string.air_quality_o3_voice,
         R.string.air_quality_o3_full,
+        R.string.air_quality_o3_about,
+        R.string.air_quality_o3_index,
         R.string.air_quality_o3_sources
     ),
     NO2(
         "no2",
         listOf(0, 10, 25, 200, 400, 1000), // Plume 2023
+        200,
         46.0055,
         R.string.air_quality_no2,
         R.string.air_quality_no2_voice,
         R.string.air_quality_no2_full,
+        R.string.air_quality_no2_about,
+        R.string.air_quality_no2_index,
         R.string.air_quality_no2_sources
-    ),
-    PM10(
-        "pm10",
-        listOf(0, 15, 45, 80, 160, 400), // Plume 2023
-        null,
-        R.string.air_quality_pm10,
-        R.string.air_quality_pm10_voice,
-        R.string.air_quality_pm10_full,
-        R.string.air_quality_pm_sources
-    ),
-    PM25(
-        "pm25",
-        listOf(0, 5, 15, 30, 60, 150), // Plume 2023
-        null,
-        R.string.air_quality_pm25,
-        R.string.air_quality_pm25_voice,
-        R.string.air_quality_pm25_full,
-        R.string.air_quality_pm_sources
     ),
     SO2(
         "so2",
@@ -82,10 +97,13 @@ enum class PollutantIndex(
             500, // 10 min
             960 // linear prolongation
         ), // WHO 2021
+        270,
         64.066,
         R.string.air_quality_so2,
         R.string.air_quality_so2_voice,
         R.string.air_quality_so2_full,
+        R.string.air_quality_so2_about,
+        R.string.air_quality_so2_index,
         R.string.air_quality_so2_sources
     ),
     CO(
@@ -98,10 +116,13 @@ enum class PollutantIndex(
             100, // 15 min
             230 // linear prolongation
         ), // WHO 2021
+        35,
         28.01,
         R.string.air_quality_co,
         R.string.air_quality_co_voice,
         R.string.air_quality_co_full,
+        R.string.air_quality_co_about,
+        R.string.air_quality_co_index,
         R.string.air_quality_co_sources
     ),
     ;
