@@ -820,4 +820,16 @@
     <string name="action_share_no_app">Nem található a megosztással kompatibilis alkalmazás</string>
     <string name="action_translate">Fordítás</string>
     <string name="action_translate_no_app">Nem található kompatibilis fordítóalkalmazás</string>
+    <string name="air_quality_pm25_about">A finom részecskékkel (PM2,5) kapcsolatos információk</string>
+    <string name="air_quality_pm10_about">A finom részecskékkel (PM10) kapcsolatos információk</string>
+    <string name="air_quality_so2_about">A kén-dioxiddal (SO₂) kapcsolatos információk</string>
+    <string name="air_quality_no2_about">A nitrogén-dioxiddal (NO₂) kapcsolatos információk</string>
+    <string name="air_quality_o3_about">Az ózonnal (O₃) kapcsolatos információk</string>
+    <string name="air_quality_co_about">Az szén-monoxiddal (CO) kapcsolatos információk</string>
+    <string name="air_quality_pm25_index">Légszennyezettségi indexskála a PM2,5 részecskékhez</string>
+    <string name="air_quality_pm10_index">Légszennyezettségi indexskála a PM10 részecskékhez</string>
+    <string name="air_quality_so2_index">Légszennyezettségi indexskála a kén-dioxidhoz (SO₂)</string>
+    <string name="air_quality_no2_index">Légszennyezettségi indexskála a nitrogén-dioxidhoz (NO₂)</string>
+    <string name="air_quality_o3_index">Légszennyezettségi indexskála az ózonhoz (O₃)</string>
+    <string name="air_quality_co_index">Légszennyezettségi indexskála a szén-monoxidhoz (CO)</string>
 </resources>
