@@ -805,4 +805,11 @@
     <string name="uv_index_time_to_burn_explanations">Den exakta tiden till solbränna beror på höjden över havet, förekomsten av reflekterande ytor såsom vatten eller snö, din hudtyp och användningen av solskyddsmedel.</string>
     <string name="air_quality_index_about_description_1">Luftkvalitetsindexet (AQI) är en skala som är utformad för att hjälpa dig att förstå hur förorenad luften är i ett visst område och vilka potentiella risker detta innebär för din hälsa.</string>
     <string name="air_quality_index_about_description_2">Skalan som används i denna app bygger på Världshälsoorganisationens rekommendationer, snarare än lokala bestämmelser, för att få meningsfulla kategorier och göra det lättare att jämföra föroreningsnivåer mellan länder.</string>
+    <string name="air_quality_pm_sources">De huvudsakliga källorna är förbränningsprocesser (t.ex. kraftverk, uppvärmning av inomhusmiljöer, bilavgaser, skogsbränder), mekaniska processer (t.ex. byggnation, mineralstoft, jordbruk) och biologiska partiklar (t.ex. pollen, mögel, bakterier, virus).</string>
+    <string name="air_quality_so2_sources">De huvudsakliga källorna är förbränningsprocesser med svavelhaltiga bränslen inom industri, transport och kraftverk.</string>
+    <string name="air_quality_no2_sources">De huvudsakliga källorna är förbränningsprocesser med bränslen, såsom de som används inom industri och transport.</string>
+    <string name="air_quality_o3_sources">Ozon bildas genom en kemisk reaktion mellan atmosfäriskt syre, kväveoxider, koloxid och organiska föreningar i närvaro av solljus.</string>
+    <string name="air_quality_co_sources">Kommer vanligtvis från ofullständig förbränning av kolbränslen, såsom den som sker i bilmotorer och kraftverk.</string>
+    <string name="humidity_about_description">Relativ luftfuktighet, mer allmänt känd som bara luftfuktighet, är den procentuella andelen vattenånga som finns i luften i förhållande till den maximala mängd som luften kan innehålla vid en given temperatur.</string>
+    <string name="dew_point_about_description">Daggpunkten är den temperatur till vilken luften måste kylas ner för att uppnå en relativ luftfuktighet på %s.</string>
 </resources>
