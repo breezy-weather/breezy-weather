@@ -20,16 +20,18 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
+import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
-import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.serialization.json.Json
+import org.breezyweather.common.extensions.roundDownToNearestMultiplier
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.sources.ncei.json.NceiDataResult
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -37,12 +39,14 @@ import javax.inject.Inject
 import javax.inject.Named
 import kotlin.math.PI
 import kotlin.math.cos
-import kotlin.math.floor
+import kotlin.math.exp
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.math.pow
+import kotlin.math.roundToInt
+import kotlin.math.sqrt
 
 class NceiService @Inject constructor(
-    @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), WeatherSource, LocationParametersSource {
 
@@ -83,7 +87,8 @@ class NceiService @Inject constructor(
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
         val month = Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.MONTH] + 1
-        val finalYear = floor(Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.YEAR] / 10.0) * 10.0
+        val finalYear = (Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.YEAR]).toDouble()
+            .roundDownToNearestMultiplier(10.0).roundToInt()
         val initialYear = finalYear - 29
 
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
@@ -97,8 +102,8 @@ class NceiService @Inject constructor(
         val normals = if (stations != "") {
             mApi.getData(
                 stations = stations,
-                startDate = "${initialYear.toInt()}-01-01",
-                endDate = "${finalYear.toInt()}-12-31"
+                startDate = "$initialYear-01-01",
+                endDate = "$finalYear-12-31"
             ).onErrorResumeNext {
                 failedFeatures[SourceFeature.NORMALS] = it
                 Observable.just(emptyList())
@@ -113,6 +118,71 @@ class NceiService @Inject constructor(
                 failedFeatures = failedFeatures
             )
         }
+    }
+
+    private fun getNormals(
+        month: Int,
+        normalsList: List<NceiDataResult>? = null,
+        stationMap: Map<String, Double>,
+    ): Normals {
+        var tMaxWeightedSum = 0.0
+        var tMaxWeightTotal = 0.0
+        var tMinWeightedSum = 0.0
+        var tMinWeightTotal = 0.0
+        val monthEnding: String = if (month in 1..9) {
+            "-0$month"
+        } else {
+            "-$month"
+        }
+
+        // Assign a weight to each station as a function of its distance from the weather location.
+        // We calculate weights here so that we won't have to force reload location parameters
+        // even if the weight function changes in the future.
+        val stationWeights = stationMap.mapValues {
+            getWeight(it.value)
+        }
+
+        // Add each relevant monthly record to the weighted sum of tMax and tMin,
+        // using the weight of the reporting station,
+        // so that we can calculate the weighted average later.
+        normalsList?.forEach {
+            if (it.date.endsWith(monthEnding)) {
+                if (it.station in stationWeights.keys) {
+                    if (it.tMax != null) {
+                        tMaxWeightedSum += it.tMax.toDouble().times(stationWeights[it.station]!!)
+                        tMaxWeightTotal += stationWeights[it.station]!!
+                    }
+                    if (it.tMin != null) {
+                        tMinWeightedSum += it.tMin.toDouble().times(stationWeights[it.station]!!)
+                        tMinWeightTotal += stationWeights[it.station]!!
+                    }
+                }
+            }
+        }
+        return Normals(
+            month = month,
+            daytimeTemperature = if (tMaxWeightTotal > 0) tMaxWeightedSum.div(tMaxWeightTotal) else null,
+            nighttimeTemperature = if (tMinWeightTotal > 0) tMinWeightedSum.div(tMinWeightTotal) else null
+        )
+    }
+
+    /*
+     * Models the weight for each nearby station after the normal distribution.
+     * Let μ = 0
+     *     σ = 1 representing an arbitrary distance of 20km
+     *     x = distance between station and location in multiples of 20km
+     * Illustrative weights at various distances:
+     *  - Station at location: 0.399 (100% weight)
+     *  - Station 20km away:   0.242 (60% weight)
+     *  - Station 40km away:   0.054 (14% weight)
+     *  - Station 60km away:   0.004 (1% weight)
+     * Source: https://en.wikipedia.org/wiki/Normal_distribution
+     */
+    private fun getWeight(distance: Double): Double {
+        val sigmaDistance = DISTANCE_LIMIT / 3.0
+        val x = distance / sigmaDistance
+        val weight = 1.0 / sqrt(2.0 * PI) * exp(-x.pow(2.0) / 2.0)
+        return weight
     }
 
     override fun needsLocationParametersRefresh(
@@ -143,13 +213,14 @@ class NceiService @Inject constructor(
         }
         val bbox = "$north,$west,$south,$east"
 
-        val finalYear = floor(Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.YEAR] / 10.0) * 10.0
+        val finalYear = (Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.YEAR]).toDouble()
+            .roundDownToNearestMultiplier(10.0).roundToInt()
         val initialYear = finalYear - 29
 
         return mApi.getStations(
             bbox = bbox,
-            startDate = "${initialYear.toInt()}-01-01T00:00:00",
-            endDate = "${finalYear.toInt()}-12-31T23:59:59"
+            startDate = "$initialYear-01-01T00:00:00",
+            endDate = "$finalYear-12-31T23:59:59"
         ).map {
             // The nearest station from a location may not have the most complete historical weather record.
             // Therefore we will obtain and store all the stations within the 120km x 120km area,

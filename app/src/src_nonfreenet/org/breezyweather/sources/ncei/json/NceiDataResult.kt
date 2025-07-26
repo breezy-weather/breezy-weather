@@ -1,8 +1,3 @@
-package org.breezyweather.sources.ncei.json
-
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-
 /**
  * This file is part of Breezy Weather.
  *
@@ -18,6 +13,12 @@ import kotlinx.serialization.Serializable
  * You should have received a copy of the GNU Lesser General Public License
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
+
+package org.breezyweather.sources.ncei.json
+
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
 @Serializable
 data class NceiDataResult(
     @SerialName("DATE") val date: String,
