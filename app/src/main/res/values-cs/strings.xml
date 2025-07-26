@@ -206,7 +206,7 @@
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Živá tapeta</string>
     <string name="settings_location_service">Služba lokace</string>
-    <string name="settings_appearance_dark_mode_title">Tmavý režim</string>
+    <string name="settings_appearance_dark_mode_title">Tmavý režim aplikace</string>
     <string name="settings_appearance_icon_pack_title">Balíček ikon</string>
     <string name="settings_appearance">Vzhled</string>
     <string name="settings_main_gravity_sensor_switch">Gravitační senzor</string>
@@ -539,7 +539,7 @@
     <string name="common_weather_text_drizzle_moderate">Mírné mrholení</string>
     <string name="common_weather_text_drizzle_heavy">Silné mrholení</string>
     <string name="settings_weather_sources_per_location_summary">Přizpůsobte zdroj dat o počasí použitý pro toto umístění</string>
-    <string name="settings_appearance_dark_mode_locations_title">Denní / noční režim pro umístění</string>
+    <string name="settings_appearance_dark_mode_locations_title">Tmavý režim založený na umístění</string>
     <string name="settings_main_threshold_lines_on_charts">Prahové linky na grafech</string>
     <string name="unit_bft_voice">na Beaufortově stupnici</string>
     <string name="common_weather_text_drizzle_light">Lehké mrholení</string>
@@ -826,4 +826,10 @@
     <string name="temperature_normals_deviation_explanation_minimum">Odchylka od průměrné minimální teploty v měsíci %s v tomto umístění</string>
     <string name="widget_custom_subtitle_help_content_description">Zobrazit nápovědu k vlastním klíčovým slovům titulků</string>
     <string name="widget_custom_subtitle_alert_box_title">Vlastní nápověda titulků</string>
+    <string name="action_open_in_other_app_no_app">Nenalezeny žádné mapy</string>
+    <string name="action_share_no_app">Nenalezena žádná aplikace ke sdílení</string>
+    <string name="action_translate">Přeložit</string>
+    <string name="action_translate_no_app">Nenalezen žádný překladač</string>
+    <string name="settings_appearance_dark_mode_locations_day_night">Podle dne/noci</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Vždy tmavé, pokud je aplikace ve tmavém režimu</string>
 </resources>
