@@ -82,7 +82,7 @@
     <string name="settings_notifications_section_forecast">Vorhersage</string>
     <string name="settings_appearance_language_title">Sprache</string>
     <string name="settings_appearance">Erscheinungsbild</string>
-    <string name="settings_appearance_dark_mode_title">Dunkler Modus</string>
+    <string name="settings_appearance_dark_mode_title">Dunkles App-Design</string>
     <string name="settings_units_distance">Einheit für Entfernung</string>
     <string name="settings_main_gravity_sensor_switch">Lagesensor</string>
     <string name="settings_appearance_icon_pack_title">Symbolpaket</string>
@@ -533,7 +533,7 @@
     <string name="common_weather_text_rain_snow_mixed_heavy">Starker Schneeregen</string>
     <string name="unit_bft_nominative">%s Bft</string>
     <string name="unit_bft_voice">Auf der Beaufortskala</string>
-    <string name="settings_appearance_dark_mode_locations_title">Tag- / Nachtmodus für Orte</string>
+    <string name="settings_appearance_dark_mode_locations_title">Ortsbasiertes dunkles Design</string>
     <string name="weather_message_unsupported_feature">Quelle unterstützt eines der gewünschten Features nicht</string>
     <string name="about_contribution_designer">Logo-Designer</string>
     <string name="temperature_normals">Temperatur-Normalwerte</string>
@@ -825,4 +825,10 @@
     <string name="temperature_normals_deviation_explanation_minimum">Abweichung von der %s-Durchschnittsminimaltemperatur für diesen Ort</string>
     <string name="widget_custom_subtitle_alert_box_title">Hilfe zu benutzerdefiniertem Untertitel</string>
     <string name="widget_custom_subtitle_help_content_description">Zeigt Schlüsselwörter für benutzerdefinierte Untertitel als Hilfe an</string>
+    <string name="action_open_in_other_app_no_app">Keine Maps-App gefunden</string>
+    <string name="action_share_no_app">Keine App zum Teilen gefunden</string>
+    <string name="action_translate">Übersetzen</string>
+    <string name="action_translate_no_app">Keine Übersetzungs-App gefunden</string>
+    <string name="settings_appearance_dark_mode_locations_day_night">Von Sonnenuntergang bis -aufgang</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Immer dunkel, wenn das dunkle App-Design aktiv ist</string>
 </resources>
