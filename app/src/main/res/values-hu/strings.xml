@@ -227,7 +227,7 @@
     <string name="weather_message_unsupported_feature">A forrás nem támogatja a kért funkciók valamelyikét</string>
     <string name="message_server_timeout">A kérelem időtúllépés miatt lejárt</string>
     <string name="widget_style_tile">Csempe</string>
-    <string name="settings_appearance_dark_mode_locations_title">Helyszín alapú</string>
+    <string name="settings_appearance_dark_mode_locations_title">Helyszín alapú sötét mód</string>
     <string name="temperature_degree_day_heating">Fűtési foknap</string>
     <string name="temperature_degree_day_cooling">Hűtési foknap</string>
     <string name="temperature_normal_short">Normál</string>
@@ -815,5 +815,9 @@
     <string name="widget_custom_subtitle_help_content_description">Egyéni súgófelirat-kulcsszavak megjelenítése</string>
     <string name="widget_custom_subtitle_alert_box_title">Egyéni segédfelirat</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Napszaktól függ</string>
-    <string name="settings_appearance_dark_mode_locations_dark">Mindig sötét</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Mindig sötét, amikor az alkalmazás sötét módban van</string>
+    <string name="action_open_in_other_app_no_app">Nem található kompatibilis térképalkalmazás</string>
+    <string name="action_share_no_app">Nem található a megosztással kompatibilis alkalmazás</string>
+    <string name="action_translate">Fordítás</string>
+    <string name="action_translate_no_app">Nem található kompatibilis fordítóalkalmazás</string>
 </resources>
