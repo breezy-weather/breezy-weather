@@ -814,4 +814,16 @@
     <string name="action_share_no_app">Не знайдено програми для спільного доступу</string>
     <string name="action_translate">Перекласти</string>
     <string name="action_translate_no_app">Не знайдено програми-перекладача</string>
+    <string name="air_quality_pm25_about">Про дрібні тверді частинки (PM2.5)</string>
+    <string name="air_quality_pm25_index">Шкала індексу якості повітря для PM2.5</string>
+    <string name="air_quality_pm10_about">Про вдихувані тверді частинки (PM10)</string>
+    <string name="air_quality_pm10_index">Шкала індексу якості повітря для PM10</string>
+    <string name="air_quality_so2_about">Про діоксид сірки (SO₂)</string>
+    <string name="air_quality_so2_index">Шкала індексу якості повітря для SO₂</string>
+    <string name="air_quality_no2_about">Про діоксид азоту (NO₂)</string>
+    <string name="air_quality_no2_index">Шкала індексу якості повітря для NO₂</string>
+    <string name="air_quality_o3_about">Про приземний озон (O₃)</string>
+    <string name="air_quality_o3_index">Шкала індексу якості повітря для O₃</string>
+    <string name="air_quality_co_about">Про чадний газ (CO)</string>
+    <string name="air_quality_co_index">Шкала індексу якості повітря для CO2</string>
 </resources>
