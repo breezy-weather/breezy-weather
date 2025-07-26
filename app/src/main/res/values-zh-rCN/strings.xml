@@ -224,7 +224,7 @@
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">动态壁纸</string>
     <string name="settings_location_service">位置服务</string>
-    <string name="settings_appearance_dark_mode_title">暗色模式</string>
+    <string name="settings_appearance_dark_mode_title">深色模式</string>
     <string name="settings_appearance">外观</string>
     <string name="settings_appearance_icon_pack_title">图标包</string>
     <string name="settings_main_background_animation_title">背景动画</string>
@@ -541,7 +541,7 @@
     <string name="metno_weather_text_andthunder">%s 并伴有雷电</string>
     <string name="unit_bft_nominative">%s级</string>
     <string name="unit_bft_voice">蒲福风级</string>
-    <string name="settings_appearance_dark_mode_locations_title">位置的白天/夜间模式</string>
+    <string name="settings_appearance_dark_mode_locations_title">基于位置的深色模式</string>
     <string name="weather_message_unsupported_feature">数据源不支持所请求功能中的一个</string>
     <string name="about_contribution_designer">Logo 设计者</string>
     <string name="settings_main_threshold_lines_on_charts">图表中的阈值线</string>
@@ -897,4 +897,10 @@
     <string name="temperature_normals_deviation_explanation_minimum">偏离此位置的 %s 最低气温均值</string>
     <string name="widget_custom_subtitle_help_content_description">显示自定义小标题关键词帮助</string>
     <string name="widget_custom_subtitle_alert_box_title">自定义小标题帮助</string>
+    <string name="action_open_in_other_app_no_app">未找到地图应用</string>
+    <string name="action_share_no_app">未找到分享应用</string>
+    <string name="action_translate">翻译</string>
+    <string name="action_translate_no_app">未找到翻译应用</string>
+    <string name="settings_appearance_dark_mode_locations_day_night">按照实际时间设置主题模式</string>
+    <string name="settings_appearance_dark_mode_locations_dark">应用处于深色模式下时始终是深色</string>
 </resources>
