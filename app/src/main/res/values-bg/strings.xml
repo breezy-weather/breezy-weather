@@ -304,7 +304,7 @@
     <string name="settings_background_updates_worker_info_title">Информация за работника</string>
     <string name="settings_location">Местоположение</string>
     <string name="settings_location_service">Услуга за местоположение</string>
-    <string name="settings_appearance_dark_mode_title">Тъмен режим</string>
+    <string name="settings_appearance_dark_mode_title">Тъмен режим на приложението</string>
     <string name="settings_location_access_switch_summaryOn">Позволен. Можете да добавите текущото си местоположение като местоположение.</string>
     <string name="settings_location_access_background_title">Достъп до местоположението във фонов режим</string>
     <string name="settings_location_access_switch_summaryOff">Моля, позволете, ако искате да можете да добавите текущото си местоположение като местоположение.</string>
@@ -496,7 +496,7 @@
     <string name="action_delete">Изтрий</string>
     <string name="precipitation_nowcasting">Текуща прогноза за валежите</string>
     <string name="about_privacy_policy">Политика за поверителност</string>
-    <string name="settings_appearance_dark_mode_locations_title">Дневен / нощен режим за местоположения</string>
+    <string name="settings_appearance_dark_mode_locations_title">Тъмен режим базиран на местоположението</string>
     <string name="unit_bft_voice">по скалата на Бофорт</string>
     <string name="about_contact">Контакт</string>
     <string name="about_dependencies">Зависимости</string>
@@ -810,4 +810,22 @@
     <string name="about_update_check_eol">Тази версия на Android вече не се поддържа</string>
     <string name="common_weather_text_drifting_snow">Наноси сняг</string>
     <string name="common_weather_text_glaze">Заледяване</string>
+    <string name="air_quality_pm25_about">За фините прахови частици (PM2.5)</string>
+    <string name="air_quality_pm25_index">Скала за индекс на качеството на въздуха за PM2.5</string>
+    <string name="air_quality_pm10_about">За вдишваните прахови частици (PM10)</string>
+    <string name="air_quality_pm10_index">Скала за индекс на качеството на въздуха за PM10</string>
+    <string name="air_quality_so2_about">За серен диоксид (So₂)</string>
+    <string name="air_quality_so2_index">Скала за индекс на качеството на въздуха за SO₂</string>
+    <string name="air_quality_no2_about">За азотен диоксид (NO₂)</string>
+    <string name="air_quality_no2_index">Скала за индекс на качеството на въздуха за NO₂</string>
+    <string name="air_quality_o3_about">За наземния озон (O₃)</string>
+    <string name="air_quality_o3_index">Скала за индекс на качеството на въздуха за O₃</string>
+    <string name="air_quality_co_about">За въглеродния окис (CO)</string>
+    <string name="air_quality_co_index">Скала за индекс на качеството на въздуха за CO</string>
+    <string name="action_open_in_other_app_no_app">Не е намерено приложение за карти</string>
+    <string name="action_share_no_app">Няма приложение, което да споделя с намерени</string>
+    <string name="action_translate">Превод</string>
+    <string name="action_translate_no_app">Не е намерено приложение за превод</string>
+    <string name="settings_appearance_dark_mode_locations_day_night">Следвай дневен/нощен цикъл</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Винаги тъмно, когато приложението е в тъмен режим</string>
 </resources>
