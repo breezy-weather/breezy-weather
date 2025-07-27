@@ -21,10 +21,8 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.PrecipitationProbability
-import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
@@ -33,13 +31,17 @@ import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
+import com.google.maps.android.PolyUtil
+import com.google.maps.android.model.LatLng
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.domain.weather.index.PollutantIndex
+import org.breezyweather.sources.common.xml.CapAlert
 import org.breezyweather.sources.computeMeanSeaLevelPressure
 import org.breezyweather.sources.computePollutantInUgm3FromPpb
 import org.breezyweather.sources.cwa.json.CwaAirQualityResult
 import org.breezyweather.sources.cwa.json.CwaAlertResult
 import org.breezyweather.sources.cwa.json.CwaAssistantResult
+import org.breezyweather.sources.cwa.json.CwaCbphAlert
 import org.breezyweather.sources.cwa.json.CwaCurrentResult
 import org.breezyweather.sources.cwa.json.CwaForecastResult
 import org.breezyweather.sources.cwa.json.CwaLocationTown
@@ -84,7 +86,6 @@ internal fun getCurrent(
     val windGusts = getValid(current?.gustInfo?.peakGustSpeed) as Double?
     val weatherText = getValid(current?.weather) as String?
     var weatherCode: WeatherCode? = null
-    var dailyForecast: String? = null
 
     // The current observation result does not come with a "code".
     // We need to decipher the best code to use based on the text.
@@ -125,7 +126,7 @@ internal fun getCurrent(
 
     // "Weather Assistant" returns a few paragraphs of human-written forecast summary.
     // We only want the first paragraph to keep it concise.
-    dailyForecast = if (assistantResult.cwaopendata != null) {
+    val dailyForecast: String? = if (assistantResult.cwaopendata != null) {
         assistantResult.cwaopendata.dataset?.parameterSet?.parameter?.getOrNull(0)?.parameterValue
     } else {
         // Just in case the Assistant feed regresses to "cwbopendata" as the root property.
@@ -476,8 +477,9 @@ internal fun getAlertList(
                     (location.locationName == "恆春半島" && warningArea == "H") ||
                     (location.locationName == "蘭嶼綠島" && warningArea == "L")
                 ) {
-                    // so we don't cover up a more severe level with a less severe one
-                    // TODO: Why? There can be multiple same-type alerts at different times
+                    // CWA does not issue future alerts for the same type of phenomenon.
+                    // If a more severe alert has already been applied to a location,
+                    // don't cover it up with a less severe one.
                     if (!applicable) {
                         applicable = true
                         headline = hazard.info.phenomena + hazard.info.significance
@@ -499,7 +501,101 @@ internal fun getAlertList(
             }
         }
     }
+    return alertList
+}
 
+internal fun getCbphAlertList(
+    cbphAlerts: List<List<CwaCbphAlert>>,
+    location: Location,
+): List<Alert> {
+    val alertList = mutableListOf<Alert>()
+    cbphAlerts.forEachIndexed { key, alerts ->
+        val headline = when (key) {
+            0 -> "大雷雨即時訊息" // Thunderstorm
+            1 -> "颱風強風告警" // Hurricane-force Wind
+            2 -> "山區暴雨警示訊息" // Flash Flood Alert after Heavy Rain in Mountains
+            else -> null
+        }
+        alerts.forEach {
+            // These are short-term alerts (lasting at most 3 hours), and cannot be issued ahead of time.
+            // Make sure alert is still currently valid.
+            val valid = (Date() >= (it.onset ?: (it.effective ?: (it.sent ?: Date(0))))) &&
+                (Date() < (it.expires ?: Date(Long.MAX_VALUE)))
+
+            val polygon = mutableListOf<LatLng>()
+            val points = it.polygon?.split(" ")
+            points?.forEach { point ->
+                val coords = point.split(",")
+                if (coords.size == 2) {
+                    polygon.add(LatLng(coords[0].toDouble(), coords[1].toDouble()))
+                }
+            }
+
+            // Check that the location is within the alert polygon
+            if (valid && PolyUtil.containsLocation(location.latitude, location.longitude, polygon, true)) {
+                // If an alert is sent to all cell phone users in the area,
+                // mark it as Extreme, otherwise it's Severe.
+                val severity = if (it.cbEnabled ?: false) {
+                    AlertSeverity.EXTREME
+                } else {
+                    AlertSeverity.SEVERE
+                }
+                alertList.add(
+                    Alert(
+                        alertId = it.identifier,
+                        startDate = it.onset ?: it.effective ?: it.sent,
+                        endDate = it.expires,
+                        headline = headline,
+                        description = it.description,
+                        instruction = it.instruction,
+                        source = "中央氣象署",
+                        severity = severity,
+                        color = Alert.colorFromSeverity(severity)
+                    )
+                )
+            }
+        }
+    }
+    return alertList
+}
+
+internal fun getCapAlertList(
+    capAlerts: List<CapAlert?>,
+    location: Location,
+): List<Alert> {
+    val alertList = mutableListOf<Alert>()
+    val id = "cwa"
+    val geocodeValueName = "Taiwan_Geocode_103"
+    val townshipCode = location.parameters.getOrElse(id) { null }?.getOrElse("townshipCode") { null }
+    if (townshipCode.isNullOrEmpty()) {
+        throw InvalidLocationException()
+    }
+    val geocode = getLegacyTownshipCode(townshipCode)
+    capAlerts.forEachIndexed { i, alert ->
+        alert?.info?.forEach {
+            // Expired CAP Alert file is not cleared from the API.
+            // Normally this is not a problem, but if there are other current alerts,
+            // expired CAP Alerts can show up on the alert detail screen if not eliminated.
+            val valid = (Date() < (it.expires?.value ?: Date(Long.MAX_VALUE)))
+
+            // Check location geocode against alert geocodes.
+            if (valid && it.containsGeocode(geocodeValueName, geocode)) {
+                alertList.add(
+                    Alert(
+                        alertId = alert.identifier?.value ?: (it.headline?.value + " " + alert.sent?.value.toString()),
+                        startDate = it.onset?.value ?: it.effective?.value ?: alert.sent?.value,
+                        endDate = it.expires?.value,
+                        headline = it.headline?.value,
+                        description = it.description?.value,
+                        instruction = it.instruction?.value,
+                        source = "中央氣象署",
+                        severity = AlertSeverity.MODERATE,
+                        color = Alert.colorFromSeverity(AlertSeverity.MODERATE)
+                    )
+                )
+            }
+        }
+    }
     return alertList
 }
 

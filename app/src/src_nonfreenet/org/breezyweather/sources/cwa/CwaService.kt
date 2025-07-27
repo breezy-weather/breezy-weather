@@ -43,22 +43,28 @@ import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.domain.settings.SourceConfigStore
+import org.breezyweather.sources.common.xml.CapAlert
 import org.breezyweather.sources.cwa.json.CwaAirQualityResult
 import org.breezyweather.sources.cwa.json.CwaAlertResult
 import org.breezyweather.sources.cwa.json.CwaAssistantResult
+import org.breezyweather.sources.cwa.json.CwaCbphAlert
 import org.breezyweather.sources.cwa.json.CwaCurrentResult
 import org.breezyweather.sources.cwa.json.CwaForecastResult
 import org.breezyweather.sources.cwa.json.CwaNormalsResult
 import retrofit2.Retrofit
+import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
+import kotlin.time.Duration.Companion.days
 
 class CwaService @Inject constructor(
     @ApplicationContext context: Context,
-    @Named("JsonClient") client: Retrofit.Builder,
+    @Named("JsonClient") jsonClient: Retrofit.Builder,
+    @Named("XmlClient") xmlClient: Retrofit.Builder,
 ) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource, ConfigurableSource {
 
     override val id = "cwa"
@@ -81,25 +87,40 @@ class CwaService @Inject constructor(
         }
     }
 
-    private val mApi by lazy {
-        client
+    private val mJsonApi by lazy {
+        jsonClient
             .baseUrl(CWA_BASE_URL)
             .build()
-            .create(CwaApi::class.java)
+            .create(CwaJsonApi::class.java)
+    }
+
+    private val mCbphApi by lazy {
+        jsonClient
+            .baseUrl(CWA_CBPH_BASE_URL)
+            .build()
+            .create(CwaCbphApi::class.java)
+    }
+
+    private val mXmlApi by lazy {
+        xmlClient
+            .baseUrl(CWA_BASE_URL)
+            .build()
+            .create(CwaXmlApi::class.java)
     }
 
     private val weatherAttribution = "中央氣象署"
+    private val airQualityAttribution = "環境部"
     override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.AIR_QUALITY to "環境部",
+        SourceFeature.AIR_QUALITY to airQualityAttribution,
         SourceFeature.ALERT to weatherAttribution,
         SourceFeature.NORMALS to weatherAttribution
     )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.cwa.gov.tw/",
-        "環境部" to "https://airtw.moenv.gov.tw/"
+        airQualityAttribution to "https://airtw.moenv.gov.tw/"
     )
 
     override fun isFeatureSupportedForLocation(
@@ -147,7 +168,7 @@ class CwaService @Inject constructor(
 
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val hourly = if (SourceFeature.FORECAST in requestedFeatures) {
-            mApi.getForecast(
+            mJsonApi.getForecast(
                 apiKey = apiKey,
                 endpoint = CWA_HOURLY_ENDPOINTS[countyName]!!,
                 townshipName = townshipName
@@ -159,7 +180,7 @@ class CwaService @Inject constructor(
             Observable.just(CwaForecastResult())
         }
         val daily = if (SourceFeature.FORECAST in requestedFeatures) {
-            mApi.getForecast(
+            mJsonApi.getForecast(
                 apiKey = apiKey,
                 endpoint = CWA_DAILY_ENDPOINTS[countyName]!!,
                 townshipName = townshipName
@@ -172,7 +193,7 @@ class CwaService @Inject constructor(
         }
 
         val current = if (SourceFeature.CURRENT in requestedFeatures) {
-            mApi.getCurrent(
+            mJsonApi.getCurrent(
                 apiKey = apiKey,
                 stationId = stationId
             ).onErrorResumeNext {
@@ -185,7 +206,7 @@ class CwaService @Inject constructor(
 
         // "Weather Assistant" provides human-written forecast summary on a county level.
         val assistant = if (SourceFeature.CURRENT in requestedFeatures) {
-            mApi.getAssistant(
+            mJsonApi.getAssistant(
                 endpoint = CWA_ASSISTANT_ENDPOINTS[countyName]!!,
                 apiKey = apiKey
             ).onErrorResumeNext {
@@ -218,7 +239,7 @@ class CwaService @Inject constructor(
             """,
                 ""
             )
-            mApi.getAirQuality(
+            mJsonApi.getAirQuality(
                 apiKey = apiKey,
                 body = body.toRequestBody("application/json".toMediaTypeOrNull())
             ).onErrorResumeNext {
@@ -236,7 +257,7 @@ class CwaService @Inject constructor(
         val currentMonth = Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.MONTH] + 1
         val station = LatLng(location.latitude, location.longitude).getNearestLocation(CWA_NORMALS_STATIONS)
         val normals = if (SourceFeature.NORMALS in requestedFeatures && station != null) {
-            mApi.getNormals(
+            mJsonApi.getNormals(
                 apiKey = apiKey,
                 stationId = station,
                 month = currentMonth.toString()
@@ -249,7 +270,7 @@ class CwaService @Inject constructor(
         }
 
         val alerts = if (SourceFeature.ALERT in requestedFeatures) {
-            mApi.getAlerts(
+            mJsonApi.getAlerts(
                 apiKey = apiKey
             ).onErrorResumeNext {
                 failedFeatures[SourceFeature.ALERT] = it
@@ -259,7 +280,62 @@ class CwaService @Inject constructor(
             Observable.just(CwaAlertResult())
         }
 
-        return Observable.zip(current, airQuality, daily, hourly, normals, alerts, assistant) {
+        // Alerts for localized hazardous weather conditions.
+        val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+        formatter.timeZone = TimeZone.getTimeZone("Etc/UTC")
+        val now = Date()
+        val yesterday = Date(now.time - 1.days.inWholeMilliseconds)
+        val tomorrow = Date(now.time + 1.days.inWholeMilliseconds)
+        val stime = formatter.format(yesterday)
+        val etime = formatter.format(tomorrow)
+        val geocode = getLegacyTownshipCode(townshipCode)
+
+        val cbphAlertLists = MutableList(CWA_CBPH_ALERT_TYPES.size) { i ->
+            if (SourceFeature.ALERT in requestedFeatures) {
+                mCbphApi.getCbphAlerts(
+                    scope = CWA_CBPH_ALERT_TYPES[i],
+                    stime = stime,
+                    etime = etime,
+                    geocode = geocode
+                ).onErrorResumeNext {
+                    failedFeatures[SourceFeature.ALERT] = it
+                    Observable.just(emptyList())
+                }
+            } else {
+                Observable.just(emptyList())
+            }
+        }
+
+        val cbphAlerts = if (SourceFeature.ALERT in requestedFeatures) {
+            Observable.zip(cbphAlertLists[0], cbphAlertLists[1], cbphAlertLists[2]) {
+                    cellAlerts: List<CwaCbphAlert>,
+                    tyWindAlerts: List<CwaCbphAlert>,
+                    mountainStormAlerts: List<CwaCbphAlert>,
+                ->
+                listOf(
+                    cellAlerts,
+                    tyWindAlerts,
+                    mountainStormAlerts
+                )
+            }
+        } else {
+            Observable.just(emptyList())
+        }
+
+        val capAlerts = Observable.just(
+            MutableList(CWA_CAP_ALERT_ENDPOINTS.size) { i ->
+                if (SourceFeature.ALERT in requestedFeatures) {
+                    mXmlApi.getAlert(
+                        endpoint = CWA_CAP_ALERT_ENDPOINTS[i],
+                        apiKey = apiKey
+                    ).execute().body()
+                } else {
+                    CapAlert()
+                }
+            }
+        )
+
+        return Observable.zip(current, airQuality, daily, hourly, normals, alerts, assistant, cbphAlerts, capAlerts) {
                 currentResult: CwaCurrentResult,
                 airQualityResult: CwaAirQualityResult,
                 dailyResult: CwaForecastResult,
@@ -267,6 +343,8 @@ class CwaService @Inject constructor(
                 normalsResult: CwaNormalsResult,
                 alertResult: CwaAlertResult,
                 assistantResult: CwaAssistantResult,
+                cbphAlertsResult: List<List<CwaCbphAlert>>,
+                capAlertsResult: List<CapAlert?>,
             ->
             val currentWrapper = if (SourceFeature.CURRENT in requestedFeatures) {
                 getCurrent(currentResult, assistantResult)
@@ -299,7 +377,8 @@ class CwaService @Inject constructor(
                     null
                 },
                 alertList = if (SourceFeature.ALERT in requestedFeatures) {
-                    getAlertList(alertResult, location)
+                    getAlertList(alertResult, location) + getCbphAlertList(cbphAlertsResult, location) +
+                        getCapAlertList(capAlertsResult, location)
                 } else {
                     null
                 },
@@ -346,7 +425,7 @@ class CwaService @Inject constructor(
         """,
             ""
         )
-        return mApi.getLocation(
+        return mJsonApi.getLocation(
             apiKey,
             body.toRequestBody("application/json".toMediaTypeOrNull())
         ).map {
@@ -410,7 +489,7 @@ class CwaService @Inject constructor(
         """,
             ""
         )
-        return mApi.getLocation(
+        return mJsonApi.getLocation(
             apiKey,
             body.toRequestBody("application/json".toMediaTypeOrNull())
         ).map {
@@ -470,10 +549,10 @@ class CwaService @Inject constructor(
 
     companion object {
         private const val CWA_BASE_URL = "https://opendata.cwa.gov.tw/"
-        private const val SUN_ENDPOINT = "A-B0062-001"
-        private const val SUN_PARAMETERS = "SunRiseTime,SunSetTime"
-        private const val MOON_ENDPOINT = "A-B0063-001"
-        private const val MOON_PARAMETERS = "MoonRiseTime,MoonSetTime"
+        private const val CWA_CBPH_BASE_URL = "https://cbph.cwa.gov.tw/"
+        private val CWA_CBPH_ALERT_TYPES = listOf("cells", "tywinds", "mountainstorms")
+        private val CWA_CAP_ALERT_ENDPOINTS = listOf("W-C0033-004", "W-C0033-005")
+
         private val LINE_FEED_SPACES = Regex("""\n\s*""")
 
         private val TAIWAN_BBOX = LatLngBounds.parse(119.99690416, 21.756143532, 122.10915909, 25.633378776)

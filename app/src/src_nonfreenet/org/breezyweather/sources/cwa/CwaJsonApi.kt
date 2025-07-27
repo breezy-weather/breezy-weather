@@ -31,7 +31,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface CwaApi {
+interface CwaJsonApi {
 
     @GET("api/v1/rest/datastore/W-C0033-002")
     fun getAlerts(

@@ -68,7 +68,7 @@ val CWA_NORMALS_STATIONS = mapOf(
 //
 // (Township codes in this list have been normalized
 //  to match results from the reverse geocoding call.)
-val CWA_TOWNSHIP_WARNING_AREAS = mapOf<String, String>(
+val CWA_TOWNSHIP_WARNING_AREAS = mapOf(
     "10002110" to "M", // 宜蘭縣大同鄉 Datong Township, Yilan County
     "10002120" to "M", // 宜蘭縣南澳鄉 Nan’ao Township, Yilan County
     "10004080" to "M", // 新竹縣橫山鄉 Hengshan Township, Hsinchu County
@@ -158,7 +158,7 @@ val CWA_TOWNSHIP_WARNING_AREAS = mapOf<String, String>(
 // List of endpoints can be seen on this page:
 // https://opendata.cwa.gov.tw/dataset/all?page=1
 // Search for 天氣小幫手
-val CWA_ASSISTANT_ENDPOINTS = mapOf<String, String>(
+val CWA_ASSISTANT_ENDPOINTS = mapOf(
     "臺北市" to "F-C0032-009", // Taipei City
     "新北市" to "F-C0032-010", // New Taipei City
     "基隆市" to "F-C0032-011", // Keelung City
@@ -183,7 +183,7 @@ val CWA_ASSISTANT_ENDPOINTS = mapOf<String, String>(
     "連江縣" to "F-C0032-030" // Lienchiang County
 )
 
-val CWA_HOURLY_ENDPOINTS = mapOf<String, String>(
+val CWA_HOURLY_ENDPOINTS = mapOf(
     "宜蘭縣" to "F-D0047-001", // Yilan County
     "桃園市" to "F-D0047-005", // Taoyuan City
     "新竹縣" to "F-D0047-009", // Hsinchu County
@@ -208,7 +208,7 @@ val CWA_HOURLY_ENDPOINTS = mapOf<String, String>(
     "金門縣" to "F-D0047-085" // Kinmen County
 )
 
-val CWA_DAILY_ENDPOINTS = mapOf<String, String>(
+val CWA_DAILY_ENDPOINTS = mapOf(
     "宜蘭縣" to "F-D0047-003", // Yilan County
     "桃園市" to "F-D0047-007", // Taoyuan City
     "新竹縣" to "F-D0047-011", // Hsinchu County
@@ -232,3 +232,22 @@ val CWA_DAILY_ENDPOINTS = mapOf<String, String>(
     "連江縣" to "F-D0047-083", // Lienchiang County
     "金門縣" to "F-D0047-087" // Kinmen County
 )
+
+// Some API calls still use the legacy 6 or 7-digit township codes.
+// This function generates those codes from the current 8-digit codes.
+fun getLegacyTownshipCode(
+    code: String,
+): String {
+    var output = code
+    val municipalityCodePattern = Regex("""(6\d)000(\d{2})0""")
+    val townshipCodePattern = Regex("""(1\d{6})0""")
+    val outlyingCodePattern = Regex("""0(9\d{5})0""")
+    if (municipalityCodePattern.matches(code)) {
+        output = code.replace(municipalityCodePattern, "$10$200")
+    } else if (townshipCodePattern.matches(code)) {
+        output = code.replace(townshipCodePattern, "$1")
+    } else if (outlyingCodePattern.matches(code)) {
+        output = code.replace(outlyingCodePattern, "$1")
+    }
+    return output
+}
