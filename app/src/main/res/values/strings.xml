@@ -708,6 +708,7 @@
     <string name="settings_weather_source_dmn_ne_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_dwr_gm_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_ethiomet_instance" translatable="false">@string/settings_source_instance</string>
+    <string name="settings_weather_source_fpas_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_gmet_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_igebu_instance" translatable="false">@string/settings_source_instance</string>
     <string name="settings_weather_source_imngb_instance" translatable="false">@string/settings_source_instance</string>

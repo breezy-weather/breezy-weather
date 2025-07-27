@@ -74,6 +74,7 @@ import org.breezyweather.sources.dmi.DmiService
 import org.breezyweather.sources.eccc.EcccService
 import org.breezyweather.sources.ekuk.EkukService
 import org.breezyweather.sources.epdhk.EpdHkService
+import org.breezyweather.sources.fpas.FpasService
 import org.breezyweather.sources.gadgetbridge.GadgetbridgeService
 import org.breezyweather.sources.geonames.GeoNamesService
 import org.breezyweather.sources.geosphereat.GeoSphereAtService
@@ -138,6 +139,7 @@ class SourceManager @Inject constructor(
     ekukService: EkukService,
     epdHkService: EpdHkService,
     ethioMetService: EthioMetService,
+    fpasService: FpasService,
     gadgetbridgeService: GadgetbridgeService,
     geoNamesService: GeoNamesService,
     geoSphereAtService: GeoSphereAtService,
@@ -209,6 +211,7 @@ class SourceManager @Inject constructor(
     private val worldwideWeatherSourceList = persistentListOf(
         openMeteoService,
         accuService,
+        fpasService,
         hereService,
         metNoService,
         nceiService,

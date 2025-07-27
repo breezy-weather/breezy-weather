@@ -37,23 +37,61 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.android.AndroidLocationService
 import org.breezyweather.sources.brightsky.BrightSkyService
+import org.breezyweather.sources.climweb.AnamBfService
+import org.breezyweather.sources.climweb.AnametService
+import org.breezyweather.sources.climweb.DccmsService
+import org.breezyweather.sources.climweb.DmnNeService
+import org.breezyweather.sources.climweb.DwrGmService
+import org.breezyweather.sources.climweb.EthioMetService
+import org.breezyweather.sources.climweb.GMetService
+import org.breezyweather.sources.climweb.IgebuService
+import org.breezyweather.sources.climweb.InmgbService
+import org.breezyweather.sources.climweb.MaliMeteoService
+import org.breezyweather.sources.climweb.MeteoBeninService
+import org.breezyweather.sources.climweb.MeteoTchadService
+import org.breezyweather.sources.climweb.MettelsatService
+import org.breezyweather.sources.climweb.MsdZwService
+import org.breezyweather.sources.climweb.SmaScService
+import org.breezyweather.sources.climweb.SmaSuService
+import org.breezyweather.sources.climweb.SsmsService
 import org.breezyweather.sources.debug.DebugService
+import org.breezyweather.sources.fpas.FpasService
 import org.breezyweather.sources.gadgetbridge.GadgetbridgeService
 import org.breezyweather.sources.naturalearth.NaturalEarthService
 import org.breezyweather.sources.nominatim.NominatimService
 import org.breezyweather.sources.openmeteo.OpenMeteoService
+import org.breezyweather.sources.pirateweather.PirateWeatherService
 import org.breezyweather.sources.recosante.RecosanteService
 import javax.inject.Inject
 
 class SourceManager @Inject constructor(
     androidLocationService: AndroidLocationService,
+    anamBfService: AnamBfService,
+    anametService: AnametService,
     brightSkyService: BrightSkyService,
+    dccmsService: DccmsService,
     debugService: DebugService,
+    dmnNeService: DmnNeService,
+    dwrGmService: DwrGmService,
+    ethioMetService: EthioMetService,
+    fpasService: FpasService,
     gadgetbridgeService: GadgetbridgeService,
+    gMetService: GMetService,
+    igebuService: IgebuService,
+    inmgbService: InmgbService,
+    maliMeteoService: MaliMeteoService,
+    meteoBeninService: MeteoBeninService,
+    meteoTchadService: MeteoTchadService,
+    mettelsatService: MettelsatService,
+    msdZwService: MsdZwService,
     naturalEarthService: NaturalEarthService,
     nominatimService: NominatimService,
     openMeteoService: OpenMeteoService,
+    pirateWeatherService: PirateWeatherService,
     recosanteService: RecosanteService,
+    smaScService: SmaScService,
+    smaSuService: SmaSuService,
+    ssmsService: SsmsService,
 ) {
     // TODO: Initialize lazily
 
@@ -70,12 +108,31 @@ class SourceManager @Inject constructor(
 
     // Worldwide weather sources, excluding national sources with worldwide support
     private val worldwideWeatherSourceList = persistentListOf(
-        openMeteoService
+        fpasService,
+        openMeteoService,
+        pirateWeatherService
     )
 
     // Region-specific or national weather sources
     private val nationalWeatherSourceList = persistentListOf(
+        anamBfService,
+        anametService,
         brightSkyService,
+        dccmsService,
+        dmnNeService,
+        dwrGmService,
+        ethioMetService,
+        gMetService,
+        igebuService,
+        inmgbService,
+        maliMeteoService,
+        meteoBeninService,
+        meteoTchadService,
+        mettelsatService,
+        msdZwService,
+        smaScService,
+        smaSuService,
+        ssmsService,
         recosanteService
     )
 
