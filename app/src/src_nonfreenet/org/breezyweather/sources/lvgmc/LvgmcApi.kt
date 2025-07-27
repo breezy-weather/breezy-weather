@@ -45,7 +45,7 @@ interface LvgmcApi {
         @Query("punkts") punkts: String,
     ): Observable<List<LvgmcForecastResult>>
 
-    @GET("data/weather_monitoring_data_raw")
+    @GET("data/weather_monitoring_data")
     fun getCurrent(): Observable<List<LvgmcCurrentResult>>
 
     @GET("data/gaisa_kvalitate_envista_batch")
