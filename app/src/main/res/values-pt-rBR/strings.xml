@@ -30,7 +30,7 @@
     <string name="action_restart">Reiniciar</string>
     <string name="action_edit">Editar</string>
     <!-- The following set of strings should be as short as possible. -->
-    <string name="daily_yesterday_short">Ont.</string>
+    <string name="daily_yesterday_short">Ontem</string>
     <string name="daily_tomorrow_short">Amanhã</string>
     <string name="temperature_apparent">Aparente</string>
     <string name="temperature_wind_chill">Sensação do vento</string>
@@ -75,7 +75,7 @@
     <string name="action_done">Pronto</string>
     <string name="settings_enabled">Ativado</string>
     <string name="settings_disabled">Desativado</string>
-    <string name="action_set">Definir</string>
+    <string name="action_set">Configurar</string>
     <string name="action_help">Ajuda</string>
     <string name="action_learn_more">Saiba mais</string>
     <string name="about_app">Sobre o app</string>
@@ -83,9 +83,9 @@
     <string name="about_translators">Tradutores</string>
     <!-- feedback. -->
     <string name="dialog_permissions_location_title">Acessar informações de localização</string>
-    <string name="dialog_permissions_location_content">Para usar este recurso, você precisa conceder ao app permissão para acessar sua localização atual. Ela será compartilhada apenas com as fontes meteorológicas selecionadas. Se você mudar de ideia, pode cancelar o processo e adicionar uma localização fixa manualmente.</string>
+    <string name="dialog_permissions_location_content">Para usar este recurso, você precisa conceder ao aplicativo a permissão para acessar sua localização atual. Ela será compartilhada apenas com as fontes meteorológicas selecionadas. Se você mudar de ideia, pode cancelar o processo e adicionar uma localização fixa manualmente.</string>
     <string name="dialog_permissions_location_background_title">Acessar localização em segundo plano</string>
-    <string name="dialog_permissions_location_background_content">Para permitir que a atualização do clima em segundo plano seja feita com base na localização mais recente conhecida pelo Android, você precisa definir a permissão de localização como “Permitir o tempo todo”. Se você não fizer isso, o clima será atualizado com base nas últimas coordenadas recuperadas em primeiro plano, que podem estar desatualizadas.</string>
+    <string name="dialog_permissions_location_background_content">Para permitir que a atualização do clima em segundo plano seja feita com base na localização mais recente conhecida pelo Android, você precisa configurar a permissão de localização como “Permitir o tempo todo”. Se você não fizer isso, o clima será atualizado com base nas últimas coordenadas recuperadas em primeiro plano, que podem estar desatualizadas.</string>
     <string name="location_message_failed_to_locate">Falha ao encontrar a localização atual</string>
     <string name="weather_message_data_refresh_failed">Falha ao atualizar dados</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Utilizar outro serviço de localização</string>
@@ -350,7 +350,7 @@
     <string name="settings_background_updates_section_troubleshoot">Solução de problemas</string>
     <string name="settings_background_updates_battery_optimization_summary">Esta é a primeira coisa que você deve testar ao não receber notificações ou quando os widgets não estão sendo atualizados.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Não foi possível abrir as configurações do dispositivo.</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Algumas fabricantes têm restrições adicionais que fecham os serviços em segundo plano. O site Don’t kill my app! tem informações que ajudem a corrigir isso.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Algumas fabricantes têm restrições adicionais que fecham os serviços em segundo plano. O site \"Don’t kill my app!\" tem informações que te ajudam a corrigir isso.</string>
     <string name="settings_main_cards_other_element_animations_switch">Animações de outros elementos</string>
     <string name="settings_main_summary">Ordem dos blocos, itens exibidos, animações</string>
     <string name="settings_widgets_notification_feels_like_switch">Usar a sensação térmica</string>
@@ -506,7 +506,7 @@
     <string name="pollen_level_4">Alto</string>
     <string name="pollen_level_5">Muito alto</string>
     <string name="action_delete">Apagar</string>
-    <string name="weather_message_invalid_location">Local inválido, por favor, remova e adicione ele novamente</string>
+    <string name="weather_message_invalid_location">Localização inválida, por favor, remova e adicione ela novamente</string>
     <string name="about_dependencies">Dependências</string>
     <string name="about_contact">Contato</string>
     <string name="unit_bft_voice">na escala de Beaufort</string>
@@ -569,7 +569,7 @@
     <string name="location_search_source">Fonte de pesquisa de localização</string>
     <string name="location_search_change_source">Alterar fonte de pesquisa de localização</string>
     <string name="location_search_no_results_advice">Certifique-se de que sua pesquisa esteja escrita corretamente e não muito específica. Como alternativa, você pode tentar outra fonte de pesquisa de localização, que pode produzir resultados diferentes.</string>
-    <string name="temperature_feels_like_short">Sens. de</string>
+    <string name="temperature_feels_like_short">Sensação</string>
     <string name="humidity_short">Umidade</string>
     <string name="uv_index_short">Índice UV</string>
     <string name="pressure_short">Pressão</string>
@@ -607,7 +607,7 @@
     <string name="pollen_salix">Salgueiro</string>
     <string name="pollen_tilia">Tília</string>
     <string name="pollen_urticaceae">Urtiga</string>
-    <string name="message_source_not_installed_error_content_tip_1">Isto pode acontecer quando você adicionou sua localização na versão padrão (standard) do app e e depois mudou para a versão com apenas fontes de rede livre (freenet). Voltar para a versão padrão pode resolver esse problema.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Isto pode acontecer quando você adicionou sua localização na versão padrão (standard) do aplicativo e e depois mudou para a versão com apenas fontes de rede livre (freenet). Voltar para a versão padrão pode resolver esse problema.</string>
     <string name="message_source_not_installed_error_content_tip_2">Altere as fontes meteorológicas para esta localização ou apague e adicione novamente a localização.</string>
     <string name="sunshine">Luz solar</string>
     <string name="weather_message_too_frequent_refreshes">Por favor, aguarde alguns segundos antes de tentar novamente…</string>
@@ -642,11 +642,11 @@
     <string name="meteoam_weather_text_tornado_watersprout">Tornado ou tromba d’água</string>
     <string name="action_download">Baixar</string>
     <string name="dialog_app_update_check_title">Mantenha-se atualizado</string>
-    <string name="dialog_app_update_check_content">Toque aqui para ativar as notificações sobre atualizações do app.</string>
-    <string name="settings_notifications_app_updates_check">Notificações de atualizações do app</string>
+    <string name="dialog_app_update_check_content">Toque aqui para ativar as notificações sobre atualizações do aplicativo.</string>
+    <string name="settings_notifications_app_updates_check">Notificações de atualizações do aplicativo</string>
     <string name="notification_channel_app_updates">Atualizações do app</string>
     <string name="notification_app_update_available">Nova versão disponível!</string>
-    <string name="about_check_for_app_updates">Buscar atualizações do app</string>
+    <string name="about_check_for_app_updates">Verificar se há atualizações do aplicativo</string>
     <string name="about_no_new_updates">Não há atualizações</string>
     <string name="common_weather_text_sand_storm">Tempestade de areia</string>
     <string name="common_weather_text_smoke">Fumaça</string>
@@ -744,7 +744,7 @@
     <string name="settings_notifications_permission">Permissão de notificação necessária</string>
     <string name="location_custom_name">Nome personalizado</string>
     <string name="location_reverse_geocoding">Pesquisa de endereço</string>
-    <string name="settings_notifications_permission_summary">Necessária para notificar sobre alertas, previsões e atualizações do app. %s</string>
+    <string name="settings_notifications_permission_summary">Necessária para notificar sobre alertas, previsões e atualizações do aplicativo. %s</string>
     <string name="settings_weather_source_current_position_disclaimer">Mais fontes meteorológicas podem ficar disponíveis para sua localização após a primeira atualização.</string>
     <string name="pollen_acer">Ácer</string>
     <string name="pollen_alternaria">Alternaria</string>
@@ -764,7 +764,7 @@
     <string name="action_open_in_other_app">Abrir em outro app</string>
     <string name="action_open_in_other_app_description">Abrir esta localização em outro app</string>
     <string name="ephemeris_about">Sobre o nascer e o pôr do sol</string>
-    <string name="ephemeris_about_rise">O horário quando o sol ou a lua aparece totalmente acima do horizonte.</string>
+    <string name="ephemeris_about_rise">O horário de quando o sol ou a lua aparece totalmente acima do horizonte.</string>
     <string name="ephemeris_about_set">O horário de quando o sol ou a lua desaparece totalmente abaixo do horizonte.</string>
     <string name="daily_summary">Resumo diário</string>
     <string name="chart_no_hourly_data">Não há dados horários.</string>
@@ -790,7 +790,7 @@
     <string name="air_quality_index_short">IQA</string>
     <string name="air_quality_index_about">Sobre o índice de qualidade do ar</string>
     <string name="air_quality_index_about_description_1">O índice de qualidade do ar (IQA) é uma escala criada para ajudá-lo a entender o quão poluído está o ar em uma determinada área e os possíveis riscos à sua saúde.</string>
-    <string name="air_quality_index_about_description_2">A escala utilizada neste app é baseada nas recomendações da Organização Mundial da Saúde, não nas regulamentações locais, para ter categorias significativas e facilitar a comparação dos níveis de poluição entre os países.</string>
+    <string name="air_quality_index_about_description_2">A escala utilizada neste aplicativo é baseada nas recomendações da Organização Mundial da Saúde, não nas regulamentações locais, para ter categorias significativas e facilitar a comparação dos níveis de poluição entre os países.</string>
     <string name="air_quality_index_scale">Escala do índice de qualidade do ar</string>
     <string name="air_quality_index_harmless_exposure">Exposição inofensiva</string>
     <string name="air_quality_level_1_harmless_exposure">&gt; 1 ano</string>
@@ -820,7 +820,7 @@
     <string name="pressure_steady">Estável</string>
     <string name="pressure_falling">Queda</string>
     <string name="pressure_about">Sobre a pressão</string>
-    <string name="pressure_about_description1">A pressão atmosférica é a pressão para baixo exercida pela atmosfera da Terra. Este app usa a pressão do nível do mar (MSLP) para facilitar a comparação da pressão de locais com altitudes diferentes.</string>
+    <string name="pressure_about_description1">A pressão atmosférica é a pressão para baixo exercida pela atmosfera da Terra. Este aplicativo usa a pressão do nível do mar (MSLP) para facilitar a comparação da pressão de locais com altitudes diferentes.</string>
     <string name="pressure_about_description2">Mudanças significativas e rápidas na pressão são usadas para prever mudanças no clima. Por exemplo, uma queda na pressão pode significar que a chuva ou a neve estão a caminho e o aumento da pressão pode significar que o tempo vai melhorar. Uma pressão atmosférica anormal pode causar dores de cabeça, dor nas articulações, fadiga e outros efeitos.</string>
     <string name="visibility_about">Sobre a visibilidade</string>
     <string name="visibility_about_description">A visibilidade indica o quão distante você pode ver objetos como prédios e colinas de forma clara. A visibilidade pode ser afetada pela precipitação, nevoa, poeira, fumaça ou névoa seca.</string>
@@ -830,8 +830,8 @@
     <string name="visibility_poor">Ruim</string>
     <string name="visibility_moderate">Moderada</string>
     <string name="visibility_good">Boa</string>
-    <string name="visibility_clear">Limpa</string>
-    <string name="visibility_perfectly_clear">Perfeitamente limpo</string>
+    <string name="visibility_clear">Clara</string>
+    <string name="visibility_perfectly_clear">Perfeitamente clara</string>
     <string name="cloud_cover_about">Sobre a nebulosidade</string>
     <string name="cloud_cover_about_description">A nebulosidade refere-se à porcentagem do céu coberta por nuvens, em média. A nebulosidade está correlacionada com a duração da luz solar.</string>
     <string name="data_sources">Fontes de dados</string>
@@ -854,18 +854,18 @@
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="unit_bft_nominative">%s Btf</string>
     <string name="about_update_check_eol">Esta versão do Android não é mais compatível</string>
-    <string name="air_quality_short">Qualidade do ar</string>
+    <string name="air_quality_short">Qual. do ar</string>
     <string name="ephemeris_sun">Sol</string>
     <string name="ephemeris_moon">Lua</string>
     <string name="ephemeris_polar_day">Dia polar</string>
     <string name="ephemeris_polar_night">Noite polar</string>
     <string name="clock">Relógio</string>
     <string name="temperature_normals_deviation">Desvio</string>
-    <string name="temperature_normals_deviation_explanation_maximum">O desvio da média da temperatura máxima de %s para este local</string>
+    <string name="temperature_normals_deviation_explanation_maximum">O desvio da média da temperatura máxima de %s para esta localização</string>
     <string name="precipitation_total_day">Precipitação de dia</string>
     <string name="daytime_short">Dia</string>
     <string name="nighttime_short">Noite</string>
-    <string name="temperature_normals_deviation_explanation_minimum">O desvio da média da temperatura mínima de %s para este local</string>
+    <string name="temperature_normals_deviation_explanation_minimum">O desvio da média da temperatura mínima de %s para esta localização</string>
     <string name="precipitation_total_night">Precipitação de noite</string>
     <string name="precipitation_rain_total_day">Chuva de dia</string>
     <string name="precipitation_rain_total_night">Chuva de noite</string>
@@ -885,10 +885,10 @@
     <string name="air_quality_o3_index">Escala do índice de qualidade do ar para O₃</string>
     <string name="air_quality_co_about">Sobre o monóxido de carbono (CO)</string>
     <string name="air_quality_co_index">Escala do índice de qualidade do ar para CO</string>
-    <string name="action_open_in_other_app_no_app">Nenhum app de mapas encontrado</string>
-    <string name="action_share_no_app">Nenhum app para compartilhar encontrado</string>
+    <string name="action_open_in_other_app_no_app">Nenhum aplicativo de mapas encontrado</string>
+    <string name="action_share_no_app">Nenhum aplicativo para compartilhar encontrado</string>
     <string name="action_translate">Traduzir</string>
-    <string name="action_translate_no_app">Nenhum app tradutor encontrado</string>
+    <string name="action_translate_no_app">Nenhum aplicativo tradutor encontrado</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Seguir o dia/noite</string>
-    <string name="settings_appearance_dark_mode_locations_dark">Sempre escuro quando o app estiver no modo escuro</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Sempre escuro quando o aplicativo está</string>
 </resources>
