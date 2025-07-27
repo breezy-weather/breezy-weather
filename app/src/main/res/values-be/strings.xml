@@ -35,7 +35,7 @@
     <string name="air_quality_level_1">Выдатнае</string>
     <string name="air_quality_level_2">Нармальнае</string>
     <string name="air_quality_o3">O₃</string>
-    <string name="air_quality_o3_full">Прыземны азон(O₃)</string>
+    <string name="air_quality_o3_full">Прыземны азон (O₃)</string>
     <string name="air_quality_no2_full">Дыяксід азоту (NO₂)</string>
     <string name="pollen_tree">Дрэвы</string>
     <string name="pollen_alnus">Алешына</string>
@@ -334,8 +334,8 @@
     <string name="settings_appearance">Выгляд</string>
     <string name="settings_appearance_summary">Мова, цёмны варыянт тэмы, набор значкоў, адзінкі вымярэння</string>
     <string name="settings_appearance_language_title">Мова</string>
-    <string name="settings_appearance_dark_mode_title">Цёмны варыянт тэмы</string>
-    <string name="settings_appearance_dark_mode_locations_title">Светлая / Цёмная тэма для месцазнаходжання</string>
+    <string name="settings_appearance_dark_mode_title">Цёмны рэжым праграмы</string>
+    <string name="settings_appearance_dark_mode_locations_title">Цёмны рэжым згодна з месцазнаходжаннем</string>
     <string name="settings_appearance_icon_pack_title">Набор значкоў</string>
     <string name="settings_icon_packs_title">Наборы значкоў</string>
     <string name="settings_icon_packs_check_details">Праверыць звесткі</string>
@@ -807,4 +807,22 @@
     <string name="temperature_normals_deviation_explanation_minimum">Адхіленне ад сярэдняга мінімуму тэмпературы %s для гэтага месца</string>
     <string name="widget_custom_subtitle_help_content_description">Паказаць даведку для ўласных подпісаў</string>
     <string name="widget_custom_subtitle_alert_box_title">Даведка для ўласных подпісаў</string>
+    <string name="air_quality_no2_index">Шкала якасці паветра для NO₂</string>
+    <string name="air_quality_co_index">Шкала якасці паветра для CO</string>
+    <string name="air_quality_pm25_index">Шкала якасці паветра для PM2.5</string>
+    <string name="air_quality_pm10_index">Шкала якасці паветра для PM10</string>
+    <string name="air_quality_so2_index">Шкала якасці паветра для SO₂</string>
+    <string name="air_quality_so2_about">Пра дыяксід серы (SO₂)</string>
+    <string name="air_quality_o3_about">Пра прыземны азон (O₃)</string>
+    <string name="air_quality_no2_about">Пра дыяксід азоту (NO₂)</string>
+    <string name="air_quality_pm10_about">Пра ўдыхальныя завіслыя часцінкі (PM10)</string>
+    <string name="air_quality_pm25_about">Пра завіслыя мікрачасцінкі (PM2.5)</string>
+    <string name="air_quality_o3_index">Шкала якасці паветра для O₃</string>
+    <string name="air_quality_co_about">Пра монааксід вугляроду (CO)</string>
+    <string name="action_open_in_other_app_no_app">Праграма для прагляду карт не знойдзена</string>
+    <string name="action_translate">Перакласці</string>
+    <string name="action_share_no_app">Праграма для абагульвання не знойдзена</string>
+    <string name="action_translate_no_app">Праграма для перакладу не знойдзена</string>
+    <string name="settings_appearance_dark_mode_locations_day_night">Згодна з часам сутак</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Заўсёды цёмны, калі ў праграме стаіць цёмны рэжым</string>
 </resources>
