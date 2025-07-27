@@ -42,13 +42,13 @@ import androidx.annotation.StyleRes
 import androidx.core.graphics.createBitmap
 import androidx.core.view.WindowInsetsControllerCompat
 import com.google.android.material.resources.TextAppearance
+import kotlin.math.abs
 import kotlin.math.min
 
 private const val MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE = 512
 private const val MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET = 600
 val FLOATING_DECELERATE_INTERPOLATOR: Interpolator = DecelerateInterpolator(1f)
 const val DEFAULT_CARD_LIST_ITEM_ELEVATION_DP = 2f
-const val MAX_FONT_SCALE_FOR_HALF_BLOCKS = 1.2
 
 val Context.isTabletDevice: Boolean
     get() = (
@@ -106,7 +106,20 @@ val Context.fontScale: Float
     get() {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             resources.configuration.fontScale *
-                resources.displayMetrics.densityDpi.div(android.util.DisplayMetrics.DENSITY_DEVICE_STABLE)
+                resources.displayMetrics.densityDpi.div(android.util.DisplayMetrics.DENSITY_DEVICE_STABLE.toFloat())
+        } else {
+            1f // Let’s just ignore it on old Android versions
+        }
+    }
+
+// Take into account font scale, but not as much
+// For example a font scale of 1.6 makes the width 1.3 times larger
+val Context.fontScaleToApply: Float
+    get() {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            fontScale.let {
+                if (it != 1f) 1f + abs(it - 1f).div(2f).times(if (it > 1f) 1f else -1f) else it
+            }
         } else {
             1f // Let’s just ignore it on old Android versions
         }

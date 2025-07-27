@@ -28,7 +28,8 @@
     <dimen name="spinner_drop_width">150dp</dimen>
     <dimen name="share_view_height">260dp</dimen>
     <dimen name="progress_view_size">36dp</dimen>
-    <dimen name="trend_item_width">56dp</dimen>
+    <dimen name="trend_item_width">67dp</dimen>
+    <dimen name="trend_item_height_min">144dp</dimen>
     <dimen name="daily_trend_item_height">298dp</dimen>
     <dimen name="hourly_trend_item_height">206dp</dimen>
     <dimen name="nowcasting_chart_height">150dp</dimen>

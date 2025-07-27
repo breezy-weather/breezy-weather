@@ -2,7 +2,7 @@
 <org.breezyweather.ui.common.widgets.trend.item.HourlyTrendItemView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_trend_hourly"
-    android:layout_width="56dp"
-    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/hourly_trend_item_height"
     android:foreground="@drawable/selectable_item_background"
     tools:ignore="UnusedAttribute" />
