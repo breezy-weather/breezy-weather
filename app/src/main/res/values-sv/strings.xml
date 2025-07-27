@@ -816,4 +816,16 @@
     <string name="pressure_about_description2">Stora, snabba förändringar av lufttrycket används för att förutsäga väderförändringar. Till exempel kan ett lufttrycksfall betyda att regn eller snö är på väg, och ett stigande lufttryck kan betyda att vädret kommer att bli bättre. Onormalt atmosfärstryck kan orsaka huvudvärk, ledvärk, trötthet och andra effekter.</string>
     <string name="visibility_about_description">Sikten anger hur långt bort som du tydligt kan se objekt som byggnader och kullar. Sikten kan påverkas av nederbörd, dimma, damm, rök eller dis.</string>
     <string name="cloud_cover_about_description">Molntäcket avser den procentandel av himlen som är täckt av moln i genomsnitt. Molntäcket är korrelerat med solskenstiden.</string>
+    <string name="air_quality_pm25_about">Om fina luftburna partiklar (PM2,5)</string>
+    <string name="air_quality_pm10_about">Om grova luftburna partiklar (PM10)</string>
+    <string name="air_quality_pm25_index">Luftkvalitetsindexskala för PM2,5</string>
+    <string name="air_quality_pm10_index">Luftkvalitetsindexskala för PM10</string>
+    <string name="air_quality_so2_about">Om svaveldioxid (SO₂)</string>
+    <string name="air_quality_so2_index">Luftkvalitetsindexskala för SO₂</string>
+    <string name="air_quality_no2_about">Om kvävedioxid (NO₂)</string>
+    <string name="air_quality_no2_index">Luftkvalitetsindexskala för NO₂</string>
+    <string name="air_quality_o3_about">Om marknära ozon (O₃)</string>
+    <string name="air_quality_o3_index">Luftkvalitetsindexskala för O₃</string>
+    <string name="air_quality_co_about">Om kolmonoxid (CO)</string>
+    <string name="air_quality_co_index">Luftkvalitetsindexskala för CO</string>
 </resources>
