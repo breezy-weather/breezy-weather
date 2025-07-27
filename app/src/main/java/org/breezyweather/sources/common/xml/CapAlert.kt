@@ -16,9 +16,14 @@
 
 package org.breezyweather.sources.common.xml
 
+import android.content.Context
+import com.google.maps.android.PolyUtil
+import com.google.maps.android.model.LatLng
 import kotlinx.serialization.Serializable
 import nl.adaptivity.xmlutil.serialization.XmlSerialName
 import nl.adaptivity.xmlutil.serialization.XmlValue
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.serializer.DateSerializer
 import java.util.Date
 
@@ -51,7 +56,9 @@ data class CapAlert(
     @XmlSerialName("info", "urn:oasis:names:tc:emergency:cap:1.2", "cap")
     data class Info(
         val language: Language? = null,
+        val category: Category? = null,
         val event: Event? = null,
+        val urgency: Urgency? = null,
         val severity: Severity? = null,
         val effective: Effective? = null,
         val onset: Onset? = null,
@@ -60,6 +67,7 @@ data class CapAlert(
         val headline: Headline? = null,
         val description: Description? = null,
         val instruction: Instruction? = null,
+        val area: List<Area>? = null,
     ) {
         @Serializable
         @XmlSerialName("language", "", "cap")
@@ -68,8 +76,20 @@ data class CapAlert(
         )
 
         @Serializable
+        @XmlSerialName("category", "", "cap")
+        data class Category(
+            @XmlValue(true) val value: String? = null,
+        )
+
+        @Serializable
         @XmlSerialName("event", "", "cap")
         data class Event(
+            @XmlValue(true) val value: String? = null,
+        )
+
+        @Serializable
+        @XmlSerialName("urgency", "", "cap")
+        data class Urgency(
             @XmlValue(true) val value: String? = null,
         )
 
@@ -120,5 +140,94 @@ data class CapAlert(
         data class Instruction(
             @XmlValue(true) val value: String? = null,
         )
+
+        @Serializable
+        @XmlSerialName("area", "urn:oasis:names:tc:emergency:cap:1.2", "cap")
+        data class Area(
+            val areaDesc: AreaDesc? = null,
+            val geocode: List<Geocode>? = null,
+            val polygon: List<Polygon>? = null,
+        ) {
+            @Serializable
+            @XmlSerialName("areaDesc", "", "cap")
+            data class AreaDesc(
+                @XmlValue(true) val value: String? = null,
+            )
+
+            @Serializable
+            @XmlSerialName("geocode", "urn:oasis:names:tc:emergency:cap:1.2", "cap")
+            data class Geocode(
+                val valueName: ValueName? = null,
+                val value: Value? = null,
+            ) {
+                @Serializable
+                @XmlSerialName("valueName", "", "cap")
+                data class ValueName(
+                    @XmlValue(true) val value: String? = null,
+                )
+
+                @Serializable
+                @XmlSerialName("value", "", "cap")
+                data class Value(
+                    @XmlValue(true) val value: String? = null,
+                )
+            }
+
+            @Serializable
+            @XmlSerialName("polygon", "", "cap")
+            data class Polygon(
+                @XmlValue(true) val value: String? = null,
+            )
+        }
+
+        fun containsGeocode(
+            valueName: String,
+            value: String,
+        ): Boolean {
+            this.area?.forEach { area ->
+                area.geocode?.forEach {
+                    if (it.valueName?.value == valueName && it.value?.value == value) {
+                        return true
+                    }
+                }
+            }
+            return false
+        }
+
+        fun containsPoint(
+            point: LatLng,
+        ): Boolean {
+            this.area?.forEach { area ->
+                area.polygon?.forEach {
+                    val polygon = mutableListOf<LatLng>()
+                    it.value?.split(" ")?.forEach { vertex ->
+                        val coords = vertex.split(",")
+                        if (coords.size == 2) {
+                            polygon.add(LatLng(coords[0].toDouble(), coords[1].toDouble()))
+                        }
+                    }
+                    if (PolyUtil.containsLocation(point, polygon, true)) {
+                        return true
+                    }
+                }
+            }
+            return false
+        }
+    }
+
+    // First, find an alert with matching locale.
+    // Then, find an alert with matching language.
+    // Then, find an alert in English.
+    // Finally, just get the first alert.
+    fun getInfoForContext(
+        context: Context,
+    ): Info? {
+        return this.info?.firstOrNull {
+            (it.language?.value ?: "").equals(context.currentLocale.code, ignoreCase = true)
+        } ?: this.info?.firstOrNull {
+            (it.language?.value ?: "").startsWith(context.currentLocale.code.substringBefore("-"), ignoreCase = true)
+        } ?: this.info?.firstOrNull {
+            (it.language?.value ?: "").startsWith("en", ignoreCase = true)
+        } ?: this.info?.firstOrNull()
     }
 }

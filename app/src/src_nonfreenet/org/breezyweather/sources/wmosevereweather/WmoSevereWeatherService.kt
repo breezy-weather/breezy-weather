@@ -66,7 +66,7 @@ class WmoSevereWeatherService @Inject constructor(
                 startsWith("pl") -> "WMO Centrum Informacji o Groźnych Zjawiskach Pogodowych"
                 startsWith("pt") -> "OMM Centro de Informação Tempo Severo"
                 startsWith("ru") -> "ВМО Информационный центр неблагоприятных погодных условий"
-                equals("zh-tw") || equals("zh-hk") || equals("zh-mo") -> "世界氣象組職惡劣天氣信息中心"
+                equals("zh-tw") || equals("zh-hk") || equals("zh-mo") -> "世界氣象組織惡劣天氣信息中心"
                 startsWith("zh") -> "世界气象组织恶劣天气信息中心"
                 else -> "WMO Severe Weather Information Centre"
             }

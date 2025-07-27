@@ -326,9 +326,8 @@ dependencies {
     implementation(libs.bundles.okhttp)
     // implementation(libs.kotlinx.serialization.csv) // Can be reenabled if needed (see also HttpModule.kt)
     implementation(libs.kotlinx.serialization.json)
-    // Not used in free sources
-    "basicImplementation"(libs.kotlinx.serialization.xml.core)
-    "basicImplementation"(libs.kotlinx.serialization.xml)
+    implementation(libs.kotlinx.serialization.xml.core)
+    implementation(libs.kotlinx.serialization.xml)
 
     // data store
     // implementation(libs.datastore)
