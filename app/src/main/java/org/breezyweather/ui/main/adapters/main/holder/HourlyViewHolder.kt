@@ -30,7 +30,6 @@ import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.adapters.ButtonAdapter
-import org.breezyweather.ui.common.widgets.RecyclerViewNoVerticalScrollTouchListener
 import org.breezyweather.ui.common.widgets.trend.TrendLayoutManager
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.main.adapters.trend.HourlyTrendAdapter
@@ -148,7 +147,6 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         trendRecyclerView.setKeyLineVisibility(
             SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
         )
-        trendRecyclerView.addOnItemTouchListener(RecyclerViewNoVerticalScrollTouchListener())
 
         scrollBar.resetColor(activity)
     }

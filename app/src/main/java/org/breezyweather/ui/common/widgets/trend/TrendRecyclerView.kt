@@ -29,6 +29,7 @@ import org.breezyweather.common.extensions.dpToPx
 import org.breezyweather.common.extensions.fontScaleToApply
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 import org.breezyweather.ui.common.widgets.trend.item.AbsTrendItemView
+import org.breezyweather.ui.main.widgets.HorizontalRecyclerView
 
 /**
  * Trend recycler view.
@@ -37,7 +38,7 @@ class TrendRecyclerView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0,
-) : RecyclerView(context, attrs, defStyle) {
+) : HorizontalRecyclerView(context, attrs, defStyle) {
     private val mPaint = Paint().apply {
         isAntiAlias = true
         strokeCap = Paint.Cap.ROUND
