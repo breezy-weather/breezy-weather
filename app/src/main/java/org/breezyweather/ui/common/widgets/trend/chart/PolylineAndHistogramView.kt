@@ -31,6 +31,7 @@ import androidx.annotation.Size
 import androidx.core.graphics.ColorUtils
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
+import org.breezyweather.common.extensions.fontScaleToApply
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 import org.breezyweather.ui.common.widgets.DayNightShaderWrapper
 
@@ -72,7 +73,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
     private val mPolylineTextSize: Int
     private val mHistogramWidth: Int
     private val mHistogramTextSize: Int
-    private val mChartLineWith: Int
+    private val mChartLineWidth: Int
     private val mTextMargin: Int
     private val mLineColors: IntArray = intArrayOf(Color.BLACK, Color.DKGRAY, Color.LTGRAY)
     private val mShadowColors: IntArray = intArrayOf(Color.BLACK, Color.WHITE)
@@ -91,7 +92,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
         mHistogramTextSize = getContext().dpToPx(HISTOGRAM_TEXT_SIZE_DIP).toInt()
         mPolylineWidth = getContext().dpToPx(POLYLINE_SIZE_DIP).toInt()
         mHistogramWidth = getContext().dpToPx(HISTOGRAM_WIDTH_DIP).toInt()
-        mChartLineWith = getContext().dpToPx(CHART_LINE_SIZE_DIP).toInt()
+        mChartLineWidth = getContext().dpToPx(CHART_LINE_SIZE_DIP).toInt()
         mTextMargin = getContext().dpToPx(TEXT_MARGIN_DIP).toInt()
         mPaint.typeface = getContext().getTypefaceFromTextAppearance(R.style.title_text)
         mShaderWrapper = DayNightShaderWrapper(measuredWidth, measuredHeight)
@@ -124,7 +125,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
     private fun drawTimeLine(canvas: Canvas) {
         mPaint.apply {
             style = Paint.Style.STROKE
-            strokeWidth = mChartLineWith.toFloat()
+            strokeWidth = mChartLineWidth.toFloat()
             color = mLineColors[2]
         }
         canvas.drawLine(
@@ -149,15 +150,9 @@ class PolylineAndHistogramView @JvmOverloads constructor(
             mPath.apply {
                 reset()
                 moveTo(getRTLCompactX(0f), mHighPolylineY[0].toFloat())
-                lineTo(
-                    getRTLCompactX((measuredWidth / 2.0).toFloat()),
-                    mHighPolylineY[1].toFloat()
-                )
+                lineTo(getRTLCompactX((measuredWidth / 2.0).toFloat()), mHighPolylineY[1].toFloat())
                 lineTo(getRTLCompactX(measuredWidth.toFloat()), mHighPolylineY[2].toFloat())
-                lineTo(
-                    getRTLCompactX(measuredWidth.toFloat()),
-                    (measuredHeight - marginBottom).toFloat()
-                )
+                lineTo(getRTLCompactX(measuredWidth.toFloat()), (measuredHeight - marginBottom).toFloat())
                 lineTo(getRTLCompactX(0f), (measuredHeight - marginBottom).toFloat())
                 close()
             }
@@ -173,10 +168,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
             mPath.apply {
                 reset()
                 moveTo(getRTLCompactX(0f), mHighPolylineY[0].toFloat())
-                lineTo(
-                    getRTLCompactX((measuredWidth / 2.0).toFloat()),
-                    mHighPolylineY[1].toFloat()
-                )
+                lineTo(getRTLCompactX((measuredWidth / 2.0).toFloat()), mHighPolylineY[1].toFloat())
                 lineTo(getRTLCompactX(measuredWidth.toFloat()), mHighPolylineY[2].toFloat())
             }
             canvas.drawPath(mPath, mPaint)
@@ -189,19 +181,10 @@ class PolylineAndHistogramView @JvmOverloads constructor(
             }
             mPath.apply {
                 reset()
-                moveTo(
-                    getRTLCompactX((measuredWidth / 2.0).toFloat()),
-                    mHighPolylineY[1].toFloat()
-                )
+                moveTo(getRTLCompactX((measuredWidth / 2.0).toFloat()), mHighPolylineY[1].toFloat())
                 lineTo(getRTLCompactX(measuredWidth.toFloat()), mHighPolylineY[2].toFloat())
-                lineTo(
-                    getRTLCompactX(measuredWidth.toFloat()),
-                    (measuredHeight - marginBottom).toFloat()
-                )
-                lineTo(
-                    getRTLCompactX((measuredWidth / 2.0).toFloat()),
-                    (measuredHeight - marginBottom).toFloat()
-                )
+                lineTo(getRTLCompactX(measuredWidth.toFloat()), (measuredHeight - marginBottom).toFloat())
+                lineTo(getRTLCompactX((measuredWidth / 2.0).toFloat()), (measuredHeight - marginBottom).toFloat())
                 close()
             }
             canvas.drawPath(mPath, mPaint)
@@ -215,10 +198,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
             }
             mPath.apply {
                 reset()
-                moveTo(
-                    getRTLCompactX((measuredWidth / 2.0).toFloat()),
-                    mHighPolylineY[1].toFloat()
-                )
+                moveTo(getRTLCompactX((measuredWidth / 2.0).toFloat()), mHighPolylineY[1].toFloat())
                 lineTo(getRTLCompactX(measuredWidth.toFloat()), mHighPolylineY[2].toFloat())
             }
             canvas.drawPath(mPath, mPaint)
@@ -232,14 +212,8 @@ class PolylineAndHistogramView @JvmOverloads constructor(
             mPath.apply {
                 reset()
                 moveTo(getRTLCompactX(0f), mHighPolylineY[0].toFloat())
-                lineTo(
-                    getRTLCompactX((measuredWidth / 2.0).toFloat()),
-                    mHighPolylineY[1].toFloat()
-                )
-                lineTo(
-                    getRTLCompactX((measuredWidth / 2.0).toFloat()),
-                    (measuredHeight - marginBottom).toFloat()
-                )
+                lineTo(getRTLCompactX((measuredWidth / 2.0).toFloat()), mHighPolylineY[1].toFloat())
+                lineTo(getRTLCompactX((measuredWidth / 2.0).toFloat()), (measuredHeight - marginBottom).toFloat())
                 lineTo(getRTLCompactX(0f), (measuredHeight - marginBottom).toFloat())
                 close()
             }
@@ -255,10 +229,7 @@ class PolylineAndHistogramView @JvmOverloads constructor(
             mPath.apply {
                 reset()
                 moveTo(getRTLCompactX(0f), mHighPolylineY[0].toFloat())
-                lineTo(
-                    getRTLCompactX((measuredWidth / 2.0).toFloat()),
-                    mHighPolylineY[1].toFloat()
-                )
+                lineTo(getRTLCompactX((measuredWidth / 2.0).toFloat()), mHighPolylineY[1].toFloat())
             }
             canvas.drawPath(mPath, mPaint)
         }

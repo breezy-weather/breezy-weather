@@ -27,9 +27,11 @@ import androidx.annotation.ColorInt
 import androidx.annotation.IntDef
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
+import org.breezyweather.common.extensions.fontScaleToApply
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.AbsChartItemView
+import kotlin.math.roundToInt
 
 /**
  * Daily trend item view.
@@ -96,7 +98,10 @@ class DailyTrendItemView @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val width = MeasureSpec.getSize(widthMeasureSpec)
+        val width = context.resources
+            .getDimensionPixelSize(R.dimen.trend_item_width)
+            .times(context.fontScaleToApply)
+            .roundToInt()
         val height = MeasureSpec.getSize(heightMeasureSpec)
         var y = 0f
         val textMargin = context.dpToPx(TEXT_MARGIN_DIP.toFloat())

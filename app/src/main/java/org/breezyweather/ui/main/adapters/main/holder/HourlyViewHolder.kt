@@ -28,13 +28,12 @@ import com.google.android.material.button.MaterialButtonGroup
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.getThemeColor
-import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.adapters.ButtonAdapter
 import org.breezyweather.ui.common.widgets.RecyclerViewNoVerticalScrollTouchListener
+import org.breezyweather.ui.common.widgets.trend.TrendLayoutManager
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.main.adapters.trend.HourlyTrendAdapter
-import org.breezyweather.ui.main.layouts.TrendHorizontalLinearLayoutManager
 import org.breezyweather.ui.main.widgets.TrendRecyclerViewScrollBar
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
@@ -135,13 +134,7 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 )
             }
         }
-
-        trendRecyclerView.layoutManager =
-            TrendHorizontalLinearLayoutManager(
-                context,
-                if (context.isLandscape) 7 else 5,
-                minHeight = context.resources.getDimensionPixelSize(R.dimen.hourly_trend_item_height)
-            )
+        trendRecyclerView.layoutManager = TrendLayoutManager(context)
         trendRecyclerView.setLineColor(
             context.getThemeColor(com.google.android.material.R.attr.colorOutline)
         )

@@ -100,6 +100,8 @@ Daily forecast is made of multiple tabs called trends. Order of daily trends can
 
 For each trend, the day of the week or "Today" is shown on top of each column, and just below, the day of the month and the month are shown.
 
+The number of columns shown at once depends on your display size and font scale.
+
 When data is missing for the whole period, the tab will be hidden.
 
 
@@ -216,7 +218,7 @@ Just like daily forecast, hourly is made of the same tabs called trends. Order o
 
 For each trend, the hour of the week is shown on top of each column. If it is the first hour listed or if it midnight, the subtitle will be highlighted.
 
-Below trends, a minute by minute precipitation quantity graph will be shown if precipitations in the next hour are above 0.
+The number of columns shown at once depends on your display size and font scale.
 
 When data is missing for the whole period, the tab will be hidden.
 

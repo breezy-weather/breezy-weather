@@ -23,14 +23,19 @@ import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.ColorInt
 import androidx.annotation.IntDef
 import androidx.core.graphics.withTranslation
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
+import org.breezyweather.common.extensions.fontScale
+import org.breezyweather.common.extensions.fontScaleToApply
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.AbsChartItemView
+import kotlin.math.roundToInt
 
 /**
  * Hourly trend item view.
@@ -79,7 +84,10 @@ class HourlyTrendItemView @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val width = MeasureSpec.getSize(widthMeasureSpec)
+        val width = context.resources
+            .getDimensionPixelSize(R.dimen.trend_item_width)
+            .times(context.fontScaleToApply)
+            .roundToInt()
         val height = MeasureSpec.getSize(heightMeasureSpec)
         var y = 0f
         val textMargin = context.dpToPx(TEXT_MARGIN_DIP.toFloat())
