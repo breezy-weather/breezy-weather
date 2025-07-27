@@ -827,9 +827,21 @@
     <string name="widget_custom_subtitle_help_content_description">Zobrazit nápovědu k vlastním klíčovým slovům titulků</string>
     <string name="widget_custom_subtitle_alert_box_title">Vlastní nápověda titulků</string>
     <string name="action_open_in_other_app_no_app">Nenalezeny žádné mapy</string>
-    <string name="action_share_no_app">Nenalezena žádná aplikace ke sdílení</string>
+    <string name="action_share_no_app">Nenalezena žádná aplikace pro sdílení</string>
     <string name="action_translate">Přeložit</string>
-    <string name="action_translate_no_app">Nenalezen žádný překladač</string>
+    <string name="action_translate_no_app">Nenalezena žádná aplikace překladače</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Podle dne/noci</string>
     <string name="settings_appearance_dark_mode_locations_dark">Vždy tmavé, pokud je aplikace ve tmavém režimu</string>
+    <string name="air_quality_pm25_about">Infrmace o jemných prachových částicích (PM2,5)</string>
+    <string name="air_quality_pm25_index">Stupnice indexu kvality ovzduší pro PM2,5</string>
+    <string name="air_quality_pm10_about">Informace o vdechovatelných pevných částicích (PM10)</string>
+    <string name="air_quality_pm10_index">Stupnice indexu kvality ovzduší pro PM10</string>
+    <string name="air_quality_so2_about">Informace o oxidu siřičitém (SO₂)</string>
+    <string name="air_quality_so2_index">Stupnice indexu kvality ovzduší pro SO₂</string>
+    <string name="air_quality_no2_about">Informace o oxidu dusičitém (NO₂)</string>
+    <string name="air_quality_no2_index">Stupnice indexu kvality ovzduší pro NO₂</string>
+    <string name="air_quality_o3_about">Informace o přízemním ozonu (O₃)</string>
+    <string name="air_quality_o3_index">Stupnice indexu kvality ovzduší pro O₃</string>
+    <string name="air_quality_co_about">Informace o oxidu uhelnatém (CO)</string>
+    <string name="air_quality_co_index">Stupnice indexu kvality ovzduší pro CO</string>
 </resources>
