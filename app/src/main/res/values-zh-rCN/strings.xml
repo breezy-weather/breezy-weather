@@ -903,4 +903,16 @@
     <string name="action_translate_no_app">未找到翻译应用</string>
     <string name="settings_appearance_dark_mode_locations_day_night">按照实际时间设置主题模式</string>
     <string name="settings_appearance_dark_mode_locations_dark">应用处于深色模式下时始终是深色</string>
+    <string name="air_quality_pm25_about">关于细颗粒物 (PM2.5)</string>
+    <string name="air_quality_pm25_index">PM2.5 的空气质量指数</string>
+    <string name="air_quality_pm10_about">关于细颗粒物 (PM10)</string>
+    <string name="air_quality_pm10_index">PM10 的空气质量指数</string>
+    <string name="air_quality_so2_about">关于二氧化硫 (SO₂)</string>
+    <string name="air_quality_so2_index">SO₂ 的空气质量指数</string>
+    <string name="air_quality_no2_about">关于二氧化氮 (NO₂)</string>
+    <string name="air_quality_no2_index">NO₂ 的空气质量指数</string>
+    <string name="air_quality_o3_about">关于地表臭氧 (O₃)</string>
+    <string name="air_quality_o3_index">O₃ 的空气质量指数</string>
+    <string name="air_quality_co_about">关于一氧化碳 (CO)</string>
+    <string name="air_quality_co_index">CO 的空气质量指数</string>
 </resources>
