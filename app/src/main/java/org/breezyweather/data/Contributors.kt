@@ -294,6 +294,7 @@ val appTranslators = arrayOf(
     TranslatorItem(arrayOf("ko"), "Alex", github = "whatthesamuel"),
     TranslatorItem(arrayOf("ko"), "agw76638", github = "agw76638"),
     TranslatorItem(arrayOf("ko"), "tabby", weblate = "tabby"),
+    TranslatorItem(arrayOf("ko"), "multivac", github = "Centurion-Mk2"),
     TranslatorItem(arrayOf("lt"), "Deividas Paukštė", weblate = "RustyOperator"),
     TranslatorItem(arrayOf("lt"), "D221", github = "D221"),
     TranslatorItem(arrayOf("lt"), "splice11", github = "splice11"),
