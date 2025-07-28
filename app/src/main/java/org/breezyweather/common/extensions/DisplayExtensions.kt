@@ -51,7 +51,7 @@ private const val MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE = 512
 private const val MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET = 600
 val FLOATING_DECELERATE_INTERPOLATOR: Interpolator = DecelerateInterpolator(1f)
 const val DEFAULT_CARD_LIST_ITEM_ELEVATION_DP = 2f
-const val SQUISHED_BLOCK_FACTOR = 0.1
+const val SQUISHED_BLOCK_FACTOR = 1.1f
 
 val Context.isTabletDevice: Boolean
     get() = (
@@ -63,25 +63,25 @@ val Context.isLandscape: Boolean
     get() = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
 /**
- * Needs a minimum of 160 dp for a block to fit.
- *
  * Minimum size is adjusted from font scale:
  * - At 1.0 font scale, minimum size for a block is 1.0 (160 dp)
  * - At 2.0 font scale, minimum size for a block is 2.0 (320 dp)
- *
+ */
+val Context.minBlockWidth: Float
+    get() = 0.5f + fontScale.div(2f)
+
+/**
  * @param widthInDp available width in which blocks will be displayed
  * @return a number of blocks between 1 and 5 that can fit
  */
 fun Context.getBlocksPerRow(
     widthInDp: Float = windowWidth.toFloat().div(density),
 ): Int {
-    val minBlockWidth = fontScale
-
     val potentialResult = floor(widthInDp.div(minBlockWidth)).roundToInt().coerceIn(1..5)
     return if (potentialResult > 2) {
         // if more than 2 blocks can fit, we prefer displaying less blocks and have a bit more room
         // rather than having squished blocks
-        floor(widthInDp.div(minBlockWidth + SQUISHED_BLOCK_FACTOR)).roundToInt().coerceIn(1..5)
+        floor(widthInDp.div(minBlockWidth * SQUISHED_BLOCK_FACTOR)).roundToInt().coerceIn(1..5)
     } else {
         potentialResult
     }

@@ -38,6 +38,7 @@ import org.breezyweather.common.extensions.density
 import org.breezyweather.common.extensions.fontScale
 import org.breezyweather.common.extensions.getBlocksPerRow
 import org.breezyweather.common.extensions.getThemeColor
+import org.breezyweather.common.extensions.minBlockWidth
 import org.breezyweather.common.extensions.windowWidth
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.common.widgets.astro.MoonPhaseView
@@ -209,7 +210,7 @@ abstract class AstroViewHolder(parent: ViewGroup, val isSun: Boolean) : Abstract
                     false
                 } else {
                     itemView.context.windowWidth.toFloat().div(itemView.context.density).div(
-                        itemView.context.fontScale + SQUISHED_BLOCK_FACTOR
+                        itemView.context.minBlockWidth * SQUISHED_BLOCK_FACTOR
                     ) < blocksPerRow
                 }
             }
