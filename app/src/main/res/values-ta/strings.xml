@@ -229,7 +229,7 @@
     <string name="action_help_me_choose">தேர்வு செய்ய எனக்கு உதவுங்கள்</string>
     <string name="action_show_errors">விவரங்களைக் காண தட்டவும்</string>
     <string name="settings_per_location">இருப்பிட விருப்பத்தேர்வுகள்</string>
-    <string name="widget_custom_subtitle_explanation">நீங்கள் எதையும் உள்ளிடலாம், ஆனால் உரையின் நீளத்திற்கு கவனம் செலுத்துங்கள். நீங்கள் வானிலை தரவை மேற்கோள் காட்ட விரும்பினால், தயவுசெய்து தொடர்புடைய முக்கிய சொல்லைக் குறிப்பிட $ பயன்படுத்தவும்.\n\n எடுத்துக்காட்டாக, “தற்போதைய வானிலை: $ cw $”. “தற்போதைய வானிலை: தெளிவான வானம்” என்று காண்பிக்கப்படும்.</string>
+    <string name="widget_custom_subtitle_explanation">நீங்கள் எதையும் உள்ளிடலாம், ஆனால் உரையின் நீளத்திற்கு கவனம் செலுத்துங்கள். நீங்கள் வானிலை தரவை மேற்கோள் காட்ட விரும்பினால், தயவுசெய்து தொடர்புடைய முக்கிய சொல்லைக் குறிப்பிட $ பயன்படுத்தவும்.\n\n எடுத்துக்காட்டாக, “தற்போதைய வானிலை: $cw$”. “தற்போதைய வானிலை: தெளிவான வானம்” என்று காண்பிக்கப்படும்.</string>
     <string name="widget_custom_subtitle_keyword_lon_description">நெட்டாங்கு</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">இன்றைய பகல்நேர வானிலை, நாளை,…, 4 நாட்களுக்குப் பிறகு</string>
     <string name="settings_background_updates_dont_kill_my_app_title">உற்பத்தியாளர் குறிப்பிட்ட வழிமுறைகள்</string>
