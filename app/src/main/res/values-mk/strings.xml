@@ -363,7 +363,7 @@
     <string name="precipitation_duration">Времетраење на врнежите</string>
     <string name="precipitation_none">Нема врнежи</string>
     <string name="precipitation_between_time">Врнежи помеѓу %1$s и %2$s</string>
-    <string name="air_quality_o3_full">Приземен озон (O3)</string>
+    <string name="air_quality_o3_full">Приземен озон (O₃)</string>
     <string name="air_quality_no2_full">Азот диоксид (NO2)</string>
     <string name="air_quality_so2_full">Сулфур диоксид (SO2)</string>
     <string name="pollen_tree">Дрво</string>
