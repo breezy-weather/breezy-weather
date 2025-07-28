@@ -13,12 +13,14 @@
 - Settings - Improve the location-based dark mode preference to make it easier to understand
 
 **Weather sources**
+- [FOSS Public Alert Server] Add support for this experimental source for alerts (@chunshek)
 - [GeoSphere AT] Fix missing info in warnings
 - [GeoSphere AT] Use the newer better endpoint for air quality
 - [JMA] Added Thai translations (@chunshek)
 - [LVGMC] Fix current observations (@chunshek)
 - [NCEI] Added support for normals (@chunshek)
 - [Pirate Weather] Add support for daily/hourly summaries
+- [ANAM-BF, DCCMS, DMN, DWR, EMI, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, SMA (Seychelles), SMA (Sudan), SSMS] Add to  ̀freenet` flavor (was missing despite being FOSS)
 
 **Translations**
 - Translations updated
