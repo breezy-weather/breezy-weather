@@ -33,13 +33,8 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.extensions.SQUISHED_BLOCK_FACTOR
-import org.breezyweather.common.extensions.density
-import org.breezyweather.common.extensions.fontScale
-import org.breezyweather.common.extensions.getBlocksPerRow
+import org.breezyweather.common.extensions.areBlocksSquished
 import org.breezyweather.common.extensions.getThemeColor
-import org.breezyweather.common.extensions.minBlockWidth
-import org.breezyweather.common.extensions.windowWidth
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.common.widgets.astro.MoonPhaseView
 import org.breezyweather.ui.common.widgets.astro.SunMoonView
@@ -101,7 +96,7 @@ abstract class AstroViewHolder(parent: ViewGroup, val isSun: Boolean) : Abstract
             )
         )
 
-        if (isSquishedBlock) topGuideline.setGuidelinePercent(0.05f)
+        if (itemView.context.areBlocksSquished) topGuideline.setGuidelinePercent(0.05f)
 
         ensureTime(
             if (isSun) mWeather!!.today?.sun else mWeather!!.today?.moon,
@@ -196,23 +191,5 @@ abstract class AstroViewHolder(parent: ViewGroup, val isSun: Boolean) : Abstract
         get() {
             val duration = max(0.0, mPhaseAngle / 360.0 * 1000 + 1000).toLong()
             return min(duration, 2000)
-        }
-
-    /**
-     * Since we don’t have access to item width yet, make a simplified estimation
-     * by taking into account more than 2 blocks are never squished, and that devices with drawer layout
-     * always have space for at least 2 non-squished blocks
-     */
-    protected val isSquishedBlock: Boolean
-        get() {
-            return itemView.context.getBlocksPerRow().let { blocksPerRow ->
-                if (blocksPerRow > 2) {
-                    false
-                } else {
-                    itemView.context.windowWidth.toFloat().div(itemView.context.density).div(
-                        itemView.context.minBlockWidth * SQUISHED_BLOCK_FACTOR
-                    ) < blocksPerRow
-                }
-            }
         }
 }

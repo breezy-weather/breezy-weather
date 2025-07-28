@@ -51,7 +51,7 @@ private const val MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE = 512
 private const val MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET = 600
 val FLOATING_DECELERATE_INTERPOLATOR: Interpolator = DecelerateInterpolator(1f)
 const val DEFAULT_CARD_LIST_ITEM_ELEVATION_DP = 2f
-const val SQUISHED_BLOCK_FACTOR = 1.1f
+private const val SQUISHED_BLOCK_FACTOR = 1.1f
 
 val Context.isTabletDevice: Boolean
     get() = (
@@ -86,6 +86,19 @@ fun Context.getBlocksPerRow(
         potentialResult
     }
 }
+
+/**
+ * Simplified estimation by taking into account more than 2 blocks are never squished,
+ * and that devices with drawer layout always have space for at least 2 non-squished blocks
+ */
+val Context.areBlocksSquished: Boolean
+    get() = getBlocksPerRow().let { blocksPerRow ->
+        if (blocksPerRow > 2) {
+            false
+        } else {
+            windowWidth.toFloat().div(density).div(minBlockWidth * SQUISHED_BLOCK_FACTOR) < blocksPerRow
+        }
+    }
 
 val Context.isRtl: Boolean
     get() = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL

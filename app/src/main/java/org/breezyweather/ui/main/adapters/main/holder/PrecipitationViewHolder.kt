@@ -26,6 +26,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.extensions.areBlocksSquished
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.settings.SettingsManager
@@ -93,6 +94,7 @@ class PrecipitationViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                     if (isDay) R.string.precipitation_total_day else R.string.precipitation_total_night
                 )
             }
+            precipitationAmountView.maxLines = if (itemView.context.areBlocksSquished) 2 else 3
 
             precipitation?.total?.let { total ->
                 val precipitationUnit = if (isSnow) {
