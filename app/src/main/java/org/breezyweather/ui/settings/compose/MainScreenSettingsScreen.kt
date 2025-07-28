@@ -111,7 +111,8 @@ fun MainScreenSettingsScreen(
             ) {
                 PreferenceViewWithCard(
                     title = stringResource(it),
-                    summary = HourlyTrendDisplay.getSummary(context, hourlyTrendDisplayList)
+                    summary = HourlyTrendDisplay.getSummary(context, hourlyTrendDisplayList),
+                    isLast = true
                 ) {
                     (context as? Activity)?.let { a ->
                         IntentHelper.startHourlyTrendDisplayManageActivity(a)
