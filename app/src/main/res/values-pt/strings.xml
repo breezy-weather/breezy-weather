@@ -34,7 +34,7 @@
     <string name="wind_strength_9">Vendaval Forte</string>
     <string name="wind_strength_10">Tempestade</string>
     <string name="wind_strength_11">Tempestade Violenta</string>
-    <string name="wind_strength_12">Furacão/Tufão</string>
+    <string name="wind_strength_12">Furacão</string>
     <string name="ephemeris_moon_phase_new_moon">Nova</string>
     <string name="ephemeris_moon_phase_waxing_crescent">Crescente</string>
     <string name="ephemeris_moon_phase_first_quarter">Quarto Crescente</string>
@@ -91,7 +91,7 @@
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
     <string name="settings_location_service">Serviço de Localização</string>
-    <string name="settings_appearance_dark_mode_title">Modo Escuro</string>
+    <string name="settings_appearance_dark_mode_title">Modo escuro do app</string>
     <string name="settings_appearance">Aparência</string>
     <string name="settings_main_gravity_sensor_switch">Sensor Open Gravity</string>
     <string name="settings_appearance_language_title">Idioma</string>
@@ -121,7 +121,7 @@
     <string name="precipitation_intensity_light">Claro</string>
     <string name="precipitation_intensity_heavy">Intensa</string>
     <string name="precipitation_none">Sem precipitação</string>
-    <string name="precipitation_between_time">Precipitação entre %1$s e %2$s</string>
+    <string name="precipitation_between_time">Precipitação das %1$s às %2$s</string>
     <string name="widget_label_text_size">Tamanho do texto</string>
     <string name="precipitation_probability">Probabilidade de precipitação</string>
     <string name="precipitation_duration">Duração de precipitação</string>
@@ -142,7 +142,7 @@
     <string name="message_source_not_installed_error_title">Fonte não disponível</string>
     <string name="settings_debug">Depuração</string>
     <string name="settings_main_daily_trends_title">Tendências diárias</string>
-    <string name="settings_main_cards_fade_in_switch">Cartões se desvanecem</string>
+    <string name="settings_main_cards_fade_in_switch">Blocos aparecem gradualmente</string>
     <string name="unit_mmph">mm/h</string>
     <string name="location_message_reverse_geocoding_failed">O provedor meteorológico não conseguiu encontrar um local correspondente</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Nascer da lua de hoje, amanhã, …, 4 dias depois</string>
@@ -201,7 +201,7 @@
     <string name="settings_icon_packs_title">Pacotes de ícones</string>
     <string name="settings_icon_packs_weather_icon_grey">Ícone cinzento</string>
     <string name="settings_main">Ecrã principal</string>
-    <string name="settings_main_summary">Ordem dos cartões, itens exibidos, animações</string>
+    <string name="settings_main_summary">Ordem dos blocos, elementos exibidos, animações</string>
     <string name="settings_main_hourly_trends_title">Tendências horárias</string>
     <string name="settings_widgets_week_icon_mode_title">Ícone a ser exibido em visualizações semanais</string>
     <string name="settings_widgets_notification_feels_like_switch">Usar sensação térmica</string>
@@ -219,7 +219,7 @@
     <string name="unit_mph">mph</string>
     <string name="unit_mmph_voice">Milímetros por hora</string>
     <string name="unit_cmph">cm/h</string>
-    <string name="settings_main_cards_title">Cartões</string>
+    <string name="settings_main_cards_title">Blocos</string>
     <string name="settings_widgets_live_wallpaper_summary">Define uma animação climática como papel de parede</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Tempestade com granizo pesado</string>
     <string name="unit_mb">mb</string>
@@ -522,7 +522,7 @@
     <string name="settings_weather_sources_per_location_summary">Personalizar fontes de dados meteorológicos usadas para este local</string>
     <string name="settings_widgets_broadcast_send_data_title">Enviar dados meteorológicos para %s</string>
     <string name="temperature_normal_short">Normal</string>
-    <string name="settings_appearance_dark_mode_locations_title">Modo Dia / Noite para locais</string>
+    <string name="settings_appearance_dark_mode_locations_title">Modo escuro baseado na localização</string>
     <string name="common_weather_text_snow_showers_heavy">Nevasca forte</string>
     <string name="temperature_degree_day_heating">Grau de aquecimento do dia</string>
     <string name="temperature_degree_day_cooling">Grau de resfriamento do dia</string>
@@ -598,7 +598,7 @@
     <string name="about_open_link_message">Abrir %s?</string>
     <string name="pollen_quercus">Carvalho</string>
     <string name="location_delete_location_dialog_title">Apagar local?</string>
-    <string name="widget_custom_subtitle_keyword_xaqi_description">Índice de Qualidade do Ar de hoje, amanhã, …, 4 dias depois</string>
+    <string name="widget_custom_subtitle_keyword_xaqi_description">Índice da qualidade do ar de hoje, de amanhã, …, de 4 dias depois</string>
     <string name="pollen_carpinus">Carpino</string>
     <string name="pollen_castanea">Castanheiro</string>
     <string name="pollen_corylus">Avelã</string>
@@ -606,7 +606,7 @@
     <string name="pollen_fraxinus">Freixo</string>
     <string name="pollen_plantaginaceae">Tanchagem</string>
     <string name="pollen_platanus">Plátano</string>
-    <string name="widget_custom_subtitle_keyword_caqi_description">Índice de Qualidade do Ar atual</string>
+    <string name="widget_custom_subtitle_keyword_caqi_description">Índice atual da qualidade do ar</string>
     <string name="message_source_not_installed_error_content_tip_1">Isto pode acontecer quando adicionou a sua localização na versão padrão (standard) do app e e depois mudou para a versão com apenas fontes de rede livre (freenet). Voltar para a versão padrão pode resolver este problema.</string>
     <string name="message_source_not_installed_error_content_tip_2">Altere a fonte meteorológica para este local ou remova-a e adicione-a novamente.</string>
     <string name="widget_label_hide_header">Ocultar cabeçalho</string>
@@ -864,4 +864,22 @@
     <string name="precipitation_rain_total_night">Chuva noturna</string>
     <string name="precipitation_snow_total_day">Neve diurna</string>
     <string name="precipitation_snow_total_night">Neve noturna</string>
+    <string name="air_quality_pm25_about">Sobre material particulado fino (PM2.5)</string>
+    <string name="air_quality_pm25_index">Escala do índice de qualidade do ar para PM2.5</string>
+    <string name="air_quality_pm10_about">Sobre material particulado inalável (PM10)</string>
+    <string name="air_quality_pm10_index">Escala do índice de qualidade do ar para PM10</string>
+    <string name="air_quality_so2_about">Sobre o dióxido de enxofre (SO₂)</string>
+    <string name="air_quality_so2_index">Escala do índice de qualidade do ar para SO₂</string>
+    <string name="air_quality_no2_about">Sobre o dióxido de nitrogênio (NO₂)</string>
+    <string name="air_quality_no2_index">Escala do índice de qualidade do ar para NO₂</string>
+    <string name="air_quality_o3_about">Sobre o ozônio ao nível do solo (O₃)</string>
+    <string name="air_quality_o3_index">Escala do índice de qualidade do ar para O₃</string>
+    <string name="air_quality_co_about">Sobre o monóxido de carbono (CO)</string>
+    <string name="air_quality_co_index">Escala do índice de qualidade do ar para CO</string>
+    <string name="action_open_in_other_app_no_app">Nenhuma app de mapas encontrada</string>
+    <string name="action_share_no_app">Nenhuma app de partilhar encontrada</string>
+    <string name="action_translate">Traduzir</string>
+    <string name="action_translate_no_app">Nenhuma app de tradução encontrada</string>
+    <string name="settings_appearance_dark_mode_locations_day_night">Seguir o dia/noite</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Sempre escuro quando a app está</string>
 </resources>
