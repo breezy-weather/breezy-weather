@@ -33,6 +33,7 @@ import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.weather.model.getTemperatureRangeSummary
 import org.breezyweather.ui.common.widgets.NumberAnimTextView
+import org.breezyweather.ui.main.widgets.TextRelativeClock
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import kotlin.math.abs
 import kotlin.math.max
@@ -41,6 +42,7 @@ import kotlin.math.roundToInt
 class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_header, parent, false)
 ) {
+    private val refreshTimeText: TextRelativeClock = itemView.findViewById(R.id.refreshTimeText)
     private val mTemperatureContainer: RelativeLayout = itemView.findViewById(R.id.container_main_header_temperature)
     private val mTemperature: NumberAnimTextView = itemView.findViewById(R.id.container_main_header_temperature_value)
     private val mTemperatureUnitView: TextView = itemView.findViewById(R.id.container_main_header_temperature_unit)
@@ -60,6 +62,14 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
         itemAnimationEnabled: Boolean,
     ) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled)
+
+        location.weather?.base?.refreshTime?.let {
+            refreshTimeText.visibility = View.VISIBLE
+            refreshTimeText.setDate(it)
+        } ?: run {
+            refreshTimeText.visibility = View.GONE
+        }
+
         mTemperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
         location.weather?.current?.let { current ->
             if (!current.weatherText.isNullOrEmpty()) {

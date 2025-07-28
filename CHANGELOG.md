@@ -4,6 +4,8 @@
 - Main screen - Allow to move small blocks by drag & drop
 - Main screen - The number of items displayed at once in daily/hourly forecast now depends on display size and font scale (previously always 5 in portrait, and 7 in landscape)
 - Main screen - Show “Negligible” inside Pollen block if there is no pollen today instead of an empty block
+- Main screen - Allow up to 5 blocks on a row depending on width display size and font scale
+- Main screen - Move refresh time out of app bar when scrolling
 - Details - Air quality - Add individual charts for each pollutant
 - Alerts - Add “Translate” and “Share” to text select actions
 - Widgets - Improve UX of custom subtitle documentation (@codewithdipesh)

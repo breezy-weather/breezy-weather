@@ -76,6 +76,8 @@ Some blocks may not show with some sources if the data is not available. Check [
 
 **All blocks can be tapped on to access more details.**
 
+The number of small blocks displayed per row varies between 1 and 5 depending on your width display size and font scale.
+
 
 ### Alerts
 

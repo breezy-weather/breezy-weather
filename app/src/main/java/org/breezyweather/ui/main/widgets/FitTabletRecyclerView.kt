@@ -20,7 +20,6 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
-import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 
 class FitTabletRecyclerView @JvmOverloads constructor(
     context: Context,
@@ -31,15 +30,7 @@ class FitTabletRecyclerView @JvmOverloads constructor(
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
-        val viewWidth = measuredWidth
-        val adaptiveWidth = context.getTabletListAdaptiveWidth(viewWidth)
-        val paddingHorizontal = ((viewWidth - adaptiveWidth) / 2).let {
-            if (it < resources.getDimensionPixelSize(R.dimen.normal_margin).div(2)) {
-                resources.getDimensionPixelSize(R.dimen.normal_margin).div(2)
-            } else {
-                it
-            }
-        }
+        val paddingHorizontal = resources.getDimensionPixelSize(R.dimen.normal_margin).div(2)
         setPadding(paddingHorizontal, paddingTop, paddingHorizontal, paddingBottom)
     }
 }

@@ -33,10 +33,11 @@ import breezyweather.domain.weather.model.Weather
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.extensions.SQUISHED_BLOCK_FACTOR
 import org.breezyweather.common.extensions.density
 import org.breezyweather.common.extensions.fontScale
+import org.breezyweather.common.extensions.getBlocksPerRow
 import org.breezyweather.common.extensions.getThemeColor
-import org.breezyweather.common.extensions.isWidthHalfSizeable
 import org.breezyweather.common.extensions.windowWidth
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.common.widgets.astro.MoonPhaseView
@@ -99,7 +100,7 @@ abstract class AstroViewHolder(parent: ViewGroup, val isSun: Boolean) : Abstract
             )
         )
 
-        if (isSmallDisplay) topGuideline.setGuidelinePercent(0.05f)
+        if (isSquishedBlock) topGuideline.setGuidelinePercent(0.05f)
 
         ensureTime(
             if (isSun) mWeather!!.today?.sun else mWeather!!.today?.moon,
@@ -197,13 +198,20 @@ abstract class AstroViewHolder(parent: ViewGroup, val isSun: Boolean) : Abstract
         }
 
     /**
-     * Note: not considered “small display” if one block per row
+     * Since we don’t have access to item width yet, make a simplified estimation
+     * by taking into account more than 2 blocks are never squished, and that devices with drawer layout
+     * always have space for at least 2 non-squished blocks
      */
-    protected val isSmallDisplay: Boolean
+    protected val isSquishedBlock: Boolean
         get() {
-            if (!itemView.context.isWidthHalfSizeable) return false
-
-            return itemView.context.fontScale >
-                itemView.context.windowWidth.toFloat().div(itemView.context.density) - 1.2
+            return itemView.context.getBlocksPerRow().let { blocksPerRow ->
+                if (blocksPerRow > 2) {
+                    false
+                } else {
+                    itemView.context.windowWidth.toFloat().div(itemView.context.density).div(
+                        itemView.context.fontScale + SQUISHED_BLOCK_FACTOR
+                    ) < blocksPerRow
+                }
+            }
         }
 }

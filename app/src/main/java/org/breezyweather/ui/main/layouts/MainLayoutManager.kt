@@ -20,14 +20,10 @@ import android.content.Context
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-/**
- * FIXME: the old custom layout manager didn't have the following issues:
- *  - Daily/hourly line charts glitching
- *  - Blocks are recreated when scrolling up and down
- */
 class MainLayoutManager(
     context: Context,
-) : GridLayoutManager(context, 2, RecyclerView.VERTICAL, false) {
+    spanCount: Int,
+) : GridLayoutManager(context, spanCount, RecyclerView.VERTICAL, false) {
 
     private var mDataSetChanged = false
 

@@ -24,7 +24,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.OvershootInterpolator
-import androidx.constraintlayout.widget.Guideline
 import androidx.core.content.ContextCompat
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Weather
@@ -50,7 +49,7 @@ class MoonViewHolder(parent: ViewGroup) : AstroViewHolder(parent, isSun = false)
         super.onBindView(activity, location, provider, listAnimationEnabled, itemAnimationEnabled)
         mWeather = location.weather!!
 
-        if (isSmallDisplay) bottomGuideline.setGuidelinePercent(0.95f)
+        if (isSquishedBlock) bottomGuideline.setGuidelinePercent(0.95f)
 
         mWeather?.today?.moonPhase?.let { moonPhase ->
             if (moonPhase.isValid) {

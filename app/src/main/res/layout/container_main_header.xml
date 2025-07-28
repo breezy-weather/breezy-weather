@@ -8,16 +8,32 @@
     android:background="@android:color/transparent"
     android:foreground="@drawable/selectable_item_background"
     android:gravity="bottom"
-    android:paddingStart="@dimen/normal_margin"
-    android:paddingEnd="@dimen/normal_margin"
+    android:paddingStart="@dimen/small_margin"
+    android:paddingEnd="@dimen/small_margin"
     android:paddingBottom="@dimen/normal_margin"
     tools:ignore="UnusedAttribute">
+
+    <org.breezyweather.ui.main.widgets.TextRelativeClock
+        android:id="@+id/refreshTimeText"
+        android:textSize="@dimen/content_text_size"
+        android:textColor="?attr/colorSurfaceInverse"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:drawablePadding="6dp"
+        android:gravity="center_vertical"
+        android:drawableStart="@drawable/ic_time"
+        android:backgroundTint="?attr/colorSurfaceInverse"
+        android:layout_marginBottom="@dimen/small_margin"
+        style="@style/large_title_text"
+        tools:text="1 minute ago"
+        tools:ignore="RelativeOverlap,RtlHardcoded" />
 
     <TextView
         android:id="@+id/container_main_header_weather_condition_description"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
         android:layout_gravity="center"
         android:textFontWeight="300"
         android:textAppearance="?attr/textAppearanceTitleLarge"

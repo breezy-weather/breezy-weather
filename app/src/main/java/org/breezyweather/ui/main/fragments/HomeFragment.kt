@@ -41,12 +41,13 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.livedata.EqualtableLiveData
 import org.breezyweather.common.basic.models.options.appearance.BackgroundAnimationMode
+import org.breezyweather.common.extensions.density
 import org.breezyweather.common.extensions.doOnApplyWindowInsets
+import org.breezyweather.common.extensions.getBlocksPerRow
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.extensions.isTabletDevice
-import org.breezyweather.common.extensions.isWidthHalfSizeable
 import org.breezyweather.common.extensions.setSystemBarStyle
 import org.breezyweather.common.extensions.uiModeManager
 import org.breezyweather.common.utils.helpers.LogHelper
@@ -207,13 +208,6 @@ class HomeFragment : MainModuleFragment() {
         // Needed to get the icon to show the correct color depending on dark mode
         binding.toolbar.overflowIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_more_vert)
 
-        // Align refreshTimeText with toolbar (some devices, e.g. tablets, have an additional
-        // start padding).
-        (binding.refreshTimeText.layoutParams as ViewGroup.MarginLayoutParams).apply {
-            marginStart = binding.toolbar.paddingStart +
-                requireContext().resources.getDimensionPixelSize(R.dimen.normal_margin)
-        }
-
         binding.switchLayout.setOnSwitchListener(switchListener)
         binding.switchLayout.reset()
         binding.indicator.setSwitchView(binding.switchLayout)
@@ -253,19 +247,19 @@ class HomeFragment : MainModuleFragment() {
         }
 
         binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = MainLayoutManager(requireContext()).apply {
+        binding.recyclerView.layoutManager = MainLayoutManager(requireContext(), GRID_SPAN_COUNT).apply {
             spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
                     return if (
                         ViewType.isHalfSizeableBlock(binding.recyclerView.adapter!!.getItemViewType(position)) != true
                     ) {
-                        2 // Full width
+                        // Spreads on the full width
+                        GRID_SPAN_COUNT
                     } else {
-                        if (requireContext().isWidthHalfSizeable) {
-                            1 // Half width
-                        } else {
-                            2 // Full width
-                        }
+                        // This takes into account the actual available width (if drawer is open or not)
+                        GRID_SPAN_COUNT.div(
+                            requireContext().getBlocksPerRow(width.toFloat().div(requireContext().density))
+                        )
                     }
                 }
             }
@@ -430,13 +424,6 @@ class HomeFragment : MainModuleFragment() {
             (location?.getPlace(requireContext()) ?: "") +
             (if (location?.isCurrentPosition == true && requireContext().isTabletDevice) " ⊙" else "")
 
-        location?.weather?.base?.refreshTime?.let {
-            binding.refreshTimeText.visibility = View.VISIBLE
-            binding.refreshTimeText.setDate(it)
-        } ?: run {
-            binding.refreshTimeText.visibility = View.GONE
-        }
-
         weatherView.setWeather(weatherKind, daylight, requireContext().isDarkMode)
         binding.refreshLayout.setColorSchemeColors(
             ThemeManager
@@ -525,5 +512,10 @@ class HomeFragment : MainModuleFragment() {
             weatherView.onScroll(mScrollY)
             adapter?.onScroll()
         }
+    }
+
+    companion object {
+        // 60 is 5 * 4 * 3, which allows us to divide from 1, 2, 3, 4 or 5 and have a whole number
+        const val GRID_SPAN_COUNT = 60
     }
 }

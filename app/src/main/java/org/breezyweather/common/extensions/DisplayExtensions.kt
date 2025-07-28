@@ -43,12 +43,15 @@ import androidx.core.graphics.createBitmap
 import androidx.core.view.WindowInsetsControllerCompat
 import com.google.android.material.resources.TextAppearance
 import kotlin.math.abs
+import kotlin.math.floor
 import kotlin.math.min
+import kotlin.math.roundToInt
 
 private const val MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_PHONE = 512
 private const val MAX_TABLET_ADAPTIVE_LIST_WIDTH_DIP_TABLET = 600
 val FLOATING_DECELERATE_INTERPOLATOR: Interpolator = DecelerateInterpolator(1f)
 const val DEFAULT_CARD_LIST_ITEM_ELEVATION_DP = 2f
+const val SQUISHED_BLOCK_FACTOR = 0.1
 
 val Context.isTabletDevice: Boolean
     get() = (
@@ -60,27 +63,29 @@ val Context.isLandscape: Boolean
     get() = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
 /**
- * Returns true if there is enough width to display two blocks
- * Allowed down to 320 dp and 1.0 font scale
- * Then follows a linear progress between width and font scale
+ * Needs a minimum of 160 dp for a block to fit.
+ *
+ * Minimum size is adjusted from font scale:
+ * - At 1.0 font scale, minimum size for a block is 1.0 (160 dp)
+ * - At 2.0 font scale, minimum size for a block is 2.0 (320 dp)
+ *
+ * @param widthInDp available width in which blocks will be displayed
+ * @return a number of blocks between 1 and 5 that can fit
  */
-val Context.isWidthHalfSizeable: Boolean
-    get() {
-        val currentWindowWidth = windowWidth.toFloat().div(density)
+fun Context.getBlocksPerRow(
+    widthInDp: Float = windowWidth.toFloat().div(density),
+): Int {
+    val minBlockWidth = fontScale
 
-        // Below 320 dp
-        if (currentWindowWidth < 2.0) return false
-
-        /**
-         * Examples:
-         * window width = 2.0 (320 dp), max font scale = 1.0
-         * window width = 2.5 (400 dp), max font scale = 1.5
-         * window width = 3.0 (480 dp), max font scale = 2.0
-         */
-        val maxFontScale = currentWindowWidth - 1.0
-
-        return fontScale <= maxFontScale
+    val potentialResult = floor(widthInDp.div(minBlockWidth)).roundToInt().coerceIn(1..5)
+    return if (potentialResult > 2) {
+        // if more than 2 blocks can fit, we prefer displaying less blocks and have a bit more room
+        // rather than having squished blocks
+        floor(widthInDp.div(minBlockWidth + SQUISHED_BLOCK_FACTOR)).roundToInt().coerceIn(1..5)
+    } else {
+        potentialResult
     }
+}
 
 val Context.isRtl: Boolean
     get() = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
