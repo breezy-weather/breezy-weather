@@ -44,7 +44,7 @@ class GeoJsonParser(
      * This allows to parse [lon,lat,altitude] tuples in GeoJson files more efficiently.
      * Note that altitudes are generally optional so they can be null.
      */
-    private class LatLngAlt internal constructor(val latLng: LatLng, val altitude: Double?)
+    private class LatLngAlt(val latLng: LatLng, val altitude: Double?)
 
     /**
      * Creates a new GeoJsonParser

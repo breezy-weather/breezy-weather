@@ -170,7 +170,7 @@ class JmaService @Inject constructor(
 
             okHttpClient.newCall(request).execute().use { call ->
                 if (call.isSuccessful) {
-                    val latestTime = incomingFormatter.parse(call.body!!.string())!!.time
+                    val latestTime = incomingFormatter.parse(call.body.string())!!.time
 
                     // Observation data is recorded in 3-hourly files.
                     val timestamp = (

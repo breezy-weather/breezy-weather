@@ -535,7 +535,7 @@ fun SecondarySourcesPreference(
                     )
                 }
                 SourceViewWithContinents(
-                    title = stringResource(SourceFeature.CURRENT.resourceName!!),
+                    title = stringResource(SourceFeature.CURRENT.resourceName),
                     selectedKey = currentSource.value,
                     sourceList = buildMap {
                         put(
@@ -574,7 +574,7 @@ fun SecondarySourcesPreference(
                     hasChangedASource.value = true
                 }
                 SourceViewWithContinents(
-                    title = stringResource(SourceFeature.AIR_QUALITY.resourceName!!),
+                    title = stringResource(SourceFeature.AIR_QUALITY.resourceName),
                     selectedKey = airQualitySource.value,
                     sourceList = buildMap {
                         put(
@@ -613,7 +613,7 @@ fun SecondarySourcesPreference(
                     hasChangedASource.value = true
                 }
                 SourceViewWithContinents(
-                    title = stringResource(SourceFeature.POLLEN.resourceName!!),
+                    title = stringResource(SourceFeature.POLLEN.resourceName),
                     selectedKey = pollenSource.value,
                     sourceList = buildMap {
                         put(
@@ -652,7 +652,7 @@ fun SecondarySourcesPreference(
                     hasChangedASource.value = true
                 }
                 SourceViewWithContinents(
-                    title = stringResource(SourceFeature.MINUTELY.resourceName!!),
+                    title = stringResource(SourceFeature.MINUTELY.resourceName),
                     selectedKey = minutelySource.value,
                     sourceList = buildMap {
                         put(
@@ -691,7 +691,7 @@ fun SecondarySourcesPreference(
                     hasChangedASource.value = true
                 }
                 SourceViewWithContinents(
-                    title = stringResource(SourceFeature.ALERT.resourceName!!),
+                    title = stringResource(SourceFeature.ALERT.resourceName),
                     selectedKey = alertSource.value,
                     sourceList = buildMap {
                         put(
@@ -730,7 +730,7 @@ fun SecondarySourcesPreference(
                     hasChangedASource.value = true
                 }
                 SourceViewWithContinents(
-                    title = stringResource(SourceFeature.NORMALS.resourceName!!),
+                    title = stringResource(SourceFeature.NORMALS.resourceName),
                     selectedKey = normalsSource.value,
                     sourceList = buildMap {
                         put(
@@ -770,7 +770,7 @@ fun SecondarySourcesPreference(
                 }
                 if (location.isCurrentPosition) {
                     SourceViewWithContinents(
-                        title = stringResource(SourceFeature.REVERSE_GEOCODING.resourceName!!),
+                        title = stringResource(SourceFeature.REVERSE_GEOCODING.resourceName),
                         selectedKey = reverseGeocodingSource.value,
                         sourceList = buildMap {
                             put(

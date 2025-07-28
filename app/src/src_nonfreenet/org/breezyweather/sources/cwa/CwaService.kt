@@ -425,7 +425,7 @@ class CwaService @Inject constructor(
             mapOf(
                 "stationId" to it.data.aqi[0].station!!.StationId!!,
                 "countyName" to it.data.aqi[0].town!!.ctyName!!,
-                "townshipName" to it.data.aqi[0].town!!.townName!!,
+                "townshipName" to it.data.aqi[0].town!!.townName,
                 "townshipCode" to it.data.aqi[0].town!!.townCode!!
             )
         }

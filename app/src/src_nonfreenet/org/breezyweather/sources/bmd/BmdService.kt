@@ -162,7 +162,7 @@ class BmdService @Inject constructor(
         val request = Request.Builder().url(url).build()
         return okHttpClient.newCall(request).execute().use { call ->
             if (call.isSuccessful) {
-                call.body!!.string()
+                call.body.string()
             } else {
                 throw InvalidLocationException()
             }

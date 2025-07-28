@@ -57,10 +57,10 @@ internal fun getPollen(
                 }
             }
         } else {
-            dayList.add(Date().toTimezoneNoHour(location.javaTimeZone)!!)
+            dayList.add(Date().toTimezoneNoHour(location.javaTimeZone))
         }
     } else {
-        dayList.add(Date().toTimezoneNoHour(location.javaTimeZone)!!)
+        dayList.add(Date().toTimezoneNoHour(location.javaTimeZone))
     }
 
     return PollenWrapper(

@@ -820,7 +820,7 @@
     <string name="pressure_steady">Estável</string>
     <string name="pressure_falling">Queda</string>
     <string name="pressure_about">Sobre a pressão</string>
-    <string name="pressure_about_description1">A pressão atmosférica é a pressão para baixo exercida pela atmosfera da Terra. Este aplicativo usa a pressão do nível do mar (MSLP) para facilitar a comparação da pressão de locais com altitudes diferentes.</string>
+    <string name="pressure_about_description1">A pressão atmosférica é a pressão para baixo exercida pela atmosfera da Terra. Este aplicativo usa a pressão do nível do mar para facilitar a comparação da pressão de locais com altitudes diferentes.</string>
     <string name="pressure_about_description2">Mudanças significativas e rápidas na pressão são usadas para prever mudanças no clima. Por exemplo, uma queda na pressão pode significar que a chuva ou a neve estão a caminho e o aumento da pressão pode significar que o tempo vai melhorar. Uma pressão atmosférica anormal pode causar dores de cabeça, dor nas articulações, fadiga e outros efeitos.</string>
     <string name="visibility_about">Sobre a visibilidade</string>
     <string name="visibility_about_description">A visibilidade indica o quão distante você pode ver objetos como prédios e colinas de forma clara. A visibilidade pode ser afetada pela precipitação, nevoa, poeira, fumaça ou névoa seca.</string>

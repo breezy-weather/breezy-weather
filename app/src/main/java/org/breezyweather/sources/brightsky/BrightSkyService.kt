@@ -92,7 +92,7 @@ class BrightSkyService @Inject constructor(
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val weather = if (SourceFeature.FORECAST in requestedFeatures) {
             val initialDate = Date().toTimezoneNoHour(location.javaTimeZone)
-            val date = initialDate!!.toCalendarWithTimeZone(location.javaTimeZone).apply {
+            val date = initialDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
                 add(Calendar.DAY_OF_YEAR, -1)
                 set(Calendar.HOUR_OF_DAY, 0)
             }.time

@@ -101,7 +101,7 @@ class ImdService @Inject constructor(
         val forecasts = MutableList(IMD_TIMEFRAMES.size) {
             okHttpClient.newCall(requests[it]).execute().use { call ->
                 if (call.isSuccessful) {
-                    timestamps[it] = call.body!!.string().substringBefore(',')
+                    timestamps[it] = call.body.string().substringBefore(',')
                     if (timestampRegex.matches(timestamps[it])) {
                         mApi.getForecast(
                             lat = latitude,

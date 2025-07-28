@@ -23,10 +23,8 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import androidx.annotation.ColorInt
 import androidx.core.view.isNotEmpty
-import androidx.recyclerview.widget.RecyclerView
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
-import org.breezyweather.common.extensions.fontScaleToApply
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 import org.breezyweather.ui.common.widgets.trend.item.AbsTrendItemView
 import org.breezyweather.ui.main.widgets.HorizontalRecyclerView

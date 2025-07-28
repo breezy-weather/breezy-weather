@@ -73,7 +73,7 @@ fun FitStatusBarTopAppBar(
     modifier = modifier,
     navigationIcon = navigationIcon,
     actions = actions,
-    colors = TopAppBarDefaults.mediumTopAppBarColors(
+    colors = TopAppBarDefaults.topAppBarColors(
         containerColor = MaterialTheme.colorScheme.surface,
         scrolledContainerColor = MaterialTheme.colorScheme.applyTonalElevation(
             backgroundColor = MaterialTheme.colorScheme.surface,

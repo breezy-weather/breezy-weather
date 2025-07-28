@@ -113,7 +113,7 @@ internal fun getDailyList(
 ): List<DailyWrapper>? {
     return dailyForecasts?.map { forecasts ->
         DailyWrapper(
-            date = forecasts.EpochDate.seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.javaTimeZone)!!,
+            date = forecasts.EpochDate.seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.javaTimeZone),
             day = HalfDayWrapper(
                 weatherText = forecasts.Day?.ShortPhrase,
                 weatherPhase = forecasts.Day?.LongPhrase,
@@ -340,7 +340,7 @@ internal fun getPollenWrapper(
             val dailyPollen = getDailyPollen(it.AirAndPollen)
             if (dailyPollen != null) {
                 pollenDaily[
-                    it.EpochDate.seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.javaTimeZone)!!
+                    it.EpochDate.seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.javaTimeZone)
                 ] = dailyPollen
             }
         }
