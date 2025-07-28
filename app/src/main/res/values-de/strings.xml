@@ -13,7 +13,7 @@
     <string name="ceiling">Wolkendecke</string>
     <string name="cloud_cover">Bewölkung</string>
     <string name="location_current">Aktueller Standort</string>
-    <string name="daily_forecast">Tagesprognose</string>
+    <string name="daily_forecast">Tägliche Vorhersage</string>
     <string name="daytime">Tagsüber</string>
     <string name="temperature_degree_day">Gradtagzahl</string>
     <string name="dew_point">Taupunkt</string>
