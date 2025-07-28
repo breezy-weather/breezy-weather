@@ -813,7 +813,7 @@
     <string name="action_open_in_other_app_no_app">Картографічний додаток не знайдено</string>
     <string name="action_share_no_app">Не знайдено програми для спільного доступу</string>
     <string name="action_translate">Перекласти</string>
-    <string name="action_translate_no_app">Не знайдено програми-перекладача</string>
+    <string name="action_translate_no_app">Програму для перекладу не знайдено</string>
     <string name="air_quality_pm25_about">Про дрібні тверді частинки (PM2.5)</string>
     <string name="air_quality_pm25_index">Шкала індексу якості повітря для PM2.5</string>
     <string name="air_quality_pm10_about">Про вдихувані тверді частинки (PM10)</string>
