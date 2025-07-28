@@ -106,6 +106,7 @@ import org.breezyweather.sources.pirateweather.PirateWeatherService
 import org.breezyweather.sources.recosante.RecosanteService
 import org.breezyweather.sources.smg.SmgService
 import org.breezyweather.sources.smhi.SmhiService
+import org.breezyweather.sources.veduris.VedurIsService
 import org.breezyweather.sources.wmosevereweather.WmoSevereWeatherService
 import java.text.Collator
 import javax.inject.Inject
@@ -184,6 +185,7 @@ class SourceManager @Inject constructor(
     smgService: SmgService,
     smhiService: SmhiService,
     ssmsService: SsmsService,
+    vedurIsService: VedurIsService,
     wmoSevereWeatherService: WmoSevereWeatherService,
 ) {
     // TODO: Initialize lazily
@@ -277,7 +279,8 @@ class SourceManager @Inject constructor(
         smaSuService,
         smgService,
         smhiService,
-        ssmsService
+        ssmsService,
+        vedurIsService
     )
 
     // Broadcast sources

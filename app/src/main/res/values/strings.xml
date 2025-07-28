@@ -1267,6 +1267,9 @@
     <string name="nws_weather_text_attribute_hail_large" translatable="false">Large Hail</string>
     <string name="nws_weather_text_attribute_hail_small" translatable="false">Small Hail</string>
     <string name="nws_weather_text_separator_and" translatable="false"> and </string>
+    <!-- Weather texts for Vedur.is -->
+    <string name="veduris_weather_text_fog_drizzle" translatable="false">Fog drizzle</string>
+    <string name="veduris_weather_text_thunderstorm_light" translatable="false">Light thunderstorm</string>
     <!-- Do NOT translate everything below -->
     <!-- Widgets -->
     <string name="widget_custom_subtitle_keyword_cw" translatable="false">$cw$</string>
