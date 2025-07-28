@@ -49,8 +49,6 @@ import org.breezyweather.common.extensions.isDarkMode
 import org.breezyweather.common.extensions.isMotionReduced
 import org.breezyweather.common.extensions.isTabletDevice
 import org.breezyweather.common.extensions.setSystemBarStyle
-import org.breezyweather.common.extensions.uiModeManager
-import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.databinding.FragmentHomeBinding
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.settings.SettingsManager
@@ -335,8 +333,6 @@ class HomeFragment : MainModuleFragment() {
 
     private fun updateDarkMode(location: Location?) {
         val expectedLightTheme = ThemeManager.isLightTheme(requireContext(), location)
-        LogHelper.log(msg = "Night mode: ${requireContext().uiModeManager?.nightMode}")
-        LogHelper.log(msg = "Expected light theme for ${location?.city}: $expectedLightTheme")
 
         (activity as BreezyActivity).updateLocalNightMode(expectedLightTheme)
     }

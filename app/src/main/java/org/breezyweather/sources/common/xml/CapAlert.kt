@@ -223,11 +223,11 @@ data class CapAlert(
         context: Context,
     ): Info? {
         return this.info?.firstOrNull {
-            (it.language?.value ?: "").equals(context.currentLocale.code, ignoreCase = true)
+            it.language?.value?.equals(context.currentLocale.toString(), ignoreCase = true) == true
         } ?: this.info?.firstOrNull {
-            (it.language?.value ?: "").startsWith(context.currentLocale.code.substringBefore("-"), ignoreCase = true)
+            it.language?.value?.startsWith(context.currentLocale.language, ignoreCase = true) == true
         } ?: this.info?.firstOrNull {
-            (it.language?.value ?: "").startsWith("en", ignoreCase = true)
+            it.language?.value?.startsWith("en", ignoreCase = true) == true
         } ?: this.info?.firstOrNull()
     }
 }

@@ -29,7 +29,6 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.extensions.capitalize
 import org.breezyweather.common.extensions.code
-import org.breezyweather.common.extensions.codeWithCountry
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
@@ -122,8 +121,9 @@ class WmoSevereWeatherService @Inject constructor(
     ): List<Alert>? {
         return alertResult.features
             ?.filter {
-                it.properties != null &&
-                    (it.properties.expires == null || it.properties.expires > Date())
+                it.properties != null
+                // Don’t filter based on expiration here as the actual CAP file may contain an updated expiration date!
+                // && (it.properties.expires == null || it.properties.expires > Date())
             }?.map {
                 val severity = AlertSeverity.getInstance(it.properties!!.s)
                 val originalAlert = Alert(
@@ -157,7 +157,7 @@ class WmoSevereWeatherService @Inject constructor(
                         it.properties.capurl
                     } else if (it.properties.rlink.contains("sa-ncm-")) {
                         // Source for this hack: https://severeweather.wmo.int/js/new-layout.js
-                        if (context.currentLocale.code.startsWith("ar")) {
+                        if (context.currentLocale.toString().startsWith("ar", ignoreCase = true)) {
                             it.properties.rlink
                         } else {
                             it.properties.capurl
@@ -168,31 +168,7 @@ class WmoSevereWeatherService @Inject constructor(
 
                     if (!urlToLoad.isNullOrEmpty()) {
                         val xmlAlert = client.getAlert("v2/cap-alerts/$urlToLoad").execute().body()
-
-                        val selectedInfo = if (xmlAlert?.info.isNullOrEmpty()) {
-                            null
-                        } else if (xmlAlert!!.info!!.size == 1) {
-                            xmlAlert.info!![0]
-                        } else {
-                            val notNullLanguageInfo = xmlAlert.info!!.filter { info ->
-                                info.language?.value != null
-                            }
-
-                            if (notNullLanguageInfo.isEmpty()) {
-                                xmlAlert.info.first() // Arbitrarily takes the first
-                            } else {
-                                notNullLanguageInfo.firstOrNull { info ->
-                                    info.language!!.value!!.lowercase() ==
-                                        context.currentLocale.codeWithCountry.lowercase()
-                                } ?: xmlAlert.info.firstOrNull { info ->
-                                    info.language!!.value!!.lowercase().startsWith(context.currentLocale.code)
-                                } ?: xmlAlert.info.firstOrNull { info ->
-                                    info.language!!.value!!.lowercase().startsWith("en")
-                                } ?: xmlAlert.info.first() // Arbitrarily takes the first
-                            }
-                        }
-
-                        alertFromInfo(xmlAlert, selectedInfo, originalAlert)
+                        alertFromInfo(context, originalAlert, xmlAlert)
                     } else if (it.properties.rlink.isNullOrEmpty() && it.properties.capurl.isNullOrEmpty()) {
                         originalAlert
                     } else {
@@ -203,28 +179,28 @@ class WmoSevereWeatherService @Inject constructor(
                         val rlinkAlert = client.getAlert("v2/cap-alerts/${it.properties.rlink}").execute().body()
 
                         // There is only one Info block when there are two links
-                        val capurlLanguage = capurlAlert?.info?.getOrNull(0)?.language?.value?.lowercase()
-                        val rlinkLanguage = rlinkAlert?.info?.getOrNull(0)?.language?.value?.lowercase()
+                        val capurlLanguage = capurlAlert?.info?.getOrNull(0)?.language?.value
+                        val rlinkLanguage = rlinkAlert?.info?.getOrNull(0)?.language?.value
 
                         val selectedAlert = if (capurlLanguage.isNullOrEmpty() || rlinkLanguage.isNullOrEmpty()) {
                             capurlAlert
-                        } else if (capurlLanguage == context.currentLocale.codeWithCountry.lowercase()) {
+                        } else if (capurlLanguage.equals(context.currentLocale.toString(), ignoreCase = true)) {
                             capurlAlert
-                        } else if (rlinkLanguage == context.currentLocale.codeWithCountry.lowercase()) {
+                        } else if (rlinkLanguage.equals(context.currentLocale.toString(), ignoreCase = true)) {
                             rlinkAlert
-                        } else if (capurlLanguage.startsWith(context.currentLocale.code)) {
+                        } else if (capurlLanguage.startsWith(context.currentLocale.language, ignoreCase = true)) {
                             capurlAlert
-                        } else if (rlinkLanguage.startsWith(context.currentLocale.code)) {
+                        } else if (rlinkLanguage.startsWith(context.currentLocale.language, ignoreCase = true)) {
                             rlinkAlert
-                        } else if (capurlLanguage.startsWith("en")) {
+                        } else if (capurlLanguage.startsWith("en", ignoreCase = true)) {
                             capurlAlert
-                        } else if (rlinkLanguage.startsWith("en")) {
+                        } else if (rlinkLanguage.startsWith("en", ignoreCase = true)) {
                             rlinkAlert
                         } else {
                             capurlAlert // Arbitrarily takes capurl
                         }
 
-                        alertFromInfo(selectedAlert, selectedAlert?.info?.getOrNull(0), originalAlert)
+                        alertFromInfo(context, originalAlert, selectedAlert)
                     }
                 } catch (e: Throwable) {
                     if (BreezyWeather.instance.debugMode) {
@@ -235,17 +211,19 @@ class WmoSevereWeatherService @Inject constructor(
 
                     originalAlert
                 }
+            }?.filter {
+                it.endDate == null || it.endDate!! > Date()
             }
     }
 
     private fun alertFromInfo(
-        xmlAlert: CapAlert?,
-        selectedInfo: CapAlert.Info?,
+        context: Context,
         originalAlert: Alert,
+        xmlAlert: CapAlert?,
     ): Alert {
-        return selectedInfo?.let { info ->
+        return xmlAlert?.getInfoForContext(context)?.let { info ->
             originalAlert.copy(
-                alertId = xmlAlert!!.identifier?.value ?: originalAlert.alertId,
+                alertId = xmlAlert.identifier?.value ?: originalAlert.alertId,
                 startDate = info.onset?.value
                     ?: info.effective?.value
                     ?: originalAlert.startDate
