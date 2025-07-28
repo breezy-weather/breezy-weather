@@ -444,7 +444,7 @@
     <string name="temperature_normal_short">보통</string>
     <string name="air_quality_no2_full">이산화질소(NO ₂)</string>
     <string name="air_quality_index">대기질지수</string>
-    <string name="air_quality_o3_full">지상 오존(O ₃)</string>
+    <string name="air_quality_o3_full">지상 오존(O₃)</string>
     <string name="air_quality_so2">SO₂</string>
     <string name="pollen_alnus">오리나무</string>
     <string name="alert_source">출처: %s</string>
