@@ -76,6 +76,7 @@ fun LocationPreference(
     val context = LocalContext.current
     val dialogWeatherSourcesOpenState = remember { mutableStateOf(false) }
     val dialogAdditionalLocationPreferencesOpenState = remember { mutableStateOf(false) }
+    val sourcesWithPreferencesScreen = remember { activity.sourceManager.sourcesWithPreferencesScreen(location) }
 
     Column(
         modifier = modifier.verticalScroll(rememberScrollState())
@@ -103,13 +104,15 @@ fun LocationPreference(
         ) {
             dialogWeatherSourcesOpenState.value = true
         }
-        PreferenceView(
-            titleId = R.string.settings_per_location,
-            iconId = R.drawable.ic_settings,
-            summaryId = R.string.settings_per_location_summary,
-            colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
-        ) {
-            dialogAdditionalLocationPreferencesOpenState.value = true
+        if (!location.isCurrentPosition || sourcesWithPreferencesScreen.isNotEmpty()) {
+            PreferenceView(
+                titleId = R.string.settings_per_location,
+                iconId = R.drawable.ic_settings,
+                summaryId = R.string.settings_per_location_summary,
+                colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)
+            ) {
+                dialogAdditionalLocationPreferencesOpenState.value = true
+            }
         }
         PreferenceView(
             titleId = R.string.settings_global,
@@ -155,9 +158,6 @@ fun LocationPreference(
             val hasChangedPreferences = remember { mutableStateOf(false) }
             val customName = remember {
                 mutableStateOf(location.customName)
-            }
-            val sourcesWithPreferencesScreen = remember {
-                activity.sourceManager.sourcesWithPreferencesScreen(location)
             }
             AlertDialogNoPadding(
                 title = {
