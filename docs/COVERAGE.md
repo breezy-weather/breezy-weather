@@ -303,10 +303,11 @@ In general, a weather source can be considered for inclusion in the official rel
 | Atmo France        | ✅ included from v5.4.6                                                                     |              |
 | EKUK               | ✅ included from v5.4.0                                                                     | 2024-12-24   |
 | EPD HK             | ✅ included from v5.4.0                                                                     | 2024-12-19   |
+| FOSS Public Alert  | ✅ included from v6.0.5-alpha                                                               |              |
 | GeoNames           | ✅ included from v4.5.0                                                                     |              |
 | HERE               | ✅ included from v4.5.0                                                                     |              |
 | Natural Earth      | ✅ included from v5.0.3                                                                     |              |
-| NCEI               | ✅ included from v6.0.4-alpha                                                               |              |
+| NCEI               | ✅ included from v6.0.5-alpha                                                               |              |
 | Pirate Weather     | ✅ included from v5.0.0                                                                     |              |
 | Recosanté          | ✅ included from v5.1.1                                                                     |              |
 | WMO Severe Weather | ✅ included from v5.1.4                                                                     |              |

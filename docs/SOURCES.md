@@ -13,6 +13,7 @@ Below, you can find details about the support and implementation status for feat
 | 🌐 Worldwide                       | [AccuWeather](#accuweather) 🔓                          | Forecast, Current, Air quality, Pollen, Nowcasting, Alerts, Normals, Search, Address |
 | 🌐 Worldwide                       | [Android](#android)                                     | Address                                                                              |
 | 🌐 Worldwide                       | [GeoNames](#geonames) 🔐                                | Search                                                                               |
+| 🌐 Worldwide                       | [FOSS Public Alert Server](#foss-public-alert-server)   | Alerts                                                                               |
 | 🌐 Worldwide                       | [HERE](#here-destination-weather) 🔐                    | Forecast, Current, Alerts, Address                                                   |
 | 🌐 Worldwide                       | [NCEI](#national-centers-for-environmental-information) | Normals                                                                              |
 | 🌐 Worldwide                       | [Nominatim](#nominatim)                                 | Address                                                                              |
@@ -1207,12 +1208,19 @@ These sources can be added as a secondary **Alert** and **Temperature normals** 
 ### Environmental Protection Department
 **[Environmental Protection Department](https://www.aqhi.gov.hk/)** can be added as a secondary **Air quality** source for Hong Kong.
 
+### FOSS Public Alert Server
+> The FOSS Public Alert Server project is currently in early testing.
+
+**[FOSS Public Alert Server](https://invent.kde.org/webapps/foss-public-alert-server/)** is an open source server that provides near real-time alerts about emergencies worldwide.
+
 ### GeoNames
 > 🔐 **This source requires an API key.** [Register here](https://www.geonames.org/login)
 
 **[GeoNames](https://www.geonames.org/)** provides multilingual search for place names of more than 11 million locations worldwide. This source can be enabled as a **Search** source after adding your API key.
 
 ### National Centers for Environmental Information
+> NCEI is available for saved locations for the time being. It will be made available to current location in a future release.
+
 **[National Centers for Environmental Information](https://www.ncei.noaa.gov/)** (NCEI) provides Global Summary of the Month (GSOM), a global climatological database that can be added as a **Temperature normals** source worldwide.
 
 ### Nominatim
