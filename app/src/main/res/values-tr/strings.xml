@@ -729,4 +729,10 @@
     <string name="air_quality_index_short">AQI</string>
     <string name="air_quality_index_about">Hava kalitesi endeksi hakkında</string>
     <string name="air_quality_index_about_description_1">Hava kalitesi endeksi (AQI) belli bir bölgede havanın ne kadar kirli olduğunu ve sağlığınıza dair potansiyel risklerini anlamanıza yardımcı olması için tasarlanmış bir ölçüttür.</string>
+    <string name="air_quality_short">Hava kalitesi</string>
+    <string name="ephemeris_sun">Güneş</string>
+    <string name="ephemeris_moon">Ay</string>
+    <string name="ephemeris_about_dawn">Şafak, güneş doğmadan önceki ilk görünür günışığının zamanına denir.</string>
+    <string name="ephemeris_about_dusk">Gün batımı, son görünür ışık kaybolmadan önceki alacakaranlığım en karanlık haline denir.</string>
+    <string name="clock">Saat</string>
 </resources>
