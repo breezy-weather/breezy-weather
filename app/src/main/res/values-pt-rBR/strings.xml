@@ -789,7 +789,7 @@
     <string name="uv_index_time_to_burn_explanations">O tempo para queimar exato depende da altitude, da presença de solo refletivo como água ou neve, seu tipo de pele e uso de protetor solar.</string>
     <string name="air_quality_index_short">IQA</string>
     <string name="air_quality_index_about">Sobre o índice de qualidade do ar</string>
-    <string name="air_quality_index_about_description_1">O índice de qualidade do ar (IQA) é uma escala criada para ajudá-lo a entender o quão poluído está o ar em uma determinada área e os possíveis riscos à sua saúde.</string>
+    <string name="air_quality_index_about_description_1">O índice de qualidade do ar (IQAr) é uma escala criada para ajudá-lo a entender o quão poluído está o ar em uma determinada área e os possíveis riscos à sua saúde.</string>
     <string name="air_quality_index_about_description_2">A escala utilizada neste aplicativo é baseada nas recomendações da Organização Mundial da Saúde, não nas regulamentações locais, para ter categorias significativas e facilitar a comparação dos níveis de poluição entre os países.</string>
     <string name="air_quality_index_scale">Escala do índice de qualidade do ar</string>
     <string name="air_quality_index_harmless_exposure">Exposição inofensiva</string>
@@ -888,7 +888,7 @@
     <string name="action_open_in_other_app_no_app">Nenhum aplicativo de mapas encontrado</string>
     <string name="action_share_no_app">Nenhum aplicativo para compartilhar encontrado</string>
     <string name="action_translate">Traduzir</string>
-    <string name="action_translate_no_app">Nenhum aplicativo tradutor encontrado</string>
+    <string name="action_translate_no_app">Nenhum aplicativo de tradução encontrado</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Seguir o dia/noite</string>
     <string name="settings_appearance_dark_mode_locations_dark">Sempre escuro quando o aplicativo está</string>
 </resources>
