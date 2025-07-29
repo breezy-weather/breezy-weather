@@ -292,9 +292,9 @@
     <string name="widget_clock_day_horizontal">Klocka + daglig (vågrät stil)</string>
     <string name="widget_day">Daglig</string>
     <string name="dialog_permissions_notification_content">Tryck här för att aktivera aviseringar om vädervarningar, eller bestäm dig senare i Inställningar.</string>
-    <string name="ceiling">Tak</string>
+    <string name="ceiling">Molntak</string>
     <string name="widget_text">Text</string>
-    <string name="weather_message_invalid_location">Ogiltig plats, vänligen ta bort den och lägg till igen</string>
+    <string name="weather_message_invalid_location">Ogiltig plats, vänligen ta bort den och lägg till den igen</string>
     <string name="location_current_not_found_yet">Nuvarande plats har ännu inte hittats …</string>
     <string name="ephemeris_moon_phase_first_quarter">Tilltagande halvmåne</string>
     <string name="location_results_by">Platsresultat från %s</string>
@@ -468,7 +468,7 @@
     <string name="notification_channel_background_services">Bakgrundstjänster</string>
     <string name="settings_icon_packs_weather_icon_dark">Mörk ikon</string>
     <string name="settings_icon_packs_weather_icon_grey">Grå ikon</string>
-    <string name="weather_message_unsupported_feature">Källan stödjer inte en av de begärda funktionerna</string>
+    <string name="weather_message_unsupported_feature">Källan stöder inte en av de begärda funktionerna</string>
     <string name="settings_debug_dump_crash_logs_title">Dela kraschloggar</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="settings_location_service">Platstjänst</string>
@@ -500,7 +500,7 @@
     <string name="settings_location_access_permission_already_granted">Behörighet redan beviljad</string>
     <string name="notification_update_error">%d uppdatering(ar) misslyckades</string>
     <string name="settings_location_access_switch_title">Platsåtkomst</string>
-    <string name="weather_api_unauthorized_title">Obehörig API-åtkomst</string>
+    <string name="weather_api_unauthorized_title">API-åtkomst ej auktoriserad</string>
     <string name="unit_h">h</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="settings_location_access_precise_summaryOn">Aktiverad. Enhetens nätoperatör kommer att användas i första hand och för det mesta, men gps kan också användas som reserv.</string>
@@ -765,11 +765,11 @@
     <string name="visibility_from_to_number">%1$s till %2$s</string>
     <string name="visibility_from_to_description">%1$s till %2$s</string>
     <string name="visibility_perfectly_clear">Helt klart</string>
-    <string name="visibility_clear">Klart</string>
-    <string name="visibility_good">Bra</string>
+    <string name="visibility_clear">Mycket god</string>
+    <string name="visibility_good">God</string>
     <string name="visibility_moderate">Måttlig</string>
-    <string name="visibility_poor">Dålig</string>
-    <string name="visibility_very_poor">Mycket dålig</string>
+    <string name="visibility_poor">Disigt</string>
+    <string name="visibility_very_poor">Mycket disigt</string>
     <string name="cloud_cover_about">Om molntäcke</string>
     <string name="data_sources">Datakällor</string>
     <string name="action_configure_item">Konfigurera %s</string>
