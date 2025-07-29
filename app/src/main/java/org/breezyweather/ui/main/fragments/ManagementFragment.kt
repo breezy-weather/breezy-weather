@@ -213,6 +213,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                     Column {
                         if (BreezyWeather.instance.debugMode) {
                             FloatingActionButton(
+                                containerColor = MaterialTheme.colorScheme.tertiary,
                                 onClick = {
                                     viewModel.openChooseDebugLocationDialog()
                                 }
@@ -226,6 +227,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                         }
                         if (validLocationListState.value.firstOrNull { it.isCurrentPosition } == null) {
                             FloatingActionButton(
+                                containerColor = MaterialTheme.colorScheme.tertiary,
                                 onClick = {
                                     viewModel.openChooseWeatherSourcesDialog(null)
                                 }
@@ -238,6 +240,7 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
                         }
                         FloatingActionButton(
+                            containerColor = MaterialTheme.colorScheme.tertiary,
                             onClick = {
                                 callback?.onSearchBarClicked()
                             }
