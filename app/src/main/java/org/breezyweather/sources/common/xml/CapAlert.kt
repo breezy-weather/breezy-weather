@@ -22,7 +22,6 @@ import com.google.maps.android.model.LatLng
 import kotlinx.serialization.Serializable
 import nl.adaptivity.xmlutil.serialization.XmlSerialName
 import nl.adaptivity.xmlutil.serialization.XmlValue
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.serializer.DateSerializer
 import java.util.Date
@@ -67,7 +66,8 @@ data class CapAlert(
         val headline: Headline? = null,
         val description: Description? = null,
         val instruction: Instruction? = null,
-        val area: List<Area>? = null,
+        val parameters: List<Parameter>? = null,
+        val areas: List<Area>? = null,
     ) {
         @Serializable
         @XmlSerialName("language", "", "cap")
@@ -142,11 +142,30 @@ data class CapAlert(
         )
 
         @Serializable
+        @XmlSerialName("parameter", "urn:oasis:names:tc:emergency:cap:1.2", "cap")
+        data class Parameter(
+            val valueName: ValueName? = null,
+            val value: Value? = null,
+        ) {
+            @Serializable
+            @XmlSerialName("valueName", "", "cap")
+            data class ValueName(
+                @XmlValue(true) val value: String? = null,
+            )
+
+            @Serializable
+            @XmlSerialName("value", "", "cap")
+            data class Value(
+                @XmlValue(true) val value: String? = null,
+            )
+        }
+
+        @Serializable
         @XmlSerialName("area", "urn:oasis:names:tc:emergency:cap:1.2", "cap")
         data class Area(
             val areaDesc: AreaDesc? = null,
-            val geocode: List<Geocode>? = null,
-            val polygon: List<Polygon>? = null,
+            val geocodes: List<Geocode>? = null,
+            val polygons: List<Polygon>? = null,
         ) {
             @Serializable
             @XmlSerialName("areaDesc", "", "cap")
@@ -184,8 +203,8 @@ data class CapAlert(
             valueName: String,
             value: String,
         ): Boolean {
-            this.area?.forEach { area ->
-                area.geocode?.forEach {
+            this.areas?.forEach { area ->
+                area.geocodes?.forEach {
                     if (it.valueName?.value == valueName && it.value?.value == value) {
                         return true
                     }
@@ -197,8 +216,8 @@ data class CapAlert(
         fun containsPoint(
             point: LatLng,
         ): Boolean {
-            this.area?.forEach { area ->
-                area.polygon?.forEach {
+            this.areas?.forEach { area ->
+                area.polygons?.forEach {
                     val polygon = mutableListOf<LatLng>()
                     it.value?.split(" ")?.forEach { vertex ->
                         val coords = vertex.split(",")

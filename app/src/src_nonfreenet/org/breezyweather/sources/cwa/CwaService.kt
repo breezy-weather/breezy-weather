@@ -91,18 +91,41 @@ class CwaService @Inject constructor(
             .create(CwaApi::class.java)
     }
 
-    private val weatherAttribution = "中央氣象署"
-    override val reverseGeocodingAttribution = weatherAttribution
+    private val weatherAttribution by lazy {
+        with(context.currentLocale.code) {
+            when {
+                startsWith("zh") -> "中央氣象署"
+                else -> "Central Weather Administration"
+            }
+        }
+    }
+    private val airQualityAttribution by lazy {
+        with(context.currentLocale.code) {
+            when {
+                startsWith("zh") -> "環境部"
+                else -> "Ministry of Environment"
+            }
+        }
+    }
+    override val reverseGeocodingAttribution by lazy {
+        with(context.currentLocale.code) {
+            when {
+                startsWith("zh") -> "內政部國土測繪中心"
+                else -> "National Land Survey and Mapping Center"
+            }
+        }
+    }
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.AIR_QUALITY to "環境部",
+        SourceFeature.AIR_QUALITY to airQualityAttribution,
         SourceFeature.ALERT to weatherAttribution,
         SourceFeature.NORMALS to weatherAttribution
     )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.cwa.gov.tw/",
-        "環境部" to "https://airtw.moenv.gov.tw/"
+        airQualityAttribution to "https://airtw.moenv.gov.tw/",
+        reverseGeocodingAttribution to "https://www.nlsc.gov.tw/"
     )
 
     override fun isFeatureSupportedForLocation(
@@ -487,10 +510,6 @@ class CwaService @Inject constructor(
 
     companion object {
         private const val CWA_BASE_URL = "https://opendata.cwa.gov.tw/"
-        private const val SUN_ENDPOINT = "A-B0062-001"
-        private const val SUN_PARAMETERS = "SunRiseTime,SunSetTime"
-        private const val MOON_ENDPOINT = "A-B0063-001"
-        private const val MOON_PARAMETERS = "MoonRiseTime,MoonSetTime"
         private val LINE_FEED_SPACES = Regex("""\n\s*""")
 
         private val TAIWAN_BBOX = LatLngBounds.parse(119.99690416, 21.756143532, 122.10915909, 25.633378776)
