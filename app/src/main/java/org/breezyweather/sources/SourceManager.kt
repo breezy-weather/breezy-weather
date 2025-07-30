@@ -137,7 +137,7 @@ fun SourceManager.getBestSourceForFeature(
     return getSupportedWeatherSources(feature, location)
         .filter {
             it.isFeatureSupportedForLocation(location, feature) &&
-            it.getFeaturePriorityForLocation(location, feature) > PRIORITY_NONE &&
+                it.getFeaturePriorityForLocation(location, feature) > PRIORITY_NONE &&
                 (it !is ConfigurableSource || (it.isConfigured && !it.isRestricted))
         }
         .maxByOrNull { it.getFeaturePriorityForLocation(location, feature) }
