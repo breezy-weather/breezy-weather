@@ -23,6 +23,7 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.source.ConfigurableSource
+import org.breezyweather.common.source.FeatureSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.source.PreferencesParametersSource
@@ -39,28 +40,32 @@ fun SourceManager.getLocationSource(id: String): LocationSource? = getLocationSo
 fun SourceManager.getLocationSourceOrDefault(id: String): LocationSource = getLocationSource(id)
     ?: getLocationSource(BuildConfig.DEFAULT_LOCATION_SOURCE)!!
 
-// Weather
-fun SourceManager.getWeatherSource(id: String): WeatherSource? = getWeatherSources().firstOrNull { it.id == id }
-fun SourceManager.getSupportedWeatherSources(
+fun SourceManager.getFeatureSource(id: String): FeatureSource? = getFeatureSources().firstOrNull { it.id == id }
+fun SourceManager.getSupportedFeatureSources(
     feature: SourceFeature? = null,
     location: Location? = null,
     // Optional id of the source that will always be taken, even if not matching the criteria
     sourceException: String? = null,
-): ImmutableList<WeatherSource> = getWeatherSources()
+): ImmutableList<FeatureSource> = getFeatureSources()
     .filter {
-        it.id == sourceException ||
-            (
-                feature == null ||
-                    (
-                        it.supportedFeatures.containsKey(feature) &&
-                            (
-                                location == null ||
-                                    (location.isCurrentPosition && !location.isUsable) ||
-                                    it.isFeatureSupportedForLocation(location, feature)
-                                )
-                        )
-                )
+        it.id != "naturalearth" && (
+            it.id == sourceException ||
+                (
+                    feature == null ||
+                        (
+                            it.supportedFeatures.containsKey(feature) &&
+                                (
+                                    location == null ||
+                                        (location.isCurrentPosition && !location.isUsable) ||
+                                        it.isFeatureSupportedForLocation(location, feature)
+                                    )
+                            )
+                    )
+            )
     }.toImmutableList()
+
+// Weather
+fun SourceManager.getWeatherSource(id: String): WeatherSource? = getWeatherSources().firstOrNull { it.id == id }
 
 fun SourceManager.getLocationSearchSource(id: String): LocationSearchSource? = getLocationSearchSources()
     .firstOrNull { it.id == id }
@@ -70,17 +75,6 @@ fun SourceManager.getConfiguredLocationSearchSources(): ImmutableList<LocationSe
     .filter { it !is ConfigurableSource || it.isConfigured }
     .toImmutableList()
 
-fun SourceManager.getSupportedReverseGeocodingSources(
-    location: Location? = null,
-): ImmutableList<ReverseGeocodingSource> = getReverseGeocodingSources()
-    .filter {
-        it.id != "naturalearth" &&
-            (
-                location == null ||
-                    (location.isCurrentPosition && !location.isUsable) ||
-                    it.isReverseGeocodingSupportedForLocation(location)
-                )
-    }.toImmutableList()
 fun SourceManager.getReverseGeocodingSource(id: String): ReverseGeocodingSource? = getReverseGeocodingSources()
     .firstOrNull { it.id == id }
 fun SourceManager.getReverseGeocodingSourceOrDefault(id: String): ReverseGeocodingSource = getReverseGeocodingSource(id)
@@ -133,8 +127,8 @@ fun SourceManager.sourcesWithPreferencesScreen(
 fun SourceManager.getBestSourceForFeature(
     location: Location,
     feature: SourceFeature,
-): WeatherSource? {
-    return getSupportedWeatherSources(feature, location)
+): FeatureSource? {
+    return getSupportedFeatureSources(feature, location)
         .filter {
             it.isFeatureSupportedForLocation(location, feature) &&
                 it.getFeaturePriorityForLocation(location, feature) > PRIORITY_NONE &&
@@ -157,7 +151,7 @@ fun SourceManager.getBestSourceForFeature(
 fun SourceManager.getDefaultSourceForFeature(
     location: Location,
     feature: SourceFeature,
-): WeatherSource? {
+): FeatureSource? {
     return when (feature) {
         SourceFeature.POLLEN -> if (arrayOf("US", "CA").any { it.equals(location.countryCode, ignoreCase = true) }) {
             getWeatherSource("accu")
@@ -177,13 +171,18 @@ fun SourceManager.getDefaultSourceForFeature(
         } else {
             null
         }
+        SourceFeature.REVERSE_GEOCODING -> getReverseGeocodingSource("nominatim")
         else -> getWeatherSource("openmeteo")
     }
 }
 fun SourceManager.getBestSourceForFeatureOrDefault(
     location: Location,
     feature: SourceFeature,
-): WeatherSource? {
-    return getBestSourceForFeature(location, feature)
-        ?: getDefaultSourceForFeature(location, feature)
+): FeatureSource? {
+    return if (feature != SourceFeature.REVERSE_GEOCODING || location.isCurrentPosition) {
+        getBestSourceForFeature(location, feature)
+            ?: getDefaultSourceForFeature(location, feature)
+    } else {
+        null
+    }
 }

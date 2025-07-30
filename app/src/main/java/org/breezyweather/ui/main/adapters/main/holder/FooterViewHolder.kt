@@ -63,6 +63,7 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.domain.source.resourceName
+import org.breezyweather.sources.getFeatureSource
 import org.breezyweather.sources.getReverseGeocodingSource
 import org.breezyweather.sources.getWeatherSource
 import org.breezyweather.ui.common.composables.AlertDialogLink
@@ -177,17 +178,11 @@ class FooterViewHolder(
                 SourceFeature.NORMALS to location.normalsSource,
                 SourceFeature.REVERSE_GEOCODING to location.reverseGeocodingSource
             ).filter { !it.value.isNullOrEmpty() }.mapNotNull {
-                if (it.key == SourceFeature.REVERSE_GEOCODING) {
-                    (context as MainActivity).sourceManager.getReverseGeocodingSource(it.value!!)?.let { source ->
+                (context as MainActivity).sourceManager.getFeatureSource(it.value!!)?.let { source ->
+                    if (source.supportedFeatures.containsKey(it.key)) {
                         it.key to source
-                    }
-                } else {
-                    (context as MainActivity).sourceManager.getWeatherSource(it.value!!)?.let { source ->
-                        if (source.supportedFeatures.containsKey(it.key)) {
-                            it.key to source
-                        } else {
-                            null
-                        }
+                    } else {
+                        null
                     }
                 }
             }.toMap()
@@ -220,20 +215,16 @@ class FooterViewHolder(
                                     colors = ListItemDefaults.colors(
                                         containerColor = AlertDialogDefaults.containerColor
                                     ),
-                                    leadingContent = if (source is WeatherSource) {
-                                        source.getAttributionIcon()?.let {
-                                            {
-                                                Icon(
-                                                    painterResource(it),
-                                                    contentDescription = null,
-                                                    tint = Color.Unspecified,
-                                                    modifier = Modifier
-                                                        .size(dimensionResource(R.dimen.material_icon_size))
-                                                )
-                                            }
+                                    leadingContent = source.getAttributionIcon()?.let {
+                                        {
+                                            Icon(
+                                                painterResource(it),
+                                                contentDescription = null,
+                                                tint = Color.Unspecified,
+                                                modifier = Modifier
+                                                    .size(dimensionResource(R.dimen.material_icon_size))
+                                            )
                                         }
-                                    } else {
-                                        null
                                     },
                                     headlineContent = {
                                         Text(
@@ -244,11 +235,7 @@ class FooterViewHolder(
                                     supportingContent = {
                                         Text(
                                             text = buildAnnotatedString {
-                                                if (sourceFeature == SourceFeature.REVERSE_GEOCODING) {
-                                                    (source as ReverseGeocodingSource).reverseGeocodingAttribution
-                                                } else {
-                                                    (source as WeatherSource).supportedFeatures[sourceFeature]!!
-                                                }.let {
+                                                source.supportedFeatures[sourceFeature]!!.let {
                                                     if (source is HttpSource &&
                                                         source.attributionLinks.isNotEmpty()
                                                     ) {

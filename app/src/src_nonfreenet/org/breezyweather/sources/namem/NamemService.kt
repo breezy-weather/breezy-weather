@@ -76,12 +76,12 @@ class NamemService @Inject constructor(
             "National Agency for Meteorology and Environmental Monitoring"
         }
     }
-    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.AIR_QUALITY to weatherAttribution,
-        SourceFeature.NORMALS to weatherAttribution
+        SourceFeature.NORMALS to weatherAttribution,
+        SourceFeature.REVERSE_GEOCODING to weatherAttribution
     )
     override val attributionLinks
         get() = mapOf(
@@ -92,10 +92,6 @@ class NamemService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        return isReverseGeocodingSupportedForLocation(location)
-    }
-
-    override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
         return location.countryCode.equals("MN", ignoreCase = true)
     }
 

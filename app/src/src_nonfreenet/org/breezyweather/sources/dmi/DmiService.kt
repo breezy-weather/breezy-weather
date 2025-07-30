@@ -57,10 +57,10 @@ class DmiService @Inject constructor(
     }
 
     private val weatherAttribution = "DMI (Creative Commons CC BY)"
-    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution
+        SourceFeature.ALERT to weatherAttribution,
+        SourceFeature.REVERSE_GEOCODING to weatherAttribution
     )
     override val attributionLinks = mapOf(
         "DMI" to "https://www.dmi.dk/"

@@ -178,7 +178,9 @@ object Migrations {
                             .forEach {
                                 if (it.isCurrentPosition) {
                                     val source = sourceManager.getReverseGeocodingSource(it.forecastSource)
-                                    if (source != null && source.isReverseGeocodingSupportedForLocation(it)) {
+                                    if (source != null &&
+                                        source.isFeatureSupportedForLocation(it, SourceFeature.REVERSE_GEOCODING)
+                                    ) {
                                         locationRepository.update(
                                             it.copy(
                                                 reverseGeocodingSource = source.id

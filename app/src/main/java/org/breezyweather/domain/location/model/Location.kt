@@ -78,6 +78,7 @@ fun Location.applyDefaultPreset(sourceManager: SourceManager): Location {
         minutelySource = sourceManager.getBestSourceForFeatureOrDefault(this, SourceFeature.MINUTELY)?.id,
         alertSource = sourceManager.getBestSourceForFeatureOrDefault(this, SourceFeature.ALERT)?.id,
         normalsSource = sourceManager.getBestSourceForFeatureOrDefault(this, SourceFeature.NORMALS)?.id,
-        reverseGeocodingSource = if (isCurrentPosition) "nominatim" else null
+        reverseGeocodingSource = sourceManager
+            .getBestSourceForFeatureOrDefault(this, SourceFeature.REVERSE_GEOCODING)?.id
     )
 }

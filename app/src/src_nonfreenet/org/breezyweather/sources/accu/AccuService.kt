@@ -90,7 +90,6 @@ class AccuService @Inject constructor(
 
     private val weatherAttribution = "AccuWeather"
     override val locationSearchAttribution = weatherAttribution
-    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
@@ -98,7 +97,8 @@ class AccuService @Inject constructor(
         SourceFeature.POLLEN to weatherAttribution,
         SourceFeature.MINUTELY to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.NORMALS to weatherAttribution
+        SourceFeature.NORMALS to weatherAttribution,
+        SourceFeature.REVERSE_GEOCODING to weatherAttribution
     )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.accuweather.com/"
@@ -116,7 +116,8 @@ class AccuService @Inject constructor(
         return portal == AccuPortalPreference.ENTERPRISE ||
             feature == SourceFeature.FORECAST ||
             feature == SourceFeature.CURRENT ||
-            feature == SourceFeature.ALERT
+            feature == SourceFeature.ALERT ||
+            feature == SourceFeature.REVERSE_GEOCODING
     }
 
     override fun requestWeather(

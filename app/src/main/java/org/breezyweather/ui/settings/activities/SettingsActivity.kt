@@ -35,18 +35,20 @@ import breezyweather.domain.source.SourceFeature
 import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.hasPermission
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.PermissionHelper
 import org.breezyweather.domain.settings.SettingsChangedMessage
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.sources.RefreshHelper
 import org.breezyweather.sources.SourceManager
-import org.breezyweather.sources.getSupportedWeatherSources
+import org.breezyweather.sources.getSupportedFeatureSources
 import org.breezyweather.ui.settings.compose.AppearanceSettingsScreen
 import org.breezyweather.ui.settings.compose.BackgroundSettingsScreen
 import org.breezyweather.ui.settings.compose.DebugSettingsScreen
@@ -323,7 +325,7 @@ class SettingsActivity : BreezyActivity() {
                     context = this@SettingsActivity,
                     onNavigateBack = { onBack() },
                     configuredWorldwideSources = sourceManager
-                        .getSupportedWeatherSources(SourceFeature.FORECAST, Location()),
+                        .getSupportedFeatureSources(SourceFeature.FORECAST, Location()),
                     configurableSources = sourceManager.getConfigurableSources()
                 )
             }

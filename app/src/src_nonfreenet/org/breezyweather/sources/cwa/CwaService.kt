@@ -92,13 +92,13 @@ class CwaService @Inject constructor(
     }
 
     private val weatherAttribution = "中央氣象署"
-    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.AIR_QUALITY to "環境部",
         SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.NORMALS to weatherAttribution
+        SourceFeature.NORMALS to weatherAttribution,
+        SourceFeature.REVERSE_GEOCODING to weatherAttribution
     )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.cwa.gov.tw/",
@@ -109,10 +109,6 @@ class CwaService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        return isReverseGeocodingSupportedForLocation(location)
-    }
-
-    override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
         val latLng = LatLng(location.latitude, location.longitude)
         return location.countryCode.equals("TW", ignoreCase = true) ||
             TAIWAN_BBOX.contains(latLng) ||

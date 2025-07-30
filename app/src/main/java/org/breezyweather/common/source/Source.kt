@@ -42,8 +42,7 @@ interface Source {
      */
     @StringRes
     fun getGroup(location: Location, feature: SourceFeature): Int {
-        return if (this is WeatherSource &&
-            feature != SourceFeature.REVERSE_GEOCODING &&
+        return if (this is FeatureSource &&
             getFeaturePriorityForLocation(location, feature) >= 0
         ) {
             R.string.weather_source_recommended

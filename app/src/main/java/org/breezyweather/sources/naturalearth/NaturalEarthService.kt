@@ -19,6 +19,7 @@ package org.breezyweather.sources.naturalearth
 import android.content.Context
 import android.os.Build
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceFeature
 import com.google.maps.android.PolyUtil
 import com.google.maps.android.SphericalUtil
 import com.google.maps.android.data.geojson.GeoJsonFeature
@@ -55,7 +56,10 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
 
     override val id = "naturalearth"
     override val name = "Natural Earth"
-    override val reverseGeocodingAttribution = name
+
+    override val supportedFeatures = mapOf(
+        SourceFeature.REVERSE_GEOCODING to name
+    )
 
     private fun getMatchingFeaturesForLocation(
         context: Context,

@@ -89,12 +89,12 @@ class JmaService @Inject constructor(
             "Japan Meteorological Agency"
         }
     }
-    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.NORMALS to weatherAttribution
+        SourceFeature.NORMALS to weatherAttribution,
+        SourceFeature.REVERSE_GEOCODING to weatherAttribution
     )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.jma.go.jp/"
@@ -104,10 +104,6 @@ class JmaService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        return isReverseGeocodingSupportedForLocation(location)
-    }
-
-    override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
         return location.countryCode.equals("JP", ignoreCase = true)
     }
 

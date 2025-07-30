@@ -48,17 +48,14 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.ConfigurableSource
-import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.getName
 import org.breezyweather.common.utils.helpers.IntentHelper
-import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.source.resourceName
 import org.breezyweather.sources.SourceManager
-import org.breezyweather.sources.getSupportedReverseGeocodingSources
-import org.breezyweather.sources.getSupportedWeatherSources
+import org.breezyweather.sources.getSupportedFeatureSources
 import org.breezyweather.sources.sourcesWithPreferencesScreen
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.main.MainActivity
@@ -305,11 +302,7 @@ internal fun getCompatibleSources(
         }
     }
 
-    return if (feature == SourceFeature.REVERSE_GEOCODING) {
-        sourceManager.getSupportedReverseGeocodingSources(location)
-    } else {
-        sourceManager.getSupportedWeatherSources(feature, location, selectedSource)
-    }
+    return sourceManager.getSupportedFeatureSources(feature, location, selectedSource)
         .groupBy { it.getGroup(location, feature) }
         .toSortedMap(groupComparator)
         .mapValues { m ->
@@ -329,13 +322,7 @@ internal fun getCompatibleSources(
                         it.id,
                         it.getName(context, feature, location),
                         (it !is ConfigurableSource || it.isConfigured) &&
-                            (
-                                (
-                                    feature == SourceFeature.REVERSE_GEOCODING &&
-                                        (it as ReverseGeocodingSource).isReverseGeocodingSupportedForLocation(location)
-                                    ) ||
-                                    (it as WeatherSource).isFeatureSupportedForLocation(location, feature)
-                                )
+                            it.isFeatureSupportedForLocation(location, feature)
                     )
                 }
                 .toImmutableList()

@@ -83,13 +83,13 @@ class MfService @Inject constructor(
     }
 
     private val weatherAttribution = "Météo-France (Etalab)"
-    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
         SourceFeature.MINUTELY to weatherAttribution,
         SourceFeature.ALERT to weatherAttribution,
-        SourceFeature.NORMALS to weatherAttribution
+        SourceFeature.NORMALS to weatherAttribution,
+        SourceFeature.REVERSE_GEOCODING to weatherAttribution
     )
     override val attributionLinks = mapOf(
         "Météo-France" to "https://meteofrance.com/"
@@ -109,7 +109,7 @@ class MfService @Inject constructor(
             SourceFeature.NORMALS -> !location.countryCode.isNullOrEmpty() &&
                 arrayOf("FR", "AD", "MC", "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT")
                     .any { location.countryCode.equals(it, ignoreCase = true) }
-            SourceFeature.FORECAST -> true // Main source available worldwide
+            SourceFeature.FORECAST, SourceFeature.REVERSE_GEOCODING -> true // Main source available worldwide
             else -> false
         }
     }
@@ -121,8 +121,12 @@ class MfService @Inject constructor(
         return when {
             isFeatureSupportedForLocation(
                 location,
-                // Since forecast is available worldwide, use the same criteria as normals
-                if (feature == SourceFeature.FORECAST) SourceFeature.NORMALS else feature
+                // Since forecast and reverse geocoding are available worldwide, use the same criteria as normals
+                if (feature in arrayOf(SourceFeature.FORECAST, SourceFeature.REVERSE_GEOCODING)) {
+                    SourceFeature.NORMALS
+                } else {
+                    feature
+                }
             ) -> PRIORITY_HIGHEST
             else -> PRIORITY_NONE
         }

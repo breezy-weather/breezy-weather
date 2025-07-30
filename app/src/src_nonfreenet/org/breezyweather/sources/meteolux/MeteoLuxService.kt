@@ -72,11 +72,11 @@ class MeteoLuxService @Inject constructor(
         } +
             " ${context.getString(R.string.data_modified, context.getString(R.string.breezy_weather))}"
     }
-    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
         SourceFeature.CURRENT to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution
+        SourceFeature.ALERT to weatherAttribution,
+        SourceFeature.REVERSE_GEOCODING to weatherAttribution
     )
     override val attributionLinks = mapOf(
         "MeteoLux" to "https://www.meteolux.lu/",
@@ -92,10 +92,6 @@ class MeteoLuxService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        return isReverseGeocodingSupportedForLocation(location)
-    }
-
-    override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
         return location.countryCode.equals("LU", ignoreCase = true)
     }
 

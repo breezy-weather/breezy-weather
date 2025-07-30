@@ -26,26 +26,7 @@ import io.reactivex.rxjava3.core.Observable
 /**
  * Weather service.
  */
-interface WeatherSource : Source {
-
-    /**
-     * An optional icon for the attribution page.
-     * /!\ Only include it if it is mandatory in the attribution, as we don’t want to bundle copyrighted icons which
-     * we don’t have the right to use!
-     * Example: return R.drawable.accu_icon
-     */
-    @DrawableRes
-    fun getAttributionIcon(): Int? {
-        return null
-    }
-
-    /**
-     * List the features by the source as keys
-     * Values are credits and acknowledgments that will be shown at the bottom of main screen
-     * Please check terms of the source to be sure to put the correct term here
-     * Example: <SourceFeature.FORECAST, "MyGreatApi (CC BY 4.0)">
-     */
-    val supportedFeatures: Map<SourceFeature, String>
+interface WeatherSource : FeatureSource {
 
     /**
      * One or a few locations that represents use cases you want to test for this source
@@ -74,29 +55,6 @@ interface WeatherSource : Source {
      * Can be an emptyList(), although we recommend adding at least one
      */
     val testingLocations: List<Location>
-
-    /**
-     * May be used when you don't have reverse geocoding implemented and you want to filter
-     * location results from default location search source to only include some countries
-     * for example
-     */
-    fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean = true
-
-    /**
-     * Used to identify recommended sources by countries, ordered by priority descending.
-     * Any positive number can be used here, but we recommend using the available constants
-     *
-     * For example, worldwide sources will usually return PRIORITY_NONE (not recommended)
-     * National sources should return PRIORITY_HIGHEST here, unless there are multiple national sources
-     * and one is better than the other. In that case, sort them using the available preset priorities
-     */
-    fun getFeaturePriorityForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Int = PRIORITY_NONE
 
     /**
      * Returns weather converted to Breezy Weather Weather object

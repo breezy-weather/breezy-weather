@@ -17,6 +17,7 @@
 package org.breezyweather.sources
 
 import android.content.Context
+import breezyweather.domain.source.SourceFeature
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -25,6 +26,7 @@ import org.breezyweather.BreezyWeather
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.BroadcastSource
 import org.breezyweather.common.source.ConfigurableSource
+import org.breezyweather.common.source.FeatureSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.LocationSource
@@ -306,6 +308,10 @@ class SourceManager @Inject constructor(
         .filterIsInstance<LocationSource>()
         .toImmutableList()
 
+    fun getFeatureSources(): ImmutableList<FeatureSource> = sourceList
+        .filterIsInstance<FeatureSource>()
+        .toImmutableList()
+
     fun getWeatherSources(): ImmutableList<WeatherSource> = sourceList
         .filterIsInstance<WeatherSource>()
         .toImmutableList()
@@ -323,6 +329,7 @@ class SourceManager @Inject constructor(
     // Reverse geocoding
     fun getReverseGeocodingSources(): ImmutableList<ReverseGeocodingSource> = sourceList
         .filterIsInstance<ReverseGeocodingSource>()
+        .filter { it.supportedFeatures.containsKey(SourceFeature.REVERSE_GEOCODING) }
         .toImmutableList()
 
     // Broadcast

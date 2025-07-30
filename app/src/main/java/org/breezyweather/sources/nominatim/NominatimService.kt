@@ -20,6 +20,7 @@ import android.content.Context
 import android.os.Build
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
+import breezyweather.domain.source.SourceFeature
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.extensions.currentLocale
@@ -41,11 +42,14 @@ class NominatimService @Inject constructor(
 
     override val id = "nominatim"
     override val name = "Nominatim"
-    override val reverseGeocodingAttribution =
+    private val attribution =
         "Nominatim • Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright"
     override val privacyPolicyUrl = "https://osmfoundation.org/wiki/Privacy_Policy"
     override val continent = SourceContinent.WORLDWIDE
 
+    override val supportedFeatures = mapOf(
+        SourceFeature.REVERSE_GEOCODING to attribution
+    )
     override val attributionLinks = mapOf(
         name to NOMINATIM_BASE_URL,
         "OpenStreetMap" to "https://osm.org/",

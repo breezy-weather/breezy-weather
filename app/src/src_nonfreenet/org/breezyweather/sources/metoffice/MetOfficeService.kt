@@ -34,6 +34,8 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import retrofit2.Retrofit
 import java.util.Locale
@@ -57,13 +59,24 @@ class MetOfficeService @Inject constructor(
             .create(MetOfficeApi::class.java)
     }
 
-    override val reverseGeocodingAttribution = "Met Office"
+    private val weatherAttribution = "Met Office"
     override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to reverseGeocodingAttribution
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.REVERSE_GEOCODING to weatherAttribution
     )
     override val attributionLinks = mapOf(
-        reverseGeocodingAttribution to "https://www.metoffice.gov.uk/"
+        weatherAttribution to "https://www.metoffice.gov.uk/"
     )
+
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            location.countryCode.equals("GB", ignoreCase = true) -> PRIORITY_HIGHEST
+            else -> PRIORITY_NONE
+        }
+    }
 
     override fun requestWeather(
         context: Context,

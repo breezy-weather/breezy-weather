@@ -20,6 +20,7 @@ import android.content.Context
 import android.location.Geocoder
 import android.os.Build
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.source.SourceFeature
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.rx3.rxObservable
 import org.breezyweather.common.extensions.currentLocale
@@ -30,9 +31,12 @@ class AndroidGeocoderService @Inject constructor() : ReverseGeocodingSource {
 
     override val id = "nativegeocoder"
     override val name = "Android"
-    override val reverseGeocodingAttribution = name
 
-    override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
+    override val supportedFeatures = mapOf(
+        SourceFeature.REVERSE_GEOCODING to name
+    )
+
+    override fun isFeatureSupportedForLocation(location: Location, feature: SourceFeature): Boolean {
         return Geocoder.isPresent()
     }
 

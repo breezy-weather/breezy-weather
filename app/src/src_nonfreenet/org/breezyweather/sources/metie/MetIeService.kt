@@ -72,10 +72,10 @@ class MetIeService @Inject constructor(
         "Commons Attribution 4.0 International (CC BY 4.0). Met Éireann does not accept any liability whatsoever " +
         "for any error or omission in the data, their availability, or for any loss or damage arising from their " +
         "use. ${context.getString(R.string.data_modified, context.getString(R.string.breezy_weather))}"
-    override val reverseGeocodingAttribution = weatherAttribution
     override val supportedFeatures = mapOf(
         SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.ALERT to weatherAttribution
+        SourceFeature.ALERT to weatherAttribution,
+        SourceFeature.REVERSE_GEOCODING to weatherAttribution
     )
     override val attributionLinks = mapOf(
         "Met Éireann" to "https://www.met.ie/",
@@ -87,10 +87,6 @@ class MetIeService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        return isReverseGeocodingSupportedForLocation(location)
-    }
-
-    override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
         return location.countryCode.equals("IE", ignoreCase = true)
     }
 

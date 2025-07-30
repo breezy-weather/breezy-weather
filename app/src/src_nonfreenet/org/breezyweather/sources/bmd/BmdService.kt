@@ -65,26 +65,23 @@ class BmdService @Inject constructor(
 
     private val okHttpClient = OkHttpClient()
 
-    override val reverseGeocodingAttribution = if (context.currentLocale.code.startsWith("bn")) {
+    private val weatherAttribution = if (context.currentLocale.code.startsWith("bn")) {
         "বাংলাদেশ আবহাওয়া অধিদপ্তর"
     } else {
         "Bangladesh Meteorological Department"
     }
     override val attributionLinks = mapOf(
-        reverseGeocodingAttribution to "https://www.bmd.gov.bd/"
+        weatherAttribution to "https://www.bmd.gov.bd/"
     )
     override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to reverseGeocodingAttribution
+        SourceFeature.FORECAST to weatherAttribution,
+        SourceFeature.REVERSE_GEOCODING to weatherAttribution
     )
 
     override fun isFeatureSupportedForLocation(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        return isReverseGeocodingSupportedForLocation(location)
-    }
-
-    override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
         return location.countryCode.equals("BD", ignoreCase = true)
     }
 

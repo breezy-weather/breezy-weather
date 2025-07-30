@@ -22,6 +22,7 @@ import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.source.BroadcastSource
 import org.breezyweather.common.source.ConfigurableSource
+import org.breezyweather.common.source.FeatureSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.LocationSource
@@ -162,6 +163,10 @@ class SourceManager @Inject constructor(
     // Location
     fun getLocationSources(): ImmutableList<LocationSource> = sourceList
         .filterIsInstance<LocationSource>()
+        .toImmutableList()
+
+    fun getFeatureSources(): ImmutableList<FeatureSource> = sourceList
+        .filterIsInstance<FeatureSource>()
         .toImmutableList()
 
     fun getWeatherSources(): ImmutableList<WeatherSource> = sourceList
