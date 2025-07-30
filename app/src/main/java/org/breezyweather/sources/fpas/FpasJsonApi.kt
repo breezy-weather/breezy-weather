@@ -16,7 +16,7 @@
 
 package org.breezyweather.sources.fpas
 
-import io.reactivex.rxjava3.core.Observable
+import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -27,5 +27,5 @@ interface FpasJsonApi {
         @Query("max_lat") maxLat: Double,
         @Query("min_lon") minLon: Double,
         @Query("max_lon") maxLon: Double,
-    ): Observable<List<String>>
+    ): Call<List<String>>
 }

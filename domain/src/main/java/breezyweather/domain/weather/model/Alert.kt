@@ -28,7 +28,7 @@ import java.util.Date
  */
 data class Alert(
     /**
-     * If not provided by the source, can be created from Object.hash().toString()
+     * If not provided by the source, can be created from Objects.hash().toString()
      * Usually, you will use three parameters: alert type or title, alert level, alert start time
      */
     val alertId: String,

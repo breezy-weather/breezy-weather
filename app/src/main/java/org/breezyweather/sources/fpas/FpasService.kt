@@ -21,10 +21,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
+import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import com.google.maps.android.model.LatLng
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
+import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -33,6 +37,7 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.common.xml.CapAlert
 import retrofit2.Retrofit
+import java.util.Objects
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -72,26 +77,98 @@ class FpasService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
-        val alerts = mutableMapOf<String, CapAlert?>()
-
         // bbox of approx. 111m in each cardinal direction near the equator
-        return mJsonApi.getAlerts(
+        val alertUuids = mJsonApi.getAlerts(
             minLat = location.latitude - 0.001,
             maxLat = location.latitude + 0.001,
             minLon = location.longitude - 0.001,
             maxLon = location.longitude + 0.001
-        ).onErrorResumeNext {
-            failedFeatures[SourceFeature.ALERT] = it
-            Observable.just(emptyList())
-        }.map { uuidList ->
-            uuidList.forEach {
-                alerts[it] = mXmlApi.getAlert(it).execute().body()
-            }
+        ).execute().body() ?: return Observable.error(WeatherException())
+
+        return convert(
+            context,
+            location,
+            alertUuids
+        ).map {
             WeatherWrapper(
-                alertList = convert(context, location, alerts)
+                alertList = it
             )
         }
+    }
+
+    private fun convert(
+        context: Context,
+        location: Location,
+        alertUuids: List<String>,
+    ): Observable<List<Alert>> {
+        if (alertUuids.isEmpty()) return Observable.empty()
+
+        return Observable.zip(
+            alertUuids.map { mXmlApi.getAlert(it) }
+        ) { alertResultList ->
+            alertResultList.filterIsInstance<CapAlert>().mapIndexedNotNull { index, capAlert ->
+                capAlert.getInfoForContext(context)?.let {
+                    val containsPoint = it.containsPoint(LatLng(location.latitude, location.longitude))
+                    // Filter out non-meteorological alerts, past alerts,
+                    // and alert whose polygons do not cover the requested location
+                    if (it.category?.value.equals("Met", ignoreCase = true) &&
+                        !it.urgency?.value.equals("Past", ignoreCase = true) &&
+                        containsPoint
+                    ) {
+                        val severity = when (it.severity?.value) {
+                            "Extreme" -> AlertSeverity.EXTREME
+                            "Severe" -> AlertSeverity.SEVERE
+                            "Moderate" -> AlertSeverity.MODERATE
+                            "Minor" -> AlertSeverity.MINOR
+                            else -> AlertSeverity.UNKNOWN
+                        }
+                        val title = it.event?.value ?: it.headline?.value
+                        val start = it.onset?.value ?: it.effective?.value ?: capAlert.sent?.value
+                        Alert(
+                            alertId = capAlert.identifier?.value
+                                ?: alertUuids.getOrElse(index) {
+                                    Objects.hash(title, severity, start).toString()
+                                },
+                            startDate = start,
+                            endDate = it.expires?.value,
+                            headline = title,
+                            description = formatAlertText(
+                                it.senderName?.value,
+                                it.description?.value
+                            ),
+                            instruction = it.instruction?.value,
+                            source = it.senderName?.value,
+                            severity = severity,
+                            color = Alert.colorFromSeverity(severity)
+                        )
+                    } else {
+                        null
+                    }
+                }
+            }
+        }
+    }
+
+    // apply formatting to alert text based on source
+    private fun formatAlertText(
+        source: String?,
+        text: String?,
+    ): String {
+        var result: String
+        if (text.isNullOrEmpty()) {
+            return ""
+        }
+        result = text
+        if (!source.isNullOrEmpty()) {
+            if (source.startsWith("NWS ", ignoreCase = true) ||
+                source.equals("National Weather Service", ignoreCase = true)
+            ) {
+                // Look for SINGLE line breaks surrounded by letters, numbers, and punctuation.
+                val regex = Regex("""([0-9A-Za-z.,]) *\n([0-9A-Za-z])""")
+                result = regex.replace(result, "$1 $2")
+            }
+        }
+        return result.trim()
     }
 
     // CONFIG
