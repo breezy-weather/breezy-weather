@@ -29,6 +29,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -138,14 +139,16 @@ internal fun AlertScreen(
                                 )
                                 Spacer(modifier = Modifier.width(dimensionResource(R.dimen.normal_margin)))
                                 Column {
-                                    Text(
-                                        text = alert.headline?.ifEmpty {
-                                            stringResource(R.string.alert)
-                                        } ?: stringResource(R.string.alert),
-                                        color = MaterialTheme.colorScheme.onSurface,
-                                        fontWeight = FontWeight.Bold,
-                                        style = MaterialTheme.typography.titleMedium
-                                    )
+                                    BreezySelectionContainer {
+                                        Text(
+                                            text = alert.headline?.ifEmpty {
+                                                stringResource(R.string.alert)
+                                            } ?: stringResource(R.string.alert),
+                                            color = MaterialTheme.colorScheme.onSurface,
+                                            fontWeight = FontWeight.Bold,
+                                            style = MaterialTheme.typography.titleMedium
+                                        )
+                                    }
                                     Text(
                                         text = alert.getFormattedDates(alertUiState.location!!, context),
                                         color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -161,30 +164,30 @@ internal fun AlertScreen(
                                     )
                                 }
                             }
-                            if (!alert.description.isNullOrBlank()) {
-                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
-                                BreezySelectionContainer {
-                                    Text(
-                                        text = AnnotatedString.fromHtml(
-                                            alert.description!!.replace("\n", "<br />")
-                                        ),
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                        style = MaterialTheme.typography.bodyMedium
-                                    )
-                                }
-                            }
-                            if (!alert.instruction.isNullOrBlank()) {
-                                if (!alert.description.isNullOrBlank()) {
-                                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
-                                    HorizontalDivider()
-                                }
-                                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
-                                BreezySelectionContainer {
-                                    Text(
-                                        text = alert.instruction!!,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                        style = MaterialTheme.typography.bodyMedium
-                                    )
+                            BreezySelectionContainer {
+                                Column {
+                                    if (!alert.description.isNullOrBlank()) {
+                                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
+                                        Text(
+                                            text = AnnotatedString.fromHtml(
+                                                alert.description!!.replace("\n", "<br />")
+                                            ),
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                            style = MaterialTheme.typography.bodyMedium
+                                        )
+                                    }
+                                    if (!alert.instruction.isNullOrBlank()) {
+                                        if (!alert.description.isNullOrBlank()) {
+                                            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
+                                            HorizontalDivider()
+                                        }
+                                        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
+                                        Text(
+                                            text = alert.instruction!!,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                            style = MaterialTheme.typography.bodyMedium
+                                        )
+                                    }
                                 }
                             }
                             if (!alert.source.isNullOrBlank()) {
