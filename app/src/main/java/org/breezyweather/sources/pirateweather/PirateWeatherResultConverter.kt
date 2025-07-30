@@ -18,11 +18,9 @@ package org.breezyweather.sources.pirateweather
 
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
-import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
@@ -54,20 +52,20 @@ internal fun getCurrent(
         weatherText = result.summary,
         weatherCode = getWeatherCode(result.icon),
         temperature = TemperatureWrapper(
-            temperature = result.temperature,
-            feelsLike = result.apparentTemperature
+            temperature = validate(result.temperature),
+            feelsLike = validate(result.apparentTemperature)
         ),
         wind = Wind(
-            degree = result.windBearing,
-            speed = result.windSpeed,
-            gusts = result.windGust
+            degree = validate(result.windBearing),
+            speed = validate(result.windSpeed),
+            gusts = validate(result.windGust)
         ),
-        uV = UV(index = result.uvIndex),
-        relativeHumidity = result.humidity?.times(100),
-        dewPoint = result.dewPoint,
-        pressure = result.pressure,
-        cloudCover = result.cloudCover?.times(100)?.roundToInt(),
-        visibility = result.visibility?.times(1000),
+        uV = UV(index = validate(result.uvIndex)),
+        relativeHumidity = validate(result.humidity)?.times(100),
+        dewPoint = validate(result.dewPoint),
+        pressure = validate(result.pressure),
+        cloudCover = validate(result.cloudCover)?.times(100)?.roundToInt(),
+        visibility = validate(result.visibility)?.times(1000),
         dailyForecast = dailySummary,
         hourlyForecast = hourlySummary
     )
@@ -83,8 +81,8 @@ internal fun getDailyForecast(
                 weatherPhase = result.summary,
                 weatherCode = getWeatherCode(result.icon),
                 temperature = TemperatureWrapper(
-                    temperature = result.temperatureHigh,
-                    feelsLike = result.apparentTemperatureHigh
+                    temperature = validate(result.temperatureHigh),
+                    feelsLike = validate(result.apparentTemperatureHigh)
                 )
             ),
             night = HalfDayWrapper(
@@ -93,11 +91,11 @@ internal fun getDailyForecast(
                 // temperatureLow/High are always forward-looking
                 // See https://docs.pirateweather.net/en/latest/API/#temperaturelow
                 temperature = TemperatureWrapper(
-                    temperature = result.temperatureLow,
-                    feelsLike = result.apparentTemperatureLow
+                    temperature = validate(result.temperatureLow),
+                    feelsLike = validate(result.apparentTemperatureLow)
                 )
             ),
-            uV = UV(index = result.uvIndex)
+            uV = UV(index = validate(result.uvIndex))
         )
     }
 }
@@ -114,32 +112,32 @@ internal fun getHourlyForecast(
             weatherText = result.summary,
             weatherCode = getWeatherCode(result.icon),
             temperature = TemperatureWrapper(
-                temperature = result.temperature,
-                feelsLike = result.apparentTemperature
+                temperature = validate(result.temperature),
+                feelsLike = validate(result.apparentTemperature)
             ),
             // see https://docs.pirateweather.net/en/latest/API/#precipaccumulation
             precipitation = Precipitation(
-                total = result.precipAccumulation?.times(10),
-                rain = result.liquidAccumulation?.times(10),
-                snow = result.snowAccumulation?.times(10),
-                ice = result.iceAccumulation?.times(10)
+                total = validate(result.precipAccumulation)?.times(10),
+                rain = validate(result.liquidAccumulation)?.times(10),
+                snow = validate(result.snowAccumulation)?.times(10),
+                ice = validate(result.iceAccumulation)?.times(10)
             ),
             precipitationProbability = PrecipitationProbability(
-                total = result.precipProbability?.times(100)
+                total = validate(result.precipProbability)?.times(100)
             ),
             wind = Wind(
-                degree = result.windBearing,
-                speed = result.windSpeed,
-                gusts = result.windGust
+                degree = validate(result.windBearing),
+                speed = validate(result.windSpeed),
+                gusts = validate(result.windGust)
             ),
             uV = UV(
-                index = result.uvIndex
+                index = validate(result.uvIndex)
             ),
-            relativeHumidity = result.humidity?.times(100),
-            dewPoint = result.dewPoint,
-            pressure = result.pressure,
-            cloudCover = result.cloudCover?.times(100)?.roundToInt(),
-            visibility = result.visibility?.times(1000)
+            relativeHumidity = validate(result.humidity)?.times(100),
+            dewPoint = validate(result.dewPoint),
+            pressure = validate(result.pressure),
+            cloudCover = validate(result.cloudCover)?.times(100)?.roundToInt(),
+            visibility = validate(result.visibility)?.times(1000)
         )
     }
 }
@@ -160,7 +158,7 @@ internal fun getMinutelyForecast(minutelyResult: List<PirateWeatherMinutely>?): 
                 } else {
                     ((minutelyForecast.time - minutelyResult[i - 1].time) / 60).toDouble().roundToInt()
                 },
-                precipitationIntensity = minutelyForecast.precipIntensity
+                precipitationIntensity = validate(minutelyForecast.precipIntensity)
             )
         )
     }
@@ -205,5 +203,12 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
         "partly-cloudy-day", "partly-cloudy-night" -> WeatherCode.PARTLY_CLOUDY
         "cloudy" -> WeatherCode.CLOUDY
         else -> null
+    }
+}
+
+private fun validate(input: Double?): Double? {
+    return when (input) {
+        -999.0 -> null
+        else -> input
     }
 }
