@@ -37,6 +37,8 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import com.google.maps.android.model.LatLng
+import com.google.maps.android.model.LatLngBounds
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.collections.immutable.ImmutableList
@@ -114,6 +116,15 @@ class OpenMeteoService @Inject constructor(
             "#CAMSRegional:Europeanairqualityanalysisandforecastdatadocumentation-" +
             "Howtoacknowledge,citeandrefertothedata"
     )
+    override fun isFeatureSupportedForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Boolean {
+        return when (feature) {
+            SourceFeature.POLLEN -> OPEN_METEO_POLLEN_BBOX.contains(LatLng(location.latitude, location.longitude))
+            else -> true
+        }
+    }
     override fun requestWeather(
         context: Context,
         location: Location,
@@ -599,5 +610,13 @@ class OpenMeteoService @Inject constructor(
         private const val OPEN_METEO_AIR_QUALITY_BASE_URL = "https://air-quality-api.open-meteo.com/"
         private const val OPEN_METEO_GEOCODING_BASE_URL = "https://geocoding-api.open-meteo.com/"
         private const val OPEN_METEO_FORECAST_BASE_URL = "https://api.open-meteo.com/"
+
+        // Coverage area of CAMS European air quality forecasts:
+        // Europe (west boundary=25.0° W, east=45.0° E, south=30.0° N, north=72.0°)
+        // Source: https://ads.atmosphere.copernicus.eu/datasets/cams-europe-air-quality-forecasts?tab=overview
+        private val OPEN_METEO_POLLEN_BBOX = LatLngBounds(
+            LatLng(30.0, -25.0),
+            LatLng(72.0, 45.0)
+        )
     }
 }
