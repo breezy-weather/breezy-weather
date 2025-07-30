@@ -67,14 +67,6 @@ class FpasService @Inject constructor(
         name to "https://invent.kde.org/webapps/foss-public-alert-server/"
     )
 
-    // Disabled for China
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return !location.countryCode.equals("CN", ignoreCase = true)
-    }
-
     override fun requestWeather(
         context: Context,
         location: Location,
