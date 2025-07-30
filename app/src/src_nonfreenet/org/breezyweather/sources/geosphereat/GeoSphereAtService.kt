@@ -109,8 +109,8 @@ class GeoSphereAtService @Inject constructor(
         return when {
             location.countryCode.equals("AT", ignoreCase = true) &&
                 feature != SourceFeature.FORECAST -> PRIORITY_HIGHEST
-            isFeatureSupportedForLocation(location, feature) &&
-                feature != SourceFeature.FORECAST -> PRIORITY_HIGH
+            feature == SourceFeature.MINUTELY &&
+                isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGH
             else -> PRIORITY_NONE
         }
     }
