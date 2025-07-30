@@ -111,10 +111,9 @@ class EpdHkService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val concentrations = mApi.getConcentrations().execute().body()
-        return Observable.just(
-            convert(location, concentrations)
-        )
+        return mApi.getConcentrations().map {
+            convert(location, it)
+        }
     }
 
     private fun convert(
