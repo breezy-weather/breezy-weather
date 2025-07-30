@@ -27,7 +27,7 @@ import kotlin.math.abs
 /**
  * This recycler view handles touch events when used inside an already horizontally scrollable/swipeable container
  */
-open class HorizontalRecyclerView @JvmOverloads constructor(
+open class NestedHorizontalRecyclerView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0,
