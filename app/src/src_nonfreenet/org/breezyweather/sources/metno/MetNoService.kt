@@ -30,6 +30,9 @@ import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGH
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.metno.json.MetNoAirQualityResult
 import org.breezyweather.sources.metno.json.MetNoAlertResult
 import org.breezyweather.sources.metno.json.MetNoForecastResult
@@ -108,6 +111,22 @@ class MetNoService @Inject constructor(
             SourceFeature.FORECAST -> true
 
             else -> false
+        }
+    }
+
+    /**
+     * Highest priority for Norway
+     * High priority for Svalbard & Jan Mayen, Sweden, Finland, Denmark
+     */
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            location.countryCode.equals("NO", ignoreCase = true) -> PRIORITY_HIGHEST
+            arrayOf("SJ", "SE", "FI", "DK").any { it.equals(location.countryCode, ignoreCase = true) } &&
+                isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGH
+            else -> PRIORITY_NONE
         }
     }
 

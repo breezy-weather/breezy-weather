@@ -72,6 +72,7 @@
     <string name="action_restart">Redémarrer</string>
     <string name="action_more">Plus</string>
     <string name="action_edit">Modifier</string>
+    <string name="action_change">Changer</string>
     <string name="daily_yesterday">Hier</string>
     <string name="daily_today">Aujourd’hui</string>
     <string name="daily_tomorrow">Demain</string>
@@ -302,6 +303,7 @@
     <string name="weather_api_unauthorized_content">Pour certaines sources météo, vous devez fournir votre propre clé API. Si vous l’avez déjà fait, vérifiez qu’il n’y a pas d’erreur dans la clé fournie.</string>
     <string name="weather_api_key_required_missing_title">Clé API requise manquante</string>
     <string name="weather_api_key_required_missing_content">Pour utiliser cette source, vous devez fournir une clé API.</string>
+    <string name="weather_source_recommended">Recommandations</string>
     <string name="weather_source_continent_worldwide">Mondial</string>
     <string name="weather_source_continent_africa">Afrique</string>
     <string name="weather_source_continent_asia">Asie</string>

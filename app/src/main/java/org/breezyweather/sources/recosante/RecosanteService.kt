@@ -35,6 +35,9 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_MEDIUM
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import retrofit2.Retrofit
 import java.util.Locale
@@ -81,6 +84,19 @@ class RecosanteService @Inject constructor(
         feature: SourceFeature,
     ): Boolean {
         return !location.countryCode.isNullOrEmpty() && location.countryCode.equals("FR", ignoreCase = true)
+    }
+
+    /**
+     * Medium priority because it only has index, not concentrations
+     */
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            isFeatureSupportedForLocation(location, feature) -> PRIORITY_MEDIUM
+            else -> PRIORITY_NONE
+        }
     }
 
     override fun requestWeather(

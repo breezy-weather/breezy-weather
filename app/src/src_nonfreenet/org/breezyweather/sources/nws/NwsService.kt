@@ -32,6 +32,8 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.nws.json.NwsAlertsResult
 import org.breezyweather.sources.nws.json.NwsCurrentResult
 import org.breezyweather.sources.nws.json.NwsDailyResult
@@ -95,6 +97,16 @@ class NwsService @Inject constructor(
     override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
         return supportedCountries.any {
             location.countryCode.equals(it, ignoreCase = true)
+        }
+    }
+
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
+            else -> PRIORITY_NONE
         }
     }
 

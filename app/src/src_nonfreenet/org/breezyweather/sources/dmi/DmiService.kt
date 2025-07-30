@@ -30,6 +30,8 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.dmi.json.DmiResult
 import org.breezyweather.sources.dmi.json.DmiWarningResult
 import retrofit2.Retrofit
@@ -69,6 +71,17 @@ class DmiService @Inject constructor(
     ): Boolean {
         return feature != SourceFeature.ALERT ||
             arrayOf("DK", "FO", "GL").any { it.equals(location.countryCode, ignoreCase = true) }
+    }
+
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            // Always use the same criterias as alert
+            isFeatureSupportedForLocation(location, SourceFeature.ALERT) -> PRIORITY_HIGHEST
+            else -> PRIORITY_NONE
+        }
     }
 
     override fun requestWeather(

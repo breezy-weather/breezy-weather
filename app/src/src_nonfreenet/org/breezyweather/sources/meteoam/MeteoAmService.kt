@@ -29,6 +29,8 @@ import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.meteoam.json.MeteoAmForecastResult
 import org.breezyweather.sources.meteoam.json.MeteoAmObservationResult
 import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocationResult
@@ -67,6 +69,16 @@ class MeteoAmService @Inject constructor(
         "Servizio Meteorologico dell’Aeronautica Militare" to "https://www.meteoam.it/",
         "www.meteoam.it" to "https://www.meteoam.it/"
     )
+
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            location.countryCode.equals("IT", ignoreCase = true) -> PRIORITY_HIGHEST
+            else -> PRIORITY_NONE
+        }
+    }
 
     @SuppressLint("CheckResult")
     override fun requestWeather(

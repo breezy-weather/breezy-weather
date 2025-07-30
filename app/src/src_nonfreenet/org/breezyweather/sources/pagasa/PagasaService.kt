@@ -30,6 +30,8 @@ import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.pagasa.json.PagasaCurrentResult
 import org.breezyweather.sources.pagasa.json.PagasaHourlyResult
 import retrofit2.Retrofit
@@ -68,6 +70,16 @@ class PagasaService @Inject constructor(
         feature: SourceFeature,
     ): Boolean {
         return location.countryCode.equals("PH", ignoreCase = true)
+    }
+
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
+            else -> PRIORITY_NONE
+        }
     }
 
     override fun requestWeather(

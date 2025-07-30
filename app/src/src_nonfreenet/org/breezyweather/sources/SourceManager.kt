@@ -17,14 +17,11 @@
 package org.breezyweather.sources
 
 import android.content.Context
-import breezyweather.domain.location.model.Location
-import breezyweather.domain.source.SourceFeature
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.BreezyWeather
-import org.breezyweather.BuildConfig
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.BroadcastSource
 import org.breezyweather.common.source.ConfigurableSource
@@ -32,11 +29,9 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.source.PollenIndexSource
-import org.breezyweather.common.source.PreferencesParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.Source
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.accu.AccuService
 import org.breezyweather.sources.aemet.AemetService
 import org.breezyweather.sources.android.AndroidGeocoderService
@@ -310,35 +305,10 @@ class SourceManager @Inject constructor(
     fun getLocationSources(): ImmutableList<LocationSource> = sourceList
         .filterIsInstance<LocationSource>()
         .toImmutableList()
-    fun getLocationSource(id: String): LocationSource? = getLocationSources().firstOrNull { it.id == id }
-    fun getLocationSourceOrDefault(id: String): LocationSource = getLocationSource(id)
-        ?: getLocationSource(BuildConfig.DEFAULT_LOCATION_SOURCE)!!
 
-    // Weather
     fun getWeatherSources(): ImmutableList<WeatherSource> = sourceList
         .filterIsInstance<WeatherSource>()
         .toImmutableList()
-    fun getWeatherSource(id: String): WeatherSource? = getWeatherSources().firstOrNull { it.id == id }
-    fun getSupportedWeatherSources(
-        feature: SourceFeature? = null,
-        location: Location? = null,
-        // Optional id of the source that will always be taken, even if not matching the criteria
-        sourceException: String? = null,
-    ): ImmutableList<WeatherSource> = getWeatherSources()
-        .filter {
-            it.id == sourceException ||
-                (
-                    feature == null ||
-                        (
-                            it.supportedFeatures.containsKey(feature) &&
-                                (
-                                    location == null ||
-                                        (location.isCurrentPosition && !location.isUsable) ||
-                                        it.isFeatureSupportedForLocation(location, feature)
-                                    )
-                            )
-                    )
-        }.toImmutableList()
 
     // Secondary weather
     fun getPollenIndexSource(id: String): PollenIndexSource? = sourceList
@@ -349,81 +319,19 @@ class SourceManager @Inject constructor(
     fun getLocationSearchSources(): ImmutableList<LocationSearchSource> = sourceList
         .filterIsInstance<LocationSearchSource>()
         .toImmutableList()
-    fun getLocationSearchSource(id: String): LocationSearchSource? = getLocationSearchSources()
-        .firstOrNull { it.id == id }
-    fun getLocationSearchSourceOrDefault(id: String): LocationSearchSource = getLocationSearchSource(id)
-        ?: getLocationSearchSource(BuildConfig.DEFAULT_LOCATION_SEARCH_SOURCE)!!
-    fun getConfiguredLocationSearchSources(): ImmutableList<LocationSearchSource> = getLocationSearchSources()
-        .filter { it !is ConfigurableSource || it.isConfigured }
-        .toImmutableList()
 
     // Reverse geocoding
     fun getReverseGeocodingSources(): ImmutableList<ReverseGeocodingSource> = sourceList
         .filterIsInstance<ReverseGeocodingSource>()
         .toImmutableList()
-    fun getSupportedReverseGeocodingSources(
-        location: Location? = null,
-    ): ImmutableList<ReverseGeocodingSource> = getReverseGeocodingSources()
-        .filter {
-            it.id != "naturalearth" &&
-                (
-                    location == null ||
-                        (location.isCurrentPosition && !location.isUsable) ||
-                        it.isReverseGeocodingSupportedForLocation(location)
-                    )
-        }.toImmutableList()
-    fun getReverseGeocodingSource(id: String): ReverseGeocodingSource? = getReverseGeocodingSources()
-        .firstOrNull { it.id == id }
-    fun getReverseGeocodingSourceOrDefault(id: String): ReverseGeocodingSource = getReverseGeocodingSource(id)
-        ?: getReverseGeocodingSource(BuildConfig.DEFAULT_GEOCODING_SOURCE)!!
 
     // Broadcast
     fun getBroadcastSources(): ImmutableList<BroadcastSource> = sourceList
         .filterIsInstance<BroadcastSource>()
         .toImmutableList()
-    fun isBroadcastSourcesEnabled(context: Context): Boolean {
-        return getBroadcastSources().any {
-            (SourceConfigStore(context, it.id).getString("packages", null) ?: "").isNotEmpty()
-        }
-    }
 
     // Configurables sources
     fun getConfigurableSources(): ImmutableList<ConfigurableSource> = sourceList
         .filterIsInstance<ConfigurableSource>()
         .toImmutableList()
-
-    fun sourcesWithPreferencesScreen(
-        location: Location,
-    ): ImmutableList<PreferencesParametersSource> {
-        val preferencesScreenSources = mutableListOf<PreferencesParametersSource>()
-
-        with(location) {
-            listOf(
-                Pair(forecastSource, SourceFeature.FORECAST),
-                Pair(currentSource, SourceFeature.CURRENT),
-                Pair(airQualitySource, SourceFeature.AIR_QUALITY),
-                Pair(pollenSource, SourceFeature.POLLEN),
-                Pair(minutelySource, SourceFeature.MINUTELY),
-                Pair(alertSource, SourceFeature.ALERT),
-                Pair(normalsSource, SourceFeature.NORMALS)
-            ).forEach {
-                val source = getWeatherSource(it.first ?: location.forecastSource)
-                if (source is PreferencesParametersSource &&
-                    source.hasPreferencesScreen(location, listOf(it.second)) &&
-                    !preferencesScreenSources.contains(source)
-                ) {
-                    preferencesScreenSources.add(source)
-                }
-            }
-        }
-
-        return preferencesScreenSources
-            /*.sortedWith { s1, s2 ->
-                // Sort by name because there are now a lot of sources
-                Collator.getInstance(
-                    SettingsManager.getInstance(context).language.locale
-                ).compare(s1.name, s2.name)
-            })*/
-            .toImmutableList()
-    }
 }

@@ -72,10 +72,13 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.inputMethodManager
-import org.breezyweather.common.source.LocationPreset
+import org.breezyweather.domain.location.model.applyDefaultPreset
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.sources.SourceManager
+import org.breezyweather.sources.getConfiguredLocationSearchSources
+import org.breezyweather.sources.getLocationSearchSourceOrDefault
+import org.breezyweather.sources.getWeatherSource
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.common.composables.SecondarySourcesPreference
 import org.breezyweather.ui.common.widgets.Material3Scaffold
@@ -199,11 +202,11 @@ class SearchActivity : BreezyActivity() {
                                         val defaultSource = SettingsManager.getInstance(context).defaultForecastSource
 
                                         selectedLocation = when (defaultSource) {
-                                            "auto" -> LocationPreset.getLocationWithPresetApplied(location)
+                                            "auto" -> location.applyDefaultPreset(sourceManager)
                                             else -> {
                                                 val source = sourceManager.getWeatherSource(defaultSource)
                                                 if (source == null) {
-                                                    LocationPreset.getLocationWithPresetApplied(location)
+                                                    location.applyDefaultPreset(sourceManager)
                                                 } else {
                                                     location.copy(
                                                         forecastSource = source.id,

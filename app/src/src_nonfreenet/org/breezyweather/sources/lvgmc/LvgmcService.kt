@@ -32,6 +32,8 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.lvgmc.json.LvgmcAirQualityLocationResult
 import org.breezyweather.sources.lvgmc.json.LvgmcAirQualityResult
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentLocation
@@ -81,6 +83,16 @@ class LvgmcService @Inject constructor(
 
     override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
         return location.countryCode.equals("LV", ignoreCase = true)
+    }
+
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
+            else -> PRIORITY_NONE
+        }
     }
 
     override fun requestWeather(

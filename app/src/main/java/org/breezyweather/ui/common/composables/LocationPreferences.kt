@@ -16,6 +16,7 @@
 
 package org.breezyweather.ui.common.composables
 
+import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -47,13 +48,18 @@ import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.ConfigurableSource
-import org.breezyweather.common.source.HttpSource
+import org.breezyweather.common.source.ReverseGeocodingSource
+import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.getName
 import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.domain.source.resourceName
 import org.breezyweather.sources.SourceManager
+import org.breezyweather.sources.getSupportedReverseGeocodingSources
+import org.breezyweather.sources.getSupportedWeatherSources
+import org.breezyweather.sources.sourcesWithPreferencesScreen
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.settings.preference.composables.EditTextPreferenceView
@@ -266,6 +272,76 @@ fun LocationPreference(
     }
 }
 
+/**
+ * In the filter condition, we always take the current source, even if no longer compatible
+ * That way, we can show it later as "unavailable" if no longer compatible instead of not having it in the list
+ */
+internal fun getCompatibleSources(
+    sourceManager: SourceManager,
+    context: Context,
+    location: Location,
+    selectedSource: String,
+    feature: SourceFeature,
+): ImmutableMap<Int, ImmutableList<Triple<String, String, Boolean>>> {
+    val groupComparator = Comparator<Int> { va1, va2 ->
+        if (va1 == R.string.weather_source_recommended && va2 == R.string.weather_source_recommended) {
+            0
+        } else if (va1 == R.string.weather_source_recommended) {
+            -1
+        } else if (va2 == R.string.weather_source_recommended) {
+            1
+        } else if (va1 == SourceContinent.WORLDWIDE.resourceName && va2 == SourceContinent.WORLDWIDE.resourceName) {
+            0
+        } else if (va1 == SourceContinent.WORLDWIDE.resourceName) {
+            -1
+        } else if (va2 == SourceContinent.WORLDWIDE.resourceName) {
+            1
+        } else {
+            Collator.getInstance(context.currentLocale)
+                .compare(
+                    context.getString(va1),
+                    context.getString(va2)
+                )
+        }
+    }
+
+    return if (feature == SourceFeature.REVERSE_GEOCODING) {
+        sourceManager.getSupportedReverseGeocodingSources(location)
+    } else {
+        sourceManager.getSupportedWeatherSources(feature, location, selectedSource)
+    }
+        .groupBy { it.getGroup(location, feature) }
+        .toSortedMap(groupComparator)
+        .mapValues { m ->
+            m.value
+                .let { sources ->
+                    // Sort recommended sources by priority, rather than name
+                    if (m.key == R.string.weather_source_recommended && feature != SourceFeature.REVERSE_GEOCODING) {
+                        sources.sortedByDescending {
+                            (it as WeatherSource).getFeaturePriorityForLocation(location, feature)
+                        }
+                    } else {
+                        sources
+                    }
+                }
+                .map {
+                    Triple(
+                        it.id,
+                        it.getName(context, feature, location),
+                        (it !is ConfigurableSource || it.isConfigured) &&
+                            (
+                                (
+                                    feature == SourceFeature.REVERSE_GEOCODING &&
+                                        (it as ReverseGeocodingSource).isReverseGeocodingSupportedForLocation(location)
+                                    ) ||
+                                    (it as WeatherSource).isFeatureSupportedForLocation(location, feature)
+                                )
+                    )
+                }
+                .toImmutableList()
+        }.toImmutableMap()
+}
+
 @Composable
 fun SecondarySourcesPreference(
     sourceManager: SourceManager,
@@ -275,27 +351,6 @@ fun SecondarySourcesPreference(
     locationExists: ((location: Location) -> Boolean)? = null,
 ) {
     val context = LocalContext.current
-    val continentComparator = Comparator<SourceContinent?> { va1, va2 ->
-        if (va1 == null && va2 == null) {
-            0
-        } else if (va1 == null) {
-            -1
-        } else if (va2 == null) {
-            1
-        } else if (va1 == SourceContinent.WORLDWIDE && va2 == SourceContinent.WORLDWIDE) {
-            0
-        } else if (va1 == SourceContinent.WORLDWIDE) {
-            -1
-        } else if (va2 == SourceContinent.WORLDWIDE) {
-            1
-        } else {
-            Collator.getInstance(context.currentLocale)
-                .compare(
-                    context.getString(va1.resourceName!!),
-                    context.getString(va2.resourceName!!)
-                )
-        }
-    }
 
     val dialogLinkOpenState = remember { mutableStateOf(false) }
     val hasChangedReverseGeocodingSource = remember { mutableStateOf(false) }
@@ -310,124 +365,68 @@ fun SecondarySourcesPreference(
     val normalsSource = remember { mutableStateOf(location.normalsSource ?: "") }
     val reverseGeocodingSource = remember { mutableStateOf(location.reverseGeocodingSource ?: "") }
 
-    /**
-     * In the filter condition, we always take the current source, even if no longer compatible
-     * That way, we can show it later as "unavailable" if no longer compatible instead of not having it in the list
-     */
-    val compatibleForecastSources = sourceManager
-        .getSupportedWeatherSources(SourceFeature.FORECAST, location, forecastSource.value)
-        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
-        .toSortedMap(continentComparator)
-        .mapValues { m ->
-            m.value.map {
-                Triple(
-                    it.id,
-                    it.getName(context, SourceFeature.FORECAST, location),
-                    (it !is ConfigurableSource || it.isConfigured) &&
-                        it.isFeatureSupportedForLocation(location, SourceFeature.FORECAST)
-                )
-            }.toImmutableList()
-        }.toImmutableMap()
+    val compatibleForecastSources = getCompatibleSources(
+        sourceManager,
+        context,
+        location,
+        forecastSource.value,
+        SourceFeature.FORECAST
+    )
 
-    val compatibleCurrentSources = sourceManager
-        .getSupportedWeatherSources(SourceFeature.CURRENT, location, currentSource.value)
-        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
-        .toSortedMap(continentComparator)
-        .mapValues { m ->
-            m.value.map {
-                Triple(
-                    it.id,
-                    it.getName(context, SourceFeature.CURRENT, location),
-                    (it !is ConfigurableSource || it.isConfigured) &&
-                        it.isFeatureSupportedForLocation(location, SourceFeature.CURRENT)
-                )
-            }.toImmutableList()
-        }.toImmutableMap()
-    val compatibleAirQualitySources = sourceManager
-        .getSupportedWeatherSources(SourceFeature.AIR_QUALITY, location, airQualitySource.value)
-        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
-        .toSortedMap(continentComparator)
-        .mapValues { m ->
-            m.value.map {
-                Triple(
-                    it.id,
-                    it.getName(context, SourceFeature.AIR_QUALITY, location),
-                    (it !is ConfigurableSource || it.isConfigured) &&
-                        it.isFeatureSupportedForLocation(location, SourceFeature.AIR_QUALITY)
-                )
-            }.toImmutableList()
-        }.toImmutableMap()
-    val compatiblePollenSources = sourceManager
-        .getSupportedWeatherSources(SourceFeature.POLLEN, location, pollenSource.value)
-        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
-        .toSortedMap(continentComparator)
-        .mapValues { m ->
-            m.value.map {
-                Triple(
-                    it.id,
-                    it.getName(context, SourceFeature.POLLEN, location),
-                    (it !is ConfigurableSource || it.isConfigured) &&
-                        it.isFeatureSupportedForLocation(location, SourceFeature.POLLEN)
-                )
-            }.toImmutableList()
-        }.toImmutableMap()
-    val compatibleMinutelySources = sourceManager
-        .getSupportedWeatherSources(SourceFeature.MINUTELY, location, minutelySource.value)
-        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
-        .toSortedMap(continentComparator)
-        .mapValues { m ->
-            m.value.map {
-                Triple(
-                    it.id,
-                    it.getName(context, SourceFeature.MINUTELY, location),
-                    (it !is ConfigurableSource || it.isConfigured) &&
-                        it.isFeatureSupportedForLocation(location, SourceFeature.MINUTELY)
-                )
-            }.toImmutableList()
-        }.toImmutableMap()
-    val compatibleAlertSources = sourceManager
-        .getSupportedWeatherSources(SourceFeature.ALERT, location, alertSource.value)
-        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
-        .toSortedMap(continentComparator)
-        .mapValues { m ->
-            m.value.map {
-                Triple(
-                    it.id,
-                    it.getName(context, SourceFeature.ALERT, location),
-                    (it !is ConfigurableSource || it.isConfigured) &&
-                        it.isFeatureSupportedForLocation(location, SourceFeature.ALERT)
-                )
-            }.toImmutableList()
-        }.toImmutableMap()
-    val compatibleNormalsSources = sourceManager
-        .getSupportedWeatherSources(SourceFeature.NORMALS, location, normalsSource.value)
-        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
-        .toSortedMap(continentComparator)
-        .mapValues { m ->
-            m.value.map {
-                Triple(
-                    it.id,
-                    it.getName(context, SourceFeature.NORMALS, location),
-                    (it !is ConfigurableSource || it.isConfigured) &&
-                        it.isFeatureSupportedForLocation(location, SourceFeature.NORMALS)
-                )
-            }.toImmutableList()
-        }.toImmutableMap()
+    val compatibleCurrentSources = getCompatibleSources(
+        sourceManager,
+        context,
+        location,
+        currentSource.value,
+        SourceFeature.CURRENT
+    )
+    val compatibleAirQualitySources = getCompatibleSources(
+        sourceManager,
+        context,
+        location,
+        airQualitySource.value,
+        SourceFeature.AIR_QUALITY
+    )
+    val compatiblePollenSources = getCompatibleSources(
+        sourceManager,
+        context,
+        location,
+        pollenSource.value,
+        SourceFeature.POLLEN
+    )
+    val compatibleMinutelySources = getCompatibleSources(
+        sourceManager,
+        context,
+        location,
+        minutelySource.value,
+        SourceFeature.MINUTELY
+    )
+    val compatibleAlertSources = getCompatibleSources(
+        sourceManager,
+        context,
+        location,
+        alertSource.value,
+        SourceFeature.ALERT
+    )
+    val compatibleNormalsSources = getCompatibleSources(
+        sourceManager,
+        context,
+        location,
+        normalsSource.value,
+        SourceFeature.NORMALS
+    )
 
-    val compatibleReverseGeocodingSources = sourceManager
-        .getSupportedReverseGeocodingSources(location)
-        .groupBy { if (it is HttpSource) it.continent else SourceContinent.WORLDWIDE }
-        .toSortedMap(continentComparator)
-        .mapValues { m ->
-            m.value.map {
-                Triple(
-                    it.id,
-                    it.getName(context, SourceFeature.REVERSE_GEOCODING, location),
-                    (it !is ConfigurableSource || it.isConfigured) &&
-                        it.isReverseGeocodingSupportedForLocation(location)
-                )
-            }.toImmutableList()
-        }.toImmutableMap()
+    val compatibleReverseGeocodingSources = if (location.isCurrentPosition) {
+        getCompatibleSources(
+            sourceManager,
+            context,
+            location,
+            reverseGeocodingSource.value,
+            SourceFeature.REVERSE_GEOCODING
+        )
+    } else {
+        emptyMap()
+    }
 
     AlertDialogNoPadding(
         modifier = modifier,
@@ -976,11 +975,14 @@ fun SourceView(
     }
 }
 
+/**
+ * @param sourceList Key is a @StringRes
+ */
 @Composable
 fun SourceViewWithContinents(
     title: String,
     selectedKey: String,
-    sourceList: ImmutableMap<SourceContinent?, ImmutableList<Triple<String, String, Boolean>>>,
+    sourceList: ImmutableMap<Int?, ImmutableList<Triple<String, String, Boolean>>>,
     modifier: Modifier = Modifier,
     @DrawableRes iconId: Int? = null,
     enabled: Boolean = true,
@@ -997,7 +999,7 @@ fun SourceViewWithContinents(
         iconId = iconId,
         selectedKey = selectedKey,
         values = sourceList.mapKeys {
-            it.key?.let { k -> context.getString(k.resourceName!!) }
+            it.key?.let { k -> context.getString(k) }
         }.toImmutableMap(),
         summary = { _, value ->
             sourceList.values.firstOrNull { c ->

@@ -31,6 +31,8 @@ import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.ncei.json.NceiDataResult
 import retrofit2.Retrofit
 import java.util.Calendar
@@ -77,6 +79,16 @@ class NceiService @Inject constructor(
         feature: SourceFeature,
     ): Boolean {
         return !location.isCurrentPosition
+    }
+
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            location.countryCode.equals("US", ignoreCase = true) -> PRIORITY_HIGHEST
+            else -> PRIORITY_NONE
+        }
     }
 
     override val testingLocations: List<Location> = emptyList()

@@ -42,6 +42,9 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGH
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.cwa.json.CwaAirQualityResult
 import org.breezyweather.sources.cwa.json.CwaAlertResult
@@ -117,6 +120,20 @@ class CwaService @Inject constructor(
             KINMEN_BBOX.contains(latLng) ||
             WUQIU_BBOX.contains(latLng) ||
             MATSU_BBOX.contains(latLng)
+    }
+
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            isFeatureSupportedForLocation(location, feature) -> if (feature == SourceFeature.ALERT) {
+                PRIORITY_HIGH // This makes NCDR being used in priority
+            } else {
+                PRIORITY_HIGHEST
+            }
+            else -> PRIORITY_NONE
+        }
     }
 
     @SuppressLint("CheckResult")

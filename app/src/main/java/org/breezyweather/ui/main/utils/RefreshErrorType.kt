@@ -42,6 +42,7 @@ import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.getStringByLocale
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.LogHelper
+import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.main.dialogs.ErrorHelpDialog
 import org.breezyweather.ui.main.dialogs.LocationHelpDialog
 import org.breezyweather.ui.main.dialogs.SourceNoLongerAvailableHelpDialog
@@ -122,12 +123,17 @@ enum class RefreshErrorType(
     ),
     SOURCE_NOT_INSTALLED(
         shortMessage = R.string.message_source_not_installed_error_title,
-        showDialogAction = {
-            SourceNoLongerAvailableHelpDialog.show(
-                it,
-                R.string.message_source_not_installed_error_title
-            )
-        }
+        showDialogAction = { activity ->
+            if (activity is MainActivity) {
+                activity.onEditIconClicked()
+            } else {
+                SourceNoLongerAvailableHelpDialog.show(
+                    activity,
+                    R.string.message_source_not_installed_error_title
+                )
+            }
+        },
+        actionButtonMessage = R.string.action_change
     ),
 
     // Location-specific

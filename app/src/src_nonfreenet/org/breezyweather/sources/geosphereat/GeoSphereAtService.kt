@@ -31,6 +31,9 @@ import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGH
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtTimeseriesResult
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtWarningsResult
 import retrofit2.Retrofit
@@ -91,6 +94,24 @@ class GeoSphereAtService @Inject constructor(
             SourceFeature.MINUTELY -> nowcastBbox.contains(latLng)
             SourceFeature.ALERT -> location.countryCode.equals("AT", ignoreCase = true)
             else -> false
+        }
+    }
+
+    /**
+     * We don’t recommend forecast as it’s way too light, compared to other sources
+     * Highest priority for Austria
+     * High priority for neighbour countries
+     */
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            location.countryCode.equals("AT", ignoreCase = true) &&
+                feature != SourceFeature.FORECAST -> PRIORITY_HIGHEST
+            isFeatureSupportedForLocation(location, feature) &&
+                feature != SourceFeature.FORECAST -> PRIORITY_HIGH
+            else -> PRIORITY_NONE
         }
     }
 

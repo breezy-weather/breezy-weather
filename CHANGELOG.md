@@ -11,6 +11,7 @@
 - Widgets - Improve UX of custom subtitle documentation (@codewithdipesh)
 - Nowcasting chart/Precipitation notification - Fix slightly wrong ending time of precipitation report
 - Settings - Improve the location-based dark mode preference to make it easier to understand
+- Sources - Add a “Recommended” section to the Source selection screen
 
 **Weather sources**
 - [FOSS Public Alert Server] Add support for this experimental source for alerts (@chunshek)

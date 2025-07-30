@@ -86,6 +86,19 @@ interface WeatherSource : Source {
     ): Boolean = true
 
     /**
+     * Used to identify recommended sources by countries, ordered by priority descending.
+     * Any positive number can be used here, but we recommend using the available constants
+     *
+     * For example, worldwide sources will usually return PRIORITY_NONE (not recommended)
+     * National sources should return PRIORITY_HIGHEST here, unless there are multiple national sources
+     * and one is better than the other. In that case, sort them using the available preset priorities
+     */
+    fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int = PRIORITY_NONE
+
+    /**
      * Returns weather converted to Breezy Weather Weather object
      * @param requestedFeatures List of features requested by the user
      */
@@ -94,4 +107,13 @@ interface WeatherSource : Source {
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper>
+
+    companion object {
+        const val PRIORITY_HIGHEST = 100
+        const val PRIORITY_HIGH = 75
+        const val PRIORITY_MEDIUM = 50
+        const val PRIORITY_LOW = 25
+        const val PRIORITY_LOWEST = 0
+        const val PRIORITY_NONE = -1
+    }
 }

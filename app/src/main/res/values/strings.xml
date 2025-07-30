@@ -382,6 +382,7 @@
     <string name="weather_api_unauthorized_content">On some weather data sources, you need to provide your own API key. If you already provided one, please double-check the API key you provided.</string>
     <string name="weather_api_key_required_missing_title">Required API key missing</string>
     <string name="weather_api_key_required_missing_content">To use this source, you need to provide an API key.</string>
+    <string name="weather_source_recommended">Recommended</string>
     <string name="weather_source_continent_worldwide">Worldwide</string>
     <string name="weather_source_continent_africa">Africa</string>
     <string name="weather_source_continent_asia">Asia</string>
@@ -462,6 +463,7 @@
     <string name="action_restart">Restart</string>
     <string name="action_more">More</string>
     <string name="action_edit">Edit</string>
+    <string name="action_change">Change</string>
     <string name="action_delete">Delete</string>
     <string name="action_back">Back</string>
     <string name="action_next">Next</string>

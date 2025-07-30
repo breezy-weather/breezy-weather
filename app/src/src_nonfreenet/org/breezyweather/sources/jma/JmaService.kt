@@ -33,6 +33,8 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.jma.json.JmaAlertResult
 import org.breezyweather.sources.jma.json.JmaAmedasResult
 import org.breezyweather.sources.jma.json.JmaAreasResult
@@ -107,6 +109,16 @@ class JmaService @Inject constructor(
 
     override fun isReverseGeocodingSupportedForLocation(location: Location): Boolean {
         return location.countryCode.equals("JP", ignoreCase = true)
+    }
+
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
+            else -> PRIORITY_NONE
+        }
     }
 
     override fun requestWeather(

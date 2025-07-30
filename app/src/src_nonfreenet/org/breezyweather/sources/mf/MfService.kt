@@ -37,6 +37,8 @@ import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.mf.json.MfCurrentResult
 import org.breezyweather.sources.mf.json.MfForecastResult
@@ -105,9 +107,24 @@ class MfService @Inject constructor(
                 arrayOf("FR", "AD", "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT")
                     .any { location.countryCode.equals(it, ignoreCase = true) }
             SourceFeature.NORMALS -> !location.countryCode.isNullOrEmpty() &&
-                arrayOf("FR", "AD", "MC").any { location.countryCode.equals(it, ignoreCase = true) }
+                arrayOf("FR", "AD", "MC", "BL", "GF", "GP", "MF", "MQ", "NC", "PF", "PM", "RE", "WF", "YT")
+                    .any { location.countryCode.equals(it, ignoreCase = true) }
             SourceFeature.FORECAST -> true // Main source available worldwide
             else -> false
+        }
+    }
+
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            isFeatureSupportedForLocation(
+                location,
+                // Since forecast is available worldwide, use the same criteria as normals
+                if (feature == SourceFeature.FORECAST) SourceFeature.NORMALS else feature
+            ) -> PRIORITY_HIGHEST
+            else -> PRIORITY_NONE
         }
     }
 

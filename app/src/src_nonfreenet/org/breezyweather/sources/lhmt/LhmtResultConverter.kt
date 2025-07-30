@@ -47,9 +47,9 @@ internal fun convert(
     forecastLocations: List<LhmtLocationsResult>,
 ): List<Location> {
     val locationList = mutableListOf<Location>()
-    val forecastLocationMap = forecastLocations.filter { it.countryCode == null || it.countryCode == "LT" }.associate {
-        it.code to LatLng(it.coordinates.latitude, it.coordinates.longitude)
-    }
+    val forecastLocationMap = forecastLocations
+        .filter { it.countryCode == null || it.countryCode.equals("LT", ignoreCase = true) }
+        .associate { it.code to LatLng(it.coordinates.latitude, it.coordinates.longitude) }
     val forecastLocation = LatLng(location.latitude, location.longitude)
         .getNearestLocation(forecastLocationMap, 50000.0)
     forecastLocations.firstOrNull { it.code == forecastLocation }?.let {
@@ -87,15 +87,15 @@ internal fun convert(
     forecastLocations: List<LhmtLocationsResult>,
     currentLocations: List<LhmtLocationsResult>,
 ): Map<String, String> {
-    val forecastLocationMap = forecastLocations.filter { it.countryCode == null || it.countryCode == "LT" }.associate {
-        it.code to LatLng(it.coordinates.latitude, it.coordinates.longitude)
-    }
+    val forecastLocationMap = forecastLocations
+        .filter { it.countryCode == null || it.countryCode.equals("LT", ignoreCase = true) }
+        .associate { it.code to LatLng(it.coordinates.latitude, it.coordinates.longitude) }
     val forecastLocation = LatLng(location.latitude, location.longitude)
         .getNearestLocation(forecastLocationMap, 50000.0)
 
-    val currentLocationMap = currentLocations.filter { it.countryCode == null || it.countryCode == "LT" }.associate {
-        it.code to LatLng(it.coordinates.latitude, it.coordinates.longitude)
-    }
+    val currentLocationMap = currentLocations
+        .filter { it.countryCode == null || it.countryCode.equals("LT", ignoreCase = true) }
+        .associate { it.code to LatLng(it.coordinates.latitude, it.coordinates.longitude) }
     val currentLocation = LatLng(location.latitude, location.longitude).getNearestLocation(currentLocationMap, 50000.0)
 
     val municipalityName = forecastLocations.firstOrNull { it.code == forecastLocation }?.administrativeDivision

@@ -33,6 +33,8 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.WeatherSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.climweb.json.ClimWebAlertsResult
 import org.breezyweather.sources.climweb.json.ClimWebNormals
@@ -118,6 +120,16 @@ abstract class ClimWebService : HttpSource(), WeatherSource, ConfigurableSource,
                     location.countryCode.equals(countryCode, ignoreCase = true) &&
                     !cityClimatePageId.isNullOrEmpty()
             else -> false
+        }
+    }
+
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
+            else -> PRIORITY_NONE
         }
     }
 
