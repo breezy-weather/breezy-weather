@@ -259,6 +259,27 @@ object Migrations {
                         )
                     }
                 }
+
+                if (oldVersion < 60005) {
+                    // V6.0.5 restricts Open-Meteo pollen to Europe
+                    runBlocking {
+                        locationRepository.getAllLocations(withParameters = false)
+                            .forEach {
+                                if (it.pollenSource == "openmeteo") {
+                                    val source = sourceManager.getWeatherSource("openmeteo")
+                                    if (source == null ||
+                                        !source.isFeatureSupportedForLocation(it, SourceFeature.POLLEN)
+                                    ) {
+                                        locationRepository.update(
+                                            it.copy(
+                                                pollenSource = ""
+                                            )
+                                        )
+                                    }
+                                }
+                            }
+                    }
+                }
             }
 
             SettingsManager.getInstance(context).lastVersionCode = BuildConfig.VERSION_CODE

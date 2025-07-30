@@ -20,6 +20,7 @@
 - [JMA] Added Thai translations (@chunshek)
 - [LVGMC] Fix current observations (@chunshek)
 - [NCEI] Added support for normals (@chunshek)
+- [Open-Meteo] Restrict pollen to Europe as it’s only available there (@chunshek)
 - [Pirate Weather] Add support for daily/hourly summaries
 - [WMO SWIC] Avoid missing alerts which expired date was updated
 - [ANAM-BF, DCCMS, DMN, DWR, EMI, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, SMA (Seychelles), SMA (Sudan), SSMS] Add to  ̀freenet` flavor (was missing despite being FOSS)
