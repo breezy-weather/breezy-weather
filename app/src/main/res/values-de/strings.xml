@@ -843,4 +843,6 @@
     <string name="air_quality_o3_index">Luftqualitätsindex für O₃</string>
     <string name="air_quality_co_about">Über Kohlenmonoxid (CO)</string>
     <string name="air_quality_co_index">Luftqualitätsindex für CO</string>
+    <string name="action_change">Wechseln</string>
+    <string name="weather_source_recommended">Empfohlen</string>
 </resources>
