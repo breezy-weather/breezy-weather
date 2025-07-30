@@ -338,7 +338,7 @@
     <string name="settings_background_updates_battery_optimization_disabled">A otimização da bateria já está desativada.</string>
     <string name="settings_location_access_switch_summaryOff">Por favor conceda se quiser adicionar sua localização atual à lista.</string>
     <string name="settings_location_access_background_summaryOff">Por favor, ative “Permitir o tempo todo” para ter atualizações em segundo plano da sua localização atual.</string>
-    <string name="settings_location_access_precise_summaryOff">Ative a opção “Usar local preciso\" se você tiver problemas para obter uma localização.</string>
+    <string name="settings_location_access_precise_summaryOff">Ative a opção “Usar local preciso” se você tiver problemas para obter uma localização.</string>
     <string name="settings_weather_sources">Fontes meteorológicas</string>
     <string name="settings_units_summary">Temperatura, precipitação, distância, velocidade, pressão</string>
     <string name="settings_main_background_animation_title">Animação de fundo</string>
@@ -350,7 +350,7 @@
     <string name="settings_background_updates_section_troubleshoot">Solução de problemas</string>
     <string name="settings_background_updates_battery_optimization_summary">Esta é a primeira coisa que você deve testar ao não receber notificações ou quando os widgets não estão sendo atualizados.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Não foi possível abrir as configurações do dispositivo.</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Algumas fabricantes têm restrições adicionais que fecham os serviços em segundo plano. O site \"Don’t kill my app!\" tem informações que te ajudam a corrigir isso.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Algumas fabricantes têm restrições adicionais que fecham os serviços em segundo plano. O site “Don’t kill my app!” tem informações que te ajudam a corrigir isso.</string>
     <string name="settings_main_cards_other_element_animations_switch">Animações de outros elementos</string>
     <string name="settings_main_summary">Ordem dos blocos, itens exibidos, animações</string>
     <string name="settings_widgets_notification_feels_like_switch">Usar a sensação térmica</string>
@@ -787,7 +787,7 @@
     <string name="uv_index_scale">Escala do índice UV</string>
     <string name="uv_index_time_to_burn">Tempo para queimar</string>
     <string name="uv_index_time_to_burn_explanations">O tempo para queimar exato depende da altitude, da presença de solo refletivo como água ou neve, seu tipo de pele e uso de protetor solar.</string>
-    <string name="air_quality_index_short">IQA</string>
+    <string name="air_quality_index_short">IQAr</string>
     <string name="air_quality_index_about">Sobre o índice de qualidade do ar</string>
     <string name="air_quality_index_about_description_1">O índice de qualidade do ar (IQAr) é uma escala criada para ajudá-lo a entender o quão poluído está o ar em uma determinada área e os possíveis riscos à sua saúde.</string>
     <string name="air_quality_index_about_description_2">A escala utilizada neste aplicativo é baseada nas recomendações da Organização Mundial da Saúde, não nas regulamentações locais, para ter categorias significativas e facilitar a comparação dos níveis de poluição entre os países.</string>
@@ -891,4 +891,6 @@
     <string name="action_translate_no_app">Nenhum aplicativo de tradução encontrado</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Seguir o dia/noite</string>
     <string name="settings_appearance_dark_mode_locations_dark">Sempre escuro quando o aplicativo está</string>
+    <string name="weather_source_recommended">Recomendada</string>
+    <string name="action_change">Alterar</string>
 </resources>
