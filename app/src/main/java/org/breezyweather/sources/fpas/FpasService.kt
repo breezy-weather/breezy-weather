@@ -28,6 +28,7 @@ import com.google.maps.android.model.LatLng
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
+import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
@@ -85,67 +86,64 @@ class FpasService @Inject constructor(
             maxLon = location.longitude + 0.001
         ).execute().body() ?: return Observable.error(WeatherException())
 
-        return convert(
-            context,
-            location,
-            alertUuids
-        ).map {
-            WeatherWrapper(
-                alertList = it
-            )
-        }
-    }
-
-    private fun convert(
-        context: Context,
-        location: Location,
-        alertUuids: List<String>,
-    ): Observable<List<Alert>> {
         if (alertUuids.isEmpty()) return Observable.empty()
 
+        var someAlertsFailed = false
         return Observable.zip(
-            alertUuids.map { mXmlApi.getAlert(it) }
-        ) { alertResultList ->
-            alertResultList.filterIsInstance<CapAlert>().mapIndexedNotNull { index, capAlert ->
-                capAlert.getInfoForContext(context)?.let {
-                    val containsPoint = it.containsPoint(LatLng(location.latitude, location.longitude))
-                    // Filter out non-meteorological alerts, past alerts,
-                    // and alert whose polygons do not cover the requested location
-                    if (it.category?.value.equals("Met", ignoreCase = true) &&
-                        !it.urgency?.value.equals("Past", ignoreCase = true) &&
-                        containsPoint
-                    ) {
-                        val severity = when (it.severity?.value) {
-                            "Extreme" -> AlertSeverity.EXTREME
-                            "Severe" -> AlertSeverity.SEVERE
-                            "Moderate" -> AlertSeverity.MODERATE
-                            "Minor" -> AlertSeverity.MINOR
-                            else -> AlertSeverity.UNKNOWN
-                        }
-                        val title = it.event?.value ?: it.headline?.value
-                        val start = it.onset?.value ?: it.effective?.value ?: capAlert.sent?.value
-                        Alert(
-                            alertId = capAlert.identifier?.value
-                                ?: alertUuids.getOrElse(index) {
-                                    Objects.hash(title, severity, start).toString()
-                                },
-                            startDate = start,
-                            endDate = it.expires?.value,
-                            headline = title,
-                            description = formatAlertText(
-                                it.senderName?.value,
-                                it.description?.value
-                            ),
-                            instruction = it.instruction?.value,
-                            source = it.senderName?.value,
-                            severity = severity,
-                            color = Alert.colorFromSeverity(severity)
-                        )
-                    } else {
-                        null
-                    }
+            alertUuids.map { uuid ->
+                mXmlApi.getAlert(uuid).onErrorResumeNext {
+                    someAlertsFailed = true
+                    Observable.just(CapAlert())
                 }
             }
+        ) { alertResultList ->
+            WeatherWrapper(
+                alertList = alertResultList.filterIsInstance<CapAlert>().mapIndexedNotNull { index, capAlert ->
+                    capAlert.getInfoForContext(context)?.let {
+                        val containsPoint = it.containsPoint(LatLng(location.latitude, location.longitude))
+                        // Filter out non-meteorological alerts, past alerts,
+                        // and alert whose polygons do not cover the requested location
+                        if (it.category?.value.equals("Met", ignoreCase = true) &&
+                            !it.urgency?.value.equals("Past", ignoreCase = true) &&
+                            containsPoint
+                        ) {
+                            val severity = when (it.severity?.value) {
+                                "Extreme" -> AlertSeverity.EXTREME
+                                "Severe" -> AlertSeverity.SEVERE
+                                "Moderate" -> AlertSeverity.MODERATE
+                                "Minor" -> AlertSeverity.MINOR
+                                else -> AlertSeverity.UNKNOWN
+                            }
+                            val title = it.event?.value ?: it.headline?.value
+                            val start = it.onset?.value ?: it.effective?.value ?: capAlert.sent?.value
+                            Alert(
+                                alertId = capAlert.identifier?.value
+                                    ?: alertUuids.getOrElse(index) {
+                                        Objects.hash(title, severity, start).toString()
+                                    },
+                                startDate = start,
+                                endDate = it.expires?.value,
+                                headline = title,
+                                description = formatAlertText(
+                                    it.senderName?.value,
+                                    it.description?.value
+                                ),
+                                instruction = it.instruction?.value,
+                                source = it.senderName?.value,
+                                severity = severity,
+                                color = Alert.colorFromSeverity(severity)
+                            )
+                        } else {
+                            null
+                        }
+                    }
+                },
+                failedFeatures = if (someAlertsFailed) {
+                    mapOf(SourceFeature.ALERT to InvalidOrIncompleteDataException())
+                } else {
+                    null
+                }
+            )
         }
     }
 

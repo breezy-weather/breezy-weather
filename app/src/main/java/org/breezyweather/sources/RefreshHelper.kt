@@ -659,10 +659,11 @@ class RefreshHelper @Inject constructor(
                         null
                     },
                     alertList = if (!location.alertSource.isNullOrEmpty()) {
+                        // Special case: if we had errors, but still received at least 1 alert, accept the newer data
                         if (errors.any {
                                 it.feature == SourceFeature.ALERT &&
                                     it.source == location.alertSource!!
-                            }
+                            } && sourceCalls.getOrElse(location.alertSource!!) { null }?.alertList?.isEmpty() != false
                         ) {
                             null
                         } else {

@@ -30,6 +30,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.rx3.awaitFirstOrElse
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
@@ -125,27 +126,16 @@ class NcdrService @Inject constructor(
         }
 
         val alerts = mNcdrApi.getAlerts().execute().body() ?: return Observable.error(WeatherException())
+        val cwaAlerts = alerts.entries?.filter { it.author.name.value == "中央氣象署" } ?: return Observable.empty()
 
-        return convert(
-            location,
-            legacyTownshipCode,
-            alerts.entries?.filter { it.author.name.value == "中央氣象署" }
-        ).map {
-            WeatherWrapper(
-                alertList = it
-            )
-        }
-    }
-
-    internal fun convert(
-        location: Location,
-        legacyTownshipCode: String,
-        cwaAlerts: List<NcdrAlertsResult.Entry>?,
-    ): Observable<List<Alert>> {
-        if (cwaAlerts == null) return Observable.empty()
-
+        var someAlertsFailed = false
         return Observable.zip(
-            cwaAlerts.map { cwaAlert -> mNcdrApi.getAlert(cwaAlert.link.href) }
+            cwaAlerts.map { cwaAlert ->
+                mNcdrApi.getAlert(cwaAlert.link.href).onErrorResumeNext {
+                    someAlertsFailed = true
+                    Observable.just(CapAlert())
+                }
+            }
         ) { alertResultList ->
             val alertList = mutableListOf<Alert>()
             alertResultList.filterIsInstance<CapAlert>().forEach { alert ->
@@ -206,7 +196,15 @@ class NcdrService @Inject constructor(
                     }
                 }
             }
-            alertList
+
+            WeatherWrapper(
+                alertList = alertList,
+                failedFeatures = if (someAlertsFailed) {
+                    mapOf(SourceFeature.ALERT to InvalidOrIncompleteDataException())
+                } else {
+                    null
+                }
+            )
         }
     }
 
