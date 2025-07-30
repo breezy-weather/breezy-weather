@@ -166,7 +166,7 @@
     <!-- settings -->
     <string name="settings_widgets_live_wallpaper_title">Живые обои</string>
     <string name="settings_location_service">Источник местоположения</string>
-    <string name="settings_appearance_dark_mode_title">Тёмная тема</string>
+    <string name="settings_appearance_dark_mode_title">Тёмная тема приложения</string>
     <string name="settings_appearance_icon_pack_title">Набор иконок</string>
     <string name="settings_appearance">Вид</string>
     <string name="settings_main_gravity_sensor_switch">Датчик гравитации</string>
@@ -537,7 +537,7 @@
     <string name="metno_weather_text_andthunder">%s с грозой</string>
     <string name="common_weather_text_drizzle_freezing">Морозящая изморось</string>
     <string name="unit_bft_voice">на шкале Бофорта</string>
-    <string name="settings_appearance_dark_mode_locations_title">Светлая / Тёмная тема для местоположения</string>
+    <string name="settings_appearance_dark_mode_locations_title">Тёмная тема по местоположению</string>
     <string name="weather_message_unsupported_feature">Источник не поддерживает одну из запрошенных функций</string>
     <string name="about_contribution_designer">Дизайнер логотипа</string>
     <string name="temperature_average_short">Сред</string>
@@ -798,7 +798,7 @@
     <string name="unit_bft_display_name">Бофорт</string>
     <string name="unit_bft_nominative">%s баллов</string>
     <string name="about_update_check_eol">Эта версия Android больше не поддерживается</string>
-    <string name="air_quality_short">Качество воздуха</string>
+    <string name="air_quality_short">Чистота воздуха</string>
     <string name="ephemeris_sun">Солнце</string>
     <string name="ephemeris_moon">Луна</string>
     <string name="ephemeris_polar_day">Полярный день</string>
@@ -817,4 +817,22 @@
     <string name="temperature_normals_deviation_explanation_minimum">Отклонение от %s средней минимальной температуры для этого местоположения</string>
     <string name="widget_custom_subtitle_help_content_description">Показать пользовательские ключевые слова для субтитров</string>
     <string name="widget_custom_subtitle_alert_box_title">Помощь с пользовательскими субтитрами</string>
+    <string name="air_quality_pm25_about">О мелкодисперсных частицах (PM2.5)</string>
+    <string name="air_quality_pm25_index">Шкала индекса качества воздуха для PM2.5</string>
+    <string name="air_quality_pm10_about">О вдыхаемых частицах (PM10)</string>
+    <string name="air_quality_pm10_index">Шкала индекса качества воздуха для PM10</string>
+    <string name="air_quality_so2_about">О диоксиде серы (SO₂)</string>
+    <string name="air_quality_so2_index">Шкала индекса качества воздуха для SO₂</string>
+    <string name="air_quality_no2_about">О диоксиде азота (NO₂)</string>
+    <string name="air_quality_no2_index">Шкала индекса качества воздуха для NO₂</string>
+    <string name="air_quality_o3_about">О приземном озоне (O₃)</string>
+    <string name="air_quality_o3_index">Шкала индекса качества воздуха для O₃</string>
+    <string name="air_quality_co_about">Об оксиде углерода (CO)</string>
+    <string name="air_quality_co_index">Шкала индекса качества воздуха для CO</string>
+    <string name="action_open_in_other_app_no_app">Приложение для карт не найдено</string>
+    <string name="action_share_no_app">Приложение для отправки не найдено</string>
+    <string name="action_translate">Перевести</string>
+    <string name="action_translate_no_app">Приложение для перевода не найдено</string>
+    <string name="settings_appearance_dark_mode_locations_day_night">Следить за днём и ночью</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Всегда тёмная тема, когда приложение находится в тёмном режиме</string>
 </resources>
