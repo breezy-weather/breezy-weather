@@ -13,6 +13,8 @@ import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
+import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import retrofit2.Retrofit
 import java.util.Locale
 import javax.inject.Inject
@@ -67,38 +69,41 @@ class NlscService @Inject constructor(
             MATSU_BBOX.contains(latLng)
     }
 
+    override fun getFeaturePriorityForLocation(
+        location: Location,
+        feature: SourceFeature,
+    ): Int {
+        return when {
+            isFeatureSupportedForLocation(location, feature) -> PRIORITY_HIGHEST
+            else -> PRIORITY_NONE
+        }
+    }
+
     override fun requestReverseGeocodingLocation(context: Context, location: Location): Observable<List<Location>> {
-        val locationCodes = mNlscApi.getLocationCodes(
+        return mNlscApi.getLocationCodes(
             lon = location.longitude,
             lat = location.latitude
-        ).execute().body()
+        ).map { locationCodes ->
+            if (locationCodes.townshipName?.value.isNullOrEmpty()) {
+                throw InvalidLocationException()
+            }
 
-        if (locationCodes?.countyCode?.value.isNullOrEmpty() ||
-            locationCodes.townshipCode?.value.isNullOrEmpty() ||
-            locationCodes.villageCode?.value.isNullOrEmpty()
-        ) {
-            throw InvalidLocationException()
-        }
-
-        return Observable.just(
             listOf(
                 location.copy(
-                    latitude = location.latitude,
-                    longitude = location.longitude,
                     timeZone = "Asia/Taipei",
                     country = Locale(context.currentLocale.code, "TW").displayCountry,
                     countryCode = "TW",
                     admin1 = locationCodes.countyName?.value,
-                    admin1Code = locationCodes.countyCode.value,
+                    admin1Code = locationCodes.countyCode?.value,
                     admin2 = locationCodes.townshipName?.value,
-                    admin2Code = locationCodes.townshipCode.value,
+                    admin2Code = locationCodes.townshipCode?.value,
                     admin3 = locationCodes.villageName?.value,
-                    admin3Code = locationCodes.villageCode.value,
-                    city = locationCodes.townshipName?.value ?: "",
+                    admin3Code = locationCodes.villageCode?.value,
+                    city = locationCodes.townshipName!!.value,
                     district = locationCodes.villageName?.value
                 )
             )
-        )
+        }
     }
 
     companion object {

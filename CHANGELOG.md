@@ -19,7 +19,9 @@
 - [GeoSphere AT] Use the newer better endpoint for air quality
 - [JMA] Added Thai translations (@chunshek)
 - [LVGMC] Fix current observations (@chunshek)
+- [NCDR] Added as alert source for Taiwan (@chunshek)
 - [NCEI] Added support for normals (@chunshek)
+- [NSLC] Added as address lookup source for Taiwan (@chunshek)
 - [Open-Meteo] Restrict pollen to Europe as it’s only available there (@chunshek)
 - [Pirate Weather] Add support for daily/hourly summaries
 - [WMO SWIC] Avoid missing alerts which expired date was updated

@@ -1,5 +1,6 @@
 package org.breezyweather.sources.nlsc
 
+import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.nlsc.xml.NlscLocationCodesResult
 import retrofit2.Call
 import retrofit2.http.GET
@@ -26,5 +27,5 @@ interface NlscApi {
         @Path("lon") lon: Double,
         @Path("lat") lat: Double,
         @Path("epsg") epsg: Long = 4326,
-    ): Call<NlscLocationCodesResult>
+    ): Observable<NlscLocationCodesResult>
 }

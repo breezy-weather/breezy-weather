@@ -28,7 +28,9 @@ import com.google.maps.android.model.LatLng
 import com.google.maps.android.model.LatLngBounds
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
+import kotlinx.coroutines.rx3.awaitFirstOrElse
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
@@ -36,10 +38,12 @@ import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
+import org.breezyweather.sources.common.xml.CapAlert
 import org.breezyweather.sources.ncdr.xml.NcdrAlertsResult
 import org.breezyweather.sources.nlsc.NlscApi
 import retrofit2.Retrofit
 import java.util.Locale
+import java.util.Objects
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.lazy
@@ -120,82 +124,90 @@ class NcdrService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        val alerts = mNcdrApi.getAlerts().execute().body()
-        val cwaAlerts = alerts?.entries?.filter {
-            it.author.name.value == "中央氣象署"
-        }
+        val alerts = mNcdrApi.getAlerts().execute().body() ?: return Observable.error(WeatherException())
 
-        return Observable.just(
+        return convert(
+            location,
+            legacyTownshipCode,
+            alerts.entries?.filter { it.author.name.value == "中央氣象署" }
+        ).map {
             WeatherWrapper(
-                alertList = convert(location, legacyTownshipCode, cwaAlerts)
+                alertList = it
             )
-        )
+        }
     }
 
     internal fun convert(
         location: Location,
         legacyTownshipCode: String,
         cwaAlerts: List<NcdrAlertsResult.Entry>?,
-    ): List<Alert> {
-        val alertList = mutableListOf<Alert>()
-        cwaAlerts?.forEach { cwaAlert ->
-            val alert = mNcdrApi.getAlert(cwaAlert.link.href).execute().body()
-            alert?.info?.forEach {
-                if (it.containsGeocode("Taiwan_Geocode_103", legacyTownshipCode) ||
-                    it.containsPoint(LatLng(location.latitude, location.longitude))
-                ) {
-                    val severity = when (it.severity?.value) {
-                        "Extreme" -> AlertSeverity.EXTREME
-                        "Severe" -> AlertSeverity.SEVERE
-                        "Moderate" -> AlertSeverity.MODERATE
-                        "Minor" -> AlertSeverity.MINOR
-                        else -> AlertSeverity.UNKNOWN
-                    }
+    ): Observable<List<Alert>> {
+        if (cwaAlerts == null) return Observable.empty()
 
-                    // Use the color provided in the CAP Alert where available.
-                    val websiteColor = it.parameters?.firstOrNull { parameter ->
-                        parameter.valueName?.value.equals("website_color")
-                    }?.value?.value
-                    val color = if (!websiteColor.isNullOrEmpty()) {
-                        val components = websiteColor.split(",")
-                        if (components.size == 3) {
-                            Color.rgb(components[0].toInt(), components[1].toInt(), components[2].toInt())
+        return Observable.zip(
+            cwaAlerts.map { cwaAlert -> mNcdrApi.getAlert(cwaAlert.link.href) }
+        ) { alertResultList ->
+            val alertList = mutableListOf<Alert>()
+            alertResultList.filterIsInstance<CapAlert>().forEach { alert ->
+                alert.info?.forEach {
+                    if (it.containsGeocode("Taiwan_Geocode_103", legacyTownshipCode) ||
+                        it.containsPoint(LatLng(location.latitude, location.longitude))
+                    ) {
+                        val severity = when (it.severity?.value) {
+                            "Extreme" -> AlertSeverity.EXTREME
+                            "Severe" -> AlertSeverity.SEVERE
+                            "Moderate" -> AlertSeverity.MODERATE
+                            "Minor" -> AlertSeverity.MINOR
+                            else -> AlertSeverity.UNKNOWN
+                        }
+
+                        // Use the color provided in the CAP Alert where available.
+                        val websiteColor = it.parameters?.firstOrNull { parameter ->
+                            parameter.valueName?.value.equals("website_color")
+                        }?.value?.value
+                        val color = if (!websiteColor.isNullOrEmpty()) {
+                            val components = websiteColor.split(",")
+                            if (components.size == 3) {
+                                Color.rgb(components[0].toInt(), components[1].toInt(), components[2].toInt())
+                            } else {
+                                Alert.colorFromSeverity(severity)
+                            }
                         } else {
                             Alert.colorFromSeverity(severity)
                         }
-                    } else {
-                        Alert.colorFromSeverity(severity)
-                    }
 
-                    var headline = it.headline?.value?.trim()
+                        var headline = it.headline?.value?.trim()
 
-                    // For Extremely Heavy Rain Advisories, replace the headline with severity level.
-                    if (headline == "豪雨特報") {
-                        val severityLevel = it.parameters?.firstOrNull { parameter ->
-                            parameter.valueName?.value == "severity_level"
-                        }?.value?.value
-                        if (!severityLevel.isNullOrEmpty()) {
-                            headline = severityLevel + "特報"
+                        // For Extremely Heavy Rain Advisories, replace the headline with severity level.
+                        if (headline == "豪雨特報") {
+                            val severityLevel = it.parameters?.firstOrNull { parameter ->
+                                parameter.valueName?.value == "severity_level"
+                            }?.value?.value
+                            if (!severityLevel.isNullOrEmpty()) {
+                                headline = severityLevel + "特報"
+                            }
                         }
-                    }
 
-                    alertList.add(
-                        Alert(
-                            alertId = alert.identifier?.value ?: cwaAlert.link.href,
-                            startDate = it.onset?.value ?: it.effective?.value ?: alert.sent?.value,
-                            endDate = it.expires?.value,
-                            headline = headline,
-                            description = it.description?.value?.trim(),
-                            instruction = it.instruction?.value?.trim(),
-                            source = it.senderName?.value?.trim(),
-                            severity = severity,
-                            color = color
+                        val startDate = it.onset?.value ?: it.effective?.value ?: alert.sent?.value
+                        alertList.add(
+                            Alert(
+                                alertId = alert.identifier?.value
+                                    ?: Objects.hash(headline, severity, startDate).toString(),
+                                startDate = startDate,
+                                endDate = it.expires?.value,
+                                headline = headline,
+                                description = it.description?.value?.trim(),
+                                instruction = it.instruction?.value?.trim(),
+                                source = it.senderName?.value?.trim(),
+                                severity = severity,
+                                color = color
+                            )
                         )
-                    )
+                    }
                 }
             }
+            alertList
         }
-        return alertList
     }
 
     override fun needsLocationParametersRefresh(
@@ -211,27 +223,21 @@ class NcdrService @Inject constructor(
     }
 
     override fun requestLocationParameters(context: Context, location: Location): Observable<Map<String, String>> {
-        val locationCodes = mNlscApi.getLocationCodes(
+        return mNlscApi.getLocationCodes(
             lon = location.longitude,
             lat = location.latitude
-        ).execute().body()
-
-        if (locationCodes?.countyCode?.value.isNullOrEmpty() ||
-            locationCodes.townshipCode?.value.isNullOrEmpty() ||
-            locationCodes.villageCode?.value.isNullOrEmpty()
-        ) {
-            throw InvalidLocationException()
-        }
-
-        return Observable.just(
+        ).map { locationCodes ->
+            if (locationCodes.townshipCode?.value.isNullOrEmpty()) {
+                throw InvalidLocationException()
+            }
             mapOf(
-                // Currently not used
+                // Currently not used. When used, update the throw InvalidLocationException condition above
                 // "countyCode" to locationCodes.countyCode.value,
                 // "townshipCode" to locationCodes.townshipCode.value,
                 // "villageCode" to locationCodes.villageCode.value,
-                "legacyTownshipCode" to getLegacyTownshipCode(locationCodes.townshipCode.value)
+                "legacyTownshipCode" to getLegacyTownshipCode(locationCodes.townshipCode!!.value)
             )
-        )
+        }
     }
 
     // This function converts the current standard 8-digit geocode
