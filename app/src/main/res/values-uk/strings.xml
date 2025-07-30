@@ -826,4 +826,6 @@
     <string name="air_quality_o3_index">Шкала індексу якості повітря для O₃</string>
     <string name="air_quality_co_about">Про чадний газ (CO)</string>
     <string name="air_quality_co_index">Шкала індексу якості повітря для CO2</string>
+    <string name="weather_source_recommended">Рекомендовано</string>
+    <string name="action_change">Зміна</string>
 </resources>
