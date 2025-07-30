@@ -789,7 +789,7 @@
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="unit_bft_nominative">%s Bft</string>
     <string name="about_update_check_eol">Ní thacaítear leis an leagan Android seo a thuilleadh</string>
-    <string name="air_quality_short">Cáilíocht an aeir</string>
+    <string name="air_quality_short">Cáilíocht aeir</string>
     <string name="ephemeris_sun">Grian</string>
     <string name="ephemeris_moon">Gealach</string>
     <string name="ephemeris_polar_day">Lá polach</string>
@@ -826,4 +826,6 @@
     <string name="action_translate_no_app">Níor aimsíodh aon aip aistriúcháin</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Lean an lá/oíche</string>
     <string name="settings_appearance_dark_mode_locations_dark">Dorcha i gcónaí nuair a bhíonn an aip i mód dorcha</string>
+    <string name="weather_source_recommended">Molta</string>
+    <string name="action_change">Athraigh</string>
 </resources>
