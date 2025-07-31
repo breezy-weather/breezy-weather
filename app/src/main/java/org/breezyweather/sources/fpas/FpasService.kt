@@ -100,12 +100,11 @@ class FpasService @Inject constructor(
             WeatherWrapper(
                 alertList = alertResultList.filterIsInstance<CapAlert>().mapIndexedNotNull { index, capAlert ->
                     capAlert.getInfoForContext(context)?.let {
-                        val containsPoint = it.containsPoint(LatLng(location.latitude, location.longitude))
                         // Filter out non-meteorological alerts, past alerts,
                         // and alert whose polygons do not cover the requested location
                         if (it.category?.value.equals("Met", ignoreCase = true) &&
                             !it.urgency?.value.equals("Past", ignoreCase = true) &&
-                            containsPoint
+                            it.containsPoint(LatLng(location.latitude, location.longitude))
                         ) {
                             val severity = when (it.severity?.value) {
                                 "Extreme" -> AlertSeverity.EXTREME
