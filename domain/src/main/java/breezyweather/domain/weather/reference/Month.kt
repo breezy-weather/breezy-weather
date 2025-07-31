@@ -211,7 +211,7 @@ enum class Month {
             if (month !in 0..11) {
                 throw Exception("Invalid value for MonthOfYear: $month")
             }
-            return entries[month - 1]
+            return entries[month]
         }
     }
 }
