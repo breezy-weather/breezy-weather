@@ -32,7 +32,7 @@ import androidx.annotation.RequiresApi
 import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.createBitmap
-import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.NotificationTextColor
 import org.breezyweather.domain.settings.SettingsManager

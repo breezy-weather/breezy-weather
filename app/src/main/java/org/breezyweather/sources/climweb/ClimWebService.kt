@@ -179,7 +179,7 @@ abstract class ClimWebService : HttpSource(), WeatherSource, ConfigurableSource,
                 normals = if (SourceFeature.NORMALS in requestedFeatures &&
                     !cityClimatePageId.isNullOrEmpty()
                 ) {
-                    getNormals(location, normalsResult)
+                    getNormals(normalsResult)
                 } else {
                     null
                 },

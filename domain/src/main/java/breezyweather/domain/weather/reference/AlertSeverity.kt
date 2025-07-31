@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of Breezy Weather.
  *
  * Breezy Weather is free software: you can redistribute it and/or modify it
@@ -14,29 +14,21 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package breezyweather.domain.weather.model
+package breezyweather.domain.weather.reference
 
-enum class WeatherCode(val id: String) {
-
-    CLEAR("clear"),
-    PARTLY_CLOUDY("partly_cloudy"),
-    CLOUDY("cloudy"),
-    RAIN("rain"),
-    SNOW("snow"),
-    WIND("wind"),
-    FOG("fog"),
-    HAZE("haze"),
-    SLEET("sleet"),
-    HAIL("hail"),
-    THUNDER("thunder"),
-    THUNDERSTORM("thunderstorm"),
+enum class AlertSeverity(val id: Int) {
+    EXTREME(4),
+    SEVERE(3),
+    MODERATE(2),
+    MINOR(1),
+    UNKNOWN(0),
     ;
 
     companion object {
         fun getInstance(
-            value: String?,
-        ): WeatherCode? = WeatherCode.entries.firstOrNull {
-            it.id.equals(value, ignoreCase = true)
-        }
+            value: Int?,
+        ): AlertSeverity = AlertSeverity.entries.firstOrNull {
+            it.id == value
+        } ?: UNKNOWN
     }
 }

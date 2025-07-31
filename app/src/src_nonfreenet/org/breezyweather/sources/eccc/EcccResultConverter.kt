@@ -20,20 +20,17 @@ import android.os.Build
 import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
-import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.PrecipitationProbability
-import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
-import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.reference.AlertSeverity
+import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
-import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.sources.eccc.json.EcccAlert
@@ -45,7 +42,6 @@ import org.breezyweather.sources.eccc.json.EcccResult
 import org.breezyweather.sources.eccc.json.EcccUnit
 import org.breezyweather.sources.getWindDegree
 import java.util.Calendar
-import java.util.Date
 import java.util.Objects
 import kotlin.time.Duration.Companion.seconds
 
@@ -241,11 +237,9 @@ internal fun getAlertList(alertList: List<EcccAlert>?): List<Alert>? {
 /**
  * Returns normals
  */
-internal fun getNormals(location: Location, normals: EcccRegionalNormalsMetric?): Normals? {
+internal fun getNormals(normals: EcccRegionalNormalsMetric?): Normals? {
     if (normals?.highTemp == null || normals.lowTemp == null) return null
-    val currentMonth = Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.MONTH]
     return Normals(
-        month = currentMonth,
         daytimeTemperature = normals.highTemp.toDouble(),
         nighttimeTemperature = normals.lowTemp.toDouble()
     )

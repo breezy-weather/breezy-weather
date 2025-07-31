@@ -30,7 +30,8 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Base
 import breezyweather.domain.weather.model.Weather
-import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.reference.Month
+import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.async
@@ -681,13 +682,18 @@ class RefreshHelper @Inject constructor(
                                     it.source == location.normalsSource!!
                             }
                         ) {
-                            null
+                            // Previous data may contain other months, restore it in that case
+                            location.weather?.normals
                         } else {
-                            sourceCalls.getOrElse(location.normalsSource!!) { null }?.normals?.let {
-                                normalsUpdateTime = Date()
-                                it
-                            }
-                        } ?: getNormalsFromWeather(location)
+                            // Restore previous months if needed, and let it be overwritten by new values
+                            (location.weather?.normals ?: emptyMap()) +
+                                (
+                                    sourceCalls.getOrElse(location.normalsSource!!) { null }?.normals?.let {
+                                        normalsUpdateTime = Date()
+                                        it
+                                    } ?: emptyMap()
+                                    )
+                        } ?: location.weather?.normals
                     } else {
                         null
                     }
@@ -760,11 +766,11 @@ class RefreshHelper @Inject constructor(
                     weatherWrapperCompleted.airQuality?.current,
                     location
                 ),
-                normals = completeNormalsFromDaily(weatherWrapperCompleted.normals, dailyForecast),
                 dailyForecast = dailyForecast,
                 hourlyForecast = hourlyForecast,
                 minutelyForecast = weatherWrapperCompleted.minutelyForecast ?: emptyList(),
-                alertList = weatherWrapperCompleted.alertList ?: emptyList()
+                alertList = weatherWrapperCompleted.alertList ?: emptyList(),
+                normals = weatherWrapperCompleted.normals ?: emptyMap()
             )
             locationRepository.insertParameters(location.formattedId, locationParameters)
             weatherRepository.insert(location, weather)
@@ -876,7 +882,8 @@ class RefreshHelper @Inject constructor(
                         withDaily = true,
                         withHourly = i == 0, // Not needed in multi city
                         withMinutely = false,
-                        withAlerts = i == 0 // Not needed in multi city
+                        withAlerts = i == 0, // Not needed in multi city
+                        withNormals = false
                     )
                 )
             }
@@ -900,7 +907,8 @@ class RefreshHelper @Inject constructor(
                         withDaily = true,
                         withHourly = i == 0, // Not needed in multi city
                         withMinutely = false,
-                        withAlerts = i == 0 // Not needed in multi city
+                        withAlerts = i == 0, // Not needed in multi city
+                        withNormals = false
                     )
                 )
             }
@@ -919,9 +927,7 @@ class RefreshHelper @Inject constructor(
         val locationList = locationRepository.getAllLocations(withParameters = false)
             .map {
                 it.copy(
-                    weather = weatherRepository.getWeatherByLocationId(
-                        it.formattedId
-                    )
+                    weather = weatherRepository.getWeatherByLocationId(it.formattedId)
                 )
             }
         return broadcastDataIfNecessary(context, locationList, sourceId)
@@ -1098,9 +1104,10 @@ class RefreshHelper @Inject constructor(
                         if (isRestricted) WAIT_NORMALS_CURRENT_RESTRICTED else WAIT_NORMALS_CURRENT
                     )
                 } else {
-                    if (location.weather!!.normals?.month == null) return false
+                    if (location.weather!!.normals.isEmpty()) return false
                     val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
-                    return location.weather!!.normals!!.month == cal[Calendar.MONTH] + 1
+                    return location.weather!!.normals
+                        .getOrElse(Month.fromCalendarMonth(cal[Calendar.MONTH])) { null } != null
                 }
             }
             else -> {

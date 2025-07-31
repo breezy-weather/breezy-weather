@@ -18,7 +18,7 @@ package org.breezyweather.ui.main.adapters.location
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.currentLocale

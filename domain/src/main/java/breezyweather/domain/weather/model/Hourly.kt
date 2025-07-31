@@ -16,6 +16,7 @@
 
 package breezyweather.domain.weather.model
 
+import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import java.io.Serializable
 import java.util.Date

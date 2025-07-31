@@ -19,14 +19,13 @@ package org.breezyweather.sources.hko
 import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.weather.model.Alert
-import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.PrecipitationProbability
-import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
-import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.reference.AlertSeverity
+import breezyweather.domain.weather.reference.Month
+import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HalfDayWrapper
@@ -76,46 +75,37 @@ internal fun getCurrent(
 
 internal fun getNormals(
     normalsResult: HkoNormalsResult,
-): Normals {
-    val now = Calendar.getInstance(TimeZone.getTimeZone("Asia/Hong_Kong"), Locale.ENGLISH)
+): Map<Month, Normals> {
     val maxTemps = mutableListOf<Double>()
     val minTemps = mutableListOf<Double>()
-    val month = now.get(Calendar.MONTH) + 1
     var value: Double?
-    normalsResult.stn?.data?.forEach {
-        if (it.code == "MEAN_MAX") {
-            it.monData?.forEach { mon ->
-                value = mon?.getOrElse(month) { null }?.toDoubleOrNull()
-                if (value != null) {
-                    maxTemps.add(value!!)
-                }
-            }
-        }
-        if (it.code == "MEAN_MIN") {
-            it.monData?.forEach { mon ->
-                value = mon?.getOrElse(month) { null }?.toDoubleOrNull()
-                if (value != null) {
-                    minTemps.add(value!!)
-                }
-            }
-        }
-    }
+
     // TODO: Limit the list to only the most recent 30 years?
     // TODO: Include values like " 25.4#" (incomplete months)? - need to trim space and hash sign
-
-    return Normals(
-        month = month,
-        daytimeTemperature = if (maxTemps.isNotEmpty()) {
-            maxTemps.average()
-        } else {
-            null
-        },
-        nighttimeTemperature = if (minTemps.isNotEmpty()) {
-            minTemps.average()
-        } else {
-            null
+    return Month.entries.associateWith { month ->
+        normalsResult.stn?.data?.forEach {
+            if (it.code == "MEAN_MAX") {
+                it.monData?.forEach { mon ->
+                    value = mon?.getOrElse(month.value) { null }?.toDoubleOrNull()
+                    if (value != null) {
+                        maxTemps.add(value!!)
+                    }
+                }
+            }
+            if (it.code == "MEAN_MIN") {
+                it.monData?.forEach { mon ->
+                    value = mon?.getOrElse(month.value) { null }?.toDoubleOrNull()
+                    if (value != null) {
+                        minTemps.add(value!!)
+                    }
+                }
+            }
         }
-    )
+        Normals(
+            daytimeTemperature = if (maxTemps.isNotEmpty()) maxTemps.average() else null,
+            nighttimeTemperature = if (minTemps.isNotEmpty()) minTemps.average() else null
+        )
+    }
 }
 
 internal fun getDailyForecast(

@@ -23,7 +23,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
-import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.cancelNotification

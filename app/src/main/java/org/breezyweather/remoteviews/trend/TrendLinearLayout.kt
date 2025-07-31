@@ -63,8 +63,6 @@ class TrendLinearLayout @JvmOverloads constructor(
     private var textSize = 12f
     private var marginText = 2f
 
-    var normals = false
-
     init {
         setWillNotDraw(false)
         mPaint.setTypeface(getContext().getTypefaceFromTextAppearance(R.style.subtitle_text))
@@ -121,13 +119,13 @@ class TrendLinearLayout @JvmOverloads constructor(
         )
         mPaint.textAlign = Paint.Align.RIGHT
         canvas.drawText(
-            context.getString(if (normals) R.string.temperature_normal_short else R.string.temperature_average_short),
+            context.getString(R.string.temperature_normal_short),
             measuredWidth - 2 * marginText,
             mHistoryTempYs[0] - mPaint.fontMetrics.bottom - marginText,
             mPaint
         )
         canvas.drawText(
-            context.getString(if (normals) R.string.temperature_normal_short else R.string.temperature_average_short),
+            context.getString(R.string.temperature_normal_short),
             measuredWidth - 2 * marginText,
             mHistoryTempYs[1] - mPaint.fontMetrics.top + marginText,
             mPaint

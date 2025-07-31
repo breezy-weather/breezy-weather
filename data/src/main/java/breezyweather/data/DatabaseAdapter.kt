@@ -18,8 +18,8 @@
 package breezyweather.data
 
 import app.cash.sqldelight.ColumnAdapter
-import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.reference.AlertSeverity
+import breezyweather.domain.weather.reference.WeatherCode
 import java.util.Date
 
 object DateColumnAdapter : ColumnAdapter<Date, Long> {

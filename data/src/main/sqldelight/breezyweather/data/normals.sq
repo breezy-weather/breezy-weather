@@ -1,0 +1,28 @@
+CREATE TABLE normals(
+    _id INTEGER NOT NULL PRIMARY KEY,
+    location_formatted_id TEXT NOT NULL,
+
+    month INTEGER NOT NULL,
+    daytime_temperature REAL,
+    nighttime_temperature REAL,
+
+    UNIQUE(location_formatted_id, month) ON CONFLICT REPLACE,
+    FOREIGN KEY(location_formatted_id) REFERENCES locations (formatted_id)
+    ON DELETE CASCADE
+);
+
+CREATE INDEX normals_location_formatted_id_index ON normals(location_formatted_id);
+
+getNormalsByLocationId:
+SELECT month, daytime_temperature, nighttime_temperature
+FROM normals
+WHERE location_formatted_id = :locationFormattedId
+ORDER BY month;
+
+insert:
+INSERT INTO normals(location_formatted_id, month, daytime_temperature, nighttime_temperature)
+VALUES (:locationFormattedId, :month, :daytimeTemperature, :nighttimeTemperature);
+
+deleteNormalsForLocationId:
+DELETE FROM normals
+WHERE location_formatted_id = :locationFormattedId;

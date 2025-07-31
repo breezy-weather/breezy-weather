@@ -1,0 +1,8 @@
+ALTER TABLE weathers
+DROP COLUMN normals_month;
+
+ALTER TABLE weathers
+DROP COLUMN normals_daytime_temperature;
+
+ALTER TABLE weathers
+DROP COLUMN normals_nighttime_temperature;

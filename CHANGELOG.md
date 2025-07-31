@@ -1,5 +1,8 @@
 # Version 6.0.5-alpha (not yet released)
 
+**Removed features**
+- Mean daytime/nighttime temperatures as threshold lines. Use a normals source instead
+
 **Improvements and fixes**
 - Main screen - Allow to move small blocks by drag & drop
 - Main screen - The number of items displayed at once in daily/hourly forecast now depends on display size and font scale (previously always 5 in portrait, and 7 in landscape)

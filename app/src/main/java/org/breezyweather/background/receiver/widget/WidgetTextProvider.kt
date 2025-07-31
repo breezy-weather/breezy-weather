@@ -63,7 +63,8 @@ class WidgetTextProvider : AppWidgetProvider() {
                             withDaily = true, // isDaylight
                             withHourly = false,
                             withMinutely = false,
-                            withAlerts = false
+                            withAlerts = true, // Custom subtitle
+                            withNormals = false
                         )
                     ),
                     location?.let { locationNow ->

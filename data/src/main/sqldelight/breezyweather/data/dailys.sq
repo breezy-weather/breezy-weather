@@ -1,4 +1,4 @@
-import breezyweather.domain.weather.model.WeatherCode;
+import breezyweather.domain.weather.reference.WeatherCode;
 
 CREATE TABLE dailys(
     _id INTEGER NOT NULL PRIMARY KEY,

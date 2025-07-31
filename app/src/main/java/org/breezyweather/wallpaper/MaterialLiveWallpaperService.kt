@@ -38,7 +38,7 @@ import androidx.core.graphics.withTranslation
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.reference.WeatherCode
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.runBlocking
 import org.breezyweather.BreezyWeather
@@ -381,7 +381,8 @@ class MaterialLiveWallpaperService : WallpaperService() {
                                     withDaily = configManager.dayNightType == "auto",
                                     withHourly = false,
                                     withMinutely = false,
-                                    withAlerts = false
+                                    withAlerts = false,
+                                    withNormals = false
                                 )
                             )
                         }

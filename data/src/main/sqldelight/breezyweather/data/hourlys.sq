@@ -1,4 +1,4 @@
-import breezyweather.domain.weather.model.WeatherCode;
+import breezyweather.domain.weather.reference.WeatherCode;
 import kotlin.Boolean;
 
 CREATE TABLE hourlys(

@@ -82,7 +82,8 @@ class DetailsViewModel @Inject constructor(
                 withDaily = true,
                 withHourly = true, // 24-hour charts
                 withMinutely = false,
-                withAlerts = false
+                withAlerts = false,
+                withNormals = true
             )
             if (weather?.dailyForecast.isNullOrEmpty()) {
                 // There is no weather for this location; we should never have entered daily screen

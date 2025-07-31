@@ -32,8 +32,8 @@ import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.Weather
-import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
@@ -141,20 +141,6 @@ internal fun completeNewWeatherWithPreviousData(
                 null
             }
         )
-    }
-}
-
-/**
- * Get normals from an old weather object
- * Only normals still valid will be returned
- * @param location Location containing old weather data
- */
-internal fun getNormalsFromWeather(
-    location: Location,
-): Normals? {
-    return location.weather?.normals?.let { normals ->
-        val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
-        if (normals.month == cal[Calendar.MONTH] + 1) normals else null
     }
 }
 
@@ -1476,18 +1462,5 @@ private fun completeCurrentTemperatureFromHourly(
         computedHumidex = initialTemperature.temperature?.let {
             computeHumidex(it, dewPoint)
         } ?: hourlyTemperature?.computedHumidex
-    )
-}
-
-internal fun completeNormalsFromDaily(
-    normals: Normals?,
-    dailyForecast: List<Daily>,
-): Normals? {
-    if (normals?.month != null && normals.isValid) return normals
-    if (dailyForecast.isEmpty()) return null
-
-    return Normals(
-        daytimeTemperature = dailyForecast.mapNotNull { it.day?.temperature?.temperature }.toTypedArray().median,
-        nighttimeTemperature = dailyForecast.mapNotNull { it.night?.temperature?.temperature }.toTypedArray().median
     )
 }

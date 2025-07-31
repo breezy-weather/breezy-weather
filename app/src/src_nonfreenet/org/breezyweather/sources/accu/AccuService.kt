@@ -22,6 +22,7 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Normals
+import breezyweather.domain.weather.reference.Month
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import com.google.maps.android.model.LatLng
 import com.google.maps.android.model.LatLngBounds
@@ -268,7 +269,6 @@ class AccuService @Inject constructor(
         } else {
             Observable.just(AccuAirQualityResult())
         }
-        // TODO: Only call once a month, unless it’s current position
         val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
         val climoSummary = if (
             SourceFeature.NORMALS in requestedFeatures &&
@@ -347,10 +347,11 @@ class AccuService @Inject constructor(
                 normals = if (SourceFeature.NORMALS in requestedFeatures &&
                     accuClimoResult.Normals?.Temperatures != null
                 ) {
-                    Normals(
-                        month = cal[Calendar.MONTH] + 1,
-                        daytimeTemperature = accuClimoResult.Normals.Temperatures.Maximum.Metric?.Value,
-                        nighttimeTemperature = accuClimoResult.Normals.Temperatures.Minimum.Metric?.Value
+                    mapOf(
+                        Month.fromCalendarMonth(cal[Calendar.MONTH]) to Normals(
+                            daytimeTemperature = accuClimoResult.Normals.Temperatures.Maximum.Metric?.Value,
+                            nighttimeTemperature = accuClimoResult.Normals.Temperatures.Minimum.Metric?.Value
+                        )
                     )
                 } else {
                     null

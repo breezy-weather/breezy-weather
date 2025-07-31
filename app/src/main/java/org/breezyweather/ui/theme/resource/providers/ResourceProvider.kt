@@ -24,7 +24,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.annotation.Size
-import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.ui.theme.resource.utils.ResourceUtils
 
 abstract class ResourceProvider {

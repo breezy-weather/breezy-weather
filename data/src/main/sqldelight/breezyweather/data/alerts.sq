@@ -1,4 +1,4 @@
-import breezyweather.domain.weather.model.AlertSeverity;
+import breezyweather.domain.weather.reference.AlertSeverity;
 
 CREATE TABLE alerts(
     _id INTEGER NOT NULL PRIMARY KEY,

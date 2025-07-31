@@ -16,7 +16,7 @@
 
 package org.breezyweather.sources.jma
 
-import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.R
 
 val JMA_DAILY_WEATHER_CODES = mapOf<String, List<WeatherCode>>(

@@ -28,7 +28,7 @@ import androidx.annotation.IntRange
 import androidx.annotation.RequiresApi
 import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
-import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.ui.common.images.MoonDrawable

@@ -20,13 +20,11 @@ import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
-import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.PrecipitationProbability
-import breezyweather.domain.weather.model.Temperature
-import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.reference.AlertSeverity
+import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HalfDayWrapper
@@ -467,7 +465,6 @@ internal fun getNormals(
     dailyResult.getOrNull(1)?.tempAverage?.areas?.forEach { area ->
         if (area.area.code == weekAreaAmedas) {
             return Normals(
-                month = Calendar.getInstance().get(Calendar.MONTH) + 1,
                 daytimeTemperature = area.max?.toDoubleOrNull(),
                 nighttimeTemperature = area.min?.toDoubleOrNull()
             )

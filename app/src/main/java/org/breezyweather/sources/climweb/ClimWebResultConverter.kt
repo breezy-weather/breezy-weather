@@ -18,8 +18,9 @@ package org.breezyweather.sources.climweb
 
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
-import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Normals
+import breezyweather.domain.weather.reference.AlertSeverity
+import breezyweather.domain.weather.reference.Month
 import com.google.maps.android.PolyUtil
 import com.google.maps.android.data.geojson.GeoJsonFeature
 import com.google.maps.android.data.geojson.GeoJsonMultiPolygon
@@ -29,10 +30,8 @@ import org.breezyweather.sources.climweb.json.ClimWebAlertsResult
 import org.breezyweather.sources.climweb.json.ClimWebNormals
 import org.json.JSONObject
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Date
 import java.util.Locale
-import java.util.TimeZone
 
 internal fun getAlertList(
     location: Location,
@@ -112,27 +111,24 @@ private fun getMatchingAlerts(
 }
 
 internal fun getNormals(
-    location: Location,
     normalsResult: List<ClimWebNormals>,
-): Normals? {
+): Map<Month, Normals>? {
     if (normalsResult.isEmpty()) return null
 
-    var daytimeTemperature: Double?
-    var nighttimeTemperature: Double?
-
-    val month = Calendar.getInstance(TimeZone.getTimeZone(location.timeZone)).get(Calendar.MONTH) + 1
-    val regex = Regex("""^\d{4}-${month.toString().padStart(2, '0')}-\d{2}$""")
-
-    // Some sources enter duplicate normals in their data. We use the latest date for a given month.
-    normalsResult.filter { it.date != null && regex.matches(it.date) }.sortedBy { it.date }.last().let {
-        daytimeTemperature = it.maxTemp ?: it.maximumTemperature ?: it.meanMaximumTemperature ?: it.temperatureMaximale
-        nighttimeTemperature =
-            it.minTemp ?: it.minimumTemperature ?: it.meanMinimumTemperature ?: it.temperatureMinimale
-    }
-
-    return Normals(
-        month = month,
-        daytimeTemperature = daytimeTemperature,
-        nighttimeTemperature = nighttimeTemperature
-    )
+    return Month.entries.associateWith { month ->
+        val regex = Regex("""^\d{4}-${month.value.toString().padStart(2, '0')}-\d{2}$""")
+        // Some sources enter duplicate normals in their data. We use the latest date for a given month.
+        normalsResult.filter { it.date != null && regex.matches(it.date) }.sortedBy { it.date }.lastOrNull()?.let {
+            Normals(
+                daytimeTemperature = it.maxTemp
+                    ?: it.maximumTemperature
+                    ?: it.meanMaximumTemperature
+                    ?: it.temperatureMaximale,
+                nighttimeTemperature = it.minTemp
+                    ?: it.minimumTemperature
+                    ?: it.meanMinimumTemperature
+                    ?: it.temperatureMinimale
+            )
+        }
+    }.filter { it.value != null } as Map<Month, Normals>
 }

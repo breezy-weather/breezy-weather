@@ -55,13 +55,6 @@ val Location.isDaylight: Boolean
         return 0 < sunRiseProgress && sunRiseProgress < 1
     }
 
-fun Location.toNormalsWrapper(): Normals? {
-    return weather?.normals?.let { normals ->
-        val cal = Date().toCalendarWithTimeZone(javaTimeZone)
-        if (normals.month == cal[Calendar.MONTH]) normals else null
-    }
-}
-
 fun Location.applyDefaultPreset(sourceManager: SourceManager): Location {
     val forecastSource = sourceManager.getBestSourceForFeatureOrDefault(this, SourceFeature.FORECAST)!!.id
 

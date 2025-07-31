@@ -22,7 +22,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.graphics.drawable.toDrawable
-import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.reference.WeatherCode
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import james.adaptiveicon.AdaptiveIcon
 import james.adaptiveicon.AdaptiveIconView

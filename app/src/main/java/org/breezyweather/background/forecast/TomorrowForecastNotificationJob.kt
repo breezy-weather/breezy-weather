@@ -66,7 +66,8 @@ class TomorrowForecastNotificationJob @AssistedInject constructor(
                                 withDaily = true,
                                 withHourly = false,
                                 withMinutely = false,
-                                withAlerts = false
+                                withAlerts = false,
+                                withNormals = false
                             )
                         ),
                         today = false

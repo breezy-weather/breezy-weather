@@ -32,8 +32,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.text.parseAsHtml
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
-import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Weather
+import breezyweather.domain.weather.reference.AlertSeverity
 import org.breezyweather.R
 import org.breezyweather.common.extensions.buildNotificationChannel
 import org.breezyweather.common.extensions.buildNotificationChannelGroup

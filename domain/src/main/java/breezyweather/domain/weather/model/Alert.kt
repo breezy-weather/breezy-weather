@@ -18,6 +18,7 @@ package breezyweather.domain.weather.model
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
+import breezyweather.domain.weather.reference.AlertSeverity
 import java.io.Serializable
 import java.util.Date
 

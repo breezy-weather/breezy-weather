@@ -77,6 +77,7 @@ import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
+import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedDayOfTheMonth
 import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
@@ -391,17 +392,11 @@ fun DailyPagerContent(
     ) {
         when (selectedChart) {
             DetailScreen.TAG_CONDITIONS, DetailScreen.TAG_FEELS_LIKE -> {
-                val cal = daily.date.toCalendarWithTimeZone(location.javaTimeZone)
-                val thisDayNormals = if (location.weather?.normals?.month == cal[Calendar.MONTH] + 1) {
-                    location.weather!!.normals
-                } else {
-                    null
-                }
                 DetailsConditions(
                     location,
                     hourlyList,
                     daily,
-                    thisDayNormals,
+                    location.weather?.normals?.getOrElse(daily.date.getCalendarMonth(location)) { null },
                     selectedChart,
                     { setSelectedChart(if (it) DetailScreen.TAG_CONDITIONS else DetailScreen.TAG_FEELS_LIKE) }
                 )

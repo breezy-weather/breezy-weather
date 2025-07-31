@@ -20,13 +20,12 @@ import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
-import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
-import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
-import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.reference.AlertSeverity
+import breezyweather.domain.weather.reference.Month
+import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HalfDayWrapper
@@ -360,24 +359,21 @@ internal fun getAlertList(
 // Hard-coded since Macao has a land area of just 32.9km²,
 // and there are only records for SMG's main office in Taipa Grande.
 // Source: https://www.smg.gov.mo/en/subpage/348/page/252
-internal fun getNormals(): Normals? {
-    val now = Calendar.getInstance(TimeZone.getTimeZone("Asia/Macau"))
-    val month = now.get(Calendar.MONTH) + 1
-    return when (month) {
-        1 -> Normals(1, 18.6, 12.7)
-        2 -> Normals(2, 19.2, 13.9)
-        3 -> Normals(3, 21.4, 16.5)
-        4 -> Normals(4, 25.1, 20.3)
-        5 -> Normals(5, 28.7, 23.7)
-        6 -> Normals(6, 30.5, 25.7)
-        7 -> Normals(7, 31.4, 26.1)
-        8 -> Normals(8, 31.5, 25.9)
-        9 -> Normals(9, 30.8, 25.1)
-        10 -> Normals(10, 28.5, 22.7)
-        11 -> Normals(11, 24.7, 18.8)
-        12 -> Normals(12, 20.3, 14.3)
-        else -> null
-    }
+internal fun getNormals(): Map<Month, Normals> {
+    return mapOf(
+        Month.JANUARY to Normals(18.6, 12.7),
+        Month.FEBRUARY to Normals(19.2, 13.9),
+        Month.MARCH to Normals(21.4, 16.5),
+        Month.APRIL to Normals(25.1, 20.3),
+        Month.MAY to Normals(28.7, 23.7),
+        Month.JUNE to Normals(30.5, 25.7),
+        Month.JULY to Normals(31.4, 26.1),
+        Month.AUGUST to Normals(31.5, 25.9),
+        Month.SEPTEMBER to Normals(30.8, 25.1),
+        Month.OCTOBER to Normals(28.5, 22.7),
+        Month.NOVEMBER to Normals(24.7, 18.8),
+        Month.DECEMBER to Normals(20.3, 14.3)
+    )
 }
 
 // Source: mostly from https://www.smg.gov.mo/en/subpage/232/page/268

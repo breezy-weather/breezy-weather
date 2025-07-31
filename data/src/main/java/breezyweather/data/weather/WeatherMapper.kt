@@ -18,7 +18,6 @@ package breezyweather.data.weather
 
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
-import breezyweather.domain.weather.model.AlertSeverity
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Base
 import breezyweather.domain.weather.model.Current
@@ -36,8 +35,10 @@ import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.Weather
-import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.reference.AlertSeverity
+import breezyweather.domain.weather.reference.Month
+import breezyweather.domain.weather.reference.WeatherCode
 import java.util.Date
 
 object WeatherMapper {
@@ -76,9 +77,6 @@ object WeatherMapper {
         ceiling: Double?,
         dailyForecast: String?,
         hourlyForecast: String?,
-        normalsMonth: Long?,
-        normalsDaytimeTemperature: Double?,
-        normalsNighttimeTemperature: Double?,
     ): Weather = Weather(
         Base(
             refreshTime?.let { Date(it) },
@@ -122,11 +120,6 @@ object WeatherMapper {
             ceiling,
             dailyForecast,
             hourlyForecast
-        ),
-        Normals(
-            normalsMonth?.toInt(),
-            normalsDaytimeTemperature,
-            normalsNighttimeTemperature
         )
     )
 
@@ -454,5 +447,16 @@ object WeatherMapper {
         Date(date),
         minuteInterval.toInt(),
         intensity
+    )
+
+    fun mapNormals(
+        month: Long,
+        daytimeTemperature: Double?,
+        nighttimeTemperature: Double?,
+    ): Map<Month, Normals> = mapOf(
+        Month.of(month.toInt()) to Normals(
+            daytimeTemperature,
+            nighttimeTemperature
+        )
     )
 }

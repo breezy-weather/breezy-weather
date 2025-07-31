@@ -27,6 +27,7 @@ import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
@@ -35,6 +36,7 @@ import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import java.util.Date
 import kotlin.math.max
 
 /**
@@ -179,7 +181,7 @@ class HourlyTemperatureAdapter(
                 i += 2
             }
         }
-        weather.normals?.let { normals ->
+        weather.normals.getOrElse(Date().getCalendarMonth(location)) { null }?.let { normals ->
             mHighestTemperature = normals.daytimeTemperature?.toFloat()
             mLowestTemperature = normals.nighttimeTemperature?.toFloat()
         }
@@ -214,7 +216,7 @@ class HourlyTemperatureAdapter(
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_temperature)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val normals = location.weather?.normals
+        val normals = location.weather?.normals?.getOrElse(Date().getCalendarMonth(location)) { null }
         if (normals?.daytimeTemperature == null || normals.nighttimeTemperature == null) {
             host.setData(null, 0f, 0f)
         } else {
@@ -226,13 +228,7 @@ class HourlyTemperatureAdapter(
                         activity,
                         normals.daytimeTemperature!!
                     ),
-                    activity.getString(
-                        if (normals.month != null) {
-                            R.string.temperature_normal_short
-                        } else {
-                            R.string.temperature_average_short
-                        }
-                    ),
+                    activity.getString(R.string.temperature_normal_short),
                     TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
                 )
             )
@@ -243,13 +239,7 @@ class HourlyTemperatureAdapter(
                         activity,
                         normals.nighttimeTemperature!!
                     ),
-                    activity.getString(
-                        if (normals.month != null) {
-                            R.string.temperature_normal_short
-                        } else {
-                            R.string.temperature_average_short
-                        }
-                    ),
+                    activity.getString(R.string.temperature_normal_short),
                     TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
                 )
             )

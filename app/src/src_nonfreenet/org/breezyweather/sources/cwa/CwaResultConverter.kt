@@ -20,14 +20,13 @@ import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
-import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.PrecipitationProbability
-import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
-import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.reference.AlertSeverity
+import breezyweather.domain.weather.reference.Month
+import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HalfDayWrapper
@@ -157,11 +156,12 @@ internal fun getCurrent(
 
 internal fun getNormals(
     normalsResult: CwaNormalsResult,
-): Normals? {
+): Map<Month, Normals>? {
     return normalsResult.records?.data?.surfaceObs?.location?.getOrNull(0)
-        ?.stationObsStatistics?.AirTemperature?.monthly?.getOrNull(0)?.let {
-            Normals(
-                month = it.Month?.toIntOrNull(),
+        ?.stationObsStatistics?.AirTemperature?.monthly
+        ?.filter { it.Month?.toIntOrNull() != null && it.Month.toInt() in 1..12 }
+        ?.associate {
+            Month.of(it.Month!!.toInt()) to Normals(
                 daytimeTemperature = it.Maximum?.toDoubleOrNull(),
                 nighttimeTemperature = it.Minimum?.toDoubleOrNull()
             )

@@ -20,6 +20,7 @@ import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Normals
+import breezyweather.domain.weather.reference.Month
 
 /**
  * Wrapper very similar to the object in database.
@@ -33,6 +34,10 @@ data class WeatherWrapper(
     val pollen: PollenWrapper? = null,
     val minutelyForecast: List<Minutely>? = null,
     val alertList: List<Alert>? = null,
-    val normals: Normals? = null,
+    /**
+     * You can get the month with Month.of(month)
+     * where month is a value between 1 and 12
+     */
+    val normals: Map<Month, Normals>? = null,
     val failedFeatures: Map<SourceFeature, Throwable>? = null,
 )

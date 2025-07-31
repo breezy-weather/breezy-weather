@@ -33,6 +33,7 @@ import androidx.core.graphics.createBitmap
 import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.background.receiver.widget.WidgetTrendHourlyProvider
+import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getHour
 import org.breezyweather.common.extensions.getTabletListAdaptiveWidth
 import org.breezyweather.common.utils.helpers.AsyncHelper
@@ -45,6 +46,7 @@ import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import java.util.Date
 import kotlin.math.max
 import kotlin.math.min
 
@@ -121,7 +123,7 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
                 i += 2
             }
         }
-        weather.normals?.let { normals ->
+        weather.normals.getOrElse(Date().getCalendarMonth(location)) { null }?.let { normals ->
             highestTemperature = normals.daytimeTemperature?.toFloat()
             lowestTemperature = normals.nighttimeTemperature?.toFloat()
         }
@@ -138,14 +140,13 @@ object HourlyTrendWidgetIMP : AbstractRemoteViewsPresenter() {
 
         val drawableView = LayoutInflater.from(context)
             .inflate(R.layout.widget_trend_hourly, null, false)
-        weather.normals?.let { normals ->
+        weather.normals.getOrElse(Date().getCalendarMonth(location)) { null }?.let { normals ->
             if (normals.daytimeTemperature != null &&
                 normals.nighttimeTemperature != null &&
                 highestTemperature != null &&
                 lowestTemperature != null
             ) {
                 val trendParent = drawableView.findViewById<TrendLinearLayout>(R.id.widget_trend_hourly)
-                trendParent.normals = normals.month != null
                 trendParent.setData(
                     arrayOf(normals.daytimeTemperature!!.toFloat(), normals.nighttimeTemperature!!.toFloat()),
                     highestTemperature!!,

@@ -73,7 +73,7 @@ import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Temperature
-import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.reference.WeatherCode
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianValueFormatter
@@ -89,6 +89,7 @@ import kotlinx.coroutines.launch
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isLandscape
@@ -362,6 +363,7 @@ private fun WeatherConditionSummary(
     daily: Daily,
     showRealTemp: Boolean,
     normals: Normals?,
+    monthFormatted: String,
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.normal_margin)),
@@ -384,6 +386,7 @@ private fun WeatherConditionSummary(
                     isDaytime = true,
                     animated = true,
                     normals = normals,
+                    monthFormatted = monthFormatted,
                     keepSpaceForSubtext = normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null
                 )
             }
@@ -404,6 +407,7 @@ private fun WeatherConditionSummary(
                     isDaytime = false,
                     animated = true,
                     normals = normals,
+                    monthFormatted = monthFormatted,
                     keepSpaceForSubtext = normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null
                 )
             }
@@ -421,6 +425,7 @@ private fun WeatherConditionItem(
     isDaytime: Boolean,
     animated: Boolean,
     normals: Normals?,
+    monthFormatted: String,
     keepSpaceForSubtext: Boolean,
     modifier: Modifier = Modifier,
 ) {
@@ -466,7 +471,13 @@ private fun WeatherConditionItem(
                             }
                     )
                 } else {
-                    NormalsDepartureLabel(temperature?.temperature, normals, isDaytime, keepSpaceForSubtext)
+                    NormalsDepartureLabel(
+                        temperature?.temperature,
+                        normals,
+                        monthFormatted,
+                        isDaytime,
+                        keepSpaceForSubtext
+                    )
                 }
             }
             if (context.isLandscape) {
@@ -485,6 +496,7 @@ private fun WeatherConditionItem(
 fun NormalsDepartureLabel(
     halfDayTemperature: Double?,
     normals: Normals?,
+    monthFormatted: String,
     isDaytime: Boolean,
     keepSpaceForSubtext: Boolean,
     modifier: Modifier = Modifier,
@@ -511,7 +523,7 @@ fun NormalsDepartureLabel(
                             } else {
                                 R.string.temperature_normals_deviation_explanation_minimum
                             },
-                            DateFormatSymbols(context.currentLocale).months[normals!!.month!! - 1]
+                            monthFormatted
                         )
                     )
                 }
@@ -653,10 +665,16 @@ private fun TemperatureChart(
                 isDaytime = hourly.isDaylight,
                 animated = false, // Doesn't redraw otherwise
                 normals = null,
+                monthFormatted = "",
                 keepSpaceForSubtext = normals?.daytimeTemperature != null || normals?.nighttimeTemperature != null
             )
         }
-    } ?: WeatherConditionSummary(daily, showRealTemp, normals)
+    } ?: WeatherConditionSummary(
+        daily,
+        showRealTemp,
+        normals,
+        daily.date.getCalendarMonth(location).getDisplayName(context.currentLocale)
+    )
 
     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
 

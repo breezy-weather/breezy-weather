@@ -18,14 +18,13 @@ package org.breezyweather.sources.aemet
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
-import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
-import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
-import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.reference.Month
+import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HalfDayWrapper
@@ -41,7 +40,6 @@ import org.breezyweather.sources.aemet.json.AemetNormalsResult
 import org.breezyweather.sources.aemet.json.AemetStationsResult
 import org.breezyweather.sources.getWindDegree
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
@@ -113,26 +111,16 @@ internal fun getCurrent(
 }
 
 internal fun getNormals(
-    location: Location,
     normalsResult: List<AemetNormalsResult>,
-): Normals? {
-    if (normalsResult.isEmpty()) return null
-
-    val timeZone = TimeZone.getTimeZone(location.timeZone)
-    val month = Calendar.getInstance(timeZone).get(Calendar.MONTH) + 1
-    var max: Double? = null
-    var min: Double? = null
-    normalsResult.forEach {
-        if (it.mes?.toInt() == month) {
-            max = it.max?.toDoubleOrNull()
-            min = it.min?.toDoubleOrNull()
+): Map<Month, Normals> {
+    return normalsResult
+        .filter { it.mes?.toIntOrNull() != null && it.mes.toInt() in 1..12 }
+        .associate {
+            Month.of(it.mes!!.toInt()) to Normals(
+                daytimeTemperature = it.max?.toDoubleOrNull(),
+                nighttimeTemperature = it.min?.toDoubleOrNull()
+            )
         }
-    }
-    return Normals(
-        month = month,
-        daytimeTemperature = max,
-        nighttimeTemperature = min
-    )
 }
 
 internal fun getDailyForecast(

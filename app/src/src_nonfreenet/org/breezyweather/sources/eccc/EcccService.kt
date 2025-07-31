@@ -26,12 +26,14 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import retrofit2.Retrofit
+import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
@@ -140,7 +142,11 @@ class EcccService @Inject constructor(
                     null
                 },
                 normals = if (SourceFeature.NORMALS in requestedFeatures) {
-                    getNormals(location, it[0].dailyFcst?.regionalNormals?.metric)
+                    getNormals(it[0].dailyFcst?.regionalNormals?.metric)?.let { normals ->
+                        mapOf(
+                            Date().getCalendarMonth(location) to normals
+                        )
+                    }
                 } else {
                     null
                 }

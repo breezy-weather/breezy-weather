@@ -19,13 +19,11 @@ package org.breezyweather.sources.namem
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
-import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
-import breezyweather.domain.weather.model.Temperature
-import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HalfDayWrapper
@@ -172,21 +170,13 @@ internal fun getAirQuality(
 
 internal fun getNormals(
     normalsResult: NamemNormalsResult,
-): Normals {
-    var index = 0
-    val now = Calendar.getInstance().timeInMillis
-    normalsResult.foreMonthly?.forEachIndexed { i, normals ->
-        if (normals.obsDate != null) {
-            if (normals.obsDate.time < now) {
-                index = i
-            }
-        }
+): Normals? {
+    return normalsResult.foreMonthly?.lastOrNull { it.obsDate != null && it.obsDate < Date() }?.let {
+        Normals(
+            daytimeTemperature = it.ttMaxAve,
+            nighttimeTemperature = it.ttMinAve
+        )
     }
-    return Normals(
-        month = Calendar.getInstance().get(Calendar.MONTH) + 1,
-        daytimeTemperature = normalsResult.foreMonthly?.getOrNull(index)?.ttMaxAve,
-        nighttimeTemperature = normalsResult.foreMonthly?.getOrNull(index)?.ttMinAve
-    )
 }
 
 internal fun getDailyForecast(

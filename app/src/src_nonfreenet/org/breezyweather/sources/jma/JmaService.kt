@@ -29,6 +29,7 @@ import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -46,6 +47,7 @@ import org.breezyweather.sources.jma.json.JmaHourlyResult
 import org.breezyweather.sources.jma.json.JmaWeekAreaResult
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 import javax.inject.Inject
@@ -249,7 +251,11 @@ class JmaService @Inject constructor(
                     null
                 },
                 normals = if (SourceFeature.NORMALS in requestedFeatures) {
-                    getNormals(dailyResult, weekAreaAmedas)
+                    getNormals(dailyResult, weekAreaAmedas)?.let { normals ->
+                        mapOf(
+                            Date().getCalendarMonth(location) to normals
+                        )
+                    }
                 } else {
                     null
                 },

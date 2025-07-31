@@ -350,7 +350,7 @@ class MfService @Inject constructor(
                     null
                 },
                 normals = if (SourceFeature.NORMALS in requestedFeatures) {
-                    getNormals(location, normalsResult)
+                    getNormals(normalsResult)
                 } else {
                     null
                 },

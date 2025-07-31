@@ -17,10 +17,9 @@
 package breezyweather.domain.weather.wrappers
 
 import breezyweather.domain.weather.model.Current
-import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
-import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.reference.WeatherCode
 
 /**
  * Current wrapper

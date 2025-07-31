@@ -19,8 +19,11 @@ package org.breezyweather.domain.weather.model
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
+import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Weather
+import breezyweather.domain.weather.reference.Month
 import org.breezyweather.R
+import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toCalendarWithTimeZone

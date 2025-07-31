@@ -22,7 +22,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.core.view.updatePadding
 import androidx.recyclerview.widget.GridLayoutManager
-import breezyweather.domain.weather.model.WeatherCode
+import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.extensions.doOnApplyWindowInsets

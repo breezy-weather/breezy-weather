@@ -26,6 +26,7 @@ import android.os.Build
 import android.text.format.DateFormat
 import android.text.format.DateUtils
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.reference.Month
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.models.options.appearance.CalendarHelper
 import org.breezyweather.common.utils.helpers.LogHelper
@@ -259,4 +260,8 @@ fun Calendar.getDayOfMonth(twoDigits: Boolean = false): String {
 
 fun Date.getIsoFormattedDate(location: Location): String {
     return toCalendar(location).getIsoFormattedDate()
+}
+
+fun Date.getCalendarMonth(location: Location): Month {
+    return Month.fromCalendarMonth(toCalendarWithTimeZone(location.javaTimeZone)[Calendar.MONTH])
 }

@@ -29,6 +29,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCalendarMonth
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -41,6 +42,7 @@ import org.breezyweather.sources.namem.json.NamemDailyResult
 import org.breezyweather.sources.namem.json.NamemHourlyResult
 import org.breezyweather.sources.namem.json.NamemNormalsResult
 import retrofit2.Retrofit
+import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
@@ -201,7 +203,11 @@ class NamemService @Inject constructor(
                     null
                 },
                 normals = if (SourceFeature.NORMALS in requestedFeatures) {
-                    getNormals(normalsResult)
+                    getNormals(normalsResult)?.let {
+                        mapOf(
+                            Date().getCalendarMonth(location) to it
+                        )
+                    }
                 } else {
                     null
                 },

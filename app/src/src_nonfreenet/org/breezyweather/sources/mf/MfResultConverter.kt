@@ -21,16 +21,15 @@ import androidx.annotation.ColorInt
 import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
-import breezyweather.domain.weather.model.AlertSeverity
-import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
-import breezyweather.domain.weather.model.Temperature
 import breezyweather.domain.weather.model.UV
-import breezyweather.domain.weather.model.WeatherCode
 import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.reference.AlertSeverity
+import breezyweather.domain.weather.reference.Month
+import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HalfDayWrapper
@@ -481,15 +480,17 @@ private fun getWarningsList(warningsResult: MfWarningsResult): List<Alert> {
     return alertList
 }
 
-internal fun getNormals(location: Location, normalsResult: MfNormalsResult): Normals? {
-    val currentMonth = Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.MONTH]
-    val normalsStats = normalsResult.properties?.stats?.getOrNull(currentMonth)
-    return if (normalsStats != null) {
-        Normals(
-            month = currentMonth + 1,
-            daytimeTemperature = normalsStats.tMax,
-            nighttimeTemperature = normalsStats.tMin
-        )
+internal fun getNormals(normalsResult: MfNormalsResult): Map<Month, Normals>? {
+    val normalsStats = normalsResult.properties?.stats
+    return if (!normalsStats.isNullOrEmpty()) {
+        Month.entries.associateWith { month ->
+            normalsStats.getOrElse(month.value - 1) { null }?.let {
+                Normals(
+                    daytimeTemperature = it.tMax,
+                    nighttimeTemperature = it.tMin
+                )
+            }
+        }.filter { it.value != null } as Map<Month, Normals>
     } else {
         null
     }

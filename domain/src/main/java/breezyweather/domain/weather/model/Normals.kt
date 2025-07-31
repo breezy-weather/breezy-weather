@@ -22,10 +22,6 @@ import java.io.Serializable
  * Normals
  */
 class Normals(
-    /**
-     * Between 1 and 12
-     */
-    val month: Int? = null,
     val daytimeTemperature: Double? = null,
     val nighttimeTemperature: Double? = null,
 ) : Serializable {
