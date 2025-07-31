@@ -828,4 +828,6 @@
     <string name="air_quality_o3_index">Luftkvalitetsindexskala för O₃</string>
     <string name="air_quality_co_about">Om kolmonoxid (CO)</string>
     <string name="air_quality_co_index">Luftkvalitetsindexskala för CO</string>
+    <string name="weather_source_recommended">Rekommenderade</string>
+    <string name="action_change">Ändra</string>
 </resources>
