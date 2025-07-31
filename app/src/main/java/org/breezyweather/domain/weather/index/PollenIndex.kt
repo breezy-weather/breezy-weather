@@ -99,7 +99,7 @@ enum class PollenIndex(
             return if (source != null) {
                 context.resources.getIntArray(source.pollenColors).getOrElse(0) { Color.TRANSPARENT }
             } else {
-                ContextCompat.getColor(context, R.color.pollenLevel_0)
+                getPollenIndexToColor(context, 0)
             }
         }
 
@@ -110,7 +110,7 @@ enum class PollenIndex(
             return if (source != null) {
                 context.resources.getStringArray(source.pollenLabels).getOrElse(0) { null }
             } else {
-                context.resources.getStringArray(namesArrayId).getOrNull(0)
+                getPollenIndexToName(context, 0)
             }
         }
     }
