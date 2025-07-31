@@ -835,4 +835,6 @@
     <string name="action_translate_no_app">Приложение для перевода не найдено</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Следить за днём и ночью</string>
     <string name="settings_appearance_dark_mode_locations_dark">Всегда тёмная тема, когда приложение находится в тёмном режиме</string>
+    <string name="weather_source_recommended">Рекомендовано</string>
+    <string name="action_change">Сменить</string>
 </resources>
