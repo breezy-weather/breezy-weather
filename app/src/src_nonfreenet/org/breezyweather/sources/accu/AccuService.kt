@@ -23,6 +23,8 @@ import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import com.google.maps.android.model.LatLng
+import com.google.maps.android.model.LatLngBounds
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
@@ -54,6 +56,7 @@ import org.breezyweather.sources.accu.json.AccuMinutelyResult
 import org.breezyweather.sources.accu.preferences.AccuDaysPreference
 import org.breezyweather.sources.accu.preferences.AccuHoursPreference
 import org.breezyweather.sources.accu.preferences.AccuPortalPreference
+import org.breezyweather.sources.openmeteo.OpenMeteoService.Companion.COPERNICUS_POLLEN_BBOX
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -113,11 +116,18 @@ class AccuService @Inject constructor(
         location: Location,
         feature: SourceFeature,
     ): Boolean {
-        return portal == AccuPortalPreference.ENTERPRISE ||
-            feature == SourceFeature.FORECAST ||
-            feature == SourceFeature.CURRENT ||
-            feature == SourceFeature.ALERT ||
-            feature == SourceFeature.REVERSE_GEOCODING
+        return when (feature) {
+            SourceFeature.POLLEN -> COPERNICUS_POLLEN_BBOX.contains(LatLng(location.latitude, location.longitude)) || (
+                location.countryCode.equals("US", ignoreCase = true) &&
+                    CONTIGUOUS_US_STATES_BBOX.contains(LatLng(location.latitude, location.longitude))
+                ) || (location.countryCode.equals("CA", ignoreCase = true))
+            else ->
+                portal == AccuPortalPreference.ENTERPRISE ||
+                    feature == SourceFeature.FORECAST ||
+                    feature == SourceFeature.CURRENT ||
+                    feature == SourceFeature.ALERT ||
+                    feature == SourceFeature.REVERSE_GEOCODING
+        }
     }
 
     override fun requestWeather(
@@ -570,6 +580,16 @@ class AccuService @Inject constructor(
     companion object {
         private const val ACCU_DEVELOPER_BASE_URL = "https://dataservice.accuweather.com/"
         private const val ACCU_ENTERPRISE_BASE_URL = "https://api.accuweather.com/"
+
+        // Accuweather's pollen forecast is only available in the 48 contiguous U.S. states + D.C., Canada,
+        // and European coverage area of Copernicus. We will limit Pollen Source to these areas.
+
+        // 48 contiguous states boundary taken from Natural Earth Data, extended by 1° in each direction.
+        // Source: https://www.naturalearthdata.com/
+        private val CONTIGUOUS_US_STATES_BBOX = LatLngBounds(
+            LatLng(23.542547919, -125.734607238),
+            LatLng(50.369494121, -65.977324999)
+        )
 
         // Extracted from: https://developer.accuweather.com/localizations-by-language
         // Leads to failure to refresh otherwise
