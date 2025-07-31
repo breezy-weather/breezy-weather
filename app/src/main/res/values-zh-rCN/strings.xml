@@ -915,4 +915,6 @@
     <string name="air_quality_o3_index">O₃ 的空气质量指数</string>
     <string name="air_quality_co_about">关于一氧化碳 (CO)</string>
     <string name="air_quality_co_index">CO 的空气质量指数</string>
+    <string name="weather_source_recommended">推荐</string>
+    <string name="action_change">更改</string>
 </resources>
