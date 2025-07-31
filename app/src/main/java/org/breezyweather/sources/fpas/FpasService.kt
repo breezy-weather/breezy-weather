@@ -100,39 +100,42 @@ class FpasService @Inject constructor(
             WeatherWrapper(
                 alertList = alertResultList.filterIsInstance<CapAlert>().mapIndexedNotNull { index, capAlert ->
                     capAlert.getInfoForContext(context)?.let {
-                        val containsPoint = it.containsPoint(LatLng(location.latitude, location.longitude))
-                        // Filter out non-meteorological alerts, past alerts,
-                        // and alert whose polygons do not cover the requested location
+                        // Filter out non-meteorological alerts and past alerts
                         if (it.category?.value.equals("Met", ignoreCase = true) &&
-                            !it.urgency?.value.equals("Past", ignoreCase = true) &&
-                            containsPoint
+                            !it.urgency?.value.equals("Past", ignoreCase = true)
                         ) {
-                            val severity = when (it.severity?.value) {
-                                "Extreme" -> AlertSeverity.EXTREME
-                                "Severe" -> AlertSeverity.SEVERE
-                                "Moderate" -> AlertSeverity.MODERATE
-                                "Minor" -> AlertSeverity.MINOR
-                                else -> AlertSeverity.UNKNOWN
+                            // Filter out alerts whose polygons do not cover the requested locations
+                            // (separated from other filters because calling containsPoint() may be costly)
+                            if (it.containsPoint(LatLng(location.latitude, location.longitude))) {
+                                val severity = when (it.severity?.value) {
+                                    "Extreme" -> AlertSeverity.EXTREME
+                                    "Severe" -> AlertSeverity.SEVERE
+                                    "Moderate" -> AlertSeverity.MODERATE
+                                    "Minor" -> AlertSeverity.MINOR
+                                    else -> AlertSeverity.UNKNOWN
+                                }
+                                val title = it.event?.value ?: it.headline?.value
+                                val start = it.onset?.value ?: it.effective?.value ?: capAlert.sent?.value
+                                Alert(
+                                    alertId = capAlert.identifier?.value
+                                        ?: alertUuids.getOrElse(index) {
+                                            Objects.hash(title, severity, start).toString()
+                                        },
+                                    startDate = start,
+                                    endDate = it.expires?.value,
+                                    headline = title,
+                                    description = formatAlertText(
+                                        it.senderName?.value,
+                                        it.description?.value
+                                    ),
+                                    instruction = it.instruction?.value,
+                                    source = it.senderName?.value,
+                                    severity = severity,
+                                    color = Alert.colorFromSeverity(severity)
+                                )
+                            } else {
+                                null
                             }
-                            val title = it.event?.value ?: it.headline?.value
-                            val start = it.onset?.value ?: it.effective?.value ?: capAlert.sent?.value
-                            Alert(
-                                alertId = capAlert.identifier?.value
-                                    ?: alertUuids.getOrElse(index) {
-                                        Objects.hash(title, severity, start).toString()
-                                    },
-                                startDate = start,
-                                endDate = it.expires?.value,
-                                headline = title,
-                                description = formatAlertText(
-                                    it.senderName?.value,
-                                    it.description?.value
-                                ),
-                                instruction = it.instruction?.value,
-                                source = it.senderName?.value,
-                                severity = severity,
-                                color = Alert.colorFromSeverity(severity)
-                            )
                         } else {
                             null
                         }
