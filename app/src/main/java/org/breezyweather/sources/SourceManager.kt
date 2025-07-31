@@ -139,10 +139,10 @@ fun SourceManager.getBestSourceForFeature(
 
 /**
  * For pollen:
- * - AccuWeather in USA/Canada (unclear which other countries are supported)
  * - Open-Meteo in Europe
+ * - AccuWeather in USA/Canada
  * - None in other countries
- * For alerts, default source is AccuWeather (will be FPAS in the future)
+ * For alerts, default source is AccuWeather (may be FPAS or WMO SWIC in the future)
  * For normals, default source is AccuWeather (may be NCEI in the future), unless:
  * - Current location: excluded until #1996 is implemented
  * - In China: no normals source, due to firewall
@@ -153,16 +153,9 @@ fun SourceManager.getDefaultSourceForFeature(
     feature: SourceFeature,
 ): FeatureSource? {
     return when (feature) {
-        SourceFeature.POLLEN -> if (arrayOf("US", "CA").any { it.equals(location.countryCode, ignoreCase = true) }) {
-            getWeatherSource("accu")
-        } else {
-            getWeatherSource("openmeteo")?.let {
-                when {
-                    !it.isFeatureSupportedForLocation(location, feature) -> null
-                    else -> it
-                }
-            }
-        }
+        SourceFeature.POLLEN -> getWeatherSource("openmeteo")?.let {
+            if (it.isFeatureSupportedForLocation(location, feature)) it else null
+        } ?: getWeatherSource("accu")?.let { if (it.isFeatureSupportedForLocation(location, feature)) it else null }
         SourceFeature.ALERT -> getWeatherSource("accu")
         SourceFeature.NORMALS -> if (!location.isCurrentPosition &&
             !location.countryCode.equals("CN", ignoreCase = true)

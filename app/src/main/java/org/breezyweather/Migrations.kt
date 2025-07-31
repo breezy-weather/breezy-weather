@@ -263,12 +263,12 @@ object Migrations {
                 }
 
                 if (oldVersion < 60005) {
-                    // V6.0.5 restricts Open-Meteo pollen to Europe
+                    // V6.0.5 restricts Open-Meteo pollen to Europe, and Accu to US/Europe
                     runBlocking {
                         locationRepository.getAllLocations(withParameters = false)
                             .forEach {
-                                if (it.pollenSource == "openmeteo") {
-                                    val source = sourceManager.getWeatherSource("openmeteo")
+                                if (it.pollenSource in arrayOf("openmeteo", "accu")) {
+                                    val source = sourceManager.getWeatherSource(it.pollenSource!!)
                                     if (source == null ||
                                         !source.isFeatureSupportedForLocation(it, SourceFeature.POLLEN)
                                     ) {

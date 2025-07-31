@@ -14,6 +14,7 @@
 - Sources - Add a “Recommended” section to the Source selection screen
 
 **Weather sources**
+- [AccuWeather] Restrict pollen to USA, Canada and Europe as it’s only available there (@chunshek)
 - [FOSS Public Alert Server] Add support for this experimental source for alerts (@chunshek)
 - [GeoSphere AT] Fix missing info in warnings
 - [GeoSphere AT] Use the newer better endpoint for air quality
