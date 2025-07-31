@@ -121,7 +121,7 @@ class OpenMeteoService @Inject constructor(
         feature: SourceFeature,
     ): Boolean {
         return when (feature) {
-            SourceFeature.POLLEN -> OPEN_METEO_POLLEN_BBOX.contains(LatLng(location.latitude, location.longitude))
+            SourceFeature.POLLEN -> COPERNICUS_POLLEN_BBOX.contains(LatLng(location.latitude, location.longitude))
             else -> true
         }
     }
@@ -614,7 +614,7 @@ class OpenMeteoService @Inject constructor(
         // Coverage area of CAMS European air quality forecasts:
         // Europe (west boundary=25.0° W, east=45.0° E, south=30.0° N, north=72.0°)
         // Source: https://ads.atmosphere.copernicus.eu/datasets/cams-europe-air-quality-forecasts?tab=overview
-        private val OPEN_METEO_POLLEN_BBOX = LatLngBounds(
+        val COPERNICUS_POLLEN_BBOX = LatLngBounds(
             LatLng(30.0, -25.0),
             LatLng(72.0, 45.0)
         )
