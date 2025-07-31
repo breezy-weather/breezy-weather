@@ -9,7 +9,7 @@ Below, you can find details about the support and implementation status for feat
 ## Summary
 | Country/Territory                  | Source                                                  | Supported features                                                                   |
 |------------------------------------|---------------------------------------------------------|--------------------------------------------------------------------------------------|
-| 🌐 Worldwide                       | [Open-Meteo](#open-meteo)                               | Forecast, Current, Air quality, Pollen, Normals, Search                              |
+| 🌐 Worldwide                       | [Open-Meteo](#open-meteo)                               | Forecast, Current, Air quality, Pollen, Search                                       |
 | 🌐 Worldwide                       | [AccuWeather](#accuweather) 🔓                          | Forecast, Current, Air quality, Pollen, Nowcasting, Alerts, Normals, Search, Address |
 | 🌐 Worldwide                       | [Android](#android)                                     | Address                                                                              |
 | 🌐 Worldwide                       | [GeoNames](#geonames) 🔐                                | Search                                                                               |
@@ -20,6 +20,7 @@ Below, you can find details about the support and implementation status for feat
 | 🌐 Worldwide                       | [OpenWeather](#openweather) 🔓                          | Forecast, Current, Air quality                                                       |
 | 🌐 Worldwide                       | [Pirate Weather](#pirate-weather) 🔐                    | Forecast, Current, Nowcasting, Alerts                                                |
 | 🌐 Worldwide                       | [WMO Severe Weather](#wmo-severe-weather)               | Alerts                                                                               |
+| 🇦🇩 Andorra                       | [Météo-France](#météo-france)                           | Forecast, Alert, Normals, Address                                                    |
 | 🇦🇹 Austria                       | [GeoSphere Austria](#geosphere-austria)                 | Forecast, Air quality, Nowcasting, Alerts                                            |
 | 🇧🇩 Bangladesh                    | [BMD](#bangladesh-meteorological-department)            | Forecast, Address                                                                    |
 | 🇧🇯 Benin                         | [ClimWeb](#climweb)                                     | Alerts, Normals                                                                      |
@@ -42,14 +43,14 @@ Below, you can find details about the support and implementation status for feat
 | 🇫🇷 France (Grand Est)            | [ATMO GrandEst](#atmo)                                  | Air Quality                                                                          |
 | 🇫🇷 France (Hauts-de-France)      | [Atmo Hauts-de-France](#atmo)                           | Air Quality                                                                          |
 | 🇫🇷 France (PACA)                 | [AtmoSud](#atmo)                                        | Air Quality                                                                          |
-| 🇬🇫 French Guiana                 | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
-| 🇵🇫 French Polynesia              | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇬🇫 French Guiana                 | [Météo-France](#météo-france)                           | Forecast, Alert, Normals, Address                                                    |
+| 🇵🇫 French Polynesia              | [Météo-France](#météo-france)                           | Forecast, Alert, Normals, Address                                                    |
 | 🇬🇲 Gambia                        | [ClimWeb](#climweb)                                     | Alerts                                                                               |
 | 🇩🇪 Germany                       | [Bright Sky](#bright-sky)                               | Forecast, Current, Alerts                                                            |
 | 🇬🇭 Ghana                         | [ClimWeb](#climweb)                                     | Alerts                                                                               |
 | 🇬🇮 Gibraltar                     | [Met Office](#met-office) 🔐                            | Forecast, Address                                                                    |
 | 🇬🇱 Greenland                     | [DMI](#danmarks-meteorologiske-institut)                | Forecast, Alerts, Address                                                            |
-| 🇬🇵 Guadeloupe                    | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇬🇵 Guadeloupe                    | [Météo-France](#météo-france)                           | Forecast, Alert, Normals, Address                                                    |
 | 🇬🇺 Guam                          | [NWS](#national-weather-service)                        | Forecast, Current, Alerts, Address                                                   |
 | 🇬🇬 Guernsey                      | [Met Office](#met-office) 🔐                            | Forecast, Address                                                                    |
 | 🇬🇼 Guinea-Bissau                 | [ClimWeb](#climweb)                                     | Alerts                                                                               |
@@ -69,35 +70,38 @@ Below, you can find details about the support and implementation status for feat
 | 🇲🇴 Macao                         | [SMG](#serviços-meteorológicos-e-geofísicos)            | Forecast, Current, Air quality, Alerts, Normals                                      |
 | 🇲🇼 Malawi                        | [ClimWeb](#climweb)                                     | Alerts, Normals                                                                      |
 | 🇲🇱 Mali                          | [ClimWeb](#climweb)                                     | Alerts                                                                               |
-| 🇲🇶 Martinique                    | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
-| 🇾🇹 Mayotte                       | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇲🇶 Martinique                    | [Météo-France](#météo-france)                           | Forecast, Alert, Normals, Address                                                    |
+| 🇾🇹 Mayotte                       | [Météo-France](#météo-france)                           | Forecast, Alert, Normals, Address                                                    |
+| 🇲🇨 Monaco                        | [Météo-France](#météo-france)                           | Forecast, Normals, Address                                                           |
 | 🇲🇳 Mongolia                      | [NAMEM](#namem)                                         | Forecast, Current, Air quality, Normals, Address                                     |
-| 🇳🇨 New Caledonia                 | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇳🇨 New Caledonia                 | [Météo-France](#météo-france)                           | Forecast, Alert, Normals, Address                                                    |
 | 🇳🇪 Niger                         | [ClimWeb](#climweb)                                     | Alerts, Normals                                                                      |
 | 🇲🇵 Northern Mariana Is.          | [NWS](#national-weather-service)                        | Forecast, Current, Alerts, Address                                                   |
 | 🇳🇴 Norway                        | [MET Norway](#met-norway)                               | Forecast, Nowcasting, Air quality, Alerts                                            |
 | 🇵🇭 Philippines                   | [PAGASA](#pagasa)                                       | Forecast, Current                                                                    |
 | 🇵🇹 Portugal                      | [IPMA](#instituto-português-do-mar-e-da-atmosfera)      | Forecast, Alerts, Address                                                            |
 | 🇵🇷 Puerto Rico                   | [NWS](#national-weather-service)                        | Forecast, Current, Alerts, Address                                                   |
-| 🇷🇪 Réunion                       | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇷🇪 Réunion                       | [Météo-France](#météo-france)                           | Forecast, Alert, Normals, Address                                                    |
 | 🇸🇲 San Marino                    | [Meteo AM](#servizio-meteo-am)                          | Forecast, Current, Address                                                           |
 | 🇸🇨 Seychelles                    | [ClimWeb](#climweb)                                     | Alerts, Normals                                                                      |
 | 🇸🇸 South Sudan                   | [ClimWeb](#climweb)                                     | Alerts                                                                               |
 | 🇪🇸 Spain                         | [AEMET](#aemet) 🔐                                      | Forecast, Current, Normals                                                           |
-| 🇧🇱 St. Barthélemy                | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
-| 🇲🇫 St. Martin                    | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
-| 🇵🇲 St. Pierre &amp; Miquelon     | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇧🇱 St. Barthélemy                | [Météo-France](#météo-france)                           | Forecast, Alert, Normals, Address                                                    |
+| 🇲🇫 St. Martin                    | [Météo-France](#météo-france)                           | Forecast, Alert, Normals, Address                                                    |
+| 🇵🇲 St. Pierre &amp; Miquelon     | [Météo-France](#météo-france)                           | Forecast, Alert, Normals, Address                                                    |
 | 🇸🇩 Sudan                         | [ClimWeb](#climweb)                                     | Alerts                                                                               |
 | 🇸🇯 Svalbard &amp; Jan Mayen      | [MET Norway](#met-norway)                               | Forecast, Alerts                                                                     |
 | 🇸🇪 Sweden                        | [SMHI](#smhi)                                           | Forecast                                                                             |
 | 🇹🇼 Taiwan                        | [CWA](#central-weather-administration) 🔐               | Forecast, Current, Air quality, Alerts, Normals, Address                             |
+| 🇹🇼 Taiwan                        | [NCDR](#national-center-for-disaster-reduction)         | Alerts                                                                               |
+| 🇹🇼 Taiwan                        | [NLSC](#national-land-survey-and-mapping-center)        | Address                                                                              |
 | 🇹🇬 Togo                          | [ClimWeb](#climweb)                                     | Alerts                                                                               |
 | 🇹🇷 Türkiye                       | [MGM](#meteoroloji-genel-müdürlüğü)                     | Forecast, Current, Alerts, Normals, Address                                          |
 | 🇬🇧 United Kingdom                | [Met Office](#met-office) 🔐                            | Forecast, Address                                                                    |
 | 🇺🇸 United States                 | [NWS](#national-weather-service)                        | Forecast, Current, Alerts, Address                                                   |
 | 🇻🇮 U.S. Virgin Is.               | [NWS](#national-weather-service)                        | Forecast, Current, Alerts, Address                                                   |
 | 🇻🇦 Vatican City                  | [Meteo AM](#servizio-meteo-am)                          | Forecast, Current, Address                                                           |
-| 🇼🇫 Wallis &amp; Futuna           | [Météo-France](#météo-france)                           | Forecast, Alerts, Address                                                            |
+| 🇼🇫 Wallis &amp; Futuna           | [Météo-France](#météo-france)                           | Forecast, Alert, Normals, Address                                                    |
 | 🇿🇼 Zimbabwe                      | [ClimWeb](#climweb)                                     | Alerts                                                                               |
 
 ## Worldwide sources
@@ -105,18 +109,18 @@ Below, you can find details about the support and implementation status for feat
 ### Open-Meteo
 **[Open-Meteo](https://open-meteo.com/)** is a weather data provider based in Bürglen, Switzerland. It is the only free and open source weather source on this list, and probably also the most privacy-friendly. When we don’t support your national weather source, we suggest using **Open-Meteo** as your primary weather source.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🌐 Worldwide (some features may not be available for all locations)        |
-| 📆 **Daily forecast**          | Up to 15 days                                                              |
-| ⏱️ **Hourly forecast**         | Up to 16 days                                                              |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Available                                                                  |
-| 🤧 **Pollen**                  | Available in Europe, based on Copernicus data (details below)              |
-| ☔ **Precipitation nowcasting** | Available (works best in Europe at the moment)                             |
-| ⚠️ **Alerts**                  | Not available                                                              |
-| 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Address lookup**          | Not available                                                              |
+| Feature                        | Detail                                                              |
+|--------------------------------|---------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🌐 Worldwide (some features may not be available for all locations) |
+| 📆 **Daily forecast**          | Up to 15 days                                                       |
+| ⏱️ **Hourly forecast**         | Up to 16 days                                                       |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**    |
+| 😶‍🌫️ **Air quality**         | Available                                                           |
+| 🤧 **Pollen**                  | Available in Europe, based on Copernicus data (details below)       |
+| ☔ **Precipitation nowcasting** | Available (works best in Europe at the moment)                      |
+| ⚠️ **Alerts**                  | Not available                                                       |
+| 📊 **Normals**                 | Not available                                                       |
+| 🧭 **Address lookup**          | Not available                                                       |
 
 For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has temperature and precipitation 1-3 days accuracy comparison by city between the following sources: [AccuWeather](#accuweather), [NWS](#national-weather-service), **Open-Meteo** and [Pirate Weather](#pirate-weather).
 
@@ -150,25 +154,25 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 **[AccuWeather](https://www.accuweather.com/)** is a commercial weather data provider based in State College, Pennsylvania, United States.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🌐 Worldwide (some features may not be available for all locations)        |
-| 📆 **Daily forecast**          | Up to 15 days                                                              |
-| ⏱️ **Hourly forecast**         | Up to 10 days                                                              |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Available                                                                  |
-| 🤧 **Pollen**                  | Available in North America for: Tree, Grass, Ragweed, and Mold             |
-| ☔ **Precipitation nowcasting** | Available                                                                  |
-| ⚠️ **Alerts**                  | Available                                                                  |
-| 📊 **Normals**                 | Available                                                                  |
-| 🧭 **Address lookup**          | Available                                                                  |
+| Feature                        | Detail                                                                                                |
+|--------------------------------|-------------------------------------------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🌐 Worldwide (some features may not be available for all locations)                                   |
+| 📆 **Daily forecast**          | Up to 15 days                                                                                         |
+| ⏱️ **Hourly forecast**         | Up to 10 days                                                                                         |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**                                      |
+| 😶‍🌫️ **Air quality**         | Available                                                                                             |
+| 🤧 **Pollen**                  | Available in U.S. (48 contiguous states only), Canada, and Europe for: Tree, Grass, Ragweed, and Mold |
+| ☔ **Precipitation nowcasting** | Available                                                                                             |
+| ⚠️ **Alerts**                  | Available                                                                                             |
+| 📊 **Normals**                 | Available                                                                                             |
+| 🧭 **Address lookup**          | Available                                                                                             |
 
 For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has temperature and precipitation 1-3 days accuracy comparison by city between the following sources: **AccuWeather**, [NWS](#national-weather-service), [Open-Meteo](#open-meteo) and [Pirate Weather](#pirate-weather).
 
 <details><summary><h4>Details of available data from AccuWeather</h4></summary>
 
-| Data                      | Available   | Data              | Available   |
-|---------------------------|-------------|-------------------|-------------|
+| Data                      | Available   | Data              | Available |
+|---------------------------|-------------|-------------------|-----------|
 | Weather Condition         | ✅           | Humidity          | ✅         |
 | Temperature               | ✅           | Dew Point         | ✅         |
 | Precipitation             | ✅ (RSI)     | UV Index          | ✅         |
@@ -183,18 +187,18 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 **[OpenWeather](https://openweathermap.org/)** is a weather data provider based in London, United Kingdom.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🌐 Worldwide (some features may not be available for all locations)        |
-| 📆 **Daily forecast**          | Up to 5 days                                                               |
-| ⏱️ **Hourly forecast**         | Up to 5 days                                                               |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Available                                                                  |
-| 🤧 **Pollen**                  | Not available                                                              |
-| ☔ **Precipitation nowcasting** | Not available                                                              |
-| ⚠️ **Alerts**                  | Not available                                                              |
-| 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Address lookup**          | Not available                                                              |
+| Feature                        | Detail                                                              |
+|--------------------------------|---------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🌐 Worldwide (some features may not be available for all locations) |
+| 📆 **Daily forecast**          | Up to 5 days                                                        |
+| ⏱️ **Hourly forecast**         | Up to 5 days                                                        |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**    |
+| 😶‍🌫️ **Air quality**         | Available                                                           |
+| 🤧 **Pollen**                  | Not available                                                       |
+| ☔ **Precipitation nowcasting** | Not available                                                       |
+| ⚠️ **Alerts**                  | Not available                                                       |
+| 📊 **Normals**                 | Not available                                                       |
+| 🧭 **Address lookup**          | Not available                                                       |
 
 <details><summary><h4>Details of available data from OpenWeather</h4></summary>
 
@@ -214,18 +218,18 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 **[Pirate Weather](https://pirateweather.net/)** is a weather data provider based in Ontario, Canada. It serves as a drop-in replacement for Dark Sky API, which was shut down on March 31, 2023.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🌐 Worldwide (some features may not be available for all locations)        |
-| 📆 **Daily forecast**          | Up to 8 days                                                               |
-| ⏱️ **Hourly forecast**         | Up to 2 days                                                               |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Not available                                                              |
-| 🤧 **Pollen**                  | Not available                                                              |
-| ☔ **Precipitation nowcasting** | Available                                                                  |
-| ⚠️ **Alerts**                  | Available                                                                  |
-| 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Address lookup**          | Not available                                                              |
+| Feature                        | Detail                                                              |
+|--------------------------------|---------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🌐 Worldwide (some features may not be available for all locations) |
+| 📆 **Daily forecast**          | Up to 8 days                                                        |
+| ⏱️ **Hourly forecast**         | Up to 2 days                                                        |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**    |
+| 😶‍🌫️ **Air quality**         | Not available                                                       |
+| 🤧 **Pollen**                  | Not available                                                       |
+| ☔ **Precipitation nowcasting** | Available                                                           |
+| ⚠️ **Alerts**                  | Available                                                           |
+| 📊 **Normals**                 | Not available                                                       |
+| 🧭 **Address lookup**          | Not available                                                       |
 
 For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has temperature and precipitation 1-3 days accuracy comparison by city between the following sources: [AccuWeather](#accuweather), [NWS](#national-weather-service), [Open-Meteo](#open-meteo) and **Pirate Weather**.
 
@@ -249,18 +253,18 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 **[HERE Destination Weather](https://www.here.com/get-started/marketplace-listings/here-destination-weather)** is operated by HERE Technologies, a Dutch mapping group that is majority-owned by a consortium of German automakers.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🌐 Worldwide (some features may not be available for all locations)        |
-| 📆 **Daily forecast**          | Up to 6 days                                                               |
-| ⏱️ **Hourly forecast**         | Up to 6 days                                                               |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Not available                                                              |
-| 🤧 **Pollen**                  | Not available                                                              |
-| ☔ **Precipitation nowcasting** | Not available                                                              |
-| ⚠️ **Alerts**                  | Not available                                                              |
-| 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Address lookup**          | Available                                                                  |
+| Feature                        | Detail                                                              |
+|--------------------------------|---------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🌐 Worldwide (some features may not be available for all locations) |
+| 📆 **Daily forecast**          | Up to 6 days                                                        |
+| ⏱️ **Hourly forecast**         | Up to 6 days                                                        |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**    |
+| 😶‍🌫️ **Air quality**         | Not available                                                       |
+| 🤧 **Pollen**                  | Not available                                                       |
+| ☔ **Precipitation nowcasting** | Not available                                                       |
+| ⚠️ **Alerts**                  | Not available                                                       |
+| 📊 **Normals**                 | Not available                                                       |
+| 🧭 **Address lookup**          | Available                                                           |
 
 <details><summary><h4>Details of available data from HERE</h4></summary>
 
@@ -284,18 +288,18 @@ Unless otherwise specified, features in the following sources will only work for
 
 **[Agencia Estatal de Meteorología](https://www.aemet.es/)** (AEMET) is the official meteorological service of Spain.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇪🇸 Spain                                                                 |
-| 📆 **Daily forecast**          | Up to 7 days                                                               |
-| ⏱️ **Hourly forecast**         | Up to 2 days                                                               |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Not available                                                              |
-| 🤧 **Pollen**                  | Not available                                                              |
-| ☔ **Precipitation nowcasting** | Not available                                                              |
-| ⚠️ **Alerts**                  | Not available                                                              |
-| 📊 **Normals**                 | Available                                                                  |
-| 🧭 **Address lookup**          | Not available                                                              |
+| Feature                        | Detail                                                           |
+|--------------------------------|------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇪🇸 Spain                                                       |
+| 📆 **Daily forecast**          | Up to 7 days                                                     |
+| ⏱️ **Hourly forecast**         | Up to 2 days                                                     |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source** |
+| 😶‍🌫️ **Air quality**         | Not available                                                    |
+| 🤧 **Pollen**                  | Not available                                                    |
+| ☔ **Precipitation nowcasting** | Not available                                                    |
+| ⚠️ **Alerts**                  | Not available                                                    |
+| 📊 **Normals**                 | Available                                                        |
+| 🧭 **Address lookup**          | Not available                                                    |
 
 <details><summary><h4>Details of available data from AEMET</h4></summary>
 
@@ -349,7 +353,7 @@ Unless otherwise specified, features in the following sources will only work for
 | 🗺️ **Coverage**               | 🇮🇩 Indonesia                                                                  |
 | 📆 **Daily forecast**          | Up to 9 days                                                                    |
 | ⏱️ **Hourly forecast**         | Up to 9 days                                                                    |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source**      |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**                |
 | 😶‍🌫️ **Air quality**         | Available: current observation of PM2.5                                         |
 | 🤧 **Pollen**                  | Not available                                                                   |
 | ☔ **Precipitation nowcasting** | Not available                                                                   |
@@ -373,18 +377,18 @@ Unless otherwise specified, features in the following sources will only work for
 ### Bright Sky
 **[Bright Sky](https://brightsky.dev/)** is a JSON API provider of open weather data from the [Deutsche Wetterdienst](https://www.dwd.de/) (DWD), the official meteorological service of Germany.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇩🇪 Germany                                                               |
-| 📆 **Daily forecast**          | Up to 10 days                                                              |
-| ⏱️ **Hourly forecast**         | Up to 10 days                                                              |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Not available                                                              |
-| 🤧 **Pollen**                  | Not available                                                              |
-| ☔ **Precipitation nowcasting** | Not available                                                              |
-| ⚠️ **Alerts**                  | Available in both English and German                                       |
-| 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Address lookup**          | Not available                                                              |
+| Feature                        | Detail                                                           |
+|--------------------------------|------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇩🇪 Germany                                                     |
+| 📆 **Daily forecast**          | Up to 10 days                                                    |
+| ⏱️ **Hourly forecast**         | Up to 10 days                                                    |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source** |
+| 😶‍🌫️ **Air quality**         | Not available                                                    |
+| 🤧 **Pollen**                  | Not available                                                    |
+| ☔ **Precipitation nowcasting** | Not available                                                    |
+| ⚠️ **Alerts**                  | Available in both English and German                             |
+| 📊 **Normals**                 | Not available                                                    |
+| 🧭 **Address lookup**          | Not available                                                    |
 
 <details><summary><h4>Details of available data from Bright Sky</h4></summary>
 
@@ -409,11 +413,11 @@ Unless otherwise specified, features in the following sources will only work for
 | 🗺️ **Coverage**               | 🇹🇼 Taiwan                                                                                    |
 | 📆 **Daily forecast**          | Up to 7 days                                                                                   |
 | ⏱️ **Hourly forecast**         | Up to 4 days                                                                                   |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source**                     |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**                               |
 | 😶‍🌫️ **Air quality**         | Available: current observation from the [Ministry of Environment](https://airtw.moenv.gov.tw/) |
 | 🤧 **Pollen**                  | Not available                                                                                  |
 | ☔ **Precipitation nowcasting** | Not available                                                                                  |
-| ⚠️ **Alerts**                  | Available in Traditional Chinese                                                               |
+| ⚠️ **Alerts**                  | Partial coverage only: use [NCDR](#national-center-for-disaster-reduction) for full coverage   |
 | 📊 **Normals**                 | Available                                                                                      |
 | 🧭 **Address lookup**          | Available                                                                                      |
 
@@ -433,18 +437,18 @@ Unless otherwise specified, features in the following sources will only work for
 ### China
 This source aggregates data from Beijing Meteorological Service, ColorfulClouds (Caiyun) and CNEMC.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇨🇳 China                                                                 |
-| 📆 **Daily forecast**          | Up to 15 days                                                              |
-| ⏱️ **Hourly forecast**         | Up to 1 day                                                                |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Available: current observation                                             |
-| 🤧 **Pollen**                  | Not available                                                              |
-| ☔ **Precipitation nowcasting** | Available                                                                  |
-| ⚠️ **Alerts**                  | Available                                                                  |
-| 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Address lookup**          | Available                                                                  |
+| Feature                        | Detail                                                           |
+|--------------------------------|------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇨🇳 China                                                       |
+| 📆 **Daily forecast**          | Up to 15 days                                                    |
+| ⏱️ **Hourly forecast**         | Up to 1 day                                                      |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source** |
+| 😶‍🌫️ **Air quality**         | Available: current observation                                   |
+| 🤧 **Pollen**                  | Not available                                                    |
+| ☔ **Precipitation nowcasting** | Available                                                        |
+| ⚠️ **Alerts**                  | Available                                                        |
+| 📊 **Normals**                 | Not available                                                    |
+| 🧭 **Address lookup**          | Available                                                        |
 
 <details><summary><h4>Details of available data from China source</h4></summary>
 
@@ -467,7 +471,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | 🗺️ **Coverage**               | 🇩🇰 Denmark, 🇫🇴 Faroe Islands, 🇬🇱 Greenland, and 🌐 Worldwide (some features may not be available for all locations) |
 | 📆 **Daily forecast**          | Up to 10 days                                                                                                             |
 | ⏱️ **Hourly forecast**         | Up to 10 days                                                                                                             |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source**                                                |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**                                                          |
 | 😶‍🌫️ **Air quality**         | Not available                                                                                                             |
 | 🤧 **Pollen**                  | Not available                                                                                                             |
 | ☔ **Precipitation nowcasting** | Not available                                                                                                             |
@@ -491,18 +495,18 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 ### Environment and Climate Change Canada
 **[Environment and Climate Change Canada](https://www.canada.ca/en/environment-climate-change.html)** is the Canadian governmental department responsible for providing meteorological information, including [daily weather forecast and warnings](https://weather.gc.ca/), to all of Canada.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇨🇦 Canada                                                                |
-| 📆 **Daily forecast**          | Up to 6 days                                                               |
-| ⏱️ **Hourly forecast**         | Up to 1 day                                                                |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Not available                                                              |
-| 🤧 **Pollen**                  | Not available                                                              |
-| ☔ **Precipitation nowcasting** | Not available                                                              |
-| ⚠️ **Alerts**                  | Available                                                                  |
-| 📊 **Normals**                 | Available                                                                  |
-| 🧭 **Address lookup**          | Available                                                                  |
+| Feature                        | Detail                                                           |
+|--------------------------------|------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇨🇦 Canada                                                      |
+| 📆 **Daily forecast**          | Up to 6 days                                                     |
+| ⏱️ **Hourly forecast**         | Up to 1 day                                                      |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source** |
+| 😶‍🌫️ **Air quality**         | Not available                                                    |
+| 🤧 **Pollen**                  | Not available                                                    |
+| ☔ **Precipitation nowcasting** | Not available                                                    |
+| ⚠️ **Alerts**                  | Available                                                        |
+| 📊 **Normals**                 | Available                                                        |
+| 🧭 **Address lookup**          | Available                                                        |
 
 <details><summary><h4>Details of available data from ECCC</h4></summary>
 
@@ -550,18 +554,18 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 **[Hong Kong Observatory](https://www.hko.gov.hk/)** (HKO) is the official meteorological service of Hong Kong.
 
-| Feature                        | Detail                                                                                                                                            |
-|--------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇭🇰 Hong Kong                                                                                                                                    |
-| 📆 **Daily forecast**          | Up to 9 days                                                                                                                                      |
-| ⏱️ **Hourly forecast**         | Up to 9 days                                                                                                                                      |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source**                                                                        |
-| 😶‍🌫️ **Air quality**         | Not available: Users can add [EPD](#environmental-protection-department) as a secondary source                                                    |
-| 🤧 **Pollen**                  | Not available                                                                                                                                     |
-| ☔ **Precipitation nowcasting** | Not available                                                                                                                                     |
-| ⚠️ **Alerts**                  | Available in English, Traditional Chines, and Simplified Chinese. Alert headlines are additionally available in Hindi, Indonesian, and Vietnamese |
-| 📊 **Normals**                 | Available                                                                                                                                         |
-| 🧭 **Address lookup**          | Available                                                                                                                                         |
+| Feature                        | Detail                                                                                                                                             |
+|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇭🇰 Hong Kong                                                                                                                                     |
+| 📆 **Daily forecast**          | Up to 9 days                                                                                                                                       |
+| ⏱️ **Hourly forecast**         | Up to 9 days                                                                                                                                       |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**                                                                                   |
+| 😶‍🌫️ **Air quality**         | Not available: Users can add [EPD](#environmental-protection-department) instead                                                                   |
+| 🤧 **Pollen**                  | Not available                                                                                                                                      |
+| ☔ **Precipitation nowcasting** | Not available                                                                                                                                      |
+| ⚠️ **Alerts**                  | Available in English, Traditional Chinese, and Simplified Chinese. Alert headlines are additionally available in Hindi, Indonesian, and Vietnamese |
+| 📊 **Normals**                 | Available                                                                                                                                          |
+| 🧭 **Address lookup**          | Available                                                                                                                                          |
 
 <details><summary><h4>Details of available data from HKO</h4></summary>
 
@@ -580,18 +584,18 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 **[Ilmateeniustus](https://www.ilmateenistus.ee/)** is the official meteorological service of Estonia.
 
-| Feature                        | Detail                                                                                       |
-|--------------------------------|----------------------------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇪🇪 Estonia                                                                                 |
-| 📆 **Daily forecast**          | Up to 4 days                                                                                 |
-| ⏱️ **Hourly forecast**         | Up to 4 days                                                                                 |
-| ▶️ **Current observation**     | Not available: will show hourly forecast data                                                |
-| 😶‍🌫️ **Air quality**         | Not available: Users can add [EKUK](#ekuk) as a secondary source                             |
-| 🤧 **Pollen**                  | Not available: Users will be able to add [EKUK](#ekuk) as a secondary source later this year |
-| ☔ **Precipitation nowcasting** | Not available                                                                                |
-| ⚠️ **Alerts**                  | Not available                                                                                |
-| 📊 **Normals**                 | Not available                                                                                |
-| 🧭 **Address lookup**          | Available                                                                                    |
+| Feature                        | Detail                                                                         |
+|--------------------------------|--------------------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇪🇪 Estonia                                                                   |
+| 📆 **Daily forecast**          | Up to 4 days                                                                   |
+| ⏱️ **Hourly forecast**         | Up to 4 days                                                                   |
+| ▶️ **Current observation**     | Not available: will show hourly forecast data                                  |
+| 😶‍🌫️ **Air quality**         | Not available: Users can add [EKUK](#ekuk) instead                             |
+| 🤧 **Pollen**                  | Not available: Users will be able to add [EKUK](#ekuk) instead later this year |
+| ☔ **Precipitation nowcasting** | Not available                                                                  |
+| ⚠️ **Alerts**                  | Not available                                                                  |
+| 📊 **Normals**                 | Not available                                                                  |
+| 🧭 **Address lookup**          | Available                                                                      |
 
 <details><summary><h4>Details of available data from Ilmateenistus</h4></summary>
 
@@ -674,7 +678,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | 🗺️ **Coverage**               | 🇮🇱 Israel, the West Bank, Gaza Strip                                                 |
 | 📆 **Daily forecast**          | Up to 6 days                                                                           |
 | ⏱️ **Hourly forecast**         | Up to 6 days                                                                           |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source**             |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**                       |
 | 😶‍🌫️ **Air quality**         | Not available                                                                          |
 | 🤧 **Pollen**                  | Not available                                                                          |
 | ☔ **Precipitation nowcasting** | Not available                                                                          |
@@ -704,7 +708,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | 🗺️ **Coverage**               | 🇯🇵 Japan                                                                              |
 | 📆 **Daily forecast**          | Up to 7 days                                                                            |
 | ⏱️ **Hourly forecast**         | Up to 2 days                                                                            |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source**              |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**                        |
 | 😶‍🌫️ **Air quality**         | Not available                                                                           |
 | 🤧 **Pollen**                  | Not available                                                                           |
 | ☔ **Precipitation nowcasting** | Not available                                                                           |
@@ -729,18 +733,18 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 **[Lietuvos hidrometeorologijos tarnyba](https://www.meteo.lt/)** (LHMT) is the official meteorological service of Lithuania.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇱🇹 Lithuania                                                             |
-| 📆 **Daily forecast**          | Up to 7 days                                                               |
-| ⏱️ **Hourly forecast**         | Up to 7 days                                                               |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Not available                                                              |
-| 🤧 **Pollen**                  | Not available                                                              |
-| ☔ **Precipitation nowcasting** | Not available                                                              |
-| ⚠️ **Alerts**                  | Available                                                                  |
-| 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Address lookup**          | Available                                                                  |
+| Feature                        | Detail                                                           |
+|--------------------------------|------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇱🇹 Lithuania                                                   |
+| 📆 **Daily forecast**          | Up to 7 days                                                     |
+| ⏱️ **Hourly forecast**         | Up to 7 days                                                     |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source** |
+| 😶‍🌫️ **Air quality**         | Not available                                                    |
+| 🤧 **Pollen**                  | Not available                                                    |
+| ☔ **Precipitation nowcasting** | Not available                                                    |
+| ⚠️ **Alerts**                  | Available                                                        |
+| 📊 **Normals**                 | Not available                                                    |
+| 🧭 **Address lookup**          | Available                                                        |
 
 <details><summary><h4>Details of available data from LHMT</h4></summary>
 
@@ -759,18 +763,18 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 **[Latvijas Vides, ģeoloģijas un meteoroloģijas centrs](https://videscentrs.lvgmc.lv/)** (LVĢMC) is the official meteorological service of Latvia.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇱🇻 Latvia                                                                |
-| 📆 **Daily forecast**          | Up to 10 days                                                              |
-| ⏱️ **Hourly forecast**         | Up to 10 days                                                              |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Available                                                                  |
-| 🤧 **Pollen**                  | Not available                                                              |
-| ☔ **Precipitation nowcasting** | Not available                                                              |
-| ⚠️ **Alerts**                  | 🚧 *in progress*                                                           |
-| 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Address lookup**          | Available                                                                  |
+| Feature                        | Detail                                                           |
+|--------------------------------|------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇱🇻 Latvia                                                      |
+| 📆 **Daily forecast**          | Up to 10 days                                                    |
+| ⏱️ **Hourly forecast**         | Up to 10 days                                                    |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source** |
+| 😶‍🌫️ **Air quality**         | Available                                                        |
+| 🤧 **Pollen**                  | Not available                                                    |
+| ☔ **Precipitation nowcasting** | Not available                                                    |
+| ⚠️ **Alerts**                  | 🚧 *in progress*                                                 |
+| 📊 **Normals**                 | Not available                                                    |
+| 🧭 **Address lookup**          | Available                                                        |
 
 <details><summary><h4>Details of available data from LVĢMC</h4></summary>
 
@@ -819,18 +823,18 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 | Feature                        | Detail                                                                                                                                                               |
 |--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇫🇷 France and 🌐 Worldwide (some features may not be available for all locations)                                                                                  |
+| 🗺️ **Coverage**               | 🇫🇷 France, 🇦🇩 Andorra, 🇲🇨 Monaco and 🌐 Worldwide (some features may not be available for all locations)                                                       |
 |                                | _Overseas departments:_ 🇬🇫 French Guiana, 🇬🇵 Guadeloupe, 🇲🇶 Martinique, 🇾🇹 Mayotte, 🇷🇪 Réunion                                                             |
 |                                | _Overseas collectivities:_ 🇵🇫 French Polynesia, 🇳🇨 New Caledonia, 🇧🇱 St. Barthélemy, 🇲🇫 St. Martin, 🇵🇲 St. Pierre &amp; Miquelon, 🇼🇫 Wallis &amp; Futuna |
-| ▶️ **Current observation**     | Available for Metropolitan France: can complement another source as a **Secondary Current Source**                                                                   |
+| ▶️ **Current observation**     | Available for Metropolitan France: can complement another source as a **Current Source**                                                                             |
 | 📆 **Daily forecast**          | Up to 14 days                                                                                                                                                        |
 | ⏱️ **Hourly forecast**         | Up to 15 days                                                                                                                                                        |
 | 😶‍🌫️ **Air quality**         | Not available                                                                                                                                                        |
 |                                | Users in some regions can add [Atmo sources](#atmo) as a secondary source                                                                                            |
 | 🤧 **Pollen**                  | Not available                                                                                                                                                        |
 | ☔ **Precipitation nowcasting** | Available for Metropolitan France                                                                                                                                    |
-| ⚠️ **Alerts**                  | Available for France and its overseas territories                                                                                                                    |
-| 📊 **Normals**                 | Available for France and its overseas territories                                                                                                                    |
+| ⚠️ **Alerts**                  | Available for France and its overseas territories, as well as Andorra                                                                                                |
+| 📊 **Normals**                 | Available for France and its overseas territories, as well as Andorra and Monaco                                                                                     |
 | 🧭 **Address lookup**          | Available                                                                                                                                                            |
 
 <details><summary><h4>Details of available data from Météo-France</h4></summary>
@@ -850,18 +854,18 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 **[MeteoLux](https://www.meteolux.lu/)** is the official meteorological service of Luxembourg. It provides weather alerts in English, French, and German.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇱🇺 Luxembourg                                                            |
-| 📆 **Daily forecast**          | Up to 5 days                                                               |
-| ⏱️ **Hourly forecast**         | 6-hourly, up to 5 days                                                     |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Not available                                                              |
-| 🤧 **Pollen**                  | Not available                                                              |
-| ☔ **Precipitation nowcasting** | Not available                                                              |
-| ⚠️ **Alerts**                  | Available in English, French, and German                                   |
-| 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Address lookup**          | Available                                                                  |
+| Feature                        | Detail                                                           |
+|--------------------------------|------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇱🇺 Luxembourg                                                  |
+| 📆 **Daily forecast**          | Up to 5 days                                                     |
+| ⏱️ **Hourly forecast**         | 6-hourly, up to 5 days                                           |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source** |
+| 😶‍🌫️ **Air quality**         | Not available                                                    |
+| 🤧 **Pollen**                  | Not available                                                    |
+| ☔ **Precipitation nowcasting** | Not available                                                    |
+| ⚠️ **Alerts**                  | Available in English, French, and German                         |
+| 📊 **Normals**                 | Not available                                                    |
+| 🧭 **Address lookup**          | Available                                                        |
 
 <details><summary><h4>Details of available data from MeteoLux</h4></summary>
 
@@ -880,18 +884,18 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 **[Meteoroloji Genel Müdürlüğü](https://www.mgm.gov.tr/)** (MGM) is the official meteorological service of Türkiye.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇹🇷 Türkiye                                                               |
-| 📆 **Daily forecast**          | Up to 5 days                                                               |
-| ⏱️ **Hourly forecast**         | Up to 1.5 days                                                             |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Not available                                                              |
-| 🤧 **Pollen**                  | Not available                                                              |
-| ☔ **Precipitation nowcasting** | Not available                                                              |
-| ⚠️ **Alerts**                  | Available                                                                  |
-| 📊 **Normals**                 | Available                                                                  |
-| 🧭 **Address lookup**          | Available                                                                  |
+| Feature                        | Detail                                                           |
+|--------------------------------|------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇹🇷 Türkiye                                                     |
+| 📆 **Daily forecast**          | Up to 5 days                                                     |
+| ⏱️ **Hourly forecast**         | Up to 1.5 days                                                   |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source** |
+| 😶‍🌫️ **Air quality**         | Not available                                                    |
+| 🤧 **Pollen**                  | Not available                                                    |
+| ☔ **Precipitation nowcasting** | Not available                                                    |
+| ⚠️ **Alerts**                  | Available                                                        |
+| 📊 **Normals**                 | Available                                                        |
+| 🧭 **Address lookup**          | Available                                                        |
 
 <details><summary><h4>Details of available data from MGM</h4></summary>
 
@@ -914,7 +918,7 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | 🗺️ **Coverage**               | 🇳🇴 Norway and 🌐 Worldwide (some features may not be available for all locations) |
 | 📆 **Daily forecast**          | Up to 10 days                                                                       |
 | ⏱️ **Hourly forecast**         | Up to 10 days                                                                       |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source**          |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**                    |
 | 😶‍🌫️ **Air quality**         | Available for Norway                                                                |
 | 🤧 **Pollen**                  | Not available                                                                       |
 | ☔ **Precipitation nowcasting** | Available for the Nordic region                                                     |
@@ -971,18 +975,18 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 
 **[National Agency for Meteorology and Environmental Monitoring](https://www.weather.gov.mn/)** (NAMEM) is the official meteorological service of Mongolia.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇲🇳 Mongolia                                                              |
-| 📆 **Daily forecast**          | Up to 5 days                                                               |
-| ⏱️ **Hourly forecast**         | Up to 5 days                                                               |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Available for Ulaanbaatar and Erdenet                                      |
-| 🤧 **Pollen**                  | Not available                                                              |
-| ☔ **Precipitation nowcasting** | Not available                                                              |
-| ⚠️ **Alerts**                  | Not available                                                              |
-| 📊 **Normals**                 | Available                                                                  |
-| 🧭 **Address lookup**          | Available                                                                  |
+| Feature                        | Detail                                                           |
+|--------------------------------|------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇲🇳 Mongolia                                                    |
+| 📆 **Daily forecast**          | Up to 5 days                                                     |
+| ⏱️ **Hourly forecast**         | Up to 5 days                                                     |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source** |
+| 😶‍🌫️ **Air quality**         | Available for Ulaanbaatar and Erdenet                            |
+| 🤧 **Pollen**                  | Not available                                                    |
+| ☔ **Precipitation nowcasting** | Not available                                                    |
+| ⚠️ **Alerts**                  | Not available                                                    |
+| 📊 **Normals**                 | Available                                                        |
+| 🧭 **Address lookup**          | Available                                                        |
 
 <details><summary><h4>Details of available data from NAMEM</h4></summary>
 
@@ -1005,12 +1009,12 @@ This source aggregates data from Beijing Meteorological Service, ColorfulClouds 
 | 🗺️ **Coverage**               | 🇺🇸 United States, 🇵🇷 Puerto Rico, 🇻🇮 U.S. Virgin Islands, 🇬🇺 Guam, 🇲🇵 Northern Mariana Islands |
 | 📆 **Daily forecast**          | Up to 7 days                                                                                             |
 | ⏱️ **Hourly forecast**         | Up to 7 days                                                                                             |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source**                               |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**                                         |
 | 😶‍🌫️ **Air quality**         | Not available                                                                                            |
 | 🤧 **Pollen**                  | Not available                                                                                            |
 | ☔ **Precipitation nowcasting** | Not available                                                                                            |
 | ⚠️ **Alerts**                  | Available                                                                                                |
-| 📊 **Normals**                 | Not available                                                                                            |
+| 📊 **Normals**                 | Not available: Users can add [NCEI](#national-centers-for-environmental-information) instead             |
 | 🧭 **Address lookup**          | Available                                                                                                |
 
 For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has temperature and precipitation 1-3 days accuracy comparison by city between the following sources: [AccuWeather](#accuweather), **NWS**, [Open-Meteo](#open-meteo) and [Pirate Weather](#pirate-weather).
@@ -1032,18 +1036,18 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 **[Philippine Atmospheric, Geophysical and Astronomical Services Administration](https://www.pagasa.dost.gov.ph/)** (PAGASA) is the official meteorological service of the Philippines.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇵🇭 Philippines                                                           |
-| 📆 **Daily forecast**          | Up to 5 days                                                               |
-| ⏱️ **Hourly forecast**         | Up to 5 days                                                               |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Not available                                                              |
-| 🤧 **Pollen**                  | Not available                                                              |
-| ☔ **Precipitation nowcasting** | Not available                                                              |
-| ⚠️ **Alerts**                  | Not available                                                              |
-| 📊 **Normals**                 | Not available                                                              |
-| 🧭 **Address lookup**          | Not available                                                              |
+| Feature                        | Detail                                                           |
+|--------------------------------|------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇵🇭 Philippines                                                 |
+| 📆 **Daily forecast**          | Up to 5 days                                                     |
+| ⏱️ **Hourly forecast**         | Up to 5 days                                                     |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source** |
+| 😶‍🌫️ **Air quality**         | Not available                                                    |
+| 🤧 **Pollen**                  | Not available                                                    |
+| ☔ **Precipitation nowcasting** | Not available                                                    |
+| ⚠️ **Alerts**                  | Not available                                                    |
+| 📊 **Normals**                 | Not available                                                    |
+| 🧭 **Address lookup**          | Not available                                                    |
 
 <details><summary><h4>Details of available data from PAGASA</h4></summary>
 
@@ -1062,18 +1066,18 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 
 **[Direcção dos Serviços Meteorológicos e Geofísicos](https://www.smg.gov.mo/)** (SMG) is the official meteorological service of Macao.
 
-| Feature                        | Detail                                                                     |
-|--------------------------------|----------------------------------------------------------------------------|
-| 🗺️ **Coverage**               | 🇲🇴 Macao                                                                 |
-| 📆 **Daily forecast**          | Up to 7 days                                                               |
-| ⏱️ **Hourly forecast**         | Up to 2 days                                                               |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source** |
-| 😶‍🌫️ **Air quality**         | Available: current observation                                             |
-| 🤧 **Pollen**                  | Not available                                                              |
-| ☔ **Precipitation nowcasting** | Not available                                                              |
-| ⚠️ **Alerts**                  | Available in English, Traditional Chinese, and Portuguese                  |
-| 📊 **Normals**                 | Available                                                                  |
-| 🧭 **Address lookup**          | Not available                                                              |
+| Feature                        | Detail                                                           |
+|--------------------------------|------------------------------------------------------------------|
+| 🗺️ **Coverage**               | 🇲🇴 Macao                                                       |
+| 📆 **Daily forecast**          | Up to 7 days                                                     |
+| ⏱️ **Hourly forecast**         | Up to 2 days                                                     |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source** |
+| 😶‍🌫️ **Air quality**         | Available: current observation                                   |
+| 🤧 **Pollen**                  | Not available                                                    |
+| ☔ **Precipitation nowcasting** | Not available                                                    |
+| ⚠️ **Alerts**                  | Available in English, Traditional Chinese, and Portuguese        |
+| 📊 **Normals**                 | Available                                                        |
+| 🧭 **Address lookup**          | Not available                                                    |
 
 <details><summary><h4>Details of available data from SMG</h4></summary>
 
@@ -1096,7 +1100,7 @@ For the United States, [Forecast Advisor](https://www.forecastadvisor.com/) has 
 | 🗺️ **Coverage**               | 🇮🇹 Italy, 🇸🇲 San Marino, 🇻🇦 Vatican City, and 🌐 Worldwide (some features may not be available for all locations) |
 | 📆 **Daily forecast**          | Up to 5 days                                                                                                            |
 | ⏱️ **Hourly forecast**         | Up to 5 days                                                                                                            |
-| ▶️ **Current observation**     | Available: can complement another source as a **Secondary Current Source**                                              |
+| ▶️ **Current observation**     | Available: can complement another source as a **Current Source**                                                        |
 | 😶‍🌫️ **Air quality**         | Not available                                                                                                           |
 | 🤧 **Pollen**                  | Not available                                                                                                           |
 | ☔ **Precipitation nowcasting** | Not available                                                                                                           |
@@ -1155,7 +1159,7 @@ Google Play Services usually provide this backend. Some OS with only a partial s
 This source doesn’t provide timezone support, so Breezy Weather will fallback to device’s timezone.
 
 ### ATMO
-ATMO sources can be added as a secondary **Air Quality** source for some regions of France.
+ATMO sources can be added as an **Air Quality** source for some regions of France.
 
 - **[Atmo Auvergne-Rhône-Alpes](https://www.atmo-auvergnerhonealpes.fr/)** provides air quality information for the French region of Auvergne-Rhône-Alpes.
 - **[ATMO GrandEst](https://www.atmo-grandest.eu/)** provides air quality information for the French region of Grand Est.
@@ -1163,7 +1167,7 @@ ATMO sources can be added as a secondary **Air Quality** source for some regions
 - **[AtmoSud](https://www.atmosud.org/)** provides air quality information for the French region of Provence-Alpes-Côte d’Azur.
 
 ### Atmo France
-**[Atmo France](https://www.atmo-france.org/)** can be added as a secondary **Pollen** source for France. Pollen concentration is calculated from Copernicus data.
+**[Atmo France](https://www.atmo-france.org/)** can be added as a **Pollen** source for France. Pollen concentration is calculated from Copernicus data.
 
 <details><summary><h4>Details of available pollens from Atmo France</h4></summary>
 
@@ -1200,28 +1204,34 @@ ATMO sources can be added as a secondary **Air Quality** source for some regions
 | 🇹🇬 Togo                         | [Météo Togo](https://www.anamet-togo.com/) |
 | 🇿🇼 Zimbabwe                     | [MSD](https://www.weatherzw.org.zw/)       |
 
-These sources can be added as a secondary **Alert** and **Temperature normals** source for their respective countries.
+These sources can be added as an **Alert** and **Temperature normals** source for their respective countries.
 
 ### EKUK
-**[Eesti Keskkonnauuringute Keskus](https://www.ohuseire.ee/)** (EKUK) can be added as a secondary **Air quality** and **Pollen** (later this year) source for Estonia.
+**[Eesti Keskkonnauuringute Keskus](https://www.ohuseire.ee/)** (EKUK) can be added as an **Air quality** and **Pollen** (later this year) source for Estonia.
 
 ### Environmental Protection Department
-**[Environmental Protection Department](https://www.aqhi.gov.hk/)** can be added as a secondary **Air quality** source for Hong Kong.
+**[Environmental Protection Department](https://www.aqhi.gov.hk/)** can be added as an **Air quality** source for Hong Kong.
 
 ### FOSS Public Alert Server
 > The FOSS Public Alert Server project is currently in early testing.
 
-**[FOSS Public Alert Server](https://invent.kde.org/webapps/foss-public-alert-server/)** is an open source server that provides near real-time alerts about emergencies worldwide.
+**[FOSS Public Alert Server](https://invent.kde.org/webapps/foss-public-alert-server/)** is an open source server that can be added as an **Alert** source worldwide.
 
 ### GeoNames
 > 🔐 **This source requires an API key.** [Register here](https://www.geonames.org/login)
 
 **[GeoNames](https://www.geonames.org/)** provides multilingual search for place names of more than 11 million locations worldwide. This source can be enabled as a **Search** source after adding your API key.
 
+### National Center for Disaster Reduction
+**[National Science & Technology Center for Disaster Reduction](https://www.ncdr.nat.gov.tw/)** (NCDR) can be added as an **Alert** source for Taiwan.
+
 ### National Centers for Environmental Information
 > NCEI is available for saved locations for the time being. It will be made available to current location in a future release.
 
 **[National Centers for Environmental Information](https://www.ncei.noaa.gov/)** (NCEI) provides Global Summary of the Month (GSOM), a global climatological database that can be added as a **Temperature normals** source worldwide.
+
+### National Land Survey and Mapping Center
+**[National Land Survey and Mapping Center](https://www.nlsc.gov.tw/)** (NLSC) can be added as an **Address lookup** source for Taiwan.
 
 ### Nominatim
 **[Nominatim](https://nominatim.org/)** can provide the address lookup feature, using OpenStreetMap data. This source doesn’t provide timezone support, so Breezy Weather will fallback to device’s timezone.
@@ -1229,7 +1239,7 @@ These sources can be added as a secondary **Alert** and **Temperature normals** 
 ### Recosanté
 > **April 2025 update:** Recosanté is temporarily not producing any data
 
-**[Recosanté](https://recosante.beta.gouv.fr/)** can be added as a secondary **Pollen** source for France. Only a pollen level is available, and not the concentration. Since it is sourcing its info from Atmo France which has concentration available, it’s best to use Atmo France source directly whenever possible.
+**[Recosanté](https://recosante.beta.gouv.fr/)** can be added as a **Pollen** source for France. Only a pollen level is available, and not the concentration. Since it is sourcing its info from Atmo France which has concentration available, it’s best to use Atmo France source directly whenever possible.
 
 ### WMO Severe Weather
-The **[WMO Severe Weather Information Centre](https://severeweather.wmo.int/)** is World Meteorological Organisation’s central repository of current and upcoming weather warnings from more than 130 countries and territories worldwide. This source can be added as a secondary **Alert** source, which is particularly useful if the selected national source for your location does not provide Alert information.
+The **[WMO Severe Weather Information Centre](https://severeweather.wmo.int/)** is World Meteorological Organisation’s central repository of current and upcoming weather warnings from more than 130 countries and territories worldwide. This source can be added as an **Alert** source, which is particularly useful if the selected national source for your location does not provide Alert information.
