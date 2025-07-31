@@ -86,7 +86,9 @@ class NceiService @Inject constructor(
         feature: SourceFeature,
     ): Int {
         return when {
-            location.countryCode.equals("US", ignoreCase = true) -> PRIORITY_HIGHEST
+            arrayOf("US", "PR", "VI", "MP", "GU").any {
+                location.countryCode.equals(it, ignoreCase = true)
+            } -> PRIORITY_HIGHEST
             else -> PRIORITY_NONE
         }
     }

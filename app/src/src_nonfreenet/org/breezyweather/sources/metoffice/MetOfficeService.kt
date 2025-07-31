@@ -73,7 +73,9 @@ class MetOfficeService @Inject constructor(
         feature: SourceFeature,
     ): Int {
         return when {
-            location.countryCode.equals("GB", ignoreCase = true) -> PRIORITY_HIGHEST
+            arrayOf("GB", "GG", "IM", "JE", "GI", "FK").any {
+                location.countryCode.equals(it, ignoreCase = true)
+            } -> PRIORITY_HIGHEST
             else -> PRIORITY_NONE
         }
     }

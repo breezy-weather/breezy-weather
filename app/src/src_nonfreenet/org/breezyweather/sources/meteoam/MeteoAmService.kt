@@ -75,7 +75,7 @@ class MeteoAmService @Inject constructor(
         feature: SourceFeature,
     ): Int {
         return when {
-            location.countryCode.equals("IT", ignoreCase = true) -> PRIORITY_HIGHEST
+            arrayOf("IT", "SM", "VA").any { location.countryCode.equals(it, ignoreCase = true) } -> PRIORITY_HIGHEST
             else -> PRIORITY_NONE
         }
     }
