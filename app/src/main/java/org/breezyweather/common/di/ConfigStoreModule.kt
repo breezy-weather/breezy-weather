@@ -14,10 +14,23 @@
  * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.breezyweather.common.source
+package org.breezyweather.common.di
 
-// location.
-data class LocationPositionWrapper(
-    val latitude: Double,
-    val longitude: Double,
-)
+import android.content.Context
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import org.breezyweather.domain.settings.CurrentLocationStore
+import javax.inject.Singleton
+
+@InstallIn(SingletonComponent::class)
+@Module
+class ConfigStoreModule {
+    /*@Provides
+    @Singleton
+    fun provideCurrentLocationStore(@ApplicationContext context: Context): CurrentLocationStore {
+        return CurrentLocationStore(context)
+    }*/
+}

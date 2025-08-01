@@ -35,6 +35,9 @@
 **Translations**
 - Translations updated
 
+**Technical**
+- Current location process refactoring
+
 
 # Version 6.0.4-alpha (2025-07-23)
 

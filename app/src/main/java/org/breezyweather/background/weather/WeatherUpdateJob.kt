@@ -55,6 +55,7 @@ import org.breezyweather.common.extensions.setForegroundSafely
 import org.breezyweather.common.extensions.withIOContext
 import org.breezyweather.common.extensions.workManager
 import org.breezyweather.common.source.LocationResult
+import org.breezyweather.common.source.RefreshError
 import org.breezyweather.common.source.WeatherResult
 import org.breezyweather.domain.location.model.getPlace
 import org.breezyweather.domain.settings.SettingsManager
@@ -212,6 +213,15 @@ class WeatherUpdateJob @AssistedInject constructor(
         val skippedUpdates = CopyOnWriteArrayList<Pair<Location, String?>>()
         val failedUpdates = CopyOnWriteArrayList<Pair<Location, String?>>()
 
+        /**
+         * Update coordinates if locations to update contains a current location
+         */
+        val updateCoordinatesErrors = if (locationsToUpdate.any { it.isCurrentPosition }) {
+            updateCoordinates()
+        } else {
+            emptyList()
+        }
+
         locationsToUpdate.forEach { location ->
             withUpdateNotification(
                 currentlyUpdatingLocation,
@@ -224,27 +234,21 @@ class WeatherUpdateJob @AssistedInject constructor(
                 } else {*/
                 try {
                     val locationResult = updateLocation(location)
-
                     locationResult.errors.forEach {
                         val shortMessage = it.getMessage(context, sourceManager)
                         if (it.error != RefreshErrorType.NETWORK_UNAVAILABLE &&
-                            it.error != RefreshErrorType.SERVER_TIMEOUT &&
-                            it.error != RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING &&
-                            it.error != RefreshErrorType.LOCATION_ACCESS_OFF
+                            it.error != RefreshErrorType.SERVER_TIMEOUT
                         ) {
                             failedUpdates.add(locationResult.location to shortMessage)
                         } else {
-                            // Report this error only if we can’t refresh weather data
-                            if (!locationResult.location.isUsable &&
-                                (
-                                    it.error == RefreshErrorType.ACCESS_LOCATION_PERMISSION_MISSING ||
-                                        it.error == RefreshErrorType.LOCATION_ACCESS_OFF
-                                    )
-                            ) {
-                                failedUpdates.add(locationResult.location to shortMessage)
-                            } else {
-                                skippedUpdates.add(locationResult.location to shortMessage)
-                            }
+                            skippedUpdates.add(locationResult.location to shortMessage)
+                        }
+                    }
+                    if (!locationResult.location.isUsable) {
+                        // Report coordinate update errors only if we can’t re-use last known coordinates
+                        updateCoordinatesErrors.forEach {
+                            val shortMessage = it.getMessage(context, sourceManager)
+                            failedUpdates.add(locationResult.location to shortMessage)
                         }
                     }
                     if (locationResult.location.isUsable && !locationResult.location.needsGeocodeRefresh) {
@@ -330,17 +334,22 @@ class WeatherUpdateJob @AssistedInject constructor(
     }
 
     /**
-     * Updates the current location.
+     * Updates the current location coordinates.
+     *
+     * @return errors if any
+     */
+    private suspend fun updateCoordinates(): List<RefreshError> {
+        return refreshHelper.updateCurrentCoordinates(context, true)
+    }
+
+    /**
+     * Updates the location with updated coordinates and reverse geocoding.
      *
      * @param location the location to update.
      * @return location updated.
      */
     private suspend fun updateLocation(location: Location): LocationResult {
-        return refreshHelper.getLocation(
-            context,
-            location,
-            true
-        )
+        return refreshHelper.getLocation(context, location)
     }
 
     /**

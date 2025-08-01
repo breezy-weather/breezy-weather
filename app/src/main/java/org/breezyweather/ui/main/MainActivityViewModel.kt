@@ -40,6 +40,7 @@ import org.breezyweather.common.extensions.launchIO
 import org.breezyweather.common.source.RefreshError
 import org.breezyweather.common.utils.helpers.AsyncHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
+import org.breezyweather.domain.settings.CurrentLocationStore
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.sources.RefreshHelper
 import org.breezyweather.ui.main.utils.RefreshErrorType
@@ -63,6 +64,7 @@ class MainActivityViewModel @Inject constructor(
     private val refreshHelper: RefreshHelper,
     private val locationRepository: LocationRepository,
     private val weatherRepository: WeatherRepository,
+    private val currentLocationStore: CurrentLocationStore,
     private val updateChecker: AppUpdateChecker,
 ) : BreezyViewModel(application), WeatherRequestCallback {
 
@@ -523,6 +525,10 @@ class MainActivityViewModel @Inject constructor(
 
         updateInnerData(valid)
         deleteLocation(location = location)
+        // If we no longer have any current position locations, clear the current location store data9
+        if (location.isCurrentPosition && !valid.any { it.isCurrentPosition }) {
+            currentLocationStore.clearCurrentLocation()
+        }
 
         return location
     }
@@ -586,8 +592,13 @@ class MainActivityViewModel @Inject constructor(
         callback: WeatherRequestCallback,
     ) {
         try {
-            val locationResult = refreshHelper.getLocation(context, location, false)
+            val locationPositionErrors = if (location.isCurrentPosition) {
+                refreshHelper.updateCurrentCoordinates(context, false)
+            } else {
+                emptyList()
+            }
 
+            val locationResult = refreshHelper.getLocation(context, location)
             if (locationResult.location.isUsable && !locationResult.location.needsGeocodeRefresh) {
                 val weatherResult = refreshHelper.getWeather(
                     context,
@@ -597,12 +608,12 @@ class MainActivityViewModel @Inject constructor(
                 )
                 callback.onCompleted(
                     locationResult.location.copy(weather = weatherResult.weather),
-                    locationResult.errors + weatherResult.errors
+                    locationPositionErrors + locationResult.errors + weatherResult.errors
                 )
             } else {
                 callback.onCompleted(
                     locationResult.location,
-                    locationResult.errors
+                    locationPositionErrors + locationResult.errors
                 )
             }
         } catch (e: Throwable) {

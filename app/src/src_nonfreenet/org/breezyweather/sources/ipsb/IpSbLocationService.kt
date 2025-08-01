@@ -53,13 +53,7 @@ class IpSbLocationService @Inject constructor(
                 }
                 LocationPositionWrapper(
                     latitude = t.latitude,
-                    longitude = t.longitude,
-                    timeZone = t.timezone,
-                    country = t.country,
-                    countryCode = t.countryCode,
-                    admin1 = t.region,
-                    admin1Code = t.regionCode,
-                    city = t.city
+                    longitude = t.longitude
                 )
             }
     }
