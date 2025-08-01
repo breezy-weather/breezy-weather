@@ -829,5 +829,5 @@
     <string name="weather_source_recommended">Рекомендовано</string>
     <string name="action_change">Зміна</string>
     <string name="message_incompatible_times_title">Несумісні графіки прогнозів</string>
-    <string name="message_incompatible_times_content">Змініть прогноз або джерело інформації про якість повітря, щоб час збігався</string>
+    <string name="message_incompatible_times_content">Змініть прогноз або джерело інформації про якість повітря відповідно до часу.</string>
 </resources>
