@@ -1,0 +1,47 @@
+Breezy Weather (англ. Свежая погода) — это многофункциональное, свободное и бесплатное приложение в Материальном дизайне с продуманной визуализацией, поддерживающее прогноз погоды, погодные условия в на сейчас, ближний прогноз текущей погоды, качество воздуха, пыльцу, оповещения из более чем 50ти источников погоды, таких как Open-Meteo.
+
+<b>Возможности</b>
+
+- Дневной и почасовой прогноз до 16 дней
+- Осадки в ближайший час
+- Текущие погодные условия
+- Информация о качестве воздуха, аллергенах и эфемеридах небесных тел
+- Оповещения об опасных погодных условиях и осадках
+- Возможность делиться данными с другими приложениями (например, GadgetBridge)
+- Упор на доступность для программ чтения с экрана и других мест
+
+<b>Дизайн</b>
+
+- Material 3 Expressive
+- Подробные 24х-часовые графики
+- Автоматический тёмный режим
+- Наборы пользовательских значков
+- Большой выбор виджетов
+- Живые обои
+
+<b>Источники погоды</b>
+
+- Во всех видах: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, Recosanté, SMA (Seychelles), SMA (Sudan), SSMS
+- Несвободные (не включены в версии с суфиксом _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, смешанные китайские источники, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, WMO Severe Weather
+
+<b>Разрешения</b>
+
+Требуемые:
+
+- Доступ в сеть (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): чтобы получать данные о погоде из источников через Интернет
+
+Необязательные:
+
+- Фоновые сервисы (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): обновления погоды в фоновом режиме и запланированные уведомления о прогнозе погоды
+- Отключить оптимизацию батареи (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): помогает предотвратить закрытие приложения на некоторых устройствах
+- Отправлять оповещения (POST_NOTIFICATIONS): оповещения, осадки, прогноз на сегодня/завтра, виджет уведомлений, ход обновления фоновых обновлений и т. д.
+- Местоположение (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): чтобы показать погоду в вашем текущем местоположении
+- Storage (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): помогает установить живые обои и виджеты погоды на некоторых устройствах
+- Панель быстрого доступа (EXPAND_STATUS_BAR): разрешить запуск приложения из быстрых настроек
+- Выбор языка (READ_APP_SPECIFIC_LOCALES): позволяет сохранить определенный язык для приложения и прочитать значение после перезагрузки на некоторых устройствах
+
+<b>Лицензия</b>
+
+- GNU Lesser General Public License v3.0
+- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
