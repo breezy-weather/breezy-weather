@@ -1,0 +1,47 @@
+O Breezy Weather é um app de clima livre e de código aberto, rico em recursos, em Material 3 Expressive, com visualizações bem pensadas. Há suporte para previsões, condições do clima em tempo real, previsões imediatas, qualidade do ar, polén, alertas, e mais de 50 fontes de meteorologia, como o Open-Meteo e AccuWeather.
+
+<b>Recursos</b>
+
+- Previsões diárias e horárias até 16 dias
+- Precipitação na próxima hora
+- Condições do clima em tempo real
+- Informações da qualidade do ar, polén, e horários de nascer e pôr do sol e da lua
+- Alertas severos do clima e precipitações
+- Compartilhamento opcional de dados com outros apps (como o Gadgetbridge)
+- Foco na acessibilidade para leitores de tela e outros idiomas
+
+<b>Design</b>
+
+- Em Material 3 Expressive
+- Gráficos em 24 horas detalhados
+- Modo escuro automático
+- Pacotes de ícones personalizados
+- Grande seleção de widgets
+- Plano de fundo ao vivo
+
+<b>Fontes</b>
+
+- Em todas as versões: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, Recosanté, SMA (Seychelles), SMA (Sudan), SSMS
+- Não-livres/não-autohospedáveis (não estão incluídos em versão com sufixo _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mixed China sources, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, WMO Severe Weather
+
+<b>Permissões</b>
+
+Necessárias:
+
+- Rede (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): para obter os dados do clima de fontes da internet
+
+Opcionais:
+
+- Serviços em segundo plano (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): para atualizações do clima em segundo plano e notificações de previsão em cronograma
+- Ignorar otimizações de bateria (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): para ajudar a prevenir que o app seja encerrado em alguns dispositivos
+- Enviar notificações (POST_NOTIFICATIONS): alertas, precipitações, previsão de hoje/amanhã, widget de notificação, progresso das atualizações em segundo plano, etc
+- Localização (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): para mostrar o clima na sua localização atual
+- Armazenamento (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): ajuda a configurar o plano de fundo de clima ao vivo e widgets em alguns dispositivos
+- Bloco (EXPAND_STATUS_BAR): permite abrir o app das Configurações Rápidas
+- Idioma do app específico (READ_APP_SPECIFIC_LOCALES): permite salvar um idioma específico para o app e ler o dado após reiniciar em alguns dispositivos
+
+<b>Licença</b>
+
+- GNU Lesser General Public License v3.0
+- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
