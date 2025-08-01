@@ -724,8 +724,8 @@
     <string name="chart_average">Durchschnitt</string>
     <string name="chart_maximum_value">Maximalwert</string>
     <string name="conditions">Bedingungen</string>
-    <string name="temperature_real">Aktuell</string>
-    <string name="temperature_real_details">Die aktuelle Temperatur.</string>
+    <string name="temperature_real">Tatsächlich</string>
+    <string name="temperature_real_details">Die tatsächliche Temperatur.</string>
     <string name="temperature_feels_like_details">Wie sich die Temperatur aufgrund von Feuchtigkeit, Wind und/oder Sonneneinstrahlung anfühlt.</string>
     <string name="temperature_degree_day_cooling_explanation">Differenz zwischen der Außentemperatur und einer komfortablen Referenztemperatur, die zur Schätzung des Kühlenergiebedarfs verwendet wird</string>
     <string name="wind_speed_about">Über Windgeschwindigkeit und Böen</string>
