@@ -15,6 +15,7 @@
 - Nowcasting chart/Precipitation notification - Fix slightly wrong ending time of precipitation report
 - Settings - Improve the location-based dark mode preference to make it easier to understand
 - Sources - Add a “Recommended” section to the Source selection screen
+- Refresh - Add an error when air quality forecast times don’t match hourly forecast times (observed in India, for example)
 
 **Weather sources**
 - [AccuWeather] Restrict pollen to USA, Canada and Europe as it’s only available there (@chunshek)

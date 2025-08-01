@@ -36,6 +36,14 @@ This error happens when app was able to find your longitude and latitude, but un
 This error should be reported as soon as possible to GitHub, mentioning the source and the location on which it is happening (or for privacy reasons, a nearby location that has the same issue).
 
 
+### “Incompatible forecast source times”
+
+This error means that the hourly times of forecast data and your air quality or pollen data don’t match.
+This can happen in the following case:
+You live in India, with a timezone of UTC+05:30.
+The forecast source you selected reports hourly forecast on the :00 time, while your air quality or pollen source reports on the :30 time (or the other way around).
+
+
 ### “Source no longer available”
 
 This error may happen when a source is no longer provided by Breezy Weather. In that case, you will need to add a new location with another source, and delete this location. It can also happen when you switch from the standard flavor of Breezy Weather to `freenet` one which has less sources supported.

@@ -72,6 +72,20 @@ object SourceNoLongerAvailableHelpDialog {
                                 Text(stringResource(R.string.action_close))
                             }
                         },
+                        dismissButton = if (activity is MainActivity) {
+                            {
+                                TextButton(
+                                    onClick = {
+                                        activity.onEditIconClicked()
+                                        dialogOpenState.value = false
+                                    }
+                                ) {
+                                    Text(stringResource(id = R.string.action_change))
+                                }
+                            }
+                        } else {
+                            null
+                        },
                         title = {
                             Text(
                                 stringResource(title)

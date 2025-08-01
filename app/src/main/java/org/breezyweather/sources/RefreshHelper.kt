@@ -743,6 +743,23 @@ class RefreshHelper @Inject constructor(
                 location
             )
 
+            // Detect incompatible times between forecast hourly and air quality hourly
+            // No need to do this for pollen at the moment, as we don't store hourly pollen
+            if (weatherWrapperCompleted.airQuality?.hourlyForecast?.isNotEmpty() == true &&
+                hourlyForecast.isNotEmpty() &&
+                !hourlyForecast.any { hourly ->
+                    weatherWrapperCompleted.airQuality!!.hourlyForecast!!.contains(hourly.date)
+                }
+            ) {
+                errors.add(
+                    RefreshError(
+                        RefreshErrorType.INCOMPATIBLE_FORECAST_TIMES,
+                        location.airQualitySource,
+                        SourceFeature.AIR_QUALITY
+                    )
+                )
+            }
+
             // Example: 15:01 -> starts at 15:00, 15:59 -> starts at 15:00
             val currentHour = hourlyForecast.firstOrNull {
                 it.date.time >= System.currentTimeMillis() - 1.hours.inWholeMilliseconds
@@ -768,7 +785,10 @@ class RefreshHelper @Inject constructor(
                     weatherWrapperCompleted.current,
                     currentHour,
                     currentDay,
-                    weatherWrapperCompleted.airQuality?.current,
+                    weatherWrapperCompleted.airQuality?.current
+                        ?: weatherWrapperCompleted.airQuality?.hourlyForecast?.entries?.firstOrNull {
+                            it.key.time >= System.currentTimeMillis() - 1.hours.inWholeMilliseconds
+                        }?.value, // Workaround for incompatibility with hourly forecast times
                     location
                 ),
                 dailyForecast = dailyForecast,

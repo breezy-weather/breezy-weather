@@ -514,6 +514,8 @@
     <string name="message_multiple_refresh_errors">Refresh completed with errors</string>
     <string name="message_invalid_incomplete_data">Invalid or incomplete data received from server</string>
     <string name="message_outdated_server_data">Outdated data received from server</string>
+    <string name="message_incompatible_times_title">Incompatible forecast times</string>
+    <string name="message_incompatible_times_content">Change your forecast or air quality source so that times match</string>
     <string name="message_network_unavailable">Network unavailable</string>
     <string name="message_server_timeout">Request timed out</string>
     <string name="message_server_insecure_title">Secure connection failed</string>

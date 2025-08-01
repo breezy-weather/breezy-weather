@@ -138,6 +138,7 @@ fun SourceManager.getBestSourceForFeature(
 }
 
 /**
+ * For air quality, default source is Open-Meteo (except India due to different times from the preselected IMD forecast)
  * For pollen:
  * - Open-Meteo in Europe
  * - AccuWeather in USA/Canada
@@ -152,6 +153,13 @@ fun SourceManager.getDefaultSourceForFeature(
     feature: SourceFeature,
 ): FeatureSource? {
     return when (feature) {
+        SourceFeature.AIR_QUALITY -> if (!location.countryCode.equals("IN", ignoreCase = true) ||
+            BuildConfig.FLAVOR == "freenet"
+        ) {
+            getWeatherSource("openmeteo")
+        } else {
+            null
+        }
         SourceFeature.POLLEN -> getWeatherSource("openmeteo")?.let {
             if (it.isFeatureSupportedForLocation(location, feature)) it else null
         } ?: getWeatherSource("accu")?.let { if (it.isFeatureSupportedForLocation(location, feature)) it else null }

@@ -72,7 +72,10 @@ enum class RefreshErrorType(
                 it,
                 R.string.weather_api_key_required_missing_title,
                 R.string.weather_api_key_required_missing_content,
-                showSettings = true
+                action = R.string.action_settings,
+                onActionClick = { activity ->
+                    IntentHelper.startWeatherProviderSettingsActivity(activity)
+                }
             )
         }
     ),
@@ -83,7 +86,10 @@ enum class RefreshErrorType(
                 it,
                 R.string.weather_api_limit_reached_title,
                 R.string.weather_api_limit_reached_content,
-                showSettings = true
+                action = R.string.action_settings,
+                onActionClick = { activity ->
+                    IntentHelper.startWeatherProviderSettingsActivity(activity)
+                }
             )
         }
     ),
@@ -94,7 +100,10 @@ enum class RefreshErrorType(
                 it,
                 R.string.weather_api_unauthorized_title,
                 R.string.weather_api_unauthorized_content,
-                showSettings = true
+                action = R.string.action_settings,
+                onActionClick = { activity ->
+                    IntentHelper.startWeatherProviderSettingsActivity(activity)
+                }
             )
         }
     ),
@@ -104,8 +113,7 @@ enum class RefreshErrorType(
             ErrorHelpDialog.show(
                 it,
                 R.string.message_server_unavailable_title,
-                R.string.message_server_unavailable_content,
-                showSettings = false
+                R.string.message_server_unavailable_content
             )
         }
     ),
@@ -116,22 +124,17 @@ enum class RefreshErrorType(
             ErrorHelpDialog.show(
                 it,
                 R.string.message_parsing_error_title,
-                R.string.message_parsing_error_content,
-                showSettings = false
+                R.string.message_parsing_error_content
             )
         }
     ),
     SOURCE_NOT_INSTALLED(
         shortMessage = R.string.message_source_not_installed_error_title,
         showDialogAction = { activity ->
-            if (activity is MainActivity) {
-                activity.onEditIconClicked()
-            } else {
-                SourceNoLongerAvailableHelpDialog.show(
-                    activity,
-                    R.string.message_source_not_installed_error_title
-                )
-            }
+            SourceNoLongerAvailableHelpDialog.show(
+                activity,
+                R.string.message_source_not_installed_error_title
+            )
         },
         actionButtonMessage = R.string.action_change
     ),
@@ -177,6 +180,22 @@ enum class RefreshErrorType(
     ),
     OUTDATED_SERVER_DATA(
         shortMessage = R.string.message_outdated_server_data
+    ),
+    INCOMPATIBLE_FORECAST_TIMES(
+        shortMessage = R.string.message_incompatible_times_title,
+        showDialogAction = {
+            ErrorHelpDialog.show(
+                it,
+                R.string.message_incompatible_times_title,
+                R.string.message_incompatible_times_content,
+                action = R.string.action_change,
+                onActionClick = { activity ->
+                    if (activity is MainActivity) {
+                        activity.onEditIconClicked()
+                    }
+                }
+            )
+        }
     ),
     DATA_REFRESH_FAILED(
         shortMessage = R.string.weather_message_data_refresh_failed
