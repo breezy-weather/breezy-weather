@@ -761,4 +761,6 @@
     <string name="air_quality_pollutant_details">Λεπτομέρειες ρύπου</string>
     <string name="air_quality_health_information">Πληροφορίες υγείας</string>
     <string name="air_quality_pm25_full">Λεπτή σωματιδιακή ύλη (&lt; %s)</string>
+    <string name="air_quality_pm25_about">Σχετικά με την λεπτή σωματιδιακή ύλη (PM2,5)</string>
+    <string name="air_quality_pm25_index">Κλίμακα δείκτη ποιότητας αέρα για PM2.5</string>
 </resources>
