@@ -27,8 +27,11 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonGroup
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
+import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDisplay
+import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.extensions.isLandscape
+import org.breezyweather.domain.settings.SettingsChangedMessage
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.adapters.ButtonAdapter
 import org.breezyweather.ui.common.widgets.RecyclerViewNoVerticalScrollTouchListener
@@ -38,6 +41,7 @@ import org.breezyweather.ui.main.layouts.TrendHorizontalLinearLayoutManager
 import org.breezyweather.ui.main.widgets.TrendRecyclerViewScrollBar
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import androidx.lifecycle.Observer
 
 class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_hourly_trend_card, parent, false)
@@ -47,9 +51,23 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     private val trendRecyclerView: TrendRecyclerView = itemView.findViewById(R.id.hourly_block_trendRecyclerView)
     private val scrollBar: TrendRecyclerViewScrollBar = TrendRecyclerViewScrollBar()
 
+    private var currentTrendAdapter: HourlyTrendAdapter? = null
+    private var currentLocation: Location? = null
+    private var currentSelectedTab: String? = null
+    private var currentSetSelectedTab: ((String?) -> Unit)? = null
+    private var settingsObserver: Observer<SettingsChangedMessage>? = null
+
     init {
         trendRecyclerView.setHasFixedSize(true)
         trendRecyclerView.addItemDecoration(scrollBar)
+
+        // Listen for settings changes to update button group when hourlyTrendDisplayList changes
+        settingsObserver = Observer<SettingsChangedMessage> {
+            currentLocation?.let { location ->
+                updateButtonGroupFromSettings(location)
+            }
+        }
+        EventBus.instance.with(SettingsChangedMessage::class.java).observeForever(settingsObserver!!)
     }
 
     override fun onBindView(
@@ -65,6 +83,11 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
         val weather = location.weather ?: return
 
+        // Store current state for settings change updates
+        currentLocation = location
+        currentSelectedTab = selectedTab
+        currentSetSelectedTab = setSelectedTab
+
         if (weather.current?.hourlyForecast.isNullOrEmpty()) {
             subtitle.visibility = View.GONE
         } else {
@@ -72,15 +95,50 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             subtitle.text = weather.current?.hourlyForecast
         }
 
-        val trendAdapter = HourlyTrendAdapter(activity, trendRecyclerView).apply {
+        currentTrendAdapter = HourlyTrendAdapter(activity, trendRecyclerView).apply {
             bindData(location)
         }
+
+        updateButtonGroupFromSettings(location)
+
+        trendRecyclerView.layoutManager =
+            TrendHorizontalLinearLayoutManager(
+                context,
+                if (context.isLandscape) 7 else 5,
+                minHeight = context.resources.getDimensionPixelSize(R.dimen.hourly_trend_item_height)
+            )
+        trendRecyclerView.setLineColor(
+            context.getThemeColor(com.google.android.material.R.attr.colorOutline)
+        )
+        trendRecyclerView.setTextColor(
+            ContextCompat.getColor(
+                context,
+                if (ThemeManager.isLightTheme(context, location)) R.color.colorTextGrey else R.color.colorTextGrey2nd
+            )
+        )
+        trendRecyclerView.adapter = currentTrendAdapter
+        trendRecyclerView.setKeyLineVisibility(
+            SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
+        )
+        trendRecyclerView.addOnItemTouchListener(RecyclerViewNoVerticalScrollTouchListener())
+
+        scrollBar.resetColor(activity)
+    }
+
+    private fun updateButtonGroupFromSettings(location: Location) {
+        val trendAdapter = currentTrendAdapter ?: return
+        val setSelectedTab = currentSetSelectedTab ?: return
+
+        // Re-bind data to get updated adapters from settings
+        trendAdapter.bindData(location)
+
         val buttonList: MutableList<ButtonAdapter.Button> = trendAdapter.adapters.map {
             object : ButtonAdapter.Button {
-                override val name = it.getDisplayName(activity)
+                override val name = it.getDisplayName(context as BreezyActivity)
             }
         }.toMutableList()
-        selectedTab?.let { tab ->
+
+        currentSelectedTab?.let { tab ->
             buttonList.indexOfFirst { it.name == tab }.let {
                 if (it >= 0) {
                     trendAdapter.selectedIndex = it
@@ -135,28 +193,21 @@ class HourlyViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 )
             }
         }
+    }
 
-        trendRecyclerView.layoutManager =
-            TrendHorizontalLinearLayoutManager(
-                context,
-                if (context.isLandscape) 7 else 5,
-                minHeight = context.resources.getDimensionPixelSize(R.dimen.hourly_trend_item_height)
-            )
-        trendRecyclerView.setLineColor(
-            context.getThemeColor(com.google.android.material.R.attr.colorOutline)
-        )
-        trendRecyclerView.setTextColor(
-            ContextCompat.getColor(
-                context,
-                if (ThemeManager.isLightTheme(context, location)) R.color.colorTextGrey else R.color.colorTextGrey2nd
-            )
-        )
-        trendRecyclerView.adapter = trendAdapter
-        trendRecyclerView.setKeyLineVisibility(
-            SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
-        )
-        trendRecyclerView.addOnItemTouchListener(RecyclerViewNoVerticalScrollTouchListener())
+    fun cleanup() {
+        settingsObserver?.let { observer ->
+            EventBus.instance.with(SettingsChangedMessage::class.java).removeObserver(observer)
+        }
+        settingsObserver = null
+        currentTrendAdapter = null
+        currentLocation = null
+        currentSelectedTab = null
+        currentSetSelectedTab = null
+    }
 
-        scrollBar.resetColor(activity)
+    override fun onRecycleView() {
+        super.onRecycleView()
+        cleanup()
     }
 }
