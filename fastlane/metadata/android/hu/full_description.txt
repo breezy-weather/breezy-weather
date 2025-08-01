@@ -1,4 +1,4 @@
-A Breezy Weather egy funkciógazdag, ingyenes és nyílt forráskódú, Material 3 Expressive kinézettel rendelkező időjárás-alkalmazás, átlátható felülettel. Támogatja az előrejelzéseket, a valós idejű időjárási viszonyokat, a közvetlen előrejelzést (nowcasting), a levegőminőségi és pollenadatokat, valamint a riasztásokat több mint 50 időjárási forrásból, mint például az NWS, a Met Office UK, a Met Éireann, az ECCC és az Open-Meteo.
+A Breezy Weather egy funkciógazdag, ingyenes és nyílt forráskódú, Material 3 Expressive kinézettel rendelkező időjárás-alkalmazás, átlátható felülettel. Támogatja az előrejelzéseket, a valós idejű időjárási viszonyokat, a közvetlen előrejelzést (nowcasting), a levegőminőségi és pollenadatokat, valamint a riasztásokat több mint 50 időjárási forrásból, mint például az Open-Meteo.
 
 <b>Funkciók</b>
 
