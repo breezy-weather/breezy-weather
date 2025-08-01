@@ -37,7 +37,7 @@
 - Translations updated
 
 **Technical**
-- Current location process refactoring
+- Current location process refactoring: coordinates, forced refresh when coordinates changed from more than 5 km
 
 
 # Version 6.0.4-alpha (2025-07-23)

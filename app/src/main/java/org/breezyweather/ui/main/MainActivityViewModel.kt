@@ -26,6 +26,8 @@ import androidx.lifecycle.viewModelScope
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
 import breezyweather.domain.location.model.Location
+import com.google.maps.android.SphericalUtil
+import com.google.maps.android.model.LatLng
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -600,11 +602,16 @@ class MainActivityViewModel @Inject constructor(
 
             val locationResult = refreshHelper.getLocation(context, location)
             if (locationResult.location.isUsable && !locationResult.location.needsGeocodeRefresh) {
+                val ignoreCaching = SphericalUtil.computeDistanceBetween(
+                    LatLng(locationResult.location.latitude, locationResult.location.longitude),
+                    LatLng(location.latitude, location.longitude)
+                ) > RefreshHelper.CACHING_DISTANCE_LIMIT
                 val weatherResult = refreshHelper.getWeather(
                     context,
                     locationResult.location,
                     location.longitude != locationResult.location.longitude ||
-                        location.latitude != locationResult.location.latitude
+                        location.latitude != locationResult.location.latitude,
+                    ignoreCaching
                 )
                 callback.onCompleted(
                     locationResult.location.copy(weather = weatherResult.weather),

@@ -339,6 +339,7 @@ class RefreshHelper @Inject constructor(
         context: Context,
         location: Location,
         coordinatesChanged: Boolean,
+        ignoreCaching: Boolean = false,
     ): WeatherResult {
         try {
             if (!location.isUsable || location.needsGeocodeRefresh) {
@@ -464,6 +465,7 @@ class RefreshHelper @Inject constructor(
                                             }
                                             .filter {
                                                 service !is HttpSource ||
+                                                    ignoreCaching ||
                                                     !isWeatherDataStillValid(
                                                         location,
                                                         it,
@@ -1134,7 +1136,7 @@ class RefreshHelper @Inject constructor(
                         LatLng(base.normalsUpdateLatitude, base.normalsUpdateLongitude),
                         LatLng(location.latitude, location.longitude)
                     )
-                    return distance <= NORMALS_DISTANCE_LIMIT
+                    return distance <= CACHING_DISTANCE_LIMIT
                 } else {
                     if (location.weather!!.normals.isEmpty()) return false
                     val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
@@ -1187,6 +1189,6 @@ class RefreshHelper @Inject constructor(
         const val WAIT_ALERTS_RESTRICTED = WAIT_ONE_HOUR // 1 hour
         const val WAIT_ALERTS_RESTRICTED_ONGOING = WAIT_REGULAR // 5 min
 
-        const val NORMALS_DISTANCE_LIMIT = 5000 // 5 km
+        const val CACHING_DISTANCE_LIMIT = 5000 // 5 km
     }
 }

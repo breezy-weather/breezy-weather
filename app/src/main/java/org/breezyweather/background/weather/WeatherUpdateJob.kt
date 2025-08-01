@@ -36,6 +36,8 @@ import androidx.work.workDataOf
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
 import breezyweather.domain.location.model.Location
+import com.google.maps.android.SphericalUtil
+import com.google.maps.android.model.LatLng
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.CancellationException
@@ -252,10 +254,15 @@ class WeatherUpdateJob @AssistedInject constructor(
                         }
                     }
                     if (locationResult.location.isUsable && !locationResult.location.needsGeocodeRefresh) {
+                        val ignoreCaching = SphericalUtil.computeDistanceBetween(
+                            LatLng(locationResult.location.latitude, locationResult.location.longitude),
+                            LatLng(location.latitude, location.longitude)
+                        ) > RefreshHelper.CACHING_DISTANCE_LIMIT
                         val weatherResult = updateWeather(
                             locationResult.location,
                             location.longitude != locationResult.location.longitude ||
-                                location.latitude != locationResult.location.latitude
+                                location.latitude != locationResult.location.latitude,
+                            ignoreCaching
                         )
                         newUpdates.add(
                             location to locationResult.location.copy(weather = weatherResult.weather)
@@ -358,11 +365,16 @@ class WeatherUpdateJob @AssistedInject constructor(
      * @param location the location to update.
      * @return weather.
      */
-    private suspend fun updateWeather(location: Location, coordinatesChanged: Boolean): WeatherResult {
+    private suspend fun updateWeather(
+        location: Location,
+        coordinatesChanged: Boolean,
+        ignoreCaching: Boolean
+    ): WeatherResult {
         return refreshHelper.getWeather(
             context,
             location,
-            coordinatesChanged
+            coordinatesChanged,
+            ignoreCaching
         )
     }
 

@@ -81,15 +81,16 @@ Basically, depending on the features requested and your latest time of refresh, 
 
 Given different features have different caching delay, you may end up with a mix of restored weather data for some features, and newer data for other data.
 
-| Feature                         | Non-restricted sources                                                                           | Restricted sources¹                                                                              |
-|---------------------------------|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| Main weather                    | 5 min                                                                                            | 15 min                                                                                           |
-| Current weather                 | 1 min                                                                                            | 15 min                                                                                           |
-| Air quality                     | 5 min                                                                                            | 1 hour                                                                                           |
-| Allergen                        | 5 min                                                                                            | 1 hour                                                                                           |
-| Minutely                        | 1 min if minutely list is not empty, 5 min otherwise                                             | 5 min if minutely list is not empty, 15 min otherwise                                            |
-| Alerts                          | 1 min if alert list is not empty, 5 min otherwise                                                | 5 min if alert list is not empty, 1 hour otherwise                                               |
-| Normals (non-current locations) | Immediately if this month is missing                                                             | Immediately if this month is missing                                                             |
-| Normals (current location)      | Immediately if current coordinates are more than 5 km away from the previous normals coordinates | Immediately if current coordinates are more than 5 km away from the previous normals coordinates |
+| Feature         | Non-restricted sources                               | Restricted sources¹                                   |
+|-----------------|------------------------------------------------------|-------------------------------------------------------|
+| Main weather    | 5 min                                                | 15 min                                                |
+| Current weather | 1 min                                                | 15 min                                                |
+| Air quality     | 5 min                                                | 1 hour                                                |
+| Allergen        | 5 min                                                | 1 hour                                                |
+| Minutely        | 1 min if minutely list is not empty, 5 min otherwise | 5 min if minutely list is not empty, 15 min otherwise |
+| Alerts          | 1 min if alert list is not empty, 5 min otherwise    | 5 min if alert list is not empty, 1 hour otherwise    |
+| Normals         | Only if this month is missing                        | Only if this month is missing                         |
+
+Caching is ignored if coordinates changed from more than 5 kilometers, compared to previous known coordinates.
 
 ¹ Restricted sources are: OpenWeather, AEMET, CWA. They will become non-restricted if you use your own API key
