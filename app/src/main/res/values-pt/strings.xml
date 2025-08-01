@@ -882,4 +882,7 @@
     <string name="action_translate_no_app">Nenhuma app de tradução encontrada</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Seguir o dia/noite</string>
     <string name="settings_appearance_dark_mode_locations_dark">Sempre escuro quando a app está</string>
+    <string name="weather_source_recommended">Recomendado</string>
+    <string name="action_change">Alterar</string>
+    <string name="message_incompatible_times_title">Horários de previsão incompatíveis</string>
 </resources>
