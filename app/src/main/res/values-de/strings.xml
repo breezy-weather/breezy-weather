@@ -845,4 +845,6 @@
     <string name="air_quality_co_index">Luftqualitätsindex für CO</string>
     <string name="action_change">Wechseln</string>
     <string name="weather_source_recommended">Empfohlen</string>
+    <string name="message_incompatible_times_title">Inkompatible Vorhersagezeiten</string>
+    <string name="message_incompatible_times_content">Wechseln Sie Ihre Vorhersage- oder Luftqualitätsquelle, damit die Zeiten übereinstimmen.</string>
 </resources>
