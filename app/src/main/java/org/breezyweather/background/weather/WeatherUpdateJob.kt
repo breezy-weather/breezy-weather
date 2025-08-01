@@ -368,7 +368,7 @@ class WeatherUpdateJob @AssistedInject constructor(
     private suspend fun updateWeather(
         location: Location,
         coordinatesChanged: Boolean,
-        ignoreCaching: Boolean
+        ignoreCaching: Boolean,
     ): WeatherResult {
         return refreshHelper.getWeather(
             context,
