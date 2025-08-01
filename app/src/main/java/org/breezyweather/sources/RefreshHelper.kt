@@ -33,6 +33,8 @@ import breezyweather.domain.weather.model.Weather
 import breezyweather.domain.weather.reference.Month
 import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import com.google.maps.android.SphericalUtil
+import com.google.maps.android.model.LatLng
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -390,6 +392,8 @@ class RefreshHelper @Inject constructor(
             var minutelyUpdateTime = base.minutelyUpdateTime
             var alertsUpdateTime = base.alertsUpdateTime
             var normalsUpdateTime = base.normalsUpdateTime
+            var normalsUpdateLatitude = base.normalsUpdateLatitude
+            var normalsUpdateLongitude = base.normalsUpdateLongitude
 
             // TODO: Debug source is not online, don't use this check in that case
             // Can't return from inside `async`
@@ -685,13 +689,13 @@ class RefreshHelper @Inject constructor(
                             null
                         } else {
                             // Combine with previous stored months if not current location
-                            ((if (!location.isCurrentPosition) location.weather?.normals else null) ?: emptyMap()) +
-                                (
-                                    sourceCalls.getOrElse(location.normalsSource!!) { null }?.normals?.let {
-                                        normalsUpdateTime = Date()
-                                        it
-                                    } ?: emptyMap()
-                                    )
+                            sourceCalls.getOrElse(location.normalsSource!!) { null }?.normals?.let {
+                                normalsUpdateTime = Date()
+                                normalsUpdateLatitude = location.latitude
+                                normalsUpdateLongitude = location.longitude
+                                ((if (!location.isCurrentPosition) location.weather?.normals else null) ?: emptyMap()) +
+                                    it
+                            }
                         } ?: location.weather?.normals
                     } else {
                         null
@@ -756,7 +760,9 @@ class RefreshHelper @Inject constructor(
                     pollenUpdateTime = pollenUpdateTime,
                     minutelyUpdateTime = minutelyUpdateTime,
                     alertsUpdateTime = alertsUpdateTime,
-                    normalsUpdateTime = normalsUpdateTime
+                    normalsUpdateTime = normalsUpdateTime,
+                    normalsUpdateLatitude = normalsUpdateLatitude,
+                    normalsUpdateLongitude = normalsUpdateLongitude
                 ),
                 current = completeCurrentFromHourlyData(
                     weatherWrapperCompleted.current,
@@ -1095,13 +1101,20 @@ class RefreshHelper @Inject constructor(
                 )
             }
             SourceFeature.NORMALS -> {
-                if (location.weather!!.base.normalsUpdateTime == null) return false
+                val base = location.weather!!.base
+                if ((base.normalsUpdateTime ?: 0) == 0 ||
+                    base.normalsUpdateLongitude == 0.0 ||
+                    base.normalsUpdateLatitude == 0.0
+                ) {
+                    return false
+                }
 
                 if (location.isCurrentPosition) {
-                    return isUpdateStillValid(
-                        location.weather!!.base.normalsUpdateTime,
-                        if (isRestricted) WAIT_NORMALS_CURRENT_RESTRICTED else WAIT_NORMALS_CURRENT
+                    val distance = SphericalUtil.computeDistanceBetween(
+                        LatLng(base.normalsUpdateLatitude, base.normalsUpdateLongitude),
+                        LatLng(location.latitude, location.longitude)
                     )
+                    return distance <= NORMALS_DISTANCE_LIMIT
                 } else {
                     if (location.weather!!.normals.isEmpty()) return false
                     val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
@@ -1153,7 +1166,7 @@ class RefreshHelper @Inject constructor(
         const val WAIT_ALERTS_ONGOING = WAIT_MINIMUM // 1 min
         const val WAIT_ALERTS_RESTRICTED = WAIT_ONE_HOUR // 1 hour
         const val WAIT_ALERTS_RESTRICTED_ONGOING = WAIT_REGULAR // 5 min
-        const val WAIT_NORMALS_CURRENT = WAIT_REGULAR // 5 min
-        const val WAIT_NORMALS_CURRENT_RESTRICTED = WAIT_RESTRICTED // 15 min
+
+        const val NORMALS_DISTANCE_LIMIT = 5000 // 5 km
     }
 }

@@ -16,7 +16,6 @@
 
 package breezyweather.domain.weather.model
 
-import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.reference.Month
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.DailyWrapper

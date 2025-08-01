@@ -13,6 +13,8 @@ CREATE TABLE weathers(
     minutely_update_time INTEGER,
     alerts_update_time INTEGER,
     normals_update_time INTEGER,
+    normals_update_latitude REAL NOT NULL DEFAULT 0.0,
+    normals_update_longitude REAL NOT NULL DEFAULT 0.0,
 
     -- Current
     weather_text TEXT,
@@ -54,13 +56,13 @@ CREATE TABLE weathers(
 CREATE INDEX weathers_location_formatted_id_index ON weathers(location_formatted_id);
 
 getWeatherByLocationId:
-SELECT refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, weather_text, weather_code, temperature, source_feels_like_temperature, apparent_temperature, wind_chill_temperature, humidex, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast
+SELECT refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, normals_update_latitude, normals_update_longitude, weather_text, weather_code, temperature, source_feels_like_temperature, apparent_temperature, wind_chill_temperature, humidex, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast
 FROM weathers
 WHERE location_formatted_id = :locationFormattedId;
 
 insert:
-INSERT INTO weathers(location_formatted_id, refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, weather_text, weather_code, temperature, source_feels_like_temperature, apparent_temperature, wind_chill_temperature, humidex, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast)
-VALUES (:locationFormattedId, :refreshTime, :mainUpdateTime, :currentUpdateTime, :airQualityUpdateTime, :pollenUpdateTime, :minutelyUpdateTime, :alertsUpdateTime, :normalsUpdateTime, :weatherText, :weatherCode, :temperature, :sourceFeelsLikeTemperature, :apparentTemperature, :windChillTemperature, :humidex, :windDegree, :windSpeed, :windGusts, :uvIndex, :pm25, :pm10, :so2, :no2, :o3, :co, :relativeHumidity, :dewPoint, :pressure, :visibility, :cloudCover, :ceiling, :dailyForecast, :hourlyForecast);
+INSERT INTO weathers(location_formatted_id, refresh_time, main_update_time, current_update_time, air_quality_update_time, pollen_update_time, minutely_update_time, alerts_update_time, normals_update_time, normals_update_latitude, normals_update_longitude, weather_text, weather_code, temperature, source_feels_like_temperature, apparent_temperature, wind_chill_temperature, humidex, wind_degree, wind_speed, wind_gusts, uv_index, pm25, pm10, so2, no2, o3, co, relative_humidity, dew_point, pressure, visibility, cloud_cover, ceiling, daily_forecast, hourly_forecast)
+VALUES (:locationFormattedId, :refreshTime, :mainUpdateTime, :currentUpdateTime, :airQualityUpdateTime, :pollenUpdateTime, :minutelyUpdateTime, :alertsUpdateTime, :normalsUpdateTime, :normalsUpdateLatitude, :normalsUpdateLongitude, :weatherText, :weatherCode, :temperature, :sourceFeelsLikeTemperature, :apparentTemperature, :windChillTemperature, :humidex, :windDegree, :windSpeed, :windGusts, :uvIndex, :pm25, :pm10, :so2, :no2, :o3, :co, :relativeHumidity, :dewPoint, :pressure, :visibility, :cloudCover, :ceiling, :dailyForecast, :hourlyForecast);
 
 update:
 UPDATE weathers SET
@@ -73,6 +75,8 @@ UPDATE weathers SET
     minutely_update_time = coalesce(:minutelyUpdateTime, minutely_update_time),
     alerts_update_time = coalesce(:alertsUpdateTime, alerts_update_time),
     normals_update_time = coalesce(:normalsUpdateTime, normals_update_time),
+    normals_update_latitude = coalesce(:normalsUpdateTime, normals_update_latitude),
+    normals_update_longitude = coalesce(:normalsUpdateTime, normals_update_longitude),
     weather_text = coalesce(:weatherText, weather_text),
     weather_code = coalesce(:weatherCode, weather_code),
     temperature = coalesce(:temperature, temperature),

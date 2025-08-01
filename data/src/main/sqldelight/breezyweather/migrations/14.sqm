@@ -1,0 +1,5 @@
+ALTER TABLE weathers
+ADD COLUMN normals_update_latitude REAL NOT NULL DEFAULT 0.0;
+
+ALTER TABLE weathers
+ADD COLUMN normals_update_longitude REAL NOT NULL DEFAULT 0.0;

@@ -32,4 +32,6 @@ data class Base(
     val minutelyUpdateTime: Date? = null,
     val alertsUpdateTime: Date? = null,
     val normalsUpdateTime: Date? = null,
+    val normalsUpdateLatitude: Double = 0.0,
+    val normalsUpdateLongitude: Double = 0.0,
 ) : Serializable

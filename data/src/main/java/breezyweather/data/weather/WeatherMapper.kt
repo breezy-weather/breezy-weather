@@ -52,6 +52,8 @@ object WeatherMapper {
         minutelyUpdateTime: Long?,
         alertsUpdateTime: Long?,
         normalsUpdateTime: Long?,
+        normalsUpdateLatitude: Double,
+        normalsUpdateLongitude: Double,
         weatherText: String?,
         weatherCode: WeatherCode?,
         temperature: Double?,
@@ -86,7 +88,9 @@ object WeatherMapper {
             pollenUpdateTime?.let { Date(it) },
             minutelyUpdateTime?.let { Date(it) },
             alertsUpdateTime?.let { Date(it) },
-            normalsUpdateTime?.let { Date(it) }
+            normalsUpdateTime?.let { Date(it) },
+            normalsUpdateLatitude,
+            normalsUpdateLongitude
         ),
         Current(
             weatherText,

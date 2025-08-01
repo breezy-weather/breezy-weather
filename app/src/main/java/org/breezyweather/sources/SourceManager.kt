@@ -144,7 +144,6 @@ fun SourceManager.getBestSourceForFeature(
  * - None in other countries
  * For alerts, default source is AccuWeather (may be FPAS or WMO SWIC in the future)
  * For normals, default source is AccuWeather (may be NCEI in the future), unless:
- * - Current location: excluded until #1996 is implemented
  * - In China: no normals source, due to firewall
  * For other cases, default source is Open-Meteo
  */
@@ -157,9 +156,7 @@ fun SourceManager.getDefaultSourceForFeature(
             if (it.isFeatureSupportedForLocation(location, feature)) it else null
         } ?: getWeatherSource("accu")?.let { if (it.isFeatureSupportedForLocation(location, feature)) it else null }
         SourceFeature.ALERT -> getWeatherSource("accu")
-        SourceFeature.NORMALS -> if (!location.isCurrentPosition &&
-            !location.countryCode.equals("CN", ignoreCase = true)
-        ) {
+        SourceFeature.NORMALS -> if (!location.countryCode.equals("CN", ignoreCase = true)) {
             getWeatherSource("accu")
         } else {
             null

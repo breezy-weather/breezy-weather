@@ -136,6 +136,8 @@ class WeatherRepository(
                 minutelyUpdateTime = weather.base.minutelyUpdateTime?.time,
                 alertsUpdateTime = weather.base.alertsUpdateTime?.time,
                 normalsUpdateTime = weather.base.normalsUpdateTime?.time,
+                normalsUpdateLatitude = weather.base.normalsUpdateLatitude,
+                normalsUpdateLongitude = weather.base.normalsUpdateLongitude,
 
                 // current
                 weatherText = weather.current?.weatherText,

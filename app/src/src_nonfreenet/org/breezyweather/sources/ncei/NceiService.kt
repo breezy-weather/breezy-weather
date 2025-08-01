@@ -73,15 +73,6 @@ class NceiService @Inject constructor(
         weatherAttribution to "https://www.ncei.noaa.gov/"
     )
 
-    // NCEI is temporarily disabled for Current Location
-    // until better caching is implemented (#1996)
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        return !location.isCurrentPosition
-    }
-
     override fun getFeaturePriorityForLocation(
         location: Location,
         feature: SourceFeature,
@@ -108,9 +99,9 @@ class NceiService @Inject constructor(
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
 
         val stationMap: Map<String, Double> = Json.decodeFromString<Map<String, Double>>(
-            location.parameters.getOrElse(id) {
-                emptyMap()
-            }.getOrElse("stations") { "" }
+            location.parameters
+                .getOrElse(id) { emptyMap() }
+                .getOrElse("stations") { "" }
         )
         val stations = stationMap.keys.joinToString(",")
         val normals = if (stations != "") {
@@ -146,34 +137,28 @@ class NceiService @Inject constructor(
         }
 
         return Month.entries.associateWith { month ->
-            val monthEnding: String = if (month.value in 1..9) {
-                "-0$month"
-            } else {
-                "-$month"
-            }
-
-            var tMaxWeightedSum = 0.0
-            var tMaxWeightTotal = 0.0
-            var tMinWeightedSum = 0.0
-            var tMinWeightTotal = 0.0
+            val monthEnding: String = if (month.value in 1..9) "-0$month" else "-$month"
+            val thisMonthNormals = normalsList
+                ?.filter { it.date.endsWith(monthEnding) && it.station in stationWeights.keys }
 
             // Add each relevant monthly record to the weighted sum of tMax and tMin,
             // using the weight of the reporting station,
             // so that we can calculate the weighted average later.
-            normalsList?.forEach {
-                if (it.date.endsWith(monthEnding)) {
-                    if (it.station in stationWeights.keys) {
-                        if (it.tMax != null) {
-                            tMaxWeightedSum += it.tMax.toDouble().times(stationWeights[it.station]!!)
-                            tMaxWeightTotal += stationWeights[it.station]!!
-                        }
-                        if (it.tMin != null) {
-                            tMinWeightedSum += it.tMin.toDouble().times(stationWeights[it.station]!!)
-                            tMinWeightTotal += stationWeights[it.station]!!
-                        }
-                    }
+            var tMaxWeightedSum = 0.0
+            var tMaxWeightTotal = 0.0
+            var tMinWeightedSum = 0.0
+            var tMinWeightTotal = 0.0
+            thisMonthNormals?.forEach {
+                it.tMax?.toDoubleOrNull()?.let { tMax ->
+                    tMaxWeightedSum += tMax.times(stationWeights[it.station]!!)
+                    tMaxWeightTotal += stationWeights[it.station]!!
+                }
+                it.tMin?.toDoubleOrNull()?.let { tMin ->
+                    tMinWeightedSum += tMin.times(stationWeights[it.station]!!)
+                    tMinWeightTotal += stationWeights[it.station]!!
                 }
             }
+
             Normals(
                 daytimeTemperature = if (tMaxWeightTotal > 0) tMaxWeightedSum.div(tMaxWeightTotal) else null,
                 nighttimeTemperature = if (tMinWeightTotal > 0) tMinWeightedSum.div(tMinWeightTotal) else null
@@ -196,8 +181,7 @@ class NceiService @Inject constructor(
     private fun getWeight(distance: Double): Double {
         val sigmaDistance = DISTANCE_LIMIT / 3.0
         val x = distance / sigmaDistance
-        val weight = 1.0 / sqrt(2.0 * PI) * exp(-x.pow(2.0) / 2.0)
-        return weight
+        return 1.0 / sqrt(2.0 * PI) * exp(-x.pow(2.0) / 2.0)
     }
 
     override fun needsLocationParametersRefresh(
