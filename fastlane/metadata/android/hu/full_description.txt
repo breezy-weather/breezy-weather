@@ -1,0 +1,47 @@
+A Breezy Weather egy funkciógazdag, ingyenes és nyílt forráskódú, Material 3 Expressive kinézettel rendelkező időjárás-alkalmazás, átlátható felülettel. Támogatja az előrejelzéseket, a valós idejű időjárási viszonyokat, a közvetlen előrejelzést (nowcasting), a levegőminőségi és pollenadatokat, valamint a riasztásokat több mint 50 időjárási forrásból, mint például az NWS, a Met Office UK, a Met Éireann, az ECCC és az Open-Meteo.
+
+<b>Funkciók</b>
+
+- Napi és óránkénti előrejelzések akár 16 napra
+- Csapadék a következő órában
+- Valós idejű időjárási viszonyok
+- Nap/Hold állási-, levegőminőségi- és allergén információk
+- Veszélyes időjárás- és csapadékriasztások
+- Adatmegosztás más alkalmazásokkal (például Gadgetbridge)
+- Fókuszban a kisegítőlehetőségek, a képernyőolvasók és más területi beállítások számára
+
+<b>Kinézet</b>
+
+- Material 3 Expressive
+- Részletes, 24 órás diagramok
+- Automatikus sötét mód
+- Egyéni ikoncsomagok
+- Modulok széles választéka
+- Élő háttérkép
+
+<b>Források</b>
+
+- Minden verzióban: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, Recosanté, SMA (Seychelles), SMA (Sudan), SSMS
+- Nem szabad/saját tárhelyen futtatható (a _freenet utótagú verziók nem tartalmazzák): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mixed China sources, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, WMO Severe Weather
+
+<b>Engedélyek</b>
+
+Szükséges:
+
+- Hálózat (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): időjárási adatok letöltése a forrásokból az interneten keresztül
+
+Nem kötelező:
+
+- Háttérszolgáltatások (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): időjárás-frissítések a háttérben és ütemezett előrejelzési értesítések
+- Akkumulátorkímélő mód figyelmen kívül hagyása (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): segít megelőzni, hogy az alkalmazás leálljon egyes eszközökön
+- Értesítések küldése (POST_NOTIFICATIONS): riasztások, csapadék, mai/holnapi előrejelzés, értesítési modul, háttérfrissítések folyamatának jelzése stb.
+- Helyadatok (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): a jelenlegi tartózkodási helyén lévő időjárás megjelenítéséhez
+- Tárhely (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): segít az élő időjárás-háttérkép és/vagy modulok beállításában egyes eszközökön
+- Csempe (EXPAND_STATUS_BAR): lehetővé teszi az alkalmazás elindítását a gyorsbeállításokból
+- Alkalmazás-specifikus nyelv (READ_APP_SPECIFIC_LOCALES): lehetővé teszi egy adott nyelv mentését az alkalmazáshoz, és az érték beolvasását újraindítás után egyes eszközökön
+
+<b>Licenc</b>
+
+- GNU Lesser General Public License v3.0
+- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
