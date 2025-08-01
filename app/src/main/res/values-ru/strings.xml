@@ -837,4 +837,6 @@
     <string name="settings_appearance_dark_mode_locations_dark">Всегда тёмная тема, когда приложение находится в тёмном режиме</string>
     <string name="weather_source_recommended">Рекомендовано</string>
     <string name="action_change">Сменить</string>
+    <string name="message_incompatible_times_title">Несовместимые графики прогнозов</string>
+    <string name="message_incompatible_times_content">Смените прогноз или источник данных про качество воздуха в соответствии со временем.</string>
 </resources>
