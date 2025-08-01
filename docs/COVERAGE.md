@@ -142,7 +142,7 @@ In general, a weather source can be considered for inclusion in the official rel
 ## Europe
 | Country/Territory             | Agency                                                | Status                                                                                | Last Checked |
 |-------------------------------|-------------------------------------------------------|---------------------------------------------------------------------------------------|--------------|
-| 🇦🇽 Åland Is.                |                                                       |                                                                                       |              |
+| 🇦🇽 Åland Is.                | [FMI](https://en.ilmatieteenlaitos.fi/)               | coming soon                                                                           | 2025-08-26   |
 | 🇦🇱 Albania                  |                                                       |                                                                                       |              |
 | 🇦🇩 Andorra                  | [Météo-France](https://meteofrance.com/)              | ✅ included                                                                            |              |
 | 🇦🇹 Austria                  | [GeoSphere Austria](https://www.geosphere.at/)        | ✅ included from v5.2.0                                                                |              |
@@ -157,7 +157,7 @@ In general, a weather source can be considered for inclusion in the official rel
 | 🇩🇰 Denmark                  | [DMI](https://www.dmi.dk)                             | ✅ included from v5.0.0                                                                |              |
 | 🇪🇪 Estonia                  | [Ilmateenistus](https://www.ilmateenistus.ee/)        | ✅ included from v5.4.0                                                                | 2024-12-24   |
 | 🇫🇴 Faroe Is.                | [DMI](https://www.dmi.dk)                             | ✅ included from v5.0.0                                                                |              |
-| 🇫🇮 Finland                  | [FMI](https://en.ilmatieteenlaitos.fi/)               | [data in XML](https://github.com/breezy-weather/breezy-weather/issues/1211)           | 2024-07-22   |
+| 🇫🇮 Finland                  | [FMI](https://en.ilmatieteenlaitos.fi/)               | coming soon                                                                           | 2025-08-26   |
 | 🇫🇷 France                   | [Météo-France](https://meteofrance.com/)              | ✅ included                                                                            |              |
 | 🇬🇪 Georgia                  | [Georgia](https://meteo.gov.ge/)                      |                                                                                       |              |
 | 🇩🇪 Germany                  | [Bright Sky](https://brightsky.dev/)                  | ✅ included from v5.0.0                                                                |              |
