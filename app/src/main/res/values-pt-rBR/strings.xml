@@ -893,4 +893,6 @@
     <string name="settings_appearance_dark_mode_locations_dark">Sempre escuro quando o aplicativo está</string>
     <string name="weather_source_recommended">Recomendada</string>
     <string name="action_change">Alterar</string>
+    <string name="message_incompatible_times_title">Horários de previsão incompatíveis</string>
+    <string name="message_incompatible_times_content">Altere sua fonte de previsão ou qualidade do ar para que os horários combinem.</string>
 </resources>
