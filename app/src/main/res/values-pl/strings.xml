@@ -841,4 +841,6 @@
     <string name="action_translate_no_app">Nie znaleziono aplikacji do tłumaczenia</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Zgodnie z porą dnia</string>
     <string name="settings_appearance_dark_mode_locations_dark">Zawsze ciemny, gdy aplikacja jest w trybie ciemnym</string>
+    <string name="message_incompatible_times_title">Czasy prognozy są niezgodne</string>
+    <string name="message_incompatible_times_content">Zmień źródło prognozy lub jakości powietrza, aby godziny się zgadzały.</string>
 </resources>
