@@ -7,6 +7,7 @@ buildscript {
 }
 
 plugins {
+    alias(libs.plugins.kotlinKsp) apply false
     alias(libs.plugins.kotlinSerialization) apply false
     alias(libs.plugins.aboutLibraries) apply false
     alias(libs.plugins.sqldelight) apply false

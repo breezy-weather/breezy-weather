@@ -9,7 +9,7 @@ plugins {
     id("breezy.android.application")
     id("breezy.android.application.compose")
     id("com.android.application")
-    kotlin("kapt")
+    id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     kotlin("plugin.serialization")
     id("com.mikepenz.aboutlibraries.plugin")
@@ -250,11 +250,6 @@ kotlin {
     }
 }
 
-// Allow references to generated code
-kapt {
-    correctErrorTypes = true
-}
-
 aboutLibraries {
     offlineMode = true
 
@@ -317,9 +312,9 @@ dependencies {
 
     // hilt.
     implementation(libs.dagger.hilt.core)
-    kapt(libs.dagger.hilt.compiler)
+    ksp(libs.dagger.hilt.compiler)
     implementation(libs.hilt.work)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 
     // HTTP
     implementation(libs.bundles.retrofit)
