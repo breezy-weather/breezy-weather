@@ -569,7 +569,7 @@
     <string name="location_delete_location_dialog_title">Eltávolítja ezt helyszínt?</string>
     <string name="location_delete_location_dialog_message">A(z) „%s” nevű helyszínt készül törölni a mentett helyszínek listájáról.</string>
     <string name="location_delete_location_dialog_message_no_name">Ez a helyszín törölve lesz a mentett helyszínek listájáról.</string>
-    <string name="action_confirm">Megerősít</string>
+    <string name="action_confirm">Megerősítés</string>
     <string name="widget_label_hide_header">Fejléc elrejtése</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Jelenlegi levegőminőségi index</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Levegőminőségi index ma, holnap, …, 4 nap múlva</string>
