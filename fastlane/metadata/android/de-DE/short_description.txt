@@ -1,1 +1,1 @@
-Eine funktionsreiche Wetterapp mit guten Visualisierungen und vielen Quellen.
+Eine funktionsreiche Wetter-App mit guten Visualisierungen und vielen Quellen.

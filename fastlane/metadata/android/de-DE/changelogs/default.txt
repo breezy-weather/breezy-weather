@@ -1,2 +1,2 @@
-Änderungshinweise sind auf GitHub verfügbar:
+Versionshinweise sind auf GitHub verfügbar:
 https://github.com/breezy-weather/breezy-weather/releases
