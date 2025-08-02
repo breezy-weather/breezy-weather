@@ -180,11 +180,6 @@ class SettingsActivity : BreezyActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        EventBus.instance.remove(SettingsChangedMessage::class.java)
-    }
-
     @Composable
     private fun ContentView() {
         val scope = rememberCoroutineScope()
