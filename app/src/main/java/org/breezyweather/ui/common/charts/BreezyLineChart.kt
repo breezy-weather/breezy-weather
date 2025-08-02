@@ -228,6 +228,7 @@ fun BreezyLineChart(
             marker = marker,
             markerVisibilityListener = markerVisibilityListener
         ),
+        animateIn = SettingsManager.getInstance(context).isElementsAnimationEnabled,
         modelProducer = modelProducer,
         scrollState = rememberVicoScrollState(scrollEnabled = false),
         modifier = modifier

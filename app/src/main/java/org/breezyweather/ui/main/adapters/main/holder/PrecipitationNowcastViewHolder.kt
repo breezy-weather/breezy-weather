@@ -233,6 +233,7 @@ class PrecipitationNowcastViewHolder(parent: ViewGroup) : AbstractMainCardViewHo
             },
             marker = marker
         )
+        chartView.animateIn = SettingsManager.getInstance(context).isElementsAnimationEnabled
         chartView.modelProducer = modelProducer
         chartView.contentDescription = minutelyList.getContentDescription(context, location)
         @Suppress("ClickableViewAccessibility")

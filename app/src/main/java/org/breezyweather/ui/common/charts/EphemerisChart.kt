@@ -55,6 +55,7 @@ import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.windowHeightInDp
+import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.theme.ThemeManager
 import java.util.Date
 import kotlin.math.PI
@@ -149,6 +150,7 @@ fun EphemerisChart(
                 }
             )
         ),
+        animateIn = SettingsManager.getInstance(context).isElementsAnimationEnabled,
         modelProducer = modelProducer,
         scrollState = rememberVicoScrollState(scrollEnabled = false),
         modifier = modifier
