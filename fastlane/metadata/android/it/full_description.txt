@@ -1,4 +1,4 @@
-Breezy Weather è un'applicazione meteo ricca di funzioni e open source con interfaccia Material 3 Expressive; offre visualizzazioni ben pensate, previsioni, condizioni in tempo reale, qualità dell'aria, pollini, allerte meteo ottenute da più di 50 fonti, come Servizio Meteo AM e Open-Meteo.
+Breezy Weather è un'applicazione meteo ricca di funzioni e open source con interfaccia Material 3 Expressive; offre visualizzazioni ben pensate, previsioni, condizioni in tempo reale, qualità dell'aria, pollini, allerte meteo ottenute da più di 50 fonti, come Meteo AM e Open-Meteo.
 
 <b>Funzionalità</b>
 
