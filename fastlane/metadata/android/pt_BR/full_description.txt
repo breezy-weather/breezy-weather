@@ -1,4 +1,4 @@
-O Breezy Weather é um app de clima livre e de código aberto, rico em recursos, em Material 3 Expressive, com visualizações bem pensadas. Há suporte para previsões, condições do clima em tempo real, previsões imediatas, qualidade do ar, polén, alertas, e mais de 50 fontes de meteorologia, como o Open-Meteo e AccuWeather.
+O Breezy Weather é um app de clima livre e de código aberto, rico em recursos, em Material 3 Expressive, com visualizações bem pensadas. Há suporte para previsões, condições do clima em tempo real, previsões imediatas, qualidade do ar, polén, alertas, e mais de 50 fontes de meteorologia, como o Open-Meteo.
 
 <b>Recursos</b>
 
