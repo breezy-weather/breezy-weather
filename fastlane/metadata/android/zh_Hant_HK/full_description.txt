@@ -1,0 +1,47 @@
+Breezy Weather 是一款功能強大的免費開源天氣應用程式，使用 Material 3 Expressive 風格，視覺效果精心設計，提供天氣預測、即時天氣概況、降水臨近預測、空氣質素、花粉、警告，並支援超過 50 個天氣來源的資訊，包括香港天文台、地球物理氣象局、中央氣象署、國家災害防救科技中心、Open-Meteo 等。
+
+<b>功能</b>
+
+- 最多長達 16 天的每日及每小時預測
+- 未來一小時的降水預測
+- 即時天氣概況
+- 空氣質素、過敏原及日月出沒資訊
+- 惡劣天氣和降水警告
+- 可選擇與其他應用程式（如 Gadgetbridge）分享資料
+- 專注螢幕助讀程式及其他地區設定的無障礙體驗
+
+<b>設計</b>
+
+- Material 3 Expressive
+- 詳細的 24 小時圖表
+- 自動深色模式
+- 自訂圖示套件
+- 大量小工具
+- 動態桌布
+
+<b>來源</b>
+
+- 所有組件組態均包含以下資料來源：Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, Recosanté, SMA (Seychelles), SMA (Sudan), SSMS
+- 非自由軟體／不能自我裝載的資料來源（不包含在後綴為 _freenet 的版本）：AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mixed China sources, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, WMO Severe Weather
+
+<b>權限</b>
+
+必須授予：
+
+- 網絡 (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET)：從網絡來源擷取天氣資料
+
+選擇性授予：
+
+- 背景服務 (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE)：在背景更新天氣資料，及排程預測通知
+- 忽略電池最佳化 (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)：在某些裝置上可防止應用程式被強制終止
+- 傳送通知 (POST_NOTIFICATIONS)：警告、降水、今日／明日預測、通知小工具、背景更新進度等
+- 位置 (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION)：顯示您目前位置的天氣
+- 儲存空間 (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE)：在某些裝置上設定天氣動態桌布及／或小工具
+- 方塊 (EXPAND_STATUS_BAR)：在 Android 快速設定啟動應用程式
+- 應用程式特定語言 (READ_APP_SPECIFIC_LOCALES)：在某些裝置上儲存應用程式語言設定，以便重新開機後讀取
+
+<b>授權</b>
+
+- GNU Lesser General Public License v3.0
+- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
