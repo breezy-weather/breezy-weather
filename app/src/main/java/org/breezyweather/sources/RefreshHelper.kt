@@ -44,6 +44,7 @@ import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import org.breezyweather.BreezyWeather
 import org.breezyweather.BuildConfig
+import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
 import org.breezyweather.common.exceptions.ApiKeyMissingException
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.exceptions.NoNetworkException
@@ -795,7 +796,9 @@ class RefreshHelper @Inject constructor(
                 ),
                 dailyForecast = dailyForecast,
                 hourlyForecast = hourlyForecast,
-                minutelyForecast = weatherWrapperCompleted.minutelyForecast ?: emptyList(),
+                minutelyForecast = weatherWrapperCompleted.minutelyForecast
+                    ?.map { PrecipitationIntensityUnit.validateMinutely(it) }
+                    ?: emptyList(),
                 alertList = weatherWrapperCompleted.alertList ?: emptyList(),
                 normals = weatherWrapperCompleted.normals ?: emptyMap()
             )
@@ -1058,7 +1061,7 @@ class RefreshHelper @Inject constructor(
             )
         }
         try {
-            shortcutManager.setDynamicShortcuts(shortcutList)
+            shortcutManager.dynamicShortcuts = shortcutList
         } catch (ignore: Exception) {
             // do nothing.
         }

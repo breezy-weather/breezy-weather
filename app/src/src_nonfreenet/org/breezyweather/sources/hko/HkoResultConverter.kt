@@ -219,21 +219,13 @@ internal fun getHourlyForecast(
                         weatherText = getWeatherText(context, currentHourWeather),
                         weatherCode = getWeatherCode(currentHourWeather),
                         temperature = TemperatureWrapper(
-                            temperature = value.ForecastTemperature?.let {
-                                if (it < 100.0) it else null
-                            }
+                            temperature = value.ForecastTemperature
                         ),
                         wind = Wind(
-                            degree = value.ForecastWindDirection?.let {
-                                if (it >= 0.0 && it < 360.0) it else null
-                            },
-                            speed = value.ForecastWindSpeed?.let {
-                                if (it < 1000.0) it.div(3.6) else null // convert km/h to m/s
-                            }
+                            degree = value.ForecastWindDirection,
+                            speed = value.ForecastWindSpeed?.div(3.6) // convert km/h to m/s
                         ),
-                        relativeHumidity = value.ForecastRelativeHumidity?.let {
-                            if (it <= 100.0) it else null
-                        }
+                        relativeHumidity = value.ForecastRelativeHumidity
                     )
                 )
             }

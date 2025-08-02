@@ -20,6 +20,7 @@ import android.content.Context
 import android.icu.util.MeasureUnit
 import android.icu.util.TimeUnit
 import android.os.Build
+import breezyweather.domain.weather.model.Minutely
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitEnum
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
@@ -91,6 +92,11 @@ enum class PrecipitationUnit(
         ) = when (context.currentLocale.country) {
             "US" -> INCH
             else -> CENTIMETER
+        }
+
+        // Maximum period is 12 hours
+        fun validateValue(precipitation: Double?): Double? {
+            return precipitation?.let { if (it in 0.0..10000.0) it else null }
         }
     }
 
@@ -201,6 +207,17 @@ enum class PrecipitationIntensityUnit(
         ) = when (context.currentLocale.country) {
             "US" -> INCH_PER_HOUR
             else -> CENTIMETER_PER_HOUR
+        }
+
+        // Maximum period is 1 hour
+        fun validateValue(precipitationIntensity: Double?): Double? {
+            return precipitationIntensity?.let { if (it in 0.0..1000.0) it else null }
+        }
+
+        fun validateMinutely(minutely: Minutely): Minutely {
+            return minutely.copy(
+                precipitationIntensity = validateValue(minutely.precipitationIntensity)
+            )
         }
     }
 

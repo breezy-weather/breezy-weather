@@ -38,6 +38,16 @@ enum class DurationUnit(
     ),
     ;
 
+    companion object {
+        fun validateDailyValue(hours: Double?): Double? {
+            return hours?.let { if (it in 0.0..24.0) it else null }
+        }
+
+        fun validateHalfDayValue(hours: Double?): Double? {
+            return hours?.let { if (it in 0.0..12.0) it else null }
+        }
+    }
+
     override val valueArrayId = R.array.duration_unit_values
     override val nameArrayId = R.array.duration_units
     override val contentDescriptionArrayId = R.array.duration_unit_voices

@@ -81,6 +81,10 @@ enum class TemperatureUnit(
                 else -> CELSIUS
             }
         }
+
+        fun validateValue(temperature: Double?): Double? {
+            return temperature?.let { if (it in -100.0..100.0) it else null }
+        }
     }
 
     override val valueArrayId = R.array.temperature_unit_values

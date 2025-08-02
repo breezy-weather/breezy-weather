@@ -78,5 +78,9 @@ data class Wind(
         const val WIND_SPEED_15 = 50.9
         const val WIND_SPEED_16 = 56.0
         const val WIND_SPEED_17 = 61.2
+
+        fun validateDegree(degree: Double?): Double? {
+            return degree?.let { if (it == -1.0 || it in 0.0..360.0) it else null }
+        }
     }
 }

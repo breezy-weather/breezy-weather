@@ -45,6 +45,8 @@ operator fun Double?.minus(other: Double?): Double? = if (this != null || other 
     null
 }
 
+fun Double.ensurePositive(): Double? = if (this >= 0.0) this else null
+
 fun Double.roundUpToNearestMultiplier(multiplier: Double): Double {
     return ceil(div(multiplier)).times(multiplier)
 }

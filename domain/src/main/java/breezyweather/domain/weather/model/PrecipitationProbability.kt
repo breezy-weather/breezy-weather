@@ -23,7 +23,7 @@ import java.io.Serializable
  *
  * default unit : [ProbabilityUnit.PERCENT]
  */
-class PrecipitationProbability(
+data class PrecipitationProbability(
     val total: Double? = null,
     val thunderstorm: Double? = null,
     val rain: Double? = null,

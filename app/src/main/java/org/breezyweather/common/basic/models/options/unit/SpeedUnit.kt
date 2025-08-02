@@ -157,6 +157,18 @@ enum class SpeedUnit(
             "GB", "US" -> MILE_PER_HOUR
             else -> KILOMETER_PER_HOUR
         }
+
+        fun validateValue(speed: Double?): Double? {
+            return speed?.let { if (it in 0.0..150.0) it else null }
+        }
+
+        fun validateWind(wind: Wind?): Wind? {
+            return wind?.copy(
+                degree = Wind.validateDegree(wind.degree),
+                speed = SpeedUnit.validateValue(wind.speed),
+                gusts = SpeedUnit.validateValue(wind.gusts)
+            )
+        }
     }
 
     override val valueArrayId = R.array.speed_unit_values

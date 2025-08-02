@@ -558,6 +558,14 @@ object UnitUtils {
         }
     }
 
+    fun validatePercent(percent: Double?): Double? {
+        return percent?.let { if (it in 0.0..100.0) it else null }
+    }
+
+    fun validatePercent(percent: Int?): Int? {
+        return percent?.let { if (it in 0..100) it else null }
+    }
+
     private val ARABIC_DIGITS = charArrayOf('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
     private val ARABIC_INDIC_DIGITS = charArrayOf('٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩')
     private val BENGALI_DIGITS = charArrayOf('০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯')

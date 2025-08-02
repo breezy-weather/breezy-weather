@@ -125,6 +125,10 @@ enum class DistanceUnit(
                 else -> null
             }
         }
+
+        fun validateValue(distance: Double?): Double? {
+            return distance?.let { if (it >= 0.0) it else null }
+        }
     }
 
     override val valueArrayId = R.array.distance_unit_values

@@ -18,6 +18,7 @@
 - Settings - Improve the location-based dark mode preference to make it easier to understand
 - Sources - Add a “Recommended” section to the Source selection screen
 - Refresh - Add an error when air quality forecast times don’t match hourly forecast times (observed in India, for example)
+- Refresh - Ensure range of (almost) all values provided by sources, so you no longer have to freak out when seeing -999° with PirateWeather or 1015° with Meteo AM
 
 **Weather sources**
 - [AccuWeather] Restrict pollen to USA, Canada and Europe as it’s only available there (@chunshek)
@@ -31,7 +32,6 @@
 - [NSLC] Added as address lookup source for Taiwan (@chunshek)
 - [Open-Meteo] Restrict pollen to Europe as it’s only available there (@chunshek)
 - [Pirate Weather] Add support for daily/hourly summaries
-- [Pirate Weather] Don’t show obviously wrong -999 values sent by the server (@chunshek)
 - [WMO SWIC] Avoid missing alerts which expired date was updated
 - [ANAM-BF, DCCMS, DMN, DWR, EMI, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, SMA (Seychelles), SMA (Sudan), SSMS] Add to  ̀freenet` flavor (was missing despite being FOSS)
 

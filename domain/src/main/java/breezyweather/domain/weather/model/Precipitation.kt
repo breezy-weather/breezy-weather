@@ -23,7 +23,7 @@ import java.io.Serializable
  *
  * default unit : [PrecipitationUnit.MM]
  */
-class Precipitation(
+data class Precipitation(
     val total: Double? = null,
     val thunderstorm: Double? = null,
     val rain: Double? = null,
