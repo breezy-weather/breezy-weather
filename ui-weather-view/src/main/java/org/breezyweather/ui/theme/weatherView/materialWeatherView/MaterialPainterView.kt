@@ -30,7 +30,6 @@ import androidx.annotation.Size
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.withTranslation
 import org.breezyweather.ui.theme.weatherView.WeatherView.WeatherKindRule
-import org.breezyweather.ui.theme.weatherView.getTabletListAdaptiveWidth
 import org.breezyweather.ui.theme.weatherView.isLandscape
 import org.breezyweather.ui.theme.weatherView.sensorManager
 import kotlin.math.abs
@@ -192,7 +191,7 @@ class MaterialPainterView(
 
         val metrics = resources.displayMetrics
         canvasSize = intArrayOf(
-            context.getTabletListAdaptiveWidth(metrics.widthPixels),
+            metrics.widthPixels,
             metrics.heightPixels
         )
 
@@ -228,7 +227,7 @@ class MaterialPainterView(
         super.onSizeChanged(w, h, oldw, oldh)
 
         if (measuredWidth != 0 && measuredHeight != 0) {
-            val width = context.getTabletListAdaptiveWidth(measuredWidth)
+            val width = measuredWidth
             val height = measuredHeight
 
             if (canvasSize[0] != width || canvasSize[1] != height) {
