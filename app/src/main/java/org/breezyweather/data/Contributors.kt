@@ -417,6 +417,7 @@ val appTranslators = arrayOf(
     TranslatorItem(arrayOf("zh_rCN"), "cloudfish", github = "cloudfish"),
     TranslatorItem(arrayOf("zh_rCN"), "WorldNulptr", github = "WorldNulptr"),
     TranslatorItem(arrayOf("zh_rHK", "zh_rTW"), "chunshek", github = "chunshek"),
+    TranslatorItem(arrayOf("zh_rCN", "zh_rHK", "zh_rTW"), "Frz", github = "FrzMtrsprt"),
     TranslatorItem(arrayOf("ja", "zh_rCN", "zh_rHK", "zh_rTW"), "天ツ風", github = "Yibuki"),
     TranslatorItem(
         arrayOf("zh_rHK", "zh_rTW", "be", "bg", "bs", "de", "el", "en", "eu", "it", "ja", "mk", "pl", "ru", "uk", "vi"),
