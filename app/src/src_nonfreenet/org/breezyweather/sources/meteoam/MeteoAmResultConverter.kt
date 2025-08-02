@@ -81,13 +81,13 @@ internal fun getCurrent(
         weatherText = getWeatherText(context, icon),
         weatherCode = getWeatherCode(icon),
         temperature = TemperatureWrapper(
-            temperature = temp
+            temperature = validate(temp)
         ),
         wind = Wind(
-            degree = wdir,
-            speed = wspd
+            degree = validate(wdir, 360.0),
+            speed = validate(wspd)
         ),
-        relativeHumidity = rhum,
+        relativeHumidity = validate(rhum),
         pressure = pres
     )
 }
@@ -173,16 +173,16 @@ internal fun getHourlyForecast(
                 weatherText = getWeatherText(context, icon),
                 weatherCode = getWeatherCode(icon),
                 temperature = TemperatureWrapper(
-                    temperature = temp
+                    temperature = validate(temp)
                 ),
                 precipitationProbability = PrecipitationProbability(
-                    total = tpop
+                    total = validate(tpop)
                 ),
                 wind = Wind(
-                    degree = wdir,
-                    speed = wspd
+                    degree = validate(wdir, 360.0),
+                    speed = validate(wspd)
                 ),
-                relativeHumidity = rhum,
+                relativeHumidity = validate(rhum),
                 pressure = pres
             )
         )
@@ -234,5 +234,13 @@ private fun getWeatherText(context: Context, icon: String?): String? {
         "18" -> context.getString(R.string.meteoam_weather_text_smoke) // "Fumo"
         "19" -> context.getString(R.string.meteoam_weather_text_sand_storm) // "Tempesta di sabbia"
         else -> null
+    }
+}
+
+private fun validate(value: Double?, limit: Double = 100.0): Double? {
+    return if (value != null && value <= limit) {
+        value
+    } else {
+        null
     }
 }
