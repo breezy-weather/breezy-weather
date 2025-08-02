@@ -822,4 +822,7 @@
     <string name="settings_appearance_dark_mode_locations_day_night">Згодна з часам сутак</string>
     <string name="settings_appearance_dark_mode_locations_dark">Заўсёды цёмны, калі ў праграме стаіць цёмны рэжым</string>
     <string name="action_change">Змяніць</string>
+    <string name="message_incompatible_times_content">Змяніце крыніцу даных для прагнозу або для якасці паветра, каб час супадаў.</string>
+    <string name="message_incompatible_times_title">Не супадае час прагнозаў</string>
+    <string name="weather_source_recommended">Рэкамендавана</string>
 </resources>
