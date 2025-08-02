@@ -1,4 +1,4 @@
-Breezy Weather ist eine kostenlose und quelloffene Material 3 Expressive Wetter-App mit vielen Funktionen und durchdachten Visualisierungen, die Vorhersagen, Wetterbedingungen in Echtzeit, Kurzvorhersagen, Luftqualität, Pollen und Warnungen von über 50 Wetterquellen, wie Bright Sky (DWD), GeoSphere Austria und Open-Meteo, bietet.
+Breezy Weather ist eine kostenlose und quelloffene Material 3 Expressive Wetter-App mit vielen Funktionen und durchdachten Visualisierungen, die Vorhersagen, Wetterbedingungen in Echtzeit, Kurzvorhersagen, Luftqualität, Pollen und Warnungen von über 50 Wetterquellen, wie Bright Sky (DWD), GeoSphere Austria, MeteoLux und Open-Meteo, bietet.
 
 <b>Funktionen</b>
 
