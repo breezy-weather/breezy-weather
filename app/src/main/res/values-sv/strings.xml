@@ -458,7 +458,7 @@
     <string name="unit_inhg">inHg</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lätt eller medelkraftig åskstorm</string>
     <string name="settings_location_access_precise_title">Enhetens gps-användning</string>
-    <string name="settings_notifications_forecast_tomorrow_title">Avisering om nästa dags prognos</string>
+    <string name="settings_notifications_forecast_tomorrow_title">Avisering om morgondagens prognos</string>
     <string name="settings_main_section_displayed_data">Visade data</string>
     <string name="settings_widgets_section_notification_widget">Aviseringswidget</string>
     <string name="settings_appearance_dark_mode_title">Mörkt läge i appen</string>
@@ -515,7 +515,7 @@
     <string name="common_weather_text_rain_freezing_light">Lätt underkylt regn</string>
     <string name="settings_location_access_background_title">Platsåtkomst i bakgrunden</string>
     <string name="common_weather_text_snow_moderate">Snö</string>
-    <string name="settings_notifications_forecast_time_tomorrow_title">Aviseringstid för nästa dags prognos</string>
+    <string name="settings_notifications_forecast_time_tomorrow_title">Aviseringstid för morgondagens prognos</string>
     <string name="settings_background_updates_worker_info_title">Processinfo</string>
     <string name="location_service_native">Inbyggt API</string>
     <string name="settings_main_cards_title">Block</string>
@@ -830,4 +830,6 @@
     <string name="air_quality_co_index">Luftkvalitetsindexskala för CO</string>
     <string name="weather_source_recommended">Rekommenderade</string>
     <string name="action_change">Ändra</string>
+    <string name="message_incompatible_times_title">Inkompatibla prognostider</string>
+    <string name="message_incompatible_times_content">Ändra din prognos- eller luftkvalitetskälla så att tiderna stämmer överens.</string>
 </resources>
