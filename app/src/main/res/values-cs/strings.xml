@@ -846,4 +846,6 @@
     <string name="air_quality_co_index">Stupnice indexu kvality ovzduší pro CO</string>
     <string name="weather_source_recommended">Doporučené</string>
     <string name="action_change">Změna</string>
+    <string name="message_incompatible_times_title">Nekompatibilní časy předpovědí</string>
+    <string name="message_incompatible_times_content">Změňte váš zdroj předpovědi nebo kvality ovzduší tak, aby se časy shodovaly.</string>
 </resources>
