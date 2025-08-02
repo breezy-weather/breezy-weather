@@ -842,4 +842,7 @@
     <string name="settings_appearance_section_regional">Kieli ja alue</string>
     <string name="settings_appearance_section_theme">Teema</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Päivästä tai yöstä riippuen</string>
+    <string name="settings_appearance_dark_mode_locations_dark">Aina tummana, kun sovellus on tummassa tilassa</string>
+    <string name="unit_mum_voice">Mikrometrit</string>
+    <string name="about_update_check_eol">Tätä Android-versiota ei enää tueta</string>
 </resources>
