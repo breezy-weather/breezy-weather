@@ -728,4 +728,26 @@
     <string name="air_quality_level_2_harmless_exposure">&lt; 1 metus</string>
     <string name="air_quality_level_3_harmless_exposure">&lt; 1 diena</string>
     <string name="air_quality_level_4_harmless_exposure">&lt; 1 valanda</string>
+    <string name="air_quality_level_5_harmless_exposure">&lt; kelių minučių</string>
+    <string name="air_quality_level_6_harmless_exposure">&lt; 1 minutė</string>
+    <string name="air_quality_pollutant_primary">Pagrindinis teršalas</string>
+    <string name="air_quality_pollutant_details">Teršalo detalės</string>
+    <string name="air_quality_health_information">Sveikatos informacija</string>
+    <string name="pollen_primary">Pagrindinės žiedadulkės</string>
+    <string name="pollen_details">Žiedadulkių detalės</string>
+    <string name="daytime_short">Diena</string>
+    <string name="nighttime_short">Naktis</string>
+    <string name="pressure_rising">Kylantis</string>
+    <string name="pressure_steady">Pastovus</string>
+    <string name="pressure_falling">Krintantis</string>
+    <string name="pressure_about">Apie slėgį</string>
+    <string name="visibility_about">Apie matomumą</string>
+    <string name="visibility_very_poor">Labai prastas</string>
+    <string name="visibility_poor">Prastas</string>
+    <string name="visibility_good">Geras</string>
+    <string name="visibility_clear">Skaidrus</string>
+    <string name="visibility_perfectly_clear">Visiškai skaidrus</string>
+    <string name="data_sources">Duomenų šaltiniai</string>
+    <string name="weather_source_recommended">Rekomendacijos</string>
+    <string name="action_change">Keisti</string>
 </resources>
