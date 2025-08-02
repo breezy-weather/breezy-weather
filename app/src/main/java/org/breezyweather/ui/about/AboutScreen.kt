@@ -371,7 +371,7 @@ private fun SectionTitle(title: String) {
 private val versionFormatted: String
     get() = when {
         BuildConfig.DEBUG -> "Debug ${BuildConfig.COMMIT_SHA}"
-        else -> "Stable ${BuildConfig.VERSION_NAME}"
+        else -> "Release ${BuildConfig.VERSION_NAME}"
     }
 
 @Composable
