@@ -278,15 +278,11 @@
     <string name="air_quality_pm25_voice">PM dos punto cinco</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_pm10_voice">PM diez</string>
-    <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_so2_voice">Dióxido de azufre</string>
-    <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Dióxido de nitrógeno</string>
-    <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Ozono</string>
     <string name="air_quality_co_voice">Monóxido de carbono</string>
-    <string name="air_quality_o3_full">Ozono troposférico (O₃)</string>
-    <string name="air_quality_co">CO</string>
+    <string name="air_quality_o3_full">Ozono troposférico (%s)</string>
     <string name="location_search_no_results">%1$s no puede encontrar %2$s</string>
     <string name="weather_source_accu_preference_days_15">15 días</string>
     <string name="weather_source_accu_preference_hours_120">120 horas</string>
@@ -311,8 +307,8 @@
     <string name="settings_background_updates_refresh_title">Frecuencia de actualización</string>
     <string name="settings_weather_source_portal">Portal</string>
     <string name="location_search_no_results_advice">Asegúrese de que el término de búsqueda esté escrito correctamente y no sea demasiado específico. Alternativamente, puede probar con otra fuente de búsqueda de ubicación que puede arrojar resultados diferentes.</string>
-    <string name="air_quality_so2_full">Dióxido de azufre (SO₂)</string>
-    <string name="air_quality_co_full">Monóxido de carbono (CO)</string>
+    <string name="air_quality_so2_full">Dióxido de azufre (%s)</string>
+    <string name="air_quality_co_full">Monóxido de carbono (%s)</string>
     <string name="weather_api_limit_reached_title">Límite de solicitudes a la API alcanzado</string>
     <string name="weather_api_unauthorized_title">Acceso API no autorizado</string>
     <string name="weather_api_key_required_missing_title">Falta la clave API requerida</string>
@@ -352,7 +348,7 @@
     <string name="widget_style_vertical">Vertical</string>
     <string name="dialog_permissions_notification_content">Pulse aquí para activar las notificaciones acerca de alertas meteorológicas o decide luego en la Configuración.</string>
     <string name="settings_location_access_background_title">Acceso al lugar en segundo plano</string>
-    <string name="air_quality_no2_full">Dióxido de nitrógeno (NO₂)</string>
+    <string name="air_quality_no2_full">Dióxido de nitrógeno (%s)</string>
     <string name="action_continue">Continuar</string>
     <string name="action_close">Cerrar</string>
     <string name="dialog_permissions_notification_title">Mantenerme informado</string>

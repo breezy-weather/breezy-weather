@@ -351,13 +351,10 @@
     <string name="air_quality_pm10">جسيمات10</string>
     <string name="air_quality_o3_voice">أوزون</string>
     <string name="air_quality_pm10_voice">جسيمات عشرة</string>
-    <string name="air_quality_so2">SO₂</string>
-    <string name="air_quality_no2">NO₂</string>
-    <string name="air_quality_co">CO</string>
-    <string name="air_quality_o3_full">الأوزون الأرضي (O₃)</string>
-    <string name="air_quality_no2_full">ثاني أكسيد النيتروجين (NO₂)</string>
-    <string name="air_quality_so2_full">ثاني أكسيد الكبريت (SO₂)</string>
-    <string name="air_quality_co_full">أول أكسيد الكربون (CO)</string>
+    <string name="air_quality_o3_full">الأوزون الأرضي (%s)</string>
+    <string name="air_quality_no2_full">ثاني أكسيد النيتروجين (%s)</string>
+    <string name="air_quality_so2_full">ثاني أكسيد الكبريت (%s)</string>
+    <string name="air_quality_co_full">أول أكسيد الكربون (%s)</string>
     <string name="ephemeris_moonset_at">غروب القمر في %s</string>
     <string name="weather_api_limit_reached_title">تم الوصول للحد الأقصى لطلبات API</string>
     <string name="weather_api_limit_reached_content">لتجاوز الحد الأقصى، أضف مفتاح API الخاص بك.</string>
@@ -391,7 +388,6 @@
     <string name="dialog_permissions_notification_title">ابق على اطلاع</string>
     <string name="dialog_permissions_notification_content">انقر هنا لتفعيل الإشعارات حول تنبيهات الطقس، أو فعله لاحقا في الإعدادات.</string>
     <string name="precipitation_none">لا توجد تساقطات</string>
-    <string name="air_quality_o3">O₃</string>
     <string name="settings_background_updates_battery_optimization_summary">هذا هو أول شيء يجب تجربته اذا لم تكن تتلقى إشعارات أو اذا لم يتم تحديث ايقونات سطح المكتب.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">تعليمات خاصة بالشركة المصنعة</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">تفرض بعض الشركات المصنعة قيودا إضافية على التطبيقات التي توقف خدمات الخلفية.يحتوي موقع !Don’t kill my app على معلومات حول كيفية إصلاح المشكلة.</string>

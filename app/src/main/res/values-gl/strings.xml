@@ -51,15 +51,12 @@
     <string name="air_quality_level_5_description">Os grupos sensibles sentirán efectos prexudiciais sobre a súa saúde inmediatamente. É probable que as persoas sas experimenten dificultade para respirar e irritación da garganta; considere permanecer dentro e reprogramar as actividades ao aire libre.</string>
     <string name="air_quality_level_6">Perigoso</string>
     <string name="air_quality_so2_voice">Dióxido de xofre</string>
-    <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Dióxido de nitróxeno</string>
-    <string name="air_quality_o3">O₃</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm25_voice">PM dous punto cinco</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_pm10_voice">PM dez</string>
-    <string name="air_quality_so2">SO₂</string>
-    <string name="air_quality_no2_full">Dióxido de nitróxeno (NO₂)</string>
+    <string name="air_quality_no2_full">Dióxido de nitróxeno (%s)</string>
     <string name="dialog_time_picker_select_time">Elixir unha hora</string>
     <string name="dialog_time_picker_input_time">Introducir unha hora</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Cambiar á entrada táctil</string>
@@ -116,7 +113,6 @@
     <string name="air_quality_level_4">Pouco saudable</string>
     <string name="air_quality_level_4_description">Os grupos sensibles poden sentir inmediatamente efectos prexudiciais sobre a súa saúde. As persoas sanas poden experimentar dificultade para respirar e irritación da gorxa ante unha exposición prolongada. Limite a actividade ao aire libre.</string>
     <string name="air_quality_level_5">Moi insalubre</string>
-    <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Monóxido de carbono</string>
     <string name="air_quality_level_6_description">A exposición ao aire, aínda que sexa por uns poucos minutos, pode provocar graves efectos na saúde de todos. Evite as actividades ao aire libre.</string>
     <string name="air_quality_o3_voice">Ozono</string>
@@ -125,7 +121,7 @@
     <string name="daily_yesterday_short">Onte</string>
     <string name="temperature_apparent">Aparente</string>
     <string name="alert_source">Fonte: %s</string>
-    <string name="air_quality_o3_full">Ozono troposférico (O₃)</string>
+    <string name="air_quality_o3_full">Ozono troposférico (%s)</string>
     <string name="dialog_permissions_location_background_title">Acceso á localización en segundo plano</string>
     <string name="dialog_permissions_location_background_content">Para permitirlle á aplicación o acceso á localización en segundo plano, por favor seleccione o acceso á localización “Todo o tempo”.</string>
     <string name="dialog_time_picker_toggle_text_input_voice">Cambiar á entrada de texto</string>
@@ -152,8 +148,8 @@
     <string name="pollen_artemisia">Artemisa</string>
     <string name="pollen_betula">Bidueiro</string>
     <string name="temperature_average_short">Media</string>
-    <string name="air_quality_so2_full">Dióxido de xofre (SO₂)</string>
-    <string name="air_quality_co_full">Monóxido de carbono (CO)</string>
+    <string name="air_quality_so2_full">Dióxido de xofre (%s)</string>
+    <string name="air_quality_co_full">Monóxido de carbono (%s)</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Humidade actual</string>
     <string name="weather_kind_wind">Vento</string>
     <string name="common_weather_text_smoke">Fume</string>

@@ -447,10 +447,6 @@
     <string name="settings_weather_sources">Fonti meteo</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="air_quality_index">Indice qualità dell’aria</string>
-    <string name="air_quality_co">CO</string>
-    <string name="air_quality_o3">O₃</string>
-    <string name="air_quality_no2">NO₂</string>
-    <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="location_message_reverse_geocoding_failed">La fonte di dati meteo non è riuscita a trovare una località corrispondente</string>
@@ -460,12 +456,12 @@
     <string name="action_show_errors">Tocca per dettagli</string>
     <string name="dialog_permissions_notification_title">Rimani informato</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignora quando la batteria è bassa</string>
-    <string name="air_quality_so2_full">Biossido di zolfo (SO₂)</string>
+    <string name="air_quality_so2_full">Biossido di zolfo (%s)</string>
     <string name="location_search_no_results">%1$s non è riuscito a trovare %2$s</string>
-    <string name="air_quality_no2_full">Biossido di azoto (NO₂)</string>
+    <string name="air_quality_no2_full">Biossido di azoto (%s)</string>
     <string name="action_close">Chiudi</string>
     <string name="settings_location_access_switch_summaryOff">Concedi se vuoi aggiungere la posizione corrente come una posizione.</string>
-    <string name="air_quality_co_full">Monossido di carbonio (CO)</string>
+    <string name="air_quality_co_full">Monossido di carbonio (%s)</string>
     <string name="settings_background_updates_worker_info_title">Info processo</string>
     <string name="temperature_degree_day_heating">Gradi giorno di riscaldamento</string>
     <string name="temperature_degree_day_cooling">Gradi giorno di raffreddamento</string>
@@ -492,7 +488,7 @@
     <string name="pollen_level_4">Alto</string>
     <string name="weather_message_invalid_location">Località non valida, rimuoverla e aggiungerla nuovamente</string>
     <string name="dialog_permissions_notification_content">Premere qui per abilitare le notifiche sulle allerte meteo, o decidere più tardi in Impostazioni.</string>
-    <string name="air_quality_o3_full">Ozono (O₃) a livello del suolo</string>
+    <string name="air_quality_o3_full">Ozono (%s) a livello del suolo</string>
     <string name="action_save">Salva</string>
     <string name="settings_weather_sources_per_location_summary">Personalizza fonti dati meteo usate per questa posizione</string>
     <string name="action_delete">Elimina</string>

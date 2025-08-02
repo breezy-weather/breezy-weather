@@ -77,10 +77,10 @@
     <string name="temperature_feels_like_short">जैसा लगना</string>
     <string name="uv_index_short">यूवी सूचकांक</string>
     <string name="temperature_degree_day">डिग्री दिवस</string>
-    <string name="air_quality_o3_full">जमीनी स्तर ओजोन (ओ₃)</string>
+    <string name="air_quality_o3_full">जमीनी स्तर ओजोन (%s)</string>
     <string name="air_quality_pm10">पीएम10</string>
     <string name="air_quality_pm10_voice">पीएम दस</string>
-    <string name="air_quality_no2_full">नाइट्रोजन डाइऑक्साइड (एनओ₂)</string>
+    <string name="air_quality_no2_full">नाइट्रोजन डाइऑक्साइड (%s)</string>
     <string name="air_quality_co_voice">कार्बन मोनोऑक्साइड</string>
     <string name="pollen_level_2">कम</string>
     <string name="pollen_level_3">मध्यम</string>
@@ -204,7 +204,6 @@
     <string name="settings_background_updates_section_troubleshoot">समस्याओं का निवारण</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">कुछ निर्माताओं के पास अतिरिक्त ऐप प्रतिबंध हैं जो पृष्ठभूमि सेवाओं को ख़त्म कर देते हैं. “Don’t kill my app!” वेबसाइट पर इसे ठीक करने की जानकारी है।</string>
     <string name="air_quality_pm25">पीएम2.5</string>
-    <string name="air_quality_co">सीओ</string>
     <string name="settings_notifications_summary">पहले स्थान के लिए मौसम चेतावनियों, वर्षा या पूर्वानुमान की सूचनाएं</string>
     <string name="settings_notifications">सूचनाएं</string>
     <string name="settings_notifications_section_forecast">पूर्वानुमान</string>
@@ -217,10 +216,7 @@
     <string name="settings_notifications_forecast_tomorrow_title">अगले दिन के पूर्वानुमान के लिए अधिसूचना</string>
     <string name="settings_notifications_forecast_time_today_title">दिन के पूर्वानुमान के लिए अधिसूचना का समय</string>
     <string name="air_quality_pm25_voice">पीएम दो दशांश पांच</string>
-    <string name="air_quality_so2">एसओ₂</string>
     <string name="air_quality_so2_voice">सल्फर डाइऑक्साइड</string>
-    <string name="air_quality_no2">एनओ₂</string>
-    <string name="air_quality_o3">ओ₃</string>
     <string name="settings_main_hourly_trends_title">प्रति घंटा रुझान</string>
     <string name="settings_widgets_summary">भित्ति पत्र बदले, उपयोग किए गए विजेट अनुरूप करें, अधिसूचना विजेट</string>
     <string name="settings_main_section_options">विकल्प</string>
@@ -569,9 +565,9 @@
     <string name="common_weather_text_rain_freezing">हिमीकरण बारिश</string>
     <string name="common_weather_text_rain_freezing_light">हल्की बर्फ़ीली बारिश</string>
     <string name="alert">चेतावनी</string>
-    <string name="air_quality_co_full">कार्बन मोनोऑक्साइड (सीओ)</string>
+    <string name="air_quality_co_full">कार्बन मोनोऑक्साइड (%s)</string>
     <string name="alert_source">स्रोतः %s</string>
-    <string name="air_quality_so2_full">सल्फर डाइऑक्साइड (एसओ₂)</string>
+    <string name="air_quality_so2_full">सल्फर डाइऑक्साइड (%s)</string>
     <string name="temperature_degree_day_heating">तापन डिग्री दिन</string>
     <string name="temperature_degree_day_cooling">शीतलन डिग्री दिन</string>
     <string name="pollen_alnus">अल्डर</string>

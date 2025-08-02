@@ -15,11 +15,8 @@
     <string name="air_quality_level_2">God</string>
     <string name="air_quality_level_6">Farlig</string>
     <string name="air_quality_so2_voice">Svoveldioksid</string>
-    <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Nitrogendioksid</string>
-    <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Ozon</string>
-    <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Karbonmonoksid</string>
     <string name="daily_forecast">Daglig værvarsel</string>
     <string name="alerts">Farevarsler</string>
@@ -83,9 +80,8 @@
     <string name="air_quality_level_5_description">Helseplager vil merkes umiddelbart av sensitive grupper og utendørsaktiviteter bør unngås. Friske individer vil sannsynligvis oppleve pustevansker og halsirritasjon; vurder å holde deg innendørs og unngå utendørsaktiviteter.</string>
     <string name="air_quality_level_6_description">All eksponering til luften, selv i noen få minutter, kan føre til alvorlige helseplager for alle. Unngå utendørsaktiviteter.</string>
     <string name="air_quality_pm10_voice">PM ti</string>
-    <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_pm25">PM2,5</string>
-    <string name="air_quality_o3_full">Bakkenær ozon (O₃)</string>
+    <string name="air_quality_o3_full">Bakkenær ozon (%s)</string>
     <string name="air_quality_pm25_voice">PM to komma fem</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="temperature_feels_like_short">Føles som</string>
@@ -96,7 +92,7 @@
     <string name="pollen">Pollen</string>
     <string name="ephemeris_sunset_at">Solnedgang %s</string>
     <string name="alert">Farevarsel</string>
-    <string name="air_quality_so2_full">Svoveldioksid (SO₂)</string>
+    <string name="air_quality_so2_full">Svoveldioksid (%s)</string>
     <string name="ceiling">Tak</string>
     <string name="common_weather_text_overcast">Overskyet</string>
     <string name="common_weather_text_rain_showers_light">Lette regnbyger</string>
@@ -104,8 +100,8 @@
     <string name="common_weather_text_rain_showers">Regnbyger</string>
     <string name="common_weather_text_rain">Regn</string>
     <string name="common_weather_text_fog">Tåke</string>
-    <string name="air_quality_co_full">Karbonmonoksid (CO)</string>
-    <string name="air_quality_no2_full">Nitrogendioksid (NO₂)</string>
+    <string name="air_quality_co_full">Karbonmonoksid (%s)</string>
+    <string name="air_quality_no2_full">Nitrogendioksid (%s)</string>
     <string name="about_matrix">Matrix rom</string>
     <string name="about_open_link_message">Åpne %s?</string>
     <string name="common_weather_text_snow_showers_light">Lette snøbyger</string>

@@ -464,10 +464,9 @@
     <string name="null_data_text">N/A</string>
     <string name="temperature_degree_day_heating">Gradul de încălzire a zilei</string>
     <string name="temperature_degree_day_cooling">Gradul de răcire a zilei</string>
-    <string name="air_quality_co">CO</string>
-    <string name="air_quality_no2_full">Dioxid de azot (NO₂)</string>
-    <string name="air_quality_co_full">Monoxid de carbon (CO)</string>
-    <string name="air_quality_so2_full">Dioxid de sulf (SO₂)</string>
+    <string name="air_quality_no2_full">Dioxid de azot (%s)</string>
+    <string name="air_quality_co_full">Monoxid de carbon (%s)</string>
+    <string name="air_quality_so2_full">Dioxid de sulf (%s)</string>
     <string name="action_show_errors">Apasă pentru a vedea detalii</string>
     <string name="location_search_no_results">%1$s nu poate găsi %2$s</string>
     <string name="notification_update_error">%d actualizări eșuate</string>
@@ -483,9 +482,7 @@
     <string name="action_delete">Șterge</string>
     <string name="action_help_me_choose">Ajută-mă să aleg</string>
     <string name="air_quality_pm10">PM10</string>
-    <string name="air_quality_no2">NO₂</string>
-    <string name="air_quality_o3">O₃</string>
-    <string name="air_quality_o3_full">Ozonul la sol(O₃)</string>
+    <string name="air_quality_o3_full">Ozonul la sol (%s)</string>
     <string name="pollen_olea">Măslin</string>
     <string name="pollen_level_0">Niciunul</string>
     <string name="pollen_level_1">Foarte scăzut</string>
@@ -496,7 +493,6 @@
     <string name="action_close">Închide</string>
     <string name="dialog_permissions_notification_title">Stai informat</string>
     <string name="air_quality_pm25">PM2.5</string>
-    <string name="air_quality_so2">SO₂</string>
     <string name="dialog_permissions_notification_content">Atinge aici pentru a activa notificările privind alertele meteo, sau modifică mai târziu în Setări.</string>
     <string name="pollen_level_3">Moderat</string>
     <string name="pollen_level_4">Ridicat</string>

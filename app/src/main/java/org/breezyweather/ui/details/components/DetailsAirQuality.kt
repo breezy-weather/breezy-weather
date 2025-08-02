@@ -222,7 +222,9 @@ fun DetailsAirQuality(
             }
             item {
                 DetailsSectionHeader(
-                    stringResource(pollutant.aboutPollutant)
+                    UnitUtils.formatPollutantName(
+                        stringResource(pollutant.aboutPollutant, stringResource(pollutant.shortName))
+                    )
                 )
             }
             item {
@@ -245,8 +247,8 @@ fun DetailsAirQuality(
                     }
                     item {
                         DetailsSectionHeader(
-                            stringResource(R.string.air_quality_pollutant_primary),
-                            it.pollutantType.getFullName(context)
+                            buildAnnotatedString { append(stringResource(R.string.air_quality_pollutant_primary)) },
+                            UnitUtils.formatPollutantName(it.pollutantType.getFullName(context))
                         )
                     }
                     item {
@@ -280,8 +282,14 @@ fun DetailsAirQuality(
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
         }
         item {
-            DetailsSectionHeader(
-                stringResource(selectedPollutant?.aboutIndex ?: R.string.air_quality_index_scale)
+            selectedPollutant?.aboutIndex?.let {
+                DetailsSectionHeader(
+                    UnitUtils.formatPollutantName(
+                        stringResource(it, stringResource(selectedPollutant.shortName))
+                    )
+                )
+            } ?: DetailsSectionHeader(
+                stringResource(R.string.air_quality_index_scale)
             )
         }
         item {
@@ -557,7 +565,10 @@ private fun AirQualitySwitcher(
                         )
                         Spacer(Modifier.size(ToggleButtonDefaults.IconSpacing))
                     }
-                    Text(stringResource(R.string.air_quality_index_short))
+                    Text(
+                        text = stringResource(R.string.air_quality_index_short),
+                        modifier = Modifier.alignByBaseline()
+                    )
                 }
             },
             menuContent = { state ->
@@ -595,7 +606,9 @@ private fun AirQualitySwitcher(
                             )
                             Spacer(Modifier.size(ToggleButtonDefaults.IconSpacing))
                         }
-                        Text(stringResource(pollutant.shortName))
+                        Text(
+                            text = UnitUtils.formatPollutantName(stringResource(pollutant.shortName))
+                        )
                     }
                 },
                 menuContent = { state ->
@@ -610,7 +623,11 @@ private fun AirQualitySwitcher(
                         } else {
                             null
                         },
-                        text = { Text(stringResource(pollutant.shortName)) },
+                        text = {
+                            Text(
+                                text = UnitUtils.formatPollutantName(stringResource(pollutant.shortName))
+                            )
+                        },
                         onClick = {
                             setSelectedPollutant(pollutant)
                             state.dismiss()
@@ -665,7 +682,7 @@ fun DetailsAirQualityItem(
             }
     ) {
         Text(
-            text = aqiItem.title,
+            text = UnitUtils.formatPollutantName(aqiItem.title),
             fontWeight = FontWeight.Bold
         )
         LinearProgressIndicator(

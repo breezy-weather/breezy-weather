@@ -405,10 +405,10 @@
     <string name="location_message_reverse_geocoding_failed">Nguồn cung cấp thời tiết không tìm được vị trí chính xác</string>
     <string name="action_undo">Hoàn tác</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Lắng đọng sương mù</string>
-    <string name="air_quality_o3_full">Ôzôn tầng mặt (O₃)</string>
-    <string name="air_quality_no2_full">Nitơ điôxít (NO₂)</string>
-    <string name="air_quality_so2_full">Lưu huỳnh điôxít (SO₂)</string>
-    <string name="air_quality_co_full">Cacbon monoxit (CO)</string>
+    <string name="air_quality_o3_full">Ôzôn tầng mặt (%s)</string>
+    <string name="air_quality_no2_full">Nitơ điôxít (%s)</string>
+    <string name="air_quality_so2_full">Lưu huỳnh điôxít (%s)</string>
+    <string name="air_quality_co_full">Cacbon monoxit (%s)</string>
     <string name="action_close">Đóng</string>
     <string name="settings_widgets_live_wallpaper_error">Không thể khởi chạy trình chọn hình nền. Bạn vẫn có thể bật hình nền %s bằng cách chọn “Hình nền động” trong bộ chọn hình nền màn hình chính của bạn.</string>
     <string name="air_quality_index">Chỉ số chất lượng không khí</string>
@@ -427,10 +427,6 @@
     <string name="message_parsing_error_title">Không thể phân tích cú pháp dữ liệu thời tiết</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>
-    <string name="air_quality_so2">SO₂</string>
-    <string name="air_quality_no2">NO₂</string>
-    <string name="air_quality_o3">O₃</string>
-    <string name="air_quality_co">CO</string>
     <string name="widget_style_nano">Nano</string>
     <string name="unit_hpa_voice">Héctôpascal</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Đen</string>

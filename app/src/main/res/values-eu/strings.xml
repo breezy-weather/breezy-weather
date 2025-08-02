@@ -65,11 +65,10 @@
     <string name="air_quality_level_6">Arriskutsua</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_so2_voice">Sufre dioxidoa</string>
-    <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Nitrogeno dioxidoa</string>
-    <string name="air_quality_no2_full">Nitrogeno dioxidoa (NO₂)</string>
-    <string name="air_quality_so2_full">Sulfur dioxidoa (SO₂)</string>
-    <string name="air_quality_co_full">Karbono monoxidoa (CO)</string>
+    <string name="air_quality_no2_full">Nitrogeno dioxidoa (%s)</string>
+    <string name="air_quality_so2_full">Sulfur dioxidoa (%s)</string>
+    <string name="air_quality_co_full">Karbono monoxidoa (%s)</string>
     <string name="pollen_tree">Zuhaitza</string>
     <string name="pollen_alnus">Haltza</string>
     <string name="pollen_betula">Urkia</string>
@@ -98,11 +97,8 @@
     <string name="air_quality_pm25_voice">PM bi puntu bost</string>
     <string name="air_quality_pm10_voice">PM hamar</string>
     <string name="air_quality_level_1_description">Aire kalitatea bikaina da pertsona gehienentzat; gozatu kanpoko ohiko jarduerez.</string>
-    <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_pm25">PM2.5</string>
-    <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Ozonoa</string>
-    <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Karbono monoxidoa</string>
     <string name="ephemeris_sunset_at">Ilunabarra %s(e)tan</string>
     <string name="visibility">Ikuspena</string>
@@ -336,7 +332,7 @@
     <string name="air_quality_level_3_description">Airea kutsadura-maila handira iritsi da, eta osasungaitza da talde sentikorrentzat. Murriztu aire zabalean igarotzen duzun denbora, arnasa hartzeko zailtasun edo eztarriko narritadura gisako sintomak sentitzen badituzu.</string>
     <string name="air_quality_level_4_description">Talde sentikorrek ondorio kaltegarriak senti ditzakete berehala beren osasunean. Pertsona osasuntsuek zailtasunak izan ditzakete arnasa hartzeko eta eztarria narritatzeko esposizio luze baten aurrean. Mugatu aire zabaleko jarduera.</string>
     <string name="air_quality_level_5_description">Talde sentikorrek ondorio kaltegarriak izango dituzte berehala beren osasunean. Litekeena da pertsona osasuntsuek arnasa hartzeko zailtasunak eta eztarriko narritadura izatea; barrualdean geratzea eta aire zabaleko jarduerak birprogramatzea baloratu.</string>
-    <string name="air_quality_o3_full">Ozono troposferiko (O₃)</string>
+    <string name="air_quality_o3_full">Ozono troposferiko (%s)</string>
     <string name="settings_background_updates_battery_optimization_summary">Hau da probatu beharreko lehenengo gauza, jakinarazpenik jasotzen ez baduzu edo trepetak eguneratzen ari ez badira.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Bateriaren optimizazioa jada desgaituta dago.</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Fabrikatzailearen araberako jarraibide espezifikoak</string>

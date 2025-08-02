@@ -36,8 +36,8 @@
     <string name="air_quality_pm25_voice">م ت دوو پۆینت پێنج</string>
     <string name="air_quality_pm10_voice">م ت دە</string>
     <string name="air_quality_co_voice">یەکە ئۆکسیدی کاربۆن</string>
-    <string name="air_quality_o3_full">ئۆزۆنی ئاستی زەوی (O₃)</string>
-    <string name="air_quality_so2_full">دوانە ئۆکسیدی گۆگرد (SO₂)</string>
+    <string name="air_quality_o3_full">ئۆزۆنی ئاستی زەوی (%s)</string>
+    <string name="air_quality_so2_full">دوانە ئۆکسیدی گۆگرد (%s)</string>
     <string name="pollen_poaeceae">گیا</string>
     <string name="pollen_mold">مۆڵد</string>
     <string name="pollen_ambrosia">گژوگیا</string>
@@ -111,12 +111,10 @@
     <string name="air_quality_level_5_description">کاریگەرییە تەندروستییەکان دەستبەجێ لەلایەن گروپە هەستیارەکانەوە هەست پێدەکرێت و پێویستە خۆیان بەدووربگرن لە چالاکی دەرەکی. ئەو کەسانەی کە تەندروستن لەوانەیە تووشی کێشەی هەناسەدان و خورانی قوڕگ بن؛ ڕەچاوی مانەوە لە ناوەوە و ڕێکخستنی چالاکییەکانی دەرەوە بکە.</string>
     <string name="air_quality_pm10">م ت١٠</string>
     <string name="air_quality_no2_voice">دوانە ئۆکسیدی نایترۆجین</string>
-    <string name="air_quality_o3">O₃</string>
     <string name="air_quality_so2_voice">دوانە ئۆکسیدی گۆگرد</string>
     <string name="air_quality_o3_voice">ئۆزۆن</string>
-    <string name="air_quality_co">CO</string>
-    <string name="air_quality_no2_full">دوانە ئۆکسیدی نایترۆجین (NO₂)</string>
-    <string name="air_quality_co_full">یەکە ئۆکسیدی کاربۆن (CO)</string>
+    <string name="air_quality_no2_full">دوانە ئۆکسیدی نایترۆجین (%s)</string>
+    <string name="air_quality_co_full">یەکە ئۆکسیدی کاربۆن (%s)</string>
     <string name="ephemeris_moon_phase_new_moon">مانگی نوێ</string>
     <string name="ephemeris_moon_phase_waxing_crescent">مانگی چەماوە</string>
     <string name="ephemeris_moon_phase_first_quarter">چارەکی یەکەم</string>

@@ -278,7 +278,6 @@
     <string name="settings_source_api_key">Clau API</string>
     <string name="common_weather_text_rain_showers_light">Ruixats dèbils</string>
     <string name="dialog_permissions_notification_title">Manteniu-vos informats</string>
-    <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Diòxid de nitrogen</string>
     <string name="pollen_artemisia">Artemísia</string>
     <string name="widget_style_mini">Mini</string>
@@ -296,7 +295,7 @@
     <string name="settings_widgets_notification_style_title">Estil</string>
     <string name="settings_background_updates_refresh_title">Freqüència de refresc</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
-    <string name="air_quality_so2_full">Diòxid de sofre (SO₂)</string>
+    <string name="air_quality_so2_full">Diòxid de sofre (%s)</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorar quan la bateria està baixa</string>
     <string name="location_message_reverse_geocoding_failed">La font meteorològica no ha trobat una ubicació coincident</string>
     <string name="settings_items_drag_to_sort">Toqueu per arrossegar els elements de la llista i ordenar-los</string>
@@ -337,7 +336,7 @@
     <string name="common_weather_text_snow_heavy">Neu intensa</string>
     <string name="settings_main">Pantalla principal</string>
     <string name="settings_debug_dump_crash_logs_summary">Desa registres d’error en un fitxer per compartir-los amb els desenvolupadors</string>
-    <string name="air_quality_o3_full">Ozó a nivell del sòl (O₃)</string>
+    <string name="air_quality_o3_full">Ozó a nivell del sòl (%s)</string>
     <string name="settings_notifications_summary">Notificacions d’alertes meteorològiques, precipitacions i pronòstic de la primera ubicació</string>
     <string name="common_weather_text_rain_freezing_heavy">Pluja gelada intensa</string>
     <string name="widget_clock_font_analog">Analog</string>
@@ -358,7 +357,6 @@
     <string name="message_parsing_error_title">No s’han pogut analitzar les dades meteorològiques</string>
     <string name="weather_source_accu_preference_hours_72">72 hores</string>
     <string name="widget_label_align_end">Alinear a la dreta</string>
-    <string name="air_quality_co">CO</string>
     <string name="weather_api_limit_reached_title">S’ha arribat al límit de sol·licituds de l’API</string>
     <string name="settings_weather_source_portal">Portal</string>
     <string name="air_quality_level_3_description">L’aire ha assolit un alt nivell de contaminació i és insalubre per als grups sensibles. Reduïu el temps que passeu a l’exterior si sentiu símptomes com ara dificultat per respirar o irritació de gola.</string>
@@ -382,7 +380,7 @@
     <string name="settings_notifications_forecast_time_today_title">Hora de notificació del pronòstic del dia</string>
     <string name="common_weather_text_rain_freezing">Pluja gelada</string>
     <string name="location_results_by">Resultats d’ubicació per %s</string>
-    <string name="air_quality_no2_full">Diòxid de nitrogen (NO₂)</string>
+    <string name="air_quality_no2_full">Diòxid de nitrogen (%s)</string>
     <string name="common_weather_text_rain_snow_mixed_light">Aiguaneu dèbil</string>
     <string name="settings_notifications_precipitations_title">Notificacions de precipitacions</string>
     <string name="message_source_not_installed_error_title">La font ja no està disponible</string>
@@ -415,7 +413,6 @@
     <string name="air_quality_pm25">PM2.5</string>
     <string name="unit_mmph_voice">Mil·límetres per hora</string>
     <string name="settings_widgets_summary">Establir fons de pantalla, configurar ginys utilitzats, giny de notificació</string>
-    <string name="air_quality_so2">SO₂</string>
     <string name="common_weather_text_rain_light">Pluja dèbil</string>
     <string name="action_show_errors">Toca per veure’n els detalls</string>
     <string name="unit_mugpcum">μg/m³</string>
@@ -429,7 +426,6 @@
     <string name="settings_appearance_dark_mode_locations_title">Mode dia / nit per a ubicacions</string>
     <string name="settings_main_daily_trends_title">Tendències diàries</string>
     <string name="common_weather_text_snow_showers_heavy">Ruixats de neu intensos</string>
-    <string name="air_quality_o3">O₃</string>
     <string name="settings_background_updates_worker_info_summary">Última execució: %s</string>
     <string name="unit_cmph">cm/h</string>
     <string name="unit_mmhg">mmHg</string>
@@ -509,7 +505,7 @@
     <string name="ephemeris_moonset_at">Posta de la lluna a les %s</string>
     <string name="air_quality_level_4_description">Els grups sensibles poden sentir immediatament els efectes sobre la salut. Les persones sanes poden experimentar dificultat per respirar i irritació de gola amb una exposició prolongada. Limitar l’activitat a l’aire lliure.</string>
     <string name="widget_style_nano">Nano</string>
-    <string name="air_quality_co_full">Monòxid de carboni (CO)</string>
+    <string name="air_quality_co_full">Monòxid de carboni (%s)</string>
     <string name="weather_source_accu_preference_hours_240">240 hores</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Ruixats mixtes de pluja intensa i neu</string>
     <string name="unit_lpsqm">L/m²</string>

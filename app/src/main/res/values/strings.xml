@@ -152,7 +152,6 @@
     <string name="uv_index_scale">UV index scale</string>
     <string name="uv_index_description" translatable="false">@string/label_description</string>
     <string name="uv_index_time_to_burn">Time to burn</string>
-    <!-- %s = 1000 meters converted -->
     <string name="uv_index_time_to_burn_explanations">The exact time to burn depends on the altitude, the presence of reflective ground like water or snow, your skin type, and the use of sunscreen.</string>
     <string name="uv_alert_level">Alert</string>
     <!-- Air quality -->
@@ -190,44 +189,54 @@
     <string name="air_quality_pm25_voice">PM two point five</string>
     <!-- %s = 2.5 µm -->
     <string name="air_quality_pm25_full">Fine particulate matter (&lt; %s)</string>
-    <string name="air_quality_pm25_about">About fine particulate matter (PM2.5)</string>
-    <string name="air_quality_pm25_index">Air quality index scale for PM2.5</string>
+    <!-- %s = PM2.5 -->
+    <string name="air_quality_pm25_about">About fine particulate matter (%s)</string>
+    <!-- %s = PM2.5 -->
+    <string name="air_quality_pm25_index">Air quality index scale for %s</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_pm10_voice">PM ten</string>
     <!-- %s = 10 µm -->
     <string name="air_quality_pm10_full">Inhalable particulate matter (&lt; %s)</string>
-    <string name="air_quality_pm10_about">About inhalable particulate matter (PM10)</string>
-    <string name="air_quality_pm10_index">Air quality index scale for PM10</string>
+    <!-- %s = PM10 -->
+    <string name="air_quality_pm10_about">About inhalable particulate matter (%s)</string>
+    <!-- %s = PM10 -->
+    <string name="air_quality_pm10_index">Air quality index scale for %s</string>
     <string name="air_quality_pm_sources">Main sources are combustion processes (e.g. power plants, indoor heating, car exhausts, wildfires), mechanical processes (e.g. construction, mineral dust, agriculture) and biological particles (e.g. pollen, mold, bacteria, viruses).</string>
-    <string name="air_quality_so2">SO₂</string>
+    <string name="air_quality_so2" translatable="false">SO2</string>
     <string name="air_quality_so2_voice">Sulfur dioxide</string>
-    <!-- Please keep the 2 in SO₂ written this way -->
-    <string name="air_quality_so2_full">Sulfur dioxide (SO₂)</string>
-    <!-- Please keep the 2 in SO₂ written this way -->
-    <string name="air_quality_so2_about">About sulfur dioxide (SO₂)</string>
-    <string name="air_quality_so2_index">Air quality index scale for SO₂</string>
+    <!-- %s = SO₂ -->
+    <string name="air_quality_so2_full">Sulfur dioxide (%s)</string>
+    <!-- %s = SO₂ -->
+    <string name="air_quality_so2_about">About sulfur dioxide (%s)</string>
+    <!-- %s = SO₂ -->
+    <string name="air_quality_so2_index">Air quality index scale for %s</string>
     <string name="air_quality_so2_sources">Main sources are burning processes of sulfur-containing fuel in industry, transportation and power plants.</string>
-    <string name="air_quality_no2">NO₂</string>
+    <string name="air_quality_no2" translatable="false">NO2</string>
     <string name="air_quality_no2_voice">Nitrogen dioxide</string>
-    <!-- Please keep the 2 in NO₂ written this way -->
-    <string name="air_quality_no2_full">Nitrogen dioxide (NO₂)</string>
-    <!-- Please keep the 2 in NO₂ written this way -->
-    <string name="air_quality_no2_about">About nitrogen dioxide (NO₂)</string>
-    <string name="air_quality_no2_index">Air quality index scale for NO₂</string>
+    <!-- %s = NO₂ -->
+    <string name="air_quality_no2_full">Nitrogen dioxide (%s)</string>
+    <!-- %s = NO₂ -->
+    <string name="air_quality_no2_about">About nitrogen dioxide (%s)</string>
+    <!-- %s = NO₂ -->
+    <string name="air_quality_no2_index">Air quality index scale for %s</string>
     <string name="air_quality_no2_sources">Main sources are fuel burning processes, such as those used in industry and transportation.</string>
-    <string name="air_quality_o3">O₃</string>
+    <string name="air_quality_o3" translatable="false">O3</string>
     <string name="air_quality_o3_voice">Ozone</string>
-    <!-- Please keep the 3 in O₃ written this way -->
-    <string name="air_quality_o3_full">Ground-level ozone (O₃)</string>
-    <!-- Please keep the 3 in O₃ written this way -->
-    <string name="air_quality_o3_about">About ground-level ozone (O₃)</string>
-    <string name="air_quality_o3_index">Air quality index scale for O₃</string>
+    <!-- %s = O₃ -->
+    <string name="air_quality_o3_full">Ground-level ozone (%s)</string>
+    <!-- %s = O₃ -->
+    <string name="air_quality_o3_about">About ground-level ozone (%s)</string>
+    <!-- %s = O₃ -->
+    <string name="air_quality_o3_index">Air quality index scale for %s</string>
     <string name="air_quality_o3_sources">Ozone is created in a chemical reaction between atmospheric oxygen, nitrogen oxides, carbon monoxide and organic compounds, in the presence of sunlight.</string>
-    <string name="air_quality_co">CO</string>
+    <string name="air_quality_co" translatable="false">CO</string>
     <string name="air_quality_co_voice">Carbon monoxide</string>
-    <string name="air_quality_co_full">Carbon monoxide (CO)</string>
-    <string name="air_quality_co_about">About carbon monoxide (CO)</string>
-    <string name="air_quality_co_index">Air quality index scale for CO</string>
+    <!-- %s = CO -->
+    <string name="air_quality_co_full">Carbon monoxide (%s)</string>
+    <!-- %s = CO -->
+    <string name="air_quality_co_about">About carbon monoxide (%s)</string>
+    <!-- %s = CO -->
+    <string name="air_quality_co_index">Air quality index scale for %s</string>
     <string name="air_quality_co_sources">Typically originates from incomplete combustion of carbon fuels, such as that which occurs in car engines and power plants.</string>
     <!-- Pollen -->
     <string name="pollen_primary">Primary pollen</string>
@@ -314,7 +323,6 @@
     <string name="ephemeris_moonrise_at">Moonrise at %s</string>
     <!-- Moonset at 17:54 -->
     <string name="ephemeris_moonset_at">Moonset at %s</string>
-    <!-- Other weather details vocabulary -->
     <string name="daytime">Daytime</string>
     <string name="daytime_short">Day</string>
     <string name="nighttime">Nighttime</string>
@@ -370,7 +378,6 @@
     <string name="data_sources">Data sources</string>
     <!-- %s = Breezy Weather -->
     <string name="data_modified">This material has been modified from the original by %s mainly to compute or extrapolate missing data.</string>
-    <!-- Address is singular -->
     <string name="weather_message_data_refresh_failed">Data refresh failed</string>
     <string name="weather_message_unsupported_feature">Source doesn’t support one of requested features</string>
     <string name="weather_message_invalid_location">Invalid location, please delete it and re-add</string>
@@ -635,7 +642,6 @@
     <string name="settings_background_updates_refresh_never_warning1">By turning off background updates, you will no longer receive notifications of alerts or precipitation. Widgets won’t be refreshed until you open the app.</string>
     <string name="settings_background_updates_refresh_never_warning2">The background update process is lightweight: it only refreshes your first location at your select rate, and secondary locations only if you need them, once a day. It’s battery-efficient and should not exceed %d MB of data consumption a month.</string>
     <string name="settings_background_updates_refresh_never_warning3">Consider using a less frequent refresh rate rather than turning off background updates, otherwise tap “Continue” if you still want to proceed.</string>
-    <!-- All deprecated below, now use duration formatting -->
     <string name="settings_background_updates_refresh_skip_when_battery_low">Skip when battery is low</string>
     <string name="settings_background_updates_section_troubleshoot">Troubleshoot</string>
     <string name="settings_background_updates_battery_optimization">Disable battery optimization</string>

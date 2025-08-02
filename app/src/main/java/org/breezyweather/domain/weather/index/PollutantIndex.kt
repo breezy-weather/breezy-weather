@@ -221,7 +221,10 @@ enum class PollutantIndex(
                     context.getString(R.string.unit_mum)
             )
         } else {
-            context.getString(fullName)
+            context.getString(
+                fullName,
+                context.getString(shortName)
+            )
         }
     }
 

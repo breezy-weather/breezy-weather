@@ -47,7 +47,7 @@
     <string name="uv_index">புற ஊதா அட்டவணை</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm25_voice">PM இரண்டு புள்ளி ஐந்து</string>
-    <string name="air_quality_so2_full">சல்பர் டை ஆக்சைடு (SO₂)</string>
+    <string name="air_quality_so2_full">சல்பர் டை ஆக்சைடு (%s)</string>
     <string name="pollen_mold">அச்சு</string>
     <string name="pollen_alnus">ஆல்டர்</string>
     <string name="pollen_ambrosia">ராக்வீட்</string>
@@ -395,11 +395,8 @@
     <string name="uv_alert_level">விழிப்புணர்வு</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_pm10_voice">பி.எம்</string>
-    <string name="air_quality_so2">சோ</string>
     <string name="air_quality_so2_voice">சல்பர் டை ஆக்சைடு</string>
-    <string name="air_quality_no2">இல்லை</string>
-    <string name="air_quality_o3">ஓ</string>
-    <string name="air_quality_co_full">கார்பன் மோனக்கு</string>
+    <string name="air_quality_co_full">கார்பன் மோனக்கு (%s)</string>
     <string name="pollen_tree">மரம்</string>
     <string name="pollen_fraxinus">Fraxinus</string>
     <string name="pollen_olea">ஆலிவ் மரம்</string>
@@ -581,10 +578,9 @@
     <string name="air_quality_index">காற்றின் தர அட்டவணை</string>
     <string name="air_quality_no2_voice">நைட்ரசன் டை ஆக்சைடு</string>
     <string name="air_quality_o3_voice">சாரலியம்/மிகுவுயிரகம்</string>
-    <string name="air_quality_co">கோ</string>
     <string name="air_quality_co_voice">கார்பன் மோனாக்சைடு</string>
-    <string name="air_quality_o3_full">தரை-நிலை ஓசோன் (O₃)</string>
-    <string name="air_quality_no2_full">நைட்ரசன் டை ஆக்சைடு (NO₂)</string>
+    <string name="air_quality_o3_full">தரை-நிலை ஓசோன் (%s)</string>
+    <string name="air_quality_no2_full">நைட்ரசன் டை ஆக்சைடு (%s)</string>
     <string name="pollen_platanus">விமானம்-மரம்</string>
     <string name="pollen_urticaceae">தொட்டால் எரிச்சலூட்டுகின்றன</string>
     <string name="pollen_level_0">எதுவுமில்லை</string>

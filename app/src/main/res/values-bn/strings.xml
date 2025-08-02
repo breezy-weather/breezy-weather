@@ -88,13 +88,9 @@
     <string name="air_quality_index">বায়ু গুণমাপ সূচক</string>
     <string name="air_quality_pm25_voice">পার্টিকুলেট পদার্থ ২.৫</string>
     <string name="air_quality_pm10_voice">পার্টিকুলেট পদার্থ ১০</string>
-    <string name="air_quality_so2">SO₂</string>
-    <string name="air_quality_no2">NO₂</string>
-    <string name="air_quality_o3">O₃</string>
-    <string name="air_quality_co">CO</string>
-    <string name="air_quality_no2_full">নাইট্রোজেন ডাইঅক্সাইড (NO₂)</string>
-    <string name="air_quality_so2_full">সালফার ডাইঅক্সাইড (SO₂)</string>
-    <string name="air_quality_co_full">কার্বন মনোক্সাইড (CO)</string>
+    <string name="air_quality_no2_full">নাইট্রোজেন ডাইঅক্সাইড (%s)</string>
+    <string name="air_quality_so2_full">সালফার ডাইঅক্সাইড (%s)</string>
+    <string name="air_quality_co_full">কার্বন মনোক্সাইড (%s)</string>
     <string name="pollen_tree">পরাগ গাছ</string>
     <string name="pollen_alnus">ভূর্জজাতীয় বৃক্ষবিশেষ</string>
     <string name="pollen_ambrosia">Ambrosia</string>
@@ -147,7 +143,7 @@
     <string name="weather_source_accu_preference_days_1">১ দিন</string>
     <string name="air_quality_pm10">পা. প. ১০</string>
     <string name="air_quality_pm25">পা. প. ২.৫</string>
-    <string name="air_quality_o3_full">ভূমি স্তরে ওজোন</string>
+    <string name="air_quality_o3_full">ভূমি স্তরে ওজোন (%s)</string>
     <string name="pollen_artemisia">Artemisia</string>
     <string name="pollen_betula">Betula</string>
     <string name="pollen_carpinus">Carpinus</string>

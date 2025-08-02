@@ -263,7 +263,6 @@
     <string name="unit_celsius_short">°</string>
     <string name="settings_source_api_key">Kunci API</string>
     <string name="dialog_permissions_notification_title">Tetap terinformasi</string>
-    <string name="air_quality_no2">NO₂</string>
     <string name="pollen_artemisia">Artemisia</string>
     <string name="widget_style_mini">Kecil</string>
     <string name="widget_style_vertical">Vertikal</string>
@@ -277,7 +276,7 @@
     <string name="settings_widgets_notification_style_title">Gaya</string>
     <string name="settings_background_updates_refresh_title">Kecepatan penyegaran</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Hitam</string>
-    <string name="air_quality_so2_full">Sulfur dioksida (SO₂)</string>
+    <string name="air_quality_so2_full">Sulfur dioksida (%s)</string>
     <string name="common_weather_text_snow">Salju</string>
     <string name="common_weather_text_cloudy">Berawan</string>
     <string name="unit_hpa">hPa</string>
@@ -312,7 +311,7 @@
     <string name="widget_week_style_3_days">3 hari</string>
     <string name="widget_subtitle_data_time">Waktu pemuatan ulang</string>
     <string name="settings_main">Layar utama</string>
-    <string name="air_quality_o3_full">Ozon permukaan tanah (O₃)</string>
+    <string name="air_quality_o3_full">Ozon permukaan tanah (%s)</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="location_service_native">API Asli</string>
     <string name="common_weather_text_snow_light">Salju ringan</string>
@@ -326,7 +325,6 @@
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_color_day_night">Pagi / Malam</string>
     <string name="weather_source_accu_preference_hours_72">72 jam</string>
-    <string name="air_quality_co">CO</string>
     <string name="unit_ftps_voice">Kaki per detik</string>
     <string name="settings_weather_source_portal">Portal</string>
     <string name="settings_color_grey">Abu-abu</string>
@@ -346,7 +344,7 @@
     <string name="unit_kn_voice">Knot</string>
     <string name="unit_km_voice">Kilometer</string>
     <string name="common_weather_text_rain_freezing">Hujan beku</string>
-    <string name="air_quality_no2_full">Nitrogen dioksida (NO₂)</string>
+    <string name="air_quality_no2_full">Nitrogen dioksida (%s)</string>
     <string name="pollen_level_4">Tinggi</string>
     <string name="widget_style_temperature">Suhu</string>
     <string name="settings_automatic">Otomatis</string>
@@ -367,7 +365,6 @@
     <string name="settings_main_section_animations">Animasi</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="unit_mmph_voice">Milimeter per jam</string>
-    <string name="air_quality_so2">SO₂</string>
     <string name="weather_kind_thunderstorm">Hujan badai</string>
     <string name="common_weather_text_rain_light">Hujan ringan</string>
     <string name="unit_mugpcum">μg/m³</string>
@@ -377,7 +374,6 @@
     <string name="unit_lpsqmph">L/m²/j</string>
     <string name="common_weather_text_clear_sky">Langit cerah</string>
     <string name="settings_main_daily_trends_title">Tren harian</string>
-    <string name="air_quality_o3">O₃</string>
     <string name="unit_cmph">cm/j</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="unit_mmph">mm/j</string>
@@ -442,7 +438,7 @@
     <string name="settings_debug">Awakutu</string>
     <string name="air_quality_level_4_description">Dampak kesehatan dapat dirasakan secara lamgsung oleh kelompok yang sensitif. Orang yang sehat dapat mengalami kesulitan bernapas dan radang tenggorokan jika terpapar dalam waktu lama. Batasi aktivitas di luar ruangan.</string>
     <string name="widget_style_nano">Nano</string>
-    <string name="air_quality_co_full">Karbon monoksida (CO)</string>
+    <string name="air_quality_co_full">Karbon monoksida (%s)</string>
     <string name="weather_source_accu_preference_hours_240">240 jam</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="air_quality_pm10">PM10</string>

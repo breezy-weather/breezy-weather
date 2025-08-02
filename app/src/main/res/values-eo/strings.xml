@@ -100,18 +100,14 @@
     <string name="air_quality_pm25_voice">PM du komo kvin</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_pm10_voice">PM dek</string>
-    <string name="air_quality_so2">SO₂</string>
     <string name="air_quality_so2_voice">Sulfura dioksido</string>
-    <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Nitrogena dioksido</string>
-    <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Ozono</string>
-    <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Karbona monooksido</string>
-    <string name="air_quality_o3_full">Grundnivela ozono (O₃)</string>
-    <string name="air_quality_no2_full">Nitrogena dioksido (NO₂)</string>
-    <string name="air_quality_so2_full">Sulfura dioksido (SO₂)</string>
-    <string name="air_quality_co_full">Karbona monooksido (CO)</string>
+    <string name="air_quality_o3_full">Grundnivela ozono (%s)</string>
+    <string name="air_quality_no2_full">Nitrogena dioksido (%s)</string>
+    <string name="air_quality_so2_full">Sulfura dioksido (%s)</string>
+    <string name="air_quality_co_full">Karbona monooksido (%s)</string>
     <!-- Pollen -->
     <string name="pollen_alnus">Alno</string>
     <string name="pollen_ambrosia">Ambrozio</string>
@@ -158,7 +154,6 @@
     <!-- $ = time. -->
     <string name="ephemeris_moonset_at">Lunsubiro je %s</string>
     <!-- $ = time. -->
-    <!-- Other weather details vocabulary -->
     <string name="daytime">Tagtempo</string>
     <string name="nighttime">Noktotempo</string>
     <string name="sunshine">Sunbrilo</string>

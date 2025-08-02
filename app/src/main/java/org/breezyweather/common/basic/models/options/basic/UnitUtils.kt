@@ -37,8 +37,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.BaselineShift
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.em
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.UnitWidth
@@ -553,6 +555,33 @@ object UnitUtils {
                     withStyle(style = SpanStyle(fontSize = fontSize)) {
                         append(formattedMeasure.substring(lastIndexOfADigit + 1))
                     }
+                }
+            }
+        }
+    }
+
+    /**
+     * Format a pollutant name so that the number are subscript
+     * Units will stay at the same size if it somehow fails to parse
+     */
+    @Composable
+    fun formatPollutantName(
+        formattedMeasure: String,
+    ): AnnotatedString {
+        val firstIndexOfADigit = formattedMeasure.indexOfAny(DIGITS, 0)
+        val lastIndexOfADigit = formattedMeasure.lastIndexOfAny(DIGITS, formattedMeasure.length - 1)
+        return buildAnnotatedString {
+            if (firstIndexOfADigit < 0 || lastIndexOfADigit < 0 || lastIndexOfADigit > formattedMeasure.length) {
+                append(formattedMeasure)
+            } else {
+                if (firstIndexOfADigit > 0) {
+                    append(formattedMeasure.substring(0, firstIndexOfADigit))
+                }
+                withStyle(style = SpanStyle(baselineShift = BaselineShift.Subscript, fontSize = 0.8.em)) {
+                    append(formattedMeasure.substring(firstIndexOfADigit, lastIndexOfADigit + 1))
+                }
+                if (lastIndexOfADigit < formattedMeasure.length) {
+                    append(formattedMeasure.substring(lastIndexOfADigit + 1))
                 }
             }
         }

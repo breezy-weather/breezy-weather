@@ -110,7 +110,6 @@
     <string name="precipitation_between_time">Neerslag van %1$s tot %2$s</string>
     <string name="wind_direction_S_short">Z</string>
     <string name="wind_direction_SW_short">ZW</string>
-    <string name="air_quality_o3">O₃</string>
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="pollen_tree">Bomen</string>
     <string name="pollen_poaeceae">Gras</string>
@@ -246,8 +245,7 @@
     <string name="uv_index_8_10">Zeer hoog</string>
     <string name="uv_index_11">Extreem</string>
     <string name="air_quality_level_4">Ongezond</string>
-    <string name="air_quality_so2">SO₂</string>
-    <string name="air_quality_so2_full">Zwaveldioxide (SO₂)</string>
+    <string name="air_quality_so2_full">Zwaveldioxide (%s)</string>
     <string name="pollen_alnus">Els</string>
     <string name="pollen_olea">Olijf</string>
     <string name="ephemeris_sunrise_at">Zonsopgang bij %s</string>
@@ -426,7 +424,7 @@
     <string name="about_contribution_WangDaYeeeeee">Ontwikkelaar van het oorspronkelijke project Geometric Weather</string>
     <string name="uv_index_3_5">Matig</string>
     <string name="uv_index_6_7">Hoog</string>
-    <string name="air_quality_o3_full">Ozon op grondniveau (O₃)</string>
+    <string name="air_quality_o3_full">Ozon op grondniveau (%s)</string>
     <string name="pollen_level_3">Gemiddeld</string>
     <string name="pollen_level_0">Geen</string>
     <string name="pollen_level_1">Zeer laag</string>
@@ -483,8 +481,8 @@
     <string name="air_quality_level_6">Gevaarlijk</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>
-    <string name="air_quality_no2_full">Stikstofdioxide (NO₂)</string>
-    <string name="air_quality_co_full">Koolstofmonoxide (CO)</string>
+    <string name="air_quality_no2_full">Stikstofdioxide (%s)</string>
+    <string name="air_quality_co_full">Koolstofmonoxide (%s)</string>
     <string name="weather_source_accu_preference_hours_12">12 uurs</string>
     <string name="location_results_by">Locatie resultaten door %s</string>
     <string name="weather_kind_thunderstorm">Onweersbui</string>
@@ -504,9 +502,7 @@
     <string name="common_weather_text_rain_moderate">Matige regen</string>
     <string name="common_weather_text_rain_showers">Regenbuien</string>
     <string name="air_quality_so2_voice">Zwaveldioxide</string>
-    <string name="air_quality_no2">NO₂</string>
     <string name="air_quality_no2_voice">Stikstofdioxide</string>
-    <string name="air_quality_co">CO</string>
     <string name="air_quality_co_voice">Koolstofmonoxide</string>
     <string name="settings_notifications_alerts_title">Meldingen van ernstige weeralarmen</string>
     <string name="settings_notifications_precipitations_title">Meldingen van neerslag</string>
