@@ -1,1 +1,1 @@
-A feature-rich weather app with good visualizations and many sources.
+一款功能丰富的天气应用，具备良好的可视化效果和多种数据来源。

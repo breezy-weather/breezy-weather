@@ -1,0 +1,47 @@
+Breezy Weather 是一款功能丰富、免费开源的天气应用，采用 Material 3 Expressive 设计风格，提供精心设计的可视化效果。支持来自 50 多个气象源的预报、实时天气、临近预报、空气质量、花粉浓度及警报功能，包括中国混合数据源、香港环保署 、香港天文台、台湾气象局、台湾灾害防救科技中心和 Open-Meteo 等机构。
+
+<b>核心功能</b>
+
+- 长达 16 天的逐日与逐小时预报
+- 未来 1 小时降水预测
+- 实时气象状况监测
+- 空气质量、过敏原及天文信息
+- 恶劣天气与降水警报
+- 可选数据共享（如 Gadgetbridge）
+- 支持屏幕阅读器与多语言无障碍访问
+
+<b>设计特色</b>
+
+- Material 3 Expressive 动态主题
+- 精细化 24 小时气象图表
+- 自动深色模式
+- 自定义图标包
+- 丰富的小组件库
+- 动态天气壁纸
+
+<b>数据来源</b>
+
+- 全版本通用源：Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, Recosanté, SMA (Seychelles), SMA (Sudan), SSMS
+- 非自由软件/无法自托管源（不含 _freenet 后缀版本）：AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mixed China sources, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, WMO Severe Weather
+
+<b>权限说明</b>
+
+必选权限：
+
+- 网络访问（ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET）：通过互联网获取气象数据
+
+可选权限：
+
+- 后台服务（RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE）：后台天气更新及定时预报通知
+- 忽略电池优化（REQUEST_IGNORE_BATTERY_OPTIMIZATIONS）：防止应用在某些设备上被强制终止
+- 通知推送（POST_NOTIFICATIONS）：警报、降水提醒、当日/次日预报、通知型小组件、后台更新进度等
+- 位置访问（ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION）：获取当前位置天气
+- 存储空间（READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE）：在某些设备设置动态天气壁纸/小组件
+- 快捷磁贴（EXPAND_STATUS_BAR）：通过快捷设置面板启动应用
+- 应用专属语言（READ_APP_SPECIFIC_LOCALES）：为应用保存特定语言设置，支持部分设备重启后读取配置
+
+<b>许可证</b>
+
+- GNU Lesser General Public License v3.0
+- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
