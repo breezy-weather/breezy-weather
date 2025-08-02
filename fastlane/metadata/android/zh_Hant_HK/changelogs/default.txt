@@ -1,0 +1,2 @@
+版本資訊可在 GitHub 查閱：
+https://github.com/breezy-weather/breezy-weather/releases
