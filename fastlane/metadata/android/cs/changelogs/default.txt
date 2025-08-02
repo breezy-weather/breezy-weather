@@ -1,0 +1,2 @@
+Poznámky k vydání jsou k dispozici na GitHubu:
+https://github.com/breezy-weather/breezy-weather/releases
