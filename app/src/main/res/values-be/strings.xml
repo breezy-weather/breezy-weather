@@ -44,7 +44,7 @@
     <string name="humidity_dew_point">Вільготнасць / Пункт расы</string>
     <string name="weather_message_data_refresh_failed">Не ўдалося абнавіць даныя</string>
     <string name="weather_api_limit_reached_title">Перавышаны ліміт API-выклікаў</string>
-    <string name="weather_api_key_required_missing_title">Адсутнічае API-ключ</string>
+    <string name="weather_api_key_required_missing_title">Адсутнічае патрэбны ключ API</string>
     <string name="settings_weather_source_portal">Канал</string>
     <string name="weather_source_accu_preference_hours_72">72 гадзіны</string>
     <string name="locations">Месцазнаходжанні</string>
@@ -149,11 +149,11 @@
     <string name="ceiling">Ніжняя мяжа аблокаў</string>
     <string name="weather_message_invalid_location">Няправільнае месцазнаходжанне, выдаліце яго і дадайце нанова</string>
     <string name="weather_message_unsupported_feature">Крыніца не падтрымлівае адну з запытаных функцый</string>
-    <string name="weather_api_limit_reached_content">Каб абысці абмежаванне, дадайце свой API-ключ.</string>
+    <string name="weather_api_limit_reached_content">Каб абысці абмежаванне, дадайце уласны ключ API.</string>
     <string name="weather_api_unauthorized_title">Неаўтарызаваны доступ да API</string>
-    <string name="weather_api_key_required_missing_content">Каб скарыстацца гэтай крыніцай, дадайце свой API-ключ.</string>
+    <string name="weather_api_key_required_missing_content">Каб выкарыстоўваць гэту функцыю, неабходна дадаць ключ API.</string>
     <string name="setting_weather_source_accu_days">Дні</string>
-    <string name="weather_api_unauthorized_content">Для некаторых крыніц надвор’я неабходна выкарыстоўваць уласны API-ключ. Калі вы ўжо дадалі яго, пераправерце правільнасць API-ключа.</string>
+    <string name="weather_api_unauthorized_content">Для некаторых крыніц надвор’я неабходна выкарыстоўваць уласны ключ API. Калі вы ўжо дадалі яго, пераправерце правільнасць ключа.</string>
     <string name="weather_source_accu_preference_days_1">1 дзень</string>
     <string name="weather_source_accu_preference_days_5">5 дзён</string>
     <string name="weather_source_accu_preference_days_10">10 дзён</string>
@@ -524,7 +524,7 @@
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Навальніца са слабым градам</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Навальніца з моцным градам</string>
     <string name="metno_weather_text_andthunder">%s з громам</string>
-    <string name="dialog_permissions_location_content">Каб скарыстацца гэтай функцыяй, неабходна даць дазвол на доступ да вашага бягучага месцазнаходжання. Ён будзе даступны толькі выбраным крыніцам даных пра надвор’е. Калі вы перадумалі, можна скасаваць дзеянне і ўручную дадаць фіксаванае месца.</string>
+    <string name="dialog_permissions_location_content">Каб выкарыстоўваць гэту функцыю, неабходна даць дазвол на доступ да вашага бягучага месцазнаходжання. Ён будзе даступны толькі выбраным крыніцам даных пра надвор’е. Калі вы перадумалі, можна скасаваць дзеянне і ўручную дадаць фіксаванае месца.</string>
     <string name="dialog_permissions_location_background_title">Доступ да месцазнаходжання ў фонавым рэжыме</string>
     <string name="dialog_permissions_location_background_content">Каб уключыць абнаўленне надвор’я ў фонавым рэжыме для апошняга бягучага месцазнаходжання, вядомага Android, вам неабходна ўсталяваць дазвол месцазнаходжання на «Дазволіць у любым рэжыме». Калі вы гэтага не зробіце, надвор’е будзе абноўлена на аснове апошніх атрыманых каардынат на пярэднім плане, якія могуць быць старымі.</string>
     <string name="message_parsing_error_title">Не ўдалося прааналізаваць даныя пра надвор’е</string>
@@ -825,4 +825,5 @@
     <string name="action_translate_no_app">Праграма для перакладу не знойдзена</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Згодна з часам сутак</string>
     <string name="settings_appearance_dark_mode_locations_dark">Заўсёды цёмны, калі ў праграме стаіць цёмны рэжым</string>
+    <string name="action_change">Змяніць</string>
 </resources>
