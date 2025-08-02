@@ -52,7 +52,6 @@ import org.breezyweather.sources.jma.json.JmaHourlyResult
 import org.breezyweather.sources.jma.json.JmaWeekAreaResult
 import org.json.JSONObject
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone

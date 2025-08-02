@@ -104,7 +104,6 @@ import org.breezyweather.ui.common.widgets.AnimatableIconView
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
-import java.text.DateFormatSymbols
 import kotlin.math.max
 import kotlin.math.min
 

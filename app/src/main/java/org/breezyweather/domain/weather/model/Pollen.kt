@@ -19,7 +19,6 @@ package org.breezyweather.domain.weather.model
 import android.content.Context
 import android.graphics.Color
 import androidx.annotation.ColorInt
-import androidx.core.content.ContextCompat
 import breezyweather.domain.weather.model.Pollen
 import org.breezyweather.R
 import org.breezyweather.common.source.PollenIndexSource

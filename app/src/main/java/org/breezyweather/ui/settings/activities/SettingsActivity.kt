@@ -35,13 +35,11 @@ import breezyweather.domain.source.SourceFeature
 import com.google.accompanist.permissions.PermissionStatus
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.bus.EventBus
 import org.breezyweather.common.extensions.hasPermission
-import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.common.utils.helpers.PermissionHelper
 import org.breezyweather.domain.settings.SettingsChangedMessage

@@ -17,11 +17,9 @@
 package org.breezyweather.ui.main.adapters.main
 
 import android.animation.Animator
-import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags
 import androidx.recyclerview.widget.RecyclerView
 import breezyweather.domain.location.model.Location
 import org.breezyweather.common.basic.models.options.appearance.CardDisplay

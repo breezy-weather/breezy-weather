@@ -17,7 +17,6 @@
 package org.breezyweather.common.source
 
 import android.content.Context
-import androidx.annotation.DrawableRes
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper

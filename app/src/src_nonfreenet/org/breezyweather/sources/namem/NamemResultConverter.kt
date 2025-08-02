@@ -39,7 +39,6 @@ import org.breezyweather.sources.namem.json.NamemDailyResult
 import org.breezyweather.sources.namem.json.NamemHourlyResult
 import org.breezyweather.sources.namem.json.NamemNormalsResult
 import org.breezyweather.sources.namem.json.NamemStation
-import java.util.Calendar
 import java.util.Date
 
 // Reverse geocoding

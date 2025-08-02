@@ -27,7 +27,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
-import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.main.MainActivity
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme

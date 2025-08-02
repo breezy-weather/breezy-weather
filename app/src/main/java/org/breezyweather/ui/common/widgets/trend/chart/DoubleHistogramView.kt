@@ -26,7 +26,6 @@ import androidx.annotation.ColorInt
 import androidx.annotation.Size
 import org.breezyweather.R
 import org.breezyweather.common.extensions.dpToPx
-import org.breezyweather.common.extensions.fontScaleToApply
 import org.breezyweather.common.extensions.getTypefaceFromTextAppearance
 
 /**

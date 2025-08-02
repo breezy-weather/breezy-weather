@@ -2,7 +2,6 @@ package org.breezyweather.sources.nlsc
 
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.sources.nlsc.xml.NlscLocationCodesResult
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 

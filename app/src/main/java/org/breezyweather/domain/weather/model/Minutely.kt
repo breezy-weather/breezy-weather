@@ -23,8 +23,6 @@ import breezyweather.domain.weather.model.Precipitation
 import org.breezyweather.R
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
-import java.util.Date
-import kotlin.time.Duration.Companion.minutes
 
 fun Minutely.getLevel(context: Context): String {
     return context.getString(

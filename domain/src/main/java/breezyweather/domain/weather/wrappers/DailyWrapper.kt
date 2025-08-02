@@ -19,7 +19,6 @@ package breezyweather.domain.weather.wrappers
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.DegreeDay
-import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.model.UV
 import java.util.Date

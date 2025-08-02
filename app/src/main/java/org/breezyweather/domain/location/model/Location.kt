@@ -19,16 +19,12 @@ package org.breezyweather.domain.location.model
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceFeature
-import breezyweather.domain.weather.model.Normals
 import org.breezyweather.R
-import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.domain.weather.model.getRiseProgress
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.sources.getBestSourceForFeature
 import org.breezyweather.sources.getBestSourceForFeatureOrDefault
 import org.breezyweather.sources.getDefaultSourceForFeature
-import java.util.Calendar
-import java.util.Date
 
 fun Location.getPlace(context: Context, showCurrentPositionInPriority: Boolean = false): String {
     if (showCurrentPositionInPriority && isCurrentPosition) {

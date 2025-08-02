@@ -41,7 +41,6 @@ import org.breezyweather.sources.smg.json.SmgForecastResult
 import org.breezyweather.sources.smg.json.SmgUvResult
 import org.breezyweather.sources.smg.json.SmgWarningResult
 import java.text.SimpleDateFormat
-import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone

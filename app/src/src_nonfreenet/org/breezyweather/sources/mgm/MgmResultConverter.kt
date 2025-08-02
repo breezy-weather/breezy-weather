@@ -37,7 +37,6 @@ import org.breezyweather.sources.mgm.json.MgmCurrentResult
 import org.breezyweather.sources.mgm.json.MgmDailyForecastResult
 import org.breezyweather.sources.mgm.json.MgmHourlyForecast
 import org.breezyweather.sources.mgm.json.MgmLocationResult
-import org.breezyweather.sources.mgm.json.MgmNormalsResult
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone

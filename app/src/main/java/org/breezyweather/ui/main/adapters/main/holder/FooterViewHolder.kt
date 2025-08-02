@@ -60,11 +60,8 @@ import breezyweather.domain.source.SourceFeature
 import org.breezyweather.R
 import org.breezyweather.common.extensions.splitKeeping
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.ReverseGeocodingSource
-import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.domain.source.resourceName
 import org.breezyweather.sources.getFeatureSource
-import org.breezyweather.sources.getReverseGeocodingSource
 import org.breezyweather.sources.getWeatherSource
 import org.breezyweather.ui.common.composables.AlertDialogLink
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
