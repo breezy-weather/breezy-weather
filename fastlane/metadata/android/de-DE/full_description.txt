@@ -1,0 +1,47 @@
+Breezy Weather ist eine funktionsreiche, kostenlose und quelloffene Material 3 Expressive Wetterapp mit durchdachten Visualisierungen, die Vorhersagen, Echtzeitwetter, Kurzvorhersage, Luftqualität, Pollen, Warnungen und mehr von über 50 Wetterquellen, wie DWD und Open-Meteo bietet.
+
+<b>Funktionen</b>
+
+- Tägliche und stündliche Vorhersage für bis zu 16 Tage
+- Niederschlag in der nächsten Stunde
+- Echtzeitwetter
+- Luftqualität, Pollen und Ephemerideninformationen
+- Extremwetter- und Starkregenwarnungen
+- Opt-in Datenteilen mit anderen Apps (wie z.B. Gadgetbridge)
+- Fokus auf Barrierefreiheit für Screenreader und andere Sprachen
+
+<b>Design</b>
+
+- Material 3 Expressive
+- Detaillierte 24-Stunden-Diagramme
+- Automatischer dunkler Modus
+- Benutzerdefinierte Symbolpakete
+- Große Auswahl an Widgets
+- Live-Hintergrundbild
+
+<b>Quellen</b>
+
+- In jeder Version: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, Recosanté, SMA (Seychelles), SMA (Sudan), SSMS
+- Nicht frei/self-hostbar (nicht in Versionen mit Suffix _freenet enthalten): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hong Kong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mixed China sources, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, WMO Severe Weather
+
+<b>Berechtigungen</b>
+
+Notwendig:
+
+- Netzwerk (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): Wetterdaten über das Internet erhalten
+
+Optional:
+
+- Hintergrunddienste (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): Wetteraktualisierungen im Hintergrund und geplante Vorhersagebenachrichtigungen
+- Akkuoptimierungen ignorieren (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): Hilft dabei, dass die App nicht von manchen Geräten beendet wird
+- Benachrichtigungen senden (POST_NOTIFICATIONS): Warnungen, Niederschlag, Heute/Morgen-Vorhersagen, Benachrichtigungswidget, Fortschritt von Hintergrundaktualisierungen, etc.
+- Standort (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): Um Wetter an Ihrem aktuellen Standort anzuzeigen
+- Speicher (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): hilft beim Anwenden des Live-Hintergundbildes und/oder Widgets bei manchen Geräten
+- Kachel (EXPAND_STATUS_BAR): Um die App von den Schnelleinstellungen aus zu starten
+- Spezielle Appsprache (READ_APP_SPECIFIC_LOCALES): Ermöglicht das Auswählen von einer bestimmten Sprache für die App und auf manchen Geräten diesen Wert nach einem Neustart zu lesen
+
+<b>Lizenz</b>
+
+- GNU Lesser General Public License v3.0
+- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
