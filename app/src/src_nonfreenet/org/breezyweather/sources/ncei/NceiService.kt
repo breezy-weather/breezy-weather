@@ -132,12 +132,10 @@ class NceiService @Inject constructor(
         // Assign a weight to each station as a function of its distance from the weather location.
         // We calculate weights here so that we won't have to force reload location parameters
         // even if the weight function changes in the future.
-        val stationWeights = stationMap.mapValues {
-            getWeight(it.value)
-        }
+        val stationWeights = stationMap.mapValues { getWeight(it.value) }
 
         return Month.entries.associateWith { month ->
-            val monthEnding: String = if (month.value in 1..9) "-0$month" else "-$month"
+            val monthEnding = if (month.value in 1..9) "-0${month.value}" else "-${month.value}"
             val thisMonthNormals = normalsList
                 ?.filter { it.date.endsWith(monthEnding) && it.station in stationWeights.keys }
 

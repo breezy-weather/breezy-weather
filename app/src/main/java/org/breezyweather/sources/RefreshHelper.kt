@@ -1141,7 +1141,10 @@ class RefreshHelper @Inject constructor(
                     if (location.weather!!.normals.isEmpty()) return false
                     val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
                     return location.weather!!.normals
-                        .getOrElse(Month.fromCalendarMonth(cal[Calendar.MONTH])) { null } != null
+                        .getOrElse(Month.fromCalendarMonth(cal[Calendar.MONTH])) { null }
+                        ?.let {
+                            if (it.daytimeTemperature != null || it.nighttimeTemperature != null) it else null
+                        } != null
                 }
             }
             else -> {
