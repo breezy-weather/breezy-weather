@@ -44,6 +44,7 @@ import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.Text
 import androidx.compose.material3.ToggleButton
 import androidx.compose.material3.ToggleButtonDefaults
+import androidx.compose.material3.TooltipAnchorPosition
 import androidx.compose.material3.TooltipBox
 import androidx.compose.material3.TooltipDefaults
 import androidx.compose.material3.rememberTooltipState
@@ -209,7 +210,7 @@ fun DetailsConditions(
             if ((daily.degreeDay!!.heating ?: 0.0) > 0) {
                 item {
                     TooltipBox(
-                        positionProvider = TooltipDefaults.rememberTooltipPositionProvider(),
+                        positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Above),
                         tooltip = {
                             PlainTooltip {
                                 Text(stringResource(R.string.temperature_degree_day_heating_explanation))
@@ -246,7 +247,7 @@ fun DetailsConditions(
             } else if ((daily.degreeDay!!.cooling ?: 0.0) > 0) {
                 item {
                     TooltipBox(
-                        positionProvider = TooltipDefaults.rememberTooltipPositionProvider(),
+                        positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Above),
                         tooltip = {
                             PlainTooltip {
                                 Text(stringResource(R.string.temperature_degree_day_cooling_explanation))
@@ -513,7 +514,7 @@ fun NormalsDepartureLabel(
         }
 
         TooltipBox(
-            positionProvider = TooltipDefaults.rememberTooltipPositionProvider(),
+            positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Below),
             tooltip = {
                 PlainTooltip {
                     Text(
