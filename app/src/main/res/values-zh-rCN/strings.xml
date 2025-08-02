@@ -917,4 +917,6 @@
     <string name="air_quality_co_index">CO 的空气质量指数</string>
     <string name="weather_source_recommended">推荐</string>
     <string name="action_change">更改</string>
+    <string name="message_incompatible_times_title">不兼容的预报时间</string>
+    <string name="message_incompatible_times_content">更改预报或空气质量数据源让时间相匹配。</string>
 </resources>
