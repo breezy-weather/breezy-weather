@@ -188,39 +188,41 @@ class RefreshHelper @Inject constructor(
             return LocationResult(location, emptyList())
         }
 
-        val locationWithUpdatedCoordinates = location.copy(
-            latitude = currentLocationStore.lastKnownLatitude.toDouble(),
-            longitude = currentLocationStore.lastKnownLongitude.toDouble(),
-            /*
-             * Don’t keep old data as the user can have changed position
-             * It avoids keeping old data from a reverse geocoding-compatible weather source
-             * onto a weather source without reverse geocoding
-             */
-            timeZone = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                android.icu.util.TimeZone.getDefault().id
-            } else {
-                java.util.TimeZone.getDefault().id
-            },
-            country = "",
-            countryCode = "",
-            admin1 = "",
-            admin1Code = "",
-            admin2 = "",
-            admin2Code = "",
-            admin3 = "",
-            admin3Code = "",
-            admin4 = "",
-            admin4Code = "",
-            city = "",
-            district = ""
-        )
+        val coordinatesChanged = location.latitude != currentLocationStore.lastKnownLatitude.toDouble() ||
+            location.longitude != currentLocationStore.lastKnownLongitude.toDouble()
+        val locationWithUpdatedCoordinates = if (coordinatesChanged) {
+            location.copy(
+                latitude = currentLocationStore.lastKnownLatitude.toDouble(),
+                longitude = currentLocationStore.lastKnownLongitude.toDouble(),
+                /*
+                 * Don’t keep old data as the user can have changed position
+                 * It avoids keeping old data from a reverse geocoding-compatible weather source
+                 * onto a weather source without reverse geocoding
+                 */
+                timeZone = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    android.icu.util.TimeZone.getDefault().id
+                } else {
+                    java.util.TimeZone.getDefault().id
+                },
+                country = "",
+                countryCode = "",
+                admin1 = "",
+                admin1Code = "",
+                admin2 = "",
+                admin2Code = "",
+                admin3 = "",
+                admin3Code = "",
+                admin4 = "",
+                admin4Code = "",
+                city = "",
+                district = ""
+            )
+        } else {
+            location
+        }
 
         val currentErrors = mutableListOf<RefreshError>()
-        val locationGeocoded = if (
-            location.longitude != locationWithUpdatedCoordinates.longitude ||
-            location.latitude != locationWithUpdatedCoordinates.latitude ||
-            location.needsGeocodeRefresh
-        ) {
+        val locationGeocoded = if (coordinatesChanged || location.needsGeocodeRefresh) {
             val reverseGeocodingService = sourceManager.getReverseGeocodingSourceOrDefault(
                 location.reverseGeocodingSource ?: BuildConfig.DEFAULT_GEOCODING_SOURCE
             )
