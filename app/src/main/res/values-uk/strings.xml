@@ -753,7 +753,7 @@
     <string name="visibility_moderate">Помірний</string>
     <string name="visibility_good">Добре</string>
     <string name="visibility_clear">Очистити</string>
-    <string name="visibility_perfectly_clear">Абсолютно очистити</string>
+    <string name="visibility_perfectly_clear">Абсолютно чисто</string>
     <string name="cloud_cover_about">Про хмарність</string>
     <string name="label_description">Опис</string>
     <string name="air_quality_index_about_description_1">Індекс якості повітря (ІЯП) – це шкала, розроблена, щоб допомогти вам зрозуміти, наскільки забруднене повітря в певній місцевості, а також потенційні ризики для вашого здоров’я.</string>
