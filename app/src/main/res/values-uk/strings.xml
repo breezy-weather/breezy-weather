@@ -826,4 +826,9 @@
     <string name="action_change">Зміна</string>
     <string name="message_incompatible_times_title">Несумісні графіки прогнозів</string>
     <string name="message_incompatible_times_content">Змініть прогноз або джерело інформації про якість повітря відповідно до часу.</string>
+    <string name="humidity_from_to_number">%1$s до %2$s</string>
+    <string name="dew_point_from_to_number">%1$s має %2$s</string>
+    <string name="cloud_cover_from_to_number">%1$s до %2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s до %2$s</string>
+    <string name="common_weather_text_mostly_cloudy">Переважно хмарно</string>
 </resources>
