@@ -86,7 +86,7 @@ class FpasService @Inject constructor(
             maxLon = location.longitude + 0.001
         ).execute().body() ?: return Observable.error(WeatherException())
 
-        if (alertUuids.isEmpty()) return Observable.empty()
+        if (alertUuids.isEmpty()) return Observable.just(WeatherWrapper())
 
         var someAlertsFailed = false
         return Observable.zip(
