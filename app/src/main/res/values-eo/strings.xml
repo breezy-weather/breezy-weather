@@ -833,4 +833,6 @@
     <string name="ephemeris_polar_night">Polusa nokto</string>
     <string name="clock">Horloĝo</string>
     <string name="temperature_normals_deviation">Dekliniĝo</string>
+    <string name="temperature_normals_deviation_explanation_maximum">Dekliniĝo de %s mezuma maksimuma temperaturo por ĉi tiu loko</string>
+    <string name="temperature_normals_deviation_explanation_minimum">Dekliniĝo de %s mezuma minimuma temperaturo por ĉi tiu loko</string>
 </resources>
