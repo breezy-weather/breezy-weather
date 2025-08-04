@@ -839,4 +839,9 @@
     <string name="settings_appearance_dark_mode_locations_dark">Zawsze ciemny, gdy aplikacja jest w trybie ciemnym</string>
     <string name="message_incompatible_times_title">Czasy prognozy są niezgodne</string>
     <string name="message_incompatible_times_content">Zmień źródło prognozy lub jakości powietrza, aby godziny się zgadzały.</string>
+    <string name="humidity_from_to_number">%1$s do %2$s</string>
+    <string name="dew_point_from_to_number">%1$s do %2$s</string>
+    <string name="cloud_cover_from_to_number">%1$s do %2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s do %2$s</string>
+    <string name="common_weather_text_mostly_cloudy">Przeważnie pochmurno</string>
 </resources>
