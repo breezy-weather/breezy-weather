@@ -20,11 +20,15 @@
     <string name="humidity_dew_point">Humidité / Point de rosée</string>
     <string name="humidity_about">À propos de l’humidité relative</string>
     <string name="humidity_about_description">L’humidité relative, plus couramment appelée simplement humidité, correspond au pourcentage de vapeur d’eau présent dans l’air par rapport à la quantité maximale que l’air peut contenir à une température donnée.</string>
+    <!-- 40 to 90 %, %1$s = 40, %2$s = 90 % -->
+    <string name="humidity_from_to_number">%1$s à %2$s</string>
     <string name="dew_point">Point de rosée</string>
     <string name="dew_point_short">P. de rosée</string>
     <string name="dew_point_about">À propos du point de rosée</string>
     <!-- %s = 100 % -->
     <string name="dew_point_about_description">Le point de rosée est la température à laquelle il faudrait refroidir l’air pour atteindre une humidité relative de %s.</string>
+    <!-- 10 to 20°, %1$s = 10, %2$s = 20° -->
+    <string name="dew_point_from_to_number">%1$s à %2$s</string>
     <string name="sunshine">Ensoleillement</string>
     <string name="sunshine_duration">Durée d’ensoleillement</string>
     <string name="notification_channel_forecast">Prévisions</string>
@@ -65,6 +69,10 @@
     <string name="cloud_cover_short">Couverture</string>
     <string name="cloud_cover_about">À propos de la couverture nuageuse</string>
     <string name="cloud_cover_about_description">La couverture nuageuse désigne le pourcentage du ciel obscurci par les nuages, en moyenne. La couverture nuageuse est corrélée à la durée d’ensoleillement.</string>
+    <!-- 40 to 90 %, %1$s = 40, %2$s = 90 % -->
+    <string name="cloud_cover_from_to_number">%1$s à %2$s</string>
+    <!-- Partly cloudy to Clear, %1$s = Partly cloudy, %2$s = Cloudy -->
+    <string name="cloud_cover_from_to_description">%1$s à %2$s</string>
     <string name="ceiling">Plafond nuageux</string>
     <string name="ceiling_short">Plafond</string>
     <string name="settings_icon_packs_get_more">Voir plus</string>
@@ -235,7 +243,7 @@
     <string name="ephemeris_polar_night">Nuit polaire</string>
     <!-- Weather texts -->
     <string name="common_weather_text_clear_sky">Ciel dégagé</string>
-    <string name="common_weather_text_mainly_clear">Principalement dégagé</string>
+    <string name="common_weather_text_mostly_clear">Principalement dégagé</string>
     <string name="common_weather_text_overcast">Couvert</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Dépôt d’un brouillard de givre</string>
     <string name="common_weather_text_snow_grains">Neige en grains</string>
@@ -671,6 +679,7 @@
     <string name="air_quality_level_6_harmless_exposure">&lt; 1 minute</string>
     <!-- Weather kind -->
     <string name="common_weather_text_partly_cloudy">Partiellement couvert</string>
+    <string name="common_weather_text_mostly_cloudy">Principalement couvert</string>
     <string name="common_weather_text_cloudy">Nuageux</string>
     <string name="common_weather_text_rain">Pluie</string>
     <string name="common_weather_text_snow">Neige</string>

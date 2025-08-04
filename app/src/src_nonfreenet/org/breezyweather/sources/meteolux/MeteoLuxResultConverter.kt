@@ -235,7 +235,7 @@ private fun getWeatherText(
     // 59 -> sun, cloud, thunder snow shower?
     return when (icon) {
         1, 7 -> context.getString(R.string.common_weather_text_clear_sky)
-        2, 8 -> context.getString(R.string.common_weather_text_mainly_clear)
+        2, 8 -> context.getString(R.string.common_weather_text_mostly_clear)
         3, 9 -> context.getString(R.string.common_weather_text_partly_cloudy)
         4, 10 -> context.getString(R.string.common_weather_text_cloudy)
         5 -> context.getString(R.string.common_weather_text_overcast)

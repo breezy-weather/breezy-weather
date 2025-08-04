@@ -511,7 +511,7 @@
     <string name="unit_celsius">°C</string>
     <string name="unit_kn">kn</string>
     <string name="common_weather_text_drizzle_heavy">Jaka kišica</string>
-    <string name="common_weather_text_mainly_clear">Pretežno vedro</string>
+    <string name="common_weather_text_mostly_clear">Pretežno vedro</string>
     <string name="unit_kph_voice">Kilometara na sat</string>
     <string name="unit_kph">km/h</string>
     <string name="common_weather_text_rain_moderate">Umjerena kiša</string>

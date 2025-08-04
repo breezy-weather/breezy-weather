@@ -430,7 +430,7 @@
     <string name="widget_style_tile">Ubin</string>
     <string name="unit_kn">kn</string>
     <string name="common_weather_text_drizzle_heavy">Gerimis lebat</string>
-    <string name="common_weather_text_mainly_clear">Sebagian besar cerah</string>
+    <string name="common_weather_text_mostly_clear">Sebagian besar cerah</string>
     <string name="settings_main_background_animation_disabled">Dinonaktifkan</string>
     <string name="unit_kph_voice">Kilometer per jam</string>
     <string name="unit_kph">km/j</string>

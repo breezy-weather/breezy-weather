@@ -301,7 +301,27 @@ class WeatherRepository(
                     // uv.
                     uvIndex = daily.uV?.index,
 
-                    sunshineDuration = daily.sunshineDuration
+                    sunshineDuration = daily.sunshineDuration,
+
+                    relativeHumidityAverage = daily.relativeHumidity?.average,
+                    relativeHumidityMin = daily.relativeHumidity?.min,
+                    relativeHumidityMax = daily.relativeHumidity?.max,
+
+                    dewpointAverage = daily.dewPoint?.average,
+                    dewpointMin = daily.dewPoint?.min,
+                    dewpointMax = daily.dewPoint?.max,
+
+                    pressureAverage = daily.pressure?.average,
+                    pressureMin = daily.pressure?.min,
+                    pressureMax = daily.pressure?.max,
+
+                    cloudCoverAverage = daily.cloudCover?.average?.toLong(),
+                    cloudCoverMin = daily.cloudCover?.min?.toLong(),
+                    cloudCoverMax = daily.cloudCover?.max?.toLong(),
+
+                    visibilityAverage = daily.visibility?.average,
+                    visibilityMin = daily.visibility?.min,
+                    visibilityMax = daily.visibility?.max
                 )
             }
 

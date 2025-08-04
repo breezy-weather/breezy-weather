@@ -505,7 +505,7 @@
     <string name="settings_notifications_precipitations_title">降水（降雪）の通知</string>
     <string name="settings_widgets_summary">壁紙の設定・使用中のウィジェット・通知ウィジェット</string>
     <string name="notification_precipitation_continuing_desc">少なくとも%sまで降るでしょう</string>
-    <string name="common_weather_text_mainly_clear">おおむね晴れ</string>
+    <string name="common_weather_text_mostly_clear">おおむね晴れ</string>
     <string name="common_weather_text_overcast">曇り</string>
     <string name="common_weather_text_rain_showers">にわか雨</string>
     <string name="common_weather_text_rain_showers_light">時々小雨</string>

@@ -85,7 +85,7 @@
     <string name="pollen">花粉浓度</string>
     <string name="ephemeris">日月升落</string>
     <string name="common_weather_text_clear_sky">晴朗</string>
-    <string name="common_weather_text_mainly_clear">少云</string>
+    <string name="common_weather_text_mostly_clear">少云</string>
     <string name="common_weather_text_overcast">阴天</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">沉积雾凇</string>
     <string name="common_weather_text_snow_grains">米雪</string>

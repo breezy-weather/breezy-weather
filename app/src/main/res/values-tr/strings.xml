@@ -137,7 +137,7 @@
     <string name="message_parsing_error_content">Uygulamayı en son sürümüne güncellediğinizden emin olun. Sunucu geçici olarak kullanılamıyor olabilir, bu durumda lütfen daha sonra tekrar deneyin. Sorun devam ederse lütfen hata ayıklama ayarlarından bir çökme kaydı dökümü alın ve GitHub’dan sorunu bildirin.</string>
     <string name="widget_custom_subtitle_keyword_ch_description">Şu anki nem</string>
     <string name="settings_background_updates_battery_optimization_summary">Bildirim almadığınızda veya widget’lar yenilenmediğinde denenecek ilk şey budur.</string>
-    <string name="common_weather_text_mainly_clear">Çoğunlukla açık</string>
+    <string name="common_weather_text_mostly_clear">Çoğunlukla açık</string>
     <string name="common_weather_text_fog">Sis</string>
     <string name="common_weather_text_snow">Kar</string>
     <string name="pollen_tree">Ağaç</string>

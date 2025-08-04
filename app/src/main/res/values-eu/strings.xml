@@ -317,7 +317,7 @@
     <string name="about_matrix">Matrix gela</string>
     <string name="about_source_code">Iturburu kodea</string>
     <string name="about_dependencies">Dependentziak</string>
-    <string name="common_weather_text_mainly_clear">Batez ere argia</string>
+    <string name="common_weather_text_mostly_clear">Batez ere argia</string>
     <string name="common_weather_text_rain_showers_moderate">Euri-jasa ertainak</string>
     <string name="common_weather_text_snow">Elurra</string>
     <string name="common_weather_text_snow_light">Elur arina</string>

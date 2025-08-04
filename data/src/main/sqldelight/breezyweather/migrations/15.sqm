@@ -1,0 +1,44 @@
+ALTER TABLE dailys
+ADD COLUMN relative_humidity_average REAL;
+
+ALTER TABLE dailys
+ADD COLUMN relative_humidity_min REAL;
+
+ALTER TABLE dailys
+ADD COLUMN relative_humidity_max REAL;
+
+ALTER TABLE dailys
+ADD COLUMN dewpoint_average REAL;
+
+ALTER TABLE dailys
+ADD COLUMN dewpoint_min REAL;
+
+ALTER TABLE dailys
+ADD COLUMN dewpoint_max REAL;
+
+ALTER TABLE dailys
+ADD COLUMN pressure_average REAL;
+
+ALTER TABLE dailys
+ADD COLUMN pressure_min REAL;
+
+ALTER TABLE dailys
+ADD COLUMN pressure_max REAL;
+
+ALTER TABLE dailys
+ADD COLUMN cloud_cover_average INTEGER;
+
+ALTER TABLE dailys
+ADD COLUMN cloud_cover_min INTEGER;
+
+ALTER TABLE dailys
+ADD COLUMN cloud_cover_max INTEGER;
+
+ALTER TABLE dailys
+ADD COLUMN visibility_average REAL;
+
+ALTER TABLE dailys
+ADD COLUMN visibility_min REAL;
+
+ALTER TABLE dailys
+ADD COLUMN visibility_max REAL;

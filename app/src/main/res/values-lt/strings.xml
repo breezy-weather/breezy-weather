@@ -493,7 +493,7 @@
     <string name="common_weather_text_rain_moderate">Vidutinio stiprumo lietus</string>
     <string name="notification_updating_weather_data">Atnaujinami orų duomenys (%1$d/%2$d)</string>
     <string name="notification_running_in_background">Veikia fone, kad būtų tęsiamas atnaujinimas</string>
-    <string name="common_weather_text_mainly_clear">Daugiausia giedra</string>
+    <string name="common_weather_text_mostly_clear">Daugiausia giedra</string>
     <string name="about_translators">Vertėjai</string>
     <string name="common_weather_text_clear_sky">Giedras dangus</string>
     <string name="about_contribution_designer">Logotipo dizaineris</string>

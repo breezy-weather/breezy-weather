@@ -286,7 +286,7 @@
     <string name="about_matrix">Server Matrix</string>
     <string name="about_source_code">Codul sursă</string>
     <string name="about_contribution_WangDaYeeeeee">Dezvoltator al proiectului original Geometric Weather</string>
-    <string name="common_weather_text_mainly_clear">Parțial Senin</string>
+    <string name="common_weather_text_mostly_clear">Parțial Senin</string>
     <string name="common_weather_text_overcast">Înnorat</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Brumă</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Furtună Uşoară spre Moderată</string>

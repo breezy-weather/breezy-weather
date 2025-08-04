@@ -376,7 +376,7 @@
     <string name="settings_location_access_background_summaryOn">Sallittu. Sovellus voi päivittää nykyisen sijaintisi säätiedot taustalla.</string>
     <string name="settings_units_summary">Lämpötila, sademäärä, etäisyys, nopeus, paine</string>
     <string name="unit_kn">kn</string>
-    <string name="common_weather_text_mainly_clear">Enimmäkseen selkeää</string>
+    <string name="common_weather_text_mostly_clear">Enimmäkseen selkeää</string>
     <string name="settings_main_background_animation_disabled">Ei käytössä</string>
     <string name="unit_kph_voice">Kilometriä tunnissa</string>
     <string name="unit_kph">km/h</string>

@@ -493,7 +493,7 @@
     <string name="about_open_link_message">לפתוח %s?</string>
     <string name="common_weather_text_clear_sky">שמיים בהירים</string>
     <string name="about_translators">מתרגמים</string>
-    <string name="common_weather_text_mainly_clear">לרוב בהיר</string>
+    <string name="common_weather_text_mostly_clear">לרוב בהיר</string>
     <string name="common_weather_text_partly_cloudy">מעונן חלקית</string>
     <string name="common_weather_text_rain_snow_mixed">שלג מיימי</string>
     <string name="common_weather_text_rain_snow_mixed_light">גשם קל ושלג מעורבים</string>

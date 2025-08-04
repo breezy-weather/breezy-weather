@@ -518,7 +518,7 @@
     <string name="unit_celsius">°C</string>
     <string name="unit_kn">kn</string>
     <string name="common_weather_text_drizzle_heavy">Llovizna intensa</string>
-    <string name="common_weather_text_mainly_clear">Principalmente despejado</string>
+    <string name="common_weather_text_mostly_clear">Principalmente despejado</string>
     <string name="unit_kph">km/h</string>
     <string name="common_weather_text_rain_moderate">Lluvias moderadas</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Fuertes lluvias de aguanieve</string>

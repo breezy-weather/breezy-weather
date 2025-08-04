@@ -257,7 +257,7 @@ private fun getWeatherText(
     return cloudCover?.let {
         when {
             cloudCover <= 12 -> context.getString(R.string.common_weather_text_clear_sky)
-            cloudCover <= 37 -> context.getString(R.string.common_weather_text_mainly_clear)
+            cloudCover <= 37 -> context.getString(R.string.common_weather_text_mostly_clear)
             (rainfall == null || rainfall < 1.0) -> when {
                 cloudCover <= 62 -> context.getString(R.string.common_weather_text_partly_cloudy)
                 cloudCover < 100 -> context.getString(R.string.common_weather_text_cloudy)

@@ -440,7 +440,7 @@
     <string name="notification_channel_alerts">تنبيهات</string>
     <string name="notification_channel_background_services">خدمات الخلفية</string>
     <string name="about_contribution_WangDaYeeeeee">مطور المشروع الأصلي الطقس الهندسي</string>
-    <string name="common_weather_text_mainly_clear">صافٍ غالباً</string>
+    <string name="common_weather_text_mostly_clear">صافٍ غالباً</string>
     <string name="location_message_permission_missing">إذن الوصول إلى الموقع مفقود</string>
     <string name="setting_weather_source_accu_days">الأيام</string>
     <string name="weather_source_accu_preference_days_1">يوم 1</string>

@@ -352,7 +352,7 @@
     <string name="about_contributors">Người đóng góp</string>
     <string name="about_translators">Người biên dịch</string>
     <string name="about_contribution_WangDaYeeeeee">Nhà phát triển của dự án Geometric Weather gốc</string>
-    <string name="common_weather_text_mainly_clear">Chủ yếu trong</string>
+    <string name="common_weather_text_mostly_clear">Chủ yếu trong</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Dông nhẹ hoặc vừa phải</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Dông kèm theo mưa đá nhẹ</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Dông kèm theo mưa đá nặng</string>

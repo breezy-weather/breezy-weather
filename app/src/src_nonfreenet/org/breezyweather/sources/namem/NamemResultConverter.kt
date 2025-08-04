@@ -287,9 +287,9 @@ private fun getWeatherText(
     return when (weather) {
         2 -> context.getString(R.string.common_weather_text_clear_sky) // "Цэлмэг"
         3 -> context.getString(R.string.common_weather_text_overcast) // "Үүлэрхэг"
-        5, 7 -> context.getString(R.string.common_weather_text_mainly_clear) // "Багавтар үүлтэй"
+        5, 7 -> context.getString(R.string.common_weather_text_mostly_clear) // "Багавтар үүлтэй"
         9, 10 -> context.getString(R.string.common_weather_text_cloudy) // "Үүлшинэ"
-        20 -> context.getString(R.string.common_weather_text_mainly_clear) // "Үүл багасна"
+        20 -> context.getString(R.string.common_weather_text_mostly_clear) // "Үүл багасна"
         23, 24 -> context.getString(R.string.common_weather_text_snow_light) // "Ялимгүй цас"
         27, 28 -> context.getString(R.string.common_weather_text_rain_snow_mixed_showers_light) // "Ялимгүй хур тунадас"
         60 -> context.getString(R.string.common_weather_text_rain_light) // "Бага зэргийн бороо"

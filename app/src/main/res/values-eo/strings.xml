@@ -475,7 +475,7 @@
     <!-- Check https://unterm.un.org/unterm2/en/ -->
     <!-- We don’t use all of them currently, but they might come useful some day -->
     <string name="common_weather_text_clear_sky">Klara ĉielo</string>
-    <string name="common_weather_text_mainly_clear">Ĉefe klara</string>
+    <string name="common_weather_text_mostly_clear">Ĉefe klara</string>
     <string name="common_weather_text_partly_cloudy">Parte nuba</string>
     <string name="common_weather_text_cloudy">Nuba</string>
     <string name="common_weather_text_overcast">Kovrita</string>

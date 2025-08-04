@@ -400,7 +400,7 @@
     <string name="unit_km_voice">Quilômetros</string>
     <string name="about_contribution_WangDaYeeeeee">Programador do projeto original Geometric Weather</string>
     <string name="common_weather_text_clear_sky">Céu limpo</string>
-    <string name="common_weather_text_mainly_clear">Principalmente limpo</string>
+    <string name="common_weather_text_mostly_clear">Principalmente limpo</string>
     <string name="common_weather_text_overcast">Nublado</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Névoa depositante de geada</string>
     <string name="weather_message_invalid_location">Localização inválida, exclua-a e adicione-a novamente</string>

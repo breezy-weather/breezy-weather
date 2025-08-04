@@ -496,7 +496,7 @@
     <string name="unit_mps">எம்/கள்</string>
     <string name="about_source_code">மூலக் குறியீடு</string>
     <string name="common_weather_text_clear_sky">வானத்தை அழிக்கவும்</string>
-    <string name="common_weather_text_mainly_clear">முக்கியமாக தெளிவாக</string>
+    <string name="common_weather_text_mostly_clear">முக்கியமாக தெளிவாக</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">பலத்த மழை மற்றும் பனி கலப்பு மழை</string>
     <string name="common_weather_text_snow_light">ஒளி பனி</string>
     <string name="unit_ftps_voice">ஒரு நொடிக்கு அடி</string>

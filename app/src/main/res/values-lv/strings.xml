@@ -400,7 +400,7 @@
     <string name="about_source_code">Pirmkods</string>
     <string name="about_dependencies">Atkarības</string>
     <string name="about_translators">Tulkotāji</string>
-    <string name="common_weather_text_mainly_clear">Galvenokārt skaidrs</string>
+    <string name="common_weather_text_mostly_clear">Galvenokārt skaidrs</string>
     <string name="about_contribution_WangDaYeeeeee">Sākotnējā projekta Geometric Weather izstrādātājs</string>
     <string name="common_weather_text_clear_sky">Skaidras debesis</string>
     <string name="common_weather_text_rain_showers">Lietusgāzes</string>

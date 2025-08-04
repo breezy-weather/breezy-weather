@@ -148,7 +148,7 @@
     <string name="common_weather_text_rain_freezing_light">Lett underkjølt regn</string>
     <string name="common_weather_text_rain_showers_heavy">Kraftige regnbyger</string>
     <string name="common_weather_text_rain_showers_moderate">Moderate regnbyger</string>
-    <string name="common_weather_text_mainly_clear">Lettskyet</string>
+    <string name="common_weather_text_mostly_clear">Lettskyet</string>
     <string name="about_contact">Kontakt</string>
     <string name="notification_updating_weather_data">Oppdaterer værdata (%1$d/%2$d)</string>
     <string name="notification_channel_alerts">Farevarsler</string>

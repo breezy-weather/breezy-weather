@@ -501,6 +501,13 @@ object UnitUtils {
         }
     }
 
+    fun formatPercent(
+        context: Context,
+        value: Int,
+    ): String {
+        return formatPercent(context, value.toDouble(), 0)
+    }
+
     /**
      * Units will stay at the same size if it somehow fails to parse
      */

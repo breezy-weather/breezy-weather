@@ -481,7 +481,7 @@
     <string name="about_contribution_WangDaYeeeeee">Распрацоўшчык першапачатковага праекта Geometric Weather</string>
     <string name="about_contribution_designer">Дызайнер лагатыпа</string>
     <string name="common_weather_text_clear_sky">Ясна</string>
-    <string name="common_weather_text_mainly_clear">Пераважна ясна</string>
+    <string name="common_weather_text_mostly_clear">Пераважна ясна</string>
     <string name="common_weather_text_partly_cloudy">Пераменная воблачнасць</string>
     <string name="common_weather_text_cloudy">Воблачна</string>
     <string name="common_weather_text_overcast">Пахмурна</string>

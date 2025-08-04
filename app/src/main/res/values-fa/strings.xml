@@ -447,7 +447,7 @@
     <string name="about_dependencies">وابستگی ها</string>
     <string name="about_contributors">همکاری کنندگان</string>
     <string name="about_translators">مترجمان</string>
-    <string name="common_weather_text_mainly_clear">بیشتر صاف</string>
+    <string name="common_weather_text_mostly_clear">بیشتر صاف</string>
     <string name="common_weather_text_cloudy">ابری</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_fahrenheit_short">°</string>

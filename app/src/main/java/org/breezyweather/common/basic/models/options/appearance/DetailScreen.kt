@@ -72,18 +72,30 @@ enum class DetailScreen(
                             location.weather?.hourlyForecast?.any {
                                 (it.uV?.index ?: 0.0) > 0.0
                             } == true
-                        TAG_HUMIDITY -> location.weather?.hourlyForecast?.any {
-                            (it.relativeHumidity ?: 0.0) > 0.0 || (it.dewPoint ?: 0.0) != 0.0
-                        } == true
-                        TAG_PRESSURE -> location.weather?.hourlyForecast?.any {
-                            (it.pressure ?: 0.0) > 0.0
-                        } == true
-                        TAG_CLOUD_COVER -> location.weather?.hourlyForecast?.any {
-                            (it.cloudCover ?: 0) > 0
-                        } == true
-                        TAG_VISIBILITY -> location.weather?.hourlyForecast?.any {
-                            (it.visibility ?: 0.0) > 0.0
-                        } == true
+                        TAG_HUMIDITY -> location.weather?.dailyForecast?.any {
+                            (it.relativeHumidity?.min ?: 0.0) > 0.0 || (it.relativeHumidity?.max ?: 0.0) > 0.0
+                        } == true ||
+                            location.weather?.hourlyForecast?.any {
+                                (it.relativeHumidity ?: 0.0) > 0.0 || (it.dewPoint ?: 0.0) != 0.0
+                            } == true
+                        TAG_PRESSURE -> location.weather?.dailyForecast?.any {
+                            (it.pressure?.average ?: 0.0) > 0.0
+                        } == true ||
+                            location.weather?.hourlyForecast?.any {
+                                (it.pressure ?: 0.0) > 0.0
+                            } == true
+                        TAG_CLOUD_COVER -> location.weather?.dailyForecast?.any {
+                            (it.cloudCover?.min ?: 0) > 0 || (it.cloudCover?.max ?: 0) > 0
+                        } == true ||
+                            location.weather?.hourlyForecast?.any {
+                                (it.cloudCover ?: 0) > 0
+                            } == true
+                        TAG_VISIBILITY -> location.weather?.dailyForecast?.any {
+                            (it.visibility?.min ?: 0.0) > 0.0 || (it.visibility?.max ?: 0.0) > 0.0
+                        } == true ||
+                            location.weather?.hourlyForecast?.any {
+                                (it.visibility ?: 0.0) > 0.0
+                            } == true
                         TAG_SUN_MOON -> true // Should always be computed, no need to check
                     }
                 }.toImmutableList()

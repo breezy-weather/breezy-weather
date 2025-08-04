@@ -477,7 +477,7 @@
     <string name="unit_mph_voice">Mil na godzinę</string>
     <string name="unit_ftps_voice">Stóp na sekundę</string>
     <string name="unit_kgfpsqcm_voice">Kilogramów siły na centymetr kwadratowy</string>
-    <string name="common_weather_text_mainly_clear">Przeważnie bezchmurnie</string>
+    <string name="common_weather_text_mostly_clear">Przeważnie bezchmurnie</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lekka lub umiarkowana burza z piorunami</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Silna burza z gradem</string>
     <string name="settings_source_api_key">Klucz API</string>

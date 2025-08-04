@@ -486,7 +486,7 @@
     <string name="common_weather_text_drizzle_freezing_heavy">Јака ледена росуља</string>
     <string name="unit_mm_voice">Милиметри</string>
     <string name="notification_running_in_background">Ради у позадини, да би се редовно ажурирало</string>
-    <string name="common_weather_text_mainly_clear">Углавном ведро</string>
+    <string name="common_weather_text_mostly_clear">Углавном ведро</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Олуја са грмљавином са слабим градом</string>
     <string name="unit_cm">cm</string>
     <string name="notification_updating_weather_data">Ажурирање података о времену (%1$d/%2$d)</string>

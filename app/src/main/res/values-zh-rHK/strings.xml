@@ -585,7 +585,7 @@
     <string name="about_contribution_designer">Logo 設計</string>
     <string name="about_open_link_message">開啟 %s 嗎？</string>
     <string name="common_weather_text_clear_sky">天晴</string>
-    <string name="common_weather_text_mainly_clear">大致天晴</string>
+    <string name="common_weather_text_mostly_clear">大致天晴</string>
     <string name="common_weather_text_partly_cloudy">部分時間多雲</string>
     <string name="common_weather_text_cloudy">多雲</string>
     <string name="common_weather_text_overcast">密雲</string>

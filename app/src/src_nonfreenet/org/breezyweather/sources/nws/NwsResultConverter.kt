@@ -608,7 +608,7 @@ private fun getWeatherText(
                 // NWS labels 67.5% to 87.5% "Mostly Cloudy"
                 cloudCover >= 67.5 -> context.getString(R.string.common_weather_text_cloudy)
                 cloudCover >= 37.5 -> context.getString(R.string.common_weather_text_partly_cloudy)
-                cloudCover >= 12.5 -> context.getString(R.string.common_weather_text_mainly_clear)
+                cloudCover >= 12.5 -> context.getString(R.string.common_weather_text_mostly_clear)
                 else -> context.getString(R.string.common_weather_text_clear_sky)
             }
         }

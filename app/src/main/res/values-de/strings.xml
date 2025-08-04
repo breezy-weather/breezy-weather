@@ -191,7 +191,7 @@
     <string name="unit_ppcm_voice">Pro Kubikmeter</string>
     <string name="notification_channel_alerts">Warnungen</string>
     <string name="common_weather_text_clear_sky">Klarer Himmel</string>
-    <string name="common_weather_text_mainly_clear">Überwiegend klar</string>
+    <string name="common_weather_text_mostly_clear">Überwiegend klar</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Raueis mit Nebel</string>
     <string name="common_weather_text_snow_grains">Schneegriesel</string>
     <string name="air_quality_level_1_description">Für die meisten Menschen ist die Luftqualität bei Unternehmungen im Freien optimal.</string>

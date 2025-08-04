@@ -22,6 +22,11 @@ import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Base
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.DailyCloudCover
+import breezyweather.domain.weather.model.DailyDewPoint
+import breezyweather.domain.weather.model.DailyPressure
+import breezyweather.domain.weather.model.DailyRelativeHumidity
+import breezyweather.domain.weather.model.DailyVisibility
 import breezyweather.domain.weather.model.DegreeDay
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Hourly
@@ -221,6 +226,21 @@ object WeatherMapper {
         willow: Long?,
         uvIndex: Double?,
         sunshineDuration: Double?,
+        relativeHumidityAverage: Double?,
+        relativeHumidityMin: Double?,
+        relativeHumidityMax: Double?,
+        dewpointAverage: Double?,
+        dewpointMin: Double?,
+        dewpointMax: Double?,
+        pressureAverage: Double?,
+        pressureMin: Double?,
+        pressureMax: Double?,
+        cloudCoverAverage: Long?,
+        cloudCoverMin: Long?,
+        cloudCoverMax: Long?,
+        visibilityAverage: Double?,
+        visibilityMin: Double?,
+        visibilityMax: Double?,
     ): Daily = Daily(
         Date(date),
         HalfDay(
@@ -336,7 +356,32 @@ object WeatherMapper {
             willow = willow?.toInt()
         ),
         UV(uvIndex),
-        sunshineDuration
+        sunshineDuration,
+        relativeHumidity = DailyRelativeHumidity(
+            average = relativeHumidityAverage,
+            min = relativeHumidityMin,
+            max = relativeHumidityMax
+        ),
+        dewPoint = DailyDewPoint(
+            average = dewpointAverage,
+            min = dewpointMin,
+            max = dewpointMax
+        ),
+        pressure = DailyPressure(
+            average = pressureAverage,
+            min = pressureMin,
+            max = pressureMax
+        ),
+        cloudCover = DailyCloudCover(
+            average = cloudCoverAverage?.toInt(),
+            min = cloudCoverMin?.toInt(),
+            max = cloudCoverMax?.toInt()
+        ),
+        visibility = DailyVisibility(
+            average = visibilityAverage,
+            min = visibilityMin,
+            max = visibilityMax
+        )
     )
 
     fun mapHourly(

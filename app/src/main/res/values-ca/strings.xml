@@ -496,7 +496,7 @@
     <string name="settings_units_summary">Temperatura, precipitació, distància, velocitat, pressió</string>
     <string name="unit_kn">kn</string>
     <string name="common_weather_text_drizzle_heavy">Plugim intens</string>
-    <string name="common_weather_text_mainly_clear">Majoritàriament clar</string>
+    <string name="common_weather_text_mostly_clear">Majoritàriament clar</string>
     <string name="settings_main_background_animation_disabled">Desactivat</string>
     <string name="unit_kph">km/h</string>
     <string name="common_weather_text_rain_moderate">Pluja moderada</string>

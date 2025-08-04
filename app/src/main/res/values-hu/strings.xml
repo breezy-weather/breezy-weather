@@ -405,7 +405,7 @@
     <string name="common_weather_text_snow_showers_heavy">Intenzív hózápor</string>
     <string name="common_weather_text_drizzle_light">Enyhe szemerkélő eső</string>
     <string name="common_weather_text_drizzle_moderate">Mérsékelt szemerkélő eső</string>
-    <string name="common_weather_text_mainly_clear">Nagyrészt tiszta</string>
+    <string name="common_weather_text_mostly_clear">Nagyrészt tiszta</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Fagyos, heves szemerkélő eső</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Rétegköd lerakódás</string>
     <string name="unit_mi">mi</string>

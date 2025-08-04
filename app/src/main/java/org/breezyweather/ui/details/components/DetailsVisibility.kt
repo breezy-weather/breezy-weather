@@ -39,6 +39,7 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.buildAnnotatedString
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
@@ -59,16 +60,19 @@ import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.roundUpToNearestMultiplier
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.domain.settings.SettingsManager
+import org.breezyweather.domain.weather.model.getFullLabel
+import org.breezyweather.domain.weather.model.getRangeContentDescriptionSummary
+import org.breezyweather.domain.weather.model.getRangeDescriptionSummary
+import org.breezyweather.domain.weather.model.getRangeSummary
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.settings.preference.bottomInsetItem
-import java.util.Date
 import kotlin.math.max
 
 @Composable
 fun DetailsVisibility(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
-    theDay: Date,
+    daily: Daily,
     modifier: Modifier = Modifier,
 ) {
     val mappedValues = remember(hourlyList) {
@@ -85,14 +89,8 @@ fun DetailsVisibility(
             vertical = dimensionResource(R.dimen.small_margin)
         )
     ) {
-        if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
-            item {
-                VisibilityChart(location, mappedValues, theDay)
-            }
-        } else {
-            item {
-                UnavailableChart(mappedValues.size)
-            }
+        item {
+            VisibilityChart(location, mappedValues, daily)
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
@@ -145,72 +143,41 @@ private fun VisibilityItem(
 
 @Composable
 private fun VisibilitySummary(
-    mappedValues: ImmutableMap<Long, Double>,
+    location: Location,
+    daily: Daily,
 ) {
     val context = LocalContext.current
     val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
-    val minVisibility = mappedValues.values.min()
-    val minVisibilityDescription = DistanceUnit.getVisibilityDescription(context, minVisibility)
-    val maxVisibility = mappedValues.values.max()
-    val maxVisibilityDescription = DistanceUnit.getVisibilityDescription(context, maxVisibility)
-    val maxVisibilityFormatted = distanceUnit.formatMeasure(context, maxVisibility)
-    val maxVisibilityContentDescription = distanceUnit.formatContentDescription(context, maxVisibility)
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
     ) {
-        // Make room for time when switching to the marker
         TextFixedHeight(
-            text = "",
-            style = MaterialTheme.typography.labelMedium,
-            modifier = Modifier.clearAndSetSemantics {}
+            text = daily.getFullLabel(location, context),
+            style = MaterialTheme.typography.labelMedium
         )
         TextFixedHeight(
             text = buildAnnotatedString {
-                append(
-                    UnitUtils.formatUnitsDifferentFontSize(
-                        formattedMeasure = if (minVisibility == maxVisibility) {
-                            maxVisibilityFormatted
-                        } else {
-                            stringResource(
-                                R.string.visibility_from_to_number,
-                                distanceUnit.formatValue(context, minVisibility),
-                                maxVisibilityFormatted
-                            )
-                        },
-                        fontSize = MaterialTheme.typography.headlineSmall.fontSize
+                daily.visibility?.getRangeSummary(context, distanceUnit)?.let {
+                    append(
+                        UnitUtils.formatUnitsDifferentFontSize(
+                            formattedMeasure = it,
+                            fontSize = MaterialTheme.typography.headlineSmall.fontSize
+                        )
                     )
-                )
+                }
             },
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier
                 .clearAndSetSemantics {
-                    contentDescription = if (minVisibility == maxVisibility) {
-                        maxVisibilityContentDescription
-                    } else {
-                        distanceUnit.formatValue(context, minVisibility).let {
-                            context.getString(
-                                R.string.visibility_from_to_number,
-                                it,
-                                maxVisibilityContentDescription
-                            )
-                        }
+                    daily.visibility?.getRangeContentDescriptionSummary(context, distanceUnit)?.let {
+                        contentDescription = it
                     }
                 }
         )
         TextFixedHeight(
-            text = if (maxVisibilityDescription.isNullOrEmpty()) {
-                ""
-            } else if (minVisibilityDescription == maxVisibilityDescription) {
-                maxVisibilityDescription
-            } else {
-                stringResource(
-                    R.string.visibility_from_to_description,
-                    minVisibilityDescription!!,
-                    maxVisibilityDescription
-                )
-            },
+            text = daily.visibility?.getRangeDescriptionSummary(context) ?: "",
             style = MaterialTheme.typography.labelMedium
         )
     }
@@ -220,38 +187,9 @@ private fun VisibilitySummary(
 private fun VisibilityChart(
     location: Location,
     mappedValues: ImmutableMap<Long, Double>,
-    theDay: Date,
+    daily: Daily,
 ) {
     val context = LocalContext.current
-    val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
-    val maxY = remember(mappedValues) {
-        max(
-            // This value makes it, once rounded, a minimum of 75000 ft
-            22850.0, // TODO: Make this a const
-            mappedValues.values.max()
-        ).let {
-            distanceUnit.getConvertedUnit(it)
-        }
-    }
-    val step = remember(mappedValues) {
-        distanceUnit.chartStep(maxY)
-    }
-    val maxYRounded = remember(mappedValues) {
-        maxY.roundUpToNearestMultiplier(step)
-    }
-
-    val modelProducer = remember { CartesianChartModelProducer() }
-
-    LaunchedEffect(location) {
-        modelProducer.runTransaction {
-            lineSeries {
-                series(
-                    x = mappedValues.keys,
-                    y = mappedValues.values.map { distanceUnit.getConvertedUnit(it) }
-                )
-            }
-        }
-    }
 
     var activeMarkerTarget: CartesianMarker.Target? by remember { mutableStateOf(null) }
     val markerVisibilityListener = object : CartesianMarkerVisibilityListener {
@@ -280,37 +218,71 @@ private fun VisibilityChart(
                 visibility = visibility
             )
         }
-    } ?: VisibilitySummary(mappedValues)
+    } ?: VisibilitySummary(location, daily)
 
     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
 
-    BreezyLineChart(
-        location,
-        modelProducer,
-        theDay,
-        maxYRounded,
-        { _, value, _ -> distanceUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
-        persistentListOf(
-            persistentMapOf(
-                distanceUnit.getConvertedUnit(20000.0).toFloat() to Color(119, 141, 120),
-                distanceUnit.getConvertedUnit(15000.0).toFloat() to Color(91, 167, 99),
-                distanceUnit.getConvertedUnit(9000.0).toFloat() to Color(90, 169, 90),
-                distanceUnit.getConvertedUnit(8000.0).toFloat() to Color(98, 122, 160),
-                distanceUnit.getConvertedUnit(6000.0).toFloat() to Color(98, 122, 160),
-                distanceUnit.getConvertedUnit(5000.0).toFloat() to Color(167, 91, 91),
-                distanceUnit.getConvertedUnit(2200.0).toFloat() to Color(167, 91, 91),
-                distanceUnit.getConvertedUnit(1600.0).toFloat() to Color(162, 97, 160),
-                distanceUnit.getConvertedUnit(0.0).toFloat() to Color(166, 93, 165)
-            )
-        ),
-        topAxisValueFormatter = { _, value, _ ->
-            mappedValues.getOrElse(value.toLong()) { null }?.let {
-                SettingsManager.getInstance(context).getDistanceUnit(context).formatValue(context, it)
-            } ?: "-"
-        },
-        endAxisItemPlacer = remember {
-            VerticalAxis.ItemPlacer.step({ step })
-        },
-        markerVisibilityListener = markerVisibilityListener
-    )
+    if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
+        val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
+        val maxY = remember(mappedValues) {
+            max(
+                // This value makes it, once rounded, a minimum of 75000 ft
+                22850.0, // TODO: Make this a const
+                mappedValues.values.max()
+            ).let {
+                distanceUnit.getConvertedUnit(it)
+            }
+        }
+        val step = remember(mappedValues) {
+            distanceUnit.chartStep(maxY)
+        }
+        val maxYRounded = remember(mappedValues) {
+            maxY.roundUpToNearestMultiplier(step)
+        }
+
+        val modelProducer = remember { CartesianChartModelProducer() }
+
+        LaunchedEffect(location) {
+            modelProducer.runTransaction {
+                lineSeries {
+                    series(
+                        x = mappedValues.keys,
+                        y = mappedValues.values.map { distanceUnit.getConvertedUnit(it) }
+                    )
+                }
+            }
+        }
+
+        BreezyLineChart(
+            location,
+            modelProducer,
+            daily.date,
+            maxYRounded,
+            { _, value, _ -> distanceUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
+            persistentListOf(
+                persistentMapOf(
+                    distanceUnit.getConvertedUnit(20000.0).toFloat() to Color(119, 141, 120),
+                    distanceUnit.getConvertedUnit(15000.0).toFloat() to Color(91, 167, 99),
+                    distanceUnit.getConvertedUnit(9000.0).toFloat() to Color(90, 169, 90),
+                    distanceUnit.getConvertedUnit(8000.0).toFloat() to Color(98, 122, 160),
+                    distanceUnit.getConvertedUnit(6000.0).toFloat() to Color(98, 122, 160),
+                    distanceUnit.getConvertedUnit(5000.0).toFloat() to Color(167, 91, 91),
+                    distanceUnit.getConvertedUnit(2200.0).toFloat() to Color(167, 91, 91),
+                    distanceUnit.getConvertedUnit(1600.0).toFloat() to Color(162, 97, 160),
+                    distanceUnit.getConvertedUnit(0.0).toFloat() to Color(166, 93, 165)
+                )
+            ),
+            topAxisValueFormatter = { _, value, _ ->
+                mappedValues.getOrElse(value.toLong()) { null }?.let {
+                    SettingsManager.getInstance(context).getDistanceUnit(context).formatValue(context, it)
+                } ?: "-"
+            },
+            endAxisItemPlacer = remember {
+                VerticalAxis.ItemPlacer.step({ step })
+            },
+            markerVisibilityListener = markerVisibilityListener
+        )
+    } else {
+        UnavailableChart(mappedValues.size)
+    }
 }

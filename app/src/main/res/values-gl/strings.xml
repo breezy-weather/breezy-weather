@@ -257,7 +257,7 @@
     <string name="common_weather_text_drizzle">Chuvisca</string>
     <string name="common_weather_text_cloudy">Nubrado</string>
     <string name="common_weather_text_rain">Chuvia</string>
-    <string name="common_weather_text_mainly_clear">Principalmente despexado</string>
+    <string name="common_weather_text_mostly_clear">Principalmente despexado</string>
     <string name="common_weather_text_rain_moderate">Chuvia moderada</string>
     <string name="common_weather_text_snow_moderate">Neve moderada</string>
     <string name="common_weather_text_overcast">Nubrado</string>

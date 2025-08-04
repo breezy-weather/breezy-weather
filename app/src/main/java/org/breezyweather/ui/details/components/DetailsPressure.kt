@@ -41,6 +41,7 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.AnnotatedString
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
 import com.patrykandpatrick.vico.core.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.core.cartesian.data.CartesianChartModelProducer
@@ -72,7 +73,7 @@ import kotlin.math.min
 fun DetailsPressure(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
-    theDay: Date,
+    daily: Daily,
     modifier: Modifier = Modifier,
 ) {
     val mappedValues = remember(hourlyList) {
@@ -89,14 +90,8 @@ fun DetailsPressure(
             vertical = dimensionResource(R.dimen.small_margin)
         )
     ) {
-        if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
-            item {
-                PressureChart(location, mappedValues, theDay)
-            }
-        } else {
-            item {
-                UnavailableChart(mappedValues.size)
-            }
+        item {
+            PressureChart(location, mappedValues, daily)
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
@@ -117,12 +112,12 @@ fun DetailsPressure(
 
 @Composable
 private fun PressureSummary(
-    pressure: Double,
+    pressure: Double?,
 ) {
     PressureItem(
         header = {
             TextFixedHeight(
-                text = stringResource(R.string.pressure_average),
+                text = pressure?.let { stringResource(R.string.pressure_average) } ?: "",
                 style = MaterialTheme.typography.labelMedium
             )
         },
@@ -165,39 +160,9 @@ private fun PressureItem(
 private fun PressureChart(
     location: Location,
     mappedValues: ImmutableMap<Long, Double>,
-    theDay: Date,
+    daily: Daily,
 ) {
     val context = LocalContext.current
-    val pressureUnit = SettingsManager.getInstance(context).getPressureUnit(context)
-    val chartStep = pressureUnit.chartStep
-    val maxY = remember(mappedValues) {
-        max(
-            pressureUnit.getConvertedUnit(PressureUnit.NORMAL) + chartStep.times(1.6),
-            pressureUnit.getConvertedUnit(mappedValues.values.max())
-        ).roundUpToNearestMultiplier(chartStep)
-    }
-    val minY = remember(mappedValues) {
-        min(
-            pressureUnit.getConvertedUnit(PressureUnit.NORMAL) - chartStep.times(1.6),
-            pressureUnit.getConvertedUnit(mappedValues.values.min())
-        ).roundDownToNearestMultiplier(chartStep)
-    }
-    val averagePressure = remember(mappedValues) {
-        mappedValues.values.average()
-    }
-
-    val modelProducer = remember { CartesianChartModelProducer() }
-
-    LaunchedEffect(location) {
-        modelProducer.runTransaction {
-            lineSeries {
-                series(
-                    x = mappedValues.keys,
-                    y = mappedValues.values.map { pressureUnit.getConvertedUnit(it) }
-                )
-            }
-        }
-    }
 
     var activeMarkerTarget: CartesianMarker.Target? by remember { mutableStateOf(null) }
     val markerVisibilityListener = object : CartesianMarkerVisibilityListener {
@@ -226,65 +191,97 @@ private fun PressureChart(
                 pressure = pressure
             )
         }
-    } ?: PressureSummary(averagePressure)
+    } ?: PressureSummary(daily.pressure?.average)
 
     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
 
-    BreezyLineChart(
-        location,
-        modelProducer,
-        theDay,
-        maxY,
-        { _, value, _ -> pressureUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
-        persistentListOf(
-            persistentMapOf(
-                pressureUnit.getConvertedUnit(1080.0).toFloat() to Color(48, 8, 24),
-                pressureUnit.getConvertedUnit(1046.0).toFloat() to Color(111, 24, 64),
-                pressureUnit.getConvertedUnit(1038.0).toFloat() to Color(142, 47, 57),
-                pressureUnit.getConvertedUnit(1030.0).toFloat() to Color(159, 81, 44),
-                pressureUnit.getConvertedUnit(1024.0).toFloat() to Color(163, 116, 67),
-                pressureUnit.getConvertedUnit(1019.0).toFloat() to Color(167, 147, 107),
-                pressureUnit.getConvertedUnit(1015.25).toFloat() to Color(176, 174, 152),
-                pressureUnit.getConvertedUnit(1013.25).toFloat() to Color(182, 182, 182),
-                pressureUnit.getConvertedUnit(1011.25).toFloat() to Color(155, 183, 172),
-                pressureUnit.getConvertedUnit(1007.0).toFloat() to Color(103, 162, 155),
-                pressureUnit.getConvertedUnit(1002.0).toFloat() to Color(26, 140, 147),
-                pressureUnit.getConvertedUnit(995.0).toFloat() to Color(0, 117, 146),
-                pressureUnit.getConvertedUnit(986.0).toFloat() to Color(0, 90, 148),
-                pressureUnit.getConvertedUnit(976.0).toFloat() to Color(0, 52, 146),
-                pressureUnit.getConvertedUnit(950.0).toFloat() to Color(0, 32, 96),
-                pressureUnit.getConvertedUnit(900.0).toFloat() to Color(8, 16, 48)
-            )
-        ),
-        trendHorizontalLines = persistentMapOf(
-            pressureUnit.getConvertedUnit(PressureUnit.NORMAL) to stringResource(R.string.temperature_normal_short)
-        ),
-        minY = minY,
-        topAxisValueFormatter = { _, value, _ ->
-            val currentIndex = mappedValues.keys.indexOfFirst { it == value.toLong() }.let {
-                if (it == 0) 1 else it
-            }
-            val previousValue = if (currentIndex > 0) {
-                mappedValues.values.elementAt(currentIndex - 1)
-            } else {
-                return@BreezyLineChart "-"
-            }
-            val currentValue = mappedValues.values.elementAt(currentIndex)
-            val trend = with(currentValue - previousValue) {
-                when {
-                    // Take into account the trend if the difference is of at least 0.5
-                    this >= 0.5 -> "↑"
-                    this <= -0.5 -> "↓"
-                    else -> "="
+    if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
+        val pressureUnit = SettingsManager.getInstance(context).getPressureUnit(context)
+        val chartStep = pressureUnit.chartStep
+        val maxY = remember(mappedValues) {
+            max(
+                pressureUnit.getConvertedUnit(PressureUnit.NORMAL) + chartStep.times(1.6),
+                pressureUnit.getConvertedUnit(mappedValues.values.max())
+            ).roundUpToNearestMultiplier(chartStep)
+        }
+        val minY = remember(mappedValues) {
+            min(
+                pressureUnit.getConvertedUnit(PressureUnit.NORMAL) - chartStep.times(1.6),
+                pressureUnit.getConvertedUnit(mappedValues.values.min())
+            ).roundDownToNearestMultiplier(chartStep)
+        }
+
+        val modelProducer = remember { CartesianChartModelProducer() }
+
+        LaunchedEffect(location) {
+            modelProducer.runTransaction {
+                lineSeries {
+                    series(
+                        x = mappedValues.keys,
+                        y = mappedValues.values.map { pressureUnit.getConvertedUnit(it) }
+                    )
                 }
             }
-            SpannableString(trend).apply {
-                setSpan(RelativeSizeSpan(2f), 0, trend.length, 0)
-            }
-        },
-        endAxisItemPlacer = remember {
-            VerticalAxis.ItemPlacer.step({ chartStep })
-        },
-        markerVisibilityListener = markerVisibilityListener
-    )
+        }
+
+        BreezyLineChart(
+            location,
+            modelProducer,
+            daily.date,
+            maxY,
+            { _, value, _ -> pressureUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
+            persistentListOf(
+                persistentMapOf(
+                    pressureUnit.getConvertedUnit(1080.0).toFloat() to Color(48, 8, 24),
+                    pressureUnit.getConvertedUnit(1046.0).toFloat() to Color(111, 24, 64),
+                    pressureUnit.getConvertedUnit(1038.0).toFloat() to Color(142, 47, 57),
+                    pressureUnit.getConvertedUnit(1030.0).toFloat() to Color(159, 81, 44),
+                    pressureUnit.getConvertedUnit(1024.0).toFloat() to Color(163, 116, 67),
+                    pressureUnit.getConvertedUnit(1019.0).toFloat() to Color(167, 147, 107),
+                    pressureUnit.getConvertedUnit(1015.25).toFloat() to Color(176, 174, 152),
+                    pressureUnit.getConvertedUnit(1013.25).toFloat() to Color(182, 182, 182),
+                    pressureUnit.getConvertedUnit(1011.25).toFloat() to Color(155, 183, 172),
+                    pressureUnit.getConvertedUnit(1007.0).toFloat() to Color(103, 162, 155),
+                    pressureUnit.getConvertedUnit(1002.0).toFloat() to Color(26, 140, 147),
+                    pressureUnit.getConvertedUnit(995.0).toFloat() to Color(0, 117, 146),
+                    pressureUnit.getConvertedUnit(986.0).toFloat() to Color(0, 90, 148),
+                    pressureUnit.getConvertedUnit(976.0).toFloat() to Color(0, 52, 146),
+                    pressureUnit.getConvertedUnit(950.0).toFloat() to Color(0, 32, 96),
+                    pressureUnit.getConvertedUnit(900.0).toFloat() to Color(8, 16, 48)
+                )
+            ),
+            trendHorizontalLines = persistentMapOf(
+                pressureUnit.getConvertedUnit(PressureUnit.NORMAL) to stringResource(R.string.temperature_normal_short)
+            ),
+            minY = minY,
+            topAxisValueFormatter = { _, value, _ ->
+                val currentIndex = mappedValues.keys.indexOfFirst { it == value.toLong() }.let {
+                    if (it == 0) 1 else it
+                }
+                val previousValue = if (currentIndex > 0) {
+                    mappedValues.values.elementAt(currentIndex - 1)
+                } else {
+                    return@BreezyLineChart "-"
+                }
+                val currentValue = mappedValues.values.elementAt(currentIndex)
+                val trend = with(currentValue - previousValue) {
+                    when {
+                        // Take into account the trend if the difference is of at least 0.5
+                        this >= 0.5 -> "↑"
+                        this <= -0.5 -> "↓"
+                        else -> "="
+                    }
+                }
+                SpannableString(trend).apply {
+                    setSpan(RelativeSizeSpan(2f), 0, trend.length, 0)
+                }
+            },
+            endAxisItemPlacer = remember {
+                VerticalAxis.ItemPlacer.step({ chartStep })
+            },
+            markerVisibilityListener = markerVisibilityListener
+        )
+    } else {
+        UnavailableChart(mappedValues.size)
+    }
 }

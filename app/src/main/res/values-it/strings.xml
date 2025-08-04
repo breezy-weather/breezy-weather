@@ -370,7 +370,7 @@
     <string name="unit_hpa">hPa</string>
     <string name="unit_atm">atm</string>
     <string name="unit_kpa">kPa</string>
-    <string name="common_weather_text_mainly_clear">Prevalentemente sereno</string>
+    <string name="common_weather_text_mostly_clear">Prevalentemente sereno</string>
     <string name="about_source_code">Codice sorgente</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Nebbia con deposito di brina</string>
     <string name="settings_main_summary">Ordine blocchi, elementi visualizzati, animazioni</string>

@@ -202,7 +202,7 @@
     <string name="common_weather_text_rain_snow_mixed_showers_light">Slabý dážď a zmiešané snehové prehánky</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Silné mrznúce mrholenie</string>
     <string name="common_weather_text_drizzle_heavy">Silné mrholenie</string>
-    <string name="common_weather_text_mainly_clear">Prevažne jasno</string>
+    <string name="common_weather_text_mostly_clear">Prevažne jasno</string>
     <string name="common_weather_text_rain_moderate">Mierny dážď</string>
     <string name="settings_debug">Ladenie</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Silný dážď a zmiešané snehové prehánky</string>

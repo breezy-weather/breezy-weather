@@ -115,7 +115,7 @@ private fun getWeatherText(
 ): String? {
     return when (phenomenon) {
         "clear" -> context.getString(R.string.common_weather_text_clear_sky)
-        "few_clouds" -> context.getString(R.string.common_weather_text_mainly_clear)
+        "few_clouds" -> context.getString(R.string.common_weather_text_mostly_clear)
         "cloudy" -> context.getString(R.string.common_weather_text_partly_cloudy)
         "cloudy_with_clear_spells" -> context.getString(R.string.common_weather_text_partly_cloudy)
         "overcast" -> context.getString(R.string.common_weather_text_cloudy)

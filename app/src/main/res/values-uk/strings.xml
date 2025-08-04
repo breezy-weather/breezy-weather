@@ -497,7 +497,7 @@
     <string name="notification_channel_widget">Віджет</string>
     <string name="notification_channel_background_services">Фонові сервіси</string>
     <string name="about_contribution_WangDaYeeeeee">Розробник початкового проєкту Geometric Weather</string>
-    <string name="common_weather_text_mainly_clear">Переважно ясно</string>
+    <string name="common_weather_text_mostly_clear">Переважно ясно</string>
     <string name="common_weather_text_rain_light">Невеликий дощ</string>
     <string name="common_weather_text_rain_moderate">Помірний дощ</string>
     <string name="common_weather_text_rain_showers_moderate">Помірна злива</string>

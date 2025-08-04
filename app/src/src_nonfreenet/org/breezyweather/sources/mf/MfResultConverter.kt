@@ -21,6 +21,7 @@ import androidx.annotation.ColorInt
 import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.DailyRelativeHumidity
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Precipitation
@@ -128,7 +129,11 @@ internal fun getDailyList(
                     // so we try to get tMin from next day if available
                     temperature = TemperatureWrapper(temperature = dailyForecasts.getOrNull(i + 1)?.tMin)
                 ),
-                uV = UV(index = dailyForecast.uvIndex?.toDouble())
+                uV = UV(index = dailyForecast.uvIndex?.toDouble()),
+                relativeHumidity = DailyRelativeHumidity(
+                    min = dailyForecast.relativeHumidityMin?.toDouble(),
+                    max = dailyForecast.relativeHumidityMax?.toDouble()
+                )
             )
         )
     }

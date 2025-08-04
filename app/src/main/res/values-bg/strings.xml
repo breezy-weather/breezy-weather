@@ -465,7 +465,7 @@
     <string name="notification_update_error">%d неуспешна(и) актуализаця(ии)</string>
     <string name="about_contribution_WangDaYeeeeee">Разработчик на оригиналния проект Geometric Weather</string>
     <string name="common_weather_text_overcast">Облачно</string>
-    <string name="common_weather_text_mainly_clear">Предимно ясно</string>
+    <string name="common_weather_text_mostly_clear">Предимно ясно</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Отлагане на мъгла</string>
     <string name="common_weather_text_snow_grains">Снежни зърна</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Слаба или умерена гръмотевична буря</string>

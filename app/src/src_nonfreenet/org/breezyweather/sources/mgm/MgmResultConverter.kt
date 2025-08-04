@@ -282,7 +282,7 @@ private fun getWeatherText(
 ): String? {
     return when (condition) {
         "A" -> context.getString(R.string.common_weather_text_clear_sky) // Açık
-        "AB" -> context.getString(R.string.common_weather_text_mainly_clear) // Az Bulutlu
+        "AB" -> context.getString(R.string.common_weather_text_mostly_clear) // Az Bulutlu
         "PB" -> context.getString(R.string.common_weather_text_partly_cloudy) // Parçalı Bulutlu
         "CB" -> context.getString(R.string.common_weather_text_cloudy) // Çok Bulutlu
         "HY" -> context.getString(R.string.common_weather_text_rain_light) // Hafif Yağmurlu

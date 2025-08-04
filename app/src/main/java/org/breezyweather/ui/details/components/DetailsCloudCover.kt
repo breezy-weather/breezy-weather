@@ -39,6 +39,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.buildAnnotatedString
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
@@ -57,9 +58,13 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
+import org.breezyweather.common.basic.models.options.unit.getCloudCoverDescription
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
+import org.breezyweather.domain.weather.model.getFullLabel
+import org.breezyweather.domain.weather.model.getRangeDescriptionSummary
+import org.breezyweather.domain.weather.model.getRangeSummary
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 import java.util.Date
@@ -86,14 +91,8 @@ fun DetailsCloudCover(
             vertical = dimensionResource(R.dimen.small_margin)
         )
     ) {
-        if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
-            item {
-                CloudCoverChart(location, mappedValues, daily.date)
-            }
-        } else {
-            item {
-                UnavailableChart(mappedValues.size)
-            }
+        item {
+            CloudCoverChart(location, mappedValues, daily)
         }
         daily.sunshineDuration?.let { sunshineDuration ->
             item {
@@ -130,18 +129,27 @@ fun DetailsCloudCover(
 
 @Composable
 private fun CloudCoverSummary(
-    cloudCover: Int?,
+    location: Location,
+    daily: Daily,
+    modifier: Modifier = Modifier,
 ) {
-    CloudCoverItem(
-        header = {
-            TextFixedHeight(
-                text = "",
-                style = MaterialTheme.typography.labelMedium,
-                modifier = Modifier.clearAndSetSemantics {}
-            )
-        },
-        cloudCover = cloudCover
-    )
+    val context = LocalContext.current
+    Column(
+        modifier = modifier.fillMaxWidth()
+    ) {
+        TextFixedHeight(
+            text = daily.getFullLabel(location, context),
+            style = MaterialTheme.typography.labelMedium
+        )
+        TextFixedHeight(
+            text = daily.cloudCover?.getRangeSummary(context) ?: "",
+            style = MaterialTheme.typography.displaySmall
+        )
+        TextFixedHeight(
+            text = daily.cloudCover?.getRangeDescriptionSummary(context) ?: "",
+            style = MaterialTheme.typography.labelMedium
+        )
+    }
 }
 
 @Composable
@@ -162,6 +170,10 @@ private fun CloudCoverItem(
             } ?: "",
             style = MaterialTheme.typography.displaySmall
         )
+        TextFixedHeight(
+            text = getCloudCoverDescription(context, cloudCover) ?: "",
+            style = MaterialTheme.typography.labelMedium
+        )
     }
 }
 
@@ -169,7 +181,7 @@ private fun CloudCoverItem(
 private fun CloudCoverChart(
     location: Location,
     mappedValues: ImmutableMap<Long, Int>,
-    theDay: Date,
+    daily: Daily,
 ) {
     val context = LocalContext.current
     val maxY = 100.0
@@ -218,29 +230,33 @@ private fun CloudCoverChart(
                 cloudCover = cloudCover
             )
         }
-    } ?: CloudCoverSummary(null)
+    } ?: CloudCoverSummary(location, daily)
 
     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
 
-    BreezyLineChart(
-        location,
-        modelProducer,
-        theDay,
-        maxY,
-        endAxisValueFormatter,
-        persistentListOf(
-            persistentMapOf(
-                100f to Color(213, 213, 205),
-                98f to Color(198, 201, 201),
-                95f to Color(171, 180, 179),
-                50f to Color(116, 116, 116),
-                10f to Color(132, 119, 70),
-                0f to Color(146, 130, 70)
-            )
-        ),
-        endAxisItemPlacer = remember {
-            VerticalAxis.ItemPlacer.step({ 20.0 }) // Every 20 %
-        },
-        markerVisibilityListener = markerVisibilityListener
-    )
+    if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
+        BreezyLineChart(
+            location,
+            modelProducer,
+            daily.date,
+            maxY,
+            endAxisValueFormatter,
+            persistentListOf(
+                persistentMapOf(
+                    100f to Color(213, 213, 205),
+                    98f to Color(198, 201, 201),
+                    95f to Color(171, 180, 179),
+                    50f to Color(116, 116, 116),
+                    10f to Color(132, 119, 70),
+                    0f to Color(146, 130, 70)
+                )
+            ),
+            endAxisItemPlacer = remember {
+                VerticalAxis.ItemPlacer.step({ 20.0 }) // Every 20 %
+            },
+            markerVisibilityListener = markerVisibilityListener
+        )
+    } else {
+        UnavailableChart(mappedValues.size)
+    }
 }

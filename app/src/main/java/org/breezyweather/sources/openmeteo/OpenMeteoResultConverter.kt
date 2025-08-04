@@ -19,6 +19,11 @@ package org.breezyweather.sources.openmeteo
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
+import breezyweather.domain.weather.model.DailyCloudCover
+import breezyweather.domain.weather.model.DailyDewPoint
+import breezyweather.domain.weather.model.DailyPressure
+import breezyweather.domain.weather.model.DailyRelativeHumidity
+import breezyweather.domain.weather.model.DailyVisibility
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.model.Precipitation
@@ -131,7 +136,32 @@ internal fun getDailyList(
                 )
             ),
             uV = UV(index = dailyResult.uvIndexMax?.getOrNull(i)),
-            sunshineDuration = dailyResult.sunshineDuration?.getOrNull(i)?.div(3600)
+            sunshineDuration = dailyResult.sunshineDuration?.getOrNull(i)?.div(3600),
+            relativeHumidity = DailyRelativeHumidity(
+                average = dailyResult.relativeHumidityMean?.getOrNull(i)?.toDouble(),
+                max = dailyResult.relativeHumidityMax?.getOrNull(i)?.toDouble(),
+                min = dailyResult.relativeHumidityMin?.getOrNull(i)?.toDouble()
+            ),
+            dewPoint = DailyDewPoint(
+                average = dailyResult.dewPointMean?.getOrNull(i),
+                max = dailyResult.dewPointMax?.getOrNull(i),
+                min = dailyResult.dewPointMin?.getOrNull(i)
+            ),
+            pressure = DailyPressure(
+                average = dailyResult.pressureMslMean?.getOrNull(i),
+                max = dailyResult.pressureMslMax?.getOrNull(i),
+                min = dailyResult.pressureMslMin?.getOrNull(i)
+            ),
+            cloudCover = DailyCloudCover(
+                average = dailyResult.cloudCoverMean?.getOrNull(i),
+                max = dailyResult.cloudCoverMax?.getOrNull(i),
+                min = dailyResult.cloudCoverMin?.getOrNull(i)
+            ),
+            visibility = DailyVisibility(
+                average = dailyResult.visibilityMean?.getOrNull(i),
+                max = dailyResult.visibilityMax?.getOrNull(i),
+                min = dailyResult.visibilityMin?.getOrNull(i)
+            )
         )
         dailyList.add(daily)
     }

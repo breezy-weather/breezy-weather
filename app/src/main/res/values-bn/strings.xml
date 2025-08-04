@@ -167,7 +167,7 @@
     <string name="common_weather_text_clear_sky">মেঘমুক্ত আকাশ</string>
     <string name="common_weather_text_partly_cloudy">আংশিক মেঘলা</string>
     <string name="common_weather_text_cloudy">মেঘলা</string>
-    <string name="common_weather_text_mainly_clear">প্রধানত মেঘমুক্ত</string>
+    <string name="common_weather_text_mostly_clear">প্রধানত মেঘমুক্ত</string>
     <string name="common_weather_text_overcast">মেঘাচ্ছন্ন</string>
     <string name="common_weather_text_rain">বৃষ্টি</string>
     <string name="common_weather_text_rain_light">হালকা বৃষ্টি</string>

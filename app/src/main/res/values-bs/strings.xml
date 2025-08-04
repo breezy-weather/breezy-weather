@@ -343,7 +343,7 @@
     <string name="about_contribution_WangDaYeeeeee">Programer izvornog projekta „Geometric Weather”</string>
     <string name="about_contribution_designer">Dizajner logotipa</string>
     <string name="common_weather_text_clear_sky">Vedro</string>
-    <string name="common_weather_text_mainly_clear">Pretežno vedro</string>
+    <string name="common_weather_text_mostly_clear">Pretežno vedro</string>
     <string name="common_weather_text_drizzle_light">Slaba rosulja</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Slabi pljuskovi sa susnježicom</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Jaki pljuskovi sa susnježicom</string>

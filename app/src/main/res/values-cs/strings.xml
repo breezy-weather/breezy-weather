@@ -316,7 +316,7 @@
     <string name="unit_ftps">ft/s</string>
     <string name="unit_cmph">cm/h</string>
     <string name="unit_inph">palec/h</string>
-    <string name="common_weather_text_mainly_clear">Skoro jasno</string>
+    <string name="common_weather_text_mostly_clear">Skoro jasno</string>
     <string name="weather_api_unauthorized_content">U některých zdrojů dat o počasí je třeba zadat vlastní klíč API. Pokud jste ho již poskytli, překontrolujte zadaný klíč API.</string>
     <string name="weather_api_key_required_missing_content">Chcete-li tento zdroj použít, musíte zadat klíč API.</string>
     <string name="location_search_no_results">%1$s nemůže najít %2$s</string>

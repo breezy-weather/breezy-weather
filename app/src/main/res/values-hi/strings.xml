@@ -481,7 +481,7 @@
     <string name="notification_channel_forecast">पूर्वानुमान</string>
     <string name="notification_style_native">मूल</string>
     <string name="about_contribution_WangDaYeeeeee">मूल परियोजना जियोमेट्रिक वेदर के विकासकर्ता</string>
-    <string name="common_weather_text_mainly_clear">मुख्यतः स्पष्ट</string>
+    <string name="common_weather_text_mostly_clear">मुख्यतः स्पष्ट</string>
     <string name="common_weather_text_partly_cloudy">आंशिक रूप से बादल</string>
     <string name="common_weather_text_rain_light">हलकी वर्षा</string>
     <string name="common_weather_text_rain_moderate">मध्यम बारिश</string>

@@ -496,7 +496,7 @@
     <string name="unit_kgfpsqcm_voice">Kilogram kracht per vierkante centimeter</string>
     <string name="about_source_code">Broncode</string>
     <string name="about_contributors">Bijdragers</string>
-    <string name="common_weather_text_mainly_clear">Overwegend helder</string>
+    <string name="common_weather_text_mostly_clear">Overwegend helder</string>
     <string name="common_weather_text_partly_cloudy">Licht bewolkt</string>
     <string name="common_weather_text_rain_heavy">Zware regen</string>
     <string name="common_weather_text_rain_moderate">Matige regen</string>

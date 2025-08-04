@@ -182,7 +182,7 @@ private fun getHourlyWeatherText(
         with(symbol) {
             when {
                 startsWith("01") -> context.getString(R.string.common_weather_text_clear_sky)
-                startsWith("02") -> context.getString(R.string.common_weather_text_mainly_clear)
+                startsWith("02") -> context.getString(R.string.common_weather_text_mostly_clear)
                 startsWith("03") -> context.getString(R.string.common_weather_text_partly_cloudy)
                 startsWith("04") -> context.getString(R.string.common_weather_text_cloudy)
                 startsWith("05") -> context.getString(R.string.common_weather_text_rain_showers)

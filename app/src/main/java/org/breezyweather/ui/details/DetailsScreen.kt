@@ -432,10 +432,10 @@ fun DailyPagerContent(
             }
             DetailScreen.TAG_POLLEN -> DetailsPollen(daily.pollen, pollenIndexSource)
             DetailScreen.TAG_UV_INDEX -> DetailsUV(location, hourlyList, daily)
-            DetailScreen.TAG_HUMIDITY -> DetailsHumidity(location, hourlyList, daily.date)
-            DetailScreen.TAG_PRESSURE -> DetailsPressure(location, hourlyList, daily.date)
+            DetailScreen.TAG_HUMIDITY -> DetailsHumidity(location, hourlyList, daily)
+            DetailScreen.TAG_PRESSURE -> DetailsPressure(location, hourlyList, daily)
             DetailScreen.TAG_CLOUD_COVER -> DetailsCloudCover(location, hourlyList, daily)
-            DetailScreen.TAG_VISIBILITY -> DetailsVisibility(location, hourlyList, daily.date)
+            DetailScreen.TAG_VISIBILITY -> DetailsVisibility(location, hourlyList, daily)
             DetailScreen.TAG_SUN_MOON -> {
                 val sunTimes = remember(selected) {
                     location.weather!!.dailyForecast.mapNotNull { it.sun }

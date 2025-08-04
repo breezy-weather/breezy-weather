@@ -103,7 +103,7 @@
     <string name="settings_widgets_broadcast_title">การแชร์ข้อมูล</string>
     <string name="settings_widgets_broadcast_send_data_title">ส่งข้อมูล %s</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">ไม่พบแพ็กเกจที่ใช้งานได้</string>
-    <string name="common_weather_text_mainly_clear">ท้องฟ้าโปร่ง</string>
+    <string name="common_weather_text_mostly_clear">ท้องฟ้าโปร่ง</string>
     <string name="common_weather_text_clear_sky">ท้องฟ้าแจ่มใส</string>
     <string name="common_weather_text_partly_cloudy">ท้องฟ้ามีเมฆบางส่วน</string>
     <string name="common_weather_text_cloudy">ท้องฟ้ามีเมฆปกคลุม</string>

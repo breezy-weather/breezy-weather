@@ -520,7 +520,7 @@
     <string name="settings_main_cards_fade_in_switch">Blockframtoning</string>
     <string name="settings_widgets_notification_temp_icon_switch">Temperatur som statusfältsikon</string>
     <string name="settings_items_drag_to_sort">Tryck för att dra listobjekten för sortering</string>
-    <string name="common_weather_text_mainly_clear">Mestadels klart</string>
+    <string name="common_weather_text_mostly_clear">Mestadels klart</string>
     <string name="common_weather_text_drizzle_moderate">Måttligt duggregn</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Avlagrande dimfrost</string>
     <string name="common_weather_text_drizzle_freezing_light">Lätt underkylt duggregn</string>

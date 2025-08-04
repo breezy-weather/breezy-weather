@@ -21,6 +21,11 @@ import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Astro
 import breezyweather.domain.weather.model.Current
 import breezyweather.domain.weather.model.Daily
+import breezyweather.domain.weather.model.DailyCloudCover
+import breezyweather.domain.weather.model.DailyDewPoint
+import breezyweather.domain.weather.model.DailyPressure
+import breezyweather.domain.weather.model.DailyRelativeHumidity
+import breezyweather.domain.weather.model.DailyVisibility
 import breezyweather.domain.weather.model.DegreeDay
 import breezyweather.domain.weather.model.HalfDay
 import breezyweather.domain.weather.model.Hourly
@@ -591,7 +596,27 @@ internal fun completeDailyListFromHourlyList(
             sunshineDuration = DurationUnit.validateDailyValue(daily.sunshineDuration)
                 ?: getSunshineDuration(
                     hourlySunshine.filter { it.key.getIsoFormattedDate(location) == theDayFormatted }.values
-                )
+                ),
+            relativeHumidity = getDailyRelativeHumidity(
+                daily.relativeHumidity,
+                hourlyListByDay.getOrElse(theDayFormatted) { null }?.mapNotNull { it.relativeHumidity }
+            ),
+            dewPoint = getDailyDewPoint(
+                daily.dewPoint,
+                hourlyListByDay.getOrElse(theDayFormatted) { null }?.mapNotNull { it.dewPoint }
+            ),
+            pressure = getDailyPressure(
+                daily.pressure,
+                hourlyListByDay.getOrElse(theDayFormatted) { null }?.mapNotNull { it.pressure }
+            ),
+            cloudCover = getDailyCloudCover(
+                daily.cloudCover,
+                hourlyListByDay.getOrElse(theDayFormatted) { null }?.mapNotNull { it.cloudCover }
+            ),
+            visibility = getDailyVisibility(
+                daily.visibility,
+                hourlyListByDay.getOrElse(theDayFormatted) { null }?.mapNotNull { it.visibility }
+            )
         )
     }
 }
@@ -1292,6 +1317,86 @@ private fun getSunshineDuration(
     } else {
         null
     }
+}
+
+fun getDailyRelativeHumidity(
+    initialDailyRelativeHumidity: DailyRelativeHumidity?,
+    values: List<Double>?,
+): DailyRelativeHumidity? {
+    if (values.isNullOrEmpty()) return initialDailyRelativeHumidity
+
+    return DailyRelativeHumidity(
+        average = UnitUtils.validatePercent(initialDailyRelativeHumidity?.average)
+            ?: values.average(),
+        min = UnitUtils.validatePercent(initialDailyRelativeHumidity?.min)
+            ?: values.min(),
+        max = UnitUtils.validatePercent(initialDailyRelativeHumidity?.max)
+            ?: values.max()
+    )
+}
+
+fun getDailyDewPoint(
+    initialDailyDewPoint: DailyDewPoint?,
+    values: List<Double>?,
+): DailyDewPoint? {
+    if (values.isNullOrEmpty()) return initialDailyDewPoint
+
+    return DailyDewPoint(
+        average = TemperatureUnit.validateValue(initialDailyDewPoint?.average)
+            ?: values.average(),
+        min = TemperatureUnit.validateValue(initialDailyDewPoint?.min)
+            ?: values.min(),
+        max = TemperatureUnit.validateValue(initialDailyDewPoint?.max)
+            ?: values.max()
+    )
+}
+
+fun getDailyPressure(
+    initialDailyPressure: DailyPressure?,
+    values: List<Double>?,
+): DailyPressure? {
+    if (values.isNullOrEmpty()) return initialDailyPressure
+
+    return DailyPressure(
+        average = PressureUnit.validateValue(initialDailyPressure?.average)
+            ?: values.average(),
+        min = PressureUnit.validateValue(initialDailyPressure?.min)
+            ?: values.min(),
+        max = PressureUnit.validateValue(initialDailyPressure?.max)
+            ?: values.max()
+    )
+}
+
+fun getDailyCloudCover(
+    initialDailyCloudCover: DailyCloudCover?,
+    values: List<Int>?,
+): DailyCloudCover? {
+    if (values.isNullOrEmpty()) return initialDailyCloudCover
+
+    return DailyCloudCover(
+        average = UnitUtils.validatePercent(initialDailyCloudCover?.average)
+            ?: values.average().roundToInt(),
+        min = UnitUtils.validatePercent(initialDailyCloudCover?.min)
+            ?: values.min(),
+        max = UnitUtils.validatePercent(initialDailyCloudCover?.max)
+            ?: values.max()
+    )
+}
+
+fun getDailyVisibility(
+    initialDailyVisibility: DailyVisibility?,
+    values: List<Double>?,
+): DailyVisibility? {
+    if (values.isNullOrEmpty()) return initialDailyVisibility
+
+    return DailyVisibility(
+        average = DistanceUnit.validateValue(initialDailyVisibility?.average)
+            ?: values.average(),
+        min = DistanceUnit.validateValue(initialDailyVisibility?.min)
+            ?: values.min(),
+        max = DistanceUnit.validateValue(initialDailyVisibility?.max)
+            ?: values.max()
+    )
 }
 
 /**

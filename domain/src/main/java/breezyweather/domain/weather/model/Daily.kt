@@ -40,6 +40,11 @@ data class Daily(
     val uV: UV? = null,
     // Expressed in hours:
     val sunshineDuration: Double? = null,
+    val relativeHumidity: DailyRelativeHumidity? = null,
+    val dewPoint: DailyDewPoint? = null,
+    val pressure: DailyPressure? = null,
+    val cloudCover: DailyCloudCover? = null,
+    val visibility: DailyVisibility? = null,
 ) : Serializable {
 
     fun toDailyWrapper() = DailyWrapper(

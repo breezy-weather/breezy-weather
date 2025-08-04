@@ -361,7 +361,7 @@
     <string name="about_source_code">소스 코드</string>
     <string name="about_contributors">기여해 주신 분들</string>
     <string name="common_weather_text_clear_sky">맑음</string>
-    <string name="common_weather_text_mainly_clear">대체로 맑음</string>
+    <string name="common_weather_text_mostly_clear">대체로 맑음</string>
     <string name="common_weather_text_overcast">흐림</string>
     <string name="weather_api_limit_reached_title">API 요청 수 한계 도달</string>
     <string name="weather_api_limit_reached_content">API 키를 직접 추가하여 요청 제한을 풀 수 있습니다.</string>

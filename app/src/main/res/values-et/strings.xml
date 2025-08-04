@@ -401,7 +401,7 @@
     <string name="about_dependencies">Sõltuvused</string>
     <string name="about_translators">Tõlkijad</string>
     <string name="about_contribution_WangDaYeeeeee">Esialgse projekti Geometric Weather arendaja</string>
-    <string name="common_weather_text_mainly_clear">Peamiselt selge</string>
+    <string name="common_weather_text_mostly_clear">Peamiselt selge</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Kerged lörtsihood</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Tugevad lörtsihood</string>
     <string name="common_weather_text_snow">Lumesadu</string>

@@ -500,7 +500,7 @@
     <string name="about_contributors">Rannpháirtithe</string>
     <string name="about_open_link_message">Oscail %s?</string>
     <string name="common_weather_text_clear_sky">Spéir ghlan</string>
-    <string name="common_weather_text_mainly_clear">Soiléir den chuid is mó</string>
+    <string name="common_weather_text_mostly_clear">Soiléir den chuid is mó</string>
     <string name="common_weather_text_partly_cloudy">Scamallach go páirteach</string>
     <string name="common_weather_text_cloudy">Scamallach</string>
     <string name="common_weather_text_overcast">Gruama</string>

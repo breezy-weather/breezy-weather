@@ -13,6 +13,8 @@
 - Main screen - Fix shooting stars getting stuck in the corner in landscape
 - Details - Don’t animate charts when “Other element animations” is disabled
 - Details - Air quality - Add individual charts for each pollutant
+- Details - Humidity/Dewpoint/Cloud cover - Show min/max of the day
+- Details - Pressure/Visibility - Fix sometimes wrong daily value
 - Alerts - Add “Translate” and “Share” to text select actions
 - Widgets - Improve UX of custom subtitle documentation (@codewithdipesh)
 - Nowcasting chart/Precipitation notification - Fix slightly wrong ending time of precipitation report

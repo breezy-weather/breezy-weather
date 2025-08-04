@@ -419,7 +419,7 @@
     <string name="notification_precipitation_continuing_desc">Αναμένεται να συνεχιστεί τουλάχιστον έως τις %s</string>
     <string name="about_contributors">Συνεισφέροντες</string>
     <string name="common_weather_text_clear_sky">Καθαρός ουρανός</string>
-    <string name="common_weather_text_mainly_clear">Κυρίως καθαρός</string>
+    <string name="common_weather_text_mostly_clear">Κυρίως καθαρός</string>
     <string name="about_contribution_designer">Σχεδιαστής λογοτύπου</string>
     <string name="common_weather_text_overcast">Νεφελώδης</string>
     <string name="common_weather_text_rain_moderate">Μέτρια βροχή</string>

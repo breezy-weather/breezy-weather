@@ -337,7 +337,7 @@
     <string name="notification_updating_weather_data">Се ажурираат временските податоци (%1$d/%2$d)</string>
     <string name="notification_update_error">%d ажурирања не успеаја</string>
     <string name="notification_style_cities">Градови</string>
-    <string name="common_weather_text_mainly_clear">Главно јасно</string>
+    <string name="common_weather_text_mostly_clear">Главно јасно</string>
     <string name="common_weather_text_partly_cloudy">Делумно облачно</string>
     <string name="common_weather_text_rain_light">Слаб дожд</string>
     <string name="common_weather_text_rain_moderate">Умерен дожд</string>

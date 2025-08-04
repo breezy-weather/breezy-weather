@@ -296,7 +296,7 @@
     <string name="common_weather_text_fog">Tåge</string>
     <string name="common_weather_text_rain_showers">Byger</string>
     <string name="common_weather_text_rain_showers_heavy">Skybrud</string>
-    <string name="common_weather_text_mainly_clear">Overvejende klart</string>
+    <string name="common_weather_text_mostly_clear">Overvejende klart</string>
     <string name="common_weather_text_rain_freezing_heavy">Kraftigt isslag</string>
     <string name="common_weather_text_rain_snow_mixed">Nogen slud</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Byger med slud</string>

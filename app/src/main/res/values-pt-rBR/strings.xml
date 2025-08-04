@@ -304,7 +304,7 @@
     <string name="action_more">Ver mais</string>
     <string name="widget_subtitle_data_aqi">Qualidade do ar</string>
     <string name="common_weather_text_clear_sky">Céu limpo</string>
-    <string name="common_weather_text_mainly_clear">Pouco nublado</string>
+    <string name="common_weather_text_mostly_clear">Pouco nublado</string>
     <string name="uv_index_3_5">Moderado</string>
     <string name="air_quality_level_6">Perigoso</string>
     <string name="about_source_code">Código-fonte</string>

@@ -363,12 +363,12 @@ private fun getWeatherText(
         with(code) {
             when {
                 startsWith("11") -> context.getString(R.string.common_weather_text_clear_sky)
-                startsWith("12") -> context.getString(R.string.common_weather_text_mainly_clear)
+                startsWith("12") -> context.getString(R.string.common_weather_text_mostly_clear)
                 startsWith("13") -> context.getString(R.string.common_weather_text_partly_cloudy)
                 startsWith("14") -> context.getString(R.string.common_weather_text_cloudy)
                 startsWith("15") -> context.getString(R.string.common_weather_text_cloudy)
                 startsWith("16") -> context.getString(R.string.common_weather_text_overcast)
-                startsWith("17") -> context.getString(R.string.common_weather_text_mainly_clear)
+                startsWith("17") -> context.getString(R.string.common_weather_text_mostly_clear)
                 startsWith("2") -> context.getString(R.string.common_weather_text_rain)
                 startsWith("3") -> context.getString(R.string.common_weather_text_snow)
                 startsWith("4") -> context.getString(R.string.common_weather_text_rain_light)
