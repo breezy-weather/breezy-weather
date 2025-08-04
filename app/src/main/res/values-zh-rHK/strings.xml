@@ -903,4 +903,9 @@
     <string name="action_change">變更</string>
     <string name="message_incompatible_times_title">預報時間不相容</string>
     <string name="message_incompatible_times_content">請改用預報時間相符的天氣預報或空氣品質來源。</string>
+    <string name="humidity_from_to_number">%1$s 至 %2$s</string>
+    <string name="dew_point_from_to_number">%1$s 至 %2$s</string>
+    <string name="cloud_cover_from_to_number">%1$s 至 %2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s 至 %2$s</string>
+    <string name="common_weather_text_mostly_cloudy">大致多雲</string>
 </resources>
