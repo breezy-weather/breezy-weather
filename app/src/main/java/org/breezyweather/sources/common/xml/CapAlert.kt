@@ -37,6 +37,7 @@ import java.util.Date
 data class CapAlert(
     val identifier: Identifier? = null,
     val sent: Sent? = null,
+    val msgType: MsgType? = null,
     val info: List<Info>? = null,
 ) {
     @Serializable
@@ -49,6 +50,12 @@ data class CapAlert(
     @XmlSerialName("sent", "", "cap")
     data class Sent(
         @XmlValue(true) @Serializable(DateSerializer::class) val value: Date? = null,
+    )
+
+    @Serializable
+    @XmlSerialName("msgType", "", "cap")
+    data class MsgType(
+        @XmlValue(true) val value: String? = null,
     )
 
     @Serializable
