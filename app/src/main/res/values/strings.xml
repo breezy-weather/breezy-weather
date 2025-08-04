@@ -345,7 +345,7 @@
     <!-- %s = 100 % -->
     <string name="dew_point_about_description">Dew point is what the temperature would need to be cooled to in order to achieve a relative humidity of %s.</string>
     <!-- 10 to 20°, %1$s = 10, %2$s = 20° -->
-    <string name="dew_point_from_to_number">%1$s à %2$s</string>
+    <string name="dew_point_from_to_number">%1$s to %2$s</string>
     <string name="pressure">Pressure</string>
     <string name="pressure_short">Pressure</string>
     <string name="pressure_average" translatable="false">@string/chart_average</string>
