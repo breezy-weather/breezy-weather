@@ -831,4 +831,6 @@
     <string name="ephemeris_moon">Luno</string>
     <string name="ephemeris_polar_day">Polusa tago</string>
     <string name="ephemeris_polar_night">Polusa nokto</string>
+    <string name="clock">Horloĝo</string>
+    <string name="temperature_normals_deviation">Dekliniĝo</string>
 </resources>
