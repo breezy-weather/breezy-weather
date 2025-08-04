@@ -1,0 +1,5 @@
+ALTER TABLE dailys
+DROP COLUMN daytime_cloud_cover;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_cloud_cover;

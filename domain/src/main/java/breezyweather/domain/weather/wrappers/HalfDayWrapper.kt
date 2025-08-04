@@ -42,7 +42,6 @@ data class HalfDayWrapper(
     val precipitationProbability: PrecipitationProbability? = null,
     val precipitationDuration: PrecipitationDuration? = null,
     val wind: Wind? = null,
-    val cloudCover: Int? = null,
 ) {
     fun toHalfDay() = HalfDay(
         weatherText = this.weatherText,
@@ -52,7 +51,6 @@ data class HalfDayWrapper(
         precipitation = this.precipitation,
         precipitationProbability = this.precipitationProbability,
         precipitationDuration = this.precipitationDuration,
-        wind = this.wind,
-        cloudCover = this.cloudCover
+        wind = this.wind
     )
 }

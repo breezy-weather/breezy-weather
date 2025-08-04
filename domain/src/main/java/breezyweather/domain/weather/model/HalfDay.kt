@@ -39,7 +39,6 @@ data class HalfDay(
     val precipitationProbability: PrecipitationProbability? = null,
     val precipitationDuration: PrecipitationDuration? = null,
     val wind: Wind? = null,
-    val cloudCover: Int? = null,
 ) : Serializable {
 
     fun toHalfDayWrapper() = HalfDayWrapper(
@@ -50,7 +49,6 @@ data class HalfDay(
         precipitation = this.precipitation,
         precipitationProbability = this.precipitationProbability,
         precipitationDuration = this.precipitationDuration,
-        wind = this.wind,
-        cloudCover = this.cloudCover
+        wind = this.wind
     )
 }

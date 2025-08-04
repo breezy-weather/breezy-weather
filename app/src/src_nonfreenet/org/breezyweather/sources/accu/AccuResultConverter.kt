@@ -143,8 +143,7 @@ internal fun getDailyList(
                     degree = forecasts.Day?.Wind?.Direction?.Degrees?.toDouble(),
                     speed = getSpeedInMetersPerSecond(forecasts.Day?.Wind?.Speed),
                     gusts = getSpeedInMetersPerSecond(forecasts.Day?.WindGust?.Speed)
-                ),
-                cloudCover = forecasts.Day?.CloudCover
+                )
             ),
             night = HalfDayWrapper(
                 weatherText = forecasts.Night?.ShortPhrase,
@@ -177,8 +176,7 @@ internal fun getDailyList(
                     degree = forecasts.Night?.Wind?.Direction?.Degrees?.toDouble(),
                     speed = getSpeedInMetersPerSecond(forecasts.Night?.Wind?.Speed),
                     gusts = getSpeedInMetersPerSecond(forecasts.Night?.WindGust?.Speed)
-                ),
-                cloudCover = forecasts.Night?.CloudCover
+                )
             ),
             degreeDay = DegreeDay(
                 heating = getDegreeDayInCelsius(forecasts.DegreeDaySummary?.Heating),

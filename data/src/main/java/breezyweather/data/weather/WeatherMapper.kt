@@ -160,7 +160,6 @@ object WeatherMapper {
         daytimeWindDegree: Double?,
         daytimeWindSpeed: Double?,
         daytimeWindGusts: Double?,
-        daytimeCloudCover: Long?,
         nighttimeWeatherText: String?,
         nighttimeWeatherPhase: String?,
         nighttimeWeatherCode: WeatherCode?,
@@ -187,7 +186,6 @@ object WeatherMapper {
         nighttimeWindDegree: Double?,
         nighttimeWindSpeed: Double?,
         nighttimeWindGusts: Double?,
-        nighttimeCloudCover: Long?,
         degreeDayHeating: Double?,
         degreeDayCooling: Double?,
         sunRiseDate: Long?,
@@ -244,7 +242,9 @@ object WeatherMapper {
     ): Daily = Daily(
         Date(date),
         HalfDay(
-            daytimeWeatherText, daytimeWeatherPhase, daytimeWeatherCode,
+            daytimeWeatherText,
+            daytimeWeatherPhase,
+            daytimeWeatherCode,
             Temperature(
                 daytimeTemperature,
                 sourceFeelsLike = daytimeSourceFeelsLikeTemperature,
@@ -277,8 +277,7 @@ object WeatherMapper {
                 daytimeWindDegree,
                 daytimeWindSpeed,
                 daytimeWindGusts
-            ),
-            daytimeCloudCover?.toInt()
+            )
         ),
         HalfDay(
             nighttimeWeatherText,
@@ -316,8 +315,7 @@ object WeatherMapper {
                 nighttimeWindDegree,
                 nighttimeWindSpeed,
                 nighttimeWindGusts
-            ),
-            nighttimeCloudCover?.toInt()
+            )
         ),
         DegreeDay(degreeDayHeating, degreeDayCooling),
         Astro(sunRiseDate?.let { Date(it) }, sunSetDate?.let { Date(it) }),

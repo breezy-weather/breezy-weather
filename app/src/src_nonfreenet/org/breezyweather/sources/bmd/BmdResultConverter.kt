@@ -121,8 +121,7 @@ internal fun getDailyForecast(
                     ),
                     precipitation = Precipitation(
                         total = rfMap.getOrElse(key) { null }
-                    ),
-                    cloudCover = ccDayMap.getOrElse(key) { null }
+                    )
                 ),
                 night = HalfDayWrapper(
                     weatherText = getWeatherText(
@@ -141,8 +140,7 @@ internal fun getDailyForecast(
                         degree = wdMap.getOrElse(key) { null },
                         speed = wsMap.getOrElse(key) { null },
                         gusts = wgMap.getOrElse(key) { null }
-                    ),
-                    cloudCover = ccDayMap.getOrElse(key) { null }
+                    )
                 )
             )
         )

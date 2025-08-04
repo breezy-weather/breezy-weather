@@ -212,8 +212,6 @@ class WeatherRepository(
                     daytimeWindSpeed = daily.day?.wind?.speed,
                     daytimeWindGusts = daily.day?.wind?.gusts,
 
-                    daytimeCloudCover = daily.day?.cloudCover?.toLong(),
-
                     // nighttime.
                     nighttimeWeatherText = daily.night?.weatherText,
                     nighttimeWeatherPhase = daily.night?.weatherPhase,
@@ -246,8 +244,6 @@ class WeatherRepository(
                     nighttimeWindDegree = daily.night?.wind?.degree,
                     nighttimeWindSpeed = daily.night?.wind?.speed,
                     nighttimeWindGusts = daily.night?.wind?.gusts,
-
-                    nighttimeCloudCover = daily.night?.cloudCover?.toLong(),
 
                     degreeDayHeating = daily.degreeDay?.heating,
                     degreeDayCooling = daily.degreeDay?.cooling,

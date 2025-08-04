@@ -891,15 +891,12 @@ private fun completeHalfDayFromHourlyList(
         initialWind
     }
 
-    val avgCloudCover = UnitUtils.validatePercent(newHalfDay.cloudCover)
-        ?: getHalfDayCloudCoverFromHourlyList(halfDayHourlyList)
-
     val halfDayWeatherCode = newHalfDay.weatherCode ?: getHalfDayWeatherCodeFromHourlyList(
         halfDayHourlyList,
         totalPrecipitation,
         maxPrecipitationProbability,
         maxWind,
-        avgCloudCover,
+        getHalfDayCloudCoverFromHourlyList(halfDayHourlyList),
         getHalfDayAvgVisibilityFromHourlyList(halfDayHourlyList)
     )
     /*if (BreezyWeather.instance.debugMode) {
@@ -932,8 +929,7 @@ private fun completeHalfDayFromHourlyList(
         precipitation = totalPrecipitation,
         precipitationProbability = maxPrecipitationProbability,
         precipitationDuration = precipitationDuration,
-        wind = maxWind,
-        cloudCover = avgCloudCover
+        wind = maxWind
     )
 }
 
