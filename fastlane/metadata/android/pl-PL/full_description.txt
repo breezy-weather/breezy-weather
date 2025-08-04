@@ -1,0 +1,47 @@
+Breezy Weather to rozbudowana, darmowa aplikacja pogodowa oparta na Material 3 Expressive i otwartym kodzie źródłowym, z przemyślanymi wizualizacjami - Obsługuje prognozy, bieżące warunki pogodowe, nowcasting, jakość powietrza, pyłki, alerty – z ponad 50 źródeł, takich jak IMGW-PIB, DWD, SHMU, CHMI, ECCC i Open-Meteo.
+
+<b>Funkcje</b>
+
+- Prognozy dzienne i godzinowe do 16 dni
+- Opady w ciągu najbliższej godziny
+- Bieżące warunki pogodowe
+- Informacje o jakości powietrza, alergenach i efemerydach
+- Ostrzeżenia o niebezpiecznych zjawiskach i opadach
+- Opcjonalne udostępnianie danych innym aplikacjom (np. Gadgetbridge)
+- Skoncentrowanie na dostępności dla czytników ekranu i różnych języków
+
+<b>Wygląd</b>
+
+- Material 3 Expressive
+- Szczegółowe wykresy 24-godzinny
+- Automatyczny tryb ciemny
+- Własne pakiety ikon
+- Duży wybór widżetów
+- Tapeta pogodowa na żywo
+
+<b>Źródła</b>
+
+- Dostępne we wszystkich wersjach: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, Recosanté, SMA (Seychelles), SMA (Sudan), SSMS
+- Niewolne/niesamohostowalne (niedostępne w wersjach z końcówką _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Hongkong), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mixed China sources, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, Veðurstofa Íslands, WMO Severe Weather
+
+<b>Uprawnienia</b>
+
+Wymagane:
+
+- Sieć (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET) – pobieranie danych pogodowych z Internetu
+
+Opcjonalne:
+
+- Usługi w tle (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE) – aktualizacje pogody w tle i zaplanowane powiadomienia o prognozie
+- Ignorowanie optymalizacji baterii (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS) – zapobiega ubijaniu aplikacji na niektórych urządzeniach
+- Wysyłanie powiadomień (POST_NOTIFICATIONS) – alerty, opady, prognoza na dziś/jutro, widżet powiadomień, postęp aktualizacji w tle itd.
+- Lokalizacja (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION) – aby wyświetlać pogodę w bieżącej lokalizacji
+- Pamięć (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE) – umożliwia ustawienie tapety pogodowej na żywo i/lub widżetów na niektórych urządzeniach
+- Kafelki (EXPAND_STATUS_BAR) – umożliwia uruchamianie aplikacji z paska Szybkich ustawień
+- Język aplikacji (READ_APP_SPECIFIC_LOCALES) – pozwala zapisać język aplikacji i odczytać go po ponownym uruchomieniu urządzenia
+
+<b>Licencja</b>
+
+- GNU Lesser General Public License v3.0
+- This License does not grant any rights in the trademarks, service marks, or logos of any Contributor.
+- Misrepresentation of the origin of that material is prohibited, and modified versions of such material must be marked in reasonable ways as different from the original version.
