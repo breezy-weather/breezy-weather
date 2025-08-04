@@ -750,7 +750,7 @@
     <string name="visibility_from_to_number">%1$s до %2$s</string>
     <string name="visibility_from_to_description">%1$s до %2$s</string>
     <string name="visibility_poor">Бідний</string>
-    <string name="visibility_moderate">Помірний</string>
+    <string name="visibility_moderate">Помірно</string>
     <string name="visibility_good">Добре</string>
     <string name="visibility_clear">Очистити</string>
     <string name="visibility_perfectly_clear">Абсолютно чисто</string>
