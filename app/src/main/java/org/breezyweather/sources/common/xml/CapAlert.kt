@@ -242,7 +242,7 @@ data class CapAlert(
         context: Context,
     ): Info? {
         return this.info?.firstOrNull {
-            it.language?.value?.equals(context.currentLocale.toString(), ignoreCase = true) == true
+            it.language?.value.equals(context.currentLocale.toString(), ignoreCase = true)
         } ?: this.info?.firstOrNull {
             it.language?.value?.startsWith(context.currentLocale.language, ignoreCase = true) == true
         } ?: this.info?.firstOrNull {
