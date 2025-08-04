@@ -844,4 +844,8 @@
     <string name="action_change">Změna</string>
     <string name="message_incompatible_times_title">Nekompatibilní časy předpovědí</string>
     <string name="message_incompatible_times_content">Změňte váš zdroj předpovědi nebo kvality ovzduší tak, aby se časy shodovaly.</string>
+    <string name="humidity_from_to_number">%1$s až %2$s</string>
+    <string name="dew_point_from_to_number">%1$s až %2$s</string>
+    <string name="cloud_cover_from_to_number">%1$s až %2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s až %2$s</string>
 </resources>
