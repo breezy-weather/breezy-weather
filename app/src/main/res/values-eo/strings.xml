@@ -835,4 +835,13 @@
     <string name="temperature_normals_deviation">Dekliniĝo</string>
     <string name="temperature_normals_deviation_explanation_maximum">Dekliniĝo de %s mezuma maksimuma temperaturo por ĉi tiu loko</string>
     <string name="temperature_normals_deviation_explanation_minimum">Dekliniĝo de %s mezuma minimuma temperaturo por ĉi tiu loko</string>
+    <string name="precipitation_total_day">Tagtempa precipitaĵo</string>
+    <string name="precipitation_total_night">Noktotempa precipitaĵo</string>
+    <string name="precipitation_rain_total_day">Tagtempa pluvo</string>
+    <string name="precipitation_rain_total_night">Noktotempa pluvo</string>
+    <string name="precipitation_snow_total_day">Tagtempa neĝo</string>
+    <string name="precipitation_snow_total_night">Noktotempa neĝo</string>
+    <string name="wind_origin">De %s</string>
+    <string name="air_quality_pm25_about">Pri fajna partikla materio (%s)</string>
+    <string name="air_quality_pm25_index">Aerkvalito indico ŝkalo por %s</string>
 </resources>
