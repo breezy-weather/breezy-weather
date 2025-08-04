@@ -826,4 +826,9 @@
     <string name="common_weather_text_drifting_snow">Drivanta neĝo</string>
     <string name="common_weather_text_glaze">Glazuro</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Deponanta prujna nebulo</string>
+    <string name="air_quality_short">Aerkvalito</string>
+    <string name="ephemeris_sun">Suno</string>
+    <string name="ephemeris_moon">Luno</string>
+    <string name="ephemeris_polar_day">Polusa tago</string>
+    <string name="ephemeris_polar_night">Polusa nokto</string>
 </resources>
