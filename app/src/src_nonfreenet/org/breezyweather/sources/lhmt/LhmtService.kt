@@ -177,7 +177,7 @@ class LhmtService @Inject constructor(
         location: Location,
     ): Observable<List<Location>> {
         return mApi.getForecastLocations().map {
-            convert(location, it)
+            convert(context, location, it)
         }
     }
 

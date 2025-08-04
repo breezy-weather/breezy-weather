@@ -32,6 +32,8 @@ import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.sources.mgm.json.MgmAlertResult
 import org.breezyweather.sources.mgm.json.MgmCurrentResult
 import org.breezyweather.sources.mgm.json.MgmDailyForecastResult
@@ -42,6 +44,7 @@ import java.util.Locale
 import java.util.TimeZone
 
 internal fun convert(
+    context: Context,
     location: Location,
     result: MgmLocationResult,
 ): Location {
@@ -57,7 +60,7 @@ internal fun convert(
         latitude = location.latitude,
         longitude = location.longitude,
         timeZone = "Europe/Istanbul",
-        country = "Türkiye",
+        country = Locale(context.currentLocale.code, "TR").displayCountry,
         countryCode = "TR",
         admin1 = result.province,
         city = result.province,

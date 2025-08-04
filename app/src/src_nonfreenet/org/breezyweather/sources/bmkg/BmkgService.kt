@@ -230,7 +230,7 @@ class BmkgService @Inject constructor(
             lat = location.latitude,
             lon = location.longitude
         ).map {
-            locationList.add(convert(location, it))
+            locationList.add(convert(context, location, it))
             locationList
         }
     }

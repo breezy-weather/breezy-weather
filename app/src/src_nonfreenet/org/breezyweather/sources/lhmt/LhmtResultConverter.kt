@@ -42,6 +42,7 @@ import java.util.TimeZone
 
 // reverse geocoding
 internal fun convert(
+    context: Context,
     location: Location,
     forecastLocations: List<LhmtLocationsResult>,
 ): List<Location> {
@@ -67,7 +68,7 @@ internal fun convert(
                 latitude = location.latitude,
                 longitude = location.longitude,
                 timeZone = "Europe/Vilnius",
-                country = "Lithuania",
+                country = Locale(context.currentLocale.code, "LT").displayCountry,
                 countryCode = "LT",
                 admin1 = countyName,
                 admin1Code = countyCode,

@@ -167,7 +167,7 @@ class EcccService @Inject constructor(
                 throw InvalidLocationException()
             }
             val locationList = mutableListOf<Location>()
-            locationList.add(convert(location, it[0]))
+            locationList.add(convert(context, location, it[0]))
             locationList
         }
     }

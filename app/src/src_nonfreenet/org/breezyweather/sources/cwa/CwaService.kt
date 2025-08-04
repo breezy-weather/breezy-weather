@@ -395,7 +395,7 @@ class CwaService @Inject constructor(
                 throw InvalidLocationException()
             }
             val locationList = mutableListOf<Location>()
-            locationList.add(convert(location, it.data.aqi[0].town!!))
+            locationList.add(convert(context, location, it.data.aqi[0].town!!))
             locationList
         }
     }

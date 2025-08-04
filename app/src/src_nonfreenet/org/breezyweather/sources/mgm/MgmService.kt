@@ -227,7 +227,7 @@ class MgmService @Inject constructor(
             lon = location.longitude
         ).map {
             val locationList = mutableListOf<Location>()
-            locationList.add(convert(location, it))
+            locationList.add(convert(context, location, it))
             locationList
         }
     }

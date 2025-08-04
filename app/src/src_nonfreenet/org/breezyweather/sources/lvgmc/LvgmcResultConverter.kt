@@ -31,6 +31,8 @@ import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.sources.lvgmc.json.LvgmcAirQualityLocationResult
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentLocation
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentResult
@@ -43,6 +45,7 @@ import kotlin.time.Duration.Companion.hours
 
 // reverse geocoding
 internal fun convert(
+    context: Context,
     location: Location,
     forecastLocationsResult: List<LvgmcForecastResult>,
 ): List<Location> {
@@ -60,7 +63,7 @@ internal fun convert(
                 latitude = location.latitude,
                 longitude = location.longitude,
                 timeZone = "Europe/Riga",
-                country = "Latvia",
+                country = Locale(context.currentLocale.code, "LV").displayCountry,
                 countryCode = "LV",
                 admin1 = it.municipality,
                 city = it.name ?: ""

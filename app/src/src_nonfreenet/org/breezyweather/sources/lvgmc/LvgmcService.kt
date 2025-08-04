@@ -209,7 +209,7 @@ class LvgmcService @Inject constructor(
             laiks = laiks,
             bounds = bounds
         ).map {
-            convert(location, it)
+            convert(context, location, it)
         }
     }
 

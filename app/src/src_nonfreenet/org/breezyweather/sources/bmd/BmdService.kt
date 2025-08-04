@@ -134,7 +134,7 @@ class BmdService @Inject constructor(
             val locationList = mutableListOf<Location>()
             dailyResult.data?.getOrElse(upazila) { null }?.let {
                 locationList.add(
-                    convert(location, it)
+                    convert(context, location, it)
                 )
             }
             locationList

@@ -157,7 +157,7 @@ class IpmaService @Inject constructor(
                 districtResult: List<IpmaDistrictResult>,
                 locationResult: List<IpmaLocationResult>,
             ->
-            convert(location, districtResult, locationResult)
+            convert(context, location, districtResult, locationResult)
         }
     }
 

@@ -47,6 +47,7 @@ import java.util.Locale
 import java.util.TimeZone
 
 internal fun convert(
+    context: Context,
     location: Location,
     result: BmkgLocationResult,
 ): Location {
@@ -59,7 +60,7 @@ internal fun convert(
         latitude = location.latitude,
         longitude = location.longitude,
         timeZone = getTimeZone(result.adm1),
-        country = "Indonesia",
+        country = Locale(context.currentLocale.code, "ID").displayCountry,
         countryCode = "ID",
         admin1 = result.provinsi,
         admin1Code = result.adm1,

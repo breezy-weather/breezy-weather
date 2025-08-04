@@ -222,7 +222,7 @@ class NamemService @Inject constructor(
         location: Location,
     ): Observable<List<Location>> {
         return mApi.getStations().map {
-            convert(location, it.locations)
+            convert(context, location, it.locations)
         }
     }
 

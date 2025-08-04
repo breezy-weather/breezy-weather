@@ -16,6 +16,7 @@
 
 package org.breezyweather.sources.cwa
 
+import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.AirQuality
@@ -33,6 +34,8 @@ import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.exceptions.InvalidLocationException
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.sources.computeMeanSeaLevelPressure
 import org.breezyweather.sources.computePollutantInUgm3FromPpb
@@ -50,12 +53,13 @@ import java.util.TimeZone
 import kotlin.time.Duration.Companion.hours
 
 internal fun convert(
+    context: Context,
     location: Location,
     town: CwaLocationTown,
 ): Location {
     return location.copy(
         timeZone = "Asia/Taipei",
-        country = "臺灣",
+        country = Locale(context.currentLocale.code, "TW").displayCountry,
         countryCode = "TW",
         admin1 = town.ctyName,
         city = town.townName,

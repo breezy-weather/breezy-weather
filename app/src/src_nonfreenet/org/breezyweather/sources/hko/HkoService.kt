@@ -321,7 +321,7 @@ class HkoService @Inject constructor(
                         latitude = location.latitude,
                         longitude = location.longitude,
                         timeZone = "Asia/Hong_Kong",
-                        country = "Hong Kong",
+                        country = Locale(context.currentLocale.code, "HK").displayCountry,
                         countryCode = "HK",
                         city = with(languageCode) {
                             when {

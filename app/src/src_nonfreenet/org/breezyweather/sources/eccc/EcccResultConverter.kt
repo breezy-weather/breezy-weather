@@ -16,6 +16,7 @@
 
 package org.breezyweather.sources.eccc
 
+import android.content.Context
 import android.os.Build
 import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
@@ -31,6 +32,8 @@ import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.toDate
 import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.sources.eccc.json.EcccAlert
@@ -42,15 +45,17 @@ import org.breezyweather.sources.eccc.json.EcccResult
 import org.breezyweather.sources.eccc.json.EcccUnit
 import org.breezyweather.sources.getWindDegree
 import java.util.Calendar
+import java.util.Locale
 import java.util.Objects
 import kotlin.time.Duration.Companion.seconds
 
 internal fun convert(
+    context: Context,
     location: Location,
     result: EcccResult,
 ): Location {
     return location.copy(
-        country = "Canada",
+        country = Locale(context.currentLocale.code, "CA").displayCountry,
         countryCode = "CA",
         admin1 = "",
         admin1Code = "",

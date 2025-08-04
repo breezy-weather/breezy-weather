@@ -16,6 +16,7 @@
 
 package org.breezyweather.sources.metie
 
+import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
@@ -26,6 +27,8 @@ import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
+import org.breezyweather.common.extensions.code
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.metie.json.MetIeHourly
 import org.breezyweather.sources.metie.json.MetIeLocationResult
@@ -35,13 +38,14 @@ import java.util.Locale
 import java.util.TimeZone
 
 internal fun convert(
+    context: Context,
     location: Location,
     result: MetIeLocationResult,
 ): Location {
     return location.copy(
         timeZone = "Europe/Dublin",
         country = "Ireland",
-        countryCode = "IE",
+        countryCode = Locale(context.currentLocale.code, "IE").displayCountry,
         admin2 = result.county,
         city = result.city ?: ""
     )

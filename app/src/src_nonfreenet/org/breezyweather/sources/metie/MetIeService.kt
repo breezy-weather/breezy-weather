@@ -158,7 +158,7 @@ class MetIeService @Inject constructor(
         ).map {
             val locationList = mutableListOf<Location>()
             if (it.city != "NO LOCATION SELECTED") {
-                locationList.add(convert(location, it))
+                locationList.add(convert(context, location, it))
             }
             locationList
         }
