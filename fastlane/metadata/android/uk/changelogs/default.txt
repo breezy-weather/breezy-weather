@@ -1,0 +1,2 @@
+Нотатки до випуску доступні на GitHub:
+https://github.com/breezy-weather/breezy-weather/releases

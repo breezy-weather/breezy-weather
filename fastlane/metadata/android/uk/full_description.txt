@@ -1,0 +1,48 @@
+Breezy Weather — це багатофункціональний безкоштовний метеододаток з відкритим вихідним кодом, розроблений на базі Material 3 Expressive, з добре продуманими візуалізаціями, підтримкою прогнозу, погодних умов у реальному часі, прогнозу поточної погоди, якості повітря, пилку, сповіщень з понад 50 джерел погоди, таких як NWS, Met Office UK, Met Éireann, ECCC та Open-Meteo.
+
+ <b>Функції</b>
+
+- Щоденні та погодинні прогнози до 16 днів
+- Опади на наступну годину
+- Погодні умови в режимі реального часу
+- Інформація про якість повітря, алергени та ефемериди
+- Сповіщення про несприятливі погодні умови та опади
+- Обмін даними з іншими програмами (наприклад, Gadgetbridge) за допомогою згоди
+- Акцент на доступності для програм зчитування з екрана та інших локалізацій
+
+<b>Дизайн</b>
+
+- Material 3 Expressive
+- Детальні 24-годинні графіки
+- Автоматичний темний режим
+- Користувацькі пакети значків
+- Великий вибір віджетів
+- Живі шпалери
+
+<b>Джерела</b>
+
+- У всіх варіантах: Open-Meteo, ANAM-BF, Bright Sky (DWD), DCCMS, DMN, DWR, EMI, FOSS Public Alert Server, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, Recosanté, SMA (Сейшельські острови), SMA (Судан), SSMS
+ - Не безкоштовно/самостійно розміщений (не входить у версії з суфіксом _freenet): AccuWeather, AEMET, Atmo Auvergne-Rhône-Alpes, Atmo France, ATMO GrandEst, Atmo Hauts-de-France, AtmoSud, Baidu IP location, BMD, BMKG, CWA, DMI, ECCC, EKUK, EPD (Гонконг), GeoNames, GeoSphere AT, HERE, HKO, Ilmateenistus, IMD, IMS, IP.SB, IPMA, LHMT, LVĢMC, JMA, MET Éireann, MET Norway, Met Office UK, Meteo AM, Météo-France, MeteoLux, MGM, Mixed China sources, NAMEM, NCDR, NCEI, NLSC, NWS, OpenWeather, PAGASA, SMG, Veðurstofa Íslands, WMO Severe Погода
+
+<b>Дозволи</b>
+
+Обов'язково:
+
+- Мережа (ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE, INTERNET): отримання даних про погоду з джерел через Інтернет
+
+Додатково:
+
+- Фонові служби (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): оновлення погоди у фоновому режимі та заплановані сповіщення про прогноз
+
+- Ігнорувати оптимізацію батареї (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): запобігання завершенню роботи програми на деяких пристроях
+- Надсилати сповіщення (POST_NOTIFICATIONS): сповіщення, опади, прогноз на сьогодні/завтра, віджет сповіщень, прогрес оновлення фонових оновлень тощо
+- Місцезнаходження (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): для відображення погоди у вашому поточному місці розташування
+- Сховище (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): допомагає налаштувати живі шпалери погоди та/або віджети на деяких пристроях
+- Плитка (EXPAND_STATUS_BAR): дозволяє запускати програму з Швидких налаштувань
+- Певна мова програми (READ_APP_SPECIFIC_LOCALES): дозволяє зберігати певну мову для програми та зчитувати значення після перезавантаження на деяких пристроях
+
+<b>Ліцензія</b>
+
+- GNU Lesser General Public License v3.0
+- Ця ліцензія не надає жодних прав на торговельні марки, знаки обслуговування чи логотипи будь-якого Учасника.
+- Неправдиве представлення походження цього матеріалу заборонено, а модифіковані версії такого матеріалу повинні бути позначені належним чином як відмінні від оригінальної версії.
