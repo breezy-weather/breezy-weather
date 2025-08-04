@@ -127,11 +127,7 @@ class VedurIsService @Inject constructor(
 
         val alert = if (SourceFeature.ALERT in requestedFeatures) {
             mApi.getAlerts(
-                if (context.currentLocale.code.startsWith("is")) {
-                    "is"
-                } else {
-                    "en"
-                }
+                if (context.currentLocale.code.startsWith("is")) "is" else "en"
             ).onErrorResumeNext {
                 failedFeatures[SourceFeature.ALERT] = it
                 Observable.just(VedurIsAlertResult())
@@ -162,7 +158,7 @@ class VedurIsService @Inject constructor(
         val bbox = getBbox(location, DISTANCE_LIMIT)
         val stations = mApi.getStations(bbox[0].longitude, bbox[1].longitude, bbox[0].latitude, bbox[1].latitude)
         return stations.map {
-            convert(location, it)
+            convert(context, location, it)
         }
     }
 
@@ -184,11 +180,7 @@ class VedurIsService @Inject constructor(
     override fun requestLocationParameters(context: Context, location: Location): Observable<Map<String, String>> {
         val bbox = getBbox(location, DISTANCE_LIMIT)
         val alertRegions = mApi.getAlertRegions(
-            if (context.currentLocale.code.startsWith("is")) {
-                "is"
-            } else {
-                "en"
-            }
+            if (context.currentLocale.code.startsWith("is")) "is" else "en"
         )
         val stations = mApi.getStations(bbox[0].longitude, bbox[1].longitude, bbox[0].latitude, bbox[1].latitude)
         return Observable.zip(stations, alertRegions) {

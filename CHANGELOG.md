@@ -30,6 +30,7 @@
 - [LVGMC] Fix current observations (@chunshek)
 - [NCDR] Added as alert source for Taiwan (@chunshek)
 - [NCEI] Added support for normals (@chunshek)
+- [NWS] Alerts - Updated terminology for Extreme Heat (@chunshek)
 - [NSLC] Added as address lookup source for Taiwan (@chunshek)
 - [Open-Meteo] Restrict pollen to Europe as it’s only available there (@chunshek)
 - [Pirate Weather] Add support for daily/hourly summaries
@@ -37,6 +38,7 @@
 - [ANAM-BF, DCCMS, DMN, DWR, EMI, GMet, IGEBU, INM, Mali-Météo, Météo Benin, Météo Tchad, Météo Togo, Mettelsat, MSD, Pirate Weather, SMA (Seychelles), SMA (Sudan), SSMS] Add to  ̀freenet` flavor (was missing despite being FOSS)
 
 **Translations**
+- Initial translation added for Íslenska (@chunshek)
 - Translations updated
 
 **Technical**

@@ -32,6 +32,7 @@ import java.util.Locale
 import java.util.TimeZone
 
 fun convert(
+    context: Context,
     location: Location,
     stationResult: VedurIsStationResult,
 ): List<Location> {
@@ -54,7 +55,7 @@ fun convert(
             latitude = location.latitude,
             longitude = location.longitude,
             timeZone = "Atlantic/Reykjavik",
-            country = "Iceland",
+            country = Locale(context.currentLocale.code, "IS").displayCountry,
             countryCode = "IS",
             city = stationNames[stationId] ?: ""
         )
@@ -126,11 +127,7 @@ fun getHourlyForecast(
                     degree = it.windDirection,
                     speed = it.windSpeed
                 ),
-                relativeHumidity = if (it.humidity != 0.0) {
-                    it.humidity
-                } else {
-                    null
-                }
+                relativeHumidity = if (it.humidity != 0.0) it.humidity else null
             )
         )
     }
@@ -154,11 +151,7 @@ fun getHourlyForecast(
                         degree = it.windDirection,
                         speed = it.windSpeed
                     ),
-                    relativeHumidity = if (it.humidity != 0.0) {
-                        it.humidity
-                    } else {
-                        null
-                    }
+                    relativeHumidity = if (it.humidity != 0.0) it.humidity else null
                 )
             )
         }
@@ -197,31 +190,24 @@ fun getCurrent(
     context: Context,
     observation: VedurIsLatestObservation?,
 ): CurrentWrapper {
-    if (observation != null) {
-        return observation.let {
-            CurrentWrapper(
-                weatherText = getWeatherText(context, it.icon),
-                weatherCode = getWeatherCode(it.icon),
-                temperature = TemperatureWrapper(
-                    temperature = it.temperature
-                ),
-                wind = Wind(
-                    degree = it.windDirection,
-                    speed = it.windSpeed,
-                    gusts = it.maxWindGust
-                ),
-                relativeHumidity = if (it.humidity != 0.0) {
-                    it.humidity
-                } else {
-                    null
-                },
-                dewPoint = it.dewPoint,
-                pressure = it.pressure,
-                cloudCover = it.cloudCover?.toInt()
-            )
-        }
-    }
-    return CurrentWrapper()
+    return observation?.let {
+        CurrentWrapper(
+            weatherText = getWeatherText(context, it.icon),
+            weatherCode = getWeatherCode(it.icon),
+            temperature = TemperatureWrapper(
+                temperature = it.temperature
+            ),
+            wind = Wind(
+                degree = it.windDirection,
+                speed = it.windSpeed,
+                gusts = it.maxWindGust
+            ),
+            relativeHumidity = if (it.humidity != 0.0) it.humidity else null,
+            dewPoint = it.dewPoint,
+            pressure = it.pressure,
+            cloudCover = it.cloudCover?.toInt()
+        )
+    } ?: CurrentWrapper()
 }
 
 fun getAlertList(
