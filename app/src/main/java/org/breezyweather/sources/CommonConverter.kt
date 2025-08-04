@@ -42,6 +42,8 @@ import breezyweather.domain.weather.wrappers.CurrentWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.basic.models.options.unit.CLOUD_COVER_BKN
+import org.breezyweather.common.basic.models.options.unit.CLOUD_COVER_FEW
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
@@ -49,6 +51,7 @@ import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.options.unit.PressureUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.basic.models.options.unit.getCloudCoverDescription
 import org.breezyweather.common.extensions.ensurePositive
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
@@ -958,8 +961,6 @@ private fun getHalfDayWeatherCodeFromHourlyList(
     val maxVisibilityHaze = 5000 // in m
     val maxVisibilityFog = 1000 // in m
     val maxWindSpeedWindy = 10.0 // in m/s
-    val minCloudCoverPartlyCloudy = 37.5 // in %
-    val minCloudCoverCloudy = 75.0 // in %
 
     // If total precipitation is greater than 1 mm
     // and max probability is greater than 30 % (assume 100 % if not reported)
@@ -1040,8 +1041,8 @@ private fun getHalfDayWeatherCodeFromHourlyList(
 
     // It’s not raining, it’s not windy, and it’s not mysterious. Just cloudy
     if (avgCloudCover != null) {
-        if (avgCloudCover > minCloudCoverCloudy) return WeatherCode.CLOUDY
-        if (avgCloudCover > minCloudCoverPartlyCloudy) return WeatherCode.PARTLY_CLOUDY
+        if (avgCloudCover > CLOUD_COVER_BKN) return WeatherCode.CLOUDY
+        if (avgCloudCover > CLOUD_COVER_FEW) return WeatherCode.PARTLY_CLOUDY
         return WeatherCode.CLEAR
     }
 
