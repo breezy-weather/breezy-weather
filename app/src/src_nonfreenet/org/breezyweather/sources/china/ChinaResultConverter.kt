@@ -329,10 +329,10 @@ private fun getWeatherCode(icon: String?): WeatherCode? {
 private fun getAlertPriority(color: String?): AlertSeverity {
     if (color.isNullOrEmpty()) return AlertSeverity.UNKNOWN
     return when (color) {
-        "蓝", "蓝色" -> AlertSeverity.EXTREME
-        "黄", "黄色" -> AlertSeverity.SEVERE
-        "橙", "橙色", "橘", "橘色", "橘黄", "橘黄色" -> AlertSeverity.MODERATE
-        "红", "红色" -> AlertSeverity.MINOR
+        "红", "红色" -> AlertSeverity.EXTREME
+        "橙", "橙色", "橘", "橘色", "橘黄", "橘黄色" -> AlertSeverity.SEVERE
+        "黄", "黄色" -> AlertSeverity.MODERATE
+        "蓝", "蓝色" -> AlertSeverity.MINOR
         else -> AlertSeverity.UNKNOWN
     }
 }
@@ -341,10 +341,10 @@ private fun getAlertPriority(color: String?): AlertSeverity {
 private fun getAlertColor(color: String?): Int? {
     if (color.isNullOrEmpty()) return null
     return when (color) {
-        "蓝", "蓝色" -> Color.rgb(51, 100, 255)
-        "黄", "黄色" -> Color.rgb(250, 237, 36)
-        "橙", "橙色", "橘", "橘色", "橘黄", "橘黄色" -> Color.rgb(249, 138, 30)
         "红", "红色" -> Color.rgb(215, 48, 42)
+        "橙", "橙色", "橘", "橘色", "橘黄", "橘黄色" -> Color.rgb(249, 138, 30)
+        "黄", "黄色" -> Color.rgb(250, 237, 36)
+        "蓝", "蓝色" -> Color.rgb(51, 100, 255)
         else -> null
     }
 }
