@@ -166,8 +166,8 @@ fun DetailsConditions(
             )
         }
         // TODO: Short explanation
-        if ((daily.day?.weatherPhase != null && daily.day!!.weatherText != daily.day!!.weatherPhase) ||
-            (daily.night?.weatherPhase != null && daily.night!!.weatherText != daily.night!!.weatherPhase)
+        if ((daily.day?.weatherSummary != null && daily.day!!.weatherText != daily.day!!.weatherSummary) ||
+            (daily.night?.weatherSummary != null && daily.night!!.weatherText != daily.night!!.weatherSummary)
         ) {
             item {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
@@ -178,15 +178,15 @@ fun DetailsConditions(
             item {
                 DetailsCardText(
                     buildString {
-                        if (daily.day?.weatherPhase == daily.night?.weatherPhase) {
-                            append(daily.day!!.weatherPhase!!)
+                        if (daily.day?.weatherSummary == daily.night?.weatherSummary) {
+                            append(daily.day!!.weatherSummary!!)
                         } else {
-                            daily.day?.weatherPhase?.let {
+                            daily.day?.weatherSummary?.let {
                                 append(stringResource(R.string.daytime))
                                 append(stringResource(R.string.colon_separator))
                                 append(it)
                             }
-                            daily.night?.weatherPhase?.let {
+                            daily.night?.weatherSummary?.let {
                                 if (it.isNotEmpty()) append("\n")
                                 append(stringResource(R.string.nighttime))
                                 append(stringResource(R.string.colon_separator))

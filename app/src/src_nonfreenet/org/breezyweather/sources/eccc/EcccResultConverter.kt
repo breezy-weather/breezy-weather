@@ -147,7 +147,7 @@ internal fun getDailyForecast(
                             HalfDayWrapper(
                                 weatherCode = getWeatherCode(daytime.iconCode),
                                 weatherText = daytime.summary,
-                                weatherPhase = daytime.text,
+                                weatherSummary = daytime.text,
                                 temperature = TemperatureWrapper(
                                     temperature = daytime.temperature?.periodHigh?.toDouble()
                                 ),
@@ -161,7 +161,7 @@ internal fun getDailyForecast(
                         night = HalfDayWrapper(
                             weatherCode = getWeatherCode(nighttime.iconCode),
                             weatherText = nighttime.summary,
-                            weatherPhase = nighttime.text,
+                            weatherSummary = nighttime.text,
                             temperature = TemperatureWrapper(
                                 temperature = nighttime.temperature?.periodLow?.toDouble()
                             ),

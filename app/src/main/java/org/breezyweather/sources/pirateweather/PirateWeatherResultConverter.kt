@@ -78,7 +78,7 @@ internal fun getDailyForecast(
         DailyWrapper(
             date = result.time.seconds.inWholeMilliseconds.toDate(),
             day = HalfDayWrapper(
-                weatherPhase = result.summary,
+                weatherSummary = result.summary,
                 weatherCode = getWeatherCode(result.icon),
                 temperature = TemperatureWrapper(
                     temperature = result.temperatureHigh,
@@ -86,7 +86,7 @@ internal fun getDailyForecast(
                 )
             ),
             night = HalfDayWrapper(
-                weatherPhase = result.summary,
+                weatherSummary = result.summary,
                 weatherCode = getWeatherCode(result.icon),
                 // temperatureLow/High are always forward-looking
                 // See https://docs.pirateweather.net/en/latest/API/#temperaturelow

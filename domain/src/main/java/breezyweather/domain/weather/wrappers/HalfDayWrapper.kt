@@ -35,7 +35,7 @@ data class HalfDayWrapper(
     /**
      * A long description of the weather condition. Used as a half-day summary
      */
-    val weatherPhase: String? = null,
+    val weatherSummary: String? = null,
     val weatherCode: WeatherCode? = null,
     val temperature: TemperatureWrapper? = null,
     val precipitation: Precipitation? = null,
@@ -45,7 +45,7 @@ data class HalfDayWrapper(
 ) {
     fun toHalfDay() = HalfDay(
         weatherText = this.weatherText,
-        weatherPhase = this.weatherPhase,
+        weatherSummary = this.weatherSummary,
         weatherCode = this.weatherCode,
         temperature = this.temperature?.toTemperature(),
         precipitation = this.precipitation,

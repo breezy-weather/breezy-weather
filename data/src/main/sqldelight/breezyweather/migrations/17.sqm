@@ -1,0 +1,5 @@
+ALTER TABLE dailys
+RENAME COLUMN daytime_weather_phase TO daytime_weather_summary;
+
+ALTER TABLE dailys
+RENAME COLUMN nighttime_weather_phase TO nighttime_weather_summary;

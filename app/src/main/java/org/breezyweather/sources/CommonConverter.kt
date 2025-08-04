@@ -911,19 +911,19 @@ private fun completeHalfDayFromHourlyList(
     } else {
         newHalfDay.weatherText
     }
-    val halfDayWeatherPhase = if (newHalfDay.weatherPhase.isNullOrEmpty()) {
+    val halfDayweatherSummary = if (newHalfDay.weatherSummary.isNullOrEmpty()) {
         if (newHalfDay.weatherText.isNullOrEmpty()) {
             halfDayWeatherTextFromCode
         } else {
             newHalfDay.weatherText
         }
     } else {
-        newHalfDay.weatherPhase
+        newHalfDay.weatherSummary
     }
 
     return newHalfDay.copy(
         weatherText = halfDayWeatherText,
-        weatherPhase = halfDayWeatherPhase,
+        weatherSummary = halfDayweatherSummary,
         weatherCode = halfDayWeatherCode,
         temperature = extremeTemperature,
         precipitation = totalPrecipitation,

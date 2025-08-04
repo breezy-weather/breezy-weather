@@ -135,7 +135,7 @@ object WeatherMapper {
     fun mapDaily(
         date: Long,
         daytimeWeatherText: String?,
-        daytimeWeatherPhase: String?,
+        daytimeweatherSummary: String?,
         daytimeWeatherCode: WeatherCode?,
         daytimeTemperature: Double?,
         daytimeSourceFeelsLikeTemperature: Double?,
@@ -161,7 +161,7 @@ object WeatherMapper {
         daytimeWindSpeed: Double?,
         daytimeWindGusts: Double?,
         nighttimeWeatherText: String?,
-        nighttimeWeatherPhase: String?,
+        nighttimeweatherSummary: String?,
         nighttimeWeatherCode: WeatherCode?,
         nighttimeTemperature: Double?,
         nighttimeSourceFeelsLikeTemperature: Double?,
@@ -243,7 +243,7 @@ object WeatherMapper {
         Date(date),
         HalfDay(
             daytimeWeatherText,
-            daytimeWeatherPhase,
+            daytimeweatherSummary,
             daytimeWeatherCode,
             Temperature(
                 daytimeTemperature,
@@ -281,7 +281,7 @@ object WeatherMapper {
         ),
         HalfDay(
             nighttimeWeatherText,
-            nighttimeWeatherPhase,
+            nighttimeweatherSummary,
             nighttimeWeatherCode,
             Temperature(
                 nighttimeTemperature,

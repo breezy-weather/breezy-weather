@@ -181,7 +181,7 @@ class WeatherRepository(
 
                     // daytime.
                     daytimeWeatherText = daily.day?.weatherText,
-                    daytimeWeatherPhase = daily.day?.weatherPhase,
+                    daytimeweatherSummary = daily.day?.weatherSummary,
                     daytimeWeatherCode = daily.day?.weatherCode,
 
                     daytimeTemperature = daily.day?.temperature?.temperature,
@@ -214,7 +214,7 @@ class WeatherRepository(
 
                     // nighttime.
                     nighttimeWeatherText = daily.night?.weatherText,
-                    nighttimeWeatherPhase = daily.night?.weatherPhase,
+                    nighttimeweatherSummary = daily.night?.weatherSummary,
                     nighttimeWeatherCode = daily.night?.weatherCode,
 
                     nighttimeTemperature = daily.night?.temperature?.temperature,
