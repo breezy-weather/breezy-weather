@@ -407,7 +407,7 @@ private fun getWeatherForecast(
 
 /**
  * Based on https://www.weather.gov/help-map
- * Last updated October 1, 2024
+ * Last updated March 10, 2025
  */
 private fun getAlertColor(event: String?): Int? {
     return when (event) {
@@ -454,7 +454,7 @@ private fun getAlertColor(event: String?): Int? {
         "Lakeshore Flood Warning" -> Color.rgb(34, 139, 34)
         "Ashfall Advisory" -> Color.rgb(105, 105, 105)
         "High Surf Warning" -> Color.rgb(34, 139, 34)
-        "Excessive Heat Warning" -> Color.rgb(199, 21, 133)
+        "Extreme Heat Warning" -> Color.rgb(199, 21, 133)
         "Tornado Watch" -> Color.rgb(255, 255, 0)
         "Severe Thunderstorm Watch" -> Color.rgb(219, 112, 147)
         "Flash Flood Watch" -> Color.rgb(46, 139, 87)
@@ -503,7 +503,7 @@ private fun getAlertColor(event: String?): Int? {
         "Coastal Flood Watch" -> Color.rgb(102, 205, 170)
         "Lakeshore Flood Watch" -> Color.rgb(102, 205, 170)
         "High Wind Watch" -> Color.rgb(184, 134, 11)
-        "Excessive Heat Watch" -> Color.rgb(128, 0, 0)
+        "Extreme Heat Watch" -> Color.rgb(128, 0, 0)
         "Extreme Cold Watch" -> Color.rgb(0, 0, 255)
         "Freeze Watch" -> Color.rgb(0, 255, 255)
         "Fire Weather Watch" -> Color.rgb(255, 222, 173)
