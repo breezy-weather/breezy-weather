@@ -811,10 +811,10 @@
     <string name="clock">Hodiny</string>
     <string name="precipitation_total_day">Srážky během dne</string>
     <string name="precipitation_total_night">Srážky během noci</string>
-    <string name="precipitation_rain_total_day">Déšť během dne</string>
-    <string name="precipitation_rain_total_night">Déšť během noci</string>
-    <string name="precipitation_snow_total_day">Sníh během dne</string>
-    <string name="precipitation_snow_total_night">Sníh během noci</string>
+    <string name="precipitation_rain_total_day">Denní úhrn dešťových srážek</string>
+    <string name="precipitation_rain_total_night">Noční úhrn dešťových srážek</string>
+    <string name="precipitation_snow_total_day">Denní úhrn sněhových srážek</string>
+    <string name="precipitation_snow_total_night">Noční úhrn sněhových srážek</string>
     <string name="daytime_short">Den</string>
     <string name="nighttime_short">Noc</string>
     <string name="temperature_normals_deviation">Odchylka</string>
