@@ -1083,7 +1083,10 @@ private fun getHalfDayTemperatureFromHourlyList(
         }
     }
     if (temperatureSourceFeelsLike == null) {
-        val halfDayHourlyListSourceFeelsLike = halfDayHourlyList.mapNotNull { it.temperature?.sourceFeelsLike }
+        val halfDayHourlyListSourceFeelsLike = halfDayHourlyList.mapNotNull {
+            // Fallback to real temperature to avoid unusual values when the feels like list is incomplete
+            it.temperature?.sourceFeelsLike ?: it.temperature?.temperature
+        }
         temperatureSourceFeelsLike = if (isDay) {
             halfDayHourlyListSourceFeelsLike.maxOrNull()
         } else {
