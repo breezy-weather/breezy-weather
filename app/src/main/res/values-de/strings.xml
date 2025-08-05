@@ -430,7 +430,7 @@
     <string name="settings_location_access_switch_summaryOff">Bitte erlauben, wenn du deinen aktuellen Standort als Ort hinzufügen möchtest.</string>
     <string name="settings_location_access_background_summaryOff">Bitte aktiviere „Immer zulassen“, um Hintergrundaktualisierungen für deinen aktuellen Standort zu erhalten.</string>
     <string name="settings_location_access_precise_title">GPS-Nutzung des Geräts</string>
-    <string name="settings_location_access_precise_summaryOn">Aktiviert. Es werden bevorzugt die Netzwerkdienste Ihres Geräts genutzt, aber als Ersatz kann auch auf GPS zurückgegriffen werden.</string>
+    <string name="settings_location_access_precise_summaryOn">Aktiviert. Es werden bevorzugt die Netzwerkdienste deines Geräts genutzt, aber als Ersatz kann auch auf GPS zurückgegriffen werden.</string>
     <string name="settings_notifications_precipitations_title">Benachrichtigungen über Niederschläge</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Benachrichtigungszeit für die Vorhersage des nächsten Tages</string>
     <string name="location_message_reverse_geocoding_failed">Wetterdienst konnte keinen passenden Ort finden</string>
@@ -673,7 +673,7 @@
     <string name="common_weather_text_tornado">Tornado</string>
     <string name="settings_weather_source_not_configured">%s (nicht konfiguriert)</string>
     <string name="forecast">Vorhersage</string>
-    <string name="settings_weather_source_current_position_disclaimer">Weitere Wetterquellen für Ihren Ort können nach der ersten Aktualisierung verfügbar werden.</string>
+    <string name="settings_weather_source_current_position_disclaimer">Weitere Wetterquellen für deinen Ort können nach der ersten Aktualisierung verfügbar werden.</string>
     <string name="pollen_acer">Ahorn</string>
     <string name="pollen_atriplex">Melde</string>
     <string name="pollen_juniperus">Wacholder</string>
@@ -779,7 +779,7 @@
     <string name="uv_index_about_description">Der UV-Index misst die Stärke der ultravioletten Strahlung der Sonne. Je höher er ist, desto stärker und schneller kann sie Sonnenbrand, Hautkrebs und Augenschäden verursachen.</string>
     <string name="air_quality_o3_sources">Ozon entsteht durch eine chemische Reaktion zwischen Luftsauerstoff, Stickstoffoxiden, Kohlenmonoxid und organischen Verbindungen in Gegenwart von Sonnenlicht.</string>
     <string name="pressure_about_description2">Signifikante, schnelle Druckveränderungen werden zur Vorhersage von Wetterveränderungen genutzt. Ein Druckabfall kann zum Beispiel bedeuten, dass Regen oder Schnee bevorsteht, und ein steigender Druck kann bedeuten, dass sich das Wetter bessern wird. Abnormaler Luftdruck kann Kopfschmerzen, Gelenkschmerzen, Müdigkeit und andere Auswirkungen verursachen.</string>
-    <string name="uv_index_time_to_burn_explanations">Die genaue Verbrennungszeit hängt von der Höhenlage, dem Vorhandensein von reflektierendem Untergrund wie Wasser oder Schnee, Ihrem Hauttyp und der Verwendung von Sonnenschutzmitteln ab.</string>
+    <string name="uv_index_time_to_burn_explanations">Die genaue Verbrennungszeit hängt von der Höhenlage, dem Vorhandensein von reflektierendem Untergrund wie Wasser oder Schnee, deinem Hauttyp und der Verwendung von Sonnenschutzmitteln ab.</string>
     <string name="chart_not_enough_hourly_data">Es sind nicht genügend stündliche Daten verfügbar, um ein Diagramm für diesen Tag anzuzeigen.</string>
     <string name="air_quality_no2_sources">Die Hauptquellen sind Brennstoffverbrennungsprozesse, wie sie in der Industrie und im Verkehrswesen eingesetzt werden.</string>
     <string name="humidity_about_description">Die relative Luftfeuchte, besser bekannt als Luftfeuchtigkeit, ist der prozentuale Anteil des in der Luft vorhandenen Wasserdampfs im Vergleich zur maximalen Menge, die die Luft bei einer bestimmten Temperatur aufnehmen kann.</string>
@@ -845,5 +845,5 @@
     <string name="dew_point_from_to_number">%1$s bis %2$s</string>
     <string name="cloud_cover_from_to_number">%1$s bis %2$s</string>
     <string name="cloud_cover_from_to_description">%1$s bis %2$s</string>
-    <string name="common_weather_text_mostly_cloudy">stark bewölkt</string>
+    <string name="common_weather_text_mostly_cloudy">Stark bewölkt</string>
 </resources>
