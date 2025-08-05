@@ -22,6 +22,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ShortcutInfo
 import android.os.Build
+import android.os.TransactionTooLargeException
 import androidx.annotation.RequiresApi
 import androidx.core.location.LocationManagerCompat
 import breezyweather.data.location.LocationRepository
@@ -56,8 +57,10 @@ import org.breezyweather.common.extensions.isOnline
 import org.breezyweather.common.extensions.locationManager
 import org.breezyweather.common.extensions.roundDecimals
 import org.breezyweather.common.extensions.shortcutManager
+import org.breezyweather.common.extensions.sizeInBytes
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toDateNoHour
+import org.breezyweather.common.source.BroadcastSource
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
@@ -1006,23 +1009,90 @@ class RefreshHelper @Inject constructor(
                     }
 
                     if (enabledAndAvailablePackages.isNotEmpty()) {
-                        val data = source.getExtras(context, locationList)
+                        sendBroadcastSafely(context, enabledAndAvailablePackages, source, locationList)
+                        /*val data = source.getExtras(context, locationList)
                         if (data != null) {
-                            enabledAndAvailablePackages.forEach {
-                                if (BreezyWeather.instance.debugMode) {
-                                    LogHelper.log(msg = "[${source.name}] Sending data to $it")
+                            try {
+                                enabledAndAvailablePackages.forEach {
+                                    if (BreezyWeather.instance.debugMode) {
+                                        LogHelper.log(msg = "[${source.name}] Sending data to $it")
+                                    }
+                                    context.sendBroadcast(
+                                        Intent(source.intentAction)
+                                            .setPackage(it)
+                                            .putExtras(data)
+                                            .setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+                                    )
                                 }
-                                context.sendBroadcast(
-                                    Intent(source.intentAction)
-                                        .setPackage(it)
-                                        .putExtras(data)
-                                        .setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
-                                )
                             }
-                        }
+                        }*/
                     }
                 }
             }
+    }
+
+    private fun sendBroadcastSafely(
+        context: Context,
+        enabledAndAvailablePackages: List<String>,
+        source: BroadcastSource,
+        locationList: List<Location>,
+    ) {
+        if (locationList.isNotEmpty()) {
+            val data = source.getExtras(context, locationList)
+            if (data != null) {
+                if (data.sizeInBytes > 1000000) {
+                    if (BreezyWeather.instance.debugMode) {
+                        LogHelper.log(msg = "[${source.name}] Parcel size is too large, retrying with less locations")
+                    }
+                    sendBroadcastSafely(
+                        context,
+                        enabledAndAvailablePackages,
+                        source,
+                        locationList.dropLast(1)
+                    )
+                    return
+                }
+
+                try {
+                    enabledAndAvailablePackages.forEach {
+                        if (BreezyWeather.instance.debugMode) {
+                            LogHelper.log(
+                                msg = "[${source.name}] Sending data for ${locationList.size} locations to $it"
+                            )
+                        }
+                        context.sendBroadcast(
+                            Intent(source.intentAction)
+                                .setPackage(it)
+                                .putExtras(data)
+                                .setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+                        )
+                    }
+                } catch (e: RuntimeException) {
+                    if (e.cause is TransactionTooLargeException) {
+                        if (BreezyWeather.instance.debugMode) {
+                            LogHelper.log(msg = "[${source.name}] Transaction too large for ${locationList.size} locations")
+                        }
+                        // Retry with one less location, until location list is empty
+                        sendBroadcastSafely(
+                            context,
+                            enabledAndAvailablePackages,
+                            source,
+                            locationList.dropLast(1)
+                        )
+                    } else {
+                        if (BreezyWeather.instance.debugMode) {
+                            LogHelper.log(msg = "[${source.name}] Uncaught exception")
+                        }
+                        e.printStackTrace()
+                    }
+                } catch (e: Exception) {
+                    if (BreezyWeather.instance.debugMode) {
+                        LogHelper.log(msg = "[${source.name}] Uncaught exception")
+                    }
+                    e.printStackTrace()
+                }
+            }
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N_MR1)

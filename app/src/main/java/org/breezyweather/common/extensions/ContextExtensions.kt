@@ -27,6 +27,8 @@ import android.hardware.SensorManager
 import android.location.LocationManager
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
+import android.os.Parcel
 import android.os.PowerManager
 import android.provider.Settings
 import android.view.WindowManager
@@ -35,6 +37,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import org.breezyweather.domain.settings.SettingsManager
 import java.io.File
+
 
 /**
  * Taken from Mihon
@@ -106,3 +109,13 @@ fun Context.openApplicationDetailsSettings() {
         )
     )
 }
+
+val Bundle.sizeInBytes: Int
+    get() {
+        val parcel = Parcel.obtain()
+        parcel.writeBundle(this)
+
+        return parcel.dataSize().also {
+            parcel.recycle()
+        }
+    }
