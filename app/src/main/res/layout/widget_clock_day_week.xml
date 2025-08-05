@@ -4,7 +4,7 @@
     android:id="@+id/widget_clock_day_week"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@android:color/black">
+    tools:background="@android:color/darker_gray">
 
     <LinearLayout
         android:id="@+id/widget_clock_day_week_weather"
@@ -182,13 +182,16 @@
 
             <TextView
                 android:id="@+id/widget_clock_day_week_subtitle"
+                android:layout_toEndOf="@id/widget_clock_day_week_alternate_calendar"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/small_margin"
                 android:layout_marginEnd="@dimen/large_margin"
+                android:layout_width="match_parent"
                 android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
-                android:maxLines="1"
+                android:textAlignment="textEnd"
+                android:ellipsize="start"
+                android:singleLine="true"
                 android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
