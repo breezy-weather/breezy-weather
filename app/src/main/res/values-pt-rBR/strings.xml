@@ -821,7 +821,7 @@
     <string name="visibility_about">Sobre a visibilidade</string>
     <string name="visibility_about_description">A visibilidade indica o quão distante você pode ver objetos como prédios e colinas de forma clara. A visibilidade pode ser afetada pela precipitação, nevoa, poeira, fumaça ou névoa seca.</string>
     <string name="visibility_from_to_number">De %1$s a %2$s</string>
-    <string name="visibility_from_to_description">De %1$s a %2$s</string>
+    <string name="visibility_from_to_description">Entre %1$s e %2$s</string>
     <string name="visibility_very_poor">Muito ruim</string>
     <string name="visibility_poor">Ruim</string>
     <string name="visibility_moderate">Moderada</string>
@@ -891,4 +891,9 @@
     <string name="action_change">Alterar</string>
     <string name="message_incompatible_times_title">Horários de previsão incompatíveis</string>
     <string name="message_incompatible_times_content">Altere sua fonte de previsão ou qualidade do ar para que os horários combinem.</string>
+    <string name="humidity_from_to_number">%1$s à %2$s</string>
+    <string name="dew_point_from_to_number">%1$s à %2$s</string>
+    <string name="cloud_cover_from_to_number">%1$s à %2$s</string>
+    <string name="common_weather_text_mostly_cloudy">Majoritariamente nublado</string>
+    <string name="cloud_cover_from_to_description">Entre %1$s e %2$s</string>
 </resources>
