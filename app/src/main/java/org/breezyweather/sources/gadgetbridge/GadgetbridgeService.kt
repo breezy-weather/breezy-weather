@@ -126,8 +126,7 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
                 conditionCode = getWeatherCode(day.day?.weatherCode),
                 maxTemp = day.day?.temperature?.temperature?.roundCelsiusToKelvin(),
                 minTemp = day.night?.temperature?.temperature?.roundCelsiusToKelvin(),
-
-                // TODO: humidity
+                humidity = day.relativeHumidity?.average?.roundToInt(),
                 windSpeed = maxWind?.speed?.let {
                     SpeedUnit.KILOMETER_PER_HOUR.convertUnit(it)
                 }?.toFloat(),
