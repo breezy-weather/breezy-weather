@@ -828,4 +828,9 @@
     <string name="action_change">Ändra</string>
     <string name="message_incompatible_times_title">Inkompatibla prognostider</string>
     <string name="message_incompatible_times_content">Ändra din prognos- eller luftkvalitetskälla så att tiderna stämmer överens.</string>
+    <string name="common_weather_text_mostly_cloudy">Övervägande molnigt</string>
+    <string name="cloud_cover_from_to_description">%1$s till %2$s</string>
+    <string name="cloud_cover_from_to_number">%1$s till %2$s</string>
+    <string name="dew_point_from_to_number">%1$s till %2$s</string>
+    <string name="humidity_from_to_number">%1$s till %2$s</string>
 </resources>
