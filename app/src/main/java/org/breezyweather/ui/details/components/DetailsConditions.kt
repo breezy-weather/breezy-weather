@@ -196,9 +196,6 @@ fun DetailsConditions(
                     }
                 )
             }
-            item {
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
-            }
         }
         // TODO: Make a better design for degree day
         if (daily.degreeDay?.isValid == true) {
@@ -286,6 +283,9 @@ fun DetailsConditions(
             daily.night?.precipitationProbability != null ||
             mappedProbabilityValues.isNotEmpty()
         ) {
+            item {
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
+            }
             item {
                 DetailsSectionDivider()
             }

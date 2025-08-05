@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -66,20 +65,41 @@ import org.breezyweather.domain.weather.model.getRangeDescriptionSummary
 import org.breezyweather.domain.weather.model.getRangeSummary
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.settings.preference.bottomInsetItem
+import java.util.Date
 
 @Composable
 fun DetailsCloudCover(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
+    defaultValue: Pair<Date, Int>?,
     modifier: Modifier = Modifier,
 ) {
-    val context = LocalContext.current
     val mappedValues = remember(hourlyList) {
         hourlyList
             .filter { it.cloudCover != null }
             .associate { it.date.time to it.cloudCover!! }
             .toImmutableMap()
+    }
+    var activeItem: Pair<Date, Int>? by remember { mutableStateOf(defaultValue) }
+    val markerVisibilityListener = remember {
+        object : CartesianMarkerVisibilityListener {
+            override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                activeItem = targets.firstOrNull()?.let { target ->
+                    mappedValues.getOrElse(target.x.toLong()) { null }?.let {
+                        Pair(target.x.toLong().toDate(), it)
+                    }
+                } ?: defaultValue
+            }
+
+            override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                onShown(marker, targets)
+            }
+
+            override fun onHidden(marker: CartesianMarker) {
+                activeItem = defaultValue
+            }
+        }
     }
 
     LazyColumn(
@@ -90,31 +110,41 @@ fun DetailsCloudCover(
         )
     ) {
         item {
-            CloudCoverChart(location, mappedValues, daily)
+            CloudCoverHeader(location, daily, activeItem)
+        }
+        item {
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+        }
+        if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
+            item {
+                CloudCoverChart(location, mappedValues, daily, markerVisibilityListener)
+            }
+        } else {
+            item {
+                UnavailableChart(mappedValues.size)
+            }
         }
         daily.sunshineDuration?.let { sunshineDuration ->
             item {
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
             }
             item {
-                DetailsItem(
-                    headlineText = stringResource(R.string.sunshine_duration),
-                    supportingText = DurationUnit.HOUR.formatMeasure(context, sunshineDuration),
-                    icon = R.drawable.ic_sunshine_duration,
-                    modifier = Modifier
-                        .semantics(mergeDescendants = true) {}
-                        .clearAndSetSemantics {
-                            contentDescription = context.getString(R.string.sunshine_duration) +
-                                context.getString(R.string.colon_separator) +
-                                DurationUnit.HOUR.formatContentDescription(context, sunshineDuration)
-                        }
-                )
+                SunshineItem(sunshineDuration)
             }
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
         }
-        // TODO: Daily summary
+        daily.cloudCover?.summary?.let {
+            if (it.isNotEmpty()) {
+                item {
+                    DetailsSectionHeader(stringResource(R.string.daily_summary))
+                }
+                item {
+                    DetailsCardText(it)
+                }
+            }
+        }
         item {
             DetailsSectionHeader(stringResource(R.string.cloud_cover_about))
         }
@@ -122,6 +152,50 @@ fun DetailsCloudCover(
             DetailsCardText(stringResource(R.string.cloud_cover_about_description))
         }
         bottomInsetItem()
+    }
+}
+
+@Composable
+private fun CloudCoverHeader(
+    location: Location,
+    daily: Daily,
+    activeItem: Pair<Date, Int>?,
+) {
+    val context = LocalContext.current
+
+    activeItem?.let {
+        CloudCoverItem(
+            header = it.first.getFormattedTime(location, context, context.is12Hour),
+            cloudCover = it.second
+        )
+    } ?: CloudCoverSummary(location, daily)
+}
+
+@Composable
+private fun CloudCoverItem(
+    header: String?,
+    cloudCover: Int?,
+    modifier: Modifier = Modifier,
+) {
+    val context = LocalContext.current
+
+    Column(
+        modifier = modifier.fillMaxWidth()
+    ) {
+        TextFixedHeight(
+            text = header ?: "",
+            style = MaterialTheme.typography.labelMedium
+        )
+        TextFixedHeight(
+            text = cloudCover?.let {
+                UnitUtils.formatPercent(context, it.toDouble())
+            } ?: "",
+            style = MaterialTheme.typography.displaySmall
+        )
+        TextFixedHeight(
+            text = getCloudCoverDescription(context, cloudCover) ?: "",
+            style = MaterialTheme.typography.labelMedium
+        )
     }
 }
 
@@ -151,45 +225,15 @@ private fun CloudCoverSummary(
 }
 
 @Composable
-private fun CloudCoverItem(
-    header: @Composable () -> Unit,
-    cloudCover: Int?,
-    modifier: Modifier = Modifier,
-) {
-    val context = LocalContext.current
-
-    Column(
-        modifier = modifier.fillMaxWidth()
-    ) {
-        header()
-        TextFixedHeight(
-            text = cloudCover?.let {
-                UnitUtils.formatPercent(context, it.toDouble())
-            } ?: "",
-            style = MaterialTheme.typography.displaySmall
-        )
-        TextFixedHeight(
-            text = getCloudCoverDescription(context, cloudCover) ?: "",
-            style = MaterialTheme.typography.labelMedium
-        )
-    }
-}
-
-@Composable
 private fun CloudCoverChart(
     location: Location,
     mappedValues: ImmutableMap<Long, Int>,
     daily: Daily,
+    markerVisibilityListener: CartesianMarkerVisibilityListener,
 ) {
     val context = LocalContext.current
-    val maxY = 100.0
-
-    val endAxisValueFormatter = CartesianValueFormatter { _, value, _ ->
-        UnitUtils.formatPercent(context, value)
-    }
 
     val modelProducer = remember { CartesianChartModelProducer() }
-
     LaunchedEffect(location) {
         modelProducer.runTransaction {
             lineSeries {
@@ -201,60 +245,50 @@ private fun CloudCoverChart(
         }
     }
 
-    var activeMarkerTarget: CartesianMarker.Target? by remember { mutableStateOf(null) }
-    val markerVisibilityListener = object : CartesianMarkerVisibilityListener {
-        override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
-
-        override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
-
-        override fun onHidden(marker: CartesianMarker) {
-            activeMarkerTarget = null
-        }
-    }
-
-    activeMarkerTarget?.let {
-        mappedValues.getOrElse(it.x.toLong()) { null }?.let { cloudCover ->
-            CloudCoverItem(
-                header = {
-                    Text(
-                        text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
-                        style = MaterialTheme.typography.labelMedium
-                    )
-                },
-                cloudCover = cloudCover
+    BreezyLineChart(
+        location,
+        modelProducer,
+        daily.date,
+        maxY = 100.0,
+        endAxisValueFormatter = remember {
+            CartesianValueFormatter { _, value, _ ->
+                UnitUtils.formatPercent(context, value)
+            }
+        },
+        persistentListOf(
+            persistentMapOf(
+                100f to Color(213, 213, 205),
+                98f to Color(198, 201, 201),
+                95f to Color(171, 180, 179),
+                50f to Color(116, 116, 116),
+                10f to Color(132, 119, 70),
+                0f to Color(146, 130, 70)
             )
-        }
-    } ?: CloudCoverSummary(location, daily)
+        ),
+        endAxisItemPlacer = remember {
+            VerticalAxis.ItemPlacer.step({ 20.0 }) // Every 20 %
+        },
+        markerVisibilityListener = markerVisibilityListener
+    )
+}
 
-    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+@Composable
+fun SunshineItem(
+    sunshineDuration: Double,
+    modifier: Modifier = Modifier,
+) {
+    val context = LocalContext.current
 
-    if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
-        BreezyLineChart(
-            location,
-            modelProducer,
-            daily.date,
-            maxY,
-            endAxisValueFormatter,
-            persistentListOf(
-                persistentMapOf(
-                    100f to Color(213, 213, 205),
-                    98f to Color(198, 201, 201),
-                    95f to Color(171, 180, 179),
-                    50f to Color(116, 116, 116),
-                    10f to Color(132, 119, 70),
-                    0f to Color(146, 130, 70)
-                )
-            ),
-            endAxisItemPlacer = remember {
-                VerticalAxis.ItemPlacer.step({ 20.0 }) // Every 20 %
-            },
-            markerVisibilityListener = markerVisibilityListener
-        )
-    } else {
-        UnavailableChart(mappedValues.size)
-    }
+    DetailsItem(
+        headlineText = stringResource(R.string.sunshine_duration),
+        supportingText = DurationUnit.HOUR.formatMeasure(context, sunshineDuration),
+        icon = R.drawable.ic_sunshine_duration,
+        modifier = modifier
+            .semantics(mergeDescendants = true) {}
+            .clearAndSetSemantics {
+                contentDescription = context.getString(R.string.sunshine_duration) +
+                    context.getString(R.string.colon_separator) +
+                    DurationUnit.HOUR.formatContentDescription(context, sunshineDuration)
+            }
+    )
 }

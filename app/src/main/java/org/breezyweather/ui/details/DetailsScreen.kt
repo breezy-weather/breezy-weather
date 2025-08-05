@@ -387,6 +387,17 @@ fun DailyPagerContent(
         location.weather!!.hourlyForecast.subList(firstHourlyIndex, lastHourlyIndex + 1).toImmutableList()
     }
 
+    val currentUpdateTime = remember(location) {
+        location.weather!!.base.currentUpdateTime
+            ?: location.weather!!.base.forecastUpdateTime
+            ?: location.weather!!.base.refreshTime
+    }
+
+    val current = remember(selected) {
+        // TODO: Should be checking if currentUpdateTime is the same day as selected
+        if (daily.isToday(location)) location.weather!!.current else null
+    }
+
     Column(
         modifier = modifier
     ) {
@@ -424,17 +435,29 @@ fun DailyPagerContent(
                     setSelectedPollutant,
                     hourlyList,
                     daily,
-                    (if (daily.isToday(location)) location.weather!!.current?.airQuality else null),
-                    location.weather!!.base.currentUpdateTime
-                        ?: location.weather!!.base.forecastUpdateTime
-                        ?: location.weather!!.base.refreshTime
+                    currentUpdateTime?.let { time ->
+                        current?.airQuality?.let {
+                            if (it.isValid) Pair(time, it) else null
+                        }
+                    }
                 )
             }
             DetailScreen.TAG_POLLEN -> DetailsPollen(daily.pollen, pollenIndexSource)
             DetailScreen.TAG_UV_INDEX -> DetailsUV(location, hourlyList, daily)
             DetailScreen.TAG_HUMIDITY -> DetailsHumidity(location, hourlyList, daily)
             DetailScreen.TAG_PRESSURE -> DetailsPressure(location, hourlyList, daily)
-            DetailScreen.TAG_CLOUD_COVER -> DetailsCloudCover(location, hourlyList, daily)
+            DetailScreen.TAG_CLOUD_COVER -> {
+                DetailsCloudCover(
+                    location,
+                    hourlyList,
+                    daily,
+                    currentUpdateTime?.let { time ->
+                        current?.cloudCover?.let { cloudCover ->
+                            Pair(time, cloudCover)
+                        }
+                    }
+                )
+            }
             DetailScreen.TAG_VISIBILITY -> DetailsVisibility(location, hourlyList, daily)
             DetailScreen.TAG_SUN_MOON -> {
                 val sunTimes = remember(selected) {

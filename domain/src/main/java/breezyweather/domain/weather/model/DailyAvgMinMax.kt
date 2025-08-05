@@ -20,4 +20,5 @@ interface DailyAvgMinMax {
     val average: Number?
     val max: Number?
     val min: Number?
+    val summary: String?
 }

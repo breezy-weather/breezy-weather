@@ -119,8 +119,7 @@ fun DetailsAirQuality(
     setSelectedPollutant: (PollutantIndex?) -> Unit,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
-    currentAirQuality: AirQuality?,
-    currentTime: Date?,
+    defaultValue: Pair<Date, AirQuality>?,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -134,13 +133,31 @@ fun DetailsAirQuality(
             .associate { it.date.time to it.airQuality!! }
             .toImmutableMap()
     }
-    val selectedAirQuality = remember(daily, currentAirQuality) {
+    var activeItem: Pair<Date, AirQuality>? by remember { mutableStateOf(defaultValue) }
+    val markerVisibilityListener = remember {
+        object : CartesianMarkerVisibilityListener {
+            override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                activeItem = targets.firstOrNull()?.let { target ->
+                    mappedValues.getOrElse(target.x.toLong()) { null }?.let {
+                        Pair(target.x.toLong().toDate(), it)
+                    }
+                } ?: defaultValue
+            }
+
+            override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                onShown(marker, targets)
+            }
+
+            override fun onHidden(marker: CartesianMarker) {
+                activeItem = defaultValue
+            }
+        }
+    }
+    val selectedAirQuality = remember(daily, defaultValue) {
         if (daily.airQuality?.isValid == true) {
             daily.airQuality
-        } else if (currentAirQuality?.isValid == true) {
-            currentAirQuality
         } else {
-            null
+            defaultValue?.second
         }
     }
 
@@ -200,9 +217,21 @@ fun DetailsAirQuality(
             vertical = dimensionResource(R.dimen.small_margin)
         )
     ) {
-        // Force recomposition when switching charts
-        item(key = "chart-$selectedPollutant") {
-            AirQualityChart(location, selectedPollutant, mappedValues, daily, currentAirQuality, currentTime)
+        item {
+            AirQualityHeader(location, daily, selectedPollutant, activeItem)
+        }
+        item {
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+        }
+        if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
+            // Force recomposition when switching charts
+            item(key = "chart-$selectedPollutant") {
+                AirQualityChart(location, selectedPollutant, mappedValues, daily, markerVisibilityListener)
+            }
+        } else {
+            item {
+                UnavailableChart(mappedValues.size)
+            }
         }
         if (supportedPollutants.isNotEmpty()) {
             item {
@@ -300,28 +329,32 @@ fun DetailsAirQuality(
 }
 
 @Composable
-private fun AirQualitySummary(
-    dayAirQuality: AirQuality,
+private fun AirQualityHeader(
+    location: Location,
+    daily: Daily,
     selectedPollutant: PollutantIndex?,
-    label: String,
+    activeItem: Pair<Date, AirQuality>?,
 ) {
-    AirQualityItem(
-        airQuality = dayAirQuality,
+    val context = LocalContext.current
+
+    activeItem?.let {
+        AirQualityItem(
+            header = it.first.getFormattedTime(location, context, context.is12Hour),
+            selectedPollutant = selectedPollutant,
+            airQuality = it.second
+        )
+    } ?: AirQualityItem(
+        header = stringResource(R.string.air_quality_average),
         selectedPollutant = selectedPollutant,
-        header = {
-            TextFixedHeight(
-                text = label,
-                style = MaterialTheme.typography.labelMedium
-            )
-        }
+        airQuality = daily.airQuality
     )
 }
 
 @Composable
 private fun AirQualityItem(
-    airQuality: AirQuality,
+    header: String?,
     selectedPollutant: PollutantIndex?,
-    header: @Composable () -> Unit,
+    airQuality: AirQuality?,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -336,19 +369,22 @@ private fun AirQualityItem(
                 .size(dimensionResource(R.dimen.material_icon_size)),
             painter = painterResource(R.drawable.ic_circle),
             contentDescription = null,
-            tint = Color(airQuality.getColor(context, selectedPollutant))
+            tint = airQuality?.getColor(context, selectedPollutant)?.let { Color(it) } ?: Color.Transparent
         )
         Column {
-            header()
+            TextFixedHeight(
+                text = header ?: "",
+                style = MaterialTheme.typography.labelMedium
+            )
             TextFixedHeight(
                 text = buildAnnotatedString {
                     if (selectedPollutant == null) {
-                        airQuality.getIndex()?.let {
+                        airQuality?.getIndex()?.let {
                             append(UnitUtils.formatInt(context, it))
                             append(" ")
                         }
                     } else {
-                        airQuality.getConcentration(selectedPollutant)?.let {
+                        airQuality?.getConcentration(selectedPollutant)?.let {
                             append(
                                 UnitUtils.formatUnitsDifferentFontSize(
                                     formattedMeasure = PollutantIndex.getUnit(selectedPollutant)
@@ -359,7 +395,7 @@ private fun AirQualityItem(
                             append(" ")
                         }
                     }
-                    airQuality.getName(context, selectedPollutant)?.let {
+                    airQuality?.getName(context, selectedPollutant)?.let {
                         withStyle(
                             style = SpanStyle(
                                 fontSize = MaterialTheme.typography.headlineSmall.fontSize,
@@ -382,145 +418,90 @@ private fun AirQualityChart(
     selectedPollutant: PollutantIndex?,
     mappedValues: ImmutableMap<Long, AirQuality>,
     daily: Daily,
-    currentAirQuality: AirQuality?,
-    currentTime: Date?,
+    markerVisibilityListener: CartesianMarkerVisibilityListener,
 ) {
     val context = LocalContext.current
 
-    var activeMarkerTarget: CartesianMarker.Target? by remember { mutableStateOf(null) }
-    val markerVisibilityListener = object : CartesianMarkerVisibilityListener {
-        override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
-
-        override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
-
-        override fun onHidden(marker: CartesianMarker) {
-            activeMarkerTarget = null
-        }
-    }
-
-    activeMarkerTarget?.let {
-        mappedValues.getOrElse(it.x.toLong()) { null }?.let { airQuality ->
-            AirQualityItem(
-                header = {
-                    TextFixedHeight(
-                        text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
-                        style = MaterialTheme.typography.labelMedium
-                    )
-                },
-                selectedPollutant = selectedPollutant,
-                airQuality = airQuality
-            )
-        }
-    } ?: daily.airQuality?.let {
-        if (it.isValid) {
-            AirQualitySummary(
-                it,
-                selectedPollutant,
-                stringResource(R.string.air_quality_average)
-            )
-        } else {
-            null
-        }
-    } ?: currentAirQuality?.let {
-        if (it.isValid) {
-            AirQualitySummary(
-                it,
-                selectedPollutant,
-                currentTime?.getFormattedTime(location, context, context.is12Hour) ?: ""
-            )
-        }
-    }
-
-    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
-
-    if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
-        val maxY = remember(mappedValues, selectedPollutant) {
-            max(
-                selectedPollutant?.maxY ?: PollutantIndex.aqiThresholds[4],
-                mappedValues.values.maxOf {
-                    if (selectedPollutant == null) {
-                        it.getIndex()!!
-                    } else {
-                        it.getConcentration(selectedPollutant)?.roundUpToNearestMultiplier(1.0)?.roundToInt() ?: 0
-                    }
-                }
-            )
-        }
-
-        val modelProducer = remember { CartesianChartModelProducer() }
-
-        LaunchedEffect(location) {
-            modelProducer.runTransaction {
-                lineSeries {
-                    series(
-                        x = mappedValues.keys,
-                        y = mappedValues.values.map {
-                            if (selectedPollutant == null) {
-                                it.getIndex()!!
-                            } else {
-                                it.getConcentration(selectedPollutant)!!
-                            }
-                        }
-                    )
+    val maxY = remember(mappedValues, selectedPollutant) {
+        max(
+            selectedPollutant?.maxY ?: PollutantIndex.aqiThresholds[4],
+            mappedValues.values.maxOf {
+                if (selectedPollutant == null) {
+                    it.getIndex()!!
+                } else {
+                    it.getConcentration(selectedPollutant)?.roundUpToNearestMultiplier(1.0)?.roundToInt() ?: 0
                 }
             }
-        }
-
-        BreezyLineChart(
-            location,
-            modelProducer,
-            daily.date,
-            maxY.toDouble(),
-            { _, value, _ ->
-                if (selectedPollutant == null) {
-                    UnitUtils.formatInt(context, value.roundToInt())
-                } else {
-                    PollutantIndex.getUnit(selectedPollutant).formatMeasure(context, value)
-                }
-            },
-            persistentListOf(
-                ((selectedPollutant?.thresholds ?: PollutantIndex.aqiThresholds).reversed().map { it.toFloat() }).zip(
-                    context.resources.getIntArray(PollutantIndex.colorsArrayId).reversed().map { Color(it) }
-                ).toMap().toImmutableMap()
-            ),
-            trendHorizontalLines = persistentMapOf(
-                (selectedPollutant?.let { it.thresholds[3] } ?: PollutantIndex.aqiThresholds[3]).toDouble() to
-                    context.resources.getStringArray(R.array.air_quality_levels)[3]
-            ),
-            topAxisValueFormatter = { _, value, _ ->
-                mappedValues.getOrElse(value.toLong()) { null }
-                    ?.let {
-                        UnitUtils.formatInt(
-                            context,
-                            if (selectedPollutant == null) {
-                                it.getIndex()!!
-                            } else {
-                                it.getConcentration(selectedPollutant)!!.roundToInt()
-                            }
-                        )
-                    } ?: "-"
-            },
-            endAxisItemPlacer = remember(selectedPollutant) {
-                SpecificVerticalAxisItemPlacer(
-                    (selectedPollutant?.thresholds ?: PollutantIndex.aqiThresholds)
-                        .map { it.toDouble() }
-                        .toMutableList()
-                        .apply {
-                            if (maxY > last()) {
-                                add(maxY.toDouble())
-                            }
-                        }
-                )
-            },
-            markerVisibilityListener = markerVisibilityListener
         )
-    } else {
-        UnavailableChart(mappedValues.size)
     }
+
+    val modelProducer = remember { CartesianChartModelProducer() }
+
+    LaunchedEffect(location) {
+        modelProducer.runTransaction {
+            lineSeries {
+                series(
+                    x = mappedValues.keys,
+                    y = mappedValues.values.map {
+                        if (selectedPollutant == null) {
+                            it.getIndex()!!
+                        } else {
+                            it.getConcentration(selectedPollutant)!!
+                        }
+                    }
+                )
+            }
+        }
+    }
+
+    BreezyLineChart(
+        location,
+        modelProducer,
+        daily.date,
+        maxY.toDouble(),
+        { _, value, _ ->
+            if (selectedPollutant == null) {
+                UnitUtils.formatInt(context, value.roundToInt())
+            } else {
+                PollutantIndex.getUnit(selectedPollutant).formatMeasure(context, value)
+            }
+        },
+        persistentListOf(
+            ((selectedPollutant?.thresholds ?: PollutantIndex.aqiThresholds).reversed().map { it.toFloat() }).zip(
+                context.resources.getIntArray(PollutantIndex.colorsArrayId).reversed().map { Color(it) }
+            ).toMap().toImmutableMap()
+        ),
+        trendHorizontalLines = persistentMapOf(
+            (selectedPollutant?.let { it.thresholds[3] } ?: PollutantIndex.aqiThresholds[3]).toDouble() to
+                context.resources.getStringArray(R.array.air_quality_levels)[3]
+        ),
+        topAxisValueFormatter = { _, value, _ ->
+            mappedValues.getOrElse(value.toLong()) { null }
+                ?.let {
+                    UnitUtils.formatInt(
+                        context,
+                        if (selectedPollutant == null) {
+                            it.getIndex()!!
+                        } else {
+                            it.getConcentration(selectedPollutant)!!.roundToInt()
+                        }
+                    )
+                } ?: "-"
+        },
+        endAxisItemPlacer = remember(selectedPollutant) {
+            SpecificVerticalAxisItemPlacer(
+                (selectedPollutant?.thresholds ?: PollutantIndex.aqiThresholds)
+                    .map { it.toDouble() }
+                    .toMutableList()
+                    .apply {
+                        if (maxY > last()) {
+                            add(maxY.toDouble())
+                        }
+                    }
+            )
+        },
+        markerVisibilityListener = markerVisibilityListener
+    )
 }
 
 // TODO: Redundancy

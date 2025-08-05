@@ -20,4 +20,5 @@ data class DailyPressure(
     override val average: Double? = null,
     override val max: Double? = null,
     override val min: Double? = null,
+    override val summary: String? = null,
 ) : DailyAvgMinMax
