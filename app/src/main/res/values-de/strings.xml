@@ -196,18 +196,16 @@
     <string name="common_weather_text_snow_grains">Schneegriesel</string>
     <string name="air_quality_level_1_description">Für die meisten Menschen ist die Luftqualität bei Unternehmungen im Freien optimal.</string>
     <string name="air_quality_level_2_description">Die Luftqualität ist im Allgemeinen für die meisten Menschen akzeptabel. Bei empfindlichen Personengruppen können jedoch bei langfristiger Exposition leichte bis mittlere Symptome auftreten.</string>
-    <string name="air_quality_level_3_description">Die Luft ist stark verschmutzt und für empfindliche Personengruppen gesundheitsschädlich. Verbringen Sie weniger Zeit im Freien, falls bei Ihnen Symptome wie Atembeschwerden oder Hustenreiz auftreten.</string>
+    <string name="air_quality_level_3_description">Die Luft ist stark verschmutzt und für empfindliche Personengruppen gesundheitsschädlich. Verbringe weniger Zeit im Freien, falls bei dir Symptome wie Atembeschwerden oder Hustenreiz auftreten.</string>
     <string name="air_quality_level_5">Sehr ungesund</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Wetter nachts heute, morgen, …, in 4 Tagen</string>
     <string name="unit_mugpcum_voice">Mikrogramm pro Kubikmeter</string>
-    <string name="dialog_permissions_location_background_content">Damit die Wetteraktualisierung im Hintergrund für den aktuellsten von Android bekannten Standort erfolgt, müssen Sie die Standortberechtigung auf „Immer zulassen“ setzen. Wenn Sie dies nicht tun, wird das Wetter auf Grundlage der zuletzt im Vordergrund abgerufenen Koordinaten aktualisiert, die veraltet sein können.</string>
+    <string name="dialog_permissions_location_background_content">Damit die Wetteraktualisierung im Hintergrund für den aktuellsten von Android bekannten Standort erfolgt, musst du die Standortberechtigung auf „Immer zulassen“ setzen. Wenn du dies nicht tust, wird das Wetter auf Grundlage der zuletzt im Vordergrund abgerufenen Koordinaten aktualisiert, die veraltet sein können.</string>
     <string name="widget_subtitle_data_time">Aktualisierungszeit</string>
     <string name="widget_subtitle_data_aqi">Luftqualität</string>
     <string name="widget_subtitle_data_wind">Wind</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Aktuelle Temperatur (°C/°F)</string>
-    <string name="widget_custom_subtitle_explanation">Sie können alles eingeben, aber achten Sie bitte auf die Länge des Textes. Wenn Sie Wetterdaten nutzen möchten, verwenden Sie bitte $, um auf das entsprechende Stichwort zu verweisen.
-\n
-\nZum Beispiel: „Aktuelles Wetter: $cw$.“ wird angezeigt als „Aktuelles Wetter: Klar.“.</string>
+    <string name="widget_custom_subtitle_explanation">Du kannst alles eingeben, aber achte bitte auf die Länge des Textes. Wenn du Wetterdaten nutzen möchtest, verwende bitte $, um auf das entsprechende Stichwort zu verweisen. \n \nZum Beispiel: „Aktuelles Wetter: $cw$.“ wird angezeigt als „Aktuelles Wetter: Klar.“.</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Aktuelles Wetter</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Aktuelle gefühlte Temperatur (°)</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Aktuelle Sichtweite</string>
@@ -221,13 +219,13 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">Mondaufgang heute, morgen, …, in 4 Tagen</string>
     <string name="widget_custom_subtitle_keyword_xmp_description">Mondphase heute, morgen, …, in 4 Tagen</string>
     <string name="widget_custom_subtitle_keyword_xnp_description">Niederschlag nachts heute, morgen, …, in 4 Tagen (%)</string>
-    <string name="dialog_permissions_location_content">Um diese Funktion zu benutzen, müssen Sie der App erlauben, auf Ihren aktuellen Standort zuzugreifen. Dieser wird nur mit den ausgewählten Wetterquellen geteilt. Wenn Sie sich anders entscheiden, können Sie den Vorgang abbrechen und einen festen Ort hinzufügen.</string>
+    <string name="dialog_permissions_location_content">Um diese Funktion zu benutzen, musst du der App erlauben, auf deinen aktuellen Standort zuzugreifen. Dieser wird nur mit den ausgewählten Wetterquellen geteilt. Wenn du dich anders entscheidest, kannst du den Vorgang abbrechen und einen festen Ort hinzufügen.</string>
     <string name="location_results_by">Standortergebnisse von %s</string>
     <string name="action_add_current_location">Aktuellen Standort hinzufügen</string>
     <string name="action_add_new_location">Neuen Ort hinzufügen</string>
     <string name="ephemeris_moonset_at">Monduntergang um %s</string>
     <string name="dialog_permissions_location_background_title">Zugriff auf Standort im Hintergrund</string>
-    <string name="weather_api_unauthorized_content">Bei einigen Wetterdiensten müssen Sie Ihren eigenen API-Schlüssel angeben. Wenn Sie bereits einen angegeben haben, überprüfen Sie bitte den API-Schlüssel, den Sie angegeben haben.</string>
+    <string name="weather_api_unauthorized_content">Bei einigen Wetterdiensten musst du deinen eigenen API-Schlüssel angeben. Wenn du bereits einen angegeben hast, überprüfe bitte den API-Schlüssel, den du angegeben hast.</string>
     <string name="weather_api_limit_reached_title">Limit für API-Anfragen erreicht</string>
     <string name="unit_kph_voice">Kilometer pro Stunde</string>
     <string name="unit_ftps">ft/s</string>
@@ -238,7 +236,7 @@
     <string name="unit_inhg">inHg</string>
     <string name="unit_mmhg_voice">Millimeter-Quecksilbersäule</string>
     <string name="unit_inhg_voice">Zoll-Quecksilbersäule</string>
-    <string name="air_quality_level_4_description">Empfindliche Personengruppen werden unmittelbare gesundheitliche Auswirkungen spüren. Bei gesunden Menschen kann es bei längerem Kontakt zu Atembeschwerden und Hustenreiz kommen. Schränken Sie Aktivitäten im Freien ein.</string>
+    <string name="air_quality_level_4_description">Empfindliche Personengruppen werden unmittelbare gesundheitliche Auswirkungen spüren. Bei gesunden Menschen kann es bei längerem Kontakt zu Atembeschwerden und Hustenreiz kommen. Schränke Aktivitäten im Freien ein.</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Leichtes bis mäßiges Gewitter</string>
     <string name="widget_style_temperature">Temperatur</string>
     <string name="widget_week_style_3_days">3 Tage</string>
@@ -251,7 +249,7 @@
     <string name="unit_mph">mph</string>
     <string name="widget_custom_subtitle_keyword_lat_description">Breitengrad</string>
     <string name="unit_h">h</string>
-    <string name="weather_api_limit_reached_content">Um das Limit zu umgehen, fügen Sie Ihren eigenen API-Schlüssel hinzu.</string>
+    <string name="weather_api_limit_reached_content">Um das Limit zu umgehen, füge deinen eigenen API-Schlüssel hinzu.</string>
     <string name="dialog_permissions_location_title">Zugriff auf Standortinformationen</string>
     <string name="alerts_to_follow">Anstehende Warnungen. Zum Anzeigen hier tippen.</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Gewitter mit leichtem Hagel</string>
@@ -282,7 +280,7 @@
     <string name="air_quality_level_1">Sehr gut</string>
     <string name="air_quality_level_3">Schlecht</string>
     <string name="air_quality_level_6">Gefährlich</string>
-    <string name="air_quality_level_6_description">Schon wenige Minuten Exposition können zu schwerwiegenden gesundheitlichen Auswirkungen führen. Vermeiden Sie Aktivitäten im Freien.</string>
+    <string name="air_quality_level_6_description">Schon wenige Minuten Exposition können zu schwerwiegenden gesundheitlichen Auswirkungen führen. Vermeide Aktivitäten im Freien.</string>
     <string name="air_quality_pm25_voice">PM zwei Komma fünf</string>
     <string name="air_quality_pm10_voice">PM zehn</string>
     <string name="air_quality_so2_voice">Schwefeldioxid</string>
@@ -394,8 +392,8 @@
     <string name="weather_source_accu_preference_hours_24">24 Stunden</string>
     <string name="weather_source_accu_preference_hours_72">72 Stunden</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Geräteeinstellungen konnten nicht geöffnet werden.</string>
-    <string name="settings_background_updates_battery_optimization_summary">Dies ist der erste Schritt, der unternommen werden sollte, wenn Sie keine Benachrichtigungen erhalten oder die Widgets nicht aktualisiert werden.</string>
-    <string name="weather_api_key_required_missing_content">Um diese Quelle nutzen zu können, benötigen Sie einen API-Schlüssel.</string>
+    <string name="settings_background_updates_battery_optimization_summary">Dies ist der erste Schritt, der unternommen werden sollte, wenn du keine Benachrichtigungen erhälst oder die Widgets nicht aktualisiert werden.</string>
+    <string name="weather_api_key_required_missing_content">Um diese Quelle nutzen zu können, benötigst du einen API-Schlüssel.</string>
     <string name="weather_source_accu_preference_days_5">5 Tage</string>
     <string name="weather_source_accu_preference_days_1">1 Tag</string>
     <string name="settings_debug_summary">Absturzprotokolle</string>
@@ -417,7 +415,7 @@
     <string name="settings_widgets_notification_persistent_switch">Permanent</string>
     <string name="settings_widgets_notification_style_title">Stil</string>
     <string name="unit_inph">Zoll/h</string>
-    <string name="settings_background_updates_dont_kill_my_app_summary">Einige Hersteller nutzen zusätzliche App-Einschränkungen, die Hintergrunddienste abschalten. Auf der Website „Don’t kill my app!“ finden Sie Informationen zur Deaktivierung dieser Einschränkungen.</string>
+    <string name="settings_background_updates_dont_kill_my_app_summary">Einige Hersteller nutzen zusätzliche App-Einschränkungen, die Hintergrunddienste abschalten. Auf der Website „Don’t kill my app!“ findest du Informationen zur Deaktivierung dieser Einschränkungen.</string>
     <string name="widget_multi_city">Mehrere Orte</string>
     <string name="settings_widgets_week_icon_mode_title">Symbol für die Anzeige in Wochenansichten</string>
     <string name="settings_widgets_monochrome_icons_title">Einfarbige Symbole</string>
@@ -429,8 +427,8 @@
     <string name="settings_location">Standort</string>
     <string name="settings_location_summary">Einstellungen der Standortdienste</string>
     <string name="action_undo">Rückgängig</string>
-    <string name="settings_location_access_switch_summaryOff">Bitte erlauben, wenn Sie Ihren aktuellen Standort als Ort hinzufügen möchten.</string>
-    <string name="settings_location_access_background_summaryOff">Bitte aktivieren Sie „Immer zulassen“, um Hintergrundaktualisierungen für Ihren aktuellen Standort zu erhalten.</string>
+    <string name="settings_location_access_switch_summaryOff">Bitte erlauben, wenn du deinen aktuellen Standort als Ort hinzufügen möchtest.</string>
+    <string name="settings_location_access_background_summaryOff">Bitte aktiviere „Immer zulassen“, um Hintergrundaktualisierungen für deinen aktuellen Standort zu erhalten.</string>
     <string name="settings_location_access_precise_title">GPS-Nutzung des Geräts</string>
     <string name="settings_location_access_precise_summaryOn">Aktiviert. Es werden bevorzugt die Netzwerkdienste Ihres Geräts genutzt, aber als Ersatz kann auch auf GPS zurückgegriffen werden.</string>
     <string name="settings_notifications_precipitations_title">Benachrichtigungen über Niederschläge</string>
@@ -440,7 +438,7 @@
     <string name="settings_location_access_background_summaryOn">Aktiviert. Die App kann die Wetterdaten für den aktuellen Standort im Hintergrund aktualisieren.</string>
     <string name="settings_location_access_switch_summaryOn">Erlaubt. Der aktuelle Standort kann als Ort hinzugefügt werden.</string>
     <string name="settings_location_access_background_title">Standortzugriff im Hintergrund</string>
-    <string name="settings_location_access_precise_summaryOff">Aktivieren Sie „Genauen Standort verwenden“, wenn Sie Probleme bei der Standortermittlung haben.</string>
+    <string name="settings_location_access_precise_summaryOff">Aktiviere „Genauen Standort verwenden“, wenn du Probleme bei der Standortermittlung hast.</string>
     <string name="settings_notifications_alerts_title">Benachrichtigungen über schwere Unwetterwarnungen</string>
     <string name="settings_notifications_forecast_today_title">Benachrichtigung über die Tagesvorhersage</string>
     <string name="settings_notifications_forecast_time_today_title">Benachrichtigungszeit für die Tagesvorhersage</string>
@@ -454,7 +452,7 @@
     <string name="settings_item_delete">Diesen Eintrag löschen</string>
     <string name="notification_style_native">Nativ</string>
     <string name="null_data_text">n. v.</string>
-    <string name="settings_widgets_live_wallpaper_error">Die Hintergrundbildauswahl konnte nicht gestartet werden. Sie können das Hintergrundbild von %s weiterhin aktivieren, indem Sie in der Hintergrundbildauswahl Ihres Startbildschirms „Live-Hintergrund“ auswählen.</string>
+    <string name="settings_widgets_live_wallpaper_error">Die Hintergrundbildauswahl konnte nicht gestartet werden. Du kannst das Hintergrundbild von %s weiterhin aktivieren, indem du in der Hintergrundbildauswahl deines Startbildschirms „Live-Hintergrund“ auswählst.</string>
     <string name="air_quality_index">Luftqualitätsindex</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_no2_full">Stickstoffdioxid (%s)</string>
@@ -463,13 +461,13 @@
     <string name="action_close">Schließen</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_o3_full">Bodennahes Ozon (%s)</string>
-    <string name="dialog_permissions_notification_content">Hier tippen, um Benachrichtigungen über Wetterwarnungen zu aktivieren. Alternativ können Sie dies später in den Einstellungen entscheiden.</string>
+    <string name="dialog_permissions_notification_content">Hier tippen, um Benachrichtigungen über Wetterwarnungen zu aktivieren. Alternativ kannst du dies später in den Einstellungen entscheiden.</string>
     <string name="dialog_permissions_notification_title">Informiert bleiben</string>
     <string name="location_search_no_results">%1$s kann %2$s nicht finden</string>
-    <string name="location_search_no_results_advice">Achten Sie darauf, dass Ihr Suchbegriff richtig geschrieben und nicht zu spezifisch ist. Alternativ können Sie eine andere Quelle für die Ortssuche ausprobieren, die möglicherweise andere Ergebnisse liefert.</string>
+    <string name="location_search_no_results_advice">Achte darauf, dass dein Suchbegriff richtig geschrieben und nicht zu spezifisch ist. Alternativ kannst du eine andere Quelle für die Ortssuche ausprobieren, die möglicherweise andere Ergebnisse liefert.</string>
     <string name="message_source_not_installed_error_title">Quelle nicht mehr verfügbar</string>
     <string name="action_show_errors">Antippen, um Details anzuzeigen</string>
-    <string name="message_parsing_error_content">Stellen Sie sicher, dass Sie auf die neueste Version der App aktualisiert haben. Der Server kann vorübergehend nicht verfügbar sein. In diesem Fall versuchen Sie es bitte später erneut. Wenn das Problem weiterhin besteht, erstellen Sie bitte ein Absturzprotokoll in den Debugging-Einstellungen und melden Sie den Fehler auf GitHub.</string>
+    <string name="message_parsing_error_content">Stelle sicher, dass du auf die neueste Version der App aktualisiert hast. Der Server kann vorübergehend nicht verfügbar sein. In diesem Fall versuche es bitte später erneut. Wenn das Problem weiterhin besteht, erstelle bitte ein Absturzprotokoll in den Debugging-Einstellungen und melde den Fehler auf GitHub.</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Bei niedrigem Akku nicht aktualisieren</string>
     <string name="message_server_timeout">Zeitüberschreitung bei Anforderung</string>
     <string name="message_parsing_error_title">Wetterdaten konnten nicht ausgewertet werden</string>
@@ -541,7 +539,7 @@
     <string name="settings_debug_dump_crash_logs_tap_to_open">Zum Öffnen antippen</string>
     <string name="notification_channel_crash_logs">Absturzprotokolle</string>
     <string name="settings_color_app">App-Standard</string>
-    <string name="settings_unavailable_no_background_updates">Nicht verfügbar, aktivieren Sie zuerst die Hintergrundaktualisierungen</string>
+    <string name="settings_unavailable_no_background_updates">Nicht verfügbar, aktiviere zuerst die Hintergrundaktualisierungen</string>
     <string name="notification_precipitation_starting_desc">Voraussichtlicher Beginn um %s</string>
     <string name="notification_precipitation_starting">Niederschlag beginnt in Kürze</string>
     <string name="notification_precipitation_continuing">Niederschlag</string>
@@ -563,15 +561,15 @@
     <string name="ceiling_short">Wolkendecke</string>
     <string name="settings_weather_sources_default_source">Standardquelle für neue Orte</string>
     <string name="settings_weather_source_unavailable">%s (nicht verfügbar)</string>
-    <string name="settings_weather_source_freenet_disclaimer">Mehr Wetterquellen sind in den anderen Varianten der App verfügbar. Tippen Sie hier, um mehr zu erfahren.</string>
-    <string name="location_delete_location_dialog_message">Sie sind dabei, „%s“ aus Ihrer Liste der gespeicherten Orte zu löschen.</string>
+    <string name="settings_weather_source_freenet_disclaimer">Mehr Wetterquellen sind in den anderen Varianten der App verfügbar. Tippe hier, um mehr zu erfahren.</string>
+    <string name="location_delete_location_dialog_message">Du bist dabei, „%s“ aus deiner Liste der gespeicherten Orte zu löschen.</string>
     <string name="location_delete_location_dialog_title">Ort löschen?</string>
     <string name="widget_label_hide_header">Kopfzeile ausblenden</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Luftqualitätsindex von heute, morgen, …, in 4 Tagen</string>
     <string name="action_confirm">Bestätigen</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Aktueller Luftqualitätsindex</string>
-    <string name="location_delete_location_dialog_message_no_name">Sie sind dabei, diesen Ort aus Ihrer Liste der gespeicherten Orte zu löschen.</string>
-    <string name="weather_message_too_frequent_refreshes">Bitte warten Sie ein paar Sekunden, bevor Sie es erneut versuchen…</string>
+    <string name="location_delete_location_dialog_message_no_name">Du bist dabei, diesen Ort aus deiner Liste der gespeicherten Orte zu löschen.</string>
+    <string name="weather_message_too_frequent_refreshes">Bitte warte ein paar Sekunden, bevor du es erneut versuchst…</string>
     <string name="pollen_carpinus">Hainbuche</string>
     <string name="pollen_castanea">Kastanie</string>
     <string name="pollen_corylus">Hasel</string>
@@ -588,8 +586,8 @@
     <string name="about_open_link_message">%s öffnen?</string>
     <string name="widget_custom_subtitle_keyword_xpis_description">Pollenindex-Übersicht für heute, morgen, …, 4 Tage später</string>
     <string name="sunshine">Sonnenschein</string>
-    <string name="message_source_not_installed_error_content_tip_1">Dies kann passieren, wenn Sie Ihren Ort in der Standardvariante der App hinzugefügt haben und dann zur Variante mit nur freien Netzwerkquellen gewechselt sind. Eine Rückkehr zur Standardvariante könnte dieses Problem lösen.</string>
-    <string name="message_source_not_installed_error_content_tip_2">Ändern Sie entweder die Wetterquelle für diesen Ort oder entfernen Sie ihn und fügen Sie ihn dann wieder hinzu.</string>
+    <string name="message_source_not_installed_error_content_tip_1">Dies kann passieren, wenn du deinen Ort in der Standardvariante der App hinzugefügt hast und dann zur Variante mit nur freien Netzwerkquellen gewechselt bist. Eine Rückkehr zur Standardvariante könnte dieses Problem lösen.</string>
+    <string name="message_source_not_installed_error_content_tip_2">Ändere entweder die Wetterquelle für diesen Ort oder entferne ihn und füge ihn dann wieder hinzu.</string>
     <string name="settings_per_location">Ortseinstellungen</string>
     <string name="settings_per_location_summary">Zusätzliche Anpassungen für diesen Ort</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Kombiniert die besten Wettermodelle für diesen Ort</string>
@@ -615,10 +613,10 @@
     <string name="settings_appearance_calendar_title">Alternativer Kalender</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Zur Toucheingabe wechseln</string>
     <string name="settings_widgets_broadcast_send_data_summary_empty">Keine kompatiblen Pakete gefunden</string>
-    <string name="settings_background_updates_refresh_never_warning1">Wenn Sie die Hintergrundaktualisierung deaktivieren, erhalten Sie keine Benachrichtigungen mehr über Warnungen oder Niederschläge. Widgets werden erst wieder aktualisiert, wenn Sie die App öffnen.</string>
-    <string name="settings_background_updates_refresh_never_warning2">Der Hintergrundaktualisierungsprozess ist ressourcenschonend: Nur Ihr erster Ort wird mit der von Ihnen gewählten Rate aktualisiert und weitere Orte einmal täglich, wenn Sie sie benötigen. Der Prozess ist akkuschonend und sollte einen Datenverbrauch von %d MB pro Monat nicht überschreiten.</string>
-    <string name="settings_background_updates_refresh_never_warning3">Erwägen Sie, eine weniger häufige Aktualisierungsrate zu verwenden, anstatt die Hintergrundaktualisierung zu deaktivieren. Tippen Sie ansonsten auf „Weiter“, um trotzdem fortzufahren.</string>
-    <string name="message_server_unavailable_content">Dies ist normalerweise ein temporärer Fehler. Wenn er weiterhin besteht, melden Sie ihn bitte auf GitHub.</string>
+    <string name="settings_background_updates_refresh_never_warning1">Wenn du die Hintergrundaktualisierung deaktivierst, erhältst du keine Benachrichtigungen mehr über Warnungen oder Niederschläge. Widgets werden erst wieder aktualisiert, wenn du die App öffnest.</string>
+    <string name="settings_background_updates_refresh_never_warning2">Der Hintergrundaktualisierungsprozess ist ressourcenschonend: Nur dein erster Ort wird mit der von dir gewählten Rate aktualisiert und weitere Orte einmal täglich, wenn du sie benötigst. Der Prozess ist akkuschonend und sollte einen Datenverbrauch von %d MB pro Monat nicht überschreiten.</string>
+    <string name="settings_background_updates_refresh_never_warning3">Erwäge, eine weniger häufige Aktualisierungsrate zu verwenden, anstatt die Hintergrundaktualisierung zu deaktivieren. Tippe ansonsten auf „Weiter“, um trotzdem fortzufahren.</string>
+    <string name="message_server_unavailable_content">Dies ist normalerweise ein temporärer Fehler. Wenn er weiterhin besteht, melde ihn bitte auf GitHub.</string>
     <string name="message_server_unavailable_title">Server nicht erreichbar</string>
     <string name="action_edit_location">Diesen Ort bearbeiten</string>
     <string name="settings_global">Globale Einstellungen</string>
@@ -634,7 +632,7 @@
     <string name="dialog_app_update_check_content">Hier tippen, um Benachrichtigungen über App-Updates zu aktivieren.</string>
     <string name="dialog_app_update_check_title">Auf dem neusten Stand bleiben</string>
     <string name="meteoam_weather_text_tornado_watersprout">Wind- oder Wasserhose</string>
-    <string name="settings_unavailable_no_animations">Nicht verfügbar, aktivieren Sie Animationen zuerst in den Android-Einstellungen</string>
+    <string name="settings_unavailable_no_animations">Nicht verfügbar, aktiviere Animationen zuerst in den Android-Einstellungen</string>
     <string name="current_weather">Aktuelles Wetter</string>
     <string name="common_weather_text_humid">Feucht</string>
     <string name="common_weather_text_warm">Warm</string>
@@ -669,7 +667,7 @@
     <string name="weather_source_continent_asia">Asien</string>
     <string name="common_weather_text_squall">Windböen</string>
     <string name="action_show">Anzeigen</string>
-    <string name="dialog_refresh_error_details_content">Tippen Sie auf Fehlermeldungen mit einem Fragezeichen, um weitere Hilfe zu erhalten.</string>
+    <string name="dialog_refresh_error_details_content">Tippe auf Fehlermeldungen mit einem Fragezeichen, um weitere Hilfe zu erhalten.</string>
     <string name="dialog_refresh_error_details_title">Aktualisierungsfehler</string>
     <string name="message_multiple_refresh_errors">Fehlerhafte Aktualisierung</string>
     <string name="common_weather_text_tornado">Tornado</string>
@@ -759,7 +757,7 @@
     <string name="pressure_falling">Fallend</string>
     <string name="pressure_about">Über Druck</string>
     <string name="visibility_about">Über die Sichtweite</string>
-    <string name="visibility_about_description">Die Sichtweite gibt an, wie weit entfernt Sie Objekte wie Gebäude und Hügel deutlich sehen können. Die Sichtweite kann durch Niederschlag, Nebel, Staub, Rauch oder Dunst beeinträchtigt werden.</string>
+    <string name="visibility_about_description">Die Sichtweite gibt an, wie weit entfernt du Objekte wie Gebäude und Hügel deutlich sehen kannst. Die Sichtweite kann durch Niederschlag, Nebel, Staub, Rauch oder Dunst beeinträchtigt werden.</string>
     <string name="visibility_from_to_number">%1$s bis %2$s</string>
     <string name="visibility_from_to_description">%1$s bis %2$s</string>
     <string name="visibility_poor">Schlecht</string>
@@ -842,5 +840,10 @@
     <string name="action_change">Wechseln</string>
     <string name="weather_source_recommended">Empfohlen</string>
     <string name="message_incompatible_times_title">Inkompatible Vorhersagezeiten</string>
-    <string name="message_incompatible_times_content">Wechseln Sie Ihre Vorhersage- oder Luftqualitätsquelle, damit die Zeiten übereinstimmen.</string>
+    <string name="message_incompatible_times_content">Wechsel deine Vorhersage- oder Luftqualitätsquelle, damit die Zeiten übereinstimmen.</string>
+    <string name="humidity_from_to_number">%1$s bis %2$s</string>
+    <string name="dew_point_from_to_number">%1$s bis %2$s</string>
+    <string name="cloud_cover_from_to_number">%1$s bis %2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s bis %2$s</string>
+    <string name="common_weather_text_mostly_cloudy">stark bewölkt</string>
 </resources>
