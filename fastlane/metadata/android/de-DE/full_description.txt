@@ -35,7 +35,7 @@ Optional:
 - Hintergrunddienste (RECEIVE_BOOT_COMPLETED, WAKE_LOCK, SET_ALARM, FOREGROUND_SERVICE, FOREGROUND_SERVICE_DATA_SYNC, FOREGROUND_SERVICE_SPECIAL_USE): Wetteraktualisierungen im Hintergrund und geplante Vorhersagebenachrichtigungen
 - Akkuoptimierungen ignorieren (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS): Verhindert, dass die App auf manchen Geräten beendet wird
 - Benachrichtigungen senden (POST_NOTIFICATIONS): Warnungen, Niederschlag, Vorhersage für heute/morgen, Benachrichtigungs-Widget, Fortschritt von Hintergrundaktualisierungen, etc.
-- Standort (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): Um das Wetter für Ihren aktuellen Standort anzuzeigen
+- Standort (ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION): Um das Wetter für deinen aktuellen Standort anzuzeigen
 - Speicher (READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE): Hilft beim Anwenden des Live-Hintergundbildes und/oder Widgets auf manchen Geräten
 - Kachel (EXPAND_STATUS_BAR): Erlaubt das Starten der App über die Schnelleinstellungen
 - Bestimmte App-Sprache (READ_APP_SPECIFIC_LOCALES): Ermöglicht es auf manchen Geräten, eine bestimmte Sprache für die App zu speichern und diesen Wert nach einem Neustart auszulesen
