@@ -915,9 +915,9 @@
     <string name="action_change">更改</string>
     <string name="message_incompatible_times_title">不兼容的预报时间</string>
     <string name="message_incompatible_times_content">更改预报或空气质量数据源让时间相匹配。</string>
-    <string name="humidity_from_to_number">%1$s to %2$s</string>
-    <string name="dew_point_from_to_number">%1$s to %2$s</string>
-    <string name="cloud_cover_from_to_number">%1$s to %2$s</string>
-    <string name="cloud_cover_from_to_description">%1$s to %2$s</string>
+    <string name="humidity_from_to_number">%1$s 至 %2$s</string>
+    <string name="dew_point_from_to_number">%1$s 至 %2$s</string>
+    <string name="cloud_cover_from_to_number">%1$s 至 %2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s 至 %2$s</string>
     <string name="common_weather_text_mostly_cloudy">多云时阴</string>
 </resources>
