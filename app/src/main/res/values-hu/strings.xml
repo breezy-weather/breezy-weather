@@ -832,4 +832,9 @@
     <string name="action_change">Módosítás</string>
     <string name="message_incompatible_times_title">Nem kompatibilisek az előrejelzési időpontok</string>
     <string name="message_incompatible_times_content">Módosítsa az előrejelzést vagy a levegőminőségi forrást, hogy az időpontok egyezzenek.</string>
+    <string name="humidity_from_to_number">%1$s - %2$s</string>
+    <string name="dew_point_from_to_number">%1$s - %2$s</string>
+    <string name="cloud_cover_from_to_number">%1$s - %2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s - %2$s</string>
+    <string name="common_weather_text_mostly_cloudy">Többnyire felhős</string>
 </resources>
