@@ -38,7 +38,6 @@ import androidx.core.content.getSystemService
 import org.breezyweather.domain.settings.SettingsManager
 import java.io.File
 
-
 /**
  * Taken from Mihon
  * Apache License, Version 2.0

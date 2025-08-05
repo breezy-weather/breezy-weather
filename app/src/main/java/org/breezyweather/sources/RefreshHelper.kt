@@ -1070,7 +1070,9 @@ class RefreshHelper @Inject constructor(
                 } catch (e: RuntimeException) {
                     if (e.cause is TransactionTooLargeException) {
                         if (BreezyWeather.instance.debugMode) {
-                            LogHelper.log(msg = "[${source.name}] Transaction too large for ${locationList.size} locations")
+                            LogHelper.log(
+                                msg = "[${source.name}] Transaction too large for ${locationList.size} locations"
+                            )
                         }
                         // Retry with one less location, until location list is empty
                         sendBroadcastSafely(
