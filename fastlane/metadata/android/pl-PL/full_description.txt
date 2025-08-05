@@ -1,4 +1,4 @@
-Breezy Weather to rozbudowana, darmowa aplikacja pogodowa oparta na Material 3 Expressive i otwartym kodzie źródłowym, z przemyślanymi wizualizacjami - Obsługuje prognozy, bieżące warunki pogodowe, nowcasting, jakość powietrza, pyłki, alerty – z ponad 50 źródeł, takich jak IMGW-PIB, DWD, SHMU, CHMI, ECCC i Open-Meteo.
+Breezy Weather to rozbudowana, darmowa aplikacja pogodowa oparta na Material 3 Expressive i otwartym kodzie źródłowym, z przemyślanymi wizualizacjami - Obsługuje prognozy, bieżące warunki pogodowe, nowcasting, jakość powietrza, pyłki, alerty – z ponad 50 źródeł, takich jak Bright Sky (DWD), ECCC i Open-Meteo.
 
 <b>Funkcje</b>
 
