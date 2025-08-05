@@ -30,6 +30,7 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -50,7 +51,6 @@ import org.breezyweather.sources.mf.json.MfWarningsResult
 import retrofit2.Retrofit
 import java.nio.charset.StandardCharsets
 import java.util.Date
-import java.util.Locale
 import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Named
@@ -64,7 +64,7 @@ class MfService @Inject constructor(
 ) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource, ConfigurableSource {
 
     override val id = "mf"
-    val countryName = Locale(context.currentLocale.code, "FR").displayCountry
+    private val countryName = context.currentLocale.getCountryName("FR")
     override val name = "Météo-France".let {
         if (it.contains(countryName)) {
             it

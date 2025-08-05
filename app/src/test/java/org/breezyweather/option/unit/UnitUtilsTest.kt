@@ -33,7 +33,7 @@ class UnitUtilsTest {
         mockkStatic(Context::currentLocale)
 
         val context = mockk<Context>().apply {
-            every { currentLocale } returns Locale("fr", "FR")
+            every { currentLocale } returns Locale.Builder().setLanguage("fr").setRegion("FR").build()
         }
 
         UnitUtils.formatDouble(context, 14.34234) shouldBe "14,34"
@@ -47,7 +47,7 @@ class UnitUtilsTest {
         mockkStatic(Context::currentLocale)
 
         val context = mockk<Context>().apply {
-            every { currentLocale } returns Locale("fr", "FR")
+            every { currentLocale } returns Locale.Builder().setLanguage("fr").setRegion("FR").build()
         }
 
         UnitUtils.formatInt(context, 14) shouldBe "14"

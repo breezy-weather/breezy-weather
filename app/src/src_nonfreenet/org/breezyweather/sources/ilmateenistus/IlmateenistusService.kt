@@ -25,13 +25,13 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -40,7 +40,7 @@ class IlmateenistusService @Inject constructor(
     @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), WeatherSource, ReverseGeocodingSource {
     override val id = "ilmateenistus"
-    override val name = "Ilmateenistus (${Locale(context.currentLocale.code, "EE").displayCountry})"
+    override val name = "Ilmateenistus (${context.currentLocale.getCountryName("EE")})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl by lazy {
         with(context.currentLocale.code) {

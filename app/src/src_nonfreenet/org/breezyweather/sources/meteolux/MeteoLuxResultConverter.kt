@@ -33,8 +33,8 @@ import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.meteolux.json.MeteoLuxWeatherResult
 import java.text.SimpleDateFormat
@@ -61,7 +61,7 @@ internal fun convert(
         latitude = location.latitude,
         longitude = location.longitude,
         timeZone = "Europe/Luxembourg",
-        country = Locale(context.currentLocale.code, "LU").displayCountry,
+        country = context.currentLocale.getCountryName("LU"),
         countryCode = "LU",
         admin1 = weatherResult.city.canton,
         city = weatherResult.city.name ?: ""

@@ -11,12 +11,12 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -32,7 +32,7 @@ class NlscService @Inject constructor(
                 else -> "NLSC"
             }
         } +
-            " (${Locale(context.currentLocale.code, "TW").displayCountry})"
+            " (${context.currentLocale.getCountryName("TW")})"
     }
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = "https://www.nlsc.gov.tw/cp.aspx?n=1633"
@@ -91,15 +91,15 @@ class NlscService @Inject constructor(
             listOf(
                 location.copy(
                     timeZone = "Asia/Taipei",
-                    country = Locale(context.currentLocale.code, "TW").displayCountry,
+                    country = context.currentLocale.getCountryName("TW"),
                     countryCode = "TW",
                     admin1 = locationCodes.countyName?.value,
                     admin1Code = locationCodes.countyCode?.value,
-                    admin2 = locationCodes.townshipName?.value,
+                    admin2 = locationCodes.townshipName.value,
                     admin2Code = locationCodes.townshipCode?.value,
                     admin3 = locationCodes.villageName?.value,
                     admin3Code = locationCodes.villageCode?.value,
-                    city = locationCodes.townshipName!!.value,
+                    city = locationCodes.townshipName.value,
                     district = locationCodes.villageName?.value
                 )
             )

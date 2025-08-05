@@ -439,7 +439,7 @@ object UnitUtils {
          * Ongoing issue: https://unicode-org.atlassian.net/jira/software/c/projects/CLDR/issues/CLDR-10604
          */
         if (currentLocale.isTraditionalChinese && unit !is TimeUnit) {
-            newLocale = Locale("en", "001")
+            newLocale = Locale.Builder().setLanguage("en").setRegion("001").build()
         }
 
         /**
@@ -447,7 +447,7 @@ object UnitUtils {
          * - fr_FR uses the incorrect unit (it should be "Bf"), replace with fr_CA
          */
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.BAKLAVA && unit == MeasureUnit.BEAUFORT) {
-            newLocale = Locale("fr", "CA")
+            newLocale = Locale.Builder().setLanguage("fr").setRegion("CA").build()
         }
 
         return Triple(newLocale, numberFormatterWidth, measureFormatWidth)

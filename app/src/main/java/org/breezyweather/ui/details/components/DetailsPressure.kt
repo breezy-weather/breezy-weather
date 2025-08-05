@@ -65,7 +65,6 @@ import org.breezyweather.common.extensions.toDate
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.settings.preference.bottomInsetItem
-import java.util.Date
 import kotlin.math.max
 import kotlin.math.min
 

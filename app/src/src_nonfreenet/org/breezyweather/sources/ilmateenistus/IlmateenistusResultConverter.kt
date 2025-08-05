@@ -26,8 +26,8 @@ import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.sources.ilmateenistus.json.IlmateenistusForecastResult
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -48,7 +48,7 @@ internal fun convert(
             latitude = location.latitude,
             longitude = location.longitude,
             timeZone = "Europe/Tallinn",
-            country = Locale(context.currentLocale.code, "EE").displayCountry,
+            country = context.currentLocale.getCountryName("EE"),
             countryCode = "EE",
             admin1 = locationParts.getOrNull(0)?.trim(),
             city = locationParts.getOrNull(1)?.trim() ?: "",

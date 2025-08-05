@@ -52,7 +52,7 @@ object CalendarHelper {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private fun getDisplayName(
         calendar: String,
-        locale: Locale = Locale("en", "001"),
+        locale: Locale = Locale.Builder().setLanguage("en").setRegion("001").build(),
     ): String {
         val localeWithCalendar = Locale.Builder()
             .setUnicodeLocaleKeyword(CALENDAR_EXTENSION_TYPE, calendar)

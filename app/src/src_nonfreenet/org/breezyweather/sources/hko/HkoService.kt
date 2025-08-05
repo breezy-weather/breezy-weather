@@ -30,6 +30,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -43,7 +44,6 @@ import org.breezyweather.sources.hko.json.HkoOneJsonResult
 import org.breezyweather.sources.hko.json.HkoWarningResult
 import org.json.JSONObject
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.math.round
@@ -58,7 +58,7 @@ class HkoService @Inject constructor(
         if (context.currentLocale.code.startsWith("zh")) {
             "香港天文台"
         } else {
-            "HKO (${Locale(context.currentLocale.code, "HK").displayCountry})"
+            "HKO (${context.currentLocale.getCountryName("HK")})"
         }
     }
     override val continent = SourceContinent.ASIA
@@ -321,7 +321,7 @@ class HkoService @Inject constructor(
                         latitude = location.latitude,
                         longitude = location.longitude,
                         timeZone = "Asia/Hong_Kong",
-                        country = Locale(context.currentLocale.code, "HK").displayCountry,
+                        country = context.currentLocale.getCountryName("HK"),
                         countryCode = "HK",
                         city = with(languageCode) {
                             when {

@@ -26,8 +26,8 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.OutdatedServerDataException
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -40,7 +40,6 @@ import org.breezyweather.sources.nws.json.NwsDailyResult
 import org.breezyweather.sources.nws.json.NwsGridPointResult
 import retrofit2.Retrofit
 import java.util.Date
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.time.Duration.Companion.hours
@@ -51,7 +50,7 @@ class NwsService @Inject constructor(
 ) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "nws"
-    override val name = "NWS (${Locale(context.currentLocale.code, "US").displayCountry})"
+    override val name = "NWS (${context.currentLocale.getCountryName("US")})"
     override val continent = SourceContinent.NORTH_AMERICA
     override val privacyPolicyUrl = "https://www.weather.gov/privacy"
 

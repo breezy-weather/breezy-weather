@@ -32,6 +32,7 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.sources.lhmt.json.LhmtAlertText
 import org.breezyweather.sources.lhmt.json.LhmtAlertsResult
 import org.breezyweather.sources.lhmt.json.LhmtLocationsResult
@@ -68,7 +69,7 @@ internal fun convert(
                 latitude = location.latitude,
                 longitude = location.longitude,
                 timeZone = "Europe/Vilnius",
-                country = Locale(context.currentLocale.code, "LT").displayCountry,
+                country = context.currentLocale.getCountryName("LT"),
                 countryCode = "LT",
                 admin1 = countyName,
                 admin1Code = countyCode,

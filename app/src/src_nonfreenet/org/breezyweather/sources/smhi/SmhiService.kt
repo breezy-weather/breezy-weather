@@ -24,14 +24,13 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -41,7 +40,7 @@ class SmhiService @Inject constructor(
 ) : HttpSource(), WeatherSource {
 
     override val id = "smhi"
-    override val name = "SMHI (${Locale(context.currentLocale.code, "SE").displayCountry})"
+    override val name = "SMHI (${context.currentLocale.getCountryName("SE")})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl =
         "https://www.smhi.se/omsmhi/hantering-av-personuppgifter/hantering-av-personuppgifter-1.135429"

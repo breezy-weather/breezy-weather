@@ -24,8 +24,8 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -36,7 +36,6 @@ import org.breezyweather.sources.lhmt.json.LhmtAlertsResult
 import org.breezyweather.sources.lhmt.json.LhmtLocationsResult
 import org.breezyweather.sources.lhmt.json.LhmtWeatherResult
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -45,7 +44,7 @@ class LhmtService @Inject constructor(
     @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
     override val id = "lhmt"
-    override val name = "LHMT (${Locale(context.currentLocale.code, "LT").displayCountry})"
+    override val name = "LHMT (${context.currentLocale.getCountryName("LT")})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.meteo.lt/istaiga/asmens-duomenu-apsauga/privatumo-politika/"
 

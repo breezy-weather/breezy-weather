@@ -31,8 +31,8 @@ import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.ipma.json.IpmaAlertResult
 import org.breezyweather.sources.ipma.json.IpmaDistrictResult
@@ -70,7 +70,7 @@ internal fun convert(
                     3 -> "Atlantic/Azores"
                     else -> "Europe/Lisbon"
                 },
-                country = Locale(context.currentLocale.code, "PT").displayCountry,
+                country = context.currentLocale.getCountryName("PT"),
                 countryCode = "PT",
                 admin1 = when (nearestLocation.idRegiao) {
                     2 -> "Madeira"

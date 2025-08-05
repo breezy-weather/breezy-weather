@@ -34,6 +34,7 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.sources.bmkg.json.BmkgCurrentResult
 import org.breezyweather.sources.bmkg.json.BmkgForecastResult
@@ -60,7 +61,7 @@ internal fun convert(
         latitude = location.latitude,
         longitude = location.longitude,
         timeZone = getTimeZone(result.adm1),
-        country = Locale(context.currentLocale.code, "ID").displayCountry,
+        country = context.currentLocale.getCountryName("ID"),
         countryCode = "ID",
         admin1 = result.provinsi,
         admin1Code = result.adm1,

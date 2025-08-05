@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -22,21 +23,19 @@ import org.breezyweather.sources.veduris.json.VedurIsAlertResult
 import org.breezyweather.sources.veduris.json.VedurIsResult
 import org.breezyweather.sources.veduris.json.VedurIsStationResult
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.max
 import kotlin.math.min
-import kotlin.text.contains
 
 class VedurIsService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
     override val id = "veduris"
-    val countryName = Locale(context.currentLocale.code, "IS").displayCountry
+    private val countryName = context.currentLocale.getCountryName("IS")
     override val name by lazy {
         if (context.currentLocale.code.startsWith("is")) {
             "Veðurstofa Íslands"

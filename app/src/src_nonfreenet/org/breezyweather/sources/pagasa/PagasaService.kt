@@ -25,8 +25,8 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.WeatherSource
@@ -35,7 +35,6 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.pagasa.json.PagasaCurrentResult
 import org.breezyweather.sources.pagasa.json.PagasaHourlyResult
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -45,7 +44,7 @@ class PagasaService @Inject constructor(
 ) : HttpSource(), WeatherSource, LocationParametersSource {
 
     override val id = "pagasa"
-    override val name = "PAGASA (${Locale(context.currentLocale.code, "PH").displayCountry})"
+    override val name = "PAGASA (${context.currentLocale.getCountryName("PH")})"
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = ""
 

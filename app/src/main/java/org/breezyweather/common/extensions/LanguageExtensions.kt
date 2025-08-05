@@ -68,7 +68,7 @@ val Locale.codeForGeonames: String
     }
 
 // Everything in uppercase + "ZHT" for traditional Chinese
-val Locale.codeForNaturalEarthService: String
+val Locale.codeForNaturalEarth: String
     get() {
         return if (isTraditionalChinese) {
             language.uppercase() + "T"
@@ -93,6 +93,14 @@ val Locale.isTraditionalChinese: Boolean
 val Locale.isIndian: Boolean
     get() = language.equals("hi", ignoreCase = true) || language.equals("mr", ignoreCase = true)
 
+fun Locale.getCountryName(countryCode: String): String {
+    return Locale.Builder()
+        .setLanguage(language)
+        .setRegion(countryCode)
+        .build()
+        .displayCountry
+}
+
 /**
  * Replaces the given string to have at most [count] characters using [replacement] at its end.
  * If [replacement] is longer than [count] an exception will be thrown when `length > count`.
@@ -105,7 +113,7 @@ fun String.chop(count: Int, replacement: String = "…"): String {
     }
 }
 
-fun String.capitalize(locale: Locale = Locale("en", "001")): String {
+fun String.capitalize(locale: Locale = Locale.Builder().setLanguage("en").setRegion("001").build()): String {
     return replaceFirstChar { firstChar ->
         if (firstChar.isLowerCase()) {
             firstChar.titlecase(locale)
@@ -115,7 +123,7 @@ fun String.capitalize(locale: Locale = Locale("en", "001")): String {
     }
 }
 
-fun String.uncapitalize(locale: Locale = Locale("en", "001")): String {
+fun String.uncapitalize(locale: Locale = Locale.Builder().setLanguage("en").setRegion("001").build()): String {
     return replaceFirstChar { firstChar ->
         if (firstChar.isUpperCase()) {
             firstChar.lowercase(locale)
@@ -125,7 +133,10 @@ fun String.uncapitalize(locale: Locale = Locale("en", "001")): String {
     }
 }
 
-fun Context.getStringByLocale(id: Int, locale: Locale = Locale("en", "001")): String {
+fun Context.getStringByLocale(
+    id: Int,
+    locale: Locale = Locale.Builder().setLanguage("en").setRegion("001").build(),
+): String {
     val configuration = Configuration(resources.configuration)
     configuration.setLocale(locale)
     return createConfigurationContext(configuration).resources.getString(id)

@@ -26,8 +26,8 @@ import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.R
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.sources.bmd.json.BmdData
 import org.breezyweather.sources.bmd.json.BmdForecastResult
 import java.text.SimpleDateFormat
@@ -44,7 +44,7 @@ internal fun convert(
         latitude = location.latitude,
         longitude = location.longitude,
         timeZone = "Asia/Dhaka",
-        country = Locale(context.currentLocale.code, "BD").displayCountry,
+        country = context.currentLocale.getCountryName("BD"),
         countryCode = "BD",
         admin1 = data.divisionName,
         admin2 = data.districtName,

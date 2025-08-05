@@ -27,6 +27,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.WeatherSource
@@ -46,7 +47,7 @@ class EkukService @Inject constructor(
     @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), WeatherSource, LocationParametersSource {
     override val id = "ekuk"
-    override val name = "EKUK (${Locale(context.currentLocale.code, "EE").displayCountry})"
+    override val name = "EKUK (${context.currentLocale.getCountryName("EE")})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = ""
     private val weatherAttribution by lazy {

@@ -33,6 +33,7 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
@@ -59,7 +60,6 @@ import org.breezyweather.sources.nlsc.NlscService.Companion.WUQIU_BBOX
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -76,7 +76,7 @@ class CwaService @Inject constructor(
                 else -> "CWA"
             }
         } +
-            " (${Locale(context.currentLocale.code, "TW").displayCountry})"
+            " (${context.currentLocale.getCountryName("TW")})"
     }
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl by lazy {

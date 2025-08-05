@@ -30,6 +30,7 @@ import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -38,7 +39,6 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.common.utils.helpers.LogHelper
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -56,7 +56,7 @@ class ImsService @Inject constructor(
             when {
                 startsWith("ar") -> "خدمة الأرصاد الجوية الإسرائيلية"
                 startsWith("he") || startsWith("iw") -> "השירות המטאורולוגי הישראלי"
-                else -> "IMS (${Locale(context.currentLocale.code, "IL").displayCountry})"
+                else -> "IMS (${context.currentLocale.getCountryName("IL")})"
             }
         }
     }

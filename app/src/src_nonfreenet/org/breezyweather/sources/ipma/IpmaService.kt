@@ -26,6 +26,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -37,10 +38,8 @@ import org.breezyweather.sources.ipma.json.IpmaDistrictResult
 import org.breezyweather.sources.ipma.json.IpmaForecastResult
 import org.breezyweather.sources.ipma.json.IpmaLocationResult
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
-import kotlin.text.startsWith
 
 class IpmaService @Inject constructor(
     @ApplicationContext context: Context,
@@ -48,7 +47,7 @@ class IpmaService @Inject constructor(
 ) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "ipma"
-    override val name = "IPMA (${Locale(context.currentLocale.code, "PT").displayCountry})"
+    override val name = "IPMA (${context.currentLocale.getCountryName("PT")})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl by lazy {
         if (context.currentLocale.code.startsWith("pt")) {

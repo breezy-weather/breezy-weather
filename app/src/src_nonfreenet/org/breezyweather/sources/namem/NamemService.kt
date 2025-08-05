@@ -30,6 +30,7 @@ import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCalendarMonth
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -43,10 +44,8 @@ import org.breezyweather.sources.namem.json.NamemHourlyResult
 import org.breezyweather.sources.namem.json.NamemNormalsResult
 import retrofit2.Retrofit
 import java.util.Date
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
-import kotlin.text.startsWith
 
 class NamemService @Inject constructor(
     @ApplicationContext context: Context,
@@ -58,7 +57,7 @@ class NamemService @Inject constructor(
         if (context.currentLocale.code.startsWith("mn")) {
             "Цаг уур, орчны шинжилгээний газар"
         } else {
-            "NAMEM (${Locale(context.currentLocale.code, "MN").displayCountry})"
+            "NAMEM (${context.currentLocale.getCountryName("MN")})"
         }
     }
     override val continent = SourceContinent.ASIA

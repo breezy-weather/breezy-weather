@@ -28,6 +28,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
@@ -52,7 +53,7 @@ class EpdHkService @Inject constructor(
                 else -> "EPD"
             }
         } +
-            " (${Locale(context.currentLocale.code, "HK").displayCountry})"
+            " (${context.currentLocale.getCountryName("HK")})"
     }
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl by lazy {

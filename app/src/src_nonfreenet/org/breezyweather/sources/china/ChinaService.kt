@@ -29,6 +29,7 @@ import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.LocationSearchSource
@@ -39,7 +40,6 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -49,7 +49,7 @@ class ChinaService @Inject constructor(
 ) : HttpSource(), WeatherSource, LocationSearchSource, ReverseGeocodingSource, LocationParametersSource {
 
     override val id = "china"
-    override val name = Locale(context.currentLocale.code, "CN").displayCountry
+    override val name = context.currentLocale.getCountryName("CN")
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl by lazy {
         with(context.currentLocale.code) {

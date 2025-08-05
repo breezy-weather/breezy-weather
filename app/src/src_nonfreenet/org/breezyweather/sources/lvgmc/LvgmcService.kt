@@ -26,8 +26,8 @@ import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -53,7 +53,7 @@ class LvgmcService @Inject constructor(
     @Named("JsonClient") client: Retrofit.Builder,
 ) : HttpSource(), WeatherSource, ReverseGeocodingSource, LocationParametersSource {
     override val id = "lvgmc"
-    override val name = "LVĢMC (${Locale(context.currentLocale.code, "LV").displayCountry})"
+    override val name = "LVĢMC (${context.currentLocale.getCountryName("LV")})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = ""
 

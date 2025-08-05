@@ -87,7 +87,7 @@ fun Date.getFormattedDate(
     context: Context? = null,
     withBestPattern: Boolean = false,
 ): String {
-    val locale = context?.currentLocale ?: Locale("en", "001")
+    val locale = context?.currentLocale ?: Locale.Builder().setLanguage("en").setRegion("001").build()
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         SimpleDateFormat(
             if (withBestPattern) {
@@ -135,7 +135,7 @@ fun Date.getFormattedMediumDayAndMonth(
     location: Location,
     context: Context?,
 ): String {
-    val locale = context?.currentLocale ?: Locale("en", "001")
+    val locale = context?.currentLocale ?: Locale.Builder().setLanguage("en").setRegion("001").build()
     return getFormattedDate("d MMM", location, context, withBestPattern = true).capitalize(locale)
 }
 
@@ -143,7 +143,7 @@ fun Date.getFormattedFullDayAndMonth(
     location: Location,
     context: Context?,
 ): String {
-    val locale = context?.currentLocale ?: Locale("en", "001")
+    val locale = context?.currentLocale ?: Locale.Builder().setLanguage("en").setRegion("001").build()
     return getFormattedDate("d MMMM", location, context, withBestPattern = true).capitalize(locale)
 }
 
@@ -152,7 +152,7 @@ fun getShortWeekdayDayMonth(
 ): String {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         DateTimePatternGenerator.getInstance(
-            context?.currentLocale ?: Locale("en", "001")
+            context?.currentLocale ?: Locale.Builder().setLanguage("en").setRegion("001").build()
         ).getBestPattern("EEE d MMM")
     } else {
         "EEE d MMM"
@@ -164,7 +164,7 @@ fun getLongWeekdayDayMonth(
 ): String {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         DateTimePatternGenerator.getInstance(
-            context?.currentLocale ?: Locale("en", "001")
+            context?.currentLocale ?: Locale.Builder().setLanguage("en").setRegion("001").build()
         ).getBestPattern("EEEE d MMMM")
     } else {
         "EEEE d MMMM"
@@ -172,7 +172,7 @@ fun getLongWeekdayDayMonth(
 }
 
 fun Date.getWeek(location: Location, context: Context?, full: Boolean = false): String {
-    val locale = context?.currentLocale ?: Locale("en", "001")
+    val locale = context?.currentLocale ?: Locale.Builder().setLanguage("en").setRegion("001").build()
     return getFormattedDate(if (full) "EEEE" else "E", location, context).capitalize(locale)
 }
 

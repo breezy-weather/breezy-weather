@@ -28,6 +28,7 @@ import okhttp3.Request
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -36,7 +37,6 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.bmd.json.BmdForecastResult
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -50,7 +50,7 @@ class BmdService @Inject constructor(
         if (context.currentLocale.code.startsWith("bn")) {
             "বাংলাদেশ আবহাওয়া অধিদপ্তর"
         } else {
-            "BMD (${Locale(context.currentLocale.code, "BD").displayCountry})"
+            "BMD (${context.currentLocale.getCountryName("BD")})"
         }
     }
     override val continent = SourceContinent.ASIA

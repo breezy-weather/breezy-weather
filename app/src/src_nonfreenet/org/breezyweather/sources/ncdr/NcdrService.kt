@@ -32,6 +32,7 @@ import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.WeatherSource
@@ -45,7 +46,6 @@ import org.breezyweather.sources.nlsc.NlscService.Companion.PENGHU_BBOX
 import org.breezyweather.sources.nlsc.NlscService.Companion.TAIWAN_BBOX
 import org.breezyweather.sources.nlsc.NlscService.Companion.WUQIU_BBOX
 import retrofit2.Retrofit
-import java.util.Locale
 import java.util.Objects
 import javax.inject.Inject
 import javax.inject.Named
@@ -62,7 +62,7 @@ class NcdrService @Inject constructor(
                 else -> "NCDR"
             }
         } +
-            " (${Locale(context.currentLocale.code, "TW").displayCountry})"
+            " (${context.currentLocale.getCountryName("TW")})"
     }
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = "https://ncdr.nat.gov.tw/Page?itemid=40&mid=7"

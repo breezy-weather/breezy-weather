@@ -20,10 +20,9 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.R
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -37,8 +36,7 @@ class MettelsatService @Inject constructor(
 
     override val id = "mettelsat"
     override val countryCode = "CD"
-    val countryName = Locale(injectedContext.currentLocale.code, countryCode).displayCountry
-    override val name = "Mettelsat RDC ($countryName)"
+    override val name = "Mettelsat RDC (${injectedContext.currentLocale.getCountryName(countryCode)})"
     override val privacyPolicyUrl = ""
     override val weatherAttribution = "Agence Nationale de Météorologie et de Télédétection par Satellite"
 

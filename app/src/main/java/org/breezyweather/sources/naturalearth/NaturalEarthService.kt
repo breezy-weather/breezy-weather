@@ -30,7 +30,7 @@ import com.google.maps.android.data.geojson.GeoJsonPolygon
 import com.google.maps.android.model.LatLng
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
-import org.breezyweather.common.extensions.codeForNaturalEarthService
+import org.breezyweather.common.extensions.codeForNaturalEarth
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.utils.helpers.LogHelper
@@ -94,7 +94,7 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
         location: Location,
     ): Observable<List<Location>> {
         val locationList = mutableListOf<Location>()
-        val languageCode = context.currentLocale.codeForNaturalEarthService
+        val languageCode = context.currentLocale.codeForNaturalEarth
 
         // Countries
         val matchingCountries = getMatchingFeaturesForLocation(context, R.raw.ne_50m_admin_0_countries, location)

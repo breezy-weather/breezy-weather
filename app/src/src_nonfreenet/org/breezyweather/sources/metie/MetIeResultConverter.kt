@@ -27,8 +27,8 @@ import breezyweather.domain.weather.reference.WeatherCode
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.sources.metie.json.MetIeHourly
 import org.breezyweather.sources.metie.json.MetIeLocationResult
@@ -45,7 +45,7 @@ internal fun convert(
     return location.copy(
         timeZone = "Europe/Dublin",
         country = "Ireland",
-        countryCode = Locale(context.currentLocale.code, "IE").displayCountry,
+        countryCode = context.currentLocale.getCountryName("IE"),
         admin2 = result.county,
         city = result.city ?: ""
     )

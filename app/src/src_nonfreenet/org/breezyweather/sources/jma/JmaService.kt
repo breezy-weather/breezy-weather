@@ -30,6 +30,7 @@ import org.breezyweather.common.exceptions.WeatherException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCalendarMonth
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationParametersSource
 import org.breezyweather.common.source.ReverseGeocodingSource
@@ -65,7 +66,7 @@ class JmaService @Inject constructor(
         if (context.currentLocale.code.startsWith("ja")) {
             "気象庁"
         } else {
-            "JMA (${Locale(context.currentLocale.code, "JP").displayCountry})"
+            "JMA (${context.currentLocale.getCountryName("JP")})"
         }
     }
     override val continent = SourceContinent.ASIA

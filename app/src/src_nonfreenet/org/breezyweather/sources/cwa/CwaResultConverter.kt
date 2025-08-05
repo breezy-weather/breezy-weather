@@ -34,8 +34,8 @@ import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.sources.computeMeanSeaLevelPressure
 import org.breezyweather.sources.computePollutantInUgm3FromPpb
@@ -59,7 +59,7 @@ internal fun convert(
 ): Location {
     return location.copy(
         timeZone = "Asia/Taipei",
-        country = Locale(context.currentLocale.code, "TW").displayCountry,
+        country = context.currentLocale.getCountryName("TW"),
         countryCode = "TW",
         admin1 = town.ctyName,
         city = town.townName,
@@ -87,7 +87,6 @@ internal fun getCurrent(
     val windGusts = getValid(current?.gustInfo?.peakGustSpeed) as Double?
     val weatherText = getValid(current?.weather) as String?
     var weatherCode: WeatherCode? = null
-    var dailyForecast: String? = null
 
     // The current observation result does not come with a "code".
     // We need to decipher the best code to use based on the text.
@@ -128,7 +127,7 @@ internal fun getCurrent(
 
     // "Weather Assistant" returns a few paragraphs of human-written forecast summary.
     // We only want the first paragraph to keep it concise.
-    dailyForecast = if (assistantResult.cwaopendata != null) {
+    val dailyForecast: String? = if (assistantResult.cwaopendata != null) {
         assistantResult.cwaopendata.dataset?.parameterSet?.parameter?.getOrNull(0)?.parameterValue
     } else {
         // Just in case the Assistant feed regresses to "cwbopendata" as the root property.

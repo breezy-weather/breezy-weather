@@ -21,6 +21,7 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.sources.veduris.json.VedurIsAlertRegionsResult
 import org.breezyweather.sources.veduris.json.VedurIsAlertResult
 import org.breezyweather.sources.veduris.json.VedurIsLatestObservation
@@ -55,7 +56,7 @@ fun convert(
             latitude = location.latitude,
             longitude = location.longitude,
             timeZone = "Atlantic/Reykjavik",
-            country = Locale(context.currentLocale.code, "IS").displayCountry,
+            country = context.currentLocale.getCountryName("IS"),
             countryCode = "IS",
             city = stationNames[stationId] ?: ""
         )

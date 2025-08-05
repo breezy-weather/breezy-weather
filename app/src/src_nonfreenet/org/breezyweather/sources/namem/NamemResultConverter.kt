@@ -32,8 +32,8 @@ import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.sources.namem.json.NamemAirQualityResult
 import org.breezyweather.sources.namem.json.NamemCurrentResult
@@ -42,7 +42,6 @@ import org.breezyweather.sources.namem.json.NamemHourlyResult
 import org.breezyweather.sources.namem.json.NamemNormalsResult
 import org.breezyweather.sources.namem.json.NamemStation
 import java.util.Date
-import java.util.Locale
 
 // Reverse geocoding
 internal fun convert(
@@ -76,7 +75,7 @@ internal fun convert(
                 -> "Asia/Hovd"
                 else -> "Asia/Ulaanbaatar"
             },
-            country = Locale(context.currentLocale.code, "MN").displayCountry,
+            country = context.currentLocale.getCountryName("MN"),
             countryCode = "MN",
             admin1 = station.provinceName,
             admin2 = station.districtName,

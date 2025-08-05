@@ -26,6 +26,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
@@ -38,7 +39,6 @@ import org.breezyweather.sources.smg.json.SmgUvResult
 import org.breezyweather.sources.smg.json.SmgWarningResult
 import retrofit2.Retrofit
 import java.util.Calendar
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -58,7 +58,7 @@ class SmgService @Inject constructor(
         } else {
             "SMG"
         } +
-            " (${Locale(context.currentLocale.code, "MO").displayCountry})"
+            " (${context.currentLocale.getCountryName("MO")})"
     }
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl by lazy {

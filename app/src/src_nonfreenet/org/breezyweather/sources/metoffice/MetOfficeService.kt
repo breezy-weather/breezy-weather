@@ -26,8 +26,8 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -38,7 +38,6 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -48,7 +47,7 @@ class MetOfficeService @Inject constructor(
 ) : HttpSource(), WeatherSource, ConfigurableSource, ReverseGeocodingSource {
 
     override val id = "metoffice"
-    override val name = "Met Office (${Locale(context.currentLocale.code, "GB").displayCountry})"
+    override val name = "Met Office (${context.currentLocale.getCountryName("GB")})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://www.metoffice.gov.uk/policies/privacy"
 

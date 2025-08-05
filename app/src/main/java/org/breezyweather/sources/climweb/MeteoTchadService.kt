@@ -20,10 +20,9 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import dagger.hilt.android.qualifiers.ApplicationContext
 import org.breezyweather.R
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -37,7 +36,7 @@ class MeteoTchadService @Inject constructor(
 
     override val id = "meteotchad"
     override val countryCode = "TD"
-    val countryName = Locale(injectedContext.currentLocale.code, countryCode).displayCountry
+    private val countryName = injectedContext.currentLocale.getCountryName(countryCode)
     override val name = "Météo Tchad".let {
         if (it.contains(countryName)) {
             it

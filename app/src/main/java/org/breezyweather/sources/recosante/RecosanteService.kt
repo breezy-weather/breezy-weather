@@ -26,8 +26,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
@@ -39,7 +39,6 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_MEDIUM
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -52,7 +51,7 @@ class RecosanteService @Inject constructor(
 ) : HttpSource(), WeatherSource, PollenIndexSource, LocationParametersSource, ConfigurableSource {
 
     override val id = "recosante"
-    override val name = "Recosanté (${Locale(context.currentLocale.code, "FR").displayCountry})"
+    override val name = "Recosanté (${context.currentLocale.getCountryName("FR")})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://recosante.beta.gouv.fr/donnees-personnelles/"
 

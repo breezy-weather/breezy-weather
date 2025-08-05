@@ -28,6 +28,7 @@ import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.rxjava.SchedulerTransformer
@@ -37,7 +38,6 @@ import org.breezyweather.common.source.LocationPositionWrapper
 import org.breezyweather.common.source.LocationSource
 import org.breezyweather.domain.settings.SourceConfigStore
 import retrofit2.Retrofit
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -54,7 +54,7 @@ class BaiduIPLocationService @Inject constructor(
                 else -> "Baidu IP location"
             }
         } +
-            " (${Locale(context.currentLocale.code, "CN").displayCountry})"
+            " (${context.currentLocale.getCountryName("CN")})"
     }
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = "https://lbs.baidu.com/index.php?title=openprivacy"

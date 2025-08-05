@@ -29,6 +29,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGH
@@ -38,7 +39,6 @@ import org.breezyweather.sources.geosphereat.json.GeoSphereAtTimeseriesResult
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtWarningsResult
 import retrofit2.Retrofit
 import java.util.Date
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -48,7 +48,7 @@ class GeoSphereAtService @Inject constructor(
 ) : HttpSource(), WeatherSource {
 
     override val id = "geosphereat"
-    val countryName = Locale(context.currentLocale.code, "AT").displayCountry
+    private val countryName = context.currentLocale.getCountryName("AT")
     override val name = "GeoSphere Austria".let {
         if (it.contains(countryName)) {
             it

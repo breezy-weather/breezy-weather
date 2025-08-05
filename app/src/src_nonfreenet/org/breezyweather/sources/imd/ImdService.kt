@@ -25,8 +25,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
@@ -46,7 +46,7 @@ class ImdService @Inject constructor(
 ) : HttpSource(), WeatherSource {
 
     override val id = "imd"
-    override val name = "IMD (${Locale(context.currentLocale.code, "IN").displayCountry})"
+    override val name = "IMD (${context.currentLocale.getCountryName("IN")})"
     override val continent = SourceContinent.ASIA
     override val privacyPolicyUrl = ""
 

@@ -27,6 +27,7 @@ import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toTimezoneNoHour
@@ -44,7 +45,6 @@ import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
-import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -54,7 +54,7 @@ class BrightSkyService @Inject constructor(
 ) : HttpSource(), WeatherSource, ConfigurableSource {
 
     override val id = "brightsky"
-    override val name = "Bright Sky (DWD) (${Locale(context.currentLocale.code, "DE").displayCountry})"
+    override val name = "Bright Sky (DWD) (${context.currentLocale.getCountryName("DE")})"
     override val continent = SourceContinent.EUROPE
     override val privacyPolicyUrl = "https://brightsky.dev/"
 
