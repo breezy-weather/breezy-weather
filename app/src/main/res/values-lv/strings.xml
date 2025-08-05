@@ -824,4 +824,13 @@
     <string name="unit_bft_display_name">Boforts</string>
     <string name="unit_mum">µm</string>
     <string name="unit_mum_voice">Mikrometri</string>
+    <string name="message_incompatible_times_content">Maini savu prognožu vai gaisa kvalitātes avotu, lai laiks sakristu!</string>
+    <string name="humidity_from_to_number">%1$s līdz %2$s</string>
+    <string name="dew_point_from_to_number">%1$s līdz %2$s</string>
+    <string name="cloud_cover_from_to_number">%1$s līdz %2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s līdz %2$s</string>
+    <string name="weather_source_recommended">Ieteikts</string>
+    <string name="action_change">Mainīt</string>
+    <string name="message_incompatible_times_title">Nesaderīgi prognožu laiki</string>
+    <string name="common_weather_text_mostly_cloudy">Pārsvarā mākoņains</string>
 </resources>
