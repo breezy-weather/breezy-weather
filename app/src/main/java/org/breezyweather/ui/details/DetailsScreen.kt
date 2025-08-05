@@ -390,12 +390,11 @@ fun DailyPagerContent(
     val currentUpdateTime = remember(location) {
         location.weather!!.base.currentUpdateTime
             ?: location.weather!!.base.forecastUpdateTime
-            ?: location.weather!!.base.refreshTime
+            ?: location.weather!!.base.refreshTime!!
     }
 
     val current = remember(selected) {
-        // TODO: Should be checking if currentUpdateTime is the same day as selected
-        if (daily.isToday(location)) location.weather!!.current else null
+        if (daily.isToday(location) && currentUpdateTime > daily.date) location.weather!!.current else null
     }
 
     Column(
@@ -420,10 +419,8 @@ fun DailyPagerContent(
                     location,
                     hourlyList,
                     daily,
-                    currentUpdateTime?.let { time ->
-                        current?.wind?.let {
-                            if (it.isValid) Pair(time, it) else null
-                        }
+                    current?.wind?.let {
+                        if (it.isValid) Pair(currentUpdateTime, it) else null
                     }
                 )
             }
@@ -448,10 +445,8 @@ fun DailyPagerContent(
                     setSelectedPollutant,
                     hourlyList,
                     daily,
-                    currentUpdateTime?.let { time ->
-                        current?.airQuality?.let {
-                            if (it.isValid) Pair(time, it) else null
-                        }
+                    current?.airQuality?.let {
+                        if (it.isValid) Pair(currentUpdateTime, it) else null
                     }
                 )
             }
@@ -463,10 +458,8 @@ fun DailyPagerContent(
                     location,
                     hourlyList,
                     daily,
-                    currentUpdateTime?.let { time ->
-                        current?.uV?.let {
-                            if (it.isValid) Pair(time, it) else null
-                        }
+                    current?.uV?.let {
+                        if (it.isValid) Pair(currentUpdateTime, it) else null
                     }
                 )
             }
@@ -475,15 +468,11 @@ fun DailyPagerContent(
                     location,
                     hourlyList,
                     daily,
-                    currentUpdateTime?.let { time ->
-                        current?.relativeHumidity?.let { relativeHumidity ->
-                            Pair(time, relativeHumidity)
-                        }
+                    current?.relativeHumidity?.let { relativeHumidity ->
+                        Pair(currentUpdateTime, relativeHumidity)
                     },
-                    currentUpdateTime?.let { time ->
-                        current?.dewPoint?.let { dewPoint ->
-                            Pair(time, dewPoint)
-                        }
+                    current?.dewPoint?.let { dewPoint ->
+                        Pair(currentUpdateTime, dewPoint)
                     }
                 )
             }
@@ -492,10 +481,8 @@ fun DailyPagerContent(
                     location,
                     hourlyList,
                     daily,
-                    currentUpdateTime?.let { time ->
-                        current?.pressure?.let { pressure ->
-                            Pair(time, pressure)
-                        }
+                    current?.pressure?.let { pressure ->
+                        Pair(currentUpdateTime, pressure)
                     }
                 )
             }
@@ -504,10 +491,8 @@ fun DailyPagerContent(
                     location,
                     hourlyList,
                     daily,
-                    currentUpdateTime?.let { time ->
-                        current?.cloudCover?.let { cloudCover ->
-                            Pair(time, cloudCover)
-                        }
+                    current?.cloudCover?.let { cloudCover ->
+                        Pair(currentUpdateTime, cloudCover)
                     }
                 )
             }
@@ -516,10 +501,8 @@ fun DailyPagerContent(
                     location,
                     hourlyList,
                     daily,
-                    currentUpdateTime?.let { time ->
-                        current?.visibility?.let { visibility ->
-                            Pair(time, visibility)
-                        }
+                    current?.visibility?.let { visibility ->
+                        Pair(currentUpdateTime, visibility)
                     }
                 )
             }
