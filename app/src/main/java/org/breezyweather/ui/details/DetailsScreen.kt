@@ -84,7 +84,6 @@ import org.breezyweather.common.extensions.getFormattedFullDayAndMonth
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
 import org.breezyweather.common.extensions.getWeek
 import org.breezyweather.common.extensions.setSystemBarStyle
-import org.breezyweather.common.extensions.toCalendar
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.extensions.toTimezoneSpecificHour
 import org.breezyweather.common.source.PollenIndexSource
@@ -213,7 +212,6 @@ fun DailyPagerIndicator(
         modifier = modifier.fillMaxWidth()
     ) {
         pages.forEachIndexed { i, date ->
-            val cal = date.toCalendar(location)
             Tab(
                 selected = (selected == i),
                 unselectedContentColor = MaterialTheme.colorScheme.onSurfaceVariant,

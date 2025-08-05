@@ -96,7 +96,6 @@ internal fun getDailyForecast(
     val dailyList = mutableListOf<DailyWrapper>()
     val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Europe/Luxembourg")
-    val timeRegex = Regex("""^\d{2}:\d{2}$""")
     weatherResult.forecast?.daily?.forEach {
         dailyList.add(
             DailyWrapper(

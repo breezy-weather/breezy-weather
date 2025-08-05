@@ -54,15 +54,15 @@ class DailyTrendItemView @JvmOverloads constructor(
     private var mWeekText: String? = null
     private var mDateText: String? = null
 
-    @IntDef(View.INVISIBLE, View.GONE)
+    @IntDef(INVISIBLE, GONE)
     internal annotation class IconVisibility
 
     @IconVisibility
-    private var mMissingDayIconVisibility: Int = View.GONE
+    private var mMissingDayIconVisibility: Int = GONE
     private var mDayIconDrawable: Drawable? = null
 
     @IconVisibility
-    private var mMissingNightIconVisibility: Int = View.GONE
+    private var mMissingNightIconVisibility: Int = GONE
     private var mNightIconDrawable: Drawable? = null
 
     @ColorInt
@@ -122,7 +122,7 @@ class DailyTrendItemView @JvmOverloads constructor(
         y += textMargin
 
         // day icon.
-        if (mDayIconDrawable != null || mMissingDayIconVisibility == View.INVISIBLE) {
+        if (mDayIconDrawable != null || mMissingDayIconVisibility == INVISIBLE) {
             y += iconMargin
             mDayIconLeft = (width - mIconSize) / 2f
             mDayIconTop = y
@@ -136,7 +136,7 @@ class DailyTrendItemView @JvmOverloads constructor(
         consumedHeight += marginBottom
 
         // night icon.
-        if (mNightIconDrawable != null || mMissingNightIconVisibility == View.INVISIBLE) {
+        if (mNightIconDrawable != null || mMissingNightIconVisibility == INVISIBLE) {
             mNightIconLeft = (width - mIconSize) / 2f
             mNightIconTop = height - marginBottom - iconMargin - mIconSize
             consumedHeight += mIconSize + 2 * iconMargin

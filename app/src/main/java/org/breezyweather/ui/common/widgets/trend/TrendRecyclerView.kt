@@ -120,7 +120,7 @@ class TrendRecyclerView @JvmOverloads constructor(
                 color = mTextColor
             }
             when (line.contentPosition) {
-                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE -> {
+                KeyLine.ContentPosition.ABOVE_LINE -> {
                     if (!line.contentLeft.isNullOrEmpty()) {
                         mPaint.textAlign = Paint.Align.LEFT
                         canvas.drawText(
@@ -141,7 +141,7 @@ class TrendRecyclerView @JvmOverloads constructor(
                     }
                 }
 
-                TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE -> {
+                KeyLine.ContentPosition.BELOW_LINE -> {
                     if (!line.contentLeft.isNullOrEmpty()) {
                         mPaint.textAlign = Paint.Align.LEFT
                         canvas.drawText(

@@ -78,9 +78,9 @@ class MoonDrawable : Drawable() {
         )
         mPaint.color = mCoreColor
         canvas.drawCircle(mCoreCenterX, mCoreCenterY, mCoreRadius, mPaint)
-        mPaint.setXfermode(mClearXfermode)
+        mPaint.xfermode = mClearXfermode
         canvas.drawCircle(mShaderCenterX, mShaderCenterY, mShaderRadius, mPaint)
-        mPaint.setXfermode(null)
+        mPaint.xfermode = null
         canvas.restoreToCount(layerId)
     }
 

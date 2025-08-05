@@ -139,7 +139,7 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
 
     private val openSearchActivity =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == Activity.RESULT_OK && it.data != null) {
+            if (it.resultCode == RESULT_OK && it.data != null) {
                 BreezyWeather.instance.setTopActivity(this)
                 val location = IntentCompat.getParcelableExtra(
                     it.data!!,

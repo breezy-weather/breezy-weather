@@ -557,7 +557,7 @@ class Snackbar private constructor(
                     // We've found a CoordinatorLayout, use it
                     return view
                 } else if (view is FrameLayout) {
-                    if (view.getId() == android.R.id.content) {
+                    if (view.id == android.R.id.content) {
                         // If we've hit the decor content view, then we didn't find a CoL in the
                         // hierarchy, so use it.
                         return view

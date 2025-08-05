@@ -45,20 +45,8 @@ class ArcProgress @JvmOverloads constructor(
     @ColorInt
     private var mProgressColor: Int
 
-    /*private val mShadowPaint: Paint
-    private val mShaderWrapper: DayNightShaderWrapper
-
-    @ColorInt
-    private var mShadowColor: Int
-
-    @ColorInt
-    private var mShaderColor: Int*/
-
     @ColorInt
     private var mBackgroundColor: Int
-
-    /*@Size(2)
-    private val mShaderColors: IntArray*/
 
     init {
         val attributes = context.theme
@@ -69,8 +57,6 @@ class ArcProgress @JvmOverloads constructor(
         mArcAngle = attributes.getFloat(R.styleable.ArcProgress_arc_angle, 360 * 0.8f)
         mProgressWidth = attributes.getDimension(R.styleable.ArcProgress_progress_width, getContext().dpToPx(8f))
         mProgressColor = attributes.getColor(R.styleable.ArcProgress_progress_color, Color.BLACK)
-        /*mShadowColor = Color.argb((0.2 * 255).toInt(), 0, 0, 0)
-        mShaderColor = Color.argb((0.2 * 255).toInt(), 0, 0, 0)*/
         mBackgroundColor = attributes.getColor(R.styleable.ArcProgress_background_color, Color.GRAY)
         attributes.recycle()
         mProgressPaint = Paint().apply {
@@ -79,12 +65,6 @@ class ArcProgress @JvmOverloads constructor(
             style = Paint.Style.STROKE
             strokeCap = Paint.Cap.ROUND
         }
-        /*mShadowPaint = Paint().apply {
-            isAntiAlias = true
-            style = Paint.Style.FILL
-        }
-        mShaderColors = intArrayOf(Color.BLACK, Color.WHITE)
-        mShaderWrapper = DayNightShaderWrapper(measuredWidth, measuredHeight, lightTheme = true, mShaderColors)*/
     }
 
     var progress: Float
@@ -107,17 +87,8 @@ class ArcProgress @JvmOverloads constructor(
             }
         }
 
-    fun setProgressColor(lightTheme: Boolean) {
-        setProgressColor(mProgressColor, lightTheme)
-    }
-
-    fun setProgressColor(@ColorInt progressColor: Int, lightTheme: Boolean) {
+    fun setProgressColor(@ColorInt progressColor: Int) {
         mProgressColor = progressColor
-        /*mShadowColor = org.breezyweather.common.utils.ColorUtils.getDarkerColor(progressColor)
-        mShaderColor = ColorUtils.setAlphaComponent(
-            progressColor,
-            (255 * if (lightTheme) SHADOW_ALPHA_FACTOR_LIGHT else SHADOW_ALPHA_FACTOR_DARK).toInt()
-        )*/
         invalidate()
     }
 
@@ -125,28 +96,6 @@ class ArcProgress @JvmOverloads constructor(
         mBackgroundColor = backgroundColor
         invalidate()
     }
-
-    /*private fun ensureShadowShader() {
-        mShaderColors[0] = mShaderColor
-        mShaderColors[1] = Color.TRANSPARENT
-        if (mShaderWrapper.isDifferent(measuredWidth, measuredHeight, false, mShaderColors)) {
-            mShaderWrapper.setShader(
-                LinearGradient(
-                    0f,
-                    mRectF.top,
-                    0f,
-                    mRectF.bottom,
-                    mShaderColors[0],
-                    mShaderColors[1],
-                    Shader.TileMode.CLAMP
-                ),
-                measuredWidth,
-                measuredHeight,
-                false,
-                mShaderColors
-            )
-        }
-    }*/
 
     override fun getSuggestedMinimumHeight(): Int {
         return context.dpToPx(100f).toInt()
@@ -179,28 +128,6 @@ class ArcProgress @JvmOverloads constructor(
 
         val startAngle = 270 - mArcAngle / 2f
         val progressSweepAngle = (1.0 * mProgressMaxed / max * mArcAngle).toFloat()
-        val progressEndAngle = startAngle + progressSweepAngle
-        val deltaAngle = (mProgressWidth / 2 / Math.PI / (mRectF.width() / 2) * 180).toFloat()
-        /*if (mProgressMaxed > 0) {
-            ensureShadowShader()
-            mShadowPaint.setShader(mShaderWrapper.shader)
-            if (progressEndAngle + deltaAngle >= 360) {
-                canvas.drawCircle(
-                    mRectF.centerX(),
-                    mRectF.centerY(),
-                    mRectF.width() / 2,
-                    mShadowPaint
-                )
-            } else if (progressEndAngle + deltaAngle > 180) {
-                canvas.drawArc(
-                    mRectF,
-                    360 - progressEndAngle - deltaAngle,
-                    360 - 2 * (360 - progressEndAngle - deltaAngle),
-                    false,
-                    mShadowPaint
-                )
-            }
-        }*/
         mProgressPaint.color = mBackgroundColor
         canvas.drawArc(mRectF, startAngle, mArcAngle, false, mProgressPaint)
         if (mProgressMaxed > 0) {
@@ -213,9 +140,4 @@ class ArcProgress @JvmOverloads constructor(
             mArcBottomHeight = radius * (1 - cos(angle / 180 * Math.PI)).toFloat()
         }
     }
-
-    /*companion object {
-        private const val SHADOW_ALPHA_FACTOR_LIGHT = 0.1f
-        private const val SHADOW_ALPHA_FACTOR_DARK = 0.1f
-    }*/
 }

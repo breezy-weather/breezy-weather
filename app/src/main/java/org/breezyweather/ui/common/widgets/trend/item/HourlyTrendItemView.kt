@@ -50,11 +50,11 @@ class HourlyTrendItemView @JvmOverloads constructor(
     }
     private var mHourText: String? = null
 
-    @IntDef(View.INVISIBLE, View.GONE)
+    @IntDef(INVISIBLE, GONE)
     internal annotation class IconVisibility
 
     @IconVisibility
-    private var mMissingIconVisibility: Int = View.GONE
+    private var mMissingIconVisibility: Int = GONE
     private var mIconDrawable: Drawable? = null
 
     @ColorInt
@@ -98,7 +98,7 @@ class HourlyTrendItemView @JvmOverloads constructor(
         y += textMargin
 
         // hourly icon.
-        if (mIconDrawable != null || mMissingIconVisibility == View.INVISIBLE) {
+        if (mIconDrawable != null || mMissingIconVisibility == INVISIBLE) {
             y += iconMargin
             mIconLeft = (width - mIconSize) / 2f
             mIconTop = y

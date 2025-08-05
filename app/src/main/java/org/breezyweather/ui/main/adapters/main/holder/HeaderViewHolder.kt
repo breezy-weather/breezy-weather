@@ -119,7 +119,7 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
 
     override fun getEnterAnimator(pendingAnimatorList: List<Animator>): Animator {
         val a: Animator = ObjectAnimator.ofFloat(itemView, "alpha", 0f, 1f)
-        a.setDuration(300)
+        a.duration = 300
         a.startDelay = 100
         a.interpolator = FastOutSlowInInterpolator()
         return a

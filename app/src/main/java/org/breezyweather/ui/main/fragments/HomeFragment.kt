@@ -201,8 +201,8 @@ class HomeFragment : MainModuleFragment() {
             }
             true
         }
-        binding.toolbar.menu.findItem(R.id.action_edit).setVisible(false)
-        binding.toolbar.menu.findItem(R.id.action_open_in_other_app).setVisible(false)
+        binding.toolbar.menu.findItem(R.id.action_edit).isVisible = false
+        binding.toolbar.menu.findItem(R.id.action_open_in_other_app).isVisible = false
         // Needed to get the icon to show the correct color depending on dark mode
         binding.toolbar.overflowIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_more_vert)
 
@@ -276,8 +276,8 @@ class HomeFragment : MainModuleFragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.currentLocation.collect {
                     if (it?.location != null) {
-                        binding.toolbar.menu.findItem(R.id.action_edit).setVisible(true)
-                        binding.toolbar.menu.findItem(R.id.action_open_in_other_app).setVisible(true)
+                        binding.toolbar.menu.findItem(R.id.action_edit).isVisible = true
+                        binding.toolbar.menu.findItem(R.id.action_open_in_other_app).isVisible = true
                     }
 
                     // TODO: Dirty workaround to avoid recollecting on lifecycle resume

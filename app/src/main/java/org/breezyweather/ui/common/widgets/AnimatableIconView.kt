@@ -21,7 +21,6 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
-import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.Size
 import androidx.appcompat.widget.AppCompatImageView
@@ -43,7 +42,7 @@ class AnimatableIconView @JvmOverloads constructor(
         val attributes = context.theme
             .obtainStyledAttributes(attrs, R.styleable.AnimatableIconView, defStyleAttr, 0)
         val innerMargin = attributes.getDimensionPixelSize(R.styleable.AnimatableIconView_inner_margins, 0)
-        val params = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        val params = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         params.setMargins(innerMargin, innerMargin, innerMargin, innerMargin)
         mIconImageViews = arrayOf(
             AppCompatImageView(context),

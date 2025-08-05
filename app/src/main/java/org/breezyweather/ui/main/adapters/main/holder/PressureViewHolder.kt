@@ -33,7 +33,6 @@ import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.ArcProgress
-import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 
 class PressureViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
@@ -73,7 +72,7 @@ class PressureViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             }
             val pressureColor = context.getThemeColor(androidx.appcompat.R.attr.colorPrimary)
             pressureProgress.apply {
-                setProgressColor(pressureColor, ThemeManager.isLightTheme(context, location))
+                setProgressColor(pressureColor)
                 setArcBackgroundColor(ColorUtils.setAlphaComponent(pressureColor, (255 * 0.1).toInt()))
                 max = 100f
             }

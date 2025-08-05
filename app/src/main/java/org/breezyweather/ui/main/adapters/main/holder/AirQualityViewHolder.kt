@@ -40,7 +40,6 @@ import org.breezyweather.domain.weather.model.getIndex
 import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.validAirQuality
 import org.breezyweather.ui.common.widgets.ArcProgress
-import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import kotlin.math.roundToInt
 
@@ -73,8 +72,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                     progress = 0f
                     aqiValueView.text = UnitUtils.formatInt(context, 0)
                     setProgressColor(
-                        ContextCompat.getColor(context, R.color.colorLevel_1),
-                        ThemeManager.isLightTheme(context, location)
+                        ContextCompat.getColor(context, R.color.colorLevel_1)
                     )
                     setArcBackgroundColor(context.getThemeColor(com.google.android.material.R.attr.colorOutline))
                 }
@@ -83,7 +81,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 aqiProgress.apply {
                     progress = mAqiIndex.toFloat()
                     aqiValueView.text = UnitUtils.formatInt(context, mAqiIndex)
-                    setProgressColor(aqiColor, ThemeManager.isLightTheme(context, location))
+                    setProgressColor(aqiColor)
                     setArcBackgroundColor(ColorUtils.setAlphaComponent(aqiColor, (255 * 0.1).toInt()))
                 }
             }
@@ -120,8 +118,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 )
                 progressColor.addUpdateListener { animation: ValueAnimator ->
                     aqiProgress.setProgressColor(
-                        animation.animatedValue as Int,
-                        ThemeManager.isLightTheme(context, mLocation!!)
+                        animation.animatedValue as Int
                     )
                 }
                 val backgroundColor = ValueAnimator.ofObject(
