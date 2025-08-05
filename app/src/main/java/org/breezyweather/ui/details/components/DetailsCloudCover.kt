@@ -81,7 +81,7 @@ fun DetailsCloudCover(
             .associate { it.date.time to it.cloudCover!! }
             .toImmutableMap()
     }
-    var activeItem: Pair<Date, Int>? by remember { mutableStateOf(defaultValue) }
+    var activeItem: Pair<Date, Int>? by remember { mutableStateOf(null) }
     val markerVisibilityListener = remember {
         object : CartesianMarkerVisibilityListener {
             override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
@@ -89,7 +89,7 @@ fun DetailsCloudCover(
                     mappedValues.getOrElse(target.x.toLong()) { null }?.let {
                         Pair(target.x.toLong().toDate(), it)
                     }
-                } ?: defaultValue
+                }
             }
 
             override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
@@ -97,7 +97,7 @@ fun DetailsCloudCover(
             }
 
             override fun onHidden(marker: CartesianMarker) {
-                activeItem = defaultValue
+                activeItem = null
             }
         }
     }
@@ -110,7 +110,7 @@ fun DetailsCloudCover(
         )
     ) {
         item {
-            CloudCoverHeader(location, daily, activeItem)
+            CloudCoverHeader(location, daily, activeItem, defaultValue)
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
@@ -160,15 +160,23 @@ private fun CloudCoverHeader(
     location: Location,
     daily: Daily,
     activeItem: Pair<Date, Int>?,
+    defaultValue: Pair<Date, Int>?,
 ) {
     val context = LocalContext.current
 
-    activeItem?.let {
+    if (activeItem != null) {
         CloudCoverItem(
-            header = it.first.getFormattedTime(location, context, context.is12Hour),
-            cloudCover = it.second
+            header = activeItem.first.getFormattedTime(location, context, context.is12Hour),
+            cloudCover = activeItem.second
         )
-    } ?: CloudCoverSummary(location, daily)
+    } else if (daily.cloudCover?.min != null && daily.cloudCover!!.max != null) {
+        CloudCoverSummary(location, daily)
+    } else {
+        CloudCoverItem(
+            header = defaultValue?.first?.getFormattedTime(location, context, context.is12Hour),
+            cloudCover = defaultValue?.second
+        )
+    }
 }
 
 @Composable

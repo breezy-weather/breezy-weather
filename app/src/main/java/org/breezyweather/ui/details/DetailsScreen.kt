@@ -412,8 +412,21 @@ fun DailyPagerContent(
                     { setSelectedChart(if (it) DetailScreen.TAG_CONDITIONS else DetailScreen.TAG_FEELS_LIKE) }
                 )
             }
-            DetailScreen.TAG_PRECIPITATION -> DetailsPrecipitation(location, hourlyList, daily)
-            DetailScreen.TAG_WIND -> DetailsWind(location, hourlyList, daily)
+            DetailScreen.TAG_PRECIPITATION -> {
+                DetailsPrecipitation(location, hourlyList, daily)
+            }
+            DetailScreen.TAG_WIND -> {
+                DetailsWind(
+                    location,
+                    hourlyList,
+                    daily,
+                    currentUpdateTime?.let { time ->
+                        current?.wind?.let {
+                            if (it.isValid) Pair(time, it) else null
+                        }
+                    }
+                )
+            }
             DetailScreen.TAG_AIR_QUALITY -> {
                 val supportedPollutants = remember(location) {
                     PollutantIndex.entries
@@ -442,10 +455,50 @@ fun DailyPagerContent(
                     }
                 )
             }
-            DetailScreen.TAG_POLLEN -> DetailsPollen(daily.pollen, pollenIndexSource)
-            DetailScreen.TAG_UV_INDEX -> DetailsUV(location, hourlyList, daily)
-            DetailScreen.TAG_HUMIDITY -> DetailsHumidity(location, hourlyList, daily)
-            DetailScreen.TAG_PRESSURE -> DetailsPressure(location, hourlyList, daily)
+            DetailScreen.TAG_POLLEN -> {
+                DetailsPollen(daily.pollen, pollenIndexSource)
+            }
+            DetailScreen.TAG_UV_INDEX -> {
+                DetailsUV(
+                    location,
+                    hourlyList,
+                    daily,
+                    currentUpdateTime?.let { time ->
+                        current?.uV?.let {
+                            if (it.isValid) Pair(time, it) else null
+                        }
+                    }
+                )
+            }
+            DetailScreen.TAG_HUMIDITY -> {
+                DetailsHumidity(
+                    location,
+                    hourlyList,
+                    daily,
+                    currentUpdateTime?.let { time ->
+                        current?.relativeHumidity?.let { relativeHumidity ->
+                            Pair(time, relativeHumidity)
+                        }
+                    },
+                    currentUpdateTime?.let { time ->
+                        current?.dewPoint?.let { dewPoint ->
+                            Pair(time, dewPoint)
+                        }
+                    }
+                )
+            }
+            DetailScreen.TAG_PRESSURE -> {
+                DetailsPressure(
+                    location,
+                    hourlyList,
+                    daily,
+                    currentUpdateTime?.let { time ->
+                        current?.pressure?.let { pressure ->
+                            Pair(time, pressure)
+                        }
+                    }
+                )
+            }
             DetailScreen.TAG_CLOUD_COVER -> {
                 DetailsCloudCover(
                     location,
@@ -458,7 +511,18 @@ fun DailyPagerContent(
                     }
                 )
             }
-            DetailScreen.TAG_VISIBILITY -> DetailsVisibility(location, hourlyList, daily)
+            DetailScreen.TAG_VISIBILITY -> {
+                DetailsVisibility(
+                    location,
+                    hourlyList,
+                    daily,
+                    currentUpdateTime?.let { time ->
+                        current?.visibility?.let { visibility ->
+                            Pair(time, visibility)
+                        }
+                    }
+                )
+            }
             DetailScreen.TAG_SUN_MOON -> {
                 val sunTimes = remember(selected) {
                     location.weather!!.dailyForecast.mapNotNull { it.sun }

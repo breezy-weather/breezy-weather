@@ -66,12 +66,15 @@ import org.breezyweather.domain.weather.model.getRangeContentDescriptionSummary
 import org.breezyweather.domain.weather.model.getRangeSummary
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.settings.preference.bottomInsetItem
+import java.util.Date
 
 @Composable
 fun DetailsHumidity(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
+    defaultHumidityValue: Pair<Date, Double>?,
+    defaultDewPointValue: Pair<Date, Double>?,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -81,11 +84,52 @@ fun DetailsHumidity(
             .associate { it.date.time to it.relativeHumidity!! }
             .toImmutableMap()
     }
+    var activeHumidityItem: Pair<Date, Double>? by remember { mutableStateOf(null) }
+    val humidityMarkerVisibilityListener = remember {
+        object : CartesianMarkerVisibilityListener {
+            override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                activeHumidityItem = targets.firstOrNull()?.let { target ->
+                    mappedHumidityValues.getOrElse(target.x.toLong()) { null }?.let {
+                        Pair(target.x.toLong().toDate(), it)
+                    }
+                }
+            }
+
+            override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                onShown(marker, targets)
+            }
+
+            override fun onHidden(marker: CartesianMarker) {
+                activeHumidityItem = null
+            }
+        }
+    }
+
     val mappedDewPointValues = remember(hourlyList) {
         hourlyList
             .filter { it.dewPoint != null }
             .associate { it.date.time to it.dewPoint!! }
             .toImmutableMap()
+    }
+    var activeDewPointItem: Pair<Date, Double>? by remember { mutableStateOf(null) }
+    val dewPointMarkerVisibilityListener = remember {
+        object : CartesianMarkerVisibilityListener {
+            override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                activeDewPointItem = targets.firstOrNull()?.let { target ->
+                    mappedDewPointValues.getOrElse(target.x.toLong()) { null }?.let {
+                        Pair(target.x.toLong().toDate(), it)
+                    }
+                }
+            }
+
+            override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                onShown(marker, targets)
+            }
+
+            override fun onHidden(marker: CartesianMarker) {
+                activeDewPointItem = null
+            }
+        }
     }
 
     LazyColumn(
@@ -96,7 +140,19 @@ fun DetailsHumidity(
         )
     ) {
         item {
-            HumidityChart(location, mappedHumidityValues, daily)
+            HumidityHeader(location, daily, activeHumidityItem, defaultHumidityValue)
+        }
+        item {
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+        }
+        if (mappedHumidityValues.size >= DetailScreen.CHART_MIN_COUNT) {
+            item {
+                HumidityChart(location, mappedHumidityValues, daily, humidityMarkerVisibilityListener)
+            }
+        } else {
+            item {
+                UnavailableChart(mappedHumidityValues.size)
+            }
         }
         // TODO: Daily summary
         item {
@@ -121,7 +177,19 @@ fun DetailsHumidity(
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
         }
         item {
-            DewPointChart(location, mappedDewPointValues, daily)
+            DewPointHeader(location, daily, activeDewPointItem, defaultDewPointValue)
+        }
+        item {
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+        }
+        if (mappedDewPointValues.size >= DetailScreen.CHART_MIN_COUNT) {
+            item {
+                DewPointChart(location, mappedDewPointValues, daily, dewPointMarkerVisibilityListener)
+            }
+        } else {
+            item {
+                UnavailableChart(mappedDewPointValues.size)
+            }
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
@@ -135,6 +203,40 @@ fun DetailsHumidity(
             )
         }
         bottomInsetItem()
+    }
+}
+
+@Composable
+fun HumidityHeader(
+    location: Location,
+    daily: Daily,
+    activeItem: Pair<Date, Double>?,
+    defaultValue: Pair<Date, Double>?,
+) {
+    val context = LocalContext.current
+
+    if (activeItem != null) {
+        HumidityItem(
+            header = {
+                TextFixedHeight(
+                    text = activeItem.first.getFormattedTime(location, context, context.is12Hour),
+                    style = MaterialTheme.typography.labelMedium
+                )
+            },
+            relativeHumidity = activeItem.second
+        )
+    } else if (daily.relativeHumidity?.min != null && daily.relativeHumidity!!.max != null) {
+        HumiditySummary(location, daily)
+    } else {
+        HumidityItem(
+            header = {
+                TextFixedHeight(
+                    text = defaultValue?.first?.getFormattedTime(location, context, context.is12Hour) ?: "",
+                    style = MaterialTheme.typography.labelMedium
+                )
+            },
+            relativeHumidity = defaultValue?.second
+        )
     }
 }
 
@@ -186,96 +288,96 @@ private fun HumidityChart(
     location: Location,
     mappedValues: ImmutableMap<Long, Double>,
     daily: Daily,
+    markerVisibilityListener: CartesianMarkerVisibilityListener,
 ) {
     val context = LocalContext.current
 
-    var activeMarkerTarget: CartesianMarker.Target? by remember { mutableStateOf(null) }
-    val markerVisibilityListener = object : CartesianMarkerVisibilityListener {
-        override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
+    val maxY = 100.0
 
-        override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
+    val endAxisValueFormatter = CartesianValueFormatter { _, value, _ ->
+        UnitUtils.formatPercent(context, value)
+    }
 
-        override fun onHidden(marker: CartesianMarker) {
-            activeMarkerTarget = null
+    val modelProducer = remember { CartesianChartModelProducer() }
+
+    LaunchedEffect(location) {
+        modelProducer.runTransaction {
+            lineSeries {
+                series(
+                    x = mappedValues.keys,
+                    y = mappedValues.values
+                )
+            }
         }
     }
 
-    activeMarkerTarget?.let {
-        mappedValues.getOrElse(it.x.toLong()) { null }?.let { relativeHumidity ->
-            HumidityItem(
-                header = {
-                    TextFixedHeight(
-                        text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
-                        style = MaterialTheme.typography.labelMedium
-                    )
-                },
-                relativeHumidity = relativeHumidity
+    BreezyLineChart(
+        location,
+        modelProducer,
+        daily.date,
+        maxY,
+        endAxisValueFormatter,
+        persistentListOf(
+            persistentMapOf(
+                100f to Color(56, 70, 114),
+                97f to Color(56, 98, 157),
+                93f to Color(56, 123, 173),
+                90f to Color(56, 132, 173),
+                87f to Color(56, 135, 173),
+                83f to Color(56, 148, 173),
+                80f to Color(56, 157, 173),
+                75f to Color(56, 160, 173),
+                70f to Color(56, 174, 173),
+                60f to Color(56, 173, 121),
+                50f to Color(105, 173, 56),
+                40f to Color(173, 146, 56),
+                30f to Color(173, 110, 56),
+                0f to Color(173, 85, 56)
             )
-        }
-    } ?: HumiditySummary(location, daily)
+        ),
+        topAxisValueFormatter = { _, value, _ ->
+            mappedValues.getOrElse(value.toLong()) { null }?.let {
+                UnitUtils.formatPercent(context, it)
+            } ?: "-"
+        },
+        endAxisItemPlacer = remember {
+            VerticalAxis.ItemPlacer.step({ 20.0 }) // Every 20 %
+        },
+        markerVisibilityListener = markerVisibilityListener
+    )
+}
 
-    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+@Composable
+fun DewPointHeader(
+    location: Location,
+    daily: Daily,
+    activeItem: Pair<Date, Double>?,
+    defaultValue: Pair<Date, Double>?,
+) {
+    val context = LocalContext.current
 
-    if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
-        val maxY = 100.0
-
-        val endAxisValueFormatter = CartesianValueFormatter { _, value, _ ->
-            UnitUtils.formatPercent(context, value)
-        }
-
-        val modelProducer = remember { CartesianChartModelProducer() }
-
-        LaunchedEffect(location) {
-            modelProducer.runTransaction {
-                lineSeries {
-                    series(
-                        x = mappedValues.keys,
-                        y = mappedValues.values
-                    )
-                }
-            }
-        }
-
-        BreezyLineChart(
-            location,
-            modelProducer,
-            daily.date,
-            maxY,
-            endAxisValueFormatter,
-            persistentListOf(
-                persistentMapOf(
-                    100f to Color(56, 70, 114),
-                    97f to Color(56, 98, 157),
-                    93f to Color(56, 123, 173),
-                    90f to Color(56, 132, 173),
-                    87f to Color(56, 135, 173),
-                    83f to Color(56, 148, 173),
-                    80f to Color(56, 157, 173),
-                    75f to Color(56, 160, 173),
-                    70f to Color(56, 174, 173),
-                    60f to Color(56, 173, 121),
-                    50f to Color(105, 173, 56),
-                    40f to Color(173, 146, 56),
-                    30f to Color(173, 110, 56),
-                    0f to Color(173, 85, 56)
+    if (activeItem != null) {
+        DewPointItem(
+            header = {
+                TextFixedHeight(
+                    text = activeItem.first.getFormattedTime(location, context, context.is12Hour),
+                    style = MaterialTheme.typography.labelMedium
                 )
-            ),
-            topAxisValueFormatter = { _, value, _ ->
-                mappedValues.getOrElse(value.toLong()) { null }?.let {
-                    UnitUtils.formatPercent(context, it)
-                } ?: "-"
             },
-            endAxisItemPlacer = remember {
-                VerticalAxis.ItemPlacer.step({ 20.0 }) // Every 20 %
-            },
-            markerVisibilityListener = markerVisibilityListener
+            dewPoint = activeItem.second
         )
+    } else if (daily.dewPoint?.min != null && daily.dewPoint!!.max != null) {
+        DewPointSummary(location, daily)
     } else {
-        UnavailableChart(mappedValues.size)
+        DewPointItem(
+            header = {
+                TextFixedHeight(
+                    text = defaultValue?.first?.getFormattedTime(location, context, context.is12Hour) ?: "",
+                    style = MaterialTheme.typography.labelMedium
+                )
+            },
+            dewPoint = defaultValue?.second
+        )
     }
 }
 
@@ -341,99 +443,65 @@ private fun DewPointChart(
     location: Location,
     mappedValues: ImmutableMap<Long, Double>,
     daily: Daily,
+    markerVisibilityListener: CartesianMarkerVisibilityListener,
 ) {
     val context = LocalContext.current
 
-    var activeMarkerTarget: CartesianMarker.Target? by remember { mutableStateOf(null) }
-    val markerVisibilityListener = object : CartesianMarkerVisibilityListener {
-        override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
-
-        override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
-
-        override fun onHidden(marker: CartesianMarker) {
-            activeMarkerTarget = null
-        }
+    val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
+    val step = temperatureUnit.chartStep
+    val maxY = remember(mappedValues) {
+        temperatureUnit.getConvertedUnit(mappedValues.values.max()).roundUpToNearestMultiplier(step)
+    }
+    val minY = remember(mappedValues) {
+        temperatureUnit.getConvertedUnit(mappedValues.values.min()).roundDownToNearestMultiplier(step)
     }
 
-    activeMarkerTarget?.let {
-        mappedValues.getOrElse(it.x.toLong()) { null }?.let { dewPoint ->
-            DewPointItem(
-                header = {
-                    TextFixedHeight(
-                        text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
-                        style = MaterialTheme.typography.labelMedium
-                    )
-                },
-                dewPoint = dewPoint
-            )
-        }
-    } ?: DewPointSummary(location, daily)
+    val modelProducer = remember { CartesianChartModelProducer() }
 
-    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
-
-    if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
-        val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
-        val step = temperatureUnit.chartStep
-        val maxY = remember(mappedValues) {
-            temperatureUnit.getConvertedUnit(mappedValues.values.max()).roundUpToNearestMultiplier(step)
-        }
-        val minY = remember(mappedValues) {
-            temperatureUnit.getConvertedUnit(mappedValues.values.min()).roundDownToNearestMultiplier(step)
-        }
-
-        val modelProducer = remember { CartesianChartModelProducer() }
-
-        LaunchedEffect(location) {
-            modelProducer.runTransaction {
-                lineSeries {
-                    series(
-                        x = mappedValues.keys,
-                        y = mappedValues.values.map { temperatureUnit.getConvertedUnit(it) }
-                    )
-                }
+    LaunchedEffect(location) {
+        modelProducer.runTransaction {
+            lineSeries {
+                series(
+                    x = mappedValues.keys,
+                    y = mappedValues.values.map { temperatureUnit.getConvertedUnit(it) }
+                )
             }
         }
-
-        BreezyLineChart(
-            location,
-            modelProducer,
-            daily.date,
-            maxY,
-            { _, value, _ -> temperatureUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
-            persistentListOf(
-                persistentMapOf(
-                    // TODO: Duplicate of temperature colors
-                    temperatureUnit.getConvertedUnit(47.0).toFloat() to Color(71, 14, 0),
-                    temperatureUnit.getConvertedUnit(30.0).toFloat() to Color(232, 83, 25),
-                    temperatureUnit.getConvertedUnit(21.0).toFloat() to Color(243, 183, 4),
-                    temperatureUnit.getConvertedUnit(10.0).toFloat() to Color(128, 147, 24),
-                    temperatureUnit.getConvertedUnit(1.0).toFloat() to Color(68, 125, 99),
-                    temperatureUnit.getConvertedUnit(0.0).toFloat() to Color(93, 133, 198),
-                    temperatureUnit.getConvertedUnit(-4.0).toFloat() to Color(100, 166, 189),
-                    temperatureUnit.getConvertedUnit(-8.0).toFloat() to Color(106, 191, 181),
-                    temperatureUnit.getConvertedUnit(-15.0).toFloat() to Color(157, 219, 217),
-                    temperatureUnit.getConvertedUnit(-25.0).toFloat() to Color(143, 89, 169),
-                    temperatureUnit.getConvertedUnit(-40.0).toFloat() to Color(162, 70, 145),
-                    temperatureUnit.getConvertedUnit(-55.0).toFloat() to Color(202, 172, 195),
-                    temperatureUnit.getConvertedUnit(-70.0).toFloat() to Color(115, 70, 105)
-                )
-            ),
-            topAxisValueFormatter = { _, value, _ ->
-                mappedValues.getOrElse(value.toLong()) { null }?.let {
-                    temperatureUnit.formatMeasureShort(context, it)
-                } ?: "-"
-            },
-            minY = minY,
-            endAxisItemPlacer = remember {
-                VerticalAxis.ItemPlacer.step({ step })
-            },
-            markerVisibilityListener = markerVisibilityListener
-        )
-    } else {
-        UnavailableChart(mappedValues.size)
     }
+
+    BreezyLineChart(
+        location,
+        modelProducer,
+        daily.date,
+        maxY,
+        { _, value, _ -> temperatureUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
+        persistentListOf(
+            persistentMapOf(
+                // TODO: Duplicate of temperature colors
+                temperatureUnit.getConvertedUnit(47.0).toFloat() to Color(71, 14, 0),
+                temperatureUnit.getConvertedUnit(30.0).toFloat() to Color(232, 83, 25),
+                temperatureUnit.getConvertedUnit(21.0).toFloat() to Color(243, 183, 4),
+                temperatureUnit.getConvertedUnit(10.0).toFloat() to Color(128, 147, 24),
+                temperatureUnit.getConvertedUnit(1.0).toFloat() to Color(68, 125, 99),
+                temperatureUnit.getConvertedUnit(0.0).toFloat() to Color(93, 133, 198),
+                temperatureUnit.getConvertedUnit(-4.0).toFloat() to Color(100, 166, 189),
+                temperatureUnit.getConvertedUnit(-8.0).toFloat() to Color(106, 191, 181),
+                temperatureUnit.getConvertedUnit(-15.0).toFloat() to Color(157, 219, 217),
+                temperatureUnit.getConvertedUnit(-25.0).toFloat() to Color(143, 89, 169),
+                temperatureUnit.getConvertedUnit(-40.0).toFloat() to Color(162, 70, 145),
+                temperatureUnit.getConvertedUnit(-55.0).toFloat() to Color(202, 172, 195),
+                temperatureUnit.getConvertedUnit(-70.0).toFloat() to Color(115, 70, 105)
+            )
+        ),
+        topAxisValueFormatter = { _, value, _ ->
+            mappedValues.getOrElse(value.toLong()) { null }?.let {
+                temperatureUnit.formatMeasureShort(context, it)
+            } ?: "-"
+        },
+        minY = minY,
+        endAxisItemPlacer = remember {
+            VerticalAxis.ItemPlacer.step({ step })
+        },
+        markerVisibilityListener = markerVisibilityListener
+    )
 }

@@ -66,6 +66,7 @@ import org.breezyweather.domain.weather.model.getRangeDescriptionSummary
 import org.breezyweather.domain.weather.model.getRangeSummary
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.settings.preference.bottomInsetItem
+import java.util.Date
 import kotlin.math.max
 
 @Composable
@@ -73,6 +74,7 @@ fun DetailsVisibility(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
+    defaultValue: Pair<Date, Double>?,
     modifier: Modifier = Modifier,
 ) {
     val mappedValues = remember(hourlyList) {
@@ -80,6 +82,26 @@ fun DetailsVisibility(
             .filter { it.visibility != null }
             .associate { it.date.time to it.visibility!! }
             .toImmutableMap()
+    }
+    var activeItem: Pair<Date, Double>? by remember { mutableStateOf(null) }
+    val markerVisibilityListener = remember {
+        object : CartesianMarkerVisibilityListener {
+            override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                activeItem = targets.firstOrNull()?.let { target ->
+                    mappedValues.getOrElse(target.x.toLong()) { null }?.let {
+                        Pair(target.x.toLong().toDate(), it)
+                    }
+                }
+            }
+
+            override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                onShown(marker, targets)
+            }
+
+            override fun onHidden(marker: CartesianMarker) {
+                activeItem = null
+            }
+        }
     }
 
     LazyColumn(
@@ -90,7 +112,19 @@ fun DetailsVisibility(
         )
     ) {
         item {
-            VisibilityChart(location, mappedValues, daily)
+            VisibilityHeader(location, daily, activeItem, defaultValue)
+        }
+        item {
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+        }
+        if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
+            item {
+                VisibilityChart(location, mappedValues, daily, markerVisibilityListener)
+            }
+        } else {
+            item {
+                UnavailableChart(mappedValues.size)
+            }
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
@@ -107,14 +141,46 @@ fun DetailsVisibility(
 }
 
 @Composable
+fun VisibilityHeader(
+    location: Location,
+    daily: Daily,
+    activeItem: Pair<Date, Double>?,
+    defaultValue: Pair<Date, Double>?,
+) {
+    val context = LocalContext.current
+
+    if (activeItem != null) {
+        VisibilityItem(
+            header = {
+                TextFixedHeight(
+                    text = activeItem.first.getFormattedTime(location, context, context.is12Hour),
+                    style = MaterialTheme.typography.labelMedium
+                )
+            },
+            visibility = activeItem.second
+        )
+    } else if (daily.visibility?.min != null && daily.visibility!!.max != null) {
+        VisibilitySummary(location, daily)
+    } else {
+        VisibilityItem(
+            header = {
+                TextFixedHeight(
+                    text = defaultValue?.first?.getFormattedTime(location, context, context.is12Hour) ?: "",
+                    style = MaterialTheme.typography.labelMedium
+                )
+            },
+            visibility = defaultValue?.second
+        )
+    }
+}
+
+@Composable
 private fun VisibilityItem(
     header: @Composable () -> Unit,
-    visibility: Double,
+    visibility: Double?,
 ) {
     val context = LocalContext.current
     val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
-    val visibilityDescription = DistanceUnit.getVisibilityDescription(context, visibility)
-    val visibilityContentDescription = distanceUnit.formatContentDescription(context, visibility)
 
     Column(
         modifier = Modifier
@@ -122,20 +188,22 @@ private fun VisibilityItem(
     ) {
         header()
         TextFixedHeight(
-            text = visibility.let { vis ->
+            text = visibility?.let { vis ->
                 UnitUtils.formatUnitsDifferentFontSize(
                     formattedMeasure = distanceUnit.formatMeasure(context, vis),
                     fontSize = MaterialTheme.typography.headlineSmall.fontSize
                 )
-            },
+            } ?: buildAnnotatedString {},
             style = MaterialTheme.typography.displaySmall,
             modifier = Modifier
                 .clearAndSetSemantics {
-                    contentDescription = visibilityContentDescription
+                    visibility?.let {
+                        contentDescription = distanceUnit.formatContentDescription(context, it)
+                    }
                 }
         )
         TextFixedHeight(
-            text = visibilityDescription ?: "",
+            text = DistanceUnit.getVisibilityDescription(context, visibility) ?: "",
             style = MaterialTheme.typography.labelMedium
         )
     }
@@ -188,101 +256,67 @@ private fun VisibilityChart(
     location: Location,
     mappedValues: ImmutableMap<Long, Double>,
     daily: Daily,
+    markerVisibilityListener: CartesianMarkerVisibilityListener,
 ) {
     val context = LocalContext.current
 
-    var activeMarkerTarget: CartesianMarker.Target? by remember { mutableStateOf(null) }
-    val markerVisibilityListener = object : CartesianMarkerVisibilityListener {
-        override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
-
-        override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
-
-        override fun onHidden(marker: CartesianMarker) {
-            activeMarkerTarget = null
+    val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
+    val maxY = remember(mappedValues) {
+        max(
+            // This value makes it, once rounded, a minimum of 75000 ft
+            22850.0, // TODO: Make this a const
+            mappedValues.values.max()
+        ).let {
+            distanceUnit.getConvertedUnit(it)
         }
     }
+    val step = remember(mappedValues) {
+        distanceUnit.chartStep(maxY)
+    }
+    val maxYRounded = remember(mappedValues) {
+        maxY.roundUpToNearestMultiplier(step)
+    }
 
-    activeMarkerTarget?.let {
-        mappedValues.getOrElse(it.x.toLong()) { null }?.let { visibility ->
-            VisibilityItem(
-                header = {
-                    TextFixedHeight(
-                        text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
-                        style = MaterialTheme.typography.labelMedium
-                    )
-                },
-                visibility = visibility
-            )
-        }
-    } ?: VisibilitySummary(location, daily)
+    val modelProducer = remember { CartesianChartModelProducer() }
 
-    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
-
-    if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
-        val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
-        val maxY = remember(mappedValues) {
-            max(
-                // This value makes it, once rounded, a minimum of 75000 ft
-                22850.0, // TODO: Make this a const
-                mappedValues.values.max()
-            ).let {
-                distanceUnit.getConvertedUnit(it)
-            }
-        }
-        val step = remember(mappedValues) {
-            distanceUnit.chartStep(maxY)
-        }
-        val maxYRounded = remember(mappedValues) {
-            maxY.roundUpToNearestMultiplier(step)
-        }
-
-        val modelProducer = remember { CartesianChartModelProducer() }
-
-        LaunchedEffect(location) {
-            modelProducer.runTransaction {
-                lineSeries {
-                    series(
-                        x = mappedValues.keys,
-                        y = mappedValues.values.map { distanceUnit.getConvertedUnit(it) }
-                    )
-                }
-            }
-        }
-
-        BreezyLineChart(
-            location,
-            modelProducer,
-            daily.date,
-            maxYRounded,
-            { _, value, _ -> distanceUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
-            persistentListOf(
-                persistentMapOf(
-                    distanceUnit.getConvertedUnit(20000.0).toFloat() to Color(119, 141, 120),
-                    distanceUnit.getConvertedUnit(15000.0).toFloat() to Color(91, 167, 99),
-                    distanceUnit.getConvertedUnit(9000.0).toFloat() to Color(90, 169, 90),
-                    distanceUnit.getConvertedUnit(8000.0).toFloat() to Color(98, 122, 160),
-                    distanceUnit.getConvertedUnit(6000.0).toFloat() to Color(98, 122, 160),
-                    distanceUnit.getConvertedUnit(5000.0).toFloat() to Color(167, 91, 91),
-                    distanceUnit.getConvertedUnit(2200.0).toFloat() to Color(167, 91, 91),
-                    distanceUnit.getConvertedUnit(1600.0).toFloat() to Color(162, 97, 160),
-                    distanceUnit.getConvertedUnit(0.0).toFloat() to Color(166, 93, 165)
+    LaunchedEffect(location) {
+        modelProducer.runTransaction {
+            lineSeries {
+                series(
+                    x = mappedValues.keys,
+                    y = mappedValues.values.map { distanceUnit.getConvertedUnit(it) }
                 )
-            ),
-            topAxisValueFormatter = { _, value, _ ->
-                mappedValues.getOrElse(value.toLong()) { null }?.let {
-                    SettingsManager.getInstance(context).getDistanceUnit(context).formatValue(context, it)
-                } ?: "-"
-            },
-            endAxisItemPlacer = remember {
-                VerticalAxis.ItemPlacer.step({ step })
-            },
-            markerVisibilityListener = markerVisibilityListener
-        )
-    } else {
-        UnavailableChart(mappedValues.size)
+            }
+        }
     }
+
+    BreezyLineChart(
+        location,
+        modelProducer,
+        daily.date,
+        maxYRounded,
+        { _, value, _ -> distanceUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
+        persistentListOf(
+            persistentMapOf(
+                distanceUnit.getConvertedUnit(20000.0).toFloat() to Color(119, 141, 120),
+                distanceUnit.getConvertedUnit(15000.0).toFloat() to Color(91, 167, 99),
+                distanceUnit.getConvertedUnit(9000.0).toFloat() to Color(90, 169, 90),
+                distanceUnit.getConvertedUnit(8000.0).toFloat() to Color(98, 122, 160),
+                distanceUnit.getConvertedUnit(6000.0).toFloat() to Color(98, 122, 160),
+                distanceUnit.getConvertedUnit(5000.0).toFloat() to Color(167, 91, 91),
+                distanceUnit.getConvertedUnit(2200.0).toFloat() to Color(167, 91, 91),
+                distanceUnit.getConvertedUnit(1600.0).toFloat() to Color(162, 97, 160),
+                distanceUnit.getConvertedUnit(0.0).toFloat() to Color(166, 93, 165)
+            )
+        ),
+        topAxisValueFormatter = { _, value, _ ->
+            mappedValues.getOrElse(value.toLong()) { null }?.let {
+                SettingsManager.getInstance(context).getDistanceUnit(context).formatValue(context, it)
+            } ?: "-"
+        },
+        endAxisItemPlacer = remember {
+            VerticalAxis.ItemPlacer.step({ step })
+        },
+        markerVisibilityListener = markerVisibilityListener
+    )
 }

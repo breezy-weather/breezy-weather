@@ -15,6 +15,7 @@
 - Details - Air quality - Add individual charts for each pollutant
 - Details - Humidity/Dewpoint/Cloud cover - Show min/max of the day
 - Details - Pressure/Visibility - Fix sometimes wrong daily value
+- Details - Fallback to current value on Today screen when daily value is missing
 - Alerts - Add “Translate” and “Share” to text select actions
 - Widgets - Improve UX of custom subtitle documentation (@codewithdipesh)
 - Nowcasting chart/Precipitation notification - Fix slightly wrong ending time of precipitation report

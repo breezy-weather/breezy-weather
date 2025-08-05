@@ -77,6 +77,7 @@ import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.charts.BreezyBarChart
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.settings.preference.bottomInsetItem
+import java.util.Date
 import kotlin.math.max
 
 @Composable
@@ -92,11 +93,52 @@ fun DetailsPrecipitation(
             .associate { it.date.time to it.precipitation!!.total!! }
             .toImmutableMap()
     }
+    var activeQuantityItem: Pair<Date, Double>? by remember { mutableStateOf(null) }
+    val quantityMarkerVisibilityListener = remember {
+        object : CartesianMarkerVisibilityListener {
+            override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                activeQuantityItem = targets.firstOrNull()?.let { target ->
+                    mappedQuantityValues.getOrElse(target.x.toLong()) { null }?.let {
+                        Pair(target.x.toLong().toDate(), it)
+                    }
+                }
+            }
+
+            override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                onShown(marker, targets)
+            }
+
+            override fun onHidden(marker: CartesianMarker) {
+                activeQuantityItem = null
+            }
+        }
+    }
+
     val mappedProbabilityValues = remember(hourlyList) {
         hourlyList
             .filter { it.precipitationProbability?.total != null }
             .associate { it.date.time to it.precipitationProbability!!.total!! }
             .toImmutableMap()
+    }
+    var activeProbabilityItem: Pair<Date, Double>? by remember { mutableStateOf(null) }
+    val probabilityMarkerVisibilityListener = remember {
+        object : CartesianMarkerVisibilityListener {
+            override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                activeProbabilityItem = targets.firstOrNull()?.let { target ->
+                    mappedProbabilityValues.getOrElse(target.x.toLong()) { null }?.let {
+                        Pair(target.x.toLong().toDate(), it)
+                    }
+                }
+            }
+
+            override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                onShown(marker, targets)
+            }
+
+            override fun onHidden(marker: CartesianMarker) {
+                activeProbabilityItem = null
+            }
+        }
     }
 
     LazyColumn(
@@ -107,11 +149,19 @@ fun DetailsPrecipitation(
         )
     ) {
         item {
-            PrecipitationChart(
-                location,
-                mappedQuantityValues,
-                daily
-            )
+            PrecipitationHeader(location, daily, activeQuantityItem)
+        }
+        item {
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+        }
+        if (mappedQuantityValues.size >= DetailScreen.CHART_MIN_COUNT) {
+            item {
+                PrecipitationChart(location, mappedQuantityValues, daily, quantityMarkerVisibilityListener)
+            }
+        } else {
+            item {
+                UnavailableChart(mappedQuantityValues.size)
+            }
         }
         item {
             PrecipitationDetails(daily.day?.precipitation, daily.night?.precipitation)
@@ -133,11 +183,24 @@ fun DetailsPrecipitation(
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.small_margin)))
             }
             item {
-                PrecipitationProbabilityChart(
-                    location,
-                    mappedProbabilityValues,
-                    daily
-                )
+                PrecipitationProbabilityHeader(location, daily, activeProbabilityItem)
+            }
+            item {
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+            }
+            if (mappedProbabilityValues.size >= DetailScreen.CHART_MIN_COUNT) {
+                item {
+                    PrecipitationProbabilityChart(
+                        location,
+                        mappedProbabilityValues,
+                        daily,
+                        probabilityMarkerVisibilityListener
+                    )
+                }
+            } else {
+                item {
+                    UnavailableChart(mappedProbabilityValues.size)
+                }
             }
             // TODO: Short explanation
             item {
@@ -171,6 +234,27 @@ fun DetailsPrecipitation(
         }
         bottomInsetItem()
     }
+}
+
+@Composable
+fun PrecipitationHeader(
+    location: Location,
+    daily: Daily,
+    activeItem: Pair<Date, Double>?,
+) {
+    val context = LocalContext.current
+
+    activeItem?.let {
+        PrecipitationItem(
+            header = {
+                TextFixedHeight(
+                    text = it.first.getFormattedTime(location, context, context.is12Hour),
+                    style = MaterialTheme.typography.labelMedium
+                )
+            },
+            precipitation = it.second
+        )
+    } ?: PrecipitationSummary(daily.day?.precipitation, daily.night?.precipitation)
 }
 
 @Composable
@@ -248,107 +332,73 @@ internal fun PrecipitationChart(
     location: Location,
     mappedValues: ImmutableMap<Long, Double>,
     daily: Daily,
+    markerVisibilityListener: CartesianMarkerVisibilityListener,
 ) {
     val context = LocalContext.current
 
-    var activeMarkerTarget: CartesianMarker.Target? by remember { mutableStateOf(null) }
-    val markerVisibilityListener = object : CartesianMarkerVisibilityListener {
-        override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
-
-        override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
-
-        override fun onHidden(marker: CartesianMarker) {
-            activeMarkerTarget = null
-        }
+    val precipitationUnit = SettingsManager.getInstance(context).getPrecipitationUnit(context)
+    val step = precipitationUnit.chartStep
+    val maxY = remember(mappedValues) {
+        max(
+            Precipitation.PRECIPITATION_HOURLY_HEAVY,
+            mappedValues.values.max()
+        ).let {
+            precipitationUnit.getConvertedUnit(it)
+        }.roundUpToNearestMultiplier(step)
     }
 
-    activeMarkerTarget?.let {
-        mappedValues.getOrElse(it.x.toLong()) { null }?.let { precipitation ->
-            PrecipitationItem(
-                header = {
-                    TextFixedHeight(
-                        text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
-                        style = MaterialTheme.typography.labelMedium
-                    )
-                },
-                precipitation = precipitation
-            )
-        }
-    } ?: PrecipitationSummary(daily.day?.precipitation, daily.night?.precipitation)
+    val modelProducer = remember { CartesianChartModelProducer() }
 
-    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
-
-    if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
-        val precipitationUnit = SettingsManager.getInstance(context).getPrecipitationUnit(context)
-        val step = precipitationUnit.chartStep
-        val maxY = remember(mappedValues) {
-            max(
-                Precipitation.PRECIPITATION_HOURLY_HEAVY,
-                mappedValues.values.max()
-            ).let {
-                precipitationUnit.getConvertedUnit(it)
-            }.roundUpToNearestMultiplier(step)
-        }
-
-        val modelProducer = remember { CartesianChartModelProducer() }
-
-        LaunchedEffect(location) {
-            modelProducer.runTransaction {
-                columnSeries {
-                    series(
-                        x = mappedValues.keys,
-                        y = mappedValues.values.map { precipitationUnit.getConvertedUnit(it) }
-                    )
-                }
+    LaunchedEffect(location) {
+        modelProducer.runTransaction {
+            columnSeries {
+                series(
+                    x = mappedValues.keys,
+                    y = mappedValues.values.map { precipitationUnit.getConvertedUnit(it) }
+                )
             }
         }
-
-        BreezyBarChart(
-            location,
-            modelProducer,
-            daily.date,
-            maxY,
-            { _, value, _ -> precipitationUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
-            Fill(Color(60, 116, 160).toArgb()),
-            /*persistentMapOf(
-                50 to Fill(Color(168, 168, 168).toArgb()),
-                31 to Fill(Color(161, 59, 161).toArgb()),
-                20 to Fill(Color(161, 59, 59).toArgb()),
-                15 to Fill(Color(161, 161, 59).toArgb()),
-                10 to Fill(Color(130, 161, 59).toArgb()),
-                8 to Fill(Color(59, 161, 61).toArgb()),
-                6 to Fill(Color(59, 161, 161).toArgb()),
-                0.6 to Fill(Color(60, 116, 160).toArgb()),
-                0.0 to Fill(Color(111, 111, 111).toArgb())
-            )*/
-            trendHorizontalLines = buildMap {
-                put(
-                    precipitationUnit.getConvertedUnit(Precipitation.PRECIPITATION_HOURLY_HEAVY),
-                    context.getString(R.string.precipitation_intensity_heavy)
-                )
-                if (maxY < precipitationUnit.getConvertedUnit(Precipitation.PRECIPITATION_HOURLY_HEAVY.times(2.0))) {
-                    put(
-                        precipitationUnit.getConvertedUnit(Precipitation.PRECIPITATION_HOURLY_MEDIUM),
-                        context.getString(R.string.precipitation_intensity_medium)
-                    )
-                    put(
-                        precipitationUnit.getConvertedUnit(Precipitation.PRECIPITATION_HOURLY_LIGHT),
-                        context.getString(R.string.precipitation_intensity_light)
-                    )
-                }
-            }.toImmutableMap(),
-            endAxisItemPlacer = remember {
-                VerticalAxis.ItemPlacer.step({ step })
-            },
-            markerVisibilityListener = markerVisibilityListener
-        )
-    } else {
-        UnavailableChart(mappedValues.size)
     }
+
+    BreezyBarChart(
+        location,
+        modelProducer,
+        daily.date,
+        maxY,
+        { _, value, _ -> precipitationUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
+        Fill(Color(60, 116, 160).toArgb()),
+        /*persistentMapOf(
+            50 to Fill(Color(168, 168, 168).toArgb()),
+            31 to Fill(Color(161, 59, 161).toArgb()),
+            20 to Fill(Color(161, 59, 59).toArgb()),
+            15 to Fill(Color(161, 161, 59).toArgb()),
+            10 to Fill(Color(130, 161, 59).toArgb()),
+            8 to Fill(Color(59, 161, 61).toArgb()),
+            6 to Fill(Color(59, 161, 161).toArgb()),
+            0.6 to Fill(Color(60, 116, 160).toArgb()),
+            0.0 to Fill(Color(111, 111, 111).toArgb())
+        )*/
+        trendHorizontalLines = buildMap {
+            put(
+                precipitationUnit.getConvertedUnit(Precipitation.PRECIPITATION_HOURLY_HEAVY),
+                context.getString(R.string.precipitation_intensity_heavy)
+            )
+            if (maxY < precipitationUnit.getConvertedUnit(Precipitation.PRECIPITATION_HOURLY_HEAVY.times(2.0))) {
+                put(
+                    precipitationUnit.getConvertedUnit(Precipitation.PRECIPITATION_HOURLY_MEDIUM),
+                    context.getString(R.string.precipitation_intensity_medium)
+                )
+                put(
+                    precipitationUnit.getConvertedUnit(Precipitation.PRECIPITATION_HOURLY_LIGHT),
+                    context.getString(R.string.precipitation_intensity_light)
+                )
+            }
+        }.toImmutableMap(),
+        endAxisItemPlacer = remember {
+            VerticalAxis.ItemPlacer.step({ step })
+        },
+        markerVisibilityListener = markerVisibilityListener
+    )
 }
 
 @Composable
@@ -438,6 +488,27 @@ fun DailyPrecipitationDetail(
 }
 
 @Composable
+fun PrecipitationProbabilityHeader(
+    location: Location,
+    daily: Daily,
+    activeItem: Pair<Date, Double>?,
+) {
+    val context = LocalContext.current
+
+    activeItem?.let {
+        PrecipitationProbabilityItem(
+            header = {
+                TextFixedHeight(
+                    text = it.first.getFormattedTime(location, context, context.is12Hour),
+                    style = MaterialTheme.typography.labelMedium
+                )
+            },
+            precipitationProbability = it.second
+        )
+    } ?: PrecipitationProbabilitySummary(daily.day?.precipitationProbability, daily.night?.precipitationProbability)
+}
+
+@Composable
 private fun PrecipitationProbabilityItem(
     header: @Composable () -> Unit,
     precipitationProbability: Double?,
@@ -496,81 +567,47 @@ internal fun PrecipitationProbabilityChart(
     location: Location,
     mappedValues: ImmutableMap<Long, Double>,
     daily: Daily,
+    markerVisibilityListener: CartesianMarkerVisibilityListener,
 ) {
     val context = LocalContext.current
 
-    var activeMarkerTarget: CartesianMarker.Target? by remember { mutableStateOf(null) }
-    val markerVisibilityListener = object : CartesianMarkerVisibilityListener {
-        override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
+    val maxY = 100.0
 
-        override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
-
-        override fun onHidden(marker: CartesianMarker) {
-            activeMarkerTarget = null
-        }
+    val endAxisValueFormatter = CartesianValueFormatter { _, value, _ ->
+        UnitUtils.formatPercent(context, value)
     }
 
-    activeMarkerTarget?.let {
-        mappedValues.getOrElse(it.x.toLong()) { null }?.let { precipitationProbability ->
-            PrecipitationProbabilityItem(
-                header = {
-                    TextFixedHeight(
-                        text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
-                        style = MaterialTheme.typography.labelMedium
-                    )
-                },
-                precipitationProbability = precipitationProbability
-            )
-        }
-    } ?: PrecipitationProbabilitySummary(daily.day?.precipitationProbability, daily.night?.precipitationProbability)
+    val modelProducer = remember { CartesianChartModelProducer() }
 
-    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
-
-    if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
-        val maxY = 100.0
-
-        val endAxisValueFormatter = CartesianValueFormatter { _, value, _ ->
-            UnitUtils.formatPercent(context, value)
-        }
-
-        val modelProducer = remember { CartesianChartModelProducer() }
-
-        LaunchedEffect(location) {
-            modelProducer.runTransaction {
-                lineSeries {
-                    series(
-                        x = mappedValues.keys,
-                        y = mappedValues.values
-                    )
-                }
+    LaunchedEffect(location) {
+        modelProducer.runTransaction {
+            lineSeries {
+                series(
+                    x = mappedValues.keys,
+                    y = mappedValues.values
+                )
             }
         }
-
-        BreezyLineChart(
-            location,
-            modelProducer,
-            daily.date,
-            maxY,
-            endAxisValueFormatter,
-            persistentListOf(
-                persistentMapOf(
-                    // TODO
-                    100f to Color(60, 116, 160),
-                    0f to Color(60, 116, 160)
-                )
-            ),
-            endAxisItemPlacer = remember {
-                VerticalAxis.ItemPlacer.step({ 20.0 }) // Every 20 %
-            },
-            markerVisibilityListener = markerVisibilityListener
-        )
-    } else {
-        UnavailableChart(mappedValues.size)
     }
+
+    BreezyLineChart(
+        location,
+        modelProducer,
+        daily.date,
+        maxY,
+        endAxisValueFormatter,
+        persistentListOf(
+            persistentMapOf(
+                // TODO
+                100f to Color(60, 116, 160),
+                0f to Color(60, 116, 160)
+            )
+        ),
+        endAxisItemPlacer = remember {
+            VerticalAxis.ItemPlacer.step({ 20.0 }) // Every 20 %
+        },
+        markerVisibilityListener = markerVisibilityListener
+    )
 }
 
 @Composable

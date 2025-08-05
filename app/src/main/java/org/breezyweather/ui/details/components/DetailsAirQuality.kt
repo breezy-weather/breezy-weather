@@ -133,7 +133,7 @@ fun DetailsAirQuality(
             .associate { it.date.time to it.airQuality!! }
             .toImmutableMap()
     }
-    var activeItem: Pair<Date, AirQuality>? by remember { mutableStateOf(defaultValue) }
+    var activeItem: Pair<Date, AirQuality>? by remember { mutableStateOf(null) }
     val markerVisibilityListener = remember {
         object : CartesianMarkerVisibilityListener {
             override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
@@ -141,7 +141,7 @@ fun DetailsAirQuality(
                     mappedValues.getOrElse(target.x.toLong()) { null }?.let {
                         Pair(target.x.toLong().toDate(), it)
                     }
-                } ?: defaultValue
+                }
             }
 
             override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
@@ -149,7 +149,7 @@ fun DetailsAirQuality(
             }
 
             override fun onHidden(marker: CartesianMarker) {
-                activeItem = defaultValue
+                activeItem = null
             }
         }
     }
@@ -218,7 +218,7 @@ fun DetailsAirQuality(
         )
     ) {
         item {
-            AirQualityHeader(location, daily, selectedPollutant, activeItem)
+            AirQualityHeader(location, daily, selectedPollutant, activeItem, defaultValue)
         }
         item {
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
@@ -334,20 +334,29 @@ private fun AirQualityHeader(
     daily: Daily,
     selectedPollutant: PollutantIndex?,
     activeItem: Pair<Date, AirQuality>?,
+    defaultValue: Pair<Date, AirQuality>?,
 ) {
     val context = LocalContext.current
 
-    activeItem?.let {
+    if (activeItem != null) {
         AirQualityItem(
-            header = it.first.getFormattedTime(location, context, context.is12Hour),
+            header = activeItem.first.getFormattedTime(location, context, context.is12Hour),
             selectedPollutant = selectedPollutant,
-            airQuality = it.second
+            airQuality = activeItem.second
         )
-    } ?: AirQualityItem(
-        header = stringResource(R.string.air_quality_average),
-        selectedPollutant = selectedPollutant,
-        airQuality = daily.airQuality
-    )
+    } else if (daily.airQuality?.isValid == true) {
+        AirQualityItem(
+            header = stringResource(R.string.air_quality_average),
+            selectedPollutant = selectedPollutant,
+            airQuality = daily.airQuality
+        )
+    } else {
+        AirQualityItem(
+            header = defaultValue?.first?.getFormattedTime(location, context, context.is12Hour),
+            selectedPollutant = selectedPollutant,
+            airQuality = defaultValue?.second
+        )
+    }
 }
 
 @Composable

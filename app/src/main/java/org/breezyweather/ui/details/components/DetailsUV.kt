@@ -59,10 +59,12 @@ import com.patrykandpatrick.vico.core.cartesian.data.lineSeries
 import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarker
 import com.patrykandpatrick.vico.core.cartesian.marker.CartesianMarkerVisibilityListener
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.ImmutableMap
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.appearance.DetailScreen.Companion.CHART_MIN_COUNT
+import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -72,6 +74,7 @@ import org.breezyweather.domain.weather.model.getUVColor
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
+import java.util.Date
 import kotlin.math.max
 import kotlin.math.roundToInt
 
@@ -80,12 +83,34 @@ fun DetailsUV(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
+    defaultValue: Pair<Date, UV>?,
     modifier: Modifier = Modifier,
 ) {
-    val hourlyNoMissingValuesSize = remember(hourlyList) {
+    val mappedValues = remember(hourlyList) {
         hourlyList
             .filter { it.uV?.isValid == true }
-            .size
+            .associate { it.date.time to it.uV!! }
+            .toImmutableMap()
+    }
+    var activeItem: Pair<Date, UV>? by remember { mutableStateOf(null) }
+    val markerVisibilityListener = remember {
+        object : CartesianMarkerVisibilityListener {
+            override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                activeItem = targets.firstOrNull()?.let { target ->
+                    mappedValues.getOrElse(target.x.toLong()) { null }?.let {
+                        Pair(target.x.toLong().toDate(), it)
+                    }
+                }
+            }
+
+            override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
+                onShown(marker, targets)
+            }
+
+            override fun onHidden(marker: CartesianMarker) {
+                activeItem = null
+            }
+        }
     }
 
     LazyColumn(
@@ -95,18 +120,19 @@ fun DetailsUV(
             vertical = dimensionResource(R.dimen.small_margin)
         )
     ) {
-        if (hourlyNoMissingValuesSize >= CHART_MIN_COUNT) {
+        item {
+            UVHeader(location, daily, activeItem, defaultValue)
+        }
+        item {
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+        }
+        if (mappedValues.size >= DetailScreen.CHART_MIN_COUNT) {
             item {
-                UVChart(location, hourlyList, daily)
+                UVChart(location, mappedValues, daily, markerVisibilityListener)
             }
         } else {
-            if (daily.uV?.isValid == true) {
-                item {
-                    UVSummary(daily.uV!!)
-                }
-            }
             item {
-                UnavailableChart(hourlyNoMissingValuesSize)
+                UnavailableChart(mappedValues.size)
             }
         }
         /*if (dayUV?.isValid == true) {
@@ -136,9 +162,36 @@ fun DetailsUV(
 }
 
 @Composable
+fun UVHeader(
+    location: Location,
+    daily: Daily,
+    activeItem: Pair<Date, UV>?,
+    defaultValue: Pair<Date, UV>?,
+) {
+    val context = LocalContext.current
+
+    if (activeItem != null) {
+        UVItem(
+            header = activeItem.first.getFormattedTime(location, context, context.is12Hour),
+            uV = activeItem.second
+        )
+    } else if (daily.uV?.isValid == true) {
+        UVItem(
+            header = stringResource(R.string.uv_index_maximum_value),
+            uV = daily.uV
+        )
+    } else {
+        UVItem(
+            header = defaultValue?.first?.getFormattedTime(location, context, context.is12Hour),
+            uV = defaultValue?.second
+        )
+    }
+}
+
+@Composable
 private fun UVItem(
-    uv: UV,
-    header: @Composable () -> Unit,
+    header: String?,
+    uV: UV?,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
@@ -153,17 +206,20 @@ private fun UVItem(
                 .size(dimensionResource(R.dimen.material_icon_size)),
             painter = painterResource(R.drawable.ic_circle),
             contentDescription = null,
-            tint = Color(uv.getUVColor(context))
+            tint = uV?.getUVColor(context)?.let { Color(it) } ?: Color.Transparent
         )
         Column {
-            header()
+            TextFixedHeight(
+                text = header ?: "",
+                style = MaterialTheme.typography.labelMedium
+            )
             TextFixedHeight(
                 text = buildAnnotatedString {
-                    uv.index?.let {
+                    uV?.index?.let {
                         append(UnitUtils.formatDouble(context, it, 1))
                         append(" ")
                     }
-                    uv.getLevel(context)?.let {
+                    uV?.getLevel(context)?.let {
                         withStyle(
                             style = SpanStyle(
                                 fontSize = MaterialTheme.typography.headlineSmall.fontSize,
@@ -181,64 +237,19 @@ private fun UVItem(
 }
 
 @Composable
-private fun UVSummary(
-    dayUV: UV,
-) {
-    UVItem(
-        uv = dayUV,
-        header = {
-            TextFixedHeight(
-                text = stringResource(R.string.uv_index_maximum_value),
-                style = MaterialTheme.typography.labelMedium
-            )
-        }
-    )
-}
-
-@Composable
 private fun UVChart(
     location: Location,
-    hourlyList: ImmutableList<Hourly>,
+    mappedValues: ImmutableMap<Long, UV>,
     daily: Daily,
+    markerVisibilityListener: CartesianMarkerVisibilityListener,
 ) {
     val context = LocalContext.current
 
-    var activeMarkerTarget: CartesianMarker.Target? by remember { mutableStateOf(null) }
-    val markerVisibilityListener = object : CartesianMarkerVisibilityListener {
-        override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
-
-        override fun onUpdated(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
-            activeMarkerTarget = targets.firstOrNull()
-        }
-
-        override fun onHidden(marker: CartesianMarker) {
-            activeMarkerTarget = null
-        }
-    }
-
-    activeMarkerTarget?.let {
-        hourlyList.firstOrNull { h -> h.date.time == it.x.toLong() }?.uV?.let { uv ->
-            UVItem(
-                header = {
-                    TextFixedHeight(
-                        text = it.x.toLong().toDate().getFormattedTime(location, context, context.is12Hour),
-                        style = MaterialTheme.typography.labelMedium
-                    )
-                },
-                uv = uv
-            )
-        }
-    } ?: daily.uV?.let { if (it.isValid) UVSummary(it) }
-
-    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
-
-    val maxY = remember(hourlyList) {
+    val maxY = remember(mappedValues) {
         max(
             UV.UV_INDEX_HIGH,
             // TODO: Make this a const:
-            (hourlyList.maxOfOrNull { it.uV?.index ?: 0.0 } ?: 0.0).roundToInt().plus(1.0)
+            (mappedValues.values.maxOfOrNull { it.index ?: 0.0 } ?: 0.0).roundToInt().plus(1.0)
         )
     }
 
@@ -248,12 +259,8 @@ private fun UVChart(
         modelProducer.runTransaction {
             lineSeries {
                 series(
-                    x = hourlyList.map {
-                        it.date.time
-                    },
-                    y = hourlyList.map {
-                        it.uV?.index ?: 0
-                    }
+                    x = mappedValues.keys,
+                    y = mappedValues.values.map { it.index ?: 0 }
                 )
             }
         }
@@ -277,7 +284,7 @@ private fun UVChart(
             )
         ),
         topAxisValueFormatter = { _, value, _ ->
-            hourlyList.firstOrNull { it.date.time == value.toLong() }?.uV?.index?.roundToInt()
+            mappedValues.getOrElse(value.toLong()) { null }?.index?.roundToInt()
                 ?.let { UnitUtils.formatInt(context, it) }
                 ?: "-"
         },
