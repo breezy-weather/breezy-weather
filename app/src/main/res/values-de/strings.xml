@@ -846,4 +846,6 @@
     <string name="cloud_cover_from_to_number">%1$s bis %2$s</string>
     <string name="cloud_cover_from_to_description">%1$s bis %2$s</string>
     <string name="common_weather_text_mostly_cloudy">Stark bewölkt</string>
+    <string name="visibility_scale">Sichtbarkeitsskala</string>
+    <string name="cloud_cover_scale">Wolkenbedeckungsskala</string>
 </resources>
