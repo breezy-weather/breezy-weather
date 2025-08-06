@@ -141,7 +141,7 @@ Pull requests are welcome. You can have a look at [issues opened to contribution
 
 ## Features currently being worked on by a contributor
 
-- [#863](https://github.com/breezy-weather/breezy-weather/issues/863) - Make Breezy weather data available through a ContentProvider
+- [Announcement](https://github.com/breezy-weather/breezy-weather/discussions/2089) - Make Breezy weather data available through a ContentProvider. Currently in testing phase
 
 ## Features lacking an active contributor
 
