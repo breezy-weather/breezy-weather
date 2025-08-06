@@ -851,4 +851,6 @@
     <string name="common_weather_text_mostly_cloudy">Převážně zataženo</string>
     <string name="visibility_scale">Stupnice viditelnosti</string>
     <string name="cloud_cover_scale">Stupnice oblačnosti</string>
+    <string name="content_provider_permission_label">Číst data Breezy Weather</string>
+    <string name="content_provider_permission_description">získat informace o počasí z Breezy Weather, včetně souřadnic vašich umístění, jako je vaše aktuální umístění, pokud jste jej přidali</string>
 </resources>
