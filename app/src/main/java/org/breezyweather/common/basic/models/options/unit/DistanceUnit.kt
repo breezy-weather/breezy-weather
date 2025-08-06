@@ -138,6 +138,10 @@ enum class DistanceUnit(
         fun validateValue(distance: Double?): Double? {
             return distance?.let { if (it >= 0.0) it else null }
         }
+
+        fun getUnit(id: String): DistanceUnit? {
+            return DistanceUnit.entries.firstOrNull { it.id == id }
+        }
     }
 
     override val valueArrayId = R.array.distance_unit_values

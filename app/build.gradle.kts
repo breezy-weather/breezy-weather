@@ -271,6 +271,7 @@ dependencies {
     implementation(projects.domain)
     implementation(projects.mapsUtils)
     implementation(projects.uiWeatherView)
+    implementation(libs.breezy.datasharing.lib)
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)

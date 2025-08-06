@@ -41,6 +41,14 @@
     <!-- weather update in background -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
+    <!-- Data sharing -->
+    <permission
+        android:description="@string/content_provider_permission_description"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:label="@string/content_provider_permission_label"
+        android:name="${applicationId}.READ_PROVIDER"
+        android:protectionLevel="dangerous" />
+
     <uses-feature
         android:name="android.software.live_wallpaper"
         android:required="false" />
@@ -525,6 +533,12 @@
             android:name="androidx.work.impl.foreground.SystemForegroundService"
             android:foregroundServiceType="dataSync|shortService"
             tools:node="merge" />
+
+        <provider
+            android:name=".background.provider.WeatherContentProvider"
+            android:authorities="${applicationId}.provider.weather"
+            android:exported="true"
+            android:readPermission="${applicationId}.READ_PROVIDER" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

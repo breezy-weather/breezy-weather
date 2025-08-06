@@ -826,6 +826,11 @@
     <string name="unit_mum_voice">Micromètres</string>
     <string name="notification_channel_alerts">Vigilances</string>
     <string name="about_matrix">Salon Matrix</string>
+
+    <!-- Content provider -->
+    <string name="content_provider_permission_label">Lire les données de Breezy Weather</string>
+    <string name="content_provider_permission_description">obtenir les informations météo de Breezy Weather, y compris les coordonnées de vos emplacements, tels que votre emplacement actuel si vous l’avez ajouté</string>
+
     <string name="null_data_text">N/A</string>
     <string name="colon_separator">\u0020:\u0020</string>
     <string name="notification_update_error">%d mise(s) à jour en échec</string>

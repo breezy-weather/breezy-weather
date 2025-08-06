@@ -98,6 +98,10 @@ enum class PrecipitationUnit(
         fun validateValue(precipitation: Double?): Double? {
             return precipitation?.let { if (it in 0.0..10000.0) it else null }
         }
+
+        fun getUnit(id: String): PrecipitationUnit? {
+            return PrecipitationUnit.entries.firstOrNull { it.id == id }
+        }
     }
 
     override val valueArrayId = R.array.precipitation_unit_values
@@ -218,6 +222,10 @@ enum class PrecipitationIntensityUnit(
             return minutely.copy(
                 precipitationIntensity = validateValue(minutely.precipitationIntensity)
             )
+        }
+
+        fun getUnit(id: String): PrecipitationIntensityUnit? {
+            return PrecipitationIntensityUnit.entries.firstOrNull { it.id == id }
         }
     }
 

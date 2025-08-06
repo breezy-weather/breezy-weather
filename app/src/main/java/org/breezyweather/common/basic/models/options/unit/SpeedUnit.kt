@@ -169,6 +169,10 @@ enum class SpeedUnit(
                 gusts = SpeedUnit.validateValue(wind.gusts)
             )
         }
+
+        fun getUnit(id: String): SpeedUnit? {
+            return SpeedUnit.entries.firstOrNull { it.id == id }
+        }
     }
 
     override val valueArrayId = R.array.speed_unit_values
