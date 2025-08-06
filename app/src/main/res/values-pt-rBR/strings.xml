@@ -896,4 +896,6 @@
     <string name="cloud_cover_from_to_number">%1$s à %2$s</string>
     <string name="common_weather_text_mostly_cloudy">Majoritariamente nublado</string>
     <string name="cloud_cover_from_to_description">Entre %1$s e %2$s</string>
+    <string name="visibility_scale">Escala de visibilidade</string>
+    <string name="cloud_cover_scale">Escala de nebulosidade</string>
 </resources>
