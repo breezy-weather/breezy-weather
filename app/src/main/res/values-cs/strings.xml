@@ -849,4 +849,6 @@
     <string name="cloud_cover_from_to_number">%1$s až %2$s</string>
     <string name="cloud_cover_from_to_description">%1$s až %2$s</string>
     <string name="common_weather_text_mostly_cloudy">Převážně zataženo</string>
+    <string name="visibility_scale">Stupnice viditelnosti</string>
+    <string name="cloud_cover_scale">Stupnice oblačnosti</string>
 </resources>
