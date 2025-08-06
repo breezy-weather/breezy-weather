@@ -20,6 +20,7 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
@@ -35,6 +36,7 @@ import org.breezyweather.domain.weather.model.getTrendTemperature
 import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
+import kotlin.math.roundToInt
 
 object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
 
@@ -173,6 +175,14 @@ object MultiCityWidgetIMP : AbstractRemoteViewsPresenter() {
                     TypedValue.COMPLEX_UNIT_PX,
                     contentSize
                 )
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    setInt(R.id.widget_multi_city_horizontal_title_1, "setLineHeight", titleSize.roundToInt())
+                    setInt(R.id.widget_multi_city_horizontal_title_2, "setLineHeight", titleSize.roundToInt())
+                    setInt(R.id.widget_multi_city_horizontal_title_3, "setLineHeight", titleSize.roundToInt())
+                    setInt(R.id.widget_multi_city_horizontal_content_1, "setLineHeight", contentSize.roundToInt())
+                    setInt(R.id.widget_multi_city_horizontal_content_2, "setLineHeight", contentSize.roundToInt())
+                    setInt(R.id.widget_multi_city_horizontal_content_3, "setLineHeight", contentSize.roundToInt())
+                }
             }
         }
         if (color.showCard) {

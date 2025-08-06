@@ -40,6 +40,7 @@
                 android:textSize="@dimen/widget_content_text_size"
                 android:textAlignment="viewEnd"
                 android:maxLines="2"
+                android:ellipsize="end"
                 style="@style/widget_content_text"
                 tools:text="San Francisco\n21 °C"
                 tools:ignore="RtlHardcoded" />
@@ -51,6 +52,7 @@
                 android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="2"
+                android:ellipsize="end"
                 style="@style/widget_content_text"
                 tools:text="Partly cloudy\n23°/17°"
                 tools:ignore="RtlHardcoded" />

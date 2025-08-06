@@ -17,13 +17,14 @@
 - Details - Pressure/Visibility - Fix sometimes wrong daily value
 - Details - Fallback to current value on Today screen when daily value is missing
 - Alerts - Add “Translate” and “Share” to text select actions
-- Widgets - Improve UX of custom subtitle documentation (@codewithdipesh)
 - Nowcasting chart/Precipitation notification - Fix slightly wrong ending time of precipitation report
 - Settings - Improve the location-based dark mode preference to make it easier to understand
 - Sources - Add a “Recommended” section to the Source selection screen
 - Refresh - Add an error when air quality forecast times don’t match hourly forecast times (observed in India, for example)
 - Refresh - Ensure range of (almost) all values provided by sources, so you no longer have to freak out when seeing -999° with PirateWeather or 1015° with Meteo AM
 - Data sharing - Fix crash when sending too many locations (will now retry with less locations)
+- Widgets - Improve UX of custom subtitle documentation (@codewithdipesh)
+- Widgets - Improve line height on many widgets
 - Widgets - Weekly - Spread day/night temperatures on 2 lines if necessary
 - Widgets - Minor fixes
 

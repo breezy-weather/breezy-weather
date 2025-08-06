@@ -50,6 +50,7 @@ import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import java.util.Date
+import kotlin.math.roundToInt
 
 object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
 
@@ -361,6 +362,18 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
                     TypedValue.COMPLEX_UNIT_PX,
                     getTimeSize(context, viewStyle).times(textSize).div(100f)
                 )
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    setInt(
+                        R.id.widget_clock_day_title,
+                        "setLineHeight",
+                        getTitleSize(context, viewStyle).times(textSize).div(100f).roundToInt()
+                    )
+                    setInt(
+                        R.id.widget_clock_day_subtitle,
+                        "setLineHeight",
+                        getSubtitleSize(context, viewStyle).times(textSize).div(100f).roundToInt()
+                    )
+                }
             }
         }
         views.setViewVisibility(R.id.widget_clock_day_time, if (hideSubtitle) View.GONE else View.VISIBLE)

@@ -4,7 +4,7 @@
     android:id="@+id/widget_clock_day"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@android:color/darker_gray">
+    tools:background="@android:color/white">
 
     <LinearLayout
         android:id="@+id/widget_clock_day_weather"
@@ -184,12 +184,14 @@
                 android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="2"
+                android:ellipsize="end"
                 android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 style="@style/widget_content_text"
                 tools:text="Partly cloudy\n21 °C"
+                tools:textSize="40sp"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -199,13 +201,14 @@
                 android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="2"
+                android:ellipsize="end"
                 android:textAlignment="viewEnd"
                 android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="1"
                 style="@style/widget_content_text"
-                tools:text="              23°\n              17°"
+                tools:text="23°\n17°"
                 tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>

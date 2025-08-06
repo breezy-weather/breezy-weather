@@ -4,7 +4,7 @@
     android:id="@+id/widget_clock_day"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@android:color/black">
+    tools:background="@android:color/white">
 
     <LinearLayout
         android:id="@+id/widget_clock_day_weather"
@@ -185,6 +185,7 @@
                 android:textSize="@dimen/widget_content_text_size"
                 android:textAlignment="viewEnd"
                 android:maxLines="2"
+                android:ellipsize="end"
                 android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
@@ -200,6 +201,7 @@
                 android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
                 android:maxLines="2"
+                android:ellipsize="end"
                 android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
