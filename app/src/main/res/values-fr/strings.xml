@@ -55,6 +55,7 @@
     <string name="visibility_short">Visibilité</string>
     <string name="visibility_about">À propos de la visibilité</string>
     <string name="visibility_about_description">La visibilité indique la distance à laquelle des objets tels que des bâtiments et des collines peuvent être clairement distingués. Elle peut être affectée par les précipitations, le brouillard, la poussière, la fumée ou la brume.</string>
+    <string name="visibility_scale">Échelle de visibilité</string>
     <!-- 10 to 20 km, %1$s = 10, %2$s = 20 km -->
     <string name="visibility_from_to_number">%1$s à %2$s</string>
     <!-- Clear to Perfectly clear, %1$s = Clear, %2$s = Perfectly clear -->
@@ -73,6 +74,7 @@
     <string name="cloud_cover_from_to_number">%1$s à %2$s</string>
     <!-- Partly cloudy to Clear, %1$s = Partly cloudy, %2$s = Cloudy -->
     <string name="cloud_cover_from_to_description">%1$s à %2$s</string>
+    <string name="cloud_cover_scale">Échelle de couverture nuageuse</string>
     <string name="ceiling">Plafond nuageux</string>
     <string name="ceiling_short">Plafond</string>
     <string name="settings_icon_packs_get_more">Voir plus</string>

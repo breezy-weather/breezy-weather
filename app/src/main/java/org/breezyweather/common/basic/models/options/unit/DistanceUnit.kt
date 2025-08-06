@@ -100,6 +100,15 @@ enum class DistanceUnit(
             else -> KILOMETER
         }
 
+        val visibilityScaleThresholds = listOf(
+            0.0,
+            VISIBILITY_VERY_POOR,
+            VISIBILITY_POOR,
+            VISIBILITY_MODERATE,
+            VISIBILITY_GOOD,
+            VISIBILITY_CLEAR
+        )
+
         /**
          * Source: https://weather.metoffice.gov.uk/guides/what-does-this-forecast-mean
          */

@@ -16,20 +16,25 @@
 
 package org.breezyweather.ui.details.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -38,6 +43,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Daily
 import breezyweather.domain.weather.model.Hourly
@@ -56,6 +63,7 @@ import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
+import org.breezyweather.common.basic.models.options.unit.cloudCoverScaleThresholds
 import org.breezyweather.common.basic.models.options.unit.getCloudCoverDescription
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
@@ -64,8 +72,10 @@ import org.breezyweather.domain.weather.model.getFullLabel
 import org.breezyweather.domain.weather.model.getRangeDescriptionSummary
 import org.breezyweather.domain.weather.model.getRangeSummary
 import org.breezyweather.ui.common.charts.BreezyLineChart
+import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
 import java.util.Date
+import kotlin.math.roundToInt
 
 @Composable
 fun DetailsCloudCover(
@@ -150,6 +160,15 @@ fun DetailsCloudCover(
         }
         item {
             DetailsCardText(stringResource(R.string.cloud_cover_about_description))
+        }
+        item {
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.normal_margin)))
+        }
+        item {
+            DetailsSectionHeader(stringResource(R.string.cloud_cover_scale))
+        }
+        item {
+            CloudCoverScale()
         }
         bottomInsetItem()
     }
@@ -299,4 +318,68 @@ fun SunshineItem(
                     DurationUnit.HOUR.formatContentDescription(context, sunshineDuration)
             }
     )
+}
+
+// TODO: Accessibility
+@Composable
+fun CloudCoverScale(
+    modifier: Modifier = Modifier,
+) {
+    val context = LocalContext.current
+
+    Material3ExpressiveCardListItem(
+        modifier = modifier,
+        isFirst = true,
+        isLast = true
+    ) {
+        Column(
+            modifier = Modifier.padding(
+                horizontal = dimensionResource(R.dimen.normal_margin),
+                vertical = dimensionResource(R.dimen.small_margin)
+            )
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    stringResource(R.string.wind_strength_scale_description),
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.weight(1.5f)
+                )
+                Text(
+                    "%",
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.End,
+                    modifier = Modifier.weight(1f)
+                )
+            }
+            cloudCoverScaleThresholds.dropLast(1).forEachIndexed { index, startingValue ->
+                val startingValueFormatted = UnitUtils.formatNumber(context, startingValue, precision = 1)
+                val endingValueFormatted = cloudCoverScaleThresholds.getOrElse(index + 1) { null }
+                    ?.let {
+                        " – ${UnitUtils.formatNumber(context, it, precision = 1)}"
+                    }
+                    ?: "+"
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_margin)),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = dimensionResource(R.dimen.small_margin))
+                ) {
+                    Text(
+                        text = getCloudCoverDescription(context, (startingValue + 0.1).roundToInt())!!,
+                        modifier = Modifier.weight(1.5f)
+                    )
+                    Text(
+                        text = "$startingValueFormatted$endingValueFormatted",
+                        textAlign = TextAlign.End,
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+            }
+        }
+    }
 }

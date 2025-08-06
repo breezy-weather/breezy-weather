@@ -360,6 +360,7 @@
     <string name="visibility_short">Visibility</string>
     <string name="visibility_about">About visibility</string>
     <string name="visibility_about_description">Visibility tells you how far away you can clearly see objects like buildings and hills. Visibility can be affected by precipitation, fog, dust, smoke or haze.</string>
+    <string name="visibility_scale">Visibility scale</string>
     <!-- 10 to 20 km, %1$s = 10, %2$s = 20 km -->
     <string name="visibility_from_to_number">%1$s to %2$s</string>
     <!-- Clear to Perfectly clear, %1$s = Clear, %2$s = Perfectly clear -->
@@ -379,6 +380,7 @@
     <string name="cloud_cover_from_to_number">%1$s to %2$s</string>
     <!-- Partly cloudy to Clear, %1$s = Partly cloudy, %2$s = Cloudy -->
     <string name="cloud_cover_from_to_description">%1$s to %2$s</string>
+    <string name="cloud_cover_scale">Cloud cover scale</string>
     <string name="ceiling">Ceiling</string>
     <!-- 10 characters max version of ceiling to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
     <string name="ceiling_short">Ceiling</string>

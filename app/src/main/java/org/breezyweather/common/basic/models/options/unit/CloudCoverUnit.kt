@@ -42,6 +42,15 @@ fun getCloudCoverDescription(context: Context, cloudCover: Int?): String? {
     }
 }
 
+val cloudCoverScaleThresholds = listOf(
+    0.0,
+    CLOUD_COVER_SKC,
+    CLOUD_COVER_FEW,
+    CLOUD_COVER_SCT,
+    CLOUD_COVER_BKN,
+    CLOUD_COVER_OVC
+)
+
 /**
  * Source: WMO Cloud distribution for aviation
  */
