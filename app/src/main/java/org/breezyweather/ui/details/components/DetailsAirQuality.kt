@@ -277,7 +277,13 @@ fun DetailsAirQuality(
                     item {
                         DetailsSectionHeader(
                             buildAnnotatedString { append(stringResource(R.string.air_quality_pollutant_primary)) },
-                            UnitUtils.formatPollutantName(it.pollutantType.getFullName(context))
+                            if (it.pollutantType != PollutantIndex.PM10 && it.pollutantType != PollutantIndex.PM25) {
+                                UnitUtils.formatPollutantName(it.pollutantType.getFullName(context))
+                            } else {
+                                buildAnnotatedString {
+                                    append(it.pollutantType.getFullName(context))
+                                }
+                            }
                         )
                     }
                     item {
