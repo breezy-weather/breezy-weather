@@ -24,6 +24,8 @@
 - Refresh - Add an error when air quality forecast times don’t match hourly forecast times (observed in India, for example)
 - Refresh - Ensure range of (almost) all values provided by sources, so you no longer have to freak out when seeing -999° with PirateWeather or 1015° with Meteo AM
 - Data sharing - Fix crash when sending too many locations (will now retry with less locations)
+- Widgets - Weekly - Spread day/night temperatures on 2 lines if necessary
+- Widgets - Minor fixes
 
 **Weather sources**
 - [AccuWeather] Restrict pollen to USA, Canada and Europe as it’s only available there (@chunshek)

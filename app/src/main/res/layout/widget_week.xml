@@ -4,7 +4,7 @@
     android:id="@+id/widget_week"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@android:color/black">
+    tools:background="@android:color/darker_gray">
 
     <LinearLayout
         android:id="@+id/widget_week_weather"
@@ -49,7 +49,7 @@
                 android:id="@+id/widget_week_temp_1"
                 android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
@@ -96,7 +96,7 @@
                 android:id="@+id/widget_week_temp_2"
                 android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
@@ -143,7 +143,7 @@
                 android:id="@+id/widget_week_temp_3"
                 android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
@@ -190,7 +190,7 @@
                 android:id="@+id/widget_week_temp_4"
                 android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
@@ -238,7 +238,7 @@
                 android:id="@+id/widget_week_temp_5"
                 android:text="@string/widget_ellipsis"
                 android:textSize="@dimen/widget_content_text_size"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:shadowColor="@color/colorWidgetTextShadow"
                 android:shadowDx="1"
                 android:shadowDy="1"
