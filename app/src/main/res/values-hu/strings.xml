@@ -837,4 +837,6 @@
     <string name="cloud_cover_from_to_number">%1$s - %2$s</string>
     <string name="cloud_cover_from_to_description">%1$s - %2$s</string>
     <string name="common_weather_text_mostly_cloudy">Többnyire felhős</string>
+    <string name="visibility_scale">Látótávolság-skála</string>
+    <string name="cloud_cover_scale">Felhőtakaró-skála</string>
 </resources>
