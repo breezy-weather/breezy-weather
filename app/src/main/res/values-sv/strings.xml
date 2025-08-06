@@ -833,4 +833,7 @@
     <string name="cloud_cover_from_to_number">%1$s till %2$s</string>
     <string name="dew_point_from_to_number">%1$s till %2$s</string>
     <string name="humidity_from_to_number">%1$s till %2$s</string>
+    <string name="visibility_scale">Siktskala</string>
+    <string name="cloud_cover_scale">Molntäckesskala</string>
+    <string name="content_provider_permission_label">Läsa Breezy Weather-data</string>
 </resources>
