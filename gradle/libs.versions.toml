@@ -5,6 +5,7 @@ activity = "1.10.1"
 adaptiveiconview = "v0.0.3"
 agp = "8.12.0"
 appcompat = "1.7.1"
+breezy-datasharing-lib = "f8de782425422a896fc8e01b6e925cef9ed5c306"
 cardview = "1.0.0"
 compose-bom = "2025.07.00"
 compose-material3 = "1.5.0-alpha01"
@@ -57,6 +58,7 @@ accompanist-permissions = { group = "com.google.accompanist", name = "accompanis
 adaptiveiconview = { group = "com.github.breezy-weather", name = "AdaptiveIconView", version.ref = "adaptiveiconview" }
 android-gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+breezy-datasharing-lib = { group = "com.github.breezy-weather", name = "breezy-weather-data-sharing-lib", version.ref = "breezy-datasharing-lib" }
 cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 compose-animation = { group = "androidx.compose.animation", name = "animation" }
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
