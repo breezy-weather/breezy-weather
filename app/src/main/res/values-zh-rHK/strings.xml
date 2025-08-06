@@ -908,4 +908,6 @@
     <string name="cloud_cover_from_to_number">%1$s 至 %2$s</string>
     <string name="cloud_cover_from_to_description">%1$s 至 %2$s</string>
     <string name="common_weather_text_mostly_cloudy">大致多雲</string>
+    <string name="visibility_scale">能見度等級</string>
+    <string name="cloud_cover_scale">雲量等級</string>
 </resources>
