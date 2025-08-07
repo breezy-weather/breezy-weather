@@ -99,7 +99,7 @@ internal fun getDailyForecast(
                 it.dateDay1,
                 it.conditionDay1,
                 it.maxTempDay1,
-                it.minTempDay1,
+                it.minTempDay2, // Temperature of the night forward
                 it.windDirectionDay1,
                 it.windSpeedDay1
             )
@@ -110,7 +110,7 @@ internal fun getDailyForecast(
                 it.dateDay2,
                 it.conditionDay2,
                 it.maxTempDay2,
-                it.minTempDay2,
+                it.minTempDay3,
                 it.windDirectionDay2,
                 it.windSpeedDay2
             )
@@ -121,7 +121,7 @@ internal fun getDailyForecast(
                 it.dateDay3,
                 it.conditionDay3,
                 it.maxTempDay3,
-                it.minTempDay3,
+                it.minTempDay4,
                 it.windDirectionDay3,
                 it.windSpeedDay3
             )
@@ -132,7 +132,7 @@ internal fun getDailyForecast(
                 it.dateDay4,
                 it.conditionDay4,
                 it.maxTempDay4,
-                it.minTempDay4,
+                it.minTempDay5,
                 it.windDirectionDay4,
                 it.windSpeedDay4
             )
@@ -143,7 +143,7 @@ internal fun getDailyForecast(
                 it.dateDay5,
                 it.conditionDay5,
                 it.maxTempDay5,
-                it.minTempDay5,
+                null,
                 it.windDirectionDay5,
                 it.windSpeedDay5
             )
@@ -240,7 +240,7 @@ private fun getDaily(
     date: String,
     condition: String?,
     maxTemp: Double?,
-    minTemp: Double?,
+    nextDayMinTemp: Double?,
     windDirection: Double?,
     windSpeed: Double?,
 ): DailyWrapper {
@@ -252,9 +252,7 @@ private fun getDaily(
         day = HalfDayWrapper(
             weatherText = getWeatherText(context, condition),
             weatherCode = getWeatherCode(condition),
-            temperature = TemperatureWrapper(
-                temperature = maxTemp
-            ),
+            temperature = maxTemp?.let { TemperatureWrapper(temperature = it) },
             wind = Wind(
                 degree = windDirection,
                 speed = windSpeed?.div(3.6)
@@ -263,9 +261,7 @@ private fun getDaily(
         night = HalfDayWrapper(
             weatherText = getWeatherText(context, condition),
             weatherCode = getWeatherCode(condition),
-            temperature = TemperatureWrapper(
-                temperature = minTemp
-            ),
+            temperature = nextDayMinTemp?.let { TemperatureWrapper(temperature = it) },
             wind = Wind(
                 degree = windDirection,
                 speed = windSpeed?.div(3.6)
