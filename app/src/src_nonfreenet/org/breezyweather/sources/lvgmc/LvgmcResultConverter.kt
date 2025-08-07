@@ -127,8 +127,11 @@ internal fun getCurrent(
         throw InvalidLocationException()
     }
 
-    return currentResult.filter { it.stationCode == currentLocation }
-        .sortedByDescending { it.time }.firstOrNull()?.let {
+    return currentResult
+        .filter { it.stationCode == currentLocation }
+        .sortedByDescending { it.time }
+        .firstOrNull()
+        ?.let {
             CurrentWrapper(
                 temperature = TemperatureWrapper(
                     it.temperature?.toDoubleOrNull()
@@ -159,9 +162,10 @@ internal fun getDailyForecast(
     val nightParts = mutableMapOf<Long, HalfDayWrapper>()
     val uviMap = mutableMapOf<Long, Double?>()
     var time: Long
-    dailyResult.forEach {
-        if (it.time != null && Regex("""^\d{12}$""").matches(it.time)) {
-            if (it.time.substring(8, 10) == "00") {
+    dailyResult
+        .filter { it.time != null && Regex("""^\d{12}$""").matches(it.time) }
+        .forEach {
+            if (it.time!!.substring(8, 10) == "00") {
                 // night part of previous day:
                 // Subtracting 23 hours will keep it within the previous day
                 // during daylight saving time switchover
@@ -203,7 +207,6 @@ internal fun getDailyForecast(
                 uviMap[time] = it.uvIndex?.toDoubleOrNull()
             }
         }
-    }
     nightParts.keys.sorted().forEach { key ->
         dailyList.add(
             DailyWrapper(
@@ -235,44 +238,41 @@ internal fun getHourlyForecast(
     context: Context,
     hourlyResult: List<LvgmcForecastResult>,
 ): List<HourlyWrapper> {
-    val hourlyList = mutableListOf<HourlyWrapper>()
     val formatter = SimpleDateFormat("yyyyMMddHHmm", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Europe/Riga")
-    hourlyResult.forEach {
-        if (it.time != null && Regex("""^\d{12}$""").matches(it.time)) {
-            hourlyList.add(
-                HourlyWrapper(
-                    date = formatter.parse(it.time)!!,
-                    weatherText = getWeatherText(context, it.icon),
-                    weatherCode = getWeatherCode(it.icon),
-                    temperature = TemperatureWrapper(
-                        temperature = it.temperature?.toDoubleOrNull(),
-                        feelsLike = it.apparentTemperature?.toDoubleOrNull()
-                    ),
-                    precipitation = Precipitation(
-                        total = it.precipitation1h?.toDoubleOrNull(),
-                        snow = it.snow?.toDoubleOrNull()
-                    ),
-                    precipitationProbability = PrecipitationProbability(
-                        total = it.precipitationProbability?.toDoubleOrNull(),
-                        thunderstorm = it.thunderstormProbability?.toDoubleOrNull()
-                    ),
-                    wind = Wind(
-                        degree = it.windDirection?.toDoubleOrNull(),
-                        speed = it.windSpeed?.toDoubleOrNull(),
-                        gusts = it.windGusts?.toDoubleOrNull()
-                    ),
-                    uV = UV(
-                        index = it.uvIndex?.toDoubleOrNull()
-                    ),
-                    relativeHumidity = it.relativeHumidity?.toDoubleOrNull(),
-                    pressure = it.pressure?.toDoubleOrNull(),
-                    cloudCover = it.cloudCover?.toIntOrNull()
-                )
+
+    return hourlyResult
+        .filter { it.time != null && Regex("""^\d{12}$""").matches(it.time)) }
+        .map {
+            HourlyWrapper(
+                date = formatter.parse(it.time!!)!!,
+                weatherText = getWeatherText(context, it.icon),
+                weatherCode = getWeatherCode(it.icon),
+                temperature = TemperatureWrapper(
+                    temperature = it.temperature?.toDoubleOrNull(),
+                    feelsLike = it.apparentTemperature?.toDoubleOrNull()
+                ),
+                precipitation = Precipitation(
+                    total = it.precipitation1h?.toDoubleOrNull(),
+                    snow = it.snow?.toDoubleOrNull()
+                ),
+                precipitationProbability = PrecipitationProbability(
+                    total = it.precipitationProbability?.toDoubleOrNull(),
+                    thunderstorm = it.thunderstormProbability?.toDoubleOrNull()
+                ),
+                wind = Wind(
+                    degree = it.windDirection?.toDoubleOrNull(),
+                    speed = it.windSpeed?.toDoubleOrNull(),
+                    gusts = it.windGusts?.toDoubleOrNull()
+                ),
+                uV = UV(
+                    index = it.uvIndex?.toDoubleOrNull()
+                ),
+                relativeHumidity = it.relativeHumidity?.toDoubleOrNull(),
+                pressure = it.pressure?.toDoubleOrNull(),
+                cloudCover = it.cloudCover?.toIntOrNull()
             )
         }
-    }
-    return hourlyList
 }
 
 private fun getWeatherText(
