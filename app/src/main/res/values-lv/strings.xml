@@ -833,4 +833,8 @@
     <string name="action_change">Mainīt</string>
     <string name="message_incompatible_times_title">Nesaderīgi prognožu laiki</string>
     <string name="common_weather_text_mostly_cloudy">Pārsvarā mākoņains</string>
+    <string name="visibility_scale">Redzamības skala</string>
+    <string name="cloud_cover_scale">Mākoņainuma skala</string>
+    <string name="content_provider_permission_label">Lasīt Breezy Weather datus</string>
+    <string name="content_provider_permission_description">iegūt laikapstākļu informāciju no Breezy Weather, tajā skaitā Tavu atrašanās vietu koordinātas, piemēram, pašreizējo atrašanās vietu, ja tā ir pievienota</string>
 </resources>
