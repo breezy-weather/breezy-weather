@@ -59,8 +59,8 @@ internal fun getDailyForecast(
 ): List<DailyWrapper> {
     val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Dhaka")
-    val dailyList = mutableListOf<DailyWrapper>()
-    val rfMap = mutableMapOf<String, Double?>()
+    val rfDayMap = mutableMapOf<String, Double?>()
+    val rfNightMap = mutableMapOf<String, Double?>()
     val maxTMap = mutableMapOf<String, Double?>()
     val minTMap = mutableMapOf<String, Double?>()
     val wsMap = mutableMapOf<String, Double?>()
@@ -70,14 +70,15 @@ internal fun getDailyForecast(
     val ccNightMap = mutableMapOf<String, Int?>()
     dailyResult.data?.getOrElse(upazila) { null }?.forecastData?.let { forecast ->
         forecast.rf?.forEach {
-            rfMap[it.stepStart] = it.valMax
+            rfDayMap[it.stepStart] = it.valAvgDay?.times(12)
+            rfNightMap[it.stepStart] = it.valAvgNight?.times(12)
         }
         forecast.temp?.forEach {
             maxTMap[it.stepStart] = it.valMax
             minTMap[it.stepStart] = it.valMin
         }
         forecast.windspd?.forEach {
-            wsMap[it.stepStart] = it.valAvg?.div(3.6)
+            wsMap[it.stepStart] = it.valMax?.div(3.6)
         }
         forecast.winddir?.forEach {
             wdMap[it.stepStart] = getCorrectWindDirection(
@@ -87,7 +88,7 @@ internal fun getDailyForecast(
             )
         }
         forecast.windgust?.forEach {
-            wgMap[it.stepStart] = it.valAvg?.div(3.6)
+            wgMap[it.stepStart] = it.valMax?.div(3.6)
         }
         forecast.cldcvr?.forEach {
             ccDayMap[it.stepStart] = it.valAvgDay?.times(12.5)?.toInt()
@@ -95,57 +96,55 @@ internal fun getDailyForecast(
         }
     }
 
-    var date: Date
-    rfMap.keys.sorted().forEach { key ->
-        date = formatter.parse(key)!!
-        dailyList.add(
-            DailyWrapper(
-                date = date,
-                day = HalfDayWrapper(
-                    weatherText = getWeatherText(
-                        context = context,
-                        cloudCover = ccDayMap.getOrElse(key) { null },
-                        rainfall = rfMap.getOrElse(key) { null }
-                    ),
-                    weatherCode = getWeatherCode(
-                        cloudCover = ccDayMap.getOrElse(key) { null },
-                        rainfall = rfMap.getOrElse(key) { null }
-                    ),
-                    temperature = TemperatureWrapper(
-                        temperature = maxTMap.getOrElse(key) { null }
-                    ),
-                    wind = Wind(
-                        degree = wdMap.getOrElse(key) { null },
-                        speed = wsMap.getOrElse(key) { null },
-                        gusts = wgMap.getOrElse(key) { null }
-                    ),
-                    precipitation = Precipitation(
-                        total = rfMap.getOrElse(key) { null }
-                    )
+    return wsMap.keys.sorted().map { key ->
+        DailyWrapper(
+            date = formatter.parse(key)!!,
+            day = HalfDayWrapper(
+                weatherText = getWeatherText(
+                    context = context,
+                    cloudCover = ccDayMap.getOrElse(key) { null },
+                    rainfall = rfDayMap.getOrElse(key) { null }
                 ),
-                night = HalfDayWrapper(
-                    weatherText = getWeatherText(
-                        context = context,
-                        cloudCover = ccNightMap.getOrElse(key) { null },
-                        rainfall = rfMap.getOrElse(key) { null }
-                    ),
-                    weatherCode = getWeatherCode(
-                        cloudCover = ccNightMap.getOrElse(key) { null },
-                        rainfall = rfMap.getOrElse(key) { null }
-                    ),
-                    temperature = TemperatureWrapper(
-                        temperature = minTMap.getOrElse(key) { null }
-                    ),
-                    wind = Wind(
-                        degree = wdMap.getOrElse(key) { null },
-                        speed = wsMap.getOrElse(key) { null },
-                        gusts = wgMap.getOrElse(key) { null }
-                    )
+                weatherCode = getWeatherCode(
+                    cloudCover = ccDayMap.getOrElse(key) { null },
+                    rainfall = rfDayMap.getOrElse(key) { null }
+                ),
+                temperature = TemperatureWrapper(
+                    temperature = maxTMap.getOrElse(key) { null }
+                ),
+                wind = Wind(
+                    degree = wdMap.getOrElse(key) { null },
+                    speed = wsMap.getOrElse(key) { null },
+                    gusts = wgMap.getOrElse(key) { null }
+                ),
+                precipitation = Precipitation(
+                    total = rfDayMap.getOrElse(key) { null }
+                )
+            ),
+            night = HalfDayWrapper(
+                weatherText = getWeatherText(
+                    context = context,
+                    cloudCover = ccNightMap.getOrElse(key) { null },
+                    rainfall = rfNightMap.getOrElse(key) { null }
+                ),
+                weatherCode = getWeatherCode(
+                    cloudCover = ccNightMap.getOrElse(key) { null },
+                    rainfall = rfNightMap.getOrElse(key) { null }
+                ),
+                temperature = TemperatureWrapper(
+                    temperature = minTMap.getOrElse(key) { null }
+                ),
+                wind = Wind(
+                    degree = wdMap.getOrElse(key) { null },
+                    speed = wsMap.getOrElse(key) { null },
+                    gusts = wgMap.getOrElse(key) { null }
+                ),
+                precipitation = Precipitation(
+                    total = rfNightMap.getOrElse(key) { null }
                 )
             )
         )
     }
-    return dailyList
 }
 
 internal fun getHourlyForecast(
