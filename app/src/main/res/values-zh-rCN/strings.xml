@@ -920,4 +920,8 @@
     <string name="cloud_cover_from_to_number">%1$s 至 %2$s</string>
     <string name="cloud_cover_from_to_description">%1$s 至 %2$s</string>
     <string name="common_weather_text_mostly_cloudy">多云时阴</string>
+    <string name="visibility_scale">可见度</string>
+    <string name="cloud_cover_scale">云层覆盖率</string>
+    <string name="content_provider_permission_label">读取 Breezy Weather 数据</string>
+    <string name="content_provider_permission_description">从 Breezy Weather 获取数据，包括您位置的坐标，比如你当前的位置（如果添加了的话）</string>
 </resources>
