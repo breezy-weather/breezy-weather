@@ -832,7 +832,7 @@
     <string name="visibility_about">關於能見度</string>
     <string name="visibility_about_description">能見度是指能看到如建築物、山峰等遠方景物的距離。能見度能受降水、霧、浮塵、煙或霾影響。</string>
     <string name="visibility_from_to_number">%1$s 至 %2$s</string>
-    <string name="visibility_from_to_description">%1$s 至 %2$s</string>
+    <string name="visibility_from_to_description">%1$s至%2$s</string>
     <string name="cloud_cover_about">關於雲量</string>
     <string name="cloud_cover_about_description">雲量是指天空平均被雲層遮蓋的百分比。雲量和日照時數相關。</string>
     <string name="visibility_poor">差</string>
@@ -915,8 +915,10 @@
     <string name="humidity_from_to_number">%1$s 至 %2$s</string>
     <string name="dew_point_from_to_number">%1$s 至 %2$s</string>
     <string name="cloud_cover_from_to_number">%1$s 至 %2$s</string>
-    <string name="cloud_cover_from_to_description">%1$s to %2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s至%2$s</string>
     <string name="common_weather_text_mostly_cloudy">多雲時陰</string>
     <string name="visibility_scale">能見度等級</string>
     <string name="cloud_cover_scale">雲量等級</string>
+    <string name="content_provider_permission_label">讀取 Breezy Weather 資料</string>
+    <string name="content_provider_permission_description">從 Breezy Weather 取得天氣資訊以及位置坐標；假如您加入了您的目前位置，也會包含在內</string>
 </resources>
