@@ -1,7 +1,7 @@
 # Version 6.0.5-alpha (not yet released)
 
 **New features**
-- Content provider: allows (with your permission) other apps to query your weather data. [Read the announcement](https://github.com/breezy-weather/breezy-weather/discussions/2089)
+- Content provider: allows (with your permission) other apps to query your weather data. Currently not available in release builds during the testing phase. [Read the announcement](https://github.com/breezy-weather/breezy-weather/discussions/2089)
 
 **Removed features**
 - Mean daytime/nighttime temperatures as threshold lines. Use a normals source instead

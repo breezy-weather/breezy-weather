@@ -17,6 +17,11 @@
 package org.breezyweather.sources.pirateweather
 
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.DailyCloudCover
+import breezyweather.domain.weather.model.DailyDewPoint
+import breezyweather.domain.weather.model.DailyPressure
+import breezyweather.domain.weather.model.DailyRelativeHumidity
+import breezyweather.domain.weather.model.DailyVisibility
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -95,7 +100,12 @@ internal fun getDailyForecast(
                     feelsLike = result.apparentTemperatureLow
                 )
             ),
-            uV = UV(index = result.uvIndex)
+            uV = UV(index = result.uvIndex),
+            relativeHumidity = DailyRelativeHumidity(average = result.humidity?.times(100)),
+            dewPoint = DailyDewPoint(average = result.dewPoint),
+            pressure = DailyPressure(average = result.pressure),
+            cloudCover = DailyCloudCover(average = result.cloudCover?.times(100)?.roundToInt()),
+            visibility = DailyVisibility(average = result.visibility?.times(1000))
         )
     }
 }

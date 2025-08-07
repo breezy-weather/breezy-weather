@@ -204,7 +204,7 @@ internal fun getHourlyForecast(
                 gusts = getNonEmptyMetric(result.windGust)?.div(3.6)
             ),
             uV = if (!result.uv?.index.isNullOrEmpty()) {
-                UV(index = result.uv!!.index!!.toDoubleOrNull())
+                UV(index = result.uv.index.toDoubleOrNull())
             } else {
                 null
             }

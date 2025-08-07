@@ -86,17 +86,17 @@ internal fun getCurrent(
             null
         },
         relativeHumidity = if (!current.humidity?.value.isNullOrEmpty()) {
-            current.humidity!!.value!!.toDoubleOrNull()
+            current.humidity.value.toDoubleOrNull()
         } else {
             null
         },
         pressure = if (!current.pressure?.value.isNullOrEmpty()) {
-            current.pressure!!.value!!.toDoubleOrNull()
+            current.pressure.value.toDoubleOrNull()
         } else {
             null
         },
         visibility = if (!current.visibility?.value.isNullOrEmpty()) {
-            current.visibility!!.value!!.toDoubleOrNull()?.times(1000)
+            current.visibility.value.toDoubleOrNull()?.times(1000)
         } else {
             null
         },
@@ -115,8 +115,8 @@ internal fun getDailyList(
 ): List<DailyWrapper> {
     if (publishDate == null || dailyForecast?.weather?.value.isNullOrEmpty()) return emptyList()
 
-    val dailyList: MutableList<DailyWrapper> = ArrayList(dailyForecast!!.weather!!.value!!.size)
-    dailyForecast.weather!!.value!!.forEachIndexed { index, weather ->
+    val dailyList: MutableList<DailyWrapper> = ArrayList(dailyForecast.weather.value.size)
+    dailyForecast.weather.value.forEachIndexed { index, weather ->
         val calendar = publishDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
             add(Calendar.DAY_OF_YEAR, index)
             set(Calendar.HOUR_OF_DAY, 0)
@@ -186,10 +186,10 @@ internal fun getHourlyList(
 ): List<HourlyWrapper> {
     if (publishDate == null || hourlyForecast?.weather?.value.isNullOrEmpty()) return emptyList()
 
-    val hourlyListPubTime = hourlyForecast!!.temperature?.pubTime ?: publishDate
+    val hourlyListPubTime = hourlyForecast.temperature?.pubTime ?: publishDate
 
-    val hourlyList: MutableList<HourlyWrapper> = ArrayList(hourlyForecast.weather!!.value!!.size)
-    hourlyForecast.weather.value!!.forEachIndexed { index, weather ->
+    val hourlyList: MutableList<HourlyWrapper> = ArrayList(hourlyForecast.weather.value.size)
+    hourlyForecast.weather.value.forEachIndexed { index, weather ->
         val calendar = hourlyListPubTime.toCalendarWithTimeZone(location.javaTimeZone).apply {
             add(Calendar.HOUR_OF_DAY, index) // FIXME: Wrong TimeZone for the first item
             set(Calendar.MINUTE, 0)

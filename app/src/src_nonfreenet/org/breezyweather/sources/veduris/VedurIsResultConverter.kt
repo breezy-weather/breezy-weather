@@ -168,15 +168,15 @@ fun getDailyForecast(
     val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Atlantic/Reykjavik")
 
-    forecast?.let {
-        if (!it.hourlyForecasts.isNullOrEmpty()) {
+    forecast?.let { fcst ->
+        if (!fcst.hourlyForecasts.isNullOrEmpty()) {
             dailyList.add(
                 DailyWrapper(
-                    date = formatter.parse(forecast.hourlyForecasts!!.first().forecastDate)!!
+                    date = formatter.parse(fcst.hourlyForecasts.first().forecastDate)!!
                 )
             )
         }
-        forecast.dailyForecasts?.forEach {
+        fcst.dailyForecasts?.forEach {
             dailyList.add(
                 DailyWrapper(
                     date = formatter.parse(it.forecastDate)!!

@@ -519,7 +519,14 @@ private fun PrecipitationProbabilityItem(
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
-        header()
+        if (precipitationProbability != null) {
+            header()
+        } else {
+            TextFixedHeight(
+                text = "",
+                style = MaterialTheme.typography.displaySmall
+            )
+        }
         TextFixedHeight(
             text = precipitationProbability?.let { pp -> UnitUtils.formatPercent(context, pp) } ?: "",
             style = MaterialTheme.typography.displaySmall

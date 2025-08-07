@@ -96,25 +96,27 @@ internal fun getDailyForecast(
     context: Context,
     dailyResult: List<MeteoAmForecastStats>?,
 ): List<DailyWrapper> {
-    val dailyForecast = mutableListOf<DailyWrapper>()
-    dailyResult?.forEach {
-        if (it.icon != "-") {
-            dailyForecast.add(
-                DailyWrapper(
-                    date = it.localDate,
-                    day = HalfDayWrapper(
-                        weatherText = getWeatherText(context, it.icon),
-                        weatherCode = getWeatherCode(it.icon)
-                    ),
-                    night = HalfDayWrapper(
-                        weatherText = getWeatherText(context, it.icon),
-                        weatherCode = getWeatherCode(it.icon)
-                    )
+    return dailyResult?.map {
+        DailyWrapper(
+            date = it.localDate,
+            day = if (it.icon != "-") {
+                HalfDayWrapper(
+                    weatherText = getWeatherText(context, it.icon),
+                    weatherCode = getWeatherCode(it.icon)
                 )
-            )
-        }
-    }
-    return dailyForecast
+            } else {
+                null
+            },
+            night = if (it.icon != "-") {
+                HalfDayWrapper(
+                    weatherText = getWeatherText(context, it.icon),
+                    weatherCode = getWeatherCode(it.icon)
+                )
+            } else {
+                null
+            }
+        )
+    } ?: emptyList()
 }
 
 internal fun getHourlyForecast(

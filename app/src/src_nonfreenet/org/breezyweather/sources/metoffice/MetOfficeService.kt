@@ -94,8 +94,8 @@ class MetOfficeService @Inject constructor(
                 throw InvalidOrIncompleteDataException()
             }
             WeatherWrapper(
-                hourlyForecast = getHourlyForecast(hourly, context),
-                dailyForecast = getDailyForecast(daily, context)
+                dailyForecast = getDailyForecast(daily, context),
+                hourlyForecast = getHourlyForecast(hourly, context)
             )
         }
     }
