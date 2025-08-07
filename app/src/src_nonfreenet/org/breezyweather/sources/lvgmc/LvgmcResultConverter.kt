@@ -242,7 +242,7 @@ internal fun getHourlyForecast(
     formatter.timeZone = TimeZone.getTimeZone("Europe/Riga")
 
     return hourlyResult
-        .filter { it.time != null && Regex("""^\d{12}$""").matches(it.time)) }
+        .filter { it.time != null && Regex("""^\d{12}$""").matches(it.time) }
         .map {
             HourlyWrapper(
                 date = formatter.parse(it.time!!)!!,
