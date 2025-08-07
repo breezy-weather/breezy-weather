@@ -54,41 +54,23 @@ internal fun getCurrent(
     for (i in params.indices) {
         keys[params[i]] = i.toString()
     }
-    val icon = currentResult.getOrElse(keys["icon"].toString()) { null }?.getOrElse("0") { null }.toString()
-    val temp = when (currentResult.getOrElse(keys["2t"].toString()) { null }?.getOrElse("0") { null }) {
-        is Double -> currentResult.getOrElse(keys["2t"].toString()) { null }?.get("0") as Double
-        else -> null // sometimes returned as "-"
-    }
-    val wdir = when (currentResult.getOrElse(keys["wdir"].toString()) { null }?.getOrElse("0") { null }) {
-        is Double -> currentResult.getOrElse(keys["wdir"].toString()) { null }?.get("0") as Double
-        "VRB" -> -1.0
-        else -> null // sometimes returned as "-"
-    }
-    val wspd = when (currentResult.getOrElse(keys["wkmh"].toString()) { null }?.getOrElse("0") { null }) {
-        is Double -> currentResult.getOrElse(keys["wkmh"].toString()) { null }?.get("0") as Double / 3.6
-        else -> null // sometimes returned as "-"
-    }
-    val rhum = when (currentResult.getOrElse(keys["r"].toString()) { null }?.getOrElse("0") { null }) {
-        is Double -> currentResult.getOrElse(keys["r"].toString()) { null }?.get("0") as Double
-        else -> null // sometimes returned as "-"
-    }
-    val pres = when (currentResult.getOrElse(keys["pmsl"].toString()) { null }?.getOrElse("0") { null }) {
-        is Double -> currentResult.getOrElse(keys["pmsl"].toString()) { null }?.get("0") as Double
-        else -> null // sometimes returned as "-"
-    }
 
+    val icon = currentResult.getOrElse(keys["icon"].toString()) { null }?.getOrElse("0") { null }.toString()
     return CurrentWrapper(
         weatherText = getWeatherText(context, icon),
         weatherCode = getWeatherCode(icon),
         temperature = TemperatureWrapper(
-            temperature = temp
+            temperature = currentResult.getOrElse(keys["2t"].toString()) { null }?.getOrElse("0") { null } as? Double
         ),
         wind = Wind(
-            degree = wdir,
-            speed = wspd
+            degree = currentResult.getOrElse(keys["wdir"].toString()) { null }?.getOrElse("0") { null }?.let {
+                it as? Double ?: if (it == "VRB") -1.0 else null
+            },
+            speed = (currentResult.getOrElse(keys["wkmh"].toString()) { null }?.getOrElse("0") { null } as? Double)
+                ?.div(3.6)
         ),
-        relativeHumidity = rhum,
-        pressure = pres
+        relativeHumidity = currentResult.getOrElse(keys["r"].toString()) { null }?.getOrElse("0") { null } as? Double,
+        pressure = currentResult.getOrElse(keys["pmsl"].toString()) { null }?.getOrElse("0") { null } as? Double
     )
 }
 
@@ -96,27 +78,21 @@ internal fun getDailyForecast(
     context: Context,
     dailyResult: List<MeteoAmForecastStats>?,
 ): List<DailyWrapper> {
-    return dailyResult?.map {
-        DailyWrapper(
-            date = it.localDate,
-            day = if (it.icon != "-") {
-                HalfDayWrapper(
-                    weatherText = getWeatherText(context, it.icon),
-                    weatherCode = getWeatherCode(it.icon)
+    return dailyResult
+        ?.filter { it.icon != "-" } // Safe to skip: no data for this day when no icon
+        ?.mapIndexed { i, result ->
+            DailyWrapper(
+                date = result.localDate,
+                day = HalfDayWrapper(
+                    weatherText = getWeatherText(context, result.icon),
+                    weatherCode = getWeatherCode(result.icon)
+                ),
+                night = HalfDayWrapper(
+                    weatherText = getWeatherText(context, result.icon),
+                    weatherCode = getWeatherCode(result.icon)
                 )
-            } else {
-                null
-            },
-            night = if (it.icon != "-") {
-                HalfDayWrapper(
-                    weatherText = getWeatherText(context, it.icon),
-                    weatherCode = getWeatherCode(it.icon)
-                )
-            } else {
-                null
-            }
-        )
-    } ?: emptyList()
+            )
+        } ?: emptyList()
 }
 
 internal fun getHourlyForecast(
@@ -129,67 +105,36 @@ internal fun getHourlyForecast(
         return emptyList()
     }
 
-    val hourlyForecast = mutableListOf<HourlyWrapper>()
     val keys = mutableMapOf<String, String>()
-    var icon: String
-    var temp: Double?
-    var tpop: Double?
-    var wdir: Double?
-    var wspd: Double?
-    var rhum: Double?
-    var pres: Double?
     for (i in params.indices) {
         keys[params[i]] = i.toString()
     }
-    for (i in timeseries.indices) {
-        icon = data.getOrElse(keys["icon"].toString()) { null }?.getOrElse(i.toString()) { null }.toString()
-        temp = when (data.getOrElse(keys["2t"].toString()) { null }?.getOrElse(i.toString()) { null }) {
-            is Double -> data.getOrElse(keys["2t"].toString()) { null }?.get(i.toString()) as Double
-            else -> null // in case a non-numerical value is returned
-        }
-        tpop = when (data.getOrElse(keys["tpp"].toString()) { null }?.getOrElse(i.toString()) { null }) {
-            is Double -> data.getOrElse(keys["tpp"].toString()) { null }?.get(i.toString()) as Double
-            else -> null // in case a non-numerical value is returned
-        }
-        wdir = when (data.getOrElse(keys["wdir"].toString()) { null }?.getOrElse(i.toString()) { null }) {
-            is Double -> data.getOrElse(keys["wdir"].toString()) { null }?.get(i.toString()) as Double
-            "VRB" -> -1.0
-            else -> null // in case a non-numerical value is returned
-        }
-        wspd = when (data.getOrElse(keys["wkmh"].toString()) { null }?.getOrElse(i.toString()) { null }) {
-            is Double -> data.getOrElse(keys["wkmh"].toString()) { null }?.get(i.toString()) as Double / 3.6
-            else -> null // in case a non-numerical value is returned
-        }
-        rhum = when (data.getOrElse(keys["r"].toString()) { null }?.getOrElse(i.toString()) { null }) {
-            is Double -> data.getOrElse(keys["r"].toString()) { null }?.get(i.toString()) as Double
-            else -> null // in case a non-numerical value is returned
-        }
-        pres = when (data.getOrElse(keys["pmsl"].toString()) { null }?.getOrElse(i.toString()) { null }) {
-            is Double -> data.getOrElse(keys["pmsl"].toString()) { null }?.get(i.toString()) as Double
-            else -> null // in case a non-numerical value is returned
-        }
-
-        hourlyForecast.add(
-            HourlyWrapper(
-                date = timeseries[i],
-                weatherText = getWeatherText(context, icon),
-                weatherCode = getWeatherCode(icon),
-                temperature = TemperatureWrapper(
-                    temperature = temp
-                ),
-                precipitationProbability = PrecipitationProbability(
-                    total = tpop
-                ),
-                wind = Wind(
-                    degree = wdir,
-                    speed = wspd
-                ),
-                relativeHumidity = rhum,
-                pressure = pres
-            )
+    return timeseries.indices.map { i ->
+        val icon = data.getOrElse(keys["icon"].toString()) { null }?.getOrElse(i.toString()) { null }.toString()
+        HourlyWrapper(
+            date = timeseries[i],
+            weatherText = getWeatherText(context, icon),
+            weatherCode = getWeatherCode(icon),
+            temperature = TemperatureWrapper(
+                temperature = data.getOrElse(keys["2t"].toString()) { null }
+                    ?.getOrElse(i.toString()) { null } as? Double
+            ),
+            precipitationProbability = PrecipitationProbability(
+                total = data.getOrElse(keys["tpp"].toString()) { null }?.getOrElse(i.toString()) { null } as? Double
+            ),
+            wind = Wind(
+                degree = data.getOrElse(keys["wdir"].toString()) { null }?.getOrElse(i.toString()) { null }?.let {
+                    it as? Double ?: if (it == "VRB") -1.0 else null
+                },
+                speed = (data.getOrElse(keys["wkmh"].toString()) { null }?.getOrElse(i.toString()) { null } as? Double)
+                    ?.div(3.6)
+            ),
+            relativeHumidity = data.getOrElse(keys["r"].toString()) { null }
+                ?.getOrElse(i.toString()) { null } as? Double,
+            pressure = data.getOrElse(keys["pmsl"].toString()) { null }
+                ?.getOrElse(i.toString()) { null } as? Double
         )
     }
-    return hourlyForecast
 }
 
 // Icon definitions can be found at https://www.meteoam.it/it/legenda-simboli
