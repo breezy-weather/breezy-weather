@@ -844,4 +844,8 @@
     <string name="cloud_cover_from_to_number">%1$s do %2$s</string>
     <string name="cloud_cover_from_to_description">%1$s do %2$s</string>
     <string name="common_weather_text_mostly_cloudy">Przeważnie pochmurno</string>
+    <string name="visibility_scale">Skala widzialności</string>
+    <string name="cloud_cover_scale">Skala zachmurzenia</string>
+    <string name="content_provider_permission_label">Odczytaj dane z Breezy Weather</string>
+    <string name="content_provider_permission_description">pobierz informacje pogodowe z Breezy Weather, w tym współrzędne Twoich lokalizacji – na przykład bieżącej, jeśli została dodana</string>
 </resources>
