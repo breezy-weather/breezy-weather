@@ -266,7 +266,7 @@ internal fun getDailyForecast(
 ): List<DailyWrapper> {
     val formatter = SimpleDateFormat("HH", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone("Asia/Tokyo")
-    val dailyList = mutableListOf<DailyWrapper>()
+
     val wxMap = mutableMapOf<Long, String?>()
     val maxTMap = mutableMapOf<Long, Double?>()
     val minTMap = mutableMapOf<Long, Double?>()
@@ -274,8 +274,9 @@ internal fun getDailyForecast(
 
     // 7-day weather conditions and daily probabilities of precipitation
     dailyResult.getOrNull(1)?.timeSeries?.getOrNull(0)?.let { series ->
-        series.areas?.forEach { area ->
-            if (area.area.code == weekArea05) {
+        series.areas
+            ?.filter { it.area.code == weekArea05 }
+            ?.forEach { area ->
                 series.timeDefines?.forEachIndexed { i, timeDefines ->
                     timeDefines.time.let {
                         wxMap[it] = area.weatherCodes?.getOrNull(i)
@@ -289,13 +290,13 @@ internal fun getDailyForecast(
                     }
                 }
             }
-        }
     }
 
     // 7-day max and min temperatures
     dailyResult.getOrNull(1)?.timeSeries?.getOrNull(1)?.let { series ->
-        series.areas?.forEach { area ->
-            if (area.area.code == weekAreaAmedas) {
+        series.areas
+            ?.filter { it.area.code == weekAreaAmedas }
+            ?.forEach { area ->
                 series.timeDefines?.forEachIndexed { i, timeDefines ->
                     timeDefines.time.let {
                         minTMap[it] = area.tempsMin?.getOrNull(i)?.toDoubleOrNull()
@@ -303,13 +304,13 @@ internal fun getDailyForecast(
                     }
                 }
             }
-        }
     }
 
     // 3-day weather conditions
     dailyResult.getOrNull(0)?.timeSeries?.getOrNull(0)?.let { series ->
-        series.areas?.forEach { area ->
-            if (area.area.code == class10s) {
+        series.areas
+            ?.filter { it.area.code == class10s }
+            ?.forEach { area ->
                 series.timeDefines?.forEachIndexed { i, timeDefines ->
                     timeDefines.time.let {
                         // normalize timestamp to midnight local time
@@ -322,28 +323,28 @@ internal fun getDailyForecast(
                     }
                 }
             }
-        }
     }
 
     // 3-day 6-hourly probabilities of precipitation
     dailyResult.getOrNull(0)?.timeSeries?.getOrNull(1)?.let { series ->
-        series.areas?.forEach { area ->
-            if (area.area.code == class10s) {
+        series.areas
+            ?.filter { it.area.code == class10s }
+            ?.forEach { area ->
                 series.timeDefines?.forEachIndexed { i, timeDefines ->
                     timeDefines.time.let {
                         popMap[it] = area.pops?.getOrNull(i)?.toDoubleOrNull() ?: 0.0
                     }
                 }
             }
-        }
     }
 
     // 3-day max and min temperatures
     val forecastAmedasCodes = forecastAmedas.split(",")
     dailyResult.getOrNull(0)?.timeSeries?.getOrNull(2)?.let { series ->
         series.areas?.forEach { area ->
-            forecastAmedasCodes.forEach { code ->
-                if (area.area.code == code) {
+            forecastAmedasCodes
+                .filter { area.area.code == it }
+                .forEach { code ->
                     series.timeDefines?.forEachIndexed { i, timeDefines ->
                         timeDefines.time.let {
                             val hour = formatter.format(Date(it))
@@ -356,66 +357,60 @@ internal fun getDailyForecast(
                         }
                     }
                 }
-            }
         }
     }
 
-    minTMap.keys.sorted().forEach { key ->
-        dailyList.add(
-            DailyWrapper(
-                date = Date(key),
-                day = HalfDayWrapper(
-                    weatherText = getDailyWeatherText(
-                        context = context,
-                        weather = wxMap.getOrElse(key) { null },
-                        night = false
-                    ),
-                    weatherCode = getDailyWeatherCode(
-                        weather = wxMap.getOrElse(key) { null },
-                        night = false
-                    ),
-                    temperature = TemperatureWrapper(
-                        temperature = maxTMap.getOrElse(key) { null }
-                    ),
-                    precipitationProbability = PrecipitationProbability(
-                        total = max(
-                            popMap.getOrElse(key + 6.hours.inWholeMilliseconds) { 0.0 },
-                            popMap.getOrElse(key + 12.hours.inWholeMilliseconds) { 0.0 }
-                        )
-                    )
+    return minTMap.keys.sorted().map { key ->
+        DailyWrapper(
+            date = Date(key),
+            day = HalfDayWrapper(
+                weatherText = getDailyWeatherText(
+                    context = context,
+                    weather = wxMap.getOrElse(key) { null },
+                    night = false
                 ),
-                night = HalfDayWrapper(
-                    weatherText = getDailyWeatherText(
-                        context = context,
-                        weather = wxMap.getOrElse(key) { null },
-                        night = true
-                    ),
-                    weatherCode = getDailyWeatherCode(
-                        weather = wxMap.getOrElse(key) { null },
-                        night = true
-                    ),
-                    temperature = TemperatureWrapper(
-                        temperature = minTMap.getOrElse(key + 1.days.inWholeMilliseconds) { null }
-                    ),
-                    precipitationProbability = PrecipitationProbability(
-                        total = max(
-                            popMap.getOrElse(key + 18.hours.inWholeMilliseconds) { 0.0 },
-                            popMap.getOrElse(key + 24.hours.inWholeMilliseconds) { 0.0 }
-                        )
+                weatherCode = getDailyWeatherCode(
+                    weather = wxMap.getOrElse(key) { null },
+                    night = false
+                ),
+                temperature = TemperatureWrapper(
+                    temperature = maxTMap.getOrElse(key) { null }
+                ),
+                precipitationProbability = PrecipitationProbability(
+                    total = max(
+                        popMap.getOrElse(key + 6.hours.inWholeMilliseconds) { 0.0 },
+                        popMap.getOrElse(key + 12.hours.inWholeMilliseconds) { 0.0 }
+                    )
+                )
+            ),
+            night = HalfDayWrapper(
+                weatherText = getDailyWeatherText(
+                    context = context,
+                    weather = wxMap.getOrElse(key) { null },
+                    night = true
+                ),
+                weatherCode = getDailyWeatherCode(
+                    weather = wxMap.getOrElse(key) { null },
+                    night = true
+                ),
+                temperature = TemperatureWrapper(
+                    temperature = minTMap.getOrElse(key + 1.days.inWholeMilliseconds) { null }
+                ),
+                precipitationProbability = PrecipitationProbability(
+                    total = max(
+                        popMap.getOrElse(key + 18.hours.inWholeMilliseconds) { 0.0 },
+                        popMap.getOrElse(key + 24.hours.inWholeMilliseconds) { 0.0 }
                     )
                 )
             )
         )
     }
-
-    return dailyList
 }
 
 internal fun getHourlyForecast(
     context: Context,
     hourlyResult: JmaHourlyResult,
 ): List<HourlyWrapper> {
-    val hourlyList = mutableListOf<HourlyWrapper>()
     val wxTextMap = mutableMapOf<Long, String?>()
     val wxCodeMap = mutableMapOf<Long, WeatherCode?>()
     val tMap = mutableMapOf<Long, Double?>()
@@ -438,23 +433,21 @@ internal fun getHourlyForecast(
             }
         }
     }
-    wxTextMap.keys.sorted().forEach { key ->
-        hourlyList.add(
-            HourlyWrapper(
-                date = Date(key),
-                weatherText = wxTextMap.getOrElse(key) { null },
-                weatherCode = wxCodeMap.getOrElse(key) { null },
-                temperature = TemperatureWrapper(
-                    temperature = tMap.getOrElse(key) { null }
-                ),
-                wind = Wind(
-                    degree = wdMap.getOrElse(key) { null },
-                    speed = wsMap.getOrElse(key) { null }
-                )
+
+    return wxTextMap.keys.sorted().map { key ->
+        HourlyWrapper(
+            date = Date(key),
+            weatherText = wxTextMap.getOrElse(key) { null },
+            weatherCode = wxCodeMap.getOrElse(key) { null },
+            temperature = TemperatureWrapper(
+                temperature = tMap.getOrElse(key) { null }
+            ),
+            wind = Wind(
+                degree = wdMap.getOrElse(key) { null },
+                speed = wsMap.getOrElse(key) { null }
             )
         )
     }
-    return hourlyList
 }
 
 internal fun getNormals(
