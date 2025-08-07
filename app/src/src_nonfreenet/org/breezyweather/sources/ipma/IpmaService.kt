@@ -126,12 +126,12 @@ class IpmaService @Inject constructor(
             ->
             WeatherWrapper(
                 dailyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
-                    getDailyForecast(context, location, forecastResult)
+                    getDailyForecast(context, location, forecastResult.filter { it.idPeriodo == 24 })
                 } else {
                     null
                 },
                 hourlyForecast = if (SourceFeature.FORECAST in requestedFeatures) {
-                    getHourlyForecast(context, location, forecastResult)
+                    getHourlyForecast(context, location, forecastResult.filter { it.idPeriodo != 24 })
                 } else {
                     null
                 },

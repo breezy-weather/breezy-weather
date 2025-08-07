@@ -19,6 +19,7 @@ package org.breezyweather.sources.ipma
 import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.DailyRelativeHumidity
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.Wind
@@ -114,46 +115,42 @@ internal fun getDailyForecast(
 ): List<DailyWrapper> {
     val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
-    val dailyList = mutableListOf<DailyWrapper>()
-    forecastResult.forEach {
-        if (it.idPeriodo == 24) {
-            dailyList.add(
-                DailyWrapper(
-                    date = formatter.parse(it.dataPrev)!!,
-                    day = HalfDayWrapper(
-                        weatherText = getWeatherText(context, it.idTipoTempo),
-                        weatherCode = getWeatherCode(it.idTipoTempo),
-                        temperature = TemperatureWrapper(
-                            temperature = it.tMax?.toDoubleOrNull()
-                        ),
-                        precipitationProbability = PrecipitationProbability(
-                            total = it.probabilidadePrecipita?.toDoubleOrNull()
-                        ),
-                        wind = Wind(
-                            degree = getWindDegree(it.ddVento)
-                        )
-                    ),
-                    night = HalfDayWrapper(
-                        weatherText = getWeatherText(context, it.idTipoTempo),
-                        weatherCode = getWeatherCode(it.idTipoTempo),
-                        temperature = TemperatureWrapper(
-                            temperature = it.tMin?.toDoubleOrNull()
-                        ),
-                        precipitationProbability = PrecipitationProbability(
-                            total = it.probabilidadePrecipita?.toDoubleOrNull()
-                        ),
-                        wind = Wind(
-                            degree = getWindDegree(it.ddVento)
-                        )
-                    ),
-                    uV = UV(
-                        index = it.iUv?.toDoubleOrNull()
-                    )
+
+    return forecastResult.mapIndexed { index, result ->
+        DailyWrapper(
+            date = formatter.parse(result.dataPrev)!!,
+            day = HalfDayWrapper(
+                weatherText = getWeatherText(context, result.idTipoTempo),
+                weatherCode = getWeatherCode(result.idTipoTempo),
+                temperature = result.tMax?.toDoubleOrNull()?.let { tMax ->
+                    TemperatureWrapper(temperature = tMax)
+                },
+                precipitationProbability = PrecipitationProbability(
+                    total = result.probabilidadePrecipita?.toDoubleOrNull()
+                ),
+                wind = Wind(
+                    degree = getWindDegree(result.ddVento)
                 )
-            )
-        }
+            ),
+            night = HalfDayWrapper(
+                weatherText = getWeatherText(context, result.idTipoTempo),
+                weatherCode = getWeatherCode(result.idTipoTempo),
+                temperature = forecastResult.elementAtOrNull(index + 1)
+                    ?.tMin?.toDoubleOrNull() // Get next day min temperature to have overnight temp
+                    ?.let { tMin -> TemperatureWrapper(temperature = tMin) },
+                precipitationProbability = PrecipitationProbability(
+                    total = result.probabilidadePrecipita?.toDoubleOrNull()
+                ),
+                wind = Wind(
+                    degree = getWindDegree(result.ddVento)
+                )
+            ),
+            uV = UV(
+                index = result.iUv?.toDoubleOrNull()
+            ),
+            relativeHumidity = result.hR?.toDoubleOrNull()?.let { hr -> DailyRelativeHumidity(average = hr) }
+        )
     }
-    return dailyList
 }
 
 internal fun getHourlyForecast(
@@ -163,39 +160,35 @@ internal fun getHourlyForecast(
 ): List<HourlyWrapper> {
     val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
     formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
-    val hourlyList = mutableListOf<HourlyWrapper>()
     var lastPrecipitationProbability: Double? = null
-    forecastResult.forEach {
-        if (it.idPeriodo != 24) {
-            hourlyList.add(
-                HourlyWrapper(
-                    date = formatter.parse(it.dataPrev)!!,
-                    weatherText = getWeatherText(context, it.idTipoTempo),
-                    weatherCode = getWeatherCode(it.idTipoTempo),
-                    temperature = TemperatureWrapper(
-                        temperature = it.tMed?.toDoubleOrNull(),
-                        feelsLike = it.utci?.toDoubleOrNull()
-                    ),
-                    precipitationProbability = PrecipitationProbability(
-                        total = if (it.probabilidadePrecipita != "-99.0") {
-                            it.probabilidadePrecipita?.toDoubleOrNull()
-                        } else {
-                            lastPrecipitationProbability
-                        }
-                    ),
-                    wind = Wind(
-                        degree = getWindDegree(it.ddVento),
-                        speed = it.ffVento?.toDoubleOrNull()?.div(3.6)
-                    ),
-                    relativeHumidity = it.hR?.toDoubleOrNull()
-                )
-            )
+
+    return forecastResult.map {
+        HourlyWrapper(
+            date = formatter.parse(it.dataPrev)!!,
+            weatherText = getWeatherText(context, it.idTipoTempo),
+            weatherCode = getWeatherCode(it.idTipoTempo),
+            temperature = TemperatureWrapper(
+                temperature = it.tMed?.toDoubleOrNull(),
+                feelsLike = it.utci?.toDoubleOrNull()
+            ),
+            precipitationProbability = PrecipitationProbability(
+                total = if (it.probabilidadePrecipita != "-99.0") {
+                    it.probabilidadePrecipita?.toDoubleOrNull()
+                } else {
+                    lastPrecipitationProbability
+                }
+            ),
+            wind = Wind(
+                degree = getWindDegree(it.ddVento),
+                speed = it.ffVento?.toDoubleOrNull()?.div(3.6)
+            ),
+            relativeHumidity = it.hR?.toDoubleOrNull()
+        ).also { hourly ->
             if (it.probabilidadePrecipita != "-99.0") {
                 lastPrecipitationProbability = it.probabilidadePrecipita?.toDoubleOrNull()
             }
         }
     }
-    return hourlyList
 }
 
 internal fun getAlertList(
