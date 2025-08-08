@@ -270,17 +270,15 @@ class BmkgService @Inject constructor(
         val hourlyListDates = hourlyList.groupBy { it.date.getIsoFormattedDate(location) }.keys
         val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
         formatter.timeZone = location.timeZone
-        val dailyList = mutableListOf<DailyWrapper>()
-        hourlyListDates.forEachIndexed { i, date ->
+        return hourlyListDates.mapIndexedNotNull { i, date ->
             if (i < hourlyListDates.size - 1) { // Don't store last index to avoid incomplete day
-                dailyList.add(
-                    DailyWrapper(
-                        date = formatter.parse(date)!!
-                    )
+                DailyWrapper(
+                    date = formatter.parse(date)!!
                 )
+            } else {
+                null
             }
         }
-        return dailyList
     }
 
     private fun getHourlyForecast(
@@ -600,8 +598,7 @@ class BmkgService @Inject constructor(
     override val isConfigured
         get() = true // getApiKeyOrDefault().isNotEmpty()
 
-    override val isRestricted
-        get() = apikey.isEmpty()
+    override val isRestricted = false
 
     override fun getPreferences(context: Context): List<Preference> {
         return listOf(
