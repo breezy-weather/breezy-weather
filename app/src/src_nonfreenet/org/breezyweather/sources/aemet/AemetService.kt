@@ -20,6 +20,7 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
+import breezyweather.domain.weather.model.DailyRelativeHumidity
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -182,8 +183,8 @@ class AemetService @Inject constructor(
                 apiKey = apiKey,
                 range = "diaria",
                 municipio = municipio
-            ).map {
-                val path = it.datos?.substringAfter(AEMET_BASE_URL)
+            ).map { result ->
+                val path = result.datos?.substringAfter(AEMET_BASE_URL)
                 if (path.isNullOrEmpty()) throw InvalidOrIncompleteDataException()
                 mApi.getDaily(
                     apiKey = apiKey,
@@ -205,8 +206,8 @@ class AemetService @Inject constructor(
                 apiKey = apiKey,
                 range = "horaria",
                 municipio = municipio
-            ).map {
-                val path = it.datos?.substringAfter(AEMET_BASE_URL)
+            ).map { result ->
+                val path = result.datos?.substringAfter(AEMET_BASE_URL)
                 if (path.isNullOrEmpty()) throw InvalidOrIncompleteDataException()
                 mApi.getHourly(
                     apiKey = apiKey,
@@ -308,6 +309,8 @@ class AemetService @Inject constructor(
         val wdMap = mutableMapOf<Long, Double?>()
         val wsMap = mutableMapOf<Long, Double?>()
         val wgMap = mutableMapOf<Long, Double?>()
+        val maxRhMap = mutableMapOf<Long, Double?>()
+        val minRhMap = mutableMapOf<Long, Double?>()
         val uviMap = mutableMapOf<Long, Double?>()
 
         dailyResult.forEach { result ->
@@ -339,6 +342,8 @@ class AemetService @Inject constructor(
                 minTMap[time] = day.temperatura?.minima
                 maxAtMap[time] = day.sensTermica?.maxima
                 minAtMap[time] = day.sensTermica?.minima
+                maxRhMap[time] = day.humedadRelativa?.maxima
+                minRhMap[time] = day.humedadRelativa?.minima
                 uviMap[time] = day.uvMax
             }
         }
@@ -378,6 +383,10 @@ class AemetService @Inject constructor(
                             speed = wsMap.getOrElse(key) { null },
                             gusts = wgMap.getOrElse(key) { null }
                         )
+                    ),
+                    relativeHumidity = DailyRelativeHumidity(
+                        max = maxRhMap.getOrElse(key) { null },
+                        min = minRhMap.getOrElse(key) { null }
                     ),
                     uV = UV(
                         index = uviMap.getOrElse(key) { null }

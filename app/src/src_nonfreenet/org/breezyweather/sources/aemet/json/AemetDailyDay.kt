@@ -27,5 +27,6 @@ data class AemetDailyDay(
     val rachaMax: List<AemetForecastData>?,
     val temperatura: AemetDailyData?,
     val sensTermica: AemetDailyData?,
+    val humedadRelativa: AemetDailyData?,
     val uvMax: Double?,
 )
