@@ -20,19 +20,30 @@ import android.content.Context
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
+import breezyweather.domain.weather.model.Precipitation
+import breezyweather.domain.weather.model.PrecipitationProbability
+import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.reference.WeatherCode
+import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidOrIncompleteDataException
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCountryName
+import org.breezyweather.common.extensions.getIsoFormattedDate
+import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
+import org.breezyweather.sources.smhi.json.SmhiTimeSeries
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
+import kotlin.math.roundToInt
 
 class SmhiService @Inject constructor(
     @ApplicationContext context: Context,
@@ -94,6 +105,76 @@ class SmhiService @Inject constructor(
                 dailyForecast = getDailyForecast(location, it.timeSeries),
                 hourlyForecast = getHourlyForecast(it.timeSeries)
             )
+        }
+    }
+
+    private fun getDailyForecast(
+        location: Location,
+        forecastResult: List<SmhiTimeSeries>,
+    ): List<DailyWrapper> {
+        val dailyList = mutableListOf<DailyWrapper>()
+        val hourlyListByDay = forecastResult.groupBy {
+            it.validTime.getIsoFormattedDate(location)
+        }
+        for (i in 0 until hourlyListByDay.entries.size - 1) {
+            val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.timeZone)
+            if (dayDate != null) {
+                dailyList.add(
+                    DailyWrapper(
+                        date = dayDate
+                    )
+                )
+            }
+        }
+        return dailyList
+    }
+
+    /**
+     * Returns hourly forecast
+     */
+    private fun getHourlyForecast(
+        forecastResult: List<SmhiTimeSeries>,
+    ): List<HourlyWrapper> {
+        return forecastResult.map { result ->
+            HourlyWrapper(
+                date = result.validTime,
+                weatherCode = getWeatherCode(
+                    result.parameters.firstOrNull { it.name == "Wsymb2" }?.values?.getOrNull(0)
+                ),
+                temperature = TemperatureWrapper(
+                    temperature = result.parameters.firstOrNull { it.name == "t" }?.values?.getOrNull(0)
+                ),
+                precipitation = Precipitation(
+                    total = result.parameters.firstOrNull { it.name == "pmean" }?.values?.getOrNull(0)
+                ),
+                precipitationProbability = PrecipitationProbability(
+                    thunderstorm = result.parameters.firstOrNull { it.name == "tstm" }?.values?.getOrNull(0)
+                ),
+                wind = Wind(
+                    degree = result.parameters.firstOrNull { it.name == "wd" }?.values?.getOrNull(0),
+                    speed = result.parameters.firstOrNull { it.name == "ws" }?.values?.getOrNull(0),
+                    gusts = result.parameters.firstOrNull { it.name == "gust" }?.values?.getOrNull(0)
+                ),
+                relativeHumidity = result.parameters.firstOrNull { it.name == "r" }?.values?.getOrNull(0),
+                pressure = result.parameters.firstOrNull { it.name == "msl" }?.values?.getOrNull(0),
+                visibility = result.parameters.firstOrNull { it.name == "vis" }?.values?.getOrNull(0)?.times(1000)
+            )
+        }
+    }
+
+    private fun getWeatherCode(icon: Double?): WeatherCode? {
+        if (icon == null) return null
+        return when (icon.roundToInt()) {
+            1, 2 -> WeatherCode.CLEAR
+            3, 4 -> WeatherCode.PARTLY_CLOUDY
+            5, 6 -> WeatherCode.CLOUDY
+            7 -> WeatherCode.FOG
+            8, 9, 10, 18, 19, 20 -> WeatherCode.RAIN
+            12, 13, 14, 22, 23, 24 -> WeatherCode.SLEET
+            15, 16, 17, 25, 26, 27 -> WeatherCode.SNOW
+            11 -> WeatherCode.THUNDERSTORM
+            21 -> WeatherCode.THUNDER
+            else -> null
         }
     }
 

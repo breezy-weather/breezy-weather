@@ -17,10 +17,21 @@
 package org.breezyweather.sources.brightsky
 
 import android.content.Context
+import android.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
+import breezyweather.domain.weather.model.Alert
+import breezyweather.domain.weather.model.Precipitation
+import breezyweather.domain.weather.model.PrecipitationProbability
+import breezyweather.domain.weather.model.Wind
+import breezyweather.domain.weather.reference.AlertSeverity
+import breezyweather.domain.weather.reference.WeatherCode
+import breezyweather.domain.weather.wrappers.CurrentWrapper
+import breezyweather.domain.weather.wrappers.DailyWrapper
+import breezyweather.domain.weather.wrappers.HourlyWrapper
+import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -29,7 +40,9 @@ import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.getFormattedDate
+import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
+import org.breezyweather.common.extensions.toDateNoHour
 import org.breezyweather.common.extensions.toTimezoneNoHour
 import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
@@ -39,8 +52,11 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
+import org.breezyweather.sources.brightsky.json.BrightSkyAlert
 import org.breezyweather.sources.brightsky.json.BrightSkyAlertsResult
+import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeather
 import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeatherResult
+import org.breezyweather.sources.brightsky.json.BrightSkyWeather
 import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
 import retrofit2.Retrofit
 import java.util.Calendar
@@ -175,6 +191,139 @@ class BrightSkyService @Inject constructor(
                 },
                 failedFeatures = failedFeatures
             )
+        }
+    }
+
+    /**
+     * Returns current weather
+     */
+    private fun getCurrent(result: BrightSkyCurrentWeather?): CurrentWrapper? {
+        if (result == null) return null
+        return CurrentWrapper(
+            weatherCode = getWeatherCode(result.icon),
+            temperature = TemperatureWrapper(
+                temperature = result.temperature
+            ),
+            wind = Wind(
+                degree = result.windDirection?.toDouble(),
+                speed = result.windSpeed?.div(3.6),
+                gusts = result.windGustSpeed?.div(3.6)
+            ),
+            relativeHumidity = result.relativeHumidity?.toDouble(),
+            dewPoint = result.dewPoint,
+            pressure = result.pressure,
+            cloudCover = result.cloudCover,
+            visibility = result.visibility?.toDouble()
+        )
+    }
+
+    /**
+     * Generate empty daily days from hourly weather since daily doesn't exist in API
+     */
+    private fun getDailyForecast(
+        location: Location,
+        weatherResult: List<BrightSkyWeather>?,
+    ): List<DailyWrapper>? {
+        if (weatherResult == null) return null
+
+        val dailyList = mutableListOf<DailyWrapper>()
+        val hourlyListByDay = weatherResult.groupBy {
+            it.timestamp.getIsoFormattedDate(location)
+        }
+        for (i in 0 until hourlyListByDay.entries.size - 1) {
+            val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.timeZone)
+            if (dayDate != null) {
+                dailyList.add(
+                    DailyWrapper(
+                        date = dayDate
+                    )
+                )
+            }
+        }
+        return dailyList
+    }
+
+    /**
+     * Returns hourly forecast
+     */
+    private fun getHourlyForecast(
+        weatherResult: List<BrightSkyWeather>?,
+    ): List<HourlyWrapper>? {
+        if (weatherResult == null) return null
+
+        return weatherResult.map { result ->
+            HourlyWrapper(
+                date = result.timestamp,
+                weatherCode = getWeatherCode(result.icon),
+                temperature = TemperatureWrapper(
+                    temperature = result.temperature
+                ),
+                precipitation = Precipitation(
+                    total = result.precipitation
+                ),
+                precipitationProbability = PrecipitationProbability(
+                    total = result.precipitationProbability?.toDouble()
+                ),
+                wind = Wind(
+                    degree = result.windDirection?.toDouble(),
+                    speed = result.windSpeed?.div(3.6),
+                    gusts = result.windGustSpeed?.div(3.6)
+                ),
+                relativeHumidity = result.relativeHumidity?.toDouble(),
+                dewPoint = result.dewPoint,
+                pressure = result.pressure,
+                cloudCover = result.cloudCover,
+                visibility = result.visibility?.toDouble(),
+                sunshineDuration = result.sunshine?.div(60)
+            )
+        }
+    }
+
+    /**
+     * Returns alerts
+     */
+    private fun getAlertList(alertList: List<BrightSkyAlert>?, languageCode: String): List<Alert>? {
+        if (alertList.isNullOrEmpty()) return null
+        return alertList.map { alert ->
+            Alert(
+                alertId = alert.id.toString(),
+                startDate = alert.onset,
+                endDate = alert.expires,
+                headline = if (languageCode == "de") alert.headlineDe else alert.headlineEn,
+                description = if (languageCode == "de") alert.descriptionDe else alert.descriptionEn,
+                instruction = if (languageCode == "de") alert.instructionDe else alert.instructionEn,
+                source = "Deutscher Wetterdienst",
+                severity = when (alert.severity?.lowercase()) {
+                    "extreme" -> AlertSeverity.EXTREME
+                    "severe" -> AlertSeverity.SEVERE
+                    "moderate" -> AlertSeverity.MODERATE
+                    "minor" -> AlertSeverity.MINOR
+                    else -> AlertSeverity.UNKNOWN
+                },
+                color = when (alert.severity?.lowercase()) {
+                    "extreme" -> Color.rgb(241, 48, 255)
+                    "severe" -> Color.rgb(255, 48, 48)
+                    "moderate" -> Color.rgb(255, 179, 48)
+                    "minor" -> Color.rgb(255, 238, 48)
+                    else -> Alert.colorFromSeverity(AlertSeverity.UNKNOWN)
+                }
+            )
+        }
+    }
+
+    private fun getWeatherCode(icon: String?): WeatherCode? {
+        return when (icon) {
+            "clear-day", "clear-night" -> WeatherCode.CLEAR
+            "partly-cloudy-day", "partly-cloudy-night" -> WeatherCode.PARTLY_CLOUDY
+            "cloudy" -> WeatherCode.CLOUDY
+            "fog" -> WeatherCode.FOG
+            "wind" -> WeatherCode.WIND
+            "rain" -> WeatherCode.RAIN
+            "sleet" -> WeatherCode.SLEET
+            "snow" -> WeatherCode.SNOW
+            "hail" -> WeatherCode.HAIL
+            "thunderstorm" -> WeatherCode.THUNDERSTORM
+            else -> null
         }
     }
 
