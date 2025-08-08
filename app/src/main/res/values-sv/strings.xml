@@ -836,4 +836,5 @@
     <string name="visibility_scale">Siktskala</string>
     <string name="cloud_cover_scale">Molntäckesskala</string>
     <string name="content_provider_permission_label">Läsa Breezy Weather-data</string>
+    <string name="content_provider_permission_description">få väderinformation från Breezy Weather, inklusive koordinaterna för dina platser, till exempel din nuvarande plats om du har lagt till den</string>
 </resources>
