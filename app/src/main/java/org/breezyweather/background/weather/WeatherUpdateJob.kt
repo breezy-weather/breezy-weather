@@ -305,8 +305,7 @@ class WeatherUpdateJob @AssistedInject constructor(
             }
 
             val location = locationList[0]
-            val indexOfFirstLocation =
-                newUpdates.firstOrNull { it.first.formattedId == location.formattedId }
+            val indexOfFirstLocation = newUpdates.firstOrNull { it.first.formattedId == location.formattedId }
 
             // Send alert and precipitation for the first location
             if (indexOfFirstLocation != null) {
@@ -318,7 +317,11 @@ class WeatherUpdateJob @AssistedInject constructor(
                 Notifications.checkAndSendPrecipitation(applicationContext, location)
             }
 
-            refreshHelper.broadcastDataIfNecessary(context, locationList)
+            refreshHelper.broadcastDataIfNecessary(
+                context,
+                locationList,
+                newUpdates.map { it.first.formattedId }.toTypedArray()
+            )
 
             // Inform main activity that we updated location
             newUpdates.forEach {

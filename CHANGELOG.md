@@ -2,6 +2,7 @@
 
 **New features**
 - Content provider: allows (with your permission) other apps to query your weather data. Currently not available in release builds during the testing phase. [Read the announcement](https://github.com/breezy-weather/breezy-weather/discussions/2089)
+- New broadcast: you can use  ̀org.breezyweather.ACTION_UPDATE_NOTIFIER` (or `org.breezyweather.debug.ACTION_UPDATE_NOTIFIER` with the debug build) to be notified of updated locations (most common use case is coupled with the content provider)
 
 **Removed features**
 - Mean daytime/nighttime temperatures as threshold lines. Use a normals source instead

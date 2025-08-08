@@ -45,8 +45,12 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
 
     override val intentAction = "nodomain.freeyourgadget.gadgetbridge.ACTION_GENERIC_WEATHER"
 
-    override fun getExtras(context: Context, locations: List<Location>): Bundle? {
-        if (!locations.any { it.weather?.current != null }) {
+    override fun getExtras(
+        context: Context,
+        allLocations: List<Location>,
+        updatedLocationIds: Array<String>?,
+    ): Bundle? {
+        if (!allLocations.any { it.weather?.current != null }) {
             LogHelper.log(msg = "Not sending GadgetBridge data, current weather is null")
             return null
         }
@@ -54,12 +58,12 @@ class GadgetbridgeService @Inject constructor() : BroadcastSource {
         return Bundle().apply {
             putString(
                 "WeatherJson",
-                Json.encodeToString(getWeatherData(context, locations[0]))
+                Json.encodeToString(getWeatherData(context, allLocations[0]))
             )
             putString(
                 "WeatherSecondaryJson",
                 Json.encodeToString(
-                    locations.drop(1).mapNotNull {
+                    allLocations.drop(1).mapNotNull {
                         if (it.weather?.current != null) getWeatherData(context, it) else null
                     }
                 )

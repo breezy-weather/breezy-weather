@@ -33,6 +33,7 @@ interface BroadcastSource : Source {
      */
     fun getExtras(
         context: Context,
-        locations: List<Location>,
+        allLocations: List<Location>,
+        updatedLocationIds: Array<String>?,
     ): Bundle?
 }

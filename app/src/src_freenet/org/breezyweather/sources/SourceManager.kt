@@ -32,6 +32,7 @@ import org.breezyweather.common.source.Source
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.android.AndroidLocationService
 import org.breezyweather.sources.breezytz.BreezyTimeZoneService
+import org.breezyweather.sources.breezyupdatenotifier.BreezyUpdateNotifierService
 import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.climweb.AnamBfService
 import org.breezyweather.sources.climweb.AnametService
@@ -65,6 +66,7 @@ class SourceManager @Inject constructor(
     anamBfService: AnamBfService,
     anametService: AnametService,
     breezyTimeZoneService: BreezyTimeZoneService,
+    breezyUpdateNotifierService: BreezyUpdateNotifierService,
     brightSkyService: BrightSkyService,
     dccmsService: DccmsService,
     debugService: DebugService,
@@ -135,6 +137,7 @@ class SourceManager @Inject constructor(
 
     // Broadcast sources
     private val broadcastSourceList = persistentListOf(
+        breezyUpdateNotifierService,
         gadgetbridgeService
     )
 

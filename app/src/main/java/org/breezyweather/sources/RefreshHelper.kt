@@ -1016,7 +1016,7 @@ class RefreshHelper @Inject constructor(
                     weather = weatherRepository.getWeatherByLocationId(it.formattedId)
                 )
             }
-        return broadcastDataIfNecessary(context, locationList, sourceId)
+        return broadcastDataIfNecessary(context, locationList, sourceId = sourceId)
     }
 
     fun isBroadcastSourcesEnabled(context: Context): Boolean {
@@ -1031,6 +1031,7 @@ class RefreshHelper @Inject constructor(
     fun broadcastDataIfNecessary(
         context: Context,
         locationList: List<Location>,
+        updatedLocationIds: Array<String>? = null,
         sourceId: String? = null,
     ) {
         sourceManager.getBroadcastSources()
@@ -1060,23 +1061,13 @@ class RefreshHelper @Inject constructor(
                     }
 
                     if (enabledAndAvailablePackages.isNotEmpty()) {
-                        sendBroadcastSafely(context, enabledAndAvailablePackages, source, locationList)
-                        /*val data = source.getExtras(context, locationList)
-                        if (data != null) {
-                            try {
-                                enabledAndAvailablePackages.forEach {
-                                    if (BreezyWeather.instance.debugMode) {
-                                        LogHelper.log(msg = "[${source.name}] Sending data to $it")
-                                    }
-                                    context.sendBroadcast(
-                                        Intent(source.intentAction)
-                                            .setPackage(it)
-                                            .putExtras(data)
-                                            .setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
-                                    )
-                                }
-                            }
-                        }*/
+                        sendBroadcastSafely(
+                            context,
+                            enabledAndAvailablePackages,
+                            source,
+                            locationList,
+                            updatedLocationIds
+                        )
                     }
                 }
             }
@@ -1087,9 +1078,10 @@ class RefreshHelper @Inject constructor(
         enabledAndAvailablePackages: List<String>,
         source: BroadcastSource,
         locationList: List<Location>,
+        updatedLocationIds: Array<String>?,
     ) {
         if (locationList.isNotEmpty()) {
-            val data = source.getExtras(context, locationList)
+            val data = source.getExtras(context, locationList, updatedLocationIds)
             if (data != null) {
                 if (data.sizeInBytes > 1000000) {
                     if (BreezyWeather.instance.debugMode) {
@@ -1099,7 +1091,8 @@ class RefreshHelper @Inject constructor(
                         context,
                         enabledAndAvailablePackages,
                         source,
-                        locationList.dropLast(1)
+                        locationList.dropLast(1),
+                        updatedLocationIds
                     )
                     return
                 }
@@ -1130,7 +1123,8 @@ class RefreshHelper @Inject constructor(
                             context,
                             enabledAndAvailablePackages,
                             source,
-                            locationList.dropLast(1)
+                            locationList.dropLast(1),
+                            updatedLocationIds
                         )
                     } else {
                         if (BreezyWeather.instance.debugMode) {

@@ -421,6 +421,8 @@
     <string name="weather_source_accu_preference_hours_72">72 hours</string>
     <string name="weather_source_accu_preference_hours_120">120 hours</string>
     <string name="weather_source_accu_preference_hours_240">240 hours</string>
+    <!-- %s = Breezy Weather -->
+    <string name="broadcast_source_breezy_weather_update_notifier">%s Update Notifier</string>
     <!-- Location -->
     <string name="locations">Locations</string>
     <string name="location_current">Current location</string>

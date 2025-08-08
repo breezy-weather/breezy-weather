@@ -723,6 +723,7 @@
     <string name="weather_source_accu_preference_hours_72">72 heures</string>
     <string name="weather_source_accu_preference_hours_120">120 heures</string>
     <string name="weather_source_accu_preference_hours_240">240 heures</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">Notification des mises à jour %s</string>
     <string name="location_service_native">API native</string>
     <string name="settings_automatic">Automatique</string>
     <string name="notification_style_native">Natif</string>

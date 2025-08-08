@@ -48,6 +48,7 @@ import org.breezyweather.sources.baiduip.BaiduIPLocationService
 import org.breezyweather.sources.bmd.BmdService
 import org.breezyweather.sources.bmkg.BmkgService
 import org.breezyweather.sources.breezytz.BreezyTimeZoneService
+import org.breezyweather.sources.breezyupdatenotifier.BreezyUpdateNotifierService
 import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.china.ChinaService
 import org.breezyweather.sources.climweb.AnamBfService
@@ -130,6 +131,7 @@ class SourceManager @Inject constructor(
     bmdService: BmdService,
     bmkgService: BmkgService,
     breezyTimeZoneService: BreezyTimeZoneService,
+    breezyUpdateNotifierService: BreezyUpdateNotifierService,
     brightSkyService: BrightSkyService,
     chinaService: ChinaService,
     cwaService: CwaService,
@@ -288,6 +290,7 @@ class SourceManager @Inject constructor(
 
     // Broadcast sources
     private val broadcastSourceList = persistentListOf(
+        breezyUpdateNotifierService,
         gadgetbridgeService
     )
 
