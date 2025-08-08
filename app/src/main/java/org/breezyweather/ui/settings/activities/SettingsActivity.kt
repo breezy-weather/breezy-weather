@@ -52,12 +52,12 @@ import org.breezyweather.ui.settings.compose.BackgroundSettingsScreen
 import org.breezyweather.ui.settings.compose.DebugSettingsScreen
 import org.breezyweather.ui.settings.compose.LocationSettingsScreen
 import org.breezyweather.ui.settings.compose.MainScreenSettingsScreen
+import org.breezyweather.ui.settings.compose.ModulesSettingsScreen
 import org.breezyweather.ui.settings.compose.NotificationsSettingsScreen
 import org.breezyweather.ui.settings.compose.RootSettingsView
 import org.breezyweather.ui.settings.compose.SettingsScreenRouter
 import org.breezyweather.ui.settings.compose.UnitSettingsScreen
 import org.breezyweather.ui.settings.compose.WeatherSourcesSettingsScreen
-import org.breezyweather.ui.settings.compose.ModulesSettingsScreen
 import org.breezyweather.ui.theme.compose.BreezyWeatherTheme
 import javax.inject.Inject
 
