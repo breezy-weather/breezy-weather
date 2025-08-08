@@ -17,16 +17,17 @@
 package org.breezyweather.common.source
 
 import android.content.Context
+import breezyweather.domain.location.model.Location
 import io.reactivex.rxjava3.core.Observable
 import java.util.TimeZone
 
 /**
  * Timezone matcher source
  */
-interface TimezoneSource : Source {
+interface TimeZoneSource : Source {
 
     /**
      * Returns a list of Breezy Weather Location results from a query
      */
-    fun requestTimezone(context: Context, query: String): Observable<TimeZone>
+    fun requestTimezone(context: Context, location: Location): Observable<TimeZone>
 }

@@ -31,6 +31,7 @@ import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.Source
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.android.AndroidLocationService
+import org.breezyweather.sources.breezytz.BreezyTimeZoneService
 import org.breezyweather.sources.brightsky.BrightSkyService
 import org.breezyweather.sources.climweb.AnamBfService
 import org.breezyweather.sources.climweb.AnametService
@@ -63,6 +64,7 @@ class SourceManager @Inject constructor(
     androidLocationService: AndroidLocationService,
     anamBfService: AnamBfService,
     anametService: AnametService,
+    breezyTimeZoneService: BreezyTimeZoneService,
     brightSkyService: BrightSkyService,
     dccmsService: DccmsService,
     debugService: DebugService,
@@ -136,6 +138,8 @@ class SourceManager @Inject constructor(
         gadgetbridgeService
     )
 
+    private val timeZoneSource = breezyTimeZoneService
+
     // The order of this list is preserved in "source chooser" dialogs
     private val sourceList: ImmutableList<Source> = buildList {
         addAll(locationSourceList)
@@ -197,4 +201,6 @@ class SourceManager @Inject constructor(
     fun getConfigurableSources(): ImmutableList<ConfigurableSource> = sourceList
         .filterIsInstance<ConfigurableSource>()
         .toImmutableList()
+
+    fun getTimeZoneSource(): TimeZoneSource = timeZoneSource
 }

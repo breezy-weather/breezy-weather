@@ -325,7 +325,7 @@ class RefreshHelper @Inject constructor(
 
         val locationWithTimeZone = if (locationGeocoded.timeZone.id == "GMT") {
             locationGeocoded.copy(
-                timeZone = getTimeZoneForLocation(locationGeocoded)
+                timeZone = getTimeZoneForLocation(context, locationGeocoded)
             )
         } else {
             locationGeocoded
@@ -334,12 +334,13 @@ class RefreshHelper @Inject constructor(
         return LocationResult(locationWithTimeZone, currentErrors)
     }
 
-    /**
-     * TODO: See #2093
-     *  Put the logic in a different class
-     */
-    private fun getTimeZoneForLocation(location: Location): TimeZone {
-        return TimeZone.getDefault()
+    private suspend fun getTimeZoneForLocation(context: Context, location: Location): TimeZone {
+        return sourceManager
+            .getTimeZoneSource()
+            .requestTimezone(context, location)
+            .awaitFirstOrElse {
+                TimeZone.getDefault()
+            }
     }
 
     private suspend fun requestReverseGeocoding(
