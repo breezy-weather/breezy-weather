@@ -36,6 +36,42 @@ class BreezyTimeZoneService @Inject constructor() : TimeZoneSource {
         context: Context,
         location: Location,
     ): Observable<TimeZone> {
-        return Observable.just(TimeZone.getDefault())
+        return Observable.just(
+            if (!location.countryCode.isNullOrEmpty()) {
+                // TODO
+                TimeZone.getDefault()
+            } else {
+                // Fallback to ocean zones
+                // See also https://github.com/eggert/tz/blob/2025b/etcetera#L37-L43
+                when (location.longitude) {
+                    in 172.5..180.0 -> TimeZone.getTimeZone("Etc/GMT-12")
+                    in 157.5..172.5 -> TimeZone.getTimeZone("Etc/GMT-11")
+                    in 142.5..157.5 -> TimeZone.getTimeZone("Etc/GMT-10")
+                    in 127.5..142.5 -> TimeZone.getTimeZone("Etc/GMT-9")
+                    in 112.5..127.5 -> TimeZone.getTimeZone("Etc/GMT-8")
+                    in 97.5..112.5 -> TimeZone.getTimeZone("Etc/GMT-7")
+                    in 82.5..97.5 -> TimeZone.getTimeZone("Etc/GMT-6")
+                    in 67.5..82.5 -> TimeZone.getTimeZone("Etc/GMT-5")
+                    in 52.5..67.5 -> TimeZone.getTimeZone("Etc/GMT-4")
+                    in 37.5..52.5 -> TimeZone.getTimeZone("Etc/GMT-3")
+                    in 22.5..37.5 -> TimeZone.getTimeZone("Etc/GMT-2")
+                    in 7.5..22.5 -> TimeZone.getTimeZone("Etc/GMT-1")
+                    in -7.5..7.5 -> TimeZone.getTimeZone("Etc/GMT")
+                    in -22.5..-7.5 -> TimeZone.getTimeZone("Etc/GMT+1")
+                    in -37.5..-22.5 -> TimeZone.getTimeZone("Etc/GMT+2")
+                    in -52.5..-37.5 -> TimeZone.getTimeZone("Etc/GMT+3")
+                    in -67.5..-52.5 -> TimeZone.getTimeZone("Etc/GMT+4")
+                    in -82.5..-67.5 -> TimeZone.getTimeZone("Etc/GMT+5")
+                    in -97.5..-82.5 -> TimeZone.getTimeZone("Etc/GMT+6")
+                    in -112.5..-97.5 -> TimeZone.getTimeZone("Etc/GMT+7")
+                    in -127.5..-112.5 -> TimeZone.getTimeZone("Etc/GMT+8")
+                    in -142.5..-127.5 -> TimeZone.getTimeZone("Etc/GMT+9")
+                    in -157.5..-142.5 -> TimeZone.getTimeZone("Etc/GMT+10")
+                    in -172.5..-157.5 -> TimeZone.getTimeZone("Etc/GMT+11")
+                    in -180.0..-172.5 -> TimeZone.getTimeZone("Etc/GMT+12")
+                    else -> TimeZone.getDefault()
+                }
+            }
+        )
     }
 }
