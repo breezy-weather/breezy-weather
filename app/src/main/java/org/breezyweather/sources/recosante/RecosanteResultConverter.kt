@@ -39,9 +39,9 @@ internal fun getPollen(
     }
 
     val dayList = mutableListOf<Date>()
-    if (result.raep!!.validity?.start != null && result.raep.validity!!.end != null) {
-        var startDate = result.raep.validity.start!!.toDateNoHour(location.javaTimeZone)
-        val endDate = result.raep.validity.end!!.toDateNoHour(location.javaTimeZone)
+    if (result.raep.validity?.start != null && result.raep.validity.end != null) {
+        var startDate = result.raep.validity.start.toDateNoHour(location.timeZone)
+        val endDate = result.raep.validity.end.toDateNoHour(location.timeZone)
         if (startDate != null && endDate != null) {
             var i = 0
             while (true) {
@@ -51,20 +51,20 @@ internal fun getPollen(
                     break
                 } else {
                     dayList.add(startDate!!)
-                    startDate = startDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
+                    startDate = startDate.toCalendarWithTimeZone(location.timeZone).apply {
                         add(Calendar.DAY_OF_MONTH, 1)
                     }.time
                 }
             }
         } else {
-            dayList.add(Date().toTimezoneNoHour(location.javaTimeZone))
+            dayList.add(Date().toTimezoneNoHour(location.timeZone))
         }
     } else {
-        dayList.add(Date().toTimezoneNoHour(location.javaTimeZone))
+        dayList.add(Date().toTimezoneNoHour(location.timeZone))
     }
 
     return PollenWrapper(
-        dailyForecast = getPollen(result.raep.indice!!.details!!).let { pollenData ->
+        dailyForecast = getPollen(result.raep.indice.details).let { pollenData ->
             dayList.associateWith { pollenData }
         }
     )

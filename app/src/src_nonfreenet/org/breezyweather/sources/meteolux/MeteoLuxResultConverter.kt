@@ -60,7 +60,7 @@ internal fun convert(
     return location.copy(
         latitude = location.latitude,
         longitude = location.longitude,
-        timeZone = "Europe/Luxembourg",
+        timeZone = TimeZone.getTimeZone("Europe/Luxembourg"),
         country = context.currentLocale.getCountryName("LU"),
         countryCode = "LU",
         admin1 = weatherResult.city.canton,

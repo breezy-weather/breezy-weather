@@ -63,7 +63,7 @@ fun Date.getRelativeTime(context: Context): String {
             DateUtils.MINUTE_IN_MILLIS,
             DateUtils.FORMAT_ABBREV_RELATIVE
         ) as String
-    } catch (ignored: Exception) {
+    } catch (_: Exception) {
         if (BreezyWeather.instance.debugMode) {
             LogHelper.log(msg = "Reflection of relative time failed")
         }
@@ -97,11 +97,11 @@ fun Date.getFormattedDate(
             },
             locale
         ).apply {
-            timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it) } ?: TimeZone.getDefault()
+            timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it.id) } ?: TimeZone.getDefault()
         }.format(this)
     } else {
         @Suppress("DEPRECATION")
-        getFormattedDate(pattern, location?.javaTimeZone, locale)
+        getFormattedDate(pattern, location?.timeZone, locale)
     }
 }
 
@@ -217,7 +217,7 @@ fun Date.getFormattedMediumDayAndMonthInAdditionalCalendar(
                     },
                     uLocale
                 ).apply {
-                    timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it) } ?: TimeZone.getDefault()
+                    timeZone = location?.timeZone?.let { TimeZone.getTimeZone(it.id) } ?: TimeZone.getDefault()
                 }.format(this)
             } else {
                 null
@@ -233,7 +233,7 @@ fun Date.getFormattedMediumDayAndMonthInAdditionalCalendar(
 fun Date.toCalendar(location: Location): Calendar {
     return Calendar.getInstance().also {
         it.time = this
-        it.timeZone = location.javaTimeZone
+        it.timeZone = location.timeZone
     }
 }
 
@@ -263,5 +263,5 @@ fun Date.getIsoFormattedDate(location: Location): String {
 }
 
 fun Date.getCalendarMonth(location: Location): Month {
-    return Month.fromCalendarMonth(toCalendarWithTimeZone(location.javaTimeZone)[Calendar.MONTH])
+    return Month.fromCalendarMonth(toCalendarWithTimeZone(location.timeZone)[Calendar.MONTH])
 }

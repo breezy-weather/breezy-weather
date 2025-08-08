@@ -35,6 +35,7 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.utils.helpers.LogHelper
 import java.util.Calendar
 import java.util.Date
+import java.util.TimeZone
 import javax.inject.Inject
 import kotlin.math.roundToInt
 import kotlin.random.Random
@@ -99,7 +100,7 @@ class DebugService @Inject constructor() : WeatherSource {
      * TODO: Add data for testing
      */
     private fun getDailyList(location: Location): List<DailyWrapper> {
-        val calendar = Date().toCalendarWithTimeZone(location.javaTimeZone).apply {
+        val calendar = Date().toCalendarWithTimeZone(location.timeZone).apply {
             add(Calendar.DAY_OF_YEAR, -1)
             set(Calendar.HOUR_OF_DAY, 0)
             set(Calendar.MINUTE, 0)
@@ -206,7 +207,7 @@ class DebugService @Inject constructor() : WeatherSource {
                     city = "$CURRENT_CITY_LABEL${weatherCode.name}",
                     latitude = CURRENT_LATITUDE,
                     longitude = CURRENT_LONGITUDE_START + index * 0.01, // 2.00, 2.01, 2.02, 2.03, etc
-                    timeZone = "Europe/Paris",
+                    timeZone = TimeZone.getTimeZone("Europe/Paris"),
                     country = "France",
                     countryCode = "FR",
                     forecastSource = id,
@@ -228,7 +229,7 @@ class DebugService @Inject constructor() : WeatherSource {
                     city = "$MINUTELY_CITY_LABEL$label",
                     latitude = MINUTELY_LATITUDE,
                     longitude = MINUTELY_LONGITUDE_START + index * 0.01, // 2.00, 2.01, 2.02, 2.03, etc
-                    timeZone = "Europe/Paris",
+                    timeZone = TimeZone.getTimeZone("Europe/Paris"),
                     country = "France",
                     countryCode = "FR",
                     forecastSource = id,

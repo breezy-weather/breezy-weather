@@ -30,6 +30,7 @@ import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.sources.here.json.HereGeocodingData
 import org.breezyweather.sources.here.json.HereWeatherData
+import java.util.TimeZone
 
 /**
  * Converts here.com geocoding result into a list of locations
@@ -44,7 +45,7 @@ internal fun convert(
             cityId = item.id,
             latitude = location?.latitude ?: item.position.lat,
             longitude = location?.longitude ?: item.position.lng,
-            timeZone = item.timeZone.name,
+            timeZone = TimeZone.getTimeZone(item.timeZone.name),
             country = item.address.countryName,
             countryCode = item.address.countryCode,
             admin1 = item.address.state,

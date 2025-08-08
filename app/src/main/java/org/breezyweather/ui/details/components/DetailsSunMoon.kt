@@ -156,12 +156,12 @@ fun EphemerisChart(
     val context = LocalContext.current
 
     val startingDate = remember(today) {
-        today.date.toTimezoneSpecificHour(location.javaTimeZone)
+        today.date.toTimezoneSpecificHour(location.timeZone)
     }
     val endingDate = remember(today) {
-        today.date.toCalendarWithTimeZone(location.javaTimeZone).apply {
+        today.date.toCalendarWithTimeZone(location.timeZone).apply {
             add(Calendar.DAY_OF_MONTH, 1)
-        }.time.toTimezoneSpecificHour(location.javaTimeZone, 0)
+        }.time.toTimezoneSpecificHour(location.timeZone, 0)
     }
 
     val mappedSunValues = remember(today) {

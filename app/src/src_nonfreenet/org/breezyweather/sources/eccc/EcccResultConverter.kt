@@ -17,7 +17,6 @@
 package org.breezyweather.sources.eccc
 
 import android.content.Context
-import android.os.Build
 import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
 import breezyweather.domain.weather.model.Alert
@@ -46,6 +45,7 @@ import org.breezyweather.sources.eccc.json.EcccUnit
 import org.breezyweather.sources.getWindDegree
 import java.util.Calendar
 import java.util.Objects
+import java.util.TimeZone
 import kotlin.time.Duration.Companion.seconds
 
 internal fun convert(
@@ -66,11 +66,7 @@ internal fun convert(
         admin4Code = "",
         city = result.displayName ?: "",
         // Make sure to update TimeZone, especially useful on current location
-        timeZone = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            android.icu.util.TimeZone.getDefault().id
-        } else {
-            java.util.TimeZone.getDefault().id
-        }
+        timeZone = TimeZone.getDefault()
     )
 }
 
@@ -109,7 +105,7 @@ internal fun getDailyForecast(
 ): List<DailyWrapper> {
     if (dailyResult == null) return emptyList()
     val dailyFirstDay = dailyResult.dailyIssuedTimeEpoch!!.toLong().seconds.inWholeMilliseconds.toDate()
-        .toTimezoneNoHour(location.javaTimeZone)
+        .toTimezoneNoHour(location.timeZone)
     val dailyList = mutableListOf<DailyWrapper>()
     if (dailyFirstDay != null) {
         val firstDayIsNight = dailyResult.daily!![0].temperature?.periodLow != null

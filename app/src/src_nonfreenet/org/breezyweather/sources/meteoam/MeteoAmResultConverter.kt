@@ -30,6 +30,7 @@ import org.breezyweather.R
 import org.breezyweather.sources.meteoam.json.MeteoAmForecastStats
 import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocation
 import java.util.Date
+import java.util.TimeZone
 
 internal fun convert(
     location: Location,
@@ -37,7 +38,7 @@ internal fun convert(
     timezone: String,
 ): Location {
     return location.copy(
-        timeZone = timezone,
+        timeZone = TimeZone.getTimeZone(timezone),
         country = reverseLocation.country,
         countryCode = reverseLocation.countryCode,
         admin2 = reverseLocation.county,

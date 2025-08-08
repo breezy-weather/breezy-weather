@@ -100,7 +100,7 @@ abstract class AstroViewHolder(parent: ViewGroup, val isSun: Boolean) : Abstract
 
         ensureTime(
             if (isSun) mWeather!!.today?.sun else mWeather!!.today?.moon,
-            location.javaTimeZone
+            location.timeZone
         )
         ensurePhaseAngle(mWeather!!)
 

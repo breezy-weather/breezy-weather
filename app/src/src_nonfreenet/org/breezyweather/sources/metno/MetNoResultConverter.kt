@@ -119,7 +119,7 @@ internal fun getDailyList(
         it.time.getIsoFormattedDate(location)
     }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
-        hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)?.let { dayDate ->
+        hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.timeZone)?.let { dayDate ->
             dailyList.add(
                 DailyWrapper(date = dayDate)
             )

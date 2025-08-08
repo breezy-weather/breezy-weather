@@ -800,7 +800,7 @@ private fun getHourlyListByHalfDay(
                 "night" to mutableListOf()
             )
         }
-        if (theDayShifted.toCalendarWithTimeZone(location.javaTimeZone).get(Calendar.HOUR_OF_DAY) < 12) {
+        if (theDayShifted.toCalendarWithTimeZone(location.timeZone).get(Calendar.HOUR_OF_DAY) < 12) {
             // 06:00 to 17:59 is the day (12 because we shifted by 6 hours)
             hourlyByHalfDay[theDayFormatted]!!["day"]!!.add(hourly)
         } else {
@@ -1440,7 +1440,7 @@ internal fun completeHourlyListFromDailyList(
                         hourly.date,
                         daily.second?.riseDate,
                         daily.second?.setDate,
-                        location.javaTimeZone
+                        location.timeZone
                     )
                 }
             )
@@ -1547,7 +1547,7 @@ internal fun completeCurrentFromHourlyData(
                     Date(),
                     todayDaily.sun?.riseDate,
                     todayDaily.sun?.setDate,
-                    location.javaTimeZone
+                    location.timeZone
                 )
             } else {
                 newCurrent.uV
@@ -1584,7 +1584,7 @@ internal fun completeCurrentFromHourlyData(
                 Date(),
                 todayDaily.sun?.riseDate,
                 todayDaily.sun?.setDate,
-                location.javaTimeZone
+                location.timeZone
             )
         } else {
             newCurrent.uV

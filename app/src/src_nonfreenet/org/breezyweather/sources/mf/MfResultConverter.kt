@@ -61,7 +61,7 @@ internal fun convert(location: Location, result: MfForecastResult): Location {
         location
     } else {
         location.copy(
-            timeZone = result.properties.timezone,
+            timeZone = TimeZone.getTimeZone(result.properties.timezone),
             country = result.properties.country,
             countryCode = result.properties.country.substring(0, 2),
             admin2 = if (!result.properties.frenchDepartment.isNullOrEmpty()) {
@@ -103,7 +103,7 @@ internal fun getDailyList(
         val dailyForecast = dailyForecasts[i]
         // Given as UTC, we need to convert in the correct timezone at 00:00
         val dayInUTCCalendar = dailyForecast.time.toCalendarWithTimeZone(TimeZone.getTimeZone("UTC"))
-        val dayInLocalCalendar = Calendar.getInstance(location.javaTimeZone).apply {
+        val dayInLocalCalendar = Calendar.getInstance(location.timeZone).apply {
             set(Calendar.YEAR, dayInUTCCalendar[Calendar.YEAR])
             set(Calendar.MONTH, dayInUTCCalendar[Calendar.MONTH])
             set(Calendar.DAY_OF_MONTH, dayInUTCCalendar[Calendar.DAY_OF_MONTH])

@@ -61,6 +61,7 @@ import org.breezyweather.sources.openmeteo.OpenMeteoService.Companion.COPERNICUS
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
+import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -269,7 +270,7 @@ class AccuService @Inject constructor(
         } else {
             Observable.just(AccuAirQualityResult())
         }
-        val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
+        val cal = Date().toCalendarWithTimeZone(location.timeZone)
         val climoSummary = if (
             SourceFeature.NORMALS in requestedFeatures &&
             mApi is AccuEnterpriseApi
@@ -566,7 +567,7 @@ class AccuService @Inject constructor(
             city = "State College",
             latitude = 40.79339,
             longitude = -77.86,
-            timeZone = "America/New_York",
+            timeZone = TimeZone.getTimeZone("America/New_York"),
             countryCode = "US",
             forecastSource = id,
             currentSource = id,

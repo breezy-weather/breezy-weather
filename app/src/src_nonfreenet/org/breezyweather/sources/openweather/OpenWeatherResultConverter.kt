@@ -67,7 +67,7 @@ internal fun getDailyList(
         it.dt!!.seconds.inWholeMilliseconds.toDate().getIsoFormattedDate(location)
     }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
-        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
+        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.timeZone)
         if (dayDate != null) {
             dailyList.add(
                 DailyWrapper(

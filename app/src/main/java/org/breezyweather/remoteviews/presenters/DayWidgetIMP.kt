@@ -202,7 +202,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
             views.setString(
                 R.id.widget_day_time,
                 "setTimeZone",
-                location.timeZone
+                location.timeZone.id
             )
             views.setCharSequence(
                 R.id.widget_day_time,
@@ -223,7 +223,7 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
             views.setString(
                 R.id.widget_day_title,
                 "setTimeZone",
-                location.timeZone
+                location.timeZone.id
             )
             views.setCharSequence(
                 R.id.widget_day_title,

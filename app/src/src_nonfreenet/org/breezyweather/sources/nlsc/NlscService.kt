@@ -17,6 +17,7 @@ import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import retrofit2.Retrofit
+import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -90,7 +91,7 @@ class NlscService @Inject constructor(
 
             listOf(
                 location.copy(
-                    timeZone = "Asia/Taipei",
+                    timeZone = TimeZone.getTimeZone("Asia/Taipei"),
                     country = context.currentLocale.getCountryName("TW"),
                     countryCode = "TW",
                     admin1 = locationCodes.countyName?.value,

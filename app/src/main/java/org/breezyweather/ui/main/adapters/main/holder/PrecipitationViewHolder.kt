@@ -53,7 +53,7 @@ class PrecipitationViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
         val talkBackBuilder = StringBuilder(context.getString(R.string.precipitation))
         location.weather?.let { weather ->
-            val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
+            val cal = Date().toCalendarWithTimeZone(location.timeZone)
             val currentHour = cal[Calendar.HOUR_OF_DAY]
 
             // Early morning

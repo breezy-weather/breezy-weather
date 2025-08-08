@@ -58,7 +58,7 @@ internal fun convert(
     town: CwaLocationTown,
 ): Location {
     return location.copy(
-        timeZone = "Asia/Taipei",
+        timeZone = TimeZone.getTimeZone("Asia/Taipei"),
         country = context.currentLocale.getCountryName("TW"),
         countryCode = "TW",
         admin1 = town.ctyName,

@@ -110,7 +110,7 @@ internal fun convert(
             location.copy(
                 latitude = location.latitude,
                 longitude = location.longitude,
-                timeZone = "Asia/Tokyo",
+                timeZone = TimeZone.getTimeZone("Asia/Tokyo"),
                 country = if (context.currentLocale.code.startsWith("ja")) {
                     "日本"
                 } else {

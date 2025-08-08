@@ -44,6 +44,7 @@ import org.breezyweather.sources.hko.json.HkoOneJsonResult
 import org.breezyweather.sources.hko.json.HkoWarningResult
 import org.json.JSONObject
 import retrofit2.Retrofit
+import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.math.round
@@ -320,7 +321,7 @@ class HkoService @Inject constructor(
                     location.copy(
                         latitude = location.latitude,
                         longitude = location.longitude,
-                        timeZone = "Asia/Hong_Kong",
+                        timeZone = TimeZone.getTimeZone("Asia/Hong_Kong"),
                         country = context.currentLocale.getCountryName("HK"),
                         countryCode = "HK",
                         city = with(languageCode) {

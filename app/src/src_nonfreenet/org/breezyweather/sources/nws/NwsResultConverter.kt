@@ -57,7 +57,7 @@ internal fun convert(
     locationProperties: NwsPointProperties,
 ): Location {
     return location.copy(
-        timeZone = locationProperties.timeZone,
+        timeZone = TimeZone.getTimeZone(locationProperties.timeZone),
         countryCode = "US",
         admin1 = locationProperties.relativeLocation?.properties?.state,
         admin1Code = locationProperties.relativeLocation?.properties?.state,
@@ -110,7 +110,7 @@ internal fun getDailyForecast(
 ): List<DailyWrapper> {
     val dailyList = mutableListOf<DailyWrapper>()
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
-    formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
+    formatter.timeZone = location.timeZone
     val dayParts = mutableMapOf<String, HalfDayWrapper>()
     val nightParts = mutableMapOf<String, HalfDayWrapper>()
     var date: String
@@ -319,7 +319,7 @@ private fun getDoubleForecast(
 
             for (i in 1..durationInHours) {
                 val newDate = if (i > 1) {
-                    date.toCalendarWithTimeZone(location.javaTimeZone).apply {
+                    date.toCalendarWithTimeZone(location.timeZone).apply {
                         add(Calendar.HOUR_OF_DAY, i - 1)
                     }.time
                 } else {
@@ -357,7 +357,7 @@ private fun getIntForecast(
 
             for (i in 1..durationInHours) {
                 val newDate = if (i > 1) {
-                    date.toCalendarWithTimeZone(location.javaTimeZone).apply {
+                    date.toCalendarWithTimeZone(location.timeZone).apply {
                         add(Calendar.HOUR_OF_DAY, i - 1)
                     }.time
                 } else {
@@ -391,13 +391,13 @@ private fun getWeatherForecast(
 
             for (i in 1..durationInHours) {
                 val newDate = if (i > 1) {
-                    date.toCalendarWithTimeZone(location.javaTimeZone).apply {
+                    date.toCalendarWithTimeZone(location.timeZone).apply {
                         add(Calendar.HOUR_OF_DAY, i - 1)
                     }.time
                 } else {
                     date
                 }
-                weatherForecast[newDate] = it.value!![0]
+                weatherForecast[newDate] = it.value[0]
             }
         }
     }

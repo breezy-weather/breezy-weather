@@ -92,32 +92,32 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setString(
             R.id.widget_clock_day_week_clock_light,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_week_clock_normal,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_week_clock_black,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_week_clock_aa_light,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_week_clock_aa_normal,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_week_clock_aa_black,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
 
         // Date
@@ -125,7 +125,7 @@ object ClockDayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setString(
             R.id.widget_clock_day_week_title,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setCharSequence(
             R.id.widget_clock_day_week_title,

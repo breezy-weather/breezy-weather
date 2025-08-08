@@ -28,7 +28,6 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
-import java.util.TimeZone
 import kotlin.time.Duration.Companion.hours
 
 internal fun getDailyForecast(
@@ -39,8 +38,8 @@ internal fun getDailyForecast(
     // CommonConverter.kt will compute the daily forecast items.
     val dates = hourlyForecast.groupBy { it.date.getIsoFormattedDate(location) }.keys
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
-    formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
-    val now = Calendar.getInstance(TimeZone.getTimeZone(location.timeZone))
+    formatter.timeZone = location.timeZone
+    val now = Calendar.getInstance(location.timeZone)
     now.add(Calendar.DATE, -1)
     val yesterday = formatter.format(now.time)
     val dailyList = mutableListOf<DailyWrapper>()

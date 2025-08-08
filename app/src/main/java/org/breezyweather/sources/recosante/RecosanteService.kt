@@ -39,6 +39,7 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_MEDIUM
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.domain.settings.SourceConfigStore
 import retrofit2.Retrofit
+import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -208,7 +209,7 @@ class RecosanteService @Inject constructor(
             city = "Marseille",
             latitude = 43.29695,
             longitude = 5.38107,
-            timeZone = "Europe/Paris",
+            timeZone = TimeZone.getTimeZone("Europe/Paris"),
             countryCode = "FR",
             pollenSource = id
         )

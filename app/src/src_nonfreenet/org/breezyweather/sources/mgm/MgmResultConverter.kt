@@ -59,7 +59,7 @@ internal fun convert(
     return location.copy(
         latitude = location.latitude,
         longitude = location.longitude,
-        timeZone = "Europe/Istanbul",
+        timeZone = TimeZone.getTimeZone("Europe/Istanbul"),
         country = context.currentLocale.getCountryName("TR"),
         countryCode = "TR",
         admin1 = result.province,

@@ -41,6 +41,7 @@ import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import java.util.Calendar
 import java.util.Date
 import java.util.Objects
+import java.util.TimeZone
 
 internal fun convert(
     location: Location?, // Null if location search, current location if reverse geocoding
@@ -51,7 +52,7 @@ internal fun convert(
             cityId = result.locationKey!!.replace("weathercn:", ""),
             latitude = location?.latitude ?: result.latitude!!.toDouble(),
             longitude = location?.longitude ?: result.longitude!!.toDouble(),
-            timeZone = "Asia/Shanghai",
+            timeZone = TimeZone.getTimeZone("Asia/Shanghai"),
             country = "",
             countryCode = "CN",
             admin2 = result.affiliation, // TODO: Double check if admin1 or admin2
@@ -117,7 +118,7 @@ internal fun getDailyList(
 
     val dailyList: MutableList<DailyWrapper> = ArrayList(dailyForecast.weather.value.size)
     dailyForecast.weather.value.forEachIndexed { index, weather ->
-        val calendar = publishDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
+        val calendar = publishDate.toCalendarWithTimeZone(location.timeZone).apply {
             add(Calendar.DAY_OF_YEAR, index)
             set(Calendar.HOUR_OF_DAY, 0)
             set(Calendar.MINUTE, 0)
@@ -190,7 +191,7 @@ internal fun getHourlyList(
 
     val hourlyList: MutableList<HourlyWrapper> = ArrayList(hourlyForecast.weather.value.size)
     hourlyForecast.weather.value.forEachIndexed { index, weather ->
-        val calendar = hourlyListPubTime.toCalendarWithTimeZone(location.javaTimeZone).apply {
+        val calendar = hourlyListPubTime.toCalendarWithTimeZone(location.timeZone).apply {
             add(Calendar.HOUR_OF_DAY, index) // FIXME: Wrong TimeZone for the first item
             set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)
@@ -229,7 +230,7 @@ internal fun getMinutelyList(
     val minutelyList: MutableList<Minutely> = ArrayList(minutelyResult.precipitation.value.size)
 
     minutelyResult.precipitation.value.forEachIndexed { minute, precipitation ->
-        val calendar = current.toCalendarWithTimeZone(location.javaTimeZone).apply {
+        val calendar = current.toCalendarWithTimeZone(location.timeZone).apply {
             set(Calendar.SECOND, 0)
             set(Calendar.MILLISECOND, 0)
             add(Calendar.MINUTE, minute)

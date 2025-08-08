@@ -105,13 +105,13 @@ fun BreezyBarChart(
     val isTrendHorizontalLinesEnabled = SettingsManager.getInstance(context).isTrendHorizontalLinesEnabled
 
     val startingDate = remember(theDay) {
-        theDay.toTimezoneSpecificHour(location.javaTimeZone, 0)
+        theDay.toTimezoneSpecificHour(location.timeZone, 0)
     }
     val cartesianLayerRangeProvider = CartesianLayerRangeProvider.fixed(
         minX = startingDate.time.toDouble(),
-        maxX = theDay.toCalendarWithTimeZone(location.javaTimeZone).apply {
+        maxX = theDay.toCalendarWithTimeZone(location.timeZone).apply {
             add(Calendar.DAY_OF_MONTH, 1)
-        }.time.toTimezoneSpecificHour(location.javaTimeZone, 0).time.toDouble(),
+        }.time.toTimezoneSpecificHour(location.timeZone, 0).time.toDouble(),
         maxY = maxY
     )
 

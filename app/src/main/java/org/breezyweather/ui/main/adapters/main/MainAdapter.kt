@@ -120,7 +120,7 @@ class MainAdapter(
                     continue
                 }
                 if (c === CardDisplay.CARD_PRECIPITATION) {
-                    val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
+                    val cal = Date().toCalendarWithTimeZone(location.timeZone)
                     val currentHour = cal[Calendar.HOUR_OF_DAY]
                     val precipitation = if (currentHour < 5) {
                         weather.todayIndex?.let { todayIndex ->

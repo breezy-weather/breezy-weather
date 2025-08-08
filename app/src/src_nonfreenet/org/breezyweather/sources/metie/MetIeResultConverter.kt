@@ -43,7 +43,7 @@ internal fun convert(
     result: MetIeLocationResult,
 ): Location {
     return location.copy(
-        timeZone = "Europe/Dublin",
+        timeZone = TimeZone.getTimeZone("Europe/Dublin"),
         country = "Ireland",
         countryCode = context.currentLocale.getCountryName("IE"),
         admin2 = result.county,
@@ -58,7 +58,7 @@ internal fun getDailyForecast(
     val dailyList = mutableListOf<DailyWrapper>()
     val hourlyListByDay = hourlyResult.groupBy { it.date }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
-        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
+        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.timeZone)
         if (dayDate != null) {
             dailyList.add(
                 DailyWrapper(

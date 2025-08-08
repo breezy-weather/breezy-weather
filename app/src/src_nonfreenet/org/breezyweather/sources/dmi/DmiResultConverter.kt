@@ -32,6 +32,7 @@ import org.breezyweather.sources.dmi.json.DmiResult
 import org.breezyweather.sources.dmi.json.DmiTimeserie
 import org.breezyweather.sources.dmi.json.DmiWarning
 import java.util.Objects
+import java.util.TimeZone
 
 internal fun convert(
     location: Location,
@@ -39,7 +40,7 @@ internal fun convert(
 ): Location {
     return location.copy(
         cityId = result.id,
-        timeZone = result.timezone!!,
+        timeZone = TimeZone.getTimeZone(result.timezone!!),
         country = result.country ?: location.country,
         countryCode = result.country,
         admin1 = "",
@@ -69,7 +70,7 @@ internal fun getDailyForecast(
         it.localTimeIso.getIsoFormattedDate(location)
     }
     for (i in 0 until hourlyListByDay.entries.size - 1) {
-        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.javaTimeZone)
+        val dayDate = hourlyListByDay.keys.toTypedArray()[i].toDateNoHour(location.timeZone)
         if (dayDate != null) {
             dailyList.add(
                 DailyWrapper(

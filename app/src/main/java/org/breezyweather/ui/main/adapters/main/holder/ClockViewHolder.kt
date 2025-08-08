@@ -31,6 +31,7 @@ import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import java.util.Date
+import java.util.TimeZone
 
 class ClockViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_clock, parent, false)
@@ -50,20 +51,15 @@ class ClockViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             clockAnalogView.visibility = View.VISIBLE
-            clockAnalogView.timeZone = location.timeZone
-        } else if (location.timeZone == if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                android.icu.util.TimeZone.getDefault().id
-            } else {
-                java.util.TimeZone.getDefault().id
-            }
-        ) {
+            clockAnalogView.timeZone = location.timeZone.id
+        } else if (location.timeZone == TimeZone.getDefault()) {
             clockAnalogView.visibility = View.VISIBLE
         } else {
             clockAnalogView.visibility = View.GONE
         }
 
-        clockTextHourView.timeZone = location.timeZone
-        clockTextMinuteView.timeZone = location.timeZone
+        clockTextHourView.timeZone = location.timeZone.id
+        clockTextMinuteView.timeZone = location.timeZone.id
 
         val talkBackBuilder = StringBuilder(context.getString(R.string.clock))
         talkBackBuilder.append(context.getString(R.string.colon_separator))

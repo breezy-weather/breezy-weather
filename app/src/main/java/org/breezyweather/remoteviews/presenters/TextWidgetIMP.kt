@@ -103,7 +103,7 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
                 views.setString(
                     R.id.widget_text_date,
                     "setTimeZone",
-                    location.timeZone
+                    location.timeZone.id
                 )
                 views.setCharSequence(
                     R.id.widget_text_date,

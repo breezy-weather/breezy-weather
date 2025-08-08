@@ -100,7 +100,7 @@ abstract class AtmoService : HttpSource(), WeatherSource, ConfigurableSource {
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val calendar = Date().toCalendarWithTimeZone(location.javaTimeZone).apply {
+        val calendar = Date().toCalendarWithTimeZone(location.timeZone).apply {
             add(Calendar.DAY_OF_YEAR, 1)
             set(Calendar.HOUR_OF_DAY, 0)
             set(Calendar.MINUTE, 0)

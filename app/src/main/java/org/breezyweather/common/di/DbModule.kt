@@ -29,6 +29,8 @@ import breezyweather.data.Dailys
 import breezyweather.data.Database
 import breezyweather.data.DatabaseHandler
 import breezyweather.data.Hourlys
+import breezyweather.data.Locations
+import breezyweather.data.TimeZoneColumnAdapter
 import breezyweather.data.WeatherCodeColumnAdapter
 import breezyweather.data.Weathers
 import breezyweather.data.location.LocationRepository
@@ -80,6 +82,9 @@ class DbModule {
     fun provideDatabase(driver: SqlDriver): Database {
         return Database(
             driver,
+            locationsAdapter = Locations.Adapter(
+                timezoneAdapter = TimeZoneColumnAdapter
+            ),
             weathersAdapter = Weathers.Adapter(
                 weather_codeAdapter = WeatherCodeColumnAdapter
             ),

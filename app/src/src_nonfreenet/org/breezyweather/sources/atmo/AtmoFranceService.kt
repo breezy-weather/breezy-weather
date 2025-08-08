@@ -114,7 +114,7 @@ class AtmoFranceService @Inject constructor(
             return Observable.error(InvalidLocationException())
         }
 
-        val calendar = Date().toCalendarWithTimeZone(location.javaTimeZone)
+        val calendar = Date().toCalendarWithTimeZone(location.timeZone)
         val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
         calendar.apply {
             set(Calendar.HOUR_OF_DAY, 0)

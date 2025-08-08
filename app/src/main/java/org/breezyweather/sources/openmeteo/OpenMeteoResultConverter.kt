@@ -53,6 +53,7 @@ import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherMinutely
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherResult
 import java.util.Calendar
 import java.util.Date
+import java.util.TimeZone
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
@@ -67,7 +68,7 @@ internal fun convert(
         cityId = result.id.toString(),
         latitude = result.latitude,
         longitude = result.longitude,
-        timeZone = result.timezone,
+        timeZone = TimeZone.getTimeZone(result.timezone),
         country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode ?: "",
         countryCode = result.countryCode,
         admin1 = result.admin1,
@@ -115,7 +116,7 @@ internal fun getDailyList(
     val dailyList: MutableList<DailyWrapper> = ArrayList(dailyResult.time.size - 1)
     for (i in 0 until dailyResult.time.size - 1) {
         val theDayWithDstFixed = dailyResult.time[i].seconds.inWholeMilliseconds.toDate()
-            .toCalendarWithTimeZone(location.javaTimeZone)
+            .toCalendarWithTimeZone(location.timeZone)
             .apply {
                 add(Calendar.HOUR_OF_DAY, 1)
                 set(Calendar.HOUR_OF_DAY, 0)

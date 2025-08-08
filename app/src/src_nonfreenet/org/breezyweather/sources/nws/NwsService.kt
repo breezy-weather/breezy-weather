@@ -189,7 +189,7 @@ class NwsService @Inject constructor(
                 if (currentResult.properties?.timestamp != null &&
                     currentResult.properties.timestamp.time < Date().time -
                     OUTDATED_HOURS.hours.inWholeMilliseconds + // Offset on next line is negative, don’t subtract here!
-                    location.javaTimeZone.rawOffset // In milliseconds
+                    location.timeZone.rawOffset // In milliseconds
                 ) {
                     failedFeatures[SourceFeature.CURRENT] = OutdatedServerDataException()
                     null

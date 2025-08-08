@@ -53,7 +53,7 @@ internal fun getDailyForecast(
 
     val dailyList = mutableListOf<DailyWrapper>()
     for (i in 0 until dayList.size - 1) {
-        val dayDate = dayList[i].toDateNoHour(location.javaTimeZone)
+        val dayDate = dayList[i].toDateNoHour(location.timeZone)
         if (dayDate != null) {
             dailyList.add(
                 DailyWrapper(

@@ -91,7 +91,7 @@ fun Weather.getMinutelyDescription(context: Context, location: Location): String
 fun Weather.getTemperatureRangeSummary(context: Context, location: Location): Pair<String, String>? {
     if (today == null) return null
 
-    val cal = Date().toCalendarWithTimeZone(location.javaTimeZone)
+    val cal = Date().toCalendarWithTimeZone(location.timeZone)
     val currentHour = cal[Calendar.HOUR_OF_DAY]
 
     val isDayFirst: Boolean

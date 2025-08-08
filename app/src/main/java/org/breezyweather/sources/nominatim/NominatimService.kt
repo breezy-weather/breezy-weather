@@ -27,6 +27,7 @@ import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import retrofit2.Retrofit
+import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -91,11 +92,7 @@ class NominatimService @Inject constructor(
                         }
                     },
                     // Make sure to update TimeZone, especially useful on current location
-                    timeZone = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        android.icu.util.TimeZone.getDefault().id
-                    } else {
-                        java.util.TimeZone.getDefault().id
-                    }
+                    timeZone = TimeZone.getDefault()
                 )
             )
             locationList

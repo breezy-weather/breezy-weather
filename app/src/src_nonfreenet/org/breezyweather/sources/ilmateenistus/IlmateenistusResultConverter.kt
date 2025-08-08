@@ -47,7 +47,7 @@ internal fun convert(
         location.copy(
             latitude = location.latitude,
             longitude = location.longitude,
-            timeZone = "Europe/Tallinn",
+            timeZone = TimeZone.getTimeZone("Europe/Tallinn"),
             country = context.currentLocale.getCountryName("EE"),
             countryCode = "EE",
             admin1 = locationParts.getOrNull(0)?.trim(),

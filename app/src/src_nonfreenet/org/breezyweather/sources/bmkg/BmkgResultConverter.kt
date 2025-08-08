@@ -60,7 +60,7 @@ internal fun convert(
     return location.copy(
         latitude = location.latitude,
         longitude = location.longitude,
-        timeZone = getTimeZone(result.adm1),
+        timeZone = TimeZone.getTimeZone(getTimeZone(result.adm1)),
         country = context.currentLocale.getCountryName("ID"),
         countryCode = "ID",
         admin1 = result.provinsi,
@@ -105,7 +105,7 @@ internal fun getDailyForecast(
     val hourlyList = getHourlyForecast(context, forecastResult)
     val hourlyListDates = hourlyList.groupBy { it.date.getIsoFormattedDate(location) }.keys
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
-    formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
+    formatter.timeZone = location.timeZone
     val dailyList = mutableListOf<DailyWrapper>()
     hourlyListDates.forEachIndexed { i, date ->
         if (i < hourlyListDates.size - 1) { // Don't store last index to avoid incomplete day

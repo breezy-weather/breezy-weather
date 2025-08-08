@@ -103,12 +103,12 @@ class BrightSkyService @Inject constructor(
     ): Observable<WeatherWrapper> {
         val failedFeatures = mutableMapOf<SourceFeature, Throwable>()
         val weather = if (SourceFeature.FORECAST in requestedFeatures) {
-            val initialDate = Date().toTimezoneNoHour(location.javaTimeZone)
-            val date = initialDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
+            val initialDate = Date().toTimezoneNoHour(location.timeZone)
+            val date = initialDate.toCalendarWithTimeZone(location.timeZone).apply {
                 add(Calendar.DAY_OF_YEAR, -1)
                 set(Calendar.HOUR_OF_DAY, 0)
             }.time
-            val lastDate = initialDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
+            val lastDate = initialDate.toCalendarWithTimeZone(location.timeZone).apply {
                 add(Calendar.DAY_OF_YEAR, 12)
                 set(Calendar.HOUR_OF_DAY, 0)
             }.time

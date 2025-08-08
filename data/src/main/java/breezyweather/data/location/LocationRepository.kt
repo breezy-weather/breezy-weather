@@ -252,7 +252,7 @@ class LocationRepository(
                     cityId = location.cityId,
                     latitude = location.latitude,
                     longitude = location.longitude,
-                    timezone = location.javaTimeZone.id,
+                    timezone = location.timeZone.id,
                     customName = location.customName,
                     country = location.country,
                     countryCode = location.countryCode,

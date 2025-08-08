@@ -17,11 +17,11 @@
 
 package breezyweather.domain.location.model
 
-import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
 import breezyweather.domain.weather.model.Weather
 import java.util.Locale
+import java.util.TimeZone
 import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.pow
@@ -33,11 +33,7 @@ data class Location(
 
     val latitude: Double = 0.0,
     val longitude: Double = 0.0,
-    val timeZone: String = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        android.icu.util.TimeZone.getDefault().id
-    } else {
-        java.util.TimeZone.getDefault().id
-    },
+    val timeZone: TimeZone = TimeZone.getTimeZone("GMT"),
 
     val customName: String? = null,
     val country: String = "",
@@ -75,8 +71,6 @@ data class Location(
     val parameters: Map<String, Map<String, String>> = emptyMap(),
 ) : Parcelable {
 
-    val javaTimeZone: java.util.TimeZone = java.util.TimeZone.getTimeZone(timeZone)
-
     val formattedId: String
         get() = if (isCurrentPosition) {
             CURRENT_POSITION_ID
@@ -96,7 +90,7 @@ data class Location(
         parcel.writeString(cityId)
         parcel.writeDouble(latitude)
         parcel.writeDouble(longitude)
-        parcel.writeString(timeZone)
+        parcel.writeString(timeZone.id)
         parcel.writeString(customName)
         parcel.writeString(country)
         parcel.writeString(countryCode)
@@ -128,7 +122,7 @@ data class Location(
         cityId = parcel.readString(),
         latitude = parcel.readDouble(),
         longitude = parcel.readDouble(),
-        timeZone = parcel.readString()!!,
+        timeZone = TimeZone.getTimeZone(parcel.readString()!!),
         customName = parcel.readString(),
         country = parcel.readString()!!,
         countryCode = parcel.readString(),

@@ -55,7 +55,7 @@ fun convert(
         location.copy(
             latitude = location.latitude,
             longitude = location.longitude,
-            timeZone = "Atlantic/Reykjavik",
+            timeZone = TimeZone.getTimeZone("Atlantic/Reykjavik"),
             country = context.currentLocale.getCountryName("IS"),
             countryCode = "IS",
             city = stationNames[stationId] ?: ""

@@ -121,7 +121,7 @@ internal fun getDailyForecast(
     // CommonConverter.kt will compute the daily forecast items.
     val dates = hourlyForecast.groupBy { it.date.getIsoFormattedDate(location) }.keys
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
-    formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
+    formatter.timeZone = location.timeZone
     val dailyList = mutableListOf<DailyWrapper>()
     dates.forEachIndexed { i, day ->
         if (i < dates.size - 1) { // skip the last day

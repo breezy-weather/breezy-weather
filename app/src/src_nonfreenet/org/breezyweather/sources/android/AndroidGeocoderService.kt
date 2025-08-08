@@ -25,6 +25,7 @@ import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.rx3.rxObservable
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.ReverseGeocodingSource
+import java.util.TimeZone
 import javax.inject.Inject
 
 class AndroidGeocoderService @Inject constructor() : ReverseGeocodingSource {
@@ -59,11 +60,7 @@ class AndroidGeocoderService @Inject constructor() : ReverseGeocodingSource {
                         country = it.countryName,
                         countryCode = it.countryCode,
                         // Make sure to update TimeZone in case the user moved
-                        timeZone = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            android.icu.util.TimeZone.getDefault().id
-                        } else {
-                            java.util.TimeZone.getDefault().id
-                        }
+                        timeZone = TimeZone.getDefault()
                     )
                 )
             }

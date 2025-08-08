@@ -35,6 +35,7 @@ import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.json.JSONObject
+import java.util.TimeZone
 import javax.inject.Inject
 
 /**
@@ -113,11 +114,7 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
                     ?: "",
                 countryCode = matchingCountries[0].getProperty("ISO_A2"),
                 // Make sure to update TimeZone, especially useful on current location
-                timeZone = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    android.icu.util.TimeZone.getDefault().id
-                } else {
-                    java.util.TimeZone.getDefault().id
-                }
+                timeZone = TimeZone.getDefault()
             )
         )
         return Observable.just(locationList)

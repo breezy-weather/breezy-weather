@@ -42,6 +42,7 @@ import org.breezyweather.sources.namem.json.NamemHourlyResult
 import org.breezyweather.sources.namem.json.NamemNormalsResult
 import org.breezyweather.sources.namem.json.NamemStation
 import java.util.Date
+import java.util.TimeZone
 
 // Reverse geocoding
 internal fun convert(
@@ -66,15 +67,17 @@ internal fun convert(
         location.copy(
             latitude = location.latitude,
             longitude = location.longitude,
-            timeZone = when (station.provinceName) {
-                "Баян-Өлгий", // Bayan-Ölgii
-                "Говь-Алтай", // Govi-Altai
-                "Ховд", // Khovd
-                "Увс", // Uvs
-                "Завхан", // Zavkhan
-                -> "Asia/Hovd"
-                else -> "Asia/Ulaanbaatar"
-            },
+            timeZone = TimeZone.getTimeZone(
+                when (station.provinceName) {
+                    "Баян-Өлгий", // Bayan-Ölgii
+                    "Говь-Алтай", // Govi-Altai
+                    "Ховд", // Khovd
+                    "Увс", // Uvs
+                    "Завхан", // Zavkhan
+                    -> "Asia/Hovd"
+                    else -> "Asia/Ulaanbaatar"
+                }
+            ),
             country = context.currentLocale.getCountryName("MN"),
             countryCode = "MN",
             admin1 = station.provinceName,

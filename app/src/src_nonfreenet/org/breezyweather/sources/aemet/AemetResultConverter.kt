@@ -42,7 +42,6 @@ import org.breezyweather.sources.getWindDegree
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
-import java.util.TimeZone
 
 internal fun convert(
     location: Location,
@@ -130,7 +129,7 @@ internal fun getDailyForecast(
 ): List<DailyWrapper> {
     val dailyList = mutableListOf<DailyWrapper>()
     val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
-    formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
+    formatter.timeZone = location.timeZone
     var date: String
     var time: Long
     val wxMap = mutableMapOf<Long, String?>()
@@ -230,7 +229,7 @@ internal fun getHourlyForecast(
 ): List<HourlyWrapper> {
     val hourlyList = mutableListOf<HourlyWrapper>()
     val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH", Locale.ENGLISH)
-    formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
+    formatter.timeZone = location.timeZone
     var date: String
     var time: Long
     val wxMap = mutableMapOf<Long, String?>()

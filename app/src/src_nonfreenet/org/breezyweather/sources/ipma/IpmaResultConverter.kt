@@ -66,11 +66,13 @@ internal fun convert(
             location.copy(
                 latitude = location.latitude,
                 longitude = location.longitude,
-                timeZone = when (nearestLocation.idRegiao) {
-                    2 -> "Atlantic/Madeira"
-                    3 -> "Atlantic/Azores"
-                    else -> "Europe/Lisbon"
-                },
+                timeZone = TimeZone.getTimeZone(
+                    when (nearestLocation.idRegiao) {
+                        2 -> "Atlantic/Madeira"
+                        3 -> "Atlantic/Azores"
+                        else -> "Europe/Lisbon"
+                    }
+                ),
                 country = context.currentLocale.getCountryName("PT"),
                 countryCode = "PT",
                 admin1 = when (nearestLocation.idRegiao) {
@@ -114,7 +116,7 @@ internal fun getDailyForecast(
     forecastResult: List<IpmaForecastResult>,
 ): List<DailyWrapper> {
     val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
-    formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
+    formatter.timeZone = location.timeZone
 
     return forecastResult.mapIndexed { index, result ->
         DailyWrapper(
@@ -159,7 +161,7 @@ internal fun getHourlyForecast(
     forecastResult: List<IpmaForecastResult>,
 ): List<HourlyWrapper> {
     val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
-    formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
+    formatter.timeZone = location.timeZone
     var lastPrecipitationProbability: Double? = null
 
     return forecastResult.map {
@@ -196,7 +198,7 @@ internal fun getAlertList(
     alertResult: IpmaAlertResult,
 ): List<Alert> {
     val formatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH)
-    formatter.timeZone = TimeZone.getTimeZone(location.timeZone)
+    formatter.timeZone = location.timeZone
     val alertList = mutableListOf<Alert>()
     alertResult.data?.forEach {
         val id = "ipma"

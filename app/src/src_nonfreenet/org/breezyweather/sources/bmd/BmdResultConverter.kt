@@ -43,7 +43,7 @@ internal fun convert(
     return location.copy(
         latitude = location.latitude,
         longitude = location.longitude,
-        timeZone = "Asia/Dhaka",
+        timeZone = TimeZone.getTimeZone("Asia/Dhaka"),
         country = context.currentLocale.getCountryName("BD"),
         countryCode = "BD",
         admin1 = data.divisionName,

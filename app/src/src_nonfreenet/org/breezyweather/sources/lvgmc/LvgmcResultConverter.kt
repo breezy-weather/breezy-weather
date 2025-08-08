@@ -62,7 +62,7 @@ internal fun convert(
             location.copy(
                 latitude = location.latitude,
                 longitude = location.longitude,
-                timeZone = "Europe/Riga",
+                timeZone = TimeZone.getTimeZone("Europe/Riga"),
                 country = context.currentLocale.getCountryName("LV"),
                 countryCode = "LV",
                 admin1 = it.municipality,

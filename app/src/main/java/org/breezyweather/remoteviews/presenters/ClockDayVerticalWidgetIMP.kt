@@ -174,62 +174,62 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
         views.setString(
             R.id.widget_clock_day_clock_1_light,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_clock_2_light,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_clock_1_normal,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_clock_2_normal,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_clock_1_black,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_clock_2_black,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_clock_light,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_clock_normal,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_clock_black,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_clock_aa_light,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_clock_aa_normal,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
         views.setString(
             R.id.widget_clock_day_clock_aa_black,
             "setTimeZone",
-            location.timeZone
+            location.timeZone.id
         )
 
         // Apply correct timezone on analog clock (only available on Android >= 12)
@@ -237,17 +237,17 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
             views.setString(
                 R.id.widget_clock_day_clock_analog_auto,
                 "setTimeZone",
-                location.timeZone
+                location.timeZone.id
             )
             views.setString(
                 R.id.widget_clock_day_clock_analog_light,
                 "setTimeZone",
-                location.timeZone
+                location.timeZone.id
             )
             views.setString(
                 R.id.widget_clock_day_clock_analog_dark,
                 "setTimeZone",
-                location.timeZone
+                location.timeZone.id
             )
         }
 
@@ -257,7 +257,7 @@ object ClockDayVerticalWidgetIMP : AbstractRemoteViewsPresenter() {
             views.setString(
                 R.id.widget_clock_day_date,
                 "setTimeZone",
-                location.timeZone
+                location.timeZone.id
             )
             views.setCharSequence(
                 R.id.widget_clock_day_date,

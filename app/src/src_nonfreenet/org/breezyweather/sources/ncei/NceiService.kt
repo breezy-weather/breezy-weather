@@ -92,7 +92,7 @@ class NceiService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
-        val finalYear = (Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.YEAR]).toDouble()
+        val finalYear = (Date().toCalendarWithTimeZone(location.timeZone)[Calendar.YEAR]).toDouble()
             .roundDownToNearestMultiplier(10.0).roundToInt()
         val initialYear = finalYear - 29
 
@@ -210,7 +210,7 @@ class NceiService @Inject constructor(
         }
         val bbox = "$north,$west,$south,$east"
 
-        val finalYear = (Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.YEAR]).toDouble()
+        val finalYear = (Date().toCalendarWithTimeZone(location.timeZone)[Calendar.YEAR]).toDouble()
             .roundDownToNearestMultiplier(10.0).roundToInt()
         val initialYear = finalYear - 29
 

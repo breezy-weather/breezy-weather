@@ -1,3 +1,4 @@
+import java.util.TimeZone;
 import kotlin.Boolean;
 
 CREATE TABLE locations(
@@ -7,7 +8,7 @@ CREATE TABLE locations(
     city_id TEXT,
     latitude REAL NOT NULL,
     longitude REAL NOT NULL,
-    timezone TEXT NOT NULL,
+    timezone TEXT AS TimeZone NOT NULL,
     custom_name TEXT,
     country TEXT NOT NULL,
     country_code TEXT,

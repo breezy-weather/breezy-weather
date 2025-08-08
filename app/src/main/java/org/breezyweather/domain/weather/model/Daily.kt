@@ -38,7 +38,7 @@ import kotlin.time.Duration.Companion.days
  * - Monday DD MMMM, Tuesday DD MMMM, etc
  */
 fun Daily.getFullLabel(location: Location, context: Context): String {
-    val current = Calendar.getInstance(location.javaTimeZone) // TODO: Use ICU
+    val current = Calendar.getInstance(location.timeZone)
 
     // In more than a week? Show full weekday + day + month
     if ((date.time > current.time.time.plus(6.days.inWholeMilliseconds))) {
@@ -46,7 +46,7 @@ fun Daily.getFullLabel(location: Location, context: Context): String {
             .capitalize(context.currentLocale)
     }
 
-    val thisDay = Calendar.getInstance(location.javaTimeZone) // TODO: Use ICU
+    val thisDay = Calendar.getInstance(location.timeZone)
     thisDay.time = date
 
     return if (current[Calendar.YEAR] == thisDay[Calendar.YEAR] &&
@@ -89,8 +89,8 @@ fun Daily.getWeek(location: Location, context: Context?, full: Boolean = false):
 }
 
 fun Daily.isToday(location: Location): Boolean {
-    val current = Calendar.getInstance(location.javaTimeZone) // TODO: Use ICU
-    val thisDay = Calendar.getInstance(location.javaTimeZone) // TODO: Use ICU
+    val current = Calendar.getInstance(location.timeZone)
+    val thisDay = Calendar.getInstance(location.timeZone)
     thisDay.time = date
     return current[Calendar.YEAR] == thisDay[Calendar.YEAR] &&
         current[Calendar.DAY_OF_YEAR] == thisDay[Calendar.DAY_OF_YEAR]

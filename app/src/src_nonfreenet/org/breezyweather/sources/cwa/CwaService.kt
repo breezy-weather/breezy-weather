@@ -274,7 +274,7 @@ class CwaService @Inject constructor(
         // and not available in the main weather API call.
         // Therefore we will call a different endpoint,
         // but we must specify the station ID rather than using lat/lon.
-        val currentMonth = Date().toCalendarWithTimeZone(location.javaTimeZone)[Calendar.MONTH] + 1
+        val currentMonth = Date().toCalendarWithTimeZone(location.timeZone)[Calendar.MONTH] + 1
         val station = LatLng(location.latitude, location.longitude).getNearestLocation(CWA_NORMALS_STATIONS)
         val normals = if (SourceFeature.NORMALS in requestedFeatures && station != null) {
             mApi.getNormals(

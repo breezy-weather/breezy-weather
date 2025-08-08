@@ -37,12 +37,12 @@ class TimeHorizontalAxisItemPlacer(
     private val measuredValues = buildList {
         add(theDay.time.toDouble())
         for (i in 6..18 step 6) {
-            add(theDay.toTimezoneSpecificHour(location.javaTimeZone, i).time.toDouble())
+            add(theDay.toTimezoneSpecificHour(location.timeZone, i).time.toDouble())
         }
         add(
-            theDay.toCalendarWithTimeZone(location.javaTimeZone).apply {
+            theDay.toCalendarWithTimeZone(location.timeZone).apply {
                 add(Calendar.DAY_OF_MONTH, 1)
-            }.time.toTimezoneSpecificHour(location.javaTimeZone, 0).time.toDouble()
+            }.time.toTimezoneSpecificHour(location.timeZone, 0).time.toDouble()
         )
     }
 

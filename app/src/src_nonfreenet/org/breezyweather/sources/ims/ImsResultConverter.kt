@@ -38,14 +38,14 @@ import org.breezyweather.sources.ims.json.ImsLocation
 import org.breezyweather.sources.ims.json.ImsWeatherData
 import java.util.Calendar
 import java.util.Date
-import kotlin.text.startsWith
+import java.util.TimeZone
 
 internal fun convert(
     location: Location,
     result: ImsLocation,
 ): Location {
     return location.copy(
-        timeZone = "Asia/Jerusalem",
+        timeZone = TimeZone.getTimeZone("Asia/Jerusalem"),
         country = "", // We don’t put any country name to avoid political issues
         countryCode = "IL", // but we need to identify the location as being part of the coverage of IMS
         city = result.name
@@ -57,7 +57,7 @@ internal fun getDailyForecast(
     data: ImsWeatherData?,
 ): List<DailyWrapper>? {
     return data?.forecastData?.keys?.mapNotNull {
-        it.toDateNoHour(location.javaTimeZone)?.let { dayDate ->
+        it.toDateNoHour(location.timeZone)?.let { dayDate ->
             DailyWrapper(
                 date = dayDate,
                 uV = data.forecastData[it]!!.daily?.maximumUVI?.toDoubleOrNull()?.let { uvi ->
@@ -77,9 +77,9 @@ internal fun getHourlyForecast(
     var previousWeatherCode = ""
     var currentWeatherCode = ""
     data?.forecastData?.keys?.forEach {
-        it.toDateNoHour(location.javaTimeZone)?.let { dayDate ->
+        it.toDateNoHour(location.timeZone)?.let { dayDate ->
             data.forecastData[it]!!.hourly?.forEach { hourlyResult ->
-                val hourlyDate = dayDate.toCalendarWithTimeZone(location.javaTimeZone).apply {
+                val hourlyDate = dayDate.toCalendarWithTimeZone(location.timeZone).apply {
                     set(Calendar.HOUR_OF_DAY, hourlyResult.value.hour.toInt())
                 }.time
                 if (!hourlyResult.value.weatherCode.isNullOrEmpty()) {

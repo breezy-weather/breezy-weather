@@ -38,12 +38,12 @@ fun getRiseProgress(
     val defaultRiseHour = 6
     val defaultDurationHour = 12
 
-    val timezoneCalendar = Calendar.getInstance(location.javaTimeZone)
+    val timezoneCalendar = Calendar.getInstance(location.timeZone)
     val currentTime = (timezoneCalendar[Calendar.HOUR_OF_DAY].hours + timezoneCalendar[Calendar.MINUTE].minutes)
         .inWholeMilliseconds
 
-    val riseTime = astro?.riseDate?.toTimezone(location.javaTimeZone)?.time
-    val setTime = astro?.setDate?.toTimezone(location.javaTimeZone)?.time
+    val riseTime = astro?.riseDate?.toTimezone(location.timeZone)?.time
+    val setTime = astro?.setDate?.toTimezone(location.timeZone)?.time
     if (riseTime == null || setTime == null) {
         val riseHourMinuteTime = defaultRiseHour.hours.inWholeMilliseconds
         val setHourMinuteTime = riseHourMinuteTime + defaultDurationHour.hours.inWholeMilliseconds

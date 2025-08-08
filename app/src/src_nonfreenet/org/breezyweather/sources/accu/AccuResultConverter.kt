@@ -50,6 +50,7 @@ import org.breezyweather.sources.accu.json.AccuLocationResult
 import org.breezyweather.sources.accu.json.AccuMinutelyResult
 import org.breezyweather.sources.accu.json.AccuValue
 import java.util.Date
+import java.util.TimeZone
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
@@ -63,7 +64,7 @@ internal fun convert(
             cityId = result.Key,
             latitude = location?.latitude ?: result.GeoPosition.Latitude,
             longitude = location?.longitude ?: result.GeoPosition.Longitude,
-            timeZone = result.TimeZone.Name,
+            timeZone = TimeZone.getTimeZone(result.TimeZone.Name),
             country = result.Country.LocalizedName.ifEmpty { result.Country.EnglishName },
             countryCode = result.Country.ID,
             admin2 = result.AdministrativeArea?.LocalizedName?.ifEmpty {
@@ -111,7 +112,7 @@ internal fun getDailyList(
 ): List<DailyWrapper>? {
     return dailyForecasts?.map { forecasts ->
         DailyWrapper(
-            date = forecasts.EpochDate.seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.javaTimeZone),
+            date = forecasts.EpochDate.seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.timeZone),
             day = HalfDayWrapper(
                 weatherText = forecasts.Day?.ShortPhrase,
                 weatherSummary = forecasts.Day?.LongPhrase,
@@ -336,7 +337,7 @@ internal fun getPollenWrapper(
             val dailyPollen = getDailyPollen(it.AirAndPollen)
             if (dailyPollen != null) {
                 pollenDaily[
-                    it.EpochDate.seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.javaTimeZone)
+                    it.EpochDate.seconds.inWholeMilliseconds.toDate().toTimezoneNoHour(location.timeZone)
                 ] = dailyPollen
             }
         }

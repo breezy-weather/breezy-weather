@@ -364,10 +364,10 @@ fun DailyPagerContent(
     }
 
     val hourlyList = remember(selected) {
-        val startingDate = daily.date.toTimezoneSpecificHour(location.javaTimeZone, 0)
-        val endingDate = daily.date.toCalendarWithTimeZone(location.javaTimeZone).apply {
+        val startingDate = daily.date.toTimezoneSpecificHour(location.timeZone, 0)
+        val endingDate = daily.date.toCalendarWithTimeZone(location.timeZone).apply {
             add(Calendar.DAY_OF_MONTH, 1)
-        }.time.toTimezoneSpecificHour(location.javaTimeZone, 0)
+        }.time.toTimezoneSpecificHour(location.timeZone, 0)
 
         val firstHourlyIndex = location.weather!!.hourlyForecast.indexOfFirst {
             it.date >= startingDate
