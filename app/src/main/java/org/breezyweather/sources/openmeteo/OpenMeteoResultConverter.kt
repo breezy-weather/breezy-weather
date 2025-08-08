@@ -18,6 +18,7 @@ package org.breezyweather.sources.openmeteo
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.DailyCloudCover
 import breezyweather.domain.weather.model.DailyDewPoint
@@ -57,28 +58,6 @@ import java.util.TimeZone
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
-
-internal fun convert(
-    result: OpenMeteoLocationResult,
-): Location? {
-    if (result.timezone == null) {
-        return null
-    }
-    return Location(
-        cityId = result.id.toString(),
-        latitude = result.latitude,
-        longitude = result.longitude,
-        timeZone = TimeZone.getTimeZone(result.timezone),
-        country = if (!result.country.isNullOrEmpty()) result.country else result.countryCode ?: "",
-        countryCode = result.countryCode,
-        admin1 = result.admin1,
-        admin2 = result.admin2,
-        admin3 = result.admin3,
-        admin4 = result.admin4,
-        city = result.name,
-        forecastSource = "openmeteo"
-    )
-}
 
 internal fun getCurrent(
     current: OpenMeteoWeatherCurrent?,

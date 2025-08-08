@@ -18,6 +18,7 @@ package org.breezyweather.sources.namem
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Normals
 import breezyweather.domain.weather.model.Precipitation
@@ -32,8 +33,6 @@ import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.sources.namem.json.NamemAirQualityResult
 import org.breezyweather.sources.namem.json.NamemCurrentResult
@@ -42,15 +41,12 @@ import org.breezyweather.sources.namem.json.NamemHourlyResult
 import org.breezyweather.sources.namem.json.NamemNormalsResult
 import org.breezyweather.sources.namem.json.NamemStation
 import java.util.Date
-import java.util.TimeZone
 
 // Reverse geocoding
 internal fun convert(
-    context: Context,
     location: Location,
     stations: List<NamemStation>?,
-): List<Location> {
-    val locationList = mutableListOf<Location>()
+): List<LocationAddressInfo> {
     val stationMap = stations?.filter {
         it.lat != null && it.lon != null && (it.sid != null || it.id != null)
     }?.associate {
@@ -63,26 +59,21 @@ internal fun convert(
     if (station?.lat == null || station.lon == null) {
         throw InvalidLocationException()
     }
-    locationList.add(
-        location.copy(
-            latitude = location.latitude,
-            longitude = location.longitude,
-            timeZone = TimeZone.getTimeZone(
-                when (station.provinceName) {
-                    "Баян-Өлгий", // Bayan-Ölgii
-                    "Говь-Алтай", // Govi-Altai
-                    "Ховд", // Khovd
-                    "Увс", // Uvs
-                    "Завхан", // Zavkhan
-                    -> "Asia/Hovd"
-                    else -> "Asia/Ulaanbaatar"
-                }
-            ),
-            country = context.currentLocale.getCountryName("MN"),
+    return listOf(
+        LocationAddressInfo(
+            timeZoneId = when (station.provinceName) {
+                "Баян-Өлгий", // Bayan-Ölgii
+                "Говь-Алтай", // Govi-Altai
+                "Ховд", // Khovd
+                "Увс", // Uvs
+                "Завхан", // Zavkhan
+                -> "Asia/Hovd"
+                else -> "Asia/Ulaanbaatar"
+            },
             countryCode = "MN",
             admin1 = station.provinceName,
             admin2 = station.districtName,
-            city = station.districtName ?: "",
+            city = station.districtName,
             district = if (station.stationName != station.districtName) {
                 station.stationName
             } else {
@@ -90,7 +81,6 @@ internal fun convert(
             }
         )
     )
-    return locationList
 }
 
 // Location parameters

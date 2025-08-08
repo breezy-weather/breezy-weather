@@ -18,6 +18,7 @@ package org.breezyweather.sources.hko
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -44,7 +45,6 @@ import org.breezyweather.sources.hko.json.HkoOneJsonResult
 import org.breezyweather.sources.hko.json.HkoWarningResult
 import org.json.JSONObject
 import retrofit2.Retrofit
-import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.math.round
@@ -293,12 +293,11 @@ class HkoService @Inject constructor(
     }
 
     // Reverse geocoding
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         val languageCode = context.currentLocale.code
-        val locationList = mutableListOf<Location>()
         val currentGrid = getCurrentGrid(location)
         return mApi.getLocations(currentGrid).map { locationResult ->
             val json = "{\"type\":\"FeatureCollection\",\"features\":${locationResult.features}}"
@@ -316,31 +315,25 @@ class HkoService @Inject constructor(
                     else -> false
                 }
             }
-            matchingLocations.forEach {
-                locationList.add(
-                    location.copy(
-                        latitude = location.latitude,
-                        longitude = location.longitude,
-                        timeZone = TimeZone.getTimeZone("Asia/Hong_Kong"),
-                        country = context.currentLocale.getCountryName("HK"),
-                        countryCode = "HK",
-                        city = with(languageCode) {
-                            when {
-                                equals("zh-tw") || equals("zh-hk") || equals("zh-mo") -> {
-                                    it.getProperty("tc") ?: it.getProperty("sc") ?: it.getProperty("en") ?: ""
-                                }
-                                startsWith("zh") -> {
-                                    it.getProperty("sc") ?: it.getProperty("tc") ?: it.getProperty("en") ?: ""
-                                }
-                                else -> {
-                                    it.getProperty("en") ?: it.getProperty("sc") ?: it.getProperty("tc") ?: ""
-                                }
+            matchingLocations.map {
+                LocationAddressInfo(
+                    timeZoneId = "Asia/Hong_Kong",
+                    countryCode = "HK",
+                    city = with(languageCode) {
+                        when {
+                            equals("zh-tw") || equals("zh-hk") || equals("zh-mo") -> {
+                                it.getProperty("tc") ?: it.getProperty("sc") ?: it.getProperty("en")
+                            }
+                            startsWith("zh") -> {
+                                it.getProperty("sc") ?: it.getProperty("tc") ?: it.getProperty("en")
+                            }
+                            else -> {
+                                it.getProperty("en") ?: it.getProperty("sc") ?: it.getProperty("tc")
                             }
                         }
-                    )
+                    }
                 )
             }
-            locationList
         }
     }
 

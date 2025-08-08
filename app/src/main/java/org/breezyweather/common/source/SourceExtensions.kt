@@ -27,7 +27,7 @@ fun Source.getName(context: Context, feature: SourceFeature? = null, location: L
     } else if (this is FeatureSource &&
         location != null &&
         feature != null &&
-        !isFeatureSupportedForLocation(location, feature)
+        (!supportedFeatures.contains(feature) || !isFeatureSupportedForLocation(location, feature))
     ) {
         context.getString(R.string.settings_weather_source_unavailable, name)
     } else {

@@ -19,6 +19,7 @@ package org.breezyweather.sources.meteoam
 import android.annotation.SuppressLint
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -33,6 +34,7 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.meteoam.json.MeteoAmForecastResult
 import org.breezyweather.sources.meteoam.json.MeteoAmObservationResult
+import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocation
 import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocationResult
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -142,24 +144,38 @@ class MeteoAmService @Inject constructor(
     }
 
     // Reverse geocoding
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         val reverseLocation = mApi.getReverseLocation(location.latitude, location.longitude)
         val forecast = mApi.getForecast(location.latitude, location.longitude)
-        val locationList = mutableListOf<Location>()
+        val locationList = mutableListOf<LocationAddressInfo>()
         return Observable.zip(reverseLocation, forecast) {
                 reverseLocationResult: MeteoAmReverseLocationResult,
                 forecastResult: MeteoAmForecastResult,
             ->
-            if (!reverseLocationResult.results.isNullOrEmpty() && !forecastResult.extrainfo?.timezone.isNullOrEmpty()) {
+            val resultsWithCountryCode = reverseLocationResult.results?.filter { it.countryCode != null }
+            if (!resultsWithCountryCode.isNullOrEmpty()) {
                 locationList.add(
-                    convert(location, reverseLocationResult.results[0], forecastResult.extrainfo?.timezone!!)
+                    convert(resultsWithCountryCode[0], forecastResult.extrainfo?.timezone)
                 )
             }
             locationList
         }
+    }
+
+    private fun convert(
+        reverseLocation: MeteoAmReverseLocation,
+        timezone: String?,
+    ): LocationAddressInfo {
+        return LocationAddressInfo(
+            timeZoneId = timezone,
+            country = reverseLocation.country,
+            countryCode = reverseLocation.countryCode!!,
+            admin2 = reverseLocation.county,
+            city = reverseLocation.city
+        )
     }
 
     override val testingLocations: List<Location> = emptyList()

@@ -18,6 +18,7 @@ package org.breezyweather.sources.namem
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
@@ -216,12 +217,12 @@ class NamemService @Inject constructor(
     }
 
     // Reverse geocoding
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         return mApi.getStations().map {
-            convert(context, location, it.locations)
+            convert(location, it.locations)
         }
     }
 

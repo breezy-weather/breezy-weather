@@ -18,6 +18,7 @@ package org.breezyweather.ui.search
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableObserver
@@ -40,7 +41,7 @@ class SearchActivityRepository @Inject internal constructor(
         context: Context,
         query: String,
         locationSearchSource: String,
-        callback: (t: Pair<List<Location>?, RefreshErrorType?>?, done: Boolean) -> Unit,
+        callback: (t: Pair<List<LocationAddressInfo>?, RefreshErrorType?>?, done: Boolean) -> Unit,
     ) {
         mRefreshHelper
             .requestSearchLocations(context, query, locationSearchSource)
@@ -48,14 +49,14 @@ class SearchActivityRepository @Inject internal constructor(
             .subscribe(
                 ObserverContainer(
                     mCompositeDisposable,
-                    object : DisposableObserver<List<Location>>() {
-                        override fun onNext(t: List<Location>) {
-                            callback(Pair<List<Location>, RefreshErrorType?>(t, null), true)
+                    object : DisposableObserver<List<LocationAddressInfo>>() {
+                        override fun onNext(t: List<LocationAddressInfo>) {
+                            callback(Pair<List<LocationAddressInfo>, RefreshErrorType?>(t, null), true)
                         }
 
                         override fun onError(e: Throwable) {
                             callback(
-                                Pair<List<Location>, RefreshErrorType?>(
+                                Pair<List<LocationAddressInfo>, RefreshErrorType?>(
                                     emptyList(),
                                     RefreshErrorType.getTypeFromThrowable(
                                         context,

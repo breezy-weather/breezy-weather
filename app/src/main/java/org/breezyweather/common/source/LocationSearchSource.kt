@@ -17,7 +17,7 @@
 package org.breezyweather.common.source
 
 import android.content.Context
-import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import io.reactivex.rxjava3.core.Observable
 
 /**
@@ -36,5 +36,5 @@ interface LocationSearchSource : Source {
     /**
      * Returns a list of Breezy Weather Location results from a query
      */
-    fun requestLocationSearch(context: Context, query: String): Observable<List<Location>>
+    fun requestLocationSearch(context: Context, query: String): Observable<List<LocationAddressInfo>>
 }

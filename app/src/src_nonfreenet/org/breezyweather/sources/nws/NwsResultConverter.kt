@@ -19,6 +19,7 @@ package org.breezyweather.sources.nws
 import android.content.Context
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -49,21 +50,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
-import java.util.TimeZone
 import kotlin.time.Duration.Companion.parseIsoString
-
-internal fun convert(
-    location: Location,
-    locationProperties: NwsPointProperties,
-): Location {
-    return location.copy(
-        timeZone = TimeZone.getTimeZone(locationProperties.timeZone),
-        countryCode = "US",
-        admin1 = locationProperties.relativeLocation?.properties?.state,
-        admin1Code = locationProperties.relativeLocation?.properties?.state,
-        city = locationProperties.relativeLocation?.properties?.city ?: ""
-    )
-}
 
 internal fun getCurrent(
     currentResult: NwsCurrentResult,

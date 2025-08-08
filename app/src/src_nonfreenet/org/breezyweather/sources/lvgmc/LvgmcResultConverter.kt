@@ -18,6 +18,7 @@ package org.breezyweather.sources.lvgmc
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.UV
@@ -31,8 +32,6 @@ import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.sources.lvgmc.json.LvgmcAirQualityLocationResult
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentLocation
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentResult
@@ -42,36 +41,6 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 import kotlin.time.Duration.Companion.hours
-
-// reverse geocoding
-internal fun convert(
-    context: Context,
-    location: Location,
-    forecastLocationsResult: List<LvgmcForecastResult>,
-): List<Location> {
-    val locationList = mutableListOf<Location>()
-    val forecastLocations = forecastLocationsResult.filter {
-        it.point != null && it.latitude != null && it.longitude != null
-    }.associate {
-        it.point!! to LatLng(it.latitude!!.toDouble(), it.longitude!!.toDouble())
-    }
-    val forecastLocation = LatLng(location.latitude, location.longitude).getNearestLocation(forecastLocations)
-
-    forecastLocationsResult.firstOrNull { it.point == forecastLocation }?.let {
-        locationList.add(
-            location.copy(
-                latitude = location.latitude,
-                longitude = location.longitude,
-                timeZone = TimeZone.getTimeZone("Europe/Riga"),
-                country = context.currentLocale.getCountryName("LV"),
-                countryCode = "LV",
-                admin1 = it.municipality,
-                city = it.name ?: ""
-            )
-        )
-    }
-    return locationList
-}
 
 // location parameters
 internal fun convert(

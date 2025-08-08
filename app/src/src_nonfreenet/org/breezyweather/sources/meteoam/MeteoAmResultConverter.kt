@@ -18,6 +18,7 @@ package org.breezyweather.sources.meteoam
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.reference.WeatherCode
@@ -31,20 +32,6 @@ import org.breezyweather.sources.meteoam.json.MeteoAmForecastStats
 import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocation
 import java.util.Date
 import java.util.TimeZone
-
-internal fun convert(
-    location: Location,
-    reverseLocation: MeteoAmReverseLocation,
-    timezone: String,
-): Location {
-    return location.copy(
-        timeZone = TimeZone.getTimeZone(timezone),
-        country = reverseLocation.country,
-        countryCode = reverseLocation.countryCode,
-        admin2 = reverseLocation.county,
-        city = reverseLocation.city
-    )
-}
 
 internal fun getCurrent(
     context: Context,

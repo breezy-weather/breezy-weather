@@ -32,7 +32,6 @@ import org.breezyweather.common.preference.EditTextPreference
 import org.breezyweather.common.preference.Preference
 import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
-import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
@@ -44,7 +43,7 @@ import javax.inject.Named
 class MetOfficeService @Inject constructor(
     @ApplicationContext context: Context,
     @Named("JsonClient") client: Retrofit.Builder,
-) : HttpSource(), WeatherSource, ConfigurableSource, ReverseGeocodingSource {
+) : HttpSource(), WeatherSource, ConfigurableSource {
 
     override val id = "metoffice"
     override val name = "Met Office (${context.currentLocale.getCountryName("GB")})"
@@ -60,8 +59,7 @@ class MetOfficeService @Inject constructor(
 
     private val weatherAttribution = "Met Office"
     override val supportedFeatures = mapOf(
-        SourceFeature.FORECAST to weatherAttribution,
-        SourceFeature.REVERSE_GEOCODING to weatherAttribution
+        SourceFeature.FORECAST to weatherAttribution
     )
     override val attributionLinks = mapOf(
         weatherAttribution to "https://www.metoffice.gov.uk/"
@@ -97,25 +95,6 @@ class MetOfficeService @Inject constructor(
                 dailyForecast = getDailyForecast(daily, context),
                 hourlyForecast = getHourlyForecast(hourly, context)
             )
-        }
-    }
-
-    override fun requestReverseGeocodingLocation(
-        context: Context,
-        location: Location,
-    ): Observable<List<Location>> {
-        val apiKey = getApiKeyOrDefault()
-
-        return mApi.getHourlyForecast(apiKey, location.latitude, location.longitude, true).map {
-            buildList {
-                it.features.getOrNull(0)?.let { feature ->
-                    add(
-                        location.copy(
-                            district = feature.properties.location?.name
-                        )
-                    )
-                }
-            }
         }
     }
 

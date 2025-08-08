@@ -19,6 +19,7 @@ package org.breezyweather.sources.accu
 import android.content.Context
 import androidx.annotation.DrawableRes
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Normals
@@ -53,6 +54,7 @@ import org.breezyweather.sources.accu.json.AccuClimoSummaryResult
 import org.breezyweather.sources.accu.json.AccuCurrentResult
 import org.breezyweather.sources.accu.json.AccuForecastDailyResult
 import org.breezyweather.sources.accu.json.AccuForecastHourlyResult
+import org.breezyweather.sources.accu.json.AccuLocationResult
 import org.breezyweather.sources.accu.json.AccuMinutelyResult
 import org.breezyweather.sources.accu.preferences.AccuDaysPreference
 import org.breezyweather.sources.accu.preferences.AccuHoursPreference
@@ -365,7 +367,7 @@ class AccuService @Inject constructor(
     override fun requestLocationSearch(
         context: Context,
         query: String,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         val apiKey = getApiKeyOrDefault()
         val languageCode = if (supportedLanguages.contains(context.currentLocale.codeWithCountry)) {
             context.currentLocale.codeWithCountry
@@ -385,15 +387,15 @@ class AccuService @Inject constructor(
             alias = "Always"
         ).map { results ->
             results.map {
-                convert(null, it)
+                convertLocation(it)
             }
         }
     }
 
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         val apiKey = getApiKeyOrDefault()
         val languageCode = if (supportedLanguages.contains(context.currentLocale.codeWithCountry)) {
             context.currentLocale.codeWithCountry
@@ -411,10 +413,30 @@ class AccuService @Inject constructor(
             details = false,
             location.latitude.toString() + "," + location.longitude
         ).map {
-            val locationList = mutableListOf<Location>()
-            locationList.add(convert(location, it))
-            locationList
+            listOf(convertLocation(it))
         }
+    }
+
+    private fun convertLocation(
+        result: AccuLocationResult,
+    ): LocationAddressInfo {
+        if (result.Country.ID.isNullOrEmpty()) {
+            throw InvalidLocationException()
+        }
+
+        return LocationAddressInfo(
+            latitude = result.GeoPosition.Latitude,
+            longitude = result.GeoPosition.Longitude,
+            timeZoneId = result.TimeZone.Name,
+            country = result.Country.LocalizedName.ifEmpty { result.Country.EnglishName },
+            countryCode = result.Country.ID,
+            admin2 = result.AdministrativeArea?.LocalizedName?.ifEmpty {
+                result.AdministrativeArea.EnglishName
+            },
+            admin2Code = result.AdministrativeArea?.ID,
+            city = result.LocalizedName?.ifEmpty { result.EnglishName } ?: "",
+            cityCode = result.Key
+        )
     }
 
     // CONFIG

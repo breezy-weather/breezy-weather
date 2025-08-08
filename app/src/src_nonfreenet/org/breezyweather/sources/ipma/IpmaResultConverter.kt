@@ -32,8 +32,6 @@ import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.ipma.json.IpmaAlertResult
 import org.breezyweather.sources.ipma.json.IpmaDistrictResult
@@ -42,54 +40,6 @@ import org.breezyweather.sources.ipma.json.IpmaLocationResult
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
-
-internal fun convert(
-    context: Context,
-    location: Location,
-    districts: List<IpmaDistrictResult>,
-    locations: List<IpmaLocationResult>,
-): List<Location> {
-    val locationList = mutableListOf<Location>()
-    val locationMap = mutableMapOf<String, LatLng>()
-    locations.mapIndexed { i, loc ->
-        i.toString() to LatLng(loc.latitude.toDouble(), loc.longitude.toDouble())
-    }
-    LatLng(location.latitude, location.longitude).getNearestLocation(locationMap, 50000.0)?.let {
-        val nearestLocation = locations[it.toInt()]
-        var districtName: String? = null
-        districts.forEach { d ->
-            if (d.idRegiao == nearestLocation.idRegiao && d.idDistrito == nearestLocation.idDistrito) {
-                districtName = d.nome
-            }
-        }
-        locationList.add(
-            location.copy(
-                latitude = location.latitude,
-                longitude = location.longitude,
-                timeZone = TimeZone.getTimeZone(
-                    when (nearestLocation.idRegiao) {
-                        2 -> "Atlantic/Madeira"
-                        3 -> "Atlantic/Azores"
-                        else -> "Europe/Lisbon"
-                    }
-                ),
-                country = context.currentLocale.getCountryName("PT"),
-                countryCode = "PT",
-                admin1 = when (nearestLocation.idRegiao) {
-                    2 -> "Madeira"
-                    3 -> "Azores"
-                    else -> districtName
-                },
-                admin2 = when (nearestLocation.idRegiao) {
-                    2, 3 -> districtName
-                    else -> null
-                },
-                city = nearestLocation.local ?: ""
-            )
-        )
-    }
-    return locationList
-}
 
 internal fun convert(
     location: Location,

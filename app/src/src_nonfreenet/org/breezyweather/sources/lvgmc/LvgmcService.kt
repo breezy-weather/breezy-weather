@@ -18,11 +18,13 @@ package org.breezyweather.sources.lvgmc
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import com.google.maps.android.model.LatLng
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.exceptions.InvalidLocationException
@@ -197,10 +199,10 @@ class LvgmcService @Inject constructor(
     }
 
     // REVERSE GEOCODING
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         val formatter = SimpleDateFormat("yyyyMMddHH", Locale.ENGLISH)
         formatter.timeZone = TimeZone.getTimeZone("Europe/Riga")
         val laiks = formatter.format(Date()) + "00"
@@ -209,8 +211,33 @@ class LvgmcService @Inject constructor(
             laiks = laiks,
             bounds = bounds
         ).map {
-            convert(context, location, it)
+            convertLocation(location, it)
         }
+    }
+
+    private fun convertLocation(
+        location: Location,
+        forecastLocationsResult: List<LvgmcForecastResult>,
+    ): List<LocationAddressInfo> {
+        val locationList = mutableListOf<LocationAddressInfo>()
+        val forecastLocations = forecastLocationsResult.filter {
+            it.point != null && it.latitude != null && it.longitude != null
+        }.associate {
+            it.point!! to LatLng(it.latitude!!.toDouble(), it.longitude!!.toDouble())
+        }
+        val forecastLocation = LatLng(location.latitude, location.longitude).getNearestLocation(forecastLocations)
+
+        forecastLocationsResult.firstOrNull { it.point == forecastLocation }?.let {
+            locationList.add(
+                LocationAddressInfo(
+                    timeZoneId = "Europe/Riga",
+                    countryCode = "LV",
+                    admin1 = it.municipality,
+                    city = it.name
+                )
+            )
+        }
+        return locationList
     }
 
     // LOCATION PARAMETERS

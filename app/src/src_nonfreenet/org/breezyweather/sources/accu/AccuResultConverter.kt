@@ -18,6 +18,7 @@ package org.breezyweather.sources.accu
 
 import android.graphics.Color
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.DegreeDay
@@ -54,26 +55,6 @@ import java.util.TimeZone
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
-
-internal fun convert(
-    location: Location?, // Null if location search, current location if reverse geocoding
-    result: AccuLocationResult,
-): Location {
-    return (location ?: Location())
-        .copy(
-            cityId = result.Key,
-            latitude = location?.latitude ?: result.GeoPosition.Latitude,
-            longitude = location?.longitude ?: result.GeoPosition.Longitude,
-            timeZone = TimeZone.getTimeZone(result.TimeZone.Name),
-            country = result.Country.LocalizedName.ifEmpty { result.Country.EnglishName },
-            countryCode = result.Country.ID,
-            admin2 = result.AdministrativeArea?.LocalizedName?.ifEmpty {
-                result.AdministrativeArea.EnglishName
-            },
-            admin2Code = result.AdministrativeArea?.ID,
-            city = result.LocalizedName?.ifEmpty { result.EnglishName } ?: ""
-        )
-}
 
 internal fun getCurrent(
     currentResult: AccuCurrentResult?,

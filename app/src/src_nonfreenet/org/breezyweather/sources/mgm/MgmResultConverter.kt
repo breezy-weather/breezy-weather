@@ -18,7 +18,7 @@ package org.breezyweather.sources.mgm
 
 import android.content.Context
 import android.graphics.Color
-import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.reference.AlertSeverity
@@ -28,12 +28,7 @@ import breezyweather.domain.weather.wrappers.DailyWrapper
 import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
-import com.google.maps.android.SphericalUtil
-import com.google.maps.android.model.LatLng
 import org.breezyweather.R
-import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.sources.mgm.json.MgmAlertResult
 import org.breezyweather.sources.mgm.json.MgmCurrentResult
 import org.breezyweather.sources.mgm.json.MgmDailyForecastResult
@@ -44,23 +39,10 @@ import java.util.Locale
 import java.util.TimeZone
 
 internal fun convert(
-    context: Context,
-    location: Location,
     result: MgmLocationResult,
-): Location {
-    // Make sure location is within 50km of a known location in Türkiye
-    val distance = SphericalUtil.computeDistanceBetween(
-        LatLng(location.latitude, location.longitude),
-        LatLng(result.latitude, result.longitude)
-    )
-    if (distance > 50000) {
-        throw InvalidLocationException()
-    }
-    return location.copy(
-        latitude = location.latitude,
-        longitude = location.longitude,
-        timeZone = TimeZone.getTimeZone("Europe/Istanbul"),
-        country = context.currentLocale.getCountryName("TR"),
+): LocationAddressInfo {
+    return LocationAddressInfo(
+        timeZoneId = "Europe/Istanbul",
         countryCode = "TR",
         admin1 = result.province,
         city = result.province,

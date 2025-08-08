@@ -18,11 +18,13 @@ package org.breezyweather.ui.search
 
 import android.app.Application
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.breezyweather.BreezyWeather
 import org.breezyweather.common.basic.BreezyViewModel
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.ui.main.utils.RefreshErrorType
 import javax.inject.Inject
@@ -48,7 +50,7 @@ class SearchViewModel @Inject constructor(
             getApplication(),
             str.trim(),
             locationSearchSource.value
-        ) { result: Pair<List<Location>?, RefreshErrorType?>?, _: Boolean ->
+        ) { result: Pair<List<LocationAddressInfo>?, RefreshErrorType?>?, _: Boolean ->
             result?.second?.let { msg ->
                 msg.showDialogAction?.let { showDialogAction ->
                     SnackbarHelper.showSnackbar(
@@ -63,7 +65,21 @@ class SearchViewModel @Inject constructor(
                 _listResource.value = Pair(emptyList(), LoadableLocationStatus.ERROR)
             } ?: run {
                 result?.first?.let {
-                    _listResource.value = Pair(it, LoadableLocationStatus.SUCCESS)
+                    _listResource.value = Pair(
+                        it.filter { locAddrInfo ->
+                            locAddrInfo.longitude != null &&
+                                locAddrInfo.latitude != null &&
+                                (locAddrInfo.longitude != 0.0 || locAddrInfo.latitude != 0.0)
+                        }
+                            .map { locAddrInfo ->
+                                Location().toLocationWithAddressInfo(
+                                    (getApplication() as Application).currentLocale,
+                                    locAddrInfo,
+                                    overwriteCoordinates = true
+                                )
+                            },
+                        LoadableLocationStatus.SUCCESS
+                    )
                 } ?: run {
                     _listResource.value = Pair(emptyList(), LoadableLocationStatus.ERROR)
                 }

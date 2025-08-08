@@ -29,13 +29,10 @@ import kotlin.math.sin
 import kotlin.math.sqrt
 
 data class Location(
-    val cityId: String? = null,
-
     val latitude: Double = 0.0,
     val longitude: Double = 0.0,
     val timeZone: TimeZone = TimeZone.getTimeZone("GMT"),
 
-    val customName: String? = null,
     val country: String = "",
     val countryCode: String? = null,
     val admin1: String? = null,
@@ -47,9 +44,15 @@ data class Location(
     val admin4: String? = null,
     val admin4Code: String? = null,
     val city: String = "",
+    val cityId: String? = null,
     val district: String? = null,
 
+    val needsGeocodeRefresh: Boolean = false,
+
+    val customName: String? = null,
+
     val weather: Weather? = null,
+
     val forecastSource: String = "openmeteo",
     val currentSource: String? = null,
     val airQualitySource: String? = null,
@@ -60,8 +63,6 @@ data class Location(
     val reverseGeocodingSource: String? = null,
 
     val isCurrentPosition: Boolean = false,
-
-    val needsGeocodeRefresh: Boolean = false,
 
     /**
      * "accu": {"cityId": "230"}
@@ -296,6 +297,83 @@ data class Location(
         } else {
             distance(this, location) < (20 * 1000)
         }
+    }
+
+    fun toLocationWithAddressInfo(
+        currentLocale: Locale,
+        locationAddressInfo: LocationAddressInfo,
+        overwriteCoordinates: Boolean,
+    ): Location {
+        return copy(
+            latitude = if (overwriteCoordinates &&
+                locationAddressInfo.latitude != null &&
+                locationAddressInfo.longitude != null
+            ) {
+                locationAddressInfo.latitude
+            } else {
+                latitude
+            },
+            longitude = if (overwriteCoordinates &&
+                locationAddressInfo.latitude != null &&
+                locationAddressInfo.longitude != null
+            ) {
+                locationAddressInfo.longitude
+            } else {
+                longitude
+            },
+            timeZone = TimeZone.getTimeZone(locationAddressInfo.timeZoneId ?: "GMT"),
+            country = if (locationAddressInfo.country.isNullOrEmpty() && !locationAddressInfo.country.isNullOrEmpty()) {
+                Locale.Builder()
+                    .setLanguage(currentLocale.language)
+                    .setRegion(countryCode)
+                    .build()
+                    .displayCountry
+            } else {
+                locationAddressInfo.country ?: ""
+            },
+            countryCode = locationAddressInfo.countryCode,
+            admin1 = locationAddressInfo.admin1 ?: "",
+            admin1Code = locationAddressInfo.admin1Code ?: "",
+            admin2 = locationAddressInfo.admin2 ?: "",
+            admin2Code = locationAddressInfo.admin2Code ?: "",
+            admin3 = locationAddressInfo.admin3 ?: "",
+            admin3Code = locationAddressInfo.admin3Code ?: "",
+            admin4 = locationAddressInfo.admin4 ?: "",
+            admin4Code = locationAddressInfo.admin4Code ?: "",
+            city = locationAddressInfo.city ?: "",
+            cityId = locationAddressInfo.cityCode ?: "",
+            district = locationAddressInfo.district ?: "",
+            needsGeocodeRefresh = false
+        )
+    }
+
+    /**
+     * It is not intended to be used by the reverse geocoding source
+     * You're supposed to call the LocationAddressInfo constructor
+     *
+     * Currently only used by Natural Earth Service for a very special case
+     * Use with precaution!
+     */
+    // @Delicate
+    fun toAddressInfo(): LocationAddressInfo {
+        return LocationAddressInfo(
+            latitude = latitude,
+            longitude = longitude,
+            timeZoneId = timeZone.id,
+            country = country,
+            countryCode = countryCode ?: "",
+            admin1 = admin1,
+            admin1Code = admin1Code,
+            admin2 = admin2,
+            admin2Code = admin2Code,
+            admin3 = admin3,
+            admin3Code = admin3Code,
+            admin4 = admin4,
+            admin4Code = admin4Code,
+            city = city,
+            cityCode = cityId,
+            district = district
+        )
     }
 
     companion object {

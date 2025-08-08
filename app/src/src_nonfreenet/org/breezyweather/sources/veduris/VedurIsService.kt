@@ -2,6 +2,7 @@ package org.breezyweather.sources.veduris
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -150,15 +151,41 @@ class VedurIsService @Inject constructor(
         }
     }
 
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         val bbox = getBbox(location, DISTANCE_LIMIT)
         val stations = mApi.getStations(bbox[0].longitude, bbox[1].longitude, bbox[0].latitude, bbox[1].latitude)
         return stations.map {
-            convert(context, location, it)
+            convertLocation(location, it)
         }
+    }
+
+    private fun convertLocation(
+        location: Location,
+        stationResult: VedurIsStationResult,
+    ): List<LocationAddressInfo> {
+        val stations = mutableMapOf<String, LatLng>()
+        val stationNames = mutableMapOf<String, String>()
+        val key = stationResult.forecasts?.keys?.first()
+        stationResult.forecasts?.get(key)?.featureCollection?.features?.forEach { feature ->
+            val latLng = LatLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0])
+            val id = feature.properties.station.id.toString()
+            stations[id] = latLng
+            stationNames[id] = feature.properties.station.name
+        }
+        val stationId = LatLng(location.latitude, location.longitude).getNearestLocation(stations)
+        if (stationId == null) {
+            throw InvalidLocationException()
+        }
+        return listOf(
+            LocationAddressInfo(
+                timeZoneId = "Atlantic/Reykjavik",
+                countryCode = "IS",
+                city = stationNames[stationId]
+            )
+        )
     }
 
     override fun needsLocationParametersRefresh(

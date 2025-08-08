@@ -34,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -56,6 +57,7 @@ import org.breezyweather.common.source.PreferencesParametersSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.domain.settings.SourceConfigStore
 import org.breezyweather.sources.openmeteo.json.OpenMeteoAirQualityResult
+import org.breezyweather.sources.openmeteo.json.OpenMeteoLocationResult
 import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherResult
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.settings.preference.composables.PreferenceView
@@ -338,7 +340,7 @@ class OpenMeteoService @Inject constructor(
     override fun requestLocationSearch(
         context: Context,
         query: String,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         return mGeocodingApi.getLocations(
             query,
             count = 20,
@@ -351,11 +353,29 @@ class OpenMeteoService @Inject constructor(
                     throw LocationSearchException()
                 }
             } else {
-                results.results.mapNotNull {
-                    convert(it)
-                }
+                results.results
+                    .filter { !it.countryCode.isNullOrEmpty() }
+                    .map { convertLocation(it) }
             }
         }
+    }
+
+    private fun convertLocation(
+        result: OpenMeteoLocationResult,
+    ): LocationAddressInfo {
+        return LocationAddressInfo(
+            latitude = result.latitude,
+            longitude = result.longitude,
+            timeZoneId = result.timezone,
+            country = result.country,
+            countryCode = result.countryCode!!,
+            admin1 = result.admin1,
+            admin2 = result.admin2,
+            admin3 = result.admin3,
+            admin4 = result.admin4,
+            city = result.name,
+            cityCode = result.id.toString()
+        )
     }
 
     // CONFIG

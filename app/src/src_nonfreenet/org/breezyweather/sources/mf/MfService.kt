@@ -18,6 +18,7 @@ package org.breezyweather.sources.mf
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -359,10 +360,10 @@ class MfService @Inject constructor(
         }
     }
 
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         return mApi.getForecast(
             USER_AGENT,
             location.latitude,
@@ -370,8 +371,31 @@ class MfService @Inject constructor(
             "iso",
             getToken()
         ).map {
-            listOf(convert(location, it))
+            buildList {
+                convertLocation(it)?.let { loc ->
+                    add(loc)
+                }
+            }
         }
+    }
+
+    private fun convertLocation(
+        result: MfForecastResult,
+    ): LocationAddressInfo? {
+        if (result.properties == null) return null
+
+        return LocationAddressInfo(
+            timeZoneId = result.properties.timezone,
+            country = result.properties.country,
+            countryCode = result.properties.country.substring(0, 2),
+            admin2 = if (!result.properties.frenchDepartment.isNullOrEmpty()) {
+                frenchDepartments.getOrElse(result.properties.frenchDepartment) { null }
+            } else {
+                null
+            }, // Département
+            admin2Code = result.properties.frenchDepartment, // Département
+            city = result.properties.name
+        )
     }
 
     // Location parameters

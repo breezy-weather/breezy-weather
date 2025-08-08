@@ -16,7 +16,7 @@
 
 package org.breezyweather.sources.here
 
-import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.UV
@@ -31,30 +31,6 @@ import org.breezyweather.common.extensions.plus
 import org.breezyweather.sources.here.json.HereGeocodingData
 import org.breezyweather.sources.here.json.HereWeatherData
 import java.util.TimeZone
-
-/**
- * Converts here.com geocoding result into a list of locations
- */
-internal fun convert(
-    location: Location?,
-    results: List<HereGeocodingData>,
-): List<Location> {
-    return results.map { item ->
-        val newLocation = (location ?: Location())
-        newLocation.copy(
-            cityId = item.id,
-            latitude = location?.latitude ?: item.position.lat,
-            longitude = location?.longitude ?: item.position.lng,
-            timeZone = TimeZone.getTimeZone(item.timeZone.name),
-            country = item.address.countryName,
-            countryCode = item.address.countryCode,
-            admin1 = item.address.state,
-            admin1Code = item.address.stateCode,
-            admin2 = item.address.county,
-            city = item.address.city
-        )
-    }
-}
 
 /**
  * Returns current forecast

@@ -19,6 +19,7 @@ package org.breezyweather.sources.cwa
 import android.annotation.SuppressLint
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
@@ -355,10 +356,10 @@ class CwaService @Inject constructor(
     }
 
     // Reverse geocoding
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         val apiKey = getApiKeyOrDefault()
 
         // The reverse geocoding API call requires plugging in the location's coordinates
@@ -394,9 +395,7 @@ class CwaService @Inject constructor(
             if (it.data?.aqi?.getOrNull(0)?.town == null) {
                 throw InvalidLocationException()
             }
-            val locationList = mutableListOf<Location>()
-            locationList.add(convert(context, location, it.data.aqi[0].town!!))
-            locationList
+            listOf(convertLocation(it.data.aqi[0].town!!))
         }
     }
 

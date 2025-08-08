@@ -18,6 +18,7 @@ package org.breezyweather.sources.bmd
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -123,18 +124,18 @@ class BmdService @Inject constructor(
         }
     }
 
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         val upazila = getUpazila(location)
         return mApi.getDaily(
             pCode = upazila
         ).map { dailyResult ->
-            val locationList = mutableListOf<Location>()
+            val locationList = mutableListOf<LocationAddressInfo>()
             dailyResult.data?.getOrElse(upazila) { null }?.let {
                 locationList.add(
-                    convert(context, location, it)
+                    convertLocation(it)
                 )
             }
             locationList

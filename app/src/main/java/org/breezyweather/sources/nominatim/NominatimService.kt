@@ -17,17 +17,16 @@
 package org.breezyweather.sources.nominatim
 
 import android.content.Context
-import android.os.Build
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.BuildConfig
-import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import retrofit2.Retrofit
-import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -63,39 +62,31 @@ class NominatimService @Inject constructor(
             .create(NominatimApi::class.java)
     }
 
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         return mApi.getReverseLocation(
             userAgent = USER_AGENT,
             lat = location.latitude,
             lon = location.longitude
         ).map {
-            val locationList = mutableListOf<Location>()
-            locationList.add(
-                location.copy(
-                    cityId = it.placeId?.toString(),
-                    district = it.address?.village,
-                    city = it.address?.town ?: it.name,
-                    admin3 = it.address?.municipality,
-                    admin2 = it.address?.county,
-                    admin1 = it.address?.state,
-                    country = it.address?.country.let { country ->
-                        if (country.isNullOrEmpty()) location.country else country
-                    },
-                    countryCode = it.address?.countryCode.let { countryCode ->
-                        if (countryCode.isNullOrEmpty()) {
-                            location.countryCode
-                        } else {
-                            countryCode.uppercase(context.currentLocale)
-                        }
-                    },
-                    // Make sure to update TimeZone, especially useful on current location
-                    timeZone = TimeZone.getDefault()
+            if (it.address?.countryCode == null) {
+                throw InvalidLocationException()
+            }
+
+            listOf(
+                LocationAddressInfo(
+                    district = it.address.village,
+                    city = it.address.town ?: it.name,
+                    cityCode = it.placeId?.toString(),
+                    admin3 = it.address.municipality,
+                    admin2 = it.address.county,
+                    admin1 = it.address.state,
+                    country = it.address.country,
+                    countryCode = it.address.countryCode
                 )
             )
-            locationList
         }
     }
 

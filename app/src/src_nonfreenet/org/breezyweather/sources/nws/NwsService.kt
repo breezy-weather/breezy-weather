@@ -18,6 +18,7 @@ package org.breezyweather.sources.nws
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -38,6 +39,7 @@ import org.breezyweather.sources.nws.json.NwsAlertsResult
 import org.breezyweather.sources.nws.json.NwsCurrentResult
 import org.breezyweather.sources.nws.json.NwsDailyResult
 import org.breezyweather.sources.nws.json.NwsGridPointResult
+import org.breezyweather.sources.nws.json.NwsPointProperties
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -223,10 +225,10 @@ class NwsService @Inject constructor(
     }
 
     // Reverse geocoding
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         return mApi.getPoints(
             USER_AGENT,
             location.latitude,
@@ -235,10 +237,20 @@ class NwsService @Inject constructor(
             if (it.properties == null) {
                 throw InvalidLocationException()
             }
-            val locationList = mutableListOf<Location>()
-            locationList.add(convert(location, it.properties))
-            locationList
+            listOf(convertLocation(it.properties))
         }
+    }
+
+    private fun convertLocation(
+        locationProperties: NwsPointProperties,
+    ): LocationAddressInfo {
+        return LocationAddressInfo(
+            timeZoneId = locationProperties.timeZone,
+            countryCode = "US",
+            admin1 = locationProperties.relativeLocation?.properties?.state,
+            admin1Code = locationProperties.relativeLocation?.properties?.state,
+            city = locationProperties.relativeLocation?.properties?.city
+        )
     }
 
     // Location parameters

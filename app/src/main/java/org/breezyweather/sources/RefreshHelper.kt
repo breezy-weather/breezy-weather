@@ -28,6 +28,7 @@ import androidx.core.location.LocationManagerCompat
 import breezyweather.data.location.LocationRepository
 import breezyweather.data.weather.WeatherRepository
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Base
 import breezyweather.domain.weather.model.Weather
@@ -51,6 +52,7 @@ import org.breezyweather.common.exceptions.LocationException
 import org.breezyweather.common.exceptions.NoNetworkException
 import org.breezyweather.common.exceptions.ReverseGeocodingException
 import org.breezyweather.common.exceptions.WeatherException
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.hasPermission
 import org.breezyweather.common.extensions.isOnline
@@ -215,20 +217,60 @@ class RefreshHelper @Inject constructor(
                     admin4 = "",
                     admin4Code = "",
                     city = "",
-                    district = ""
+                    district = "",
+                    needsGeocodeRefresh = true
                 )
             } else {
                 location
             }
 
-            if (coordinatesChanged || location.needsGeocodeRefresh) {
+            if (locationWithUpdatedCoordinates.needsGeocodeRefresh) {
                 val reverseGeocodingService = sourceManager.getReverseGeocodingSourceOrDefault(
                     location.reverseGeocodingSource ?: BuildConfig.DEFAULT_GEOCODING_SOURCE
                 )
                 try {
                     // Getting the address for this
-                    requestReverseGeocoding(reverseGeocodingService, locationWithUpdatedCoordinates, context).also {
-                        locationRepository.update(it)
+                    requestReverseGeocoding(reverseGeocodingService, locationWithUpdatedCoordinates, context).let {
+                        if (
+                            SphericalUtil.computeDistanceBetween(
+                                LatLng(it.latitude, it.longitude),
+                                LatLng(location.latitude, location.longitude)
+                            ) > REVERSE_GEOCODING_DISTANCE_LIMIT
+                        ) {
+                            LogHelper.log(
+                                msg = "Nearest location found is too far away from the user-provided location"
+                            )
+                            currentErrors.add(
+                                RefreshError(
+                                    RefreshErrorType.REVERSE_GEOCODING_FAILED,
+                                    reverseGeocodingService.name,
+                                    SourceFeature.REVERSE_GEOCODING
+                                )
+                            )
+                            location
+                        } else if (reverseGeocodingService.id != BuildConfig.DEFAULT_GEOCODING_SOURCE &&
+                            (it.countryCode.isNullOrEmpty() || !it.countryCode!!.matches(Regex("[A-Za-z]{2}")))
+                        ) {
+                            /**
+                             * If country code is missing or invalid, don't accept the result and reverse to
+                             * previous valid location
+                             * Exception: Natural Earth is allowed to send an empty countryCode
+                             */
+                            LogHelper.log(
+                                msg = "Found invalid country code during reverse geocoding: ${it.countryCode}"
+                            )
+                            currentErrors.add(
+                                RefreshError(
+                                    RefreshErrorType.REVERSE_GEOCODING_FAILED,
+                                    reverseGeocodingService.name,
+                                    SourceFeature.REVERSE_GEOCODING
+                                )
+                            )
+                            location
+                        } else {
+                            locationRepository.update(it)
+                            it
+                        }
                     }
                 } catch (e: Throwable) {
                     currentErrors.add(
@@ -310,26 +352,13 @@ class RefreshHelper @Inject constructor(
         }
 
         return reverseGeocodingService
-            .requestReverseGeocodingLocation(context, currentLocation)
+            .requestNearestLocation(context, currentLocation)
             .map { locationList ->
                 if (locationList.isNotEmpty()) {
-                    val result = locationList[0]
-                    currentLocation.copy(
-                        cityId = result.cityId,
-                        timeZone = result.timeZone,
-                        country = result.country,
-                        countryCode = result.countryCode ?: "",
-                        admin1 = result.admin1 ?: "",
-                        admin1Code = result.admin1Code ?: "",
-                        admin2 = result.admin2 ?: "",
-                        admin2Code = result.admin2Code ?: "",
-                        admin3 = result.admin3 ?: "",
-                        admin3Code = result.admin3Code ?: "",
-                        admin4 = result.admin4 ?: "",
-                        admin4Code = result.admin4Code ?: "",
-                        city = result.city,
-                        district = result.district ?: "",
-                        needsGeocodeRefresh = false
+                    currentLocation.toLocationWithAddressInfo(
+                        context.currentLocale,
+                        locationList[0],
+                        overwriteCoordinates = false
                     )
                 } else {
                     throw ReverseGeocodingException()
@@ -844,7 +873,7 @@ class RefreshHelper @Inject constructor(
         context: Context,
         query: String,
         locationSearchSource: String,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         val searchService = sourceManager.getLocationSearchSourceOrDefault(locationSearchSource)
 
         // Debug source is not online
@@ -855,8 +884,8 @@ class RefreshHelper @Inject constructor(
         return searchService.requestLocationSearch(context, query).map { locationList ->
             locationList.map {
                 it.copy(
-                    longitude = it.longitude.roundDecimals(6)!!,
-                    latitude = it.latitude.roundDecimals(6)!!
+                    longitude = it.longitude?.roundDecimals(6),
+                    latitude = it.latitude?.roundDecimals(6)
                 )
             }
         }
@@ -1291,5 +1320,6 @@ class RefreshHelper @Inject constructor(
         const val WAIT_ALERTS_RESTRICTED_ONGOING = WAIT_REGULAR // 5 min
 
         const val CACHING_DISTANCE_LIMIT = 5000 // 5 km
+        const val REVERSE_GEOCODING_DISTANCE_LIMIT = 50000 // 50 km
     }
 }

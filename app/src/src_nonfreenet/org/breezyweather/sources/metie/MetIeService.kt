@@ -18,6 +18,7 @@ package org.breezyweather.sources.metie
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -34,6 +35,7 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.metie.json.MetIeHourly
+import org.breezyweather.sources.metie.json.MetIeLocationResult
 import org.breezyweather.sources.metie.json.MetIeWarningResult
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -147,20 +149,31 @@ class MetIeService @Inject constructor(
         }
     }
 
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         return mApi.getReverseLocation(
             location.latitude,
             location.longitude
         ).map {
-            val locationList = mutableListOf<Location>()
+            val locationList = mutableListOf<LocationAddressInfo>()
             if (it.city != "NO LOCATION SELECTED") {
-                locationList.add(convert(context, location, it))
+                locationList.add(convertLocation(it))
             }
             locationList
         }
+    }
+
+    private fun convertLocation(
+        result: MetIeLocationResult,
+    ): LocationAddressInfo {
+        return LocationAddressInfo(
+            timeZoneId = "Europe/Dublin",
+            countryCode = "IE",
+            admin2 = result.county,
+            city = result.city
+        )
     }
 
     // Location parameters

@@ -19,6 +19,7 @@ package org.breezyweather.sources.ims
 import android.content.Context
 import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.UV
@@ -39,18 +40,6 @@ import org.breezyweather.sources.ims.json.ImsWeatherData
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
-
-internal fun convert(
-    location: Location,
-    result: ImsLocation,
-): Location {
-    return location.copy(
-        timeZone = TimeZone.getTimeZone("Asia/Jerusalem"),
-        country = "", // We don’t put any country name to avoid political issues
-        countryCode = "IL", // but we need to identify the location as being part of the coverage of IMS
-        city = result.name
-    )
-}
 
 internal fun getDailyForecast(
     location: Location,

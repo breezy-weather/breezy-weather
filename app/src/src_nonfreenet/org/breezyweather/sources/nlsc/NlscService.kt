@@ -2,6 +2,7 @@ package org.breezyweather.sources.nlsc
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import com.google.maps.android.model.LatLng
@@ -17,7 +18,6 @@ import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import retrofit2.Retrofit
-import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -80,7 +80,10 @@ class NlscService @Inject constructor(
         }
     }
 
-    override fun requestReverseGeocodingLocation(context: Context, location: Location): Observable<List<Location>> {
+    override fun requestNearestLocation(
+        context: Context,
+        location: Location,
+    ): Observable<List<LocationAddressInfo>> {
         return mNlscApi.getLocationCodes(
             lon = location.longitude,
             lat = location.latitude
@@ -90,9 +93,8 @@ class NlscService @Inject constructor(
             }
 
             listOf(
-                location.copy(
-                    timeZone = TimeZone.getTimeZone("Asia/Taipei"),
-                    country = context.currentLocale.getCountryName("TW"),
+                LocationAddressInfo(
+                    timeZoneId = "Asia/Taipei",
                     countryCode = "TW",
                     admin1 = locationCodes.countyName?.value,
                     admin1Code = locationCodes.countyCode?.value,

@@ -33,40 +33,11 @@ import com.google.maps.android.SphericalUtil
 import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.meteolux.json.MeteoLuxWeatherResult
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
-
-internal fun convert(
-    context: Context,
-    location: Location,
-    weatherResult: MeteoLuxWeatherResult,
-): Location {
-    if (weatherResult.city?.lat == null || weatherResult.city.long == null) {
-        throw InvalidLocationException()
-    }
-    // Make sure location is within 50km of a known location in Luxembourg
-    val distance = SphericalUtil.computeDistanceBetween(
-        LatLng(location.latitude, location.longitude),
-        LatLng(weatherResult.city.lat, weatherResult.city.long)
-    )
-    if (distance > 50000) {
-        throw InvalidLocationException()
-    }
-    return location.copy(
-        latitude = location.latitude,
-        longitude = location.longitude,
-        timeZone = TimeZone.getTimeZone("Europe/Luxembourg"),
-        country = context.currentLocale.getCountryName("LU"),
-        countryCode = "LU",
-        admin1 = weatherResult.city.canton,
-        city = weatherResult.city.name ?: ""
-    )
-}
 
 internal fun getCurrent(
     context: Context,

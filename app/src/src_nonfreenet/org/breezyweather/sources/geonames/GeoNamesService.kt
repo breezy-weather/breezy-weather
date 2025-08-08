@@ -17,7 +17,7 @@
 package org.breezyweather.sources.geonames
 
 import android.content.Context
-import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
@@ -33,6 +33,7 @@ import org.breezyweather.common.source.ConfigurableSource
 import org.breezyweather.common.source.HttpSource
 import org.breezyweather.common.source.LocationSearchSource
 import org.breezyweather.domain.settings.SourceConfigStore
+import org.breezyweather.sources.geonames.json.GeoNamesLocation
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -62,7 +63,7 @@ class GeoNamesService @Inject constructor(
     override fun requestLocationSearch(
         context: Context,
         query: String,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         val apiKey = getApiKeyOrDefault()
         val languageCode = context.currentLocale.codeForGeonames
         return mApi.getLocation(
@@ -79,16 +80,45 @@ class GeoNamesService @Inject constructor(
                     else -> throw LocationSearchException()
                 }
             } else {
-                val locationList = mutableListOf<Location>()
-                results.geonames?.forEach {
-                    val locationConverted = convert(it, languageCode)
-                    if (locationConverted != null) {
-                        locationList.add(locationConverted)
-                    }
-                }
-                locationList
+                results.geonames
+                    ?.filter { (it.lat != 0.0 || it.lng != 0.0) && !it.countryCode.isNullOrEmpty() }
+                    ?.map { convertLocation(it, languageCode) }
+                    ?: emptyList()
             }
         }
+    }
+
+    private fun convertLocation(
+        result: GeoNamesLocation,
+        languageCode: String,
+    ): LocationAddressInfo {
+        return LocationAddressInfo(
+            latitude = result.lat,
+            longitude = result.lng,
+            timeZoneId = result.timezone?.timeZoneId,
+            country = result.countryName,
+            countryCode = result.countryCode!!,
+            admin1 = result.adminName1,
+            admin1Code = result.adminCode1,
+            admin2 = result.adminName2,
+            admin2Code = result.adminCode2,
+            admin3 = result.adminName3,
+            admin3Code = result.adminCode3,
+            admin4 = result.adminName4,
+            admin4Code = result.adminCode4,
+            city = getLocalizedName(result, languageCode),
+            cityCode = result.geonameId.toString()
+        )
+    }
+
+    private fun getLocalizedName(
+        result: GeoNamesLocation,
+        languageCode: String,
+    ): String? {
+        val localizedName = result.alternateNames?.firstOrNull {
+            it.lang.equals(languageCode, ignoreCase = true)
+        }
+        return if (!localizedName?.name.isNullOrEmpty()) localizedName.name else result.name
     }
 
     // CONFIG

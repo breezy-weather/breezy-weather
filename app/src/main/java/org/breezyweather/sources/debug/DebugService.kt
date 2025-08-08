@@ -53,14 +53,6 @@ class DebugService @Inject constructor() : WeatherSource {
         SourceFeature.MINUTELY to weatherAttribution
     )
 
-    override fun isFeatureSupportedForLocation(
-        location: Location,
-        feature: SourceFeature,
-    ): Boolean {
-        LogHelper.log(msg = "[Debug] Country code: ${location.countryCode}")
-        return true
-    }
-
     override fun requestWeather(
         context: Context,
         location: Location,

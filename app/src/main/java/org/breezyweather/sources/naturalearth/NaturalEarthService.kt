@@ -17,8 +17,8 @@
 package org.breezyweather.sources.naturalearth
 
 import android.content.Context
-import android.os.Build
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceFeature
 import com.google.maps.android.PolyUtil
 import com.google.maps.android.SphericalUtil
@@ -35,7 +35,6 @@ import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.utils.helpers.LogHelper
 import org.json.JSONObject
-import java.util.TimeZone
 import javax.inject.Inject
 
 /**
@@ -90,33 +89,30 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
         }
     }
 
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
-        val locationList = mutableListOf<Location>()
+    ): Observable<List<LocationAddressInfo>> {
         val languageCode = context.currentLocale.codeForNaturalEarth
 
         // Countries
         val matchingCountries = getMatchingFeaturesForLocation(context, R.raw.ne_50m_admin_0_countries, location)
         if (matchingCountries.size != 1) {
-            locationList.add(location)
             LogHelper.log(
                 msg = "[NaturalEarthService] Reverse geocoding skipped: ${matchingCountries.size} matching results"
             )
-            return Observable.just(locationList)
+            return Observable.just(listOf(location.toAddressInfo()))
         }
 
-        locationList.add(
-            location.copy(
-                country = matchingCountries[0].getProperty("NAME_$languageCode")
-                    ?: matchingCountries[0].getProperty("NAME_LONG")
-                    ?: "",
-                countryCode = matchingCountries[0].getProperty("ISO_A2"),
-                // Make sure to update TimeZone, especially useful on current location
-                timeZone = TimeZone.getDefault()
+        return Observable.just(
+            listOf(
+                LocationAddressInfo(
+                    country = matchingCountries[0].getProperty("NAME_$languageCode")
+                        ?: matchingCountries[0].getProperty("NAME_LONG"),
+                    countryCode = matchingCountries[0].getProperty("ISO_A2")
+                        ?: ""
+                )
             )
         )
-        return Observable.just(locationList)
     }
 }

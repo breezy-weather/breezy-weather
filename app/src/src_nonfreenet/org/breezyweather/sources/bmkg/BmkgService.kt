@@ -18,6 +18,7 @@ package org.breezyweather.sources.bmkg
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
@@ -46,7 +47,6 @@ import org.breezyweather.sources.bmkg.json.BmkgWarningResult
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
-import kotlin.text.ifEmpty
 
 class BmkgService @Inject constructor(
     @ApplicationContext context: Context,
@@ -220,17 +220,15 @@ class BmkgService @Inject constructor(
         }
     }
 
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
-        val locationList = mutableListOf<Location>()
+    ): Observable<List<LocationAddressInfo>> {
         return mApi.getLocation(
             lat = location.latitude,
             lon = location.longitude
         ).map {
-            locationList.add(convert(context, location, it))
-            locationList
+            listOf(convert(context, it))
         }
     }
 

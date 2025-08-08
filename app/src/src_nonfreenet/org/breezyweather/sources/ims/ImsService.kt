@@ -18,6 +18,7 @@ package org.breezyweather.sources.ims
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
@@ -38,6 +39,7 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.common.utils.helpers.LogHelper
+import org.breezyweather.sources.ims.json.ImsLocation
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -158,10 +160,10 @@ class ImsService @Inject constructor(
         }
     }
 
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         val languageCode = when (context.currentLocale.code) {
             "ar" -> "ar"
             "he", "iw" -> "he"
@@ -199,8 +201,20 @@ class ImsService @Inject constructor(
                     throw InvalidLocationException()
                 }
 
-                listOf(convert(location, nearestStation))
+                listOf(convertLocation(nearestStation))
             }
+    }
+
+    private fun convertLocation(
+        result: ImsLocation,
+    ): LocationAddressInfo {
+        // This will make locations in disputed areas appear as being in Israel, but I guess people using IMS as their
+        // address lookup source wouldn't be surprised by this kind of behavior
+        return LocationAddressInfo(
+            timeZoneId = "Asia/Jerusalem",
+            countryCode = "IL",
+            city = result.name
+        )
     }
 
     // Location parameters

@@ -18,14 +18,13 @@ package org.breezyweather.sources.android
 
 import android.content.Context
 import android.location.Geocoder
-import android.os.Build
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceFeature
 import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.rx3.rxObservable
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.ReverseGeocodingSource
-import java.util.TimeZone
 import javax.inject.Inject
 
 class AndroidGeocoderService @Inject constructor() : ReverseGeocodingSource {
@@ -41,26 +40,24 @@ class AndroidGeocoderService @Inject constructor() : ReverseGeocodingSource {
         return Geocoder.isPresent()
     }
 
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         val geocoder = Geocoder(context, context.currentLocale)
         return rxObservable {
             val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
 
-            val locationList = mutableListOf<Location>()
+            val locationList = mutableListOf<LocationAddressInfo>()
             addresses?.getOrNull(0)?.let {
                 locationList.add(
-                    location.copy(
+                    LocationAddressInfo(
                         city = it.locality,
                         district = it.subLocality,
                         admin1 = it.adminArea,
                         admin2 = it.subAdminArea,
                         country = it.countryName,
-                        countryCode = it.countryCode,
-                        // Make sure to update TimeZone in case the user moved
-                        timeZone = TimeZone.getDefault()
+                        countryCode = it.countryCode
                     )
                 )
             }

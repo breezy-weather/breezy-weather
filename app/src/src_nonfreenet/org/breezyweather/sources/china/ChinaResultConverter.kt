@@ -19,6 +19,7 @@ package org.breezyweather.sources.china
 import android.graphics.Color
 import androidx.annotation.ColorInt
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Minutely
 import breezyweather.domain.weather.model.PrecipitationProbability
@@ -41,23 +42,19 @@ import org.breezyweather.sources.china.json.ChinaMinutelyResult
 import java.util.Calendar
 import java.util.Date
 import java.util.Objects
-import java.util.TimeZone
 
 internal fun convert(
-    location: Location?, // Null if location search, current location if reverse geocoding
     result: ChinaLocationResult,
-): Location {
-    return (location ?: Location())
-        .copy(
-            cityId = result.locationKey!!.replace("weathercn:", ""),
-            latitude = location?.latitude ?: result.latitude!!.toDouble(),
-            longitude = location?.longitude ?: result.longitude!!.toDouble(),
-            timeZone = TimeZone.getTimeZone("Asia/Shanghai"),
-            country = "",
-            countryCode = "CN",
-            admin2 = result.affiliation, // TODO: Double check if admin1 or admin2
-            city = result.name ?: ""
-        )
+): LocationAddressInfo {
+    return LocationAddressInfo(
+        latitude = result.latitude!!.toDouble(),
+        longitude = result.longitude!!.toDouble(),
+        timeZoneId = "Asia/Shanghai",
+        countryCode = "CN",
+        admin2 = result.affiliation, // TODO: Double check if admin1 or admin2
+        city = result.name,
+        cityCode = result.locationKey!!.replace("weathercn:", "")
+    )
 }
 
 internal fun getCurrent(

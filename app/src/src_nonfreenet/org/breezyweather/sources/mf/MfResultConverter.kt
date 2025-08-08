@@ -20,6 +20,7 @@ import android.graphics.Color
 import androidx.annotation.ColorInt
 import androidx.core.graphics.toColorInt
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.DailyRelativeHumidity
 import breezyweather.domain.weather.model.Minutely
@@ -55,25 +56,6 @@ import java.util.TimeZone
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
-
-internal fun convert(location: Location, result: MfForecastResult): Location {
-    return if (result.properties == null) {
-        location
-    } else {
-        location.copy(
-            timeZone = TimeZone.getTimeZone(result.properties.timezone),
-            country = result.properties.country,
-            countryCode = result.properties.country.substring(0, 2),
-            admin2 = if (!result.properties.frenchDepartment.isNullOrEmpty()) {
-                frenchDepartments.getOrElse(result.properties.frenchDepartment) { null }
-            } else {
-                null
-            }, // Département
-            admin2Code = result.properties.frenchDepartment, // Département
-            city = result.properties.name
-        )
-    }
-}
 
 internal fun getCurrent(currentResult: MfCurrentResult): CurrentWrapper? {
     if (currentResult.properties?.gridded == null) {

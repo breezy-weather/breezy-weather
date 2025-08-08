@@ -18,12 +18,14 @@ package org.breezyweather.sources.meteolux
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.R
+import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCountryName
@@ -32,6 +34,7 @@ import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
+import org.breezyweather.sources.meteolux.json.MeteoLuxWeatherResult
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -147,10 +150,10 @@ class MeteoLuxService @Inject constructor(
         }
     }
 
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         return mApi.getWeather(
             language = with(context.currentLocale.code) {
                 when {
@@ -163,10 +166,24 @@ class MeteoLuxService @Inject constructor(
             lat = location.latitude,
             lon = location.longitude
         ).map {
-            val locationList = mutableListOf<Location>()
-            locationList.add(convert(context, location, it))
-            locationList
+            listOf(convertLocation(it))
         }
+    }
+
+    private fun convertLocation(
+        weatherResult: MeteoLuxWeatherResult,
+    ): LocationAddressInfo {
+        if (weatherResult.city?.lat == null || weatherResult.city.long == null) {
+            throw InvalidLocationException()
+        }
+        return LocationAddressInfo(
+            latitude = weatherResult.city.lat,
+            longitude = weatherResult.city.long,
+            timeZoneId = "Europe/Luxembourg",
+            countryCode = "LU",
+            admin1 = weatherResult.city.canton,
+            city = weatherResult.city.name
+        )
     }
 
     override val testingLocations: List<Location> = emptyList()

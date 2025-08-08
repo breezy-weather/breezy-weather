@@ -18,11 +18,13 @@ package org.breezyweather.sources.ilmateenistus
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
+import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.getCountryName
@@ -31,6 +33,7 @@ import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
+import org.breezyweather.sources.ilmateenistus.json.IlmateenistusForecastResult
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Named
@@ -109,16 +112,34 @@ class IlmateenistusService @Inject constructor(
         }
     }
 
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         val coordinates = "${location.latitude};${location.longitude}"
         return mApi.getHourly(
             coordinates = coordinates
         ).map {
-            convert(context, location, it)
+            convertLocation(it)
         }
+    }
+
+    private fun convertLocation(
+        forecastResult: IlmateenistusForecastResult,
+    ): List<LocationAddressInfo> {
+        if (forecastResult.location.isNullOrEmpty()) {
+            throw InvalidLocationException()
+        }
+        val locationParts = forecastResult.location.split(',')
+        return listOf(
+            LocationAddressInfo(
+                timeZoneId = "Europe/Tallinn",
+                countryCode = "EE",
+                admin1 = locationParts.getOrNull(0)?.trim(),
+                city = locationParts.getOrNull(1)?.trim(),
+                district = locationParts.getOrNull(2)?.trim()
+            )
+        )
     }
 
     override val testingLocations: List<Location> = emptyList()

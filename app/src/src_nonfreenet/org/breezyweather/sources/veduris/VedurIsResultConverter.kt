@@ -2,6 +2,7 @@ package org.breezyweather.sources.veduris
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Wind
@@ -21,7 +22,6 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.sources.veduris.json.VedurIsAlertRegionsResult
 import org.breezyweather.sources.veduris.json.VedurIsAlertResult
 import org.breezyweather.sources.veduris.json.VedurIsLatestObservation
@@ -31,38 +31,6 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
-
-fun convert(
-    context: Context,
-    location: Location,
-    stationResult: VedurIsStationResult,
-): List<Location> {
-    val locationList = mutableListOf<Location>()
-    val stations = mutableMapOf<String, LatLng>()
-    val stationNames = mutableMapOf<String, String>()
-    val key = stationResult.forecasts?.keys?.first()
-    stationResult.forecasts?.get(key)?.featureCollection?.features?.forEach { feature ->
-        val latLng = LatLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0])
-        val id = feature.properties.station.id.toString()
-        stations[id] = latLng
-        stationNames[id] = feature.properties.station.name
-    }
-    val stationId = LatLng(location.latitude, location.longitude).getNearestLocation(stations)
-    if (stationId == null) {
-        throw InvalidLocationException()
-    }
-    locationList.add(
-        location.copy(
-            latitude = location.latitude,
-            longitude = location.longitude,
-            timeZone = TimeZone.getTimeZone("Atlantic/Reykjavik"),
-            country = context.currentLocale.getCountryName("IS"),
-            countryCode = "IS",
-            city = stationNames[stationId] ?: ""
-        )
-    )
-    return locationList
-}
 
 fun getLocationParameters(
     location: Location,

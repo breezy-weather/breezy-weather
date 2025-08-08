@@ -18,6 +18,7 @@ package org.breezyweather.sources.ilmateenistus
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.reference.WeatherCode
@@ -26,37 +27,10 @@ import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.sources.ilmateenistus.json.IlmateenistusForecastResult
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
-
-internal fun convert(
-    context: Context,
-    location: Location,
-    forecastResult: IlmateenistusForecastResult,
-): List<Location> {
-    val locationList = mutableListOf<Location>()
-    if (forecastResult.location.isNullOrEmpty()) {
-        throw InvalidLocationException()
-    }
-    val locationParts = forecastResult.location.split(',')
-    locationList.add(
-        location.copy(
-            latitude = location.latitude,
-            longitude = location.longitude,
-            timeZone = TimeZone.getTimeZone("Europe/Tallinn"),
-            country = context.currentLocale.getCountryName("EE"),
-            countryCode = "EE",
-            admin1 = locationParts.getOrNull(0)?.trim(),
-            city = locationParts.getOrNull(1)?.trim() ?: "",
-            district = locationParts.getOrNull(2)?.trim()
-        )
-    )
-    return locationList
-}
 
 internal fun getDailyForecast(
     hourlyList: List<HourlyWrapper>,

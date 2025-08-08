@@ -18,6 +18,7 @@ package org.breezyweather.sources.mgm
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.Normals
@@ -218,17 +219,15 @@ class MgmService @Inject constructor(
     }
 
     // Reverse geocoding
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         return mApi.getLocation(
             lat = location.latitude,
             lon = location.longitude
         ).map {
-            val locationList = mutableListOf<Location>()
-            locationList.add(convert(context, location, it))
-            locationList
+            listOf(convert(it))
         }
     }
 

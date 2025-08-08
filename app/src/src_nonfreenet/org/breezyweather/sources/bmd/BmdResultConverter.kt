@@ -17,7 +17,7 @@
 package org.breezyweather.sources.bmd
 
 import android.content.Context
-import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.reference.WeatherCode
@@ -26,8 +26,6 @@ import breezyweather.domain.weather.wrappers.HalfDayWrapper
 import breezyweather.domain.weather.wrappers.HourlyWrapper
 import breezyweather.domain.weather.wrappers.TemperatureWrapper
 import org.breezyweather.R
-import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.sources.bmd.json.BmdData
 import org.breezyweather.sources.bmd.json.BmdForecastResult
 import java.text.SimpleDateFormat
@@ -35,20 +33,15 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-internal fun convert(
-    context: Context,
-    location: Location,
+internal fun convertLocation(
     data: BmdData,
-): Location {
-    return location.copy(
-        latitude = location.latitude,
-        longitude = location.longitude,
-        timeZone = TimeZone.getTimeZone("Asia/Dhaka"),
-        country = context.currentLocale.getCountryName("BD"),
+): LocationAddressInfo {
+    return LocationAddressInfo(
+        timeZoneId = "Asia/Dhaka",
         countryCode = "BD",
         admin1 = data.divisionName,
         admin2 = data.districtName,
-        city = data.upazilaName ?: ""
+        city = data.upazilaName
     )
 }
 

@@ -37,20 +37,6 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
 
-internal fun convert(
-    context: Context,
-    location: Location,
-    result: MetIeLocationResult,
-): Location {
-    return location.copy(
-        timeZone = TimeZone.getTimeZone("Europe/Dublin"),
-        country = "Ireland",
-        countryCode = context.currentLocale.getCountryName("IE"),
-        admin2 = result.county,
-        city = result.city ?: ""
-    )
-}
-
 internal fun getDailyForecast(
     location: Location,
     hourlyResult: List<MetIeHourly>,

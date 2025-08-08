@@ -18,6 +18,7 @@ package org.breezyweather.sources.bmkg
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.weather.model.AirQuality
 import breezyweather.domain.weather.model.Alert
 import breezyweather.domain.weather.model.Precipitation
@@ -34,7 +35,6 @@ import org.breezyweather.R
 import org.breezyweather.common.exceptions.InvalidLocationException
 import org.breezyweather.common.extensions.code
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.getCountryName
 import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.sources.bmkg.json.BmkgCurrentResult
 import org.breezyweather.sources.bmkg.json.BmkgForecastResult
@@ -49,19 +49,15 @@ import java.util.TimeZone
 
 internal fun convert(
     context: Context,
-    location: Location,
     result: BmkgLocationResult,
-): Location {
+): LocationAddressInfo {
     // Make sure location is within 10km of a known location in Indonesia
     if (result.distance !== null && result.distance > 10000.0) {
         throw InvalidLocationException()
     }
 
-    return location.copy(
-        latitude = location.latitude,
-        longitude = location.longitude,
-        timeZone = TimeZone.getTimeZone(getTimeZone(result.adm1)),
-        country = context.currentLocale.getCountryName("ID"),
+    return LocationAddressInfo(
+        timeZoneId = getTimeZone(result.adm1),
         countryCode = "ID",
         admin1 = result.provinsi,
         admin1Code = result.adm1,
@@ -71,7 +67,7 @@ internal fun convert(
         admin3Code = result.adm3,
         admin4 = result.desa,
         admin4Code = result.adm4,
-        city = result.kotkab ?: "",
+        city = result.kotkab,
         district = result.kecamatan
     )
 }

@@ -18,6 +18,7 @@ package org.breezyweather.sources.china
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.model.AirQuality
@@ -227,35 +228,29 @@ class ChinaService @Inject constructor(
     override fun requestLocationSearch(
         context: Context,
         query: String,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         return mApi.getLocationSearch(
             query,
             context.currentLocale.code
         ).map { results ->
-            val locationList = mutableListOf<Location>()
-            results.forEach {
-                if (it.locationKey?.startsWith("weathercn:") == true && it.status == 0) {
-                    locationList.add(convert(null, it))
-                }
-            }
-            locationList
+            results
+                .filter { it.locationKey?.startsWith("weathercn:") == true && it.status == 0 }
+                .map { convert(it) }
         }
     }
 
-    override fun requestReverseGeocodingLocation(
+    override fun requestNearestLocation(
         context: Context,
         location: Location,
-    ): Observable<List<Location>> {
+    ): Observable<List<LocationAddressInfo>> {
         return mApi.getLocationByGeoPosition(
             location.latitude,
             location.longitude,
             context.currentLocale.code
-        ).map {
-            val locationList = mutableListOf<Location>()
-            if (it.getOrNull(0)?.locationKey?.startsWith("weathercn:") == true && it[0].status == 0) {
-                locationList.add(convert(location, it[0]))
-            }
-            locationList
+        ).map { results ->
+            results
+                .filter { it.locationKey?.startsWith("weathercn:") == true && it.status == 0 }
+                .map { convert(it) }
         }
     }
 
