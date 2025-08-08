@@ -21,6 +21,8 @@ import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
+import breezyweather.domain.weather.model.DailyCloudCover
+import breezyweather.domain.weather.model.DailyRelativeHumidity
 import breezyweather.domain.weather.model.Precipitation
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.reference.WeatherCode
@@ -151,16 +153,19 @@ class BmdService @Inject constructor(
         val wsMap = mutableMapOf<String, Double?>()
         val wdMap = mutableMapOf<String, Double?>()
         val wgMap = mutableMapOf<String, Double?>()
+        val ccMap = mutableMapOf<String, Int?>()
         val ccDayMap = mutableMapOf<String, Int?>()
         val ccNightMap = mutableMapOf<String, Int?>()
+        val rhMap = mutableMapOf<String, Double?>()
         dailyResult.data?.getOrElse(upazila) { null }?.forecastData?.let { forecast ->
             forecast.rf?.forEach {
-                rfDayMap[it.stepStart] = it.valAvgDay?.times(12)
-                rfNightMap[it.stepStart] = it.valAvgNight?.times(12)
+                rfDayMap[it.stepStart] = it.valAvgDay?.times(12) // 12 hours
+                rfNightMap[it.stepStart] = it.valAvgNight?.times(12) // 12 hours
             }
-            forecast.temp?.forEach {
-                maxTMap[it.stepStart] = it.valMax
-                minTMap[it.stepStart] = it.valMin
+            forecast.temp?.forEachIndexed { index, temp ->
+                maxTMap[temp.stepStart] = temp.valMax
+                // Min temp of next day
+                minTMap[temp.stepStart] = forecast.temp.getOrElse(index + 1) { null }?.valMin
             }
             forecast.windspd?.forEach {
                 wsMap[it.stepStart] = it.valMax?.div(3.6)
@@ -176,8 +181,12 @@ class BmdService @Inject constructor(
                 wgMap[it.stepStart] = it.valMax?.div(3.6)
             }
             forecast.cldcvr?.forEach {
+                ccMap[it.stepStart] = it.valAvg?.times(12.5)?.toInt()
                 ccDayMap[it.stepStart] = it.valAvgDay?.times(12.5)?.toInt()
                 ccNightMap[it.stepStart] = it.valAvgNight?.times(12.5)?.toInt()
+            }
+            forecast.rh?.forEach {
+                rhMap[it.stepStart] = it.valAvg
             }
         }
 
@@ -227,7 +236,13 @@ class BmdService @Inject constructor(
                     precipitation = Precipitation(
                         total = rfNightMap.getOrElse(key) { null }
                     )
-                )
+                ),
+                relativeHumidity = rhMap.getOrElse(key) { null }?.let {
+                    DailyRelativeHumidity(average = it)
+                },
+                cloudCover = ccMap.getOrElse(key) { null }?.let {
+                    DailyCloudCover(average = it)
+                }
             )
         }
     }
