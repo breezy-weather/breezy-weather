@@ -358,7 +358,8 @@ class CwaService @Inject constructor(
     // Reverse geocoding
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         val apiKey = getApiKeyOrDefault()
 
@@ -369,8 +370,8 @@ class CwaService @Inject constructor(
             {
                 "query":"query aqi{
                     aqi(
-                        longitude:${location.longitude},
-                        latitude:${location.latitude}
+                        longitude:$longitude,
+                        latitude:$latitude
                     ){
                         station{
                             StationId

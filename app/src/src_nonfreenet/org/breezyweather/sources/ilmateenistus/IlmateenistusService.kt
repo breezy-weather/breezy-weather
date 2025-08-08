@@ -114,9 +114,10 @@ class IlmateenistusService @Inject constructor(
 
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
-        val coordinates = "${location.latitude};${location.longitude}"
+        val coordinates = "$latitude;$longitude"
         return mApi.getHourly(
             coordinates = coordinates
         ).map {

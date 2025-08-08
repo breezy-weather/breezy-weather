@@ -153,17 +153,19 @@ class VedurIsService @Inject constructor(
 
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
-        val bbox = getBbox(location, DISTANCE_LIMIT)
+        val bbox = getBbox(latitude, longitude, DISTANCE_LIMIT)
         val stations = mApi.getStations(bbox[0].longitude, bbox[1].longitude, bbox[0].latitude, bbox[1].latitude)
         return stations.map {
-            convertLocation(location, it)
+            convertLocation(latitude, longitude, it)
         }
     }
 
     private fun convertLocation(
-        location: Location,
+        latitude: Double,
+        longitude: Double,
         stationResult: VedurIsStationResult,
     ): List<LocationAddressInfo> {
         val stations = mutableMapOf<String, LatLng>()
@@ -175,7 +177,7 @@ class VedurIsService @Inject constructor(
             stations[id] = latLng
             stationNames[id] = feature.properties.station.name
         }
-        val stationId = LatLng(location.latitude, location.longitude).getNearestLocation(stations)
+        val stationId = LatLng(latitude, longitude).getNearestLocation(stations)
         if (stationId == null) {
             throw InvalidLocationException()
         }
@@ -204,7 +206,7 @@ class VedurIsService @Inject constructor(
     }
 
     override fun requestLocationParameters(context: Context, location: Location): Observable<Map<String, String>> {
-        val bbox = getBbox(location, DISTANCE_LIMIT)
+        val bbox = getBbox(location.latitude, location.longitude, DISTANCE_LIMIT)
         val alertRegions = mApi.getAlertRegions(
             if (context.currentLocale.code.startsWith("is")) "is" else "en"
         )
@@ -218,19 +220,20 @@ class VedurIsService @Inject constructor(
     }
 
     private fun getBbox(
-        location: Location,
+        latitude: Double,
+        longitude: Double,
         distance: Double,
     ): List<LatLng> {
-        val north = min(location.latitude + distance / (2 * PI * EARTH_POLAR_RADIUS) * 360, 90.0)
-        val south = max(location.latitude - distance / (2 * PI * EARTH_POLAR_RADIUS) * 360, -90.0)
-        val multiple = cos(location.latitude / 180 * PI)
+        val north = min(latitude + distance / (2 * PI * EARTH_POLAR_RADIUS) * 360, 90.0)
+        val south = max(latitude - distance / (2 * PI * EARTH_POLAR_RADIUS) * 360, -90.0)
+        val multiple = cos(latitude / 180 * PI)
         val east = if (multiple != 0.0) {
-            min(location.longitude + distance / (2 * PI * EARTH_EQUATORIAL_RADIUS * multiple) * 360, 180.0)
+            min(longitude + distance / (2 * PI * EARTH_EQUATORIAL_RADIUS * multiple) * 360, 180.0)
         } else {
             180.0
         }
         val west = if (multiple != 0.0) {
-            max(location.longitude - distance / (2 * PI * EARTH_EQUATORIAL_RADIUS * multiple) * 360, -180.0)
+            max(longitude - distance / (2 * PI * EARTH_EQUATORIAL_RADIUS * multiple) * 360, -180.0)
         } else {
             -180.0
         }

@@ -386,12 +386,13 @@ class EcccService @Inject constructor(
 
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         return mApi.getForecast(
             context.currentLocale.code,
-            location.latitude,
-            location.longitude
+            latitude,
+            longitude
         ).map {
             if (it.isEmpty()) {
                 throw InvalidLocationException()

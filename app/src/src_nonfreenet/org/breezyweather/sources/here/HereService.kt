@@ -178,13 +178,14 @@ class HereService @Inject constructor(
      */
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         val apiKey = getApiKeyOrDefault()
 
         return mRevGeocodingApi.revGeoCode(
             apiKey,
-            "${location.latitude},${location.longitude}",
+            "$latitude,$longitude",
             types = "city",
             limit = 20,
             context.currentLocale.codeWithCountry,

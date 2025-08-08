@@ -362,12 +362,13 @@ class MfService @Inject constructor(
 
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         return mApi.getForecast(
             USER_AGENT,
-            location.latitude,
-            location.longitude,
+            latitude,
+            longitude,
             "iso",
             getToken()
         ).map {

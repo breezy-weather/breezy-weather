@@ -42,66 +42,6 @@ import org.breezyweather.sources.namem.json.NamemNormalsResult
 import org.breezyweather.sources.namem.json.NamemStation
 import java.util.Date
 
-// Reverse geocoding
-internal fun convert(
-    location: Location,
-    stations: List<NamemStation>?,
-): List<LocationAddressInfo> {
-    val stationMap = stations?.filter {
-        it.lat != null && it.lon != null && (it.sid != null || it.id != null)
-    }?.associate {
-        it.sid.toString() to LatLng(it.lat!!, it.lon!!)
-    }
-    val station = stations?.firstOrNull {
-        it.sid.toString() == LatLng(location.latitude, location.longitude).getNearestLocation(stationMap, 200000.0)
-    }
-
-    if (station?.lat == null || station.lon == null) {
-        throw InvalidLocationException()
-    }
-    return listOf(
-        LocationAddressInfo(
-            timeZoneId = when (station.provinceName) {
-                "Баян-Өлгий", // Bayan-Ölgii
-                "Говь-Алтай", // Govi-Altai
-                "Ховд", // Khovd
-                "Увс", // Uvs
-                "Завхан", // Zavkhan
-                -> "Asia/Hovd"
-                else -> "Asia/Ulaanbaatar"
-            },
-            countryCode = "MN",
-            admin1 = station.provinceName,
-            admin2 = station.districtName,
-            city = station.districtName,
-            district = if (station.stationName != station.districtName) {
-                station.stationName
-            } else {
-                null
-            }
-        )
-    )
-}
-
-// Location parameters
-internal fun getLocationParameters(
-    location: Location,
-    stations: List<NamemStation>?,
-): Map<String, String> {
-    val stationMap = stations?.filter {
-        it.lat != null && it.lon != null && (it.sid != null || it.id != null)
-    }?.associate {
-        it.sid.toString() to LatLng(it.lat!!, it.lon!!)
-    }
-    val nearestStation = LatLng(location.latitude, location.longitude).getNearestLocation(stationMap, 200000.0)
-    if (nearestStation == null) {
-        throw InvalidLocationException()
-    }
-    return mapOf(
-        "stationId" to nearestStation
-    )
-}
-
 internal fun getCurrent(
     context: Context,
     currentResult: NamemCurrentResult,

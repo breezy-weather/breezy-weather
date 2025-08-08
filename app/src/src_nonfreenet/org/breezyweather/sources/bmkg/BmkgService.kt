@@ -222,11 +222,12 @@ class BmkgService @Inject constructor(
 
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         return mApi.getLocation(
-            lat = location.latitude,
-            lon = location.longitude
+            lat = latitude,
+            lon = longitude
         ).map {
             listOf(convert(context, it))
         }

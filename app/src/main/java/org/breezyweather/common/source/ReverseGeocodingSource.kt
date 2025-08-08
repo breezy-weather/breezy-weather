@@ -17,7 +17,6 @@
 package org.breezyweather.common.source
 
 import android.content.Context
-import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
 import io.reactivex.rxjava3.core.Observable
 
@@ -27,7 +26,11 @@ import io.reactivex.rxjava3.core.Observable
 interface ReverseGeocodingSource : FeatureSource {
 
     /**
-     * Returns location converted to Breezy Weather Location object
+     * Returns address info for the nearest location for the coordinates in parameter
      */
-    fun requestNearestLocation(context: Context, location: Location): Observable<List<LocationAddressInfo>>
+    fun requestNearestLocation(
+        context: Context,
+        latitude: Double,
+        longitude: Double,
+    ): Observable<List<LocationAddressInfo>>
 }

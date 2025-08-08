@@ -82,11 +82,12 @@ class NlscService @Inject constructor(
 
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         return mNlscApi.getLocationCodes(
-            lon = location.longitude,
-            lat = location.latitude
+            lon = longitude,
+            lat = latitude
         ).map { locationCodes ->
             if (locationCodes.townshipName?.value.isNullOrEmpty()) {
                 throw InvalidLocationException()

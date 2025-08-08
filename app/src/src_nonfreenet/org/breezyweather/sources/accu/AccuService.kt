@@ -394,7 +394,8 @@ class AccuService @Inject constructor(
 
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         val apiKey = getApiKeyOrDefault()
         val languageCode = if (supportedLanguages.contains(context.currentLocale.codeWithCountry)) {
@@ -411,7 +412,7 @@ class AccuService @Inject constructor(
             apiKey,
             languageCode,
             details = false,
-            location.latitude.toString() + "," + location.longitude
+            "$latitude,$longitude"
         ).map {
             listOf(convertLocation(it))
         }

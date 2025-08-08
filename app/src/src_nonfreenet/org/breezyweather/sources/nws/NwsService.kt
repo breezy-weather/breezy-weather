@@ -227,12 +227,13 @@ class NwsService @Inject constructor(
     // Reverse geocoding
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         return mApi.getPoints(
             USER_AGENT,
-            location.latitude,
-            location.longitude
+            latitude,
+            longitude
         ).map {
             if (it.properties == null) {
                 throw InvalidLocationException()

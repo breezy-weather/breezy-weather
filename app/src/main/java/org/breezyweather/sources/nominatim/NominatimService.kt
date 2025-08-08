@@ -17,7 +17,6 @@
 package org.breezyweather.sources.nominatim
 
 import android.content.Context
-import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
@@ -64,12 +63,13 @@ class NominatimService @Inject constructor(
 
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         return mApi.getReverseLocation(
             userAgent = USER_AGENT,
-            lat = location.latitude,
-            lon = location.longitude
+            lat = latitude,
+            lon = longitude
         ).map {
             if (it.address?.countryCode == null) {
                 throw InvalidLocationException()

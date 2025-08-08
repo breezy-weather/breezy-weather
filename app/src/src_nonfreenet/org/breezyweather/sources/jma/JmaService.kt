@@ -277,16 +277,17 @@ class JmaService @Inject constructor(
     // Reverse geocoding
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         val areas = mApi.getAreas()
         val class20s = mApi.getRelm().map { relm ->
             val features = mutableListOf<Any?>()
             relm.forEachIndexed { i, it ->
-                if (location.latitude <= it.ne[0] &&
-                    location.longitude <= it.ne[1] &&
-                    location.latitude >= it.sw[0] &&
-                    location.longitude >= it.sw[1]
+                if (latitude <= it.ne[0] &&
+                    longitude <= it.ne[1] &&
+                    latitude >= it.sw[0] &&
+                    longitude >= it.sw[1]
                 ) {
                     features.addAll(mApi.getClass20s(i).blockingFirst().features)
                 }
@@ -298,18 +299,19 @@ class JmaService @Inject constructor(
                 areasResult: JmaAreasResult,
                 class20sFeatures: List<Any?>,
             ->
-            convertLocation(context, location, areasResult, class20sFeatures)
+            convertLocation(context, latitude, longitude, areasResult, class20sFeatures)
         }
     }
 
     // Reverse geocoding
     private fun convertLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
         areasResult: JmaAreasResult,
         class20sFeatures: List<Any?>,
     ): List<LocationAddressInfo> {
-        val matchingLocations = getMatchingLocations(location, class20sFeatures)
+        val matchingLocations = getMatchingLocations(latitude, longitude, class20sFeatures)
         if (matchingLocations.isEmpty()) {
             throw InvalidLocationException()
         }
@@ -476,7 +478,8 @@ class JmaService @Inject constructor(
     }
 
     private fun getMatchingLocations(
-        location: Location,
+        latitude: Double,
+        longitude: Double,
         class20sFeatures: List<Any?>,
     ): List<GeoJsonFeature> {
         val json = """{"type":"FeatureCollection","features":[${class20sFeatures.joinToString(",")}]}"""
@@ -484,11 +487,11 @@ class JmaService @Inject constructor(
         return geoJsonParser.features.filter { feature ->
             when (feature.geometry) {
                 is GeoJsonPolygon -> (feature.geometry as GeoJsonPolygon).coordinates.any { polygon ->
-                    PolyUtil.containsLocation(location.latitude, location.longitude, polygon, true)
+                    PolyUtil.containsLocation(latitude, longitude, polygon, true)
                 }
                 is GeoJsonMultiPolygon -> (feature.geometry as GeoJsonMultiPolygon).polygons.any {
                     it.coordinates.any { polygon ->
-                        PolyUtil.containsLocation(location.latitude, location.longitude, polygon, true)
+                        PolyUtil.containsLocation(latitude, longitude, polygon, true)
                     }
                 }
                 else -> false
@@ -515,7 +518,7 @@ class JmaService @Inject constructor(
         var forecastAmedas = ""
         var currentAmedas = ""
 
-        val matchingLocations = getMatchingLocations(location, class20sFeatures)
+        val matchingLocations = getMatchingLocations(location.latitude, location.longitude, class20sFeatures)
         if (matchingLocations.isEmpty()) {
             throw InvalidLocationException()
         }

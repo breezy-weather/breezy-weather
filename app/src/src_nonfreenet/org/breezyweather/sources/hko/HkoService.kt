@@ -295,21 +295,22 @@ class HkoService @Inject constructor(
     // Reverse geocoding
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         val languageCode = context.currentLocale.code
-        val currentGrid = getCurrentGrid(location)
+        val currentGrid = getCurrentGrid(latitude, longitude)
         return mApi.getLocations(currentGrid).map { locationResult ->
             val json = "{\"type\":\"FeatureCollection\",\"features\":${locationResult.features}}"
             val geoJsonParser = GeoJsonParser(JSONObject(json))
             val matchingLocations = geoJsonParser.features.filter { feature ->
                 when (feature.geometry) {
                     is GeoJsonPolygon -> (feature.geometry as GeoJsonPolygon).coordinates.any { polygon ->
-                        PolyUtil.containsLocation(location.latitude, location.longitude, polygon, true)
+                        PolyUtil.containsLocation(latitude, longitude, polygon, true)
                     }
                     is GeoJsonMultiPolygon -> (feature.geometry as GeoJsonMultiPolygon).polygons.any {
                         it.coordinates.any { polygon ->
-                            PolyUtil.containsLocation(location.latitude, location.longitude, polygon, true)
+                            PolyUtil.containsLocation(latitude, longitude, polygon, true)
                         }
                     }
                     else -> false
@@ -369,7 +370,7 @@ class HkoService @Inject constructor(
         ) {
             throw InvalidLocationException()
         }
-        val currentGrid = getCurrentGrid(location)
+        val currentGrid = getCurrentGrid(location.latitude, location.longitude)
 
         // Obtain the default weather station for temperature normals
         val station = mApi.getCurrentWeather(currentGrid).onErrorResumeNext {
@@ -397,13 +398,14 @@ class HkoService @Inject constructor(
     }
 
     private fun getCurrentGrid(
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): String {
         // Make sure the location is within the boundaries of the current grid.
-        if (location.latitude < HKO_CURRENT_GRID_LATITUDES.first() ||
-            location.latitude >= HKO_CURRENT_GRID_LATITUDES.last() ||
-            location.longitude < HKO_CURRENT_GRID_LONGITUDES.first() ||
-            location.longitude >= HKO_CURRENT_GRID_LONGITUDES.last()
+        if (latitude < HKO_CURRENT_GRID_LATITUDES.first() ||
+            latitude >= HKO_CURRENT_GRID_LATITUDES.last() ||
+            longitude < HKO_CURRENT_GRID_LONGITUDES.first() ||
+            longitude >= HKO_CURRENT_GRID_LONGITUDES.last()
         ) {
             throw InvalidLocationException()
         }
@@ -415,8 +417,8 @@ class HkoService @Inject constructor(
         // The grid spacing is uneven, hence we iterate through the lists of the grid boundaries.
         var i = 1
         while (i < HKO_CURRENT_GRID_LATITUDES.size && row == null) {
-            if (location.latitude >= HKO_CURRENT_GRID_LATITUDES[i - 1] &&
-                location.latitude < HKO_CURRENT_GRID_LATITUDES[i]
+            if (latitude >= HKO_CURRENT_GRID_LATITUDES[i - 1] &&
+                latitude < HKO_CURRENT_GRID_LATITUDES[i]
             ) {
                 row = i
             }
@@ -425,8 +427,8 @@ class HkoService @Inject constructor(
 
         i = 1
         while (i < HKO_CURRENT_GRID_LONGITUDES.size && column == null) {
-            if (location.longitude >= HKO_CURRENT_GRID_LONGITUDES[i - 1] &&
-                location.longitude < HKO_CURRENT_GRID_LONGITUDES[i]
+            if (longitude >= HKO_CURRENT_GRID_LONGITUDES[i - 1] &&
+                longitude < HKO_CURRENT_GRID_LONGITUDES[i]
             ) {
                 column = i
             }

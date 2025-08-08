@@ -201,22 +201,24 @@ class LvgmcService @Inject constructor(
     // REVERSE GEOCODING
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         val formatter = SimpleDateFormat("yyyyMMddHH", Locale.ENGLISH)
         formatter.timeZone = TimeZone.getTimeZone("Europe/Riga")
         val laiks = formatter.format(Date()) + "00"
-        val bounds = getBoundingBox(location)
+        val bounds = getBoundingBox(latitude, longitude)
         return mApi.getForecastLocations(
             laiks = laiks,
             bounds = bounds
         ).map {
-            convertLocation(location, it)
+            convertLocation(latitude, longitude, it)
         }
     }
 
     private fun convertLocation(
-        location: Location,
+        latitude: Double,
+        longitude: Double,
         forecastLocationsResult: List<LvgmcForecastResult>,
     ): List<LocationAddressInfo> {
         val locationList = mutableListOf<LocationAddressInfo>()
@@ -225,7 +227,7 @@ class LvgmcService @Inject constructor(
         }.associate {
             it.point!! to LatLng(it.latitude!!.toDouble(), it.longitude!!.toDouble())
         }
-        val forecastLocation = LatLng(location.latitude, location.longitude).getNearestLocation(forecastLocations)
+        val forecastLocation = LatLng(latitude, longitude).getNearestLocation(forecastLocations)
 
         forecastLocationsResult.firstOrNull { it.point == forecastLocation }?.let {
             locationList.add(
@@ -262,7 +264,7 @@ class LvgmcService @Inject constructor(
         val formatter = SimpleDateFormat("yyyyMMddHH", Locale.ENGLISH)
         formatter.timeZone = TimeZone.getTimeZone("Europe/Riga")
         val laiks = formatter.format(Date()) + "00"
-        val bounds = getBoundingBox(location)
+        val bounds = getBoundingBox(location.latitude, location.longitude)
         val forecastLocations = mApi.getForecastLocations(
             laiks = laiks,
             bounds = bounds
@@ -280,14 +282,15 @@ class LvgmcService @Inject constructor(
     }
 
     private fun getBoundingBox(
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): String {
         return "POLYGON((" +
-            "${location.longitude - 0.1} ${location.latitude - 0.1}, " +
-            "${location.longitude + 0.1} ${location.latitude - 0.1}, " +
-            "${location.longitude + 0.1} ${location.latitude + 0.1}, " +
-            "${location.longitude - 0.1} ${location.latitude + 0.1}, " +
-            "${location.longitude - 0.1} ${location.latitude - 0.1}))"
+            "${longitude - 0.1} ${latitude - 0.1}, " +
+            "${longitude + 0.1} ${latitude - 0.1}, " +
+            "${longitude + 0.1} ${latitude + 0.1}, " +
+            "${longitude - 0.1} ${latitude + 0.1}, " +
+            "${longitude - 0.1} ${latitude - 0.1}))"
     }
 
     override val testingLocations: List<Location> = emptyList()

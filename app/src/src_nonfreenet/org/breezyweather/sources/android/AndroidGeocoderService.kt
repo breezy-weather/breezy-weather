@@ -42,11 +42,12 @@ class AndroidGeocoderService @Inject constructor() : ReverseGeocodingSource {
 
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         val geocoder = Geocoder(context, context.currentLocale)
         return rxObservable {
-            val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+            val addresses = geocoder.getFromLocation(latitude, longitude, 1)
 
             val locationList = mutableListOf<LocationAddressInfo>()
             addresses?.getOrNull(0)?.let {

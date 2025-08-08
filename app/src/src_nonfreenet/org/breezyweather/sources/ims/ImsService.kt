@@ -39,6 +39,7 @@ import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.common.utils.helpers.LogHelper
+import org.breezyweather.sources.RefreshHelper
 import org.breezyweather.sources.ims.json.ImsLocation
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -162,7 +163,8 @@ class ImsService @Inject constructor(
 
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         val languageCode = when (context.currentLocale.code) {
             "ar" -> "ar"
@@ -182,24 +184,10 @@ class ImsService @Inject constructor(
                     }
                     .minByOrNull { station ->
                         SphericalUtil.computeDistanceBetween(
-                            LatLng(location.latitude, location.longitude),
+                            LatLng(latitude, longitude),
                             LatLng(station.lat.toDouble(), station.lon.toDouble())
                         )
                     } ?: throw ReverseGeocodingException()
-
-                val distanceWithNearestStation = SphericalUtil.computeDistanceBetween(
-                    LatLng(location.latitude, location.longitude),
-                    LatLng(nearestStation.lat.toDouble(), nearestStation.lon.toDouble())
-                )
-
-                if (BreezyWeather.instance.debugMode) {
-                    LogHelper.log(msg = "${nearestStation.name}: $distanceWithNearestStation meters")
-                }
-
-                // Only add if within a reasonable distance
-                if (distanceWithNearestStation > MINIMUM_DISTANCE_WITH_STATION) {
-                    throw InvalidLocationException()
-                }
 
                 listOf(convertLocation(nearestStation))
             }
@@ -268,7 +256,7 @@ class ImsService @Inject constructor(
                 }
 
                 // Only add if within a reasonable distance
-                if (distanceWithNearestStation > MINIMUM_DISTANCE_WITH_STATION) {
+                if (distanceWithNearestStation > RefreshHelper.REVERSE_GEOCODING_DISTANCE_LIMIT) {
                     throw InvalidLocationException()
                 }
 
@@ -280,6 +268,5 @@ class ImsService @Inject constructor(
 
     companion object {
         private const val IMS_BASE_URL = "https://ims.gov.il/"
-        private const val MINIMUM_DISTANCE_WITH_STATION = 50000 // 50 km is more than enough
     }
 }

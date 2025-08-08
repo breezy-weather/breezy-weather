@@ -352,7 +352,7 @@ class RefreshHelper @Inject constructor(
         }
 
         return reverseGeocodingService
-            .requestNearestLocation(context, currentLocation)
+            .requestNearestLocation(context, currentLocation.latitude, currentLocation.longitude)
             .map { locationList ->
                 if (locationList.isNotEmpty()) {
                     currentLocation.toLocationWithAddressInfo(

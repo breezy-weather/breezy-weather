@@ -152,7 +152,8 @@ class MeteoLuxService @Inject constructor(
 
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         return mApi.getWeather(
             language = with(context.currentLocale.code) {
@@ -163,8 +164,8 @@ class MeteoLuxService @Inject constructor(
                     else -> "en"
                 }
             },
-            lat = location.latitude,
-            lon = location.longitude
+            lat = latitude,
+            lon = longitude
         ).map {
             listOf(convertLocation(it))
         }

@@ -146,10 +146,11 @@ class MeteoAmService @Inject constructor(
     // Reverse geocoding
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
-        val reverseLocation = mApi.getReverseLocation(location.latitude, location.longitude)
-        val forecast = mApi.getForecast(location.latitude, location.longitude)
+        val reverseLocation = mApi.getReverseLocation(latitude, longitude)
+        val forecast = mApi.getForecast(latitude, longitude)
         val locationList = mutableListOf<LocationAddressInfo>()
         return Observable.zip(reverseLocation, forecast) {
                 reverseLocationResult: MeteoAmReverseLocationResult,

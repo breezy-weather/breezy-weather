@@ -151,11 +151,12 @@ class MetIeService @Inject constructor(
 
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         return mApi.getReverseLocation(
-            location.latitude,
-            location.longitude
+            latitude,
+            longitude
         ).map {
             val locationList = mutableListOf<LocationAddressInfo>()
             if (it.city != "NO LOCATION SELECTED") {

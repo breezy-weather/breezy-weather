@@ -241,11 +241,12 @@ class ChinaService @Inject constructor(
 
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         return mApi.getLocationByGeoPosition(
-            location.latitude,
-            location.longitude,
+            latitude,
+            longitude,
             context.currentLocale.code
         ).map { results ->
             results

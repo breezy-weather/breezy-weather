@@ -23,6 +23,7 @@ import breezyweather.domain.source.SourceContinent
 import breezyweather.domain.source.SourceFeature
 import breezyweather.domain.weather.wrappers.AirQualityWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
+import com.google.maps.android.model.LatLng
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.rxjava3.core.Observable
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -43,6 +44,7 @@ import org.breezyweather.sources.namem.json.NamemCurrentResult
 import org.breezyweather.sources.namem.json.NamemDailyResult
 import org.breezyweather.sources.namem.json.NamemHourlyResult
 import org.breezyweather.sources.namem.json.NamemNormalsResult
+import org.breezyweather.sources.namem.json.NamemStation
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -219,11 +221,54 @@ class NamemService @Inject constructor(
     // Reverse geocoding
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         return mApi.getStations().map {
-            convert(location, it.locations)
+            convertLocation(latitude, longitude, it.locations)
         }
+    }
+
+    // Reverse geocoding
+    internal fun convertLocation(
+        latitude: Double,
+        longitude: Double,
+        stations: List<NamemStation>?,
+    ): List<LocationAddressInfo> {
+        val stationMap = stations?.filter {
+            it.lat != null && it.lon != null && (it.sid != null || it.id != null)
+        }?.associate {
+            it.sid.toString() to LatLng(it.lat!!, it.lon!!)
+        }
+        val station = stations?.firstOrNull {
+            it.sid.toString() == LatLng(latitude, longitude).getNearestLocation(stationMap, 200000.0)
+        }
+
+        if (station?.lat == null || station.lon == null) {
+            throw InvalidLocationException()
+        }
+        return listOf(
+            LocationAddressInfo(
+                timeZoneId = when (station.provinceName) {
+                    "Баян-Өлгий", // Bayan-Ölgii
+                    "Говь-Алтай", // Govi-Altai
+                    "Ховд", // Khovd
+                    "Увс", // Uvs
+                    "Завхан", // Zavkhan
+                    -> "Asia/Hovd"
+                    else -> "Asia/Ulaanbaatar"
+                },
+                countryCode = "MN",
+                admin1 = station.provinceName,
+                admin2 = station.districtName,
+                city = station.districtName,
+                district = if (station.stationName != station.districtName) {
+                    station.stationName
+                } else {
+                    null
+                }
+            )
+        )
     }
 
     // Location parameters
@@ -245,6 +290,25 @@ class NamemService @Inject constructor(
         return mApi.getStations().map {
             getLocationParameters(location, it.locations)
         }
+    }
+
+    // Location parameters
+    private fun getLocationParameters(
+        location: Location,
+        stations: List<NamemStation>?,
+    ): Map<String, String> {
+        val stationMap = stations?.filter {
+            it.lat != null && it.lon != null && (it.sid != null || it.id != null)
+        }?.associate {
+            it.sid.toString() to LatLng(it.lat!!, it.lon!!)
+        }
+        val nearestStation = LatLng(location.latitude, location.longitude).getNearestLocation(stationMap, 200000.0)
+        if (nearestStation == null) {
+            throw InvalidLocationException()
+        }
+        return mapOf(
+            "stationId" to nearestStation
+        )
     }
 
     override val testingLocations: List<Location> = emptyList()

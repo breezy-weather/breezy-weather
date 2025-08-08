@@ -126,9 +126,10 @@ class BmdService @Inject constructor(
 
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
-        val upazila = getUpazila(location)
+        val upazila = getUpazila(latitude, longitude)
         return mApi.getDaily(
             pCode = upazila
         ).map { dailyResult ->
@@ -157,7 +158,7 @@ class BmdService @Inject constructor(
         context: Context,
         location: Location,
     ): Observable<Map<String, String>> {
-        val upazila = getUpazila(location)
+        val upazila = getUpazila(location.latitude, location.longitude)
         return Observable.just(
             mapOf(
                 "upazila" to upazila
@@ -166,9 +167,10 @@ class BmdService @Inject constructor(
     }
 
     private fun getUpazila(
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): String {
-        val url = "https://bmd.bdservers.site/Dashboard/getUpazilaByLatLon/${location.latitude}/${location.longitude}"
+        val url = "https://bmd.bdservers.site/Dashboard/getUpazilaByLatLon/$latitude/$longitude"
         val request = Request.Builder().url(url).build()
         return okHttpClient.newCall(request).execute().use { call ->
             if (call.isSuccessful) {

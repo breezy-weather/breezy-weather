@@ -150,7 +150,8 @@ class IpmaService @Inject constructor(
     // Reverse geocoding
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         val districts = mApi.getDistricts()
         val locations = mApi.getLocations()
@@ -158,12 +159,13 @@ class IpmaService @Inject constructor(
                 districtResult: List<IpmaDistrictResult>,
                 locationResult: List<IpmaLocationResult>,
             ->
-            convertLocation(location, districtResult, locationResult)
+            convertLocation(latitude, longitude, districtResult, locationResult)
         }
     }
 
-    internal fun convertLocation(
-        location: Location,
+    private fun convertLocation(
+        latitude: Double,
+        longitude: Double,
         districts: List<IpmaDistrictResult>,
         locations: List<IpmaLocationResult>,
     ): List<LocationAddressInfo> {
@@ -172,7 +174,7 @@ class IpmaService @Inject constructor(
         locations.mapIndexed { i, loc ->
             i.toString() to LatLng(loc.latitude.toDouble(), loc.longitude.toDouble())
         }
-        LatLng(location.latitude, location.longitude).getNearestLocation(locationMap, 50000.0)?.let {
+        LatLng(latitude, longitude).getNearestLocation(locationMap, 50000.0)?.let {
             val nearestLocation = locations[it.toInt()]
             var districtName: String? = null
             districts.forEach { d ->

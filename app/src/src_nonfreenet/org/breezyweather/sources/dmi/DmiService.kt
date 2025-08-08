@@ -264,11 +264,12 @@ class DmiService @Inject constructor(
     // Reverse geocoding
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         return mApi.getWeather(
-            location.latitude,
-            location.longitude,
+            latitude,
+            longitude,
             DMI_WEATHER_CMD
         ).map {
             listOf(convertLocation(it))

@@ -175,23 +175,25 @@ class LhmtService @Inject constructor(
 
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         return mApi.getForecastLocations().map {
-            convertLocation(location, it)
+            convertLocation(latitude, longitude, it)
         }
     }
 
     // reverse geocoding
     private fun convertLocation(
-        location: Location,
+        latitude: Double,
+        longitude: Double,
         forecastLocations: List<LhmtLocationsResult>,
     ): List<LocationAddressInfo> {
         val locationList = mutableListOf<LocationAddressInfo>()
         val forecastLocationMap = forecastLocations
             .filter { it.countryCode == null || it.countryCode.equals("LT", ignoreCase = true) }
             .associate { it.code to LatLng(it.coordinates.latitude, it.coordinates.longitude) }
-        val forecastLocation = LatLng(location.latitude, location.longitude)
+        val forecastLocation = LatLng(latitude, longitude)
             .getNearestLocation(forecastLocationMap, 50000.0)
         forecastLocations.firstOrNull { it.code == forecastLocation }?.let {
             val municipalityName = it.administrativeDivision

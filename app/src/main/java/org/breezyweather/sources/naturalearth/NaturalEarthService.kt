@@ -17,7 +17,6 @@
 package org.breezyweather.sources.naturalearth
 
 import android.content.Context
-import breezyweather.domain.location.model.Location
 import breezyweather.domain.location.model.LocationAddressInfo
 import breezyweather.domain.source.SourceFeature
 import com.google.maps.android.PolyUtil
@@ -34,6 +33,7 @@ import org.breezyweather.common.extensions.codeForNaturalEarth
 import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.utils.helpers.LogHelper
+import org.breezyweather.sources.RefreshHelper
 import org.json.JSONObject
 import javax.inject.Inject
 
@@ -61,47 +61,25 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
         SourceFeature.REVERSE_GEOCODING to name
     )
 
-    private fun getMatchingFeaturesForLocation(
-        context: Context,
-        file: Int,
-        location: Location,
-    ): List<GeoJsonFeature> {
-        val text = context.resources.openRawResource(file)
-            .bufferedReader().use { it.readText() }
-        val geoJsonParser = GeoJsonParser(JSONObject(text))
-
-        return geoJsonParser.features.filter { feature ->
-            when (feature.geometry) {
-                is GeoJsonPolygon -> (feature.geometry as GeoJsonPolygon).coordinates.any { polygon ->
-                    PolyUtil.containsLocation(location.latitude, location.longitude, polygon, true)
-                }
-                is GeoJsonMultiPolygon -> (feature.geometry as GeoJsonMultiPolygon).polygons.any {
-                    it.coordinates.any { polygon ->
-                        PolyUtil.containsLocation(location.latitude, location.longitude, polygon, true)
-                    }
-                }
-                is GeoJsonPoint -> SphericalUtil.computeDistanceBetween(
-                    LatLng(location.latitude, location.longitude),
-                    (feature.geometry as GeoJsonPoint).coordinates
-                ) < 50000 // 50 km circle around center point, it’s arbitrary and may need to be adjusted
-                else -> false
-            }
-        }
-    }
-
     override fun requestNearestLocation(
         context: Context,
-        location: Location,
+        latitude: Double,
+        longitude: Double,
     ): Observable<List<LocationAddressInfo>> {
         val languageCode = context.currentLocale.codeForNaturalEarth
 
         // Countries
-        val matchingCountries = getMatchingFeaturesForLocation(context, R.raw.ne_50m_admin_0_countries, location)
+        val matchingCountries = getMatchingFeaturesForLocation(
+            context,
+            R.raw.ne_50m_admin_0_countries,
+            latitude,
+            longitude
+        )
         if (matchingCountries.size != 1) {
             LogHelper.log(
                 msg = "[NaturalEarthService] Reverse geocoding skipped: ${matchingCountries.size} matching results"
             )
-            return Observable.just(listOf(location.toAddressInfo()))
+            return Observable.just(emptyList())
         }
 
         return Observable.just(
@@ -114,5 +92,34 @@ class NaturalEarthService @Inject constructor() : ReverseGeocodingSource {
                 )
             )
         )
+    }
+
+    private fun getMatchingFeaturesForLocation(
+        context: Context,
+        file: Int,
+        latitude: Double,
+        longitude: Double,
+    ): List<GeoJsonFeature> {
+        val text = context.resources.openRawResource(file)
+            .bufferedReader().use { it.readText() }
+        val geoJsonParser = GeoJsonParser(JSONObject(text))
+
+        return geoJsonParser.features.filter { feature ->
+            when (feature.geometry) {
+                is GeoJsonPolygon -> (feature.geometry as GeoJsonPolygon).coordinates.any { polygon ->
+                    PolyUtil.containsLocation(latitude, longitude, polygon, true)
+                }
+                is GeoJsonMultiPolygon -> (feature.geometry as GeoJsonMultiPolygon).polygons.any {
+                    it.coordinates.any { polygon ->
+                        PolyUtil.containsLocation(latitude, longitude, polygon, true)
+                    }
+                }
+                is GeoJsonPoint -> SphericalUtil.computeDistanceBetween(
+                    LatLng(latitude, longitude),
+                    (feature.geometry as GeoJsonPoint).coordinates
+                ) < RefreshHelper.REVERSE_GEOCODING_DISTANCE_LIMIT
+                else -> false
+            }
+        }
     }
 }
