@@ -21,12 +21,13 @@ import breezyweather.domain.location.model.Location
 import io.reactivex.rxjava3.core.Observable
 import org.breezyweather.common.source.TimeZoneSource
 import java.util.TimeZone
+import javax.inject.Inject
 
 /**
  * Offline timezone service
  * TODO: See #2093
  */
-class BreezyTimeZoneService() : TimeZoneSource {
+class BreezyTimeZoneService @Inject constructor() : TimeZoneSource {
 
     override val id = "breezytz"
     override val name = "Breezy Time Zone"
