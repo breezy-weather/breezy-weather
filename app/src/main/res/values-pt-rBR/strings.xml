@@ -202,7 +202,7 @@
     <string name="widget_refreshing">Atualizando</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">Plano de fundo animado</string>
+    <string name="settings_modules_live_wallpaper_title">Plano de fundo animado</string>
     <string name="settings_location_service">Serviço de localização</string>
     <string name="settings_appearance_dark_mode_title">Modo escuro do app</string>
     <string name="settings_appearance_icon_pack_title">Pacote de ícones</string>
@@ -216,7 +216,7 @@
     <string name="settings_units_pressure">Unidade de pressão</string>
     <string name="settings_units_speed">Unidade de velocidade</string>
     <string name="settings_notifications_section_forecast">Previsão</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Temperatura como ícone da barra de status</string>
+    <string name="settings_modules_notification_temp_icon_switch">Temperatura como ícone da barra de status</string>
     <string name="settings_source_default_value">Padrão (inalterado)</string>
     <string name="location_service_native">API nativa</string>
     <string name="settings_automatic">Automático</string>
@@ -344,7 +344,7 @@
     <string name="settings_main_background_animation_title">Animação de fundo</string>
     <string name="settings_main_section_animations">Animações</string>
     <string name="settings_notifications_summary">Notificações de alertas meteorológicos, precipitações ou previsão para o primeira localização</string>
-    <string name="settings_widgets_notification_style_title">Estilo</string>
+    <string name="settings_modules_notification_style_title">Estilo</string>
     <string name="notification_channel_background_services">Serviços de segundo plano</string>
     <string name="settings_background_updates">Atualizações em segundo plano</string>
     <string name="settings_background_updates_section_troubleshoot">Solução de problemas</string>
@@ -353,7 +353,7 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">Algumas fabricantes têm restrições adicionais que fecham os serviços em segundo plano. O site “Don’t kill my app!” tem informações que te ajudam a corrigir isso.</string>
     <string name="settings_main_cards_other_element_animations_switch">Animações de outros elementos</string>
     <string name="settings_main_summary">Ordem dos blocos, itens exibidos, animações</string>
-    <string name="settings_widgets_notification_feels_like_switch">Usar a sensação térmica</string>
+    <string name="settings_modules_notification_feels_like_switch">Usar a sensação térmica</string>
     <string name="location_message_reverse_geocoding_failed">A fonte meteorológica não conseguiu encontrar uma localização correspondente</string>
     <string name="action_undo">Desfazer</string>
     <string name="settings_location_access_permission_already_granted">Permissão já concedida</string>
@@ -364,7 +364,7 @@
     <string name="settings_location_access_background_summaryOn">Ativado. O app poderá atualizar os dados meteorológicos da sua localização atual em segundo plano.</string>
     <string name="settings_weather_sources_summary">Fonte meteorológica padrão para novas localizações, chaves de API personalizadas e outras configurações de fonte</string>
     <string name="settings_main_section_displayed_data">Dados exibidos</string>
-    <string name="settings_widgets_notification_persistent_switch">Persistente</string>
+    <string name="settings_modules_notification_persistent_switch">Persistente</string>
     <string name="settings_location_access_switch_title">Acesso à localização</string>
     <string name="settings_main_cards_fade_in_switch">Blocos aparecem gradualmente</string>
     <string name="settings_debug_dump_crash_logs_title">Compartilhar registros de falha</string>
@@ -379,15 +379,15 @@
     <string name="action_share">Compartilhar</string>
     <string name="settings_background_updates_refresh_title">Intervalo de atualização</string>
     <string name="settings_notifications">Notificações</string>
-    <string name="settings_widgets_summary">Configurar plano de fundo, widgets em uso, widget de notificação</string>
-    <string name="settings_widgets">Widgets e plano de fundo animado</string>
-    <string name="settings_widgets_live_wallpaper_summary">Configure uma animação do clima como plano de fundo</string>
-    <string name="settings_widgets_week_icon_mode_title">Ícone exibido nas visualizações semanais</string>
-    <string name="settings_widgets_section_widgets_in_use">Widgets em uso</string>
-    <string name="settings_widgets_configure_widget_summary">Configurar esse widget</string>
-    <string name="settings_widgets_monochrome_icons_title">Ícones monocromáticos</string>
-    <string name="settings_widgets_section_notification_widget">Widget de notificação</string>
-    <string name="settings_widgets_notification_widget_title">Widget de notificação</string>
+    <string name="settings_modules_summary">Configurar plano de fundo, widgets em uso, widget de notificação</string>
+    <string name="settings_modules">Widgets e plano de fundo animado</string>
+    <string name="settings_modules_live_wallpaper_summary">Configure uma animação do clima como plano de fundo</string>
+    <string name="settings_modules_week_icon_mode_title">Ícone exibido nas visualizações semanais</string>
+    <string name="settings_modules_section_widgets_in_use">Widgets em uso</string>
+    <string name="settings_modules_configure_widget_summary">Configurar esse widget</string>
+    <string name="settings_modules_monochrome_icons_title">Ícones monocromáticos</string>
+    <string name="settings_modules_section_notification_widget">Widget de notificação</string>
+    <string name="settings_modules_notification_widget_title">Widget de notificação</string>
     <string name="settings_debug_summary">Registros de falhas</string>
     <string name="settings_debug_dump_crash_logs_summary">Salva os registros de erros em um arquivo para compartilhamento com os desenvolvedores</string>
     <string name="settings_debug">Depuração</string>
@@ -473,7 +473,7 @@
     <string name="air_quality_co_full">Monóxido de carbono (%s)</string>
     <string name="dialog_permissions_notification_content">Toque aqui para ativar as notificações sobre alertas meteorológicos ou decida mais tarde nas Configurações.</string>
     <string name="dialog_permissions_notification_title">Mantenha-se informado</string>
-    <string name="settings_widgets_live_wallpaper_error">Não foi possível abrir o seletor de plano de fundo. Você ainda pode ativar o plano de fundo do %s escolhendo “Live Wallpaper” no seletor de plano de fundo da tela inicial.</string>
+    <string name="settings_modules_live_wallpaper_error">Não foi possível abrir o seletor de plano de fundo. Você ainda pode ativar o plano de fundo do %s escolhendo “Live Wallpaper” no seletor de plano de fundo da tela inicial.</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Nevoeiro depositante de geada</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Tempestade com granizo forte</string>
     <string name="action_show_errors">Toque para ver os detalhes</string>
@@ -517,7 +517,7 @@
     <string name="temperature_normal_short">Normal</string>
     <string name="temperature_average_short">Méd.</string>
     <string name="settings_main_threshold_lines_on_charts">Linhas de limite nos gráficos</string>
-    <string name="settings_widgets_broadcast_send_data_title">Enviar dados do %s</string>
+    <string name="settings_modules_broadcast_send_data_title">Enviar dados do %s</string>
     <string name="common_weather_text_rain_showers_light">Pancadas de chuva leve</string>
     <string name="common_weather_text_drizzle_moderate">Garoa moderada</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Chuva forte com neve</string>
@@ -611,7 +611,7 @@
     <string name="alert">Alerta</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Homogêneo</string>
     <string name="settings_source_instance">Servidor</string>
-    <string name="settings_widgets_broadcast_title">Compartilhamento de dados</string>
+    <string name="settings_modules_broadcast_title">Compartilhamento de dados</string>
     <string name="settings_source_instance_geocoding">Servidor de geocodificação</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Servidor de previsão</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Servidor de qualidade do ar</string>
@@ -627,7 +627,7 @@
     <string name="widget_label_hide_alternate_calendar">Ocultar calendário alternativo</string>
     <string name="settings_appearance_calendar_title">Calendário alternativo</string>
     <string name="settings_global">Configurações globais</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">Nenhum pacote compatível encontrado</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">Nenhum pacote compatível encontrado</string>
     <string name="settings_background_updates_refresh_never_warning2">O processo de atualização em segundo plano é leve: ele atualiza apenas sua localização de acordo com o intervalo selecionado e as localizações secundárias apenas se você precisar delas, uma vez por dia. É eficiente em termos de bateria e não deve usar mais de %d MB de dados por mês.</string>
     <string name="message_server_unavailable_content">Geralmente é um erro temporário. Se o erro persistir, relate o problema no GitHub.</string>
     <string name="settings_background_updates_refresh_never_warning1">Ao desativar as atualizações em segundo plano, você não receberá mais notificações de alertas ou de precipitação. Os widgets não serão atualizados até que você abra o app.</string>
@@ -735,7 +735,7 @@
     <string name="pollen_ulmus">Olmo</string>
     <string name="location_last_updated_x">Última atualização %s</string>
     <string name="location_has_active_alerts">Alerta ativo</string>
-    <string name="settings_widgets_notification_permission_summary">Necessário para mostrar o widget de notificação. %s</string>
+    <string name="settings_modules_notification_permission_summary">Necessário para mostrar o widget de notificação. %s</string>
     <string name="settings_debug_notification_permission">Necessária para notificar sobre registros de falhas e atualizações de clima malsucedidas. %s</string>
     <string name="settings_notifications_permission">Permissão de notificação necessária</string>
     <string name="location_custom_name">Nome personalizado</string>

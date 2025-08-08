@@ -164,7 +164,7 @@
     <string name="widget_refreshing">Обновление</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">Живые обои</string>
+    <string name="settings_modules_live_wallpaper_title">Живые обои</string>
     <string name="settings_location_service">Источник местоположения</string>
     <string name="settings_appearance_dark_mode_title">Тёмная тема приложения</string>
     <string name="settings_appearance_icon_pack_title">Набор иконок</string>
@@ -178,7 +178,7 @@
     <string name="settings_units_pressure">Единица измерения давления</string>
     <string name="settings_units_speed">Единица измерения скорости</string>
     <string name="settings_notifications_section_forecast">Прогноз погоды</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Показывать температуру в строке состояния</string>
+    <string name="settings_modules_notification_temp_icon_switch">Показывать температуру в строке состояния</string>
     <string name="location_service_native">Системный API</string>
     <string name="settings_automatic">Автоматически</string>
     <string name="settings_none">Нет</string>
@@ -319,9 +319,9 @@
     <string name="settings_location_access_precise_summaryOn">Включено. Сетевой провайдер устройства будет использоваться в приоритете и большую часть времени, GPS будет использоваться в качестве запасного варианта.</string>
     <string name="settings_source_default_value">По умолчанию</string>
     <string name="settings_notifications_forecast_tomorrow_title">Уведомление о прогнозе на следующий день</string>
-    <string name="settings_widgets_live_wallpaper_summary">Установите анимацию погоды в качестве обоев</string>
-    <string name="settings_widgets_monochrome_icons_title">Монохромные иконки</string>
-    <string name="settings_widgets_section_widgets_in_use">Используемые виджеты</string>
+    <string name="settings_modules_live_wallpaper_summary">Установите анимацию погоды в качестве обоев</string>
+    <string name="settings_modules_monochrome_icons_title">Монохромные иконки</string>
+    <string name="settings_modules_section_widgets_in_use">Используемые виджеты</string>
     <string name="settings_debug">Отладка</string>
     <string name="settings_debug_dump_crash_logs_summary">Сохраняет журналы с ошибками в файл для отправки разработчикам</string>
     <string name="null_data_text">Недоступно</string>
@@ -330,19 +330,19 @@
     <string name="settings_main_background_animation_title">Анимации фона</string>
     <string name="settings_main_cards_other_element_animations_switch">Другие элементы анимаций</string>
     <string name="settings_main_cards_fade_in_switch">Появление блоков</string>
-    <string name="settings_widgets_configure_widget_summary">Настроить этот виджет</string>
-    <string name="settings_widgets_section_notification_widget">Виджет в уведомлениях</string>
-    <string name="settings_widgets_notification_widget_title">Виджет в уведомлениях</string>
+    <string name="settings_modules_configure_widget_summary">Настроить этот виджет</string>
+    <string name="settings_modules_section_notification_widget">Виджет в уведомлениях</string>
+    <string name="settings_modules_notification_widget_title">Виджет в уведомлениях</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_atm_voice">Атмосферы</string>
     <string name="about_contribution_WangDaYeeeeee">Разработчик оригинального проекта Geometric Weather</string>
     <string name="common_weather_text_mostly_clear">В основном ясно</string>
-    <string name="settings_widgets_week_icon_mode_title">Иконки для отображения в недельных просмотрах</string>
+    <string name="settings_modules_week_icon_mode_title">Иконки для отображения в недельных просмотрах</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Иней с туманом</string>
     <string name="settings_weather_sources_summary">Источники данных о погоде по умолчанию для новых местоположений, пользовательские ключи API и другие настройки источников</string>
     <string name="settings_main_background_animation_disabled">Выключено</string>
-    <string name="settings_widgets">Виджеты и живые обои</string>
-    <string name="settings_widgets_live_wallpaper_error">Не удалось запустить средство выбора обоев. Вы по-прежнему можете включить обои %s, выбрав «Живые обои» в меню выбора обоев на главном экране.</string>
+    <string name="settings_modules">Виджеты и живые обои</string>
+    <string name="settings_modules_live_wallpaper_error">Не удалось запустить средство выбора обоев. Вы по-прежнему можете включить обои %s, выбрав «Живые обои» в меню выбора обоев на главном экране.</string>
     <string name="settings_item_delete">Удалить этот элемент</string>
     <string name="settings_items_drag_to_sort">Нажмите, чтобы перетащить элементы списка для сортировки</string>
     <string name="settings_icon_packs_weather_icon_grey">Серая иконка</string>
@@ -397,7 +397,7 @@
     <string name="settings_notifications_alerts_title">Уведомления о суровых погодных условиях</string>
     <string name="settings_notifications_forecast_today_title">Уведомление о дневном прогнозе</string>
     <string name="settings_notifications_forecast_time_today_title">Время уведомления для дневного прогноза</string>
-    <string name="settings_widgets_summary">Установить обои, настроить используемые виджеты, виджет в уведомлениях</string>
+    <string name="settings_modules_summary">Установить обои, настроить используемые виджеты, виджет в уведомлениях</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Время уведомления для прогноза на следующий день</string>
     <string name="unit_inph_voice">Дюймов в час</string>
     <string name="unit_celsius">°C</string>
@@ -421,8 +421,8 @@
     <string name="settings_icon_packs_check_details">Проверить детали</string>
     <string name="settings_icon_packs_weather_icon_dark">Тёмная иконка</string>
     <string name="settings_main_background_animation_enabled">Включено</string>
-    <string name="settings_widgets_notification_persistent_switch">Постоянное уведомление</string>
-    <string name="settings_widgets_notification_style_title">Стиль</string>
+    <string name="settings_modules_notification_persistent_switch">Постоянное уведомление</string>
+    <string name="settings_modules_notification_style_title">Стиль</string>
     <string name="settings_debug_summary">Журналы ошибок</string>
     <string name="settings_debug_dump_crash_logs_title">Поделиться журналами ошибок</string>
     <string name="unit_lpsqm_voice">Литров на квадратный метр</string>
@@ -443,7 +443,7 @@
     <string name="settings_location_access_switch_title">Доступ к местоположению</string>
     <string name="settings_location_access_switch_summaryOff">Пожалуйста, разрешите, если вы хотите иметь возможность добавить ваше текущее местоположение в качестве местоположения.</string>
     <string name="settings_location_access_precise_summaryOff">Включите «Использовать точное местоположение», если у вас возникли проблемы с определением местоположения.</string>
-    <string name="settings_widgets_notification_feels_like_switch">Использовать темперутуру “по ощущениям”</string>
+    <string name="settings_modules_notification_feels_like_switch">Использовать темперутуру “по ощущениям”</string>
     <string name="unit_lpsqmph_voice">Литров на квадратный метр в час</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_nmi_voice">Морские мили</string>
@@ -540,7 +540,7 @@
     <string name="temperature_normals">Температурные нормы</string>
     <string name="temperature_normal_short">Норма</string>
     <string name="settings_main_threshold_lines_on_charts">Пороговые линии на графиках</string>
-    <string name="settings_widgets_broadcast_send_data_title">Отправить данные о погоде в %s</string>
+    <string name="settings_modules_broadcast_send_data_title">Отправить данные о погоде в %s</string>
     <string name="settings_color_app">Как в приложении</string>
     <string name="settings_debug_dump_crash_logs_saved">Журналы аварийных закрытий сохранены</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Нажмите, чтобы открыть</string>
@@ -606,7 +606,7 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">Пример качества воздуха</string>
     <string name="settings_source_instance">Пример</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Пример прогноза</string>
-    <string name="settings_widgets_broadcast_title">Передавать мои данные о погоде в другие приложения</string>
+    <string name="settings_modules_broadcast_title">Передавать мои данные о погоде в другие приложения</string>
     <string name="message_invalid_incomplete_data">С сервера получены неверные или неполные данные</string>
     <string name="settings_per_location_theme">Тема</string>
     <string name="settings_source_instance_invalid">Должен быть URL-адрес https, заканчивающийся на /</string>
@@ -621,7 +621,7 @@
     <string name="settings_background_updates_refresh_never_warning1">Отключив фоновые обновления, вы больше не будете получать уведомления о предупреждениях или осадках. Виджеты не будут обновляться, пока вы не откроете приложение.</string>
     <string name="settings_background_updates_refresh_never_warning2">Процесс фонового обновления прост: он обновляет только ваше первое местоположение с выбранной вами частотой, а дополнительные местоположения обновляются только в том случае, если они вам нужны, один раз в день. Он экономно расходует заряд батареи и не должен превышать %d МБ данных в месяц.</string>
     <string name="settings_background_updates_refresh_never_warning3">Рассмотрите возможность использования менее частой частоты обновления вместо отключения фоновых обновлений. В противном случае нажмите «Продолжить», если вы все еще хотите продолжить.</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">Совместимые пакеты не найдены</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">Совместимые пакеты не найдены</string>
     <string name="message_server_unavailable_title">Сервер недоступен</string>
     <string name="message_server_unavailable_content">Обычно это временная ошибка. Если ошибка не исчезнет, сообщите о проблеме на GitHub.</string>
     <string name="action_edit_location">Изменить это местоположение</string>
@@ -684,7 +684,7 @@
     <string name="action_grant_permission">Нажмите, чтобы предоставить разрешение.</string>
     <string name="settings_notifications_permission">Требуется разрешение на уведомление</string>
     <string name="settings_notifications_permission_summary">Необходим для уведомления об уведомлениях, прогнозах и обновлениях программы. %s</string>
-    <string name="settings_widgets_notification_permission_summary">Необходимо для отображения виджета уведомлений. %s</string>
+    <string name="settings_modules_notification_permission_summary">Необходимо для отображения виджета уведомлений. %s</string>
     <string name="settings_debug_notification_permission">Необходимо уведомить о сбоях и неудачных обновлениях погоды. %s</string>
     <string name="daily_today">Сегодня</string>
     <string name="daily_yesterday">Вчера</string>

@@ -169,7 +169,7 @@
     <string name="widget_refreshing">carregant</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">Fons de pantalla animat</string>
+    <string name="settings_modules_live_wallpaper_title">Fons de pantalla animat</string>
     <string name="settings_location_service">Servei d’ubicació</string>
     <string name="settings_appearance_dark_mode_title">Mode fosc</string>
     <string name="settings_appearance_icon_pack_title">Paquet d’icones</string>
@@ -183,7 +183,7 @@
     <string name="settings_units_pressure">Unitat de pressió</string>
     <string name="settings_units_speed">Unitat de velocitat</string>
     <string name="settings_notifications_section_forecast">Pronòstic</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Temperatura com a icona en la barra d’estat</string>
+    <string name="settings_modules_notification_temp_icon_switch">Temperatura com a icona en la barra d’estat</string>
     <string name="location_service_native">API nativa</string>
     <string name="settings_automatic">Automàtic</string>
     <string name="settings_background_updates_refresh_never">Mai</string>
@@ -285,14 +285,14 @@
     <string name="action_add_new_location">Afegir una ubicació nova</string>
     <string name="unit_nmi">nmi</string>
     <string name="common_weather_text_drizzle_moderate">Plugim moderat</string>
-    <string name="settings_widgets_week_icon_mode_title">Icona per mostrar a les vistes setmanals</string>
+    <string name="settings_modules_week_icon_mode_title">Icona per mostrar a les vistes setmanals</string>
     <string name="settings_background_updates_worker_info_title">Informació del procés</string>
     <string name="action_add_current_location">Afegir ubicació actual</string>
-    <string name="settings_widgets_notification_widget_title">Giny de notificacions</string>
+    <string name="settings_modules_notification_widget_title">Giny de notificacions</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Boira gebradora</string>
     <string name="locations">Ubicacions</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Aiguaneu intensa</string>
-    <string name="settings_widgets_notification_style_title">Estil</string>
+    <string name="settings_modules_notification_style_title">Estil</string>
     <string name="settings_background_updates_refresh_title">Freqüència de refresc</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="air_quality_so2_full">Diòxid de sofre (%s)</string>
@@ -330,7 +330,7 @@
     <string name="unit_ppcm">/m³</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="air_quality_co_voice">Monòxid de carboni</string>
-    <string name="settings_widgets_section_widgets_in_use">Ginys en ús</string>
+    <string name="settings_modules_section_widgets_in_use">Ginys en ús</string>
     <string name="message_parsing_error_content">Assegura’t d’haver actualitzat a la versió més recent de l’aplicació. És possible que el servidor no estigui disponible temporalment, en aquest cas, torneu-ho a provar més tard. Si el problema persisteix, aboqueu un registre d’error de la configuració de depuració i informeu d’un problema a GitHub.</string>
     <string name="about_contribution_designer">Dissenyador de logotips</string>
     <string name="common_weather_text_snow_heavy">Neu intensa</string>
@@ -353,7 +353,7 @@
     <string name="unit_in">polzada</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_color_day_night">Dia / Nit</string>
-    <string name="settings_widgets_live_wallpaper_summary">Establir una animació meteorològica com a fons de pantalla</string>
+    <string name="settings_modules_live_wallpaper_summary">Establir una animació meteorològica com a fons de pantalla</string>
     <string name="message_parsing_error_title">No s’han pogut analitzar les dades meteorològiques</string>
     <string name="weather_source_accu_preference_hours_72">72 hores</string>
     <string name="widget_label_align_end">Alinear a la dreta</string>
@@ -375,7 +375,7 @@
     <string name="action_more">Veure més</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Instruccions específiques del fabricant</string>
     <string name="settings_main_cards_title">Targetes</string>
-    <string name="settings_widgets_notification_feels_like_switch">Utilitza la sensació tèrmica</string>
+    <string name="settings_modules_notification_feels_like_switch">Utilitza la sensació tèrmica</string>
     <string name="dialog_permissions_location_content">Per poder utilitzar aquesta funció, heu de permetre a l’app l’accés a la vostra ubicació actual. Només serà compartida amb les fonts d’informació del temps seleccionades. Si canvieu d’opinió, podeu denegar-los i definir-la manualment a la pàgina de gestió.</string>
     <string name="settings_notifications_forecast_time_today_title">Hora de notificació del pronòstic del dia</string>
     <string name="common_weather_text_rain_freezing">Pluja gelada</string>
@@ -392,9 +392,9 @@
     <string name="air_quality_pm10_voice">PM deu</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Icona del temps</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Alguns fabricants tenen restriccions d’aplicacions addicionals que eliminen els serveis en segon pla. El lloc web Don’t kill my app! té informació sobre com solucionar-ho.</string>
-    <string name="settings_widgets_configure_widget_summary">Configureu aquest giny</string>
+    <string name="settings_modules_configure_widget_summary">Configureu aquest giny</string>
     <string name="settings_main_cards_other_element_animations_switch">Altres animacions d’elements</string>
-    <string name="settings_widgets_monochrome_icons_title">Icones monocromes</string>
+    <string name="settings_modules_monochrome_icons_title">Icones monocromes</string>
     <string name="settings_background_updates">Actualitzacions en segon pla</string>
     <string name="pollen_betula">Bedoll</string>
     <string name="unit_fahrenheit">°F</string>
@@ -412,7 +412,7 @@
     <string name="settings_main_section_animations">Animacions</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="unit_mmph_voice">Mil·límetres per hora</string>
-    <string name="settings_widgets_summary">Establir fons de pantalla, configurar ginys utilitzats, giny de notificació</string>
+    <string name="settings_modules_summary">Establir fons de pantalla, configurar ginys utilitzats, giny de notificació</string>
     <string name="common_weather_text_rain_light">Pluja dèbil</string>
     <string name="action_show_errors">Toca per veure’n els detalls</string>
     <string name="unit_mugpcum">μg/m³</string>
@@ -420,7 +420,7 @@
     <string name="action_location_list">Llista d’ubicacions</string>
     <string name="settings_weather_sources_per_location_summary">Personalitza les fonts de dades meteorològiques utilitzades per a aquesta ubicació</string>
     <string name="action_back">Enrere</string>
-    <string name="settings_widgets_broadcast_send_data_title">Enviar dades meteorològiques a %s</string>
+    <string name="settings_modules_broadcast_send_data_title">Enviar dades meteorològiques a %s</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="common_weather_text_clear_sky">Cel clar</string>
     <string name="settings_appearance_dark_mode_locations_title">Mode dia / nit per a ubicacions</string>
@@ -435,7 +435,7 @@
     <string name="settings_background_updates_section_troubleshoot">Resolució de problemes</string>
     <string name="dialog_permissions_location_title">Accedir a la informació de la ubicació</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="settings_widgets_notification_persistent_switch">Persistent</string>
+    <string name="settings_modules_notification_persistent_switch">Persistent</string>
     <string name="action_undo">Desfer</string>
     <string name="unit_ft">ft</string>
     <string name="settings_main_background_animation_title">Animació en segon pla</string>
@@ -454,7 +454,7 @@
     <string name="location_message_search_failed">Ha fallat la cerca d’ubicació</string>
     <string name="weather_source_accu_preference_hours_120">120 hores</string>
     <string name="settings_appearance_summary">Idioma, mode fosc, paquet d’icones, unitats</string>
-    <string name="settings_widgets_section_notification_widget">Giny de notificacions</string>
+    <string name="settings_modules_section_notification_widget">Giny de notificacions</string>
     <string name="unit_km">km</string>
     <string name="settings_background_updates_battery_optimization_disabled">L’optimització de la bateria ja està desactivada.</string>
     <string name="message_network_unavailable">Xarxa no disponible</string>
@@ -473,7 +473,7 @@
     <string name="settings_debug_dump_crash_logs_title">Compartir registres d’errors</string>
     <string name="unit_cmph_voice">Centímetres per hora</string>
     <string name="unit_kgfpsqcm">kgf/cm²</string>
-    <string name="settings_widgets_live_wallpaper_error">No s’ha pogut llançar el selector de fons de pantalla. Encara pots habilitar el fons de pantalla %s triant «Fons de pantalla animat» al teu selector de fons de pantalla d’inici.</string>
+    <string name="settings_modules_live_wallpaper_error">No s’ha pogut llançar el selector de fons de pantalla. Encara pots habilitar el fons de pantalla %s triant «Fons de pantalla animat» al teu selector de fons de pantalla d’inici.</string>
     <string name="unit_bft_voice">a l’escala Beaufort</string>
     <string name="message_server_timeout">S’ha excedit el temps d’espera de la sol·licitud</string>
     <string name="unit_mps">m/s</string>
@@ -533,7 +533,7 @@
     <string name="notification_channel_crash_logs">Registres d’errors</string>
     <string name="location_search_no_results">%1$s no pot trobar %2$s</string>
     <string name="settings_location_access_switch_summaryOn">Permès. Pots afegir la teva ubicació actual com a ubicació.</string>
-    <string name="settings_widgets">Ginys i fons de pantalla animat</string>
+    <string name="settings_modules">Ginys i fons de pantalla animat</string>
     <string name="about_source_code">Codi font</string>
     <string name="settings_main_threshold_lines_on_charts">Línies llindars als gràfics</string>
     <string name="common_weather_text_rain_freezing_light">Pluja gelada dèbil</string>
@@ -586,7 +586,7 @@
     <string name="settings_weather_source_open_meteo_weather_models">Models meteorològics</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Instància de previsió meteorològica</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Instància de qualitat de l’aire</string>
-    <string name="settings_widgets_broadcast_title">Transmet les meves dades meteorològiques a altres aplicacions</string>
+    <string name="settings_modules_broadcast_title">Transmet les meves dades meteorològiques a altres aplicacions</string>
     <string name="notification_precipitation_starting_desc">S’espera que comenci a les %s</string>
     <string name="about_open_link_message">Obre %s?</string>
     <string name="location_search_no_results_advice">Assegureu-vos que la cerca estigui escrita correctament i no massa específica. Alternativament, podeu provar una altra font de cerca d’ubicacions que pot produir resultats diferents.</string>
@@ -628,7 +628,7 @@
     <string name="dialog_app_update_check_title">Mantenir actualitzada</string>
     <string name="dialog_app_update_check_content">Toqueu aquí per activar les notificacions sobre actualitzacions de l’app.</string>
     <string name="settings_global">Opcions globals</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">No s’han trobat paquets compatibles</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">No s’han trobat paquets compatibles</string>
     <string name="settings_appearance_calendar_title">Calendari alternatiu</string>
     <string name="settings_background_updates_refresh_never_warning2">El procés d’actualització en rerefons és lleuger: Només actualitza la primera ubicació a l’interval seleccionat i la resta només quan sigui necessari, un cop al dia. Estalviareu bateria i no s’hauria d’excedir més enllà de %d MB de consum de dades al mes.</string>
     <string name="settings_background_updates_refresh_never_warning3">Considereu utilitzar un interval d’actualització menys freqüent en comptes d’aturar les actualitzacions en rerefons. En cas contrari, toqueu «Continua» per a procedir.</string>

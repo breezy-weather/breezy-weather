@@ -172,7 +172,7 @@
     <string name="widget_refreshing">Actualizare</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">Imagine de fundal live</string>
+    <string name="settings_modules_live_wallpaper_title">Imagine de fundal live</string>
     <string name="settings_location_service">Serviciu locație</string>
     <string name="settings_appearance_dark_mode_title">Temă</string>
     <string name="settings_appearance_icon_pack_title">Pachet de pictograme</string>
@@ -186,7 +186,7 @@
     <string name="settings_units_pressure">Unitatea presiunii</string>
     <string name="settings_units_speed">Unitatea vitezei</string>
     <string name="settings_notifications_section_forecast">Prognoza meteo</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Temperatura în bara de stare</string>
+    <string name="settings_modules_notification_temp_icon_switch">Temperatura în bara de stare</string>
     <string name="location_service_native">API Nativ</string>
     <string name="notification_style_native">Sistem</string>
     <string name="notification_style_cities">Orașe</string>
@@ -231,7 +231,7 @@
     <string name="settings_notifications_forecast_today_title">Notificare privind prognoza zilei</string>
     <string name="settings_notifications_forecast_time_today_title">Ora de notificare privind prognoza zilei</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notificare privind prognoza zilei următoare</string>
-    <string name="settings_widgets_section_widgets_in_use">Widget-uri utilizate</string>
+    <string name="settings_modules_section_widgets_in_use">Widget-uri utilizate</string>
     <string name="settings_item_delete">Ștergeți acest articol</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_ftps_voice">picioare pe secundă</string>
@@ -239,7 +239,7 @@
     <string name="unit_mm_voice">milimetri</string>
     <string name="unit_inph_voice">Inci pe oră</string>
     <string name="unit_lpsqmph">L/m²/h</string>
-    <string name="settings_widgets_week_icon_mode_title">Pictogramă de afișat în vizualizarea săptămânală</string>
+    <string name="settings_modules_week_icon_mode_title">Pictogramă de afișat în vizualizarea săptămânală</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Pictogramă vreme</string>
     <string name="unit_km">km</string>
     <string name="unit_kelvin_short">K</string>
@@ -344,10 +344,10 @@
     <string name="weather_source_accu_preference_hours_240">240 de ore</string>
     <string name="weather_source_accu_preference_hours_24">24 de ore</string>
     <string name="location_message_permission_background_missing">Permisiunea accesului la locație în fundal lipsește</string>
-    <string name="settings_widgets_notification_widget_title">Widget de notificare</string>
-    <string name="settings_widgets_notification_style_title">Stil</string>
-    <string name="settings_widgets_configure_widget_summary">Configură acest widget</string>
-    <string name="settings_widgets_section_notification_widget">Widget de notificare</string>
+    <string name="settings_modules_notification_widget_title">Widget de notificare</string>
+    <string name="settings_modules_notification_style_title">Stil</string>
+    <string name="settings_modules_configure_widget_summary">Configură acest widget</string>
+    <string name="settings_modules_section_notification_widget">Widget de notificare</string>
     <string name="settings_debug_summary">Jurnale de incidente</string>
     <string name="settings_debug_dump_crash_logs_title">Distribuie jurnalele de incidente</string>
     <string name="unit_mmph_voice">milimetri pe oră</string>
@@ -402,9 +402,9 @@
     <string name="settings_background_updates_battery_optimization_summary">Acesta este primul lucru pe care trebuie să-l încercați când nu primiți notificări sau widget-urile nu se actualizează.</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Nu s-a putut deschide setările dispozitivului.</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optimizarea bateriei este deja dezactivată.</string>
-    <string name="settings_widgets_monochrome_icons_title">Pictograme monocrom</string>
-    <string name="settings_widgets_notification_persistent_switch">Persistent</string>
-    <string name="settings_widgets_notification_feels_like_switch">Utilizează temperatura resimțită</string>
+    <string name="settings_modules_monochrome_icons_title">Pictograme monocrom</string>
+    <string name="settings_modules_notification_persistent_switch">Persistent</string>
+    <string name="settings_modules_notification_feels_like_switch">Utilizează temperatura resimțită</string>
     <string name="settings_debug">Depanare</string>
     <string name="settings_debug_dump_crash_logs_summary">Salvează jurnalele de incidente într-un fișier pentru a le partaja cu dezvoltatorii</string>
     <string name="unit_kph">km/h</string>
@@ -433,8 +433,8 @@
     <string name="settings_notifications_summary">Notificări de alerte meteo, precipitații și prognoză pentru locația primară</string>
     <string name="settings_notifications_alerts_title">Notificări ale alertelor meteo severe</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Ora de notificare privind prognoza zilei următoare</string>
-    <string name="settings_widgets">Widgets &amp; Imagini de fundal live</string>
-    <string name="settings_widgets_live_wallpaper_summary">Setează o animație meteo ca imagine de fundal</string>
+    <string name="settings_modules">Widgets &amp; Imagini de fundal live</string>
+    <string name="settings_modules_live_wallpaper_summary">Setează o animație meteo ca imagine de fundal</string>
     <string name="weather_api_limit_reached_title">Limita solicitărilor API a fost atinsă</string>
     <string name="weather_api_limit_reached_content">Pentru a rezolva limita, adaugă propria cheie API.</string>
     <string name="weather_source_accu_preference_days_15">15 zile</string>
@@ -442,7 +442,7 @@
     <string name="settings_background_updates_dont_kill_my_app_summary">Unii producători au restricții suplimentare pentru aplicații care distrug serviciile de fundal. Site-ul web “Don’t kill my app!” are informații despre cum să o remediați.</string>
     <string name="settings_main_section_displayed_data">Date afișate</string>
     <string name="settings_notifications_precipitations_title">Notificări ale precipitațiilor</string>
-    <string name="settings_widgets_summary">Imaginea de fundal, widget-uri utilizate și widget-ul de notificare</string>
+    <string name="settings_modules_summary">Imaginea de fundal, widget-uri utilizate și widget-ul de notificare</string>
     <string name="settings_location">Localizare</string>
     <string name="settings_location_summary">Setări ale serviciilor de locație</string>
     <string name="settings_location_access_switch_summaryOn">Permis. Poți adăuga locația ta curentă ca locație.</string>
@@ -460,7 +460,7 @@
     <string name="notification_channel_widget">Widget</string>
     <string name="location_message_reverse_geocoding_failed">Furnizorul meteo nu a găsit locația potrivită</string>
     <string name="action_undo">Anulează</string>
-    <string name="settings_widgets_live_wallpaper_error">Nu s-a putut lansa selectorul de imagini de fundal. Poți activa în continuare imaginea de fundal %s alegând „Imagine de fundal live” în selectorul de imagini de fundal pentru ecranul de pornire.</string>
+    <string name="settings_modules_live_wallpaper_error">Nu s-a putut lansa selectorul de imagini de fundal. Poți activa în continuare imaginea de fundal %s alegând „Imagine de fundal live” în selectorul de imagini de fundal pentru ecranul de pornire.</string>
     <string name="null_data_text">N/A</string>
     <string name="temperature_degree_day_heating">Gradul de încălzire a zilei</string>
     <string name="temperature_degree_day_cooling">Gradul de răcire a zilei</string>
@@ -537,7 +537,7 @@
     <string name="settings_debug_dump_crash_logs_saved">Jurnal de incidente salvat</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Lapoviță și Ninsoare Torențială</string>
     <string name="settings_weather_sources_per_location_summary">Personalizează furnizorii meteo pentru această locație</string>
-    <string name="settings_widgets_broadcast_send_data_title">Trimite date meteo către %s</string>
+    <string name="settings_modules_broadcast_send_data_title">Trimite date meteo către %s</string>
     <string name="location_delete_location_dialog_message_no_name">Ești pe cale să ștergi această locație din lista ta de locații salvate.</string>
     <string name="location_search_change_source">Schimbă serviciul de căutare a locației</string>
     <string name="settings_appearance_dark_mode_locations_title">Mod Luminos / Întunecat pentru locații</string>
@@ -610,7 +610,7 @@
     <string name="settings_weather_source_open_meteo_instance_forecast">Server prognoză</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Server calitatea aerului</string>
     <string name="settings_source_instance">Server</string>
-    <string name="settings_widgets_broadcast_title">Transmite date meteo către alte aplicații</string>
+    <string name="settings_modules_broadcast_title">Transmite date meteo către alte aplicații</string>
     <string name="settings_per_location_theme">Temă</string>
     <string name="settings_source_instance_invalid">Trebuie să fie un URL https cu / la sfârșit</string>
     <string name="settings_invalid_syntax">Sintaxă incorectă</string>
@@ -623,7 +623,7 @@
     <string name="message_server_unavailable_content">Aceasta e de obicei o eroare temporară. Dacă eroarea persistă, te rog să o raportezi pe GitHub.</string>
     <string name="settings_background_updates_refresh_never_warning3">Poți considera posibilitatea de a utiliza o rată de reîmprospătare mai mică în loc să dezactivezi actualizările în fundal, totuși apasă “Continuă” dacă dorești să confirmi.</string>
     <string name="settings_appearance_calendar_title">Calendar alternativ</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">Nu au fost găsite pachete compatibile</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">Nu au fost găsite pachete compatibile</string>
     <string name="settings_background_updates_refresh_never_warning2">Procesul de actualizare în fundal este eficient: reîmprospătează doar prima locație în ritmul ales de tine, iar locațiile secundare doar dacă ai nevoie de ele, o dată pe zi. Este eficient din punct de vedere al bateriei și nu ar trebui să depășească %d MB de consum de date pe lună.</string>
     <string name="action_edit_location">Editează locația</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Comută la introducerea tactilă</string>
@@ -696,7 +696,7 @@
     <string name="location_has_active_alerts">Alertă activă</string>
     <string name="action_grant_permission">Apăsați pentru a acorda permisiunea.</string>
     <string name="settings_notifications_permission">Este necesară permiterea notificărilor</string>
-    <string name="settings_widgets_notification_permission_summary">Necesar pentru a afișa widget-ul notificării. %s</string>
+    <string name="settings_modules_notification_permission_summary">Necesar pentru a afișa widget-ul notificării. %s</string>
     <string name="location_last_updated_x">Actualizat ultima dată %s</string>
     <string name="location_custom_name">Nume personalizat</string>
     <string name="settings_notifications_permission_summary">Necesar pentru a trimite notificări referitoare la alerte, prognoze meteo și actualizari ale aplicației. %s</string>

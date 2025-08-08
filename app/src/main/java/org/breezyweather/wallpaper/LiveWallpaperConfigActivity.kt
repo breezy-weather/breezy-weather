@@ -93,7 +93,7 @@ class LiveWallpaperConfigActivity : BreezyActivity() {
         Material3Scaffold(
             topBar = {
                 FitStatusBarTopAppBar(
-                    title = stringResource(R.string.settings_widgets_live_wallpaper_title),
+                    title = stringResource(R.string.settings_modules_live_wallpaper_title),
                     onBackPressed = { finish() }
                 )
             }

@@ -86,9 +86,9 @@
     <string name="settings_units_distance">Einheit für Entfernung</string>
     <string name="settings_main_gravity_sensor_switch">Lagesensor</string>
     <string name="settings_appearance_icon_pack_title">Symbolpaket</string>
-    <string name="settings_widgets_live_wallpaper_title">Live-Hintergrund</string>
+    <string name="settings_modules_live_wallpaper_title">Live-Hintergrund</string>
     <string name="settings_location_service">Standortanbieter</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Temperatur in der Statusleiste anzeigen</string>
+    <string name="settings_modules_notification_temp_icon_switch">Temperatur in der Statusleiste anzeigen</string>
     <string name="settings_units_precipitation">Einheit für Niederschlag</string>
     <string name="settings_units_pressure">Einheit für Luftdruck</string>
     <string name="settings_units_speed">Einheit für Geschwindigkeit</string>
@@ -356,14 +356,14 @@
     <string name="action_more">Mehr anzeigen</string>
     <string name="settings_units_summary">Temperatur, Niederschlag, Entfernung, Geschwindigkeit, Druck</string>
     <string name="settings_main">Hauptbildschirm</string>
-    <string name="settings_widgets">Widgets &amp; Live-Hintergrund</string>
-    <string name="settings_widgets_summary">Hintergrundbild festlegen, verwendete Widgets konfigurieren,
+    <string name="settings_modules">Widgets &amp; Live-Hintergrund</string>
+    <string name="settings_modules_summary">Hintergrundbild festlegen, verwendete Widgets konfigurieren,
         Benachrichtigungs-Widget
     </string>
     <string name="action_share">Teilen</string>
     <string name="settings_main_background_animation_enabled">Ein</string>
-    <string name="settings_widgets_configure_widget_summary">Widget konfigurieren</string>
-    <string name="settings_widgets_section_widgets_in_use">Verwendete Widgets</string>
+    <string name="settings_modules_configure_widget_summary">Widget konfigurieren</string>
+    <string name="settings_modules_section_widgets_in_use">Verwendete Widgets</string>
     <string name="action_continue">Weiter</string>
     <string name="settings_icon_packs_title">Symbolpakete</string>
     <string name="settings_main_cards_title">Kacheln</string>
@@ -375,9 +375,9 @@
     <string name="settings_main_cards_other_element_animations_switch">Animation weiterer Elemente</string>
     <string name="settings_appearance_summary">Sprache, dunkler Modus, Symbolpaket, Einheiten</string>
     <string name="settings_notifications_summary">Benachrichtigungen für Wetterwarnungen, Niederschlag oder Vorhersagen für den ersten Ort</string>
-    <string name="settings_widgets_notification_feels_like_switch">Gefühlte Temperatur verwenden</string>
+    <string name="settings_modules_notification_feels_like_switch">Gefühlte Temperatur verwenden</string>
     <string name="settings_main_section_displayed_data">Angezeigte Daten</string>
-    <string name="settings_widgets_live_wallpaper_summary">Wetteranimation als Hintergrundbild festlegen</string>
+    <string name="settings_modules_live_wallpaper_summary">Wetteranimation als Hintergrundbild festlegen</string>
     <string name="settings_background_updates_battery_optimization_disabled">Akkuoptimierung ist bereits deaktiviert.</string>
     <string name="weather_source_accu_preference_hours_120">120 Stunden</string>
     <string name="weather_source_accu_preference_hours_240">240 Stunden</string>
@@ -409,16 +409,16 @@
     <string name="settings_icon_packs_weather_icon_light">Helles Symbol</string>
     <string name="settings_icon_packs_weather_icon_grey">Graues Symbol</string>
     <string name="settings_weather_sources_summary">Standard-Wetterquelle für neue Orte, benutzerdefinierte API-Schlüssel, andere Quelleneinstellungen</string>
-    <string name="settings_widgets_section_notification_widget">Benachrichtigungs-Widget</string>
-    <string name="settings_widgets_notification_widget_title">Benachrichtigungs-Widget</string>
+    <string name="settings_modules_section_notification_widget">Benachrichtigungs-Widget</string>
+    <string name="settings_modules_notification_widget_title">Benachrichtigungs-Widget</string>
     <string name="notification_channel_widget">Widget</string>
-    <string name="settings_widgets_notification_persistent_switch">Permanent</string>
-    <string name="settings_widgets_notification_style_title">Stil</string>
+    <string name="settings_modules_notification_persistent_switch">Permanent</string>
+    <string name="settings_modules_notification_style_title">Stil</string>
     <string name="unit_inph">Zoll/h</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Einige Hersteller nutzen zusätzliche App-Einschränkungen, die Hintergrunddienste abschalten. Auf der Website „Don’t kill my app!“ findest du Informationen zur Deaktivierung dieser Einschränkungen.</string>
     <string name="widget_multi_city">Mehrere Orte</string>
-    <string name="settings_widgets_week_icon_mode_title">Symbol für die Anzeige in Wochenansichten</string>
-    <string name="settings_widgets_monochrome_icons_title">Einfarbige Symbole</string>
+    <string name="settings_modules_week_icon_mode_title">Symbol für die Anzeige in Wochenansichten</string>
+    <string name="settings_modules_monochrome_icons_title">Einfarbige Symbole</string>
     <string name="settings_background_updates_worker_info_title">Worker Info</string>
     <string name="settings_location_access_permission_already_granted">Berechtigung bereits erteilt</string>
     <string name="location_message_search_failed">Ortssuche fehlgeschlagen</string>
@@ -452,7 +452,7 @@
     <string name="settings_item_delete">Diesen Eintrag löschen</string>
     <string name="notification_style_native">Nativ</string>
     <string name="null_data_text">n. v.</string>
-    <string name="settings_widgets_live_wallpaper_error">Die Hintergrundbildauswahl konnte nicht gestartet werden. Du kannst das Hintergrundbild von %s weiterhin aktivieren, indem du in der Hintergrundbildauswahl deines Startbildschirms „Live-Hintergrund“ auswählst.</string>
+    <string name="settings_modules_live_wallpaper_error">Die Hintergrundbildauswahl konnte nicht gestartet werden. Du kannst das Hintergrundbild von %s weiterhin aktivieren, indem du in der Hintergrundbildauswahl deines Startbildschirms „Live-Hintergrund“ auswählst.</string>
     <string name="air_quality_index">Luftqualitätsindex</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="air_quality_no2_full">Stickstoffdioxid (%s)</string>
@@ -534,7 +534,7 @@
     <string name="temperature_normal_short">Normalwert</string>
     <string name="settings_main_threshold_lines_on_charts">Grenzlinien in Diagrammen</string>
     <string name="temperature_average_short">Ø</string>
-    <string name="settings_widgets_broadcast_send_data_title">Wetterdaten an %s senden</string>
+    <string name="settings_modules_broadcast_send_data_title">Wetterdaten an %s senden</string>
     <string name="settings_debug_dump_crash_logs_saved">Absturzprotokolle gespeichert</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Zum Öffnen antippen</string>
     <string name="notification_channel_crash_logs">Absturzprotokolle</string>
@@ -600,7 +600,7 @@
     <string name="settings_weather_source_open_meteo_instance_air_quality">Luftqualitätsinstanz</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Vorhersageninstanz</string>
     <string name="settings_source_instance_geocoding">Geokodierungsinstanz</string>
-    <string name="settings_widgets_broadcast_title">Datenaustausch mit anderen Apps</string>
+    <string name="settings_modules_broadcast_title">Datenaustausch mit anderen Apps</string>
     <string name="message_invalid_incomplete_data">Ungültige oder unvollständige Daten vom Server empfangen</string>
     <string name="settings_per_location_theme">Erscheinungsbild</string>
     <string name="settings_source_instance_invalid">Muss eine https-URL sein, die mit einem / endet</string>
@@ -612,7 +612,7 @@
     <string name="widget_label_hide_alternate_calendar">Alternativen Kalender ausblenden</string>
     <string name="settings_appearance_calendar_title">Alternativer Kalender</string>
     <string name="dialog_time_picker_toggle_touch_input_voice">Zur Toucheingabe wechseln</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">Keine kompatiblen Pakete gefunden</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">Keine kompatiblen Pakete gefunden</string>
     <string name="settings_background_updates_refresh_never_warning1">Wenn du die Hintergrundaktualisierung deaktivierst, erhältst du keine Benachrichtigungen mehr über Warnungen oder Niederschläge. Widgets werden erst wieder aktualisiert, wenn du die App öffnest.</string>
     <string name="settings_background_updates_refresh_never_warning2">Der Hintergrundaktualisierungsprozess ist ressourcenschonend: Nur dein erster Ort wird mit der von dir gewählten Rate aktualisiert und weitere Orte einmal täglich, wenn du sie benötigst. Der Prozess ist akkuschonend und sollte einen Datenverbrauch von %d MB pro Monat nicht überschreiten.</string>
     <string name="settings_background_updates_refresh_never_warning3">Erwäge, eine weniger häufige Aktualisierungsrate zu verwenden, anstatt die Hintergrundaktualisierung zu deaktivieren. Tippe ansonsten auf „Weiter“, um trotzdem fortzufahren.</string>
@@ -690,7 +690,7 @@
     <string name="action_grant_permission">Antippen, um die Berechtigung zu erteilen.</string>
     <string name="settings_notifications_permission_summary">Benötigt, um über Warnungen, Vorhersagen und App-Updates zu informieren. %s</string>
     <string name="settings_notifications_permission">Berechtigung für Benachrichtigungen erforderlich</string>
-    <string name="settings_widgets_notification_permission_summary">Benötigt, um das Benachrichtigungs-Widget anzuzeigen. %s</string>
+    <string name="settings_modules_notification_permission_summary">Benötigt, um das Benachrichtigungs-Widget anzuzeigen. %s</string>
     <string name="settings_debug_notification_permission">Benötigt, um über Absturzprotokolle und fehlgeschlagene Wetteraktualisierungen zu informieren. %s</string>
     <string name="location_reverse_geocoding">Adresssuche</string>
     <string name="daily_yesterday">Gestern</string>

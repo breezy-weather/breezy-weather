@@ -10,7 +10,7 @@
     <string name="dialog_permissions_notification_title">Ostanite informirani</string>
     <string name="uv_index_6_7">Visoko</string>
     <string name="precipitation_thunderstorm">Grmljavina</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Temperatura kao ikona statusne trake</string>
+    <string name="settings_modules_notification_temp_icon_switch">Temperatura kao ikona statusne trake</string>
     <string name="air_quality_no2_voice">Dušikov dioksid</string>
     <string name="pollen_artemisia">Pelin</string>
     <string name="widget_style_mini">Mini</string>
@@ -19,14 +19,14 @@
     <string name="wind_strength_3">Slab vjetar</string>
     <string name="widget_label_show_widget_card">Boja pozadine</string>
     <string name="widget_label_hide_subtitle">Sakrij podnaslov</string>
-    <string name="settings_widgets_week_icon_mode_title">Ikona za prikazivanje u tjednim prikazima</string>
+    <string name="settings_modules_week_icon_mode_title">Ikona za prikazivanje u tjednim prikazima</string>
     <string name="settings_background_updates_worker_info_title">Informacije procesa</string>
     <string name="widget_day_week">Dnevno + Tjedno</string>
     <string name="action_add_current_location">Dodajte trenutnu lokaciju</string>
-    <string name="settings_widgets_notification_widget_title">Widget za obavijesti</string>
+    <string name="settings_modules_notification_widget_title">Widget za obavijesti</string>
     <string name="widget_clock_day_horizontal">Sat + Dnevno (Vodoravni stil)</string>
     <string name="locations">Lokacije</string>
-    <string name="settings_widgets_notification_style_title">Stil</string>
+    <string name="settings_modules_notification_style_title">Stil</string>
     <string name="settings_background_updates_refresh_title">Učestalost osvježavanja</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="pollen_tree">Stablo</string>
@@ -89,7 +89,7 @@
     <string name="dialog_permissions_notification_content">Dodirnite ovdje da omogućite obavijesti o vremenskim upozorenjima ili odlučite kasnije u postavkama.</string>
     <string name="location_message_added">Lokacija dodana</string>
     <string name="air_quality_co_voice">Ugljikov monoksid</string>
-    <string name="settings_widgets_section_widgets_in_use">Korišteni widgeti</string>
+    <string name="settings_modules_section_widgets_in_use">Korišteni widgeti</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Zalazak Mjeseca danas, sutra, …, 4 dana kasnije</string>
     <string name="message_parsing_error_content">Provjerite je li aplikacija ažurna. Server može biti privremeno nedostupan. U tom slučaju pokušajte kasnije. Ako problem ne nestane, pokrenite dnevnik o padu aplikacije u postavkama za otklanjanje grešaka te prijavite problem na GitHub-u.</string>
     <string name="widget_week_style_3_days">3 dana</string>
@@ -120,7 +120,7 @@
     <string name="pollen_mold">Plijesan</string>
     <string name="settings_appearance_icon_pack_title">Paket ikona</string>
     <string name="widget_custom_subtitle_keyword_atd_description">Trenutačni osjećaj temperature (°)</string>
-    <string name="settings_widgets_live_wallpaper_summary">Postavi animaciju vremena kao pozadinu</string>
+    <string name="settings_modules_live_wallpaper_summary">Postavi animaciju vremena kao pozadinu</string>
     <string name="message_parsing_error_title">Neuspjelo analiziranje vremenskih podataka</string>
     <string name="widget_custom_subtitle_keyword_cw_description">Trenutačno vrijeme</string>
     <string name="weather_source_accu_preference_hours_72">72 sata</string>
@@ -154,7 +154,7 @@
     <string name="settings_main_cards_title">Kartice</string>
     <string name="air_quality_index">Indeks kvalitete zraka</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Satni opis</string>
-    <string name="settings_widgets_notification_feels_like_switch">Koristi temperaturu osjeta</string>
+    <string name="settings_modules_notification_feels_like_switch">Koristi temperaturu osjeta</string>
     <string name="dialog_permissions_location_content">Za korištenje ove funkcije, aplikaciji morate dati dopuštenje za pristup vašoj trenutačnoj lokaciji. Dijelit će se samo s odabranim vremenskim izvorima. Ako se predomislite, možete prekinuti postupak i ručno dodati fiksnu lokaciju.</string>
     <string name="settings_notifications_forecast_time_today_title">Vrijeme obavještenja za dnevnu prognozu</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Noćna temperatura danas, sutra, …, 4 dana kasnije (°)</string>
@@ -185,16 +185,16 @@
     <string name="location_message_permission_background_missing">Nedostaje dozvola za pristup lokaciji u pozadini</string>
     <string name="air_quality_pm10_voice">PM deset</string>
     <string name="ephemeris_moon_phase_new_moon">Mladi mjesec</string>
-    <string name="settings_widgets_live_wallpaper_title">Živa pozadina</string>
+    <string name="settings_modules_live_wallpaper_title">Živa pozadina</string>
     <string name="widget_week_style_5_days">5 dana</string>
     <string name="location_message_list_cannot_be_empty">Lista lokacija ne može biti prazna</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Ikona vremena</string>
     <string name="wind_strength_8">Olujni vjetar</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Neki proizvođači imaju dodatna ograničenja aplikacija koji prekidaju pozadinske usluge. Web stranica „Don’t kill my app!” sadrži upute za popravljanje.</string>
-    <string name="settings_widgets_configure_widget_summary">Podesite ovaj widget</string>
+    <string name="settings_modules_configure_widget_summary">Podesite ovaj widget</string>
     <string name="widget_label_view_style">Način prikaza</string>
     <string name="settings_main_cards_other_element_animations_switch">Druge animacije elemenata</string>
-    <string name="settings_widgets_monochrome_icons_title">Jednobojne ikone</string>
+    <string name="settings_modules_monochrome_icons_title">Jednobojne ikone</string>
     <string name="settings_background_updates">Ažuriranja u pozadini</string>
     <string name="pollen_betula">Breza</string>
     <string name="widget_subtitle_data_feels_like">Temperatura osjeta</string>
@@ -221,7 +221,7 @@
     <string name="settings_main_section_animations">Animacije</string>
     <string name="widget_custom_subtitle_keyword_w_description">Tjedan</string>
     <string name="air_quality_pm25">PM2.5</string>
-    <string name="settings_widgets_summary">Postavi pozadinu, podesi korištene widgete, widget u obavijestima</string>
+    <string name="settings_modules_summary">Postavi pozadinu, podesi korištene widgete, widget u obavijestima</string>
     <string name="widget_multi_city">Više gradova</string>
     <string name="action_show_errors">Dodirnite za detalje</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Zalazak Sunca danas, sutra, …, 4 dana kasnije</string>
@@ -231,7 +231,7 @@
     <string name="action_edit">Uredi</string>
     <string name="action_back">Nazad</string>
     <string name="message_tap_again_to_exit">Dodirnite ponovo za prekid</string>
-    <string name="settings_widgets_broadcast_send_data_title">Pošaljite podatke za %s</string>
+    <string name="settings_modules_broadcast_send_data_title">Pošaljite podatke za %s</string>
     <string name="pressure">Tlak</string>
     <string name="temperature_normal_short">Normalno</string>
     <string name="settings_appearance_dark_mode_locations_title">Način Dan / Noć za lokacije</string>
@@ -243,7 +243,7 @@
     <string name="dialog_permissions_location_title">Informacije o pristupu lokaciji</string>
     <string name="settings_units">Mjerne jedinice</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="settings_widgets_notification_persistent_switch">Stalni</string>
+    <string name="settings_modules_notification_persistent_switch">Stalni</string>
     <string name="action_undo">Poništi</string>
     <string name="settings_main_background_animation_title">Pozadinske animacije</string>
     <string name="pollen_level_1">Jako nisko</string>
@@ -260,7 +260,7 @@
     <string name="location_message_search_failed">Pretraga lokacija neuspjela</string>
     <string name="weather_source_accu_preference_hours_120">120 sati</string>
     <string name="settings_appearance_summary">Jezik, tamni način, paketi ikona, mjerne jedinice</string>
-    <string name="settings_widgets_section_notification_widget">Widget za obavijesti</string>
+    <string name="settings_modules_section_notification_widget">Widget za obavijesti</string>
     <string name="settings_appearance_dark_mode_title">Tamni način</string>
     <string name="settings_background_updates_battery_optimization_disabled">Optimiranje baterije je već onemogućeno.</string>
     <string name="message_network_unavailable">Mreža nedostupna</string>
@@ -287,7 +287,7 @@
     <string name="settings_debug_dump_crash_logs_title">Podijeli zapisnike o padu aplikacije</string>
     <string name="cloud_cover">Oblačnost</string>
     <string name="settings_location_service">Lokacijske usluge</string>
-    <string name="settings_widgets_live_wallpaper_error">Neuspjelo pokretanje biranja pozadine. Pozadinu za „%s” možete omogućiti pomoću opcije „Živa pozadina” u izborniku pozadine za početni zaslon.</string>
+    <string name="settings_modules_live_wallpaper_error">Neuspjelo pokretanje biranja pozadine. Pozadinu za „%s” možete omogućiti pomoću opcije „Živa pozadina” u izborniku pozadine za početni zaslon.</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Noćni vjetar danas, sutra, …, 4 dana kasnije</string>
     <string name="settings_appearance">Izgled</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Trenutačna temperatura (°C/°F)</string>
@@ -369,7 +369,7 @@
     <string name="pollen_poaeceae">Trava</string>
     <string name="settings_location_access_switch_summaryOn">Dozvoljeno. Vašu trenutnu lokaciju možete dodati kao lokaciju.</string>
     <string name="wind_direction_E_short">I</string>
-    <string name="settings_widgets">Widgeti i žive pozadine</string>
+    <string name="settings_modules">Widgeti i žive pozadine</string>
     <string name="location_current">Trenutna lokacija</string>
     <string name="settings_appearance_language_title">Jezik</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Izlazak Sunca danas, sutra, …, 4 dana kasnije</string>
@@ -576,7 +576,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Bezprijekorno</string>
     <string name="settings_source_instance_invalid">Mora biti https URL adresa koja završava s kosom crtom (/)</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Server prognoze</string>
-    <string name="settings_widgets_broadcast_title">Emitiraj moje vremenske podatke drugim aplikacijama</string>
+    <string name="settings_modules_broadcast_title">Emitiraj moje vremenske podatke drugim aplikacijama</string>
     <string name="about_open_link_message">Otvoriti %s?</string>
     <string name="settings_invalid_syntax">Neispravna sintaksa</string>
     <string name="settings_weather_source_unavailable">%s (nedostupno)</string>
@@ -625,7 +625,7 @@
     <string name="notification_app_update_available">Dostupna je nova verzija!</string>
     <string name="about_no_new_updates">Nema novih ažuriranja</string>
     <string name="common_weather_text_sand_storm">Pješčana oluja</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">Nema kompatibilnih paketa</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">Nema kompatibilnih paketa</string>
     <string name="dialog_app_update_check_content">Dodirnite ovdje za aktiviranje obavijesti o ažuriranjima aplikacije.</string>
     <string name="dialog_app_update_check_title">Ostanite u toku</string>
     <string name="settings_background_updates_refresh_never_warning3">Razmislite o upotrebi rjeđe stope osvježavanja umjesto isključivanja ažuriranja u pozadini, inače dodirnite „Nastavi” ako i dalje želite nastaviti.</string>
@@ -674,7 +674,7 @@
     <string name="settings_notifications_permission_summary">Neophodno za obavještavanje o upozorenjima, prognozama i aktualiziranjima aplikacije. %s</string>
     <string name="location_custom_name">Prilagođeno ime</string>
     <string name="location_has_active_alerts">Aktivno upozorenje</string>
-    <string name="settings_widgets_notification_permission_summary">Potrebno za prikaz widgeta za obavijest. %s</string>
+    <string name="settings_modules_notification_permission_summary">Potrebno za prikaz widgeta za obavijest. %s</string>
     <string name="settings_debug_notification_permission">Potrebno za obavještavanje o zapisima prekida rada aplikacije i neuspjelim aktualiziranjima vremena. %s</string>
     <string name="location_last_updated_x">Zadnje aktualiziranje %s</string>
     <string name="ephemeris_about">Više o vremenu izlaska i zalaska</string>

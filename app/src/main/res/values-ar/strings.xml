@@ -121,7 +121,7 @@
     <string name="widget_refreshing">الرجاء الإنتظار</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">الخلفية الحية</string>
+    <string name="settings_modules_live_wallpaper_title">الخلفية الحية</string>
     <string name="settings_location_service">خدمة الموقع</string>
     <string name="settings_appearance_dark_mode_title">الوضع الداكن</string>
     <string name="settings_appearance_icon_pack_title">حزمة الأيقونات</string>
@@ -135,7 +135,7 @@
     <string name="settings_units_pressure">وحدة الضغط</string>
     <string name="settings_units_speed">وحدة السرعة</string>
     <string name="settings_notifications_section_forecast">توقعات الطقس لأوقات معينة</string>
-    <string name="settings_widgets_notification_temp_icon_switch">درجة الحرارة كرمز في شريط الحالة</string>
+    <string name="settings_modules_notification_temp_icon_switch">درجة الحرارة كرمز في شريط الحالة</string>
     <string name="settings_automatic">تلقائي</string>
     <string name="settings_none">لا شيء</string>
     <string name="settings_color_day_night">الوضع التلقائي</string>
@@ -227,10 +227,10 @@
     <string name="settings_main_section_options">الخيارات</string>
     <string name="settings_main_background_animation_title">الرسوم المتحركة في الخلفية</string>
     <string name="settings_notifications">الإشعارات</string>
-    <string name="settings_widgets_notification_style_title">‎الأسلوب</string>
-    <string name="settings_widgets_notification_feels_like_switch">استخدم درجة حرارة تبدو وكأنها</string>
+    <string name="settings_modules_notification_style_title">‎الأسلوب</string>
+    <string name="settings_modules_notification_feels_like_switch">استخدم درجة حرارة تبدو وكأنها</string>
     <string name="unit_mugpcum">مكغ\\م³</string>
-    <string name="settings_widgets_week_icon_mode_title">أيقونات لعرضها في طريقة العرض الأسبوعية</string>
+    <string name="settings_modules_week_icon_mode_title">أيقونات لعرضها في طريقة العرض الأسبوعية</string>
     <string name="unit_kph_voice">كيلومتر في الساعة</string>
     <string name="unit_inph_voice">بوصة في الساعة</string>
     <string name="common_weather_text_overcast">غائم</string>
@@ -374,7 +374,7 @@
     <string name="settings_location_access_permission_already_granted">تم منح الإذن بالفعل</string>
     <string name="settings_location_access_precise_title">بيانات استخدام نظام تحديد المواقع العالمي (GPS)</string>
     <string name="settings_weather_sources_summary">مصدر الطقس الافتراضي للمواقع الجديدة ومفاتيح API المخصصة وإعدادات المصدر الأخرى</string>
-    <string name="settings_widgets_live_wallpaper_summary">تعيين حركة الطقس كخلفية</string>
+    <string name="settings_modules_live_wallpaper_summary">تعيين حركة الطقس كخلفية</string>
     <string name="unit_lpsqm_voice">لتر لكل متر مربع</string>
     <string name="wind_direction_W_short">غ</string>
     <string name="uv_index_0_2">منخفض</string>
@@ -394,7 +394,7 @@
     <string name="settings_location_access_switch_summaryOff">يرجى السماح إذا كنت تريد أن تكون قادرًا على إضافة موقعك الحالي كمنطقة.</string>
     <string name="settings_location_access_background_title">الوصول إلى الموقع في الخلفية</string>
     <string name="settings_location_access_precise_summaryOn">مفعل. سيتم الاعتماد على شبكة الجهاز كأولوية وفي معظم الوقت، ولكن من الممكن أيضا أن يستخدم GPS كبديل.</string>
-    <string name="settings_widgets_live_wallpaper_error">تعذر تشغيل منتقي الخلفيات. لا يزال بإمكانك تمكين خلفية %s عن طريق اختيار ”Live Wallpaper“ في منتقي خلفيات الشاشة الرئيسية.</string>
+    <string name="settings_modules_live_wallpaper_error">تعذر تشغيل منتقي الخلفيات. لا يزال بإمكانك تمكين خلفية %s عن طريق اختيار ”Live Wallpaper“ في منتقي خلفيات الشاشة الرئيسية.</string>
     <string name="action_more">انظر أكثر</string>
     <string name="location_service_native">API الافتراضي</string>
     <string name="action_location_list">لائحة المناطق</string>
@@ -411,14 +411,14 @@
     <string name="settings_notifications_forecast_today_title">إشعار لتوقعات اليوم</string>
     <string name="settings_notifications_forecast_time_today_title">وقت الإخطار لتوقعات اليوم</string>
     <string name="settings_notifications_forecast_tomorrow_title">إشعار لتوقعات اليوم التالي</string>
-    <string name="settings_widgets">الأيقونات والخلفيات الحية</string>
-    <string name="settings_widgets_summary">تعيين خلفية، تكوين الأيقونات المستخدمة، أيقونة كإشعار</string>
-    <string name="settings_widgets_monochrome_icons_title">أيقونات أحادية اللون</string>
-    <string name="settings_widgets_section_widgets_in_use">الاداة قيد الاستخدام</string>
-    <string name="settings_widgets_configure_widget_summary">تكوين هذه الأيقونة</string>
-    <string name="settings_widgets_section_notification_widget">أيقونة كإشعار</string>
-    <string name="settings_widgets_notification_widget_title">أيقونة كإشعار</string>
-    <string name="settings_widgets_notification_persistent_switch">ثابتة</string>
+    <string name="settings_modules">الأيقونات والخلفيات الحية</string>
+    <string name="settings_modules_summary">تعيين خلفية، تكوين الأيقونات المستخدمة، أيقونة كإشعار</string>
+    <string name="settings_modules_monochrome_icons_title">أيقونات أحادية اللون</string>
+    <string name="settings_modules_section_widgets_in_use">الاداة قيد الاستخدام</string>
+    <string name="settings_modules_configure_widget_summary">تكوين هذه الأيقونة</string>
+    <string name="settings_modules_section_notification_widget">أيقونة كإشعار</string>
+    <string name="settings_modules_notification_widget_title">أيقونة كإشعار</string>
+    <string name="settings_modules_notification_persistent_switch">ثابتة</string>
     <string name="settings_debug">تصحيح</string>
     <string name="settings_debug_summary">سجلات الأعطال</string>
     <string name="settings_debug_dump_crash_logs_title">مشاركة سجلات الأعطال</string>
@@ -539,7 +539,7 @@
     <string name="temperature_normal_short">عادي</string>
     <string name="temperature_normals">معايير درجة الحرارة</string>
     <string name="settings_main_threshold_lines_on_charts">خطوط العتبة على الرسوم البيانية</string>
-    <string name="settings_widgets_broadcast_send_data_title">إرسال بيانات الطقس إلى %s</string>
+    <string name="settings_modules_broadcast_send_data_title">إرسال بيانات الطقس إلى %s</string>
     <string name="settings_color_app">اتبع التطبيق</string>
     <string name="settings_debug_dump_crash_logs_saved">تم حفظ سجل الاخطاء</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">اضغط للفتح</string>
@@ -606,7 +606,7 @@
     <string name="settings_source_instance_geocoding">خادم الترميز الجغرافي</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">خادم جودة الهواء</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">خادم التوقعات</string>
-    <string name="settings_widgets_broadcast_title">أرسل بيانات الطقس إلى تطبيقات أخرى</string>
+    <string name="settings_modules_broadcast_title">أرسل بيانات الطقس إلى تطبيقات أخرى</string>
     <string name="message_invalid_incomplete_data">تم تلقي بيانات غير صالحة أو غير كاملة من الخادم</string>
     <string name="settings_per_location_theme">السمة</string>
     <string name="settings_source_instance_invalid">يجب أن يبتدئ الرابط بhttps وينتهي بـ /</string>
@@ -616,7 +616,7 @@
     <string name="dialog_time_picker_toggle_touch_input_voice">قم بالتبديل إلى الإدخال باللمس</string>
     <string name="widget_label_hide_alternate_calendar">إخفاء التقويم البديل</string>
     <string name="settings_background_updates_refresh_never_warning3">فكر في استخدام معدل تحديث أقل تكرارًا بدلاً من إيقاف تشغيل تحديثات الخلفية، وإلا فانقر على ”متابعة“ إذا كنت لا تزال ترغب في المتابعة.</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">لم يتم العثور على حزم متوافقة</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">لم يتم العثور على حزم متوافقة</string>
     <string name="dialog_time_picker_input_time">وقت الإدخال</string>
     <string name="dialog_time_picker_toggle_text_input_voice">قم بالتبديل إلى إدخال النص</string>
     <string name="settings_background_updates_refresh_never_warning1">من خلال إيقاف تشغيل تحديثات الخلفية، لن تتلقى بعد الآن إشعارات التحذير أو هطول الأمطار. لن يتم تحديث الأيقونات حتى تفتح التطبيق.</string>
@@ -680,7 +680,7 @@
     <string name="daily_yesterday">أمس</string>
     <string name="dialog_refresh_error_details_content">اضغط على رسائل الخطأ التي تحتوي على علامة استفهام للحصول على مزيد من المساعدة.</string>
     <string name="settings_weather_source_current_position_disclaimer">قد تتوفر المزيد من مصادر الطقس لموقعك بعد التحديث الأول.</string>
-    <string name="settings_widgets_notification_permission_summary">مطلوب لإظهار ويدجيت الإشعار. %s</string>
+    <string name="settings_modules_notification_permission_summary">مطلوب لإظهار ويدجيت الإشعار. %s</string>
     <string name="common_weather_text_tornado">إعصار</string>
     <string name="common_weather_text_blowing_snow">هواء جليدي</string>
     <string name="message_multiple_refresh_errors">اكتمل التحديث بأخطاء</string>

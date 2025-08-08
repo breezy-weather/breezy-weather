@@ -321,11 +321,11 @@
     <string name="settings_location_summary">Inställningar för platstjänster</string>
     <string name="settings_location">Positionering</string>
     <string name="settings_weather_sources_summary">Förvald väderkälla för nya platser, egna API-nycklar, andra källinställningar</string>
-    <string name="settings_widgets_live_wallpaper_title">Levande bakgrund</string>
+    <string name="settings_modules_live_wallpaper_title">Levande bakgrund</string>
     <string name="settings_notifications">Aviseringar</string>
     <string name="settings_main_summary">Blockordning, visade objekt, animationer</string>
     <string name="about_contributors">Utvecklare</string>
-    <string name="settings_widgets_summary">Ange bakgrundsbild, konfigurera använda widgetar, aviseringswidget</string>
+    <string name="settings_modules_summary">Ange bakgrundsbild, konfigurera använda widgetar, aviseringswidget</string>
     <string name="settings_background_updates_summary">Uppdateringsfrekvens, problemlösning</string>
     <string name="settings_appearance_summary">Språk, mörkt läge, ikonpaket, enheter</string>
     <string name="settings_debug_summary">Kraschloggar</string>
@@ -335,7 +335,7 @@
     <string name="settings_debug">Felsökning</string>
     <string name="ephemeris_moon_phase_waning_crescent">Avtagande månskära</string>
     <string name="about_dependencies">Beroenden</string>
-    <string name="settings_widgets">Widgetar &amp; levande bakgrund</string>
+    <string name="settings_modules">Widgetar &amp; levande bakgrund</string>
     <string name="about_contribution_WangDaYeeeeee">Utvecklare av det ursprungliga projektet Geometric Weather</string>
     <string name="settings_background_updates_battery_optimization_activity_not_found">Kunde inte öppna enhetens inställningar.</string>
     <string name="settings_source_api_key">API-nyckel</string>
@@ -345,10 +345,10 @@
     <string name="widget_label_show_widget_card">Bakgrundsfärg</string>
     <string name="unit_nmi">sjömil</string>
     <string name="widget_label_hide_subtitle">Dölj undertext</string>
-    <string name="settings_widgets_week_icon_mode_title">Ikon att visa i veckovyer</string>
-    <string name="settings_widgets_notification_widget_title">Aviseringswidget</string>
+    <string name="settings_modules_week_icon_mode_title">Ikon att visa i veckovyer</string>
+    <string name="settings_modules_notification_widget_title">Aviseringswidget</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Kraftigt snöblandat regn</string>
-    <string name="settings_widgets_notification_style_title">Stil</string>
+    <string name="settings_modules_notification_style_title">Stil</string>
     <string name="widget_label_text_size">Textstorlek</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">Vind dagtid för i dag, i morgon, …, 4 dagar senare</string>
     <string name="settings_enabled">Aktiverad</string>
@@ -377,7 +377,7 @@
     <string name="widget_custom_subtitle_keyword_xnt_description">Temperatur nattetid för i dag, i morgon, …, 4 dagar senare (°C/°F)</string>
     <string name="common_weather_text_drizzle">Duggregn</string>
     <string name="widget_custom_subtitle_keyword_xdp_description">Nederbörd dagtid för i dag, i morgon, …, 4 dagar senare (%)</string>
-    <string name="settings_widgets_section_widgets_in_use">Widgetar som används</string>
+    <string name="settings_modules_section_widgets_in_use">Widgetar som används</string>
     <string name="widget_custom_subtitle_keyword_xms_description">Månnedgång för i dag, i morgon, …, 4 dagar senare</string>
     <string name="message_parsing_error_content">Se till att du har uppdaterat till den senaste versionen av appen. Servern kan vara tillfälligt ej tillgänglig, vänligen försök igen senare i så fall. Om problemet kvarstår, vänligen skapa en kraschlogg i felsökningsinställningarna och rapportera ett problem på GitHub.</string>
     <string name="common_weather_text_snow_heavy">Kraftigt snöfall</string>
@@ -394,7 +394,7 @@
     <string name="settings_follow_system">Följ systemet</string>
     <string name="settings_color_day_night">Dag/natt</string>
     <string name="settings_appearance_icon_pack_title">Ikonpaket</string>
-    <string name="settings_widgets_live_wallpaper_summary">Ange en väderanimation som bakgrund</string>
+    <string name="settings_modules_live_wallpaper_summary">Ange en väderanimation som bakgrund</string>
     <string name="message_parsing_error_title">Misslyckades med att tolka väderdata</string>
     <string name="weather_api_limit_reached_title">Gränsen för API-förfrågningar har nåtts</string>
     <string name="widget_custom_subtitle_keyword_ws_description">Vecka (kort)</string>
@@ -408,7 +408,7 @@
     <string name="widget_label_clock_font">Klocktypsnitt</string>
     <string name="settings_background_updates_dont_kill_my_app_title">Tillverkarspecifika instruktioner</string>
     <string name="widget_custom_subtitle_keyword_hd_description">Beskrivning av timvis</string>
-    <string name="settings_widgets_notification_feels_like_switch">Använd känns som-temperatur</string>
+    <string name="settings_modules_notification_feels_like_switch">Använd känns som-temperatur</string>
     <string name="dialog_permissions_location_content">För att använda denna funktion måste du ge appen behörighet att komma åt din nuvarande plats. Den kommer endast att delas med de valda väderkällorna. Om du har ångrat dig, kan du avbryta processen och lägga till en fast plats manuellt.</string>
     <string name="settings_notifications_forecast_time_today_title">Aviseringstid för dagens prognos</string>
     <string name="widget_custom_subtitle_keyword_xntd_description">Temperatur nattetid för i dag, i morgon, …, 4 dagar senare (°)</string>
@@ -420,9 +420,9 @@
     <string name="settings_automatic">Automatisk</string>
     <string name="settings_icon_packs_weather_adaptive_icon">Väderikon</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Vissa tillverkare har ytterligare apprestriktioner som stänger av bakgrundstjänster. Webbplatsen Don’t kill my app! har information om hur man fixar det.</string>
-    <string name="settings_widgets_configure_widget_summary">Konfigurera denna widget</string>
+    <string name="settings_modules_configure_widget_summary">Konfigurera denna widget</string>
     <string name="widget_label_view_style">Vystil</string>
-    <string name="settings_widgets_monochrome_icons_title">Enfärgade ikoner</string>
+    <string name="settings_modules_monochrome_icons_title">Enfärgade ikoner</string>
     <string name="widget_subtitle_data_feels_like">Känns som-temperatur</string>
     <string name="settings_icon_packs_weather_icon_light">Ljus ikon</string>
     <string name="dialog_permissions_location_background_title">Behörighet till plats i bakgrunden</string>
@@ -439,7 +439,7 @@
     <string name="common_weather_text_rain_light">Lätt regn</string>
     <string name="widget_custom_subtitle_keyword_xss_description">Solnedgång för i dag, i morgon, …, 4 dagar senare</string>
     <string name="settings_weather_sources_per_location_summary">Anpassa väderdatakällor för denna plats</string>
-    <string name="settings_widgets_broadcast_send_data_title">Skicka väderdata till %s</string>
+    <string name="settings_modules_broadcast_send_data_title">Skicka väderdata till %s</string>
     <string name="notification_refreshed_at">Uppdaterades vid</string>
     <string name="common_weather_text_clear_sky">Klart</string>
     <string name="settings_appearance_dark_mode_locations_title">Platsbaserat mörkt läge</string>
@@ -448,7 +448,7 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="action_learn_more">Läs mer</string>
     <string name="dialog_permissions_location_title">Behörighet till platsinformation</string>
-    <string name="settings_widgets_notification_persistent_switch">Pågående</string>
+    <string name="settings_modules_notification_persistent_switch">Pågående</string>
     <string name="unit_ft">fot</string>
     <string name="settings_main_background_animation_title">Bakgrundsanimation</string>
     <string name="unit_inhg">inHg</string>
@@ -456,7 +456,7 @@
     <string name="settings_location_access_precise_title">Enhetens gps-användning</string>
     <string name="settings_notifications_forecast_tomorrow_title">Avisering om morgondagens prognos</string>
     <string name="settings_main_section_displayed_data">Visade data</string>
-    <string name="settings_widgets_section_notification_widget">Aviseringswidget</string>
+    <string name="settings_modules_section_notification_widget">Aviseringswidget</string>
     <string name="settings_appearance_dark_mode_title">Mörkt läge i appen</string>
     <string name="settings_background_updates_battery_optimization_disabled">Batterioptimering är redan inaktiverad.</string>
     <string name="message_network_unavailable">Nätverk ej tillgängligt</string>
@@ -518,7 +518,7 @@
     <string name="settings_main_cards_other_element_animations_switch">Andra objektanimationer</string>
     <string name="notification_style_native">Inbyggd</string>
     <string name="settings_main_cards_fade_in_switch">Blockframtoning</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Temperatur som statusfältsikon</string>
+    <string name="settings_modules_notification_temp_icon_switch">Temperatur som statusfältsikon</string>
     <string name="settings_items_drag_to_sort">Tryck för att dra listobjekten för sortering</string>
     <string name="common_weather_text_mostly_clear">Mestadels klart</string>
     <string name="common_weather_text_drizzle_moderate">Måttligt duggregn</string>
@@ -537,7 +537,7 @@
     <string name="widget_custom_subtitle_keyword_enter_description">Ny rad</string>
     <string name="settings_color_app">Följ appen</string>
     <string name="unit_mi">mi</string>
-    <string name="settings_widgets_live_wallpaper_error">Det gick inte att starta bakgrundsväljaren. Du kan fortfarande aktivera %s-bakgrundsbild genom att välja “Live Wallpaper” i bakgrundsväljaren på startskärmen.</string>
+    <string name="settings_modules_live_wallpaper_error">Det gick inte att starta bakgrundsväljaren. Du kan fortfarande aktivera %s-bakgrundsbild genom att välja “Live Wallpaper” i bakgrundsväljaren på startskärmen.</string>
     <string name="settings_unavailable_no_background_updates">Ej tillgängliga, aktivera bakgrundsuppdateringar först</string>
     <string name="notification_precipitation_starting">Nederbörd snart</string>
     <string name="notification_precipitation_starting_desc">Förväntas börja vid %s</string>
@@ -593,7 +593,7 @@
     <string name="settings_source_instance">Server</string>
     <string name="settings_source_instance_geocoding">Server för geokodning</string>
     <string name="settings_weather_source_unavailable">%s (ej tillgänglig)</string>
-    <string name="settings_widgets_broadcast_title">Sänd mina väderdata till andra appar</string>
+    <string name="settings_modules_broadcast_title">Sänd mina väderdata till andra appar</string>
     <string name="settings_per_location">Platsinställningar</string>
     <string name="settings_per_location_theme">Tema</string>
     <string name="settings_weather_source_freenet_disclaimer">Fler väderkällor är tillgängliga i andra varianter av appen. Tryck här för att läsa mer.</string>
@@ -619,7 +619,7 @@
     <string name="about_no_new_updates">Inga nya uppdateringar tillgängliga</string>
     <string name="about_check_for_app_updates">Sök efter appuppdateringar</string>
     <string name="precipitation_intensity_medium">Måttlig</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">Inga kompatibla paket hittades</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">Inga kompatibla paket hittades</string>
     <string name="settings_notifications_app_updates_check">Aviseringar om appuppdateringar</string>
     <string name="dialog_time_picker_input_time">Ange tid</string>
     <string name="action_edit_location">Redigera denna plats</string>
@@ -689,7 +689,7 @@
     <string name="settings_notifications_permission">Aviseringsbehörighet krävs</string>
     <string name="settings_notifications_permission_summary">Behövs för att avisera om varningar, prognoser och appuppdateringar. %s</string>
     <string name="settings_debug_notification_permission">Behövs för att avisera om kraschloggar och misslyckade väderuppdateringar. %s</string>
-    <string name="settings_widgets_notification_permission_summary">Behövs för att visa aviseringswidgeten. %s</string>
+    <string name="settings_modules_notification_permission_summary">Behövs för att visa aviseringswidgeten. %s</string>
     <string name="message_server_insecure_title">Säker anslutning misslyckades</string>
     <string name="message_outdated_server_data">Föråldrade data mottagna från server</string>
     <string name="action_allow">Tillåt</string>

@@ -170,7 +170,7 @@
     <string name="widget_refreshing">in attesa</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">Sfondo animato</string>
+    <string name="settings_modules_live_wallpaper_title">Sfondo animato</string>
     <string name="settings_location_service">Servizio Localizzazione</string>
     <string name="settings_appearance_dark_mode_title">App modalità scura</string>
     <string name="settings_appearance_icon_pack_title">Stile icone</string>
@@ -179,9 +179,9 @@
     <string name="settings_appearance_language_title">Lingua</string>
     <string name="settings_units">Unità di misura</string>
     <string name="settings_notifications_section_forecast">Previsioni</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Temperatura come icona della barra di stato</string>
+    <string name="settings_modules_notification_temp_icon_switch">Temperatura come icona della barra di stato</string>
     <string name="settings_source_default_value">Predefinito (invariato)</string>
-    <string name="settings_widgets_notification_feels_like_switch">Usa temperatura percepita</string>
+    <string name="settings_modules_notification_feels_like_switch">Usa temperatura percepita</string>
     <string name="message_tap_again_to_exit">Clicca nuovamente per uscire</string>
     <string name="action_back">Indietro</string>
     <string name="settings_icon_packs_check_details">Controlla dettagli</string>
@@ -366,7 +366,7 @@
     <string name="action_location_list">Elenco località</string>
     <string name="action_add_new_location">Aggiungi una nuova località</string>
     <string name="action_more">Vedi altro</string>
-    <string name="settings_widgets_monochrome_icons_title">Icone monocromatiche</string>
+    <string name="settings_modules_monochrome_icons_title">Icone monocromatiche</string>
     <string name="unit_hpa">hPa</string>
     <string name="unit_atm">atm</string>
     <string name="unit_kpa">kPa</string>
@@ -382,14 +382,14 @@
     <string name="settings_main_cards_other_element_animations_switch">Animazioni di altri elementi</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notifica per le previsioni del giorno successivo</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Orario di notifica per le previsioni del giorno successivo</string>
-    <string name="settings_widgets">Widgets &amp; sfondo animato</string>
-    <string name="settings_widgets_live_wallpaper_summary">Imposta un’animazione meteo come sfondo</string>
-    <string name="settings_widgets_section_widgets_in_use">Widgets in uso</string>
-    <string name="settings_widgets_configure_widget_summary">Configura questo widget</string>
-    <string name="settings_widgets_section_notification_widget">Widget di notifica</string>
-    <string name="settings_widgets_notification_widget_title">Widget di notifica</string>
-    <string name="settings_widgets_notification_persistent_switch">Persistente</string>
-    <string name="settings_widgets_notification_style_title">Stile</string>
+    <string name="settings_modules">Widgets &amp; sfondo animato</string>
+    <string name="settings_modules_live_wallpaper_summary">Imposta un’animazione meteo come sfondo</string>
+    <string name="settings_modules_section_widgets_in_use">Widgets in uso</string>
+    <string name="settings_modules_configure_widget_summary">Configura questo widget</string>
+    <string name="settings_modules_section_notification_widget">Widget di notifica</string>
+    <string name="settings_modules_notification_widget_title">Widget di notifica</string>
+    <string name="settings_modules_notification_persistent_switch">Persistente</string>
+    <string name="settings_modules_notification_style_title">Stile</string>
     <string name="settings_debug">Debug</string>
     <string name="settings_debug_summary">Crash logs</string>
     <string name="settings_debug_dump_crash_logs_title">Condividi crash logs</string>
@@ -435,8 +435,8 @@
     <string name="settings_background_updates_dont_kill_my_app_title">Istruzioni specifiche del produttore</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Alcuni produttori hanno restrizioni aggiuntive per le app che interrompono i servizi in background. Il sito web Don’t kill my app! ha informazioni su come risolvere il problema.</string>
     <string name="settings_notifications_forecast_time_today_title">Orario di notifica per le previsioni odierne</string>
-    <string name="settings_widgets_summary">Imposta lo sfondo, configura i widget utilizzati, widget di notifica</string>
-    <string name="settings_widgets_week_icon_mode_title">Icona da visualizzare nelle viste settimanali</string>
+    <string name="settings_modules_summary">Imposta lo sfondo, configura i widget utilizzati, widget di notifica</string>
+    <string name="settings_modules_week_icon_mode_title">Icona da visualizzare nelle viste settimanali</string>
     <string name="settings_location_access_background_title">Accesso alla propria posizione in background</string>
     <string name="settings_location">Geolocalizzazione</string>
     <string name="settings_location_access_permission_already_granted">Autorizzazione già fornita</string>
@@ -507,7 +507,7 @@
     <string name="common_weather_text_drizzle_freezing_light">Pioggerella ghiacciata leggera</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Pioggerella ghiacciata intensa</string>
     <string name="common_weather_text_sand_storm">Tempesta di sabbia</string>
-    <string name="settings_widgets_live_wallpaper_error">Impossibile avviare il selettore di sfondi. Puoi comunque attivare lo sfondo %s scegliendo “Sfondi Animati” nel selettore di sfondi della schermata iniziale.</string>
+    <string name="settings_modules_live_wallpaper_error">Impossibile avviare il selettore di sfondi. Puoi comunque attivare lo sfondo %s scegliendo “Sfondi Animati” nel selettore di sfondi della schermata iniziale.</string>
     <string name="about_contact">Contatto</string>
     <string name="common_weather_text_rain_light">Pioggia leggera</string>
     <string name="about_privacy_policy">Informativa sulla privacy</string>
@@ -543,7 +543,7 @@
     <string name="temperature_normals">Norme di temperatura</string>
     <string name="temperature_average_short">Media</string>
     <string name="settings_main_threshold_lines_on_charts">Linee di soglia sui grafici</string>
-    <string name="settings_widgets_broadcast_send_data_title">Invia dati meteo a %s</string>
+    <string name="settings_modules_broadcast_send_data_title">Invia dati meteo a %s</string>
     <string name="about_contribution_designer">Designer del logo</string>
     <string name="settings_debug_dump_crash_logs_saved">Crash log salvato</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Premi per aprire</string>
@@ -615,10 +615,10 @@
     <string name="message_server_unavailable_content">Di solito si tratta di un errore temporaneo. Se l’errore persiste, segnala un problema su GitHub.</string>
     <string name="settings_background_updates_refresh_never_warning2">Il processo di aggiornamento in background è leggero: aggiorna la prima posizione alla frequenza selezionata e le posizioni secondarie solo se necessario, una volta al giorno. È efficiente dal punto di vista della batteria e non dovrebbe superare i %d MB di consumo di dati al mese.</string>
     <string name="settings_background_updates_refresh_never_warning3">Considerate di utilizzare una frequenza di aggiornamento ridotta piuttosto che disattivare gli aggiornamenti in background, altrimenti tocca “Continua” se vuoi ancora procedere.</string>
-    <string name="settings_widgets_broadcast_title">Condivisione dati</string>
+    <string name="settings_modules_broadcast_title">Condivisione dati</string>
     <string name="settings_global">Impostazioni globali</string>
     <string name="about_open_link_message">Aprire %s?</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">Nessun pacchetto compatibile trovato</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">Nessun pacchetto compatibile trovato</string>
     <string name="settings_source_instance_invalid">Deve essere un URL https che termina con una /</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Miglior abbinamento</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">Combina i migliori modelli meteorologici per questa posizione</string>
@@ -677,7 +677,7 @@
     <string name="pollen_acer">Acero</string>
     <string name="pollen_alternaria">Alternaria</string>
     <string name="settings_notifications_permission">Permesso per le notifiche richiesto</string>
-    <string name="settings_widgets_notification_permission_summary">Necessario per mostrare il widget notifiche. %s</string>
+    <string name="settings_modules_notification_permission_summary">Necessario per mostrare il widget notifiche. %s</string>
     <string name="settings_debug_notification_permission">Necessario per notificare i log di crash e gli aggiornamenti meteo falliti. %s</string>
     <string name="action_grant_permission">Premi per garantire il permesso.</string>
     <string name="settings_notifications_permission_summary">Necessario per notificare allerte, previsioni e aggiornamenti dell’applicazione. %s</string>

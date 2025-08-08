@@ -162,7 +162,7 @@
     <string name="widget_refreshing">更新しています</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">ライブ壁紙</string>
+    <string name="settings_modules_live_wallpaper_title">ライブ壁紙</string>
     <string name="settings_location_service">位置情報サービス</string>
     <string name="settings_appearance_dark_mode_title">ダークモード</string>
     <string name="settings_appearance_icon_pack_title">アイコンパック</string>
@@ -176,7 +176,7 @@
     <string name="settings_units_pressure">気圧の単位</string>
     <string name="settings_units_speed">速度の単位</string>
     <string name="settings_notifications_section_forecast">予報の通知</string>
-    <string name="settings_widgets_notification_temp_icon_switch">気温をステータスバーのアイコンとして表示</string>
+    <string name="settings_modules_notification_temp_icon_switch">気温をステータスバーのアイコンとして表示</string>
     <string name="location_service_native">ネイティブAPI</string>
     <string name="settings_automatic">自動</string>
     <string name="settings_none">なし</string>
@@ -256,7 +256,7 @@
     <string name="settings_main">メイン画面</string>
     <string name="settings_main_hourly_trends_title">各時間の予報</string>
     <string name="settings_main_section_options">オプション</string>
-    <string name="settings_widgets">ウィジェット・ライブ壁紙</string>
+    <string name="settings_modules">ウィジェット・ライブ壁紙</string>
     <string name="about_contribution_WangDaYeeeeee">オリジナルプロジェクト「Geometric Weather」の開発者</string>
     <string name="settings_units_summary">気温・降水量・距離・速度・気圧</string>
     <string name="settings_background_updates_worker_info_summary">最終実行：%s</string>
@@ -278,18 +278,18 @@
     <string name="settings_background_updates_dont_kill_my_app_title">端末メーカー別の説明</string>
     <string name="precipitation_nowcasting">今後数時間の降水予報</string>
     <string name="settings_location">位置情報</string>
-    <string name="settings_widgets_live_wallpaper_summary">天気アニメーションをライブ壁紙に設定</string>
+    <string name="settings_modules_live_wallpaper_summary">天気アニメーションをライブ壁紙に設定</string>
     <string name="about_privacy_policy">プライバシーポリシー</string>
     <string name="about_dependencies">依存パッケージ</string>
     <string name="about_contribution_designer">ロゴのデザイナー</string>
-    <string name="settings_widgets_notification_widget_title">通知ウィジェット</string>
-    <string name="settings_widgets_notification_style_title">形式</string>
+    <string name="settings_modules_notification_widget_title">通知ウィジェット</string>
+    <string name="settings_modules_notification_style_title">形式</string>
     <string name="settings_notifications_forecast_today_title">今日の予報</string>
-    <string name="settings_widgets_section_widgets_in_use">使用中のウィジェット</string>
+    <string name="settings_modules_section_widgets_in_use">使用中のウィジェット</string>
     <string name="settings_notifications_forecast_time_today_title">今日の予報の通知時間</string>
-    <string name="settings_widgets_configure_widget_summary">このウィジェットを設定</string>
+    <string name="settings_modules_configure_widget_summary">このウィジェットを設定</string>
     <string name="settings_notifications_forecast_tomorrow_title">明日の予報</string>
-    <string name="settings_widgets_section_notification_widget">通知ウィジェット</string>
+    <string name="settings_modules_section_notification_widget">通知ウィジェット</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">明日の予報の通知時間</string>
     <string name="temperature_average_short">平均気温</string>
     <string name="air_quality_no2_voice">二酸化窒素</string>
@@ -370,7 +370,7 @@
     <string name="settings_section_general">一般</string>
     <string name="settings_location_access_precise_summaryOn">有効です。デバイスのネットワークとGPSの両方が使用されています。通常、デバイスのネットワークプロバイダーが優先的に使用されますが、GPSもフォールバックとして使用できます。</string>
     <string name="settings_location_access_precise_summaryOff">位置情報を取得できない場合、「正確な位置情報を使用する」を有効にしてください。</string>
-    <string name="settings_widgets_broadcast_send_data_title">気象データを%sに送信</string>
+    <string name="settings_modules_broadcast_send_data_title">気象データを%sに送信</string>
     <string name="settings_debug_summary">クラッシュログ</string>
     <string name="settings_debug_dump_crash_logs_title">クラッシュログを共有</string>
     <string name="settings_item_delete">この項目を削除</string>
@@ -382,9 +382,9 @@
     <string name="weather_source_accu_preference_hours_240">240時間</string>
     <string name="message_source_not_installed_error_title">情報源は利用できなくなりました</string>
     <string name="settings_location_access_precise_title">デバイスのGPSの使用状況</string>
-    <string name="settings_widgets_week_icon_mode_title">週次ビューで表示するアイコン</string>
+    <string name="settings_modules_week_icon_mode_title">週次ビューで表示するアイコン</string>
     <string name="settings_notifications_alerts_title">悪天候警報の通知</string>
-    <string name="settings_widgets_notification_feels_like_switch">体感温度を使用</string>
+    <string name="settings_modules_notification_feels_like_switch">体感温度を使用</string>
     <string name="unit_kn">kn</string>
     <string name="notification_precipitation_starting">まもなく雨が降ります</string>
     <string name="notification_precipitation_starting_desc">%s頃から降り始める予報となっています</string>
@@ -427,7 +427,7 @@
     <string name="settings_location_access_switch_summaryOn">許可されています。現在地を場所として追加できます。</string>
     <string name="settings_icon_packs_weather_icon_light">明るいアイコン</string>
     <string name="settings_icon_packs_weather_icon_grey">灰色のアイコン</string>
-    <string name="settings_widgets_live_wallpaper_error">壁紙セレクターを起動できませんでした。ホーム画面の壁紙ピッカーで「ライブ壁紙」を選択すると、%s の壁紙を有効にすることができます。</string>
+    <string name="settings_modules_live_wallpaper_error">壁紙セレクターを起動できませんでした。ホーム画面の壁紙ピッカーで「ライブ壁紙」を選択すると、%s の壁紙を有効にすることができます。</string>
     <string name="weather_message_unsupported_feature">情報源は要求された機能の一部に対応していません</string>
     <string name="unit_mmph_voice">ミリメートル毎時</string>
     <string name="settings_location_access_background_summaryOn">有効です。バックグラウンドで現在地の気象データを更新できます。</string>
@@ -461,7 +461,7 @@
     <string name="location_message_permission_missing">位置情報へのアクセス権限がありません</string>
     <string name="action_save">保存</string>
     <string name="action_share">共有</string>
-    <string name="settings_widgets_notification_persistent_switch">永続的</string>
+    <string name="settings_modules_notification_persistent_switch">永続的</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_inph_voice">インチ毎時</string>
     <string name="weather_message_invalid_location">場所が不正です。削除して改めて追加してください</string>
@@ -503,7 +503,7 @@
     <string name="settings_main_cards_other_element_animations_switch">その他の要素のアニメーション</string>
     <string name="settings_notifications_summary">最上部に設定されている場所の気象警報・降水（降雪）・予報の通知</string>
     <string name="settings_notifications_precipitations_title">降水（降雪）の通知</string>
-    <string name="settings_widgets_summary">壁紙の設定・使用中のウィジェット・通知ウィジェット</string>
+    <string name="settings_modules_summary">壁紙の設定・使用中のウィジェット・通知ウィジェット</string>
     <string name="notification_precipitation_continuing_desc">少なくとも%sまで降るでしょう</string>
     <string name="common_weather_text_mostly_clear">おおむね晴れ</string>
     <string name="common_weather_text_overcast">曇り</string>
@@ -519,7 +519,7 @@
     <string name="weather_api_limit_reached_content">この制限を回避するには、あなた自身のAPIキーを追加してください。</string>
     <string name="weather_api_unauthorized_title">APIへのアクセスが許可されていません</string>
     <string name="about_contact">連絡</string>
-    <string name="settings_widgets_monochrome_icons_title">モノクロアイコン</string>
+    <string name="settings_modules_monochrome_icons_title">モノクロアイコン</string>
     <string name="settings_debug_dump_crash_logs_saved">クラッシュログを保存しました</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">タップすると開きます</string>
     <string name="message_parsing_error_content">アプリのバージョンを確認してください。サーバーが一時的に利用できない状態になっている可能性があります。その場合は、しばらくしてから再度お試しください。問題が解決しない場合は、デバッグ設定からクラッシュログを出力し、GitHubで問題を報告してください。</string>
@@ -611,7 +611,7 @@
     <string name="settings_weather_source_open_meteo_instance_forecast">予報のサーバー</string>
     <string name="settings_weather_source_freenet_disclaimer">他のバージョンでは情報源をさらに利用できます。ここをタップすると詳細を表示します。</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">大気の質のサーバー</string>
-    <string name="settings_widgets_broadcast_title">データの共有</string>
+    <string name="settings_modules_broadcast_title">データの共有</string>
     <string name="settings_invalid_syntax">構文が正しくありません</string>
     <string name="alert_source">情報提供：%s</string>
     <string name="dialog_time_picker_select_time">時間を選択</string>
@@ -625,7 +625,7 @@
     <string name="dialog_time_picker_toggle_touch_input_voice">タッチ入力に切り替える</string>
     <string name="dialog_time_picker_toggle_text_input_voice">テキスト入力に切り替える</string>
     <string name="action_edit_location">この場所を編集</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">互換性のあるパッケージが見つかりませんでした</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">互換性のあるパッケージが見つかりませんでした</string>
     <string name="settings_appearance_calendar_title">他の種類のカレンダー</string>
     <string name="settings_global">全般設定</string>
     <string name="precipitation_intensity_medium">中程度</string>
@@ -710,7 +710,7 @@
     <string name="common_weather_text_drifting_snow">低い地吹雪</string>
     <string name="action_grant_permission">タップして権限を付与してください。</string>
     <string name="settings_notifications_permission_summary">警報、予報、アプリのアップデートの通知に必要です。%s</string>
-    <string name="settings_widgets_notification_permission_summary">通知用ウィジェットの表示に必要です。%s</string>
+    <string name="settings_modules_notification_permission_summary">通知用ウィジェットの表示に必要です。%s</string>
     <string name="settings_debug_notification_permission">クラッシュログと、天気を更新できなかった際の通知に必要です。%s</string>
     <string name="location_has_active_alerts">現在の気象警報</string>
     <string name="location_custom_name">任意の名称</string>

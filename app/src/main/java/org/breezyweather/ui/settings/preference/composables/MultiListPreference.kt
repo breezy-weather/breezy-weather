@@ -371,7 +371,7 @@ fun PackagePreferenceView(
                     icon = it.activityInfo.applicationInfo.loadIcon(context.packageManager)
                 )
             }.toTypedArray(),
-        noItemsMessage = stringResource(R.string.settings_widgets_broadcast_send_data_summary_empty),
+        noItemsMessage = stringResource(R.string.settings_modules_broadcast_send_data_summary_empty),
         isFirst = isFirst,
         isLast = isLast,
         onValueChanged = onValueChanged

@@ -165,7 +165,7 @@
     <string name="widget_refreshing">czekanie</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">Animowana tapeta</string>
+    <string name="settings_modules_live_wallpaper_title">Animowana tapeta</string>
     <string name="settings_location_service">Usługa lokalizacji</string>
     <string name="settings_appearance_dark_mode_title">Tryb ciemny aplikacji</string>
     <string name="settings_appearance_icon_pack_title">Paczka ikon</string>
@@ -179,7 +179,7 @@
     <string name="settings_units_pressure">Jednostka ciśnienia</string>
     <string name="settings_units_speed">Jednostka prędkości</string>
     <string name="settings_notifications_section_forecast">Prognoza</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Temperatura jako ikona na pasku statusu</string>
+    <string name="settings_modules_notification_temp_icon_switch">Temperatura jako ikona na pasku statusu</string>
     <string name="settings_automatic">Automatyczny</string>
     <string name="settings_none">Brak</string>
     <string name="settings_color_day_night">Dzień / Noc</string>
@@ -219,7 +219,7 @@
     <string name="settings_weather_sources">Źródła pogody</string>
     <string name="settings_source_default_value">Domyślne (bez zmian)</string>
     <string name="settings_main">Główny ekran</string>
-    <string name="settings_widgets_monochrome_icons_title">Ikony monochromatyczne</string>
+    <string name="settings_modules_monochrome_icons_title">Ikony monochromatyczne</string>
     <string name="unit_cmph">cm/h</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="unit_celsius">°C</string>
@@ -235,10 +235,10 @@
     <string name="null_data_text">N/A</string>
     <string name="widget_style_nano">Nano</string>
     <string name="settings_background_updates">Aktualizacje w tle</string>
-    <string name="settings_widgets_notification_style_title">Styl</string>
+    <string name="settings_modules_notification_style_title">Styl</string>
     <string name="unit_in_voice">Cale</string>
     <string name="unit_h_voice">godziny</string>
-    <string name="settings_widgets_notification_persistent_switch">Trwałe</string>
+    <string name="settings_modules_notification_persistent_switch">Trwałe</string>
     <string name="action_share">Udostępnij</string>
     <string name="locations">Lokalizacje</string>
     <string name="widget_style_mini">Mały</string>
@@ -436,7 +436,7 @@
     <string name="temperature_degree_day_heating">Stopień ogrzewania</string>
     <string name="temperature_degree_day_cooling">Stopień chłodzenia</string>
     <string name="settings_location_access_precise_title">Użycie GPS urządzenia</string>
-    <string name="settings_widgets_live_wallpaper_error">Nie można uruchomić selektora tapet. Nadal możesz włączyć tapetę %s, wybierając „Animowane tapety” w selektorze tapet na ekranie głównym.</string>
+    <string name="settings_modules_live_wallpaper_error">Nie można uruchomić selektora tapet. Nadal możesz włączyć tapetę %s, wybierając „Animowane tapety” w selektorze tapet na ekranie głównym.</string>
     <string name="unit_inph_voice">Cali na godzinę</string>
     <string name="settings_item_delete">Usuń ten element</string>
     <string name="settings_location_access_precise_summaryOff">Włącz opcję „Używaj dokładnej lokalizacji”, jeśli masz problem z uzyskaniem lokalizacji.</string>
@@ -454,20 +454,20 @@
     <string name="settings_notifications_precipitations_title">Powiadomienia o opadach</string>
     <string name="settings_notifications_forecast_time_today_title">Czas powiadomienia o prognozie na dany dzień</string>
     <string name="settings_notifications_forecast_tomorrow_title">Powiadomienie o prognozie na następny dzień</string>
-    <string name="settings_widgets_configure_widget_summary">Skonfiguruj ten widżet</string>
-    <string name="settings_widgets_section_notification_widget">Widżet w powiadomieniu</string>
-    <string name="settings_widgets_notification_widget_title">Widżet w powiadomieniu</string>
+    <string name="settings_modules_configure_widget_summary">Skonfiguruj ten widżet</string>
+    <string name="settings_modules_section_notification_widget">Widżet w powiadomieniu</string>
+    <string name="settings_modules_notification_widget_title">Widżet w powiadomieniu</string>
     <string name="settings_debug_dump_crash_logs_summary">Zapisuje dzienniki błędów do pliku w celu udostępnienia ich programistom</string>
     <string name="unit_mmph_voice">Milimetrów na godzinę</string>
     <string name="unit_mugpcum_voice">Mikrogramów na metr sześcienny</string>
-    <string name="settings_widgets_notification_feels_like_switch">Użyj temperatury odczuwalnej</string>
+    <string name="settings_modules_notification_feels_like_switch">Użyj temperatury odczuwalnej</string>
     <string name="settings_location_access_background_summaryOff">Włącz opcję „Zawsze zezwalaj”, aby odświeżać bieżącą lokalizację w tle.</string>
     <string name="settings_units_summary">Temperatura, opady, odległość, prędkość, ciśnienie</string>
     <string name="settings_main_cards_other_element_animations_switch">Animacje innych elementów</string>
     <string name="settings_notifications_alerts_title">Powiadomienia o ważnych alertach pogodowych</string>
     <string name="settings_notifications_forecast_today_title">Powiadomienie o prognozie na dany dzień</string>
-    <string name="settings_widgets_live_wallpaper_summary">Ustaw animację pogody jako tapetę</string>
-    <string name="settings_widgets_week_icon_mode_title">Ikona wyświetlana w widokach tygodniowych</string>
+    <string name="settings_modules_live_wallpaper_summary">Ustaw animację pogody jako tapetę</string>
+    <string name="settings_modules_week_icon_mode_title">Ikona wyświetlana w widokach tygodniowych</string>
     <string name="settings_debug_dump_crash_logs_title">Udostępnij dzienniki awarii</string>
     <string name="notification_update_error">Aktualizacja %d nie powiodła się</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Czas powiadomienia o prognozie na następny dzień</string>
@@ -482,7 +482,7 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Silna burza z gradem</string>
     <string name="settings_source_api_key">Klucz API</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="settings_widgets_summary">Ustaw tapetę, skonfiguruj używane widżety, widżet w powiadomieniu</string>
+    <string name="settings_modules_summary">Ustaw tapetę, skonfiguruj używane widżety, widżet w powiadomieniu</string>
     <string name="about_contribution_WangDaYeeeeee">Twórca oryginalnego projektu Geometric Weather</string>
     <string name="settings_icon_packs_weather_icon_light">Jasna ikona</string>
     <string name="settings_items_drag_to_sort">Dotknij i przeciągnij, aby posortować elementy listy</string>
@@ -492,11 +492,11 @@
     <string name="unit_kph_voice">Kilometrów na godzinę</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Lekka lub umiarkowana burza z gradem</string>
     <string name="about_dependencies">Zależności</string>
-    <string name="settings_widgets">Widżety i animowana tapeta</string>
+    <string name="settings_modules">Widżety i animowana tapeta</string>
     <string name="precipitation_nowcasting">Opady z minuty na minutę</string>
     <string name="alerts_to_follow">Dotknij tutaj, aby zobaczyć nadchodzące alerty.</string>
     <string name="air_quality_o3_full">Ozon na poziomie gruntu (%s)</string>
-    <string name="settings_widgets_section_widgets_in_use">Widżety w użyciu</string>
+    <string name="settings_modules_section_widgets_in_use">Widżety w użyciu</string>
     <string name="unit_lpsqmph_voice">Litrów na metr kwadratowy na godzinę</string>
     <string name="unit_mmhg_voice">Milimetrów słupa rtęci</string>
     <string name="unit_ppcm_voice">Na metr sześcienny</string>
@@ -533,7 +533,7 @@
     <string name="common_weather_text_rain_freezing">Marznący deszcz</string>
     <string name="common_weather_text_rain_snow_mixed_light">Lekki deszcz ze śniegiem</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Przelotne opady deszczu ze śniegiem</string>
-    <string name="settings_widgets_broadcast_send_data_title">Wyślij dane pogodowe do %s</string>
+    <string name="settings_modules_broadcast_send_data_title">Wyślij dane pogodowe do %s</string>
     <string name="common_weather_text_snow_showers_heavy">Silne przelotne opady śniegu</string>
     <string name="common_weather_text_snow_showers">Przelotne opady śniegu</string>
     <string name="settings_debug_dump_crash_logs_saved">Log błędu zapisany</string>
@@ -577,7 +577,7 @@
     <string name="pollen_salix">Wierzba</string>
     <string name="settings_background_updates_refresh_never_warning2">Proces aktualizacji w tle jest lekki: odświeża tylko pierwszą lokalizację w wybranej przez Ciebie częstotliwości, a dodatkowe lokalizacje tylko wtedy, gdy ich potrzebujesz, raz dziennie. Aplikacja jest energooszczędna i nie powinna zużywać więcej niż %d MB danych miesięcznie.</string>
     <string name="about_open_link_message">Otworzyć %s?</string>
-    <string name="settings_widgets_broadcast_title">Udostępnianie danych</string>
+    <string name="settings_modules_broadcast_title">Udostępnianie danych</string>
     <string name="settings_per_location">Preferencje dotyczące lokalizacji</string>
     <string name="widget_label_hide_alternate_calendar">Ukryj kalendarz alternatywny</string>
     <string name="settings_per_location_summary">Dodatkowe modyfikacje dla tej lokalizacji</string>
@@ -585,7 +585,7 @@
     <string name="settings_appearance_calendar_title">Kalendarz alternatywny</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Najlepsze dopasowanie</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Łączy wszystkie modele pogodowe od tego dostawcy w jednolitą prognozę</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">Nie znaleziono kompatybilnych pakietów</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">Nie znaleziono kompatybilnych pakietów</string>
     <string name="message_invalid_incomplete_data">Nieprawidłowe lub niekompletne dane otrzymane z serwera</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Jednolity</string>
     <string name="pollen_castanea">Kasztanowiec</string>
@@ -684,7 +684,7 @@
     <string name="action_grant_permission">Stuknij, aby udzielić pozwolenia.</string>
     <string name="settings_notifications_permission">Wymagane pozwolenie na powiadomienie</string>
     <string name="settings_debug_notification_permission">Wymagane do powiadamiania o dziennikach awarii i nieudanych aktualizacjach pogody. %s</string>
-    <string name="settings_widgets_notification_permission_summary">Potrzebne do wyświetlenia widżetu powiadomień. %s</string>
+    <string name="settings_modules_notification_permission_summary">Potrzebne do wyświetlenia widżetu powiadomień. %s</string>
     <string name="settings_notifications_permission_summary">Potrzebne do powiadamiania o alertach, prognozach i aktualizacjach aplikacji. %s</string>
     <string name="location_custom_name">Nazwa niestandardowa</string>
     <string name="location_last_updated_x">Ostatnia aktualizacja %s</string>

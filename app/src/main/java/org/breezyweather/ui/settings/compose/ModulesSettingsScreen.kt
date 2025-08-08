@@ -87,7 +87,7 @@ import org.breezyweather.wallpaper.MaterialLiveWallpaperService
 import java.text.Collator
 
 @Composable
-fun WidgetsSettingsScreen(
+fun ModulesSettingsScreen(
     context: Context,
     onNavigateBack: () -> Unit,
     hasNotificationPermission: Boolean,
@@ -106,7 +106,7 @@ fun WidgetsSettingsScreen(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             FitStatusBarTopAppBar(
-                title = stringResource(R.string.settings_widgets),
+                title = stringResource(R.string.settings_modules),
                 onBackPressed = onNavigateBack,
                 actions = { AboutActivityIconButton(context) },
                 scrollBehavior = scrollBehavior
@@ -117,11 +117,11 @@ fun WidgetsSettingsScreen(
             paddingValues = paddings.plus(PaddingValues(horizontal = dimensionResource(R.dimen.normal_margin)))
         ) {
             // widget.
-            sectionHeaderItem(R.string.settings_widgets_section_general)
-            clickablePreferenceItem(R.string.settings_widgets_live_wallpaper_title) { id ->
+            sectionHeaderItem(R.string.settings_modules_section_general)
+            clickablePreferenceItem(R.string.settings_modules_live_wallpaper_title) { id ->
                 PreferenceViewWithCard(
                     titleId = id,
-                    summaryId = R.string.settings_widgets_live_wallpaper_summary,
+                    summaryId = R.string.settings_modules_live_wallpaper_summary,
                     isFirst = true
                 ) {
                     try {
@@ -146,7 +146,7 @@ fun WidgetsSettingsScreen(
                         } catch (e2: ActivityNotFoundException) {
                             SnackbarHelper.showSnackbar(
                                 context.getString(
-                                    R.string.settings_widgets_live_wallpaper_error,
+                                    R.string.settings_modules_live_wallpaper_error,
                                     context.getString(R.string.breezy_weather)
                                 )
                             )
@@ -155,7 +155,7 @@ fun WidgetsSettingsScreen(
                 }
             }
             smallSeparatorItem()
-            listPreferenceItem(R.string.settings_widgets_week_icon_mode_title) { id ->
+            listPreferenceItem(R.string.settings_modules_week_icon_mode_title) { id ->
                 ListPreferenceView(
                     titleId = id,
                     selectedKey = SettingsManager.getInstance(context).widgetWeekIconMode.id,
@@ -171,7 +171,7 @@ fun WidgetsSettingsScreen(
                 )
             }
             smallSeparatorItem()
-            switchPreferenceItem(R.string.settings_widgets_monochrome_icons_title) { id ->
+            switchPreferenceItem(R.string.settings_modules_monochrome_icons_title) { id ->
                 SwitchPreferenceView(
                     titleId = id,
                     summaryOnId = R.string.settings_enabled,
@@ -185,7 +185,7 @@ fun WidgetsSettingsScreen(
                 )
             }
             smallSeparatorItem()
-            sectionFooterItem(R.string.settings_widgets_section_general)
+            sectionFooterItem(R.string.settings_modules_section_general)
 
             val widgetsInUse = buildList {
                 if (DayWidgetIMP.isInUse(context)) {
@@ -224,12 +224,12 @@ fun WidgetsSettingsScreen(
             }
             if (widgetsInUse.isNotEmpty()) {
                 largeSeparatorItem()
-                sectionHeaderItem(R.string.settings_widgets_section_widgets_in_use)
+                sectionHeaderItem(R.string.settings_modules_section_widgets_in_use)
                 widgetsInUse.forEachIndexed { index, widget ->
                     clickablePreferenceItem(widget.first) {
                         PreferenceViewWithCard(
                             title = stringResource(it),
-                            summary = stringResource(R.string.settings_widgets_configure_widget_summary),
+                            summary = stringResource(R.string.settings_modules_configure_widget_summary),
                             isFirst = index == 0,
                             isLast = index == widgetsInUse.lastIndex
                         ) {
@@ -240,13 +240,13 @@ fun WidgetsSettingsScreen(
                         smallSeparatorItem()
                     }
                 }
-                sectionFooterItem(R.string.settings_widgets_section_widgets_in_use)
+                sectionFooterItem(R.string.settings_modules_section_widgets_in_use)
             }
 
             largeSeparatorItem()
 
             // notification.
-            sectionHeaderItem(R.string.settings_widgets_section_notification_widget)
+            sectionHeaderItem(R.string.settings_modules_section_notification_widget)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 listPreferenceItem(R.string.settings_notifications_permission) { title ->
                     AnimatedVisibilitySlideVertically(
@@ -256,7 +256,7 @@ fun WidgetsSettingsScreen(
                             iconId = R.drawable.ic_about,
                             title = stringResource(title),
                             summary = stringResource(
-                                R.string.settings_widgets_notification_permission_summary,
+                                R.string.settings_modules_notification_permission_summary,
                                 stringResource(R.string.action_grant_permission)
                             ),
                             surface = MaterialTheme.colorScheme.primaryContainer,
@@ -276,7 +276,7 @@ fun WidgetsSettingsScreen(
                     }
                 }
             }
-            switchPreferenceItem(R.string.settings_widgets_notification_widget_title) { id ->
+            switchPreferenceItem(R.string.settings_modules_notification_widget_title) { id ->
                 SwitchPreferenceView(
                     titleId = id,
                     summaryOnId = R.string.settings_enabled,
@@ -298,7 +298,7 @@ fun WidgetsSettingsScreen(
                 )
             }
             smallSeparatorItem()
-            switchPreferenceItem(R.string.settings_widgets_notification_persistent_switch) { id ->
+            switchPreferenceItem(R.string.settings_modules_notification_persistent_switch) { id ->
                 SwitchPreferenceView(
                     titleId = id,
                     summaryOnId = R.string.settings_enabled,
@@ -316,7 +316,7 @@ fun WidgetsSettingsScreen(
                 )
             }
             smallSeparatorItem()
-            listPreferenceItem(R.string.settings_widgets_notification_style_title) { id ->
+            listPreferenceItem(R.string.settings_modules_notification_style_title) { id ->
                 ListPreferenceView(
                     titleId = id,
                     selectedKey = SettingsManager.getInstance(context).widgetNotificationStyle.id,
@@ -335,7 +335,7 @@ fun WidgetsSettingsScreen(
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 smallSeparatorItem()
-                switchPreferenceItem(R.string.settings_widgets_notification_temp_icon_switch) { id ->
+                switchPreferenceItem(R.string.settings_modules_notification_temp_icon_switch) { id ->
                     SwitchPreferenceView(
                         titleId = id,
                         summaryOnId = R.string.settings_enabled,
@@ -353,7 +353,7 @@ fun WidgetsSettingsScreen(
                     )
                 }
                 smallSeparatorItem()
-                switchPreferenceItem(R.string.settings_widgets_notification_feels_like_switch) { id ->
+                switchPreferenceItem(R.string.settings_modules_notification_feels_like_switch) { id ->
                     SwitchPreferenceView(
                         titleId = id,
                         summaryOnId = R.string.settings_enabled,
@@ -374,11 +374,11 @@ fun WidgetsSettingsScreen(
                     )
                 }
             }
-            sectionFooterItem(R.string.settings_widgets_section_notification_widget)
+            sectionFooterItem(R.string.settings_modules_section_notification_widget)
 
             largeSeparatorItem()
 
-            sectionHeaderItem(R.string.settings_widgets_broadcast_title)
+            sectionHeaderItem(R.string.settings_modules_broadcast_title)
             broadcastSources
                 .sortedWith { ws1, ws2 ->
                     Collator.getInstance(context.currentLocale).compare(ws1.name, ws2.name)
@@ -395,7 +395,7 @@ fun WidgetsSettingsScreen(
                         }
                         PackagePreferenceView(
                             title = stringResource(
-                                R.string.settings_widgets_broadcast_send_data_title,
+                                R.string.settings_modules_broadcast_send_data_title,
                                 broadcastSource.name
                             ),
                             intent = broadcastSource.intentAction,
@@ -411,7 +411,7 @@ fun WidgetsSettingsScreen(
                         smallSeparatorItem()
                     }
                 }
-            sectionFooterItem(R.string.settings_widgets_broadcast_title)
+            sectionFooterItem(R.string.settings_modules_broadcast_title)
 
             bottomInsetItem()
         }

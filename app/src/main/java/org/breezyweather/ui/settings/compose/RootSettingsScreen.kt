@@ -102,11 +102,11 @@ fun RootSettingsView(
                 }
             }
             smallSeparatorItem()
-            clickablePreferenceItem(R.string.settings_widgets) { id ->
+            clickablePreferenceItem(R.string.settings_modules) { id ->
                 PreferenceViewWithCard(
                     titleId = id,
                     iconId = R.drawable.ic_widgets,
-                    summaryId = R.string.settings_widgets_summary,
+                    summaryId = R.string.settings_modules_summary,
                     isLast = true
                 ) {
                     onNavigateTo(SettingsScreenRouter.Widgets.route)

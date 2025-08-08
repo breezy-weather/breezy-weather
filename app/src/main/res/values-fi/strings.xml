@@ -200,7 +200,7 @@
     <string name="widget_refreshing">Päivitetään</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">Live taustakuva</string>
+    <string name="settings_modules_live_wallpaper_title">Live taustakuva</string>
     <string name="settings_location_service">Sijaintipalvelu</string>
     <string name="settings_appearance_dark_mode_title">Sovelluksen tumma tila</string>
     <string name="settings_appearance_icon_pack_title">Kuvakepaketti</string>
@@ -214,7 +214,7 @@
     <string name="settings_units_pressure">Ilmanpaineen yksikkö</string>
     <string name="settings_units_speed">Nopeuden yksikkö</string>
     <string name="settings_notifications_section_forecast">Ennuste</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Lämpötila tilarivin kuvakkeena</string>
+    <string name="settings_modules_notification_temp_icon_switch">Lämpötila tilarivin kuvakkeena</string>
     <string name="settings_source_default_value">Oletus (ei muutoksia)</string>
     <string name="settings_automatic">Automaattinen</string>
     <string name="settings_none">Ei mitään</string>
@@ -251,9 +251,9 @@
     <string name="settings_source_api_key">API-avain</string>
     <string name="uv_index_6_7">Voimakas</string>
     <string name="action_add_new_location">Lisää uusi sijainti</string>
-    <string name="settings_widgets_notification_widget_title">Ilmoitusalueen widget</string>
+    <string name="settings_modules_notification_widget_title">Ilmoitusalueen widget</string>
     <string name="locations">Sijainnit</string>
-    <string name="settings_widgets_notification_style_title">Tyyli</string>
+    <string name="settings_modules_notification_style_title">Tyyli</string>
     <string name="settings_background_updates_refresh_title">Päivitystahti</string>
     <string name="air_quality_so2_full">Rikkidioksidi (%s)</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Jätä huomiotta, kun akku on vähissä</string>
@@ -278,7 +278,7 @@
     <string name="uv_index_8_10">Hyvin voimakas</string>
     <string name="action_share">Jaa</string>
     <string name="unit_m">m</string>
-    <string name="settings_widgets_section_widgets_in_use">Käytössä olevat widgetit</string>
+    <string name="settings_modules_section_widgets_in_use">Käytössä olevat widgetit</string>
     <string name="about_contribution_designer">Logon suunnittelija</string>
     <string name="settings_main">Päänäkymä</string>
     <string name="widget_clock_font_analog">Analoginen</string>
@@ -286,7 +286,7 @@
     <string name="settings_background_updates_battery_optimization_summary">Tämä on ensimmäinen asia, jota kannattaa kokeilla, kun et saa ilmoituksia tai widgetit eivät päivity.</string>
     <string name="pollen_level_2">Vähän</string>
     <string name="unit_in">tuuma</string>
-    <string name="settings_widgets_live_wallpaper_summary">Aseta sääanimaatio taustakuvaksi</string>
+    <string name="settings_modules_live_wallpaper_summary">Aseta sääanimaatio taustakuvaksi</string>
     <string name="weather_source_accu_preference_hours_72">72 tuntia</string>
     <string name="weather_api_limit_reached_title">API-pyyntöjen enimmäismäärä saavutettu</string>
     <string name="unit_ftps_voice">Jalkaa sekunnissa</string>
@@ -303,15 +303,15 @@
     <string name="settings_main_cards_title">Lohkot</string>
     <string name="air_quality_index">Ilmanlaatuindeksi</string>
     <string name="unit_kn_voice">Solmua</string>
-    <string name="settings_widgets_notification_feels_like_switch">Käytä tuntuu kuin -lämpötilaa</string>
+    <string name="settings_modules_notification_feels_like_switch">Käytä tuntuu kuin -lämpötilaa</string>
     <string name="settings_notifications_forecast_time_today_title">Ilmoitusaika päivän ennusteelle</string>
     <string name="unit_km_voice">Kilometriä</string>
     <string name="air_quality_no2_full">Typpidioksidi (%s)</string>
     <string name="pollen_level_4">Runsaasti</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Joillakin valmistajilla on sovelluksille lisärajoituksia, jotka tappavat taustapalvelut. Don’t kill my app! -sivustolla on tietoa siitä, miten asia korjataan.</string>
-    <string name="settings_widgets_configure_widget_summary">Muokkaa tätä widgettiä</string>
+    <string name="settings_modules_configure_widget_summary">Muokkaa tätä widgettiä</string>
     <string name="settings_main_cards_other_element_animations_switch">Muut animaatiot</string>
-    <string name="settings_widgets_monochrome_icons_title">Yksiväriset kuvakkeet</string>
+    <string name="settings_modules_monochrome_icons_title">Yksiväriset kuvakkeet</string>
     <string name="settings_background_updates">Taustapäivitykset</string>
     <string name="pollen_betula">Koivu</string>
     <string name="uv_index_3_5">Kohtalainen</string>
@@ -322,12 +322,12 @@
     <string name="settings_main_section_animations">Animaatiot</string>
     <string name="air_quality_pm25">PM2.5</string>
     <string name="unit_mmph_voice">Millimetriä tunnissa</string>
-    <string name="settings_widgets_summary">Aseta taustakuva, muokkaa widgettejä, ilmoitusalueen widget</string>
+    <string name="settings_modules_summary">Aseta taustakuva, muokkaa widgettejä, ilmoitusalueen widget</string>
     <string name="action_show_errors">Katso lisätietoja</string>
     <string name="pollen_olea">Oliivi</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="settings_background_updates_section_troubleshoot">Vianmääritys</string>
-    <string name="settings_widgets_notification_persistent_switch">Pysyvä</string>
+    <string name="settings_modules_notification_persistent_switch">Pysyvä</string>
     <string name="action_undo">Kumoa</string>
     <string name="settings_main_background_animation_title">Tausta-animaatio</string>
     <string name="unit_inhg">inHg</string>
@@ -344,7 +344,7 @@
     <string name="location_message_search_failed">Sijainnin haku epäonnistui</string>
     <string name="weather_source_accu_preference_hours_120">120 tuntia</string>
     <string name="settings_appearance_summary">Kieli, tumma tila, kuvakepaketti, yksiköt</string>
-    <string name="settings_widgets_section_notification_widget">Ilmoitusalueen widget</string>
+    <string name="settings_modules_section_notification_widget">Ilmoitusalueen widget</string>
     <string name="unit_kpa_voice">Kilopascalia</string>
     <string name="unit_atm_voice">Normaali-ilmakehää</string>
     <string name="unit_km">km</string>
@@ -404,7 +404,7 @@
     <string name="about_dependencies">Ohjelmistoriippuvuudet</string>
     <string name="notification_channel_crash_logs">Kaatumislokit</string>
     <string name="settings_location_access_switch_summaryOn">Sallittu. Voit lisätä nykyisen olinpaikkasi sijainniksi.</string>
-    <string name="settings_widgets">Widgetit &amp; Live taustakuva</string>
+    <string name="settings_modules">Widgetit &amp; Live taustakuva</string>
     <string name="about_source_code">Lähdekoodi</string>
     <string name="unit_mm_voice">Millimetriä</string>
     <string name="settings_location_access_background_title">Sijainnin käyttöoikeus taustalla</string>
@@ -497,7 +497,7 @@
     <string name="null_data_text">N/A</string>
     <string name="widget_style_nano">Nano</string>
     <string name="common_weather_text_drizzle_moderate">Kohtalaista tihkusadetta</string>
-    <string name="settings_widgets_week_icon_mode_title">Viikkonäkymissä näytettävä kuvake</string>
+    <string name="settings_modules_week_icon_mode_title">Viikkonäkymissä näytettävä kuvake</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Kerrostuva sumu</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Rankkaa vesisateen ja lumen sekoitusta</string>
     <string name="unit_mugpcum_voice">Mikrogrammaa per kuutiometri</string>
@@ -520,14 +520,14 @@
     <string name="settings_location_access_precise_summaryOff">Ota käyttöön “Käytä tarkkaa sijaintia”, jos sijainnin määrittämisessä on ongelmia.</string>
     <string name="common_weather_text_rain_light">Kevyttä sadetta</string>
     <string name="settings_weather_sources_per_location_summary">Mukauta tämän sijainnin säätietoihin käytettyjä lähteitä</string>
-    <string name="settings_widgets_broadcast_send_data_title">Lähetä säätietoja %s</string>
+    <string name="settings_modules_broadcast_send_data_title">Lähetä säätietoja %s</string>
     <string name="settings_appearance_dark_mode_locations_title">Sijaintiin perustuva tumma tila</string>
     <string name="settings_main_daily_trends_title">Päiväkohtaiset suuntaukset</string>
     <string name="common_weather_text_snow_showers_heavy">Kuurottaista rankkaa lumisadetta</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lievä tai kohtalainen ukkonen</string>
     <string name="settings_main_hourly_trends_title">Tuntikohtainen kehitys</string>
     <string name="notification_channel_background_services">Taustapalvelut</string>
-    <string name="settings_widgets_live_wallpaper_error">Taustakuvanvalitsinta ei voitu käynnistää. Voit silti ottaa %s -taustakuvan käyttöön valitsemalla “Live Wallpaper” kotinäytön taustakuvanvalitsimesta.</string>
+    <string name="settings_modules_live_wallpaper_error">Taustakuvanvalitsinta ei voitu käynnistää. Voit silti ottaa %s -taustakuvan käyttöön valitsemalla “Live Wallpaper” kotinäytön taustakuvanvalitsimesta.</string>
     <string name="unit_mgpcum_voice">Milligrammaa per kuutiometri</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Ukkosmyrsky ja rajuja raekuuroja</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Kuurottaista kevyttä vesisateen ja lumen sekoitusta</string>
@@ -603,8 +603,8 @@
     <string name="settings_appearance_calendar_title">Vaihtoehtoinen kalenteri</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Saumaton</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Yhdistää kaikki tämän palveluntarjoajan säämallit saumattomaksi ennusteeksi</string>
-    <string name="settings_widgets_broadcast_title">Tietojen jakaminen</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">Yhteensopivia paketteja ei löytynyt</string>
+    <string name="settings_modules_broadcast_title">Tietojen jakaminen</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">Yhteensopivia paketteja ei löytynyt</string>
     <string name="settings_per_location">Sijainnin asetukset</string>
     <string name="settings_weather_source_open_meteo_weather_models">Sää mallit</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">Paras vastaavuus</string>
@@ -693,7 +693,7 @@
     <string name="action_grant_permission">Napauta myöntääksesi luvan.</string>
     <string name="settings_notifications_permission_summary">Tarvitaan ilmoittamaan hälytyksistä, ennusteista ja sovelluspäivityksistä. %s</string>
     <string name="settings_notifications_permission">Ilmoituslupa vaaditaan</string>
-    <string name="settings_widgets_notification_permission_summary">Tarvitaan ilmoitus-vimpaimen näyttämiseen. %s</string>
+    <string name="settings_modules_notification_permission_summary">Tarvitaan ilmoitus-vimpaimen näyttämiseen. %s</string>
     <string name="settings_debug_notification_permission">Tarvitaan ilmoittamaan kaatumislokeista ja epäonnistuneista sääpäivityksistä. %s</string>
     <string name="action_enable">Salli</string>
     <string name="action_allow">Myönnä</string>

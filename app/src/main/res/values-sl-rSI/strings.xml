@@ -101,7 +101,7 @@
     <string name="widget_refreshing">v čakanju</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">Živo ozadje</string>
+    <string name="settings_modules_live_wallpaper_title">Živo ozadje</string>
     <string name="settings_location_service">Lokacijske storitve</string>
     <string name="settings_appearance_dark_mode_title">Temen način</string>
     <string name="settings_appearance_icon_pack_title">Paket ikon</string>
@@ -110,7 +110,7 @@
     <string name="settings_appearance_language_title">Jezik</string>
     <string name="settings_units">Enote</string>
     <string name="settings_notifications_section_forecast">Vremenska napoved</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Temperatura kot ikona v statusni vrstici</string>
+    <string name="settings_modules_notification_temp_icon_switch">Temperatura kot ikona v statusni vrstici</string>
     <string name="location_service_native">Nativen API</string>
     <string name="settings_automatic">Avtomatsko</string>
     <string name="settings_none">Brez</string>
@@ -449,7 +449,7 @@
     <string name="settings_main_background_animation_disabled">Onemogočeno</string>
     <string name="settings_main_cards_other_element_animations_switch">Animacije drugih elementov</string>
     <string name="settings_notifications">Obvestila</string>
-    <string name="settings_widgets">Widgeti &amp; Živo ozadje</string>
+    <string name="settings_modules">Widgeti &amp; Živo ozadje</string>
     <string name="settings_debug">Odpravljanje napak</string>
     <string name="widget_label_show_widget_card_alpha">Neprosojnost</string>
 </resources>

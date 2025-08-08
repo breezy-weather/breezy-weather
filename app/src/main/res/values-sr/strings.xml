@@ -71,7 +71,7 @@
     <string name="settings_appearance_language_title">Језик</string>
     <string name="settings_notifications_section_forecast">Прогноза</string>
     <string name="settings_appearance_icon_pack_title">Пакет иконица</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Температура као иконица на статусној траци</string>
+    <string name="settings_modules_notification_temp_icon_switch">Температура као иконица на статусној траци</string>
     <string name="settings_color_light">Светла</string>
     <string name="settings_color_grey">Сива</string>
     <string name="settings_color_dark">Тамна</string>
@@ -169,11 +169,11 @@
     <string name="settings_units_distance">Јединица за удаљеност</string>
     <string name="settings_units_speed">Јединица за брзину</string>
     <string name="settings_main_section_displayed_data">Приказани подаци</string>
-    <string name="settings_widgets_notification_widget_title">Виџет у обавештењима</string>
-    <string name="settings_widgets_notification_persistent_switch">Константан</string>
-    <string name="settings_widgets_notification_style_title">Стил</string>
+    <string name="settings_modules_notification_widget_title">Виџет у обавештењима</string>
+    <string name="settings_modules_notification_persistent_switch">Константан</string>
+    <string name="settings_modules_notification_style_title">Стил</string>
     <string name="settings_debug_summary">Евиденције отказивања</string>
-    <string name="settings_widgets_section_notification_widget">Виџет у обавештењима</string>
+    <string name="settings_modules_section_notification_widget">Виџет у обавештењима</string>
     <string name="unit_atm">atm</string>
     <string name="notification_update_error">%d ажурирања није успело</string>
     <string name="common_weather_text_clear_sky">Ведро небо</string>
@@ -235,8 +235,8 @@
     <string name="settings_main_section_animations">Анимације</string>
     <string name="settings_main_background_animation_title">Позадинска анимација</string>
     <string name="settings_notifications_summary">Обавештења о упозорењима о времену, падавинама или прогнози за прву локацију</string>
-    <string name="settings_widgets_live_wallpaper_summary">Поставите анимацију времена као позадину</string>
-    <string name="settings_widgets_live_wallpaper_error">Покретање бирача позадине није успело. Још увек можете да омогућите позадину %s тако што ћете изабрати „Жива позадина“ у бирачу позадине на вашем почетном екрану.</string>
+    <string name="settings_modules_live_wallpaper_summary">Поставите анимацију времена као позадину</string>
+    <string name="settings_modules_live_wallpaper_error">Покретање бирача позадине није успело. Још увек можете да омогућите позадину %s тако што ћете изабрати „Жива позадина“ у бирачу позадине на вашем почетном екрану.</string>
     <string name="settings_icon_packs_weather_icon_grey">Сива иконица</string>
     <string name="settings_icon_packs_weather_icon_dark">Тамна иконица</string>
     <string name="notification_channel_background_services">Позадинске услуге</string>
@@ -247,7 +247,7 @@
     <string name="settings_location_access_switch_summaryOff">Дозволите, ако желите да можете да додате своју тренутну локацију као локацију.</string>
     <string name="settings_notifications_forecast_time_today_title">Време обавештења за дневну прогнозу</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Време обавештења за прогнозу за следећи дан</string>
-    <string name="settings_widgets_week_icon_mode_title">Иконица за приказ у недељним приказима</string>
+    <string name="settings_modules_week_icon_mode_title">Иконица за приказ у недељним приказима</string>
     <string name="settings_none">Ниједно</string>
     <string name="null_data_text">N/A</string>
     <string name="message_parsing_error_title">Рашчлањивање података о времену није успело</string>
@@ -316,9 +316,9 @@
     <string name="location_search_no_results_advice">Уверите се да је ваша претрага исправно написана и да није превише специфична. Алтернативно, можете покушати са другим извором претраживања локације који може дати другачије резултате.</string>
     <string name="dialog_permissions_location_title">Приступ информацијама о локацији</string>
     <string name="dialog_permissions_notification_content">Додирните овде да омогућите упозорења о времену или одлучите касније у подешавањима.</string>
-    <string name="settings_widgets_live_wallpaper_title">Жива позадина</string>
+    <string name="settings_modules_live_wallpaper_title">Жива позадина</string>
     <string name="settings_color_day_night">Дан / Ноћ</string>
-    <string name="settings_widgets_notification_feels_like_switch">Користи температуру „Осећа се као“</string>
+    <string name="settings_modules_notification_feels_like_switch">Користи температуру „Осећа се као“</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="widget_label_clock_font">Фонт сата</string>
     <string name="widget_subtitle_data_custom">Прилагођено</string>
@@ -342,7 +342,7 @@
     <string name="common_weather_text_rain_showers_heavy">Јаки пљускови</string>
     <string name="common_weather_text_rain_snow_mixed_light">Помешана слаба киша и снег</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Помешани пљускови са слабом кишом и снегом</string>
-    <string name="settings_widgets_summary">Поставите позадину, конфигуришите коришћене виџете, виџет у обавештењима</string>
+    <string name="settings_modules_summary">Поставите позадину, конфигуришите коришћене виџете, виџет у обавештењима</string>
     <string name="common_weather_text_snow_light">Слаб снег</string>
     <string name="common_weather_text_snow_moderate">Умерен снег</string>
     <string name="common_weather_text_snow_heavy">Јак снег</string>
@@ -415,7 +415,7 @@
     <string name="widget_custom_subtitle_keyword_xdw_description">Дневно време - данас, сутра, …, 4 дана касније</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_background_updates">Ажурирања у позадини</string>
-    <string name="settings_widgets_monochrome_icons_title">Монохроматске иконице</string>
+    <string name="settings_modules_monochrome_icons_title">Монохроматске иконице</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Неки произвођачи имају додатна ограничења апликација која убијају позадинске услуге. Веб-сајт „Don’t kill my app!“ садржи информације како то можете поправити.</string>
     <string name="settings_location_access_switch_title">Приступ локацији</string>
     <string name="settings_icon_packs_title">Пакети иконица</string>
@@ -478,8 +478,8 @@
     <string name="settings_units_summary">Температура, падавине, удаљеност, брзина, притисак</string>
     <string name="settings_icon_packs_check_details">Провери детаље</string>
     <string name="settings_notifications_precipitations_title">Обавештења о падавинама</string>
-    <string name="settings_widgets_section_widgets_in_use">Виџети у употреби</string>
-    <string name="settings_widgets_configure_widget_summary">Конфигуришите овај виџет</string>
+    <string name="settings_modules_section_widgets_in_use">Виџети у употреби</string>
+    <string name="settings_modules_configure_widget_summary">Конфигуришите овај виџет</string>
     <string name="unit_kn_voice">Чворови</string>
     <string name="unit_kph_voice">Километри на сат</string>
     <string name="unit_mm">mm</string>
@@ -516,7 +516,7 @@
     <string name="settings_main_background_animation_disabled">Онемогућено</string>
     <string name="settings_notifications_forecast_today_title">Обавештење за дневну прогнозу</string>
     <string name="unit_in">inch</string>
-    <string name="settings_widgets">Виџети и жива позадина</string>
+    <string name="settings_modules">Виџети и жива позадина</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="unit_lpsqm_voice">Литри по квадратном метру</string>
     <string name="uv_alert_level">Алармантно</string>
@@ -536,7 +536,7 @@
     <string name="settings_location_summary">Подешавања услуга за локацију</string>
     <string name="settings_location_access_background_title">Приступ локацији у позадини</string>
     <string name="settings_location_access_precise_title">Употреба GPS-а на уређају</string>
-    <string name="settings_widgets_broadcast_send_data_title">Слање података о времену на %s</string>
+    <string name="settings_modules_broadcast_send_data_title">Слање података о времену на %s</string>
     <string name="about_matrix">Matrix соба</string>
     <string name="pollen">Алергени</string>
     <string name="pollen_tree">Дрво</string>
@@ -605,7 +605,7 @@
     <string name="settings_source_instance_geocoding">Инстанца геокодирања</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Инстанца прогнозе</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Инстанца квалитета ваздуха</string>
-    <string name="settings_widgets_broadcast_title">Дељење мојих података о времену у друге апликације</string>
+    <string name="settings_modules_broadcast_title">Дељење мојих података о времену у друге апликације</string>
     <string name="settings_per_location_theme">Тема</string>
     <string name="message_invalid_incomplete_data">Неважећи или непотпуни подаци примљени са сервера</string>
     <string name="settings_source_instance_invalid">Мора да буде https URL који се завршава с /</string>
@@ -620,7 +620,7 @@
     <string name="dialog_time_picker_input_time">Унос времена</string>
     <string name="settings_background_updates_refresh_never_warning1">Ако искључите ажурирања у позадини, више нећете добијати обавештења о упозорењима или падавинама. Виџети се неће освежити док не отворите апликацију.</string>
     <string name="settings_background_updates_refresh_never_warning2">Процес ажурирања у позадини је лаган: освежава само вашу прву локацију по вашој изабраној брзини, а секундарне локације само ако су вам потребне, једном дневно. Штеди батерију и не би требало да прелази %d МБ потрошње података месечно.</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">Нису пронађени компатибилни пакети</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">Нису пронађени компатибилни пакети</string>
     <string name="message_server_unavailable_title">Сервер недоступан</string>
     <string name="message_server_unavailable_content">Ово је обично привремена грешка. Ако грешка и даље постоји, пријавите проблем на GitHub-у.</string>
     <string name="action_edit_location">Измена ове локације</string>
@@ -678,7 +678,7 @@
     <string name="common_weather_text_glaze">Леђење</string>
     <string name="action_grant_permission">Додирните да бисте дали дозволу.</string>
     <string name="settings_debug_notification_permission">Неопходно за обавештавање о евиденцијама отказивања и неуспелим ажурирањима времена. %s</string>
-    <string name="settings_widgets_notification_permission_summary">Неопходно за приказивање виџета у обавештењима. %s</string>
+    <string name="settings_modules_notification_permission_summary">Неопходно за приказивање виџета у обавештењима. %s</string>
     <string name="settings_notifications_permission">Неопходна је дозвола за обавештења</string>
     <string name="settings_notifications_permission_summary">Неопходно за обавештавање о упозорењима, прогнозама и ажурирањима апликације. %s</string>
     <string name="location_has_active_alerts">Активно упозорење</string>

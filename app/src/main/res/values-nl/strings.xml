@@ -74,7 +74,7 @@
     <string name="settings_appearance_language_title">Taal</string>
     <string name="settings_notifications_section_forecast">Voorspelling</string>
     <string name="settings_appearance_icon_pack_title">Icoonstijl</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Temperatuur als statusbalkpictogram</string>
+    <string name="settings_modules_notification_temp_icon_switch">Temperatuur als statusbalkpictogram</string>
     <string name="settings_color_light">Licht</string>
     <string name="settings_color_grey">Grijs</string>
     <string name="settings_color_dark">Donker</string>
@@ -93,7 +93,7 @@
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Negeren als batterij bijna leeg is</string>
     <string name="settings_units_distance">Afstandseenheid</string>
-    <string name="settings_widgets_live_wallpaper_error">Kan behangkiezer niet starten. Je kunt de %s wallpaper nog steeds inschakelen door “Live Wallpaper” te kiezen in de wallpaperkiezer op je startscherm.</string>
+    <string name="settings_modules_live_wallpaper_error">Kan behangkiezer niet starten. Je kunt de %s wallpaper nog steeds inschakelen door “Live Wallpaper” te kiezen in de wallpaperkiezer op je startscherm.</string>
     <string name="about_privacy_policy">Privacybeleid</string>
     <string name="unit_lpsqmph">L/m²/u</string>
     <string name="unit_lpsqmph_voice">Liter per vierkante meter per uur</string>
@@ -275,9 +275,9 @@
     <string name="settings_location_service">Locatieservice</string>
     <string name="settings_notifications">Meldingen</string>
     <string name="settings_notifications_summary">Meldingen van weeralarmen, neerslag of voorspellingen voor de eerste locatie</string>
-    <string name="settings_widgets">Widgets en live achtergronden</string>
-    <string name="settings_widgets_summary">Achtergrond instellen, gebruikte widgets configureren, meldingswidget</string>
-    <string name="settings_widgets_notification_feels_like_switch">Gevoelstemperatuur gebruiken</string>
+    <string name="settings_modules">Widgets en live achtergronden</string>
+    <string name="settings_modules_summary">Achtergrond instellen, gebruikte widgets configureren, meldingswidget</string>
+    <string name="settings_modules_notification_feels_like_switch">Gevoelstemperatuur gebruiken</string>
     <string name="unit_cmph_voice">Centimeters per uur</string>
     <string name="unit_inph">inch/u</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lichte tot matige onweersbui</string>
@@ -307,7 +307,7 @@
     <string name="settings_icon_packs_weather_icon_dark">Pictogram donker</string>
     <string name="settings_units_speed">Snelheidseenheid</string>
     <string name="settings_main_background_animation_enabled">Aan</string>
-    <string name="settings_widgets_live_wallpaper_title">Live achtergrond</string>
+    <string name="settings_modules_live_wallpaper_title">Live achtergrond</string>
     <string name="weather_source_accu_preference_days_15">15 dagen</string>
     <string name="weather_source_accu_preference_hours_1">1 uur</string>
     <string name="weather_source_accu_preference_hours_24">24 uur</string>
@@ -333,10 +333,10 @@
     <string name="settings_notifications_forecast_time_today_title">Meldtijd voor de dagvoorspelling</string>
     <string name="settings_notifications_forecast_tomorrow_title">Melding voor voorspelling van de volgende dag</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Meldtijd voor de voorspelling van de volgende dag</string>
-    <string name="settings_widgets_week_icon_mode_title">Pictogram om weer te geven in weekoverzichten</string>
-    <string name="settings_widgets_monochrome_icons_title">Monochrome pictogrammen</string>
-    <string name="settings_widgets_notification_persistent_switch">Aanhoudend</string>
-    <string name="settings_widgets_notification_style_title">Stijl</string>
+    <string name="settings_modules_week_icon_mode_title">Pictogram om weer te geven in weekoverzichten</string>
+    <string name="settings_modules_monochrome_icons_title">Monochrome pictogrammen</string>
+    <string name="settings_modules_notification_persistent_switch">Aanhoudend</string>
+    <string name="settings_modules_notification_style_title">Stijl</string>
     <string name="unit_mmph">mm/u</string>
     <string name="unit_mmph_voice">Millimeter per uur</string>
     <string name="null_data_text">N.V.T.</string>
@@ -455,7 +455,7 @@
     <string name="common_weather_text_drizzle_freezing_light">Licht-ijzelende motregen</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Hevig-ijzelende motregen</string>
     <string name="dialog_permissions_location_content">Om deze functie te gebruiken, moet je de app toegang geven tot je huidige locatie. Deze zal enkel met je gekozen weersinformatiebronnen gedeeld worden. Als je van gedachte verandert, kan je op eender welk moment je toestemming intrekken en een manuele locatie ingeven.</string>
-    <string name="settings_widgets_broadcast_send_data_title">Stuur weergegevens naar %s</string>
+    <string name="settings_modules_broadcast_send_data_title">Stuur weergegevens naar %s</string>
     <string name="settings_location_access_permission_already_granted">Reeds verleende toestemming</string>
     <string name="settings_location_access_switch_summaryOff">Geef toestemming als je je huidige locatie wilt kunnen toevoegen als locatie.</string>
     <string name="settings_location_access_background_summaryOn">Ingeschakeld. De app kan de weergegevens voor je huidige locatie op de achtergrond verversen.</string>
@@ -469,7 +469,7 @@
     <string name="settings_main_background_animation_title">Achtergrondanimatie</string>
     <string name="settings_main_cards_fade_in_switch">Kaarten vervagen</string>
     <string name="settings_main_cards_other_element_animations_switch">Andere elementanimaties</string>
-    <string name="settings_widgets_live_wallpaper_summary">Een weeranimatie instellen als achtergrond</string>
+    <string name="settings_modules_live_wallpaper_summary">Een weeranimatie instellen als achtergrond</string>
     <string name="settings_debug">Debug</string>
     <string name="about_dependencies">Afhankelijkheden</string>
     <string name="air_quality_index">Luchtkwaliteitsindex</string>
@@ -531,10 +531,10 @@
     <string name="common_weather_text_rain_light">Lichte regen</string>
     <string name="common_weather_text_rain_snow_mixed">Natte sneeuw</string>
     <string name="common_weather_text_rain_freezing_heavy">Zware ijzel</string>
-    <string name="settings_widgets_section_widgets_in_use">Widgets in gebruik</string>
-    <string name="settings_widgets_configure_widget_summary">Deze widget configureren</string>
-    <string name="settings_widgets_section_notification_widget">Widget voor meldingen</string>
-    <string name="settings_widgets_notification_widget_title">Widget voor meldingen</string>
+    <string name="settings_modules_section_widgets_in_use">Widgets in gebruik</string>
+    <string name="settings_modules_configure_widget_summary">Deze widget configureren</string>
+    <string name="settings_modules_section_notification_widget">Widget voor meldingen</string>
+    <string name="settings_modules_notification_widget_title">Widget voor meldingen</string>
     <string name="common_weather_text_rain_snow_mixed_light">Lichte regen en sneeuw</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Zware regen en sneeuw</string>
     <string name="settings_debug_dump_crash_logs_saved">Crashlogs opgeslagen</string>
@@ -634,8 +634,8 @@
     <string name="about_check_for_app_updates">Check voor app updates</string>
     <string name="action_grant_permission">Tik om toestemming te geven.</string>
     <string name="settings_notifications_permission">Notificatietoestemming vereist</string>
-    <string name="settings_widgets_broadcast_title">Data delen</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">Geen overeenkomende pakketten gevonden</string>
+    <string name="settings_modules_broadcast_title">Data delen</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">Geen overeenkomende pakketten gevonden</string>
     <string name="settings_debug_notification_permission">Vereist voor meldingen over crash logs en gefaalde weer updates. %s</string>
     <string name="about_open_link_message">Open %s?</string>
     <string name="common_weather_text_glaze">IJzel</string>
@@ -669,7 +669,7 @@
     <string name="settings_notifications_permission_summary">Vereist voor notificaties over waarschuwingen, verwachtingen en app updates. %s</string>
     <string name="common_weather_text_drifting_snow">Sneeuwjacht</string>
     <string name="pollen_atriplex">Melde</string>
-    <string name="settings_widgets_notification_permission_summary">Vereist om de notificatiewidget te laten zien. %s</string>
+    <string name="settings_modules_notification_permission_summary">Vereist om de notificatiewidget te laten zien. %s</string>
     <string name="common_weather_text_cold">Koud</string>
     <string name="common_weather_text_warm">Warm</string>
     <string name="location_last_updated_x">Laatste update %s</string>

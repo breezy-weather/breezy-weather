@@ -160,7 +160,7 @@
     <string name="widget_refreshing">새로고침 중</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">라이브 배경화면</string>
+    <string name="settings_modules_live_wallpaper_title">라이브 배경화면</string>
     <string name="settings_location_service">위치 서비스</string>
     <string name="settings_appearance_dark_mode_title">다크 모드</string>
     <string name="settings_appearance_icon_pack_title">아이콘 팩</string>
@@ -174,7 +174,7 @@
     <string name="settings_units_pressure">기압 단위</string>
     <string name="settings_units_speed">속도 단위</string>
     <string name="settings_notifications_section_forecast">예보</string>
-    <string name="settings_widgets_notification_temp_icon_switch">기온을 상태 표시줄 아이콘으로 사용</string>
+    <string name="settings_modules_notification_temp_icon_switch">기온을 상태 표시줄 아이콘으로 사용</string>
     <string name="location_service_native">네이티브 API</string>
     <string name="settings_automatic">자동</string>
     <string name="settings_none">없음</string>
@@ -225,8 +225,8 @@
     <string name="settings_icon_packs_title">아이콘 팩</string>
     <string name="settings_main_background_animation_enabled">켜짐</string>
     <string name="settings_notifications_precipitations_title">강수 알림</string>
-    <string name="settings_widgets">위젯 및 라이브 배경화면</string>
-    <string name="settings_widgets_notification_persistent_switch">지속</string>
+    <string name="settings_modules">위젯 및 라이브 배경화면</string>
+    <string name="settings_modules_notification_persistent_switch">지속</string>
     <string name="settings_debug_dump_crash_logs_title">충돌 로그 공유</string>
     <string name="unit_ft_voice">피트</string>
     <string name="notification_channel_widget">위젯</string>
@@ -245,7 +245,7 @@
     <string name="settings_main_cards_title">카드</string>
     <string name="settings_main_background_animation_title">배경 애니메이션</string>
     <string name="settings_notifications_alerts_title">날씨 경보 알림</string>
-    <string name="settings_widgets_summary">배경화면, 사용 중인 위젯, 알림 위젯 설정</string>
+    <string name="settings_modules_summary">배경화면, 사용 중인 위젯, 알림 위젯 설정</string>
     <string name="settings_debug_dump_crash_logs_summary">오류 로그를 파일로 저장하여 개발자와 공유</string>
     <string name="location_message_search_failed">위치 검색 실패</string>
     <string name="settings_section_general">일반</string>
@@ -309,8 +309,8 @@
     <string name="location_results_by">%s에서 제공하는 위치 결과</string>
     <string name="location_message_permission_missing">위치 접근 권한 없음</string>
     <string name="settings_background_updates_summary">새로고침 간격, 문제 해결</string>
-    <string name="settings_widgets_notification_style_title">스타일</string>
-    <string name="settings_widgets_notification_feels_like_switch">체감 기온 사용</string>
+    <string name="settings_modules_notification_style_title">스타일</string>
+    <string name="settings_modules_notification_feels_like_switch">체감 기온 사용</string>
     <string name="settings_debug">디버그</string>
     <string name="settings_debug_summary">충돌 로그</string>
     <string name="about_contribution_WangDaYeeeeee">기존 Geometric Weather 프로젝트 개발자</string>
@@ -387,9 +387,9 @@
     <string name="action_share">공유</string>
     <string name="settings_location">위치</string>
     <string name="settings_location_summary">위치 공급자 설정</string>
-    <string name="settings_widgets_live_wallpaper_summary">날씨 애니메이션을 배경화면으로 설정</string>
-    <string name="settings_widgets_section_notification_widget">알림 위젯</string>
-    <string name="settings_widgets_notification_widget_title">알림 위젯</string>
+    <string name="settings_modules_live_wallpaper_summary">날씨 애니메이션을 배경화면으로 설정</string>
+    <string name="settings_modules_section_notification_widget">알림 위젯</string>
+    <string name="settings_modules_notification_widget_title">알림 위젯</string>
     <string name="air_quality_level_4_description">민감군에 즉각적인 영향을 미칠 수 있으며 건강한 사람들도 장시간 노출될 경우 호흡 곤란이나 목 자극 같은 증세를 보일 수 있습니다. 야외 활동을 자제하시기 바랍니다.</string>
     <string name="air_quality_o3_voice">오존</string>
     <string name="air_quality_co_voice">일산화탄소</string>

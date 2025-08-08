@@ -210,7 +210,7 @@
     <string name="widget_refreshing">Menunggu</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">Latar belakang bergerak</string>
+    <string name="settings_modules_live_wallpaper_title">Latar belakang bergerak</string>
     <string name="settings_location_service">Layanan lokasi</string>
     <string name="settings_appearance_dark_mode_title">Mode gelap</string>
     <string name="settings_appearance_icon_pack_title">Paket ikon</string>
@@ -224,8 +224,8 @@
     <string name="settings_units_pressure">Satuan tekanan</string>
     <string name="settings_units_speed">Satuan kecepatan</string>
     <string name="settings_notifications_section_forecast">Prakiraan</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Suhu sebagai Ikon Bilah Status</string>
-    <string name="settings_widgets_notification_feels_like_switch">Gunakan suhu terasa seperti</string>
+    <string name="settings_modules_notification_temp_icon_switch">Suhu sebagai Ikon Bilah Status</string>
+    <string name="settings_modules_notification_feels_like_switch">Gunakan suhu terasa seperti</string>
     <string name="settings_source_default_value">Bawaan (tidak diubah)</string>
     <string name="settings_background_updates_refresh_never">Tidak pernah</string>
     <string name="alerts_to_follow">Peringatan yang akan datang, ketuk di sini untuk melihatnya.</string>
@@ -269,11 +269,11 @@
     <string name="unit_nmi">nmi</string>
     <string name="common_weather_text_drizzle_moderate">Gerimis sedang</string>
     <string name="settings_background_updates_worker_info_title">Info proses</string>
-    <string name="settings_widgets_notification_widget_title">Gawit notifikasi</string>
+    <string name="settings_modules_notification_widget_title">Gawit notifikasi</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Menyetorkan kabut rime</string>
     <string name="locations">Lokasi</string>
     <string name="unit_nmi_voice">Mil laut</string>
-    <string name="settings_widgets_notification_style_title">Gaya</string>
+    <string name="settings_modules_notification_style_title">Gaya</string>
     <string name="settings_background_updates_refresh_title">Kecepatan penyegaran</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Hitam</string>
     <string name="air_quality_so2_full">Sulfur dioksida (%s)</string>
@@ -349,7 +349,7 @@
     <string name="widget_style_temperature">Suhu</string>
     <string name="settings_automatic">Otomatis</string>
     <string name="widget_week_style_5_days">5 hari</string>
-    <string name="settings_widgets_monochrome_icons_title">Ikon monokrom</string>
+    <string name="settings_modules_monochrome_icons_title">Ikon monokrom</string>
     <string name="settings_background_updates">Pembaruan latar belakang</string>
     <string name="pollen_betula">Burja</string>
     <string name="widget_subtitle_data_feels_like">Suhu yang dirasakan</string>
@@ -380,7 +380,7 @@
     <string name="unit_mi">mil</string>
     <string name="settings_background_updates_section_troubleshoot">Pemecahan masalah</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="settings_widgets_notification_persistent_switch">Permanen</string>
+    <string name="settings_modules_notification_persistent_switch">Permanen</string>
     <string name="action_undo">Urungkan</string>
     <string name="unit_ft">ft</string>
     <string name="settings_main_background_animation_title">Animasi latar belakang</string>
@@ -395,7 +395,7 @@
     <string name="unit_in_voice">Inci</string>
     <string name="location_message_search_failed">Pencarian lokasi gagal</string>
     <string name="weather_source_accu_preference_hours_120">120 jam</string>
-    <string name="settings_widgets_section_notification_widget">Gawit notifikasi</string>
+    <string name="settings_modules_section_notification_widget">Gawit notifikasi</string>
     <string name="unit_kpa_voice">Kilopascal</string>
     <string name="unit_atm_voice">Atmosfer</string>
     <string name="unit_km">km</string>
@@ -466,7 +466,7 @@
     <string name="settings_background_updates_battery_optimization_activity_not_found">Tidak dapat membuka pengaturan perangkat.</string>
     <string name="common_weather_text_rain_showers_light">Hujan ringan</string>
     <string name="action_add_new_location">Tambahkan lokasi baru</string>
-    <string name="settings_widgets_week_icon_mode_title">Ikon untuk ditampilkan dalam tampilan mingguan</string>
+    <string name="settings_modules_week_icon_mode_title">Ikon untuk ditampilkan dalam tampilan mingguan</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Hujan lebat bercampur salju</string>
     <string name="unit_mugpcum_voice">Mikrogram per meter kubik</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Abaikan ketika baterai lemah</string>
@@ -482,7 +482,7 @@
     <string name="action_help_me_choose">Bantu saya memilih</string>
     <string name="settings_location_access_switch_summaryOff">Mohon izinkan jika Anda ingin dapat menambahkan lokasi Anda saat ini saat ini sebagai lokasi.</string>
     <string name="dialog_permissions_notification_content">Ketuk di sini untuk mengaktifkan notifikasi peringatan cuaca, atau tentukan nanti dalam Setelan.</string>
-    <string name="settings_widgets_section_widgets_in_use">Gawit yang digunakan</string>
+    <string name="settings_modules_section_widgets_in_use">Gawit yang digunakan</string>
     <string name="message_parsing_error_content">Pastikan Anda telah memperbarui aplikasi ke versi yang terbaru. Saat ini mungkin server sementara tidak tersedia. Maka dari itu, silakan coba beberapa saat lagi. Jika masalah masih berlangsung, silakan masukkan catatan kemogokan di pengaturan pengawakutuan dan laporkan masalah di GitHub.</string>
     <string name="settings_debug_dump_crash_logs_summary">Menyimpan catatan galat di berkas untuk dibagikan dengan pengembang</string>
     <string name="settings_notifications_summary">Notifikasi peringatan cuaca, curah hujan atau prakiraan cuaca lokasi pertama</string>
@@ -491,7 +491,7 @@
     <string name="common_weather_text_rain_showers_heavy">Hujan berat</string>
     <string name="common_weather_text_rain_snow_mixed">Hujan bercampur salju</string>
     <string name="settings_background_updates_battery_optimization_summary">Pilihan ini adalah pilihan pertama yang harus Anda coba ketika Anda tidak menerima notifikasi atau gawit tersegarkan.</string>
-    <string name="settings_widgets_live_wallpaper_summary">Setel animasi cuaca sebagai latar belakang</string>
+    <string name="settings_modules_live_wallpaper_summary">Setel animasi cuaca sebagai latar belakang</string>
     <string name="message_parsing_error_title">Gagal mengurai data cuaca</string>
     <string name="weather_message_invalid_location">Lokasi tidak valid, silakan hapus dan tambahkan ulang</string>
     <string name="settings_notifications_alerts_title">Notifikasi peringatan cuaca buruk</string>
@@ -505,15 +505,15 @@
     <string name="settings_location_access_background_summaryOff">Mohon aktifkan “Izinkan sepanjang waktu” agar dapat menyegarkan latar lokasi Anda saat ini.</string>
     <string name="location_message_permission_background_missing">Izin akses lokasi di latar belakang belum ada</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Beberapa produsen memiliki pembatasan aplikasi tambahan yang menutup layanan latar belakang. Situs web Don’t kill my app! memiliki informasi tentang cara memperbaiki hal ini.</string>
-    <string name="settings_widgets_configure_widget_summary">Atur gawit ini</string>
+    <string name="settings_modules_configure_widget_summary">Atur gawit ini</string>
     <string name="settings_main_cards_other_element_animations_switch">Animasi unsur lainnya</string>
     <string name="common_weather_text_rain_snow_mixed_showers">Campuran hujan dan salju bergerimis</string>
     <string name="settings_main_summary">Urutan kartu, item yang ditampilkan, animasi</string>
     <string name="settings_location_access_precise_summaryOff">Aktifkan “Gunakan lokasi persis” jika Anda mengalami masalah dalam mendapatkan lokasi.</string>
-    <string name="settings_widgets_summary">Setel latar belakang, atur gawit yang digunakan, gawit notifikasi</string>
+    <string name="settings_modules_summary">Setel latar belakang, atur gawit yang digunakan, gawit notifikasi</string>
     <string name="action_show_errors">Ketuk untuk lihat detail</string>
     <string name="settings_weather_sources_per_location_summary">Ubah sumber data cuaca yang digunakan untuk lokasi ini</string>
-    <string name="settings_widgets_broadcast_send_data_title">Kirimkan data cuaca ke %s</string>
+    <string name="settings_modules_broadcast_send_data_title">Kirimkan data cuaca ke %s</string>
     <string name="settings_appearance_dark_mode_locations_title">Mode pagi/malam untuk lokasi</string>
     <string name="common_weather_text_snow_showers_heavy">Hujan salju berat</string>
     <string name="settings_background_updates_worker_info_summary">Terakhir dijalankan: %s</string>
@@ -525,7 +525,7 @@
     <string name="settings_background_updates_battery_optimization_disabled">Optimasi baterai sudah dinonaktifkan.</string>
     <string name="weather_message_unsupported_feature">Sumber tidak mendukung salah satu fitur yang diminta</string>
     <string name="settings_debug_dump_crash_logs_title">Bagikan catatan kemogokan</string>
-    <string name="settings_widgets_live_wallpaper_error">Tidak dapat meluncurkan pemilih latar belakang. Anda masih dapat mengaktifkan latar belakang %s dengan memilih “Latar Belakang Bergerak” dalam pemilih latar belakang layar beranda Anda.</string>
+    <string name="settings_modules_live_wallpaper_error">Tidak dapat meluncurkan pemilih latar belakang. Anda masih dapat mengaktifkan latar belakang %s dengan memilih “Latar Belakang Bergerak” dalam pemilih latar belakang layar beranda Anda.</string>
     <string name="unit_mgpcum_voice">Miligram per meter kubik</string>
     <string name="unit_bft_voice">pada skala Beaufort</string>
     <string name="message_server_timeout">Waktu permintaan habis</string>
@@ -547,7 +547,7 @@
     <string name="unit_lpsqm_voice">Liter per meter persegi</string>
     <string name="location_search_no_results">%1$s tidak dapat mencari %2$s</string>
     <string name="settings_location_access_switch_summaryOn">Diizinkan. Anda dapat menambahkan lokasi saat ini sebagai lokasi.</string>
-    <string name="settings_widgets">Gawit dan &amp; latar belakang bergerak</string>
+    <string name="settings_modules">Gawit dan &amp; latar belakang bergerak</string>
     <string name="settings_main_threshold_lines_on_charts">Garis ambang batas pada grafik</string>
     <string name="common_weather_text_rain_freezing_light">Hujan beku ringan</string>
     <string name="settings_location_access_background_title">Akses lokasi di latar belakang</string>
@@ -617,7 +617,7 @@
     <string name="alert">Peringatan</string>
     <string name="settings_source_instance">Server</string>
     <string name="settings_source_instance_geocoding">Server geokode</string>
-    <string name="settings_widgets_broadcast_title">Bagikan data cuaca saya kepada aplikasi lain</string>
+    <string name="settings_modules_broadcast_title">Bagikan data cuaca saya kepada aplikasi lain</string>
     <string name="message_invalid_incomplete_data">Data yang diterima dari server tidak valid atau tidak lengkap</string>
     <string name="settings_per_location_theme">Tema</string>
     <string name="settings_source_instance_invalid">Harus merupakan URL HTTPS berakhirkan /</string>
@@ -630,7 +630,7 @@
     <string name="dialog_time_picker_toggle_text_input_voice">Ubah ke Masukan Teks</string>
     <string name="settings_background_updates_refresh_never_warning1">Dengan mematikan pembaruan latar, Anda tidak akan menerima notifikasi peringatan atau curah hujan lagi. Gawit tidak akan disegarkan sampai Anda membuka aplikasi.</string>
     <string name="settings_background_updates_refresh_never_warning2">Proses pembaruan latar bersifat ringan: pembaruan hanya menyegarkan lokasi pertama Anda pada jangka yang ditentukan serta lokasi sekunder hanya jika diperlukan sebanyak satu kali sehari. Proses ini hemat baterai dan seharusnya tidak melebihi penggunaan data %d MB per bulan.</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">Tidak ada paket kompatibel yang ditemukan</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">Tidak ada paket kompatibel yang ditemukan</string>
     <string name="settings_background_updates_refresh_never_warning3">Pertimbangkan menggunakan jangka penyegaran yang lebih jarang daripada mematikan pembaruan latar belakang, selain itu ketuk “Lanjutkan” jika Anda masih ingin melanjutkan.</string>
     <string name="settings_appearance_calendar_title">Kalender lain</string>
     <string name="message_server_unavailable_title">Server tidak tersedia</string>
@@ -750,7 +750,7 @@
     <string name="settings_notifications_permission">Perizinan notifikasi diperlukan</string>
     <string name="action_grant_permission">Ketuk untuk memberikan perizinan.</string>
     <string name="settings_notifications_permission_summary">Diperlukan untuk memberi tahu peringatan, prakiraan, dan pembaruan aplikasi. %s</string>
-    <string name="settings_widgets_notification_permission_summary">Diperlukan untuk menampilkan widget notifikasi. %s</string>
+    <string name="settings_modules_notification_permission_summary">Diperlukan untuk menampilkan widget notifikasi. %s</string>
     <string name="settings_debug_notification_permission">Diperlukan untuk log kemogokan dan pembaruan cuaca gagal. %s</string>
     <string name="location_custom_name">Nama kustom</string>
     <string name="daily_yesterday">Kemarin</string>

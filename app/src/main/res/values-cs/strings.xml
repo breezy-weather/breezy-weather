@@ -204,7 +204,7 @@
     <string name="widget_refreshing">čekám</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">Živá tapeta</string>
+    <string name="settings_modules_live_wallpaper_title">Živá tapeta</string>
     <string name="settings_location_service">Služba lokace</string>
     <string name="settings_appearance_dark_mode_title">Tmavý režim aplikace</string>
     <string name="settings_appearance_icon_pack_title">Balíček ikon</string>
@@ -218,7 +218,7 @@
     <string name="settings_units_pressure">Jednotka tlaku</string>
     <string name="settings_units_speed">Jednotka rychlosti</string>
     <string name="settings_notifications_section_forecast">Přepověď</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Teplota jako ikona v liště</string>
+    <string name="settings_modules_notification_temp_icon_switch">Teplota jako ikona v liště</string>
     <string name="settings_source_default_value">Výchozí (nezměněné)</string>
     <string name="location_service_native">Nativní API</string>
     <string name="settings_automatic">Automaticky</string>
@@ -294,7 +294,7 @@
     <string name="settings_appearance_summary">Jazyk, tmavý režim, balíček ikon, jednotky</string>
     <string name="settings_icon_packs_title">Balíčky ikon</string>
     <string name="settings_main_hourly_trends_title">Hodinové trendy</string>
-    <string name="settings_widgets_notification_feels_like_switch">Použít pocitovou teplotu</string>
+    <string name="settings_modules_notification_feels_like_switch">Použít pocitovou teplotu</string>
     <string name="settings_main_background_animation_title">Animace na pozadí</string>
     <string name="settings_debug_dump_crash_logs_summary">Uložit protokoly o chybách do souboru pro sdílení s vývojáři</string>
     <string name="unit_m">m</string>
@@ -308,11 +308,11 @@
     <string name="settings_background_updates_refresh_never">Nikdy</string>
     <string name="settings_background_updates_refresh_title">Obnovovací frekvence</string>
     <string name="settings_main">Úvodní obrazovka</string>
-    <string name="settings_widgets">Widgety a živá tapeta</string>
-    <string name="settings_widgets_section_widgets_in_use">Používané widgety</string>
-    <string name="settings_widgets_notification_persistent_switch">Trvalý</string>
-    <string name="settings_widgets_notification_widget_title">Widget oznámení</string>
-    <string name="settings_widgets_notification_style_title">Styl</string>
+    <string name="settings_modules">Widgety a živá tapeta</string>
+    <string name="settings_modules_section_widgets_in_use">Používané widgety</string>
+    <string name="settings_modules_notification_persistent_switch">Trvalý</string>
+    <string name="settings_modules_notification_widget_title">Widget oznámení</string>
+    <string name="settings_modules_notification_style_title">Styl</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_cmph">cm/h</string>
     <string name="unit_inph">palec/h</string>
@@ -349,7 +349,7 @@
     <string name="action_share">Sdílet</string>
     <string name="settings_main_cards_fade_in_switch">Animace bloků</string>
     <string name="settings_main_cards_other_element_animations_switch">Další animace prvků</string>
-    <string name="settings_widgets_configure_widget_summary">Konfigurace tohoto widgetu</string>
+    <string name="settings_modules_configure_widget_summary">Konfigurace tohoto widgetu</string>
     <string name="settings_debug">Ladění</string>
     <string name="locations">Umístění</string>
     <string name="location_message_permission_missing">Chybí oprávnění k přístupu k poloze</string>
@@ -367,11 +367,11 @@
     <string name="message_parsing_error_content">Ujistěte se, že jste aktualizovali nejnovější verzi aplikace. Server může být dočasně nedostupný, v takovém případě to zkuste později. Pokud problém přetrvává, vypište prosím protokol o pádu z nastavení ladění a nahlaste problém na GitHub.</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorovat, když je baterie vybitá</string>
     <string name="settings_background_updates_battery_optimization_summary">To je první věc, kterou je třeba vyzkoušet, když nedostáváte oznámení nebo se widgety neobnovují.</string>
-    <string name="settings_widgets_summary">Nastavení tapety, konfigurace použitých widgetů, widget oznámení</string>
+    <string name="settings_modules_summary">Nastavení tapety, konfigurace použitých widgetů, widget oznámení</string>
     <string name="wind_direction_NE_short">SV</string>
     <string name="settings_main_background_animation_enabled">Povoleno</string>
     <string name="settings_main_section_animations">Animace</string>
-    <string name="settings_widgets_live_wallpaper_error">Nelze spustit nástroj pro výběr tapet. Tapetu %s můžete stále povolit výběrem možnosti „Živé tapety“ ve výběru tapet na domovské obrazovce.</string>
+    <string name="settings_modules_live_wallpaper_error">Nelze spustit nástroj pro výběr tapet. Tapetu %s můžete stále povolit výběrem možnosti „Živé tapety“ ve výběru tapet na domovské obrazovce.</string>
     <string name="unit_lpsqmph_voice">Litry na metr čtvereční za hodinu</string>
     <string name="unit_celsius">°C</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Bouřka slabá nebo středně silná</string>
@@ -440,10 +440,10 @@
     <string name="settings_main_daily_trends_title">Denní trendy</string>
     <string name="settings_main_section_options">Možnosti</string>
     <string name="settings_notifications_precipitations_title">Oznámení o srážkách</string>
-    <string name="settings_widgets_live_wallpaper_summary">Nastavit animaci počasí jako tapetu</string>
-    <string name="settings_widgets_week_icon_mode_title">Ikona pro zobrazení v týdenním zobrazení</string>
-    <string name="settings_widgets_monochrome_icons_title">Monochromatické ikony</string>
-    <string name="settings_widgets_section_notification_widget">Widget oznámení</string>
+    <string name="settings_modules_live_wallpaper_summary">Nastavit animaci počasí jako tapetu</string>
+    <string name="settings_modules_week_icon_mode_title">Ikona pro zobrazení v týdenním zobrazení</string>
+    <string name="settings_modules_monochrome_icons_title">Monochromatické ikony</string>
+    <string name="settings_modules_section_notification_widget">Widget oznámení</string>
     <string name="unit_kph">km/h</string>
     <string name="unit_mmph_voice">Milimetry za hodinu</string>
     <string name="unit_cmph_voice">Centimetry za hodinu</string>
@@ -550,7 +550,7 @@
     <string name="common_weather_text_rain_showers_moderate">Mírné dešťové přeháňky</string>
     <string name="metno_weather_text_andthunder">%s a hrom</string>
     <string name="action_save">Uložit</string>
-    <string name="settings_widgets_broadcast_send_data_title">Posílat data o počasí do %s</string>
+    <string name="settings_modules_broadcast_send_data_title">Posílat data o počasí do %s</string>
     <string name="settings_debug_dump_crash_logs_saved">Protokoly o chybách uloženy</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Klepnutím otevřete</string>
     <string name="notification_channel_crash_logs">Protokoly o chybách</string>
@@ -616,7 +616,7 @@
     <string name="settings_source_instance">Instance</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Instance předpovědi</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Instance kvality ovzduší</string>
-    <string name="settings_widgets_broadcast_title">Posílat data o počasí ostatním aplikacím</string>
+    <string name="settings_modules_broadcast_title">Posílat data o počasí ostatním aplikacím</string>
     <string name="message_invalid_incomplete_data">Ze serveru byla obdržena neplatná nebo neúplná data</string>
     <string name="settings_per_location_theme">Motiv</string>
     <string name="settings_source_instance_invalid">V poli se musí nacházet https URL končící znakem /</string>
@@ -631,7 +631,7 @@
     <string name="settings_background_updates_refresh_never_warning2">Proces aktualizace na pozadí je nenáročný: obnovuje pouze vaši první lokaci ve vybraném cyklu a sekundární lokace pouze, pokud je potřebujete, jednou za den. Není náročný na baterii a za měsíc by neměl spotřebovat více než %d MB dat.</string>
     <string name="settings_background_updates_refresh_never_warning3">Zvažte použití méně časté frekvence obnovování, namísto vypnutí aktualizací na pozadí. Pokud stále chcete pokračovat, klepněte na „Pokračovat“.</string>
     <string name="settings_appearance_calendar_title">Alternativní kalendář</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">Nenalezeny žádné kompatibilní balíčky</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">Nenalezeny žádné kompatibilní balíčky</string>
     <string name="message_server_unavailable_content">Toto obvykle bývá dočasná chyba. Pokud ovšem přetrvává, nahlaste ji prosím jako problém na GitHubu.</string>
     <string name="message_server_unavailable_title">Server není dostupný</string>
     <string name="action_edit_location">Upravit tuto lokalitu</string>
@@ -692,7 +692,7 @@
     <string name="settings_debug_notification_permission">Potřeba k oznamování o pádech a selhaných aktualizacích počasí. %s</string>
     <string name="location_custom_name">Vlastní název</string>
     <string name="settings_notifications_permission_summary">Potřeba k oznamování výstrah, předpovědí a aktualizací aplikace. %s</string>
-    <string name="settings_widgets_notification_permission_summary">Potřeba ke zobrazení widgetu oznámení. %s</string>
+    <string name="settings_modules_notification_permission_summary">Potřeba ke zobrazení widgetu oznámení. %s</string>
     <string name="action_grant_permission">Klepněte pro udělení oprávnění.</string>
     <string name="location_reverse_geocoding">Hledání adres</string>
     <string name="daily_today">Dnes</string>

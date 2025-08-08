@@ -422,7 +422,7 @@
     <string name="weather_source_accu_preference_hours_120">120 hours</string>
     <string name="weather_source_accu_preference_hours_240">240 hours</string>
     <!-- %s = Breezy Weather -->
-    <string name="broadcast_source_breezy_weather_update_notifier">%s Update Notifier</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">%s Location Update Notifier</string>
     <!-- Location -->
     <string name="locations">Locations</string>
     <string name="location_current">Current location</string>
@@ -813,29 +813,29 @@
     <string name="settings_notifications_forecast_time_today_title">Notification time for the day’s forecast</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notification for next-day forecast</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Notification time for next-day forecast</string>
-    <string name="settings_widgets">Widgets &amp; Live wallpaper</string>
-    <string name="settings_widgets_summary">Set wallpaper, configure widgets used, notification widget</string>
-    <string name="settings_widgets_section_general" translatable="false">@string/settings_section_general</string>
-    <string name="settings_widgets_live_wallpaper_title">Live wallpaper</string>
-    <string name="settings_widgets_live_wallpaper_summary">Set a weather animation as wallpaper</string>
+    <string name="settings_modules">External modules</string>
+    <string name="settings_modules_summary">Widgets, notification widget, wallpaper data sharing with other apps</string>
+    <string name="settings_modules_section_general" translatable="false">@string/settings_section_general</string>
+    <string name="settings_modules_live_wallpaper_title">Live wallpaper</string>
+    <string name="settings_modules_live_wallpaper_summary">Set a weather animation as wallpaper</string>
     <!-- %s = Breezy Weather -->
-    <string name="settings_widgets_live_wallpaper_error">Couldn’t launch wallpaper chooser. You can still enable %s wallpaper by choosing “Live Wallpaper” in your home screen wallpaper picker.</string>
-    <string name="settings_widgets_week_icon_mode_title">Icon to display in weekly views</string>
-    <string name="settings_widgets_monochrome_icons_title">Monochrome icons</string>
-    <string name="settings_widgets_section_widgets_in_use">Widgets in use</string>
-    <string name="settings_widgets_configure_widget_summary">Configure this widget</string>
-    <string name="settings_widgets_section_notification_widget">Notification widget</string>
+    <string name="settings_modules_live_wallpaper_error">Couldn’t launch wallpaper chooser. You can still enable %s wallpaper by choosing “Live Wallpaper” in your home screen wallpaper picker.</string>
+    <string name="settings_modules_week_icon_mode_title">Icon to display in weekly views</string>
+    <string name="settings_modules_monochrome_icons_title">Monochrome icons</string>
+    <string name="settings_modules_section_widgets_in_use">Widgets in use</string>
+    <string name="settings_modules_configure_widget_summary">Configure this widget</string>
+    <string name="settings_modules_section_notification_widget">Notification widget</string>
     <!-- %s is the string with the key action_grant_permission -->
-    <string name="settings_widgets_notification_permission_summary">Needed to show the notification widget. %s</string>
-    <string name="settings_widgets_notification_widget_title">Notification widget</string>
-    <string name="settings_widgets_notification_persistent_switch">Persistent</string>
-    <string name="settings_widgets_notification_style_title">Style</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Temperature as status bar icon</string>
-    <string name="settings_widgets_notification_feels_like_switch">Use feels like temperature</string>
-    <string name="settings_widgets_broadcast_title">Data sharing</string>
+    <string name="settings_modules_notification_permission_summary">Needed to show the notification widget. %s</string>
+    <string name="settings_modules_notification_widget_title">Notification widget</string>
+    <string name="settings_modules_notification_persistent_switch">Persistent</string>
+    <string name="settings_modules_notification_style_title">Style</string>
+    <string name="settings_modules_notification_temp_icon_switch">Temperature as status bar icon</string>
+    <string name="settings_modules_notification_feels_like_switch">Use feels like temperature</string>
+    <string name="settings_modules_broadcast_title">Data sharing</string>
     <!-- %s is for example Gadgetbridge, as in "Send data of type Gadgetbridge" -->
-    <string name="settings_widgets_broadcast_send_data_title">Send %s data</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">No compatible packages found</string>
+    <string name="settings_modules_broadcast_send_data_title">Send %s data</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">No compatible packages found</string>
     <string name="about_privacy_policy">Privacy policy</string>
     <string name="settings_debug">Debug</string>
     <!-- %s is the string with the key action_grant_permission -->

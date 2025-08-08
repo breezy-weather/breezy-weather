@@ -193,7 +193,7 @@
     <string name="widget_refreshing">重新整理中</string>
     <string name="widget_ellipsis">…</string>
     <!-- settings -->
-    <string name="settings_widgets_live_wallpaper_title">動態桌布</string>
+    <string name="settings_modules_live_wallpaper_title">動態桌布</string>
     <string name="settings_location_service">定位服務</string>
     <string name="settings_appearance_dark_mode_title">應用程式深色模式</string>
     <string name="settings_appearance">外觀</string>
@@ -207,8 +207,8 @@
     <string name="settings_units_pressure">氣壓單位</string>
     <string name="settings_units_speed">風速單位</string>
     <string name="settings_notifications_section_forecast">預報</string>
-    <string name="settings_widgets_notification_temp_icon_switch">溫度作為狀態列圖示</string>
-    <string name="settings_widgets_notification_feels_like_switch">使用體感溫度</string>
+    <string name="settings_modules_notification_temp_icon_switch">溫度作為狀態列圖示</string>
+    <string name="settings_modules_notification_feels_like_switch">使用體感溫度</string>
     <string name="location_service_native">原生 API</string>
     <string name="settings_automatic">自動</string>
     <string name="settings_none">無</string>
@@ -313,13 +313,13 @@
     <string name="unit_celsius_short">°</string>
     <string name="notification_update_error">%d 更新失敗</string>
     <string name="common_weather_text_snow_grains">雪粒</string>
-    <string name="settings_widgets_notification_style_title">樣式</string>
+    <string name="settings_modules_notification_style_title">樣式</string>
     <string name="message_network_unavailable">網路不可用</string>
     <string name="settings_background_updates">背景更新</string>
     <string name="settings_main_section_displayed_data">顯示資料</string>
     <string name="settings_main_section_options">選項</string>
     <string name="settings_main_background_animation_title">背景動畫</string>
-    <string name="settings_widgets_live_wallpaper_error">無法啟動桌布選擇器。您仍然可以透過在主畫面的桌布選項中選擇「動態桌布」來啟用 %s 的桌布。</string>
+    <string name="settings_modules_live_wallpaper_error">無法啟動桌布選擇器。您仍然可以透過在主畫面的桌布選項中選擇「動態桌布」來啟用 %s 的桌布。</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="location_message_reverse_geocoding_failed">天氣來源無法找到相符的位置</string>
     <string name="action_undo">復原</string>
@@ -333,9 +333,9 @@
     <string name="settings_location_access_switch_title">位置存取</string>
     <string name="settings_location_access_background_summaryOff">請啟用「始終允許」，以便在背景更新您的目前位置。</string>
     <string name="settings_location_access_background_summaryOn">已啟用。應用程式能在背景更新您目前位置的天氣資料。</string>
-    <string name="settings_widgets_section_notification_widget">通知小工具</string>
-    <string name="settings_widgets_notification_widget_title">通知小工具</string>
-    <string name="settings_widgets_notification_persistent_switch">永久通知</string>
+    <string name="settings_modules_section_notification_widget">通知小工具</string>
+    <string name="settings_modules_notification_widget_title">通知小工具</string>
+    <string name="settings_modules_notification_persistent_switch">永久通知</string>
     <string name="settings_debug_dump_crash_logs_summary">將錯誤紀錄儲存到檔案中以便與開發人員分享</string>
     <string name="settings_debug">偵錯</string>
     <string name="settings_debug_summary">損毀記錄</string>
@@ -373,9 +373,9 @@
     <string name="settings_location_access_precise_summaryOff">若您無法獲取位置，請啟用「使用精確位置」。</string>
     <string name="settings_source_api_key">API 金鑰</string>
     <string name="settings_icon_packs_title">圖示套件</string>
-    <string name="settings_widgets_section_widgets_in_use">使用中的小工具</string>
+    <string name="settings_modules_section_widgets_in_use">使用中的小工具</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">次日天氣預報通知時間</string>
-    <string name="settings_widgets">小工具與動態桌布</string>
+    <string name="settings_modules">小工具與動態桌布</string>
     <string name="message_server_timeout">要求逾時</string>
     <string name="message_parsing_error_title">無法剖析天氣資料</string>
     <string name="settings_location_access_switch_summaryOff">如果您希望在位置清單新增目前位置，請允許該權限。</string>
@@ -383,7 +383,7 @@
     <string name="settings_background_updates_refresh_skip_when_battery_low">電池電量低時忽略更新</string>
     <string name="settings_main_hourly_trends_title">逐時趨勢</string>
     <string name="settings_notifications_forecast_time_today_title">當日天氣預報通知時間</string>
-    <string name="settings_widgets_monochrome_icons_title">單色圖示</string>
+    <string name="settings_modules_monochrome_icons_title">單色圖示</string>
     <string name="notification_channel_background_services">背景服務</string>
     <string name="about_matrix">Matrix 聊天室</string>
     <string name="message_parsing_error_content">請確認您的應用程式已更新至最新版本。若伺服器暫時無法使用，請稍後再試。若問題持續，請從偵錯設定中導出錯誤記錄，並在 GitHub 上報告問題。</string>
@@ -425,7 +425,7 @@
     <string name="settings_appearance_summary">語言、深色模式、圖示套件、單位</string>
     <string name="action_delete">刪除</string>
     <string name="action_share">分享</string>
-    <string name="settings_widgets_summary">設定桌布、使用中的小工具、通知小工具</string>
+    <string name="settings_modules_summary">設定桌布、使用中的小工具、通知小工具</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="notification_channel_alerts">警特報</string>
     <string name="weather_message_invalid_location">位置無效，請刪除後再新增</string>
@@ -444,9 +444,9 @@
     <string name="weather_source_accu_preference_hours_72">72 小時</string>
     <string name="weather_source_accu_preference_hours_120">120 小時</string>
     <string name="weather_source_accu_preference_days_15">15 天</string>
-    <string name="settings_widgets_live_wallpaper_summary">將天氣動畫設定為桌布</string>
-    <string name="settings_widgets_week_icon_mode_title">在週視圖中顯示的圖示</string>
-    <string name="settings_widgets_configure_widget_summary">設定這個小工具</string>
+    <string name="settings_modules_live_wallpaper_summary">將天氣動畫設定為桌布</string>
+    <string name="settings_modules_week_icon_mode_title">在週視圖中顯示的圖示</string>
+    <string name="settings_modules_configure_widget_summary">設定這個小工具</string>
     <string name="wind_direction_SE_short">東南風</string>
     <string name="wind_direction_S_short">南風</string>
     <string name="wind_direction_N_short">北風</string>
@@ -540,7 +540,7 @@
     <string name="temperature_normal_short">正常</string>
     <string name="temperature_normals">正常溫度範圍</string>
     <string name="settings_main_threshold_lines_on_charts">圖表中的閾值橫線</string>
-    <string name="settings_widgets_broadcast_send_data_title">傳送天氣資料到 %s</string>
+    <string name="settings_modules_broadcast_send_data_title">傳送天氣資料到 %s</string>
     <string name="settings_color_app">自動</string>
     <string name="settings_debug_dump_crash_logs_saved">損毀記錄已儲存</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">點選以開啟</string>
@@ -596,7 +596,7 @@
     <string name="widget_custom_subtitle_keyword_xpis_description">今日、明日、…、4 天後的花粉指數摘要</string>
     <string name="sunshine">日照</string>
     <string name="about_open_link_message">開啟 %s 嗎？</string>
-    <string name="settings_widgets_broadcast_title">資料共用</string>
+    <string name="settings_modules_broadcast_title">資料共用</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match_description">結合最適合此位置的天氣模型</string>
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">將此提供者的所有天氣模型結合成無縫的預測</string>
     <string name="alert">警特報</string>
@@ -623,7 +623,7 @@
     <string name="settings_weather_source_open_meteo_weather_models">天氣模型</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">空氣品質伺服器</string>
     <string name="settings_weather_source_open_meteo_weather_models_best_match">最佳組合</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">找不到相容套件</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">找不到相容套件</string>
     <string name="settings_background_updates_refresh_never_warning2">背景更新處理不會消耗太多資源：它只會按您選擇的頻率重新整理您的首要位置，而次要位置只在您需要時每天重新整理一次。該處理耗電量低，每月的資料使用量應不超過 %d MB。</string>
     <string name="settings_background_updates_refresh_never_warning3">考慮使用較低的重新整理頻率而不是關閉背景更新，如果您仍想關閉背景更新，請點選「繼續」。</string>
     <string name="settings_per_location_summary">此位置的附加自訂</string>
@@ -762,7 +762,7 @@
     <string name="settings_notifications_permission_summary">授予權限後，才能收到警特報、預報及應用程式更新的通知。%s</string>
     <string name="location_custom_name">自訂名稱</string>
     <string name="location_has_active_alerts">現有發布警特報</string>
-    <string name="settings_widgets_notification_permission_summary">授予權限後，才能顯示通知小工具。%s</string>
+    <string name="settings_modules_notification_permission_summary">授予權限後，才能顯示通知小工具。%s</string>
     <string name="location_reverse_geocoding">位置查詢</string>
     <string name="daily_today">今日</string>
     <string name="wind_direction_SE">東南風</string>

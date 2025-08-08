@@ -149,7 +149,7 @@
     <string name="action_show_errors">Detayları görmek için dokunun</string>
     <string name="dialog_permissions_notification_title">Haberdar ol</string>
     <string name="settings_main">Ana ekran</string>
-    <string name="settings_widgets_notification_style_title">Biçim</string>
+    <string name="settings_modules_notification_style_title">Biçim</string>
     <string name="message_tap_again_to_exit">Çıkmak için tekrar dokunun</string>
     <string name="settings_units_precipitation">Yağış birimi</string>
     <string name="common_weather_text_rain">Yağmur</string>
@@ -175,8 +175,8 @@
     <string name="common_weather_text_rain_freezing">Dondurucu yağmur</string>
     <string name="widget_style_mini">Mini</string>
     <string name="settings_notifications_summary">İlk konum için hava durumu uyarıları, yağışlar veya hava tahmini bildirimleri</string>
-    <string name="settings_widgets_live_wallpaper_summary">Hava durumu animasyonunu duvar kağıdı olarak ayarla</string>
-    <string name="settings_widgets_live_wallpaper_title">Canlı duvar kağıdı</string>
+    <string name="settings_modules_live_wallpaper_summary">Hava durumu animasyonunu duvar kağıdı olarak ayarla</string>
+    <string name="settings_modules_live_wallpaper_title">Canlı duvar kağıdı</string>
     <string name="location_message_search_failed">Konum arama yapılamadı</string>
     <string name="widget_custom_subtitle_keyword_cdp_description">Şu anki çiy noktası</string>
     <string name="widget_custom_subtitle_keyword_lon_description">Boylam</string>
@@ -191,7 +191,7 @@
     <string name="settings_weather_source_portal">Portal</string>
     <string name="setting_weather_source_accu_hours">Saatler</string>
     <string name="weather_source_accu_preference_hours_24">24 saatlik</string>
-    <string name="settings_widgets_notification_persistent_switch">Sabit</string>
+    <string name="settings_modules_notification_persistent_switch">Sabit</string>
     <string name="message_server_timeout">İstek zaman aşımına uğradı</string>
     <string name="widget_label_text_size">Metin boyutu</string>
     <string name="widget_style_vertical">Dikey</string>
@@ -212,7 +212,7 @@
     <string name="weather_source_accu_preference_hours_120">120 saatlik</string>
     <string name="action_continue">Devam et</string>
     <string name="action_share">Paylaş</string>
-    <string name="settings_widgets">Widget’lar &amp; Canlı duvar kağıdı</string>
+    <string name="settings_modules">Widget’lar &amp; Canlı duvar kağıdı</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Başka bir konum hizmeti seçin</string>
     <string name="location_search_no_results_advice">Aramanızın doğru yazıldığından ve çok ayrıntılı olmadığından emin olun. Ayrıca, farklı sonuçlar verebilecek başka bir konum arama kaynağını da deneyebilirsiniz.</string>
     <string name="widget_custom_subtitle_keyword_ctd_description">Şu anki sıcaklık (°)</string>
@@ -309,7 +309,7 @@
     <string name="widget_custom_subtitle_keyword_als_description">Uyarılar (kısa)</string>
     <string name="widget_clock_font_analog">Analog</string>
     <string name="settings_main_cards_other_element_animations_switch">Diğer öge animasyonları</string>
-    <string name="settings_widgets_live_wallpaper_error">Duvar kağıdı seçici başlatılamadı. Yine de ana ekran duvar kağıdı seçicinizde “Canlı Duvar Kağıdı” nı seçerek %s duvar kağıdını etkinleştirebilirsiniz.</string>
+    <string name="settings_modules_live_wallpaper_error">Duvar kağıdı seçici başlatılamadı. Yine de ana ekran duvar kağıdı seçicinizde “Canlı Duvar Kağıdı” nı seçerek %s duvar kağıdını etkinleştirebilirsiniz.</string>
     <string name="pollen_level_4">Yüksek</string>
     <string name="pollen_level_5">Çok yüksek</string>
     <string name="pressure">Basınç</string>
@@ -377,12 +377,12 @@
     <string name="settings_appearance_dark_mode_locations_title">Konumlar için gündüz / gece modu</string>
     <string name="settings_main_daily_trends_title">Günlük değişimler</string>
     <string name="settings_main_hourly_trends_title">Saatlik değişimler</string>
-    <string name="settings_widgets_summary">Duvar kağıdı ayarla, kullanılan widget’ları yapılandır, bildirim widget’ı</string>
-    <string name="settings_widgets_week_icon_mode_title">Haftalık görünümlerde gösterilecek simge</string>
-    <string name="settings_widgets_section_notification_widget">Bildirim widget’ı</string>
-    <string name="settings_widgets_notification_temp_icon_switch">Durum çubuğu simgesinde sıcaklığı göster</string>
+    <string name="settings_modules_summary">Duvar kağıdı ayarla, kullanılan widget’ları yapılandır, bildirim widget’ı</string>
+    <string name="settings_modules_week_icon_mode_title">Haftalık görünümlerde gösterilecek simge</string>
+    <string name="settings_modules_section_notification_widget">Bildirim widget’ı</string>
+    <string name="settings_modules_notification_temp_icon_switch">Durum çubuğu simgesinde sıcaklığı göster</string>
     <string name="unit_kn">kn</string>
-    <string name="settings_widgets_broadcast_send_data_title">%s’e hava durumu bilgisini gönder</string>
+    <string name="settings_modules_broadcast_send_data_title">%s’e hava durumu bilgisini gönder</string>
     <string name="about_privacy_policy">Gizlilik sözleşmesi</string>
     <string name="settings_color_day_night">Gündüz / Gece</string>
     <string name="unit_cmph_voice">Saat başına santimetre</string>
@@ -407,7 +407,7 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Şiddetli dolu yağışlı fırtına</string>
     <string name="settings_notifications_forecast_time_today_title">Günlük tahmin bildirimi zamanı</string>
     <string name="settings_notifications_forecast_tomorrow_title">Sonraki gün tahmin bildirimi</string>
-    <string name="settings_widgets_monochrome_icons_title">Tek renk simgeler</string>
+    <string name="settings_modules_monochrome_icons_title">Tek renk simgeler</string>
     <string name="settings_notifications_forecast_today_title">Günlük tahmin bildirimi</string>
     <string name="about_contribution_WangDaYeeeeee">Orijinal Geometric Weather uygulamasının geliştiricisi</string>
     <string name="unit_in_voice">İnç</string>
@@ -416,10 +416,10 @@
     <string name="unit_h">sa</string>
     <string name="about_contributors">Katkıda bulunanlar</string>
     <string name="setting_weather_source_accu_days">Günler</string>
-    <string name="settings_widgets_notification_feels_like_switch">Hissedilen sıcaklığı kullan</string>
+    <string name="settings_modules_notification_feels_like_switch">Hissedilen sıcaklığı kullan</string>
     <string name="settings_debug_dump_crash_logs_summary">Çökme günlüklerini geliştiricilerle paylaşmak için bir dosyaya kaydet</string>
-    <string name="settings_widgets_configure_widget_summary">Bu widget’ı yapılandır</string>
-    <string name="settings_widgets_notification_widget_title">Bildirim widget’ı</string>
+    <string name="settings_modules_configure_widget_summary">Bu widget’ı yapılandır</string>
+    <string name="settings_modules_notification_widget_title">Bildirim widget’ı</string>
     <string name="settings_location_summary">Konum servisi ayarları</string>
     <string name="settings_location_service">Konum servisi</string>
     <string name="unit_ft_voice">Feet</string>
@@ -477,7 +477,7 @@
     <string name="widget_clock_font_sans_serif_black">Sans Serif Siyah</string>
     <string name="widget_custom_subtitle_keyword_xdw_description">Bugünün, yarının, …, 4 gün sonrasının gündüz hava durumu</string>
     <string name="widget_custom_subtitle_keyword_xnw_description">Bugünün, yarının, …, 4 gün sonrasının gece hava durumu</string>
-    <string name="settings_widgets_section_widgets_in_use">Kullanılan widget’lar</string>
+    <string name="settings_modules_section_widgets_in_use">Kullanılan widget’lar</string>
     <string name="unit_mmph">mm/sa</string>
     <string name="unit_fahrenheit_short">F</string>
     <string name="unit_km">km</string>
@@ -605,7 +605,7 @@
     <string name="settings_source_instance_geocoding">Coğrafi kodlama sunucusu</string>
     <string name="settings_weather_source_open_meteo_instance_forecast">Hava tahmini sunucusu</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Hava kalitesi sunucusu</string>
-    <string name="settings_widgets_broadcast_title">Hava durumu verilerimi diğer uygulamalarla paylaş</string>
+    <string name="settings_modules_broadcast_title">Hava durumu verilerimi diğer uygulamalarla paylaş</string>
     <string name="message_invalid_incomplete_data">Sunucudan geçersiz veya eksik veri alındı</string>
     <string name="settings_per_location_theme">Tema</string>
     <string name="settings_source_instance_invalid">/ ile biten bir https URL olmalıdır</string>
@@ -619,7 +619,7 @@
     <string name="settings_background_updates_refresh_never_warning1">Arka plan güncellemelerini kapattığınızda, artık uyarı veya yağış bildirimleri almayacaksınız. Widget’lar siz uygulamayı açana kadar yenilenmeyecek.</string>
     <string name="settings_background_updates_refresh_never_warning2">Arka planda güncelleme işlemi kaynak tüketmez: yalnızca ilk konumunuzu seçtiğiniz oranda ve ikincil konumları yalnızca ihtiyacınız olduğunda günde bir kez yeniler. Pil tasarrufu sağlar ve ayda %d MB veri tüketimini aşmayacaktır.</string>
     <string name="settings_background_updates_refresh_never_warning3">Arka plan güncellemelerini kapatmak yerine daha az sıklıkta yenileme hızı kullanabilirsiniz, yine de devam etmek istiyorsanız “Devam Et” seçeneğine dokunun.</string>
-    <string name="settings_widgets_broadcast_send_data_summary_empty">Uyumlu paket bulunamadı</string>
+    <string name="settings_modules_broadcast_send_data_summary_empty">Uyumlu paket bulunamadı</string>
     <string name="settings_appearance_calendar_title">Alternatif takvim</string>
     <string name="message_server_unavailable_content">Bu genellikle geçici bir hatadır. Hata devam ederse, lütfen GitHub’dan sorun olarak bildirin.</string>
     <string name="message_server_unavailable_title">Sunucu kullanılamıyor</string>
@@ -663,7 +663,7 @@
     <string name="message_multiple_refresh_errors">Yenileme hatalarla tamamlandı</string>
     <string name="common_weather_text_dust">Toz</string>
     <string name="settings_weather_source_current_position_disclaimer">İlk yenilemeden sonra konumunuz için daha fazla hava durumu kaynağı kullanmaya hazır olabilir.</string>
-    <string name="settings_widgets_notification_permission_summary">Bildirim widget’ını göstermek için gerekli. %s</string>
+    <string name="settings_modules_notification_permission_summary">Bildirim widget’ını göstermek için gerekli. %s</string>
     <string name="settings_weather_source_not_configured">%s (ayarlanmadı)</string>
     <string name="common_weather_text_drifting_snow">Savrulan kar</string>
     <string name="common_weather_text_glaze">Şeffaf buzlanma</string>
