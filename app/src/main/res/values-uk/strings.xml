@@ -835,4 +835,5 @@
     <string name="cloud_cover_scale">Шкала хмарності</string>
     <string name="content_provider_permission_label">Читати дані Breezy Weather</string>
     <string name="content_provider_permission_description">отримувати інформацію про погоду від Breezy Weather, включаючи координати ваших місць розташування, наприклад, ваше поточне місцезнаходження, якщо ви його додали</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">%s Сповіщувач оновлень місцезнаходження</string>
 </resources>
