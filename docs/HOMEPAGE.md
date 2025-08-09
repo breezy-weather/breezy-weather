@@ -181,10 +181,6 @@ From top to bottom:
 - Total of all precipitation for nighttime (bar + text)
 - Weather condition of nighttime (icon)
 
-If total of all precipitation is 0, it will not be shown.
-
-If total of all precipitation for all days is 0, precipitation trends will be hidden.
-
 
 #### Sunshine trends
 
@@ -288,8 +284,6 @@ From top to bottom:
 
 - Weather condition of the hour (icon)
 - Total of all precipitation for the hour (bar + text)
-
-If total of all precipitation for all hours is 0, precipitation trends will be hidden.
 
 
 #### Feels like trends

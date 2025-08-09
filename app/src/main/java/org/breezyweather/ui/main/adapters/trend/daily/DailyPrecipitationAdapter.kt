@@ -47,7 +47,7 @@ class DailyPrecipitationAdapter(
 ) : AbsDailyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mPrecipitationUnit: PrecipitationUnit = unit
-    private var mHighestPrecipitation: Float = 0f
+    private var mHighestPrecipitation: Float? = null
 
     inner class ViewHolder(itemView: View) : AbsDailyTrendAdapter.ViewHolder(itemView) {
         private val mDoubleHistogramView: DoubleHistogramView
@@ -124,14 +124,18 @@ class DailyPrecipitationAdapter(
     }
 
     init {
-        mHighestPrecipitation = maxOf(
-            location.weather!!.dailyForecast
-                .mapNotNull { it.day?.precipitation?.total }
-                .maxOrNull() ?: 0.0,
-            location.weather!!.dailyForecast
-                .mapNotNull { it.night?.precipitation?.total }
-                .maxOrNull() ?: 0.0
-        ).toFloat()
+        val maxDailyPrecipitation = location.weather!!.dailyForecast
+            .mapNotNull { it.day?.precipitation?.total }
+            .maxOrNull()
+        val maxNightPrecipitation = location.weather!!.dailyForecast
+            .mapNotNull { it.night?.precipitation?.total }
+            .maxOrNull()
+        if (maxDailyPrecipitation != null || maxNightPrecipitation != null) {
+            mHighestPrecipitation = maxOf(
+                maxDailyPrecipitation ?: 0.0,
+                maxNightPrecipitation ?: 0.0
+            ).toFloat()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -145,45 +149,47 @@ class DailyPrecipitationAdapter(
 
     override fun getItemCount() = location.weather!!.dailyForecast.size
 
-    override fun isValid(location: Location) = mHighestPrecipitation > 0
+    override fun isValid(location: Location) = mHighestPrecipitation != null
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_precipitation)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val unit = SettingsManager.getInstance(activity).getPrecipitationUnit(activity)
-        val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
-        keyLineList.add(
-            TrendRecyclerView.KeyLine(
-                Precipitation.PRECIPITATION_HALF_DAY_LIGHT.toFloat(),
-                unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_LIGHT),
-                activity.getString(R.string.precipitation_intensity_light),
-                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+        mHighestPrecipitation?.let {
+            val unit = SettingsManager.getInstance(activity).getPrecipitationUnit(activity)
+            val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
+            keyLineList.add(
+                TrendRecyclerView.KeyLine(
+                    Precipitation.PRECIPITATION_HALF_DAY_LIGHT.toFloat(),
+                    unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_LIGHT),
+                    activity.getString(R.string.precipitation_intensity_light),
+                    TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+                )
             )
-        )
-        keyLineList.add(
-            TrendRecyclerView.KeyLine(
-                Precipitation.PRECIPITATION_HALF_DAY_HEAVY.toFloat(),
-                unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_HEAVY),
-                activity.getString(R.string.precipitation_intensity_heavy),
-                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+            keyLineList.add(
+                TrendRecyclerView.KeyLine(
+                    Precipitation.PRECIPITATION_HALF_DAY_HEAVY.toFloat(),
+                    unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_HEAVY),
+                    activity.getString(R.string.precipitation_intensity_heavy),
+                    TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+                )
             )
-        )
-        keyLineList.add(
-            TrendRecyclerView.KeyLine(
-                -Precipitation.PRECIPITATION_HALF_DAY_LIGHT.toFloat(),
-                unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_LIGHT),
-                activity.getString(R.string.precipitation_intensity_light),
-                TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
+            keyLineList.add(
+                TrendRecyclerView.KeyLine(
+                    -Precipitation.PRECIPITATION_HALF_DAY_LIGHT.toFloat(),
+                    unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_LIGHT),
+                    activity.getString(R.string.precipitation_intensity_light),
+                    TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
+                )
             )
-        )
-        keyLineList.add(
-            TrendRecyclerView.KeyLine(
-                -Precipitation.PRECIPITATION_HALF_DAY_HEAVY.toFloat(),
-                unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_HEAVY),
-                activity.getString(R.string.precipitation_intensity_heavy),
-                TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
+            keyLineList.add(
+                TrendRecyclerView.KeyLine(
+                    -Precipitation.PRECIPITATION_HALF_DAY_HEAVY.toFloat(),
+                    unit.formatValue(activity, Precipitation.PRECIPITATION_HALF_DAY_HEAVY),
+                    activity.getString(R.string.precipitation_intensity_heavy),
+                    TrendRecyclerView.KeyLine.ContentPosition.BELOW_LINE
+                )
             )
-        )
-        host.setData(keyLineList, mHighestPrecipitation, -mHighestPrecipitation)
+            host.setData(keyLineList, it, -it)
+        }
     }
 }

@@ -48,7 +48,7 @@ class HourlyPrecipitationAdapter(
 ) : AbsHourlyTrendAdapter(activity, location) {
     private val mResourceProvider: ResourceProvider = provider
     private val mPrecipitationUnit: PrecipitationUnit = unit
-    private var mHighestPrecipitation: Float = 0f
+    private var mHighestPrecipitation: Float? = null
 
     inner class ViewHolder(itemView: View) : AbsHourlyTrendAdapter.ViewHolder(itemView) {
         private val mPolylineAndHistogramView = PolylineAndHistogramView(itemView.context)
@@ -121,11 +121,12 @@ class HourlyPrecipitationAdapter(
     }
 
     init {
-        mHighestPrecipitation = (
-            location.weather!!.nextHourlyForecast
-                .mapNotNull { it.precipitation?.total }
-                .maxOrNull() ?: 0.0
-            ).toFloat()
+        location.weather!!.nextHourlyForecast
+            .mapNotNull { it.precipitation?.total }
+            .maxOrNull()
+            ?.let {
+                mHighestPrecipitation = it.toFloat()
+            }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -142,7 +143,7 @@ class HourlyPrecipitationAdapter(
     }
 
     override fun isValid(location: Location): Boolean {
-        return mHighestPrecipitation > 0
+        return mHighestPrecipitation != null
     }
 
     override fun getDisplayName(context: Context): String {
@@ -150,24 +151,26 @@ class HourlyPrecipitationAdapter(
     }
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        val unit = SettingsManager.getInstance(activity).getPrecipitationUnit(activity)
-        val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
-        keyLineList.add(
-            TrendRecyclerView.KeyLine(
-                Precipitation.PRECIPITATION_HOURLY_LIGHT.toFloat(),
-                activity.getString(R.string.precipitation_intensity_light),
-                unit.formatValue(activity, Precipitation.PRECIPITATION_HOURLY_LIGHT),
-                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+        mHighestPrecipitation?.let {
+            val unit = SettingsManager.getInstance(activity).getPrecipitationUnit(activity)
+            val keyLineList = mutableListOf<TrendRecyclerView.KeyLine>()
+            keyLineList.add(
+                TrendRecyclerView.KeyLine(
+                    Precipitation.PRECIPITATION_HOURLY_LIGHT.toFloat(),
+                    activity.getString(R.string.precipitation_intensity_light),
+                    unit.formatValue(activity, Precipitation.PRECIPITATION_HOURLY_LIGHT),
+                    TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+                )
             )
-        )
-        keyLineList.add(
-            TrendRecyclerView.KeyLine(
-                Precipitation.PRECIPITATION_HOURLY_HEAVY.toFloat(),
-                activity.getString(R.string.precipitation_intensity_heavy),
-                unit.formatValue(activity, Precipitation.PRECIPITATION_HOURLY_HEAVY),
-                TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+            keyLineList.add(
+                TrendRecyclerView.KeyLine(
+                    Precipitation.PRECIPITATION_HOURLY_HEAVY.toFloat(),
+                    activity.getString(R.string.precipitation_intensity_heavy),
+                    unit.formatValue(activity, Precipitation.PRECIPITATION_HOURLY_HEAVY),
+                    TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
+                )
             )
-        )
-        host.setData(keyLineList, mHighestPrecipitation, 0f)
+            host.setData(keyLineList, it, 0f)
+        }
     }
 }
