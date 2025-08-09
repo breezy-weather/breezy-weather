@@ -216,7 +216,7 @@
     <string name="settings_units_pressure">Unidade de pressão</string>
     <string name="settings_units_speed">Unidade de velocidade</string>
     <string name="settings_notifications_section_forecast">Previsão</string>
-    <string name="settings_modules_notification_temp_icon_switch">Temperatura como ícone da barra de status</string>
+    <string name="settings_modules_notification_temp_icon_switch">Temperatura no ícone da barra de status</string>
     <string name="settings_source_default_value">Padrão (inalterado)</string>
     <string name="location_service_native">API nativa</string>
     <string name="settings_automatic">Automático</string>
@@ -473,7 +473,7 @@
     <string name="air_quality_co_full">Monóxido de carbono (%s)</string>
     <string name="dialog_permissions_notification_content">Toque aqui para ativar as notificações sobre alertas meteorológicos ou decida mais tarde nas Configurações.</string>
     <string name="dialog_permissions_notification_title">Mantenha-se informado</string>
-    <string name="settings_modules_live_wallpaper_error">Não foi possível abrir o seletor de plano de fundo. Você ainda pode ativar o plano de fundo do %s escolhendo “Live Wallpaper” no seletor de plano de fundo da tela inicial.</string>
+    <string name="settings_modules_live_wallpaper_error">Não foi possível abrir o seletor de plano de fundo. Você ainda pode ativar o plano de fundo do %s escolhendo “Plano de fundo animado” no seletor de plano de fundo da tela inicial.</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Nevoeiro depositante de geada</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Tempestade com granizo forte</string>
     <string name="action_show_errors">Toque para ver os detalhes</string>
@@ -900,4 +900,5 @@
     <string name="cloud_cover_scale">Escala de nebulosidade</string>
     <string name="content_provider_permission_label">Ler dados do Breezy Weather</string>
     <string name="content_provider_permission_description">obter informações do clima a partir do Breezy Weather, incluindo as coordenadas das suas localizações, como a sua localização atual se você a adicionou</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">Notificante de atualização de localização do %s</string>
 </resources>
