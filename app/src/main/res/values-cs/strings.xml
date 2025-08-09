@@ -854,4 +854,5 @@
     <string name="content_provider_permission_label">Číst data Breezy Weather</string>
     <string name="content_provider_permission_description">získat informace o počasí z Breezy Weather, včetně souřadnic vašich umístění, jako je vaše aktuální umístění, pokud jste jej přidali</string>
     <string name="broadcast_source_breezy_weather_update_notifier">Oznamování aktualizací umístění %s</string>
+    <string name="action_add_as_location">Přidat jako umístění</string>
 </resources>
