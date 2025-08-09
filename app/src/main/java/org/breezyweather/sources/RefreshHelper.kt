@@ -300,7 +300,12 @@ class RefreshHelper @Inject constructor(
                             defaultReverseGeocodingSource,
                             locationWithUpdatedCoordinates,
                             context
-                        ).also { locationRepository.update(it) }
+                        ).copy(
+                            // We failed to refresh, so retry reverse geocoding next time
+                            needsGeocodeRefresh = true
+                        ).also {
+                            locationRepository.update(it)
+                        }
                     } catch (_: Throwable) {
                         /**
                          * Returns the original location
