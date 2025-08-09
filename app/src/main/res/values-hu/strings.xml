@@ -841,4 +841,5 @@
     <string name="cloud_cover_scale">Felhőtakaró-skála</string>
     <string name="content_provider_permission_label">Breezy Weather adatainak elolvasása</string>
     <string name="content_provider_permission_description">időjárási információkat kaphat a Breezy Weather-től, beleértve a helyszínek koordinátáit, például a jelenlegi helyszínéhez tartozót, ha azt hozzáadta</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">Frissítési értesítő a helyszínhez: %s</string>
 </resources>
