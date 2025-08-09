@@ -69,7 +69,7 @@
     <string name="pollen_tree">Alberi</string>
     <string name="daily_forecast">Previsioni giornaliere</string>
     <string name="hourly_forecast">Previsioni orarie</string>
-    <string name="air_quality">Qualità dell’aria</string>
+    <string name="air_quality">Qualità dell\'aria</string>
     <string name="pollen">Polline</string>
     <string name="ephemeris">Sole e Luna</string>
     <string name="action_next">Avanti</string>
@@ -383,9 +383,9 @@
     <string name="settings_main_cards_other_element_animations_switch">Animazioni di altri elementi</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notifica per le previsioni del giorno successivo</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Orario di notifica per le previsioni del giorno successivo</string>
-    <string name="settings_modules">Widgets &amp; sfondo animato</string>
-    <string name="settings_modules_live_wallpaper_summary">Imposta un’animazione meteo come sfondo</string>
-    <string name="settings_modules_section_widgets_in_use">Widgets in uso</string>
+    <string name="settings_modules">Moduli esterni</string>
+    <string name="settings_modules_live_wallpaper_summary">Imposta un\'animazione meteo come sfondo</string>
+    <string name="settings_modules_section_widgets_in_use">Widget in uso</string>
     <string name="settings_modules_configure_widget_summary">Configura questo widget</string>
     <string name="settings_modules_section_notification_widget">Widget di notifica</string>
     <string name="settings_modules_notification_widget_title">Widget di notifica</string>
@@ -436,7 +436,7 @@
     <string name="settings_background_updates_dont_kill_my_app_title">Istruzioni specifiche del produttore</string>
     <string name="settings_background_updates_dont_kill_my_app_summary">Alcuni produttori hanno restrizioni aggiuntive per le app che interrompono i servizi in background. Il sito web Don’t kill my app! ha informazioni su come risolvere il problema.</string>
     <string name="settings_notifications_forecast_time_today_title">Orario di notifica per le previsioni odierne</string>
-    <string name="settings_modules_summary">Imposta lo sfondo, configura i widget utilizzati, widget di notifica</string>
+    <string name="settings_modules_summary">Dati di widget, widget delle notifiche e sfondo condivisi con altre app</string>
     <string name="settings_modules_week_icon_mode_title">Icona da visualizzare nelle viste settimanali</string>
     <string name="settings_location_access_background_title">Accesso alla propria posizione in background</string>
     <string name="settings_location">Geolocalizzazione</string>
@@ -508,7 +508,7 @@
     <string name="common_weather_text_drizzle_freezing_light">Pioggerella ghiacciata leggera</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Pioggerella ghiacciata intensa</string>
     <string name="common_weather_text_sand_storm">Tempesta di sabbia</string>
-    <string name="settings_modules_live_wallpaper_error">Impossibile avviare il selettore di sfondi. Puoi comunque attivare lo sfondo %s scegliendo “Sfondi Animati” nel selettore di sfondi della schermata iniziale.</string>
+    <string name="settings_modules_live_wallpaper_error">Impossibile avviare il selettore di sfondi. Puoi comunque attivare lo sfondo %s scegliendo “Sfondi animati” nel selettore di sfondi della schermata iniziale.</string>
     <string name="about_contact">Contatto</string>
     <string name="common_weather_text_rain_light">Pioggia leggera</string>
     <string name="about_privacy_policy">Informativa sulla privacy</string>
@@ -677,7 +677,7 @@
     <string name="pollen_acer">Acero</string>
     <string name="pollen_alternaria">Alternaria</string>
     <string name="settings_notifications_permission">Permesso per le notifiche richiesto</string>
-    <string name="settings_modules_notification_permission_summary">Necessario per mostrare il widget notifiche. %s</string>
+    <string name="settings_modules_notification_permission_summary">Necessario per mostrare il widget di notifica. %s</string>
     <string name="settings_debug_notification_permission">Necessario per notificare i log di crash e gli aggiornamenti meteo falliti. %s</string>
     <string name="action_grant_permission">Premi per garantire il permesso.</string>
     <string name="settings_notifications_permission_summary">Necessario per notificare allerte, previsioni e aggiornamenti dell’applicazione. %s</string>
@@ -706,8 +706,8 @@
     <string name="action_open_in_other_app_description">Apri questa posizione in un’altra app</string>
     <string name="action_open_in_other_app">Apri in un’altra app</string>
     <string name="ephemeris_about">Informazioni su alba e tramonto</string>
-    <string name="ephemeris_about_rise">L’alba è quando il sole o la luna appaiono completamente sopra l’orizzonte.</string>
-    <string name="ephemeris_about_set">Il tramonto è quando il sole o la luna scompaiono completamente sotto l’orizzonte.</string>
+    <string name="ephemeris_about_rise">L\'alba è quando il sole o la luna appaiono completamente sopra l\'orizzonte.</string>
+    <string name="ephemeris_about_set">Il tramonto è quando il sole o la luna scompaiono completamente sotto l\'orizzonte.</string>
     <string name="daily_summary">Riepilogo giornaliero</string>
     <string name="chart_no_daily_data">Nessun dato disponibile per questo giorno.</string>
     <string name="chart_no_hourly_data">Nessun dato orario disponibile.</string>
@@ -751,4 +751,5 @@
     <string name="unit_mum_voice">Micrometri</string>
     <string name="unit_mum">µm</string>
     <string name="unit_bft_display_name">Beaufort</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">Notifica di aggiornamento posizione %s</string>
 </resources>
