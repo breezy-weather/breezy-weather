@@ -750,6 +750,7 @@
     <string name="widget_subtitle_data_feels_like">Température ressentie</string>
     <string name="widget_subtitle_data_custom">Personnalisé</string>
     <string name="action_add_new_location">Ajouter un nouvel emplacement</string>
+    <string name="action_add_as_location">Ajouter comme emplacement</string>
     <string name="action_edit_location">Modifier cet emplacement</string>
     <string name="action_open_in_other_app">Ouvrir dans une autre app</string>
     <string name="action_open_in_other_app_description">Ouvrir cet emplacement dans une autre application</string>

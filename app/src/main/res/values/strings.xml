@@ -467,6 +467,8 @@
     <string name="action_search">Search</string>
     <string name="action_add_current_location">Add current location</string>
     <string name="action_add_new_location">Add a new location</string>
+    <!-- Label shown when sharing coordinates from a maps app to Breezy Weather -->
+    <string name="action_add_as_location">Add as location</string>
     <string name="action_add_debug_location" translatable="false">Add debug location</string>
     <string name="action_edit_location">Edit this location</string>
     <string name="action_open_in_other_app">Open in another app</string>

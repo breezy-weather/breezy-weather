@@ -403,7 +403,7 @@ fun SecondarySourcesPreference(
         SourceFeature.NORMALS
     )
 
-    val compatibleReverseGeocodingSources = if (location.isCurrentPosition) {
+    val compatibleReverseGeocodingSources = if (location.isCurrentPosition || location.needsGeocodeRefresh) {
         getCompatibleSources(
             sourceManager,
             context,
@@ -754,7 +754,7 @@ fun SecondarySourcesPreference(
                     normalsSource.value = sourceId
                     hasChangedASource.value = true
                 }
-                if (location.isCurrentPosition) {
+                if (location.isCurrentPosition || location.needsGeocodeRefresh) {
                     SourceViewWithContinents(
                         title = stringResource(SourceFeature.REVERSE_GEOCODING.resourceName),
                         selectedKey = reverseGeocodingSource.value,

@@ -177,7 +177,10 @@ fun SourceManager.getBestSourceForFeatureOrDefault(
     location: Location,
     feature: SourceFeature,
 ): FeatureSource? {
-    return if (feature != SourceFeature.REVERSE_GEOCODING || location.isCurrentPosition) {
+    return if (feature != SourceFeature.REVERSE_GEOCODING ||
+        location.isCurrentPosition ||
+        location.needsGeocodeRefresh
+    ) {
         getBestSourceForFeature(location, feature)
             ?: getDefaultSourceForFeature(location, feature)
     } else {

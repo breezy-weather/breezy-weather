@@ -191,12 +191,12 @@ class RefreshHelper @Inject constructor(
         }
 
         val currentErrors = mutableListOf<RefreshError>()
-        val locationGeocoded = if (!location.isCurrentPosition) {
-            location
-        } else {
+
+        // STEP 1 - Update coordinates if current position
+        val locationWithUpdatedCoordinates = if (location.isCurrentPosition) {
             val coordinatesChanged = location.latitude != currentLocationStore.lastKnownLatitude.toDouble() ||
                 location.longitude != currentLocationStore.lastKnownLongitude.toDouble()
-            val locationWithUpdatedCoordinates = if (coordinatesChanged) {
+            if (coordinatesChanged) {
                 location.copy(
                     latitude = currentLocationStore.lastKnownLatitude.toDouble(),
                     longitude = currentLocationStore.lastKnownLongitude.toDouble(),
@@ -223,106 +223,110 @@ class RefreshHelper @Inject constructor(
             } else {
                 location
             }
+        } else {
+            location
+        }
 
-            if (locationWithUpdatedCoordinates.needsGeocodeRefresh) {
-                val reverseGeocodingService = sourceManager.getReverseGeocodingSourceOrDefault(
-                    location.reverseGeocodingSource ?: BuildConfig.DEFAULT_GEOCODING_SOURCE
-                )
-                try {
-                    // Getting the address for this
-                    requestReverseGeocoding(reverseGeocodingService, locationWithUpdatedCoordinates, context).let {
-                        if (
-                            SphericalUtil.computeDistanceBetween(
-                                LatLng(it.latitude, it.longitude),
-                                LatLng(location.latitude, location.longitude)
-                            ) > REVERSE_GEOCODING_DISTANCE_LIMIT
-                        ) {
-                            LogHelper.log(
-                                msg = "Nearest location found is too far away from the user-provided location"
-                            )
-                            currentErrors.add(
-                                RefreshError(
-                                    RefreshErrorType.REVERSE_GEOCODING_FAILED,
-                                    reverseGeocodingService.name,
-                                    SourceFeature.REVERSE_GEOCODING
-                                )
-                            )
-                            location
-                        } else if (reverseGeocodingService.id != BuildConfig.DEFAULT_GEOCODING_SOURCE &&
-                            (it.countryCode.isNullOrEmpty() || !it.countryCode!!.matches(Regex("[A-Za-z]{2}")))
-                        ) {
-                            /**
-                             * If country code is missing or invalid, don't accept the result and reverse to
-                             * previous valid location
-                             * Exception: Natural Earth is allowed to send an empty countryCode
-                             */
-                            LogHelper.log(
-                                msg = "Found invalid country code during reverse geocoding: ${it.countryCode}"
-                            )
-                            currentErrors.add(
-                                RefreshError(
-                                    RefreshErrorType.REVERSE_GEOCODING_FAILED,
-                                    reverseGeocodingService.name,
-                                    SourceFeature.REVERSE_GEOCODING
-                                )
-                            )
-                            location
-                        } else {
-                            locationRepository.update(it)
-                            it
-                        }
-                    }
-                } catch (e: Throwable) {
-                    currentErrors.add(
-                        RefreshError(
-                            RefreshErrorType.getTypeFromThrowable(
-                                context,
-                                e,
-                                RefreshErrorType.REVERSE_GEOCODING_FAILED
-                            ),
-                            reverseGeocodingService.name,
-                            SourceFeature.REVERSE_GEOCODING
+        // STEP 2 - Add address info if needed
+        val locationGeocoded = if (locationWithUpdatedCoordinates.needsGeocodeRefresh) {
+            val reverseGeocodingService = sourceManager.getReverseGeocodingSourceOrDefault(
+                location.reverseGeocodingSource ?: BuildConfig.DEFAULT_GEOCODING_SOURCE
+            )
+            try {
+                // Getting the address for this
+                requestReverseGeocoding(reverseGeocodingService, locationWithUpdatedCoordinates, context).let {
+                    if (
+                        SphericalUtil.computeDistanceBetween(
+                            LatLng(it.latitude, it.longitude),
+                            LatLng(location.latitude, location.longitude)
+                        ) > REVERSE_GEOCODING_DISTANCE_LIMIT
+                    ) {
+                        LogHelper.log(
+                            msg = "Nearest location found is too far away from the user-provided location"
                         )
-                    )
-
-                    // Fallback to offline reverse geocoding
-                    if (reverseGeocodingService.id != BuildConfig.DEFAULT_GEOCODING_SOURCE) {
-                        val defaultReverseGeocodingSource = sourceManager.getReverseGeocodingSourceOrDefault(
-                            BuildConfig.DEFAULT_GEOCODING_SOURCE
+                        currentErrors.add(
+                            RefreshError(
+                                RefreshErrorType.REVERSE_GEOCODING_FAILED,
+                                reverseGeocodingService.name,
+                                SourceFeature.REVERSE_GEOCODING
+                            )
                         )
-                        try {
-                            // Getting the address for this from the fallback reverse geocoding source
-                            requestReverseGeocoding(
-                                defaultReverseGeocodingSource,
-                                locationWithUpdatedCoordinates,
-                                context
-                            ).also { locationRepository.update(it) }
-                        } catch (_: Throwable) {
-                            /**
-                             * Returns the original location
-                             * Previously, we used to return the new coordinates without the reverse geocoding,
-                             * leading to issues when reverse geocoding fails (because the mandatory countryCode
-                             * -for some sources- would be missing)
-                             * However, if both the reverse geocoding source + the offline fallback reverse geocoding
-                             * source are failing, it safes to assume that the longitude and latitude are completely
-                             * junky and should be discarded
-                             */
-                            location
-                        }
+                        location
+                    } else if (reverseGeocodingService.id != BuildConfig.DEFAULT_GEOCODING_SOURCE &&
+                        !it.hasValidCountryCode
+                    ) {
+                        /**
+                         * If country code is missing or invalid, don't accept the result and reverse to
+                         * previous valid location
+                         * Exception: The default geocoding source is allowed to send an empty countryCode
+                         */
+                        LogHelper.log(
+                            msg = "Found invalid country code during reverse geocoding: ${it.countryCode}"
+                        )
+                        currentErrors.add(
+                            RefreshError(
+                                RefreshErrorType.REVERSE_GEOCODING_FAILED,
+                                reverseGeocodingService.name,
+                                SourceFeature.REVERSE_GEOCODING
+                            )
+                        )
+                        location
                     } else {
+                        locationRepository.update(it)
+                        it
+                    }
+                }
+            } catch (e: Throwable) {
+                currentErrors.add(
+                    RefreshError(
+                        RefreshErrorType.getTypeFromThrowable(
+                            context,
+                            e,
+                            RefreshErrorType.REVERSE_GEOCODING_FAILED
+                        ),
+                        reverseGeocodingService.name,
+                        SourceFeature.REVERSE_GEOCODING
+                    )
+                )
+
+                // Fallback to offline reverse geocoding
+                if (reverseGeocodingService.id != BuildConfig.DEFAULT_GEOCODING_SOURCE) {
+                    val defaultReverseGeocodingSource = sourceManager.getReverseGeocodingSourceOrDefault(
+                        BuildConfig.DEFAULT_GEOCODING_SOURCE
+                    )
+                    try {
+                        // Getting the address for this from the fallback reverse geocoding source
+                        requestReverseGeocoding(
+                            defaultReverseGeocodingSource,
+                            locationWithUpdatedCoordinates,
+                            context
+                        ).also { locationRepository.update(it) }
+                    } catch (_: Throwable) {
                         /**
                          * Returns the original location
-                         * Same comment as above
+                         * Previously, we used to return the new coordinates without the reverse geocoding,
+                         * leading to issues when reverse geocoding fails (because the mandatory countryCode
+                         * -for some sources- would be missing)
+                         * However, if both the reverse geocoding source + the offline fallback reverse geocoding
+                         * source are failing, it safes to assume that the longitude and latitude are completely
+                         * junky and should be discarded
                          */
                         location
                     }
+                } else {
+                    /**
+                     * Returns the original location
+                     * Same comment as above
+                     */
+                    location
                 }
-            } else {
-                // If no need for reverse geocoding, just return the current location which already has the info
-                locationWithUpdatedCoordinates // Same as "location"
             }
+        } else {
+            // If no need for reverse geocoding, just return the current location which already has the info
+            locationWithUpdatedCoordinates // Same as "location"
         }
 
+        // STEP 3 - Add timezone if missing
         val locationWithTimeZone = if (locationGeocoded.timeZone.id == "GMT") {
             locationGeocoded.copy(
                 timeZone = getTimeZoneForLocation(context, locationGeocoded)
@@ -334,7 +338,7 @@ class RefreshHelper @Inject constructor(
         return LocationResult(locationWithTimeZone, currentErrors)
     }
 
-    private suspend fun getTimeZoneForLocation(context: Context, location: Location): TimeZone {
+    suspend fun getTimeZoneForLocation(context: Context, location: Location): TimeZone {
         return sourceManager
             .getTimeZoneSource()
             .requestTimezone(context, location)
@@ -343,7 +347,7 @@ class RefreshHelper @Inject constructor(
             }
     }
 
-    private suspend fun requestReverseGeocoding(
+    suspend fun requestReverseGeocoding(
         reverseGeocodingService: ReverseGeocodingSource,
         currentLocation: Location,
         context: Context,

@@ -50,6 +50,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
@@ -183,6 +184,8 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
 
         val dialogChooseDebugLocationOpenState = viewModel.dialogChooseDebugLocationOpen.collectAsState()
 
+        val locationLoadingState = viewModel.locationListLoading.collectAsState()
+
         /*
          * We should add a scroll behavior to make the top bar change color when scrolling, but
          * as we mix ComposeView and XML views, this leads to stuttering in scrolling.
@@ -235,7 +238,10 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                             FloatingActionButton(
                                 containerColor = MaterialTheme.colorScheme.tertiary,
                                 onClick = {
-                                    viewModel.openChooseWeatherSourcesDialog(null)
+                                    viewModel.openChooseWeatherSourcesDialog(
+                                        Location(isCurrentPosition = true)
+                                            .applyDefaultPreset((requireActivity() as MainActivity).sourceManager)
+                                    )
                                 }
                             ) {
                                 Icon(
@@ -273,6 +279,17 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                             end = dimensionResource(R.dimen.normal_margin)
                         )
                 ) {
+                    if (locationLoadingState.value) {
+                        LinearProgressIndicator(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = dimensionResource(R.dimen.small_margin))
+                        )
+                    } else {
+                        Spacer(
+                            modifier = Modifier.height(4.dp + dimensionResource(R.dimen.small_margin))
+                        )
+                    }
                     var hasNotificationPermission: Boolean? = null
                     if (!notificationDismissed || !notificationAppUpdateCheckDismissed) {
                         val notificationPermissionState = rememberMultiplePermissionsState(
@@ -387,7 +404,10 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
                         }
                         OutlinedButton(
                             onClick = {
-                                viewModel.openChooseWeatherSourcesDialog(null)
+                                viewModel.openChooseWeatherSourcesDialog(
+                                    Location(isCurrentPosition = true)
+                                        .applyDefaultPreset((requireActivity() as MainActivity).sourceManager)
+                                )
                             }
                         ) {
                             Icon(
@@ -429,44 +449,40 @@ open class ManagementFragment : MainModuleFragment(), TouchReactor {
         }
 
         if (dialogChooseWeatherSourcesOpenState.value) {
-            SecondarySourcesPreference(
-                sourceManager = (requireActivity() as MainActivity).sourceManager,
-                location = selectedLocationState.value
-                    ?: Location(isCurrentPosition = true)
-                        .applyDefaultPreset((requireActivity() as MainActivity).sourceManager),
-                onClose = { newLocation: Location? ->
-                    viewModel.closeChooseWeatherSourcesDialog()
+            selectedLocationState.value?.let {
+                SecondarySourcesPreference(
+                    sourceManager = (requireActivity() as MainActivity).sourceManager,
+                    location = it,
+                    onClose = { newLocation: Location? ->
+                        viewModel.closeChooseWeatherSourcesDialog()
 
-                    if (newLocation != null) {
-                        // If coming from an existing location
-                        if (selectedLocationState.value != null) {
-                            // If main source was changed, we need to check first that it doesn't create
-                            // a duplicate
-                            if (selectedLocationState.value!!.forecastSource != newLocation.forecastSource) {
+                        if (newLocation != null) {
+                            if (viewModel.locationExists(it)) { // Updating
+                                // If main source was changed, we need to check first that it doesn't create
+                                // a duplicate
+                                if (it.forecastSource != newLocation.forecastSource &&
+                                    viewModel.locationExists(newLocation)
+                                ) {
+                                    SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
+                                } else {
+                                    viewModel.updateLocation(newLocation, it)
+                                    SnackbarHelper.showSnackbar(getString(R.string.location_message_updated))
+                                }
+                            } else { // Adding new location
                                 if (viewModel.locationExists(newLocation)) {
                                     SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
                                 } else {
-                                    viewModel.updateLocation(newLocation, selectedLocationState.value!!)
-                                    SnackbarHelper.showSnackbar(getString(R.string.location_message_updated))
+                                    viewModel.addLocation(newLocation, null)
+                                    SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
                                 }
-                            } else {
-                                viewModel.updateLocation(newLocation, selectedLocationState.value!!)
-                                SnackbarHelper.showSnackbar(getString(R.string.location_message_updated))
-                            }
-                        } else {
-                            if (viewModel.locationExists(newLocation)) {
-                                SnackbarHelper.showSnackbar(getString(R.string.location_message_already_exists))
-                            } else {
-                                viewModel.addLocation(newLocation, null)
-                                SnackbarHelper.showSnackbar(getString(R.string.location_message_added))
                             }
                         }
+                    },
+                    locationExists = { loc: Location ->
+                        viewModel.locationExists(loc)
                     }
-                },
-                locationExists = { loc: Location ->
-                    viewModel.locationExists(loc)
-                }
-            )
+                )
+            }
         }
 
         if (BreezyWeather.instance.debugMode && dialogChooseDebugLocationOpenState.value) {

@@ -17,7 +17,6 @@
 package org.breezyweather.ui.main
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
@@ -81,6 +80,7 @@ import org.breezyweather.common.extensions.isLandscape
 import org.breezyweather.common.extensions.isRtl
 import org.breezyweather.common.snackbar.SnackbarContainer
 import org.breezyweather.common.utils.helpers.IntentHelper
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.common.utils.helpers.SnackbarHelper
 import org.breezyweather.databinding.ActivityMainBinding
 import org.breezyweather.domain.settings.SettingsChangedMessage
@@ -124,6 +124,7 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
         const val ACTION_SHOW_ALERTS = "${BuildConfig.APPLICATION_ID}.ACTION_SHOW_ALERTS"
 
         const val ACTION_SHOW_DAILY_FORECAST = "${BuildConfig.APPLICATION_ID}.ACTION_SHOW_DAILY_FORECAST"
+        const val ACTION_VIEW = "android.intent.action.VIEW"
         const val KEY_DAILY_INDEX = "DAILY_INDEX"
 
         private const val TAG_FRAGMENT_HOME = "fragment_main"
@@ -745,22 +746,47 @@ class MainActivity : BreezyActivity(), HomeFragment.Callback, ManagementFragment
         val action = intent.action
         if (action.isNullOrEmpty()) return
         val formattedId = intent.getStringExtra(KEY_MAIN_ACTIVITY_LOCATION_FORMATTED_ID)
-        if (ACTION_SHOW_ALERTS == action) {
-            val alertId = intent.getStringExtra(KEY_MAIN_ACTIVITY_ALERT_ID)
-            if (!alertId.isNullOrEmpty()) {
-                IntentHelper.startAlertActivity(this, formattedId, alertId)
-            } else {
-                IntentHelper.startAlertActivity(this, formattedId)
+        when (action) {
+            ACTION_SHOW_ALERTS -> {
+                val alertId = intent.getStringExtra(KEY_MAIN_ACTIVITY_ALERT_ID)
+                if (!alertId.isNullOrEmpty()) {
+                    IntentHelper.startAlertActivity(this, formattedId, alertId)
+                } else {
+                    IntentHelper.startAlertActivity(this, formattedId)
+                }
             }
-            return
-        }
-        if (ACTION_SHOW_DAILY_FORECAST == action) {
-            val index = intent.getIntExtra(KEY_DAILY_INDEX, 0)
-            IntentHelper.startDailyWeatherActivity(this, formattedId, index)
-            return
-        }
-        if (ACTION_MANAGEMENT == action) {
-            setManagementFragmentVisibility(true)
+            ACTION_SHOW_DAILY_FORECAST -> {
+                val index = intent.getIntExtra(KEY_DAILY_INDEX, 0)
+                IntentHelper.startDailyWeatherActivity(this, formattedId, index)
+            }
+            ACTION_MANAGEMENT -> {
+                setManagementFragmentVisibility(true)
+            }
+            ACTION_VIEW -> {
+                val uri = intent.data
+                if (uri?.scheme.equals("geo", ignoreCase = true) && !uri?.schemeSpecificPart.isNullOrEmpty()) {
+                    if (BreezyWeather.instance.debugMode) {
+                        LogHelper.log(msg = "Geo URI found")
+                    }
+                    val regex = Regex(
+                        "^(?<lat>^[-+]?(?:[1-8]?\\d(?:\\.\\d+)?|90(?:\\.0+)?))\\s*,\\s*" +
+                            "(?<lng>[-+]?(?:180(?:\\.0+)?|(?:1[0-7]\\d|[1-9]?\\d)(?:\\.\\d+)?))(.*)$"
+                    )
+                    val matching = regex.find(uri.schemeSpecificPart!!)
+                    if (matching != null) {
+                        setManagementFragmentVisibility(true)
+                        viewModel.askToAddLocation(
+                            context = this,
+                            latitude = matching.groups[1]!!.value.toDouble(),
+                            longitude = matching.groups[2]!!.value.toDouble()
+                        )
+                    } else {
+                        if (BreezyWeather.instance.debugMode) {
+                            LogHelper.log(msg = "Geo URI malformed: ${uri.schemeSpecificPart}")
+                        }
+                    }
+                }
+            }
         }
     }
 

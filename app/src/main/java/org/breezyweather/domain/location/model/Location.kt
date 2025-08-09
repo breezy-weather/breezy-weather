@@ -18,7 +18,10 @@ package org.breezyweather.domain.location.model
 
 import android.content.Context
 import breezyweather.domain.location.model.Location
+import breezyweather.domain.location.model.Location.Companion.CLOSE_DISTANCE
 import breezyweather.domain.source.SourceFeature
+import com.google.maps.android.SphericalUtil
+import com.google.maps.android.model.LatLng
 import org.breezyweather.R
 import org.breezyweather.domain.weather.model.getRiseProgress
 import org.breezyweather.sources.SourceManager
@@ -39,7 +42,7 @@ fun Location.getPlace(context: Context, showCurrentPositionInPriority: Boolean =
     if (cityAndDistrict.isEmpty() && isCurrentPosition) {
         return context.getString(R.string.location_current)
     }
-    return ""
+    return "$latitude, $longitude"
 }
 
 val Location.isDaylight: Boolean
@@ -70,4 +73,12 @@ fun Location.applyDefaultPreset(sourceManager: SourceManager): Location {
         reverseGeocodingSource = sourceManager
             .getBestSourceForFeatureOrDefault(this, SourceFeature.REVERSE_GEOCODING)?.id
     )
+}
+
+fun Location.isCloseTo(location: Location): Boolean {
+    return cityId == location.cityId ||
+        SphericalUtil.computeDistanceBetween(
+            LatLng(location.latitude, location.longitude),
+            LatLng(latitude, longitude)
+        ) < CLOSE_DISTANCE
 }

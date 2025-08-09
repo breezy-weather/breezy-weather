@@ -22,11 +22,6 @@ import android.os.Parcelable
 import breezyweather.domain.weather.model.Weather
 import java.util.Locale
 import java.util.TimeZone
-import kotlin.math.atan2
-import kotlin.math.cos
-import kotlin.math.pow
-import kotlin.math.sin
-import kotlin.math.sqrt
 
 data class Location(
     val latitude: Double = 0.0,
@@ -275,30 +270,6 @@ data class Location(
             return builder.toString()
         }
 
-    fun isCloseTo(location: Location): Boolean {
-        if (cityId == location.cityId) {
-            return true
-        }
-        if (isEquals(admin1, location.admin1) &&
-            isEquals(admin2, location.admin2) &&
-            isEquals(admin3, location.admin3) &&
-            isEquals(admin4, location.admin4) &&
-            isEquals(city, location.city)
-        ) {
-            return true
-        }
-        return if (isEquals(admin1, location.admin1) &&
-            isEquals(admin2, location.admin2) &&
-            isEquals(admin3, location.admin3) &&
-            isEquals(admin4, location.admin4) &&
-            cityAndDistrict == location.cityAndDistrict
-        ) {
-            true
-        } else {
-            distance(this, location) < (20 * 1000)
-        }
-    }
-
     fun toLocationWithAddressInfo(
         currentLocale: Locale,
         locationAddressInfo: LocationAddressInfo,
@@ -376,9 +347,15 @@ data class Location(
         )
     }
 
+    val hasValidCountryCode: Boolean
+        get() {
+            return !countryCode.isNullOrEmpty() && countryCode.matches(Regex("[A-Za-z]{2}"))
+        }
+
     companion object {
 
         const val CURRENT_POSITION_ID = "CURRENT_POSITION"
+        const val CLOSE_DISTANCE = 5000 // 5 km
 
         fun isEquals(a: String?, b: String?): Boolean {
             return if (a.isNullOrEmpty() && b.isNullOrEmpty()) {
@@ -400,44 +377,6 @@ data class Location(
             override fun newArray(size: Int): Array<Location?> {
                 return arrayOfNulls(size)
             }
-        }
-
-        fun distance(location1: Location, location2: Location): Double {
-            return distance(
-                location1.latitude,
-                location1.longitude,
-                location2.latitude,
-                location2.longitude
-            )
-        }
-
-        /**
-         * Adapted from https://stackoverflow.com/questions/3694380/calculating-distance-between-two-points-using-latitude-longitude
-         *
-         * Calculate distance between two points in latitude and longitude taking
-         * into account height difference. Uses Haversine method as its base.
-         *
-         * @returns Distance in Meters
-         */
-        fun distance(
-            lat1: Double,
-            lon1: Double,
-            lat2: Double,
-            lon2: Double,
-        ): Double {
-            val r = 6371 // Radius of the earth
-
-            val latDistance = Math.toRadians(lat2 - lat1)
-            val lonDistance = Math.toRadians(lon2 - lon1)
-            val a = sin(latDistance / 2) *
-                sin(latDistance / 2) +
-                (cos(Math.toRadians(lat1)) * cos(Math.toRadians(lat2)) * sin(lonDistance / 2) * sin(lonDistance / 2))
-            val c = 2 * atan2(sqrt(a), sqrt(1 - a))
-            var distance = r * c * 1000 // convert to meters
-
-            distance = distance.pow(2.0)
-
-            return sqrt(distance)
         }
     }
 }
