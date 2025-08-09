@@ -368,10 +368,10 @@
     <string name="settings_units_pressure">Spiediena mērvienība</string>
     <string name="settings_main">Galvenais ekrāns</string>
     <string name="settings_notifications_section_forecast">Prognoze</string>
-    <string name="settings_modules_summary">Ekrāntapetes iestatīšana, izmantotos logrīku konfigurēšana, paziņojumu logrīks</string>
+    <string name="settings_modules_summary">Logrīku, paziņojumu logrīka, ekrāntapes datu kopīgošana ar citām lietotnēm</string>
     <string name="settings_notifications_forecast_today_title">Paziņojums par dienas prognozi</string>
     <string name="settings_notifications_alerts_title">Paziņojumi par bīstamu laikapstākļu brīdinājumiem</string>
-    <string name="settings_modules">Logrīki un dzīvās ekrāntapetes</string>
+    <string name="settings_modules">Ārējie moduļi</string>
     <string name="settings_notifications_forecast_time_today_title">Dienas prognozes paziņojuma laiks</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Nākamās dienas prognozes paziņojuma laiks</string>
     <string name="settings_modules_live_wallpaper_title">Dzīvās ekrāntapetes</string>
@@ -534,7 +534,7 @@
     <string name="null_data_text">N/A</string>
     <string name="pollen_tree">Koks</string>
     <string name="about_matrix">Matrix istaba</string>
-    <string name="settings_modules_broadcast_send_data_title">Nosūtīt datus uz %s</string>
+    <string name="settings_modules_broadcast_send_data_title">Nosūtīt %s datus</string>
     <string name="settings_color_app">Ievērot lietotnes</string>
     <string name="settings_debug_dump_crash_logs_saved">Avāriju žurnāli saglabāti</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Piesist, lai atvērtu</string>
@@ -837,4 +837,5 @@
     <string name="cloud_cover_scale">Mākoņainuma skala</string>
     <string name="content_provider_permission_label">Lasīt Breezy Weather datus</string>
     <string name="content_provider_permission_description">iegūt laikapstākļu informāciju no Breezy Weather, tajā skaitā Tavu atrašanās vietu koordinātas, piemēram, pašreizējo atrašanās vietu, ja tā ir pievienota</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">%s atrašanās vietas atjauninājumu paziņotājs</string>
 </resources>
