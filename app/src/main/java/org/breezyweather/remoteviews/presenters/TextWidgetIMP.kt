@@ -19,6 +19,7 @@ package org.breezyweather.remoteviews.presenters
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
+import android.os.Build
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
@@ -42,6 +43,7 @@ import org.breezyweather.domain.weather.model.getName
 import org.breezyweather.domain.weather.model.getShortDescription
 import org.breezyweather.remoteviews.Widgets
 import java.util.Date
+import kotlin.math.roundToInt
 
 object TextWidgetIMP : AbstractRemoteViewsPresenter() {
 
@@ -158,6 +160,9 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
                     setTextViewTextSize(R.id.widget_text_temperature, TypedValue.COMPLEX_UNIT_PX, temperatureSize)
                 }
                 setTextViewTextSize(R.id.widget_text_subtitle, TypedValue.COMPLEX_UNIT_PX, contentSize)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    setInt(R.id.widget_text_subtitle, "setLineHeight", contentSize.roundToInt())
+                }
             }
         }
         setOnClickPendingIntent(context, views, location)

@@ -20,6 +20,7 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
 import android.graphics.Color
+import android.os.Build
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
@@ -36,6 +37,7 @@ import org.breezyweather.remoteviews.Widgets
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.ResourcesProviderFactory
 import java.util.Date
+import kotlin.math.roundToInt
 
 object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
 
@@ -188,6 +190,9 @@ object ClockDayHorizontalWidgetIMP : AbstractRemoteViewsPresenter() {
                 setTextViewTextSize(R.id.widget_clock_day_title, TypedValue.COMPLEX_UNIT_PX, contentSize)
                 setTextViewTextSize(R.id.widget_clock_day_alternate_calendar, TypedValue.COMPLEX_UNIT_PX, contentSize)
                 setTextViewTextSize(R.id.widget_clock_day_subtitle, TypedValue.COMPLEX_UNIT_PX, contentSize)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    setInt(R.id.widget_clock_day_subtitle, "setLineHeight", contentSize.roundToInt())
+                }
             }
         }
         if (color.showCard) {

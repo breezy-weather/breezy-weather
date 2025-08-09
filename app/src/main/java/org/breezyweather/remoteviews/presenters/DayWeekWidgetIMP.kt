@@ -295,6 +295,9 @@ object DayWeekWidgetIMP : AbstractRemoteViewsPresenter() {
                 setTextViewTextSize(R.id.widget_day_week_title, TypedValue.COMPLEX_UNIT_PX, contentSize)
                 setTextViewTextSize(R.id.widget_day_week_subtitle, TypedValue.COMPLEX_UNIT_PX, contentSize)
                 setTextViewTextSize(R.id.widget_day_week_time, TypedValue.COMPLEX_UNIT_PX, timeSize)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    setInt(R.id.widget_day_week_subtitle, "setLineHeight", contentSize.roundToInt())
+                }
             }
         }
         views.setViewVisibility(R.id.widget_day_week_time, if (hideSubtitle) View.GONE else View.VISIBLE)
