@@ -848,6 +848,6 @@
     <string name="common_weather_text_mostly_cloudy">Stark bewölkt</string>
     <string name="visibility_scale">Sichtbarkeitsskala</string>
     <string name="cloud_cover_scale">Wolkenbedeckungsskala</string>
-    <string name="content_provider_permission_description">Wetterinformationen von Breezy Weather abrufen, einschließlich der Koordinaten deiner Standorte, z. B. Deines aktuellen Standorts, wenn du diesen hinzugefügt hast</string>
+    <string name="content_provider_permission_description">Wetterinformationen von Breezy Weather abrufen, einschließlich der Koordinaten deiner Standorte, z. B. deines aktuellen Standorts, wenn du diesen hinzugefügt hast</string>
     <string name="content_provider_permission_label">Breezy Weather Daten lesen</string>
 </resources>
