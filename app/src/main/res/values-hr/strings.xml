@@ -203,6 +203,7 @@
     <string name="settings_icon_packs_weather_icon_light">Svijetla ikona</string>
     <string name="dialog_permissions_location_background_title">Pristup lokaciji u pozadini</string>
     <string name="temperature_feels_like">Subjektivni osjećaj</string>
+    <string name="temperature_feels_like_with_unit">Subjektivni osjećaj %s</string>
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="settings_notifications">Obavijesti</string>
     <string name="widget_style_rectangle">Pravokutnik</string>
@@ -554,7 +555,6 @@
     <string name="uv_index_short">UV indeks</string>
     <string name="visibility_short">Vidljivost</string>
     <string name="pressure_short">Tlak</string>
-    <string name="temperature_feels_like_short">Subjektivni osjećaj</string>
     <string name="cloud_cover_short">Oblačnost</string>
     <string name="ceiling_short">Visina oblaka</string>
     <string name="settings_weather_sources_default_source">Zadani izvor za nove lokacije</string>

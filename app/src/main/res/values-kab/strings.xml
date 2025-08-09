@@ -46,6 +46,7 @@
     <string name="temperature">Taẓɣelt</string>
     <string name="daily_tomorrow_short">Azk</string>
     <string name="temperature_feels_like">Ad s-tiniḍ</string>
+    <string name="temperature_feels_like_with_unit">Ad s-tiniḍ %s</string>
     <string name="wind_strength_0">Yerked</string>
     <string name="temperature_normal_short">Amagnu</string>
     <string name="sunshine_duration">Isragen n yiṭij</string>
@@ -85,7 +86,6 @@
     <string name="pollen_level_0">Ulac</string>
     <string name="settings_enabled">Urmid</string>
     <string name="settings_automatic">Awurman</string>
-    <string name="temperature_feels_like_short">Ad s-tiniḍ</string>
     <string name="temperature_average_short">Talemmast</string>
     <string name="pollen">Adqis</string>
     <string name="pollen_tree">Aseklu</string>

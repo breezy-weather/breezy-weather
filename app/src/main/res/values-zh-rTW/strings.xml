@@ -19,6 +19,7 @@
     <string name="daytime">白天</string>
     <string name="nighttime">晚上</string>
     <string name="temperature_feels_like">體感溫度</string>
+    <string name="temperature_feels_like_with_unit">體感溫度 %s</string>
     <string name="settings_follow_system">跟隨系統</string>
     <string name="pressure">氣壓</string>
     <string name="visibility">能見度</string>
@@ -555,7 +556,6 @@
     <string name="location_search_change_source">變更位置搜尋來源</string>
     <string name="location_search_source">位置搜尋來源</string>
     <string name="settings_weather_source_none">無</string>
-    <string name="temperature_feels_like_short">體感</string>
     <string name="dew_point_short">露點</string>
     <string name="cloud_cover_short">雲量</string>
     <string name="ceiling_short">雲高</string>

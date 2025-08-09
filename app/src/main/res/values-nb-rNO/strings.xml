@@ -24,6 +24,7 @@
     <string name="temperature">Temperatur</string>
     <string name="precipitation_nowcasting">Nedbør minutt for minutt</string>
     <string name="temperature_feels_like">Føles som</string>
+    <string name="temperature_feels_like_with_unit">Føles som %s</string>
     <string name="air_quality">Luftkvalitet</string>
     <string name="ephemeris">Sol og måne</string>
     <string name="temperature_apparent">Tilsynelatende</string>
@@ -84,7 +85,6 @@
     <string name="air_quality_o3_full">Bakkenær ozon (%s)</string>
     <string name="air_quality_pm25_voice">PM to komma fem</string>
     <string name="air_quality_pm10">PM10</string>
-    <string name="temperature_feels_like_short">Føles som</string>
     <string name="uv_index_short">UV</string>
     <string name="notification_update_error">%d oppdatering(er) feilet</string>
     <string name="notification_channel_forecast">Værvarsel</string>

@@ -18,7 +18,8 @@
     <string name="notification_channel_forecast">Previsão</string>
     <string name="daytime">De dia</string>
     <string name="nighttime">De noite</string>
-    <string name="temperature_feels_like">Sensação de</string>
+    <string name="temperature_feels_like">Sensação</string>
+    <string name="temperature_feels_like_with_unit">Sensação de %s</string>
     <string name="settings_follow_system">Seguir o sistema</string>
     <string name="pressure">Pressão</string>
     <string name="visibility">Visibilidade</string>
@@ -565,7 +566,6 @@
     <string name="location_search_source">Fonte de pesquisa de localização</string>
     <string name="location_search_change_source">Alterar fonte de pesquisa de localização</string>
     <string name="location_search_no_results_advice">Certifique-se de que sua pesquisa esteja escrita corretamente e não muito específica. Como alternativa, você pode tentar outra fonte de pesquisa de localização, que pode produzir resultados diferentes.</string>
-    <string name="temperature_feels_like_short">Sensação</string>
     <string name="humidity_short">Umidade</string>
     <string name="uv_index_short">Índice UV</string>
     <string name="pressure_short">Pressão</string>

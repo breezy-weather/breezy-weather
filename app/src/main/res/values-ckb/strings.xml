@@ -11,6 +11,7 @@
     <string name="alerts">ئاگادارکردنەوەکان</string>
     <string name="daily_yesterday_short">دوێنێ</string>
     <string name="temperature_feels_like">هەست دەکەیت وەک</string>
+    <string name="temperature_feels_like_with_unit">هەست دەکەیت وەک %s</string>
     <string name="temperature_apparent">دیارە</string>
     <string name="precipitation_probability">ئەگەری بارین</string>
     <string name="precipitation_intensity_light">دڵۆپ</string>

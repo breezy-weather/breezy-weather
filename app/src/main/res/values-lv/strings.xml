@@ -13,6 +13,7 @@
     <string name="daily_tomorrow_short">Rīt</string>
     <string name="temperature">Temperatūra</string>
     <string name="temperature_feels_like">Pēc sajūtām</string>
+    <string name="temperature_feels_like_with_unit">Pēc sajūtām %s</string>
     <string name="temperature_apparent">Šķietami</string>
     <string name="temperature_wind_chill">Vēja vēsums</string>
     <string name="temperature_degree_day">Grāda diena</string>
@@ -538,7 +539,6 @@
     <string name="settings_debug_dump_crash_logs_saved">Avāriju žurnāli saglabāti</string>
     <string name="settings_debug_dump_crash_logs_tap_to_open">Piesist, lai atvērtu</string>
     <string name="notification_channel_crash_logs">Avāriju žurnāli</string>
-    <string name="temperature_feels_like_short">Pēc sajūtām</string>
     <string name="ceiling_short">Griesti</string>
     <string name="humidity_short">Mitrums</string>
     <string name="uv_index_short">UV indekss</string>

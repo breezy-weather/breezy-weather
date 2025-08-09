@@ -19,6 +19,7 @@
     <string name="daytime">Dia</string>
     <string name="nighttime">Nit</string>
     <string name="temperature_feels_like">Sensació de</string>
+    <string name="temperature_feels_like_with_unit">Sensació de %s</string>
     <string name="settings_follow_system">Igual que el sistema</string>
     <string name="pressure">Pressió</string>
     <string name="visibility">Visibilitat</string>
@@ -596,7 +597,6 @@
     <string name="location_message_updated">S’ha actualitzat la ubicació</string>
     <string name="location_message_already_exists">Ja existeix una ubicació amb la mateixa font meteorològica principal.</string>
     <string name="widget_label_show_widget_card_alpha">Opacitat</string>
-    <string name="temperature_feels_like_short">Sensació tèrmica</string>
     <string name="location_search_source">Font de cerca d’ubicació</string>
     <string name="location_search_change_source">Canvia la font de cerca d’ubicació</string>
     <string name="notification_precipitation_starting">Plourà aviat</string>

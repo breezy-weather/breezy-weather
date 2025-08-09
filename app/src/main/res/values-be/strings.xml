@@ -22,6 +22,7 @@
     <string name="air_quality_so2_full">Дыяксід серы (%s)</string>
     <string name="temperature">Тэмпература</string>
     <string name="temperature_feels_like">Адчуваецца як</string>
+    <string name="temperature_feels_like_with_unit">Адчуваецца як %s</string>
     <string name="temperature_apparent">Адчуваецца як</string>
     <string name="wind_strength_0">Штыль</string>
     <string name="wind_strength_5">Свежы</string>
@@ -552,7 +553,6 @@
     <string name="uv_index_short">УФ</string>
     <string name="visibility_short">Бачнасць</string>
     <string name="pressure_short">Ціск</string>
-    <string name="temperature_feels_like_short">Адчуваць</string>
     <string name="humidity_short">Вільгаць</string>
     <string name="dew_point_short">Пункт расы</string>
     <string name="cloud_cover_short">Воблачнасць</string>

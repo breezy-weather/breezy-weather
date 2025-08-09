@@ -369,7 +369,7 @@
     <string name="alert_source">மூலம்: %s</string>
     <string name="daily_yesterday_short">இன்று</string>
     <string name="temperature_feels_like">உணரும் வெப்பநிலை</string>
-    <string name="temperature_feels_like_short">உணர்கிறது</string>
+    <string name="temperature_feels_like_with_unit">உணரும் வெப்பநிலை %s</string>
     <string name="temperature_degree_day_heating">வெப்ப பட்டம் நாள்</string>
     <string name="temperature_degree_day_cooling">குளிரூட்டும் பட்டம் நாள்</string>
     <string name="temperature_normal_short">சாதாரண</string>

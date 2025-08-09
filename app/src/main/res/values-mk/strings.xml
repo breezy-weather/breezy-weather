@@ -6,6 +6,7 @@
     <string name="daily_today_short">Ден</string>
     <string name="daily_tomorrow_short">Утр</string>
     <string name="temperature_feels_like">Се чувствува како</string>
+    <string name="temperature_feels_like_with_unit">Се чувствува како %s</string>
     <string name="temperature_normal_short">Нормална</string>
     <string name="temperature_normals">Нормали на температура</string>
     <string name="precipitation_rain">Дожд</string>
@@ -557,7 +558,6 @@
     <string name="pressure_short">Притисок</string>
     <string name="current_weather">Времето во моментов</string>
     <string name="precipitation_intensity_medium">Умерен</string>
-    <string name="temperature_feels_like_short">Се чувствува како</string>
     <string name="forecast">Прогноза</string>
     <string name="alert">Предупредување</string>
     <string name="pollen_acer">Јавор</string>

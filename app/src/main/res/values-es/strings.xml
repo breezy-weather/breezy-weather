@@ -19,6 +19,7 @@
     <string name="daytime">Día</string>
     <string name="nighttime">Noche</string>
     <string name="temperature_feels_like">Sensación térmica</string>
+    <string name="temperature_feels_like_with_unit">Sensación térmica %s</string>
     <string name="settings_follow_system">Seguir al sistema</string>
     <string name="pressure">Presión</string>
     <string name="visibility">Visibilidad</string>
@@ -563,7 +564,6 @@
     <string name="uv_index_short">Índice UV</string>
     <string name="visibility_short">Visibilidad</string>
     <string name="pressure_short">Presión</string>
-    <string name="temperature_feels_like_short">Sensación térmica</string>
     <string name="dew_point_short">Punto de rocío</string>
     <string name="cloud_cover_short">Nubosidad</string>
     <string name="ceiling_short">Cielo raso</string>

@@ -17,8 +17,8 @@
     <string name="alerts_to_follow">התראות קרובות, הקש כאן על מנת לצפות בהן.</string>
     <string name="alert_source">מקור: %s</string>
     <string name="temperature_feels_like">מרגיש כמו</string>
+    <string name="temperature_feels_like_with_unit">מרגיש כמו %s</string>
     <string name="temperature">טמפרטורה</string>
-    <string name="temperature_feels_like_short">מרגיש כמו</string>
     <string name="precipitation">משקעים</string>
     <string name="temperature_average_short">ממוצע</string>
     <string name="precipitation_probability">סיכוי למשקעים</string>

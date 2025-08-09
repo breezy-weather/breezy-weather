@@ -19,6 +19,7 @@
     <string name="daytime">Ημέρα</string>
     <string name="nighttime">Νύχτα</string>
     <string name="temperature_feels_like">Αίσθηση</string>
+    <string name="temperature_feels_like_with_unit">Αίσθηση %s</string>
     <string name="settings_follow_system">Βάσει συστήματος</string>
     <string name="pressure">Πίεση</string>
     <string name="visibility">Ορατότητα</string>
@@ -548,7 +549,6 @@
     <string name="settings_debug_dump_crash_logs_tap_to_open">Πάτα για άνοιγμα</string>
     <string name="settings_items_drag_to_sort">Πάτα για να σύρεις τα στοιχεία της λίστας για ταξινόμηση</string>
     <string name="settings_item_delete">Διέγραψε αυτό το στοιχείο</string>
-    <string name="temperature_feels_like_short">Αίσθηση</string>
     <string name="cloud_cover_short">Κάλυψη</string>
     <string name="humidity_short">Υγρασία</string>
     <string name="visibility_short">Ορατότητα</string>

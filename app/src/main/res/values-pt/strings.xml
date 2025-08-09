@@ -15,6 +15,7 @@
     <string name="daytime">Dia</string>
     <string name="nighttime">Noite</string>
     <string name="temperature_feels_like">Parece</string>
+    <string name="temperature_feels_like_with_unit">Parece %s</string>
     <string name="settings_follow_system">Igual ao sistema</string>
     <string name="pressure">Pressão</string>
     <string name="visibility">Visibilidade</string>
@@ -543,7 +544,6 @@
     <string name="common_weather_text_snow_moderate">Neve moderada</string>
     <string name="common_weather_text_snow_showers_light">Nevasca fraca</string>
     <string name="settings_debug_dump_crash_logs_saved">Registos de travamentos gravados</string>
-    <string name="temperature_feels_like_short">Parece</string>
     <string name="humidity_short">Humidade</string>
     <string name="uv_index_short">Índice UV</string>
     <string name="pressure_short">Pressão</string>

@@ -19,6 +19,7 @@
     <string name="daytime">Nappal</string>
     <string name="nighttime">Éjszaka</string>
     <string name="temperature_feels_like">Hőérzet</string>
+    <string name="temperature_feels_like_with_unit">Hőérzet %s</string>
     <string name="settings_follow_system">Rendszerbeállítás használata</string>
     <string name="pressure">Légnyomás</string>
     <string name="visibility">Látótávolság</string>
@@ -554,7 +555,6 @@
     <string name="settings_weather_source_none">Semmi</string>
     <string name="location_message_already_exists">A helyszín-lista már tartalmazza ezt a helyszínt ezzel az előrejelzési forrással.</string>
     <string name="location_message_updated">Helyszín frissítve</string>
-    <string name="temperature_feels_like_short">Hőérzet</string>
     <string name="dew_point_short">Harmatpont</string>
     <string name="ceiling_short">Felhőalap</string>
     <string name="uv_index_short">UV-szint</string>

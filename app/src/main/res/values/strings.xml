@@ -52,8 +52,9 @@
     <string name="temperature_real">Actual</string>
     <string name="temperature_real_details">The actual temperature.</string>
     <string name="temperature_feels_like">Feels like</string>
+    <!-- Feels like 30° -->
+    <string name="temperature_feels_like_with_unit">Feels like %s</string>
     <!-- 10 characters max version of temperature_feels_like to be used in current details header. May be less in cyrillic/asian alphabets due to large letters -->
-    <string name="temperature_feels_like_short">Feels like</string>
     <string name="temperature_feels_like_details">What the temperature feels like, as a result of humidity, wind and/or sunlight.</string>
     <string name="temperature_apparent">Apparent</string>
     <string name="temperature_wind_chill">Wind chill</string>

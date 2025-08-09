@@ -15,6 +15,7 @@
     <string name="daytime">Gündüz</string>
     <string name="nighttime">Gece</string>
     <string name="temperature_feels_like">Hissedilen</string>
+    <string name="temperature_feels_like_with_unit">Hissedilen %s</string>
     <string name="settings_follow_system">Sistem Dili</string>
     <string name="daily_yesterday_short">Dün</string>
     <string name="daily_tomorrow_short">Yarın</string>
@@ -560,7 +561,6 @@
     <string name="humidity_short">Nem</string>
     <string name="uv_index_short">UV göstergesi</string>
     <string name="pressure_short">Basınç</string>
-    <string name="temperature_feels_like_short">Hissedilen</string>
     <string name="visibility_short">Görüş mesafesi</string>
     <string name="dew_point_short">Çiy noktası</string>
     <string name="cloud_cover_short">Bulutluluk</string>

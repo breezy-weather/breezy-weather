@@ -19,6 +19,7 @@
     <string name="daytime">Päivällä</string>
     <string name="nighttime">Yöllä</string>
     <string name="temperature_feels_like">Tuntuu kuin</string>
+    <string name="temperature_feels_like_with_unit">Tuntuu kuin %s</string>
     <string name="settings_follow_system">Järjestelmän oletus</string>
     <string name="pressure">Ilmanpaine</string>
     <string name="visibility">Näkyvyys</string>
@@ -578,7 +579,6 @@
     <string name="settings_weather_sources_default_source">Oletuslähde uusille sijainneille</string>
     <string name="about_open_link_message">Avaa %s?</string>
     <string name="settings_per_location_theme">Teema</string>
-    <string name="temperature_feels_like_short">Tuntuu kuin</string>
     <string name="pollen_carpinus">Valkopyökki</string>
     <string name="pollen_castanea">Kastanja</string>
     <string name="sunshine">Auringonpaiste</string>

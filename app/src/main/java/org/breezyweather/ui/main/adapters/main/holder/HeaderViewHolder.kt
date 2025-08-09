@@ -94,9 +94,10 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
             current.temperature?.feelsLikeTemperature?.let { feelsLike ->
                 if (current.temperature!!.temperature?.roundToInt() != feelsLike.roundToInt()) {
                     mFeelsLike.visibility = View.VISIBLE
-                    mFeelsLike.text = context.getString(R.string.temperature_feels_like) +
-                        " " +
+                    mFeelsLike.text = context.getString(
+                        R.string.temperature_feels_like_with_unit,
                         mTemperatureUnit!!.formatMeasureShort(context, feelsLike)
+                    )
                     mFeelsLike.contentDescription = context.getString(R.string.temperature_feels_like) +
                         context.getString(R.string.colon_separator) +
                         mTemperatureUnit!!.formatContentDescription(context, feelsLike)

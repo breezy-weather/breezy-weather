@@ -68,7 +68,7 @@
     <string name="daily_tomorrow_short">明日</string>
     <string name="temperature">氣溫</string>
     <string name="temperature_feels_like">體感溫度</string>
-    <string name="temperature_feels_like_short">體感</string>
+    <string name="temperature_feels_like_with_unit">體感溫度 %s</string>
     <string name="temperature_apparent">體感溫度</string>
     <string name="temperature_wind_chill">風寒指數</string>
     <string name="temperature_degree_day">度日數</string>

@@ -23,7 +23,7 @@
     <!-- Temperature -->
     <string name="temperature">Temperaturo</string>
     <string name="temperature_feels_like">Sentotemperaturo</string>
-    <string name="temperature_feels_like_short">Sentotemp.</string>
+    <string name="temperature_feels_like_with_unit">Sentotemperaturo %s</string>
     <string name="temperature_apparent">Aspektotemperaturo</string>
     <string name="temperature_wind_chill">Ventmalvarmtemperaturo</string>
     <!-- You might want to read https://en.wikipedia.org/wiki/Heating_degree_day -->

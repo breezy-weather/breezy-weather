@@ -195,9 +195,10 @@ object TextWidgetIMP : AbstractRemoteViewsPresenter() {
             "wind" -> weather.current?.wind?.getShortDescription(context, speedUnit)
             "lunar" -> Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context)
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
-                context.getString(R.string.temperature_feels_like) +
-                    " " +
+                context.getString(
+                    R.string.temperature_feels_like_with_unit,
                     temperatureUnit.formatMeasure(context, it, 0)
+                )
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)
         }

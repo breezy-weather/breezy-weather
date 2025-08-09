@@ -6,6 +6,7 @@
     <string name="daily_forecast">Daglig vejrudsigt</string>
     <string name="pollen">Pollen</string>
     <string name="temperature_feels_like">Føles som</string>
+    <string name="temperature_feels_like_with_unit">Føles som %s</string>
     <string name="ephemeris">Sol &amp; måne</string>
     <string name="temperature_wind_chill">Vindafkøling</string>
     <string name="alerts">Varsler</string>
@@ -100,7 +101,6 @@
     <string name="air_quality_no2_voice">Kvælstofdioxid</string>
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="air_quality_co_voice">Kulilte</string>
-    <string name="temperature_feels_like_short">Føles som</string>
     <string name="uv_index_short">UV indeks</string>
     <string name="alert">Varsel</string>
     <string name="alert_source">Kilde: %s</string>

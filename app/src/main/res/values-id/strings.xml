@@ -19,6 +19,7 @@
     <string name="daytime">Siang hari</string>
     <string name="nighttime">Malam hari</string>
     <string name="temperature_feels_like">Terasa seperti</string>
+    <string name="temperature_feels_like_with_unit">Terasa seperti %s</string>
     <string name="settings_follow_system">Ikuti sistem</string>
     <string name="pressure">Tekanan</string>
     <string name="visibility">Ketampakan</string>
@@ -570,7 +571,6 @@
     <string name="location_message_already_exists">Lokasi dengan sumber cuaca utama yang sama sudah ada.</string>
     <string name="location_search_no_results_advice">Pastikan pencarian lokasi Anda tereja dengan benar dan tidak terlalu spesifik. Cara lainnya: coba sumber pencarian lokasi lain yang dapat memberikan hasil yang berbeda.</string>
     <string name="settings_color_app">Ikuti aplikasi</string>
-    <string name="temperature_feels_like_short">Terasa spt</string>
     <string name="humidity_short">Kelembapan</string>
     <string name="dew_point_short">Titik embun</string>
     <string name="settings_weather_source_none">Tidak ada</string>

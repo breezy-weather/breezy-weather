@@ -4,7 +4,6 @@
     <string name="alerts_to_follow">แตะที่นี่เพื่อดูการเตือนภัยที่กำลังจะถึง</string>
     <string name="temperature">อุณหภูมิ</string>
     <string name="pollen">ละอองเรณู</string>
-    <string name="temperature_feels_like_short">รู้สึกเหมือน</string>
     <string name="alert_source">ที่มา: %s</string>
     <string name="app_name">สภาพอากาศ</string>
     <string name="forecast">พยากรณ์</string>
@@ -20,6 +19,7 @@
     <string name="daily_today_short">วันนี้</string>
     <string name="daily_tomorrow_short">พรุ่งนี้</string>
     <string name="temperature_feels_like">รู้สึกเหมือน</string>
+    <string name="temperature_feels_like_with_unit">รู้สึกเหมือน %s</string>
     <string name="daily_today">วันนี้</string>
     <string name="wind_direction_W">ตะวันตก</string>
     <string name="air_quality_level_6_description">การสัมผัสอากาศแม้เพียงไม่กี่นาที อาจได้รับผลกระทบต่อสุขภาพร้ายแรงได้กับทุกคน หลีกเลี่ยงการทำกิจกรรมนอกบ้าน</string>

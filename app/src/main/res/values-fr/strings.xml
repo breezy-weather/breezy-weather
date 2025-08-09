@@ -102,7 +102,7 @@
     <string name="temperature_real">Réel</string>
     <string name="temperature_real_details">La température réelle.</string>
     <string name="temperature_feels_like">Ressenti</string>
-    <string name="temperature_feels_like_short">Ressenti</string>
+    <string name="temperature_feels_like_with_unit">Ressenti %s</string>
     <string name="temperature_feels_like_details">La température telle qu’elle est perçue sous l’effet de l’humidité, du vent et/ou du soleil.</string>
     <string name="temperature_apparent">Ressentie</string>
     <string name="temperature_wind_chill">Refroidissement éolien</string>

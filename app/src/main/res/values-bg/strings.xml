@@ -6,6 +6,7 @@
     <string name="daily_yesterday_short">Вчера</string>
     <string name="temperature">Температура</string>
     <string name="temperature_feels_like">Усеща се като</string>
+    <string name="temperature_feels_like_with_unit">Усеща се като %s</string>
     <string name="temperature_apparent">Видима</string>
     <string name="temperature_wind_chill">Хладен вятър</string>
     <string name="temperature_degree_day">Топъл ден</string>
@@ -557,7 +558,6 @@
     <string name="pressure_short">Налягане</string>
     <string name="dew_point_short">Точка на оросяване</string>
     <string name="ceiling_short">Облачен Таван</string>
-    <string name="temperature_feels_like_short">Усеща се</string>
     <string name="cloud_cover_short">Облачно покритие</string>
     <string name="settings_weather_sources_default_source">Източник по подразбиране за нови местоположения</string>
     <string name="location_delete_location_dialog_title">Изтрий местоположението?</string>

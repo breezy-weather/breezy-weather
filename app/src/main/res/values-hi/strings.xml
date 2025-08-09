@@ -41,6 +41,7 @@
     <string name="wind_strength_8">झंझा</string>
     <string name="uv_index_3_5">मध्यम</string>
     <string name="temperature_feels_like">जैसा लगना</string>
+    <string name="temperature_feels_like_with_unit">जैसा लगना %s</string>
     <string name="air_quality_o3_voice">ओजोन</string>
     <string name="wind_strength_11">तीव्र तूफान</string>
     <string name="ephemeris">सूर्य और चंद्रमा</string>
@@ -74,7 +75,6 @@
     <string name="air_quality_level_5_description">स्वास्थ्य प्रभाव तुरंत संवेदनशील समूहों द्वारा महसूस किया जाएगा और बाहरी गतिविधि से बचना चाहिए। स्वस्थ व्यक्तियों को साँस लेने और गले की जलन का अनुभव होने की संभावना है; घर के अंदर रहने और बाहरी गतिविधियों को फिर से निर्धारित करने पर विचार करें।।</string>
     <string name="app_name">मौसम</string>
     <string name="precipitation_nowcasting">मिनट दर मिनट वर्षा</string>
-    <string name="temperature_feels_like_short">जैसा लगना</string>
     <string name="uv_index_short">यूवी सूचकांक</string>
     <string name="temperature_degree_day">डिग्री दिवस</string>
     <string name="air_quality_o3_full">जमीनी स्तर ओजोन (%s)</string>

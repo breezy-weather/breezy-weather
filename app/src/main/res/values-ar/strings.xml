@@ -18,6 +18,7 @@
     <string name="daytime">النهار</string>
     <string name="nighttime">الليل</string>
     <string name="temperature_feels_like">تبدو وكأنها</string>
+    <string name="temperature_feels_like_with_unit">تبدو وكأنها %s</string>
     <string name="settings_follow_system">حسب النظام</string>
     <string name="pressure">الضغط</string>
     <string name="visibility">الرؤية</string>
@@ -557,7 +558,6 @@
     <string name="location_message_already_exists">تحتوي قائمة المواقع بالفعل على هذا الموقع مع مصدر التنبؤ هذا.</string>
     <string name="location_search_source">مزود خدمة البحث الجغرافي</string>
     <string name="location_search_change_source">تغيير مزود خدمة البحث الجغرافي</string>
-    <string name="temperature_feels_like_short">تبدو وكأنها</string>
     <string name="dew_point_short">درجة التكثف</string>
     <string name="ceiling_short">الحد الأعلى</string>
     <string name="humidity_short">الرطوبة</string>

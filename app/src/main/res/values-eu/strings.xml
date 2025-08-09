@@ -88,6 +88,7 @@
     <string name="ephemeris_sunrise_at">Egunsentia %s(e)tan</string>
     <string name="temperature_apparent">Sentsazio termikoa</string>
     <string name="temperature_feels_like">Hautematen dena</string>
+    <string name="temperature_feels_like_with_unit">Hautematen dena %s</string>
     <string name="precipitation_thunderstorm">Ekaitza</string>
     <string name="precipitation_rain">Euria</string>
     <string name="precipitation_snow">Elurra</string>
@@ -548,7 +549,6 @@
     <string name="humidity_short">Hezetasuna</string>
     <string name="visibility_short">Ikuspena</string>
     <string name="pressure_short">Presioa</string>
-    <string name="temperature_feels_like_short">Sentsazioa</string>
     <string name="weather_message_too_frequent_refreshes">Mesedez itxaron segundo batzuk berriro saiatu baino lehenago…</string>
     <string name="about_open_link_message">Ireki %s?</string>
     <string name="settings_global">Ezarpen orokorrak</string>

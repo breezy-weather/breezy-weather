@@ -455,9 +455,10 @@ object DayWidgetIMP : AbstractRemoteViewsPresenter() {
                 else -> null
             }
             "feels_like" -> weather.current?.temperature?.feelsLikeTemperature?.let {
-                context.getString(R.string.temperature_feels_like) +
-                    " " +
+                context.getString(
+                    R.string.temperature_feels_like_with_unit,
                     temperatureUnit.formatMeasure(context, it, 0)
+                )
             }
             else -> getCustomSubtitle(context, subtitleData, location, weather, pollenIndexSource)
         }

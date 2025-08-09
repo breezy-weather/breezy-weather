@@ -15,6 +15,7 @@
     <string name="daytime">Podnevi</string>
     <string name="nighttime">Ponoči</string>
     <string name="temperature_feels_like">Občuti se</string>
+    <string name="temperature_feels_like_with_unit">Občuti se %s</string>
     <string name="settings_follow_system">Sledi sistemu</string>
     <string name="pressure">Tlak</string>
     <string name="visibility">Vidljivost</string>
@@ -155,7 +156,6 @@
     <string name="air_quality_level_4">Nezdravo</string>
     <string name="air_quality_level_5">Zelo nezdravo</string>
     <string name="air_quality_level_6">Nevarno</string>
-    <string name="temperature_feels_like_short">Občuti se</string>
     <string name="dew_point_short">Točka rose</string>
     <string name="humidity_short">Vlažnost</string>
     <string name="uv_index_short">UV indeks</string>

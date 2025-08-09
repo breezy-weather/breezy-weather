@@ -14,7 +14,6 @@
     <string name="daily_yesterday_short">Yda</string>
     <string name="daily_tomorrow_short">Amár</string>
     <string name="temperature">Teocht</string>
-    <string name="temperature_feels_like_short">Mothaíonn sé cosúil le</string>
     <string name="temperature_apparent">Dhealraitheach</string>
     <string name="temperature_wind_chill">Fuarú gaoithe</string>
     <string name="temperature_degree_day">Lá céime</string>
@@ -555,6 +554,7 @@
     <string name="ephemeris">Ghrian &amp; gealach</string>
     <string name="daily_today_short">Inniu</string>
     <string name="temperature_feels_like">Mothaíonn sé cosúil le</string>
+    <string name="temperature_feels_like_with_unit">Mothaíonn sé cosúil le %s</string>
     <string name="precipitation_duration">Fad frasaíochta</string>
     <string name="precipitation_thunderstorm">Stoirm thoirní</string>
     <string name="precipitation_rain">Báisteach</string>

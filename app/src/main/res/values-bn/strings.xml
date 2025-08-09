@@ -7,6 +7,7 @@
     <string name="daily_today_short">আজ</string>
     <string name="temperature">তাপমাত্রা</string>
     <string name="temperature_feels_like">অনুভূত তাপমাত্রা</string>
+    <string name="temperature_feels_like_with_unit">অনুভূত তাপমাত্রা %s</string>
     <string name="temperature_wind_chill">বাতাস বইছে</string>
     <string name="temperature_average_short">গড়</string>
     <string name="app_name">আবহাওয়া</string>
@@ -15,7 +16,6 @@
     <string name="hourly_forecast">প্রতি ঘণ্টার পূর্বাভাস</string>
     <string name="alerts">সতর্কতা গুলো</string>
     <string name="alerts_to_follow">আসন্ন সতর্কতা, সেগুলি দেখতে এখানে ট্যাপ করুন।</string>
-    <string name="temperature_feels_like_short">অনুভূত তাপমাত্রা</string>
     <string name="temperature_apparent">আপাত</string>
     <string name="air_quality_level_1">চমৎকার</string>
     <string name="air_quality_level_1_description">হাওয়ার গুণমান বেশির ভাগ ব্যক্তির জন্য আদর্শ; আপনার বাড়ির বাইরের স্বাভাবিক কাজকর্ম উপভোগ করুন।</string>

@@ -130,6 +130,7 @@
     <string name="unit_inph_voice">Tum per timme</string>
     <string name="notification_channel_forecast">Prognos</string>
     <string name="temperature_feels_like">Känns som</string>
+    <string name="temperature_feels_like_with_unit">Känns som %s</string>
     <string name="air_quality_o3_voice">Ozon</string>
     <string name="widget_style_rectangle">Rektangel</string>
     <string name="action_restart">Starta om</string>
@@ -550,7 +551,6 @@
     <string name="settings_weather_source_none">Ingen</string>
     <string name="location_search_source">Platssökningskälla</string>
     <string name="location_search_change_source">Ändra platssökningskälla</string>
-    <string name="temperature_feels_like_short">Känns som</string>
     <string name="dew_point_short">Daggpunkt</string>
     <string name="ceiling_short">Tak</string>
     <string name="uv_index_short">UV-index</string>

@@ -11,6 +11,7 @@
     <string name="precipitation_probability">Kritulių tikimybė</string>
     <string name="precipitation_duration">Kritulių trukmė</string>
     <string name="temperature_feels_like">Juntamoji temperatūra</string>
+    <string name="temperature_feels_like_with_unit">Juntamoji temperatūra %s</string>
     <string name="precipitation_thunderstorm">Perkūnija</string>
     <string name="precipitation_rain">Lietus</string>
     <string name="precipitation_snow">Sniegas</string>
@@ -570,7 +571,6 @@
     <string name="about_open_link_message">Atidaryti %s?</string>
     <string name="location_message_updated">Vietovė atnaujinta</string>
     <string name="location_message_already_exists">Vietovių sąraše jau yra ši vietovė su šiuo prognozės šaltiniu.</string>
-    <string name="temperature_feels_like_short">Pojūtis</string>
     <string name="dew_point_short">Rasos taškas</string>
     <string name="pollen_carpinus">Skroblas</string>
     <string name="pollen_castanea">Kaštonas</string>

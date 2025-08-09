@@ -19,6 +19,7 @@
     <string name="daytime">주간</string>
     <string name="nighttime">야간</string>
     <string name="temperature_feels_like">체감 온도</string>
+    <string name="temperature_feels_like_with_unit">체감 온도 %s</string>
     <string name="settings_follow_system">시스템 설정 따르기</string>
     <string name="pressure">기압</string>
     <string name="visibility">시계</string>
@@ -406,7 +407,6 @@
     <string name="air_quality_level_5">건강에 매우 해로움</string>
     <string name="air_quality_level_5_description">민감군은 즉각적인 영향을 받을 수 있기 때문에 야외 활동을 피해야 합니다. 건강한 사람들도 호흡 곤란이나 목 자극 같은 증세를 보일 수 있습니다. 실내 활동을 하거나 야외 활동 시간을 조정하시기 바랍니다.</string>
     <string name="air_quality_level_6">위험</string>
-    <string name="temperature_feels_like_short">체감 온도</string>
     <string name="dew_point_short">이슬점</string>
     <string name="cloud_cover_short">구름량</string>
     <string name="ceiling_short">상승 한도</string>

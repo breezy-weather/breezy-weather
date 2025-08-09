@@ -287,6 +287,7 @@
     <string name="daily_tomorrow_short">Nmai</string>
     <string name="temperature">Nhiệt độ</string>
     <string name="temperature_feels_like">Cảm giác như</string>
+    <string name="temperature_feels_like_with_unit">Cảm giác như %s</string>
     <string name="temperature_wind_chill">Gió lạnh</string>
     <string name="temperature_apparent">Biểu kiến</string>
     <string name="temperature_degree_day">Nhiệt độ ban ngày</string>
@@ -554,7 +555,6 @@
     <string name="location_search_no_results_advice">Đảm bảo tìm kiếm của bạn được viết đúng chính tả và không quá cụ thể. Ngoài ra, bạn có thể thử nguồn tìm kiếm vị trí khác có thể tạo ra kết quả khác.</string>
     <string name="location_message_updated">Đã cập nhật vị trí</string>
     <string name="location_message_already_exists">Đã tồn tại một vị trí có cùng nguồn thời tiết chính.</string>
-    <string name="temperature_feels_like_short">Cảm giác như</string>
     <string name="settings_weather_source_none">Không có</string>
     <string name="location_search_source">Nguồn tìm kiếm vị trí</string>
     <string name="location_search_change_source">Thay đổi nguồn tìm kiếm vị trí</string>

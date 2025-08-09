@@ -172,9 +172,10 @@ object ClockDayDetailsWidgetIMP : AbstractRemoteViewsPresenter() {
         weather.current?.temperature?.feelsLikeTemperature?.let {
             views.setTextViewText(
                 R.id.widget_clock_day_feelsLikeTemp,
-                context.getString(R.string.temperature_feels_like) +
-                    " " +
+                context.getString(
+                    R.string.temperature_feels_like_with_unit,
                     temperatureUnit.formatMeasure(context, it, 0)
+                )
             )
         } ?: run {
             views.setTextViewText(R.id.widget_clock_day_feelsLikeTemp, null)

@@ -16,6 +16,7 @@
     <string name="conditions">Veðurskilyrði</string>
     <string name="temperature">Hiti</string>
     <string name="temperature_feels_like">Skynjaður hiti</string>
+    <string name="temperature_feels_like_with_unit">Skynjaður hiti %s</string>
     <string name="precipitation">Úrkoma</string>
     <string name="precipitation_thunderstorm">Þrumuveður</string>
     <string name="precipitation_rain">Rigning</string>

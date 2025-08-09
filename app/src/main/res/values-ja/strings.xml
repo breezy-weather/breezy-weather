@@ -19,6 +19,7 @@
     <string name="daytime">日中</string>
     <string name="nighttime">夜間</string>
     <string name="temperature_feels_like">体感温度</string>
+    <string name="temperature_feels_like_with_unit">体感温度 %s</string>
     <string name="settings_follow_system">端末の設定に従う</string>
     <string name="pressure">気圧</string>
     <string name="visibility">視程</string>
@@ -551,7 +552,6 @@
     <string name="common_weather_text_rain_snow_mixed_light">弱いみぞれ</string>
     <string name="dialog_permissions_location_content">この機能を使用するには、現在の位置情報へのアクセスの権限をアプリに付与する必要があります。位置情報は、選択した情報源とのみ共有されます。後から位置情報へのアクセスを取り消して、手動で位置情報を設定することもできます。</string>
     <string name="message_server_timeout">リクエストが時間内に完了しませんでした</string>
-    <string name="temperature_feels_like_short">体感温度</string>
     <string name="dew_point_short">露点</string>
     <string name="cloud_cover_short">雲量</string>
     <string name="ceiling_short">雲高</string>

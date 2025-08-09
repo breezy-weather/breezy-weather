@@ -9,7 +9,7 @@
     <string name="alert_source">Allikas: %s</string>
     <string name="temperature">Temperatuur</string>
     <string name="temperature_feels_like">Tundub kui</string>
-    <string name="temperature_feels_like_short">Tundub kui</string>
+    <string name="temperature_feels_like_with_unit">Tundub kui %s</string>
     <string name="precipitation_rain">Vihm</string>
     <string name="precipitation_thunderstorm">Äikesetorm</string>
     <string name="precipitation_snow">Lumi</string>

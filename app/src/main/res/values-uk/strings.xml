@@ -108,6 +108,7 @@
     <string name="air_quality">Якість повітря</string>
     <string name="ephemeris">Сонце та місяць</string>
     <string name="temperature_feels_like">Відчувається як</string>
+    <string name="temperature_feels_like_with_unit">Відчувається як %s</string>
     <string name="alerts_to_follow">Щоби переглянути майбутні попередження, натисніть тут.</string>
     <string name="alerts">Попередження</string>
     <string name="daily_today_short">Сьогодні</string>
@@ -558,7 +559,6 @@
     <string name="dew_point_short">Точка роси</string>
     <string name="ceiling_short">Висота</string>
     <string name="settings_weather_sources_default_source">Типове джерело для нових розташувань</string>
-    <string name="temperature_feels_like_short">Відч. як</string>
     <string name="action_confirm">Підтвердити</string>
     <string name="location_delete_location_dialog_title">Видалити це розташування?</string>
     <string name="weather_message_too_frequent_refreshes">Зачекайте кілька секунд, перш ніж повторити спробу…</string>

@@ -4,6 +4,7 @@
     <string name="pollen">گرده</string>
     <string name="temperature">دما</string>
     <string name="temperature_feels_like">احساس می شود</string>
+    <string name="temperature_feels_like_with_unit">احساس می شود %s</string>
     <string name="app_name">آب و هوا</string>
     <string name="daily_forecast">پیش بینی روزانه</string>
     <string name="precipitation_nowcasting">بارش دقیقه به دقیقه</string>
@@ -326,7 +327,6 @@
     <string name="settings_main_daily_trends_title">روند روزانه</string>
     <string name="settings_main_section_options">گزینه ها</string>
     <string name="settings_units">واحد ها</string>
-    <string name="temperature_feels_like_short">حس میشود</string>
     <string name="uv_index_short">اشعه UV</string>
     <string name="widget_custom_subtitle_keyword_xdwd_description">باد امروز، فردا، …، ۴ روز آینده</string>
     <string name="settings_background_updates_dont_kill_my_app_title">راهنما های خاص سازنده</string>

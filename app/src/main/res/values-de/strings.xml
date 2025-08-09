@@ -43,6 +43,7 @@
     <string name="notification_updating_weather_data">Aktualisierung der Wetterdaten (%1$d/%2$d)</string>
     <string name="widget_label_view_style">Ansicht</string>
     <string name="temperature_feels_like">Gefühlt</string>
+    <string name="temperature_feels_like_with_unit">Gefühlt %s</string>
     <string name="settings_follow_system">Systemstandard</string>
     <string name="notification_channel_forecast">Vorhersage</string>
     <string name="settings_icon_packs_get_more">Mehr erhalten</string>
@@ -551,7 +552,6 @@
     <string name="settings_weather_source_none">Keine</string>
     <string name="location_message_updated">Ort wurde aktualisiert</string>
     <string name="location_message_already_exists">Die Ortsliste enthält bereits diesen Ort mit dieser Vorhersagequelle.</string>
-    <string name="temperature_feels_like_short">Gefühlt</string>
     <string name="dew_point_short">Taupunkt</string>
     <string name="cloud_cover_short">Bewölkung</string>
     <string name="uv_index_short">UV-Index</string>

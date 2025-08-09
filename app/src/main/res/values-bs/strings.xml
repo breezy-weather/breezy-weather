@@ -20,6 +20,7 @@
     <string name="precipitation_intensity_light">Slabo</string>
     <string name="precipitation">Padavine</string>
     <string name="temperature_feels_like">Osjeti se kao</string>
+    <string name="temperature_feels_like_with_unit">Osjeti se kao %s</string>
     <string name="ephemeris">Sunce i mjesec</string>
     <string name="temperature_normal_short">Normala</string>
     <string name="wind_direction_SW_short">JZ</string>
@@ -590,7 +591,6 @@
     <string name="location_delete_location_dialog_message_no_name">Izbrisaćete ovu lokaciju s vašeg popisa spremljenih lokacija.</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Indeks kvalitete zraka danas, sutra, …, 4 dana kasnije</string>
     <string name="widget_label_show_widget_card_alpha">Prozirnost</string>
-    <string name="temperature_feels_like_short">Subjektivni osjećaj</string>
     <string name="action_edit_location">Izmijeni ovu lokaciju</string>
     <string name="dialog_time_picker_input_time">Unos vremena</string>
     <string name="message_invalid_incomplete_data">Od servera su dobijeni neispravni i nepotpuni podaci</string>
