@@ -483,7 +483,7 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Silna burza z gradem</string>
     <string name="settings_source_api_key">Klucz API</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
-    <string name="settings_modules_summary">Ustaw tapetę, skonfiguruj używane widżety, widżet w powiadomieniu</string>
+    <string name="settings_modules_summary">Widżety, widżet powiadomień, tapeta, udostępnianie danych innym aplikacjom</string>
     <string name="about_contribution_WangDaYeeeeee">Twórca oryginalnego projektu Geometric Weather</string>
     <string name="settings_icon_packs_weather_icon_light">Jasna ikona</string>
     <string name="settings_items_drag_to_sort">Dotknij i przeciągnij, aby posortować elementy listy</string>
@@ -848,4 +848,5 @@
     <string name="cloud_cover_scale">Skala zachmurzenia</string>
     <string name="content_provider_permission_label">Odczytaj dane z Breezy Weather</string>
     <string name="content_provider_permission_description">pobierz informacje pogodowe z Breezy Weather, w tym współrzędne Twoich lokalizacji – na przykład bieżącej, jeśli została dodana</string>
+    <string name="action_add_as_location">Dodaj jako lokalizację</string>
 </resources>
