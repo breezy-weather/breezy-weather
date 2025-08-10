@@ -752,4 +752,5 @@
     <string name="unit_mum">µm</string>
     <string name="unit_bft_display_name">Beaufort</string>
     <string name="broadcast_source_breezy_weather_update_notifier">Notifica di aggiornamento posizione %s</string>
+    <string name="action_add_as_location">Aggiungi come posizione</string>
 </resources>
