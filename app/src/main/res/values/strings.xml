@@ -817,7 +817,7 @@
     <string name="settings_notifications_forecast_tomorrow_title">Notification for next-day forecast</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Notification time for next-day forecast</string>
     <string name="settings_modules">External modules</string>
-    <string name="settings_modules_summary">Widgets, notification widget, wallpaper data sharing with other apps</string>
+    <string name="settings_modules_summary">Widgets, notification widget, wallpaper, data sharing with other apps</string>
     <string name="settings_modules_section_general" translatable="false">@string/settings_section_general</string>
     <string name="settings_modules_live_wallpaper_title">Live wallpaper</string>
     <string name="settings_modules_live_wallpaper_summary">Set a weather animation as wallpaper</string>
