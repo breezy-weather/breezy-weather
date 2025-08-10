@@ -358,9 +358,7 @@
     <string name="settings_units_summary">Temperatur, Niederschlag, Entfernung, Geschwindigkeit, Druck</string>
     <string name="settings_main">Hauptbildschirm</string>
     <string name="settings_modules">Widgets &amp; Live-Hintergrund</string>
-    <string name="settings_modules_summary">Hintergrundbild festlegen, verwendete Widgets konfigurieren,
-        Benachrichtigungs-Widget
-    </string>
+    <string name="settings_modules_summary">Hintergrundbild festlegen, verwendete Widgets konfigurieren, Benachrichtigungs-Widget</string>
     <string name="action_share">Teilen</string>
     <string name="settings_main_background_animation_enabled">Ein</string>
     <string name="settings_modules_configure_widget_summary">Widget konfigurieren</string>
