@@ -921,4 +921,5 @@
     <string name="cloud_cover_scale">雲量等級</string>
     <string name="content_provider_permission_label">讀取 Breezy Weather 資料</string>
     <string name="content_provider_permission_description">從 Breezy Weather 取得天氣資訊以及位置坐標；假如您加入了您的目前位置，也會包含在內</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">%s 位置更新通知</string>
 </resources>
