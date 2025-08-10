@@ -489,7 +489,7 @@
     <string name="settings_main_cards_other_element_animations_switch">Egyéb elemek animálása</string>
     <string name="settings_notifications">Értesítések</string>
     <string name="settings_notifications_forecast_today_title">Értesítés a napi előrejelzésről</string>
-    <string name="settings_modules_summary">Háttérkép beállítása, modulok beállításai, értesítési modul</string>
+    <string name="settings_modules_summary">Modulok, értesítési modul, háttérkép, adatmegosztás más alkalmazásokkal</string>
     <string name="settings_color_grey">Szürke</string>
     <string name="unit_kn">kn</string>
     <string name="unit_kn_voice">Csomó</string>
