@@ -29,6 +29,7 @@ import org.breezyweather.common.source.LocationSource
 import org.breezyweather.common.source.PollenIndexSource
 import org.breezyweather.common.source.ReverseGeocodingSource
 import org.breezyweather.common.source.Source
+import org.breezyweather.common.source.TimeZoneSource
 import org.breezyweather.common.source.WeatherSource
 import org.breezyweather.sources.android.AndroidLocationService
 import org.breezyweather.sources.breezytz.BreezyTimeZoneService
