@@ -343,7 +343,7 @@
     <string name="common_weather_text_rain_showers_heavy">Јаки пљускови</string>
     <string name="common_weather_text_rain_snow_mixed_light">Помешана слаба киша и снег</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Помешани пљускови са слабом кишом и снегом</string>
-    <string name="settings_modules_summary">Поставите позадину, конфигуришите коришћене виџете, виџет у обавештењима</string>
+    <string name="settings_modules_summary">Виџети, виџет у обавештењима, позадина, дељење података са другим апликацијама</string>
     <string name="common_weather_text_snow_light">Слаб снег</string>
     <string name="common_weather_text_snow_moderate">Умерен снег</string>
     <string name="common_weather_text_snow_heavy">Јак снег</string>
@@ -830,4 +830,19 @@
     <string name="unit_bft_display_name">Бофорт</string>
     <string name="unit_bft_nominative">%s Bft</string>
     <string name="about_update_check_eol">Ова верзија Android-а више није подржана</string>
+    <string name="humidity_from_to_number">%1$s до %2$s</string>
+    <string name="dew_point_from_to_number">%1$s до %2$s</string>
+    <string name="visibility_scale">Скала видљивости</string>
+    <string name="cloud_cover_from_to_number">%1$s до %2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s до %2$s</string>
+    <string name="cloud_cover_scale">Скала облачности</string>
+    <string name="weather_source_recommended">Препоручено</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">%s обавештавач о ажурираним локацијама</string>
+    <string name="action_add_as_location">Додај као локацију</string>
+    <string name="action_change">Промени</string>
+    <string name="message_incompatible_times_title">Некомпатибилна прогнозирана времена</string>
+    <string name="message_incompatible_times_content">Промените прогнозу или извор квалитета ваздуха тако да се времена подударају.</string>
+    <string name="content_provider_permission_label">Прочитај податке о Breezy Weather-у</string>
+    <string name="content_provider_permission_description">добијајте информације о времену од Breezy Weather-а, укључујући координате ваших локација, као што је ваша тренутна локација, ако сте је додали</string>
+    <string name="common_weather_text_mostly_cloudy">Претежно облачно</string>
 </resources>
