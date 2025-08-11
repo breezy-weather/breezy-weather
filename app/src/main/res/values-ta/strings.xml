@@ -205,7 +205,6 @@
     <string name="unit_lpsqm">L/m²</string>
     <string name="unit_mmph">மிமீ/ம</string>
     <string name="unit_mmph_voice">ஒரு மணி நேரத்திற்கு மில்லிமீட்டர்</string>
-    <string name="unit_mmhg">mmhg</string>
     <string name="notification_channel_crash_logs">செயலிழப்பு பதிவுகள்</string>
     <string name="notification_channel_app_updates">பயன்பாட்டு புதுப்பிப்புகள்</string>
     <string name="notification_app_update_available">புதிய பதிப்பு கிடைக்கிறது!</string>
@@ -224,7 +223,6 @@
     <string name="null_data_text">இதற்கில்லை</string>
     <string name="settings_icon_packs_get_more">மேலும் பெறுங்கள்</string>
     <string name="unit_cm">முதல்வர்</string>
-    <string name="unit_kpa">கே.பி.ஏ.</string>
     <string name="location_message_location_access_off">இருப்பிட அணுகல் முடக்கப்பட்டுள்ளது</string>
     <string name="action_help_me_choose">தேர்வு செய்ய எனக்கு உதவுங்கள்</string>
     <string name="action_show_errors">விவரங்களைக் காண தட்டவும்</string>
@@ -257,10 +255,6 @@
     <string name="unit_kelvin">கே</string>
     <string name="unit_mi_voice">மைல்கள்</string>
     <string name="unit_nmi">என்.எம்.ஐ.</string>
-    <string name="unit_kpa_voice">கிலோபாச்கல்கள்</string>
-    <string name="unit_hpa">HPA</string>
-    <string name="unit_hpa_voice">எக்டோபாச்கல்கள்</string>
-    <string name="unit_atm">ஏடிஎம்</string>
     <string name="notification_precipitation_starting_desc">%s இல் தொடங்கும் என்று எதிர்பார்க்கப்படுகிறது</string>
     <string name="common_weather_text_cloudy">மேகமூட்டமான</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">லேசான மழை மற்றும் பனி கலந்த மழை</string>
@@ -283,11 +277,7 @@
     <string name="unit_m_voice">மீட்டர்</string>
     <string name="unit_mi">மி</string>
     <string name="unit_nmi_voice">கடல் மைல்கள்</string>
-    <string name="unit_mb">எம்பி</string>
-    <string name="unit_mb_voice">மிரிபராச்</string>
     <string name="unit_h_voice">மணிகள்</string>
-    <string name="unit_atm_voice">வளிமண்டலங்கள்</string>
-    <string name="unit_mmhg_voice">பாதரசத்தின் மில்லிமீட்டர்</string>
     <string name="about_app">பயன்பாடு பற்றி</string>
     <string name="about_check_for_app_updates">பயன்பாட்டு புதுப்பிப்புகளைச் சரிபார்க்கவும்</string>
     <string name="common_weather_text_rain_showers_moderate">மிதமான மழை பொழிவுகள்</string>
@@ -555,8 +545,6 @@
     <string name="settings_notifications">அறிவிப்புகள்</string>
     <string name="settings_enabled">இயக்கப்பட்டது</string>
     <string name="settings_disabled">முடக்கப்பட்டது</string>
-    <string name="unit_inhg">inhg</string>
-    <string name="unit_inhg_voice">பாதரசத்தின் அங்குலங்கள்</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mugpcum_voice">ஒரு கன மீட்டருக்கு மைக்ரோகிராம்</string>
     <string name="unit_mgpcum">mg/m³</string>

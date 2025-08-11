@@ -401,7 +401,6 @@
     <string name="common_weather_text_cloudy">Oblačno</string>
     <string name="settings_items_drag_to_sort">Dodirnite za sortiranje stavki povlačenjem</string>
     <string name="common_weather_text_drizzle_freezing_light">Blaga ledena kišica</string>
-    <string name="unit_hpa">hPa</string>
     <string name="unit_m_voice">Metara</string>
     <string name="metno_weather_text_andthunder">%s i grmljavina</string>
     <string name="unit_mph">mph</string>
@@ -417,7 +416,6 @@
     <string name="unit_cm_voice">Centimetara</string>
     <string name="unit_inph">inch/h</string>
     <string name="unit_mph_voice">Milja na sat</string>
-    <string name="unit_inhg_voice">Inča žive</string>
     <string name="about_contact">Kontakt</string>
     <string name="unit_kelvin">K</string>
     <string name="common_weather_text_drizzle">Kišica</string>
@@ -435,7 +433,6 @@
     <string name="settings_color_light">Svijetla</string>
     <string name="common_weather_text_rain_snow_mixed">Susnježica</string>
     <string name="common_weather_text_rain">Kiša</string>
-    <string name="unit_mb">mb</string>
     <string name="unit_in">\"</string>
     <string name="notification_updating_weather_data">Ažuriranje vremenskih podataka (%1$d/%2$d)</string>
     <string name="settings_follow_system">Prati sustav</string>
@@ -444,7 +441,6 @@
     <string name="settings_color_grey">Siva</string>
     <string name="unit_ppcm_voice">Po metru kubnom</string>
     <string name="common_weather_text_snow_grains">Zrnasti snijeg</string>
-    <string name="unit_atm">atm</string>
     <string name="unit_h_voice">sati</string>
     <string name="unit_mm">mm</string>
     <string name="unit_ftps">ft/s</string>
@@ -476,18 +472,13 @@
     <string name="common_weather_text_clear_sky">Vedro</string>
     <string name="common_weather_text_snow_showers_heavy">Jaki snježni pljuskovi</string>
     <string name="unit_cmph">cm/h</string>
-    <string name="unit_mmhg">mmHg</string>
     <string name="unit_mmph">mm/h</string>
     <string name="unit_mi">mi</string>
     <string name="unit_ft">ft</string>
-    <string name="unit_inhg">inHg</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Blaga ili umjerena grmljavina</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="about_matrix">Matrix soba</string>
-    <string name="unit_kpa">kPa</string>
     <string name="unit_in_voice">Inča</string>
-    <string name="unit_kpa_voice">Kilopaskala</string>
-    <string name="unit_atm_voice">Atmosfera</string>
     <string name="unit_km">km</string>
     <string name="weather_kind_wind">Vjetar</string>
     <string name="notification_channel_background_services">Pozadinske usluge</string>
@@ -497,9 +488,7 @@
     <string name="unit_bft_voice">na Beaufort ljestvici</string>
     <string name="settings_none">Ništa</string>
     <string name="common_weather_text_partly_cloudy">Djelomično oblačno</string>
-    <string name="unit_mb_voice">Milibari</string>
     <string name="unit_mps">m/s</string>
-    <string name="unit_hpa_voice">Hektopaskala</string>
     <string name="common_weather_text_snow_showers">Snježni pljuskovi</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Grmljavina s jakom tučom</string>
     <string name="settings_item_delete">Obriši ovu stavku</string>
@@ -524,7 +513,6 @@
     <string name="notification_channel_widget">Widget</string>
     <string name="common_weather_text_drizzle_light">Blaga kišica</string>
     <string name="ephemeris_moon_phase_waning_crescent">Mlađak</string>
-    <string name="unit_mmhg_voice">Milimetara žive</string>
     <string name="about_dependencies">Ovisnosti</string>
     <string name="common_weather_text_rain_showers_moderate">Umjereni pljuskovi</string>
     <string name="unit_lpsqm_voice">Litara po metru kvadratnom</string>

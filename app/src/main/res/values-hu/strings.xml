@@ -386,12 +386,6 @@
     <string name="unit_kelvin_short">K</string>
     <string name="unit_km_voice">Kilométer</string>
     <string name="unit_m_voice">Méter</string>
-    <string name="unit_atm">atm</string>
-    <string name="unit_atm_voice">Atmoszféra</string>
-    <string name="unit_mmhg">mmHg</string>
-    <string name="unit_mmhg_voice">Higanymilliméter</string>
-    <string name="unit_inhg">inHg</string>
-    <string name="unit_inhg_voice">Higanyhüvelyk</string>
     <string name="notification_channel_alerts">Riasztások</string>
     <string name="notification_update_error">%d frissítés sikertelen</string>
     <string name="about_dependencies">Függőségek</string>
@@ -431,8 +425,6 @@
     <string name="settings_color_night_always">Mindig éjszakai</string>
     <string name="settings_color_day_night">Nappali / Éjszakai</string>
     <string name="settings_none">Nincs</string>
-    <string name="unit_mb_voice">Millibar</string>
-    <string name="unit_mb">mb</string>
     <string name="about_contact">Kapcsolat</string>
     <string name="common_weather_text_partly_cloudy">Részben felhős</string>
     <string name="common_weather_text_snow">Havazás</string>
@@ -514,10 +506,6 @@
     <string name="unit_nmi_voice">Tengeri mérföld</string>
     <string name="unit_ft">ft</string>
     <string name="unit_ft_voice">Láb</string>
-    <string name="unit_kpa">kPa</string>
-    <string name="unit_kpa_voice">Kilopascal</string>
-    <string name="unit_hpa">hPa</string>
-    <string name="unit_hpa_voice">Hektopascal</string>
     <string name="settings_modules_live_wallpaper_error">Nem sikerült elindítani a háttérképválasztót. Továbbra is engedélyezheti a %s háttérképet az „Élő háttérkép” lehetőség kiválasztásával a kezdőképernyő háttérképválasztójában.</string>
     <string name="settings_debug_summary">Hibanapló</string>
     <string name="unit_inph_voice">Hüvelyk per óra</string>

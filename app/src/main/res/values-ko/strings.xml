@@ -288,10 +288,6 @@
     <string name="uv_index_11">위험</string>
     <string name="unit_mph">mph</string>
     <string name="unit_mph_voice">시속 마일</string>
-    <string name="unit_mb">mb</string>
-    <string name="unit_mb_voice">밀리바</string>
-    <string name="unit_kpa">kPa</string>
-    <string name="unit_inhg_voice">수은주 인치</string>
     <string name="unit_mi_voice">마일</string>
     <string name="unit_nmi">nmi</string>
     <string name="unit_nmi_voice">해리</string>
@@ -346,14 +342,6 @@
     <string name="unit_kelvin">K</string>
     <string name="unit_mi">mi</string>
     <string name="unit_m_voice">미터</string>
-    <string name="unit_kpa_voice">킬로파스칼</string>
-    <string name="unit_hpa">hPa</string>
-    <string name="unit_hpa_voice">헥토파스칼</string>
-    <string name="unit_atm">atm</string>
-    <string name="unit_atm_voice">기압</string>
-    <string name="unit_mmhg">mmHg</string>
-    <string name="unit_mmhg_voice">수은주 밀리미터</string>
-    <string name="unit_inhg">inHg</string>
     <string name="unit_h">h</string>
     <string name="notification_channel_alerts">경보</string>
     <string name="notification_style_cities">도시</string>

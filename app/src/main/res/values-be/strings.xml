@@ -74,7 +74,6 @@
     <string name="unit_inph_voice">Цаляў за гадзіну</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
-    <string name="unit_inhg">цалі рт. сл.</string>
     <string name="unit_mugpcum_voice">Мікраграмы на кубічны метр</string>
     <string name="unit_mgpcum">мг/м³</string>
     <string name="unit_mgpcum_voice">Міліграмы на кубічны метр</string>
@@ -444,17 +443,6 @@
     <string name="unit_nmi_voice">Марскія мілі</string>
     <string name="unit_ft">фут</string>
     <string name="unit_ft_voice">Футы</string>
-    <string name="unit_mb">мбар</string>
-    <string name="unit_mb_voice">Мілібары</string>
-    <string name="unit_kpa">кПа</string>
-    <string name="unit_kpa_voice">Кілапаскалі</string>
-    <string name="unit_hpa">гПа</string>
-    <string name="unit_hpa_voice">Гектапаскалі</string>
-    <string name="unit_atm">атм</string>
-    <string name="unit_atm_voice">Атмасферы</string>
-    <string name="unit_mmhg">мм рт. сл.</string>
-    <string name="unit_mmhg_voice">Міліметраў ртутнага слупа</string>
-    <string name="unit_inhg_voice">Цаляў ртутнага слупа</string>
     <string name="unit_mugpcum">мкг/м³</string>
     <string name="unit_h">гадз</string>
     <string name="unit_h_voice">гадзіны</string>

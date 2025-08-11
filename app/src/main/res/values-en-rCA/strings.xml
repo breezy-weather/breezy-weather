@@ -18,7 +18,6 @@
     <string name="unit_lpsqmph_voice">Litres per square metre per hour</string>
     <string name="unit_km_voice">Kilometres</string>
     <string name="unit_m_voice">Metres</string>
-    <string name="unit_mmhg_voice">Millimetres of mercury</string>
     <string name="unit_mugpcum_voice">Micrograms per cubic metre</string>
     <string name="unit_mgpcum_voice">Milligrams per cubic metre</string>
     <string name="unit_ppcm_voice">Per cubic metre</string>

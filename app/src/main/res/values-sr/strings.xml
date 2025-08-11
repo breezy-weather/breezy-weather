@@ -149,7 +149,6 @@
     <string name="unit_kn">kn</string>
     <string name="unit_mps">m/s</string>
     <string name="unit_m_voice">Метри</string>
-    <string name="unit_hpa">hPa</string>
     <string name="action_set">Постави</string>
     <string name="action_continue">Настави</string>
     <string name="action_share">Дели</string>
@@ -175,7 +174,6 @@
     <string name="settings_modules_notification_style_title">Стил</string>
     <string name="settings_debug_summary">Евиденције отказивања</string>
     <string name="settings_modules_section_notification_widget">Виџет у обавештењима</string>
-    <string name="unit_atm">atm</string>
     <string name="notification_update_error">%d ажурирања није успело</string>
     <string name="common_weather_text_clear_sky">Ведро небо</string>
     <string name="common_weather_text_snow_showers_heavy">Јаки снежни пљускови</string>
@@ -194,14 +192,10 @@
     <string name="settings_units">Мерне јединице</string>
     <string name="settings_main_cards_fade_in_switch">Изблеђивање картица</string>
     <string name="settings_main_cards_other_element_animations_switch">Остале анимације елемената</string>
-    <string name="unit_mmhg">mmHg</string>
-    <string name="unit_mmhg_voice">Милиметри живе</string>
     <string name="notification_channel_alerts">Упозорења</string>
     <string name="unit_mps_voice">Метри у секунди</string>
     <string name="unit_in_voice">Инчи</string>
     <string name="unit_celsius_short">°</string>
-    <string name="unit_inhg">inHg</string>
-    <string name="unit_inhg_voice">Инчи живе</string>
     <string name="settings_section_general">Опште</string>
     <string name="weather_source_accu_preference_hours_120">120 сати</string>
     <string name="location_results_by">Резултати за локације од %s</string>
@@ -267,7 +261,6 @@
     <string name="unit_nmi">nmi</string>
     <string name="unit_nmi_voice">Наутичке миље</string>
     <string name="unit_ft">ft</string>
-    <string name="unit_hpa_voice">Хектопаскали</string>
     <string name="metno_weather_text_andthunder">%s и грмљавина</string>
     <string name="pollen_alnus">Јова</string>
     <string name="pollen_betula">Бреза</string>
@@ -278,7 +271,6 @@
     <string name="message_network_unavailable">Мрежа није доступна</string>
     <string name="widget_material_you_current">Material You – Тренутно</string>
     <string name="widget_clock_day_details">Сат + Дневно (Детаљи)</string>
-    <string name="unit_kpa">kPa</string>
     <string name="temperature_average_short">Просек</string>
     <string name="temperature_normal_short">Нормала</string>
     <string name="precipitation_rain">Киша</string>
@@ -360,10 +352,8 @@
     <string name="notification_style_cities">Градови</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Олуја са грмљавином - слаба или умерена</string>
     <string name="unit_h">h</string>
-    <string name="unit_kpa_voice">Килопаскали</string>
     <string name="weather_kind_hail">Град</string>
     <string name="air_quality_pm25_voice">PM два тачка пет</string>
-    <string name="unit_atm_voice">Атмосфере</string>
     <string name="cloud_cover">Облачност</string>
     <string name="widget_subtitle_data_wind">Ветар</string>
     <string name="precipitation_intensity_heavy">Јако</string>
@@ -398,9 +388,7 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_m">m</string>
-    <string name="unit_mb">mb</string>
     <string name="about_contributors">Сарадници</string>
-    <string name="unit_mb_voice">Милибари</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Таложење магле</string>
     <string name="unit_mmph">mm/h</string>
     <string name="unit_cmph_voice">Центиметри по сату</string>

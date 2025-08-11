@@ -266,12 +266,6 @@
     <string name="unit_mi_voice">Miglia</string>
     <string name="unit_nmi_voice">Miglia nautiche</string>
     <string name="unit_ft_voice">Piedi</string>
-    <string name="unit_mb_voice">Millibar</string>
-    <string name="unit_kpa_voice">Chilopascal</string>
-    <string name="unit_hpa_voice">Ettopascal</string>
-    <string name="unit_atm_voice">Atmosfere</string>
-    <string name="unit_mmhg_voice">Millimetri di mercurio</string>
-    <string name="unit_inhg_voice">Pollici di mercurio</string>
     <string name="unit_mugpcum_voice">Microgrammi per metro cubo</string>
     <string name="unit_mgpcum_voice">Milligrammi per metro cubo</string>
     <string name="unit_h_voice">ore</string>
@@ -367,9 +361,6 @@
     <string name="action_add_new_location">Aggiungi una nuova località</string>
     <string name="action_more">Vedi altro</string>
     <string name="settings_modules_monochrome_icons_title">Icone monocromatiche</string>
-    <string name="unit_hpa">hPa</string>
-    <string name="unit_atm">atm</string>
-    <string name="unit_kpa">kPa</string>
     <string name="common_weather_text_mostly_clear">Prevalentemente sereno</string>
     <string name="about_source_code">Codice sorgente</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Nebbia con deposito di brina</string>
@@ -395,7 +386,6 @@
     <string name="settings_debug_dump_crash_logs_title">Condividi crash logs</string>
     <string name="settings_debug_dump_crash_logs_summary">Salva i log degli errori in un file per la condivisione con gli sviluppatori</string>
     <string name="unit_mm">mm</string>
-    <string name="unit_mmhg">mmHg</string>
     <string name="notification_channel_background_services">Servizi in background</string>
     <string name="about_matrix">Stanza Matrix</string>
     <string name="common_weather_text_overcast">Coperto</string>
@@ -422,8 +412,6 @@
     <string name="unit_mi">mi</string>
     <string name="unit_nmi">nmi</string>
     <string name="unit_ft">ft</string>
-    <string name="unit_mb">mb</string>
-    <string name="unit_inhg">inHg</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_h">h</string>

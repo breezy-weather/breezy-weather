@@ -261,9 +261,6 @@
     <string name="unit_m">m</string>
     <string name="unit_km">km</string>
     <string name="unit_ft_voice">Stopa</string>
-    <string name="unit_hpa_voice">Hektopaskala</string>
-    <string name="unit_atm">atm</string>
-    <string name="unit_atm_voice">Atmosfera</string>
     <string name="unit_h">h</string>
     <string name="unit_h_voice">sati</string>
     <string name="notification_channel_crash_logs">Zapisnici o padu</string>
@@ -320,15 +317,6 @@
     <string name="unit_mi">mi</string>
     <string name="unit_nmi">nmi</string>
     <string name="unit_ft">ft</string>
-    <string name="unit_mb">mb</string>
-    <string name="unit_mb_voice">Milibari</string>
-    <string name="unit_kpa">kPa</string>
-    <string name="unit_hpa">hPa</string>
-    <string name="unit_mmhg">mmHg</string>
-    <string name="unit_kpa_voice">Kilopaskala</string>
-    <string name="unit_mmhg_voice">Milimetara žive</string>
-    <string name="unit_inhg">inHg</string>
-    <string name="unit_inhg_voice">Inča žive</string>
     <string name="notification_refreshed_at">Osvježeno u</string>
     <string name="notification_channel_alerts">Upozorenja</string>
     <string name="notification_channel_forecast">Prognoza</string>

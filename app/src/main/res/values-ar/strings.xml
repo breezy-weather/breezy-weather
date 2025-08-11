@@ -180,12 +180,6 @@
     <string name="unit_mi">ميل</string>
     <string name="unit_nmi">ميل بحري</string>
     <string name="unit_ft">قدم</string>
-    <string name="unit_mb">م ب</string>
-    <string name="unit_kpa">كيلو باسكال</string>
-    <string name="unit_hpa">هيكتوباسكال</string>
-    <string name="unit_atm">ضغط جوي</string>
-    <string name="unit_mmhg">ملي متر زئبق</string>
-    <string name="unit_inhg">بوصة من الزئبق</string>
     <string name="settings_main_cards_title">البطاقات</string>
     <string name="widget_custom_subtitle_keyword_d_description">التاريخ</string>
     <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (°C°/F)</string>
@@ -248,12 +242,9 @@
     <string name="widget_style_symmetry">تناظري</string>
     <string name="widget_style_oreo">أوريو</string>
     <string name="unit_km_voice">كيلومترات</string>
-    <string name="unit_atm_voice">الغلاف الجوي</string>
-    <string name="unit_mmhg_voice">ملليمتر من الزئبق</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">عاصفة رعدية طفيفة أو معتدلة</string>
     <string name="unit_in_voice">بوصات</string>
     <string name="air_quality_level_1">ممتازة</string>
-    <string name="unit_kpa_voice">كيلوباسكال</string>
     <string name="air_quality_level_4">غير صحي</string>
     <string name="unit_m_voice">امتار</string>
     <string name="unit_inph">بوصة / ساعة</string>
@@ -429,9 +420,6 @@
     <string name="unit_mmph_voice">ملليمتر في الساعة</string>
     <string name="unit_cmph_voice">سنتيمتر في الساعة</string>
     <string name="unit_mi_voice">اميال</string>
-    <string name="unit_mb_voice">ملي بار</string>
-    <string name="unit_hpa_voice">هيكتوباسكال</string>
-    <string name="unit_inhg_voice">بوصة من الزئبق</string>
     <string name="unit_mugpcum_voice">ميكروغرام لكل متر مكعب</string>
     <string name="unit_h_voice">ساعات</string>
     <string name="unit_ppcm">\\م³</string>

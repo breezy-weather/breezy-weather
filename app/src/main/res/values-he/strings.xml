@@ -466,10 +466,6 @@
     <string name="unit_mi_voice">מיילים</string>
     <string name="unit_nmi_voice">מיילים ימיים</string>
     <string name="unit_ft_voice">רגל</string>
-    <string name="unit_kpa_voice">קילופסקל</string>
-    <string name="unit_hpa_voice">הקטופסקל</string>
-    <string name="unit_mmhg_voice">מילימטרים של כספית</string>
-    <string name="unit_inhg_voice">אינצ\'ים של כספית</string>
     <string name="unit_mgpcum_voice">מיליגרמים עבור מטר מעוקב</string>
     <string name="unit_mugpcum_voice">מיקרוגרמים עבור מטר מעוקב</string>
     <string name="unit_h_voice">שעות</string>
@@ -534,8 +530,6 @@
     <string name="settings_unavailable_no_background_updates">לא מזין, הפעל תחילה עדכוני רקע</string>
     <string name="settings_items_drag_to_sort">הקש על מנת לגרור את פריטי הרשימה על מנת למיין</string>
     <string name="settings_changes_apply_after_restart">השינויים יחולו אחרי הפעלה מחדש</string>
-    <string name="unit_mb_voice">מיליבר</string>
-    <string name="unit_atm_voice">אטמוספירות</string>
     <string name="about_app">אודות אפליקציה</string>
     <string name="common_weather_text_drizzle">זרזיף</string>
     <string name="common_weather_text_drizzle_heavy">זרזיף כבד</string>

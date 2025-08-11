@@ -162,7 +162,6 @@
     <string name="notification_refreshed_at">Oppdatert ved</string>
     <string name="notification_channel_crash_logs">Krasjlogger</string>
     <string name="metno_weather_text_andthunder">%s og torden</string>
-    <string name="unit_inhg_voice">Tommer kvikksølv</string>
     <string name="notification_style_native">Innebygd</string>
     <string name="about_contribution_designer">Logodesigner</string>
     <string name="weather_kind_thunder">Torden</string>
@@ -183,11 +182,6 @@
     <string name="unit_mugpcum">μg/m³</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Rimtåke</string>
     <string name="common_weather_text_snow_grains">Snøkorn</string>
-    <string name="unit_atm">atm</string>
-    <string name="unit_inhg">inHg</string>
-    <string name="unit_mmhg_voice">Millimeter kvikksølv</string>
-    <string name="unit_mmhg">mmHg</string>
-    <string name="unit_atm_voice">Standard atmosfære</string>
     <string name="unit_mph">mph</string>
     <string name="unit_in">in</string>
     <string name="unit_m">m</string>
@@ -199,7 +193,6 @@
     <string name="settings_items_drag_to_sort">Trykk for å flytte objektet</string>
     <string name="settings_changes_apply_after_restart">Endringer vil skje etter omstart</string>
     <string name="settings_background_updates_refresh_never">Aldri</string>
-    <string name="unit_kpa">kPa</string>
     <string name="unit_ft">ft</string>
     <string name="unit_mi_voice">Engelsk mil</string>
     <string name="settings_location_access_permission_already_granted">Tillatelse er allerede gitt</string>
@@ -241,11 +234,6 @@
     <string name="unit_mps_voice">Meter per sekund</string>
     <string name="settings_debug_dump_crash_logs_saved">Krasjlogger lagret</string>
     <string name="unit_kph_voice">Kilometer i timen</string>
-    <string name="unit_hpa_voice">Hektopascal</string>
-    <string name="unit_hpa">hPa</string>
-    <string name="unit_kpa_voice">Kilopascal</string>
-    <string name="unit_mb_voice">Millibar</string>
-    <string name="unit_mb">mbar</string>
     <string name="unit_ft_voice">Fot</string>
     <string name="unit_mi">mi</string>
     <string name="unit_km_voice">Kilometer</string>

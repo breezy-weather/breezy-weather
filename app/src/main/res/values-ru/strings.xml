@@ -230,12 +230,6 @@
     <string name="unit_mi">мили</string>
     <string name="unit_nmi">мор. мили</string>
     <string name="unit_ft">футы</string>
-    <string name="unit_mb">миллибар</string>
-    <string name="unit_kpa">кПа</string>
-    <string name="unit_hpa">гПа</string>
-    <string name="unit_atm">атм</string>
-    <string name="unit_mmhg">мм рт. ст.</string>
-    <string name="unit_inhg">дюйм рт. ст.</string>
     <string name="unit_mugpcum">мкг/м³</string>
     <string name="unit_h">ч</string>
     <string name="unit_ppcm">/м³</string>
@@ -334,7 +328,6 @@
     <string name="settings_modules_section_notification_widget">Виджет в уведомлениях</string>
     <string name="settings_modules_notification_widget_title">Виджет в уведомлениях</string>
     <string name="unit_kelvin">K</string>
-    <string name="unit_atm_voice">Атмосферы</string>
     <string name="about_contribution_WangDaYeeeeee">Разработчик оригинального проекта Geometric Weather</string>
     <string name="common_weather_text_mostly_clear">В основном ясно</string>
     <string name="settings_modules_week_icon_mode_title">Иконки для отображения в недельных просмотрах</string>
@@ -385,8 +378,6 @@
     <string name="settings_icon_packs_weather_adaptive_icon">Иконка погоды</string>
     <string name="unit_m_voice">Метры</string>
     <string name="unit_mi_voice">Мили</string>
-    <string name="unit_mmhg_voice">Миллиметров ртути</string>
-    <string name="unit_inhg_voice">Дюймов ртути</string>
     <string name="notification_channel_alerts">Оповещения</string>
     <string name="settings_icon_packs_title">Наборы иконок</string>
     <string name="settings_notifications">Уведомления</string>
@@ -446,9 +437,6 @@
     <string name="unit_lpsqmph_voice">Литров на квадратный метр в час</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_nmi_voice">Морские мили</string>
-    <string name="unit_kpa_voice">Килопаскали</string>
-    <string name="unit_mb_voice">Миллибары</string>
-    <string name="unit_hpa_voice">Гектопаскали</string>
     <string name="about_matrix">Комната Matrix</string>
     <string name="about_source_code">Исходный код</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Гроза со слабым градом</string>

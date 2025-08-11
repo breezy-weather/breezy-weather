@@ -235,9 +235,6 @@
     <string name="unit_nmi_voice">Наутички милји</string>
     <string name="unit_ft">ft</string>
     <string name="unit_ft_voice">Нозете</string>
-    <string name="unit_mb">mb</string>
-    <string name="unit_mb_voice">Милибари</string>
-    <string name="unit_kpa_voice">Килопаскали</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="notification_channel_background_services">Услуги во позадина</string>
     <string name="notification_running_in_background">Работи во заднина за да продолжи да се ажурира</string>
@@ -248,7 +245,6 @@
     <string name="weather_kind_thunderstorm">Невреме со грмотевици</string>
     <string name="weather_kind_wind">Ветер</string>
     <string name="weather_source_accu_preference_days_1">1 ден</string>
-    <string name="unit_kpa">кПа</string>
     <string name="weather_source_accu_preference_days_5">5 дена</string>
     <string name="weather_source_accu_preference_hours_24">24 часа</string>
     <string name="widget_week_style_3_days">3 дена</string>
@@ -329,9 +325,6 @@
     <string name="unit_kph_voice">Километри на час</string>
     <string name="unit_mm">мм</string>
     <string name="unit_mmph">mm/h</string>
-    <string name="unit_atm">атм</string>
-    <string name="unit_atm_voice">Атмосфери</string>
-    <string name="unit_mmhg">мм. жива</string>
     <string name="unit_h">ч</string>
     <string name="unit_h_voice">часови</string>
     <string name="notification_updating_weather_data">Се ажурираат временските податоци (%1$d/%2$d)</string>
@@ -439,11 +432,6 @@
     <string name="unit_kelvin">К</string>
     <string name="unit_kelvin_short">К</string>
     <string name="unit_km">км</string>
-    <string name="unit_hpa">hPa</string>
-    <string name="unit_hpa_voice">Хектопаскали</string>
-    <string name="unit_mmhg_voice">Милиметри жива</string>
-    <string name="unit_inhg">во Hg</string>
-    <string name="unit_inhg_voice">Инчи жива</string>
     <string name="unit_mugpcum_voice">Микрограми на кубен метар</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mgpcum_voice">Милиграми на кубен метар</string>

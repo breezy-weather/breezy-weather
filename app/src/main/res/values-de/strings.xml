@@ -180,15 +180,8 @@
     <string name="unit_nmi_voice">Nautische Meilen</string>
     <string name="unit_ft">ft</string>
     <string name="unit_ft_voice">Fuß</string>
-    <string name="unit_mb_voice">Millibar</string>
-    <string name="unit_kpa">kPa</string>
-    <string name="unit_kpa_voice">Kilopascal</string>
-    <string name="unit_hpa">hPa</string>
-    <string name="unit_hpa_voice">Hektopascal</string>
-    <string name="unit_atm">atm</string>
     <string name="unit_lpsqmph">l/m²/h</string>
     <string name="unit_h_voice">Stunden</string>
-    <string name="unit_mmhg">mmHg</string>
     <string name="unit_ppcm_voice">Pro Kubikmeter</string>
     <string name="notification_channel_alerts">Warnungen</string>
     <string name="common_weather_text_clear_sky">Klarer Himmel</string>
@@ -234,9 +227,6 @@
     <string name="unit_kn_voice">Knoten</string>
     <string name="about_contribution_WangDaYeeeeee">Entwickler des ursprünglichen Projekts Geometric Weather</string>
     <string name="air_quality_level_2">Mäßig</string>
-    <string name="unit_inhg">inHg</string>
-    <string name="unit_mmhg_voice">Millimeter-Quecksilbersäule</string>
-    <string name="unit_inhg_voice">Zoll-Quecksilbersäule</string>
     <string name="air_quality_level_4_description">Empfindliche Personengruppen werden unmittelbare gesundheitliche Auswirkungen spüren. Bei gesunden Menschen kann es bei längerem Kontakt zu Atembeschwerden und Hustenreiz kommen. Schränke Aktivitäten im Freien ein.</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Leichtes bis mäßiges Gewitter</string>
     <string name="widget_style_temperature">Temperatur</string>
@@ -254,7 +244,6 @@
     <string name="alerts_to_follow">Anstehende Warnungen. Zum Anzeigen hier tippen.</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Gewitter mit leichtem Hagel</string>
     <string name="unit_nmi">nmi</string>
-    <string name="unit_atm_voice">Atmosphäre</string>
     <string name="unit_mph_voice">Meilen pro Stunde</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="message_tap_again_to_exit">Zum Beenden erneut antippen</string>
@@ -336,7 +325,6 @@
     <string name="unit_mgpcum_voice">Milligramm pro Kubikmeter</string>
     <string name="air_quality_level_5_description">Empfindliche Personengruppen werden unmittelbare gesundheitliche Auswirkungen spüren und sollten Aktivitäten im Freien vermeiden. Bei gesunden Menschen kommt es bei längerer Exposition wahrscheinlich zu Atembeschwerden und Hustenreiz. Wir empfehlen, nicht nach draußen zu gehen und Aktivitäten im Freien zu verschieben.</string>
     <string name="settings_source_default_value">Standard (unverändert)</string>
-    <string name="unit_mb">mb</string>
     <string name="about_matrix">Matrix-Raum</string>
     <string name="about_source_code">Quellcode</string>
     <string name="about_contributors">Mitwirkende</string>

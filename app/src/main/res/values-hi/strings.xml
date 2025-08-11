@@ -238,10 +238,6 @@
     <string name="unit_kn">केएन</string>
     <string name="unit_lpsqmph">लि/वमि/ता</string>
     <string name="unit_mi">मील</string>
-    <string name="unit_mb_voice">मिलिबार</string>
-    <string name="unit_kpa">केपीए</string>
-    <string name="unit_kpa_voice">किलोपास्कल्स</string>
-    <string name="unit_hpa">एचपीए</string>
     <string name="settings_color_day_always">हमेशा दिन</string>
     <string name="settings_color_night_always">हमेशा रात</string>
     <string name="settings_color_light">प्रकाश</string>
@@ -275,7 +271,6 @@
     <string name="unit_kelvin_short">के</string>
     <string name="unit_nmi">समी</string>
     <string name="unit_nmi_voice">समुद्री मील</string>
-    <string name="unit_mb">एमबी</string>
     <string name="unit_km">किमी</string>
     <string name="unit_m_voice">मीटर</string>
     <string name="unit_mi_voice">मिले</string>
@@ -290,7 +285,6 @@
     <string name="unit_mm">मिमी</string>
     <string name="unit_in_voice">इंच</string>
     <string name="unit_lpsqm">लि/मि²</string>
-    <string name="unit_hpa_voice">हेक्टोपास्कल्स</string>
     <string name="null_data_text">एन/ए</string>
     <string name="pressure">दबाव</string>
     <string name="dialog_permissions_location_background_title">पृष्ठभूमि में स्थान प्राप्त करे</string>
@@ -470,7 +464,6 @@
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">भारी बारिश और बर्फ मिश्रित बौछारें</string>
     <string name="common_weather_text_snow_moderate">मध्यम बर्फबारी</string>
     <string name="common_weather_text_drizzle_light">हल्की बूंदाबांदी</string>
-    <string name="unit_inhg">inHg</string>
     <string name="settings_source_api_key">एपीआई कुंजी</string>
     <string name="settings_modules_section_notification_widget">अधिसूचना विजेट</string>
     <string name="settings_debug_summary">अकस्मात गिरने के अभिलेख</string>
@@ -510,7 +503,6 @@
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">हल्की ओलावृष्टि के साथ आंधी</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">हल्की या मध्यम गड़गड़ाहट</string>
     <string name="settings_modules_notification_feels_like_switch">उपयोग तापमान जैसा महसूस होता है</string>
-    <string name="unit_mmhg">mmHg</string>
     <string name="notification_precipitation_stopping_desc">%s पर रुकने की उम्मीद है</string>
     <string name="metno_weather_text_andthunder">%s और गड़गड़ाहट</string>
     <string name="settings_debug_dump_crash_logs_summary">डेवलपर्स के साथ साझा करने के लिए त्रुटि अभिलेख को फ़ाइल में सहेजता है</string>
@@ -547,15 +539,11 @@
     <string name="settings_item_delete">इस आइटम को हटाएँ</string>
     <string name="settings_enabled">सक्रिय</string>
     <string name="settings_unavailable_no_background_updates">अनुपलब्ध, पृष्ठभूमि अद्यतन पहले सक्षम करें</string>
-    <string name="unit_atm">एटीएम</string>
-    <string name="unit_atm_voice">वायुमंडल</string>
     <string name="unit_ppcm_voice">प्रति घन मीटर</string>
     <string name="notification_refreshed_at">पर ताज़ा किया गया</string>
     <string name="notification_update_error">%d अद्यतन विफल</string>
     <string name="notification_running_in_background">अद्यतन रखने के लिए पृष्ठभूमि में चल रहा है</string>
     <string name="common_weather_text_drizzle_moderate">मध्यम बूंदाबांदी</string>
-    <string name="unit_mmhg_voice">पारा के मिलीमीटर</string>
-    <string name="unit_inhg_voice">इंच पारा</string>
     <string name="about_open_link_message">%s खोले?</string>
     <string name="common_weather_text_cloudy">बादलों से घिरा</string>
     <string name="common_weather_text_fog">कोहरा</string>

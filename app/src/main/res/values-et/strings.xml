@@ -279,7 +279,6 @@
     <string name="settings_main_daily_trends_title">Päevased prognoosid</string>
     <string name="settings_main_hourly_trends_title">Tunnised prognoosid</string>
     <string name="settings_debug_dump_crash_logs_title">Jaga krahhilogisid</string>
-    <string name="unit_kpa_voice">Kilopaskalid</string>
     <string name="air_quality_pm10_voice">PM kümme</string>
     <string name="pollen_artemisia">Koirohi</string>
     <string name="pollen_mold">Eos</string>
@@ -381,11 +380,6 @@
     <string name="settings_modules_live_wallpaper_title">Elus taustapilt</string>
     <string name="settings_modules_live_wallpaper_summary">Sea ilmaanimatsioon taustapildina</string>
     <string name="unit_ft_voice">Jalad</string>
-    <string name="unit_mb">mb</string>
-    <string name="unit_mb_voice">Millibaarid</string>
-    <string name="unit_kpa">kPa</string>
-    <string name="unit_atm">atm</string>
-    <string name="unit_inhg_voice">Tolli elavhõbedat</string>
     <string name="notification_channel_widget">Vidin</string>
     <string name="notification_channel_background_services">Tagatausta teenused</string>
     <string name="unit_ppcm_voice">Kuupmeetri kohta</string>
@@ -435,11 +429,6 @@
     <string name="settings_modules_notification_style_title">Stiil</string>
     <string name="settings_modules_notification_temp_icon_switch">Temperatuur olekuriba ikoonina</string>
     <string name="settings_item_delete">Kustuta see ese</string>
-    <string name="unit_hpa">hPa</string>
-    <string name="unit_atm_voice">Atmosfäärid</string>
-    <string name="unit_mmhg">mmHg</string>
-    <string name="unit_mmhg_voice">Millimeeter elavhõbedasambad</string>
-    <string name="unit_inhg">inHg</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="notification_update_error">%d uuendus(ed) ebaõnnestus(id)</string>
     <string name="notification_precipitation_starting">Sademed lähiajal</string>
@@ -561,7 +550,6 @@
     <string name="settings_enabled">Sees</string>
     <string name="settings_unavailable_no_background_updates">Pole kättesaadav, lülita tagataustauuendused sisse</string>
     <string name="settings_automatic">Automaatne</string>
-    <string name="unit_hpa_voice">Hektopaskalid</string>
     <string name="common_weather_text_snow_showers_light">Hõredad lumehood</string>
     <string name="weather_kind_thunder">Äike</string>
     <string name="weather_kind_wind">Tuul</string>

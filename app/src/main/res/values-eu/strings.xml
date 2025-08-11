@@ -295,14 +295,6 @@
     <string name="unit_nmi_voice">Milia nautikoak</string>
     <string name="unit_ft">ft</string>
     <string name="unit_ft_voice">Oin</string>
-    <string name="unit_mb">mb</string>
-    <string name="unit_mb_voice">Milibarrak</string>
-    <string name="unit_kpa">kPa</string>
-    <string name="unit_kpa_voice">Kilopascalak</string>
-    <string name="unit_hpa">hPa</string>
-    <string name="unit_hpa_voice">Hektopascalak</string>
-    <string name="unit_atm">atm</string>
-    <string name="unit_atm_voice">Atmosferak</string>
     <string name="unit_h">h</string>
     <string name="unit_h_voice">orduak</string>
     <string name="unit_ppcm">/m³</string>
@@ -407,8 +399,6 @@
     <string name="unit_mps">m/s</string>
     <string name="settings_weather_sources_summary">Datu meteorologikoen iturrien ezarpenak</string>
     <string name="settings_source_default_value">Lehenetsia (aldatu gabe)</string>
-    <string name="unit_mmhg">mmHg</string>
-    <string name="unit_inhg">imHg</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mgpcum_voice">Miligramoak metro kubikoko</string>
     <string name="notification_channel_forecast">Iragarpena</string>
@@ -416,8 +406,6 @@
     <string name="about_contribution_designer">Logoaren diseinatzailea</string>
     <string name="common_weather_text_overcast">Hodeituta</string>
     <string name="common_weather_text_fog">Lainoa</string>
-    <string name="unit_mmhg_voice">Merkurio milimetroak</string>
-    <string name="unit_inhg_voice">Merkurio-hazbeteak</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="notification_channel_widget">Trepeta</string>
     <string name="about_translators">Itzultzaileak</string>

@@ -93,8 +93,6 @@
     <string name="unit_mps_voice">metrum á sekúndu</string>
     <string name="unit_mmph">mm/klst</string>
     <string name="unit_mmph_voice">millimetrum á klukkustund</string>
-    <string name="unit_hpa">hPa</string>
-    <string name="unit_hpa_voice">hektopaskölum</string>
     <string name="common_weather_text_clear_sky">Heiðskírt</string>
     <string name="common_weather_text_partly_cloudy">Léttskýjað</string>
     <string name="common_weather_text_cloudy">Skýjað</string>

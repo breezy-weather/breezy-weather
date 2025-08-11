@@ -268,12 +268,6 @@
     <string name="unit_mi_voice">Míle</string>
     <string name="unit_nmi_voice">Námořní míle</string>
     <string name="unit_ft_voice">Stopy</string>
-    <string name="unit_mb_voice">Milibary</string>
-    <string name="unit_kpa_voice">Kilopascaly</string>
-    <string name="unit_hpa_voice">Hektopascaly</string>
-    <string name="unit_atm_voice">Atmosféry</string>
-    <string name="unit_mmhg_voice">Milimetry rtuti</string>
-    <string name="unit_inhg_voice">Palce rtuti</string>
     <string name="unit_mugpcum_voice">Mikrogramy na metr krychlový</string>
     <string name="unit_mgpcum_voice">Milligramy na metr krychlový</string>
     <string name="unit_h_voice">hodin</string>
@@ -388,7 +382,6 @@
     <string name="unit_mi">mi</string>
     <string name="about_source_code">Zdrojový kód</string>
     <string name="air_quality_level_6_description">Jakékoli vystavení ovzduší, byť jen na několik minut, může mít pro každého vážné zdravotní následky. Vyhněte se venkovním aktivitám.</string>
-    <string name="unit_mmhg">mmHg</string>
     <string name="action_location_list">Seznam poloh</string>
     <string name="wind_direction_SE_short">JV</string>
     <string name="alerts_to_follow">Nadcházející výstrahy, klepněte sem pro jejich zobrazení.</string>
@@ -414,9 +407,7 @@
     <string name="unit_mmph">mm/h</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_kelvin_short">K</string>
-    <string name="unit_inhg">inHg</string>
     <string name="unit_ft">ft</string>
-    <string name="unit_atm">atm</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="weather_source_accu_preference_days_1">1 den</string>
     <string name="weather_source_accu_preference_days_5">5 dní</string>
@@ -447,9 +438,6 @@
     <string name="unit_mmph_voice">Milimetry za hodinu</string>
     <string name="unit_cmph_voice">Centimetry za hodinu</string>
     <string name="notification_channel_background_services">Služby na pozadí</string>
-    <string name="unit_mb">mb</string>
-    <string name="unit_kpa">kPa</string>
-    <string name="unit_hpa">hPa</string>
     <string name="air_quality_level_1_description">Kvalita ovzduší je vhodná pro většinu jedinců; užívejte si své normální venkovní aktivity.</string>
     <string name="weather_api_limit_reached_content">Pro obejití limitu zadejte svůj vlastní klíč API.</string>
     <string name="weather_api_unauthorized_title">Neautorizovaný přístup k API</string>

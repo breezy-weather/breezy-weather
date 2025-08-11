@@ -390,8 +390,6 @@
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="unit_lpsqmph_voice">Litri uz kvadrātmetru stundā</string>
     <string name="unit_ft_voice">Pēda</string>
-    <string name="unit_mb">mb</string>
-    <string name="unit_kpa">kPa</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mugpcum_voice">Mikrogrami uz kubikmetru</string>
     <string name="notification_style_cities">Pilsētas</string>
@@ -419,11 +417,6 @@
     <string name="unit_kelvin">K</string>
     <string name="unit_kelvin_short">K</string>
     <string name="unit_km">km</string>
-    <string name="unit_atm_voice">Atmosfēras</string>
-    <string name="unit_mmhg">dz. st. mm</string>
-    <string name="unit_mmhg_voice">Dzīvsudraba milimetri</string>
-    <string name="unit_inhg">dz. st. in</string>
-    <string name="unit_inhg_voice">Dzīvsudraba collas</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mgpcum_voice">Miligrami uz kubikmetru</string>
     <string name="unit_h">h</string>
@@ -477,11 +470,6 @@
     <string name="unit_km_voice">Kilometri</string>
     <string name="unit_ft">ft</string>
     <string name="unit_nmi_voice">Jūras jūdzes</string>
-    <string name="unit_mb_voice">Milibāri</string>
-    <string name="unit_kpa_voice">Kilopaskāli</string>
-    <string name="unit_hpa">hPa</string>
-    <string name="unit_hpa_voice">Hektopaskāli</string>
-    <string name="unit_atm">atm</string>
     <string name="common_weather_text_rain_light">Neliels lietus</string>
     <string name="common_weather_text_rain_heavy">Spēcīgs lietus</string>
     <string name="common_weather_text_snow_moderate">Mērens sniegs</string>

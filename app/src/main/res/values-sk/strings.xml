@@ -315,7 +315,6 @@
     <string name="pollen_urticaceae">Žihľava</string>
     <string name="alert_source">Zdroj: %s</string>
     <string name="unit_m_voice">Metre</string>
-    <string name="unit_kpa">kPa</string>
     <string name="settings_notifications_precipitations_title">Notifikácie o zrážkach</string>
     <string name="settings_notifications_section_forecast">Predpoveď</string>
     <string name="settings_notifications_forecast_tomorrow_title">Notifikácia s predpoveďou na nasledujúci deň</string>
@@ -344,7 +343,6 @@
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_nmi_voice">Námorné míle</string>
     <string name="unit_ft">ft</string>
-    <string name="unit_mb">mb</string>
     <string name="about_open_link_message">Otvoriť %s?</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Čas notifikácie s predpoveďou na ďalší deň</string>
     <string name="unit_fahrenheit">°F</string>
@@ -364,8 +362,6 @@
     <string name="unit_mph">mph</string>
     <string name="unit_mph_voice">Míle za hodinu</string>
     <string name="settings_none">Žiadne</string>
-    <string name="unit_mb_voice">Milibary</string>
-    <string name="unit_kpa_voice">Kilopascaly</string>
     <string name="settings_debug_dump_crash_logs_summary">Záznamy o chybách budú uložené do súboru na zdieľanie s vývojarmi</string>
     <string name="settings_notifications_forecast_time_today_title">Čas notifikácie s predpoveďou dňa</string>
     <string name="unit_km_voice">Kilometre</string>
@@ -411,7 +407,6 @@
     <string name="message_parsing_error_title">Nepodarilo sa spracovať dáta o počasí</string>
     <string name="settings_source_api_key">API kľúč</string>
     <string name="unit_h">h</string>
-    <string name="unit_mmhg_voice">Milimetre ortuti</string>
     <string name="notification_precipitation_stopping_desc">Predpokladaný koniec o %s</string>
     <string name="unit_mgpcum_voice">Miligramy na meter kubický</string>
     <string name="notification_updating_weather_data">Aktualizácia údajov o počasí (%1$d/%2$d)</string>
@@ -424,19 +419,15 @@
     <string name="settings_location_access_background_title">Prístup k polohe na pozadí</string>
     <string name="settings_source_default_value">Predvolený (nezmenené)</string>
     <string name="settings_weather_source_none">Žiadny</string>
-    <string name="unit_atm_voice">Atmosféry</string>
     <string name="settings_per_location_theme">Motív</string>
     <string name="widget_material_you_forecast">Material You – Predpoveď</string>
     <string name="dialog_permissions_location_title">Prístup k informáciám o polohe</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
     <string name="settings_location_access_switch_title">Prístup k polohe</string>
     <string name="settings_weather_sources_default_source">Predvolený zdroj nového miesta</string>
-    <string name="unit_inhg">inHg</string>
     <string name="settings_location_service">Služba určovania polohy</string>
     <string name="widget_text">Text</string>
-    <string name="unit_mmhg">mmHg</string>
     <string name="settings_weather_sources">Zdroje pre počasie</string>
-    <string name="unit_inhg_voice">Palce ortuti</string>
     <string name="message_source_not_installed_error_title">Zdroj už nie je dostupný</string>
     <string name="settings_background_updates_refresh_never_warning1">Vypnutím aktualizácii na pozadí už nebudete dostávať notifikácie o počasí. Widgety sa nebudú obnovovať, dokým neotvoríte aplikáciu.</string>
     <string name="settings_location_access_permission_already_granted">Povolenie už bolo udelené</string>
@@ -450,7 +441,6 @@
     <string name="notification_running_in_background">Aplikácia beží na pozadí pre aktualizáciu údajov</string>
     <string name="widget_week">Týždenný</string>
     <string name="settings_modules_live_wallpaper_title">Živá tapeta</string>
-    <string name="unit_hpa_voice">Hektopascaly</string>
     <string name="widget_custom_subtitle_keyword_caqi_description">Aktuálny index kvality ovzdušia</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Aktuálna viditeľnosť</string>
     <string name="message_server_unavailable_content">Toto je zvyčajne iba dočasná chyba. Ak však pretrváva dlhšie, nahláste ju prosím v platforme GitHub.</string>
@@ -573,14 +563,12 @@
     <string name="common_weather_text_hot">Horúco</string>
     <string name="common_weather_text_smoke">Dym</string>
     <string name="notification_precipitation_continuing_desc">Očakávaný koniec najskôr o %s</string>
-    <string name="unit_atm">atm</string>
     <string name="settings_main_summary">Poradie kariet, zobrazené položky, animácie</string>
     <string name="settings_main_background_animation_disabled">Vypnuté</string>
     <string name="widget_trend_daily">Denný graf</string>
     <string name="widget_label_view_style">Zobraziť štýl</string>
     <string name="settings_enabled">Zapnuté</string>
     <string name="settings_disabled">Vypnuté</string>
-    <string name="unit_hpa">hPa</string>
     <string name="settings_units">Jednotky</string>
     <string name="widget_trend_hourly">Hodinový graf</string>
     <string name="widget_custom_subtitle_keyword_ut_description">Čas aktualizácie</string>

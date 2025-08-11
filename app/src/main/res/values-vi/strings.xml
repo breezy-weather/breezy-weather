@@ -342,7 +342,6 @@
     <string name="unit_ftps_voice">Bước chân trên giây</string>
     <string name="unit_mm_voice">Milimét</string>
     <string name="unit_inph_voice">Inch trên giờ</string>
-    <string name="unit_mmhg_voice">Milimét thủy ngân</string>
     <string name="unit_mugpcum_voice">Microgram trên mét khối</string>
     <string name="notification_refreshed_at">Được làm mới vào lúc</string>
     <string name="notification_channel_alerts">Cảnh báo</string>
@@ -365,7 +364,6 @@
     <string name="settings_disabled">Đã tắt</string>
     <string name="settings_automatic">Tự động</string>
     <string name="unit_cmph_voice">Xăngtimét trên giờ</string>
-    <string name="unit_inhg_voice">Inch thủy ngân</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Thời gian thông báo cho dự báo ngày hôm sau</string>
     <string name="settings_modules_live_wallpaper_title">Hình nền động</string>
     <string name="settings_follow_system">Theo hệ thống</string>
@@ -379,11 +377,9 @@
     <string name="unit_m_voice">Mét</string>
     <string name="unit_mi_voice">Dặm</string>
     <string name="unit_in_voice">In</string>
-    <string name="unit_kpa_voice">Kilô pascal</string>
     <string name="unit_lpsqmph_voice">Lít trên mét vuông trên giờ</string>
     <string name="unit_nmi_voice">Hải lý</string>
     <string name="unit_ft_voice">Bước chân</string>
-    <string name="unit_atm_voice">Atmotphe</string>
     <string name="unit_mgpcum_voice">Miligam trên mét khối</string>
     <string name="common_weather_text_clear_sky">Trời trong</string>
     <string name="unit_h_voice">Giờ</string>
@@ -401,7 +397,6 @@
     <string name="settings_notifications_forecast_today_title">Thông báo dự báo trong ngày</string>
     <string name="settings_notifications_forecast_time_today_title">Thời gian thông báo cho dự báo trong ngày</string>
     <string name="settings_modules">Tiện ích &amp; Hình nền động</string>
-    <string name="unit_mb_voice">Milibar</string>
     <string name="location_message_reverse_geocoding_failed">Nguồn cung cấp thời tiết không tìm được vị trí chính xác</string>
     <string name="action_undo">Hoàn tác</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Lắng đọng sương mù</string>
@@ -428,7 +423,6 @@
     <string name="air_quality_pm25">PM2.5</string>
     <string name="air_quality_pm10">PM10</string>
     <string name="widget_style_nano">Nano</string>
-    <string name="unit_hpa_voice">Héctôpascal</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Đen</string>
     <string name="widget_clock_font_sans_serif_light">Sans Serif Nhẹ</string>
     <string name="settings_background_updates_worker_info_summary">Lần chạy cuối cùng: %s</string>
@@ -451,11 +445,6 @@
     <string name="unit_mi">mi</string>
     <string name="unit_nmi">nmi</string>
     <string name="unit_ft">ft</string>
-    <string name="unit_mb">mb</string>
-    <string name="unit_hpa">hPa</string>
-    <string name="unit_inhg">inHg</string>
-    <string name="unit_atm">atm</string>
-    <string name="unit_mmhg">mmHg</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_h">h</string>
     <string name="unit_ppcm">/m³</string>
@@ -470,7 +459,6 @@
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_km">km</string>
-    <string name="unit_kpa">kPa</string>
     <string name="widget_clock_font_sans_serif">Không chân</string>
     <string name="pollen_alnus">Xích dương</string>
     <string name="unit_fahrenheit_short">°</string>

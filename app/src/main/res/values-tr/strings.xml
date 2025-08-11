@@ -349,7 +349,6 @@
     <string name="settings_location_access_switch_title">Konum erişimi</string>
     <string name="unit_bft_voice">Beaufort ölçeğinde</string>
     <string name="unit_mm_voice">Milimetre</string>
-    <string name="unit_inhg">inHg</string>
     <string name="about_source_code">Kaynak kodu</string>
     <string name="common_weather_text_rain_showers_heavy">Şiddetli sağanak yağış</string>
     <string name="common_weather_text_rain_showers_moderate">Orta şiddetli sağanak yağış</string>
@@ -391,7 +390,6 @@
     <string name="unit_lpsqmph_voice">Saat başına metrekare başına litre</string>
     <string name="unit_celsius">°C</string>
     <string name="unit_celsius_short">°</string>
-    <string name="unit_mmhg_voice">Milimetre cıva</string>
     <string name="notification_channel_background_services">Arkaplan servisleri</string>
     <string name="notification_running_in_background">Güncel kalmak için arkaplanda çalışıyor</string>
     <string name="notification_style_native">Yerel</string>
@@ -412,7 +410,6 @@
     <string name="about_contribution_WangDaYeeeeee">Orijinal Geometric Weather uygulamasının geliştiricisi</string>
     <string name="unit_in_voice">İnç</string>
     <string name="unit_lpsqm">L/m²</string>
-    <string name="unit_atm">atm</string>
     <string name="unit_h">sa</string>
     <string name="about_contributors">Katkıda bulunanlar</string>
     <string name="setting_weather_source_accu_days">Günler</string>
@@ -434,7 +431,6 @@
     <string name="common_weather_text_rain_snow_mixed_showers">Karla karışık sağanak yağış</string>
     <string name="common_weather_text_rain_showers_light">Hafif sağanak yağış</string>
     <string name="common_weather_text_rain_showers">Sağanak yağmur</string>
-    <string name="unit_kpa">kPa</string>
     <string name="widget_trend_daily">Günlük değişim</string>
     <string name="widget_trend_hourly">Saatlik değişim</string>
     <string name="widget_material_you_forecast">Material You – Tahminler</string>
@@ -453,8 +449,6 @@
     <string name="unit_ftps">ft/sn</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mgpcum_voice">Metreküp başına miligram</string>
-    <string name="unit_atm_voice">Atmosfer</string>
-    <string name="unit_mmhg">mmHg</string>
     <string name="unit_m">m</string>
     <string name="unit_mm">mm</string>
     <string name="unit_h_voice">saat</string>
@@ -488,8 +482,6 @@
     <string name="unit_nmi_voice">Deniz mili</string>
     <string name="unit_mugpcum_voice">Metreküp başına mikrogram</string>
     <string name="unit_ft">ft</string>
-    <string name="unit_mb">mb</string>
-    <string name="unit_mb_voice">Milibar</string>
     <string name="settings_debug_summary">Çökme günlükleri</string>
     <string name="settings_debug_dump_crash_logs_title">Çökme günlüklerini paylaş</string>
     <string name="settings_item_delete">Bu öğeyi sil</string>
@@ -501,10 +493,6 @@
     <string name="unit_mph">m/sa</string>
     <string name="unit_in">inç</string>
     <string name="unit_ftps_voice">Saniye başına feet</string>
-    <string name="unit_kpa_voice">Kilopaskal</string>
-    <string name="unit_hpa">hPa</string>
-    <string name="unit_hpa_voice">Hektopaskal</string>
-    <string name="unit_inhg_voice">İnç cıva</string>
     <string name="settings_location_access_switch_summaryOff">Anlık konumunuzu konum olarak eklemek istiyorsanız lütfen kabul edin.</string>
     <string name="settings_source_default_value">Varsayılan (değiştirilmemiş)</string>
     <string name="unit_kelvin">K</string>

@@ -233,12 +233,6 @@
     <string name="unit_mi_voice">Milles</string>
     <string name="unit_nmi_voice">Milles nàutiques</string>
     <string name="unit_ft_voice">Peus</string>
-    <string name="unit_mb_voice">Mil·libars</string>
-    <string name="unit_kpa_voice">Kilopascals</string>
-    <string name="unit_hpa_voice">Hectopascals</string>
-    <string name="unit_atm_voice">Atmosferes</string>
-    <string name="unit_mmhg_voice">Mil·límetres de mercuri</string>
-    <string name="unit_inhg_voice">Polzades de mercuri</string>
     <string name="unit_mugpcum_voice">Micrograms per metre cúbic</string>
     <string name="unit_mgpcum_voice">Mil·ligrams per metre cúbic</string>
     <string name="unit_h_voice">hores</string>
@@ -300,7 +294,6 @@
     <string name="location_message_reverse_geocoding_failed">La font meteorològica no ha trobat una ubicació coincident</string>
     <string name="settings_items_drag_to_sort">Toqueu per arrossegar els elements de la llista i ordenar-los</string>
     <string name="common_weather_text_drizzle_freezing_light">Plugim gelada dèbil</string>
-    <string name="unit_hpa">hPa</string>
     <string name="settings_background_updates_battery_optimization">Desactivar l’optimització de la bateria</string>
     <string name="setting_weather_source_accu_days">Dies</string>
     <string name="air_quality_level_4">Insalubre</string>
@@ -349,7 +342,6 @@
     <string name="settings_background_updates_battery_optimization_summary">Això és el primer que cal provar quan no rebeu notificacions o els widgets no s’actualitzen.</string>
     <string name="pollen_level_2">Baix</string>
     <string name="air_quality_level_5">Molt insalubre</string>
-    <string name="unit_mb">mb</string>
     <string name="unit_in">polzada</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="settings_color_day_night">Dia / Nit</string>
@@ -361,7 +353,6 @@
     <string name="settings_weather_source_portal">Portal</string>
     <string name="air_quality_level_3_description">L’aire ha assolit un alt nivell de contaminació i és insalubre per als grups sensibles. Reduïu el temps que passeu a l’exterior si sentiu símptomes com ara dificultat per respirar o irritació de gola.</string>
     <string name="common_weather_text_snow_grains">Neu granulada</string>
-    <string name="unit_atm">atm</string>
     <string name="weather_message_invalid_location">Ubicació no vàlida, suprimeix-la i torna-la a afegir</string>
     <string name="settings_location">Ubicació</string>
     <string name="settings_notifications_alerts_title">Notificacions d’alertes meteorològiques severes</string>
@@ -428,7 +419,6 @@
     <string name="common_weather_text_snow_showers_heavy">Ruixats de neu intensos</string>
     <string name="settings_background_updates_worker_info_summary">Última execució: %s</string>
     <string name="unit_cmph">cm/h</string>
-    <string name="unit_mmhg">mmHg</string>
     <string name="unit_mmph">mm/h</string>
     <string name="location_swipe_to_delete">Podeu lliscar cap a l’esquerra per suprimir aquest element</string>
     <string name="unit_mi">mi</string>
@@ -439,7 +429,6 @@
     <string name="action_undo">Desfer</string>
     <string name="unit_ft">ft</string>
     <string name="settings_main_background_animation_title">Animació en segon pla</string>
-    <string name="unit_inhg">inHg</string>
     <string name="pollen_level_1">Molt baix</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Tempesta elèctrica lleu o moderada</string>
     <string name="air_quality_level_6">Perillós</string>
@@ -450,7 +439,6 @@
     <string name="settings_main_section_displayed_data">Dades mostrades</string>
     <string name="setting_weather_source_accu_hours">Hores</string>
     <string name="about_matrix">Sala Matrix</string>
-    <string name="unit_kpa">kPa</string>
     <string name="location_message_search_failed">Ha fallat la cerca d’ubicació</string>
     <string name="weather_source_accu_preference_hours_120">120 hores</string>
     <string name="settings_appearance_summary">Idioma, mode fosc, paquet d’icones, unitats</string>

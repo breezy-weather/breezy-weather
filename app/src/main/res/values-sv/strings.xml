@@ -26,7 +26,6 @@
     <string name="ephemeris_moon_phase_full_moon">Fullmåne</string>
     <string name="common_weather_text_cloudy">Molnigt</string>
     <string name="location_message_reverse_geocoding_failed">Väderkällan misslyckades med att hitta en matchande plats</string>
-    <string name="unit_hpa">hPa</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
     <string name="temperature">Temperatur</string>
     <string name="precipitation_ice">Is</string>
@@ -79,7 +78,6 @@
     <string name="common_weather_text_rain">Regn</string>
     <string name="precipitation_none">Ingen nederbörd</string>
     <string name="settings_units_temperature">Temperaturenhet</string>
-    <string name="unit_mb">mb</string>
     <string name="unit_in">tum</string>
     <string name="widget_style_oreo">Oreo</string>
     <string name="notification_updating_weather_data">Uppdaterar väderdata (%1$d/%2$d)</string>
@@ -162,12 +160,9 @@
     <string name="precipitation_duration">Nederbördens varaktighet</string>
     <string name="setting_weather_source_accu_hours">Timmar</string>
     <string name="about_matrix">Matrixrum</string>
-    <string name="unit_kpa">kPa</string>
     <string name="unit_in_voice">Tum</string>
     <string name="location_message_search_failed">Platssökning misslyckades</string>
     <string name="weather_source_accu_preference_hours_120">120 timmar</string>
-    <string name="unit_kpa_voice">Kilopascal</string>
-    <string name="unit_atm_voice">Atmosfärer</string>
     <string name="unit_km">km</string>
     <string name="precipitation_rain">Regn</string>
     <string name="pollen_alnus">Al</string>
@@ -186,11 +181,9 @@
     <string name="cloud_cover">Molntäcke</string>
     <string name="unit_mgpcum_voice">Milligram per kubikmeter</string>
     <string name="widget_custom_subtitle_keyword_ct_description">Nuvarande temperatur (°C/°F)</string>
-    <string name="unit_mb_voice">Millibar</string>
     <string name="action_help">Hjälp</string>
     <string name="action_search">Sök</string>
     <string name="unit_mps">m/s</string>
-    <string name="unit_hpa_voice">Hektopascal</string>
     <string name="ephemeris_sunrise_at">Soluppgång vid %s</string>
     <string name="temperature_wind_chill">Vindkyla</string>
     <string name="location_dialog_failed_to_locate_action_add_manually">Lägg till plats manuellt och ta bort ”%s”</string>
@@ -369,7 +362,6 @@
     <string name="widget_custom_subtitle_keyword_xmr_description">Månuppgång för i dag, i morgon, …, 4 dagar senare</string>
     <string name="unit_mph_voice">Miles per timme</string>
     <string name="settings_icon_packs_title">Ikonpaket</string>
-    <string name="unit_inhg_voice">Tum kvicksilver</string>
     <string name="settings_icon_packs_check_details">Visa detaljer</string>
     <string name="settings_main_gravity_sensor_switch">Gravitationssensor</string>
     <string name="settings_location_access_switch_summaryOff">Vänligen tillåt om du vill kunna lägga till din nuvarande plats som en plats.</string>
@@ -401,7 +393,6 @@
     <string name="widget_custom_subtitle_keyword_ws_description">Vecka (kort)</string>
     <string name="settings_weather_source_portal">Portal</string>
     <string name="settings_color_grey">Grå</string>
-    <string name="unit_atm">atm</string>
     <string name="settings_notifications_alerts_title">Aviseringar om allvarliga vädervarningar</string>
     <string name="notification_running_in_background">Körs i bakgrunden för att uppdatera</string>
     <string name="dialog_permissions_location_background_content">För att tillåta att väderuppdatering i bakgrunden görs för den senaste nuvarande plats som Android känner till, måste du ställa in platsbehörighet på ”Tillåt alltid”. Om du inte gör det, kommer vädret att uppdateras baserat på de senast hämtade koordinaterna i förgrunden, vilka kan vara inaktuella.</string>
@@ -446,13 +437,11 @@
     <string name="settings_appearance_dark_mode_locations_title">Platsbaserat mörkt läge</string>
     <string name="settings_main_daily_trends_title">Dagstrender</string>
     <string name="settings_background_updates_worker_info_summary">Senast körd: %s</string>
-    <string name="unit_mmhg">mmHg</string>
     <string name="action_learn_more">Läs mer</string>
     <string name="dialog_permissions_location_title">Behörighet till platsinformation</string>
     <string name="settings_modules_notification_persistent_switch">Pågående</string>
     <string name="unit_ft">fot</string>
     <string name="settings_main_background_animation_title">Bakgrundsanimation</string>
-    <string name="unit_inhg">inHg</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lätt eller medelkraftig åskstorm</string>
     <string name="settings_location_access_precise_title">Enhetens gps-användning</string>
     <string name="settings_notifications_forecast_tomorrow_title">Avisering om morgondagens prognos</string>
@@ -499,7 +488,6 @@
     <string name="unit_h">h</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="settings_location_access_precise_summaryOn">Aktiverad. Enhetens nätoperatör kommer att användas i första hand och för det mesta, men gps kan också användas som reserv.</string>
-    <string name="unit_mmhg_voice">Millimeter kvicksilver</string>
     <string name="common_weather_text_rain_showers_moderate">Måttliga regnskurar</string>
     <string name="settings_notifications_section_forecast">Prognos</string>
     <string name="widget_label_subtitle_data">Undertextdata</string>

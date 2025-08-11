@@ -233,12 +233,6 @@
     <string name="unit_mi_voice">Millas</string>
     <string name="unit_nmi_voice">Millas náuticas</string>
     <string name="unit_ft_voice">Pies</string>
-    <string name="unit_mb_voice">Milibares</string>
-    <string name="unit_kpa_voice">Kilopascales</string>
-    <string name="unit_hpa_voice">Hectopascales</string>
-    <string name="unit_atm_voice">Atmósferas</string>
-    <string name="unit_mmhg_voice">Milímetros de mercurio</string>
-    <string name="unit_inhg_voice">Pulgadas de mercurio</string>
     <string name="unit_mugpcum_voice">Microgramos por metro cúbico</string>
     <string name="unit_mgpcum_voice">Miligramos por metro cúbico</string>
     <string name="unit_h_voice">horas</string>
@@ -459,7 +453,6 @@
     <string name="common_weather_text_drizzle_moderate">Llovizna moderada</string>
     <string name="common_weather_text_rain_snow_mixed_heavy">Fuertes lluvias y nieve</string>
     <string name="settings_items_drag_to_sort">Toque para arrastrar los elementos de la lista para ordenarlos</string>
-    <string name="unit_hpa">hPa</string>
     <string name="unit_mph">mph</string>
     <string name="unit_cm">cm</string>
     <string name="common_weather_text_rain_heavy">Fuertes lluvias</string>
@@ -477,10 +470,8 @@
     <string name="common_weather_text_snow_light">Nieve suave</string>
     <string name="common_weather_text_rain_showers_heavy">Fuertes chubascos</string>
     <string name="common_weather_text_rain_snow_mixed">Mezcla de lluvia y nieve</string>
-    <string name="unit_mb">mb</string>
     <string name="unit_in">pulgada</string>
     <string name="common_weather_text_snow_grains">Cinarra</string>
-    <string name="unit_atm">atm</string>
     <string name="unit_mm">mm</string>
     <string name="unit_ftps">pies/s</string>
     <string name="settings_modules_notification_feels_like_switch">Utilizar la sensación térmica</string>
@@ -498,14 +489,11 @@
     <string name="common_weather_text_clear_sky">Cielo despejado</string>
     <string name="common_weather_text_snow_showers_heavy">Fuertes nevadas</string>
     <string name="unit_cmph">cm/h</string>
-    <string name="unit_mmhg">mmHg</string>
     <string name="unit_mmph">mm/h</string>
     <string name="unit_mi">mi</string>
     <string name="unit_ft">pie</string>
-    <string name="unit_inhg">pulgHg</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="about_matrix">Sala en Matrix</string>
-    <string name="unit_kpa">kPa</string>
     <string name="unit_km">km</string>
     <string name="notification_channel_background_services">Servicios en segundo plano</string>
     <string name="unit_bft_voice">en la escala de Beaufort</string>

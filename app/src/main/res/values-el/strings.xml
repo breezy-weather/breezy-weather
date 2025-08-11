@@ -402,10 +402,6 @@
     <string name="settings_debug">Εντοπισμός σφαλμάτων</string>
     <string name="unit_mps_voice">Μέτρα ανά δευτερόλεπτο</string>
     <string name="common_weather_text_rain_freezing_heavy">Σφοδρή παγωμένη βροχή</string>
-    <string name="unit_inhg">inHg</string>
-    <string name="unit_atm_voice">Ατμόσφαιρες</string>
-    <string name="unit_mmhg_voice">Χιλιοστά υδραργύρου</string>
-    <string name="unit_inhg_voice">ίντσες υδραργύρου</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mgpcum_voice">χιλιοστόγραμμα ανά κυβικό μέτρο</string>
@@ -448,10 +444,6 @@
     <string name="settings_color_day_night">Μέρα / Νύχτα</string>
     <string name="unit_fahrenheit">°F</string>
     <string name="unit_ft_voice">Πόδια</string>
-    <string name="unit_mb">mb</string>
-    <string name="unit_kpa">kPa</string>
-    <string name="unit_hpa_voice">Εκτοπασκάλ</string>
-    <string name="unit_atm">ατμ</string>
     <string name="settings_modules_notification_persistent_switch">Μόνιμη</string>
     <string name="settings_unavailable_no_background_updates">Μη διαθέσιμο, ενεργοποίησ πρώτα τις ενημερώσεις στο παρασκήνιο</string>
     <string name="unit_bft_nominative">%s Μπφ</string>
@@ -475,8 +467,6 @@
     <string name="unit_km_voice">Χιλιόμετρα</string>
     <string name="unit_m_voice">Μέτρα</string>
     <string name="unit_nmi_voice">Ναυτικά μίλια</string>
-    <string name="unit_mb_voice">Μιλιμπάρ</string>
-    <string name="unit_hpa">hPa</string>
     <string name="notification_channel_background_services">Υπηρεσίες παρασκηνίου</string>
     <string name="notification_channel_crash_logs">Καταγραφές σφαλμάτων</string>
     <string name="notification_update_error">%d ενημερώσεις απέτυχαν</string>
@@ -522,7 +512,6 @@
     <string name="unit_mugpcum_voice">Μικρογραμμάρια ανά κυβικό μέτρο</string>
     <string name="unit_mi_voice">Μίλια</string>
     <string name="unit_kelvin">Κ</string>
-    <string name="unit_mmhg">mmHg</string>
     <string name="unit_mmph">mm/h</string>
     <string name="about_source_code">Πηγαίος κώδικας</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Καταιγίδα με ελαφριά χαλαζόπτωση</string>
@@ -532,7 +521,6 @@
     <string name="openmeteo_weather_text_depositing_rime_fog">Εναπόθεση ομίχλης ριμών</string>
     <string name="settings_main_cards_other_element_animations_switch">Κινούμενα σχέδια άλλων στοιχείων</string>
     <string name="settings_notifications_summary">Ειδοποιήσεις για προειδοποιήσεις καιρού, υετός ή πρόγνωση για την πρώτη τοποθεσία</string>
-    <string name="unit_kpa_voice">Κιλοπασκάλ</string>
     <string name="settings_main_cards_fade_in_switch">Οι κάρτες ξεθωριάζουν</string>
     <string name="settings_main_section_animations">Κινούμενα σχέδια</string>
     <string name="settings_main_background_animation_enabled">Ενεργό</string>

@@ -170,14 +170,11 @@
     <string name="widget_live_wallpaper_day_night_type">Hora</string>
     <string name="settings_modules_section_notification_widget">Widget de notificação</string>
     <string name="unit_celsius">°C</string>
-    <string name="unit_hpa">hPa</string>
-    <string name="unit_kpa_voice">Quilopascals</string>
     <string name="unit_ftps">ft/s</string>
     <string name="unit_ftps_voice">Pés por segundo</string>
     <string name="unit_inph_voice">Polegadas por hora</string>
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="unit_kelvin">K</string>
-    <string name="unit_kpa">kPa</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
@@ -222,7 +219,6 @@
     <string name="settings_main_cards_title">Blocos</string>
     <string name="settings_modules_live_wallpaper_summary">Define uma animação climática como papel de parede</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Tempestade com granizo pesado</string>
-    <string name="unit_mb">mb</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="pollen_alnus">Amieiro</string>
     <string name="pollen_betula">Bétula</string>
@@ -259,7 +255,6 @@
     <string name="settings_modules_section_widgets_in_use">Widgets em uso</string>
     <string name="settings_items_drag_to_sort">Toque para arrastar os itens da lista para classificar</string>
     <string name="unit_lpsqmph_voice">Litros por metro quadrado por hora</string>
-    <string name="unit_inhg_voice">Polegadas de mercúrio</string>
     <string name="unit_mgpcum_voice">Miligramas por metro cúbico</string>
     <string name="notification_update_error">%d falha na(s) atualização(ões)</string>
     <string name="locations">Localizações</string>
@@ -278,11 +273,8 @@
     <string name="widget_clock_font_sans_serif_light">Sans Serif Light</string>
     <string name="widget_week_style_3_days">3 dias</string>
     <string name="widget_clock_font_sans_serif">Sans Serif</string>
-    <string name="unit_mb_voice">Milibares</string>
-    <string name="unit_mmhg_voice">Milímetros de mercúrio</string>
     <string name="unit_h_voice">horas</string>
     <string name="common_weather_text_snow_grains">Grãos de neve</string>
-    <string name="unit_mmhg">mmHg</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Tempestade leve ou moderada</string>
     <string name="settings_none">Nenhum</string>
     <string name="widget_custom_subtitle_keyword_dd_description">Descrição diária</string>
@@ -368,10 +360,6 @@
     <string name="unit_lpsqm">L/m²</string>
     <string name="unit_inph">Polegadas/h</string>
     <string name="unit_ft_voice">Pés</string>
-    <string name="unit_hpa_voice">Hectopascais</string>
-    <string name="unit_atm">atm</string>
-    <string name="unit_atm_voice">Atmosferas</string>
-    <string name="unit_inhg">inHg</string>
     <string name="unit_mugpcum_voice">Microgramas por metro cúbico</string>
     <string name="settings_icon_packs_weather_icon_light">Ícone claro</string>
     <string name="settings_icon_packs_weather_icon_dark">Ícone escuro</string>

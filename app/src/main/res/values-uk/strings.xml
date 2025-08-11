@@ -408,8 +408,6 @@
     <string name="unit_inph">дюймів/год</string>
     <string name="unit_mi">миль</string>
     <string name="unit_mi_voice">Миль</string>
-    <string name="unit_mb">мбар</string>
-    <string name="unit_hpa_voice">Гектопаскалів</string>
     <string name="notification_channel_forecast">Прогноз</string>
     <string name="notification_update_error">Не вдалося виконати %d оновлення(ень)</string>
     <string name="notification_style_cities">Міста</string>
@@ -417,14 +415,10 @@
     <string name="common_weather_text_rain_freezing_heavy">Сильний крижаний дощ</string>
     <string name="about_privacy_policy">Політика конфіденційності</string>
     <string name="settings_color_day_night">День / Ніч</string>
-    <string name="unit_kpa">кПа</string>
     <string name="common_weather_text_rain_showers">Злива</string>
     <string name="common_weather_text_rain_showers_light">Невелика злива</string>
     <string name="common_weather_text_snow_showers_light">Невеликий снігопад</string>
     <string name="common_weather_text_snow_showers_heavy">Сильний снігопад</string>
-    <string name="unit_mmhg_voice">Міліметрів ртутного стовпчика</string>
-    <string name="unit_inhg">дюймів рт. ст.</string>
-    <string name="unit_inhg_voice">Дюймів ртутного стовпчика</string>
     <string name="notification_style_native">Системний</string>
     <string name="notification_updating_weather_data">Оновлення погодних даних (%1$d/%2$d)</string>
     <string name="about_app">Про застосунок</string>
@@ -447,7 +441,6 @@
     <string name="unit_kelvin">К</string>
     <string name="unit_kelvin_short">К</string>
     <string name="unit_ft_voice">Футів</string>
-    <string name="unit_mb_voice">Мілібарів</string>
     <string name="unit_ppcm">/м³</string>
     <string name="unit_ppcm_voice">На кубічний метр</string>
     <string name="notification_running_in_background">Запущено у фоні для постійного оновлення</string>
@@ -481,11 +474,6 @@
     <string name="unit_m_voice">Метрів</string>
     <string name="unit_nmi">мор. миль</string>
     <string name="unit_ft">фт</string>
-    <string name="unit_kpa_voice">Кілопаскалів</string>
-    <string name="unit_hpa">гПа</string>
-    <string name="unit_atm">атм</string>
-    <string name="unit_atm_voice">Атмосфер</string>
-    <string name="unit_mmhg">мм рт. ст.</string>
     <string name="unit_mugpcum">мкг/м³</string>
     <string name="unit_mugpcum_voice">Мікрограмів на кубічний метр</string>
     <string name="unit_mgpcum">мг/м³</string>

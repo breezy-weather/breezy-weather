@@ -120,7 +120,6 @@
     <string name="message_source_not_installed_error_title">Bron niet langer beschikbaar</string>
     <string name="weather_kind_haze">Nevel</string>
     <string name="weather_kind_thunder">Onweer</string>
-    <string name="unit_kpa_voice">Kilopascal</string>
     <string name="common_weather_text_snow_light">Lichte sneeuw</string>
     <string name="common_weather_text_snow_moderate">Matige sneeuw</string>
     <string name="common_weather_text_snow_showers">Sneeuwbuien</string>
@@ -131,7 +130,6 @@
     <string name="common_weather_text_drizzle_light">Lichte motregen</string>
     <string name="common_weather_text_rain_snow_mixed_showers_light">Lichte regen- en sneeuwbuien</string>
     <string name="settings_location_access_precise_title">GPS-gebruik van apparaat</string>
-    <string name="unit_kpa">kPa</string>
     <string name="widget_trend_daily">Dagelijkse trend</string>
     <string name="widget_multi_city">Meerdere steden</string>
     <string name="widget_week_style_3_days">3 dagen</string>
@@ -146,14 +144,11 @@
     <string name="settings_location_access_background_title">Locatietoegang op de achtergrond</string>
     <string name="settings_main">Hoofdscherm</string>
     <string name="settings_notifications_forecast_today_title">Melding voor de dagvoorspelling</string>
-    <string name="unit_mb_voice">Millibar</string>
     <string name="notification_channel_background_services">Achtergronddiensten</string>
     <string name="pollen_artemisia">Bijvoet</string>
     <string name="settings_appearance_dark_mode_locations_title">Dag- / nachtmodus voor locaties</string>
     <string name="unit_bft_nominative">%s Bft</string>
     <string name="unit_bft_voice">op schaal van Beaufort</string>
-    <string name="unit_mb">mb</string>
-    <string name="unit_inhg_voice">Inches kwik</string>
     <string name="common_weather_text_rain_showers_light">Lichte regenbuien</string>
     <string name="common_weather_text_rain_showers_moderate">Matige regenbuien</string>
     <string name="common_weather_text_rain_showers_heavy">Zware regenbuien</string>
@@ -217,7 +212,6 @@
     <string name="unit_nmi_voice">Nautische mijlen</string>
     <string name="unit_ft">ft</string>
     <string name="unit_ft_voice">Voet</string>
-    <string name="unit_inhg">inHg</string>
     <string name="notification_update_error">%d update(s) mislukt</string>
     <string name="about_contact">Contact</string>
     <string name="about_matrix">Matrixkamer</string>
@@ -238,7 +232,6 @@
     <string name="pressure">Luchtdruk</string>
     <string name="dialog_permissions_notification_title">Op de hoogte blijven</string>
     <string name="dialog_permissions_notification_content">Tik hier om meldingen over weerwaarschuwingen in te schakelen, of beslis later in Instellingen.</string>
-    <string name="unit_mmhg">mmHg</string>
     <string name="temperature_average_short">Gem</string>
     <string name="temperature_normal_short">Normaal</string>
     <string name="temperature_normals">Temperatuurnormaal</string>
@@ -287,7 +280,6 @@
     <string name="uv_alert_level">Waarschuwing</string>
     <string name="pollen">Pollen</string>
     <string name="weather_kind_hail">Hagel</string>
-    <string name="unit_hpa">hPa</string>
     <string name="sunshine_duration">Zonuren</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="action_back">Terug</string>
@@ -489,10 +481,8 @@
     <string name="weather_kind_thunderstorm">Onweersbui</string>
     <string name="weather_kind_wind">Wind</string>
     <string name="widget_custom_subtitle_keyword_xsr_description">Zonsopgang van vandaag, morgen, …, 4 dagen later</string>
-    <string name="unit_atm_voice">Atmosferen</string>
     <string name="notification_channel_alerts">Waarschuwingen</string>
     <string name="unit_mugpcum_voice">Microgram per kubieke meter</string>
-    <string name="unit_mmhg_voice">Millimeters kwik</string>
     <string name="about_source_code">Broncode</string>
     <string name="about_contributors">Bijdragers</string>
     <string name="common_weather_text_mostly_clear">Overwegend helder</string>
@@ -524,8 +514,6 @@
     <string name="settings_location_summary">Instellingen voor locatieservices</string>
     <string name="about_contribution_designer">Logo ontwerper</string>
     <string name="unit_inph_voice">Inches per uur</string>
-    <string name="unit_hpa_voice">Hectopascal</string>
-    <string name="unit_atm">atm</string>
     <string name="common_weather_text_cloudy">Bewolkt</string>
     <string name="common_weather_text_rain_light">Lichte regen</string>
     <string name="common_weather_text_rain_snow_mixed">Natte sneeuw</string>
