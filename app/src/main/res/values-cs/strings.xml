@@ -368,7 +368,7 @@
     <string name="message_parsing_error_content">Ujistěte se, že jste aktualizovali nejnovější verzi aplikace. Server může být dočasně nedostupný, v takovém případě to zkuste později. Pokud problém přetrvává, vypište prosím protokol o pádu z nastavení ladění a nahlaste problém na GitHub.</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorovat, když je baterie vybitá</string>
     <string name="settings_background_updates_battery_optimization_summary">To je první věc, kterou je třeba vyzkoušet, když nedostáváte oznámení nebo se widgety neobnovují.</string>
-    <string name="settings_modules_summary">Nastavení tapety, konfigurace použitých widgetů, widget oznámení</string>
+    <string name="settings_modules_summary">Widgety, tapeta, sdílení dat s ostatními aplikacemi, widget oznámení</string>
     <string name="wind_direction_NE_short">SV</string>
     <string name="settings_main_background_animation_enabled">Povoleno</string>
     <string name="settings_main_section_animations">Animace</string>
