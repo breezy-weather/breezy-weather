@@ -39,6 +39,7 @@
     <string name="nighttime_details">Commence dans la soirée et se termine à l’aube du lendemain</string>
     <!-- Littéralement "suivre les préférences système" -->
     <string name="settings_follow_system">Préférence système</string>
+    <string name="settings_regional_preference">Préférence régionale</string>
     <string name="notification_channel_widget">Widget</string>
     <string name="notification_channel_background_services">Services en arrière-plan</string>
     <string name="notification_channel_crash_logs">Journaux d’incident</string>

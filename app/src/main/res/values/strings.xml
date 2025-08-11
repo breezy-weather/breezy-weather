@@ -863,6 +863,7 @@
     <string name="settings_unavailable_no_animations">Unavailable, enable animations in Android settings first</string>
     <string name="settings_automatic">Automatic</string>
     <string name="settings_follow_system">Follow system</string>
+    <string name="settings_regional_preference">Regional preference</string>
     <string name="settings_none">None</string>
     <string name="settings_color_day_night">Day / Night</string>
     <!-- Used as "Follow app preference/setting", NOT as in "Follow us on Facebook". Keep it short or translate it “Automatic” if too complicated -->

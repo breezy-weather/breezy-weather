@@ -24,15 +24,15 @@
     <string name="pressure_mbar_nominative_long">%s millibars</string>
 
     <!-- Atmosphere -->
-    <string name="pressure_atm_display_name_long">Atmosphères</string>
+    <string name="pressure_atm_display_name_long">atmosphères</string>
     <string name="pressure_atm_nominative_long">%s atmosphères</string>
 
     <!-- Millimeter of mercury -->
-    <string name="pressure_mmhg_display_name_long">Millimètres de mercure</string>
+    <string name="pressure_mmhg_display_name_long">millimètres de mercure</string>
     <string name="pressure_mmhg_nominative_long">%s millimètres de mercure</string>
 
     <!-- Inch of mercury -->
-    <string name="pressure_inhg_display_name_long">Pouces de mercure</string>
+    <string name="pressure_inhg_display_name_long">pouces de mercure</string>
     <string name="pressure_inhg_nominative_long">%s pouces de mercure</string>
 
 </resources>

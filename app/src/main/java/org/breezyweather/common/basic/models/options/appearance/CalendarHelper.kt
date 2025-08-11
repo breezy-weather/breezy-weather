@@ -77,10 +77,10 @@ object CalendarHelper {
                         result.capitalize()
                     }
                 }
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
                 try {
                     getDisplayName(it).capitalize()
-                } catch (ignored2: Exception) {
+                } catch (_: Exception) {
                     it.capitalize()
                 }
             }
@@ -100,8 +100,32 @@ object CalendarHelper {
             it.displayName
         }.toMutableList().apply {
             add(0, AlternateCalendar("none", context.getString(R.string.settings_none)))
-            add(1, AlternateCalendar("", context.getString(R.string.settings_follow_system)))
+            add(
+                1,
+                AlternateCalendar(
+                    "",
+                    context.getString(
+                        R.string.parenthesis,
+                        context.getString(R.string.settings_regional_preference),
+                        getCalendarPreferenceForLocale(context.currentLocale).let { calendarRegionalPref ->
+                            firstOrNull { it.id == calendarRegionalPref }?.displayName
+                        } ?: context.getString(R.string.settings_none)
+                    )
+                )
+            )
         }.toImmutableList()
+    }
+
+    private fun getCalendarPreferenceForLocale(locale: Locale): String {
+        return with(locale) {
+            when {
+                isChinese -> LocalePreferences.CalendarType.CHINESE
+                isIndian -> LocalePreferences.CalendarType.INDIAN
+                // Looks like all locales defaults to Gregorian calendar:
+                // https://unicode-org.github.io/icu/userguide/datetime/calendar/#calendar-locale-and-keyword-handling
+                else -> LocalePreferences.getCalendarType(locale)
+            }
+        }
     }
 
     fun getAlternateCalendarSetting(context: Context): String? {
@@ -114,15 +138,7 @@ object CalendarHelper {
             return null
         }
         val alternateCalendar = alternateCalendarSetting.ifEmpty {
-            with(context.currentLocale) {
-                when {
-                    isChinese -> LocalePreferences.CalendarType.CHINESE
-                    isIndian -> LocalePreferences.CalendarType.INDIAN
-                    // Looks like all locales defaults to Gregorian calendar:
-                    // https://unicode-org.github.io/icu/userguide/datetime/calendar/#calendar-locale-and-keyword-handling
-                    else -> LocalePreferences.getCalendarType(context.currentLocale)
-                }
-            }
+            getCalendarPreferenceForLocale(context.currentLocale)
         }
         return if (supportedCalendars.contains(alternateCalendar)) {
             alternateCalendar

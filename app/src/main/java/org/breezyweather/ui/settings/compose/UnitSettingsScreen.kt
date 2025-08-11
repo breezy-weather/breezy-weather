@@ -72,7 +72,7 @@ fun UnitSettingsScreen(
                     if (index == 0) {
                         stringResource(
                             R.string.parenthesis,
-                            stringResource(R.string.settings_follow_system),
+                            stringResource(R.string.settings_regional_preference),
                             TemperatureUnit.getDefaultUnit(context).getName(context)
                         )
                     } else {
@@ -108,7 +108,7 @@ fun UnitSettingsScreen(
                         val snowfallUnit = PrecipitationUnit.getDefaultSnowfallUnit(context)
                         stringResource(
                             R.string.parenthesis,
-                            stringResource(R.string.settings_follow_system),
+                            stringResource(R.string.settings_regional_preference),
                             if (defaultUnit != snowfallUnit) {
                                 defaultUnit.getName(context) + "/" + snowfallUnit.getName(context)
                             } else {
@@ -145,7 +145,7 @@ fun UnitSettingsScreen(
                     if (index == 0) {
                         stringResource(
                             R.string.parenthesis,
-                            stringResource(R.string.settings_follow_system),
+                            stringResource(R.string.settings_regional_preference),
                             SpeedUnit.getDefaultUnit(context).getName(context)
                         )
                     } else {
@@ -178,7 +178,7 @@ fun UnitSettingsScreen(
                     if (index == 0) {
                         stringResource(
                             R.string.parenthesis,
-                            stringResource(R.string.settings_follow_system),
+                            stringResource(R.string.settings_regional_preference),
                             DistanceUnit.getDefaultUnit(context).getName(context)
                         )
                     } else {
@@ -212,7 +212,7 @@ fun UnitSettingsScreen(
                 val nameArray = arrayOf(
                     stringResource(
                         R.string.parenthesis,
-                        stringResource(R.string.settings_follow_system),
+                        stringResource(R.string.settings_regional_preference),
                         PressureUnit.getDefaultUnit(context.currentLocale)
                             .getDisplayName(context, context.currentLocale, UnitWidth.LONG)
                     )
