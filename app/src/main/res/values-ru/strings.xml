@@ -398,7 +398,7 @@
     <string name="settings_notifications_alerts_title">Уведомления о суровых погодных условиях</string>
     <string name="settings_notifications_forecast_today_title">Уведомление о дневном прогнозе</string>
     <string name="settings_notifications_forecast_time_today_title">Время уведомления для дневного прогноза</string>
-    <string name="settings_modules_summary">Установить обои, настроить используемые виджеты, виджет в уведомлениях</string>
+    <string name="settings_modules_summary">Виджеты, виджет уведомлений, обои, обмен данными с другими приложениями</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Время уведомления для прогноза на следующий день</string>
     <string name="unit_inph_voice">Дюймов в час</string>
     <string name="unit_celsius">°C</string>
@@ -835,4 +835,15 @@
     <string name="action_change">Сменить</string>
     <string name="message_incompatible_times_title">Несовместимые графики прогнозов</string>
     <string name="message_incompatible_times_content">Смените прогноз или источник данных про качество воздуха в соответствии со временем.</string>
+    <string name="humidity_from_to_number">%1$s до %2$s</string>
+    <string name="dew_point_from_to_number">%1$s до %2$s</string>
+    <string name="visibility_scale">Шкала видимости</string>
+    <string name="cloud_cover_from_to_number">%1$s до %2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s до %2$s</string>
+    <string name="cloud_cover_scale">Шкала облачности</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">%s Оповеститель обновления местоположений</string>
+    <string name="action_add_as_location">Добавить как местоположение</string>
+    <string name="content_provider_permission_label">Читать данные Breezy Weather</string>
+    <string name="content_provider_permission_description">получите информацию о погоде от Breezy Weather, включая координаты ваших местоположений, такие как ваше текущее местоположение, если вы его добавили</string>
+    <string name="common_weather_text_mostly_cloudy">Преимущественно облачно</string>
 </resources>
