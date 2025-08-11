@@ -326,7 +326,7 @@
     <string name="settings_notifications">Aviseringar</string>
     <string name="settings_main_summary">Blockordning, visade objekt, animationer</string>
     <string name="about_contributors">Utvecklare</string>
-    <string name="settings_modules_summary">Ange bakgrundsbild, konfigurera använda widgetar, aviseringswidget</string>
+    <string name="settings_modules_summary">Widgetar, aviseringswidget, bakgrundsbild, datadelning med andra appar</string>
     <string name="settings_background_updates_summary">Uppdateringsfrekvens, problemlösning</string>
     <string name="settings_appearance_summary">Språk, mörkt läge, ikonpaket, enheter</string>
     <string name="settings_debug_summary">Kraschloggar</string>
