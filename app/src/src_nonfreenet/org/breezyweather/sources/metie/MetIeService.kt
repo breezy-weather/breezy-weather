@@ -48,6 +48,7 @@ import org.breezyweather.sources.metie.json.MetIeHourly
 import org.breezyweather.sources.metie.json.MetIeLocationResult
 import org.breezyweather.sources.metie.json.MetIeWarning
 import org.breezyweather.sources.metie.json.MetIeWarningResult
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -207,7 +208,7 @@ class MetIeService @Inject constructor(
                     speed = result.windSpeed?.div(3.6)
                 ),
                 relativeHumidity = result.humidity?.toDoubleOrNull(),
-                pressure = result.pressure?.toDoubleOrNull()
+                pressure = result.pressure?.toDoubleOrNull()?.hectopascals
             )
         }
     }

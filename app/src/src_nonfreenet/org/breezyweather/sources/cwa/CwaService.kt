@@ -77,6 +77,7 @@ import org.breezyweather.sources.nlsc.NlscService.Companion.MATSU_BBOX
 import org.breezyweather.sources.nlsc.NlscService.Companion.PENGHU_BBOX
 import org.breezyweather.sources.nlsc.NlscService.Companion.TAIWAN_BBOX
 import org.breezyweather.sources.nlsc.NlscService.Companion.WUQIU_BBOX
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -463,7 +464,7 @@ class CwaService @Inject constructor(
                 temperature = temperature,
                 humidity = relativeHumidity,
                 latitude = latitude
-            ),
+            )?.hectopascals,
             dailyForecast = dailyForecast
         )
     }

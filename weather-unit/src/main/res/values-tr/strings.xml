@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ONLY values changed from the original file are included -->
+    <!-- Based on https://www.unicode.org/cldr/charts/47/summary/tr.html -->
+    <!-- If you believe there is an error, please open a discussion -->
+
+    <!-- Pressure units -->
+
+    <!-- Pascal -->
+    <string name="pressure_pa_display_name_long">paskal</string>
+    <string name="pressure_pa_nominative_long">%s paskal</string>
+
+    <!-- Hectopascal -->
+    <string name="pressure_hpa_display_name_long">hektopaskal</string>
+    <string name="pressure_hpa_nominative_long">%s hektopaskal</string>
+
+    <!-- Kilopascal -->
+    <string name="pressure_kpa_display_name_long">kilopaskal</string>
+    <string name="pressure_kpa_nominative_long">%s kilopaskal</string>
+
+    <!-- Millibar -->
+    <string name="pressure_mbar_display_name_long">milibar</string>
+    <string name="pressure_mbar_nominative_long">%s milibar</string>
+
+    <!-- Atmosphere -->
+    <string name="pressure_atm_display_name_long">atmosfer</string>
+    <string name="pressure_atm_nominative_long">%s atmosfer</string>
+
+    <!-- Millimeter of mercury -->
+    <string name="pressure_mmhg_display_name_long">milimetre cıva</string>
+    <string name="pressure_mmhg_nominative_long">%s milimetre cıva</string>
+
+    <!-- Inch of mercury -->
+    <string name="pressure_inhg_display_name_long">inç cıva</string>
+    <string name="pressure_inhg_nominative_long">%s inç cıva</string>
+
+</resources>

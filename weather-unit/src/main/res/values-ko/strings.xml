@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ONLY values changed from the original file are included -->
+    <!-- Based on https://www.unicode.org/cldr/charts/47/summary/ko.html -->
+    <!-- If you believe there is an error, please open a discussion -->
+
+    <!-- Pressure units -->
+
+    <!-- Pascal -->
+    <string name="pressure_pa_display_name_long">파스칼</string>
+    <string name="pressure_pa_nominative_short">%sPa</string>
+    <string name="pressure_pa_nominative_long">%s파스칼</string>
+
+    <!-- Hectopascal -->
+    <string name="pressure_hpa_display_name_long">헥토파스칼</string>
+    <string name="pressure_hpa_nominative_short">%shPa</string>
+    <string name="pressure_hpa_nominative_long">%s헥토파스칼</string>
+
+    <!-- Kilopascal -->
+    <string name="pressure_kpa_display_name_long">킬로파스칼</string>
+    <string name="pressure_kpa_nominative_short">%skPa</string>
+    <string name="pressure_kpa_nominative_long">%s킬로파스칼</string>
+
+    <!-- Millibar -->
+    <string name="pressure_mbar_display_name_long">밀리바</string>
+    <string name="pressure_mbar_nominative_short">%smb</string>
+    <string name="pressure_mbar_nominative_long">%s밀리바</string>
+
+    <!-- Atmosphere -->
+    <string name="pressure_atm_nominative_short">%satm</string>
+
+    <!-- Millimeter of mercury -->
+    <string name="pressure_mmhg_display_name_long">수은주밀리미터</string>
+    <string name="pressure_mmhg_nominative_short">%smmHg</string>
+    <string name="pressure_mmhg_nominative_long">%s수은주밀리미터</string>
+
+    <!-- Inch of mercury -->
+    <string name="pressure_inhg_display_name_long">수은주인치</string>
+    <string name="pressure_inhg_nominative_short">%sinHg</string>
+    <string name="pressure_inhg_nominative_long">%s수은주인치</string>
+
+</resources>

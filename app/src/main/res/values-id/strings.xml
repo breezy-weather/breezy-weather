@@ -411,7 +411,6 @@
     <string name="settings_debug_summary">Catatan kemogokan</string>
     <string name="about_privacy_policy">Kebijakan privasi</string>
     <string name="unit_cmph_voice">Sentimeter per jam</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="notification_style_native">Asli</string>
     <string name="settings_none">Tidak ada</string>
     <string name="common_weather_text_partly_cloudy">Sebagian berawan</string>
@@ -540,7 +539,6 @@
     <string name="settings_main_cards_fade_in_switch">Kartu memudar</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Campuran hujan dan salju bergerimis lebat</string>
     <string name="weather_api_key_required_missing_content">Untuk menggunakan sumber ini, Anda perlu menyediakan kunci API.</string>
-    <string name="unit_kgfpsqcm_voice">Gaya kilogram per sentimeter persegi</string>
     <string name="settings_location_access_permission_already_granted">Izin sudah diberikan</string>
     <string name="notification_update_error">%d pembaruan gagal</string>
     <string name="settings_location_access_precise_summaryOn">Diaktifkan. Penyedia jaringan akan digunakan sepanjang waktu dan sebagai prioritas, tetapi GPS dapat digunakan sebagai cadangan.</string>

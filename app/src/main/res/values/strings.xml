@@ -920,20 +920,18 @@
     <string name="unit_nmi_voice">Nautical miles</string>
     <string name="unit_ft">ft</string>
     <string name="unit_ft_voice">Feet</string>
-    <string name="unit_mb">mb</string>
-    <string name="unit_mb_voice">Millibars</string>
-    <string name="unit_kpa">kPa</string>
-    <string name="unit_kpa_voice">Kilopascals</string>
-    <string name="unit_hpa">hPa</string>
-    <string name="unit_hpa_voice">Hectopascals</string>
-    <string name="unit_atm">atm</string>
-    <string name="unit_atm_voice">Atmospheres</string>
-    <string name="unit_mmhg">mmHg</string>
-    <string name="unit_mmhg_voice">Millimeters of mercury</string>
-    <string name="unit_inhg">inHg</string>
-    <string name="unit_inhg_voice">Inches of mercury</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
-    <string name="unit_kgfpsqcm_voice">Kilogram force per square centimeter</string>
+    <string name="unit_mb" translatable="false">mb</string>
+    <string name="unit_mb_voice" translatable="false">Millibars</string>
+    <string name="unit_kpa" translatable="false">kPa</string>
+    <string name="unit_kpa_voice" translatable="false">Kilopascals</string>
+    <string name="unit_hpa" translatable="false">hPa</string>
+    <string name="unit_hpa_voice" translatable="false">Hectopascals</string>
+    <string name="unit_atm" translatable="false">atm</string>
+    <string name="unit_atm_voice" translatable="false">Atmospheres</string>
+    <string name="unit_mmhg" translatable="false">mmHg</string>
+    <string name="unit_mmhg_voice" translatable="false">Millimeters of mercury</string>
+    <string name="unit_inhg" translatable="false">inHg</string>
+    <string name="unit_inhg_voice" translatable="false">Inches of mercury</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mugpcum_voice">Micrograms per cubic meter</string>
     <string name="unit_mgpcum">mg/m³</string>

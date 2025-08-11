@@ -248,7 +248,6 @@
     <string name="common_weather_text_snow_grains">Ninsoare Fină</string>
     <string name="settings_icon_packs_weather_icon_grey">Pictogramă gri</string>
     <string name="settings_icon_packs_weather_icon_dark">Pictogramă întunecată</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="location_message_search_failed">Căutarea locației a eșuat</string>
     <string name="action_more">Mai mult</string>
@@ -278,7 +277,6 @@
     <string name="unit_mmhg">mmHg</string>
     <string name="unit_mmhg_voice">Milimetri coloană de mercur</string>
     <string name="unit_inhg">inHg</string>
-    <string name="unit_kgfpsqcm_voice">Kilogram forță pe centimetru pătrat</string>
     <string name="unit_mugpcum_voice">Micrograme pe metru cub</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_h">h</string>

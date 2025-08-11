@@ -47,6 +47,7 @@ import org.breezyweather.sources.getWindDegree
 import org.breezyweather.sources.pagasa.json.PagasaCurrentResult
 import org.breezyweather.sources.pagasa.json.PagasaHourlyResult
 import org.breezyweather.sources.pagasa.json.PagasaLocationResult
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -202,7 +203,7 @@ class PagasaService @Inject constructor(
                     speed = it.windSpeed?.substringBefore(" ")?.toDoubleOrNull()?.div(3.6)
                 ),
                 relativeHumidity = it.humidity?.substringBefore(" ")?.toDoubleOrNull(),
-                pressure = it.pressure?.toDoubleOrNull()
+                pressure = it.pressure?.toDoubleOrNull()?.hectopascals
             )
         }
     }

@@ -1,0 +1,29 @@
+ALTER TABLE weathers
+DROP COLUMN pressure;
+
+ALTER TABLE weathers
+ADD COLUMN pressure INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN pressure_average;
+
+ALTER TABLE dailys
+ADD COLUMN pressure_average INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN pressure_min;
+
+ALTER TABLE dailys
+ADD COLUMN pressure_min INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN pressure_max;
+
+ALTER TABLE dailys
+ADD COLUMN pressure_max INTEGER;
+
+ALTER TABLE hourlys
+DROP COLUMN pressure;
+
+ALTER TABLE hourlys
+ADD COLUMN pressure INTEGER;

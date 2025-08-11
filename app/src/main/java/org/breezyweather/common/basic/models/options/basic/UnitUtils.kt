@@ -51,16 +51,6 @@ import org.breezyweather.common.extensions.isTraditionalChinese
 import org.breezyweather.domain.settings.SettingsManager
 import java.text.FieldPosition
 import java.util.Locale
-import kotlin.Array
-import kotlin.Boolean
-import kotlin.Double
-import kotlin.Int
-import kotlin.Number
-import kotlin.String
-import kotlin.UnsupportedOperationException
-import kotlin.apply
-import kotlin.charArrayOf
-import kotlin.let
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.time.Duration.Companion.days
@@ -289,7 +279,6 @@ object UnitUtils {
      * @param value
      * @param unit
      * @param perUnit an optional per unit. /!\ Only supported on Android SDK >= 26
-     * @param unitWidth
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     fun formatWithMeasureFormat(

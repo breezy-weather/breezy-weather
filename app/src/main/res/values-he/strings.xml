@@ -472,7 +472,6 @@
     <string name="unit_inhg_voice">אינצ\'ים של כספית</string>
     <string name="unit_mgpcum_voice">מיליגרמים עבור מטר מעוקב</string>
     <string name="unit_mugpcum_voice">מיקרוגרמים עבור מטר מעוקב</string>
-    <string name="unit_kgfpsqcm_voice">קילוגרם כוח עבור סנטימטר רבוע</string>
     <string name="unit_h_voice">שעות</string>
     <string name="unit_ppcm_voice">עבור מטר מעוקב</string>
     <string name="notification_refreshed_at">רוענן ב</string>

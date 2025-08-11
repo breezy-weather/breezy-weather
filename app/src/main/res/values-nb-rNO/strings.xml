@@ -181,8 +181,6 @@
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mugpcum_voice">Mikrogram per kubikkmeter</string>
     <string name="unit_mugpcum">μg/m³</string>
-    <string name="unit_kgfpsqcm_voice">Kilogramkraft per kvadratcentimeter</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Rimtåke</string>
     <string name="common_weather_text_snow_grains">Snøkorn</string>
     <string name="unit_atm">atm</string>

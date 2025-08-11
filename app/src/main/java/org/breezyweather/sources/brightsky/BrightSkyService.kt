@@ -58,6 +58,7 @@ import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeather
 import org.breezyweather.sources.brightsky.json.BrightSkyCurrentWeatherResult
 import org.breezyweather.sources.brightsky.json.BrightSkyWeather
 import org.breezyweather.sources.brightsky.json.BrightSkyWeatherResult
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -211,7 +212,7 @@ class BrightSkyService @Inject constructor(
             ),
             relativeHumidity = result.relativeHumidity?.toDouble(),
             dewPoint = result.dewPoint,
-            pressure = result.pressure,
+            pressure = result.pressure?.hectopascals,
             cloudCover = result.cloudCover,
             visibility = result.visibility?.toDouble()
         )
@@ -271,7 +272,7 @@ class BrightSkyService @Inject constructor(
                 ),
                 relativeHumidity = result.relativeHumidity?.toDouble(),
                 dewPoint = result.dewPoint,
-                pressure = result.pressure,
+                pressure = result.pressure?.hectopascals,
                 cloudCover = result.cloudCover,
                 visibility = result.visibility?.toDouble(),
                 sunshineDuration = result.sunshine?.div(60)

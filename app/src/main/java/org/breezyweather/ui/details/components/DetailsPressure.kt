@@ -56,7 +56,7 @@ import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.PressureUnit
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.roundDownToNearestMultiplier
@@ -65,6 +65,12 @@ import org.breezyweather.common.extensions.toDate
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.settings.preference.bottomInsetItem
+import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.pressure.Pressure
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.pressure.Pressure.Companion.pascals
+import org.breezyweather.unit.pressure.PressureUnit
+import org.breezyweather.unit.pressure.toPressure
 import java.util.Date
 import kotlin.math.max
 import kotlin.math.min
@@ -74,7 +80,7 @@ fun DetailsPressure(
     location: Location,
     hourlyList: ImmutableList<Hourly>,
     daily: Daily,
-    defaultValue: Pair<Date, Double>?,
+    defaultValue: Pair<Date, Pressure>?,
     modifier: Modifier = Modifier,
 ) {
     val mappedValues = remember(hourlyList) {
@@ -83,7 +89,7 @@ fun DetailsPressure(
             .associate { it.date.time to it.pressure!! }
             .toImmutableMap()
     }
-    var activeItem: Pair<Date, Double>? by remember { mutableStateOf(null) }
+    var activeItem: Pair<Date, Pressure>? by remember { mutableStateOf(null) }
     val markerVisibilityListener = remember {
         object : CartesianMarkerVisibilityListener {
             override fun onShown(marker: CartesianMarker, targets: List<CartesianMarker.Target>) {
@@ -147,8 +153,8 @@ fun DetailsPressure(
 fun PressureHeader(
     location: Location,
     daily: Daily,
-    activeItem: Pair<Date, Double>?,
-    defaultValue: Pair<Date, Double>?,
+    activeItem: Pair<Date, Pressure>?,
+    defaultValue: Pair<Date, Pressure>?,
 ) {
     val context = LocalContext.current
 
@@ -173,11 +179,10 @@ fun PressureHeader(
 @Composable
 private fun PressureItem(
     header: String?,
-    pressure: Double?,
+    pressure: Pressure?,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val pressureUnit = SettingsManager.getInstance(context).getPressureUnit(context)
 
     Column(
         modifier = modifier.fillMaxWidth()
@@ -189,7 +194,7 @@ private fun PressureItem(
         TextFixedHeight(
             text = pressure?.let {
                 UnitUtils.formatUnitsDifferentFontSize(
-                    formattedMeasure = pressureUnit.formatMeasure(context, it),
+                    formattedMeasure = it.formatMeasure(context),
                     fontSize = MaterialTheme.typography.headlineSmall.fontSize
                 )
             } ?: AnnotatedString(""),
@@ -197,7 +202,7 @@ private fun PressureItem(
             modifier = Modifier
                 .clearAndSetSemantics {
                     pressure?.let {
-                        contentDescription = pressureUnit.formatContentDescription(context, it)
+                        contentDescription = it.formatMeasure(context, unitWidth = UnitWidth.LONG)
                     }
                 }
         )
@@ -207,7 +212,7 @@ private fun PressureItem(
 @Composable
 private fun PressureChart(
     location: Location,
-    mappedValues: ImmutableMap<Long, Double>,
+    mappedValues: ImmutableMap<Long, Pressure>,
     daily: Daily,
     markerVisibilityListener: CartesianMarkerVisibilityListener,
 ) {
@@ -217,14 +222,14 @@ private fun PressureChart(
     val chartStep = pressureUnit.chartStep
     val maxY = remember(mappedValues) {
         max(
-            pressureUnit.getConvertedUnit(PressureUnit.NORMAL) + chartStep.times(1.6),
-            pressureUnit.getConvertedUnit(mappedValues.values.max())
+            PressureUnit.NORMAL.pascals.toDouble(pressureUnit) + chartStep.times(1.6),
+            mappedValues.values.maxOf { it.toDouble(pressureUnit) }
         ).roundUpToNearestMultiplier(chartStep)
     }
     val minY = remember(mappedValues) {
         min(
-            pressureUnit.getConvertedUnit(PressureUnit.NORMAL) - chartStep.times(1.6),
-            pressureUnit.getConvertedUnit(mappedValues.values.min())
+            PressureUnit.NORMAL.pascals.toDouble(pressureUnit) - chartStep.times(1.6),
+            mappedValues.values.minOf { it.toDouble(pressureUnit) }
         ).roundDownToNearestMultiplier(chartStep)
     }
 
@@ -235,7 +240,7 @@ private fun PressureChart(
             lineSeries {
                 series(
                     x = mappedValues.keys,
-                    y = mappedValues.values.map { pressureUnit.getConvertedUnit(it) }
+                    y = mappedValues.values.map { it.toDouble(pressureUnit) }
                 )
             }
         }
@@ -246,29 +251,29 @@ private fun PressureChart(
         modelProducer,
         daily.date,
         maxY,
-        { _, value, _ -> pressureUnit.formatMeasure(context, value, isValueInDefaultUnit = false) },
+        { _, value, _ -> value.toPressure(pressureUnit).formatMeasure(context) },
         persistentListOf(
             persistentMapOf(
-                pressureUnit.getConvertedUnit(1080.0).toFloat() to Color(48, 8, 24),
-                pressureUnit.getConvertedUnit(1046.0).toFloat() to Color(111, 24, 64),
-                pressureUnit.getConvertedUnit(1038.0).toFloat() to Color(142, 47, 57),
-                pressureUnit.getConvertedUnit(1030.0).toFloat() to Color(159, 81, 44),
-                pressureUnit.getConvertedUnit(1024.0).toFloat() to Color(163, 116, 67),
-                pressureUnit.getConvertedUnit(1019.0).toFloat() to Color(167, 147, 107),
-                pressureUnit.getConvertedUnit(1015.25).toFloat() to Color(176, 174, 152),
-                pressureUnit.getConvertedUnit(1013.25).toFloat() to Color(182, 182, 182),
-                pressureUnit.getConvertedUnit(1011.25).toFloat() to Color(155, 183, 172),
-                pressureUnit.getConvertedUnit(1007.0).toFloat() to Color(103, 162, 155),
-                pressureUnit.getConvertedUnit(1002.0).toFloat() to Color(26, 140, 147),
-                pressureUnit.getConvertedUnit(995.0).toFloat() to Color(0, 117, 146),
-                pressureUnit.getConvertedUnit(986.0).toFloat() to Color(0, 90, 148),
-                pressureUnit.getConvertedUnit(976.0).toFloat() to Color(0, 52, 146),
-                pressureUnit.getConvertedUnit(950.0).toFloat() to Color(0, 32, 96),
-                pressureUnit.getConvertedUnit(900.0).toFloat() to Color(8, 16, 48)
+                1080.0.hectopascals.toDouble(pressureUnit).toFloat() to Color(48, 8, 24),
+                1046.0.hectopascals.toDouble(pressureUnit).toFloat() to Color(111, 24, 64),
+                1038.0.hectopascals.toDouble(pressureUnit).toFloat() to Color(142, 47, 57),
+                1030.0.hectopascals.toDouble(pressureUnit).toFloat() to Color(159, 81, 44),
+                1024.0.hectopascals.toDouble(pressureUnit).toFloat() to Color(163, 116, 67),
+                1019.0.hectopascals.toDouble(pressureUnit).toFloat() to Color(167, 147, 107),
+                1015.25.hectopascals.toDouble(pressureUnit).toFloat() to Color(176, 174, 152),
+                1013.25.hectopascals.toDouble(pressureUnit).toFloat() to Color(182, 182, 182),
+                1011.25.hectopascals.toDouble(pressureUnit).toFloat() to Color(155, 183, 172),
+                1007.0.hectopascals.toDouble(pressureUnit).toFloat() to Color(103, 162, 155),
+                1002.0.hectopascals.toDouble(pressureUnit).toFloat() to Color(26, 140, 147),
+                995.0.hectopascals.toDouble(pressureUnit).toFloat() to Color(0, 117, 146),
+                986.0.hectopascals.toDouble(pressureUnit).toFloat() to Color(0, 90, 148),
+                976.0.hectopascals.toDouble(pressureUnit).toFloat() to Color(0, 52, 146),
+                950.0.hectopascals.toDouble(pressureUnit).toFloat() to Color(0, 32, 96),
+                900.0.hectopascals.toDouble(pressureUnit).toFloat() to Color(8, 16, 48)
             )
         ),
         trendHorizontalLines = persistentMapOf(
-            pressureUnit.getConvertedUnit(PressureUnit.NORMAL) to stringResource(R.string.temperature_normal_short)
+            PressureUnit.NORMAL.pascals.toDouble(pressureUnit) to stringResource(R.string.temperature_normal_short)
         ),
         minY = minY,
         topAxisValueFormatter = { _, value, _ ->
@@ -281,7 +286,7 @@ private fun PressureChart(
                 return@BreezyLineChart "-"
             }
             val currentValue = mappedValues.values.elementAt(currentIndex)
-            val trend = with(currentValue - previousValue) {
+            val trend = with(currentValue.value - previousValue.value) {
                 when {
                     // Take into account the trend if the difference is of at least 0.5
                     this >= 0.5 -> "↑"

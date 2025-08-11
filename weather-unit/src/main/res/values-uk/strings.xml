@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ONLY values changed from the original file are included -->
+    <!-- Based on https://www.unicode.org/cldr/charts/47/summary/uk.html -->
+    <!-- If you believe there is an error, please open a discussion -->
+
+    <!-- Pressure units -->
+
+    <!-- Pascal -->
+    <string name="pressure_pa_display_name_short">Па</string>
+    <string name="pressure_pa_display_name_long">паскалі</string>
+    <string name="pressure_pa_nominative_short">%s Па</string>
+    <string name="pressure_pa_nominative_long">%s паскалі</string>
+
+    <!-- Hectopascal -->
+    <string name="pressure_hpa_display_name_short">гПа</string>
+    <string name="pressure_hpa_display_name_long">гектопаскалі</string>
+    <string name="pressure_hpa_nominative_short">%s гПа</string>
+    <string name="pressure_hpa_nominative_long">%s гектопаскалі</string>
+
+    <!-- Kilopascal -->
+    <string name="pressure_kpa_display_name_short">кПа</string>
+    <string name="pressure_kpa_display_name_long">кілопаскалі</string>
+    <string name="pressure_kpa_nominative_short">%s кПа</string>
+    <string name="pressure_kpa_nominative_long">%s кілопаскалі</string>
+
+    <!-- Millibar -->
+    <string name="pressure_mbar_display_name_short">мбар</string>
+    <string name="pressure_mbar_display_name_long">мілібари</string>
+    <string name="pressure_mbar_nominative_short">%s мбар</string>
+    <string name="pressure_mbar_nominative_long">%s мілібари</string>
+
+    <!-- Atmosphere -->
+    <string name="pressure_atm_display_name_short">атм</string>
+    <string name="pressure_atm_display_name_long">атмосфери</string>
+    <string name="pressure_atm_nominative_short">%s атм</string>
+    <string name="pressure_atm_nominative_long">%s атмосфери</string>
+
+    <!-- Millimeter of mercury -->
+    <string name="pressure_mmhg_display_name_short">мм рт. ст.</string>
+    <string name="pressure_mmhg_display_name_long">міліметри ртутного стовпа</string>
+    <string name="pressure_mmhg_nominative_short">%s мм рт. ст.</string>
+    <string name="pressure_mmhg_nominative_long">%s міліметри ртутного стовпа</string>
+
+    <!-- Inch of mercury -->
+    <string name="pressure_inhg_display_name_short">дюйми рт. ст.</string>
+    <string name="pressure_inhg_display_name_long">дюйми ртутного стовпа</string>
+    <string name="pressure_inhg_nominative_short">%s дюйми рт. ст.</string>
+    <string name="pressure_inhg_nominative_long">%s дюйми ртутного стовпа</string>
+
+</resources>

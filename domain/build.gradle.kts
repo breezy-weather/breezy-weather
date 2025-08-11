@@ -14,6 +14,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.weatherUnit)
     implementation(libs.kotlinx.serialization.json)
 
     api(libs.sqldelight.android.paging)

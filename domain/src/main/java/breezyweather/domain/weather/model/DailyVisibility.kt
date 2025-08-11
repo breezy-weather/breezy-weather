@@ -21,4 +21,4 @@ data class DailyVisibility(
     override val max: Double? = null,
     override val min: Double? = null,
     override val summary: String? = null,
-) : DailyAvgMinMax
+) : DailyAvgMinMax<Double>

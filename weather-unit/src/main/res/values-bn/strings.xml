@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ONLY values changed from the original file are included -->
+    <!-- Based on https://www.unicode.org/cldr/charts/47/summary/bn.html -->
+    <!-- If you believe there is an error, please open a discussion -->
+
+    <!-- Pressure units -->
+
+    <!-- Pascal -->
+    <string name="pressure_pa_display_name_long">প্যাসকেল</string>
+    <string name="pressure_pa_nominative_long">%s প্যাসকেল</string>
+
+    <!-- Hectopascal -->
+    <string name="pressure_hpa_display_name_long">হেক্টোপাসকল</string>
+    <string name="pressure_hpa_nominative_long">%s হেক্টোপাসকল</string>
+
+    <!-- Kilopascal -->
+    <string name="pressure_kpa_display_name_long">কিলোপ্যাসকেল</string>
+    <string name="pressure_kpa_nominative_long">%s কিলোপ্যাসকেল</string>
+
+    <!-- Millibar -->
+    <string name="pressure_mbar_display_name_long">মিলিবার</string>
+    <string name="pressure_mbar_nominative_long">%s মিলিবার</string>
+
+    <!-- Atmosphere -->
+    <!-- No change -->
+
+    <!-- Millimeter of mercury -->
+    <string name="pressure_mmhg_display_name_short">mm Hg</string>
+    <string name="pressure_mmhg_display_name_long">মিলিমিটার পারদ</string>
+    <string name="pressure_mmhg_nominative_short">%s mm Hg</string>
+    <string name="pressure_mmhg_nominative_long">%s মিলিমিটার পারদ</string>
+
+    <!-- Inch of mercury -->
+    <string name="pressure_inhg_display_name_long">ইঞ্চি পারদ</string>
+    <string name="pressure_inhg_nominative_long">%s ইঞ্চি পারদ</string>
+
+</resources>

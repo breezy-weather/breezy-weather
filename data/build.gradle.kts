@@ -25,6 +25,7 @@ android {
 
 dependencies {
     implementation(projects.domain)
+    implementation(projects.weatherUnit)
 
     api(libs.bundles.sqldelight)
 }

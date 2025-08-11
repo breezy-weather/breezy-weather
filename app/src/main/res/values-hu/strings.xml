@@ -432,8 +432,6 @@
     <string name="settings_color_day_night">Nappali / Éjszakai</string>
     <string name="settings_none">Nincs</string>
     <string name="unit_mb_voice">Millibar</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
-    <string name="unit_kgfpsqcm_voice">Kilogramm erő per négyzetcentiméter</string>
     <string name="unit_mb">mb</string>
     <string name="about_contact">Kapcsolat</string>
     <string name="common_weather_text_partly_cloudy">Részben felhős</string>

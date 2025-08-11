@@ -492,9 +492,7 @@
     <string name="unit_atm_voice">Atmosferen</string>
     <string name="notification_channel_alerts">Waarschuwingen</string>
     <string name="unit_mugpcum_voice">Microgram per kubieke meter</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mmhg_voice">Millimeters kwik</string>
-    <string name="unit_kgfpsqcm_voice">Kilogram kracht per vierkante centimeter</string>
     <string name="about_source_code">Broncode</string>
     <string name="about_contributors">Bijdragers</string>
     <string name="common_weather_text_mostly_clear">Overwegend helder</string>

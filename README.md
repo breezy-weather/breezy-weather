@@ -170,6 +170,8 @@ Translation is done externally [on Weblate](https://hosted.weblate.org/projects/
 
 English (and regional variants) and French translations are maintained by repo maintainers, but they are open to proofreading/improvements. You will need to make a pull request, as we didn’t find a way to make these languages in suggestion-only mode in Weblate (let us know if you find anything).
 
+For unit formatting, we use [Unicode data](https://www.unicode.org/cldr/charts/47/summary/root.html) as much as possible. If you believe there is an error, please [open a discussion](https://github.com/breezy-weather/breezy-weather/discussions/categories/general) with evidences that the changes you suggest is the recommendation for your language.
+
 
 # Contact us
 

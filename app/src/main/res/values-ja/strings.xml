@@ -437,8 +437,6 @@
     <string name="temperature_normals">温度標準値</string>
     <string name="air_quality_co_full">一酸化炭素（%s）</string>
     <string name="location_search_no_results">%1$s が %2$s を見つけられません</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
-    <string name="unit_kgfpsqcm_voice">キログラム力毎平方センチメートル</string>
     <string name="message_network_unavailable">ネットワークが利用できません</string>
     <string name="unit_atm_voice">標準気圧</string>
     <string name="unit_mmhg">mmHg</string>

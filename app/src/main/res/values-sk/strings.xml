@@ -432,13 +432,11 @@
     <string name="settings_location_access_switch_title">Prístup k polohe</string>
     <string name="settings_weather_sources_default_source">Predvolený zdroj nového miesta</string>
     <string name="unit_inhg">inHg</string>
-    <string name="unit_kgfpsqcm_voice">Kilogram sily na centimeter štvorcový</string>
     <string name="settings_location_service">Služba určovania polohy</string>
     <string name="widget_text">Text</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="settings_weather_sources">Zdroje pre počasie</string>
     <string name="unit_inhg_voice">Palce ortuti</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="message_source_not_installed_error_title">Zdroj už nie je dostupný</string>
     <string name="settings_background_updates_refresh_never_warning1">Vypnutím aktualizácii na pozadí už nebudete dostávať notifikácie o počasí. Widgety sa nebudú obnovovať, dokým neotvoríte aplikáciu.</string>
     <string name="settings_location_access_permission_already_granted">Povolenie už bolo udelené</string>

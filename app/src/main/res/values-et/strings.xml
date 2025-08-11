@@ -385,8 +385,6 @@
     <string name="unit_mb_voice">Millibaarid</string>
     <string name="unit_kpa">kPa</string>
     <string name="unit_atm">atm</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
-    <string name="unit_kgfpsqcm_voice">Jõukilogramm ruutsentimeetri kohta</string>
     <string name="unit_inhg_voice">Tolli elavhõbedat</string>
     <string name="notification_channel_widget">Vidin</string>
     <string name="notification_channel_background_services">Tagatausta teenused</string>

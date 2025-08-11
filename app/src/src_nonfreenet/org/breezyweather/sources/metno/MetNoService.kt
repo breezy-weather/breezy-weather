@@ -53,6 +53,7 @@ import org.breezyweather.sources.metno.json.MetNoAlertResult
 import org.breezyweather.sources.metno.json.MetNoForecastResult
 import org.breezyweather.sources.metno.json.MetNoForecastTimeseries
 import org.breezyweather.sources.metno.json.MetNoNowcastResult
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -291,7 +292,7 @@ class MetNoService @Inject constructor(
                 },
                 relativeHumidity = currentTimeseries.instant?.details?.relativeHumidity,
                 dewPoint = currentTimeseries.instant?.details?.dewPointTemperature,
-                pressure = currentTimeseries.instant?.details?.airPressureAtSeaLevel,
+                pressure = currentTimeseries.instant?.details?.airPressureAtSeaLevel?.hectopascals,
                 cloudCover = currentTimeseries.instant?.details?.cloudAreaFraction?.roundToInt()
             )
         } else {
@@ -336,7 +337,7 @@ class MetNoService @Inject constructor(
                 uV = UV(index = hourlyForecast.data?.instant?.details?.ultravioletIndexClearSky),
                 relativeHumidity = hourlyForecast.data?.instant?.details?.relativeHumidity,
                 dewPoint = hourlyForecast.data?.instant?.details?.dewPointTemperature,
-                pressure = hourlyForecast.data?.instant?.details?.airPressureAtSeaLevel,
+                pressure = hourlyForecast.data?.instant?.details?.airPressureAtSeaLevel?.hectopascals,
                 cloudCover = hourlyForecast.data?.instant?.details?.cloudAreaFraction?.roundToInt()
             )
         }

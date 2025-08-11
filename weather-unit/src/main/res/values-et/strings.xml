@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ONLY values changed from the original file are included -->
+    <!-- Based on https://www.unicode.org/cldr/charts/47/summary/et.html -->
+    <!-- If you believe there is an error, please open a discussion -->
+
+    <!-- Pressure units -->
+
+    <!-- Pascal -->
+    <string name="pressure_pa_display_name_long">paskalid</string>
+    <string name="pressure_pa_nominative_long">%s paskalit</string>
+
+    <!-- Hectopascal -->
+    <string name="pressure_hpa_display_name_long">hektopaskalid</string>
+    <string name="pressure_hpa_nominative_long">%s hektopaskalit</string>
+
+    <!-- Kilopascal -->
+    <string name="pressure_kpa_display_name_long">kilopascalid</string>
+    <string name="pressure_kpa_nominative_long">%s kilopaskalit</string>
+
+    <!-- Millibar -->
+    <string name="pressure_mbar_display_name_long">millibaarid</string>
+    <string name="pressure_mbar_nominative_long">%s millibaari</string>
+
+    <!-- Atmosphere -->
+    <string name="pressure_atm_display_name_long">atmosfäärid</string>
+    <string name="pressure_atm_nominative_long">%s atmosfääri</string>
+
+    <!-- Millimeter of mercury -->
+    <string name="pressure_mmhg_display_name_short">mm Hg</string>
+    <string name="pressure_mmhg_display_name_long">millimeetrid elavhõbedasammast</string>
+    <string name="pressure_mmhg_nominative_short">%s mm Hg</string>
+    <string name="pressure_mmhg_nominative_long">%s millimeetrid elavhõbedasammast</string>
+
+    <!-- Inch of mercury -->
+    <string name="pressure_inhg_display_name_short">in Hg</string>
+    <string name="pressure_inhg_display_name_long">tollid elavhõbedasammast</string>
+    <string name="pressure_inhg_nominative_short">%s in Hg</string>
+    <string name="pressure_inhg_nominative_long">%s tollid elavhõbedasammast</string>
+
+</resources>

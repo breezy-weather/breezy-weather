@@ -492,7 +492,6 @@
     <string name="weather_kind_wind">Vjetar</string>
     <string name="notification_channel_background_services">Pozadinske usluge</string>
     <string name="unit_cmph_voice">Centimetara po satu</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="notification_style_native">Izvorni</string>
     <string name="unit_mgpcum_voice">Miligrama po kubnom metru</string>
     <string name="unit_bft_voice">na Beaufort ljestvici</string>
@@ -520,7 +519,6 @@
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Jaki pljuskovi sa susnježicom</string>
     <string name="unit_lpsqm">L/m²</string>
     <string name="common_weather_text_rain_showers">Pljuskovi</string>
-    <string name="unit_kgfpsqcm_voice">Kilograma sile po centimetru kvadratnom</string>
     <string name="notification_update_error">%d ažuriranje/a neuspjelo</string>
     <string name="unit_h">h</string>
     <string name="notification_channel_widget">Widget</string>

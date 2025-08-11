@@ -23,6 +23,7 @@ import breezyweather.domain.weather.model.PrecipitationProbability
 import breezyweather.domain.weather.model.UV
 import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.reference.WeatherCode
+import org.breezyweather.unit.pressure.Pressure
 import java.util.Date
 
 /**
@@ -40,7 +41,11 @@ data class HourlyWrapper(
     val uV: UV? = null,
     val relativeHumidity: Double? = null,
     val dewPoint: Double? = null,
-    val pressure: Double? = null,
+    /**
+     * Pressure at sea level
+     * Use Kotlin extensions to initialize this value, like 1013.25.hectopascals
+     */
+    val pressure: Pressure? = null,
     val cloudCover: Int? = null,
     val visibility: Double? = null,
     /**

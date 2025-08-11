@@ -21,4 +21,4 @@ data class DailyCloudCover(
     override val max: Int? = null,
     override val min: Int? = null,
     override val summary: String? = null,
-) : DailyAvgMinMax
+) : DailyAvgMinMax<Int>

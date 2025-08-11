@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ONLY values changed from the original file are included -->
+    <!-- Based on https://www.unicode.org/cldr/charts/47/summary/pl.html -->
+    <!-- If you believe there is an error, please open a discussion -->
+
+    <!-- Pressure units -->
+
+    <!-- Pascal -->
+    <string name="pressure_pa_display_name_long">paskale</string>
+    <string name="pressure_pa_nominative_long">%s paskale</string>
+
+    <!-- Hectopascal -->
+    <string name="pressure_hpa_display_name_long">hektopaskale</string>
+    <string name="pressure_hpa_nominative_long">%s hektopaskale</string>
+
+    <!-- Kilopascal -->
+    <string name="pressure_kpa_display_name_long">kilopaskale</string>
+    <string name="pressure_kpa_nominative_long">%s kilopaskale</string>
+
+    <!-- Millibar -->
+    <string name="pressure_mbar_display_name_long">milibary</string>
+    <string name="pressure_mbar_nominative_long">%s milibary</string>
+
+    <!-- Atmosphere -->
+    <string name="pressure_atm_display_name_long">atmosfery</string>
+    <string name="pressure_atm_nominative_long">%s atmosfery</string>
+
+    <!-- Millimeter of mercury -->
+    <string name="pressure_mmhg_display_name_long">milimetry słupa rtęci</string>
+    <string name="pressure_mmhg_nominative_long">%s milimetry słupa rtęci</string>
+
+    <!-- Inch of mercury -->
+    <string name="pressure_inhg_display_name_long">cale słupa rtęci</string>
+    <string name="pressure_inhg_nominative_long">%s cale słupa rtęci</string>
+
+</resources>

@@ -343,7 +343,6 @@
     <string name="unit_mm_voice">Milimét</string>
     <string name="unit_inph_voice">Inch trên giờ</string>
     <string name="unit_mmhg_voice">Milimét thủy ngân</string>
-    <string name="unit_kgfpsqcm_voice">Kilôgam lực trên xăngtimét vuông</string>
     <string name="unit_mugpcum_voice">Microgram trên mét khối</string>
     <string name="notification_refreshed_at">Được làm mới vào lúc</string>
     <string name="notification_channel_alerts">Cảnh báo</string>
@@ -455,7 +454,6 @@
     <string name="unit_mb">mb</string>
     <string name="unit_hpa">hPa</string>
     <string name="unit_inhg">inHg</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_atm">atm</string>
     <string name="unit_mmhg">mmHg</string>
     <string name="unit_mgpcum">mg/m³</string>

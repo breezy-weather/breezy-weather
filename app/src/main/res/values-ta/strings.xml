@@ -555,10 +555,8 @@
     <string name="settings_notifications">அறிவிப்புகள்</string>
     <string name="settings_enabled">இயக்கப்பட்டது</string>
     <string name="settings_disabled">முடக்கப்பட்டது</string>
-    <string name="unit_kgfpsqcm">கிலோஅடி/செ.மீ²</string>
     <string name="unit_inhg">inhg</string>
     <string name="unit_inhg_voice">பாதரசத்தின் அங்குலங்கள்</string>
-    <string name="unit_kgfpsqcm_voice">சதுர சென்டிமீட்டருக்கு கிலோகிராம் ஆற்றல்</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mugpcum_voice">ஒரு கன மீட்டருக்கு மைக்ரோகிராம்</string>
     <string name="unit_mgpcum">mg/m³</string>

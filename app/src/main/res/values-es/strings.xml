@@ -239,7 +239,6 @@
     <string name="unit_atm_voice">Atmósferas</string>
     <string name="unit_mmhg_voice">Milímetros de mercurio</string>
     <string name="unit_inhg_voice">Pulgadas de mercurio</string>
-    <string name="unit_kgfpsqcm_voice">Kilogramo de fuerza por centímetro cuadrado</string>
     <string name="unit_mugpcum_voice">Microgramos por metro cúbico</string>
     <string name="unit_mgpcum_voice">Miligramos por metro cúbico</string>
     <string name="unit_h_voice">horas</string>
@@ -509,7 +508,6 @@
     <string name="unit_kpa">kPa</string>
     <string name="unit_km">km</string>
     <string name="notification_channel_background_services">Servicios en segundo plano</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_bft_voice">en la escala de Beaufort</string>
     <string name="unit_mps">m/s</string>
     <string name="common_weather_text_snow_showers">Nevadas</string>

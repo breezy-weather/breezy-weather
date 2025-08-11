@@ -32,7 +32,7 @@ import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.rx3.rxObservable
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.common.source.WeatherSource
-import org.breezyweather.common.utils.helpers.LogHelper
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import java.util.Calendar
 import java.util.Date
 import java.util.TimeZone
@@ -138,7 +138,7 @@ class DebugService @Inject constructor() : WeatherSource {
             ),
             uV = UV(index = Math.random().times(12)),
             dewPoint = Math.random().times(10).plus(5),
-            pressure = Math.random().times(100).plus(963),
+            pressure = Math.random().times(100).plus(963).hectopascals,
             visibility = Math.random().times(50000).roundToInt().toDouble(),
             cloudCover = Math.random().times(100).roundToInt()
         )

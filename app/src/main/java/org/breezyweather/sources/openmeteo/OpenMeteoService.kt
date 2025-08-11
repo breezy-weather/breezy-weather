@@ -90,6 +90,7 @@ import org.breezyweather.sources.openmeteo.json.OpenMeteoWeatherResult
 import org.breezyweather.ui.common.composables.AlertDialogNoPadding
 import org.breezyweather.ui.settings.preference.composables.PreferenceView
 import org.breezyweather.ui.settings.preference.composables.SwitchPreferenceView
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.HttpException
 import retrofit2.Retrofit
 import java.text.Collator
@@ -390,7 +391,7 @@ class OpenMeteoService @Inject constructor(
             uV = UV(index = current.uvIndex),
             relativeHumidity = current.relativeHumidity?.toDouble(),
             dewPoint = current.dewPoint,
-            pressure = current.pressureMsl,
+            pressure = current.pressureMsl?.hectopascals,
             cloudCover = current.cloudCover,
             visibility = current.visibility
         )
@@ -438,9 +439,9 @@ class OpenMeteoService @Inject constructor(
                     min = dailyResult.dewPointMin?.getOrNull(i)
                 ),
                 pressure = DailyPressure(
-                    average = dailyResult.pressureMslMean?.getOrNull(i),
-                    max = dailyResult.pressureMslMax?.getOrNull(i),
-                    min = dailyResult.pressureMslMin?.getOrNull(i)
+                    average = dailyResult.pressureMslMean?.getOrNull(i)?.hectopascals,
+                    max = dailyResult.pressureMslMax?.getOrNull(i)?.hectopascals,
+                    min = dailyResult.pressureMslMin?.getOrNull(i)?.hectopascals
                 ),
                 cloudCover = DailyCloudCover(
                     average = dailyResult.cloudCoverMean?.getOrNull(i),
@@ -492,7 +493,7 @@ class OpenMeteoService @Inject constructor(
                     uV = UV(index = hourlyResult.uvIndex?.getOrNull(i)),
                     relativeHumidity = hourlyResult.relativeHumidity?.getOrNull(i)?.toDouble(),
                     dewPoint = hourlyResult.dewPoint?.getOrNull(i),
-                    pressure = hourlyResult.pressureMsl?.getOrNull(i),
+                    pressure = hourlyResult.pressureMsl?.getOrNull(i)?.hectopascals,
                     cloudCover = hourlyResult.cloudCover?.getOrNull(i),
                     visibility = hourlyResult.visibility?.getOrNull(i)?.toDouble()
                 )

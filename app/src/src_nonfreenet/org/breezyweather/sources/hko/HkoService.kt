@@ -62,6 +62,7 @@ import org.breezyweather.sources.hko.json.HkoHourlyWeatherForecast
 import org.breezyweather.sources.hko.json.HkoNormalsResult
 import org.breezyweather.sources.hko.json.HkoOneJsonResult
 import org.breezyweather.sources.hko.json.HkoWarningResult
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.json.JSONObject
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -335,7 +336,7 @@ class HkoService @Inject constructor(
                 index = oneJson.RHRREAD?.UVIndex?.toDoubleOrNull()
             ),
             relativeHumidity = regionalWeather?.RH?.Value?.toDoubleOrNull(),
-            pressure = regionalWeather?.Pressure?.Value?.toDoubleOrNull(),
+            pressure = regionalWeather?.Pressure?.Value?.toDoubleOrNull()?.hectopascals,
             dailyForecast = oneJson.F9D?.WeatherForecast?.getOrElse(0) { null }?.ForecastWeather
         )
     }

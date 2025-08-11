@@ -59,6 +59,7 @@ import org.breezyweather.sources.pirateweather.json.PirateWeatherCurrently
 import org.breezyweather.sources.pirateweather.json.PirateWeatherDaily
 import org.breezyweather.sources.pirateweather.json.PirateWeatherHourly
 import org.breezyweather.sources.pirateweather.json.PirateWeatherMinutely
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Objects
 import javax.inject.Inject
@@ -166,7 +167,7 @@ class PirateWeatherService @Inject constructor(
             uV = UV(index = result.uvIndex),
             relativeHumidity = result.humidity?.times(100),
             dewPoint = result.dewPoint,
-            pressure = result.pressure,
+            pressure = result.pressure?.hectopascals,
             cloudCover = result.cloudCover?.times(100)?.roundToInt(),
             visibility = result.visibility?.times(1000),
             dailyForecast = dailySummary,
@@ -201,7 +202,7 @@ class PirateWeatherService @Inject constructor(
                 uV = UV(index = result.uvIndex),
                 relativeHumidity = DailyRelativeHumidity(average = result.humidity?.times(100)),
                 dewPoint = DailyDewPoint(average = result.dewPoint),
-                pressure = DailyPressure(average = result.pressure),
+                pressure = DailyPressure(average = result.pressure?.hectopascals),
                 cloudCover = DailyCloudCover(average = result.cloudCover?.times(100)?.roundToInt()),
                 visibility = DailyVisibility(average = result.visibility?.times(1000))
             )
@@ -243,7 +244,7 @@ class PirateWeatherService @Inject constructor(
                 ),
                 relativeHumidity = result.humidity?.times(100),
                 dewPoint = result.dewPoint,
-                pressure = result.pressure,
+                pressure = result.pressure?.hectopascals,
                 cloudCover = result.cloudCover?.times(100)?.roundToInt(),
                 visibility = result.visibility?.times(1000)
             )

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <!-- Generic translations -->
+
+    <!-- Pressure units -->
+
+    <!-- Pascal -->
+    <string name="pressure_pa_display_name_short">Pa</string>
+    <string name="pressure_pa_display_name_long">@string/pressure_pa_display_name_short</string>
+    <string name="pressure_pa_nominative_short">%s Pa</string>
+    <string name="pressure_pa_nominative_long">@string/pressure_pa_nominative_short</string>
+
+    <!-- Hectopascal -->
+    <string name="pressure_hpa_display_name_short">hPa</string>
+    <string name="pressure_hpa_display_name_long">@string/pressure_hpa_display_name_short</string>
+    <string name="pressure_hpa_nominative_short">%s hPa</string>
+    <string name="pressure_hpa_nominative_long">@string/pressure_hpa_nominative_short</string>
+
+    <!-- Kilopascal -->
+    <string name="pressure_kpa_display_name_short">kPa</string>
+    <string name="pressure_kpa_display_name_long">@string/pressure_kpa_display_name_short</string>
+    <string name="pressure_kpa_nominative_short">%s kPa</string>
+    <string name="pressure_kpa_nominative_long">@string/pressure_kpa_nominative_short</string>
+
+    <!-- Millibar -->
+    <string name="pressure_mbar_display_name_short">mbar</string>
+    <string name="pressure_mbar_display_name_long">@string/pressure_mbar_display_name_short</string>
+    <string name="pressure_mbar_nominative_short">%s mbar</string>
+    <string name="pressure_mbar_nominative_long">@string/pressure_mbar_nominative_short</string>
+
+    <!-- Atmosphere -->
+    <string name="pressure_atm_display_name_short">atm</string>
+    <string name="pressure_atm_display_name_long">@string/pressure_atm_display_name_short</string>
+    <string name="pressure_atm_nominative_short">%s atm</string>
+    <string name="pressure_atm_nominative_long">@string/pressure_atm_nominative_short</string>
+
+    <!-- Millimeter of mercury -->
+    <string name="pressure_mmhg_display_name_short">mmHg</string>
+    <string name="pressure_mmhg_display_name_long">@string/pressure_mmhg_display_name_short</string>
+    <string name="pressure_mmhg_nominative_short">%s mmHg</string>
+    <string name="pressure_mmhg_nominative_long">@string/pressure_mmhg_nominative_short</string>
+
+    <!-- Inch of mercury -->
+    <string name="pressure_inhg_display_name_short">inHg</string>
+    <string name="pressure_inhg_display_name_long">@string/pressure_inhg_display_name_short</string>
+    <string name="pressure_inhg_nominative_short">%s inHg</string>
+    <string name="pressure_inhg_nominative_long">@string/pressure_inhg_nominative_short</string>
+
+</resources>

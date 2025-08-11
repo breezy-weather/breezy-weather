@@ -51,6 +51,7 @@ import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_HIGHEST
 import org.breezyweather.common.source.WeatherSource.Companion.PRIORITY_NONE
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtTimeseriesResult
 import org.breezyweather.sources.geosphereat.json.GeoSphereAtWarningsResult
+import org.breezyweather.unit.pressure.Pressure.Companion.pascals
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -354,7 +355,7 @@ class GeoSphereAtService @Inject constructor(
                     null
                 },
                 relativeHumidity = hourlyResult.features[0].properties!!.parameters!!.rh2m?.data?.getOrNull(i),
-                pressure = hourlyResult.features[0].properties!!.parameters!!.sp?.data?.getOrNull(i)?.div(100),
+                pressure = hourlyResult.features[0].properties!!.parameters!!.sp?.data?.getOrNull(i)?.pascals,
                 cloudCover = hourlyResult.features[0].properties!!.parameters!!.tcc?.data?.getOrNull(i)?.times(100)
                     ?.roundToInt()
             )

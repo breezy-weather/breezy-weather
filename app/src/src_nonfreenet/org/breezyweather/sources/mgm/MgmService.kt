@@ -53,6 +53,7 @@ import org.breezyweather.sources.mgm.json.MgmHourlyForecast
 import org.breezyweather.sources.mgm.json.MgmHourlyForecastResult
 import org.breezyweather.sources.mgm.json.MgmLocationResult
 import org.breezyweather.sources.mgm.json.MgmNormalsResult
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -247,7 +248,7 @@ class MgmService @Inject constructor(
                 speed = getValid(currentResult?.windSpeed)?.div(3.6)
             ),
             relativeHumidity = getValid(currentResult?.humidity),
-            pressure = getValid(currentResult?.pressure)
+            pressure = getValid(currentResult?.pressure)?.hectopascals
         )
     }
 

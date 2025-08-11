@@ -244,7 +244,6 @@
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Gewitter mit starkem Hagel</string>
     <string name="widget_custom_subtitle_keyword_cps_description">Aktueller Luftdruck</string>
     <string name="widget_custom_subtitle_keyword_d_description">Datum</string>
-    <string name="unit_kgfpsqcm_voice">Kilogramm Kraft pro Quadratzentimeter</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="common_weather_text_overcast">Bedeckt</string>
     <string name="unit_mph">mph</string>
@@ -334,7 +333,6 @@
     <string name="unit_km">km</string>
     <string name="unit_km_voice">Kilometer</string>
     <string name="unit_mi">mi</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mgpcum_voice">Milligramm pro Kubikmeter</string>
     <string name="air_quality_level_5_description">Empfindliche Personengruppen werden unmittelbare gesundheitliche Auswirkungen spüren und sollten Aktivitäten im Freien vermeiden. Bei gesunden Menschen kommt es bei längerer Exposition wahrscheinlich zu Atembeschwerden und Hustenreiz. Wir empfehlen, nicht nach draußen zu gehen und Aktivitäten im Freien zu verschieben.</string>
     <string name="settings_source_default_value">Standard (unverändert)</string>

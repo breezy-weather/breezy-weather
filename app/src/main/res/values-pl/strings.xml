@@ -346,7 +346,6 @@
     <string name="unit_kpa_voice">Kilopaskale</string>
     <string name="unit_atm">atm</string>
     <string name="unit_hpa_voice">Hektopaskale</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="settings_main_section_options">Opcje</string>
@@ -477,7 +476,6 @@
     <string name="unit_kn_voice">Węzłów</string>
     <string name="unit_mph_voice">Mil na godzinę</string>
     <string name="unit_ftps_voice">Stóp na sekundę</string>
-    <string name="unit_kgfpsqcm_voice">Kilogramów siły na centymetr kwadratowy</string>
     <string name="common_weather_text_mostly_clear">Przeważnie bezchmurnie</string>
     <string name="openmeteo_weather_text_thunderstorm_slight_or_moderate">Lekka lub umiarkowana burza z piorunami</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Silna burza z gradem</string>

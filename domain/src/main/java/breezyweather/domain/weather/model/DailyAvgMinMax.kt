@@ -16,9 +16,9 @@
 
 package breezyweather.domain.weather.model
 
-interface DailyAvgMinMax {
-    val average: Number?
-    val max: Number?
-    val min: Number?
+interface DailyAvgMinMax<T> {
+    val average: T?
+    val max: T?
+    val min: T?
     val summary: String?
 }

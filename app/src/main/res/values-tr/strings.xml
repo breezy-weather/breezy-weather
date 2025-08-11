@@ -350,7 +350,6 @@
     <string name="unit_bft_voice">Beaufort ölçeğinde</string>
     <string name="unit_mm_voice">Milimetre</string>
     <string name="unit_inhg">inHg</string>
-    <string name="unit_kgfpsqcm_voice">Kilogram kuvvet bölü santimetre kare</string>
     <string name="about_source_code">Kaynak kodu</string>
     <string name="common_weather_text_rain_showers_heavy">Şiddetli sağanak yağış</string>
     <string name="common_weather_text_rain_showers_moderate">Orta şiddetli sağanak yağış</string>
@@ -487,7 +486,6 @@
     <string name="unit_mi">mi</string>
     <string name="unit_nmi">nmi</string>
     <string name="unit_nmi_voice">Deniz mili</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mugpcum_voice">Metreküp başına mikrogram</string>
     <string name="unit_ft">ft</string>
     <string name="unit_mb">mb</string>

@@ -186,7 +186,6 @@
     <string name="unit_atm">ضغط جوي</string>
     <string name="unit_mmhg">ملي متر زئبق</string>
     <string name="unit_inhg">بوصة من الزئبق</string>
-    <string name="unit_kgfpsqcm">كغم\\سم²</string>
     <string name="settings_main_cards_title">البطاقات</string>
     <string name="widget_custom_subtitle_keyword_d_description">التاريخ</string>
     <string name="widget_custom_subtitle_keyword_ct_description">درجة الحرارة الحالية (°C°/F)</string>
@@ -433,7 +432,6 @@
     <string name="unit_mb_voice">ملي بار</string>
     <string name="unit_hpa_voice">هيكتوباسكال</string>
     <string name="unit_inhg_voice">بوصة من الزئبق</string>
-    <string name="unit_kgfpsqcm_voice">قوة الكيلوغرام لكل سنتيمتر مربع</string>
     <string name="unit_mugpcum_voice">ميكروغرام لكل متر مكعب</string>
     <string name="unit_h_voice">ساعات</string>
     <string name="unit_ppcm">\\م³</string>

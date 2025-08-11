@@ -178,7 +178,6 @@
     <string name="unit_lpsqmph">L/m²/h</string>
     <string name="unit_kelvin">K</string>
     <string name="unit_kpa">kPa</string>
-    <string name="unit_kgfpsqcm_voice">Quilograma força por centímetro quadrado</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">Por metro cúbico</string>
@@ -373,7 +372,6 @@
     <string name="unit_atm">atm</string>
     <string name="unit_atm_voice">Atmosferas</string>
     <string name="unit_inhg">inHg</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mugpcum_voice">Microgramas por metro cúbico</string>
     <string name="settings_icon_packs_weather_icon_light">Ícone claro</string>
     <string name="settings_icon_packs_weather_icon_dark">Ícone escuro</string>

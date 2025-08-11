@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ONLY values changed from the original file are included -->
+    <!-- Based on https://www.unicode.org/cldr/charts/47/summary/lv.html -->
+    <!-- If you believe there is an error, please open a discussion -->
+
+    <!-- Pressure units -->
+
+    <!-- Pascal -->
+    <string name="pressure_pa_display_name_long">paskāli</string>
+    <string name="pressure_pa_nominative_long">%s paskāli</string>
+
+    <!-- Hectopascal -->
+    <string name="pressure_hpa_display_name_long">hektopaskāli</string>
+    <string name="pressure_hpa_nominative_long">%s hektopaskāli</string>
+
+    <!-- Kilopascal -->
+    <string name="pressure_kpa_display_name_long">kilopaskāli</string>
+    <string name="pressure_kpa_nominative_long">%s kilopaskāli</string>
+
+    <!-- Millibar -->
+    <string name="pressure_mbar_display_name_long">milibāri</string>
+    <string name="pressure_mbar_nominative_long">%s milibāri</string>
+
+    <!-- Atmosphere -->
+    <string name="pressure_atm_display_name_long">atmosfēras</string>
+    <string name="pressure_atm_nominative_long">%s atmosfēras</string>
+
+    <!-- Millimeter of mercury -->
+    <string name="pressure_mmhg_display_name_long">dzīvsudraba stabiņa milimetri</string>
+    <string name="pressure_mmhg_nominative_long">%s dzīvsudraba stabiņa milimetri</string>
+
+    <!-- Inch of mercury -->
+    <string name="pressure_inhg_display_name_long">dzīvsudraba stabiņa collas</string>
+    <string name="pressure_inhg_nominative_long">%s dzīvsudraba stabiņa collas</string>
+
+</resources>

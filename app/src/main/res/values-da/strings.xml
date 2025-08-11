@@ -172,7 +172,6 @@
     <string name="weather_api_unauthorized_content">Hos nogle vejrdatakilder, er du nødt til at angiver din egen API-nøgle. Hvis du allerede har angivet en, så dobbelttjek venligst den API-nøgle, du har angivet.</string>
     <string name="widget_label_text_size">Tekststørrelse</string>
     <string name="unit_lpsqm_voice">Liter per kvadratmeter</string>
-    <string name="unit_kgfpsqcm_voice">Kilogram kraft per kvadratmeter</string>
     <string name="settings_debug_summary">Nedbrudslogge</string>
     <string name="common_weather_text_snow">Nogen sne</string>
     <string name="unit_mmph">mm/t</string>
@@ -251,7 +250,6 @@
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Kraftig byge med slud</string>
     <string name="common_weather_text_drizzle">Støvregn</string>
     <string name="common_weather_text_drizzle_freezing_light">Let isglat</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="common_weather_text_drizzle_freezing_heavy">Kraftigt isglat</string>
     <string name="settings_background_updates_refresh_skip_when_battery_low">Ignorér når batteriet er lavt</string>

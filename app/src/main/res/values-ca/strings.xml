@@ -239,7 +239,6 @@
     <string name="unit_atm_voice">Atmosferes</string>
     <string name="unit_mmhg_voice">Mil·límetres de mercuri</string>
     <string name="unit_inhg_voice">Polzades de mercuri</string>
-    <string name="unit_kgfpsqcm_voice">Kilogram de força per centímetre quadrat</string>
     <string name="unit_mugpcum_voice">Micrograms per metre cúbic</string>
     <string name="unit_mgpcum_voice">Mil·ligrams per metre cúbic</string>
     <string name="unit_h_voice">hores</string>
@@ -473,7 +472,6 @@
     <string name="about_privacy_policy">Política de privacitat</string>
     <string name="settings_debug_dump_crash_logs_title">Compartir registres d’errors</string>
     <string name="unit_cmph_voice">Centímetres per hora</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="settings_modules_live_wallpaper_error">No s’ha pogut llançar el selector de fons de pantalla. Encara pots habilitar el fons de pantalla %s triant «Fons de pantalla animat» al teu selector de fons de pantalla d’inici.</string>
     <string name="unit_bft_voice">a l’escala Beaufort</string>
     <string name="message_server_timeout">S’ha excedit el temps d’espera de la sol·licitud</string>

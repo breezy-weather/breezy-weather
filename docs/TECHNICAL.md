@@ -66,6 +66,11 @@ After merging a new source, the following things need to be done:
 When translations are updated from Weblate, if there are new contributors, add them in `app/src/main/java/org/breezyweather/settings/activities/AboutActivity.kt`.
 
 
+## Added translations
+
+When a translation is added, add the CLDR data for this locale in the weather-unit library.
+
+
 # Dependencies
 
 ## Update Gradle

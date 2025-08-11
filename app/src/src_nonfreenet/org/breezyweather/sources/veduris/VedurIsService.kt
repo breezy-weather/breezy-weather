@@ -40,6 +40,7 @@ import org.breezyweather.sources.veduris.json.VedurIsLatestObservation
 import org.breezyweather.sources.veduris.json.VedurIsResult
 import org.breezyweather.sources.veduris.json.VedurIsStationForecast
 import org.breezyweather.sources.veduris.json.VedurIsStationResult
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.json.JSONObject
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -275,7 +276,7 @@ class VedurIsService @Inject constructor(
                 ),
                 relativeHumidity = if (it.humidity != 0.0) it.humidity else null,
                 dewPoint = it.dewPoint,
-                pressure = it.pressure,
+                pressure = it.pressure?.hectopascals,
                 cloudCover = it.cloudCover?.toInt()
             )
         } ?: CurrentWrapper()
