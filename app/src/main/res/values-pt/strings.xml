@@ -3,7 +3,7 @@
     <!-- app. -->
     <string name="app_name">Clima</string>
     <!-- keyword. -->
-    <string name="location_current">localização atual</string>
+    <string name="location_current">Localização atual</string>
     <string name="daily_today_short">Hoje</string>
     <string name="notification_refreshed_at">Atualizado em</string>
     <string name="precipitation">Precipitação</string>
@@ -57,8 +57,8 @@
     <string name="about_app">Sobre o aplicativo</string>
     <string name="about_translators">Tradutores</string>
     <!-- feedback. -->
-    <string name="location_message_failed_to_locate">Localização falhou</string>
-    <string name="weather_message_data_refresh_failed">Falha ao atualizar dados</string>
+    <string name="location_message_failed_to_locate">Não foi possível encontrar a localização</string>
+    <string name="weather_message_data_refresh_failed">A atualização dos dados falhou</string>
     <string name="location_dialog_failed_to_locate_action_select_source">Utilizar um serviço de localização diferente</string>
     <string name="widget_label_view_style">Estilo de visão</string>
     <string name="widget_label_show_widget_card">Plano de fundo de cartão</string>
@@ -66,9 +66,9 @@
     <string name="widget_label_subtitle_data">Dados do subtítulo</string>
     <string name="widget_label_text_color">Texto escuro</string>
     <string name="widget_label_clock_font">Fonte do relógio</string>
-    <string name="location_message_added">Local adicionado com sucesso</string>
-    <string name="location_message_deleted">Local deletado com sucesso</string>
-    <string name="location_message_list_cannot_be_empty">Lista de locais não pode estar vazia</string>
+    <string name="location_message_added">Localização adicionada</string>
+    <string name="location_message_deleted">Localização eliminada</string>
+    <string name="location_message_list_cannot_be_empty">A lista de localizações não pode estar vazia</string>
     <string name="location_search_placeholder">Pesquise um endereço…</string>
     <string name="location_current_not_found_yet">Ainda não localizado…</string>
     <string name="settings_changes_apply_after_restart">Terá efeito quando reiniciar</string>
@@ -130,8 +130,8 @@
     <string name="air_quality_co_full">Monóxido de carbono (%s)</string>
     <string name="ephemeris_sunrise_at">Nascer do sol às %s</string>
     <string name="ephemeris_moonset_at">Pôr da lua às %s</string>
-    <string name="weather_api_key_required_missing_title">Chave de API necessária não encontrada</string>
-    <string name="weather_api_key_required_missing_content">Para utilizar esse provedor, é necessário fornecer uma chave de API.</string>
+    <string name="weather_api_key_required_missing_title">Chave de API necessária em falta</string>
+    <string name="weather_api_key_required_missing_content">Para utilizar esta fonte, é necessário fornecer uma chave de API.</string>
     <string name="weather_source_accu_preference_days_1">1 dia</string>
     <string name="weather_source_accu_preference_days_15">15 dias</string>
     <string name="weather_source_accu_preference_hours_1">1 hora</string>
@@ -145,7 +145,7 @@
     <string name="settings_main_daily_trends_title">Tendências diárias</string>
     <string name="settings_main_cards_fade_in_switch">Blocos aparecem gradualmente</string>
     <string name="unit_mmph">mm/h</string>
-    <string name="location_message_reverse_geocoding_failed">O provedor meteorológico não conseguiu encontrar um local correspondente</string>
+    <string name="location_message_reverse_geocoding_failed">A fonte do tempo não conseguiu encontrar uma localização correspondente</string>
     <string name="widget_custom_subtitle_keyword_xmr_description">Nascer da lua de hoje, amanhã, …, 4 dias depois</string>
     <string name="settings_location_access_switch_summaryOff">Permita se quiser adicionar a sua localização atual como um local.</string>
     <string name="settings_units_speed">Unidade de velocidade</string>
@@ -186,8 +186,8 @@
     <string name="widget_custom_subtitle_keyword_xms_description">Pôr da lua de hoje, amanhã, …, 4 dias depois</string>
     <string name="widget_clock_font_analog">Analógico</string>
     <string name="unit_kph">km/h</string>
-    <string name="weather_api_unauthorized_content">Em alguns provedores de previsão do tempo, é necessário fornecer a sua própria chave de API. Se já forneceu uma, verifique novamente a chave de API que forneceu.</string>
-    <string name="weather_api_limit_reached_title">Limite de solicitações à API atingido</string>
+    <string name="weather_api_unauthorized_content">Em algumas fontes de dados do tempo, vai precisar de fornecer a sua própria chave de API. Se já forneceu uma, por favor, verifique novamente a chave de API que forneceu.</string>
+    <string name="weather_api_limit_reached_title">Atingido o limite de pedidos à API</string>
     <string name="weather_api_limit_reached_content">Para contornar o limite, adicione a sua própria chave de API.</string>
     <string name="action_show_errors">Toque para ver detalhes</string>
     <string name="settings_main_section_options">Opções</string>
@@ -208,7 +208,7 @@
     <string name="settings_modules_notification_feels_like_switch">Usar sensação térmica</string>
     <string name="settings_debug_summary">Registo de falhas</string>
     <string name="uv_index_0_2">Baixo</string>
-    <string name="settings_weather_source_portal">Canal</string>
+    <string name="settings_weather_source_portal">Portal</string>
     <string name="setting_weather_source_accu_days">Dias</string>
     <string name="weather_source_accu_preference_days_5">5 dias</string>
     <string name="settings_modules_configure_widget_summary">Configurar esse widget</string>
@@ -239,8 +239,8 @@
     <string name="common_weather_text_rain">Chuva</string>
     <string name="common_weather_text_snow">Neve</string>
     <string name="weather_source_accu_preference_days_10">10 dias</string>
-    <string name="location_results_by">Resultados de localização por %s</string>
-    <string name="location_swipe_to_delete">Pode deslizar para a esquerda para remover este item</string>
+    <string name="location_results_by">Resultados da localização por %s</string>
+    <string name="location_swipe_to_delete">Pode deslizar para a esquerda para eliminar este item</string>
     <string name="dialog_permissions_location_title">Aceder informações de localização</string>
     <string name="action_help_me_choose">Ajude-me a escolher</string>
     <string name="widget_custom_subtitle_keyword_w_description">Semana</string>
@@ -263,8 +263,8 @@
     <string name="unit_inhg_voice">Polegadas de mercúrio</string>
     <string name="unit_mgpcum_voice">Miligramas por metro cúbico</string>
     <string name="notification_update_error">%d falha na(s) atualização(ões)</string>
-    <string name="locations">Locais</string>
-    <string name="location_message_search_failed">A busca de localização falhou</string>
+    <string name="locations">Localizações</string>
+    <string name="location_message_search_failed">A procura da localização falhou</string>
     <string name="action_edit">Editar</string>
     <string name="widget_custom_subtitle_keyword_cv_description">Visibilidade atual</string>
     <string name="widget_custom_subtitle_keyword_als_description">Alertas (curto)</string>
@@ -339,7 +339,7 @@
     <string name="widget_subtitle_data_custom">Personalizado</string>
     <string name="action_delete">Apagar</string>
     <string name="widget_style_tile">Bloco</string>
-    <string name="location_message_permission_missing">Permissão de acesso à localização ausente</string>
+    <string name="location_message_permission_missing">Permissão de acesso à localização em falta</string>
     <string name="action_share">Partilhar</string>
     <string name="widget_clock_font_sans_serif_black">Sans Serif Black</string>
     <string name="settings_background_updates_summary">Taxa de atualização, solução de problemas</string>
@@ -353,7 +353,7 @@
     <string name="settings_notifications_forecast_today_title">Notificação sobre a previsão do dia</string>
     <string name="settings_notifications_forecast_time_today_title">Horário de notificação para a previsão do dia</string>
     <string name="settings_modules">Widgets &amp; Papel de parede animado</string>
-    <string name="settings_modules_summary">Definir papel de parede, configurar widgets usados, widget de notificação</string>
+    <string name="settings_modules_summary">Widgets, widget de notificação, fundo, partilha de dados com outras aplicações</string>
     <string name="unit_mm">mm</string>
     <string name="unit_cm">cm</string>
     <string name="unit_cm_voice">Centímetros</string>
@@ -404,11 +404,11 @@
     <string name="common_weather_text_mostly_clear">Principalmente limpo</string>
     <string name="common_weather_text_overcast">Nublado</string>
     <string name="openmeteo_weather_text_depositing_rime_fog">Névoa depositante de geada</string>
-    <string name="weather_message_invalid_location">Localização inválida, exclua-a e adicione-a novamente</string>
+    <string name="weather_message_invalid_location">Localização inválida, por favor, elimine-a e adicione-a novamente</string>
     <string name="weather_source_accu_preference_hours_72">72 horas</string>
     <string name="weather_source_accu_preference_hours_120">120 horas</string>
     <string name="weather_source_accu_preference_hours_240">240 horas</string>
-    <string name="location_message_permission_background_missing">Permissão de acesso à localização em segundo plano ausente</string>
+    <string name="location_message_permission_background_missing">Permissão de acesso à localização em segundo plano em falta</string>
     <string name="null_data_text">N/A</string>
     <string name="action_refresh">Atualizar</string>
     <string name="wind_direction_S_short">S</string>
@@ -571,8 +571,8 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless_description">Combina todos os modelos meteorológicos deste provedor numa previsão perfeita</string>
     <string name="settings_modules_broadcast_title">Transmitir os meus dados meteorológicos para outros apps</string>
     <string name="settings_invalid_syntax">Sintaxe inválida</string>
-    <string name="weather_message_too_frequent_refreshes">Por favor, espere alguns segundos antes de voltar…</string>
-    <string name="location_delete_location_dialog_message">Está prestes a apagar “%s” da sua lista de locais gravados.</string>
+    <string name="weather_message_too_frequent_refreshes">Por favor, aguarde alguns segundos antes repetir…</string>
+    <string name="location_delete_location_dialog_message">Está prestes a eliminar “%s” da sua lista de localizações guardadas.</string>
     <string name="action_confirm">Confirmar</string>
     <string name="message_invalid_incomplete_data">Dados recebidos do servidor inválidos ou incompletos</string>
     <string name="settings_per_location_theme">Tema</string>
@@ -583,7 +583,7 @@
     <string name="settings_per_location_summary">Personalizações adicionais para este local</string>
     <string name="pollen_rumex">Azeda</string>
     <string name="pollen_urticaceae">Urtiga</string>
-    <string name="location_delete_location_dialog_message_no_name">Está prestes a apagar este local da sua lista de locais gravados.</string>
+    <string name="location_delete_location_dialog_message_no_name">Está prestes a eliminar esta localização da sua lista de localizações guardadas.</string>
     <string name="settings_per_location">Preferências de localização</string>
     <string name="settings_source_instance_geocoding">Instância de geocodificação</string>
     <string name="settings_weather_source_open_meteo_instance_air_quality">Instância de qualidade do ar</string>
@@ -593,7 +593,7 @@
     <string name="settings_weather_source_open_meteo_weather_models_seamless">Integração perfeita</string>
     <string name="about_open_link_message">Abrir %s?</string>
     <string name="pollen_quercus">Carvalho</string>
-    <string name="location_delete_location_dialog_title">Apagar local?</string>
+    <string name="location_delete_location_dialog_title">Eliminar localização?</string>
     <string name="widget_custom_subtitle_keyword_xaqi_description">Índice da qualidade do ar de hoje, de amanhã, …, de 4 dias depois</string>
     <string name="pollen_carpinus">Carpino</string>
     <string name="pollen_castanea">Castanheiro</string>
@@ -694,7 +694,7 @@
     <string name="settings_weather_source_not_configured">%s (não configurado)</string>
     <string name="common_weather_text_glaze">Camada de gelo</string>
     <string name="meteoam_weather_text_tornado_watersprout">Tornado ou tromba d’água</string>
-    <string name="location_message_location_access_off">Acesso a localização está desligado</string>
+    <string name="location_message_location_access_off">O acesso a localização está desligado</string>
     <string name="common_weather_text_humid">Úmido</string>
     <string name="common_weather_text_dry">Seco</string>
     <string name="weather_source_continent_europe">Europa</string>
@@ -706,8 +706,8 @@
     <string name="wind_direction_E">Leste</string>
     <string name="wind_direction_SE">Sudeste</string>
     <string name="wind_direction_S">Sul</string>
-    <string name="location_reverse_geocoding">Pesquisa de endereço</string>
-    <string name="weather_source_continent_oceania">Oceania</string>
+    <string name="location_reverse_geocoding">Pesquisa de morada</string>
+    <string name="weather_source_continent_oceania">Oceânia</string>
     <string name="dialog_app_update_check_title">Mantenha-se atualizado</string>
     <string name="dialog_app_update_check_content">Toque aqui para ativar as notificações sobre atualizações do app.</string>
     <string name="settings_notifications_app_updates_check">Notificações de atualizações do app</string>
@@ -731,7 +731,7 @@
     <string name="common_weather_text_tornado">Tornado</string>
     <string name="forecast">Previsão do tempo</string>
     <string name="weather_source_continent_asia">Ásia</string>
-    <string name="weather_source_continent_south_america">America do sul</string>
+    <string name="weather_source_continent_south_america">América do sul</string>
     <string name="pollen_acer">Ácer</string>
     <string name="pollen_atriplex">Arbusto de sal</string>
     <string name="pollen_juniperus">Zimbro</string>
@@ -837,8 +837,8 @@
     <string name="visibility_perfectly_clear">Perfeitamente clara</string>
     <string name="cloud_cover_about">Sobre nebulosidade</string>
     <string name="cloud_cover_about_description">A nebulosidade refere-se à percentagem do céu coberta por nuvens, em média. A nebulosidade está correlacionada com a duração da luz solar.</string>
-    <string name="data_sources">Fontes de dados meteorológicos</string>
-    <string name="data_modified">Este material foi modificado do original por %s principalmente para computar ou extrapolar dados ausentes.</string>
+    <string name="data_sources">Fontes de dados</string>
+    <string name="data_modified">Este material foi modificado do original por %s, principalmente para computar ou extrapolar os dados em falta.</string>
     <string name="action_configure_item">Configurar %s</string>
     <string name="action_close_menu">Fechar menu</string>
     <string name="action_toggle_data_type_menu">Alternar o menu de seleção de tipo de dados</string>
@@ -873,7 +873,7 @@
     <string name="air_quality_co_about">Sobre o monóxido de carbono (%s)</string>
     <string name="air_quality_co_index">Escala do índice de qualidade do ar para %s</string>
     <string name="action_open_in_other_app_no_app">Nenhuma app de mapas encontrada</string>
-    <string name="action_share_no_app">Nenhuma app de partilhar encontrada</string>
+    <string name="action_share_no_app">Nenhuma aplicação de partilhar encontrada</string>
     <string name="action_translate">Traduzir</string>
     <string name="action_translate_no_app">Nenhuma app de tradução encontrada</string>
     <string name="settings_appearance_dark_mode_locations_day_night">Seguir o dia/noite</string>
@@ -882,4 +882,11 @@
     <string name="action_change">Alterar</string>
     <string name="message_incompatible_times_title">Horários de previsão incompatíveis</string>
     <string name="message_incompatible_times_content">Altere a sua fonte de previsão ou qualidade do ar para que os horários combinem.</string>
+    <string name="humidity_from_to_number">%1$s para %2$s</string>
+    <string name="dew_point_from_to_number">%1$s para %2$s</string>
+    <string name="visibility_scale">Escala de visibilidade</string>
+    <string name="cloud_cover_from_to_number">%1$s até %2$s</string>
+    <string name="cloud_cover_from_to_description">%1$s até %2$s</string>
+    <string name="cloud_cover_scale">Escala da nebulosidade</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">%s Notificador da Atualização da Localização</string>
 </resources>
