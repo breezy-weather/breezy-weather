@@ -730,4 +730,10 @@
     <string name="pressure_about_description2">Modificările semnificative și rapide ale presiunii sunt utilizate pentru a prezice schimbările meteorologice. De exemplu, o scădere a presiunii poate însemna că urmează să plouă sau să ningă, iar o creștere a presiunii poate însemna că vremea se va îmbunătăți. Presiunea atmosferică anormală poate provoca dureri de cap, dureri articulare, oboseală și alte efecte.</string>
     <string name="pressure_about_description1">Presiunea atmosferică este presiunea descendentă exercitată de atmosfera Pământului. Această aplicație utilizează presiunea medie la nivelul mării pentru a permite compararea mai ușoară a presiunii din locuri cu altitudini diferite.</string>
     <string name="pressure_about">Despre presiune</string>
+    <string name="air_quality_short">Calit. aerului</string>
+    <string name="ephemeris_sun">Soare</string>
+    <string name="ephemeris_moon">Lună</string>
+    <string name="ephemeris_about">Despre ora răsăritului și apusului</string>
+    <string name="ephemeris_about_rise">Timpul răsăritului este atunci când soarele sau luna apar pe deplin deasupra orizontului.</string>
+    <string name="ephemeris_about_set">Timpul apusului este când soarele sau luna dispar complet sub orizont.</string>
 </resources>
