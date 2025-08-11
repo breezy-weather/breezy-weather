@@ -362,7 +362,7 @@
     <string name="settings_main_cards_other_element_animations_switch">Інші анімації елементів</string>
     <string name="settings_notifications_summary">Сповіщення про погодні попередження, опади або прогноз для першого розташування</string>
     <string name="settings_notifications_forecast_today_title">Сповіщення про прогноз на день</string>
-    <string name="settings_modules_summary">Зміна шпалер, налаштування використовуваних віджетів та віджет сповіщень</string>
+    <string name="settings_modules_summary">Віджети, віджет сповіщень, шпалери, обмін даними з іншими програмами</string>
     <string name="settings_modules_section_notification_widget">Віджет сповіщень</string>
     <string name="settings_modules_notification_widget_title">Віджет сповіщення</string>
     <string name="settings_modules_notification_persistent_switch">Постійне сповіщення</string>
