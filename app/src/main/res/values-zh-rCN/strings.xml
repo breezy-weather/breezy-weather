@@ -444,7 +444,7 @@
     <string name="settings_notifications_forecast_today_title">每日预报通知</string>
     <string name="settings_notifications_forecast_tomorrow_title">明日预报通知</string>
     <string name="settings_notifications_summary">首个位置的天气预警、降水或预报的通知</string>
-    <string name="settings_modules_summary">设置壁纸、配置使用的微件、通知微件</string>
+    <string name="settings_modules_summary">微件、通知微件、壁纸、与其他应用分享数据</string>
     <string name="settings_notifications_forecast_time_today_title">每日预报的通知时间</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">明日预报的通知时间</string>
     <string name="settings_modules">微件与动态壁纸</string>
