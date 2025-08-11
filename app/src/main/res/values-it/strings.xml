@@ -69,7 +69,7 @@
     <string name="pollen_tree">Alberi</string>
     <string name="daily_forecast">Previsioni giornaliere</string>
     <string name="hourly_forecast">Previsioni orarie</string>
-    <string name="air_quality">Qualità dell\'aria</string>
+    <string name="air_quality">Qualità dell’aria</string>
     <string name="pollen">Polline</string>
     <string name="ephemeris">Sole e Luna</string>
     <string name="action_next">Avanti</string>
@@ -384,7 +384,7 @@
     <string name="settings_notifications_forecast_tomorrow_title">Notifica per le previsioni del giorno successivo</string>
     <string name="settings_notifications_forecast_time_tomorrow_title">Orario di notifica per le previsioni del giorno successivo</string>
     <string name="settings_modules">Moduli esterni</string>
-    <string name="settings_modules_live_wallpaper_summary">Imposta un\'animazione meteo come sfondo</string>
+    <string name="settings_modules_live_wallpaper_summary">Imposta un’animazione meteo come sfondo</string>
     <string name="settings_modules_section_widgets_in_use">Widget in uso</string>
     <string name="settings_modules_configure_widget_summary">Configura questo widget</string>
     <string name="settings_modules_section_notification_widget">Widget di notifica</string>
@@ -706,8 +706,8 @@
     <string name="action_open_in_other_app_description">Apri questa posizione in un’altra app</string>
     <string name="action_open_in_other_app">Apri in un’altra app</string>
     <string name="ephemeris_about">Informazioni su alba e tramonto</string>
-    <string name="ephemeris_about_rise">L\'alba è quando il sole o la luna appaiono completamente sopra l\'orizzonte.</string>
-    <string name="ephemeris_about_set">Il tramonto è quando il sole o la luna scompaiono completamente sotto l\'orizzonte.</string>
+    <string name="ephemeris_about_rise">L’alba è quando il sole o la luna appaiono completamente sopra l’orizzonte.</string>
+    <string name="ephemeris_about_set">Il tramonto è quando il sole o la luna scompaiono completamente sotto l’orizzonte.</string>
     <string name="daily_summary">Riepilogo giornaliero</string>
     <string name="chart_no_daily_data">Nessun dato disponibile per questo giorno.</string>
     <string name="chart_no_hourly_data">Nessun dato orario disponibile.</string>
@@ -745,7 +745,7 @@
     <string name="ephemeris_sun">Sole</string>
     <string name="ephemeris_moon">Luna</string>
     <string name="clock">Orologio</string>
-    <string name="content_provider_permission_description">ottenere informazioni meteo da Breezy Weather, comprese le coordinate delle tue posizioni, come la tua posizione attuale se l\'hai aggiunta</string>
+    <string name="content_provider_permission_description">ottenere informazioni meteo da Breezy Weather, comprese le coordinate delle tue posizioni, come la tua posizione attuale se l’hai aggiunta</string>
     <string name="common_weather_text_mostly_cloudy">Per lo più nuvoloso</string>
     <string name="content_provider_permission_label">Leggere dati Breezy Weather</string>
     <string name="unit_mum_voice">Micrometri</string>
