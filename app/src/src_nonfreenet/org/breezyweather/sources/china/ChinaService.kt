@@ -59,6 +59,7 @@ import org.breezyweather.sources.china.json.ChinaForecastHourly
 import org.breezyweather.sources.china.json.ChinaForecastResult
 import org.breezyweather.sources.china.json.ChinaLocationResult
 import org.breezyweather.sources.china.json.ChinaMinutelyResult
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -279,7 +280,7 @@ class ChinaService @Inject constructor(
                 null
             },
             pressure = if (!current.pressure?.value.isNullOrEmpty()) {
-                current.pressure.value.toDoubleOrNull()
+                current.pressure.value.toDoubleOrNull()?.hectopascals
             } else {
                 null
             },

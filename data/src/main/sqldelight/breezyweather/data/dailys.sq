@@ -1,4 +1,5 @@
 import breezyweather.domain.weather.reference.WeatherCode;
+import org.breezyweather.unit.pressure.Pressure;
 
 CREATE TABLE dailys(
     _id INTEGER NOT NULL PRIMARY KEY,
@@ -137,9 +138,9 @@ CREATE TABLE dailys(
     dewpoint_max REAL,
 
     -- pressure
-    pressure_average REAL,
-    pressure_min REAL,
-    pressure_max REAL,
+    pressure_average INTEGER AS Pressure,
+    pressure_min INTEGER AS Pressure,
+    pressure_max INTEGER AS Pressure,
 
     -- cloud cover
     cloud_cover_average INTEGER,

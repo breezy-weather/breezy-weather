@@ -339,8 +339,6 @@
     <string name="unit_mmhg_voice">毫米汞柱</string>
     <string name="unit_inhg">英寸汞柱</string>
     <string name="unit_inhg_voice">英寸汞柱</string>
-    <string name="unit_kgfpsqcm">千克力/厘米²</string>
-    <string name="unit_kgfpsqcm_voice">千克力每平方厘米</string>
     <string name="unit_mugpcum">微克/米³</string>
     <string name="unit_mugpcum_voice">微克每立方米</string>
     <string name="unit_mgpcum">毫克/米³</string>

@@ -46,6 +46,7 @@ import org.breezyweather.sources.meteoam.json.MeteoAmForecastStats
 import org.breezyweather.sources.meteoam.json.MeteoAmObservationResult
 import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocation
 import org.breezyweather.sources.meteoam.json.MeteoAmReverseLocationResult
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Date
 import javax.inject.Inject
@@ -183,7 +184,8 @@ class MeteoAmService @Inject constructor(
             ),
             relativeHumidity = currentResult.getOrElse(keys["r"].toString()) { null }
                 ?.getOrElse("0") { null } as? Double,
-            pressure = currentResult.getOrElse(keys["pmsl"].toString()) { null }?.getOrElse("0") { null } as? Double
+            pressure = (currentResult.getOrElse(keys["pmsl"].toString()) { null }?.getOrElse("0") { null } as? Double)
+                ?.hectopascals
         )
     }
 
@@ -245,8 +247,9 @@ class MeteoAmService @Inject constructor(
                 ),
                 relativeHumidity = data.getOrElse(keys["r"].toString()) { null }
                     ?.getOrElse(i.toString()) { null } as? Double,
-                pressure = data.getOrElse(keys["pmsl"].toString()) { null }
-                    ?.getOrElse(i.toString()) { null } as? Double
+                pressure = (
+                    data.getOrElse(keys["pmsl"].toString()) { null }?.getOrElse(i.toString()) { null } as? Double
+                    )?.hectopascals
             )
         }
     }

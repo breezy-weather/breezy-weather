@@ -442,8 +442,6 @@
     <string name="unit_mmhg_voice">Milimetroj da hidrargo</string>
     <string name="unit_inhg">inHg</string>
     <string name="unit_inhg_voice">Coloj da hidrargo</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
-    <string name="unit_kgfpsqcm_voice">Kilograma forto por kvadrata centimetro</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mugpcum_voice">Mikrogramoj por kuba metro</string>
     <string name="unit_mgpcum">mg/m³</string>

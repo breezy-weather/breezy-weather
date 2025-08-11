@@ -31,10 +31,11 @@ import org.breezyweather.common.basic.models.options.appearance.HourlyTrendDispl
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
-import org.breezyweather.common.basic.models.options.unit.PressureUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.bus.EventBus
+import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.unit.pressure.PressureUnit
 
 class SettingsChangedMessage
 
@@ -270,7 +271,7 @@ class SettingsManager private constructor(
             .firstOrNull { it.id == (config.getString("pressure_unit", "auto") ?: "auto") }
 
     fun getPressureUnit(context: Context): PressureUnit {
-        return pressureUnit ?: PressureUnit.getDefaultUnit(context)
+        return pressureUnit ?: PressureUnit.getDefaultUnit(context.currentLocale)
     }
 
     var speedUnit: SpeedUnit?

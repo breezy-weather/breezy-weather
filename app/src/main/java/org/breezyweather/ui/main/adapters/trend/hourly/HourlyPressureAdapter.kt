@@ -25,7 +25,8 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.unit.PressureUnit
+import org.breezyweather.common.extensions.currentLocale
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
@@ -33,6 +34,9 @@ import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.resource.ResourceHelper
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.pressure.Pressure.Companion.pascals
+import org.breezyweather.unit.pressure.PressureUnit
 import kotlin.math.max
 
 /**
@@ -64,7 +68,7 @@ class HourlyPressureAdapter(
             val hourly = weather.nextHourlyForecast[position]
             hourly.pressure?.let { pressure ->
                 talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(mPressureUnit.formatContentDescription(activity, pressure))
+                    .append(pressure.formatMeasure(activity, unitWidth = UnitWidth.LONG))
             }
             hourlyItem.setIconDrawable(
                 hourly.weatherCode?.let {
@@ -75,7 +79,7 @@ class HourlyPressureAdapter(
             mPolylineAndHistogramView.setData(
                 buildPressureArrayForItem(mPressures, position),
                 null,
-                hourly.pressure?.let { mPressureUnit.formatValue(activity, it) },
+                hourly.pressure?.formatValue(mPressureUnit, UnitWidth.NARROW, activity.currentLocale),
                 null,
                 mHighestPressure,
                 mLowestPressure,
@@ -139,7 +143,7 @@ class HourlyPressureAdapter(
         run {
             var i = 0
             while (i < mPressures.size) {
-                mPressures[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.pressure?.toFloat()
+                mPressures[i] = weather.nextHourlyForecast.getOrNull(i / 2)?.pressure?.value?.toFloat()
                 i += 2
             }
         }
@@ -159,11 +163,11 @@ class HourlyPressureAdapter(
         weather.nextHourlyForecast
             .forEach { hourly ->
                 hourly.pressure?.let {
-                    if (mHighestPressure == null || it > mHighestPressure!!) {
-                        mHighestPressure = it.toFloat()
+                    if (mHighestPressure == null || it.value > mHighestPressure!!) {
+                        mHighestPressure = it.value.toFloat()
                     }
-                    if (mLowestPressure == null || it < mLowestPressure!!) {
-                        mLowestPressure = it.toFloat()
+                    if (mLowestPressure == null || it.value < mLowestPressure!!) {
+                        mLowestPressure = it.value.toFloat()
                     }
                 }
             }
@@ -193,7 +197,7 @@ class HourlyPressureAdapter(
         keyLineList.add(
             TrendRecyclerView.KeyLine(
                 PressureUnit.NORMAL.toFloat(),
-                mPressureUnit.formatValue(activity, PressureUnit.NORMAL),
+                PressureUnit.NORMAL.pascals.formatValue(mPressureUnit, UnitWidth.NARROW, activity.currentLocale),
                 activity.getString(R.string.temperature_normal_short),
                 TrendRecyclerView.KeyLine.ContentPosition.ABOVE_LINE
             )

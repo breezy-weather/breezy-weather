@@ -449,10 +449,8 @@
     <string name="unit_inhg">inHg</string>
     <string name="unit_inhg_voice">Инчове живак</string>
     <string name="unit_mugpcum">μg/m³</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">На кубичен метър</string>
-    <string name="unit_kgfpsqcm_voice">Килограм сила на квадратен сантиметър</string>
     <string name="unit_h">h</string>
     <string name="about_source_code">Програмен код</string>
     <string name="notification_style_cities">Градове</string>

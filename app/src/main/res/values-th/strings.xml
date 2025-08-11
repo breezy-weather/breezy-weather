@@ -650,8 +650,6 @@
     <string name="unit_mgpcum">มก./ลบ.ม.</string>
     <string name="unit_mugpcum">มค.ก./ลบ.ม.</string>
     <string name="unit_inhg_voice">นิ้วปรอท</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
-    <string name="unit_kgfpsqcm_voice">กิโลกรัมแรงต่อตารางเซนติเมตร</string>
     <string name="notification_updating_weather_data">กำลังอัปเดตข้อมูลสภาพอากาศ (%1$d/%2$d)</string>
     <string name="unit_mgpcum_voice">มิลลิกรัมต่อลูกบาศก์เมตร</string>
     <string name="unit_h">ชม.</string>

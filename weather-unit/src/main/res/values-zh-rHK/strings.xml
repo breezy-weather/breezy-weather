@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ONLY values changed from the original file are included -->
+    <!-- Loosely based on https://www.unicode.org/cldr/charts/47/summary/zh_Hant.html -->
+    <!-- Due to various major issues -->
+    <!-- https://unicode-org.atlassian.net/jira/software/c/projects/CLDR/issues/CLDR-10604 -->
+    <!-- If you believe there is an error, please open a discussion -->
+
+    <!-- Pressure units -->
+
+    <!-- Pascal -->
+    <string name="pressure_pa_display_name_long">帕斯卡</string>
+    <string name="pressure_pa_nominative_long">%s帕斯卡</string>
+
+    <!-- Hectopascal -->
+    <string name="pressure_hpa_display_name_long">百帕</string>
+    <string name="pressure_hpa_nominative_long">%s百帕</string>
+
+    <!-- Kilopascal -->
+    <string name="pressure_kpa_display_name_long">千帕</string>
+    <string name="pressure_kpa_nominative_long">%s千帕</string>
+
+    <!-- Millibar -->
+    <string name="pressure_mbar_display_name_long">毫巴</string>
+    <string name="pressure_mbar_nominative_long">%s毫巴</string>
+
+    <!-- Atmosphere -->
+    <string name="pressure_atm_display_name_long">氣壓</string>
+    <string name="pressure_atm_nominative_long">%s大氣壓</string>
+
+    <!-- Millimeter of mercury -->
+    <string name="pressure_mmhg_display_name_long">毫米汞柱</string>
+    <string name="pressure_mmhg_nominative_long">%s毫米汞柱</string>
+
+    <!-- Inch of mercury - SPECIFIC to HK -->
+    <string name="pressure_inhg_display_name_long">吋汞柱</string>
+    <string name="pressure_inhg_nominative_long">%s吋汞柱</string>
+
+</resources>

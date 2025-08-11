@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ONLY values changed from the original file are included -->
+    <!-- Based on https://www.unicode.org/cldr/charts/47/summary/eu.html -->
+    <!-- If you believe there is an error, please open a discussion -->
+
+    <!-- Pressure units -->
+
+    <!-- Pascal -->
+    <string name="pressure_pa_display_name_long">pascal</string>
+    <string name="pressure_pa_nominative_long">%s pascal</string>
+
+    <!-- Hectopascal -->
+    <string name="pressure_hpa_display_name_long">hektopascalak</string>
+    <string name="pressure_hpa_nominative_long">%s hektopascal</string>
+
+    <!-- Kilopascal -->
+    <string name="pressure_kpa_display_name_long">kilopascal</string>
+    <string name="pressure_kpa_nominative_long">%s kilopascal</string>
+
+    <!-- Millibar -->
+    <string name="pressure_mbar_display_name_short">mb</string>
+    <string name="pressure_mbar_display_name_long">milibarrak</string>
+    <string name="pressure_mbar_nominative_short">%s mb</string>
+    <string name="pressure_mbar_nominative_long">%s milibar</string>
+
+    <!-- Atmosphere -->
+    <!-- The two below are marked for short, but I believe this is an error -->
+    <string name="pressure_atm_display_name_long">atmosfera</string>
+    <string name="pressure_atm_nominative_long">%s atmosfera</string>
+
+    <!-- Millimeter of mercury -->
+    <string name="pressure_mmhg_display_name_short">mm Hg</string>
+    <string name="pressure_mmhg_display_name_long">merkurio-milimetroak</string>
+    <string name="pressure_mmhg_nominative_short">%s mm Hg</string>
+    <string name="pressure_mmhg_nominative_long">%s merkurio-milimetro</string>
+
+    <!-- Inch of mercury -->
+    <string name="pressure_inhg_display_name_long">merkurio-hazbeteak</string>
+    <string name="pressure_inhg_nominative_long">%s merkurio-hazbete</string>
+
+</resources>

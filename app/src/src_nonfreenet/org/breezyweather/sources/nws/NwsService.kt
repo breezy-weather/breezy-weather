@@ -64,6 +64,9 @@ import org.breezyweather.sources.nws.json.NwsValueDoubleContainer
 import org.breezyweather.sources.nws.json.NwsValueIntContainer
 import org.breezyweather.sources.nws.json.NwsValueWeatherContainer
 import org.breezyweather.sources.nws.json.NwsValueWeatherValue
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
+import org.breezyweather.unit.pressure.Pressure.Companion.inchesOfMercury
+import org.breezyweather.unit.pressure.Pressure.Companion.pascals
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -276,7 +279,7 @@ class NwsService @Inject constructor(
                 relativeHumidity = it.relativeHumidity?.value,
                 dewPoint = it.dewpoint?.value,
                 pressure = if (it.seaLevelPressure != null) {
-                    it.seaLevelPressure.value?.div(100.0)
+                    it.seaLevelPressure.value?.pascals
                 } else {
                     computeMeanSeaLevelPressure(
                         barometricPressure = it.barometricPressure?.value?.div(100.0),
@@ -284,7 +287,7 @@ class NwsService @Inject constructor(
                         temperature = it.temperature?.value,
                         humidity = it.relativeHumidity?.value,
                         latitude = currentResult.geometry?.coordinates?.getOrNull(1)
-                    )
+                    )?.hectopascals
                 },
                 visibility = it.visibility?.value
             )
@@ -451,8 +454,7 @@ class NwsService @Inject constructor(
                 ),
                 relativeHumidity = relativeHumidityList.getOrElse(it) { null }?.toDouble(),
                 dewPoint = dewpointForecastList.getOrElse(it) { null },
-                // Pressure is given in inHg - convert to hPa with conventional multiple
-                pressure = pressureForecastList.getOrElse(it) { null }?.times(33.86389),
+                pressure = pressureForecastList.getOrElse(it) { null }?.inchesOfMercury,
                 cloudCover = skyCoverForecastList.getOrElse(it) { null },
                 visibility = visibilityForecastList.getOrElse(it) { null }
             )

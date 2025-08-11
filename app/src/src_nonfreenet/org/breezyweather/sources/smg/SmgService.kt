@@ -52,6 +52,7 @@ import org.breezyweather.sources.smg.json.SmgCurrentResult
 import org.breezyweather.sources.smg.json.SmgForecastResult
 import org.breezyweather.sources.smg.json.SmgUvResult
 import org.breezyweather.sources.smg.json.SmgWarningResult
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -324,7 +325,8 @@ class SmgService @Inject constructor(
                         ),
                         relativeHumidity = it.Humidity?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull(),
                         dewPoint = it.DewPoint?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull(),
-                        pressure = it.MeanSeaLevelPressure?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull(),
+                        pressure = it.MeanSeaLevelPressure?.getOrNull(0)?.dValue?.getOrNull(0)?.toDoubleOrNull()
+                            ?.hectopascals,
                         dailyForecast = bulletinResult.Forecast?.Custom?.getOrNull(0)?.TodaySituation?.getOrNull(0)
                     )
                 }

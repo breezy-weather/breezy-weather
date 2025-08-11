@@ -274,7 +274,6 @@
     <string name="unit_atm_voice">Atmosféry</string>
     <string name="unit_mmhg_voice">Milimetry rtuti</string>
     <string name="unit_inhg_voice">Palce rtuti</string>
-    <string name="unit_kgfpsqcm_voice">Kilogram síly na centimetr čtvereční</string>
     <string name="unit_mugpcum_voice">Mikrogramy na metr krychlový</string>
     <string name="unit_mgpcum_voice">Milligramy na metr krychlový</string>
     <string name="unit_h_voice">hodin</string>
@@ -302,7 +301,6 @@
     <string name="unit_nmi">nmi</string>
     <string name="openmeteo_weather_text_thunderstorm_with_slight_hail">Bouřka s drobným krupobitím</string>
     <string name="openmeteo_weather_text_thunderstorm_with_heavy_hail">Bouřka se silným krupobitím</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="settings_units_summary">Teplota, srážky, vzdálenost, rychlost, tlak</string>
     <string name="location_message_search_failed">Vyhledávání polohy se nezdařilo</string>
     <string name="location_message_permission_background_missing">Chybějící oprávnění k přístupu k poloze na pozadí</string>

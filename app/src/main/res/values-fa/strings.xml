@@ -518,7 +518,6 @@
     <string name="unit_mb">mb</string>
     <string name="unit_mb_voice">میلی بار</string>
     <string name="unit_atm">اتمسفر استاندارد</string>
-    <string name="unit_kgfpsqcm">کیلوگرم/ سانتیمتر مربع</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mugpcum_voice">میکرو گرم بر متر‌مکعب</string>
     <string name="unit_h_voice">ساعت</string>
@@ -547,7 +546,6 @@
     <string name="unit_mmhg_voice">میلی متر جیوه</string>
     <string name="unit_inhg">اینچ جیوه</string>
     <string name="unit_inhg_voice">اینچ جیوه</string>
-    <string name="unit_kgfpsqcm_voice">نیروی کیلوگرم بر سانتی متر مکعب</string>
     <string name="notification_update_error">%d به‌روزرسانی ناموفق</string>
     <string name="unit_ppcm">/m³</string>
     <string name="unit_ppcm_voice">بر متر مکعب</string>

@@ -467,7 +467,6 @@
     <string name="settings_icon_packs_weather_icon_grey">Grå ikon</string>
     <string name="weather_message_unsupported_feature">Källan stöder inte en av de begärda funktionerna</string>
     <string name="settings_debug_dump_crash_logs_title">Dela kraschloggar</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="settings_location_service">Platstjänst</string>
     <string name="widget_custom_subtitle_keyword_xnwd_description">Vind nattetid för i dag, i morgon, …, 4 dagar senare</string>
     <string name="unit_bft_voice">på Beaufortskalan</string>
@@ -493,7 +492,6 @@
     <string name="settings_disabled">Inaktiverad</string>
     <string name="common_weather_text_rain_snow_mixed_showers_heavy">Kraftiga snöblandade regnskurar</string>
     <string name="common_weather_text_rain_showers">Regnskurar</string>
-    <string name="unit_kgfpsqcm_voice">Kilogram kraft per kvadratcentimeter</string>
     <string name="settings_location_access_permission_already_granted">Behörighet redan beviljad</string>
     <string name="notification_update_error">%d uppdatering(ar) misslyckades</string>
     <string name="settings_location_access_switch_title">Platsåtkomst</string>

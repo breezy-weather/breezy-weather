@@ -236,7 +236,6 @@
     <string name="unit_atm">атм</string>
     <string name="unit_mmhg">мм рт. ст.</string>
     <string name="unit_inhg">дюйм рт. ст.</string>
-    <string name="unit_kgfpsqcm">кгс/cм²</string>
     <string name="unit_mugpcum">мкг/м³</string>
     <string name="unit_h">ч</string>
     <string name="unit_ppcm">/м³</string>
@@ -354,7 +353,6 @@
     <string name="unit_in_voice">Дюймов</string>
     <string name="unit_celsius_short">°</string>
     <string name="unit_ft_voice">Футы</string>
-    <string name="unit_kgfpsqcm_voice">Килограммовая сила на квадратный сантиметр</string>
     <string name="unit_mgpcum_voice">Миллиграммы на кубический метр</string>
     <string name="notification_channel_background_services">Фоновые сервисы</string>
     <string name="location_results_by">Результаты местоположения по %s</string>

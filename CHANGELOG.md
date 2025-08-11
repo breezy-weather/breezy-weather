@@ -7,6 +7,7 @@
 **Removed features**
 - Mean daytime/nighttime temperatures as threshold lines. Use a normals source instead
 - [Met Office UK] Removed address lookup feature
+- Pressure unit - Kilogram force per square centimeter
 
 **Improvements and fixes**
 - Main screen - Allow to move small blocks by drag & drop
@@ -59,6 +60,7 @@
 **Technical**
 - Current location process refactoring: coordinates, forced refresh when coordinates changed from more than 5 km
 - Address lookup process refactoring to prepare for future ability to add a location manually by coordinates
+- Pressure unit conversion/formatting refactoring
 
 
 # Version 6.0.4-alpha (2025-07-23)

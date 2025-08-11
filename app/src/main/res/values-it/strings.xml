@@ -272,7 +272,6 @@
     <string name="unit_atm_voice">Atmosfere</string>
     <string name="unit_mmhg_voice">Millimetri di mercurio</string>
     <string name="unit_inhg_voice">Pollici di mercurio</string>
-    <string name="unit_kgfpsqcm_voice">Chilogrammo forza per centimetro quadrato</string>
     <string name="unit_mugpcum_voice">Microgrammi per metro cubo</string>
     <string name="unit_mgpcum_voice">Milligrammi per metro cubo</string>
     <string name="unit_h_voice">ore</string>
@@ -425,7 +424,6 @@
     <string name="unit_ft">ft</string>
     <string name="unit_mb">mb</string>
     <string name="unit_inhg">inHg</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_h">h</string>

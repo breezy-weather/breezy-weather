@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ONLY values changed from the original file are included -->
+    <!-- Based on https://www.unicode.org/cldr/charts/47/summary/bg.html -->
+    <!-- If you believe there is an error, please open a discussion -->
+
+    <!-- Pressure units -->
+
+    <!-- Pascal -->
+    <string name="pressure_pa_display_name_long">паскали</string>
+    <string name="pressure_pa_nominative_long">%s паскали</string>
+
+    <!-- Hectopascal -->
+    <string name="pressure_hpa_display_name_long">хектопаскали</string>
+    <string name="pressure_hpa_nominative_long">%s хектопаскали</string>
+
+    <!-- Kilopascal -->
+    <string name="pressure_kpa_display_name_long">килопаскали</string>
+    <string name="pressure_kpa_nominative_long">%s килопаскали</string>
+
+    <!-- Millibar -->
+    <string name="pressure_mbar_display_name_long">милибари</string>
+    <string name="pressure_mbar_nominative_long">%s милибари</string>
+
+    <!-- Atmosphere -->
+    <string name="pressure_atm_display_name_long">атмосфери</string>
+    <string name="pressure_atm_nominative_long">%s атмосфери</string>
+
+    <!-- Millimeter of mercury -->
+    <string name="pressure_mmhg_display_name_long">милиметри живачен стълб</string>
+    <string name="pressure_mmhg_nominative_long">%s милиметра живачен стълб</string>
+
+    <!-- Inch of mercury -->
+    <string name="pressure_inhg_display_name_long">инчове живачен стълб</string>
+    <string name="pressure_inhg_nominative_long">%s инчове живачен стълб</string>
+
+</resources>

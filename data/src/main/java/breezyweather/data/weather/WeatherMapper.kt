@@ -44,6 +44,7 @@ import breezyweather.domain.weather.model.Wind
 import breezyweather.domain.weather.reference.AlertSeverity
 import breezyweather.domain.weather.reference.Month
 import breezyweather.domain.weather.reference.WeatherCode
+import org.breezyweather.unit.pressure.Pressure
 import java.util.Date
 
 object WeatherMapper {
@@ -78,7 +79,7 @@ object WeatherMapper {
         co: Double?,
         relativeHumidity: Double?,
         dewPoint: Double?,
-        pressure: Double?,
+        pressure: Pressure?,
         visibility: Double?,
         cloudCover: Long?,
         ceiling: Double?,
@@ -230,9 +231,9 @@ object WeatherMapper {
         dewpointAverage: Double?,
         dewpointMin: Double?,
         dewpointMax: Double?,
-        pressureAverage: Double?,
-        pressureMin: Double?,
-        pressureMax: Double?,
+        pressureAverage: Pressure?,
+        pressureMin: Pressure?,
+        pressureMax: Pressure?,
         cloudCoverAverage: Long?,
         cloudCoverMin: Long?,
         cloudCoverMax: Long?,
@@ -414,7 +415,7 @@ object WeatherMapper {
         uvIndex: Double?,
         relativeHumidity: Double?,
         dewPoint: Double?,
-        pressure: Double?,
+        pressure: Pressure?,
         cloudCover: Long?,
         visibility: Double?,
     ): Hourly = Hourly(

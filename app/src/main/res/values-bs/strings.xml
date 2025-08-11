@@ -264,7 +264,6 @@
     <string name="unit_hpa_voice">Hektopaskala</string>
     <string name="unit_atm">atm</string>
     <string name="unit_atm_voice">Atmosfera</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_h">h</string>
     <string name="unit_h_voice">sati</string>
     <string name="notification_channel_crash_logs">Zapisnici o padu</string>
@@ -512,7 +511,6 @@
     <string name="unit_in">inč</string>
     <string name="unit_in_voice">Inča</string>
     <string name="unit_nmi_voice">Nautičke milje</string>
-    <string name="unit_kgfpsqcm_voice">Kilograma sile po centimetru kvadratnom</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mugpcum_voice">Mikrograma po kubnom metru</string>
     <string name="unit_mgpcum">mg/m³</string>

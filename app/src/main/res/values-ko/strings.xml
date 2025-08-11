@@ -292,7 +292,6 @@
     <string name="unit_mb_voice">밀리바</string>
     <string name="unit_kpa">kPa</string>
     <string name="unit_inhg_voice">수은주 인치</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_mi_voice">마일</string>
     <string name="unit_nmi">nmi</string>
     <string name="unit_nmi_voice">해리</string>

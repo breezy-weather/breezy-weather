@@ -52,6 +52,7 @@ import org.breezyweather.sources.lvgmc.json.LvgmcAirQualityResult
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentLocation
 import org.breezyweather.sources.lvgmc.json.LvgmcCurrentResult
 import org.breezyweather.sources.lvgmc.json.LvgmcForecastResult
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -237,7 +238,7 @@ class LvgmcService @Inject constructor(
                         index = it.uvIndex?.toDoubleOrNull()
                     ),
                     relativeHumidity = it.relativeHumidity?.toDoubleOrNull(),
-                    pressure = it.pressure?.toDoubleOrNull(),
+                    pressure = it.pressure?.toDoubleOrNull()?.hectopascals,
                     visibility = it.visibility?.toDoubleOrNull()
                 )
             }
@@ -361,7 +362,7 @@ class LvgmcService @Inject constructor(
                         index = it.uvIndex?.toDoubleOrNull()
                     ),
                     relativeHumidity = it.relativeHumidity?.toDoubleOrNull(),
-                    pressure = it.pressure?.toDoubleOrNull(),
+                    pressure = it.pressure?.toDoubleOrNull()?.hectopascals,
                     cloudCover = it.cloudCover?.toIntOrNull()
                 )
             }

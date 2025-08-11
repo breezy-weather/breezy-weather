@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ONLY values changed from the original file are included -->
+    <!-- Based on https://www.unicode.org/cldr/charts/47/summary/ta.html -->
+    <!-- If you believe there is an error, please open a discussion -->
+
+    <!-- Pressure units -->
+
+    <!-- Pascal -->
+    <string name="pressure_pa_display_name_short">பா.</string>
+    <string name="pressure_pa_display_name_long">பாஸ்கல்கள்</string>
+    <string name="pressure_pa_nominative_short">%s பா.</string>
+    <string name="pressure_pa_nominative_long">%s பாஸ்கல்கள்</string>
+
+    <!-- Hectopascal -->
+    <string name="pressure_hpa_display_name_short">ஹெ.பாஸ்.</string>
+    <string name="pressure_hpa_display_name_long">ஹெக்டோபாஸ்கல்</string>
+    <string name="pressure_hpa_nominative_short">%s ஹெ.பாஸ்.</string>
+    <string name="pressure_hpa_nominative_long">%s ஹெக்டோபாஸ்கல்</string>
+
+    <!-- Kilopascal -->
+    <string name="pressure_kpa_display_name_short">கிபா</string>
+    <string name="pressure_kpa_display_name_long">கிலோபாஸ்கல்ஸ்</string>
+    <string name="pressure_kpa_nominative_short">%s கிபா</string>
+    <string name="pressure_kpa_nominative_long">%s கிலோபாஸ்கல்ஸ்</string>
+
+    <!-- Millibar -->
+    <string name="pressure_mbar_display_name_short">மி.பா.</string>
+    <string name="pressure_mbar_display_name_long">மில்லிபார்கள்</string>
+    <string name="pressure_mbar_nominative_short">%s மி.பா.</string>
+    <string name="pressure_mbar_nominative_long">%s மில்லிபார்கள்</string>
+
+    <!-- Atmosphere -->
+    <string name="pressure_atm_display_name_long">வளிமண்டலம்</string>
+    <string name="pressure_atm_nominative_long">%s வளிமண்டலம்</string>
+
+    <!-- Millimeter of mercury -->
+    <string name="pressure_mmhg_display_name_short">பாத. மி.மீ.</string>
+    <string name="pressure_mmhg_display_name_long">பாதரச மில்லிமீட்டர்கள்</string>
+    <string name="pressure_mmhg_nominative_short">%s பாத. மி.மீ.</string>
+    <string name="pressure_mmhg_nominative_long">%s பாதரச மில்லிமீட்டர்கள்</string>
+
+    <!-- Inch of mercury -->
+    <string name="pressure_inhg_display_name_short">பாத. அங்.</string>
+    <string name="pressure_inhg_display_name_long">பாதரச அங்குலங்கள்</string>
+    <string name="pressure_inhg_nominative_short">%s பாத. அங்.</string>
+    <string name="pressure_inhg_nominative_long">%s பாதரச அங்குலங்கள்</string>
+
+</resources>

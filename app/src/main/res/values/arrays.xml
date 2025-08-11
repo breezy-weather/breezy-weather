@@ -567,38 +567,6 @@
         <item>ft</item>
     </string-array>
 
-    <!-- pressure unit. -->
-    <string-array name="pressure_units">
-        <item>@string/settings_follow_system</item>
-        <item>@string/unit_mb</item>
-        <item>@string/unit_kpa</item>
-        <item>@string/unit_hpa</item>
-        <item>@string/unit_atm</item>
-        <item>@string/unit_mmhg</item>
-        <item>@string/unit_inhg</item>
-        <item>@string/unit_kgfpsqcm</item>
-    </string-array>
-    <string-array name="pressure_unit_voices">
-        <item>@string/settings_follow_system</item>
-        <item>@string/unit_mb_voice</item>
-        <item>@string/unit_kpa_voice</item>
-        <item>@string/unit_hpa_voice</item>
-        <item>@string/unit_atm_voice</item>
-        <item>@string/unit_mmhg_voice</item>
-        <item>@string/unit_inhg_voice</item>
-        <item>@string/unit_kgfpsqcm_voice</item>
-    </string-array>
-    <string-array name="pressure_unit_values">
-        <item>auto</item>
-        <item>mb</item>
-        <item>kpa</item>
-        <item>hpa</item>
-        <item>atm</item>
-        <item>mmhg</item>
-        <item>inhg</item>
-        <item>kgfpsqcm</item>
-    </string-array>
-
     <!-- air quality unit. -->
     <string-array name="air_quality_units">
         <item>@string/unit_mugpcum</item>

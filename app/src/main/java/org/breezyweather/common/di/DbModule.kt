@@ -30,6 +30,7 @@ import breezyweather.data.Database
 import breezyweather.data.DatabaseHandler
 import breezyweather.data.Hourlys
 import breezyweather.data.Locations
+import breezyweather.data.PressureColumnAdapter
 import breezyweather.data.TimeZoneColumnAdapter
 import breezyweather.data.WeatherCodeColumnAdapter
 import breezyweather.data.Weathers
@@ -86,14 +87,19 @@ class DbModule {
                 timezoneAdapter = TimeZoneColumnAdapter
             ),
             weathersAdapter = Weathers.Adapter(
-                weather_codeAdapter = WeatherCodeColumnAdapter
+                weather_codeAdapter = WeatherCodeColumnAdapter,
+                pressureAdapter = PressureColumnAdapter
             ),
             dailysAdapter = Dailys.Adapter(
                 daytime_weather_codeAdapter = WeatherCodeColumnAdapter,
-                nighttime_weather_codeAdapter = WeatherCodeColumnAdapter
+                nighttime_weather_codeAdapter = WeatherCodeColumnAdapter,
+                pressure_averageAdapter = PressureColumnAdapter,
+                pressure_maxAdapter = PressureColumnAdapter,
+                pressure_minAdapter = PressureColumnAdapter
             ),
             hourlysAdapter = Hourlys.Adapter(
-                weather_codeAdapter = WeatherCodeColumnAdapter
+                weather_codeAdapter = WeatherCodeColumnAdapter,
+                pressureAdapter = PressureColumnAdapter
             ),
             alertsAdapter = Alerts.Adapter(
                 severityAdapter = AlertSeverityColumnAdapter

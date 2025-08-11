@@ -59,7 +59,6 @@ import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.basic.models.options.unit.PollenUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
-import org.breezyweather.common.basic.models.options.unit.PressureUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.basic.models.options.unit.getCloudCoverDescription
@@ -106,6 +105,8 @@ import org.breezyweather.domain.weather.model.validPollens
 import org.breezyweather.domain.weather.model.validPollutants
 import org.breezyweather.sources.SourceManager
 import org.breezyweather.sources.getFeatureSource
+import org.breezyweather.unit.pressure.Pressure
+import org.breezyweather.unit.pressure.PressureUnit
 import kotlin.math.roundToInt
 
 class WeatherContentProvider : ContentProvider() {
@@ -552,9 +553,9 @@ class WeatherContentProvider : ContentProvider() {
                     summary = null
                 ),
                 pressure = BreezyDailyUnit(
-                    avg = getPressureUnit(day.visibility?.average, pressureUnit),
-                    max = getPressureUnit(day.visibility?.max, pressureUnit),
-                    min = getPressureUnit(day.visibility?.min, pressureUnit),
+                    avg = getPressureUnit(day.pressure?.average, pressureUnit),
+                    max = getPressureUnit(day.pressure?.max, pressureUnit),
+                    min = getPressureUnit(day.pressure?.min, pressureUnit),
                     summary = null
                 ),
                 cloudCover = BreezyDailyUnit(
@@ -869,12 +870,12 @@ class WeatherContentProvider : ContentProvider() {
     }
 
     private fun getPressureUnit(
-        pressure: Double?,
+        pressure: Pressure?,
         pressureUnit: PressureUnit,
     ): BreezyUnit? {
         return pressure?.let {
             BreezyUnit(
-                value = pressureUnit.convertUnit(it).roundDecimals(pressureUnit.precision),
+                value = it.toDouble(pressureUnit).roundDecimals(pressureUnit.decimals.long),
                 unit = pressureUnit.id
             )
         }

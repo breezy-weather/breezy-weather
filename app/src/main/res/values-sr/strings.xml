@@ -202,7 +202,6 @@
     <string name="unit_celsius_short">°</string>
     <string name="unit_inhg">inHg</string>
     <string name="unit_inhg_voice">Инчи живе</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="settings_section_general">Опште</string>
     <string name="weather_source_accu_preference_hours_120">120 сати</string>
     <string name="location_results_by">Резултати за локације од %s</string>
@@ -280,7 +279,6 @@
     <string name="widget_material_you_current">Material You – Тренутно</string>
     <string name="widget_clock_day_details">Сат + Дневно (Детаљи)</string>
     <string name="unit_kpa">kPa</string>
-    <string name="unit_kgfpsqcm_voice">Килограм-сила по квадратном центиметру</string>
     <string name="temperature_average_short">Просек</string>
     <string name="temperature_normal_short">Нормала</string>
     <string name="precipitation_rain">Киша</string>

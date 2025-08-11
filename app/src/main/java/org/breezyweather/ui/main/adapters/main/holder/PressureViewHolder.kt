@@ -28,12 +28,15 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import org.breezyweather.common.extensions.formatMeasure
+import org.breezyweather.common.extensions.formatValue
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.common.utils.helpers.IntentHelper
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.ArcProgress
 import org.breezyweather.ui.theme.resource.providers.ResourceProvider
+import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 
 class PressureViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_pressure, parent, false)
@@ -57,17 +60,17 @@ class PressureViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
         val talkBackBuilder = StringBuilder(context.getString(R.string.pressure))
         location.weather!!.current?.pressure?.let {
             val pressureUnit = SettingsManager.getInstance(context).getPressureUnit(context)
-            mPressure = it.toFloat()
+            mPressure = it.inHectopascals.toFloat()
             mEnable = true
             if (itemAnimationEnabled) {
                 pressureProgress.apply {
                     progress = 0f
-                    pressureValueView.text = pressureUnit.formatValue(context, 0.0)
+                    pressureValueView.text = 0.0.hectopascals.formatValue(context)
                 }
             } else {
                 pressureProgress.apply {
                     progress = mPressure.minus(963f)
-                    pressureValueView.text = pressureUnit.formatValue(context, it)
+                    pressureValueView.text = it.formatValue(context)
                 }
             }
             val pressureColor = context.getThemeColor(androidx.appcompat.R.attr.colorPrimary)
@@ -77,9 +80,9 @@ class PressureViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 max = 100f
             }
 
-            pressureUnitView.text = UnitUtils.getName(context, pressureUnit)
+            pressureUnitView.text = pressureUnit.getNominativeUnit(context)
             talkBackBuilder.append(context.getString(R.string.colon_separator))
-            talkBackBuilder.append(pressureUnit.formatContentDescription(context, it))
+            talkBackBuilder.append(it.formatMeasure(context, unitWidth = UnitWidth.LONG))
         }
 
         itemView.contentDescription = talkBackBuilder.toString()
@@ -101,8 +104,8 @@ class PressureViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                     pressureProgress.apply {
                         progress = (animation.animatedValue as Float)
                     }
-                    pressureValueView.text = SettingsManager.getInstance(context).getPressureUnit(context)
-                        .formatValue(context, pressureProgress.progress.plus(963.0))
+                    pressureValueView.text = pressureProgress.progress.plus(963.0).hectopascals
+                        .formatValue(context)
                 }
                 mAttachAnimatorSet = AnimatorSet().apply {
                     playTogether(pressureNumber)

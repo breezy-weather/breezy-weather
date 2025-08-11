@@ -406,8 +406,6 @@
     <string name="unit_atm_voice">Ατμόσφαιρες</string>
     <string name="unit_mmhg_voice">Χιλιοστά υδραργύρου</string>
     <string name="unit_inhg_voice">ίντσες υδραργύρου</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
-    <string name="unit_kgfpsqcm_voice">Χιλιόγραμμα δύναμης ανά τετραγωνικό εκατοστό</string>
     <string name="unit_mugpcum">μg/m³</string>
     <string name="unit_mgpcum">mg/m³</string>
     <string name="unit_mgpcum_voice">χιλιοστόγραμμα ανά κυβικό μέτρο</string>

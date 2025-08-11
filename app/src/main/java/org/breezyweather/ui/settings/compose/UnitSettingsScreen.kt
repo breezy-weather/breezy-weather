@@ -27,9 +27,9 @@ import androidx.compose.ui.res.stringResource
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
-import org.breezyweather.common.basic.models.options.unit.PressureUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.currentLocale
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.domain.settings.SettingsManager
 import org.breezyweather.ui.common.widgets.Material3Scaffold
@@ -39,6 +39,8 @@ import org.breezyweather.ui.settings.preference.composables.ListPreferenceViewWi
 import org.breezyweather.ui.settings.preference.composables.PreferenceScreen
 import org.breezyweather.ui.settings.preference.listPreferenceItem
 import org.breezyweather.ui.settings.preference.smallSeparatorItem
+import org.breezyweather.unit.formatting.UnitWidth
+import org.breezyweather.unit.pressure.PressureUnit
 
 @Composable
 fun UnitSettingsScreen(
@@ -204,18 +206,19 @@ fun UnitSettingsScreen(
             }
             smallSeparatorItem()
             listPreferenceItem(R.string.settings_units_pressure) { id ->
-                val valueArray = stringArrayResource(R.array.pressure_unit_values)
-                val nameArray = stringArrayResource(R.array.pressure_units).mapIndexed { index, value ->
-                    if (index == 0) {
-                        stringResource(
-                            R.string.parenthesis,
-                            stringResource(R.string.settings_follow_system),
-                            PressureUnit.getDefaultUnit(context).getName(context)
-                        )
-                    } else {
-                        value
-                    }
-                }.toTypedArray()
+                val allowedPressureUnits = PressureUnit.entries.filter { it != PressureUnit.PASCAL }
+                val valueArray = arrayOf("auto") +
+                    allowedPressureUnits.map { it.id }
+                val nameArray = arrayOf(
+                    stringResource(
+                        R.string.parenthesis,
+                        stringResource(R.string.settings_follow_system),
+                        PressureUnit.getDefaultUnit(context.currentLocale)
+                            .getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                    )
+                ) + allowedPressureUnits.map {
+                    it.getDisplayName(context, context.currentLocale, UnitWidth.LONG)
+                }
                 ListPreferenceViewWithCard(
                     title = stringResource(id),
                     summary = { _, value -> nameArray[valueArray.indexOfFirst { it == value }] },
@@ -225,7 +228,7 @@ fun UnitSettingsScreen(
                     isLast = true,
                     onValueChanged = { pressureUnitId ->
                         SettingsManager.getInstance(context).pressureUnit = if (pressureUnitId != "auto") {
-                            PressureUnit.entries.firstOrNull { it.id == pressureUnitId }
+                            PressureUnit.getUnit(pressureUnitId)
                         } else {
                             null
                         }

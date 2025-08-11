@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ONLY values changed from the original file are included -->
+    <!-- Based on https://www.unicode.org/cldr/charts/47/summary/ckb.html -->
+    <!-- If you believe there is an error, please open a discussion -->
+
+    <!-- Pressure units -->
+
+    <!-- Pascal -->
+    <!-- No change -->
+
+    <!-- Hectopascal -->
+    <!-- No change -->
+
+    <!-- Kilopascal -->
+    <!-- No change -->
+
+    <!-- Millibar -->
+    <!-- No change -->
+
+    <!-- Atmosphere -->
+    <!-- No change -->
+
+    <!-- Millimeter of mercury -->
+    <!-- No change -->
+
+    <!-- Inch of mercury -->
+    <!-- No change -->
+
+</resources>

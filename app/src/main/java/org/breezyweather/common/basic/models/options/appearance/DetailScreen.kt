@@ -78,12 +78,8 @@ enum class DetailScreen(
                             location.weather?.hourlyForecast?.any {
                                 (it.relativeHumidity ?: 0.0) > 0.0 || (it.dewPoint ?: 0.0) != 0.0
                             } == true
-                        TAG_PRESSURE -> location.weather?.dailyForecast?.any {
-                            (it.pressure?.average ?: 0.0) > 0.0
-                        } == true ||
-                            location.weather?.hourlyForecast?.any {
-                                (it.pressure ?: 0.0) > 0.0
-                            } == true
+                        TAG_PRESSURE -> location.weather?.dailyForecast?.any { it.pressure?.average != null } == true ||
+                            location.weather?.hourlyForecast?.any { it.pressure != null } == true
                         TAG_CLOUD_COVER -> location.weather?.dailyForecast?.any {
                             (it.cloudCover?.min ?: 0) > 0 || (it.cloudCover?.max ?: 0) > 0
                         } == true ||

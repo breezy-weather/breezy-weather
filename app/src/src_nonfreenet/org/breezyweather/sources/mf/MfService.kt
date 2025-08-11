@@ -73,6 +73,7 @@ import org.breezyweather.sources.mf.json.MfRainResult
 import org.breezyweather.sources.mf.json.MfWarningDictionaryResult
 import org.breezyweather.sources.mf.json.MfWarningsOverseasResult
 import org.breezyweather.sources.mf.json.MfWarningsResult
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.nio.charset.StandardCharsets
 import java.util.Calendar
@@ -480,7 +481,7 @@ class MfService @Inject constructor(
                     gusts = hourlyForecast.windSpeedGust?.toDouble()
                 ),
                 relativeHumidity = hourlyForecast.relativeHumidity?.toDouble(),
-                pressure = hourlyForecast.pSea,
+                pressure = hourlyForecast.pSea?.hectopascals,
                 cloudCover = hourlyForecast.totalCloudCover
             )
         }

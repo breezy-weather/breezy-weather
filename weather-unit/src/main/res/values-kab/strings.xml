@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ONLY values changed from the original file are included -->
+    <!-- Based on https://www.unicode.org/cldr/charts/47/summary/kab.html -->
+    <!-- If you believe there is an error, please open a discussion -->
+
+    <!-- Pressure units -->
+
+    <!-- Pascal -->
+    <!-- No change -->
+
+    <!-- Hectopascal -->
+    <string name="pressure_hpa_display_name_long">ihiktupaskalen</string>
+    <string name="pressure_hpa_nominative_long">%s n ihiktupaskalen</string>
+
+    <!-- Kilopascal -->
+    <!-- No change -->
+
+    <!-- Millibar -->
+    <!-- No change -->
+
+    <!-- Atmosphere -->
+    <!-- No change -->
+
+    <!-- Millimeter of mercury -->
+    <string name="pressure_mmhg_display_name_short">mm Hg</string>
+    <string name="pressure_mmhg_nominative_short">%s mm Hg</string>
+
+    <!-- Inch of mercury -->
+    <!-- No change -->
+
+</resources>

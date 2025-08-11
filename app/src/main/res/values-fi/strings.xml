@@ -361,7 +361,6 @@
     <string name="weather_message_unsupported_feature">Lähde ei tue jotakin vaadittua ominaisuutta</string>
     <string name="about_privacy_policy">Tietosuojaseloste</string>
     <string name="settings_debug_dump_crash_logs_title">Jaa kaatumislokit</string>
-    <string name="unit_kgfpsqcm">kgf/cm²</string>
     <string name="unit_bft_voice">Boforiasteikolla</string>
     <string name="unit_mb_voice">Millibaaria</string>
     <string name="unit_mps">m/s</string>
@@ -387,7 +386,6 @@
     <string name="air_quality_pm10">PM10</string>
     <string name="common_weather_text_rain_showers">Sadekuuroja</string>
     <string name="weather_api_key_required_missing_content">Käyttääksesi tätä lähdettä, sinun on annettava API-avain.</string>
-    <string name="unit_kgfpsqcm_voice">Kilogrammaa neliösenttimetrillä</string>
     <string name="pollen_level_0">Ei yhtään</string>
     <string name="settings_location_access_permission_already_granted">Lupa myönnetty jo</string>
     <string name="notification_update_error">%d päivitys(tä) epäonnistui</string>

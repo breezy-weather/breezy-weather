@@ -16,9 +16,11 @@
 
 package breezyweather.domain.weather.model
 
+import org.breezyweather.unit.pressure.Pressure
+
 data class DailyPressure(
-    override val average: Double? = null,
-    override val max: Double? = null,
-    override val min: Double? = null,
+    override val average: Pressure? = null,
+    override val max: Pressure? = null,
+    override val min: Pressure? = null,
     override val summary: String? = null,
-) : DailyAvgMinMax
+) : DailyAvgMinMax<Pressure>

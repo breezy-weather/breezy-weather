@@ -86,6 +86,7 @@ import org.breezyweather.sources.accu.preferences.AccuDaysPreference
 import org.breezyweather.sources.accu.preferences.AccuHoursPreference
 import org.breezyweather.sources.accu.preferences.AccuPortalPreference
 import org.breezyweather.sources.openmeteo.OpenMeteoService.Companion.COPERNICUS_POLLEN_BBOX
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -415,7 +416,7 @@ class AccuService @Inject constructor(
             uV = UV(index = currentResult.UVIndex?.toDouble()),
             relativeHumidity = currentResult.RelativeHumidity?.toDouble(),
             dewPoint = currentResult.DewPoint?.Metric?.Value,
-            pressure = currentResult.Pressure?.Metric?.Value,
+            pressure = currentResult.Pressure?.Metric?.Value?.hectopascals,
             cloudCover = currentResult.CloudCover,
             visibility = currentResult.Visibility?.Metric?.Value?.times(1000),
             ceiling = currentResult.Ceiling?.Metric?.Value,

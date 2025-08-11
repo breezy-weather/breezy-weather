@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ONLY values changed from the original file are included -->
+    <!-- Based on https://www.unicode.org/cldr/charts/47/summary/ar.html -->
+    <!-- If you believe there is an error, please open a discussion -->
+
+    <!-- Pressure units -->
+
+    <!-- Pascal -->
+    <string name="pressure_pa_display_name_short">باسكال</string>
+    <string name="pressure_pa_display_name_long">باسكال</string>
+    <string name="pressure_pa_nominative_short">%s باسكال</string>
+    <string name="pressure_pa_nominative_long">%s باسكال</string>
+
+    <!-- Hectopascal -->
+    <string name="pressure_hpa_display_name_short">هكتوباسكال</string>
+    <string name="pressure_hpa_display_name_long">هكتوباسكال</string>
+    <string name="pressure_hpa_nominative_short">%s هكتوباسكال</string>
+    <string name="pressure_hpa_nominative_long">%s هكتوباسكال</string>
+
+    <!-- Kilopascal -->
+    <string name="pressure_kpa_display_name_short">ك.باسكال</string>
+    <string name="pressure_kpa_display_name_long">كيلوباسكال</string>
+    <string name="pressure_kpa_nominative_short">%s ك.باسكال</string>
+    <string name="pressure_kpa_nominative_long">%s كيلوباسكال</string>
+
+    <!-- Millibar -->
+    <string name="pressure_mbar_display_name_short">م. بار</string>
+    <string name="pressure_mbar_display_name_long">ملي بار</string>
+    <string name="pressure_mbar_nominative_short">%s م. بار</string>
+    <string name="pressure_mbar_nominative_long">%s ملي بار</string>
+
+    <!-- Atmosphere -->
+    <string name="pressure_atm_display_name_short">ض.ج</string>
+    <string name="pressure_atm_display_name_long">وحدة الضغط الجوي</string>
+    <string name="pressure_atm_nominative_short">%s ض.ج</string>
+    <string name="pressure_atm_nominative_long">%s ضغط جوي</string>
+
+    <!-- Millimeter of mercury -->
+    <string name="pressure_mmhg_display_name_short">ملم زئبقي</string>
+    <string name="pressure_mmhg_display_name_long">مليمتر زئبقي</string>
+    <string name="pressure_mmhg_nominative_short">%s ملم زئبقي</string>
+    <string name="pressure_mmhg_nominative_long">%s مليمتر زئبقي</string>
+
+    <!-- Inch of mercury -->
+    <string name="pressure_inhg_display_name_short">ب. زئبقية</string>
+    <string name="pressure_inhg_display_name_long">بوصة زئبقية</string>
+    <string name="pressure_inhg_nominative_short">%s ب. زئبقية</string>
+    <string name="pressure_inhg_nominative_long">%s بوصة زئبقية</string>
+
+</resources>

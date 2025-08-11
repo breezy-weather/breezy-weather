@@ -57,6 +57,7 @@ import org.breezyweather.sources.eccc.json.EcccRegionalNormalsMetric
 import org.breezyweather.sources.eccc.json.EcccResult
 import org.breezyweather.sources.eccc.json.EcccUnit
 import org.breezyweather.sources.getWindDegree
+import org.breezyweather.unit.pressure.Pressure.Companion.kilopascals
 import retrofit2.Retrofit
 import java.util.Calendar
 import java.util.Date
@@ -200,7 +201,7 @@ class EcccService @Inject constructor(
             ),
             relativeHumidity = result.humidity?.toDoubleOrNull(),
             dewPoint = getNonEmptyMetric(result.dewpoint),
-            pressure = getNonEmptyMetric(result.pressure)?.times(10),
+            pressure = getNonEmptyMetric(result.pressure)?.kilopascals,
             visibility = getNonEmptyMetric(result.visibility)?.times(1000)
         )
     }

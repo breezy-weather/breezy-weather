@@ -48,7 +48,6 @@ import org.breezyweather.common.basic.models.options.unit.DistanceUnit
 import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
-import org.breezyweather.common.basic.models.options.unit.PressureUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
 import org.breezyweather.common.extensions.ensurePositive
@@ -56,6 +55,8 @@ import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.pressure.Pressure
+import org.breezyweather.unit.pressure.Pressure.Companion.pascals
 import org.shredzone.commons.suncalc.MoonIllumination
 import org.shredzone.commons.suncalc.MoonTimes
 import org.shredzone.commons.suncalc.SunTimes
@@ -68,6 +69,7 @@ import kotlin.math.ln
 import kotlin.math.log10
 import kotlin.math.pow
 import kotlin.math.roundToInt
+import kotlin.math.roundToLong
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 
@@ -254,7 +256,7 @@ internal fun computeMissingHourlyData(
             wind = wind,
             relativeHumidity = relativeHumidity,
             dewPoint = dewPoint,
-            pressure = PressureUnit.validateValue(hourly.pressure),
+            pressure = hourly.pressure?.toValidOrNull(),
             cloudCover = cloudCover,
             visibility = visibility
         )
@@ -1355,17 +1357,17 @@ fun getDailyDewPoint(
 
 fun getDailyPressure(
     initialDailyPressure: DailyPressure?,
-    values: List<Double>?,
+    values: List<Pressure>?,
 ): DailyPressure? {
     if (values.isNullOrEmpty()) return initialDailyPressure
 
     return DailyPressure(
-        average = PressureUnit.validateValue(initialDailyPressure?.average)
-            ?: values.average(),
-        min = PressureUnit.validateValue(initialDailyPressure?.min)
-            ?: values.min(),
-        max = PressureUnit.validateValue(initialDailyPressure?.max)
-            ?: values.max()
+        average = initialDailyPressure?.average?.toValidOrNull()
+            ?: values.map { it.value }.average().roundToLong().pascals,
+        min = initialDailyPressure?.min?.toValidOrNull()
+            ?: values.minOfOrNull { it.value }?.pascals,
+        max = initialDailyPressure?.max?.toValidOrNull()
+            ?: values.maxOfOrNull { it.value }?.pascals
     )
 }
 
@@ -1605,7 +1607,7 @@ internal fun completeCurrentFromHourlyData(
         airQuality = currentAirQuality ?: hourly.airQuality,
         relativeHumidity = newRelativeHumidity,
         dewPoint = newDewPoint,
-        pressure = PressureUnit.validateValue(newCurrent.pressure) ?: hourly.pressure,
+        pressure = newCurrent.pressure?.toValidOrNull() ?: hourly.pressure,
         cloudCover = UnitUtils.validatePercent(newCurrent.cloudCover) ?: hourly.cloudCover,
         visibility = DistanceUnit.validateValue(newCurrent.visibility) ?: hourly.visibility,
         ceiling = newCurrent.ceiling?.ensurePositive()

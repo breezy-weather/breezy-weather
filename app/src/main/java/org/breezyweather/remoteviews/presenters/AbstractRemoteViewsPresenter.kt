@@ -37,6 +37,7 @@ import org.breezyweather.common.basic.models.options.WidgetWeekIconMode
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.formatMeasure
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonth
 import org.breezyweather.common.extensions.getFormattedMediumDayAndMonthInAdditionalCalendar
@@ -272,7 +273,6 @@ abstract class AbstractRemoteViewsPresenter {
             if (subtitleP.isNullOrEmpty()) return ""
             val temperatureUnit = SettingsManager.getInstance(context).getTemperatureUnit(context)
             // val precipitationUnit = getInstance(context).getPrecipitationUnit(context)
-            val pressureUnit = SettingsManager.getInstance(context).getPressureUnit(context)
             val distanceUnit = SettingsManager.getInstance(context).getDistanceUnit(context)
             val speedUnit = SettingsManager.getInstance(context).getSpeedUnit(context)
             var subtitle = subtitleP
@@ -326,9 +326,8 @@ abstract class AbstractRemoteViewsPresenter {
                     } ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cps$",
-                    weather.current?.pressure?.let {
-                        pressureUnit.formatMeasure(context, it)
-                    } ?: context.getString(R.string.null_data_text)
+                    weather.current?.pressure?.formatMeasure(context)
+                        ?: context.getString(R.string.null_data_text)
                 ).replace(
                     "\$cv$",
                     weather.current?.visibility?.let {

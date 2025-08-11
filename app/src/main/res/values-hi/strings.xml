@@ -521,7 +521,6 @@
     <string name="common_weather_text_snow_light">हल्की बर्फ</string>
     <string name="common_weather_text_snow_showers_light">हल्की बर्फ़बारी</string>
     <string name="common_weather_text_drizzle_freezing_light">हल्की बर्फ़ीली बूंदाबांदी</string>
-    <string name="unit_kgfpsqcm_voice">प्रति वर्ग सेंटीमीटर किलोग्राम बल</string>
     <string name="common_weather_text_clear_sky">साफ़ आकाश</string>
     <string name="common_weather_text_rain_snow_mixed_light">हल्की बारिश और बर्फबारी मिश्रित</string>
     <string name="common_weather_text_snow">हिम</string>
@@ -613,7 +612,6 @@
     <string name="widget_clock_font_sans_serif_black">सैंस सेरिफ ब्लैक</string>
     <string name="settings_weather_source_portal">पोर्टल</string>
     <string name="settings_main_summary">कार्ड क्रम, प्रदर्शित आइटम, और एनिमेशन</string>
-    <string name="unit_kgfpsqcm">किलोग्राम-बल/सेंटीमीटर² (kgf/cm²)</string>
     <string name="unit_h">ह</string>
     <string name="unit_ppcm">प्रति मीटर³ (/m³)</string>
     <string name="message_server_unavailable_title">सर्वर अनुपलब्ध</string>

@@ -67,6 +67,7 @@ import org.breezyweather.sources.jma.json.JmaDailyResult
 import org.breezyweather.sources.jma.json.JmaForecastAreaResult
 import org.breezyweather.sources.jma.json.JmaHourlyResult
 import org.breezyweather.sources.jma.json.JmaWeekAreaResult
+import org.breezyweather.unit.pressure.Pressure.Companion.hectopascals
 import org.json.JSONObject
 import retrofit2.Retrofit
 import java.text.SimpleDateFormat
@@ -314,7 +315,7 @@ class JmaService @Inject constructor(
                     speed = it.wind?.getOrNull(0)
                 ),
                 relativeHumidity = it.humidity?.getOrNull(0),
-                pressure = it.normalPressure?.getOrNull(0),
+                pressure = it.normalPressure?.getOrNull(0)?.hectopascals,
                 visibility = it.visibility?.getOrNull(0),
                 dailyForecast = dailyForecast
             )
