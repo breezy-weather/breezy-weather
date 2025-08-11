@@ -848,4 +848,5 @@
     <string name="cloud_cover_scale">Wolkenbedeckungsskala</string>
     <string name="content_provider_permission_description">Wetterinformationen von Breezy Weather abrufen, einschließlich der Koordinaten deiner Standorte, z. B. deines aktuellen Standorts, wenn du diesen hinzugefügt hast</string>
     <string name="content_provider_permission_label">Breezy Weather Daten lesen</string>
+    <string name="action_add_as_location">Als Ort hinzufügen</string>
 </resources>
