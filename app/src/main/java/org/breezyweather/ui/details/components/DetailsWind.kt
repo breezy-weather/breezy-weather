@@ -272,7 +272,7 @@ private fun WindItem(
                         contentDescription = speedUnit.formatContentDescription(context, speed) +
                             (
                                 wind.arrow?.let {
-                                    context.getString(R.string.comma_separator) +
+                                    context.getString(org.breezyweather.unit.R.string.locale_separator) +
                                         wind.getDirection(context, short = false)!!
                                 } ?: ""
                                 )

@@ -73,7 +73,7 @@ class HumidityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
             }
 
             current.dewPoint?.let {
-                talkBackBuilder.append(context.getString(R.string.comma_separator))
+                talkBackBuilder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                 talkBackBuilder.append(context.getString(R.string.dew_point))
                 talkBackBuilder.append(context.getString(R.string.colon_separator))
                 talkBackBuilder.append(dewPointValueView.text)

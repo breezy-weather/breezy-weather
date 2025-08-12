@@ -37,4 +37,17 @@
     <string name="pressure_inhg_display_name_long">palce ortuťového stĺpca</string>
     <string name="pressure_inhg_nominative_long">%s palce ortuťového stĺpca</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_long">%s hodiny</string>
+    <string name="duration_hr_per_long">%s za hodinu</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_long">%s minúty</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_long">%s sekundy</string>
+    <string name="duration_sec_per_long">%s za sekundu</string>
+
 </resources>

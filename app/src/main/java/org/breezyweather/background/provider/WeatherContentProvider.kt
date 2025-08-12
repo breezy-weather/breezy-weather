@@ -55,7 +55,6 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import org.breezyweather.BuildConfig
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
-import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.basic.models.options.unit.PollenUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
@@ -108,6 +107,7 @@ import org.breezyweather.sources.getFeatureSource
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.PressureUnit
 import kotlin.math.roundToInt
+import kotlin.time.Duration
 
 class WeatherContentProvider : ContentProvider() {
 
@@ -895,12 +895,12 @@ class WeatherContentProvider : ContentProvider() {
     }
 
     private fun getDurationUnit(
-        duration: Double?,
+        duration: Duration?,
     ): BreezyUnit? {
         return duration?.let {
             BreezyUnit(
-                value = it.roundDecimals(2),
-                unit = DurationUnit.HOUR.id
+                value = it.inWholeMinutes.toDouble(),
+                unit = "m"
             )
         }
     }

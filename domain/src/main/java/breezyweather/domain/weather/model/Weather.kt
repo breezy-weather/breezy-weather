@@ -24,6 +24,7 @@ import breezyweather.domain.weather.wrappers.PollenWrapper
 import breezyweather.domain.weather.wrappers.WeatherWrapper
 import java.io.Serializable
 import java.util.Date
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
@@ -67,11 +68,11 @@ data class Weather(
         emptyList()
     }
 
-    fun isValid(pollingIntervalHours: Double?): Boolean {
+    fun isValid(pollingIntervalHours: Duration?): Boolean {
         val updateTime = base.refreshTime?.time ?: 0
         val currentTime = System.currentTimeMillis()
         return pollingIntervalHours == null ||
-            (currentTime >= updateTime && currentTime - updateTime < pollingIntervalHours * 1.hours.inWholeMilliseconds)
+            (currentTime >= updateTime && currentTime - updateTime < pollingIntervalHours.inWholeMilliseconds)
     }
 
     val currentAlertList: List<Alert> = alertList

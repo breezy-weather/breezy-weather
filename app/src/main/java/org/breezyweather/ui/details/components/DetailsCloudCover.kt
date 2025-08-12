@@ -62,9 +62,9 @@ import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
-import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.basic.models.options.unit.cloudCoverScaleThresholds
 import org.breezyweather.common.basic.models.options.unit.getCloudCoverDescription
+import org.breezyweather.common.extensions.formatTime
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.is12Hour
 import org.breezyweather.common.extensions.toDate
@@ -74,8 +74,11 @@ import org.breezyweather.domain.weather.model.getRangeSummary
 import org.breezyweather.ui.common.charts.BreezyLineChart
 import org.breezyweather.ui.common.widgets.Material3ExpressiveCardListItem
 import org.breezyweather.ui.settings.preference.bottomInsetItem
+import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Date
 import kotlin.math.roundToInt
+import kotlin.time.Duration
+import kotlin.time.DurationUnit
 
 @Composable
 fun DetailsCloudCover(
@@ -301,21 +304,25 @@ private fun CloudCoverChart(
 
 @Composable
 fun SunshineItem(
-    sunshineDuration: Double,
+    sunshineDuration: Duration,
     modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
 
     DetailsItem(
         headlineText = stringResource(R.string.sunshine_duration),
-        supportingText = DurationUnit.HOUR.formatMeasure(context, sunshineDuration),
+        supportingText = sunshineDuration.formatTime(context, smallestUnit = DurationUnit.MINUTES),
         icon = R.drawable.ic_sunshine_duration,
         modifier = modifier
             .semantics(mergeDescendants = true) {}
             .clearAndSetSemantics {
                 contentDescription = context.getString(R.string.sunshine_duration) +
                     context.getString(R.string.colon_separator) +
-                    DurationUnit.HOUR.formatContentDescription(context, sunshineDuration)
+                    sunshineDuration.formatTime(
+                        context = context,
+                        smallestUnit = DurationUnit.MINUTES,
+                        unitWidth = UnitWidth.LONG
+                    )
             }
     )
 }

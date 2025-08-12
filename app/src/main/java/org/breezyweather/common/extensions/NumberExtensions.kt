@@ -16,16 +16,12 @@
 
 package org.breezyweather.common.extensions
 
-import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.platform.LocalLayoutDirection
-import org.breezyweather.domain.settings.SettingsManager
-import org.breezyweather.unit.formatting.UnitWidth
-import org.breezyweather.unit.pressure.Pressure
 import java.math.BigDecimal
 import java.math.RoundingMode
 import kotlin.math.ceil
@@ -79,43 +75,6 @@ val Array<Double>.median: Double?
             (this[(size - 1) / 2] + this[size / 2]) / 2.0
         }
     }
-
-/**
- * Convenient format function with parameters filled for ou app
- */
-fun Pressure.formatMeasure(
-    context: Context,
-    valueWidth: UnitWidth = UnitWidth.SHORT,
-    unitWidth: UnitWidth = UnitWidth.SHORT,
-): String {
-    val settings = SettingsManager.getInstance(context)
-    return format(
-        context = context,
-        unit = settings.getPressureUnit(context),
-        valueWidth = valueWidth,
-        unitWidth = unitWidth,
-        locale = context.currentLocale,
-        useNumberFormatter = settings.useNumberFormatter,
-        useMeasureFormat = settings.useMeasureFormat
-    )
-}
-
-/**
- * Convenient format function with parameters filled for ou app
- */
-fun Pressure.formatValue(
-    context: Context,
-    width: UnitWidth = UnitWidth.SHORT,
-): String {
-    val settings = SettingsManager.getInstance(context)
-    return formatValue(
-        unit = settings.getPressureUnit(context),
-        width = width,
-        locale = context.currentLocale,
-        useNumberFormatter = settings.useNumberFormatter,
-        useMeasureFormat = settings.useMeasureFormat
-    )
-}
 
 /**
  * Taken from Mihon

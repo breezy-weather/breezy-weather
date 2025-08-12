@@ -549,7 +549,6 @@
     <string name="uv_index_short">紫外線</string>
     <string name="visibility_short">能見度</string>
     <string name="pressure_short">氣壓</string>
-    <string name="comma_separator">、</string>
     <string name="location_message_updated">位置已更新</string>
     <string name="location_message_already_exists">位置清單裡已有使用相同預報來源之位置。</string>
     <string name="location_search_no_results_advice">請確保您搜尋位置的拼字正確，而且位置不會過於細緻。您也可以嘗試別的位置搜尋來源，也許會得到不同結果。</string>

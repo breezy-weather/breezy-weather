@@ -64,6 +64,7 @@ import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
 import javax.inject.Named
+import kotlin.time.Duration.Companion.minutes
 
 class BrightSkyService @Inject constructor(
     @ApplicationContext context: Context,
@@ -275,7 +276,7 @@ class BrightSkyService @Inject constructor(
                 pressure = result.pressure?.hectopascals,
                 cloudCover = result.cloudCover,
                 visibility = result.visibility?.toDouble(),
-                sunshineDuration = result.sunshine?.div(60)
+                sunshineDuration = result.sunshine?.minutes
             )
         }
     }

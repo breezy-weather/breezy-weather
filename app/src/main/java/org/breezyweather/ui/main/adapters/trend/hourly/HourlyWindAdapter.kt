@@ -64,7 +64,7 @@ class HourlyWindAdapter(
 
             if (hourly.wind?.isValid == true) {
                 talkBackBuilder
-                    .append(activity.getString(R.string.comma_separator))
+                    .append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(hourly.wind!!.getContentDescription(activity, mSpeedUnit))
             }
             val windColor = hourly.wind?.getColor(activity) ?: Color.TRANSPARENT

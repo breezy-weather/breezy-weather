@@ -5,6 +5,9 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/ar.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Value separator -->
+    <string name="locale_separator">،\u0020</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->
@@ -48,5 +51,23 @@
     <string name="pressure_inhg_display_name_long">بوصة زئبقية</string>
     <string name="pressure_inhg_nominative_short">%s ب. زئبقية</string>
     <string name="pressure_inhg_nominative_long">%s بوصة زئبقية</string>
+
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s س</string>
+    <string name="duration_hr_nominative_long">%s ساعة</string>
+    <string name="duration_hr_per_short">%s/س</string>
+    <string name="duration_hr_per_long">%s في الساعة</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s د</string>
+    <string name="duration_min_nominative_long">%s دقيقة</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s ث</string>
+    <string name="duration_sec_nominative_long">%s ثانية</string>
+    <string name="duration_sec_per_short">%s/ث</string>
+    <string name="duration_sec_per_long">%s في الثانية</string>
 
 </resources>

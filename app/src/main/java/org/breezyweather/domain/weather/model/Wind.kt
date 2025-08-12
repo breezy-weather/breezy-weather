@@ -97,12 +97,14 @@ fun Wind.getContentDescription(
     speed?.let {
         builder.append(unit.formatContentDescription(context, it))
         if (!getStrength(context).isNullOrEmpty()) {
-            builder.append(context.getString(R.string.comma_separator))
+            builder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
             builder.append(getStrength(context))
         }
     }
     if (!getDirection(context).isNullOrEmpty()) {
-        if (builder.toString().isNotEmpty()) builder.append(context.getString(R.string.comma_separator))
+        if (builder.toString().isNotEmpty()) {
+            builder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
+        }
         if (degree!! in 0.0..360.0) {
             builder.append(context.getString(R.string.wind_origin, getDirection(context, short = false)))
         } else {
@@ -112,7 +114,9 @@ fun Wind.getContentDescription(
     if (withGusts) {
         gusts?.let {
             if (it > (speed ?: 0.0)) {
-                if (builder.toString().isNotEmpty()) builder.append(context.getString(R.string.comma_separator))
+                if (builder.toString().isNotEmpty()) {
+                    builder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
+                }
                 builder.append(context.getString(R.string.wind_gusts_short))
                 builder.append(context.getString(R.string.colon_separator))
                 builder.append(unit.formatContentDescription(context, it))

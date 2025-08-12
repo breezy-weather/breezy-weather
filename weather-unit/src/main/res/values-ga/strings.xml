@@ -39,4 +39,17 @@
     <string name="pressure_inhg_nominative_short">%s or. Hg</string>
     <string name="pressure_inhg_nominative_long">%s orlach mearcair</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s u</string>
+    <string name="duration_hr_per_short">%s/u</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s nóim</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s soic</string>
+    <string name="duration_sec_per_short">%s/s</string>
+
 </resources>

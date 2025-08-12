@@ -5,6 +5,9 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/ckb.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Value separator -->
+    <string name="locale_separator">،\u0020</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->
@@ -26,6 +29,17 @@
     <!-- No change -->
 
     <!-- Inch of mercury -->
+    <!-- No change -->
+
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <!-- No change -->
+
+    <!-- Minutes -->
+    <!-- No change -->
+
+    <!-- Seconds -->
     <!-- No change -->
 
 </resources>

@@ -38,7 +38,7 @@ fun Alert.getFormattedDates(
             startDate.getFormattedMediumDayAndMonth(location, context)
         }
         builder.append(startDateDay)
-            .append(context.getString(R.string.comma_separator))
+            .append(context.getString(org.breezyweather.unit.R.string.locale_separator))
             .append(startDate.getFormattedTime(location, context, context.is12Hour))
         endDate?.let { endDate ->
             builder.append(" — ")
@@ -48,7 +48,7 @@ fun Alert.getFormattedDates(
                 endDate.getFormattedMediumDayAndMonth(location, context)
             }
             if (startDateDay != endDateDay) {
-                builder.append(endDateDay).append(context.getString(R.string.comma_separator))
+                builder.append(endDateDay).append(context.getString(org.breezyweather.unit.R.string.locale_separator))
             }
             builder.append(endDate.getFormattedTime(location, context, context.is12Hour))
         }

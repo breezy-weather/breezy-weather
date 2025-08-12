@@ -39,4 +39,18 @@
     <string name="pressure_inhg_nominative_short">%s tum Hg</string>
     <string name="pressure_inhg_nominative_long">%s tum kvicksilver</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s tim</string>
+    <string name="duration_hr_nominative_long">%s timmar</string>
+    <string name="duration_hr_per_long">%s per timme</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_long">%s minuter</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_long">%s sekunder</string>
+    <string name="duration_sec_per_long">%s per sekund</string>
+
 </resources>

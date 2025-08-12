@@ -40,4 +40,17 @@
     <string name="pressure_inhg_nominative_short">%sinHg</string>
     <string name="pressure_inhg_nominative_long">%s수은주인치</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s시간</string>
+    <string name="duration_hr_per_long">시간당 %s</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s분</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s초</string>
+    <string name="duration_sec_per_long">초당 %s</string>
+
 </resources>

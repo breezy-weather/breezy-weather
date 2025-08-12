@@ -39,4 +39,21 @@
     <string name="pressure_inhg_nominative_short">%s in Hg</string>
     <string name="pressure_inhg_nominative_long">%s tollid elavhõbedasammast</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s t</string>
+    <string name="duration_hr_nominative_long">%s tundi</string>
+    <string name="duration_hr_per_short">%s/t</string>
+    <string name="duration_hr_per_long">%s tunnis</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_long">%s minutit</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s sek</string>
+    <string name="duration_sec_nominative_long">%s sekundit</string>
+    <string name="duration_sec_per_short">%s/sek</string>
+    <string name="duration_sec_per_long">%s sekundis</string>
+
 </resources>

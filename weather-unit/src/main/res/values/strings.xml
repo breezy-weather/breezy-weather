@@ -2,6 +2,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <!-- Generic translations -->
+    <!-- Based on https://www.unicode.org/cldr/charts/47/summary/root.html -->
+    <!-- If you believe there is an error, please open a discussion -->
+
+    <!-- Value separator -->
+    <string name="locale_separator">,\u0020</string>
 
     <!-- Pressure units -->
 
@@ -46,5 +51,57 @@
     <string name="pressure_inhg_display_name_long">@string/pressure_inhg_display_name_short</string>
     <string name="pressure_inhg_nominative_short">%s inHg</string>
     <string name="pressure_inhg_nominative_long">@string/pressure_inhg_nominative_short</string>
+
+    <!-- Duration units TODO: In other languages -->
+
+    <!-- Days / Not used in Breezy Weather, so not translating -->
+    <string name="duration_day_display_name_short" translatable="false">day</string>
+    <string name="duration_day_display_name_long" translatable="false">@string/duration_day_display_name_short</string>
+    <string name="duration_day_nominative_short" translatable="false">%s d</string>
+    <string name="duration_day_nominative_long" translatable="false">@string/duration_day_nominative_short</string>
+    <string name="duration_day_per_short" translatable="false">%s/d</string>
+    <string name="duration_day_per_long" translatable="false">@string/duration_day_nominative_short</string>
+
+    <!-- Hours / Only partially used in Breezy Weather -->
+    <string name="duration_hr_display_name_short" translatable="false">hr</string>
+    <string name="duration_hr_display_name_long" translatable="false">@string/duration_hr_display_name_short</string>
+    <string name="duration_hr_nominative_short">%s h</string>
+    <string name="duration_hr_nominative_long">@string/duration_hr_nominative_short</string>
+    <string name="duration_hr_per_short">%s/h</string>
+    <string name="duration_hr_per_long">@string/duration_hr_nominative_short</string>
+
+    <!-- Minutes / Only partially used in Breezy Weather -->
+    <string name="duration_min_display_name_short" translatable="false">min</string>
+    <string name="duration_min_display_name_long" translatable="false">@string/duration_min_display_name_short</string>
+    <string name="duration_min_nominative_short">%s min</string>
+    <string name="duration_min_nominative_long">@string/duration_min_nominative_short</string>
+    <string name="duration_min_per_short" translatable="false">%s/min</string>
+    <string name="duration_min_per_long" translatable="false">@string/duration_min_nominative_short</string>
+
+    <!-- Seconds / Only partially used in Breezy Weather -->
+    <string name="duration_sec_display_name_short" translatable="false">sec</string>
+    <string name="duration_sec_display_name_long" translatable="false">@string/duration_sec_display_name_short</string>
+    <string name="duration_sec_nominative_short">%s s</string>
+    <string name="duration_sec_nominative_long">@string/duration_sec_nominative_short</string>
+    <string name="duration_sec_per_short">%s/s</string>
+    <string name="duration_sec_per_long">@string/duration_sec_nominative_short</string>
+
+    <!-- Milliseconds / Not used in Breezy Weather -->
+    <string name="duration_ms_display_name_short" translatable="false">ms</string>
+    <string name="duration_ms_display_name_long" translatable="false">@string/duration_ms_display_name_short</string>
+    <string name="duration_ms_nominative_short" translatable="false">%s ms</string>
+    <string name="duration_ms_nominative_long" translatable="false">@string/duration_ms_nominative_short</string>
+
+    <!-- Microseconds / Not used in Breezy Weather -->
+    <string name="duration_micros_display_name_short" translatable="false">μs</string>
+    <string name="duration_micros_display_name_long" translatable="false">@string/duration_micros_display_name_short</string>
+    <string name="duration_micros_nominative_short" translatable="false">%s μs</string>
+    <string name="duration_micros_nominative_long" translatable="false">@string/duration_micros_nominative_short</string>
+
+    <!-- Nanoseconds / Not used in Breezy Weather -->
+    <string name="duration_ns_display_name_short" translatable="false">ns</string>
+    <string name="duration_ns_display_name_long" translatable="false">@string/duration_ns_display_name_short</string>
+    <string name="duration_ns_nominative_short" translatable="false">%s ns</string>
+    <string name="duration_ns_nominative_long" translatable="false">@string/duration_ns_nominative_short</string>
 
 </resources>

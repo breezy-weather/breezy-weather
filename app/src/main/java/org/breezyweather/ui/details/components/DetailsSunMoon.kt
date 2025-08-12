@@ -53,8 +53,8 @@ import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableMap
 import org.breezyweather.BreezyWeather
 import org.breezyweather.R
-import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
+import org.breezyweather.common.extensions.formatTime
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.getFormattedTime
 import org.breezyweather.common.extensions.getThemeColor
@@ -71,10 +71,12 @@ import org.breezyweather.ui.settings.preference.bottomInsetItem
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.MaterialWeatherThemeDelegate
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.implementor.MeteorShowerImplementor
 import org.breezyweather.ui.theme.weatherView.materialWeatherView.implementor.SunImplementor
+import org.breezyweather.unit.formatting.UnitWidth
 import org.shredzone.commons.suncalc.MoonPosition
 import org.shredzone.commons.suncalc.SunPosition
 import java.util.Calendar
 import java.util.Date
+import kotlin.time.DurationUnit
 
 @Composable
 fun DetailsSunMoon(
@@ -346,7 +348,7 @@ fun DailySun(
                                 ?: context.getString(R.string.null_data_text)
                             ) +
                         "↓" +
-                        (sun.duration?.let { " / " + DurationUnit.HOUR.formatMeasure(context, it) } ?: "")
+                        (sun.duration?.let { " / " + it.formatTime(context) } ?: "")
                 } else {
                     (
                         sunriseTime ?: context.getString(R.string.null_data_text)
@@ -356,7 +358,7 @@ fun DailySun(
                             sunsetTime ?: context.getString(R.string.null_data_text)
                             ) +
                         "↓" +
-                        (sun.duration?.let { " / " + DurationUnit.HOUR.formatMeasure(context, it) } ?: "")
+                        (sun.duration?.let { " / " + it.formatTime(context) } ?: "")
                 },
                 color = MaterialTheme.colorScheme.onSurface
             )
@@ -370,16 +372,22 @@ fun DailySun(
                 }
                 if (sunsetTime != null) {
                     if (talkBackBuilder.toString().isNotEmpty()) {
-                        talkBackBuilder.append(context.getString(R.string.comma_separator))
+                        talkBackBuilder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                     }
                     talkBackBuilder.append(context.getString(R.string.ephemeris_sunset_at, sunsetTime))
                 }
                 sun.duration?.let {
                     if (talkBackBuilder.toString().isNotEmpty()) {
-                        talkBackBuilder.append(context.getString(R.string.comma_separator))
+                        talkBackBuilder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                     }
                     talkBackBuilder.append(context.getString(R.string.sunshine_duration))
-                    talkBackBuilder.append(DurationUnit.HOUR.formatContentDescription(context, it))
+                    talkBackBuilder.append(
+                        it.formatTime(
+                            context = context,
+                            smallestUnit = DurationUnit.MINUTES,
+                            unitWidth = UnitWidth.LONG
+                        )
+                    )
                 }
                 contentDescription = talkBackBuilder.toString()
             }
@@ -438,7 +446,7 @@ fun DailyTwilight(
                 }
                 if (dusk != null) {
                     if (talkBackBuilder.toString().isNotEmpty()) {
-                        talkBackBuilder.append(context.getString(R.string.comma_separator))
+                        talkBackBuilder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                     }
                     talkBackBuilder.append(context.getString(R.string.ephemeris_dusk_at, dusk))
                 }
@@ -499,7 +507,7 @@ fun DailyMoon(
                 }
                 if (moonsetTime != null) {
                     if (talkBackBuilder.toString().isNotEmpty()) {
-                        talkBackBuilder.append(context.getString(R.string.comma_separator))
+                        talkBackBuilder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                     }
                     talkBackBuilder.append(context.getString(R.string.ephemeris_moonset_at, moonsetTime))
                 }

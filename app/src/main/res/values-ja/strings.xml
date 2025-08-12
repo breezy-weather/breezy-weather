@@ -545,7 +545,6 @@
     <string name="uv_index_short">UV指数</string>
     <string name="visibility_short">視程</string>
     <string name="pressure_short">気圧</string>
-    <string name="comma_separator">、</string>
     <string name="location_message_updated">場所を更新しました</string>
     <string name="location_message_already_exists">この予報の情報源を設定した場所が、場所の一覧にすでに存在しています。</string>
     <string name="location_search_no_results_advice">場所が正しく入力されているか、または詳細すぎないかご確認ください。もしくは他の検索情報源で検索してみてください。</string>

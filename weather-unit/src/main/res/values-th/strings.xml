@@ -39,4 +39,21 @@
     <string name="pressure_inhg_display_name_short">นิ้วปรอท</string>
     <string name="pressure_inhg_nominative_short">%s นิ้วปรอท</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s ชม.</string>
+    <string name="duration_hr_nominative_long">%s ชั่วโมง</string>
+    <string name="duration_hr_per_short">%s/ชม.</string>
+    <string name="duration_hr_per_long">%s ต่อชั่วโมง</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s นาที</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s วิ</string>
+    <string name="duration_sec_nominative_long">%s วินาที</string>
+    <string name="duration_sec_per_short">%s/วิ</string>
+    <string name="duration_sec_per_long">%s ต่อวินาที</string>
+
 </resources>

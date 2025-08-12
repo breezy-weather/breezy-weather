@@ -24,6 +24,8 @@ import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
 import java.util.Date
 import java.util.TimeZone
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.nanoseconds
 
 object DateColumnAdapter : ColumnAdapter<Date, Long> {
     override fun decode(databaseValue: Long): Date = Date(databaseValue)
@@ -65,4 +67,10 @@ object PressureColumnAdapter : ColumnAdapter<Pressure, Long> {
     override fun decode(databaseValue: Long): Pressure = databaseValue.pascals
 
     override fun encode(value: Pressure): Long = value.value
+}
+
+object DurationColumnAdapter : ColumnAdapter<Duration, Long> {
+    override fun decode(databaseValue: Long): Duration = databaseValue.nanoseconds
+
+    override fun encode(value: Duration): Long = value.inWholeNanoseconds
 }

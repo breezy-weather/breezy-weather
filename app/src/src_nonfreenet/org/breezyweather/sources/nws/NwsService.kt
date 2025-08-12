@@ -836,7 +836,9 @@ class NwsService @Inject constructor(
         weather?.attributes?.forEachIndexed { i, attr ->
             separator = when {
                 i == 0 -> ""
-                (i > 0) && (i < weather.attributes.size - 1) -> context.getString(R.string.comma_separator)
+                (i > 0) && (i < weather.attributes.size - 1) -> {
+                    context.getString(org.breezyweather.unit.R.string.locale_separator)
+                }
                 else -> context.getString(R.string.nws_weather_text_separator_and)
             }
             when (attr) {

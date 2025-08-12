@@ -35,4 +35,20 @@
     <string name="pressure_inhg_display_name_long">inch-kwikdruk</string>
     <string name="pressure_inhg_nominative_long">%s inch-kwikdruk</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s uur</string>
+    <string name="duration_hr_per_short">%s/uur</string>
+    <string name="duration_hr_per_long">%s per uur</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_long">%s minuten</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s sec</string>
+    <string name="duration_sec_nominative_long">%s seconden</string>
+    <string name="duration_sec_per_short">%s/sec</string>
+    <string name="duration_sec_per_long">%s per seconde</string>
+
 </resources>

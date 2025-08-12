@@ -63,7 +63,7 @@ class HourlyFeelsLikeAdapter(
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
             hourly.temperature?.feelsLikeTemperature?.let {
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(mTemperatureUnit.formatContentDescription(activity, it))
             }
             hourlyItem.setIconDrawable(

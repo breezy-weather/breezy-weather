@@ -5,6 +5,9 @@
     <!-- Based on https://www.unicode.org/cldr/charts/47/summary/ja.html -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Value separator -->
+    <string name="locale_separator">、</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->
@@ -36,5 +39,18 @@
     <!-- Inch of mercury -->
     <string name="pressure_inhg_display_name_short">水銀柱インチ</string>
     <string name="pressure_inhg_nominative_long">%s 水銀柱インチ</string>
+
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s 時間</string>
+    <string name="duration_hr_per_short">%s/時間</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s 分</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s 秒</string>
+    <string name="duration_sec_per_short">%s/秒</string>
 
 </resources>

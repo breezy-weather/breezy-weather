@@ -1,0 +1,65 @@
+ALTER TABLE dailys
+DROP COLUMN daytime_total_precipitation_duration;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_total_precipitation_duration INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_thunderstorm_precipitation_duration;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_thunderstorm_precipitation_duration INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_rain_precipitation_duration;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_rain_precipitation_duration INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_snow_precipitation_duration;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_snow_precipitation_duration INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN daytime_ice_precipitation_duration;
+
+ALTER TABLE dailys
+ADD COLUMN daytime_ice_precipitation_duration INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_total_precipitation_duration;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_total_precipitation_duration INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_thunderstorm_precipitation_duration;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_thunderstorm_precipitation_duration INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_rain_precipitation_duration;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_rain_precipitation_duration INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_snow_precipitation_duration;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_snow_precipitation_duration INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN nighttime_ice_precipitation_duration;
+
+ALTER TABLE dailys
+ADD COLUMN nighttime_ice_precipitation_duration INTEGER;
+
+ALTER TABLE dailys
+DROP COLUMN sunshine_duration;
+
+ALTER TABLE dailys
+ADD COLUMN sunshine_duration INTEGER;

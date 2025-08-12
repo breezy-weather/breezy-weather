@@ -73,7 +73,7 @@ class CardDisplayTest {
     fun getSummary() = runTest {
         val context = mockk<Context>().apply {
             every { getString(any()) } returns "Name"
-            every { getString(R.string.comma_separator) } returns ", "
+            every { getString(org.breezyweather.unit.R.string.locale_separator) } returns ", "
         }
         val list = arrayListOf(
             CardDisplay.CARD_NOWCAST,

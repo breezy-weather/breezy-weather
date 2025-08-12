@@ -35,4 +35,22 @@
     <string name="pressure_inhg_display_name_long">inç cıva</string>
     <string name="pressure_inhg_nominative_long">%s inç cıva</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s sa.</string>
+    <string name="duration_hr_nominative_long">%s saat</string>
+    <string name="duration_hr_per_short">%s/sa</string>
+    <string name="duration_hr_per_long">%s/saat</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s dk.</string>
+    <string name="duration_min_nominative_long">%s dakika</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s sn.</string>
+    <string name="duration_sec_nominative_long">%s saniye</string>
+    <string name="duration_sec_per_short">%s/sn</string>
+    <string name="duration_sec_per_long">%s/saniye</string>
+
 </resources>

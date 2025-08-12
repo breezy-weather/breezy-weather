@@ -427,7 +427,7 @@ class OpenMeteoService @Inject constructor(
                     )
                 ),
                 uV = UV(index = dailyResult.uvIndexMax?.getOrNull(i)),
-                sunshineDuration = dailyResult.sunshineDuration?.getOrNull(i)?.div(3600),
+                sunshineDuration = dailyResult.sunshineDuration?.getOrNull(i)?.seconds,
                 relativeHumidity = DailyRelativeHumidity(
                     average = dailyResult.relativeHumidityMean?.getOrNull(i)?.toDouble(),
                     max = dailyResult.relativeHumidityMax?.getOrNull(i)?.toDouble(),
@@ -817,7 +817,7 @@ class OpenMeteoService @Inject constructor(
                         context.currentLocale
                     ).compare(ws1.model.getName(context), ws2.model.getName(context))
                 }
-                .joinToString(context.getString(R.string.comma_separator)) {
+                .joinToString(context.getString(org.breezyweather.unit.R.string.locale_separator)) {
                     it.model.getName(context)
                 },
             colors = ListItemDefaults.colors(containerColor = AlertDialogDefaults.containerColor)

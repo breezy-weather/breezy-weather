@@ -30,4 +30,22 @@
     <!-- Inch of mercury -->
     <!-- No change -->
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s sr</string>
+    <string name="duration_hr_nominative_long">%s n yisragen</string>
+    <string name="duration_hr_per_short">%s/r</string>
+    <string name="duration_hr_per_long">%s i usrag</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s tsd</string>
+    <string name="duration_min_nominative_long">%s n tesdatin</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s tsn</string>
+    <string name="duration_sec_nominative_long">%s n tsinin</string>
+    <string name="duration_sec_per_short">%s/n</string>
+    <string name="duration_sec_per_long">%s i tsint</string>
+
 </resources>

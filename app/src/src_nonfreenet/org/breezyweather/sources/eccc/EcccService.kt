@@ -64,6 +64,7 @@ import java.util.Date
 import java.util.Objects
 import javax.inject.Inject
 import javax.inject.Named
+import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.seconds
 
 class EcccService @Inject constructor(
@@ -276,7 +277,7 @@ class EcccService @Inject constructor(
                                     total = nighttime.precip?.toDoubleOrNull()
                                 )
                             ),
-                            sunshineDuration = daytime?.sun?.value?.toDoubleOrNull()
+                            sunshineDuration = daytime?.sun?.value?.toDoubleOrNull()?.hours
                         )
                     )
                 }

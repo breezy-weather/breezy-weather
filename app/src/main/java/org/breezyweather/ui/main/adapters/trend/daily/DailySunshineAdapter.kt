@@ -27,12 +27,16 @@ import breezyweather.domain.location.model.Location
 import org.breezyweather.R
 import org.breezyweather.common.basic.BreezyActivity
 import org.breezyweather.common.basic.models.options.appearance.DetailScreen
-import org.breezyweather.common.basic.models.options.unit.DurationUnit
+import org.breezyweather.common.extensions.formatTime
 import org.breezyweather.common.extensions.getThemeColor
 import org.breezyweather.ui.common.widgets.trend.TrendRecyclerView
 import org.breezyweather.ui.common.widgets.trend.chart.PolylineAndHistogramView
 import org.breezyweather.ui.theme.ThemeManager
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.formatting.UnitWidth
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.DurationUnit
 
 /**
  * Daily sunshine adapter.
@@ -41,7 +45,7 @@ class DailySunshineAdapter(
     activity: BreezyActivity,
     location: Location,
 ) : AbsDailyTrendAdapter(activity, location) {
-    private var mHighestIndex: Double = 0.0
+    private var mHighestIndex: Duration = 0.milliseconds
 
     inner class ViewHolder(itemView: View) : AbsDailyTrendAdapter.ViewHolder(itemView) {
         private val mPolylineAndHistogramView = PolylineAndHistogramView(itemView.context)
@@ -64,8 +68,14 @@ class DailySunshineAdapter(
                 if (it > mHighestIndex) mHighestIndex else it
             }
             daily.sunshineDuration?.let {
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
-                    .append(DurationUnit.HOUR.formatContentDescription(itemView.context, it))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
+                    .append(
+                        it.formatTime(
+                            context = itemView.context,
+                            smallestUnit = DurationUnit.MINUTES,
+                            unitWidth = UnitWidth.LONG
+                        )
+                    )
             }
             mPolylineAndHistogramView.setData(
                 null,
@@ -74,9 +84,9 @@ class DailySunshineAdapter(
                 null,
                 null,
                 null,
-                sunshineDuration?.toFloat(),
-                daily.sunshineDuration?.let { DurationUnit.HOUR.formatMeasureShort(itemView.context, it) },
-                mHighestIndex.toFloat(),
+                sunshineDuration?.inWholeMinutes?.toFloat(),
+                daily.sunshineDuration?.formatTime(itemView.context),
+                mHighestIndex.inWholeMinutes.toFloat(),
                 0f
             )
             mPolylineAndHistogramView.setLineColors(
@@ -120,7 +130,7 @@ class DailySunshineAdapter(
             .mapNotNull { it.sun?.duration }
             .maxOrNull() ?: location.weather!!.dailyForecast
             .mapNotNull { it.sunshineDuration }
-            .maxOrNull() ?: 0.0
+            .maxOrNull() ?: 0.milliseconds
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -135,12 +145,12 @@ class DailySunshineAdapter(
     override fun getItemCount() = location.weather!!.dailyForecast.size
 
     override fun isValid(location: Location) = location.weather!!.dailyForecast.any {
-        (it.sunshineDuration ?: 0.0) > 0
+        (it.sunshineDuration?.inWholeMinutes ?: 0) > 0
     }
 
     override fun getDisplayName(context: Context) = context.getString(R.string.tag_sunshine)
 
     override fun bindBackgroundForHost(host: TrendRecyclerView) {
-        host.setData(emptyList(), mHighestIndex.toFloat(), 0f)
+        host.setData(emptyList(), mHighestIndex.inWholeMinutes.toFloat(), 0f)
     }
 }

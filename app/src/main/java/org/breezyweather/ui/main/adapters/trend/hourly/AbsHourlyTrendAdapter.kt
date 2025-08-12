@@ -50,7 +50,7 @@ abstract class AbsHourlyTrendAdapter(
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
             talkBackBuilder
-                .append(context.getString(R.string.comma_separator))
+                .append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                 .append(hourly.date.getHour(location, activity))
             hourlyItem.setHourText(hourly.date.getHour(location, activity))
             val useAccentColorForDate = position == 0 || hourly.date.getHourIn24Format(location) == "0"

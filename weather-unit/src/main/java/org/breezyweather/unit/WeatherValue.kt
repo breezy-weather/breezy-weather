@@ -17,19 +17,13 @@
 package org.breezyweather.unit
 
 import android.content.Context
-import android.icu.number.LocalizedNumberFormatter
 import android.icu.number.NumberFormatter
-import android.icu.number.Precision
 import android.icu.text.MeasureFormat
-import android.icu.text.NumberFormat
-import android.icu.util.Measure
-import android.icu.util.MeasureUnit
-import android.icu.util.TimeUnit
 import android.os.Build
-import androidx.annotation.RequiresApi
 import org.breezyweather.unit.formatting.UnitWidth
 import org.breezyweather.unit.formatting.format
-import java.text.FieldPosition
+import org.breezyweather.unit.formatting.formatWithMeasureFormat
+import org.breezyweather.unit.formatting.formatWithNumberFormatter
 import java.util.Locale
 
 interface WeatherValue<T : WeatherUnit> {
@@ -52,11 +46,7 @@ interface WeatherValue<T : WeatherUnit> {
         useMeasureFormat: Boolean = true,
     ): String {
         return toDouble(unit).format(
-            decimals = when (width) {
-                UnitWidth.SHORT -> unit.decimals.short
-                UnitWidth.NARROW -> unit.decimals.narrow
-                UnitWidth.LONG -> unit.decimals.long
-            },
+            decimals = unit.getPrecision(width),
             locale = locale,
             useNumberFormatter = useNumberFormatter,
             useMeasureFormat = useMeasureFormat
@@ -90,29 +80,19 @@ interface WeatherValue<T : WeatherUnit> {
             // LogHelper.log(msg = "Formatting with ICU ${enum.id}: ${enum.measureUnit} per ${enum.perMeasureUnit}")
 
             return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && useNumberFormatter) {
-                formatWithNumberFormatter(
+                unit.measureUnit!!.formatWithNumberFormatter(
                     locale = locale,
                     value = convertedValue,
-                    unit = unit.measureUnit!!,
                     perUnit = unit.perMeasureUnit,
-                    precision = when (valueWidth) {
-                        UnitWidth.SHORT -> unit.decimals.short
-                        UnitWidth.NARROW -> unit.decimals.narrow
-                        UnitWidth.LONG -> unit.decimals.long
-                    },
+                    precision = unit.getPrecision(valueWidth),
                     numberFormatterWidth = unitWidth.numberFormatterWidth!!
                 )
             } else {
-                formatWithMeasureFormat(
+                unit.measureUnit!!.formatWithMeasureFormat(
                     locale = locale,
                     value = convertedValue,
-                    unit = unit.measureUnit!!,
                     perUnit = unit.perMeasureUnit,
-                    precision = when (valueWidth) {
-                        UnitWidth.SHORT -> unit.decimals.short
-                        UnitWidth.NARROW -> unit.decimals.narrow
-                        UnitWidth.LONG -> unit.decimals.long
-                    },
+                    precision = unit.getPrecision(valueWidth),
                     measureFormatWidth = unitWidth.measureFormatWidth!!
                 )
             }
@@ -163,76 +143,5 @@ interface WeatherValue<T : WeatherUnit> {
                 useMeasureFormat = useMeasureFormat
             )
         )
-    }
-
-    /**
-     * @param locale
-     * @param value
-     * @param unit
-     * @param perUnit an optional per unit
-     * @param numberFormatterWidth
-     */
-    @RequiresApi(api = Build.VERSION_CODES.R)
-    fun formatWithNumberFormatter(
-        locale: Locale,
-        value: Number,
-        unit: MeasureUnit,
-        perUnit: MeasureUnit? = null,
-        precision: Int,
-        numberFormatterWidth: NumberFormatter.UnitWidth,
-    ): String {
-        return (NumberFormatter.withLocale(locale) as LocalizedNumberFormatter)
-            .precision(if (precision == 0) Precision.integer() else Precision.maxFraction(precision))
-            .unit(unit)
-            .perUnit(perUnit)
-            .unitWidth(numberFormatterWidth)
-            .apply {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    usage(if (unit is TimeUnit) "duration" else null)
-                }
-            }
-            .format(value)
-            .toString()
-    }
-
-    /**
-     * @param locale
-     * @param value
-     * @param unit
-     * @param perUnit an optional per unit. /!\ Only supported on Android SDK >= 26
-     */
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    fun formatWithMeasureFormat(
-        locale: Locale,
-        value: Number,
-        unit: MeasureUnit,
-        perUnit: MeasureUnit? = null,
-        precision: Int,
-        measureFormatWidth: MeasureFormat.FormatWidth,
-    ): String {
-        if (perUnit != null && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            throw UnsupportedOperationException()
-        }
-
-        return MeasureFormat
-            .getInstance(
-                locale,
-                measureFormatWidth,
-                NumberFormat.getInstance().apply { maximumFractionDigits = precision }
-            )
-            .let {
-                if (perUnit != null) {
-                    it.formatMeasurePerUnit(
-                        Measure(value, unit),
-                        perUnit,
-                        StringBuilder(),
-                        FieldPosition(0)
-                    ).toString()
-                } else {
-                    it.format(
-                        Measure(value, unit)
-                    )
-                }
-            }
     }
 }

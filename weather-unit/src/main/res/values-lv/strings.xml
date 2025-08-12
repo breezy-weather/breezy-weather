@@ -35,4 +35,19 @@
     <string name="pressure_inhg_display_name_long">dzīvsudraba stabiņa collas</string>
     <string name="pressure_inhg_nominative_long">%s dzīvsudraba stabiņa collas</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s st.</string>
+    <string name="duration_hr_nominative_long">%s stundas</string>
+    <string name="duration_hr_per_long">%s stundā</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_long">%s minūtes</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s sek.</string>
+    <string name="duration_sec_nominative_long">%s sekundes</string>
+    <string name="duration_sec_per_long">%s sekundē</string>
+
 </resources>

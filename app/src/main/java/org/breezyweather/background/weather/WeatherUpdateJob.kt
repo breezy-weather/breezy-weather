@@ -71,6 +71,7 @@ import java.util.Date
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
+import kotlin.time.Duration.Companion.minutes
 
 /**
  * Based on Mihon LibraryUpdateJob
@@ -457,15 +458,15 @@ class WeatherUpdateJob @AssistedInject constructor(
             context: Context,
         ) {
             val settings = SettingsManager.getInstance(context)
-            val pollingRate = settings.updateInterval.intervalInHour
-            if (pollingRate != null && pollingRate > 0.25) {
+            val pollingRate = settings.updateInterval.interval
+            if (pollingRate != null && pollingRate > 15.minutes) {
                 val constraints = Constraints(
                     requiredNetworkType = NetworkType.CONNECTED,
                     requiresBatteryNotLow = settings.ignoreUpdatesWhenBatteryLow
                 )
 
                 val request = PeriodicWorkRequestBuilder<WeatherUpdateJob>(
-                    (pollingRate * MINUTES_PER_HOUR).toLong(),
+                    pollingRate.inWholeMinutes,
                     TimeUnit.MINUTES,
                     BACKOFF_DELAY_MINUTES,
                     TimeUnit.MINUTES

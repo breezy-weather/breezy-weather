@@ -93,7 +93,7 @@ class AirQualityViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 .append(context.getString(R.string.air_quality_index))
                 .append(context.getString(R.string.colon_separator))
                 .append(UnitUtils.formatInt(context, mAqiIndex))
-                .append(context.getString(R.string.comma_separator))
+                .append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                 .append(airQuality.getName(context))
         }
         itemView.contentDescription = talkBackBuilder.toString()

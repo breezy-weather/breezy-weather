@@ -48,7 +48,7 @@ class LocationHolder(
             talkBackBuilder.append(context.getString(R.string.location_current))
         }
         if (talkBackBuilder.toString().isNotEmpty()) {
-            talkBackBuilder.append(context.getString(R.string.comma_separator))
+            talkBackBuilder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
         }
         mBinding.container.apply {
             swipe(0f)
@@ -132,7 +132,7 @@ class LocationHolder(
             }
             false
         }
-        talkBackBuilder.append(context.getString(R.string.comma_separator))
+        talkBackBuilder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
             .append(context.getString(R.string.location_swipe_to_delete))
         itemView.contentDescription = talkBackBuilder.toString()
     }

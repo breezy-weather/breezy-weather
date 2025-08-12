@@ -36,4 +36,22 @@
     <string name="pressure_inhg_display_name_long">ইঞ্চি পারদ</string>
     <string name="pressure_inhg_nominative_long">%s ইঞ্চি পারদ</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s ঘঃ</string>
+    <string name="duration_hr_nominative_long">%s ঘন্টা</string>
+    <string name="duration_hr_per_short">%s/ঘ:</string>
+    <string name="duration_hr_per_long">%s প্রতি ঘন্টা</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s মিঃ</string>
+    <string name="duration_min_nominative_long">%s মিনিট</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s/সেঃ</string>
+    <string name="duration_sec_nominative_long">%s সেকেন্ড</string>
+    <string name="duration_sec_per_short">%s সেঃ</string>
+    <string name="duration_sec_per_long">%s প্রতি সেকেন্ড</string>
+
 </resources>

@@ -43,7 +43,9 @@ fun UV.getContentDescription(context: Context): String {
         builder.append(UnitUtils.formatDouble(context, it, 0))
     }
     getLevel(context)?.let {
-        if (builder.toString().isNotEmpty()) builder.append(context.getString(R.string.comma_separator))
+        if (builder.toString().isNotEmpty()) {
+            builder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
+        }
         builder.append(it)
     }
     return builder.toString()

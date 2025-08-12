@@ -19,6 +19,7 @@ package breezyweather.domain.weather.model
 import breezyweather.domain.weather.wrappers.DailyWrapper
 import java.io.Serializable
 import java.util.Date
+import kotlin.time.Duration
 
 /**
  * Daily.
@@ -38,8 +39,7 @@ data class Daily(
     val airQuality: AirQuality? = null,
     val pollen: Pollen? = null,
     val uV: UV? = null,
-    // Expressed in hours:
-    val sunshineDuration: Double? = null,
+    val sunshineDuration: Duration? = null,
     val relativeHumidity: DailyRelativeHumidity? = null,
     val dewPoint: DailyDewPoint? = null,
     val pressure: DailyPressure? = null,

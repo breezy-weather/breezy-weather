@@ -39,4 +39,22 @@
     <string name="pressure_inhg_nominative_short">%s to Hg</string>
     <string name="pressure_inhg_nominative_long">%s tommur af kvikasilfri</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s klst.</string>
+    <string name="duration_hr_nominative_long">%s klukkustundir</string>
+    <string name="duration_hr_per_short">%s/klst.</string>
+    <string name="duration_hr_per_long">%s á klukkustundir</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s mín.</string>
+    <string name="duration_min_nominative_long">%s mínútur</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s sek.</string>
+    <string name="duration_sec_nominative_long">%s sekúndur</string>
+    <string name="duration_sec_per_short">%s/sek.</string>
+    <string name="duration_sec_per_long">%s á sekúndu</string>
+
 </resources>

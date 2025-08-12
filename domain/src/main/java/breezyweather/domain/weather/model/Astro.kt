@@ -18,6 +18,8 @@ package breezyweather.domain.weather.model
 
 import java.io.Serializable
 import java.util.Date
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 
 class Astro(
     val riseDate: Date? = null,
@@ -25,17 +27,14 @@ class Astro(
 ) : Serializable {
 
     // Not made to be used for moon astro, only sun
-    val duration: Double?
+    val duration: Duration?
         get() = if (riseDate == null || setDate == null) {
             // Polar night
-            0.0
+            0.milliseconds
         } else if (riseDate.after(setDate)) {
             null
         } else {
-            (setDate.time - riseDate.time) // get delta milliseconds
-                .div(1000) // seconds
-                .div(60) // minutes
-                .div(60.0) // hours
+            (setDate.time - riseDate.time).milliseconds
         }
 
     val isValid: Boolean

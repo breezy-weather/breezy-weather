@@ -20,21 +20,24 @@ import android.content.Context
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.BaseEnum
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.minutes
 
 enum class UpdateInterval(
     override val id: String,
-    val intervalInHour: Double?,
+    val interval: Duration?,
 ) : BaseEnum {
 
     INTERVAL_NEVER("never", null),
-    INTERVAL_0_30("0:30", 0.5),
-    INTERVAL_1_00("1:00", 1.0),
-    INTERVAL_1_30("1:30", 1.5),
-    INTERVAL_2_00("2:00", 2.0),
-    INTERVAL_3_00("3:00", 3.0),
-    INTERVAL_6_00("6:00", 6.0),
-    INTERVAL_12_00("12:00", 12.0),
-    INTERVAL_24_00("24:00", 24.0),
+    INTERVAL_0_30("0:30", 30.minutes),
+    INTERVAL_1_00("1:00", 1.hours),
+    INTERVAL_1_30("1:30", 1.5.hours),
+    INTERVAL_2_00("2:00", 2.hours),
+    INTERVAL_3_00("3:00", 3.hours),
+    INTERVAL_6_00("6:00", 6.hours),
+    INTERVAL_12_00("12:00", 12.hours),
+    INTERVAL_24_00("24:00", 24.hours),
     ;
 
     companion object {
@@ -52,5 +55,5 @@ enum class UpdateInterval(
     override fun getName(context: Context) = UnitUtils.getName(context, this)
 
     // Makes locations valid for 1.5 hours when background updates are disabled
-    val validityInHour = intervalInHour ?: 1.5
+    val validity = interval ?: 1.5.hours
 }

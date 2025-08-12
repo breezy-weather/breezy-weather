@@ -45,7 +45,6 @@ import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.CLOUD_COVER_BKN
 import org.breezyweather.common.basic.models.options.unit.CLOUD_COVER_FEW
 import org.breezyweather.common.basic.models.options.unit.DistanceUnit
-import org.breezyweather.common.basic.models.options.unit.DurationUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationIntensityUnit
 import org.breezyweather.common.basic.models.options.unit.PrecipitationUnit
 import org.breezyweather.common.basic.models.options.unit.SpeedUnit
@@ -55,6 +54,8 @@ import org.breezyweather.common.extensions.getIsoFormattedDate
 import org.breezyweather.common.extensions.toCalendarWithTimeZone
 import org.breezyweather.domain.weather.index.PollutantIndex
 import org.breezyweather.ui.theme.weatherView.WeatherViewController
+import org.breezyweather.unit.duration.toValidDailyOrNull
+import org.breezyweather.unit.duration.toValidHalfDayOrNull
 import org.breezyweather.unit.pressure.Pressure
 import org.breezyweather.unit.pressure.Pressure.Companion.pascals
 import org.shredzone.commons.suncalc.MoonIllumination
@@ -70,8 +71,10 @@ import kotlin.math.log10
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.roundToLong
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
+import kotlin.time.Duration.Companion.nanoseconds
 
 /**
  * /!\ WARNING /!\
@@ -533,7 +536,7 @@ internal fun completeDailyListFromHourlyList(
     hourlyList: List<Hourly>,
     hourlyAirQuality: Map<Date, AirQuality>,
     hourlyPollen: Map<Date, Pollen>,
-    hourlySunshine: Map<Date, Double?>,
+    hourlySunshine: Map<Date, Duration?>,
     currentPollen: Pollen?,
     location: Location,
 ): List<Daily> {
@@ -597,7 +600,7 @@ internal fun completeDailyListFromHourlyList(
             } else {
                 getDailyUVFromHourlyList(hourlyListByDay.getOrElse(theDayFormatted) { null })
             },
-            sunshineDuration = DurationUnit.validateDailyValue(daily.sunshineDuration)
+            sunshineDuration = daily.sunshineDuration?.toValidDailyOrNull()
                 ?: getSunshineDuration(
                     hourlySunshine.filter { it.key.getIsoFormattedDate(location) == theDayFormatted }.values
                 ),
@@ -878,11 +881,11 @@ private fun completeHalfDayFromHourlyList(
     }
 
     val precipitationDuration = newHalfDay.precipitationDuration?.copy(
-        total = DurationUnit.validateHalfDayValue(newHalfDay.precipitationDuration!!.total),
-        thunderstorm = DurationUnit.validateHalfDayValue(newHalfDay.precipitationDuration!!.thunderstorm),
-        rain = DurationUnit.validateHalfDayValue(newHalfDay.precipitationDuration!!.rain),
-        snow = DurationUnit.validateHalfDayValue(newHalfDay.precipitationDuration!!.snow),
-        ice = DurationUnit.validateHalfDayValue(newHalfDay.precipitationDuration!!.ice)
+        total = newHalfDay.precipitationDuration!!.total?.toValidHalfDayOrNull(),
+        thunderstorm = newHalfDay.precipitationDuration!!.thunderstorm?.toValidHalfDayOrNull(),
+        rain = newHalfDay.precipitationDuration!!.rain?.toValidHalfDayOrNull(),
+        snow = newHalfDay.precipitationDuration!!.snow?.toValidHalfDayOrNull(),
+        ice = newHalfDay.precipitationDuration!!.ice?.toValidHalfDayOrNull()
     )
 
     val initialWind = SpeedUnit.validateWind(newHalfDay.wind)
@@ -1309,12 +1312,12 @@ private fun getDailyUVFromHourlyList(
  * @param hourlyList hourly list for that day
  */
 private fun getSunshineDuration(
-    hourlyList: Collection<Double?>?,
-): Double? {
+    hourlyList: Collection<Duration?>?,
+): Duration? {
     return if (hourlyList != null) {
         val hourlyWithSunshine = hourlyList.filterNotNull()
         if (hourlyWithSunshine.isNotEmpty()) {
-            hourlyWithSunshine.sum()
+            hourlyWithSunshine.sumOf { it.inWholeNanoseconds }.nanoseconds
         } else {
             null
         }

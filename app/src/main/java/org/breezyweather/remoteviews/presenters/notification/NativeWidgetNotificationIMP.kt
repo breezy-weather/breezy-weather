@@ -61,11 +61,11 @@ object NativeWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         val subtitle = StringBuilder()
         subtitle.append(location.getPlace(context))
         if (CalendarHelper.getAlternateCalendarSetting(context) != null) {
-            subtitle.append(context.getString(R.string.comma_separator))
+            subtitle.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                 .append(Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context))
         } else {
             location.weather!!.base.refreshTime?.let {
-                subtitle.append(context.getString(R.string.comma_separator))
+                subtitle.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(context.getString(R.string.notification_refreshed_at))
                     .append(" ")
                     .append(it.getFormattedTime(location, context, context.is12Hour))

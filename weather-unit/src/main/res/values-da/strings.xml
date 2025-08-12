@@ -37,4 +37,22 @@
     <string name="pressure_inhg_nominative_short">%s ″ Hg</string>
     <string name="pressure_inhg_nominative_long">%s tommer kviksølv</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s t.</string>
+    <string name="duration_hr_nominative_long">%s timer</string>
+    <string name="duration_hr_per_short">%s/t.</string>
+    <string name="duration_hr_per_long">%s pr. time</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s min.</string>
+    <string name="duration_min_nominative_long">%s minutter</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s sek.</string>
+    <string name="duration_sec_nominative_long">%s sekunder</string>
+    <string name="duration_sec_per_short">%s/sek.</string>
+    <string name="duration_sec_per_long">%s pr. sekund</string>
+
 </resources>

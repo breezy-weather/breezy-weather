@@ -1,4 +1,5 @@
 import breezyweather.domain.weather.reference.WeatherCode;
+import kotlin.time.Duration;
 import org.breezyweather.unit.pressure.Pressure;
 
 CREATE TABLE dailys(
@@ -30,11 +31,11 @@ CREATE TABLE dailys(
     daytime_snow_precipitation_probability REAL,
     daytime_ice_precipitation_probability REAL,
 
-    daytime_total_precipitation_duration REAL,
-    daytime_thunderstorm_precipitation_duration REAL,
-    daytime_rain_precipitation_duration REAL,
-    daytime_snow_precipitation_duration REAL,
-    daytime_ice_precipitation_duration REAL,
+    daytime_total_precipitation_duration INTEGER AS Duration,
+    daytime_thunderstorm_precipitation_duration INTEGER AS Duration,
+    daytime_rain_precipitation_duration INTEGER AS Duration,
+    daytime_snow_precipitation_duration INTEGER AS Duration,
+    daytime_ice_precipitation_duration INTEGER AS Duration,
 
     daytime_wind_degree REAL,
     daytime_wind_speed REAL,
@@ -62,12 +63,12 @@ CREATE TABLE dailys(
     nighttime_rain_precipitation_probability REAL,
     nighttime_snow_precipitation_probability REAL,
     nighttime_ice_precipitation_probability REAL,
-    nighttime_total_precipitation_duration REAL,
 
-    nighttime_thunderstorm_precipitation_duration REAL,
-    nighttime_rain_precipitation_duration REAL,
-    nighttime_snow_precipitation_duration REAL,
-    nighttime_ice_precipitation_duration REAL,
+    nighttime_total_precipitation_duration INTEGER AS Duration,
+    nighttime_thunderstorm_precipitation_duration INTEGER AS Duration,
+    nighttime_rain_precipitation_duration INTEGER AS Duration,
+    nighttime_snow_precipitation_duration INTEGER AS Duration,
+    nighttime_ice_precipitation_duration INTEGER AS Duration,
 
     nighttime_wind_degree REAL,
     nighttime_wind_speed REAL,
@@ -125,7 +126,7 @@ CREATE TABLE dailys(
     -- uv.
     uv_index REAL,
 
-    sunshine_duration REAL,
+    sunshine_duration INTEGER AS Duration,
 
     -- relative humidity
     relative_humidity_average REAL,

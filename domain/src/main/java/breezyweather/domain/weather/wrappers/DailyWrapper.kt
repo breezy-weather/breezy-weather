@@ -27,6 +27,7 @@ import breezyweather.domain.weather.model.DegreeDay
 import breezyweather.domain.weather.model.Pollen
 import breezyweather.domain.weather.model.UV
 import java.util.Date
+import kotlin.time.Duration
 
 /**
  * Daily wrapper
@@ -37,10 +38,7 @@ data class DailyWrapper(
     val night: HalfDayWrapper? = null,
     val degreeDay: DegreeDay? = null,
     val uV: UV? = null,
-    /**
-     * Sunshine duration in hours (ex: 0.5 means 30 min)
-     */
-    val sunshineDuration: Double? = null,
+    val sunshineDuration: Duration? = null,
     val relativeHumidity: DailyRelativeHumidity? = null,
     val dewPoint: DailyDewPoint? = null,
     val pressure: DailyPressure? = null,

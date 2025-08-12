@@ -65,9 +65,9 @@ class HourlyAirQualityAdapter(
 
             val index = hourly.airQuality?.getIndex()
             if (index != null) {
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(UnitUtils.formatInt(activity, index))
-                    .append(activity.getString(R.string.comma_separator))
+                    .append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(hourly.airQuality!!.getName(itemView.context))
             }
             mPolylineAndHistogramView.setData(

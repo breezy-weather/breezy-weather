@@ -53,11 +53,6 @@ import java.text.FieldPosition
 import java.util.Locale
 import kotlin.math.pow
 import kotlin.math.roundToInt
-import kotlin.time.Duration.Companion.days
-import kotlin.time.Duration.Companion.hours
-import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.Duration.Companion.minutes
-import kotlin.time.Duration.Companion.seconds
 
 object UnitUtils {
 
@@ -202,15 +197,6 @@ object UnitUtils {
                 unitWidth
             )
             if (adjustedFormatting != null) {
-                if (enum.measureUnit is TimeUnit) {
-                    return formatDurationWithIcu(
-                        context,
-                        convertedValue,
-                        enum.measureUnit as TimeUnit,
-                        unitWidth.measureFormatWidth!!
-                    )
-                }
-
                 return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R &&
                     SettingsManager.getInstance(context).useNumberFormatter
                 ) {
@@ -265,11 +251,6 @@ object UnitUtils {
             .unit(unit)
             .perUnit(perUnit)
             .unitWidth(numberFormatterWidth)
-            .apply {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    usage(if (unit is TimeUnit) "duration" else null)
-                }
-            }
             .format(value)
             .toString()
     }
@@ -313,80 +294,6 @@ object UnitUtils {
                     )
                 }
             }
-    }
-
-    /**
-     * Format duration
-     */
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private fun formatDurationWithIcu(
-        context: Context,
-        value: Number,
-        unit: TimeUnit,
-        measureFormatWidth: MeasureFormat.FormatWidth,
-    ): String {
-        val measureFormat = MeasureFormat.getInstance(
-            context.currentLocale,
-            if (measureFormatWidth == MeasureFormat.FormatWidth.NARROW) {
-                MeasureFormat.FormatWidth.SHORT
-            } else {
-                measureFormatWidth
-            }
-        )
-
-        // Avoid showing “0 secs” / Shows “30 min” instead of “0.5 hrs” when narrow
-        if (value.toDouble() == 0.0 ||
-            (value.toDouble() >= 1 && measureFormatWidth == MeasureFormat.FormatWidth.NARROW)
-        ) {
-            return measureFormat.format(Measure(value, unit))
-        }
-
-        val duration = when (unit) {
-            MeasureUnit.YEAR, MeasureUnit.MONTH, MeasureUnit.WEEK -> {
-                return measureFormat.format(Measure(value, unit))
-            }
-            MeasureUnit.DAY -> value.toDouble().days
-            MeasureUnit.HOUR -> value.toDouble().hours
-            MeasureUnit.MINUTE -> value.toDouble().minutes
-            MeasureUnit.SECOND -> value.toDouble().seconds
-            else -> value.toDouble().milliseconds
-        }
-
-        return duration.toComponents { days, hours, minutes, seconds, _ ->
-            when {
-                days > 0 -> {
-                    if (hours != 0 && measureFormatWidth != MeasureFormat.FormatWidth.NARROW) {
-                        measureFormat.formatMeasures(
-                            Measure(days, MeasureUnit.DAY),
-                            Measure(hours, MeasureUnit.HOUR)
-                        )
-                    } else {
-                        measureFormat.format(Measure(days, MeasureUnit.DAY))
-                    }
-                }
-                hours > 0 -> {
-                    if (minutes != 0 && measureFormatWidth != MeasureFormat.FormatWidth.NARROW) {
-                        measureFormat.formatMeasures(
-                            Measure(hours, MeasureUnit.HOUR),
-                            Measure(minutes, MeasureUnit.MINUTE)
-                        )
-                    } else {
-                        measureFormat.format(Measure(hours, MeasureUnit.HOUR))
-                    }
-                }
-                minutes > 0 -> {
-                    if (seconds != 0 && measureFormatWidth != MeasureFormat.FormatWidth.NARROW) {
-                        measureFormat.formatMeasures(
-                            Measure(minutes, MeasureUnit.MINUTE),
-                            Measure(seconds, MeasureUnit.SECOND)
-                        )
-                    } else {
-                        measureFormat.format(Measure(minutes, MeasureUnit.MINUTE))
-                    }
-                }
-                else -> measureFormat.format(Measure(minutes, MeasureUnit.SECOND))
-            }
-        }
     }
 
     /**

@@ -38,4 +38,20 @@
     <string name="pressure_inhg_display_name_long">Zoll Quecksilbersäule</string>
     <string name="pressure_inhg_nominative_long">%s Zoll Quecksilbersäule</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s Std.</string>
+    <string name="duration_hr_nominative_long">%s Stunden</string>
+    <string name="duration_hr_per_long">%s pro Stunde</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s Min.</string>
+    <string name="duration_min_nominative_long">%s Minuten</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s Sek.</string>
+    <string name="duration_sec_nominative_long">%s Sekunden</string>
+    <string name="duration_sec_per_long">%s pro Sekunde</string>
+
 </resources>

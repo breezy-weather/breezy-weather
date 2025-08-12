@@ -37,4 +37,22 @@
     <string name="pressure_inhg_display_name_long">инчи живиног стуба</string>
     <string name="pressure_inhg_nominative_long">%s инчи живиног стуба</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s ч</string>
+    <string name="duration_hr_nominative_long">%s сати</string>
+    <string name="duration_hr_per_short">%s/ч</string>
+    <string name="duration_hr_per_long">%s/сат</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s мин</string>
+    <string name="duration_min_nominative_long">%s минути</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s сек</string>
+    <string name="duration_sec_nominative_long">%s секунде</string>
+    <string name="duration_sec_per_short">%s/с</string>
+    <string name="duration_sec_per_long">%s/у секунди</string>
+
 </resources>

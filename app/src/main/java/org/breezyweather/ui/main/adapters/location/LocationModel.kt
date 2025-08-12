@@ -70,8 +70,8 @@ class LocationModel(
             }
         }
 
-        val validityInHour = SettingsManager.getInstance(context).updateInterval.validityInHour
-        return if (refreshTime.time < Date().time - validityInHour.hours.inWholeMilliseconds) {
+        val validity = SettingsManager.getInstance(context).updateInterval.validity
+        return if (refreshTime.time < Date().time - validity.inWholeMilliseconds) {
             context.getString(
                 R.string.location_last_updated_x,
                 refreshTime.getRelativeTime(context).uncapitalize(context.currentLocale)

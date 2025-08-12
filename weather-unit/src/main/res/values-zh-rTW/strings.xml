@@ -8,6 +8,9 @@
     <!-- Taiwan guidelines: https://www.bsmi.gov.tw/wSite/public/Attachment/f1736149048776.pdf -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Value separator -->
+    <string name="locale_separator">，</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->
@@ -37,5 +40,20 @@
     <!-- Inch of mercury -->
     <string name="pressure_inhg_display_name_long">英寸汞柱</string>
     <string name="pressure_inhg_nominative_long">%s英寸汞柱</string>
+
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s小時</string>
+    <string name="duration_hr_per_short">%s/小時</string>
+    <string name="duration_hr_per_long">每小時 %s</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s分鐘</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s秒</string>
+    <string name="duration_sec_per_short">%s/秒</string>
+    <string name="duration_sec_per_long">每秒 %s</string>
 
 </resources>

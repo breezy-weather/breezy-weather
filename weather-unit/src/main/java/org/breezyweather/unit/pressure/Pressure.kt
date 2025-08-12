@@ -236,7 +236,8 @@ public value class Pressure internal constructor(
                  * Ongoing issue: https://unicode-org.atlassian.net/jira/software/c/projects/CLDR/issues/CLDR-10604
                  */
                 if (it.language.equals("zh", ignoreCase = true) &&
-                    arrayOf("TW", "HK", "MO").any { c -> it.country.equals(c, ignoreCase = true) }
+                    arrayOf("TW", "HK", "MO").any { c -> it.country.equals(c, ignoreCase = true) } &&
+                    unitWidth != UnitWidth.LONG
                 ) {
                     Locale.Builder().setLanguage("en").setRegion("001").build()
                 } else {

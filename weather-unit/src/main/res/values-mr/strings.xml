@@ -40,4 +40,22 @@
     <string name="pressure_inhg_nominative_short">%s in Hg</string>
     <string name="pressure_inhg_nominative_long">%s मर्क्यूरी इंच</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s ता</string>
+    <string name="duration_hr_nominative_long">%s तास</string>
+    <string name="duration_hr_per_short">%sप्रता</string>
+    <string name="duration_hr_per_long">%s प्रति तास</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s मिनि</string>
+    <string name="duration_min_nominative_long">%s मिनिटे</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s से</string>
+    <string name="duration_sec_nominative_long">%s सेकंद</string>
+    <string name="duration_sec_per_short">%sप्रसे</string>
+    <string name="duration_sec_per_long">%s प्रति सेकंद</string>
+
 </resources>

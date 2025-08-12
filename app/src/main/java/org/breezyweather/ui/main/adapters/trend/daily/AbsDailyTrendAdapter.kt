@@ -54,7 +54,7 @@ abstract class AbsDailyTrendAdapter(
             val weather = location.weather
             val daily = weather!!.dailyForecast[position]
             val todayIndex = weather.todayIndex
-            talkBackBuilder.append(context.getString(R.string.comma_separator))
+            talkBackBuilder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
             if (todayIndex != null) {
                 when (position) {
                     todayIndex -> talkBackBuilder.append(context.getString(R.string.daily_today))
@@ -70,7 +70,7 @@ abstract class AbsDailyTrendAdapter(
             } else {
                 dailyItem.setWeekText(daily.getWeek(location, context))
             }
-            talkBackBuilder.append(context.getString(R.string.comma_separator))
+            talkBackBuilder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                 .append(daily.date.getFormattedFullDayAndMonth(location, context))
             dailyItem.setDateText(daily.date.getFormattedShortDayAndMonth(location, context))
             val useAccentColorForDate = daily.isToday(location) || daily.date > Date()

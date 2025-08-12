@@ -47,4 +47,22 @@
     <string name="pressure_inhg_nominative_short">%s பாத. அங்.</string>
     <string name="pressure_inhg_nominative_long">%s பாதரச அங்குலங்கள்</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s மணிநேர.</string>
+    <string name="duration_hr_nominative_long">%s மணிநேரங்கள்</string>
+    <string name="duration_hr_per_short">%s/ம.நே</string>
+    <string name="duration_hr_per_long">%s/மணிநேரம்</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s நிமிட.</string>
+    <string name="duration_min_nominative_long">%s நிமிடங்கள்</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s விநாடி</string>
+    <string name="duration_sec_nominative_long">%s விநாடிகள்</string>
+    <string name="duration_sec_per_short">%s/வி.</string>
+    <string name="duration_sec_per_long">%s/விநாடி</string>
+
 </resources>

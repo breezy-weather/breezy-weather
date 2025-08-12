@@ -94,6 +94,7 @@ import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
 import kotlin.math.roundToInt
+import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
@@ -454,10 +455,10 @@ class AccuService @Inject constructor(
                         ice = forecasts.Day?.IceProbability?.toDouble()
                     ),
                     precipitationDuration = PrecipitationDuration(
-                        total = forecasts.Day?.HoursOfPrecipitation,
-                        rain = forecasts.Day?.HoursOfRain,
-                        snow = forecasts.Day?.HoursOfSnow,
-                        ice = forecasts.Day?.HoursOfIce
+                        total = forecasts.Day?.HoursOfPrecipitation?.hours,
+                        rain = forecasts.Day?.HoursOfRain?.hours,
+                        snow = forecasts.Day?.HoursOfSnow?.hours,
+                        ice = forecasts.Day?.HoursOfIce?.hours
                     ),
                     wind = Wind(
                         degree = forecasts.Day?.Wind?.Direction?.Degrees?.toDouble(),
@@ -487,10 +488,10 @@ class AccuService @Inject constructor(
                         ice = forecasts.Night?.IceProbability?.toDouble()
                     ),
                     precipitationDuration = PrecipitationDuration(
-                        total = forecasts.Night?.HoursOfPrecipitation,
-                        rain = forecasts.Night?.HoursOfRain,
-                        snow = forecasts.Night?.HoursOfSnow,
-                        ice = forecasts.Night?.HoursOfIce
+                        total = forecasts.Night?.HoursOfPrecipitation?.hours,
+                        rain = forecasts.Night?.HoursOfRain?.hours,
+                        snow = forecasts.Night?.HoursOfSnow?.hours,
+                        ice = forecasts.Night?.HoursOfIce?.hours
                     ),
                     wind = Wind(
                         degree = forecasts.Night?.Wind?.Direction?.Degrees?.toDouble(),
@@ -503,7 +504,7 @@ class AccuService @Inject constructor(
                     cooling = getDegreeDayInCelsius(forecasts.DegreeDaySummary?.Cooling)
                 ),
                 uV = getDailyUV(forecasts.AirAndPollen),
-                sunshineDuration = forecasts.HoursOfSun
+                sunshineDuration = forecasts.HoursOfSun?.hours
             )
         }
     }

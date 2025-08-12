@@ -62,7 +62,7 @@ class DailyUVAdapter(
 
             val index = daily.uV?.index
             if (index != null) {
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(daily.uV!!.getContentDescription(activity))
             }
             mPolylineAndHistogramView.setData(

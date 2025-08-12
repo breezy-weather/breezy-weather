@@ -53,6 +53,7 @@ import java.util.Locale
 import java.util.TimeZone
 import javax.inject.Inject
 import javax.inject.Named
+import kotlin.time.Duration.Companion.hours
 
 class MeteoLuxService @Inject constructor(
     @ApplicationContext context: Context,
@@ -230,7 +231,7 @@ class MeteoLuxService @Inject constructor(
                     uV = UV(
                         index = it.uvIndex
                     ),
-                    sunshineDuration = it.sunshine
+                    sunshineDuration = it.sunshine?.hours
                 )
             )
         }

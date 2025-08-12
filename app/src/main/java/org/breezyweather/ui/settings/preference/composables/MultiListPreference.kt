@@ -128,7 +128,7 @@ fun MultiListPreferenceView(
     val currentSummary = listSelectedState.mapNotNull { selectedItem ->
         itemsArray.firstOrNull { it.value == selectedItem }?.name
     }.sortedWith(Collator.getInstance(context.currentLocale))
-        .joinToString(stringResource(R.string.comma_separator))
+        .joinToString(stringResource(org.breezyweather.unit.R.string.locale_separator))
         .ifEmpty {
             stringResource(R.string.settings_disabled)
         }

@@ -46,6 +46,7 @@ import breezyweather.domain.weather.reference.Month
 import breezyweather.domain.weather.reference.WeatherCode
 import org.breezyweather.unit.pressure.Pressure
 import java.util.Date
+import kotlin.time.Duration
 
 object WeatherMapper {
 
@@ -153,11 +154,11 @@ object WeatherMapper {
         daytimeRainPrecipitationProbability: Double?,
         daytimeSnowPrecipitationProbability: Double?,
         daytimeIcePrecipitationProbability: Double?,
-        daytimeTotalPrecipitationDuration: Double?,
-        daytimeThunderstormPrecipitationDuration: Double?,
-        daytimeRainPrecipitationDuration: Double?,
-        daytimeSnowPrecipitationDuration: Double?,
-        daytimeIcePrecipitationDuration: Double?,
+        daytimeTotalPrecipitationDuration: Duration?,
+        daytimeThunderstormPrecipitationDuration: Duration?,
+        daytimeRainPrecipitationDuration: Duration?,
+        daytimeSnowPrecipitationDuration: Duration?,
+        daytimeIcePrecipitationDuration: Duration?,
         daytimeWindDegree: Double?,
         daytimeWindSpeed: Double?,
         daytimeWindGusts: Double?,
@@ -179,11 +180,11 @@ object WeatherMapper {
         nighttimeRainPrecipitationProbability: Double?,
         nighttimeSnowPrecipitationProbability: Double?,
         nighttimeIcePrecipitationProbability: Double?,
-        nighttimeTotalPrecipitationDuration: Double?,
-        nighttimeThunderstormPrecipitationDuration: Double?,
-        nighttimeRainPrecipitationDuration: Double?,
-        nighttimeSnowPrecipitationDuration: Double?,
-        nighttimeIcePrecipitationDuration: Double?,
+        nighttimeTotalPrecipitationDuration: Duration?,
+        nighttimeThunderstormPrecipitationDuration: Duration?,
+        nighttimeRainPrecipitationDuration: Duration?,
+        nighttimeSnowPrecipitationDuration: Duration?,
+        nighttimeIcePrecipitationDuration: Duration?,
         nighttimeWindDegree: Double?,
         nighttimeWindSpeed: Double?,
         nighttimeWindGusts: Double?,
@@ -224,7 +225,7 @@ object WeatherMapper {
         urticaceae: Long?,
         willow: Long?,
         uvIndex: Double?,
-        sunshineDuration: Double?,
+        sunshineDuration: Duration?,
         relativeHumidityAverage: Double?,
         relativeHumidityMin: Double?,
         relativeHumidityMax: Double?,

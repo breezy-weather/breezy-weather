@@ -35,4 +35,20 @@
     <string name="pressure_inhg_display_name_long">cale słupa rtęci</string>
     <string name="pressure_inhg_nominative_long">%s cale słupa rtęci</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s godz.</string>
+    <string name="duration_hr_nominative_long">%s godziny</string>
+    <string name="duration_hr_per_short">%s/godz.</string>
+    <string name="duration_hr_per_long">%s na godzinę</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_long">%s minuty</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s sek.</string>
+    <string name="duration_sec_nominative_long">%s sekundy</string>
+    <string name="duration_sec_per_long">%s na sekundę</string>
+
 </resources>

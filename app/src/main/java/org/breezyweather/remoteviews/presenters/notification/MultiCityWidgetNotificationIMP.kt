@@ -140,7 +140,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
         val timeStr = StringBuilder()
         timeStr.append(location.getPlace(context))
         if (CalendarHelper.getAlternateCalendarSetting(context) != null) {
-            timeStr.append(context.getString(R.string.comma_separator))
+            timeStr.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                 .append(Date().getFormattedMediumDayAndMonthInAdditionalCalendar(location, context))
         }
 
@@ -255,7 +255,7 @@ object MultiCityWidgetNotificationIMP : AbstractRemoteViewsPresenter() {
             location.getPlace(context, true)
         )
         location.weather?.today?.let {
-            builder.append(context.getString(R.string.comma_separator))
+            builder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                 .append(it.getTrendTemperature(context, unit))
         }
         return builder.toString()

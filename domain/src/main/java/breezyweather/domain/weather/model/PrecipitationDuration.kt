@@ -17,16 +17,15 @@
 package breezyweather.domain.weather.model
 
 import java.io.Serializable
+import kotlin.time.Duration
 
 /**
  * Precipitation duration.
- *
- * default unit : [DurationUnit.H]
  */
 data class PrecipitationDuration(
-    val total: Double? = null,
-    val thunderstorm: Double? = null,
-    val rain: Double? = null,
-    val snow: Double? = null,
-    val ice: Double? = null,
+    val total: Duration? = null,
+    val thunderstorm: Duration? = null,
+    val rain: Duration? = null,
+    val snow: Duration? = null,
+    val ice: Duration? = null,
 ) : Serializable

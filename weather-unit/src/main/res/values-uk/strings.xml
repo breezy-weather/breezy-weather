@@ -49,4 +49,22 @@
     <string name="pressure_inhg_nominative_short">%s дюйми рт. ст.</string>
     <string name="pressure_inhg_nominative_long">%s дюйми ртутного стовпа</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s год</string>
+    <string name="duration_hr_nominative_long">%s години</string>
+    <string name="duration_hr_per_short">%s/год</string>
+    <string name="duration_hr_per_long">%s на годину</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s хв</string>
+    <string name="duration_min_nominative_long">%s хвилини</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s с</string>
+    <string name="duration_sec_nominative_long">%s секунди</string>
+    <string name="duration_sec_per_short">%s/с</string>
+    <string name="duration_sec_per_long">%s на секунду</string>
+
 </resources>

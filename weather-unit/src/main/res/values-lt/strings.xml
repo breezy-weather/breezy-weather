@@ -37,4 +37,18 @@
     <string name="pressure_inhg_display_name_long">gyvsidabrio stulpelio coliai</string>
     <string name="pressure_inhg_nominative_long">%s gyvsidabrio stulpelio coliai</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s val.</string>
+    <string name="duration_hr_nominative_long">%s valandos</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s min.</string>
+    <string name="duration_min_nominative_long">%s minutės</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s sek.</string>
+    <string name="duration_sec_nominative_long">%s sekundės</string>
+
 </resources>

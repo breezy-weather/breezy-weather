@@ -403,16 +403,16 @@ abstract class AbstractRemoteViewsPresenter {
                 )
                 currentAlert.startDate?.let { startDate ->
                     val startDateDay = startDate.getFormattedMediumDayAndMonth(location, context)
-                    defaultBuilder.append(context.getString(R.string.comma_separator))
+                    defaultBuilder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                         .append(startDateDay)
-                        .append(context.getString(R.string.comma_separator))
+                        .append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                         .append(startDate.getFormattedTime(location, context, context.is12Hour))
                     currentAlert.endDate?.let { endDate ->
                         defaultBuilder.append("-")
                         val endDateDay = endDate.getFormattedMediumDayAndMonth(location, context)
                         if (startDateDay != endDateDay) {
                             defaultBuilder.append(endDateDay)
-                                .append(context.getString(R.string.comma_separator))
+                                .append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                         }
                         defaultBuilder.append(
                             endDate.getFormattedTime(location, context, context.is12Hour)

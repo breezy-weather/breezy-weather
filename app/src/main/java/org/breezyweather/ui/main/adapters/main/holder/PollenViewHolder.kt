@@ -112,7 +112,7 @@ class PollenViewHolder(parent: ViewGroup) : AbstractMainCardViewHolder(
                 pollen2Content.text = pollen.getIndexName(context, p, pollenIndexSource)
                 pollen2Content.setTextColor(context.getThemeColor(R.attr.colorBodyText))
 
-                talkBackBuilder.append(context.getString(R.string.comma_separator))
+                talkBackBuilder.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                 talkBackBuilder.append(pollen2Title.text)
                 talkBackBuilder.append(context.getString(R.string.colon_separator))
                 talkBackBuilder.append(pollen2Content.text)

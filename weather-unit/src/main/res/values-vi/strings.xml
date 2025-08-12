@@ -39,4 +39,17 @@
     <string name="pressure_inhg_display_name_long">inch thủy ngân</string>
     <string name="pressure_inhg_nominative_long">%s inch thủy ngân</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s giờ</string>
+    <string name="duration_hr_per_short">%s/giờ</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s phút</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s giây</string>
+    <string name="duration_sec_per_short">%s/giây</string>
+
 </resources>

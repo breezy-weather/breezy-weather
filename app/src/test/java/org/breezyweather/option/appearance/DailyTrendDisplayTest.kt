@@ -58,7 +58,7 @@ class DailyTrendDisplayTest {
     fun getSummary() = runTest {
         val context = mockk<Context>()
         every { context.getString(any()) } returns "Name"
-        every { context.getString(R.string.comma_separator) } returns ", "
+        every { context.getString(org.breezyweather.unit.R.string.locale_separator) } returns ", "
         val list = arrayListOf(
             DailyTrendDisplay.TAG_TEMPERATURE,
             DailyTrendDisplay.TAG_AIR_QUALITY,

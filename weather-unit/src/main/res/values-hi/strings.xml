@@ -41,4 +41,22 @@
     <string name="pressure_inhg_display_name_long">मर्करी इंच</string>
     <string name="pressure_inhg_nominative_long">%s मर्करी इंच</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s घं॰</string>
+    <string name="duration_hr_nominative_long">%s घंटे</string>
+    <string name="duration_hr_per_short">%s/घं॰</string>
+    <string name="duration_hr_per_long">%s प्रति घंटा</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s मि॰</string>
+    <string name="duration_min_nominative_long">%s मिनट</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s से॰</string>
+    <string name="duration_sec_nominative_long">%s सेकंड</string>
+    <string name="duration_sec_per_short">%s/से॰</string>
+    <string name="duration_sec_per_long">%s प्रति सेकंड</string>
+
 </resources>

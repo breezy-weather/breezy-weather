@@ -35,4 +35,20 @@
     <string name="pressure_inhg_display_name_long">tommer kvikksølv</string>
     <string name="pressure_inhg_nominative_long">%s tommer kvikksølv</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s t</string>
+    <string name="duration_hr_nominative_long">%s timer</string>
+    <string name="duration_hr_per_short">%s/t</string>
+    <string name="duration_hr_per_long">%s per time</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_long">%s minutter</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s sek</string>
+    <string name="duration_sec_nominative_long">%s sekunder</string>
+    <string name="duration_sec_per_long">%s per sekund</string>
+
 </resources>

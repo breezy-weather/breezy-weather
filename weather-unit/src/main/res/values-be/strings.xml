@@ -49,4 +49,22 @@
     <string name="pressure_inhg_nominative_short">%s цалі рт. сл.</string>
     <string name="pressure_inhg_nominative_long">%s цалі ртутнага слупа</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s гадз</string>
+    <string name="duration_hr_nominative_long">%s гадзіны</string>
+    <string name="duration_hr_per_short">%s/гадз</string>
+    <string name="duration_hr_per_long">%s у гадзіну</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s хв</string>
+    <string name="duration_min_nominative_long">%s хвіліны</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s с</string>
+    <string name="duration_sec_nominative_long">%s секунды</string>
+    <string name="duration_sec_per_short">%s/с</string>
+    <string name="duration_sec_per_long">%s у секунду</string>
+
 </resources>

@@ -653,7 +653,6 @@
     <string name="hko_warning_text_tsunami">海嘯警告</string>
     <string name="hko_warning_text_fire_yellow_description">現時之火災危險警告為黃色，表示火災危險性頗高。</string>
     <string name="hko_warning_text_fire_red_description">現時之火災危險警告為紅色，表示火災危險性極高。</string>
-    <string name="comma_separator">、</string>
     <string name="common_weather_text_dust">浮塵</string>
     <string name="common_weather_text_dust_storm">塵暴</string>
     <string name="smg_warning_text_tropical_cyclone_1">一號風球</string>

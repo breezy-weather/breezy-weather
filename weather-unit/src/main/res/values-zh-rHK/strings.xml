@@ -7,6 +7,9 @@
     <!-- https://unicode-org.atlassian.net/jira/software/c/projects/CLDR/issues/CLDR-10604 -->
     <!-- If you believe there is an error, please open a discussion -->
 
+    <!-- Value separator -->
+    <string name="locale_separator">，</string>
+
     <!-- Pressure units -->
 
     <!-- Pascal -->
@@ -36,5 +39,18 @@
     <!-- Inch of mercury - SPECIFIC to HK -->
     <string name="pressure_inhg_display_name_long">吋汞柱</string>
     <string name="pressure_inhg_nominative_long">%s吋汞柱</string>
+
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s小時</string>
+    <string name="duration_hr_per_short">%s 每小時</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s分鐘</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s秒</string>
+    <string name="duration_sec_per_short">%s 每秒</string>
 
 </resources>

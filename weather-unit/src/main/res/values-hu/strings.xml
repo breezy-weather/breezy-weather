@@ -37,4 +37,22 @@
     <string name="pressure_inhg_display_name_long">higanyhüvelyk</string>
     <string name="pressure_inhg_nominative_long">%s higanyhüvelyk</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s ó</string>
+    <string name="duration_hr_nominative_long">%s óra</string>
+    <string name="duration_hr_per_short">%s/ó</string>
+    <string name="duration_hr_per_long">%s/óra</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s p</string>
+    <string name="duration_min_nominative_long">%s perc</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s mp</string>
+    <string name="duration_sec_nominative_long">%s másodperc</string>
+    <string name="duration_sec_per_short">%s/mp</string>
+    <string name="duration_sec_per_long">%s/másodperc</string>
+
 </resources>

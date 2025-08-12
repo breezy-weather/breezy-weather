@@ -111,7 +111,7 @@ fun Pollen.getSummary(
     context: Context,
     source: PollenIndexSource? = null,
 ): String {
-    return pollensWithConcentration.joinToString(context.getString(R.string.comma_separator)) {
+    return pollensWithConcentration.joinToString(context.getString(org.breezyweather.unit.R.string.locale_separator)) {
         getName(context, it) +
             context.getString(R.string.colon_separator) +
             getIndexName(context, it, source)

@@ -68,7 +68,7 @@ class DailyPrecipitationAdapter(
             if ((daytimePrecipitation != null && daytimePrecipitation > 0f) ||
                 (nighttimePrecipitation != null && nighttimePrecipitation > 0f)
             ) {
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))
                     .append(
@@ -78,7 +78,7 @@ class DailyPrecipitationAdapter(
                             activity.getString(R.string.precipitation_none)
                         }
                     )
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.nighttime))
                     .append(activity.getString(R.string.colon_separator))
                     .append(
@@ -89,7 +89,7 @@ class DailyPrecipitationAdapter(
                         }
                     )
             } else {
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.precipitation_none))
             }
             dailyItem.setDayIconDrawable(

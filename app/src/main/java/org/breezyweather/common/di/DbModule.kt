@@ -28,6 +28,7 @@ import breezyweather.data.AndroidDatabaseHandler
 import breezyweather.data.Dailys
 import breezyweather.data.Database
 import breezyweather.data.DatabaseHandler
+import breezyweather.data.DurationColumnAdapter
 import breezyweather.data.Hourlys
 import breezyweather.data.Locations
 import breezyweather.data.PressureColumnAdapter
@@ -92,7 +93,18 @@ class DbModule {
             ),
             dailysAdapter = Dailys.Adapter(
                 daytime_weather_codeAdapter = WeatherCodeColumnAdapter,
+                daytime_total_precipitation_durationAdapter = DurationColumnAdapter,
+                daytime_thunderstorm_precipitation_durationAdapter = DurationColumnAdapter,
+                daytime_rain_precipitation_durationAdapter = DurationColumnAdapter,
+                daytime_snow_precipitation_durationAdapter = DurationColumnAdapter,
+                daytime_ice_precipitation_durationAdapter = DurationColumnAdapter,
                 nighttime_weather_codeAdapter = WeatherCodeColumnAdapter,
+                nighttime_total_precipitation_durationAdapter = DurationColumnAdapter,
+                nighttime_thunderstorm_precipitation_durationAdapter = DurationColumnAdapter,
+                nighttime_rain_precipitation_durationAdapter = DurationColumnAdapter,
+                nighttime_snow_precipitation_durationAdapter = DurationColumnAdapter,
+                nighttime_ice_precipitation_durationAdapter = DurationColumnAdapter,
+                sunshine_durationAdapter = DurationColumnAdapter,
                 pressure_averageAdapter = PressureColumnAdapter,
                 pressure_maxAdapter = PressureColumnAdapter,
                 pressure_minAdapter = PressureColumnAdapter

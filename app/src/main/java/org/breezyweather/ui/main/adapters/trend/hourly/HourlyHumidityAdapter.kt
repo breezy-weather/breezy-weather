@@ -64,13 +64,13 @@ class HourlyHumidityAdapter(
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
             hourly.relativeHumidity?.let {
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.humidity))
                     .append(activity.getString(R.string.colon_separator))
                     .append(UnitUtils.formatPercent(activity, it))
             }
             hourly.dewPoint?.let {
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.dew_point))
                     .append(activity.getString(R.string.colon_separator))
                     .append(mDewPointUnit.formatContentDescription(activity, it))

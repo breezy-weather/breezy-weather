@@ -45,7 +45,7 @@ import androidx.core.net.toUri
 import org.breezyweather.R
 import org.breezyweather.background.weather.WeatherUpdateJob
 import org.breezyweather.common.basic.models.options.UpdateInterval
-import org.breezyweather.common.basic.models.options.unit.DurationUnit
+import org.breezyweather.common.extensions.formatTime
 import org.breezyweather.common.extensions.getFormattedDate
 import org.breezyweather.common.extensions.plus
 import org.breezyweather.common.extensions.powerManager
@@ -67,7 +67,9 @@ import org.breezyweather.ui.settings.preference.sectionFooterItem
 import org.breezyweather.ui.settings.preference.sectionHeaderItem
 import org.breezyweather.ui.settings.preference.smallSeparatorItem
 import org.breezyweather.ui.settings.preference.switchPreferenceItem
+import org.breezyweather.unit.formatting.UnitWidth
 import java.util.Date
+import kotlin.time.DurationUnit
 
 @Composable
 fun BackgroundSettingsScreen(
@@ -98,9 +100,11 @@ fun BackgroundSettingsScreen(
                 val valueArray = stringArrayResource(R.array.automatic_refresh_rate_values)
                 val nameArray = stringArrayResource(R.array.automatic_refresh_rates).mapIndexed { index, value ->
                     UpdateInterval.entries.firstOrNull { it.id == valueArray[index] }?.let { updateInterval ->
-                        updateInterval.intervalInHour?.let { intervalInHour ->
-                            DurationUnit.HOUR.formatContentDescription(context, intervalInHour)
-                        }
+                        updateInterval.interval?.formatTime(
+                            context = context,
+                            smallestUnit = DurationUnit.MINUTES,
+                            unitWidth = UnitWidth.LONG
+                        )
                     } ?: value
                 }.toTypedArray()
                 val dialogNeverRefreshOpenState = remember { mutableStateOf(false) }

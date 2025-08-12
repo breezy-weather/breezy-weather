@@ -35,4 +35,22 @@
     <string name="pressure_inhg_display_name_long">ίντσες στήλης υδραργύρου</string>
     <string name="pressure_inhg_nominative_long">%s ίντσες στήλης υδραργύρου</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s ώ.</string>
+    <string name="duration_hr_nominative_long">%s ώρες</string>
+    <string name="duration_hr_per_short">%s/ώ.</string>
+    <string name="duration_hr_per_long">%s ανά ώρα</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s λεπ.</string>
+    <string name="duration_min_nominative_long">%s λεπτά</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s δευτ.</string>
+    <string name="duration_sec_nominative_long">%s δευτερόλεπτα</string>
+    <string name="duration_sec_per_short">%s/δευτ.</string>
+    <string name="duration_sec_per_long">%s ανά δευτερόλεπτο</string>
+
 </resources>

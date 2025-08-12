@@ -71,19 +71,19 @@ class DailyTemperatureAdapter(
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]
             daily.day?.let { day ->
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))
                 day.temperature?.temperature?.let {
                     talkBackBuilder.append(mTemperatureUnit.formatContentDescription(activity, it))
-                        .append(activity.getString(R.string.comma_separator))
+                        .append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                 }
                 if (!day.weatherText.isNullOrEmpty()) {
                     talkBackBuilder.append(day.weatherText)
                 }
                 if (mShowPrecipitationProbability) {
                     day.precipitationProbability?.total?.let { p ->
-                        talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                        talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                             .append(activity.getString(R.string.precipitation_probability))
                             .append(activity.getString(R.string.colon_separator))
                             .append(UnitUtils.formatPercent(activity, p))
@@ -91,19 +91,19 @@ class DailyTemperatureAdapter(
                 }
             }
             daily.night?.let { night ->
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.nighttime))
                     .append(activity.getString(R.string.colon_separator))
                 night.temperature?.temperature?.let {
                     talkBackBuilder.append(mTemperatureUnit.formatContentDescription(activity, it))
-                        .append(activity.getString(R.string.comma_separator))
+                        .append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                 }
                 if (!night.weatherText.isNullOrEmpty()) {
                     talkBackBuilder.append(night.weatherText)
                 }
                 if (mShowPrecipitationProbability) {
                     night.precipitationProbability?.total?.let { p ->
-                        talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                        talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                             .append(activity.getString(R.string.precipitation_probability))
                             .append(activity.getString(R.string.colon_separator))
                             .append(UnitUtils.formatPercent(activity, p))

@@ -54,7 +54,7 @@ fun List<Minutely>.getContentDescription(context: Context, location: Location): 
         } else {
             if (startingIndex != null) {
                 if (contentDescription.toString().isNotEmpty()) {
-                    contentDescription.append(context.getString(R.string.comma_separator))
+                    contentDescription.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
                 }
 
                 val slice = subList(startingIndex!!, index)
@@ -75,7 +75,7 @@ fun List<Minutely>.getContentDescription(context: Context, location: Location): 
     if (startingIndex != null) {
         val slice = subList(startingIndex!!, size)
         if (contentDescription.toString().isNotEmpty()) {
-            contentDescription.append(context.getString(R.string.comma_separator))
+            contentDescription.append(context.getString(org.breezyweather.unit.R.string.locale_separator))
         }
         contentDescription.append(
             context.getString(

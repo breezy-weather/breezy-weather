@@ -121,4 +121,10 @@ interface WeatherUnit {
             ""
         ).trim()
     }
+
+    fun getPrecision(width: UnitWidth): Int = when (width) {
+        UnitWidth.SHORT -> decimals.short
+        UnitWidth.NARROW -> decimals.narrow
+        UnitWidth.LONG -> decimals.long
+    }
 }

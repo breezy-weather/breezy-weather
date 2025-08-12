@@ -1,0 +1,97 @@
+/*
+ * This file is part of Breezy Weather.
+ *
+ * Breezy Weather is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by the
+ * Free Software Foundation, version 3 of the License.
+ *
+ * Breezy Weather is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+ * License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Breezy Weather. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package org.breezyweather.unit.formatting
+
+import android.icu.number.LocalizedNumberFormatter
+import android.icu.number.NumberFormatter
+import android.icu.number.Precision
+import android.icu.text.MeasureFormat
+import android.icu.text.NumberFormat
+import android.icu.util.Measure
+import android.icu.util.MeasureUnit
+import android.icu.util.TimeUnit
+import android.os.Build
+import androidx.annotation.RequiresApi
+import java.text.FieldPosition
+import java.util.Locale
+
+/**
+ * @param locale
+ * @param value
+ * @param perUnit an optional per unit
+ * @param numberFormatterWidth
+ */
+@RequiresApi(api = Build.VERSION_CODES.R)
+public fun MeasureUnit.formatWithNumberFormatter(
+    locale: Locale,
+    value: Number,
+    perUnit: MeasureUnit? = null,
+    precision: Int,
+    numberFormatterWidth: NumberFormatter.UnitWidth,
+): String {
+    return (NumberFormatter.withLocale(locale) as LocalizedNumberFormatter)
+        .precision(if (precision == 0) Precision.integer() else Precision.maxFraction(precision))
+        .unit(this)
+        .perUnit(perUnit)
+        .unitWidth(numberFormatterWidth)
+        .apply {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                usage(if (this is TimeUnit) "duration" else null)
+            }
+        }
+        .format(value)
+        .toString()
+}
+
+/**
+ * @param locale
+ * @param value
+ * @param perUnit an optional per unit. /!\ Only supported on Android SDK >= 26
+ */
+@RequiresApi(api = Build.VERSION_CODES.N)
+public fun MeasureUnit.formatWithMeasureFormat(
+    locale: Locale,
+    value: Number,
+    perUnit: MeasureUnit? = null,
+    precision: Int,
+    measureFormatWidth: MeasureFormat.FormatWidth,
+): String {
+    if (perUnit != null && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+        throw UnsupportedOperationException()
+    }
+
+    return MeasureFormat
+        .getInstance(
+            locale,
+            measureFormatWidth,
+            NumberFormat.getInstance().apply { maximumFractionDigits = precision }
+        )
+        .let {
+            if (perUnit != null) {
+                it.formatMeasurePerUnit(
+                    Measure(value, this),
+                    perUnit,
+                    StringBuilder(),
+                    FieldPosition(0)
+                ).toString()
+            } else {
+                it.format(
+                    Measure(value, this)
+                )
+            }
+        }
+}

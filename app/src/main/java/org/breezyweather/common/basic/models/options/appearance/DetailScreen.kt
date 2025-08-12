@@ -116,7 +116,7 @@ enum class DetailScreen(
             if (builder.isNotEmpty() && builder[0] == ',') {
                 builder.deleteCharAt(0)
             }
-            return builder.toString().replace(",", context.getString(R.string.comma_separator))
+            return builder.toString().replace(",", context.getString(org.breezyweather.unit.R.string.locale_separator))
         }
     }
 

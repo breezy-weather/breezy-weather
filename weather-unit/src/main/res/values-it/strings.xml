@@ -37,4 +37,17 @@
     <string name="pressure_inhg_display_name_long">pollici di mercurio</string>
     <string name="pressure_inhg_nominative_long">%s pollici di mercurio</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_long">%s ore</string>
+    <string name="duration_hr_per_long">%s all’ora</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_long">%s minuti</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_long">%s secondi</string>
+    <string name="duration_sec_per_long">%s al secondo</string>
+
 </resources>

@@ -40,4 +40,17 @@
     <string name="pressure_inhg_display_name_long">merkurio-hazbeteak</string>
     <string name="pressure_inhg_nominative_long">%s merkurio-hazbete</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_long">%s ordu</string>
+    <string name="duration_hr_per_long">%s ordu bakoitzeko</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_long">%s minutu</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_long">%s segundo</string>
+    <string name="duration_sec_per_long">%s segundo bakoitzeko</string>
+
 </resources>

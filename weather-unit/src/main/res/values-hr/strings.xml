@@ -37,4 +37,15 @@
     <string name="pressure_inhg_display_name_long">inči žive</string>
     <string name="pressure_inhg_nominative_long">%s inča žive</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_long">%s sati</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_long">%s minute</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_long">%s sekunde</string>
+
 </resources>

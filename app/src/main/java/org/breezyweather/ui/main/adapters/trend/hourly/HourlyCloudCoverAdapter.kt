@@ -59,7 +59,7 @@ class HourlyCloudCoverAdapter(
 
             hourly.cloudCover?.let { cloudCover ->
                 talkBackBuilder
-                    .append(activity.getString(R.string.comma_separator))
+                    .append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(UnitUtils.formatPercent(activity, cloudCover.toDouble()))
             }
             mPolylineAndHistogramView.setData(

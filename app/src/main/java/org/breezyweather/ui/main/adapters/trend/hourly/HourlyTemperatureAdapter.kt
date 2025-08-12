@@ -69,11 +69,11 @@ class HourlyTemperatureAdapter(
             val weather = location.weather!!
             val hourly = weather.nextHourlyForecast[position]
             hourly.temperature?.temperature?.let {
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(mTemperatureUnit.formatContentDescription(activity, it))
             }
             if (!hourly.weatherText.isNullOrEmpty()) {
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(hourly.weatherText)
             }
             hourlyItem.setIconDrawable(
@@ -87,7 +87,7 @@ class HourlyTemperatureAdapter(
             if (!mShowPrecipitationProbability) {
                 p = 0f
             } else if (hourly.precipitationProbability?.total != null) {
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.precipitation_probability))
                     .append(activity.getString(R.string.colon_separator))
                     .append(UnitUtils.formatPercent(activity, p.toDouble()))

@@ -35,4 +35,22 @@
     <string name="pressure_inhg_display_name_long">инчове живачен стълб</string>
     <string name="pressure_inhg_nominative_long">%s инчове живачен стълб</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_short">%s ч</string>
+    <string name="duration_hr_nominative_long">%s часа</string>
+    <string name="duration_hr_per_short">%s/ч</string>
+    <string name="duration_hr_per_long">%s за час</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s мин</string>
+    <string name="duration_min_nominative_long">%s минути</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_short">%s сек</string>
+    <string name="duration_sec_nominative_long">%s секунди</string>
+    <string name="duration_sec_per_short">%s/сек</string>
+    <string name="duration_sec_per_long">%s за секунда</string>
+
 </resources>

@@ -39,4 +39,18 @@
     <string name="pressure_inhg_nominative_short">%s in Hg</string>
     <string name="pressure_inhg_nominative_long">%s inchi coloană de mercur</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_long">%s ore</string>
+    <string name="duration_hr_per_long">%s pe oră</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_short">%s min.</string>
+    <string name="duration_min_nominative_long">%s minute</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_long">%s secunde</string>
+    <string name="duration_sec_per_long">%s pe secundă</string>
+
 </resources>

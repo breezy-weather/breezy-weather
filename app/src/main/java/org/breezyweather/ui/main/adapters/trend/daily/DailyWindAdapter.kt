@@ -65,7 +65,7 @@ class DailyWindAdapter(
 
             if (daily.day?.wind?.isValid == true) {
                 talkBackBuilder
-                    .append(activity.getString(R.string.comma_separator))
+                    .append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))
                     .append(daily.day!!.wind!!.getContentDescription(activity, mSpeedUnit))
@@ -104,7 +104,7 @@ class DailyWindAdapter(
 
             if (daily.night?.wind?.isValid == true) {
                 talkBackBuilder
-                    .append(activity.getString(R.string.comma_separator))
+                    .append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.nighttime))
                     .append(activity.getString(R.string.colon_separator))
                     .append(daily.night!!.wind!!.getContentDescription(activity, mSpeedUnit))

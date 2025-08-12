@@ -35,4 +35,17 @@
     <string name="pressure_inhg_display_name_long">polzades de mercuri</string>
     <string name="pressure_inhg_nominative_long">%s polzades de mercuri</string>
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_long">%s hores</string>
+    <string name="duration_hr_per_long">%s per hora</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_long">%s minuts</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_long">%s segons</string>
+    <string name="duration_sec_per_long">%s per segon</string>
+
 </resources>

@@ -76,7 +76,7 @@ enum class CardDisplay(
         }
 
         fun getSummary(context: Context, list: List<CardDisplay>): String {
-            return list.joinToString(context.getString(R.string.comma_separator)) { item ->
+            return list.joinToString(context.getString(org.breezyweather.unit.R.string.locale_separator)) { item ->
                 item.getName(context)
             }
         }

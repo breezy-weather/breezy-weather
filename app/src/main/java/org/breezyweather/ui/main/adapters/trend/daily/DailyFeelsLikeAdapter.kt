@@ -65,7 +65,7 @@ class DailyFeelsLikeAdapter(
             super.onBindView(activity, location, talkBackBuilder, position)
             val daily = location.weather!!.dailyForecast[position]
             daily.day?.let { day ->
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.daytime))
                     .append(activity.getString(R.string.colon_separator))
                 day.temperature?.feelsLikeTemperature?.let {
@@ -73,7 +73,7 @@ class DailyFeelsLikeAdapter(
                 }
             }
             daily.night?.let { night ->
-                talkBackBuilder.append(activity.getString(R.string.comma_separator))
+                talkBackBuilder.append(activity.getString(org.breezyweather.unit.R.string.locale_separator))
                     .append(activity.getString(R.string.nighttime))
                     .append(activity.getString(R.string.colon_separator))
                 night.temperature?.feelsLikeTemperature?.let {

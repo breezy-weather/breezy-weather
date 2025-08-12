@@ -35,4 +35,15 @@
     <!-- Inch of mercury -->
     <!-- No change -->
 
+    <!-- Duration units -->
+
+    <!-- Hours -->
+    <string name="duration_hr_nominative_long">%s oras</string>
+
+    <!-- Minutes -->
+    <string name="duration_min_nominative_long">%s minutas</string>
+
+    <!-- Seconds -->
+    <string name="duration_sec_nominative_long">%s segondas</string>
+
 </resources>
