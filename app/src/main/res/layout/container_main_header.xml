@@ -13,20 +13,47 @@
     android:paddingBottom="@dimen/normal_margin"
     tools:ignore="UnusedAttribute">
 
-    <org.breezyweather.ui.main.widgets.TextRelativeClock
-        android:id="@+id/refreshTimeText"
-        android:textSize="@dimen/content_text_size"
-        android:textColor="?attr/colorSurfaceInverse"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:drawablePadding="6dp"
-        android:gravity="center_vertical"
-        android:drawableStart="@drawable/ic_time"
-        android:backgroundTint="?attr/colorSurfaceInverse"
-        android:layout_marginBottom="@dimen/small_margin"
-        style="@style/large_title_text"
-        tools:text="1 minute ago"
-        tools:ignore="RelativeOverlap,RtlHardcoded" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <org.breezyweather.ui.main.widgets.TextRelativeClock
+            android:id="@+id/refreshTimeText"
+            android:textSize="@dimen/content_text_size"
+            android:textColor="?attr/colorSurfaceInverse"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:drawablePadding="6dp"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/ic_time"
+            android:backgroundTint="?attr/colorSurfaceInverse"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:layout_gravity="start"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            style="@style/large_title_text"
+            tools:text="1 minute ago"
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/container_main_header_timezone"
+            android:textSize="@dimen/content_text_size"
+            android:textColor="?attr/colorSurfaceInverse"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:backgroundTint="?attr/colorSurfaceInverse"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:layout_gravity="end"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textAlignment="textEnd"
+            android:visibility="gone"
+            style="@style/large_title_text"
+            tools:text="Europe/Berlin"
+            tools:ignore="RelativeOverlap,RtlHardcoded" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/container_main_header_weather_condition_description"

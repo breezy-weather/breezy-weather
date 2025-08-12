@@ -27,6 +27,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import breezyweather.domain.location.model.Location
+import org.breezyweather.BreezyWeather
 import org.breezyweather.R
 import org.breezyweather.common.basic.models.options.basic.UnitUtils
 import org.breezyweather.common.basic.models.options.unit.TemperatureUnit
@@ -42,6 +43,7 @@ import kotlin.math.roundToInt
 class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.container_main_header, parent, false)
 ) {
+    private val timezoneText: TextView = itemView.findViewById(R.id.container_main_header_timezone)
     private val refreshTimeText: TextRelativeClock = itemView.findViewById(R.id.refreshTimeText)
     private val mTemperatureContainer: RelativeLayout = itemView.findViewById(R.id.container_main_header_temperature)
     private val mTemperature: NumberAnimTextView = itemView.findViewById(R.id.container_main_header_temperature_value)
@@ -62,6 +64,11 @@ class HeaderViewHolder(parent: ViewGroup) : AbstractMainViewHolder(
         itemAnimationEnabled: Boolean,
     ) {
         super.onBindView(context, location, provider, listAnimationEnabled, itemAnimationEnabled)
+
+        if (BreezyWeather.instance.debugMode) {
+            timezoneText.visibility = View.VISIBLE
+            timezoneText.text = location.timeZone.id
+        }
 
         location.weather?.base?.refreshTime?.let {
             refreshTimeText.visibility = View.VISIBLE
