@@ -344,7 +344,7 @@
     <string name="settings_units_summary">Temperatur, Niederschlag, Entfernung, Geschwindigkeit, Druck</string>
     <string name="settings_main">Hauptbildschirm</string>
     <string name="settings_modules">Widgets &amp; Live-Hintergrund</string>
-    <string name="settings_modules_summary">Hintergrundbild festlegen, verwendete Widgets konfigurieren, Benachrichtigungs-Widget</string>
+    <string name="settings_modules_summary">Widgets, Benachrichtigungs-Widget, Hintergrundbild, Datenaustausch mit anderen Apps</string>
     <string name="action_share">Teilen</string>
     <string name="settings_main_background_animation_enabled">Ein</string>
     <string name="settings_modules_configure_widget_summary">Widget konfigurieren</string>
@@ -835,4 +835,6 @@
     <string name="content_provider_permission_description">Wetterinformationen von Breezy Weather abrufen, einschließlich der Koordinaten deiner Standorte, z. B. deines aktuellen Standorts, wenn du diesen hinzugefügt hast</string>
     <string name="content_provider_permission_label">Breezy Weather Daten lesen</string>
     <string name="action_add_as_location">Als Ort hinzufügen</string>
+    <string name="settings_regional_preference">Regionale Präferenz</string>
+    <string name="broadcast_source_breezy_weather_update_notifier">%s Benachrichtigung über Ortsaktualisierung</string>
 </resources>
