@@ -74,7 +74,7 @@ class NcdrService @Inject constructor(
             .create(NcdrApi::class.java)
     }
 
-    val mNlscApi by lazy {
+    val mNlscApi: NlscApi by lazy {
         xmlClient
             .baseUrl(NLSC_BASE_URL)
             .build()
@@ -121,13 +121,16 @@ class NcdrService @Inject constructor(
         location: Location,
         requestedFeatures: List<SourceFeature>,
     ): Observable<WeatherWrapper> {
+        val countyCode = location.parameters.getOrElse(id) { null }?.getOrElse("countyCode") { null }
+        val townshipCode = location.parameters.getOrElse(id) { null }?.getOrElse("townshipCode") { null }
         val legacyTownshipCode = location.parameters.getOrElse(id) { null }?.getOrElse("legacyTownshipCode") { null }
-        if (legacyTownshipCode.isNullOrEmpty()) {
+        if (countyCode.isNullOrEmpty() || townshipCode.isNullOrEmpty() || legacyTownshipCode.isNullOrEmpty()) {
             return Observable.error(InvalidLocationException())
         }
 
         val alerts = mNcdrApi.getAlerts().execute().body() ?: return Observable.error(WeatherException())
-        val cwaAlerts = alerts.entries?.filter { it.author.name.value == "中央氣象署" } ?: return Observable.empty()
+        val cwaAlerts =
+            alerts.entries?.filter { it.author.name.value == "中央氣象署" } ?: return Observable.just(WeatherWrapper())
 
         var someAlertsFailed = false
         return Observable.zip(
@@ -141,7 +144,9 @@ class NcdrService @Inject constructor(
             val alertList = mutableListOf<Alert>()
             alertResultList.filterIsInstance<CapAlert>().forEach { alert ->
                 alert.info?.forEach {
-                    if (it.containsGeocode("Taiwan_Geocode_103", legacyTownshipCode) ||
+                    if (it.containsGeocode("Taiwan_Geocode_112", "${countyCode}000") ||
+                        it.containsGeocode("Taiwan_Geocode_112", townshipCode) ||
+                        it.containsGeocode("Taiwan_Geocode_103", legacyTownshipCode) ||
                         it.containsPoint(LatLng(location.latitude, location.longitude))
                     ) {
                         val severity = when (it.severity?.value) {
@@ -178,7 +183,6 @@ class NcdrService @Inject constructor(
                                 headline = severityLevel + "特報"
                             }
                         }
-
                         val startDate = it.onset?.value ?: it.effective?.value ?: alert.sent?.value
                         alertList.add(
                             Alert(
@@ -187,8 +191,8 @@ class NcdrService @Inject constructor(
                                 startDate = startDate,
                                 endDate = it.expires?.value,
                                 headline = headline,
-                                description = it.description?.value?.trim(),
-                                instruction = it.instruction?.value?.trim(),
+                                description = it.formatAlertText(text = it.description?.value),
+                                instruction = it.formatAlertText(text = it.instruction?.value),
                                 source = it.senderName?.value?.trim(),
                                 severity = severity,
                                 color = color
@@ -226,15 +230,15 @@ class NcdrService @Inject constructor(
             lon = location.longitude,
             lat = location.latitude
         ).map { locationCodes ->
-            if (locationCodes.townshipCode?.value.isNullOrEmpty()) {
+            if (locationCodes.countyCode?.value.isNullOrEmpty() || locationCodes.townshipCode?.value.isNullOrEmpty()) {
                 throw InvalidLocationException()
             }
             mapOf(
                 // Currently not used. When used, update the throw InvalidLocationException condition above
-                // "countyCode" to locationCodes.countyCode.value,
-                // "townshipCode" to locationCodes.townshipCode.value,
                 // "villageCode" to locationCodes.villageCode.value,
-                "legacyTownshipCode" to getLegacyTownshipCode(locationCodes.townshipCode!!.value)
+                "countyCode" to locationCodes.countyCode.value,
+                "townshipCode" to locationCodes.townshipCode.value,
+                "legacyTownshipCode" to getLegacyTownshipCode(locationCodes.townshipCode.value)
             )
         }
     }
