@@ -911,4 +911,5 @@
     <string name="content_provider_permission_description">从 Breezy Weather 获取数据，包括您位置的坐标，比如你当前的位置（如果添加了的话）</string>
     <string name="broadcast_source_breezy_weather_update_notifier">%s 位置更新通知</string>
     <string name="action_add_as_location">添加为位置</string>
+    <string name="settings_regional_preference">地区偏好</string>
 </resources>
