@@ -85,9 +85,6 @@ val Locale.isTraditionalChinese: Boolean
     get() = isChinese &&
         arrayOf("TW", "HK", "MO").any { country.equals(it, ignoreCase = true) }
 
-val Locale.isIndian: Boolean
-    get() = language.equals("hi", ignoreCase = true) || language.equals("mr", ignoreCase = true)
-
 fun Locale.getCountryName(countryCode: String): String {
     return Locale.Builder()
         .setLanguage(language)

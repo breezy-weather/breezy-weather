@@ -26,8 +26,7 @@ import kotlinx.collections.immutable.toImmutableList
 import org.breezyweather.R
 import org.breezyweather.common.extensions.capitalize
 import org.breezyweather.common.extensions.currentLocale
-import org.breezyweather.common.extensions.isChinese
-import org.breezyweather.common.extensions.isIndian
+import org.breezyweather.common.utils.helpers.LogHelper
 import org.breezyweather.domain.settings.SettingsManager
 import java.util.Locale
 
@@ -40,6 +39,7 @@ object CalendarHelper {
     private val supportedCalendars = listOf(
         LocalePreferences.CalendarType.CHINESE,
         LocalePreferences.CalendarType.DANGI,
+        LocalePreferences.CalendarType.HEBREW,
         LocalePreferences.CalendarType.INDIAN,
         LocalePreferences.CalendarType.ISLAMIC,
         LocalePreferences.CalendarType.ISLAMIC_CIVIL,
@@ -117,10 +117,25 @@ object CalendarHelper {
     }
 
     private fun getCalendarPreferenceForLocale(locale: Locale): String {
+        LogHelper.log(msg = "${locale.language}")
         return with(locale) {
             when {
-                isChinese -> LocalePreferences.CalendarType.CHINESE
-                isIndian -> LocalePreferences.CalendarType.INDIAN
+                arrayOf("CN", "HK", "MO", "TW").any { country.equals(it, ignoreCase = true) } ||
+                    language.equals("zh", ignoreCase = true) -> {
+                    LocalePreferences.CalendarType.CHINESE
+                }
+                arrayOf("KP", "KR").any { country.equals(it, ignoreCase = true) } ||
+                    language.equals("ko", ignoreCase = true) -> {
+                    LocalePreferences.CalendarType.DANGI
+                }
+                arrayOf("he", "iw").any { language.equals(it, ignoreCase = true) } -> {
+                    LocalePreferences.CalendarType.HEBREW
+                }
+                country.equals("IN", ignoreCase = true) -> LocalePreferences.CalendarType.INDIAN
+                country.equals("SA", ignoreCase = true) -> LocalePreferences.CalendarType.ISLAMIC_RGSA
+                country.equals("IR", ignoreCase = true) || language.equals("fa", ignoreCase = true) -> {
+                    LocalePreferences.CalendarType.PERSIAN
+                }
                 // Looks like all locales defaults to Gregorian calendar:
                 // https://unicode-org.github.io/icu/userguide/datetime/calendar/#calendar-locale-and-keyword-handling
                 else -> LocalePreferences.getCalendarType(locale)

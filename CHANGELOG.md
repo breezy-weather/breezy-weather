@@ -56,6 +56,8 @@
 **Translations**
 - Initial translation added for Íslenska (@chunshek)
 - Translations updated
+- Alternate calendar: add Hebrew calendar
+- Alternate calendar: add more defaults based on regional preferences
 
 **Technical**
 - Current location process refactoring: coordinates, forced refresh when coordinates changed from more than 5 km
