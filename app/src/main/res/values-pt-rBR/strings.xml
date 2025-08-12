@@ -888,4 +888,5 @@
     <string name="content_provider_permission_description">obter informações do clima a partir do Breezy Weather, incluindo as coordenadas das suas localizações, como a sua localização atual se você a adicionou</string>
     <string name="broadcast_source_breezy_weather_update_notifier">Notificante de atualização de localização do %s</string>
     <string name="action_add_as_location">Adicionar como localização</string>
+    <string name="settings_regional_preference">Preferência regional</string>
 </resources>
